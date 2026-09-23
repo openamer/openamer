@@ -5240,6 +5240,44 @@ def _is_nav_list(text):
 # ever fetched. Rejecting them lets the HTTP ck/a fallback below run.
 _URL_STUB_PATHS = frozenset({"abs", "html", "index.html"})
 
+# class 162 (23.09.26): a DECIMAL POINT is not a sentence terminator, but the
+# extractor regex treats it as one. Stored verbatim that day:
+#   "CVE-2026-58138 is a critical, unauthenticated remote code execution
+#    vulnerability (CVSS 3."
+# -- the page's real sentence continues "3.9) affecting Orkes Conductor ...".
+# Measured over 12,540 real texts (live buffer + buffer_junk + learn log): 23
+# sentences are cut mid-number this way.
+#
+# A "text ends in digit+period" REJECT gate is a documented deliberate NON-FIX
+# (archive: class 85) and STAYS UNSHIPPED -- 1,710 of those endings are
+# legitimate (`--gpu-memory-utilization 0.`, `Gemini 3.`, `... 25 to 27, 2025.`).
+# This is not a gate. It is a pure WIDEN of the extractor: when the greedy match
+# ends at `<digit>.` and the page CONTINUES with a digit, keep reading to the
+# next real terminator. The match START is never moved.
+# Measured: 21 extends, 0 shortens, 0 non-prefix; candidate score rises 20x,
+# falls never.
+_SENTENCE_RE = re.compile(r"([A-Z][^.!?]{40,250}[.!?])")
+
+
+def _sentences(text):
+    """Yield sentence-shaped matches, healing a decimal-point cut.
+
+    Purely widening: a match that ends inside a number is extended to the next
+    terminator that is not itself a decimal point.
+    """
+    for m in _SENTENCE_RE.finditer(text):
+        s, end = m.group(1), m.end()
+        if re.search(r"[0-9]\.$", s) and end < len(text) and text[end].isdigit():
+            i = end
+            while i < len(text):
+                if text[i] in ".!?" and not (
+                        text[i] == "." and i + 1 < len(text)
+                        and text[i + 1].isdigit()):
+                    s = text[m.start():i + 1]
+                    break
+                i += 1
+        yield s
+
 # class 134 (22.09.26): a NEWSROOM INDEX page is not an article.
 #
 # Live: cycle_a_technews "learned", verbatim from online_buffer.jsonl,
@@ -5589,8 +5627,8 @@ def deep_learn(query, k=2):
             "access denied", "not found", "view all docs")
     best, best_score = "", 0
     for t in texts:
-        for m in re.finditer(r"([A-Z][^.!?]{40,250}[.!?])", t):
-            s = m.group(1).strip()
+        for s in _sentences(t):
+            s = s.strip()
             low = s.lower()
             if any(n in low for n in _NAV):
                 continue  # skip navigation/boilerplate

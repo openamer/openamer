@@ -886,6 +886,14 @@ Reproduce in ~4 s (no buffer writes):
    should never fetch `en.wikipedia.org/wiki/Rogue_(company)`. Add a
    title/domain relevance check between the query and the fetched page
    *before* extraction, so an unrelated page cannot contribute candidates.
+
+**UPDATE 23.09.26 — this fix point is now IMPLEMENTED as class 160** (see the
+class-160 entry in this archive; `is_off_topic_page()` in `deep_learn`'s page
+loop). It removes the **0-overlap** sub-class, measured: 7 live queries replayed,
+off-topic pages dropped, all relevant pages kept, 199/199 tests green. The
+`'Rogue' Cursor` case itself stays open by construction — the fetched
+`Rogue_(company)` page contains the word `rogue`, so no zero-overlap rule can
+separate it. AG is therefore **partially** fixed, not closed.
 - Do NOT reach for `text.count(" — ")`, an overlap *filter*, or a bare
   `subsection`/`toggle` marker without the eval — each was measured and is
   either a topic-word FP or insufficient.
@@ -6055,3 +6063,323 @@ Cleanup: 300 -> 298 records by signature, 0 unparsable, 32 structural-connection
 rows intact. Tests 190 -> 193 in the gate file, `tests/scripts` 454 passed.
 Shipped as `5a75bf3b4` via a fresh worktree off origin/main (the live tree was
 DIVERGED 11/55 but a strict content superset -> 198 insertions / 0 deletions).
+
+## class 160 — an OFF-TOPIC result page is not a source for the query (live 23.09.26) — FIXED
+### This is root cause AG's recommended fix point, implemented and measured
+
+AG (above) left the "deep_learn ranks the WRONG page" defect OPEN and named the
+likely-correct fix point: *"URL selection in `_search_urls` / the deep-read ...
+a query mentioning 'Rogue' Cursor should never fetch the Rogue Fitness page. Add
+a title/domain relevance check between the query and the fetched page BEFORE
+extraction."* Class 160 does exactly that.
+
+### Symptom
+```
+u = Internet learning (Spain to impose fines for not labelling AI-generated
+    content): What should an AI agent know?
+a = An unpaid ticket picks up $10 at 30 days, another $20 at 60, and another
+    $30 at 90, then turns into a court judgment around day 100.
+```
+The row passed every gate: the sentence is grammatical prose with a verb and
+digits, carries no nav chrome, and `_clean_insight`'s clock/byline strips do not
+fire on it.
+
+### Root cause is the SOURCE page, not the scorer
+`_search_urls` returned `https://www.newsbreak.com/news` — a generic city-news
+**FEED**, not the article behind the search hit — as the top fetchable URL.
+Measured on the fetched page: 6000 chars, ZERO of the query's six topic tokens
+(`spain`, `impose`, `fines`, `labelling`, `ai-generated`, `content`). The class-134
+news-index gate does NOT catch it: **0 relative stamps** (it is a nav/feed shell,
+not a card stream), whereas every page class 134 was calibrated on showed >=10.
+The second URL (the real Reuters article) fetched 0 chars, so the off-topic feed
+WAS the entire deep read.
+
+### Why the gate is at the PAGE and NOT at the insight
+This is the trap AG already measured, and it fired again here: over the live
+300-row buffer, **45% of rows share ZERO 4+ char tokens with their question
+while being legitimate** (AG measured 43% on 24.09-row set; same verdict). Example
+pair, both real buffer rows:
+```
+q = "Pushing the Limits of LLM Quantization via the Linearity Theorem"
+a = "AM4 300/400/500 and AM5 600/800 Series A specification-level comparison
+     of AMD chipsets"          <- off-topic, and the gate DOES catch it
+```
+vs. good prose answering in its own vocabulary:
+```
+q = "A Visual Guide to LLM Quantization"
+a = "32-bit float: 4 bytes per parameter (75% memory reduction)"   <- legitimate
+```
+An insight-level overlap gate deletes the second kind. A **page**, unlike an
+answer, must contain the topic's own words to be about that topic at all.
+
+### Measured, 23.09.26
+- 6 live queries / 12 fetched pages: all 3 relevant pages showed >=2 topic
+  tokens; every page that had produced an off-topic row showed 0.
+- 7 live queries replayed after the fix: off-topic pages DROPPED (NewsBreak feed
+  0 tokens, a USENIX index 0, TechRadar `/pro` 0), relevant pages KEPT (citizen.digital
+  6 tokens, arxiv abs 3, meta.wikimedia 2, prismix 2).
+- 199/199 tests pass in `tests/scripts/test_internet_learner_gate.py`.
+
+### Implementation
+`is_off_topic_page(query, page_text)` + `topic_tokens(query)` in
+`scripts/training/internet_learner.py`, consulted inside `deep_learn`'s page loop
+right after the class-134 news-index gate. `topic_tokens` drops query scaffolding
+("latest research insight", "what should an agent know", "best practice official
+docs") and pure function words, so the overlap test stays meaningful. Two guards
+keep it from over-reaching:
+- `_RELATIONAL_QUERY_RE` — a query asking for a **relation** ("structural
+  connection between X and Y", "difference between correlation and causation") is
+  answered by *phrasing* the relation, not by repeating its nouns. Real buffer row:
+  "The shared underlying pattern is a recursive, iterative refinement cycle ..."
+  on-topic with ZERO literal overlap. Such queries are never judged.
+- `_OFF_TOPIC_MIN_PAGE_CHARS = 800` — a thin/partial fetch is not evidence of an
+  off-topic source and is never judged.
+Plus `_OFF_TOPIC_MIN_TOKENS = 2`: a query with fewer than two distinctive tokens
+has nothing to check against.
+
+### Honest scope boundary — what 160 does NOT catch
+`_RELATIONAL_QUERY_RE` covers "what is the difference between ...", but
+**"how do X and Y differ?" shares no noun** with an answering page and is judged
+if it yields >=2 tokens. And AG's own `'Rogue' Cursor` case is out of reach by
+construction: `en.wikipedia.org/wiki/Rogue_(company)` **does contain the word
+"rogue"**, so a zero-overlap rule cannot separate that page from the real article.
+160 removes the *0-overlap* sub-class of AG; the *shares-a-word-different-sense*
+sub-class stays open. Do not claim AG is closed.
+
+### Cleanup (the other half of the repair)
+Dropping the gate stops NEW rows; the poisoned row was already in the store and
+the KTA consumer applies no `is_junk` to what it reads. Removed by signature:
+```
+python "C:/Users/damir/AppData/Local/openamer-laptop/skills/software-development/training-scripts-hygiene/scripts/purge_buffer_rows.py" --sig "unpaid ticket" --apply
+```
+300 -> 299 rows, backup written.
+
+## Class 161 (23.09.26) -- writer-gate census re-measured: 92% is ONE writer rule, learner blind to 100% (NON-FIX)
+
+Cron run started from the documented trigger (`cycle_g_security: rejected, not trained
+(shallow + deep read both gated)`). Step 0 (packaged rates table) said NORMAL VARIANCE:
+per-day 23.09. is 44.3 % (47 ok / 59 rej), inside the post-13.09. regime (35-68 %,
+stable for 10 days), and per-source (7d) is flat at 37.9-50.7 % -- no source collapsed.
+So no gate change was licensed for the rejection itself. Same conclusion as 133.
+
+### The one new measurement: attribute the `writer-gate` census
+
+142 introduced `reason=writer-gate` in `buffer_junk.jsonl` but never attributed it.
+Measured this run on the last 300 writer-gate rows (152 usable, 300-char answers):
+
+| refusal cause (buffer_store side) | rows |
+|---|---|
+| `_is_serp_snippet` | 140 |
+| `_is_nav_chrome` | 44 |
+| other / marker tuple | 2 |
+
+(rows can trip more than one rule, so the column sums above the row count)
+
+**The decisive number: `internet_learner._is_junk()` returned False on 152/152.**
+The learner that produced the text believes every one of them is trainable; the
+writer refuses all of them. That is the 142 disagreement, now QUANTIFIED rather
+than merely present, and 140/152 (92 %) of it is a single helper --
+`buffer_store._is_serp_snippet` -- i.e. the SERP-snippet family, which is the
+same leak family 142 measured shrinking (`_is_serp_snippet` 222 -> 64) but which
+is still the dominant writer-gate cause at this scale.
+
+Reproduction (no shell heredoc -- regex-adjacent text through MSYS is a trap):
+
+```python
+import importlib.util, json, collections
+def load(p, n):
+    s = importlib.util.spec_from_file_location(n, p)
+    m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
+bs = load('buffer_store.py', 'bs_probe')
+il = load('internet_learner.py', 'il_probe')
+rows = [str(json.loads(l).get('a') or '')
+        for l in open('buffer_junk.jsonl', encoding='utf-8', errors='replace')
+        if l.strip() and json.loads(l).get('reason') == 'writer-gate'][-300:]
+c = collections.Counter()
+for a in rows:
+    for name in ('_is_serp_snippet', '_is_nav_chrome',
+                 '_is_docs_cta_serp_run', '_is_truncated_serp_tail'):
+        if getattr(bs, name)(a):
+            c[name] += 1
+print(c, 'learner blind:', sum(1 for a in rows if not il._is_junk(a)), '/', len(rows))
+```
+
+Run it from `scripts/training/` with `OPENAMER_HOME` set -- otherwise `import` and
+the script paths silently resolve to the wrong copy (142 environment note).
+
+### Why this is still NON-FIX
+
+The disagreement is real and now attributed, but the rate is not: the current
+reject streak is **8**, and the longest streak in the whole 2723-row log is
+**14**. The novelty test that 133 mandated also passes -- the last 60 `duplicate`
+rejects carry **36 distinct `u`** (and 48 distinct `(u, a)` pairs), so this is
+NOT the 121/128 "0/60 novel" saturation signature. Reason mix, last 400:
+`duplicate` 212, `writer-gate` 101, `junk` 80, `no-tech-signal` 7.
+
+Closing the 92 % -- e.g. folding `_is_serp_snippet` into `_is_junk` -- is exactly
+the fix that 142 MEASURED-AND-REJECTED (4 gate tests regress: the extractor
+becomes as eager as the writer and eats prose that merely mentions a SERP-ish
+date). Attribute first, then re-open only if the streak exceeds 14 or the
+`_is_serp_snippet` share climbs while the rate falls. Neither is true today.
+
+Six consecutive `--once` cycles this run (48-72 s each), 0 stored; the buffer
+stayed at its 300-row cap. That matches the documented rotation reality, not a
+stall: the cap means a cycle must beat `duplicate` before it can even be judged.
+
+## class 161 (23.09.26) -- the reject audit trail was unreachable, so rejection was unobservable
+
+**Symptom.** `internet_learner.py --once` logged the generic
+"rejected, not trained (shallow + deep read both gated)" for cycle after cycle
+on every source, and there was no way to tell WHICH gate fired: the documented
+audit trail (`buffer_junk.jsonl`) had not been appended to since 10:19 while
+cycles kept running at 10:22, 10:25, 10:31, 10:37.
+
+**Root cause (NOT a learner gate).** `buffer_store.py` resolved its home as
+
+    _HOME = Path(os.environ.get("OPENAMER_HOME", Path.home() / "AppData" / ...))
+
+Cron exports `OPENAMER_HOME='/c/Users/damir/AppData/Local/openamer-laptop'`
+(MSYS form). Joined onto `scripts/training` that string does not yield
+`/c/Users/.../scripts/training` -- on Windows Python it is the **RELATIVE**
+path `\c\Users\damir\AppData\Local\openamer-laptop\scripts\training`,
+which does not exist. So `DEFAULT_BUFFER` and `JUNK_LOG` pointed nowhere and
+`_audit()`'s own `except Exception: pass` swallowed every rejection silently.
+The learner was NOT lying about the reject; the reason was being discarded.
+
+**This is the known MSYS-path class** (`OPENAMER_HOME` in MSYS form breaks a
+Windows-Python consumer); `buffer_store.py` was the one consumer that had no
+tolerant resolver, while `internet_learner`, `auto_skill_creation`,
+`knowledge_to_action` and `self_improve` all already had one.
+
+**Measured proof (before/after, same command).**
+- MSYS form, before: `JUNK_LOG = \c\Users\...\buffer_junk.jsonl`,
+  `parent exists = False`, an explicit `_audit("PROBE_USER", "PROBE", "probe-test")`
+  wrote NOTHING, and a full `--once` cycle left the audit row count at exactly
+  9461.
+- After: `JUNK_LOG = C:\Users\damir\...\buffer_junk.jsonl`,
+  `parent exists = True`, the same probe GREW the file, and the next cycle
+  produced three explicit rows -- `writer-gate`, `junk`, `junk` -- naming the
+  page that killed it.
+
+**Fix.** `_resolve_home()` in `buffer_store.py`: build candidate homes
+(`$OPENAMER_HOME`, `~/AppData/Local/openamer-laptop`, `~/AppData/Local/openamer`,
+`Path(__file__).parents[2]`) and return the first whose
+`scripts/training` IS a directory; fall back to the env value. Tolerating a
+differently-spelled-but-correct home is the point -- the ABORT guard stays
+reserved for a home that truly is not this install.
+
+**Verify:** `python -m pytest tests/scripts/test_internet_learner_gate.py`
+-> 199 passed (no gate regression).
+
+**PITFALL for whoever fixes the next one of these.** The LIVE tree
+(`~/AppData/Local/openamer-laptop`) and the repo tree
+(`~/openamer-repo`) are separate copies that a sync can overwrite. Here they
+were byte-identical before the patch (md5 `c10dec5d00945e6f757fdab32ec8fcd0`),
+and the live patch WAS reverted mid-run by a repo->live sync -- the live md5
+came back as the repo's. Patch BOTH trees, and re-check the md5 after the next
+cycle. In the repo, `buffer_store.py` carried ANOTHER agent's uncommitted WIP
+(a citation-record gate far below), so the fix was applied as a working-tree
+edit and deliberately NOT committed -- do not blow away their work.
+
+**Do NOT** treat the residual ~57% reject rate as fixed by this. This entry
+only restores observability; the individual reject reasons are now readable
+for the first time and must be attributed on their own evidence.
+
+## 158 landed on BOTH sides + the stale-branch trap (cron, 23.09.26)
+
+A later cron run started on `cycle_d_docs: rejected` (rate 40.3% for the day vs
+27-67% since the 13.09 tightening) -- that is NOT a regression, so the cycle was
+re-run and no gate was changed for it. The find came from `git` instead.
+
+**Class 158 was HALF-landed.** Commit `ac7fe9b22` put `is_citation_record_weld`
+into `internet_learner.py` -- the EXTRACTOR gate -- while the `buffer_store.py`
+half (the predicate plus its wire-in at `_is_nav_chrome`, i.e. the WRITER gate
+that `active_learn` / `online_learning` consult) stayed an uncommitted
+working-tree edit. The two gates therefore disagreed on the very shape the fix
+was written for. Landed via **PR #58**
+(`fix/learner-class158-writer-gate-mirror`): 1 file, `+35/-4`, proven in a fresh
+worktree at `origin/main`.
+
+The earlier entry's PITFALL ("the repo carried ANOTHER agent's uncommitted WIP, so
+the fix was deliberately NOT committed") is what left it stranded: by the next
+session that WIP was published upstream as the extractor half, so "don't blow away
+their work" had quietly become "this fix will never ship".
+
+**Second defect in the same file -- `_resolve_home` (root cause: MSYS HOME).**
+`_HOME` was built by joining `OPENAMER_HOME` onto `scripts/training`. Cron exports
+`OPENAMER_HOME` in MSYS form (`/c/Users/...`), which yields the RELATIVE path
+`\c\Users\...\scripts\training`, so `DEFAULT_BUFFER`/`JUNK_LOG` pointed nowhere and
+`_audit()`'s bare `except Exception: pass` swallowed every rejection. MEASURED:
+`buffer_junk.jsonl` frozen at **9,461 rows** across cycles that logged
+`rejected, not trained` -- the audit trail was silently dead. After the fix it
+resumed: **9,461 -> 9,478**. `_resolve_home()` isdir-probes each candidate, the
+same shape as `internet_learner` / `auto_skill_creation` / `knowledge_to_action`.
+Verified in all three cases: MSYS form -> live buffer, valid Windows form ->
+unchanged, nonexistent throwaway dir -> still the real install.
+
+**The transferable trap: a fix branch that nobody PRs is invisible.** The live
+repo sits on `fix/scoreboard-stale-openamer-home`, which is **13 behind /
+60 ahead** of `origin/main` and was pushed WITHOUT a PR. Every prior cron round
+had reported "pushed and verified" and been right -- and the work still reached
+nobody. So before declaring a fix published:
+
+    1. `git rev-list --left-right --count origin/main...HEAD`  -> is my branch
+       even based on the current main?
+    2. Query the PR list for my branch name. No PR = not published, regardless of
+       a green push.
+    3. Prefer a FRESH branch off `origin/main` carrying only the relevant file
+       (worktree + `cp`), never the 60-commit branch -- that keeps the diff
+       reviewable and the test run meaningful.
+
+**Bash strips backticks in `python -c "..."` too.** Writing the PR body inline,
+every `\`identifier\`` was EXECUTED by the shell: the PR was created with all
+identifiers silently missing (`command not found` x30 in the log, exit 0). The
+"never build the message inline in bash" rule is not only about commits -- write
+the body to a FILE and have the script read it, then read the body back from the
+API and count the backticks. Two PRs needed a PATCH to repair.
+### Class 162 (23.09.26) -- a DECIMAL POINT is not a sentence terminator
+
+`cycle_g_security` stored, verbatim from `online_buffer.jsonl`:
+
+    CVE-2026-58138 is a critical, unauthenticated remote code execution
+    vulnerability (CVSS 3.
+
+The page's real sentence continues `3.9) affecting Orkes Conductor ...`. The
+deep-read extractor's sentence regex `[A-Z][^.!?]{40,250}[.!?]` treats the
+period inside `3.9` as the terminator, so the stored row is a mid-number cut.
+
+MEASUREMENT (12,540 real texts: live buffer + buffer_junk + learn log):
+23 sentences end at a `<digit>.` that the page CONTINUES with a digit.
+
+WHY THIS IS NOT THE class-85 NON-FIX. The archive already records "a truncated
+model output has no discriminator" and refuses a REJECT gate on "text ends in
+digit + period" -- correctly, because **1,710** such endings are legitimate
+(`--gpu-memory-utilization 0.`, `Gemini 3.`, `... held from February 25 to 27,
+2025.`). That verdict STANDS and the gate is still not shipped. class 162 is a
+different repair point: the extractor's sentence BOUNDARY, not the writer's
+accept/reject decision. When the greedy match ends at `<digit>.` AND the very
+next character in the page is a digit, keep reading to the next terminator that
+is not itself a decimal point.
+
+The discrimination is precise: only 23 of the 1,733 `<digit>.` endings have a
+digit immediately after them. The other 1,710 are real sentence ends.
+
+Measured as a pure widen over the corpora: **21 extends, 0 shortens, 0
+non-prefix**; scoring the widened candidate raises the score **20x** and lowers
+it **never**. Shipped as `_SENTENCE_RE` + `_sentences()` and wired into the
+deep-read loop; 5 regression tests (the healing, a decimal run, a real
+sentence end, a date/count, and the wire-up itself). 204 passed in both trees.
+
+TRAP (eol): the `patch` tool turned **184 pre-existing lone-LF lines** into
+CRLF on an edit that only INSERTED a block -- `git diff --stat` could not show
+it because the repo carries a mixed-EOL blob. Rebuild byte-exactly instead:
+`git show HEAD:<f>` + a byte-level `str.replace`, then assert the lone-LF line
+number set is unchanged (`184 == 184`) before writing. The repo's
+`test_internet_learner_gate.py` is CRLF-native but
+`internet_learner.py` is MIXED (6533 CRLF + 184 lone LF) -- never assume one
+EOL convention per file.
+
+TRAP (test literal): the extractor requires **>=40 chars before the first
+terminator**. A hand-written "realistic" example silently yields `[]` and looks
+like a broken fix. Build the test fixture from the LIVE stored row and assert
+it yields a sentence first.

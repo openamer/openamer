@@ -6801,3 +6801,63 @@ def test_legitimate_answer_without_literal_overlap_is_not_a_page_gate_case():
     assert IL.is_off_topic_page(q, a + " " * 900)
     # ... which is exactly why it is only ever consulted on a fetched PAGE.
     assert not IL.is_off_topic_page(q, a + " quantization " * 200)
+
+# class 161 (23.09.26): a DECIMAL POINT is not a sentence terminator, but the
+# extractor regex treated it as one -- the live cycle_g_security row was stored
+# as "... remote code execution vulnerability (CVSS 3." while the page's real
+# sentence continues "3.9) affecting Orkes Conductor ...". Measured over 12,540
+# real texts: 23 sentences were cut mid-number this way.
+# The fix is a pure WIDEN of the extractor (never a reject gate); a
+# "text ends in digit+period" gate stays the documented deliberate NON-FIX
+# (archive class 85: 1,710 such endings are legitimate).
+
+
+def test_decimal_point_does_not_end_a_sentence():
+    """A number's decimal point must not terminate the extracted sentence."""
+    import internet_learner as IL
+    page = ("CVE-2026-58138 is a critical, unauthenticated remote code execution "
+            "vulnerability (CVSS 3.9) affecting Orkes Conductor, allowing "
+            "attackers to execute arbitrary code without authentication.")
+    got = [s for s in IL._sentences(page)]
+    assert got, "the page must still yield a sentence"
+    assert got[0].endswith("without authentication."), got[0]
+    assert "3.9)" in got[0], got[0]
+
+
+def test_multiple_decimals_are_all_healed():
+    """A run of decimal numbers is walked past, not cut at the first one."""
+    import internet_learner as IL
+    page = ("The benchmark reports a decode throughput of 12.5 tokens per "
+            "second at a perplexity of 4.21 on the evaluation suite.")
+    got = [s for s in IL._sentences(page)]
+    assert got and got[0].endswith("evaluation suite."), got
+    assert "12.5" in got[0] and "4.21" in got[0], got
+
+
+def test_a_real_sentence_end_still_terminates():
+    """A genuine sentence end is never widened into the next sentence."""
+    import internet_learner as IL
+    page = ("Quantization recovers most of the accuracy at four bits. "
+            "The second sentence mentions 3.9 as a version number.")
+    got = [s for s in IL._sentences(page)]
+    assert got and got[0] == ("Quantization recovers most of the accuracy at "
+                              "four bits."), got[0]
+
+
+def test_years_and_counts_are_not_widened():
+    """A trailing date/number before a real full stop stays terminated."""
+    import internet_learner as IL
+    page = ("The conference was held from February 25 to 27, 2025 in Vienna "
+            "and drew a large crowd of researchers.")
+    got = [s for s in IL._sentences(page)]
+    assert got and got[0].endswith("researchers."), got
+
+
+def test_the_extractor_uses_the_healing_helper():
+    """Pin the wire-up: the deep-read loop must go through _sentences()."""
+    import io as _io
+    src = _io.open(TRAINING / "internet_learner.py", encoding="utf-8",
+                   newline="").read()
+    assert "for s in _sentences(t):" in src
+    # the raw inline regex must no longer head the scoring loop
+    assert "re.finditer(r\"([A-Z][^.!?]{40,250}[.!?])\", t)" not in src
