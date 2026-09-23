@@ -2282,6 +2282,18 @@ def _is_personal_blog_nav_chain(text):
 # class 48 markers (live 17.09.26) -- see _is_pricing_hero_chrome.
 _PRICING_HERO_RE = re.compile(r"%\s*OFF\s+base pricing", re.IGNORECASE)
 
+# class 169 markers (live 23.09.26) -- see _is_sponsor_offer_sentence.
+_SPONSOR_OFFER_RE = re.compile(
+    r"intro(?:ductory)?\s+pric|trusted\s+defenders|free\s+trial|"
+    r"billed\s+annually|%\s*off\s+base\s+pricing",
+    re.IGNORECASE,
+)
+# a WELDED tier pair: `$0.75/$3.75` -- two money tokens fused by a slash
+_TIER_PAIR_RE = re.compile(
+    r"[$€£]\s?\d[\d,]*(?:\.\d+)?\s*/\s*[$€£]?\s?\d",
+    re.IGNORECASE,
+)
+
 
 def _is_pricing_hero_chrome(text):
     """True when a competitor landing-page pricing HERO was stored as insight.
@@ -2298,6 +2310,39 @@ def _is_pricing_hero_chrome(text):
     """
     t = text or ""
     return len(t) <= 400 and bool(_PRICING_HERO_RE.search(t))
+
+
+
+def _is_sponsor_offer_sentence(text):
+    """True for a vendor OFFER sentence welded to an intro-price tier pair (169).
+
+    Live 23.09.26 (`cycle_f_multi_domain`): the learner STORED the sponsor
+    blurb appended to a press page --
+
+        Intro Price Plus Fairwind Cyber Google shipped Gemini 3.8 Flash on
+        Sept 2, 2026 at $0.75/$3.75 intro pricing plus Fairwind Cyber for
+        650+ trusted defenders.
+
+    -- 156 chars with 16 digits, so the `>=90` "long prose" trust and the
+    technical-signal alternation both passed it, in BOTH gates.
+
+    The discriminator is the WELD, never a promo word or a price alone: an
+    offer phrase AND a tier pair `$a/$b` (two money tokens fused by a slash).
+    A sentence ABOUT pricing names a vendor and a verb and carries ONE price
+    (`intro pricing of $0.75 per million tokens`); an offer WELDS the phrase
+    to the published tier pair.
+
+    Measured 23.09.26: 1 hit over 300 online_buffer + 9,674 buffer_junk +
+    322 buffer_junk_archive + 2,788 internet_learn_log + 3,065
+    longterm_episodes + 2,049 gate-test literals, and that hit IS the leak;
+    0 FP on 10 hostile controls that legitimately cite prices, tier pairs,
+    intro pricing and defenders. The broader `promo AND any price` form was
+    MEASURED-AND-REJECTED (2 control FPs).
+    """
+    t = text or ""
+    if len(t) > 400:
+        return False
+    return bool(_SPONSOR_OFFER_RE.search(t)) and bool(_TIER_PAIR_RE.search(t))
 
 # A docs-site CTA welded onto a SERP run by `…;` (live 18.09.26, class 53): the
 # learner stored
@@ -4796,6 +4841,10 @@ def _is_junk(text):
         return True
     # a competitor pricing hero (class 48, 17.09.26)
     if _is_pricing_hero_chrome(t):
+        return True
+    # a vendor offer sentence welded to an intro-price tier pair
+    # (class 169, 23.09.26)
+    if _is_sponsor_offer_sentence(t):
         return True
     # an article-header byline + `Published <dd Mon yy>` (class 40, 17.09.26)
     if _is_byline_published_article_header(t):

@@ -6697,3 +6697,78 @@ def test_the_advisory_date_is_what_disarms_the_nav_list_rule():
     assert not IL._is_nav_list(_IL159_LEAKS[0]), _IL159_LEAKS[0]
     # ... and that is exactly what class 159 covers
     assert IL.is_advisory_listing_card(_IL159_LEAKS[0]), _IL159_LEAKS[0]
+
+
+_IL169_LEAKS = (
+    # live 23.09.26, cycle_f_multi_domain -- stored verbatim in online_buffer
+    "Intro Price Plus Fairwind Cyber Google shipped Gemini 3.8 Flash on "
+    "Sept 2, 2026 at $0.75/$3.75 intro pricing plus Fairwind Cyber for "
+    "650+ trusted defenders.",
+)
+
+# The sibling store shape of the same family -- already gated BEFORE 169 by the
+# pre-existing `billed annually` entry in `buffer_store._NAV_CHROME` /
+# `internet_learner._JUNK_RE`. Kept here as a regression guard so a future
+# edit that drops that entry cannot silently re-open the family.
+_IL169_ALREADY_GATED = (
+    "BILLED ANNUALLY $119 /yr Select First 7 days FREE then $119 billed "
+    "annually, cancel anytime.",
+)
+
+_IL169_CONTROLS = (
+    # prose ABOUT pricing keeps ONE price and names a vendor + a verb
+    "The vendor announced intro pricing of $0.75 per million tokens for the "
+    "new model.",
+    "Intro pricing and $3.75 output pricing were listed in the announcement.",
+    "Vendors often use intro pricing to win developers, then raise the price.",
+    # a tier pair in legit prose -- the pair alone is NOT the discriminator
+    "Gemini 3.5 Flash launched at $0.30/$2.50 per million tokens, cutting "
+    "costs 40%.",
+    "The model is priced at $0.75/$3.75, roughly a third of the previous tier.",
+    "Pricing tiers: $0.75/$3.75 for Flash, $1.25/$10 for Pro, per the page.",
+    "Introductory pricing applies to the first 90 days; standard rates follow.",
+    # the benefit words alone
+    "The security team protects 650 defenders across 12 sites.",
+    "Fairwind Cyber serves 650+ trusted defenders, the press release said.",
+)
+
+
+def test_sponsor_offer_sentence_is_gated_on_both_paths():
+    """A vendor offer welded to a tier pair is chrome on BOTH gates (169)."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL169_LEAKS:
+        assert IL._is_sponsor_offer_sentence(leak), leak
+        assert BS._is_sponsor_offer_sentence(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+    for ctl in _IL169_CONTROLS:
+        assert not IL._is_sponsor_offer_sentence(ctl), ctl
+        assert not BS._is_sponsor_offer_sentence(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+def test_sponsor_offer_requires_the_WELD_not_a_part():
+    """Each part alone is insufficient -- the rejection IS the contract (169)."""
+    import internet_learner as IL
+    offer_only = "Intro pricing is available for a limited time."
+    assert not IL._is_sponsor_offer_sentence(offer_only), offer_only
+    pair_only = "The model is priced at $0.75/$3.75 per million tokens."
+    assert not IL._is_sponsor_offer_sentence(pair_only), pair_only
+    # ... and the broad `promo AND any price` form was measured-and-rejected:
+    # it fires on this legit control, which carries ONE price, not a pair.
+    one_price = ("The vendor announced intro pricing of $0.75 per million "
+                 "tokens for the new model.")
+    assert not IL._is_sponsor_offer_sentence(one_price), one_price
+
+
+def test_the_billed_annually_sibling_stays_gated():
+    """The family's other store shape is covered by `_NAV_CHROME`, not 169."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for row in _IL169_ALREADY_GATED:
+        assert IL._is_junk(row), row
+        assert BS.is_junk(row), row
+        # it is NOT this class -- the discriminator really is the welded pair
+        assert not IL._is_sponsor_offer_sentence(row), row
