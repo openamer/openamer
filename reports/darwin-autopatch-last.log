@@ -1,0 +1,14 @@
+[autopatch] validating population (2026-09-23T04:00:49) ...
+[autopatch] population: 947 skills, avg 38.3
+[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-latest-research-insight-selfretrieval(21), auto-latest-research-insight-the(21), auto-latest-research-insight-wikidata(21), auto-multidomain-learning-if-ai(21), auto-multidomain-learning-llms-are(21), auto-multidomain-learning-nasa-ibm(21), auto-multidomain-learning-neural-architecture(21), auto-multidomain-learning-opensource-medical(21), auto-multidomain-learning-python-climate(21)
+[autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
+[autopatch] ✅ auto-latest-research-insight-selfretrieval: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-the: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-wikidata: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-if-ai: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-llms-are: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-nasa-ibm: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-neural-architecture: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-opensource-medical: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-python-climate: 21 → 25
+[autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md

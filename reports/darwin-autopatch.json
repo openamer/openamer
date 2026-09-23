@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-09-22T04:00:19",
+  "timestamp": "2026-09-23T04:00:49",
   "mode": "apply",
-  "population": 578,
-  "avg_score": 41.4,
+  "population": 947,
+  "avg_score": 38.3,
   "kept": [
     {
       "skill": "auto-structural-connection-between-tool",
@@ -12,7 +12,7 @@
       "fixes": []
     },
     {
-      "skill": "auto-latest-research-insight-bitnet",
+      "skill": "auto-latest-research-insight-selfretrieval",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-deepseekr1",
+      "skill": "auto-latest-research-insight-the",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-ladder",
+      "skill": "auto-latest-research-insight-wikidata",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-largescale",
+      "skill": "auto-multidomain-learning-if-ai",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-llms",
+      "skill": "auto-multidomain-learning-llms-are",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-megatrain",
+      "skill": "auto-multidomain-learning-nasa-ibm",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-opensourced",
+      "skill": "auto-multidomain-learning-neural-architecture",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-proofofthought",
+      "skill": "auto-multidomain-learning-opensource-medical",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-recursively",
+      "skill": "auto-multidomain-learning-python-climate",
       "before": 21,
       "after": 25,
       "delta": 4,
