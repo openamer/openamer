@@ -4956,6 +4956,20 @@ def _is_section_toc_chain(text, min_chain=3):
         return False
     return len(_TOC_CHAIN_RE.findall(t)) >= min_chain
 
+
+
+# class 166 (23.09.26) -- a repo-listing row's relative-age badge welded to
+# `release` with no separating space.  Markup prose cannot produce; see
+# `internet_learner._is_ago_release_badge_weld` for the measurement.
+_AGO_RELEASE_WELD_RE = _re.compile(
+    r"\b\d+\s*(?:yrs?|years?|months?|days?|hrs?|hours?|mins?)\s*agorelease\b",
+    _re.IGNORECASE)
+
+
+def _is_ago_release_badge_weld(text):
+    """True for a relative-age badge welded to `release` with no space (166)."""
+    return bool(_AGO_RELEASE_WELD_RE.search(text or ""))
+
 def is_junk(text):
     """True when a completion is not trainable signal.
 
@@ -4993,6 +5007,8 @@ def is_junk(text):
     if _is_news_age_notice(s):
         return True
     if _is_section_toc_chain(s):
+        return True
+    if _is_ago_release_badge_weld(s):
         return True
     if _is_gh_releases_row(s):
         return True

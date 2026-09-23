@@ -4692,6 +4692,43 @@ def _is_section_toc_chain(text, min_chain=3):
         return False
     return len(_TOC_CHAIN_RE.findall(t)) >= min_chain
 
+
+
+# A repo-listing row's relative-age badge welded to the word `release` with NO
+# separating space (class 166, 23.09.26).  Live: `cycle_c_github` stored,
+# verbatim,
+#   "Latest AI Resources - ANUS: An Open Source AI Framework for Task
+#    Automation and Multi-Agent Collaboration ANUS: An Open Source AI Framework
+#    for Task Automation and Multi-Agent Collaboration Latest AI Resources 2yrs
+#    agorelease AI Sharing Circle 101.9K 0 0 General Introduction ANUS
+#    (Advanced Neural Un"
+# -- a GitHub-trending listing row: the card TITLE restated twice, the site
+# label, the `2yrs ago` + `release` badge (concatenated), the feed counters
+# (`101.9K 0 0`) and a truncated description.  300 chars with digits -> the
+# >=90 long-prose trust and the technical-signal gate both let it through.
+#
+# Discriminator = the BADGE WELD ITSELF: `ago` immediately followed by
+# `release` with no separator.  This is markup that human prose cannot
+# contain -- the same argument as the class-9 `-->` HTML-comment rule.  A
+# sentence writes `<n> years ago` and, if it names a release, separates the
+# two words.
+# Measured 23.09.26 over online_buffer / buffer_junk / internet_learn_log /
+# longterm_episodes / asserted gate-test literals / every .md+.txt in the repo
+# and the live skills tree: 1 hit -- the leaking row -- and 0 everywhere else;
+# 0 real-prose FPs across 9 hostile controls.  The LOOSE form
+# (`<n> <unit> ago release`, i.e. allowing a space) was measured and REJECTED:
+# it hits 2 real-prose controls ("2yrs ago release was announced in the
+# changelog ...", "The model card was updated 6 months ago release notes
+# say ...").  The missing space IS the discriminator -- do not loosen it.
+_AGO_RELEASE_WELD_RE = re.compile(
+    r"\b\d+\s*(?:yrs?|years?|months?|days?|hrs?|hours?|mins?)\s*agorelease\b",
+    re.IGNORECASE)
+
+
+def _is_ago_release_badge_weld(text):
+    """True for a relative-age badge welded to `release` with no space (166)."""
+    return bool(_AGO_RELEASE_WELD_RE.search(text or ""))
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -4707,6 +4744,9 @@ def _is_junk(text):
         return True
     # a paper page's section-TOC chain welded to its Download PDF affordance (class 164, 23.09.26)
     if _is_section_toc_chain(t):
+        return True
+    # a repo-listing row's `<N>yrs agorelease` badge weld (class 166, 23.09.26)
+    if _is_ago_release_badge_weld(t):
         return True
     # a site sidebar label run welded to its announce line (class 165, 23.09.26)
     if _is_site_nav_chain(t):
