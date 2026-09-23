@@ -231,7 +231,23 @@ def experiment_competitor_gap():
         ("sdk", "public SDK / programmatic API"),
         ("microservice", "service split"),
         ("plugin", "plugin extensibility"),
-        ("multi-agent", "multi-agent orchestration"),
+        # NOT `multi-agent` alone: measured 23.09.26 over the 40 competitor rows
+        # this function reads (scoring `a` only, which is all `signal` ever is),
+        # the bare token matches 5/40 and 4 of those are mis-maps -- the MAF row
+        # (correctly caught by `agent framework`, 17 > 11 chars), the agentmemory
+        # row (correctly caught by `persistent memory`, 17 > 11), the AgentTool row
+        # and the ANUS row, neither of which the generic phrase describes. Longest
+        # -match cannot save it: at 11 chars it shadows `memory` (6). Replaced by
+        # the two phrases that state the capability, 1/40 each with 0 mis-maps:
+        #   `multi-agent modes`   1/40 -> the ANUS single/multi-agent switching row
+        #   `multi-agent systems` 1/40 -> the AgentTool for multi-agent systems row
+        # Rejected, all measured: `multi-agent orchestration` 0/40 and
+        # `agent orchestration` 0/40 (neither phrase occurs in the corpus -- the
+        # old label described a token the corpus never supported), `orchestration`
+        # 1/40 and `orchestrat` 2/40 (both catch the MAF row, which
+        # `agent framework` already covers more precisely).
+        ("multi-agent modes", "multi-agent orchestration"),
+        ("multi-agent systems", "multi-agent orchestration"),
         ("parallel agent", "parallel multi-agent execution"),
         ("spec-driven", "spec-driven development workflow"),
         ("executable spec", "spec -> executable-plan pipeline"),
@@ -367,11 +383,44 @@ def experiment_competitor_gap():
                 f"{stats['lines']} lines, tools/ package: "
                 f"{'yes' if stats['has_tools_pkg'] else 'no'}")
 
+    # --- the latest row may be a COST DATAPOINT, not a capability -------------
+    # Grown from a REAL signal (23.09.26): the competitor pipeline landed
+    #   "The monthly bills developers share on Reddit and GitHub are staggering
+    #    -- $1,600, $2,500, even $5,000+ for teams running multi-agent workflows
+    #    on frontier models."
+    # That is a price observation, not a product capability. It is not a headline
+    # either: its echo against its own source question is 0.10 and it is 161 chars,
+    # so the headline discriminator (echo >= 0.6 AND len(a) < 160) correctly leaves
+    # it alone. It slipped through only because the generic `multi-agent` token was
+    # in the lexicon and mapped it onto a capability it does not describe.
+    # Class it by what it measurably is: two or more currency amounts plus a money
+    # word. Measured over the 40 competitor rows: the predicate trips 2/40 -- this
+    # row and the 22.09.26 `edit across files` row (4 amounts, "Pro $20/mo"), which
+    # is why it is checked AFTER the lexicon: `edit across files` matches that row
+    # and must keep winning. Only this row is left, so 0 capability rows are
+    # swallowed. Deliberately requires >= 2 amounts AND a money word: a bare `$` or
+    # a bare `cost` is not a datapoint (the Hemmingway-1 row carries the word
+    # `costs` in prose and stays an ordinary lexicon gap).
+    _CUR = re.compile(r"\$\s?\d[\d,]*(?:\.\d+)?\s*(?:[kmb])?\+?", re.I)
+    _MONEY = re.compile(r"\b(bills?|spend|spent|costs?|pricing|per month|/mo|monthly)\b", re.I)
+    is_cost_datapoint = len(_CUR.findall(signal)) >= 2 and bool(_MONEY.search(signal))
     if hint:
         gap = (f"{hint}: competitor signals it; {measured} — monolithic, "
                f"no per-tool module boundary")
         fix = f"extract {hint} behind its own module with a test gate"
         result = f"signal '{signal[:50]}' -> gap: {hint} | {measured}"
+    elif is_cost_datapoint:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is a cost/price datapoint ({len(_CUR.findall(signal))} "
+               f"currency amounts + a money word), not a product capability "
+               f"description")
+        fix = ("carry a capability sentence alongside the price observation in the "
+               "competitor pipeline; a cost datapoint is not a lexicon gap and no "
+               "token should be invented to map it onto one")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — cost "
+                  f"datapoint ({len(_CUR.findall(signal))} currency amounts + money "
+                  f"word), no capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
     elif is_headline:
         gap = (f"no mappable capability in latest signal ({measured}) — "
                f"signal is an article headline (echoes {_echo:.0%} of its own "
