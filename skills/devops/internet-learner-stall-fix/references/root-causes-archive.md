@@ -6547,3 +6547,137 @@ Two live notes from the same run:
 - PITFALL, new and sharp: `io.open(path, "wb").write(expr)` **TRUNCATES the
   file before `expr` is evaluated** -- a NameError inside `expr` leaves a
   0-byte module.  Write to `<path>.tmp` and `os.replace()`.
+
+
+## class 167 (23.09.26) -- a TEST FIXTURE audits into the LIVE log (not a learner gate)
+
+**Symptom.** The reject-rate triage kept producing the false lead "4 unproven
+`duplicate` rejects were `q` / `Eine Woche hat sieben Tage.`, not a leak". The
+rows are real, but they are not the learner's -- they are the
+`buffer_store` test suite writing into the PRODUCTION audit log.
+
+**The mechanism, which is NOT where you would look.** `test_buffer_store.py` on
+`origin/main` has no isolation of `buffer_store.JUNK_LOG`, and every
+`bs.append(...)` call site audits its own fixture. That would still be harmless
+if it landed in a temp dir -- but `buffer_store._resolve_home()` **falls back to
+the real install dir when `OPENAMER_HOME` is unset**, which is exactly the cron
+case, so `JUNK_LOG` resolves to
+`~/AppData/Local/openamer-laptop/scripts/training/buffer_junk.jsonl` **no matter
+which checkout the test runs from**. `_audit()` then appends there.
+
+**Measured (controlled pair, 23.09.26).** Both copies were run against the same
+live log and only TEST-SIGNATURE rows were counted -- counting raw lines gives a
+false positive, because the internet-learner cron appends its own rejects
+concurrently (measured +2 mid-run, 0 of them fixtures):
+
+| copy under test | fixture rows added to the live log |
+|---|---|
+| repo `main` (no isolation) | **+1** per run (byte-identical to the existing litter) |
+| repo branch with the fix | **0** |
+| `openamer-agent` install copy | **0** after the fix, **+1** before |
+
+**Scale.** 1,376 of 9,599 rows (14.3 %) carry a test-only signature (`u` in
+{`q`, `u`, `a`, `q<N>`, `a<N>`, `Internet learning test`}); 144 are the
+`u == "q"` family and 40 sit in the last 300 rows. Still growing: 206 of 6,970 on
+20.09.26. The TRAINING buffer is clean (`online_buffer.jsonl`: 0 fixtures) -- only
+the audit trail is polluted, which is why it survived so long: nobody trains on
+it, but the triage READS it, so it manufactures phantom reject classes.
+
+**The fix was already invented and applied to ONE copy only.** The live
+`scripts/training/test_buffer_store.py` had carried `_isolated_audit_log()` + an
+autouse pytest fixture since 20.09.26 -- `origin/main` had neither, neither did
+the `openamer-agent` copy, and neither did the repo worktree's checkout. The
+helper's own docstring predicted exactly this and was not acted on. Same shape as
+148: a predicate fixed on one of two writers is a hole in the other direction --
+here it is one of THREE copies.
+
+**Two sites, not one.** The `__main__` standalone runner executes the file
+WITHOUT pytest, so the autouse fixture does not apply: the restore has to be
+called explicitly there (`restore_audit = _isolated_audit_log()` before the loop,
+`restore_audit()` after). Patching only the fixture leaves `python
+test_buffer_store.py` leaking.
+
+**PITFALL -- EOL is per-copy and OPPOSITE.** The repo worktree file is
+CRLF-native (305 CRLF / 0 lone LF); the `openamer-agent` copy is LF-native (0
+CRLF / 305 lone LF). A byte-anchored patch written against one newline silently
+fails `ANCHOR FAIL: found 0` on the other -- and the correct fix is NOT to
+normalise the file. Detect the file's own newline first:
+
+```python
+raw = open(p, "rb").read()
+crlf = raw.count(b"\r\n"); lone = raw.count(b"\n") - crlf
+nl = "\r\n" if crlf > lone else "\n"
+```
+
+Then assert the census is UNCHANGED after the patch (repo: 358 CRLF / 0 lone LF;
+agent copy: 0 CRLF / 341 lone LF).
+
+**Regression test.** `test_suite_never_writes_the_live_audit_log` asserts on the
+RESOLVED default (`bs.JUNK_LOG`), never a hardcoded path -- a test that stubs
+`JUNK_LOG` out cannot observe the regression it exists to guard -- then performs
+a refusing append and asserts the live log's SIZE is unchanged.
+
+**PITFALL -- a size/lines assertion on the live log is flaky by construction.**
+The learner cron appends to the same file during the test run. Assert on
+test-signature rows (`grep -c '"u": "q"'`), not on total lines; a raw line count
+"failed" at +2 with 0 fixtures.
+
+**Published** as PR #64 (`fix/buffer-store-test-audit-isolation`, 81 insertions /
+0 deletions, 16 passed). Built in a worktree off `origin/main`, NOT by copying
+the live file: the live `test_buffer_store.py` is 144 lines of unlanded backlog
+ahead of main, so a whole-file copy would have shipped a 45-line delta as 144
+lines and duplicated unrelated work.
+
+## class 168 (23.09.26) -- a plan-comparison PRICE TABLE with rating widgets (FIXED)
+
+**Symptom.** `cycle_e_competitors` logged, as a genuine learn:
+
+```
+competitor-learn: From $25/mo View Review -> OpenCode Free . Anomaly
+Innovations, Inc star 5.0 -> OpenAI Codex $8/mo . OpenAI star 4.7 -> Claude
+Code $17/mo annual . Anthropic star 4.6 -> Cline $9.99/mo . Cline Bot Inc.
+```
+
+A marketplace SERP row: a run of `$<n>/mo` price tokens with the rating widget
+(`star 5.0`, `View Review`) welded on. 200 chars with digits -> the `>=90`
+"long prose" trust AND the technical-signal gate (`_TECH_HINT_RE`'s alternation
+starts with `\d+`) both passed it, in the extraction gate and the writer gate.
+
+**Why the existing rules miss it.** Class 13 (`_is_de_pricing_chrome`) gates the
+GERMAN checkout LABEL CHAIN (`monatlich kuendbar`, `Jahrespaket`, ...) and
+`buffer_store._NAV_CHROME` carries only the English words `billed annually`.
+This is the ENGLISH SERP/rating shape -- a price + rating TABLE -- so it is a
+sibling class, not a variant of 13.
+
+**The discriminator: the WELD, never a price or a rating alone.**
+
+* `>=2` `$<n>/mo` (or `\u20ac`/EUR/USD per month/year/seat) price tokens, AND
+* `>=2` rating/CTA widget stamps (a star glyph with a score, `View Review`,
+  `Free ->`).
+
+A sentence ABOUT pricing names a vendor and a verb and carries ONE price; a
+comparison TABLE yields both runs. Same structural argument as classes 13/28:
+judge the checkout's own label chain, not the topic.
+
+**Measured 23.09.26, with the SHIPPED predicates** (not a re-typed copy -- a
+first draft had an unbalanced-paren regex that `py_compile` does not catch):
+
+| corpus | rows | hits |
+|---|---|---|
+| `online_buffer` + `buffer_junk` + `buffer_junk_archive` + `internet_learn_log` + `longterm_episodes` | 16,068 | **1** (the leaking row) |
+| quoted literals of `tests/scripts/test_internet_learner_gate.py` | 2,049 | 0 |
+| repo `docs/**` (`.md`/`.txt`) | 924 | 0 |
+| hostile prose controls (prices, tiers, star ratings, per-seat billing, German billing) | 10 | 0 FP |
+
+**Both gates.** Mirrored into `buffer_store._is_price_table_row` because
+`buffer_store` must not import the learner (circular). Two new tests:
+`test_price_table_row_is_gated_on_both_paths` and
+`test_price_table_row_requires_both_markers`.
+
+**Numbering trap, hit again.** This was first written as "class 167" -- but
+`class 167` was ALREADY assigned, to the test-fixture root cause
+(`test_buffer_store.py` auditing fixtures into the LIVE `buffer_junk` log, which
+has its own PR #64). The number had to be checked against BOTH
+`scripts/training/*.py` AND this archive. `grep 'class 167' scripts/training/*.py`
+returned only MY OWN new lines, which is exactly the false-negative shape: an
+archive-only number is invisible to a code-only grep. Check the archive too.
