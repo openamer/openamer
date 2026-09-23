@@ -4971,7 +4971,7 @@ def _is_ago_release_badge_weld(text):
     return bool(_AGO_RELEASE_WELD_RE.search(text or ""))
 
 
-# class 167 (23.09.26) -- a plan/vendor COMPARISON price table with rating
+# class 168 (23.09.26) -- a plan/vendor COMPARISON price table with rating
 # widgets welded onto the price run (the ENGLISH twin of class 13's German
 # checkout label chain above).  Live: `cycle_e_competitors` stored
 #   "From $25/mo View Review -> OpenCode Free - ... * 5.0 -> OpenAI Codex
@@ -5044,7 +5044,7 @@ def is_junk(text):
     if _is_ago_release_badge_weld(s):
         return True
     # the ENGLISH twin of class 13, a plan-comparison price table with rating
-    # widgets welded on (class 167, 23.09.26)
+    # widgets welded on (class 168, 23.09.26)
     if _is_price_table_row(s):
         return True
     if _is_gh_releases_row(s):

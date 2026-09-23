@@ -99,8 +99,15 @@ def _push_genome(machine_id: str) -> tuple[bool, str]:
     if not MACHINE_RE.match(machine_id):
         return False, "invalid machine id"
     genome_path = REPO / "reports" / "darwin-genome.json"
-    if not genome_path.exists():
+    # Always re-export: a stale genome file makes the publish a silent no-op
+    # (git commits nothing, push reports "pushed" while the grid stays old).
+    try:
         darwin.export_genome()
+    except Exception as e:  # noqa: BLE001 - export is best-effort
+        if not genome_path.exists():
+            return False, f"could not export genome: {e}"
+        print(f"WARNING: genome re-export failed ({e}); "
+              f"publishing cached {genome_path.name}", file=sys.stderr)
     with tempfile.TemporaryDirectory() as td:
         clone = Path(td) / "grid"
         if not _ensure_grid_clone(clone):
@@ -111,13 +118,20 @@ def _push_genome(machine_id: str) -> tuple[bool, str]:
         dest.write_text(json.dumps(genome, indent=1, ensure_ascii=False),
                         "utf-8")
         _git(["add", f"{machine_id}.json"], str(clone))
-        _git(["-c", "user.name=darwin-grid", "-c",
-              "user.email=darwin@openamer.dev",
-              "commit", "-m", f"darwin: genome update from {machine_id}"],
-             str(clone))
+        c = _git(["-c", "user.name=darwin-grid", "-c",
+                  "user.email=darwin@openamer.dev",
+                  "commit", "-m", f"darwin: genome update from {machine_id}"],
+                 str(clone))
+        if c.returncode != 0:
+            blob = ((c.stdout or "") + (c.stderr or "")).lower()
+            if "nothing to commit" in blob or "no changes added" in blob:
+                # Genome byte-identical to the remote - nothing new to sync.
+                return True, "up to date (no genome change)"
+            return False, f"commit failed: {(c.stderr or c.stdout).strip()[:200]}"
         r = _git(["push", "origin", "HEAD:main"], str(clone))
         if r.returncode != 0:
-            return False, r.stderr.strip()[:200]
+            err = (r.stderr or r.stdout or "git push failed").strip()
+            return False, err[:200]
     return True, "pushed"
 
 

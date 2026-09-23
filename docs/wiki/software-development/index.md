@@ -4,7 +4,7 @@ title: software-development
 
 # 💻 software-development
 
-20 skills
+21 skills
 
 - [auto-code-review](auto-code-review/) — Security scan + code quality + auto-fix on git push.
 - [auto-docs](auto-docs/) — Generate docs from live git+skills+cron state.
@@ -13,6 +13,7 @@ title: software-development
 - [code-intelligence](code-intelligence/) — Use for AST/dep graph/complexity analysis of Python code.
 - [commander](commander/) — Use for OpenAmer central CLI Commander with 28 subcommands.
 - [dogfood](dogfood/) — Exploratory QA of web apps: find bugs, evidence, reports.
+- [git-remote-state-audit](git-remote-state-audit/) — Use when asked if work is pushed/published to a remote.
 - [node-inspect-debugger](node-inspect-debugger/) — Debug Node.js via --inspect + Chrome DevTools Protocol CLI.
 - [openamer-agent-skill-authoring](openamer-agent-skill-authoring/) — Author in-repo SKILL.md files: frontmatter and structure.
 - [plan](plan/) — Write a markdown plan to .openamer/plans/; no execution.

@@ -17,6 +17,40 @@ import tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import buffer_store as bs
 
+try:  # pytest is optional: this file also runs standalone
+    import pytest
+except ImportError:  # pragma: no cover
+    pytest = None
+
+
+def _isolated_audit_log():
+    """Point the module's audit log at a throwaway file, return a restore fn.
+
+    `append()` audits EVERY rejected row to `buffer_store.JUNK_LOG`, whose
+    default is the real `scripts/training/buffer_junk.jsonl`.
+    `buffer_store._resolve_home()` falls back to the real install dir when
+    `OPENAMER_HOME` is unset (the cron case), so this copy leaked into the
+    live log too. Class 167, mirrored from the repo fix.
+    """
+    orig = bs.JUNK_LOG
+    d = tempfile.mkdtemp(prefix="bufstore_audit_")
+    bs.JUNK_LOG = os.path.join(d, "buffer_junk.jsonl")
+
+    def restore():
+        bs.JUNK_LOG = orig
+
+    return restore
+
+
+if pytest is not None:
+    @pytest.fixture(autouse=True)
+    def _no_write_to_the_live_audit_log():
+        """Keep the whole suite out of the live `buffer_junk.jsonl`."""
+        restore = _isolated_audit_log()
+        try:
+            yield
+        finally:
+            restore()
 
 def _tmp_buf():
     d = tempfile.mkdtemp(prefix="bufstore_test_")
@@ -293,6 +327,7 @@ def test_duplicate_example_is_refused_but_distinct_kept():
 
 if __name__ == "__main__":
     fails = 0
+    restore_audit = _isolated_audit_log()
     for name, fn in sorted(globals().items()):
         if name.startswith("test_") and callable(fn):
             try:
@@ -301,5 +336,6 @@ if __name__ == "__main__":
             except Exception as e:
                 fails += 1
                 print(f"  [FAIL] {name}: {e}")
+    restore_audit()
     print(f"\n{'FAILED' if fails else 'OK'}: {fails} failure(s)")
     sys.exit(1 if fails else 0)

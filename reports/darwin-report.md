@@ -1,5 +1,5 @@
 # Darwin Engine Report
-_2026-09-23T14:38:05.062073+00:00 — evolutionary skill ecosystem_
+_2026-09-23T14:47:20.091908+00:00 — evolutionary skill ecosystem_
 
 **Population:** 158 Skills | **Offspring:** 5 | **Competitions:** 23
 
@@ -12,8 +12,8 @@ _2026-09-23T14:38:05.062073+00:00 — evolutionary skill ecosystem_
 | cdp-social-posting | 1196.0 | 1183 | 0 | 0/0 |
 | train-from-usage | 952.93 | 946 | 2 | 0/4 |
 | plugin-api | 941.93 | 933 | 32 | 0/0 |
-| asi-capability-summary | 900.9 | 891 | 3 | 0/0 |
-| a2a-brain-meshlearn-verify | 607.87 | 598 | 4 | 0/0 |
+| asi-capability-summary | 902.9 | 893 | 3 | 0/0 |
+| a2a-brain-meshlearn-verify | 609.87 | 600 | 4 | 0/0 |
 | asi-identity | 318.93 | 309 | 2 | 0/0 |
 | self-rewriter | 278.23 | 327 | 23 | 7/72 |
 | darwin-harvested-openamer-cli-main-py | 118.43 | 66 | 17 | 29/15 |

@@ -7080,7 +7080,7 @@ AGO_RELEASE_CONTROLS = [
 
 
 def test_price_table_row_is_gated_on_both_paths():
-    """A plan/vendor COMPARISON price table with rating widgets (class 167).
+    """A plan/vendor COMPARISON price table with rating widgets (class 168).
 
     Live 23.09.26 (`cycle_e_competitors`): a marketplace SERP row -- a run of
     `$<n>/mo` tokens with the rating widget (`* 5.0`, `View Review`) welded on.
@@ -7116,7 +7116,7 @@ def test_price_table_row_requires_both_markers():
     assert IL._is_price_table_row(one_price) is False
 
 
-# The exact bytes `cycle_e_competitors` stored on 23.09.26 (class 167).
+# The exact bytes `cycle_e_competitors` stored on 23.09.26 (class 168).
 PRICE_TABLE_LEAK = (
     "From $25/mo View Review \u2192 OpenCode Free \u00b7 Anomaly Innovations, Inc "
     "\u2605 5.0 \u2192 OpenAI Codex $8/mo \u00b7 OpenAI \u2605 4.7 \u2192 Claude Code "

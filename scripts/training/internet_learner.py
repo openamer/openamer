@@ -4731,7 +4731,7 @@ def _is_ago_release_badge_weld(text):
 
 
 # A plan/vendor COMPARISON price table lifted off a SERP or review listing
-# (class 167, 23.09.26).  Live: `cycle_e_competitors` STORED, verbatim,
+# (class 168, 23.09.26).  Live: `cycle_e_competitors` STORED, verbatim,
 #   "From $25/mo View Review -> OpenCode Free - Anomaly Innovations, Inc
 #    * 5.0 -> OpenAI Codex $8/mo - OpenAI * 4.7 -> Claude Code $17/mo annual
 #    - Anthropic * 4.6 -> Cline $9.99/mo - Cline Bot Inc."
@@ -5116,7 +5116,7 @@ def _is_junk(text):
     if _is_de_pricing_chrome(t):
         return True
     # the ENGLISH twin of that class: a plan-comparison price table with
-    # rating widgets welded on (class 167, 23.09.26)
+    # rating widgets welded on (class 168, 23.09.26)
     if _is_price_table_row(t):
         return True
     # an ad-blocker-off / subscribe notice is a CTA chain, not a fact
