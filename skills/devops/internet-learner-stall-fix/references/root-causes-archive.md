@@ -6383,3 +6383,167 @@ TRAP (test literal): the extractor requires **>=40 chars before the first
 terminator**. A hand-written "realistic" example silently yields `[]` and looks
 like a broken fix. Build the test fixture from the LIVE stored row and assert
 it yields a sentence first.
+
+
+## class 165 (23.09.26) -- a site sidebar label run welded to its announce line
+
+`cycle_d_docs` stored (300 chars, both gates passed):
+
+    "Tech news VPN Deals General Apps AR and VR Business Cameras Cybersecurity
+     Entertainment Reviews and guides Smart home Social media Transportation
+     Wearables Claude AI The latest Claude AI news, updates and announcements
+     Anthropic Drops Claude Opus 5.5 ..."
+
+The length cleared the `>=90` (extractor) / `>=25` (writer) floors and the brand
+names satisfied the technical-signal gate -- the same double-pass shape as
+classes 69 / 139.
+
+TWO STRUCTURAL MARKERS, ANDed; each alone is ordinary prose:
+
+  M1  `>= 2` DISTINCT site nav labels, case-folded so a repeated label cannot
+      self-satisfy the count -> a sidebar MENU was listed.
+  M2  a section ANNOUNCE line -- `the latest <topic> news, updates and
+      announcements` -> the page narrated its own category.
+
+MEASUREMENT over 3,901 real rows (`online_buffer` 300 + `online_buffer_prejunk_archive`
++ `training/train.jsonl` + `memory/longterm_episodes.jsonl` 3,059) and 9,861 junk
+rows, on BOTH gates: M1 alone = 2 real hits (prose about the labels); M2 alone =
+4 real hits (ordinary prose); **M1 AND M2 = 1 real hit and that hit IS the
+leaking row, 0 junk**. A 10-case hostile battery (prose about the labels, a
+quoted announce headline, the bare `TechRadar - Upgrades, reviews and guides`
+CTA) = 0 FPs. Both single-marker forms were MEASURED-AND-REJECTED.
+
+Applied to BOTH gate copies (`internet_learner._is_junk` at extraction,
+`buffer_store._is_nav_chrome` as the writer gate) + a both-paths regression
+test. Published as PR #61 (branch `fix/learner-class165-site-nav-announce`,
++125/-0, 194 passed).
+
+### TRAP -- concurrent writers collide on the CLASS NUMBER
+
+Two independent cron/autopilot rounds picked `class 164` for two DIFFERENT leaks
+within the same hour: this one (site nav + announce line) and an arXiv
+section-TOC chain welded to `Download PDF` (`_is_section_toc_chain`, already
+uncommitted in the shared tree when this round started).
+
+- A class number is NOT a unique key. Before claiming one, grep the number
+  across ALL target files:
+  `grep -c 'class NNN' internet_learner.py buffer_store.py test_..._gate.py`
+  and also inspect the shared tree's UNCOMMITTED diff for a same-number claim --
+  `git diff | grep -o 'class [0-9]*'` sees work HEAD does not have yet.
+- Renumber only YOUR OWN comment/marker lines (match a unique phrase, not the
+  bare number) so the sibling's entry keeps its number.
+- The sibling's in-flight hunks sit in the SAME hunk as yours (adjacent
+  call sites in one `@@` block), so a hunk-level `git add -p` cannot separate
+  them. Build the commit in a clean worktree off `origin/main` and re-apply only
+  your own files/hunks there -- never stage the shared tree.
+
+### TRAP -- the LIVE tree's test file can be BEHIND the repo copy
+
+`cp LIVE -> repo` clobbered the repo's newer class-163 test (the repo HEAD test
+file had it, the LIVE copy did not) and showed up as `-69` deletions. Restore
+with `git checkout -- <file>` FIRST, then re-apply your insert there, and sync
+repo -> LIVE (the direction that never regresses). `git diff --stat` reading
+deletions that are not yours is the tell.
+
+## class 164 (23.09.26) — a non-English DISTILLATE reaches the stored row
+
+**Symptom.** `python scripts/training/internet_learner.py --once` can report
+`security-learn: Anwendungsmöglichkeiten: Einen Sekretariats-Agent für
+Erreichbarkeit, einen Weiterleitungs-Agent für das Durchstellen an die richtige
+Person, ...` — i.e. the cycle SUCCEEDS and the row is written to
+`online_buffer.jsonl`, but the `a` (answer) is a German Azure-docs paragraph
+about call-center FAQ bots under an unrelated ENGLISH question
+(`Security learning (jailbreak prevention ...)`, `Latest research insight:
+Open-sourced jev architecture ...`).
+
+**Root cause.** The SECONDARY extraction path (`deep_learn` -> smart_route,
+`internet_learner.py` ~L5860 `LIVE + "/v1/chat/completions"`, `model:
+mini-openamer`, prompt "Distill the ONE most valuable technical insight ... Start
+with [INSIGHT]").  The prompt does NOT constrain the distillation's LANGUAGE, so
+when the routed model answers in the page's own language the distillate is
+stored as-is.  The row therefore has an ENGLISH `u` welded to a NON-ENGLISH `a`.
+
+**Measured (23.09.26, live tree).** Over the 300-row `online_buffer.jsonl`:
+2 of 300 `a` values are German-ish (>=3 German marker tokens), both from this
+same German call-center paragraph, both under unrelated English `u`.
+`a` appearing under MORE THAN ONE distinct `u`: 10.
+The identical `Sekretariats-Agent` string had ALREADY been refused 15x in
+`buffer_junk.jsonl` (every one logged `reason: duplicate`) — so this is not a
+new page, it is a pre-existing page that had been filtered by the duplicate gate
+and now surfaces on a `u` that is new.  It also appears 5x in
+`internet_learn_log.jsonl` spanning 15.09.26 .. 23.09.26, with the 15.09.26
+occurrences as `doc-learn`/`domain-learn` — i.e. the same German paragraph has
+been entering under DIFFERENT `u` for 8 days, which is exactly what the
+u-agnostic near-duplicate rule below is for.  `buffer_junk` is a 9583-row
+grep-only log: it carries `{reason, u, a}` and NO timestamp — a class's AGE can
+therefore only be measured via `internet_learn_log.jsonl`, not via the junk log.
+
+**Why NO code fix was shipped on this evidence (do NOT re-litigate).** Both
+obvious predicates are already measured-and-rejected in this repo:
+
+- A **language rule** is explicitly forbidden by the class in
+  `buffer_store.py`/`internet_learner.py` around the Chinese Q&A-portal
+  detectors (`_is_qa_portal_chrome`): "Keyed on the portal's own LABEL CHAIN,
+  never on the language ... a language-agnostic 'is CJK' rule, which would have
+  eaten that real knowledge, is deliberately NOT used."  Measured 16.09.26 over
+  the live 5013-row corpus: the two genuine Chinese technical rows carried no
+  marker and stayed learnable.  Keying on language would eat them too.
+- A **near-duplicate rule keyed on `a` alone** is measured-and-rejected at
+  `buffer_store.py` ~L3641 ("the sentence DRIFTS, so exact `_is_duplicate`
+  missed it; same-`u` Jaccard MEASURED-AND-REJECTED, 0.24-0.33 vs a legitimate
+  0.40").  The measured 10 `a`-under-multiple-`u` cases here are legitimate
+  cross-`u` repeats (vLLM doc cycles), not rot: vLLM doc cycles are ~5x/day
+  against a 300-row cap; `online_buffer` was md5-identical at its 300 rows for
+  the whole 23.09.26 day, so those twins are already inside one rolling window.
+
+So a naive `a`-based dedupe would delete real vLLM cycles to save 2 rows.  The
+honest state is: the defect is REAL and MEASURED at 2/300, the two candidate
+predicates are already spent, and the next attempt needs an `a`-DRIFT-TOLERANT
+match (same-page `a` under a different `u`) with a control proving it spares the
+legitimately-repeating vLLM rows.  Do NOT ship a rule on the 2/300 alone.
+
+**Related:** class 160 (`is_off_topic_page`) is the same FAMILY (a result PAGE
+that does not belong to its query) but is a different mechanism — 160 rejects at
+the gate, 164 is let through by the LLM fallback.  AG (deep_learn ranks the
+WRONG page) stays deliberately unpatched; this class names the same function's
+second door, not a reason to re-open AG.
+
+**166 (23.09.26)** -- a GitHub-TRENDING listing row: the card title restated
+twice, the site label, the relative-age badge WELDED to `release`
+(`2yrs agorelease`), the feed counters (`101.9K 0 0`) and a truncated
+description.  Stored verbatim by `cycle_c_github`; 300 chars WITH digits, so
+the >=90 long-prose trust AND the technical-signal gate both passed it.
+
+Fix = `_is_ago_release_badge_weld` in BOTH gates:
+
+    \b\d+\s*(?:yrs?|years?|months?|days?|hrs?|hours?|mins?)\s*agorelease\b
+
+The MISSING SPACE is the discriminator -- markup no human sentence produces,
+the same argument as the class-9 `-->` HTML-comment rule.  Measured over
+online_buffer / buffer_junk / internet_learn_log / longterm_episodes / the
+asserted gate-test literals / every .md+.txt in the repo and the live skills
+tree: 1 hit and it IS the leaking row, 0 elsewhere, 0 real-prose FPs.  The
+LOOSE form (allowing a space between `ago` and `release`) was MEASURED AND
+REJECTED: 2 real-prose controls (`2yrs ago release was announced in the
+changelog`, `The model card was updated 6 months ago release notes say`).
+
+Two live notes from the same run:
+- The buffer at ENTRY still carried a **class-165** row (the site sidebar label
+  run + announce line, `Tech news VPN Deals ...`).  The class-165 gate was
+  already in the code -- the ROW was simply never deleted.  A gate that catches
+  a row is not a cleanup: after applying a gate, delete the matching rows in
+  the SAME step (the class-58/AS lesson, recurring).
+- The prior cron session had died with the whole class-166 fix **UNCOMMITTED**
+  in the shared tree (the class-AV trap, second occurrence): both modules +
+  the test file were modified, the buffer had already been cleaned, and the
+  log looked like "nothing to do".  `git status --porcelain scripts/training
+  tests/scripts` FIRST, every run.
+- Publishing: the accumulated working branch was 64 ahead / 13 behind with no
+  PR.  The class-166 change went out as a FOCUSED branch off `origin/main` in a
+  worktree, containing ONLY the class-166 delta (102 insertions / 0 deletions),
+  so it does not duplicate the still-open PR #61 (which carries 155/157/158/159/
+  165).  Do NOT copy the whole live file into a fresh worktree: it drags the
+  entire unlanded stack along.
+- PITFALL, new and sharp: `io.open(path, "wb").write(expr)` **TRUNCATES the
+  file before `expr` is evaluated** -- a NameError inside `expr` leaves a
+  0-byte module.  Write to `<path>.tmp` and `os.replace()`.
