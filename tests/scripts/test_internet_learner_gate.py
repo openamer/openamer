@@ -6294,3 +6294,77 @@ def test_need_plan_echo_controls_survive_both_gates():
     for ctl in _IL148_CONTROLS:
         assert not BS._is_need_plan_echo(ctl), ctl
         assert not IL._INSTRUCTION_OPENER_RE.search(ctl), ctl
+
+
+# --- class 149 (23.09.26): a site's nav-menu WELD run into a card title that is
+# then repeated.  The leak was STORED (252 chars with digits -> the `>=90` length
+# trust AND the technical-signal gate both fired); class 82 is the same family
+# but wants labels welded to EACH OTHER plus a TitleCase colon headline, and
+# this row welds them to a comma headline instead.
+_IL149_LEAKS = (
+    "Start Suche VPS-Rechner Vergleichen Blog Suchen \U0001f319 EN DE Home Blog "
+    "Haystack: The Open-Source AI Orchestration Framework for Production-Ready RAG "
+    "Haystack: The Open-Source AI Orchestration Framework for Production-Ready RAG "
+    "Jun 27, 2026 What Is Haystack?",
+)
+
+_IL149_CONTROLS = (
+    # the topic-word trap: German/English sentences that LIST the same labels
+    "Suche, Blog, Preise, Kontakt, Impressum und Datenschutz sind die Menuepunkte.",
+    "Die Navigation enthaelt Suche, Blog, Preise und Kontakt in der Kopfzeile.",
+    "Der Vergleich der Preise zeigt, dass die Suche im Blog besser funktioniert.",
+    "Wir haben die Preise verglichen und die Suche im Blog getestet.",
+    "The site navigation offers Suche, Blog and Kontakt in the top bar of every page.",
+    "Our crawler skips the navbar: Start, Blog, Suche and Kontakt are all chrome.",
+    "The nav bar shows Home, Docs, Pricing, Careers and About Us on one line.",
+    "Home Docs Pricing Careers About Us is what the markup literally contains.",
+    "The menu labels are Home, Produkte, Preise and Impressum in the German locale.",
+    "Startseite, Preise and Kontakt were the three labels we had to white-list.",
+    "We compared the nav labels used by three documentation portals for consistency.",
+    "The docs and pricing links sit in the footer nav rather than the sidebar.",
+    "Login and Sign up are the only two links the crawler could not resolve.",
+    "The pricing page and the careers page both redirect to the same marketing site.",
+    "A good agent reads the privacy policy and the terms of service before scraping.",
+    "The resources section links to docs, a newsletter and a cookie policy notice.",
+    # a legit repeat / a legit mention of the brand, each ALONE
+    "The pipeline reads docs, then docs again after the cache is cleared, which is fine.",
+    "Haystack is an open-source orchestration framework for RAG pipelines.",
+    "The Haystack docs explain how to build a production-ready RAG pipeline.",
+    "Our slogan is simple: build fast, ship fast, and build fast again tomorrow.",
+)
+
+
+def test_nav_weld_repeat_chrome_gated_on_both_paths():
+    """A nav-menu weld run + adjacent exact repeat is refused by BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL149_LEAKS:
+        assert BS._is_nav_weld_repeat_chrome(leak), leak
+        assert BS.is_junk(leak), leak
+        assert IL._is_nav_weld_repeat_chrome(leak), leak
+        assert IL._writer_gate_refuses(leak), leak
+        assert IL._is_junk(leak), leak
+
+
+def test_nav_weld_repeat_controls_survive_both_gates():
+    """Prose that lists the same nav labels, or repeats a phrase, stays learnable.
+
+    Neither half of the conjunction may fire alone: nav tokens in prose score a
+    run of 3-6 (the trap), and an ordinary repeat is not ADJACENT.
+    """
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL149_CONTROLS:
+        assert not BS._is_nav_weld_repeat_chrome(ctl), ctl
+        assert not IL._is_nav_weld_repeat_chrome(ctl), ctl
+
+
+def test_nav_weld_repeat_neither_half_is_sufficient():
+    """Disjoint halves: the conjunction is the discriminator, not either side."""
+    import buffer_store as BS
+    nav_only = "Suche, Blog, Preise, Kontakt, Impressum und Datenschutz sind die Menuepunkte."
+    assert BS._nav_weld_run(nav_only) >= 3
+    assert not BS._has_adjacent_exact_repeat(nav_only)
+    rep_only = "The pipeline reads docs, then docs again after the cache is cleared, which is fine."
+    assert not BS._nav_weld_run(rep_only) >= 3
+    assert not BS._has_adjacent_exact_repeat(rep_only)

@@ -4511,6 +4511,9 @@ def _is_junk(text):
     # a year-welded SERP title restated by its own snippet (class 141, 22.09.26)
     if _is_serp_title_snippet_repeat(t):
         return True
+    # a nav-menu weld run into a card title restated twice (class 149, 23.09.26)
+    if _is_nav_weld_repeat_chrome(t):
+        return True
     if _is_caps_nav_lockup_weld(t):
         return True
     # a page-meta listing widget (same narrow rule as
@@ -4753,6 +4756,113 @@ def _writer_gate_refuses(text):
         return bool(_writer_is_junk(text))
     except Exception:
         return False
+
+
+# class 149 (23.09.26) -- a site's nav-menu WELD run into a card title that is
+# then repeated.  See _is_nav_weld_repeat_chrome.
+_NAV_WELD_TOKENS = (
+    "suche", "suchen", "rechner", "vergleichen", "vergleich", "blog", "home",
+    "preise", "kategorien", "kontakt", "magazin", "ratgeber", "startseite",
+    "anmelden", "registrieren", "mehr erfahren", "jetzt kaufen", "zum shop",
+    "warenkorb", "impressum", "datenschutz", "nachrichten",
+    "product categories", "get started", "sign in", "sign up", "log in", "login",
+    "resources", "docs", "pricing", "careers", "about us", "privacy policy",
+    "cookie policy", "terms of service", "newsletter", "book a demo",
+)
+_NAV_WELD_REPEAT_MIN = 40
+_NAV_WELD_WINDOW = 60
+_NAV_WELD_MIN_TOKENS = 3
+
+
+def _nav_weld_run(text, window=_NAV_WELD_WINDOW):
+    """Largest number of DISTINCT nav tokens inside one `window`-char slice."""
+    low = (text or "").lower()
+    pos = []
+    for tok in _NAV_WELD_TOKENS:
+        start = 0
+        while True:
+            i = low.find(tok, start)
+            if i == -1:
+                break
+            pos.append((i, tok))
+            start = i + 1
+    pos.sort()
+    best = 0
+    for a in range(len(pos)):
+        seen = set()
+        for b in range(a, len(pos)):
+            if pos[b][0] - pos[a][0] > window:
+                break
+            seen.add(pos[b][1])
+        best = max(best, len(seen))
+    return best
+
+
+def _has_adjacent_exact_repeat(text, minlen=_NAV_WELD_REPEAT_MIN):
+    """True when a >=`minlen` substring occurs TWICE overlapping (gap <= length).
+
+    An exact repeat whose instances are far apart is normal (a session
+    transcript restates a line; prose echoes a phrase) -- those measure 6
+    `longterm_episodes` hits.  A repeat whose second instance STARTS inside the
+    first is a widget drawing the same label twice at nearly the same offset,
+    which no human-written text does.
+    """
+    t = text or ""
+    if len(t) < minlen * 2:
+        return False
+    seen = {}
+    for i in range(len(t) - minlen + 1):
+        chunk = t[i:i + minlen]
+        j = seen.get(chunk)
+        if j is None:
+            seen[chunk] = i
+            continue
+        k = minlen
+        while i + k < len(t) and t[j + k] == t[i + k]:
+            k += 1
+        if i - j <= k:
+            return True
+    return False
+
+
+def _is_nav_weld_repeat_chrome(text):
+    """True for a nav-menu WELD run into a card title restated twice (class 149).
+
+    Live 23.09.26: `cycle_c_github` stored
+
+        Start Suche VPS-Rechner Vergleichen Blog Suchen EN DE Home Blog
+        Haystack: The Open-Source AI Orchestration Framework for
+        Production-Ready RAG Haystack: The Open-Source AI Orchestration
+        Framework for Production-Ready RAG Jun 27, 2026 What Is Haystack?
+
+    A German VPS-comparison site's menu strip (Suche / VPS-Rechner /
+    Vergleichen / Blog / Suchen), the language switch, a "Home Blog" trail and
+    then the card's own title drawn twice -- 252 chars WITH digits, so the
+    `>=90` length trust and the technical-signal gate both fired and no
+    existing marker matched.  class 82 (`_is_de_nav_weld_headline_chrome`) is
+    the same FAMILY but misses this shape: its labels are welded to each other
+    already, and it requires a TitleCase colon headline (this row's headline
+    has a comma instead).
+
+    The discriminator is the CONJUNCTION, and neither half survives alone:
+
+      * nav tokens alone are one comma away from ordinary prose -- a German
+        sentence listing `Suche, Blog, Preise, Kontakt, Impressum und
+        Datenschutz` scores a run of 6, and 18 hostile controls scored 3-6
+        (13 of them).
+      * an exact repeat alone scores 88 of 3,064 `longterm_episodes` and 0
+        gate-test literals; the ADJACENCY is what removes them (adjacent
+        repeat alone: 6 episodes, all transcripts/tool dumps).
+
+    Measured 23.09.26: 1 buffer hit and it IS the leak -> 0 FPs on 21 hostile
+    prose controls (EN + DE, several LISTING the same labels), 0 of 3,064
+    `longterm_episodes`, 0 gate-test literals, and 0 hits over 11,959 real
+    prose chunks in 495 repo `.md`/`.txt` files.
+    """
+    if not text:
+        return False
+    return (_nav_weld_run(text) >= _NAV_WELD_MIN_TOKENS
+            and _has_adjacent_exact_repeat(text))
 
 
 def _filter_junk(results):
