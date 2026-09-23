@@ -6578,3 +6578,60 @@ def test_docs_heading_qweld_requires_the_question_weld():
              "reuses the KV blocks of a shared prompt prefix, which cuts the "
              "prefill cost for every request that repeats the same system prompt.")
     assert not BS.is_docs_heading_qweld(prose), prose
+# --- class 158: a BibTeX citation record welded to a license footer --------
+_IL158_LEAKS = (
+    "Findings of the Association for Computational Linguistics: EMNLP 2025}, "
+    "pages = {23934-23949}, year = {2025}, publisher = {Association for "
+    "Computational Linguistics} } This website is licensed under a Creative "
+    "Commons Attribution-ShareAlike 4.",
+)
+# Same TOPIC as the leak (the classic trap), but real prose -> must survive.
+_IL158_CONTROLS = (
+    # prose ABOUT a Creative Commons license is real knowledge
+    "This website is licensed under a Creative Commons Attribution-ShareAlike 4.0 "
+    "license; please cite the original paper when you reuse the figures.",
+    "The reference lists pages 23934-23949 for the EMNLP 2025 findings volume, "
+    "published by the ACL and licensed under Creative Commons.",
+    "Add a BibTeX entry with the author, title, journal and year fields so the "
+    "citation renders correctly in the paper.",
+    # a PROSE-VALUED assignment with NO license footer (the rejected one-part rule)
+    "Set system_prompt = {You are a helpful assistant} and temperature = {0.2}.",
+    "Configure persona = {A concise technical writer} and style = {formal} now.",
+    "The template uses greeting = {Hello there friend} and name = {Ada}.",
+    # config chains with SCALAR values (the discriminator's clean side)
+    "The recipe fixes seed = {42}, epochs = {3} and lr = {5e-5} for every run.",
+    "We set batch_size = {32} and learning_rate = {1e-4} before the fine-tune.",
+    "The dataset card sets license = {cc-by-4.0} and language = {en} plus "
+    "size = {1.2M} rows.",
+    "Our serving config pins gpu_memory_utilization = {0.9}, max_model_len = "
+    "{8192} and dtype = {bfloat16} for the production profile.",
+)
+
+
+def test_citation_record_weld_is_gated_on_both_paths():
+    """A BibTeX record welded to a license footer is chrome on BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL158_LEAKS:
+        assert IL.is_citation_record_weld(leak), leak
+        assert BS.is_citation_record_weld(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+    for ctl in _IL158_CONTROLS:
+        assert not IL.is_citation_record_weld(ctl), ctl
+        assert not BS.is_citation_record_weld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+def test_citation_record_weld_requires_BOTH_parts():
+    """Each part alone is insufficient -- the rejection is the contract."""
+    import buffer_store as BS
+    license_only = ("This website is licensed under a Creative Commons "
+                    "Attribution-ShareAlike 4.0 license.")
+    assert not BS.is_citation_record_weld(license_only), license_only
+    assignment_only = ("Set system_prompt = {You are a helpful assistant} and "
+                       "temperature = {0.2}.")
+    assert not BS.is_citation_record_weld(assignment_only), assignment_only
+    scalar_only = ("Set pages = {23934-23949} with year = {2025} for the record.")
+    assert not BS.is_citation_record_weld(scalar_only), scalar_only

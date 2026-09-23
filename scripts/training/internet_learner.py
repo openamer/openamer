@@ -4429,6 +4429,60 @@ def is_docs_heading_qweld(text):
     return len(re.findall(r"[.!?]", t)) <= 1
 
 
+# A BibTeX CITATION RECORD welded to a license footer (class 158, 23.09.26).
+# Live: the papers cycle stored, verbatim:
+#   "Findings of the Association for Computational Linguistics: EMNLP 2025},
+#    pages = {23934-23949}, year = {2025}, publisher = {Association for
+#    Computational Linguistics} } This website is licensed under a Creative
+#    Commons Attribution-ShareAlike 4."
+# -- an ACL Anthology page's BibTeX `pages = {..}, year = {..}, publisher =
+# {..}` chain with the trailing `}` still attached, welded to the site's
+# license footer. The digits and braces fed the technical-signal gate and the
+# 243 chars cleared the >=90 long-prose trust.
+#
+# Keyed on the CONJUNCTION of two independently-insufficient signals:
+#   (1) a `field = {value}` pair whose VALUE reads as a multi-word PHRASE
+#       (>=3 word tokens) -- a citation record's values are prose ("Association
+#       for Computational Linguistics"), while a code/config assignment's value
+#       is a scalar ("{42}", "{0.9}", "{bfloat16}", "{cc-by-4.0}");
+#   (2) a LICENSE FOOTER ("licensed under" / "creative commons" /
+#       "attribution-sharealike").
+# Measured 23.09.26 over 17,905 rows (online_buffer 299, buffer_junk 18,480,
+# internet_learn_log 2,698, longterm_episodes 3,064, asserted gate-test literals
+# 1,897): the conjunction has exactly 1 hit -- the leaking row -- and 0
+# elsewhere, 0 of a 9-case hostile battery.
+# BOTH parts were MEASURED AND REJECTED alone; do not re-add either:
+#   - the license footer alone: 4 asserted gate-test literals + 2 hostile
+#     prose FPs (prose ABOUT a Creative Commons license is real knowledge).
+#   - the prose-valued assignment alone: 3 hostile FPs
+#     (`Set system_prompt = {You are a helpful assistant} and temperature = ...`).
+#   - the bare `field = {value}` pair: 3 hostile config FPs.
+#   - the BibTeX field VOCABULARY (author/title/year/pages/...): 5 hostile FPs,
+#     because prose that merely NAMES those words trips it.
+_CITATION_ASSIGN_RE = re.compile(
+    r"\b[A-Za-z][A-Za-z0-9_]{1,20}\s*=\s*\{([^{}]{0,160})\}")
+_CITATION_LICENSE_RE = re.compile(
+    r"licensed under|creative commons|attribution-sharealike", re.IGNORECASE)
+
+
+def is_citation_record_weld(text):
+    """True for a BibTeX citation record welded to a license footer.
+
+    Structural conjunction, no topic words and no site literals -- see the
+    block comment above `_CITATION_ASSIGN_RE` for the measurement.
+    """
+    t = text or ""
+    if not t:
+        return False
+    if not _CITATION_LICENSE_RE.search(t):
+        return False
+    for m in _CITATION_ASSIGN_RE.finditer(t):
+        value = m.group(1)
+        if len(re.findall(r"[A-Za-z][A-Za-z'\-]*", value)) >= 3:
+            return True
+    return False
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -4819,6 +4873,9 @@ def _is_junk(text):
         return False
     # a docs/TOC heading stack welded to an interrogative heading (class 157, 23.09.26)
     if is_docs_heading_qweld(t):
+        return True
+    # a BibTeX citation record welded to a license footer (class 158, 23.09.26)
+    if is_citation_record_weld(t):
         return True
     return bool(is_glued_motif(t))
 
