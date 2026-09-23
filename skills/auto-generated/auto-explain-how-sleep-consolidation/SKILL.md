@@ -1,6 +1,6 @@
 ---
 name: auto-explain-how-sleep-consolidation
-description: We need to answer the question: "Explain how sleep consolidation improves memory in biological and a
+description: "We need to answer the question: \"Explain how sleep consolidation improves memory in biological and a"
 auto_generated: true
 created: 2026-09-08
 source_insight: "Explain how sleep consolidation improves memory in biological and artificial systems."

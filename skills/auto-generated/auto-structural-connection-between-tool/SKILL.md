@@ -1,20 +1,6 @@
 ---
 name: auto-structural-connection-between-tool
-description: Both
-user
-[{"tool": "web_search", "params": {"query": "
-
-[
-  "tool
-
-[
-  "tool
-
-[
-  "tool
-
-[
-  "tool
+description: "Both user [{\"tool\": \"web_search\", \"params\": {\"query\": \" [ \"tool [ \"tool [ \"tool [ \"tool"
 auto_generated: true
 created: 2026-09-11
 source_insight: "Structural connection between tool usage and energy efficiency?"

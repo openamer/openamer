@@ -1,6 +1,6 @@
 ---
 name: auto-internet-learning-ai-agent
-description: AI Agent News Today — September 10, 2026 — What changed: Zscaler released Agentic SOC, a security-op
+description: "AI Agent News Today September 10, 2026 What changed: Zscaler released Agentic SOC, a security-op"
 auto_generated: true
 created: 2026-09-11
 source_insight: "Internet learning (AI agent news today): What should an AI agent know?"

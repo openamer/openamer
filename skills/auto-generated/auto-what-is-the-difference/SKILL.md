@@ -1,8 +1,6 @@
 ---
 name: auto-what-is-the-difference
-description: user
-
-Self-critique: We have a user asking: "Question: What is the difference between correlation an
+description: "user Self-critique: We have a user asking: \"Question: What is the difference between correlation an"
 auto_generated: true
 created: 2026-09-10
 source_insight: "What is the difference between correlation and causation in system diagnostics?"

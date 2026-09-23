@@ -1,6 +1,6 @@
 ---
 name: auto-competitor-intelligence-crush-glamourous
-description: GitHub - skyiron/crushAIcodingAgent: The glamourous AI coding … — The quickest way to get started is to grab an API key for your preferred provider su
+description: "GitHub - skyiron/crushAIcodingAgent: The glamourous AI coding The quickest way to get started is to grab an API key for your preferred provider su"
 auto_generated: true
 created: 2026-09-15
 source_insight: "Competitor intelligence: Crush: Glamourous AI coding agent for your favourite terminal"

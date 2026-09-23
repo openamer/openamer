@@ -1,6 +1,6 @@
 ---
 name: auto-multidomain-learning-philosophy-of
-description: Consciousness and AI — OECS — 5. Feb. 2026 · Whether AI consciousness is possible depends on what pr GAP: OpenHands has a modular SDK design — our too
+description: "Consciousness and AI OECS 5. Feb. 2026 Whether AI consciousness is possible depends on what pr GAP: OpenHands has a modular SDK design our too"
 auto_generated: true
 created: 2026-09-05
 source_insight: "Multi-domain learning (philosophy of consciousness AI): What should an intelligent agent know?"

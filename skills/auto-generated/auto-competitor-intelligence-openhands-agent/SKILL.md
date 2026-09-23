@@ -1,6 +1,6 @@
 ---
 name: auto-competitor-intelligence-openhands-agent
-description: Agent Canvas Architecture - OpenHands Docs Documentation Index Fetch the complete documentation index at: /llms.
+description: "Agent Canvas Architecture - OpenHands Docs Documentation Index Fetch the complete documentation index at: /llms."
 auto_generated: true
 created: 2026-09-08
 source_insight: "Competitor intelligence: OpenHands agent architecture updates"

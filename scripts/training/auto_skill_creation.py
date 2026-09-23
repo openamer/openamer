@@ -240,13 +240,26 @@ def create_skill_from_insight(insight_question, insight_answer, source_tag):
     skill_dir = os.path.join(AUTO_SKILLS, name)
     os.makedirs(skill_dir, exist_ok=True)
 
+    # Emit every scalar as a JSON-quoted single-line value. The template wrote
+    # `description` raw and `source_insight` in bare double quotes, so any
+    # insight containing ": ", a leading "-"/"["/"*", or an inner quote produced
+    # frontmatter that PyYAML cannot parse. That broke the strict consumer,
+    # `website/scripts/generate-skill-docs.py` (which uses yaml.safe_load with no
+    # fallback), and killed the CI job "Docs Site / docs-site-checks" in the step
+    # "Regenerate per-skill docs pages + catalogs" — 45 of the 97 files under
+    # skills/auto-generated/ were unparseable. agent/skill_utils.py survives such
+    # files only because it has a lenient fallback; do not rely on that here.
+    # json.dumps is the correct encoder for a YAML double-quoted scalar: it
+    # escapes \ and " and collapses any newline to \n, so the value round-trips.
+    safe_desc = clean_text(desc)
+    safe_source = clean_text(str(insight_question))[:100]
     skill_content = SKILL_TEMPLATE.format(
         name=name,
-        description=desc.replace('"', "'"),
+        description=json.dumps(safe_desc, ensure_ascii=False),
         date=datetime.date.today().isoformat(),
-        source=str(insight_question)[:100].replace('"', "'"),
+        source=json.dumps(safe_source, ensure_ascii=False)[1:-1],
         name_title=name.replace("-", " ").title(),
-        trigger_context=desc[:100],
+        trigger_context=safe_desc[:100].replace("\n", " "),
     )
 
     skill_path = os.path.join(skill_dir, "SKILL.md")

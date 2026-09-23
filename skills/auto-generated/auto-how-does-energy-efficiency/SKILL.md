@@ -1,7 +1,6 @@
 ---
 name: auto-how-does-energy-efficiency
-description: 1.  **Deconstruct the User's Query**:
-    *   Core subject 1: Energy efficiency (in computing/AI).
+description: "1. **Deconstruct the User's Query**: * Core subject 1: Energy efficiency (in computing/AI)."
 auto_generated: true
 created: 2026-09-11
 source_insight: "How does energy efficiency relate to intelligence scalability?"

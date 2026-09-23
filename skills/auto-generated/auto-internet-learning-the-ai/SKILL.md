@@ -1,9 +1,9 @@
 ---
 name: auto-internet-learning-the-ai
-description: We, like many other open source projects, are dealing with a surge in low quality contributions enab
+description: "We, like many other open source projects, are dealing with a surge in low quality contributions enab"
 auto_generated: true
 created: 2026-09-15
-source_insight: "Internet learning (The "AI agent hit piece" situation clarifies how dumb we are acting): What should"
+source_insight: "Internet learning (The \"AI agent hit piece\" situation clarifies how dumb we are acting): What should"
 status: draft
 fitness_score: 0
 trials: 0

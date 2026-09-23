@@ -1,6 +1,6 @@
 ---
 name: auto-competitor-intelligence-some-uncomfortab
-description: March 27, 2026 2 min read --> --> --> --> --> Uncomfortable Truths About AI Coding Agents: What the Industry Needs to Know Artificial intelligence is
+description: "March 27, 2026 2 min read --> --> --> --> --> Uncomfortable Truths About AI Coding Agents: What the Industry Needs to Know Artificial intelligence is"
 auto_generated: true
 created: 2026-09-15
 source_insight: "Competitor intelligence: Some uncomfortable truths about AI coding agents"

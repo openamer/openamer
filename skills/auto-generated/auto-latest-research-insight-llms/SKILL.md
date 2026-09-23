@@ -1,6 +1,6 @@
 ---
 name: auto-latest-research-insight-llms
-description: Our large-scale experiment with 19 LLMs reveals that current models degrade documents during delegation: even frontier models (Gemini 3.
+description: "Our large-scale experiment with 19 LLMs reveals that current models degrade documents during delegation: even frontier models (Gemini 3."
 auto_generated: true
 created: 2026-09-15
 source_insight: "Latest research insight: LLMs corrupt your documents when you delegate"

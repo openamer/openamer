@@ -1,6 +1,6 @@
 ---
 name: auto-multidomain-learning-show-hn
-description: FutureSearch: Search the Future — AI forecasting with a public track record. First in Metaculus's Summer 2026 FutureEval tournament, above the superfo
+description: "FutureSearch: Search the Future AI forecasting with a public track record. First in Metaculus's Summer 2026 FutureEval tournament, above the superfo"
 auto_generated: true
 created: 2026-09-15
 source_insight: "Multi-domain learning (Show HN: FutureSearch, AI forecasting you can verify): What should an intelli"
