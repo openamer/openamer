@@ -378,6 +378,73 @@ def test_bare_multi_agent_no_longer_maps_an_unrelated_row():
     finally:
         kta.T = old
 
+def test_project_status_log_is_named_not_mapped_to_a_capability():
+    """Live 23.09.26: the latest competitor row was a BUILD TIMELINE.
+
+    "Brain -- Desktop AI Agent: The flagship persona running on a i9-13900KF +
+    RTX 4080 + 128 GB DDR5 workstation: Phase 1 (2024-2025): QQ group AI on
+    NoneBot2 + Volcengine ARK + KLING TTS, co-built with @Herdeny Phase 2
+    (2025-now): OpenClaw Agent OS 2026."
+
+    Not a headline (echo 0.17, 251 chars, so the headline discriminator leaves
+    it alone), not a cost datapoint, and not a capability description: the only
+    capability-shaped nouns belong to third-party products and "Desktop AI
+    Agent" is a project name. Measured over the 39 competitor rows the consumer
+    reads: the phase-timeline predicate trips 1/39 and that row IS this signal
+    -> 0 mis-maps. No token may be added for it (rejected, all measured:
+    `desktop ai agent`, `agent os`, `openclaw`, `workstation`, `persona` -- each
+    1/39 and each a proper noun / project label, i.e. a mis-map).
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("What new agent architectures are trending on GitHub?",
+             "Brain \u2014 Desktop AI Agent \U0001f9e0 The flagship persona running on a "
+             "i9-13900KF + RTX 4080 + 128 GB DDR5 workstation: Phase 1 (2024\u20132025): "
+             "QQ group AI on NoneBot2 + Volcengine ARK + KLING TTS, co-built with "
+             "@Herdeny Phase 2 (2025\u2013now): OpenClaw Agent OS 2026."),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        assert "status log" in r["identified_gap"], r["identified_gap"]
+        assert "build timeline" in r["identified_gap"], r["identified_gap"]
+        assert "NOT mappable" in r["result"], r["result"]
+        # it must deny the lexicon reading and point at the pipeline
+        assert "not a lexicon gap" in r["result"], r["result"]
+        assert "extraction-side gap" in r["result"], r["result"]
+        assert "grow the capability lexicon" not in r["proposed_fix"], r["proposed_fix"]
+        # the signal is still quoted verbatim, never silently dropped
+        assert "NoneBot2" in r["insight_analyzed"] or "NoneBot2" in r.get("insight_analyzed", "") \
+            or "Brain" in r["insight_analyzed"], r["insight_analyzed"]
+    finally:
+        kta.T = old
+
+
+def test_capability_row_mentioning_a_phase_timeline_still_maps():
+    """Guard the ORDERING: the lexicon runs BEFORE the status-log predicate.
+
+    A genuine capability sentence that happens to carry a dated phase marker must
+    keep mapping -- otherwise the predicate would swallow content. Same invariant
+    the cost-datapoint ordering test pins, for the same reason.
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("Competitor intelligence: agent pricing tiers",
+             "Phase 1 (2024\u20132025): engineers who want an agent to autonomously "
+             "plan, edit across files and run tests on complex real-world work."),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        assert "status log" not in r["identified_gap"], r["identified_gap"]
+        assert "NOT mappable" not in r["result"], r["result"]
+        # the row maps to the token LABEL (that is what identified_gap
+        # carries), so assert the label -- not the raw token text
+        assert "multi-file agentic execution" in r["identified_gap"], r["identified_gap"]
+    finally:
+        kta.T = old
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in sorted(globals().items()):
