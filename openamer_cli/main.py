@@ -11103,6 +11103,47 @@ def _belongs_to_other_install(
     return any("openamer" in c or "venv" in c for c in candidates)
 
 
+def _install_home_marker_path(roots: tuple[str, ...]) -> Path:
+    """Breadcrumb naming the home of *this* install, kept beside the checkout.
+
+    A checkout under the shipped layout lives at ``<home>/openamer-agent``, but
+    the *name* of the home is not re-derivable from the checkout alone and the
+    process environment is **not install-scoped**: ``install.ps1`` writes
+    ``OPENAMER_HOME`` to the *user* environment whenever ``$OpenAmerHome``
+    differs from the stored value, so on a machine with two install trees that
+    value names whichever tree was installed last. Keying the breadcrumb to the
+    checkout keeps "our home" a property of the install being updated.
+    """
+    return Path(roots[0]) / ".openamer-home"
+
+
+def _ours_install_home(roots: tuple[str, ...]) -> str | None:
+    """Resolve the home of the install being updated, install-first.
+
+    Order: install breadcrumb -> shipped-layout derivation -> ``OPENAMER_HOME``
+    -> ``None``. ``None`` means "this install cannot name its own home", and
+    that must never be the thing that disarms the scope guard — see
+    `_belongs_to_other_install`.
+    """
+    try:
+        marker = _install_home_marker_path(roots)
+        if marker.is_file():
+            recorded = marker.read_text(encoding="utf-8").strip()
+            if recorded:
+                return recorded
+    except (OSError, UnicodeDecodeError):
+        pass
+    # Shipped layout: <home>/openamer-agent. Only trust a parent that carries
+    # install evidence, so a bare dev checkout does not invent a home.
+    try:
+        root = Path(roots[0])
+        if root.name.lower() == "openamer-agent" and (root / ".git").exists():
+            return str(root.parent)
+    except (OSError, ValueError):
+        pass
+    return os.environ.get("OPENAMER_HOME")
+
+
 def _split_gateways_by_install(pids: list[int]) -> tuple[list[int], list[int]]:
     """Split discovered gateway PIDs into ``(ours, foreign)`` by evidence.
 
@@ -11111,7 +11152,7 @@ def _split_gateways_by_install(pids: list[int]) -> tuple[list[int], list[int]]:
     pause from #50090 keeps working. See `_belongs_to_other_install`.
     """
     roots = _update_install_roots()
-    our_home = os.environ.get("OPENAMER_HOME")
+    our_home = _ours_install_home(roots)
     ours: list[int] = []
     foreign: list[int] = []
 
