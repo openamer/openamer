@@ -4614,6 +4614,84 @@ def _is_news_age_notice(text):
     """True for a publisher age notice welded to its content-label pair (163)."""
     return _news_age_notice_span(text) is not None
 
+# Site sidebar nav labels welded to a section announce line (class 165, 23.09.26): cycle_d_docs
+# stored "Tech news VPN Deals General Apps AR and VR Business Cameras Cybersecurity Entertainment
+# Reviews and guides Smart home Social media Transportation Wearables Claude AI The latest Claude AI
+# news, updates and announcements Anthropic Drops Claude Opus 5.5 ..." -- the TechRadar sidebar
+# label run followed by the category's own announce line. 300 chars, zero prose, and BOTH gates
+# passed it: the length cleared the >=90/>=25 floors and the brand names fed the signal gate.
+#
+# TWO STRUCTURAL MARKERS, ANDed -- each alone is ordinary prose:
+#   M1 >= 2 DISTINCT site nav labels (case-folded, so a repeated label cannot
+#      self-satisfy the count) -> a sidebar MENU was listed;
+#   M2 a section ANNOUNCE line ("the latest <topic> news, updates and announcements")
+#      -> the page narrated its own category.
+# Measured over 3,901 real corpus rows (online_buffer 300 + prejunk archive +
+# train.jsonl + longterm_episodes 3,059) and 9,861 junk rows: 1 real hit and
+# that hit IS the leaking row -> 0 real-prose FPs; 0 junk hits. Hostile battery
+# (10 hand-written cases incl. prose ABOUT the sidebar labels, a quoted announce
+# headline, and the bare "TechRadar - Upgrades, reviews and guides" CTA): 0 FPs.
+# M2 alone was MEASURED-AND-REJECTED (4 real hits -> ordinary prose);
+# M1 alone was MEASURED-AND-REJECTED (2 real hits -> prose ABOUT the labels).
+_SITE_NAV_LABELS = (
+    r"vpn deals|ar and vr|reviews and guides|smart home"
+    r"|social media transportation wearables|cameras cybersecurity"
+)
+_SITE_NAV_LABEL_RE = re.compile(_SITE_NAV_LABELS, re.IGNORECASE)
+_SITE_NAV_ANNOUNCE_RE = re.compile(
+    r"the latest [^.]{2,45}(?:news,? updates and announcements"
+    r"|updates and announcements)",
+    re.IGNORECASE)
+
+
+def _is_site_nav_chain(text):
+    """True when a site's sidebar label run is welded to its announce line (165)."""
+    if not text:
+        return False
+    labels = {m.lower() for m in _SITE_NAV_LABEL_RE.findall(text)}
+    if len(labels) < 2:
+        return False
+    return bool(_SITE_NAV_ANNOUNCE_RE.search(text))
+
+
+
+
+# An arXiv/report SECTION-TOC label chain welded to the page's `Download PDF`
+# affordance (class 164, 23.09.26).  Live: `cycle_b_papers` stored, verbatim,
+#   "Report Issue Back to Abstract Download PDF Abstract 1 Introduction 2
+#    DeepSeek-R1-Zero 2.1 Group Relative Policy Optimization 2.2 Reward Design
+#    2.3 Incentivize Reasoning Capability in LLMs 3 DeepSeek-R1 3.1 Model-based
+#    Rewards Helpful Reward Model Safety Reward Model 3.2 Training Details 3.2.1
+#    Traini"
+# -- a paper page's own section listing welded to its PDF button, truncated
+# mid-word by the extractor.  300 chars with digits -> the >=90 long-prose
+# trust and the technical-signal gate both let it through.  Same family as
+# classes 23/24/25: a LISTING is a label chain, a sentence has grammar.
+#
+# The discriminator is the conjunction of the page's PDF affordance and a RUN
+# of numbered sub-section labels (`N.N <Title>`), never a bare version number:
+# plain prose cites `2.1`/`3.2` inside sentences.
+# Measured 23.09.26 over online_buffer 300 / buffer_junk 9,366 /
+# internet_learn_log 2,757 / longterm_episodes 3,065 / asserted gate-test
+# literals 2,182 / every .md+.txt in the repo and the live skills tree (7,362
+# long-form chunks): 1 hit -- the leaking row -- and 0 everywhere else; 0 of
+# 9 prose controls and 0 of 7 adversarial near-misses that carry BOTH a
+# `Download PDF` affordance AND version/section numbers inside a sentence.
+# MEASURED AND REJECTED, do not re-add: the numbered-chain alone (4 real
+# `longterm_episodes` rows: "Section 2 introduces ... 3.1 lists ...");
+# `>=6 N.N pairs` alone (misses the leak); `>=6 pairs AND no finite verb`
+# (misses the leak too -- `Download` reads as a verb).
+_TOC_CHAIN_RE = re.compile(r"\b\d+\.\d+\s+[A-Z][A-Za-z-]*")
+_PDF_AFFORDANCE_RE = re.compile(r"\bDownload\s+PDF\b")
+
+
+def _is_section_toc_chain(text, min_chain=3):
+    """True for a paper/report section-TOC label chain welded to `Download PDF` (164)."""
+    t = text or ""
+    if not _PDF_AFFORDANCE_RE.search(t):
+        return False
+    return len(_TOC_CHAIN_RE.findall(t)) >= min_chain
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -4626,6 +4704,12 @@ def _is_junk(text):
         return True
     # a news site's age notice welded to its content-label pair (class 163, 23.09.26)
     if _is_news_age_notice(t):
+        return True
+    # a paper page's section-TOC chain welded to its Download PDF affordance (class 164, 23.09.26)
+    if _is_section_toc_chain(t):
+        return True
+    # a site sidebar label run welded to its announce line (class 165, 23.09.26)
+    if _is_site_nav_chain(t):
         return True
     # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
     if _is_docs_cta_serp_run(t):

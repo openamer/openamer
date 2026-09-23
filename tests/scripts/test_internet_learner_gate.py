@@ -357,6 +357,45 @@ def test_german_dictionary_serp_chrome_is_gated_on_both_paths():
         assert not IL._is_junk(prose), prose
 
 
+def test_site_nav_chain_is_gated_on_both_paths():
+    """cycle_d_docs stored a TechRadar sidebar label run + its announce line.
+
+    Live 23.09.26 (class 165): the row was "Tech news VPN Deals General Apps AR and VR
+    Business Cameras Cybersecurity Entertainment Reviews and guides Smart home
+    Social media Transportation Wearables Claude AI The latest Claude AI news,
+    updates and announcements Anthropic Drops Claude Opus 5.5 ..." -- 300 chars
+    of pure site nav, zero prose, and it cleared BOTH gates. M1 (>=2 distinct
+    labels) alone let prose ABOUT those labels through; M2 (the announce line)
+    alone matched 4 ordinary rows. Only the ANDed pair separates them.
+
+    Measured on both gates over 3,901 real corpus rows + 9,861 junk rows:
+    1 real hit and it IS this leaking row -> 0 real-prose FPs.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    leak = (
+        "Tech news VPN Deals General Apps AR and VR Business Cameras "
+        "Cybersecurity Entertainment Reviews and guides Smart home Social "
+        "media Transportation Wearables Claude AI The latest Claude AI news, "
+        "updates and announcements Anthropic Drops Claude Opus 5.5"
+    )
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+    # M1 OR M2 alone must stay clean -- each is ordinary prose on its own
+    for prose in (
+        "Our smart home and cameras cybersecurity coverage is expanding; "
+        "read the latest reviews and guides.",
+        "Anthropic published 'The latest Claude AI news, updates and "
+        "announcements' as a blog headline yesterday.",
+        "The vLLM docs list VPN Deals as a partner section, and AR and VR "
+        "benchmarks live in the appendix.",
+        "Read the latest vLLM updates and announcements for the 2.12 release.",
+        "TechRadar - Upgrades, reviews and guides",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not IL._is_junk(prose), prose
+
+
 def test_real_insights_survive_the_junk_gate():
     for text in REAL:
         assert not IL._is_junk(text), text
@@ -6928,5 +6967,62 @@ NEWS_AGE_CONTROLS = [
     "This article is more than 4 months old and the author explains why the retriever must re-rank before generation.",
     "Supported by About this content is the pair of labels the crawler should drop, the sentence behind them is the knowledge we keep.",
     "This article is more than 4 months old, so we re-measured it; the About this content label the site renders is page furniture, and the 8-bit run stayed within one point of fp16.",
+]
+
+
+def test_section_toc_chain_is_gated_on_both_paths():
+    """A paper page's section-TOC chain welded to `Download PDF` (class 164).
+
+    Live 23.09.26 (`cycle_b_papers`): 300 chars of a paper page's own section
+    listing -- `Report Issue Back to Abstract Download PDF Abstract 1
+    Introduction 2 DeepSeek-R1-Zero 2.1 Group Relative Policy Optimization ...`
+    -- truncated mid-word by the extractor.  A LISTING is a label chain, a
+    sentence has grammar, so the discriminator is the conjunction of the page's
+    `Download PDF` affordance and a RUN of `N.N <Title>` sub-section labels.
+    """
+    import buffer_store
+    leak = TOC_CHAIN_LEAK
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for c in TOC_CHAIN_CONTROLS:
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+
+
+def test_section_toc_chain_requires_BOTH_parts():
+    """Neither half is sufficient: the chain alone hits 4 real episodes."""
+    # the numbered-chain alone is ordinary prose about a paper's structure
+    assert IL._is_section_toc_chain(
+        "Section 2 introduces the policy optimization, Section 3 covers training "
+        "and 3.1 lists the reward models.") is False
+    # the PDF affordance alone is an ordinary sentence
+    assert IL._is_section_toc_chain(
+        "Download the PDF of the report and read the abstract first.") is False
+    # and a sentence carrying BOTH halves still survives -- the run of N.N
+    # labels is what prose does not produce
+    assert IL._is_section_toc_chain(
+        "The docs page has a Download PDF button, and the release notes list "
+        "0.13 Streaming Output and 0.9 KV-cache reuse.") is False
+
+
+
+
+# The exact bytes `cycle_b_papers` stored on 23.09.26 (class 164).
+TOC_CHAIN_LEAK = (
+    "Report Issue Back to Abstract Download PDF Abstract 1 Introduction 2 "
+    "DeepSeek-R1-Zero 2.1 Group Relative Policy Optimization 2.2 Reward Design "
+    "2.3 Incentivize Reasoning Capability in LLMs 3 DeepSeek-R1 3.1 Model-based "
+    "Rewards Helpful Reward Model Safety Reward Model 3.2 Training Details 3.2.1 "
+    "Traini")
+
+TOC_CHAIN_CONTROLS = [
+    "The paper is organized as follows: Section 2 introduces the policy optimization, Section 3 covers training and 3.1 lists the reward models.",
+    "Download the PDF and read the abstract first; the paper has 3 sections and section 2.1 defines the reward model we reuse.",
+    "The paper's 3.1 reward model section is the one we ported, and 3.2 documents its training details over 40k steps.",
+    "We fetched the PDF from the abstract page and parsed 12 numbered headings into a flat outline for the retriever.",
+    "DeepSeek-R1-Zero applies Group Relative Policy Optimization and the reward design is described in the paper's section 2.2.",
+    "The crawler should strip the Download PDF button before chunking, but keep the numbered heading hierarchy for section-aware retrieval.",
+    "We downloaded the PDF and found 3.1 model-based rewards and 3.2 training details written as plain prose.",
+    "The docs page has a Download PDF button, and the release notes list 0.13 Streaming Output and 0.9 KV-cache reuse.",
 ]
 
