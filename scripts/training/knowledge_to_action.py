@@ -344,7 +344,7 @@ def experiment_meta_insight():
 
 # ---- Action selector: match insight keywords to experiments ----
 
-def experiment_group_state():
+def experiment_group_state(group_name="A5"):
     """REAL architecture experiment: generalize a group-state model to unseen lengths.
 
     Added 21.09.26. The rotation used to hold five experiments of which four were
@@ -354,9 +354,25 @@ def experiment_group_state():
     the rotation now contains one experiment that trains/evaluates a model and
     writes numbers that can be wrong.
 
-    Method: load the SAVED Z_10 rotor-snap model (2 params, tau=0.1, trained on
-    lengths 1-7), evaluate at unseen lengths up to 2048 across 5 seeds, and
-    report mean/min/max. No retraining — the saved artifact is the subject.
+    Method: load the SAVED A5 model (|G|=60, 2 generators, 6 params, tau=0.1,
+    trained on lengths 1-7), evaluate at unseen lengths up to 2048 across three
+    seeds, and report mean/min/max. No retraining — the saved artifact is the
+    subject.
+
+    FIXED 23.09.26 — this arm could not fail. It used Z10, which has
+    num_gens == 1: the choice softmax over a single generator is degenerate
+    (its weight is 1.0 whatever W and b say) and the structural readout
+    <S, M_c> is exact for the permutation representation by construction.
+    Measured on the install: at L=2048 the saved model scored 1.000, a
+    parameter-scrambled model scored 1.000, and an all-zero W,b model scored
+    1.000. So the logged "worst min over 3 seeds x 3 lengths = 1.0000" was a
+    CONSTANT — a number that cannot be wrong is not a measurement.
+
+    A5 is parameter-dependent (same probe: saved 1.000, scrambled 0.000), so
+    the arm now evaluates A5 and runs two controls in the same pass —
+    parameter-scrambled and all-zero — and reports the trained-minus-blind
+    gap. A saturated control (gap <= 0.05) marks the cycle SATURATED instead
+    of green, so this experiment can now come out wrong.
     """
     import importlib
     import random as _random
@@ -374,7 +390,8 @@ def experiment_group_state():
                 "result": f"import failed: {type(e).__name__}: {e}",
                 "measurable": False}
 
-    mpath = engine.model_path("Z10")
+    group_name = group_name or "A5"   # multi-generator: the number CAN be wrong
+    mpath = engine.model_path(group_name)
     if not os.path.exists(mpath):
         return {"action": "group-state generalization",
                 "result": f"no saved model at {mpath}", "measurable": False}
@@ -385,30 +402,75 @@ def experiment_group_state():
                 "result": f"load failed: {type(e).__name__}: {e}",
                 "measurable": False}
 
-    # Cost budget: this runs inside a */30 cron with no per-job timeout, so keep
-    # the evaluation to ~30s. Three length decades + three seeds is enough to
-    # catch a collapse; the full curve lives in kta_group_state_eval.py.
+    # Cost budget: this runs inside a */30 cron with no per-job timeout. Keep the
+    # evaluation inside one slot: 3 lengths x 3 seeds x 3 arms (trained + two
+    # controls). Measured 23.09.26 on this laptop: A5 at n=100 is 15-20s per
+    # arm, and the three arms at n=50 together took 30s. A5 costs ~2x D12 and
+    # ~0.5x Z10 per sample. Three decades catch a collapse; the full curve
+    # lives in kta_group_state_eval.py.
     lengths = [8, 512, 2048]
     seeds = [0, 1, 2]
+    n_per = 50
     measured = {}
     for L in lengths:
-        accs = [round(lab.accuracy(model, group, L, n=100, seed=s), 4) for s in seeds]
+        accs = [round(lab.accuracy(model, group, L, n=n_per, seed=s), 4)
+                for s in seeds]
         measured[L] = {"mean": round(sum(accs) / len(accs), 4),
                        "min": min(accs), "max": max(accs)}
     worst = min(v["min"] for v in measured.values())
-    out = os.path.join(engine.DEFAULT_DIR, "group_state_z10_kta.json")
+
+    # CONTROLS. A green number on a task where random parameters also win is
+    # not evidence of anything, so every cycle now prices the trained model
+    # against (1) parameter-scrambled and (2) all-zero weights.
+    blind = lab.GroupState(group, _random.Random(11), tau=payload["tau"])
+    _r = _random.Random(99)
+    for i in range(len(blind.W.data)):
+        blind.W.data[i] = _r.gauss(0.0, 2.0)
+    for i in range(len(blind.b.data)):
+        blind.b.data[i] = _r.gauss(0.0, 2.0)
+    blind_worst = min(
+        min(round(lab.accuracy(blind, group, L, n=n_per, seed=s), 4)
+            for s in seeds) for L in lengths)
+
+    zero = lab.GroupState(group, _random.Random(0), tau=payload["tau"])
+    for i in range(len(zero.W.data)):
+        zero.W.data[i] = 0.0
+    for i in range(len(zero.b.data)):
+        zero.b.data[i] = 0.0
+    zero_worst = min(
+        min(round(lab.accuracy(zero, group, L, n=n_per, seed=s), 4)
+            for s in seeds) for L in lengths)
+
+    gap = round(worst - blind_worst, 4)
+    saturated = gap <= 0.05
+    out = os.path.join(engine.DEFAULT_DIR, "group_state_a5_kta.json")
     with open(out, "w", encoding="utf-8") as f:
         json.dump({"ts": datetime.datetime.now().isoformat(),
-                   "group": group.order, "params": payload["stats"]["params"],
-                   "tau": payload["tau"], "trained_on": payload["stats"].get("trained_on"),
+                   "group": group.order, "group_name": group_name,
+                   "params": payload["stats"]["params"],
+                   "tau": payload["tau"],
+                   "trained_on": payload["stats"].get("trained_on"),
                    "lengths": {str(k): v for k, v in measured.items()},
-                   "seeds": seeds, "n_per_seed": 200}, f, indent=1)
+                   "blind_worst_min": blind_worst,
+                   "zero_worst_min": zero_worst,
+                   "trained_minus_blind": gap,
+                   "saturated": saturated,
+                   "seeds": seeds, "n_per_seed": n_per}, f, indent=1)
     curve = " ".join(f"L{L}:{measured[L]['mean']:.3f}" for L in lengths)
-    return {"action": f"group-state generalization ({group.order}, "
-                      f"{payload['stats']['params']} params, tau={payload['tau']})",
-            "result": f"accuracy on unseen lengths {curve}; worst min over "
-                      f"{len(seeds)} seeds x {len(lengths)} lengths = {worst:.4f}",
+    return {"action": f"group-state generalization {group_name} "
+                      f"(|G|={group.order}, {group.num_gens} gens, "
+                      f"{payload['stats']['params']} params, "
+                      f"tau={payload['tau']})",
+            "result": f"trained acc on unseen lengths {curve}, worst min "
+                      f"{worst:.4f}; blind-parameter control {blind_worst:.4f} "
+                      f"(all-zero {zero_worst:.4f}) -> trained-minus-blind "
+                      f"{gap:+.4f}"
+                      + (" [SATURATED: not a measurement]" if saturated else ""),
             "exact_lengths": [L for L in lengths if measured[L]["min"] >= 1.0],
+            "trained_worst_min": worst,
+            "blind_worst_min": blind_worst,
+            "zero_worst_min": zero_worst,
+            "saturated": saturated,
             "artifact": out,
             "measurable": True}
 
