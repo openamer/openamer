@@ -11,3 +11,4 @@ from . import world_model  # noqa: F401
 from . import reasoning  # noqa: F401
 from . import prediction  # noqa: F401
 from . import improvement  # noqa: F401
+from . import heartbeat  # noqa: F401
