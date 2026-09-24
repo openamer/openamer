@@ -483,6 +483,7 @@ from openamer_cli.subcommands.memory import build_memory_parser
 from openamer_cli.subcommands.acp import build_acp_parser
 from openamer_cli.subcommands.tools import build_tools_parser
 from openamer_cli.subcommands.insights import build_insights_parser
+from openamer_cli.subcommands.asi import build_asi_parser
 from openamer_cli.subcommands.skills import build_skills_parser
 from openamer_cli.subcommands.pairing import build_pairing_parser
 from openamer_cli.subcommands.plugins import build_plugins_parser
@@ -15079,7 +15080,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "send", "sessions", "setup",
         "skin", "skills", "slack", "status", "tools", "uninstall", "update",
         "version", "webhook", "whatsapp", "whatsapp-cloud", "chat", "secrets", "security",
-        "a2a", "system", "identity",
+        "a2a", "asi", "system", "identity",
         # Registered subparsers that were never declared here. The gating test
         # (tests/openamer_cli/test_startup_plugin_gating.py) derives the live
         # set from the real parser and fails when one is missing, because an
@@ -18134,6 +18135,11 @@ def main():
     # insights command  (parser built in openamer_cli/subcommands/insights.py)
     # =========================================================================
     build_insights_parser(subparsers, cmd_insights=cmd_insights)
+
+    # =========================================================================
+    # asi command — ASI Core (parser built in openamer_cli/subcommands/asi.py)
+    # =========================================================================
+    build_asi_parser(subparsers)
 
     # =========================================================================
     # claw command  (parser built in openamer_cli/subcommands/claw.py)

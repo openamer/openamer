@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-23T10:15:55.812598+00:00",
+  "written_at": "2026-09-24T12:07:08.389015+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -266,13 +266,13 @@
       "name": "service-watchdog-4-ports",
       "schedule": "every 5m",
       "script": "service-watchdog.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Self-Hosted Health Check (5min)",
       "schedule": "*/5 * * * *",
       "script": "self-hosted-cron.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Social-Outreach-Mega",

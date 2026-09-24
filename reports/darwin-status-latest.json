@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-23T03:00:14+00:00",
-  "population": 960,
-  "avg_score": 38.3,
+  "updated": "2026-09-24T12:12:32+00:00",
+  "population": 924,
+  "avg_score": 37.9,
   "fittest": [
     {
       "name": "cdp-social-posting",
@@ -45,7 +45,7 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-09-22T04:00:19",
+    "timestamp": "2026-09-23T04:00:49",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -55,7 +55,7 @@
         "fixes": []
       },
       {
-        "skill": "auto-latest-research-insight-bitnet",
+        "skill": "auto-latest-research-insight-selfretrieval",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -66,7 +66,7 @@
         ]
       },
       {
-        "skill": "auto-latest-research-insight-deepseekr1",
+        "skill": "auto-latest-research-insight-the",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -77,7 +77,7 @@
         ]
       },
       {
-        "skill": "auto-latest-research-insight-ladder",
+        "skill": "auto-latest-research-insight-wikidata",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -88,7 +88,7 @@
         ]
       },
       {
-        "skill": "auto-latest-research-insight-largescale",
+        "skill": "auto-multidomain-learning-if-ai",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -99,7 +99,7 @@
         ]
       },
       {
-        "skill": "auto-latest-research-insight-llms",
+        "skill": "auto-multidomain-learning-llms-are",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -110,7 +110,7 @@
         ]
       },
       {
-        "skill": "auto-latest-research-insight-megatrain",
+        "skill": "auto-multidomain-learning-nasa-ibm",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -121,7 +121,7 @@
         ]
       },
       {
-        "skill": "auto-latest-research-insight-opensourced",
+        "skill": "auto-multidomain-learning-neural-architecture",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -132,7 +132,7 @@
         ]
       },
       {
-        "skill": "auto-latest-research-insight-proofofthought",
+        "skill": "auto-multidomain-learning-opensource-medical",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -143,7 +143,7 @@
         ]
       },
       {
-        "skill": "auto-latest-research-insight-recursively",
+        "skill": "auto-multidomain-learning-python-climate",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -157,34 +157,19 @@
   },
   "trends": [
     {
-      "source": "arXiv",
-      "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
-      "url": "http://arxiv.org/abs/2510.27051v1"
-    },
-    {
-      "source": "arXiv",
-      "title": "ASTELD: A Six-Axis Classification Framework for Autonomous AI Agents - Design, Evaluation, and an OpenClaw Case Study",
-      "url": "http://arxiv.org/abs/2603.05031v1"
-    },
-    {
-      "source": "arXiv",
-      "title": "Hardware Keystores for AI Agent Signing Workflows: A Zero-Trust MCP Enforcement Architecture",
-      "url": "http://arxiv.org/abs/2508.02866v3"
-    },
-    {
-      "source": "arXiv",
-      "title": "ANX: Protocol-First Design for AI Agent Interaction with a Supporting 3EX Decoupled Architecture",
-      "url": "http://arxiv.org/abs/2502.18359v1"
-    },
-    {
       "source": "News",
       "title": "Amazon blocks Meta\u2019s Muse AI assistant in new standoff over agentic shopping - GeekWire",
       "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNN1NIM3JxN1RPdlktMDMwTmlZcnk5MFV4b1loLVBvc3pfUElYT3ZhQ3VLZmVod3ZxeDBVTXNkWkhybWJTZE05YzdkSWpOMHpwOVlYbWJYNndSSWRkRlFQSmNsM0F2WWgzZTFLNjFuMHNhY2d3akstanhNRTlOSEZvQVV2alFiTUE4MnBHRlJjdy12RXhwclJXVTFTZWV2R1ZrUHhUdlZuZmVtdw?oc=5"
     },
     {
       "source": "News",
-      "title": "Agents vs. Agentic AI: What Enterprises Need - appinventiv.com",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBzZ2VXbE9ZLTRZc1MtOU5raU9tYlNEZnFDM0xOUlhvQV9ReE9NSWVHZGtPTFZFZjVjMDlCVTYxMzhBUktnbm1Ub0phby05b0FhZV9zbjl3Q3oxREZ3TEViZ1hSMA?oc=5"
+      "title": "Amazon rolls out new agentic AI for third-party sellers - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQNno1MXBaZ3JtY05ZWHpfU2RsV0JuU3Zlb3hlN2RiaExrSHdEbE5wNGZjZUhINUNJQkdBR0pTM0xQUFhHZjdMdmEwSGtOcDRVcjJ1dFJNU1ZqMWlzbFpDZFhUVTlGaDFpTENaRjhKSDk0YWFiX05VOUZNbVVqRGhSemt6MHpabV8xbHNHSkZwbGRWVy1XdFdGZlVUVS1iMEJCNUNkd2stYUU2TnZ6Ny1LSXZB?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Agentic Reality - citriniresearch.com",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5jeUFncTlhNXE2SXNnN2lKbFhsWUpSMkV6TnkzRm1EVDZtWkJ0M0lTUWhMZ3Z4Zm5xdkw1VEhrUGhsNVFoQ1VCX3pkZkw3cjNVRHNQTXRWbDhBbGo1SHc?oc=5"
     },
     {
       "source": "News",
@@ -193,12 +178,27 @@
     },
     {
       "source": "News",
+      "title": "Introducing Muse Glimmer: An Open Agentic Model That Runs on Your Device - Meta AI",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1uSnpDYTQ3SXZwemhINXpka1laM2Fzb1llTGtUQWNQdld4NTRidnNNX19BS0VsYVdPMWJjTjFJa3M4U1Z0a0d0Sm5VbVA2b3RSMkZXeFF1T21NRGhkUzhKWDhoTkx2cTNmeDVwOC1oWGRNWXZ4d0JCbkxiV3N2UQ?oc=5"
+    },
+    {
+      "source": "News",
       "title": "BragJack Attack Can Turn a Browser's Agentic AI Against It - Dark Reading",
       "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE8xREg0aHQ4RUtkNTdLaHVwZFNFTnpwYmw4OXZxZUU0S2docVhveEQxUHhnaWdSUnZjZk42RlZZUUg2bmxFbjFMbFFyblBLalJFcWpiZXliaGxJRXB0c3gxNUhFSjdUN2xNeXR3djVubVVBTTlTcHBIVmtTNDg5UQ?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "The agentic organization: Contours of the next paradigm for the AI era - McKinsey & Company",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxORkNhWUJRcExzeER3VlFfZ095c2F0c2F6LXlXczFIOFhuUUdFZXdTcDFwQ0poamtFWWIyZ3lEam95bVNYSWNvRmkxUUotVWUtMkF2UmdaZ04wbjVCOGJiS3pTN2xyZ0k4SkxFaXJrZ3NjbnRCLWlqTDJWSVd3UWZvNHgzUTdkQy02T1pPSWhRRjc3WDhkeFZidkFfdExOMnNFMjVqZmlfLUJtRW0tWUc1UGNIdmItNWpGUnd1UnZIOG8tNDhDT2tLTjF2WlRXRnpPWVJ4aEp4QkhGUHpI?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Managing the cyber risk of agentic AI - National Cyber Security Centre",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5UZ2hPZ2poYUtzNVRSbzFYX2dzNGpqSGxOVGtickdodjc5ZVBTZ3poYlVYUkhUclVEckFBMXFfeDNwSGIxeWNnbElGTFpiRGZiRFByN2dhNUt5ejlUb0RKYmo0aFJRc0VONU9FVV85aTd4V1lXY1E?oc=5"
     }
   ],
   "population_engine": 158,
-  "species": 141,
+  "species": 136,
   "trials": 1,
   "harvested": 193
 }

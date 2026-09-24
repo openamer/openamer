@@ -426,11 +426,23 @@ TOOLSETS = {
             "cronjob",
             # Home Assistant smart home control (gated on HASS_TOKEN via check_fn)
             "ha_list_entities", "ha_get_state", "ha_list_services", "ha_call_service",
+            # ASI Core — integrated subsystems (gated on scripts/training/ existing)
+            "asi_status", "asi_think", "asi_learn",
+            "asi_remember", "asi_trigger",
 
         ],
         "includes": []
     },
     
+    "asi": {
+        "description": "Integrated ASI Core — 16 capabilities: recursive reasoning, world model, episodic memory, self-improvement, internet learning, swarm routing, and more. All run in-process, no external scripts.",
+        "tools": [
+            "asi_status", "asi_think", "asi_learn",
+            "asi_remember", "asi_trigger",
+        ],
+        "includes": []
+    },
+
     "openamer-cli": {
         "description": "Full interactive CLI toolset - all default tools plus cronjob management",
         "tools": _OPENAMER_CORE_TOOLS,

@@ -1,11 +1,11 @@
 {
-  "total_skills": 230,
+  "total_skills": 234,
   "categories": 19,
-  "generated": "2026-09-23T05:00:17.601080",
+  "generated": "2026-09-24T14:00:53.385668",
   "repos": "C:\\Users\\damir\\openamer-repo\\docs",
   "per_category": {
     "apple": 4,
-    "auto-generated": 111,
+    "auto-generated": 114,
     "autonomous-ai-agents": 13,
     "creative": 16,
     "desktop": 2,
@@ -22,6 +22,6 @@
     "smart-home": 1,
     "social-media": 1,
     "software-development": 21,
-    "system": 19
+    "system": 20
   }
 }

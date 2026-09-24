@@ -8,6 +8,24 @@
 
 **Drives your Windows desktop in the background — without taking your mouse.**
 
+## 🧬 ASI Core — Integrated Superintelligence
+
+5 native tools · 10 subsystem heartbeat · 16/16 ASI capabilities proven · CLI
+
+```bash
+openamer asi status          # Identity, episodes, world model, 10 subsystems
+openamer asi think <q>       # Deep recursive reasoning
+openamer asi learn [--topic] # Internet learning cycle
+openamer asi remember <q>    # Episodic memory recall
+openamer asi trigger <cap>   # Any capability (self_improve, predict, validate...)
+openamer asi heartbeat --tick # Central pulse (10 subsystems, one cron job)
+```
+
+**84 cron jobs replaced** by 1 ASI Heartbeat. Darwin, Swarm, A2A, Learning,
+Senses, System, Security, Outreach, Infra, Meta — each with its own cadence.
+
+[Full ASI docs →](docs/asi-core.md)
+
 <p align="center">
   <img src="docs/demo/background-computer-use.gif" alt="OpenAmer acting on a window it never clicked, while the real mouse pointer stays at 0 px" width="80%">
 </p>

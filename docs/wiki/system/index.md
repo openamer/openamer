@@ -4,7 +4,7 @@ title: system
 
 # 🖥️ system
 
-19 skills
+20 skills
 
 - [ab-test-engine](ab-test-engine/) — Use for A/B experiments on OpenAmer configs and skills.
 - [context-compressor](context-compressor/) — Use for session compression and full-text search.
@@ -15,6 +15,7 @@ title: system
 - [learning-loop](learning-loop/) — Use for auto error capture, categorization and skill gen.
 - [log-analyzer](log-analyzer/) — Use for log analysis, error tracking, alerts, and dashboard.
 - [model-benchmarker](model-benchmarker/) — Use when: benchmark model latency, throughput, or quality.
+- [multi-profile](multi-profile/) — Use when running OpenAmer commands against another profile.
 - [notification-engine](notification-engine/) — 'Use for alerting: desktop, sound, log, webhook, daemon.'
 - [perf-optimizer](perf-optimizer/) — Use when running or debugging the perf-optimizer on Windows.
 - [remote-web](remote-web/) — Use when starting/stopping the Remote Web UI on port 8901.
