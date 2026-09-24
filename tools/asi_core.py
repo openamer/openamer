@@ -229,15 +229,10 @@ class ASICore:
 
     def learn(self, topic: Optional[str] = None) -> Dict[str, Any]:
         """Run one internet learning cycle."""
-        try:
-            import internet_learner
-            if hasattr(internet_learner, "run_once"):
-                result = internet_learner.run_once(topic=topic)
-                return {"success": True, "result": result}
-            return self._run_imported("internet_learner", "run_once", topic=topic)
-        except Exception as e:
-            logger.exception("internet_learner failed")
-            return {"success": False, "error": str(e)}
+        args = ["--once"]
+        if topic:
+            args.extend(["--topic", topic])
+        return self._run_external("internet_learner.py", args)
 
     # ── Capability: Auto Skill Creation ──────────────────────────────────
 
