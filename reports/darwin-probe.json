@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-23T01:50:49.761647+00:00",
+  "updated": "2026-09-24T01:50:04.904757+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 947,
+  "total": 912,
   "skills": {
     "auto-best-practice-from-official": {
       "refs": 0,
@@ -375,6 +375,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-competitor-intelligence-what-i": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-efficiency-learning-a-visual": {
       "refs": 0,
       "ok": 0,
@@ -399,6 +405,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-efficiency-learning-finetuning-llms": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-efficiency-learning-pushing-the": {
       "refs": 0,
       "ok": 0,
@@ -412,6 +424,12 @@
       "missing": []
     },
     "auto-efficiency-learning-quip-2bit": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-ragkit-with": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -507,6 +525,24 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-internet-learning-rogue-cursor": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-spain-to": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-strengthening-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-internet-learning-the-ai": {
       "refs": 0,
       "ok": 0,
@@ -538,6 +574,12 @@
       "missing": []
     },
     "auto-latest-research-insight-deepseekr1": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-hardware": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -591,13 +633,37 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-latest-research-insight-solving": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-teuken7bbase": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-latest-research-insight-the": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
       "missing": []
     },
+    "auto-latest-research-insight-understanding": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-latest-research-insight-wikidata": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-agentic-ai": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -651,6 +717,18 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-multidomain-learning-neural-duhagery": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-openaiembeddings25-": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-multidomain-learning-opensource-medical": {
       "refs": 0,
       "ok": 0,
@@ -664,6 +742,12 @@
       "missing": []
     },
     "auto-multidomain-learning-python-climate": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-python-legalaiautom": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -735,7 +819,25 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-security-learning-owasp-just": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-security-learning-owasp-llm": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-owasp-top": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-prompt-engineering": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -978,8 +1080,8 @@
       "missing": []
     },
     "cdp-social-posting": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -1947,6 +2049,12 @@
       "score": 1.0,
       "missing": []
     },
+    "bounded-test-verification": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "browser-console-transport": {
       "refs": 0,
       "ok": 0,
@@ -1971,8 +2079,8 @@
       ]
     },
     "cron-git-operations": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -2148,6 +2256,12 @@
         "/c/Users/damir/AppData/Local/Temp/x.py"
       ]
     },
+    "github-issue-outreach": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "github-issue-updater": {
       "refs": 6,
       "ok": 4,
@@ -2199,12 +2313,6 @@
       "score": 1.0,
       "missing": []
     },
-    "alpha": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "amc-run-rtsp-calibration": {
       "refs": 0,
       "ok": 0,
@@ -2224,66 +2332,6 @@
       "missing": []
     },
     "amc-setup-calibration-stack": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "autoplan": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "benchmark": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "benchmark-models": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "beta": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "browse": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "canary": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "careful": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "context-restore": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "context-save": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "cso": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2394,44 +2442,6 @@
       "missing": []
     },
     "deepstream-sop": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "design-consultation": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "design-html": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "design-review": {
-      "refs": 1,
-      "ok": 0,
-      "score": 0.0,
-      "missing": [
-        "manage.py"
-      ]
-    },
-    "design-shotgun": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "devex-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "diagram": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2847,18 +2857,6 @@
       "score": 1.0,
       "missing": []
     },
-    "document-generate": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "document-release": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "dynamo-interconnect-check": {
       "refs": 1,
       "ok": 0,
@@ -2955,66 +2953,6 @@
         "tools/verify_foundationstereo.py",
         "test/check_engine_depth_smoke.py"
       ]
-    },
-    "freeze": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack-openclaw-ceo-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack-openclaw-investigate": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack-openclaw-office-hours": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack-openclaw-retro": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack-upgrade": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "guard": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "hackernews-frontpage": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "health": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
     },
     "holohub-app-lifecycle": {
       "refs": 0,
@@ -3232,42 +3170,6 @@
       "missing": [
         "./run.sh"
       ]
-    },
-    "investigate": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ios-clean": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ios-design-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ios-fix": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ios-qa": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ios-sync": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
     },
     "isaac-mission-control-showcase": {
       "refs": 0,
@@ -3596,31 +3498,7 @@
       "score": 1.0,
       "missing": []
     },
-    "land-and-deploy": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "landing-report": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "launch-nemo-rl": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "learn": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "make-pdf": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -3668,6 +3546,12 @@
       "missing": [
         "skills/medtech-model-evidence-export/scripts/export_evidence_pack.py"
       ]
+    },
+    "msa-structure-prediction-pipeline": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
     },
     "nemo-automodel-distributed-training": {
       "refs": 0,
@@ -3973,6 +3857,12 @@
       "score": 1.0,
       "missing": []
     },
+    "nemotron-voice-agent-builder": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "nv-generate-ct-rflow": {
       "refs": 5,
       "ok": 0,
@@ -4120,7 +4010,7 @@
       "score": 1.0,
       "missing": []
     },
-    "office-hours": {
+    "nvmolkit-usage": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -4144,7 +4034,7 @@
       "score": 1.0,
       "missing": []
     },
-    "open-gstack-browser": {
+    "openfold2-nim": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -4178,12 +4068,6 @@
       ]
     },
     "paidf-orchestration-write-dag": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "pair-agent": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -4251,49 +4135,7 @@
       "score": 1.0,
       "missing": []
     },
-    "plan-ceo-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "plan-design-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "plan-devex-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "plan-eng-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "plan-tune": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "portfolio-optimization": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "qa": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "qa-only": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -4314,18 +4156,6 @@
       ]
     },
     "rag-perf": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "retro": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "review": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -4352,55 +4182,13 @@
       "score": 1.0,
       "missing": []
     },
-    "scrape": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "setup-browser-cookies": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "setup-deploy": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "setup-gbrain": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ship": {
+    "rtx-remix-modding": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
       "missing": []
     },
     "skill-card-generator": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "skillify": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "spec": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "sync-gbrain": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -4823,12 +4611,6 @@
         "skills/models/tao-train-optical-inspection/scripts/validate_dataset.py"
       ]
     },
-    "unfreeze": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "agent-experience": {
       "refs": 0,
       "ok": 0,
@@ -4842,6 +4624,12 @@
       "missing": []
     },
     "dsh-ci-test-reliability": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-client-ui-ux": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -4920,8 +4708,8 @@
       "missing": []
     },
     "internet-learning-cycle": {
-      "refs": 3,
-      "ok": 3,
+      "refs": 4,
+      "ok": 4,
       "score": 1.0,
       "missing": []
     },
@@ -5445,8 +5233,8 @@
       "missing": []
     },
     "git-clean-verification": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
@@ -5493,8 +5281,8 @@
       "missing": []
     },
     "kta-lexicon-gap-repair": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -5947,11 +5735,12 @@
       "missing": []
     },
     "windows-path-resolution": {
-      "refs": 3,
+      "refs": 4,
       "ok": 1,
-      "score": 0.333,
+      "score": 0.25,
       "missing": [
         "/tmp/probe.py",
+        "/tmp/probe_e.py",
         "/c/Users/.../fixed.py"
       ]
     },

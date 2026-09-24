@@ -1,29 +1,28 @@
-# ☀️ PUNKT — Morgen-Briefing 23.09.2026 07:30
+# ☀️ PUNKT — Morgen-Briefing 24.09.2026 14:12
 
-Cron-Fleet: 104 Jobs, 1 mit Fehler
+Cron-Fleet: 104 Jobs, 3 mit Fehler
+  ❌ service-watchdog-4-ports
+  ❌ Self-Hosted Health Check (5min)
   ❌ Nightly Test-Suite Watchdog
 
-Git (24h): 75 Commits
-  • b121ac742 fix(learner): gate a docs heading stack welded to an interrogative heading (class 157)
-  • 44f3fd6c3 docs(skill): record root causes 155/156 -- vLLM server-log chrome, hallucinated query
-  • ff0a019a9 fix(learner): gate a raw vLLM server log line as chrome (class 150)
-  • c8a379a51 docs(skill): record root causes 153/154 -- platform vocabulary and a no-op mutation
-  • dd40614b9 feat(browser): real-profile browsing on a copy, off by default
+Git (24h): 3 Commits
+  • beae7c026 🧬 second-home backup: wakeup manifest + DNA snapshot
+  • d23252564 🧬 second-home backup: wakeup manifest + DNA snapshot
+  • 3a0d1b603 chore(reports): cron auto-commit 2026-09-23
 GitHub: ⭐ 6 🍴 3 👁 0
 
 Trends (trend_scout latest):
   # AI-Agent Trend Scout
-  - [arXiv] AI Agents: Evolution, Architecture, and Real-World Applications — http://arxiv.org/abs/2510.27051v1
-  - [arXiv] ASTELD: A Six-Axis Classification Framework for Autonomous AI Agents - Design, Evaluation, and an OpenClaw Case Study — http://arxiv.org/abs/2603.05031v1
-  - [arXiv] Hardware Keystores for AI Agent Signing Workflows: A Zero-Trust MCP Enforcement Architecture — http://arxiv.org/abs/2508.02866v3
-  - [arXiv] ANX: Protocol-First Design for AI Agent Interaction with a Supporting 3EX Decoupled Architecture — http://arxiv.org/abs/2502.18359v1
-  - [News] Introducing Amazon CloudWatch Omni: AI-powered observability for generative AI and agentic workloads - Amazon Web Services (AWS) — https://news.google.com/rss/articles/CBMizgFBVV95cUxPZWVhbVg4T1p1R0dHREV5eTVmWEJGRzJzYlFpT2pidWF0V3hQMHJVcHRYN1pmWTlKRmdpWHJiWTJqbFNJcDRheThYMXF6amtyM3dpQXBCRVhuOE9Eb0JHTFFKUl9HNDNhWnFwdVJVeGJWVFVPbzhxbXAwSno5YWhUaEROMzZkUTNWeS1TVFdvR2gwYS1US2JCSF9lSk9WSXZpWmZZNlBRam9YV01fRXJ5Rld0b3RsaHBmVG12UWRyd3NkTXNZaW5aYUxQQ1NEZw?oc=5
-  - [News] Operationalizing Security for the Agentic Era: Introducing Semantic Business Policies and Agentic Insights - Proofpoint — https://news.google.com/rss/articles/CBMijAFBVV95cUxPbkYxc3cyem5JbGhMdzZMY1JaN1dBUWxfWW1jUGloazRwR1NVYUtMWG5oV1JYeW9wei1Sd3BrX0kzclVRZTljc1E2d1phc1RSaW9LWWQ3YjBnNjl3QS15UlEzZWZqQTBSYkZReXFDT1lYWF9DZzFHRlNkSVRvRzJJRG85XzgzVWRfUklaRA?oc=5
-  - [News] Banks Say Consumers Unsure AI Agents Are on Their Side - PYMNTS.com — https://news.google.com/rss/articles/CBMisgFBVV95cUxPTkRBaFI2OFQ4SFR2Q0tkeFlvMVQyalduR3BDR2VYOVhjRmlqNmVqSzJqbXpyTEpqNWlsSDVRTV9lUW9GREdmMEJ4Wlp0MjkwTTB2enI0ZjRVSW1Gb3JQNDVZUTlOcGRYSy1YaDhEVVAzblRPRDlFbHpLckdnMGFxcXZ4cWpYRUNtazRTMkxxNWZESmFGQTRCVXZrS3poY05aTzZPZ1lhSFNxX2Rwc1gwR0V3?oc=5
+  - [arXiv error: HTTP Error 406: Not Acceptable]
+  - [News] Amazon blocks Meta’s Muse AI assistant in new standoff over agentic shopping - GeekWire — https://news.google.com/rss/articles/CBMiqgFBVV95cUxNN1NIM3JxN1RPdlktMDMwTmlZcnk5MFV4b1loLVBvc3pfUElYT3ZhQ3VLZmVod3ZxeDBVTXNkWkhybWJTZE05YzdkSWpOMHpwOVlYbWJYNndSSWRkRlFQSmNsM0F2WWgzZTFLNjFuMHNhY2d3akstanhNRTlOSEZvQVV2alFiTUE4MnBHRlJjdy12RXhwclJXVTFTZWV2R1ZrUHhUdlZuZmVtdw?oc=5
+  - [News] Amazon rolls out new agentic AI for third-party sellers - Reuters — https://news.google.com/rss/articles/CBMisgFBVV95cUxQNno1MXBaZ3JtY05ZWHpfU2RsV0JuU3Zlb3hlN2RiaExrSHdEbE5wNGZjZUhINUNJQkdBR0pTM0xQUFhHZjdMdmEwSGtOcDRVcjJ1dFJNU1ZqMWlzbFpDZFhUVTlGaDFpTENaRjhKSDk0YWFiX05VOUZNbVVqRGhSemt6MHpabV8xbHNHSkZwbGRWVy1XdFdGZlVUVS1iMEJCNUNkd2stYUU2TnZ6Ny1LSXZB?oc=5
+  - [News] Agentic Reality - citriniresearch.com — https://news.google.com/rss/articles/CBMiXkFVX3lxTE5jeUFncTlhNXE2SXNnN2lKbFhsWUpSMkV6TnkzRm1EVDZtWkJ0M0lTUWhMZ3Z4Zm5xdkw1VEhrUGhsNVFoQ1VCX3pkZkw3cjNVRHNQTXRWbDhBbGo1SHc?oc=5
+  - [News] First Agentic AI Data Breach Reported to Spanish Regulator - SecurityWeek — https://news.google.com/rss/articles/CBMikgFBVV95cUxPQnRMcE9RVmlmM2oxbjNzeEd5TG5qN3FkeVB4RGRFbGxmdmZvSUJXc2hnaDNvSjZYSHN2X2lrQlRKVmNYNl9uRFBTWnZsQ2J0eEtJQ09paXdxVmlNelZEeVhKNzBqYW9uYW42MlhaQjlQTXA2M0hFX2Zjdlh3dnVmOXFNQzFoREVSQ2wzMUlFblJSUdIBlwFBVV95cUxPcFlwdVlKWWJ5UmZqd1RhZmxVTm5waDFjVExGTWNaWFQ2ZGthaEJCYUFtYWVhOGNYODlJMXRIT0pCTWFlWmw5cXNsMTVNUWEyNUZLWGFhbDhUdEwzMzhJemNNdnQzTGdyZHQzRHVfbGxYNks1dnZaeHZQWUQwNmZtMzdnQ3lNMjMxYmMzaXJrS2Z1S29KVHJn?oc=5
+  - [News] Introducing Muse Glimmer: An Open Agentic Model That Runs on Your Device - Meta AI — https://news.google.com/rss/articles/CBMifkFVX3lxTE1uSnpDYTQ3SXZwemhINXpka1laM2Fzb1llTGtUQWNQdld4NTRidnNNX19BS0VsYVdPMWJjTjFJa3M4U1Z0a0d0Sm5VbVA2b3RSMkZXeFF1T21NRGhkUzhKWDhoTkx2cTNmeDVwOC1oWGRNWXZ4d0JCbkxiV3N2UQ?oc=5
+  - [News] BragJack Attack Can Turn a Browser's Agentic AI Against It - Dark Reading — https://news.google.com/rss/articles/CBMifkFVX3lxTE8xREg0aHQ4RUtkNTdLaHVwZFNFTnpwYmw4OXZxZUU0S2docVhveEQxUHhnaWdSUnZjZk42RlZZUUg2bmxFbjFMbFFyblBLalJFcWpiZXliaGxJRXB0c3gxNUhFSjdUN2xNeXR3djVubVVBTTlTcHBIVmtTNDg5UQ?oc=5
 
-Darwin: 2 Skills getrackt, Fittest: updated (2026-09-23T05:30:28.346337+00:00)
+Darwin: 2 Skills getrackt, Fittest: updated (2026-09-24T12:10:29.669249+00:00)
 
 Top-Chancen:
-  🔴 Cron 'Nightly Test-Suite Watchdog' schlug fehl — jetzt fixen (openamer cron run )
-  📈 Trend-Signal für GitHub/Post nutzen: - [arXiv] AI Agents: Evolution, Architecture, and Real-World Applications — http://arxiv.org/abs/2510.27051v1
-  📈 Trend-Signal für GitHub/Post nutzen: - [arXiv] ASTELD: A Six-Axis Classification Framework for Autonomous AI Agents - Design, Evaluation, and an OpenClaw Cas
+  🔴 Cron 'service-watchdog-4-ports' schlug fehl — jetzt fixen (openamer cron run )
+  🔴 Cron 'Self-Hosted Health Check (5min)' schlug fehl — jetzt fixen (openamer cron run )

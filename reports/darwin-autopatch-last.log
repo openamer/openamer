@@ -1,14 +1,19 @@
-[autopatch] validating population (2026-09-23T04:00:49) ...
-[autopatch] population: 947 skills, avg 38.3
-[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-latest-research-insight-selfretrieval(21), auto-latest-research-insight-the(21), auto-latest-research-insight-wikidata(21), auto-multidomain-learning-if-ai(21), auto-multidomain-learning-llms-are(21), auto-multidomain-learning-nasa-ibm(21), auto-multidomain-learning-neural-architecture(21), auto-multidomain-learning-opensource-medical(21), auto-multidomain-learning-python-climate(21)
+[autopatch] validating population (2026-09-24T04:00:16) ...
+[autopatch] population: 912 skills, avg 38.0
+[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-competitor-intelligence-what-i(21), auto-efficiency-learning-finetuning-llms(21), auto-efficiency-learning-ragkit-with(21), auto-internet-learning-rogue-cursor(21), auto-internet-learning-spain-to(21), auto-internet-learning-strengthening-ai(21), auto-latest-research-insight-hardware(21), auto-latest-research-insight-solving(21), auto-latest-research-insight-teuken7bbase(21)
 [autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
-[autopatch] ✅ auto-latest-research-insight-selfretrieval: 21 → 25
-[autopatch] ✅ auto-latest-research-insight-the: 21 → 25
-[autopatch] ✅ auto-latest-research-insight-wikidata: 21 → 25
-[autopatch] ✅ auto-multidomain-learning-if-ai: 21 → 25
-[autopatch] ✅ auto-multidomain-learning-llms-are: 21 → 25
-[autopatch] ✅ auto-multidomain-learning-nasa-ibm: 21 → 25
-[autopatch] ✅ auto-multidomain-learning-neural-architecture: 21 → 25
-[autopatch] ✅ auto-multidomain-learning-opensource-medical: 21 → 25
-[autopatch] ✅ auto-multidomain-learning-python-climate: 21 → 25
-[autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md
+[autopatch] ✅ auto-competitor-intelligence-what-i: 21 → 25
+[autopatch] ✅ auto-efficiency-learning-finetuning-llms: 21 → 25
+[autopatch] ✅ auto-efficiency-learning-ragkit-with: 21 → 25
+[autopatch] ✅ auto-internet-learning-rogue-cursor: 21 → 25
+[autopatch] ✅ auto-internet-learning-spain-to: 21 → 25
+Traceback (most recent call last):
+  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 176, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 128, in main
+    after = run_validator_json()
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 58, in run_validator_json
+    raise RuntimeError(f"validator produced no JSON (exit {r.returncode}): {out[:300]}")
+RuntimeError: validator produced no JSON (exit 3221225786): 
