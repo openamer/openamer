@@ -322,7 +322,7 @@ def _gen_default_config() -> dict:
         "primary": {
             "provider": "openrouter",
             "endpoint": "https://openrouter.ai/api/v1",
-            "model": "deepseek/deepseek-v4-flash:0731",
+            "model": "nex-agi/nex-n2.5-mini:free",
             "timeout_s": PRIMARY_TIMEOUT,
         },
         "fallback": {

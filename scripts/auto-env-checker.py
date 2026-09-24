@@ -332,7 +332,7 @@ def check_config(fix=False):
         if fix:
             for section in missing_sections:
                 if section == "model":
-                    _ensure_config_section("model", {"default": "deepseek/deepseek-v4-flash:0731", "provider": "openrouter"})
+                    _ensure_config_section("model", {"default": "nex-agi/nex-n2.5-mini:free", "provider": "custom:openrouter"})
                     r.add_fix("config", f"Section '{section}' ergänzt", "Default-Modell gesetzt")
                 elif section == "agent":
                     _ensure_config_section("agent", {"max_turns": 150})

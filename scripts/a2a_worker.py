@@ -29,7 +29,7 @@ from openamer_cli.a2a import relay as R                              # noqa: E40
 from openamer_cli.a2a.relay import verify_note                       # noqa: E402
 
 WORKER_MAILBOX = "nodeworker"
-DEFAULT_MODEL = "deepseek/deepseek-v4-flash-0731"
+DEFAULT_MODEL = "nex-agi/nex-n2.5-mini:free"
 ALLOWED = ("ping", "echo", "time", "sum", "ask")
 
 
