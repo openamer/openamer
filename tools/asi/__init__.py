@@ -12,3 +12,6 @@ from . import reasoning  # noqa: F401
 from . import prediction  # noqa: F401
 from . import improvement  # noqa: F401
 from . import heartbeat  # noqa: F401
+from . import a2a  # noqa: F401
+from . import darwin  # noqa: F401
+from . import swarm  # noqa: F401

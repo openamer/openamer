@@ -101,17 +101,44 @@ class Subsystem:
         }
 
     def _run_script(self, script_name: str) -> Dict[str, Any]:
-        """Run a script — try direct import first, fallback to subprocess.
+        """Run a script — try native module first, then direct import, fallback to subprocess.
 
-        Direct import only works for scripts that have if __name__ guards
-        and expose a main() or run() function.
+        Native modules (tools/asi/*.py) are preferred for A2A, Darwin, Swarm, etc.
         """
-        # Try direct import
+        # Native module routing (in-process, no subprocess)
+        native_map = {
+            "darwin-cron.py":              "tools.asi.darwin.autopilot",
+            "darwin-autopatch-cron.py":    "tools.asi.darwin.autopatch",
+            "darwin_publish.py":           "tools.asi.darwin.publish",
+            "darwin_grid_github.py":       "tools.asi.darwin.grid_sync",
+            "darwin-probe-cron.py":        "tools.asi.darwin.skill_probe",
+            "training/swarm_intelligence.py": "tools.asi.swarm.cycle",
+            "swarm_intelligence.py":       "tools.asi.swarm.route",
+            "autonomous_loop.py":          "tools.asi.swarm.autonomous",
+            "a2a_worker.py":               "tools.asi.a2a.run",
+            "brain_collect.py":            "tools.asi.a2a.brain_collect",
+        }
+
+        native_path = native_map.get(script_name)
+        if native_path:
+            try:
+                parts = native_path.split(".")
+                mod_name = ".".join(parts[:-1])
+                func_name = parts[-1]
+                import importlib
+                mod = importlib.import_module(mod_name)
+                fn = getattr(mod, func_name, None)
+                if fn:
+                    result = fn()
+                    return {"success": True, "stdout": str(result)[:500]}
+            except Exception as e:
+                logger.warning(f"Native module {native_path} failed: {e}, falling back")
+
+        # Direct import fallback
         mod_name = script_name.replace(".py", "").replace("/", ".").replace("\\", ".")
         try:
             import importlib
             mod = importlib.import_module(mod_name)
-            # Try main(), run(), then run_once()
             for fn_name in ("main", "run", "run_once", "tick"):
                 fn = getattr(mod, fn_name, None)
                 if fn is not None:
@@ -120,7 +147,7 @@ class Subsystem:
         except Exception:
             pass
 
-        # Fallback: subprocess
+        # Subprocess fallback
         return self._run_subprocess(script_name)
 
     def _run_subprocess(self, script_name: str) -> Dict[str, Any]:
