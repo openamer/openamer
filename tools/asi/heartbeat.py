@@ -375,6 +375,14 @@ class Heartbeat:
                       "9abf330dd545", "64f3e8231a29"],
         )
 
+    # ── 11. A2A Server ─────────────────────────────────────────
+        self.subsystems["a2a_server"] = Subsystem(
+            name="a2a_server", category="infra", cadence_minutes=5,
+            description="A2A Protocol Server — real-time peer communication",
+            scripts=["a2a_server.py"],
+            cron_ids=["a2a-server-keepalive", "proc_dbef2c2f5c0c"],
+        )
+
     def _load_state(self):
         """Load last-run timestamps from state file."""
         if self.STATE_FILE.exists():
