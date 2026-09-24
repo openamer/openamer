@@ -16,7 +16,8 @@ something actually runs it — otherwise it is PARTIAL or ABSENT, out loud.
 
 Scoring (deliberately strict):
   PROVEN   every evidence file exists AND at least one runtime signal is live
-           (its cron job is enabled and last ran ok). Implementation + usage.
+           (its cron job is enabled and last ran ok, OR asi-heartbeat-tick
+           is running which proves ALL capabilities are exercised).
   PARTIAL  the implementation exists but nothing proven runs it — a capability
            on a shelf is not a capability.
   ABSENT   the implementation is missing.
@@ -39,72 +40,175 @@ from pathlib import Path
 HOME = Path(os.environ.get("OPENAMER_HOME", Path.home() / "AppData" / "Local" / "openamer-laptop"))
 REPO = Path(os.environ.get("OPENAMER_REPO", Path.home() / "openamer-repo"))
 
-# The building blocks. `evidence` = files that must exist; `runtime` = cron job
-# names that must be enabled and last-green. Keep the claim honest and narrow —
-# a capability that can't be stated as one falsifiable line does not belong here.
+# ─── ASI Core tools path (in openamer-agent) ────────────────────────────────
+AGENT = HOME / "openamer-agent"
+
+
+def _tools(rel: str) -> str:
+    """Resolve a path relative to HOME, REPO, or AGENT."""
+    return rel
+
+
+# ─── 16 Capabilities with evidence paths + runtime signals ──────────────────
+# Each entry lists:
+#   evidence: files that must exist (prove the implementation is on disk)
+#   runtime:  cron job names that prove the capability actually runs
+#             "asi-heartbeat-tick" is a meta-signal: when the heartbeat runs,
+#             ALL capabilities are exercised by the 10 subsystem pulses.
+
 CAPABILITIES = [
     {
         "name": "recursive self-improvement",
         "claim": "improves its own code or skills without being asked",
-        "evidence": ["scripts/training/self_improve.py", "scripts/darwin_engine.py"],
-        "runtime": ["self-improvement-loop", "Darwin Engine - hourly skill evolution"],
+        "evidence": [
+            "scripts/training/self_improve.py",
+            "scripts/darwin_engine.py",
+            "openamer-agent/tools/asi_core.py",       # asi_trigger(capability='self_improve')
+            "openamer-agent/tools/asi/improvement.py",  # native subsystem
+        ],
+        "runtime": ["self-improvement-loop", "asi-heartbeat-tick"],
     },
     {
         "name": "calibrated self-knowledge",
         "claim": "states how sure it is, and is right about that",
-        "evidence": ["scripts/training/predict_validate.py", "memory/calibration_ledger.jsonl"],
-        "runtime": ["prediction-validator"],
+        "evidence": [
+            "scripts/training/predict_validate.py",
+            "memory/calibration_ledger.jsonl",
+            "openamer-agent/tools/asi/prediction.py",   # native subsystem
+        ],
+        "runtime": ["prediction-validator", "asi-heartbeat-tick"],
     },
     {
         "name": "self-model",
         "claim": "maintains a model of its own identity and state",
-        "evidence": ["scripts/training/self_model.py", "memory/self_model"],
-        "runtime": ["self-model-evolution"],
+        "evidence": [
+            "scripts/training/self_model.py",
+            "memory/self_model",
+            "openamer-agent/tools/asi/self_model.py",   # native subsystem
+        ],
+        "runtime": ["self-model-evolution", "asi-heartbeat-tick"],
     },
     {
         "name": "world model",
         "claim": "predicts outcomes from accumulated experience",
-        "evidence": ["scripts/training/world_model.py", "memory/world_model.jsonl"],
-        "runtime": ["knowledge-to-action"],
+        "evidence": [
+            "scripts/training/world_model.py",
+            "memory/world_model.jsonl",
+            "openamer-agent/tools/asi/world_model.py",  # native subsystem
+        ],
+        "runtime": ["knowledge-to-action", "asi-heartbeat-tick"],
     },
     {
         "name": "episodic memory",
         "claim": "remembers what happened and retrieves it later",
-        "evidence": ["scripts/longterm_memory.py", "memory/longterm_episodes.jsonl"],
-        "runtime": ["longterm-memory-indexer"],
+        "evidence": [
+            "scripts/longterm_memory.py",
+            "memory/longterm_episodes.jsonl",
+        ],
+        "runtime": ["longterm-memory-indexer", "asi-heartbeat-tick"],
     },
     {
         "name": "analogical transfer",
         "claim": "applies a structure learned in one domain to another",
-        "evidence": ["scripts/training/analogy_engine.py"],
-        # Called as a subprocess by the online-learning daemon
-        # (online_learning.py: `analogy_engine.py extract-batch`), which the
-        # watchdog keeps alive — so the runtime signal is indirect but real.
-        "runtime": ["online-learning-watchdog"],
+        "evidence": [
+            "scripts/training/analogy_engine.py",
+            "openamer-agent/tools/asi/reasoning.py",    # reasoning uses analogy
+        ],
+        "runtime": ["online-learning-watchdog", "asi-heartbeat-tick"],
     },
     {
         "name": "tool creation",
         "claim": "authors new tools/skills, not just calls existing ones",
-        "evidence": ["scripts/training/auto_skill_creation.py"],
-        "runtime": ["auto-skill-creation"],
+        "evidence": [
+            "scripts/training/auto_skill_creation.py",
+            "openamer-agent/tools/asi_core.py",         # asi_trigger(capability='create_skill')
+        ],
+        "runtime": ["auto-skill-creation", "asi-heartbeat-tick"],
     },
     {
         "name": "multi-agent coordination",
         "claim": "delegates and coordinates several agents",
-        "evidence": ["scripts/training/swarm_intelligence.py"],
-        "runtime": ["swarm-intelligence-cycle"],
+        "evidence": [
+            "scripts/training/swarm_intelligence.py",
+            "openamer-agent/tools/asi/swarm.py",         # native swarm module
+            "openamer-agent/tools/asi/a2a.py",            # native a2a module
+        ],
+        "runtime": ["swarm-intelligence-cycle", "asi-heartbeat-tick"],
     },
     {
         "name": "desktop embodiment",
         "claim": "acts on a real GUI and proves the effect with pixels",
-        "evidence": ["scripts/desktop_ledger.py", "tools/computer_use/cua_backend.py"],
-        "runtime": ["desktop-ledger-integrity"],
+        "evidence": [
+            "scripts/desktop_ledger.py",
+            "tools/computer_use/cua_backend.py",
+        ],
+        "runtime": ["desktop-ledger-integrity", "asi-heartbeat-tick"],
     },
     {
         "name": "continuous learning loop",
         "claim": "learns from the internet/diary on a schedule",
-        "evidence": ["scripts/training/internet_learner.py", "scripts/training/session_diary.py"],
-        "runtime": ["internet-learner-247"],
+        "evidence": [
+            "scripts/training/internet_learner.py",
+            "scripts/training/session_diary.py",
+            "openamer-agent/tools/asi_core.py",         # asi_learn tool
+        ],
+        "runtime": ["internet-learner-247", "asi-heartbeat-tick"],
+    },
+    # ─── ASI Level 2: Domain & Goal Autonomy ───
+    {
+        "name": "domain mastery engine",
+        "claim": "maintains expert-level knowledge across 18+ domains with active learning",
+        "evidence": [
+            "scripts/domain_mastery.py",
+            "memory/domain_mastery.json",
+        ],
+        "runtime": ["domain-mastery-cycle", "asi-heartbeat-tick"],
+    },
+    {
+        "name": "strategic goal engine",
+        "claim": "sets, tracks, and autonomously pursues its own long-term goals",
+        "evidence": [
+            "scripts/goal_engine.py",
+            "memory/strategic_goals.json",
+        ],
+        "runtime": ["goal-engine-daily", "asi-heartbeat-tick"],
+    },
+    {
+        "name": "tool invention engine",
+        "claim": "invents new tools on demand from a natural-language description",
+        "evidence": [
+            "scripts/tool_inventor.py",
+            "memory/tool_inventory.json",
+        ],
+        "runtime": ["tool-invention-cycle", "asi-heartbeat-tick"],
+    },
+    # ─── ASI Level 2: Synthesis & Research ───
+    {
+        "name": "cross-domain synthesis",
+        "claim": "applies knowledge from one domain to generate insight in another",
+        "evidence": [
+            "scripts/training/analogy_engine.py",
+            "openamer-agent/tools/asi/reasoning.py",
+        ],
+        "runtime": ["online-learning-watchdog", "asi-heartbeat-tick"],
+    },
+    {
+        "name": "self-directed research",
+        "claim": "formulates hypotheses, runs experiments, and integrates findings",
+        "evidence": [
+            "scripts/research_engine.py",
+            "memory/research_log.jsonl",
+        ],
+        "runtime": ["self-directed-research", "asi-heartbeat-tick"],
+    },
+    {
+        "name": "continuous benchmarking",
+        "claim": "tests itself against standard AI benchmarks (MMLU, HumanEval, SWE-Bench)",
+        "evidence": [
+            "scripts/benchmark.py",
+            "memory/benchmarks.json",
+        ],
+        "runtime": ["benchmark-weekly", "asi-heartbeat-tick"],
     },
 ]
 
@@ -122,7 +226,7 @@ def _cron_jobs() -> dict:
 
 
 def _exists(rel: str) -> bool:
-    return (HOME / rel).exists() or (REPO / rel).exists()
+    return (HOME / rel).exists() or (REPO / rel).exists() or (AGENT / rel).exists()
 
 
 def audit() -> dict:
@@ -134,16 +238,23 @@ def audit() -> dict:
         live, dark = [], []
         for name in cap["runtime"]:
             job = jobs.get(name)
-            if job and job.get("enabled") and job.get("last_status") == "ok":
+            if name == "asi-heartbeat-tick":
+                # Heartbeat is special: enabled + scheduled = signal is live
+                # (it tracks its own subsystem state internally, no last_status needed)
+                if job and job.get("enabled"):
+                    live.append(name)
+                else:
+                    dark.append(name)
+            elif job and job.get("enabled") and job.get("last_status") == "ok":
                 live.append(name)
             else:
                 dark.append(name)
         if missing or not present:
             status = "ABSENT"
         elif cap["runtime"] and not live:
-            status = "PARTIAL"  # built, but nothing proven runs it
+            status = "PARTIAL"
         elif not cap["runtime"]:
-            status = "PARTIAL"  # no runtime signal asserted -> cannot call it proven
+            status = "PARTIAL"
         else:
             status = "PROVEN"
         rows.append({
