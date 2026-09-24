@@ -383,6 +383,14 @@ class Heartbeat:
             cron_ids=["a2a-server-keepalive", "proc_dbef2c2f5c0c"],
         )
 
+    # ── 12. Desktop ─────────────────────────────────────────
+        self.subsystems["desktop"] = Subsystem(
+            name="desktop", category="system", cadence_minutes=1440,
+            description="Desktop Evidence Ledger — integrity check",
+            scripts=["cron-desktop-ledger-integrity.py"],
+            cron_ids=["acbea7ce46ae"],
+        )
+
     def _load_state(self):
         """Load last-run timestamps from state file."""
         if self.STATE_FILE.exists():
