@@ -4,7 +4,7 @@ title: auto-generated
 
 # 📦 auto-generated
 
-111 skills
+114 skills
 
 - [auto-best-practice-from-official](auto-best-practice-from-official/) — LoRA · Hugging Face — We propose Low-Rank Adaptation, or LoRA, which freezes the
 - [auto-competitor-intelligence-ai-coding](auto-competitor-intelligence-ai-coding/) — PowerContext, Context for work that humans and agents hand off and continue 1 pr
@@ -54,6 +54,7 @@ title: auto-generated
 - [auto-internet-learning-mit-researchers](auto-internet-learning-mit-researchers/) — 
 - [auto-internet-learning-openai-and](auto-internet-learning-openai-and/) — Southbound 4 Train at Manhattan’s Spring Street Station A 24-year-old woman and 
 - [auto-internet-learning-rogue-cursor](auto-internet-learning-rogue-cursor/) — April 29, 2026 Key Takeaways PocketOS, a company that designs software for car r
+- [auto-internet-learning-spain-to](auto-internet-learning-spain-to/) — An unpaid ticket picks up $10 at 30 days, another $20 at 60, and another $30 at 
 - [auto-internet-learning-strengthening-ai](auto-internet-learning-strengthening-ai/) — Hijacking, Red-Team Evals, and Continuous Evaluation A technical reference on ag
 - [auto-internet-learning-the-ai](auto-internet-learning-the-ai/) — 
 - [auto-latest-research-insight-adaptive](auto-latest-research-insight-adaptive/) — 
@@ -62,6 +63,7 @@ title: auto-generated
 - [auto-latest-research-insight-arxiv](auto-latest-research-insight-arxiv/) — No thanks “Sebastian is an incredible educator and always has invaluable insight
 - [auto-latest-research-insight-bitnet](auto-latest-research-insight-bitnet/) — F16 on BitNet-embedding-270M prefill (8 threads) Supports I2_S conversion with o
 - [auto-latest-research-insight-deepseekr1](auto-latest-research-insight-deepseekr1/) — Training Details of the Second RL Stage 4 Experiment 5 Ethics and Safety Stateme
+- [auto-latest-research-insight-hardware](auto-latest-research-insight-hardware/) — I-A LLMs Large Language Models (LLMs) are extensive, general-purpose models that
 - [auto-latest-research-insight-ladder](auto-latest-research-insight-ladder/) — August 24, 2026 1 Introduction Reinforcement Learning (RL) has emerged as a high
 - [auto-latest-research-insight-largescale](auto-latest-research-insight-largescale/) — In each setting, LLM-based methods substantially outperform classical baselines,
 - [auto-latest-research-insight-llms](auto-latest-research-insight-llms/) — 
@@ -75,6 +77,7 @@ title: auto-generated
 - [auto-latest-research-insight-the](auto-latest-research-insight-the/) — 
 - [auto-latest-research-insight-understanding](auto-latest-research-insight-understanding/) — 
 - [auto-latest-research-insight-wikidata](auto-latest-research-insight-wikidata/) — 
+- [auto-multidomain-learning-agentic-ai](auto-multidomain-learning-agentic-ai/) — Topics on Secure Hardware, Fall 2018 Decentralized Technologies Decentralized Fi
 - [auto-multidomain-learning-business-automation](auto-multidomain-learning-business-automation/) — 10 Beste KI-Agenten für die Automatisierung von ... - Unite.AI — 17. Juli 2026 ·
 - [auto-multidomain-learning-climate-science](auto-multidomain-learning-climate-science/) — Artificial intelligence for modeling and understanding extreme weather ... — 24.
 - [auto-multidomain-learning-education-ai](auto-multidomain-learning-education-ai/) — 

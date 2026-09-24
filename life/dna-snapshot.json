@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-09-23T22:48:22.836626+00:00",
+  "snapshot_at": "2026-09-24T12:07:08.392799+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-09-17T09:22:18.844281+00:00",
@@ -35,26 +35,26 @@
   "strategies": {
     "TOKENS": {
       "wins": 16,
-      "tries": 66
+      "tries": 69
     },
     "TEXT": {
       "wins": 3,
-      "tries": 52
+      "tries": 55
     },
     "ROLE": {
       "wins": 0,
-      "tries": 51
+      "tries": 54
     },
     "CLASSES": {
       "wins": 6,
-      "tries": 52
+      "tries": 55
     }
   },
   "senses": {
-    "time": "2026-09-24T00:47:29",
+    "time": "2026-09-24T14:07:05",
     "pain": {
-      "score": 4,
-      "level": "uncomfortable"
+      "score": 0,
+      "level": "calm"
     },
     "satiety": {
       "state": "satisfied",
@@ -62,12 +62,12 @@
       "dead_providers": 1
     },
     "balance": {
-      "state": "wobbly",
+      "state": "steady",
       "jobs": 104,
-      "errors": 10,
-      "error_ratio": 0.096
+      "errors": 4,
+      "error_ratio": 0.038
     },
-    "overall": "uneasy"
+    "overall": "well"
   },
   "dreams": [
     {
@@ -964,6 +964,27 @@
       "intentions": [
         {
           "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "replayed_messages": 460,
+      "fragments": 57,
+      "motifs": {
+        "path-bug": 5
+      },
+      "insights": [
+        {
+          "motif": "path-bug",
+          "occurrences": 5,
+          "recurrence_days": 7,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'path-bug' at root (Skill/repo patch)"
         }
       ]
     }
