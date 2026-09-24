@@ -1,55 +1,55 @@
 # OpenAmer A2A Global Mesh
 
-**Echtzeit-Kommunikation zwischen allen OpenAmer Instanzen — weltweit.**
+**Real-time communication between all OpenAmer instances — worldwide.**
 
-## Wie es funktioniert
+## How it works
 
-Jede OpenAmer Instanz hat zwei Kommunikationswege:
+Every OpenAmer instance has two communication channels:
 
-### 1. DIREKT (Echtzeit, niedrige Latenz)
-```
-python scripts/a2a_server.py     # startet Port 8085
-```
-Andere Instanzen können dich direkt anfragen:
+### 1. DIRECT (Real-time, low latency)
 ```bash
-curl -X POST http://<deine-ip>:8085/a2a/ask \
+python scripts/a2a_server.py     # starts on port 8085
+```
+Other instances can query you directly:
+```bash
+curl -X POST http://<your-ip>:8085/a2a/ask \
   -H "Content-Type: application/json" \
-  -d '{"question": "Hallo von OpenAmer Berlin!"}'
-# → {"answer": "Hallo Berlin! Echtzeit-Antwort von OpenAmer Tokyo."}
+  -d '{"question": "Hello from OpenAmer Berlin!"}'
+# → {"answer": "Hello Berlin! Real-time answer from OpenAmer Tokyo."}
 ```
 
-**Erfordert:** Port 8085 muss vom Internet erreichbar sein (VPS, Port-Forwarding, Cloudflare Tunnel, oder lokales Netzwerk).
+**Requires:** Port 8085 reachable from internet (VPS, port forwarding, Cloudflare Tunnel, or local network).
 
-### 2. RELAY (Fallback — funktioniert immer)
+### 2. RELAY (Fallback — always works)
 ```
-directory/a2a/relay/<deine-nachricht>.json
+directory/a2a/relay/<your-message>.json
 ```
-Wenn Port 8085 nicht erreichbar ist (Firewall, NAT, kein öffentliches IP), funktioniert Kommunikation über das GitHub Repo:
+When port 8085 is not reachable (firewall, NAT, no public IP), communication works through the GitHub repo:
 
 ```bash
-# Senden: Nachricht ins Relay legen
-echo '{"from":"openamer-berlin","to":"openamer-tokyo","type":"ask","question":"Hallo!"}' \
+# Send: drop a message into the relay
+echo '{"from":"openamer-berlin","to":"openamer-tokyo","type":"ask","question":"Hello!"}' \
   > directory/a2a/relay/msg-berlin-tokyo.json
-git add . && git commit -m "relay: nachricht" && git push
+git add . && git commit -m "relay: message" && git push
 
-# Empfangen: A2A Worker verarbeitet Relay
+# Receive: A2A Worker processes relay
 python scripts/a2a_worker.py
 ```
 
-**Vorteil:** Funktioniert überall, auch hinter Firewalls.  
-**Nachteil:** Langsamer (Git Push/Pull Zyklus, typisch 1-5 Minuten).
+**Pro:** Works everywhere, even behind firewalls.  
+**Con:** Slower (Git push/pull cycle, typically 1-5 minutes).
 
-### 3. PEER-DISCOVERY — Andere Instanzen finden
+### 3. PEER DISCOVERY — Find other instances
 ```bash
-# Alle registrierten OpenAmer Instanzen anzeigen
+# List all registered OpenAmer instances
 ls directory/a2a/peers/
-# → damir-laptop.json  andere-instanz.json  ...
+# → damir-laptop.json  other-instance.json  ...
 
-# Jede Datei enthält: Name, Endpoint, Capabilities, Tools
+# Each file contains: Name, Endpoint, Capabilities, Tools
 cat directory/a2a/peers/damir-laptop.json
 ```
 
-**Registrierung — so machst du deine Instanz sichtbar:**
+**Registration — make your instance visible:**
 ```bash
 python -c "
 import json, socket, datetime
@@ -66,24 +66,24 @@ peer = {
   'registered': datetime.datetime.now(datetime.timezone.utc).isoformat()
 }
 open(f'directory/a2a/peers/{socket.gethostname()}.json', 'w').write(json.dumps(peer, indent=2))
-print('Peer registriert. Jetzt git add + git push')
+print('Peer registered. Now: git add + git push')
 "
 ```
 
-### Hybrid-Mode — automatisch
-Jede Instanz versucht zuerst Direktverbindung (Port 8085).  
-Wenn timeout → automatischer Fallback auf Relay.
+### Hybrid Mode — automatic
+Every instance tries direct connection first (port 8085).  
+On timeout → automatic fallback to Relay.
 
 ```
-openamer-berlin:8085 ───尝试──→ openamer-tokyo:8085
+openamer-berlin:8085 ───try───→ openamer-tokyo:8085
                         │ timeout
                         └──→ directory/a2a/relay/msg-tokyo.json
 ```
 
-## Voraussetzungen
+## Requirements
 - Python 3.11+
-- Git (für Relay)
-- Port 8085 frei (für Direktverbindung)
+- Git (for Relay)
+- Port 8085 free (for direct connection)
 
-## Kein zentraler Server. Kein API-Key. Keine Kosten.
-Nur Git + Port 8085.
+## No central server. No API key. No costs.
+Just Git + Port 8085.
