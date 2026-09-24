@@ -22,6 +22,8 @@ test runner at ``scripts/run_tests.sh``.
 import asyncio
 import os
 import sqlite3
+import tempfile
+import warnings
 import sys
 from pathlib import Path
 
@@ -418,6 +420,119 @@ def _hermetic_environment(tmp_path, monkeypatch):
 def _isolate_openamer_home(_hermetic_environment):
     """Alias preserved for any test that yields this name explicitly."""
     return None
+
+
+# ── Live-evolution-artifact guard ───────────────────────────────────────────
+#
+# Darwin test fixtures redirect SKILLS_DIR/HOME to a per-test tmp tree so the
+# engine evolves a FAKE population. A fixture that forgets one of the report
+# paths left it pointing at the repo's real ``reports/`` dir, so a sandboxed
+# run overwrote the production fitness score, appended a 2-skill blob to the
+# append-only history ledger and self-tuned the live constants (observed
+# 2026-09-17: sandbox snapshots #1478/1479/1527/1528/1533 carrying only
+# alpha/dead-skill/lonely-skill). fitness_trend() compares first vs last
+# snapshot, so a single leaked snapshot poisons every trend decision.
+#
+# Any test that redirects the engine's SKILLS_DIR now gets every derived
+# artifact path redirected too, regardless of what its own fixture patched.
+
+# Every module-level Path constant the engine derives from HOME/reports.
+# Redirecting all of them (not just the report files) is what keeps a
+# sandboxed run out of the LIVE population/lineage/arena/tuning state.
+_DARWIN_ARTIFACTS = (
+    "HOME", "REPORTS_DIR", "DARWIN_DIR", "SKILLS_DIR",
+    "POPULATION_FILE", "FITNESS_FILE", "HISTORY_FILE", "REPORT_FILE",
+    "PROBE_FILE", "TUNING_FILE", "LINEAGE_FILE", "ARENA_FILE",
+    "OP_STATS_FILE", "ROLLBACK_LOG", "SYNTHESIS_LOG", "HARVESTED_FILE",
+    "PREDATION_LOG", "TRIAL_STATE_FILE", "CRON_JOBS_FILE",
+)
+
+
+def _darwin_engine_modules():
+    """Every darwin_engine module object currently loaded.
+
+    Each ``test_darwin_*.py`` does ``sys.modules["darwin_engine"] = <its own
+    module>`` at import time, so in a combined run the LAST file collected owns
+    that key while earlier files still hold their own object. Looking the engine
+    up by name therefore redirects the wrong object and the real one keeps
+    writing into live ``darwin/`` state. Scan by attribute instead.
+    """
+    found = []
+    for mod in list(sys.modules.values()):
+        if mod is None:
+            continue
+        if hasattr(mod, "_IMPORT_SKILLS_DIR") and hasattr(mod, "SKILLS_DIR"):
+            found.append(mod)
+    return found
+
+
+def pytest_runtest_call(item):
+    """Redirect any live Darwin artifact a sandboxed test forgot.
+
+    Darwin fixtures point SKILLS_DIR at a per-test tmp population. If such a
+    fixture leaves a derived path aimed at the real ``reports/`` or the live
+    ``darwin/`` tree, the sandboxed run overwrites the production fitness
+    score, appends a bogus blob to the append-only history ledger and
+    self-tunes live constants (observed 2026-09-17: sandbox snapshots
+    #1478/1479/1527/1528/1533 held only alpha/dead-skill/lonely-skill, and a
+    phase-14 run left reports/darwin-fitness.json containing a single
+    'known-skill'). fitness_trend() compares first vs last snapshot, so one
+    leaked snapshot poisons every later trend/tuning decision.
+
+    Runs in the CALL phase -- after every fixture, including the test file's
+    own ``fake_world``, has patched SKILLS_DIR -- so fixture ordering cannot
+    defeat it. Redirects through the item's own ``monkeypatch`` fixture so
+    teardown restores the real paths. The engine's own _guard_live_artifact()
+    stays as the hard backstop for non-pytest callers.
+    """
+    engines = _darwin_engine_modules()
+    if not engines:
+        return
+    mp = item.funcargs.get("monkeypatch")
+    sandbox_root = Path(str(item.funcargs.get("tmp_path", Path(tempfile.gettempdir())))) / "darwin-guard"
+
+    for engine in engines:
+        if getattr(engine, "SKILLS_DIR", None) == getattr(engine, "_IMPORT_SKILLS_DIR", None):
+            continue  # real population, not a sandbox -- nothing to protect
+        live_roots = [r for r in (getattr(engine, "_LIVE_HOME", None),
+                                  getattr(engine, "_LIVE_REPORTS_DIR", None)) if r]
+        if not live_roots:
+            continue
+        leaks = []
+        for name in _DARWIN_ARTIFACTS:
+            target = getattr(engine, name, None)
+            if target is None or name == "SKILLS_DIR":
+                continue
+            try:
+                resolved = Path(target).resolve()
+            except (OSError, TypeError):
+                continue
+            if any(resolved == r or r in resolved.parents for r in live_roots):
+                leaks.append(name)
+        if not leaks:
+            continue
+        if mp is None:
+            raise AssertionError(
+                "sandboxed darwin_engine would write LIVE evolution state ("
+                + ", ".join(leaks) + ") and the test has no monkeypatch fixture "
+                "to redirect it."
+            )
+        for name in leaks:
+            if name in ("HOME", "DARWIN_DIR"):
+                value = sandbox_root / ("home" if name == "HOME" else "darwin")
+            elif name == "REPORTS_DIR":
+                value = sandbox_root / "reports"
+            elif name == "CRON_JOBS_FILE":
+                value = sandbox_root / "cron" / "jobs.json"
+            else:
+                value = sandbox_root / "state" / f"{name.lower()}.json"
+            mp.setattr(engine, name, value, raising=False)
+        warnings.warn(
+            f"{item.name}: darwin fixture leaked live artifact paths "
+            f"({', '.join(leaks)}); auto-redirected to {sandbox_root}. "
+            "Add the missing monkeypatch.setattr calls to the fixture.",
+            stacklevel=1,
+        )
 
 
 # ── Module-level state reset — replaced by per-file process isolation ──────

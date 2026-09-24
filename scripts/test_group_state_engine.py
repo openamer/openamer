@@ -13,6 +13,7 @@ guards the properties that make it a real artifact rather than a demo:
 
 Run:  python scripts/test_group_state_engine.py
 """
+import glob
 import json
 import os
 import random
@@ -178,6 +179,43 @@ def main():
             print("  SKIP  tool-level refusal check (tool_server.py absent)")
     finally:
         gse.DEFAULT_DIR = old
+
+    section("6) a leaked OPENAMER_HOME must not redirect the model dir")
+    # The KTA cron inherits a leaked OPENAMER_HOME pointing at a scratch dir
+    # (C:/Users/damir/_vaultfinal). Before the fix, DEFAULT_DIR became
+    # <scratch>/models and every artifact lookup returned "no saved model"
+    # while the real file sat in the install root (7 of 8 cycles, 22.-23.09.26).
+    #
+    # The decoy deliberately carries cron/ and memories/ but NO models/. The
+    # real leaked dir grew exactly those two at 00:57 on 23.09.26, which made a
+    # marker-based predicate (config.yaml/.env/cron/memories/openamer-agent)
+    # accept it again and silently re-break lookup. Artifact presence is the
+    # only predicate that holds, so the test must fail if it regresses to
+    # marker-checking.
+    import subprocess
+    probe = (
+        "import os,sys;"
+        "os.environ['OPENAMER_HOME']=r'{bad}';"
+        "sys.path.insert(0, r'{d}');"
+        "import group_state_engine as e;"
+        "print(e.DEFAULT_DIR)"
+    )
+    scratch = tempfile.mkdtemp()  # decoy home, not a scratch dir
+    for marker in ("cron", "memories"):
+        os.makedirs(os.path.join(scratch, marker), exist_ok=True)
+    here = os.path.dirname(os.path.abspath(__file__))
+    out = subprocess.run(
+        [sys.executable, "-c", probe.format(bad=scratch, d=here)],
+        capture_output=True, text=True, timeout=60)
+    resolved = (out.stdout or "").strip().replace("\\", "/")
+    check("leaked home without artifacts is rejected "
+          "(cron/ + memories/ must not qualify)",
+          scratch.replace("\\", "/") not in resolved and resolved != "", resolved)
+    check("model dir falls back to a home that HAS artifacts",
+          os.path.isdir(os.path.join(os.path.dirname(resolved), "models"))
+          and glob.glob(os.path.join(os.path.dirname(resolved), "models",
+                                     "group_state_*.json")) != [],
+          resolved)
 
     print()
     print("=" * 78)

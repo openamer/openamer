@@ -29,6 +29,11 @@ def _sandbox():
     registry = os.path.join(d, "auto_skills.json")
     asc.AUTO_SKILLS = skills
     asc.REGISTRY = registry
+    # The writer dual-writes (repo + live tree). In a sandbox the live target
+    # MUST be disabled too, or every fixture skill is mirrored into the real
+    # <home>/skills/auto-generated and the next run dedupes against its own
+    # leftovers (measured 23.09.26: 5 stray dirs + 5 spurious failures).
+    asc.LIVE_AUTO_SKILLS = None
     return skills, registry
 
 

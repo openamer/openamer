@@ -30,34 +30,48 @@ def fake_world(tmp_path, monkeypatch):
                         home / "darwin" / "civilization-seed.json")
     monkeypatch.setattr(meta, "GAP_BLUEPRINTS_FILE",
                         home / "darwin" / "gap-blueprints.json")
-    monkeypatch.setattr(meta, "darwin", _patch_darwin(home, tmp_path))
-    monkeypatch.setattr(meta, "swarm", _patch_swarm(home, tmp_path))
+    monkeypatch.setattr(meta, "darwin", _patch_darwin(home, tmp_path, monkeypatch))
+    monkeypatch.setattr(meta, "swarm", _patch_swarm(home, tmp_path, monkeypatch))
     return home
 
 
-def _patch_darwin(home, tmp_path):
+def _patch_darwin(home, tmp_path, monkeypatch):
     import darwin_engine
     monkeypatch_attrs = {
         "HOME": home, "SKILLS_DIR": home / "skills",
         "DARWIN_DIR": home / "darwin",
         "FITNESS_FILE": home / "reports" / "darwin-fitness.json",
+        "REPORTS_DIR": home / "reports",
+        "REPORT_FILE": home / "reports" / "darwin-report.md",
+        "PROBE_FILE": home / "reports" / "darwin-probe.json",
+        "TUNING_FILE": home / "darwin" / "tuning.json",
         "LINEAGE_FILE": home / "darwin" / "lineage.json",
         "POPULATION_FILE": home / "darwin" / "population.json",
         "HISTORY_FILE": home / "reports" / "darwin-history.jsonl",
         "CRON_JOBS_FILE": home / "cron" / "jobs.json",
+        "ARENA_FILE": home / "darwin" / "arena.json",
+        "OP_STATS_FILE": home / "darwin" / "op-stats.json",
+        "ROLLBACK_LOG": home / "darwin" / "rollback-log.json",
+        "SYNTHESIS_LOG": home / "darwin" / "synthesis-log.json",
+        "HARVESTED_FILE": home / "darwin" / "harvested-blueprints.json",
+        "PREDATION_LOG": home / "darwin" / "predation-log.json",
+        "TRIAL_STATE_FILE": home / "darwin" / "trial-state.json",
     }
+    # monkeypatch (not raw setattr) so teardown restores the LIVE paths;
+    # a raw setattr here leaked a tmp SKILLS_DIR into every later test
+    # file in the same pytest process.
     for k, v in monkeypatch_attrs.items():
-        setattr(darwin_engine, k, v)
+        monkeypatch.setattr(darwin_engine, k, v, raising=False)
     return darwin_engine
 
 
-def _patch_swarm(home, tmp_path):
+def _patch_swarm(home, tmp_path, monkeypatch):
     import swarm_os
     swarm_os = sys.modules["swarm_os"]
-    swarm_os.SWARM_FILE = home / "darwin" / "swarm.json"
-    swarm_os.TASKS_FILE = home / "darwin" / "swarm-tasks.json"
-    swarm_os.SWARM_KNOWLEDGE_FILE = home / "darwin" / "swarm-knowledge.json"
-    swarm_os.TERRITORIES_FILE = home / "darwin" / "territories.json"
+    monkeypatch.setattr(swarm_os, "SWARM_FILE", home / "darwin" / "swarm.json", raising=False)
+    monkeypatch.setattr(swarm_os, "TASKS_FILE", home / "darwin" / "swarm-tasks.json", raising=False)
+    monkeypatch.setattr(swarm_os, "SWARM_KNOWLEDGE_FILE", home / "darwin" / "swarm-knowledge.json", raising=False)
+    monkeypatch.setattr(swarm_os, "TERRITORIES_FILE", home / "darwin" / "territories.json", raising=False)
     return swarm_os
 
 

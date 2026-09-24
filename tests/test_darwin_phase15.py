@@ -27,6 +27,10 @@ def fake_world(tmp_path, monkeypatch):
     monkeypatch.setattr(darwin, "TUNING_FILE", home / "darwin" / "tuning.json")
     monkeypatch.setattr(darwin, "HISTORY_FILE",
                         home / "reports" / "darwin-history.jsonl")
+    monkeypatch.setattr(darwin, "REPORTS_DIR", home / "reports")
+    monkeypatch.setattr(darwin, "FITNESS_FILE", home / "reports" / "darwin-fitness.json")
+    monkeypatch.setattr(darwin, "REPORT_FILE", home / "reports" / "darwin-report.md")
+    monkeypatch.setattr(darwin, "PROBE_FILE", home / "reports" / "darwin-probe.json")
     return home
 
 

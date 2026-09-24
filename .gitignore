@@ -195,3 +195,31 @@ native/fts5_cjk/*.so
 # helpers, e.g. listing GitHub issue comments). Disposable by construction;
 # ignored so `git status` keeps meaning "something real changed".
 scripts/_tmp_*.py
+
+# Rollback snapshots written by scripts/openamer_local_patches.py next to every
+# file it patches. Derived state, regenerated on demand, and only meaningful to
+# the keeper — untracked noise otherwise.
+*.pre-localpatch
+
+# MSYS/Windows artifacts that must never be committed (unquoted-path class)
+%SystemDrive%/
+lint_*.txt
+ids.txt
+
+# MSYS-mangled pytest tmp paths (unquoted-path class)
+C*/Users*damir*/AppData/Local/Temp/pytest-of-*/
+C*:Users*damir*/AppData/Local/Temp/pytest-of-*/
+
+# pytest tmp dirs that get MSYS-mangled into the repo root
+C*/Users*pytest-of-*/
+# --- repo hygiene: stray worktree gitlink + scratch dumps must not be tracked ---
+/oa-v28/
+old_*.txt
+_active_learn_result.txt
+_banner_render.txt
+_banner_render.py
+body18.md
+parent_sha.txt
+update-watcher.log
+python_install_*.log
+C*Users*damir*AppData*Temp*pytest-of-*

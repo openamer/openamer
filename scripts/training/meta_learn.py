@@ -28,13 +28,25 @@ DEFAULT_STATE = {
     "memory_usefulness": {},     # {"memory_hash": {"retrievals": n, "led_to_fix": n}}
     "error_patterns": {},        # {"timeout": {"count": n, "trained_against": n}}
     "total_measurements": 0,
+    # one-shot exploration nudge (0.0 = inactive). Written by
+    # knowledge_to_action's meta-RL experiment; consumed by choose_strategy.
+    "exploration_bias": 0.0,
 }
 
 def load_state():
+    """Load state, backfilling keys added after an older file was written.
+
+    Live 23.09.26: knowledge_to_action writes exploration_bias into this file,
+    but a state file written before that key existed would otherwise raise
+    KeyError in choose_strategy and abort the whole meta cycle.
+    """
     try:
-        return json.load(open(STATE, encoding="utf-8"))
+        s = json.load(open(STATE, encoding="utf-8"))
+        for k, v in DEFAULT_STATE.items():
+            s.setdefault(k, v)
+        return s
     except Exception:
-        return dict(DEFAULT_STATE)
+        return json.loads(json.dumps(DEFAULT_STATE))
 
 def save_state(s):
     with open(STATE, "w", encoding="utf-8") as f:
@@ -78,11 +90,24 @@ def measure_and_adjust_lr(loss_before, loss_after):
 # ---- B. Strategy Selection ----
 
 def choose_strategy():
-    """Choose replay vs. fresh based on measured effectiveness."""
+    """Choose replay vs. fresh based on measured effectiveness.
+
+    Consumes the one-shot exploration_bias written by knowledge_to_action's
+    meta-RL experiment (added 23.09.26): while the bias is set, the choice is
+    forced onto the LESS-USED strategy and the bias is cleared, so the nudge
+    applies exactly once instead of pinning the choice forever.
+    """
     s = load_state()
     stats = s["strategy_stats"]
     replay = stats.get("replay", {"uses": 0, "avg_drop": 0})
     fresh = stats.get("fresh", {"uses": 0, "avg_drop": 0})
+
+    if s.get("exploration_bias", 0) > 0:
+        s["exploration_bias"] = 0.0
+        save_state(s)
+        forced = "fresh" if fresh["uses"] <= replay["uses"] else "replay"
+        return forced, (f"exploration_bias honoured — forcing underused '{forced}' "
+                        f"(replay={replay['uses']}, fresh={fresh['uses']}); bias cleared")
 
     # need at least 3 measurements each; default to balanced random
     if replay["uses"] < 3 or fresh["uses"] < 3:

@@ -33,10 +33,41 @@ import json
 import os
 from pathlib import Path
 
-_HOME = Path(os.environ.get(
-    "OPENAMER_HOME",
-    Path.home() / "AppData" / "Local" / "openamer-laptop",
-))
+def _resolve_home():
+    """Resolve the install home, tolerating an MSYS-style OPENAMER_HOME.
+
+    2026-09-23: cron exports OPENAMER_HOME as '/c/Users/.../openamer-laptop'
+    (MSYS form). Joined onto 'scripts/training' that string yields the
+    RELATIVE path '\\c\\Users\\...\\scripts\\training', which does not
+    exist -- so DEFAULT_BUFFER/JUNK_LOG pointed nowhere and every rejection
+    audit in _audit() was swallowed by its bare `except Exception: pass`.
+    Measured live: buffer_junk.jsonl frozen at 9461 rows across a cycle that
+    logged "rejected, not trained" -- the gate became unobservable, so the
+    57% reject rate could not be diagnosed from the audit trail at all.
+    Accept any spelling that passes an isdir probe; else fall back to the
+    real install dir. Same resolver shape as internet_learner /
+    auto_skill_creation / knowledge_to_action.
+    """
+    _env = os.environ.get("OPENAMER_HOME")
+    _home = Path.home()
+    cands = []
+    if _env:
+        cands.append(Path(_env))
+    cands.append(_home / "AppData" / "Local" / "openamer-laptop")
+    cands.append(_home / "AppData" / "Local" / "openamer")
+    cands.append(Path(__file__).resolve().parent.parent.parent)
+    for _c in cands:
+        try:
+            if (_c / "scripts" / "training").is_dir():
+                return _c
+        except OSError:
+            continue
+    if _env:
+        return Path(_env)
+    return _home / "AppData" / "Local" / "openamer-laptop"
+
+
+_HOME = _resolve_home()
 DEFAULT_BUFFER = _HOME / "scripts" / "training" / "online_buffer.jsonl"
 MAX_BUF = int(os.environ.get("OPENAMER_BUFFER_MAX", "300"))
 # audit trail of rejected examples — never silent, always inspectable
@@ -63,6 +94,11 @@ _JUNK_MARKERS = (
     "possible angles:",          # planning bullet header
     "first situation:",          # structural-connection reasoning step
     "let me break this down",    # planning voice, mid-text
+    # a vLLM server LOG LINE (class 155, 23.09.26). Substring form --
+    # buffer_store._JUNK_MARKERS has no regex. Kept in sync with
+    # internet_learner._JUNK_RE. Measured: hits only the leaking row.
+    "apiserver pid=",
+    "[scheduler.",
 )
 
 # --- reasoning-trace OPENER: the model's planning voice, not an answer ---
@@ -1785,6 +1821,44 @@ def _is_generated_plan_echo_fragment(text):
     """
     return bool(_PROMPT_PLAN_ECHO_RE.search(text or ""))
 
+# class 148 markers (live 22.09.26) -- see _is_need_plan_echo.
+# A BARE imperative plan voice: the model answers its own question with what
+# it intends to WRITE ("Need maybe structure: ..."), not world knowledge.
+# START-anchored so the same words inline in real prose stay learnable
+# ("We need to reduce peak memory ...", "The plan needs three properties ...").
+_NEED_PLAN_ECHO_RE = _re.compile(r"^\s*\**\s*need\b", _re.IGNORECASE)
+_NEED_PLAN_ECHO_MAX = 300
+
+
+def _is_need_plan_echo(text):
+    """True when `text` is the learner's own generation PLAN, not an answer.
+
+    Live 22.09.26 (class 148): the reasoning-loop cycles stored 12 completions
+    that open with a dangling plan verb --
+
+        Need maybe structure: intro: memory consolidation is offline ...
+        Need address inner alignment, outer alignment, deceptive alignment ...
+        Need likely comprehensive.
+
+    `internet_learner._INSTRUCTION_OPENER_RE` already refuses these at
+    extraction time (same anchored `need\b` shape), which is why `--once`
+    reports "shallow + deep read both gated" -- but the WRITER gate had no
+    counterpart, so they were STORED. The asymmetry, not the shape, is the
+    bug: a row the extractor refuses must never reach the buffer.
+
+    The discriminator is the ANCHORED opener plus the length cap. Real prose
+    embeds the verb ("We need to reduce peak memory", "The plan needs three
+    properties") and never STARTS with it; the echoes are all <= 300 chars.
+    Measured: 12/300 buffer hits and all 12 ARE the leak -> 0 collateral,
+    0/3,064 `longterm_episodes`, 0/1,278 asserted-clean gate-test literals.
+    """
+    if text is None:
+        return False
+    s = text.strip()
+    if not s or len(s) > _NEED_PLAN_ECHO_MAX:
+        return False
+    return bool(_NEED_PLAN_ECHO_RE.search(s))
+
 # class 51 markers (live 18.09.26) -- see _is_news_byline_share_header.
 _BYLINE_WEEKDAY_SHARE_RE = _re.compile(
     r"\bBy\s+[A-Z][a-z]+\s+[A-Z][a-z]+\s+\w+day,[\s\S]{0,40}?\bShare\b")
@@ -2674,12 +2748,17 @@ def _is_aggregator_row_year_tail(text):
 # loosening the threshold): the feed row carries TWO handles -- the trailing
 # `<points> <handle>:` is the points/handle pair the renderer emits for the
 # item itself, which the relative-time+comments unit alone does not imply.
-# Measured 22.09.26 over 12,321 rows (online_buffer, buffer_junk,
+# Measured 22.09.26 over 12,322 rows (online_buffer, buffer_junk,
 # longterm_episodes, world_model): 3 hits -- the live buffer row 149 (the
 # leak) plus its two audit echoes, all the same string -> 0 real-prose FPs on
 # an 11-case hostile battery (prose citing a relative time, a comment count,
 # a points-like number, a named handle, a colon-attributed quote).
 _FEED_HANDLE_TOKEN_RE = r"[A-Za-z][\w.\-]{2,20}"
+#
+# The trailing handle is matched CASE-SENSITIVELY via the scoped inline flag
+# `(?-i:...)`: the page emits handles capitalized, while the surrounding row
+# is matched case-insensitively. Without the scope, `[A-Z]` under
+# IGNORECASE re-admits lowercase prose (`... and then 193 runs:`).
 _FEED_HANDLE_TAIL_RE = r"(?-i:[A-Z])[\w.\-]{1,20}"
 _FEED_HANDLE_UNIT_RE = _re.compile(
     r"\b" + _FEED_HANDLE_TOKEN_RE + r"\s+\d{1,3}\s+"
@@ -3704,6 +3783,221 @@ def _is_caps_nav_lockup_weld(text):
             return True
     return False
 
+
+# A docs/TOC HEADING STACK welded to an interrogative heading (class 157,
+# 23.09.26). Live: the docs cycle stored two rows that had passed BOTH gates --
+#   "Evaluate API Compatibility And Integration Needs Plan For Monitoring,
+#    Scaling, And Maintenance vLLM Alternatives By Deployment Scenario
+#    Production LLM Inference Needs More Than A Serving Engine FAQs About
+#    vLLM Alternatives Is SGLang Better Than vLLM?"
+#   "Batch Scheduling and Concurrency Tensor Parallelism for Multi-GPU
+#    Monitoring Memory in Real Time Full Production Configuration How vLLM
+#    Uses GPU Memory vLLM allocates GPU memory into three pools: ..."
+# -- a docs page's section headings concatenated with the newlines removed,
+# ending in a question heading. The questions and digits fed the
+# technical-signal gate and both rows cleared the >=90 long-prose trust.
+#
+# Keyed on the STRUCTURE, never the topic: the row must carry an interrogative
+# welded straight onto a preceding word (`... Alternatives Is SGLang ...`), be
+# at least 80 chars, have a capitalized-word ratio >= 0.50 (a heading stack is
+# almost all TitleCase; prose is not) and carry at most ONE sentence
+# terminator (a stack concatenates headings and rarely punctuates them).
+# Measured 23.09.26 over 17,064 rows (online_buffer 300, buffer_junk 9,137,
+# internet_learn_log 2,693, longterm_episodes 3,064, gate-test literals 1,870):
+# exactly 2 buffer hits and BOTH are the leaking rows -> 0 of 3,064
+# longterm_episodes, 0 of 1,870 asserted literals, 0 of a 7-case hostile prose
+# battery (prose naming a question mid-sentence, a FAQ pair, a mostly-heading
+# answer with no question). The buffer_junk/log hits are 3 known leak families
+# this rule also catches (docs nav stack, arXiv listing row, news-index stack)
+# plus rows whose audit copy is TRUNCATED -- never a clean prose row.
+# REJECTED on measurement, do not re-add: the bare question-weld (7 buffer + 2
+# episode hits), a TitleCase-run-followed-by-prose rule (215 episodes), the
+# `cap >= 0.55` threshold (misses the live 0.54 row) and a 0-terminator window
+# (misses both live rows).
+_DOC_HEADING_QWELD_RE = _re.compile(
+    r"[a-z0-9]\s+(?:Is|Are|Can|Does|Do|Should|Will|Which|Why|How|What)\s+[A-Za-z]")
+_DOC_HEADING_WORD_RE = _re.compile(r"[A-Za-z][A-Za-z'\-]*")
+
+
+def is_docs_heading_qweld(text):
+    """True for a docs/TOC heading stack welded to an interrogative heading.
+
+    Structural rule, no topic words and no vendor literals -- see the block
+    comment above `_DOC_HEADING_QWELD_RE` for the measurement.
+    """
+    t = text or ""
+    if len(t) < 80:
+        return False
+    if not _DOC_HEADING_QWELD_RE.search(t):
+        return False
+    words = _DOC_HEADING_WORD_RE.findall(t)
+    if not words:
+        return False
+    caps = sum(1 for w in words if w[:1].isupper())
+    if (caps / len(words)) < 0.50:
+        return False
+    return len(_re.findall(r"[.!?]", t)) <= 1
+
+
+# A BibTeX CITATION RECORD welded to a license footer (class 158, 23.09.26).
+# Live: the papers cycle stored, verbatim:
+#   "Findings of the Association for Computational Linguistics: EMNLP 2025},
+#    pages = {23934-23949}, year = {2025}, publisher = {Association for
+#    Computational Linguistics} } This website is licensed under a Creative
+#    Commons Attribution-ShareAlike 4."
+# -- an ACL Anthology page's BibTeX `pages = {..}, year = {..}, publisher =
+# {..}` chain with the trailing `}` still attached, welded to the site's
+# license footer. The digits and braces fed the technical-signal gate and the
+# 243 chars cleared the >=90 long-prose trust.
+#
+# Keyed on the CONJUNCTION of two independently-insufficient signals:
+#   (1) a `field = {value}` pair whose VALUE reads as a multi-word PHRASE
+#       (>=3 word tokens) -- a citation record's values are prose ("Association
+#       for Computational Linguistics"), while a code/config assignment's value
+#       is a scalar ("{42}", "{0.9}", "{bfloat16}", "{cc-by-4.0}");
+#   (2) a LICENSE FOOTER ("licensed under" / "creative commons" /
+#       "attribution-sharealike").
+# Measured 23.09.26 over 17,905 rows (online_buffer 299, buffer_junk 18,480,
+# internet_learn_log 2,698, longterm_episodes 3,064, asserted gate-test literals
+# 1,897): the conjunction has exactly 1 hit -- the leaking row -- and 0
+# elsewhere, 0 of a 9-case hostile battery.
+# BOTH parts were MEASURED AND REJECTED alone; do not re-add either:
+#   - the license footer alone: 4 asserted gate-test literals + 2 hostile
+#     prose FPs (prose ABOUT a Creative Commons license is real knowledge).
+#   - the prose-valued assignment alone: 3 hostile FPs
+#     (`Set system_prompt = {You are a helpful assistant} and temperature = ...`).
+#   - the bare `field = {value}` pair: 3 hostile config FPs.
+#   - the BibTeX field VOCABULARY (author/title/year/pages/...): 5 hostile FPs,
+#     because prose that merely NAMES those words trips it.
+_CITATION_ASSIGN_RE = _re.compile(
+    r"\b[A-Za-z][A-Za-z0-9_]{1,20}\s*=\s*\{([^{}]{0,160})\}")
+_CITATION_LICENSE_RE = _re.compile(
+    r"licensed under|creative commons|attribution-sharealike", _re.IGNORECASE)
+
+
+def is_citation_record_weld(text):
+    """True for a BibTeX citation record welded to a license footer.
+
+    Structural conjunction, no topic words and no site literals -- see the
+    block comment above `_CITATION_ASSIGN_RE` for the measurement.
+    """
+    t = text or ""
+    if not t:
+        return False
+    if not _CITATION_LICENSE_RE.search(t):
+        return False
+    for m in _CITATION_ASSIGN_RE.finditer(t):
+        value = m.group(1)
+        if len(_re.findall(r"[A-Za-z][A-Za-z'\-]*", value)) >= 3:
+            return True
+    return False
+
+
+
+# A GitHub-advisory / security-portal INDEX-CARD chrome row (class 159,
+# 23.09.26). Live: cycle_d_docs AND cycle_c_github stored, verbatim,
+# twice in the buffer tail:
+#   "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment
+#    in sendFileMessage GHSA-fhc2-x8cp-c5ch published May 14, 2026 by
+#    julio-rocketchat High Previous 1 2 3 Next Learn more about advis"
+# -- an advisories-LIST page: one entry's TITLE welded to its identifier,
+# its publication date, its reporter handle, its severity badge, the
+# list's own `Previous 1 2 3 Next` pager and the trailing CTA, truncated
+# mid-word by the extractor. 235 chars with digits -> the >=90 long-prose
+# trust and the technical-signal gate both let it through.
+#
+# The near-miss that explains WHY it leaked: the SAME page shape WITHOUT
+# the date passes the pre-existing `_is_nav_list` (>=6 TitleCase tokens,
+# no comma). The advisory date brings a COMMA, and one comma is enough to
+# disarm that rule: measured 23.09.26 -- `_is_nav_list` is True on the
+# date-free form and False on the live one. So the discriminator cannot
+# be the nav-list rule; it is the SECURITY-PORTAL CARD, keyed on the
+# conjunction of
+#     (1) a vulnerability advisory ID (GHSA-xxxx-xxxx-xxxx) -- an
+#         identifier shape an advisory listing carries, and
+#     (2) the listing's own BARE numeric pager (`Previous 1 2 3 Next`),
+#         deliberately the numeric form, NOT class 58's
+#         `Previous Page N of M Next`, because that is the form this page
+#         ships.
+#
+# Every PART alone is measured and INSUFFICIENT -- do not re-add any:
+#   - the GHSA-id alone: it is also the standard way prose CITES an
+#     advisory, and 1 asserted gate-test literal carries the shape.
+#   - the bare pager alone: 2 hostile prose FPs
+#     ("The changelog lists Previous 1 2 3 Next links to older releases.")
+#     plus 1 asserted gate-test literal.
+#   - GHSA AND a severity badge: 26 hits, but 2 of 3 real citing-prose
+#     controls trip it ("We tracked GHSA-aaaa-bbbb-cccc as High severity").
+#   - GHSA AND `by <handle>`: 1 asserted gate-test literal.
+#   - the pager AND a published-date: 3 of 4 both-part prose controls.
+#   - the CTA wording alone: ordinary English.
+# Measured with the conjunction (GHSA-id AND bare numeric pager) over
+# online_buffer / buffer_junk / internet_learn_log / longterm_episodes /
+# asserted gate-test literals: 2 / 26 / 0 / 0 / 1. Both buffer hits ARE
+# the leak family; the 1 test literal is the pre-existing GHSA string the
+# test already documents as chrome gated by `_is_nav_list` ("a different
+# gate"), so it is the same shape, not a false positive. 0 hits in 3 real
+# citing-prose controls and 0 in 5 both-part prose controls.
+_ADVISORY_ID_RE = _re.compile(
+    r"\bGHSA-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}\b",
+    _re.IGNORECASE)
+_BARE_NUMERIC_PAGER_RE = _re.compile(r"\bPrevious\s+(?:\d+\s+){1,9}Next\b")
+
+
+def is_advisory_listing_card(text):
+    """True for a security-advisory listing card welded to its pager (159).
+
+    Structural conjunction of an advisory ID and the listing's own bare
+    numeric pager; no topic words and no vendor literals -- see the block
+    comment above `_ADVISORY_ID_RE` for the measurement.
+    """
+    t = text or ""
+    if not t:
+        return False
+    return bool(_ADVISORY_ID_RE.search(t)
+                and _BARE_NUMERIC_PAGER_RE.search(t))
+
+
+# Site sidebar nav labels welded to a section announce line (class 165, 23.09.26): cycle_d_docs
+# stored "Tech news VPN Deals General Apps AR and VR Business Cameras Cybersecurity Entertainment
+# Reviews and guides Smart home Social media Transportation Wearables Claude AI The latest Claude AI
+# news, updates and announcements Anthropic Drops Claude Opus 5.5 ..." -- the TechRadar sidebar
+# label run followed by the category's own announce line. 300 chars, zero prose, and BOTH gates
+# passed it: the length cleared the >=90/>=25 floors and the brand names fed the signal gate.
+#
+# TWO STRUCTURAL MARKERS, ANDed -- each alone is ordinary prose:
+#   M1 >= 2 DISTINCT site nav labels (case-folded, so a repeated label cannot
+#      self-satisfy the count) -> a sidebar MENU was listed;
+#   M2 a section ANNOUNCE line ("the latest <topic> news, updates and announcements")
+#      -> the page narrated its own category.
+# Measured over 3,901 real corpus rows (online_buffer 300 + prejunk archive +
+# train.jsonl + longterm_episodes 3,059) and 9,861 junk rows: 1 real hit and
+# that hit IS the leaking row -> 0 real-prose FPs; 0 junk hits. Hostile battery
+# (10 hand-written cases incl. prose ABOUT the sidebar labels, a quoted announce
+# headline, and the bare "TechRadar - Upgrades, reviews and guides" CTA): 0 FPs.
+# M2 alone was MEASURED-AND-REJECTED (4 real hits -> ordinary prose);
+# M1 alone was MEASURED-AND-REJECTED (2 real hits -> prose ABOUT the labels).
+_SITE_NAV_LABELS = (
+    r"vpn deals|ar and vr|reviews and guides|smart home"
+    r"|social media transportation wearables|cameras cybersecurity"
+)
+_SITE_NAV_LABEL_RE = _re.compile(_SITE_NAV_LABELS, _re.IGNORECASE)
+_SITE_NAV_ANNOUNCE_RE = _re.compile(
+    r"the latest [^.]{2,45}(?:news,? updates and announcements"
+    r"|updates and announcements)",
+    _re.IGNORECASE)
+
+
+def _is_site_nav_chain(text):
+    """True when a site's sidebar label run is welded to its announce line (165)."""
+    if not text:
+        return False
+    labels = {m.lower() for m in _SITE_NAV_LABEL_RE.findall(text)}
+    if len(labels) < 2:
+        return False
+    return bool(_SITE_NAV_ANNOUNCE_RE.search(text))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -3876,6 +4170,9 @@ def _is_nav_chrome(text):
     # a year-welded SERP title restated by its own snippet (class 141, 22.09.26)
     if _is_serp_title_snippet_repeat(text):
         return True
+    # a nav-menu weld run into a card title restated twice (class 149, 23.09.26)
+    if _is_nav_weld_repeat_chrome(text):
+        return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):
         return True
@@ -3890,6 +4187,9 @@ def _is_nav_chrome(text):
         return True
     if _is_generated_plan_echo_fragment(text):
 
+        return True
+    # the learner's own bare "Need ..." generation PLAN (class 148, 22.09.26)
+    if _is_need_plan_echo(text):
         return True
 
     # a security-advisory listing row / headline stub / fact box / own plan
@@ -4077,6 +4377,18 @@ def _is_nav_chrome(text):
     # a header repeated back-to-back ("Welcome to the X Welcome to the X")
     first = text[:40].strip()
     if len(first) > 12 and text.count(first) >= 2:
+        return True
+    # a docs/TOC heading stack welded to an interrogative heading (class 157, 23.09.26)
+    if is_docs_heading_qweld(text):
+        return True
+    # a BibTeX citation record welded to a license footer (class 158, 23.09.26)
+    if is_citation_record_weld(text):
+        return True
+    # a security-advisory listing card welded to its pager (class 159, 23.09.26)
+    if is_advisory_listing_card(text):
+        return True
+    # a site sidebar label run welded to its announce line (class 165, 23.09.26)
+    if _is_site_nav_chain(text):
         return True
     return False
 
@@ -4503,6 +4815,194 @@ def _is_article_byline_chrome(text):
             and bool(_ARTICLE_DATELINE_RE.search(head)))
 
 
+# class 149 (23.09.26) -- a site's nav-menu WELD run into a card title that is
+# then repeated.  See _is_nav_weld_repeat_chrome.
+_NAV_WELD_TOKENS = (
+    "suche", "suchen", "rechner", "vergleichen", "vergleich", "blog", "home",
+    "preise", "kategorien", "kontakt", "magazin", "ratgeber", "startseite",
+    "anmelden", "registrieren", "mehr erfahren", "jetzt kaufen", "zum shop",
+    "warenkorb", "impressum", "datenschutz", "nachrichten",
+    "product categories", "get started", "sign in", "sign up", "log in", "login",
+    "resources", "docs", "pricing", "careers", "about us", "privacy policy",
+    "cookie policy", "terms of service", "newsletter", "book a demo",
+)
+_NAV_WELD_REPEAT_MIN = 40
+_NAV_WELD_WINDOW = 60
+_NAV_WELD_MIN_TOKENS = 3
+
+
+def _nav_weld_run(text, window=_NAV_WELD_WINDOW):
+    """Largest number of DISTINCT nav tokens inside one `window`-char slice."""
+    low = (text or "").lower()
+    pos = []
+    for tok in _NAV_WELD_TOKENS:
+        start = 0
+        while True:
+            i = low.find(tok, start)
+            if i == -1:
+                break
+            pos.append((i, tok))
+            start = i + 1
+    pos.sort()
+    best = 0
+    for a in range(len(pos)):
+        seen = set()
+        for b in range(a, len(pos)):
+            if pos[b][0] - pos[a][0] > window:
+                break
+            seen.add(pos[b][1])
+        best = max(best, len(seen))
+    return best
+
+
+def _has_adjacent_exact_repeat(text, minlen=_NAV_WELD_REPEAT_MIN):
+    """True when a >=`minlen` substring occurs TWICE overlapping (gap <= length).
+
+    An exact repeat whose instances are far apart is normal (a session
+    transcript restates a line; prose echoes a phrase) -- those measure 6
+    `longterm_episodes` hits.  A repeat whose second instance STARTS inside the
+    first is a widget drawing the same label twice at nearly the same offset,
+    which no human-written text does.
+    """
+    t = text or ""
+    if len(t) < minlen * 2:
+        return False
+    seen = {}
+    for i in range(len(t) - minlen + 1):
+        chunk = t[i:i + minlen]
+        j = seen.get(chunk)
+        if j is None:
+            seen[chunk] = i
+            continue
+        k = minlen
+        while i + k < len(t) and t[j + k] == t[i + k]:
+            k += 1
+        if i - j <= k:
+            return True
+    return False
+
+
+def _is_nav_weld_repeat_chrome(text):
+    """True for a nav-menu WELD run into a card title restated twice (class 149).
+
+    Live 23.09.26: `cycle_c_github` stored
+
+        Start Suche VPS-Rechner Vergleichen Blog Suchen EN DE Home Blog
+        Haystack: The Open-Source AI Orchestration Framework for
+        Production-Ready RAG Haystack: The Open-Source AI Orchestration
+        Framework for Production-Ready RAG Jun 27, 2026 What Is Haystack?
+
+    A German VPS-comparison site's menu strip (Suche / VPS-Rechner /
+    Vergleichen / Blog / Suchen), the language switch, a "Home Blog" trail and
+    then the card's own title drawn twice -- 252 chars WITH digits, so the
+    `>=90` length trust and the technical-signal gate both fired and no
+    existing marker matched.  class 82 (`_is_de_nav_weld_headline_chrome`) is
+    the same FAMILY but misses this shape: its labels are welded to each other
+    already, and it requires a TitleCase colon headline (this row's headline
+    has a comma instead).
+
+    The discriminator is the CONJUNCTION, and neither half survives alone:
+
+      * nav tokens alone are one comma away from ordinary prose -- a German
+        sentence listing `Suche, Blog, Preise, Kontakt, Impressum und
+        Datenschutz` scores a run of 6, and 18 hostile controls scored 3-6
+        (13 of them).
+      * an exact repeat alone scores 88 of 3,064 `longterm_episodes` and 0
+        gate-test literals; the ADJACENCY is what removes them (adjacent
+        repeat alone: 6 episodes, all transcripts/tool dumps).
+
+    Measured 23.09.26: 1 buffer hit and it IS the leak -> 0 FPs on 21 hostile
+    prose controls (EN + DE, several LISTING the same labels), 0 of 3,064
+    `longterm_episodes`, 0 gate-test literals, and 0 hits over 11,959 real
+    prose chunks in 495 repo `.md`/`.txt` files.
+    """
+    if not text:
+        return False
+    return (_nav_weld_run(text) >= _NAV_WELD_MIN_TOKENS
+            and _has_adjacent_exact_repeat(text))
+
+
+
+
+# class 163 (23.09.26) -- a news site's age notice welded to its content-label
+# pair.  Same predicate as `internet_learner._is_news_age_notice`; the learner
+# STRIPS the notice and stores the lede, so this writer gate must agree on the
+# RAW form or any other writer path lets the chrome through.
+_NEWS_AGE_NOTICE_RE = _re.compile(
+    r"This article is more than \d+ (?:months?|years?|days?) old\b")
+_NEWS_AGE_LABEL_RE = _re.compile(r"Supported by\s+About this content")
+
+
+def _is_news_age_notice(text):
+    """True for a publisher age notice welded to its content-label pair (163)."""
+    head = (text or "")[:300]
+    m = _NEWS_AGE_NOTICE_RE.search(head)
+    if not m:
+        return False
+    return bool(_NEWS_AGE_LABEL_RE.search(head, m.end()))
+
+
+
+# class 164 (23.09.26) -- a paper/report section-TOC label chain welded to the
+# page's `Download PDF` affordance.  Same predicate as
+# `internet_learner._is_section_toc_chain`; both gates must refuse this class.
+_TOC_CHAIN_RE = _re.compile(r"\b\d+\.\d+\s+[A-Z][A-Za-z-]*")
+
+
+def _is_section_toc_chain(text, min_chain=3):
+    """True for a section-TOC chain welded to `Download PDF` (class 164)."""
+    t = text or ""
+    if not _re.search(r"\bDownload\s+PDF\b", t):
+        return False
+    return len(_TOC_CHAIN_RE.findall(t)) >= min_chain
+
+
+
+# class 166 (23.09.26) -- a repo-listing row's relative-age badge welded to
+# `release` with no separating space.  Markup prose cannot produce; see
+# `internet_learner._is_ago_release_badge_weld` for the measurement.
+_AGO_RELEASE_WELD_RE = _re.compile(
+    r"\b\d+\s*(?:yrs?|years?|months?|days?|hrs?|hours?|mins?)\s*agorelease\b",
+    _re.IGNORECASE)
+
+
+def _is_ago_release_badge_weld(text):
+    """True for a relative-age badge welded to `release` with no space (166)."""
+    return bool(_AGO_RELEASE_WELD_RE.search(text or ""))
+
+
+# class 168 (23.09.26) -- a plan/vendor COMPARISON price table with rating
+# widgets welded onto the price run (the ENGLISH twin of class 13's German
+# checkout label chain above).  Live: `cycle_e_competitors` stored
+#   "From $25/mo View Review -> OpenCode Free - ... * 5.0 -> OpenAI Codex
+#    $8/mo - OpenAI * 4.7 -> Claude Code $17/mo annual - Anthropic * 4.6 ..."
+# Mirror of `internet_learner._is_price_table_row` (this module must not import
+# the learner -- circular).  Structural: >=2 `$<n>/mo` tokens AND >=2 rating/CTA
+# widgets; see the learner's block comment for the 23.09.26 measurement
+# (1 hit = the leaking row, 0 FPs across 16,066 JSONL rows, 2,049 gate-test
+# literals, 924 docs files and 9 hostile prose controls).
+_PRICE_TOKEN_RE = _re.compile(
+    r"(?:\$\s?\d+(?:[.,]\d+)?\s*/\s*(?:mo|month|yr|year|user|seat))"
+    r"|(?:\b\d+(?:[.,]\d+)?\s*(?:\u20ac|EUR|USD|\$)\s*/\s*(?:mo|month|yr|year|jahr|monat))",
+    _re.IGNORECASE)
+_RATING_WIDGET_RE = _re.compile(
+    r"(?:\u2605\s?\d(?:[.,]\d)?)"
+    r"|(?:\bView Review\b)"
+    r"|(?:\bFree\s*(?:\u2192|\u00b7))",
+    _re.IGNORECASE)
+_PRICE_TABLE_MIN_PRICES = 2
+_PRICE_TABLE_MIN_WIDGETS = 2
+
+
+def _is_price_table_row(text):
+    """True for a plan-comparison price table with rating widgets (167)."""
+    t = text or ""
+    if not t:
+        return False
+    if len(_PRICE_TOKEN_RE.findall(t)) < _PRICE_TABLE_MIN_PRICES:
+        return False
+    return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
+
 def is_junk(text):
     """True when a completion is not trainable signal.
 
@@ -4536,6 +5036,16 @@ def is_junk(text):
     if _is_nav_chrome(s):
         return True
     if _is_article_byline_chrome(s):
+        return True
+    if _is_news_age_notice(s):
+        return True
+    if _is_section_toc_chain(s):
+        return True
+    if _is_ago_release_badge_weld(s):
+        return True
+    # the ENGLISH twin of class 13, a plan-comparison price table with rating
+    # widgets welded on (class 168, 23.09.26)
+    if _is_price_table_row(s):
         return True
     if _is_gh_releases_row(s):
         return True

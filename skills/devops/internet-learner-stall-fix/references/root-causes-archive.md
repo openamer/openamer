@@ -886,6 +886,14 @@ Reproduce in ~4 s (no buffer writes):
    should never fetch `en.wikipedia.org/wiki/Rogue_(company)`. Add a
    title/domain relevance check between the query and the fetched page
    *before* extraction, so an unrelated page cannot contribute candidates.
+
+**UPDATE 23.09.26 — this fix point is now IMPLEMENTED as class 160** (see the
+class-160 entry in this archive; `is_off_topic_page()` in `deep_learn`'s page
+loop). It removes the **0-overlap** sub-class, measured: 7 live queries replayed,
+off-topic pages dropped, all relevant pages kept, 199/199 tests green. The
+`'Rogue' Cursor` case itself stays open by construction — the fetched
+`Rogue_(company)` page contains the word `rogue`, so no zero-overlap rule can
+separate it. AG is therefore **partially** fixed, not closed.
 - Do NOT reach for `text.count(" — ")`, an overlap *filter*, or a bare
   `subsection`/`toggle` marker without the eval — each was measured and is
   either a topic-word FP or insufficient.
@@ -5216,63 +5224,1460 @@ refused and no strip ever runs. **Left `region=100` alone.**
   blob is verified by LF-normalized md5, or the work vanishes.
 
 
-## 143/144 (+145) -- the same uncommitted-fix trap, one level deeper (live 22.09.26)
+## Root cause 146 -- a SINGLE (non-repeated) aggregator feed row (code class 143, live 22.09.26)
 
-A cron run opened on the documented `cycle_c_github: rejected, not trained` line.
-The rate table said today **25.0 %** (31 ok / 93 rej) against a 30-day floor near
-60 %, so the stall smell was real -- but the rejection itself was rotation noise
-again. The find was the skill's step **-1**: `git status --porcelain
-scripts/training tests/scripts` showed `internet_learner.py`, `buffer_store.py`
-and `test_internet_learner_gate.py` modified, and `git diff --stat` showed
-+199 lines. The 30-day rate was a *red herring* against a **dead-end commit
-state**, exactly what step -1 exists to catch.
+Cron run began on the documented `cycle_e_competitors: rejected` line. Rate
+first: last 10 = 2/10 (20 %), last 20 = 3/20 (15 %), last 80 = 29/80 (36 %),
+all-time 1,767/2,592 (68 %). The U/V signature again, so the rejection itself
+was NOT the deliverable -- and `buffer_junk`'s last 30 rows split
+`17 duplicate / 7 junk / 6 writer-gate`, all documented shapes (rotation noise
+at a ~291/300 cap). No code change was warranted for the rejection.
 
-### What was actually dangling
+The find came from the buffer, not the rate -- the skill's own rule. Measured
+`online_buffer.jsonl` row 149:
 
-`git log` showed the last learner-touching commit was `bdc4a7452` (class 141) --
-so neither the committed tree nor the archive mentioned 143/144. The working
-tree carried them; `HEAD` did not. Measured by difflib against the live tree:
-the divergence was **purely additive** (all opcodes `delete`, zero `insert` /
-`replace`), which is the cheap proof that the live file is a strict superset --
-safe to port forward without reading 6 kB of diff.
+    u: Latest research insight: AI Regex Scientist: A self-improving regex solver
+    a: DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of
+       decision models built on top of Qwen3.
 
-| file | additive blocks | lines |
-|---|---|---|
-| `scripts/training/internet_learner.py` | 2 (predicate block + `_is_junk` wiring) | 117 + 6 |
-| `scripts/training/buffer_store.py` | 2 (predicate block + `is_junk` wiring) | 117 + 6 |
+Both gates said False (`_is_junk` AND `buffer_store.is_junk`). Every sibling
+rule wants MORE structure than a one-item feed row carries:
 
-### The trap that cost the most time: the TEST file was in a THIRD place
+| rule | why it missed |
+|---|---|
+| `_is_hn_feed_listing_chrome` (37) | needs the `<relative-time> \| N comments` unit REPEATED (>=2) |
+| `_is_hn_item_chrome` (49) | needs the aggregator's own name or its `New ask Hacker News story` label |
+| `_is_aggregator_row_year_tail` (83) | needs an arXiv `(yyyy)` tail |
+| `_is_gh_listing_row` | needs `Updated <Mon DD, YYYY>` + `Public Forked` |
 
-The 143/144 **predicates** were in the live tree and in `openamer-repo`; the
-143/144 **tests** were in `openamer-repo` ONLY, and the live test copy had
-140-142 + 145 but NOT 143/144 -- a non-monotonic gap, i.e. it is not a
-"one tree is ahead" problem you can fix with a whole-file copy. Porting must be
-**anchor-insert of the named block**, never a file copy: the live copy's 142
-block is *newer* (it carries `_IL142_STRIPPED`, the strip rescue) than the
-`openamer-repo` one, so a whole-file copy would have reverted it. That is the
-`multi-copy-artifact-sync` rule and it fired for real here.
+97 chars WITH digits, so the `>=90` length trust and the technical-signal gate
+both fired. The leak also sat in `buffer_junk` twice (audited as `duplicate`,
+never as `junk`) -- the reason it stayed invisible.
 
-### CRLF pitfall while inserting (cost one re-stage)
+**Do NOT loosen class 37's repetition threshold.** Its own test pins the
+single-unit control `The review took 2 days ago | 4 comments per reviewer were
+recorded.` as learnable, and the skill already records a bare single-unit
+marker measuring 4-9 control FPs. The class-83 precedent applies: add a SECOND
+structural co-occurrence. What works here is the trailing **points/handle
+pair** (`193 Kev:`), which the renderer emits for the item itself.
 
-`core.autocrlf=false` on this repo. The anchor-insert wrote LF, and git then saw
-the test file as **6351/6190** (a whole-file rewrite) instead of a 161-line
-addition. Re-encoding the file to CRLF restored `161/0`. Always check
-`git diff --cached --numstat` for a `== -w` pair before committing a ported
-block on an autocrlf=false tree.
+### The escaping trap that cost the most time this round
 
-### Publishing when local `main` is 74 behind
+Three attempts to write the marker produced a corrupted file:
 
-`main` was `ahead 8, behind 74`, so a push to `main` would be divergent. The
-work was published on `fix/learner-143-144` instead, and the remote blob hash was
-verified with `git ls-remote` (not `git status`).
+1. **Shell heredoc** (`python - <<'PY'`) -- even single-quoted, the block that
+   reached the file carried 3 x 0x08 control bytes and CRCRLF, because `\b`
+   survived into a *different* layer than expected. The memory rule is
+   absolute: **regex is NEVER written through a shell heredoc**. Symptom:
+   `_FEED_HANDLE_UNIT_RE.pattern` contains `\x08` and `search(leak)` returns
+   None while the source *looks* right.
+2. **`write_file` + a python script that assembles the block by string
+   concatenation** -- landed CRCRLF (the block's `\r\n` joined against a
+   `CRLF` constant that the shell had already mangled) and a misplaced quote
+   (`...Telefon)"\b"`), i.e. `SyntaxError: unexpected character after line
+   continuation character`.
+3. **What works: a template file + an installer that only substitutes.**
+   `write_file` a `.tpl` (LF-only, backslashes intact, `@MOD@` for the module
+   alias), then in the installer do `raw.replace(b"\n", b"\r\n")` and
+   `block.replace(b"@MOD@", mod)`, insert by ANCHOR, and **`py_compile` the
+   result before trusting it**. The compile step is what caught attempt 2 in
+   one second instead of after a full `--once` run.
 
-Amending the message needed `--force-with-lease=<ref>:<oldhash>` with the hash
-**spelled out**: plain `--force-with-lease` failed twice with `stale info`
-because the remote-tracking ref could not be refreshed (fetch needs creds in
-this cron context).
+`write_file` itself is safe for backslashes (verified: `_fix143b.py` on disk
+carries correct `\w`); it is the *heredoc* and the *concatenated assembly*
+that are not.
+
+### The dual-module trap, again (root cause AR/BG)
+
+`internet_learner.py` uses `re`, `buffer_store.py` uses `re as _re`. The
+template's `@MOD@` makes this explicit and testable -- the first install
+crashed at import with `NameError: name 're' is not defined. Did you mean
+'_re'?` in buffer_store.py. Always compile BOTH modules after an install.
+
+### The scoped-case-sensitivity trap (new)
+
+The pattern compiles with `re.IGNORECASE`, so the variant-B tail token
+`[A-Z][\w.\-]{1,20}` matched LOWERCASE words too -- measured FP:
+`The team logged 5 hours ago | 20 comments and then 193 runs: the result held.`
+Fix: `(?-i:[A-Z])[\w.\-]{1,20}` -- Python's scoped inline flag turns
+case-sensitivity back on for just that group. Without the scope you either
+accept lowercase prose or lose the leak (`193 Kev:`).
+
+### Verify (the standard shape, all met)
+
+- Leak gated on BOTH paths and by the writer gate:
+  `_is_feed_handle_unit_row` True, `_is_junk` True, `buffer_store.is_junk` True
+  in BOTH the laptop and the repo tree (asserted identical regex `pattern`).
+- Full-corpus sweep, 12,322 rows: 3 hits -- the live buffer row plus its two
+  `buffer_junk` audit echoes, all the same string; **0/3,064
+  `longterm_episodes`**; 0 gate-test literals of 1,386.
+- Hostile battery 11 cases: 0 FPs, incl. class 37's pinned control and the
+  class-83 leak literal.
+- The pre-gate buffer row dropped (290 -> 289 rows, CRLF preserved, leak gone).
+- `tests/scripts/test_internet_learner_gate.py`: **174 passed** (172 baseline
+  + 2 new: both paths reject the leak, all 8 controls survive).
+- Commit pushed; remote hash verified against local HEAD.
+
+### Also -- the wholesale-copy trap, paid again
+
+Installing by `cp laptop -> repo` for the two training modules pulled in
+UNRELATED laptop-only uncommitted work and broke a pre-existing class-142 test
+(`test_article_byline_chrome_gated_on_both_paths`: `_clean_insight(leak)` no
+longer returned ""). That failure was NOT this patch's. Diagnose before
+believing: `git checkout --` to HEAD, then install by ANCHORED INSERTS only
+(`_install143.py` shape: assert one def anchor + one wire anchor, insert, diff
+`--numstat` must show only `+` lines). Whole-file copies across diverged trees
+are how unrelated work rides along.
+
+### Also -- the scoreboard failure is pre-existing test-order pollution
+
+`pytest tests/scripts -q` reports
+`test_scoreboard.py::test_every_capability_value_names_its_source` FAILED --
+it passes ALONE and passes alone WITH this patch. Prove attribution by
+stashing your change and re-running the same command (the archive's own
+rule): the failure reproduces without your patch, so it is not yours.
+
+## Root cause 147 -- German consultation/contact chrome (code class 144, live 22.09.26)
+
+Found by the post-fix verification cycles, which is the point: **fixing one
+class creates the next leak**. The 4th `--once` after the class-143 fix stored
+
+    u: Multi-domain learning (legal AI automation 2026 lessons learned postmortem):
+       What should an intelligent agent know?
+    a: Produkten PRODUKTBERATUNG Wir beraten Sie persönlich unter 0681
+       5866-4466 (Mo-Do 9-18 Uhr, Fr 9-17 Uhr).
+
+A German shop's nav lockup welded to its consultation block. 104 chars WITH
+digits; neither gate fired. The `_is_de_*` family covers pricing, double-opt-in
+newsletters, portal fact boxes and nav-weld headlines -- none of them a
+consultation/contact block.
+
+**Discriminator: the CONJUNCTION of a consultation vocabulary term
+(`beraten|Beratung|Bestellung|Kaufberatung|Angebot|Hotline|Telefon`) and a
+contact marker (German phone form, `Uhr`, `Hotline`, `Telefon`) within 90 chars
+on ONE line.** Neither half is unique alone -- `Uhr` is an ordinary German word
+and a phone form is ordinary prose -- so the pair is required (the AU rule).
+
+Implementation note: scan forward from EACH vocabulary match and cut the tail
+at the first newline, rather than a single `re.search` over the whole text.
+A whole-text regex would let a vocabulary word in line 1 match a phone number
+in line 5.
 
 ### Verify
 
-`179 passed` in `tests/scripts/test_internet_learner_gate.py` on BOTH the live
-and the repo copy (was 175 before the 143/144 tests landed). Live and repo
-scripts byte-identical; `git status` clean for the three paths.
+- 12,336 rows: 1 hit and it IS the leaking row; 0/8,982 `buffer_junk`;
+  0/3,064 `longterm_episodes`; 0/1,647 gate-test literals; 0/1,730 SKILL.md
+  files.
+- Controls: `Die Beratung erfolgt telefonisch.` and `Der Anbieter nennt eine
+  Hotline und oeffnende Zeiten.` (vocabulary without a contact marker) survive;
+  English prose carrying `9-18 hours` plus `0681` survives. The two near-leak
+  controls (the leak minus its nav prefix, and a bare hotline sentence) ARE
+  flagged -- that is correct, not an FP: they are the same chrome.
+- Buffer row dropped (292 -> 291); `tests/scripts/test_internet_learner_gate.py`
+  **176 passed**; commit pushed, remote hash verified.
+
+### Post-fix live behaviour
+
+5 x `--once` after both fixes: 3 learned / 2 rejected, and all three stored
+rows are real prose (`LinearMethod supports multiple execution paths: Marlin
+kernels ...`, a failure taxonomy, an agent-architecture sentence); the
+multi-domain cycle that produced the German chrome is now correctly rejected.
+Rate last-10 30 %, last-20 25 % vs all-time 68 % -- still the U/V signature, so
+no further gate change is warranted on the rate alone. Two consecutive honest
+rejections are the correct stopping state.
+
+**148** (22.09.26: the learner's OWN bare `Need ...` generation PLAN, stored 12x
+-- it is the MIRROR of 142, and the mirror is the lesson). The cron opened on the
+documented `cycle_f_multi_domain: rejected` line. Rates: last-20 **20%** vs
+all-time **67.9%** (n=2609) -- a real drop, not the usual rotation noise, so it
+had to be explained rather than gated around. It was explained twice over:
+
+  (a) the `duplicate` rejects are GENUINE exhaustion. Of the last 30 `duplicate`
+      audit rows, **29 are byte-identical to a row ALREADY in the buffer**
+      (0 had a novel `u`) -- the documented mechanism, re-confirmed for the
+      fourth round. Widening `avoid`/loosening a gate is still the wrong fix.
+  (b) the buffer was NOT clean despite the healthy-looking reason mix
+      (`duplicate` 24 / `junk` 9 / `writer-gate` 7 in the last 40). Running
+      `--once` and eyeballing the `u`/`a` tail was not enough this time: 12 of
+      the 300 rows open with a dangling plan verb.
+
+        Need maybe structure: intro: memory consolidation is offline ...
+        Need address inner alignment, outer alignment, deceptive alignment ...
+        Need likely comprehensive.
+
+**`internet_learner._INSTRUCTION_OPENER_RE` ALREADY REFUSED THESE** -- it is
+START-anchored on `need\b`, which is exactly why `--once` reported "shallow +
+deep read both gated" for the whole day. **The WRITER gate had no counterpart.**
+So the extractor refused them at runtime while `buffer_store.is_junk` happily
+STORED them. That is class 142 upside down: there the learner was LOOSER than the
+writer (368 silent drops); here the WRITER is looser than the learner. **Generalise
+the lesson, not the rule: any predicate that exists on only ONE of the two gates
+is a hole, and the direction does not matter.** Class 42 already wired this shape
+for `_is_prompt_echo_bullet_chain`/`_is_prompt_echo_fragment`; 148 was simply the
+next unpaired one, and `_PROMPT_PLAN_ECHO_RE` (class 66) proves the family exists
+without covering the bare-verb opener.
+
+**Why the `>=90` length trust was irrelevant:** the cap had to work the other way.
+Real prose EMBEDS the verb (`We need to reduce peak memory ...`, `The plan needs
+three properties ...`); the echoes all START with it and are <= 300 chars. So the
+pair is (START-ANCHOR, length cap), not a topic word.
+
+| candidate | buffer | leaks caught | episodes | hand controls |
+|---|---|---|---|---|
+| `^\s*\**\s*(?:need|task\s*:|goal\s*:|interpret)\b` cap 300 | 12/300 | 12/12 | **0/3064** | **1/12** |
+| `need` + plan verb (same set as 148's first draft) | 10/300 | 10/12 | 0/3064 | 0/12 |
+| `need` + (hedge|plan verb|root cause) | 12/300 | 12/12 | 0/3064 | 5/18 |
+| bare `need`, no cap | 12/300 | 12/12 | 0/3064 | 1/12 |
+
+The one hand-control the winner trips (`Need analysis: the ablation showed
+quantization dominates batch size ...`) is **the same echo VOICE**, so it belongs
+in its own `assert ... is True` (the AJ/AN/AQ/AU control-corpus rule), never in
+the false-positive set. The canonical corpus settles it: **0 of 1,278 string
+literals >= 40 chars in the gate test file** (all three candidates).
+
+**Shipped:** `_is_need_plan_echo` (helper + wiring) in `buffer_store`, called from
+`_is_nav_chrome` so `is_junk` shares the one implementation. 12 stale rows removed
+by signature via `purge_buffer_rows.py` (300 -> 288, 0 unparsable, CRLF census
+288/0/0). Post-fix live: 1 learned / 2 rejected, both rejections honest.
+
+**TWO PITFALLS THAT COST A CYCLE HERE**
+
+1. **The heredoc trap fired AGAIN, in the SAME run the skill warns about it.**
+   Writing `_NEED_PLAN_ECHO_RE` through a shell heredoc turned `\b` into a
+   BACKSPACE byte (0x08). `re` compiled fine, the helper returned False for every
+   leak, and the ONLY symptom was one red test. `grep` shows nothing; you must
+   print `repr(pattern)` or count 0x08 bytes. **Regexes go in through a FILE
+   (`write_file`), never a heredoc** -- the file-based apply produced 0x08 = 0 in
+   all copies. Diagnose with a byte scan, repair with `chr(8)`/`chr(92)` in a
+   file, then re-run the test.
+2. **A branch that is BOTH 4 behind and 20 ahead of `origin/main`.** `git`
+   refused the push (non-fast-forward) even though the same branch had pushed
+   cleanly all day. The 4 upstream commits were the SAME class of work (141/142/
+   145) authored from another copy, so the branch and main had each re-derived
+   the neighbours' fixes. A 5-file merge produced conflicts in ALL of them
+   (including the skill + archive) -- **resolving that by hand would have been a
+   judgement call on someone else's in-flight class.** The clean landing was a
+   `git worktree` off `origin/main`, re-apply the ONE class, test, commit, push
+   (`f5d324ba0..9e54e87ac`). The branch keeps its own copy as an ancestor of the
+   later merge -- do NOT force-push a shared `main`, and do NOT whole-file `cp`
+   across diverged trees (the live copy is a SUPERSET of main: it carries the
+   branch-only 143/144 helpers, while main carries 145; neither is "newer").
+
+**A note on reading the rate table:** per-day rows showed 39/12.5/16.7/28.6/16.7 %
+across the evening and the last row is a PARTIAL hour (cut at 23:17). The 20%
+last-20 is real, but the CAUSE was (a) exhaustion + (b) a stored-leak family that
+was invisible in `buffer_junk` because it was never rejected. **A healthy-looking
+reason mix is not a clean buffer -- and a leak that was never rejected leaves NO
+audit row to count.**
+
+## Root cause 148 (22.09.26) -- os.open() writes TEXT on Windows, and the vault lost a key in 8
+
+**The bug.** A 32-byte random key written with `os.open(...)` + `os.write(fd, key)`
+came out as **33 bytes** ~1/8 of the time, and the next process reported
+`vault could not be decrypted (wrong or damaged key)`.
+
+Cause: `os.open()` defaults to **TEXT mode on Windows**. A `0x0A` byte in the
+random key is written as CRLF. P(0x0A in 32 random bytes) = 1-(255/256)^32 =
+**11.8%** -- which matched the observed failure rate exactly, and was the clue
+that cracked it.
+
+**The fix, and the correct idiom for this repo:**
+
+    flags = os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_BINARY", 0)
+    fd = os.open(str(path), flags, 0o600)
+    with os.fdopen(fd, "wb") as handle:   # "wb" sets binary mode
+        written = handle.write(key)
+
+`agent/proxy_sources/iron_proxy.py` already did it right for CA key bytes
+(`os.fdopen(fd, "wb")`). Pass `O_BINARY` AND use `"wb"`; a bare `os.write()` on
+that fd honours the text mode. `O_BINARY` needs `getattr(os, "O_BINARY", 0)` --
+it does not exist on POSIX.
+
+**How it was found -- only by RUNNING it.** The unit tests were all green. The
+CLI hung, then failed 1 run in 3, so it was reproduced by looping the real
+command 8x and printing `key.bin`'s size each time: 33 bytes on the failing run.
+No amount of reading would have shown it. **Loop a real command when a symptom
+is intermittent**; a single green run proves nothing about a rate.
+
+**Two diagnostics that hid the cause, both fixed.** `is_unlocked()` wrapped
+`_load()` in a bare `except Exception: return False`, so the real
+`VaultError("could not be decrypted")` never reached anyone -- it now logs the
+exception with its type. And a generic "missing or damaged key" message made an
+11.8% write bug look like user error.
+
+**Three further traps from the same session:**
+
+- **`getpass.getpass()` HANGS on Windows when stdin is a pipe.** It reads the
+  CONSOLE, not stdin, so `printf 'pw
+' | ... add` blocked until timeout. For a
+  non-TTY stream, read the line from stdin directly (`sys.stdin.readline()`) --
+  nothing is echoed either way. Guard the interactive path with `sys.stdin.isatty()`.
+- **A blob format with no recorded nonce length cannot survive a bad nonce.**
+  `_encrypt` wrote `MAGIC + nonce + ct` and `_decrypt` sliced a fixed 12 bytes, so
+  any nonce of another length produced a permanently undecryptable vault. Assert
+  the nonce length at WRITE time, not just at read time.
+- **Monkeypatching `secrets.token_bytes` poisons the nonce too.** A fake that
+  returns a fixed 32-byte value for EVERY length breaks encryption, and the
+  symptom (`could not be decrypted`) points at the key, not at the test. Fakes
+  must be length-aware.
+
+**Before writing a new module, check whether it already exists.** `git status`
+showed `M agent/vault_login_classifier.py` -- a `write_file` had already
+overwritten a file that upstream had ported earlier (with OTP support, richer
+than the version being written). Recovered via `git cat-file -e HEAD:<path>`.
+**Run `git status` before the first write to a path.** It is cheap; the recovery
+is not, and a file that is already tracked is the one case where a blind
+`write_file` destroys someone else's work.
+
+## Root cause 149 (23.09.26) — the cycle was NOT the bug; the LIVE TREE was a second, stale copy
+
+Trigger line looked like the familiar stall: `cycle_h_efficiency: rejected, not
+trained (shallow + deep read both gated)`, buffer pinned at 300, rotation alive.
+The rate table said something else: **last-20 30% / last-80 32% / last-200 36%
+vs 66% all-time** -- a real step change (the 13.09 gate-tightening regime sits
+near 40-50%, so 30% is BELOW it).
+
+Diagnosis order that worked (cheapest first, all four were needed):
+
+1. `git status` in `~/openamer-repo` -- **not** in the live tree. The live tree
+   `AppData/Local/openamer-laptop` is **NOT a git repo** (`fatal: not a git
+   repository`). So the "uncommitted work from a dead cron session" check of
+   root cause AV can only be done on the repo.
+2. Trace ONE rejection instead of reading the log line. Wrap `store()` with a
+   `buffer_store._audit` spy and print the reason. That single call named the
+   cause in one shot: `writer-gate` on the shallow candidate, `junk` on the deep
+   one. **60 of the last 70 `writer-gate` audits fire `_is_serp_snippet`** (a
+   `buffer_store` predicate the learner's `_is_junk` has NO counterpart for) --
+   and `store_or_deep`'s "second chance" ladder runs `deep_learn` again, so a
+   SERP-shaped search result is gated twice for the same text.
+3. `_novel_query` is NOT saturated: ledger 800 entries / 175 distinct, recent-60
+   distinct 58. So "queries are exhausted" was WRONG -- the rejections carry
+   real candidates.
+4. Compare the TREES. `diff <repo>/scripts/training/buffer_store.py
+   <live>/scripts/training/buffer_store.py` -> **24 lines**. The live tree had
+   class-145 markers (read-time weld + ORDINAL dateline `March 6th, 2025`) that
+   the repo does NOT have; the repo had `_is_feed_handle_unit_row` refinements
+   the live tree lacks. Each tree held a fix the other was missing.
+
+**The lesson (new class):** on this host there are THREE copies of the training
+stack -- `~/openamer-repo`, the live `OPENAMER_HOME`, and the runtime
+`OPENAMER_HOME/openamer-agent`. A "rejected" cycle is evidence about the LIVE
+copy only; it says nothing about the repo, and vice versa. Before designing any
+gate fix, run `diff` between the two and say WHICH copy the evidence came from.
+Fixing the live tree while the repo keeps the older predicate just re-arms the
+bug on the next runtime sync.
+
+## Root cause 150 (23.09.26) — a 0-byte marker file proves an "install root" in 12 consumers
+
+Found while following 149, and it is the more valuable finding. `_is_install_root()`
+is duplicated across the Darwin/swarm/dream scripts, each with its own
+`_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")`.
+The scratch tree `OPENAMER_HOME=C:/Users/damir/_vaultfinal` holds
+`cron/executions.db` at **0 bytes** plus an EMPTY `memories/`, so both
+`.exists()` and `any(p.iterdir())` returned True and the phantom tree won over
+the real 189-skill install.
+
+Measured effect: `swarm_os` read an EMPTY swarm (`{"workers": {}, "tasks": {}}`)
+and every autonomous-loop run reported a clean "0 tasks, everything clean"
+while the real swarm was never touched; the 15-minute Darwin autopilot evolved a
+3-skill phantom population whose 2-skill snapshots flipped `auto_tune()` to
+"declining". **781 runs, all `last_status: "ok"`.** This is the sharpest example
+of the standing rule `last_status:ok != feature lives`.
+
+Fix rule (one predicate, 12 files): a FILE marker counts only when NON-EMPTY; a
+DIRECTORY marker counts only when it holds >=1 NON-EMPTY file. Verify with the
+real trees, not a fixture: `_is_install_root(_vaultfinal) -> False` and
+`_is_install_root(OPENAMER_HOME) -> True`, while `git show HEAD:<file>` still
+returns `True` for both -- that difference IS the proof.
+
+**PITFALL — the two commits were two changes.** The staged set bundled the
+phantom-home fix (11 modules + its test) with an unrelated `_scan_skill_hits`
+state.db performance rewrite. They were split with `git add -p` (one hunk of
+`darwin_engine.py` was the home fix, the next two were the perf work) and
+committed separately so either could be reverted alone. Do not let a
+`git status` sweep turn two themes into one commit.
+
+**PITFALL — `git -c interactive=false` is not a thing.** It parses as a config
+key and dies with `error: key does not contain a section: interactive`. The
+prompt-suppression is the ENV var `GIT_TERMINAL_PROMPT=0`. See 151 for what was
+actually hanging.
+
+## Root cause 151 (23.09.26) — `git push` HANGS while `ls-remote` is fast: it is the GCM helper, not the network
+
+A push that had to land before the turn ended would not finish: `git ls-remote`
+returned in **1.2s** and `curl https://github.com` in **0.10s**, yet
+`git push` sat there until the 300s timeout, twice, and `git push -v` showed the
+HTTPS session opening and closing (`Connection #0 to host github.com:443 left
+intact`) with no ref update. Token was fine: `GET /user` -> 200, repo
+`permissions.push: true`.
+
+The blocker is the CREDENTIAL HELPER CHAIN. `git config --get-regexp credential`
+showed THREE helpers in order:
+`credential.helper=!"...gcm/git-credential-manager.exe"` (a GUI helper),
+`helperselector.selected=manager`, then `store`. The configured chain does not
+answer non-interactively -- GCM wants to open a window.
+
+One command isolates it, with no network involved:
+
+    printf 'protocol=https\nhost=github.com\n\n' | timeout 20 git credential fill; echo $?
+    # 124  -> the configured helper chain HANGS
+
+and the fix is to bypass the chain for that one invocation:
+
+    git -c credential.helper= -c credential.helper=store push origin HEAD:<branch>
+
+(a leading `-c credential.helper=` CLEARS the inherited chain; `GCM_INTERACTIVE=never`
+alone is not enough). Then verify the way the standing rule demands --
+`git ls-remote origin refs/heads/<branch>` must print the SAME sha as
+`git rev-parse HEAD`, or the push did not happen.
+
+**Do not diagnose this as a network problem.** GET works, POST hangs, and any
+time spent on proxy/connectivity is wasted. Reach for `git credential fill` +
+`timeout` first; 124 is the answer.
+
+## Root cause 152 (23.09.26) - "the live tree is AHEAD of the repo" is NOT the same claim as "work is unlanded"
+
+Cron run began on the documented `cycle_a_technews: rejected` line. Per-day rate
+**50 %** (last closed hours 63-75 %) vs the documented 50-80 % band -> no gate
+change was warranted for the rejection itself; `buffer_junk` tail was
+`duplicate` at the 300-row cap + documented shapes = rotation noise.
+
+The trap this class records is a DIAGNOSTIC one, because it cost the run its
+whole budget. `md5sum` on the live tree vs `openamer-repo` (the root-cause-149
+first step) showed all three files DIFFER, and a line diff showed the LIVE tree
+carrying 81-108 lines the repo WORKTREE lacked - including a whole function
+(`_strip_article_byline_header`, class 144) and the class-145 anchors. That
+reads exactly like the AV/119/120 "a previous cron died before committing"
+trap, so the run went looking for the lost work.
+
+**It was not lost.** The measurement that settles it is a CONTENT-UNION scan,
+not a pairwise diff:
+
+| ref | learner `_strip_article_byline_header` | store `_is_need_plan_echo` (148) | `(?-i:` (146) |
+|---|---|---|---|
+| `HEAD` (local branch) | absent | present | present |
+| `origin/main` | **present** | present | **absent** |
+| `origin/fix/learner-143-144` | present | absent | present |
+
+- Every one of the live tree's 6288 / 4686 / 6401 lines IS present in at least
+  one remote ref: **0 unlanded content** across 36 refs.
+- The two gap classes the repo worktree lacked (`_is_feed_handle_unit_row` 143,
+  `_is_de_consultation_contact_chrome` 144) are both already published on
+  `origin/fix/28-respawn-test-psutil-hermetic` = **open PR #47**.
+- Class 145 is on `origin/main`; class 148 is on `origin/main`.
+- **0 holes**: no ref anywhere carries the class-143 feed gate WITHOUT the
+  `(?-i:...)` scope.
+
+So the live tree is a UNION of landed work, not a superset waiting to land.
+**Rule: a pairwise `diff` between the live tree and ONE checkout is branch
+noise.** Before concluding "uncommitted work" (root cause AV), measure the
+union over ALL refs (`git ls-remote --heads origin` -> `cat-file blob`) and ask
+which lines are in NO ref. Only those are unlanded; a live-only line that is
+present on some other branch is simply the union of two landed PRs.
+
+Corollary: `HEAD` on the local clone is a THIRD stale view - it sits on a side
+branch that is 36 commits behind `origin/main`, so both "the repo" and "HEAD"
+are individually unrepresentative. Compare content, never a single ref.
+
+### MEASURED-AND-NAMED, no gate change (this run shipped nothing)
+- **The unscoped `[A-Z]` under IGNORECASE is a real hazard but NOT a live
+  regression.** Direct control test: `_FEED_HANDLE_UNIT_RE` rebuilt from
+  `origin/main`'s hypothetical unscoped tail matches
+  `the script ran 5 hours ago | 20 comments then 193 runs: the agent retried`
+  and `Reviewer 2 days ago | 4 comments 12 notes: the ablation held on all
+  seeds.` (2 of 3 prose controls); the shipped `(?-i:[A-Z])` form matches 0.
+  Corpus cost TODAY: **0** - over online_buffer (300) + buffer_junk (8996) +
+  buffer_junk_archive (309) + world_model (511) the bare and scoped forms both
+  fire on 0 rows. So it is a latent trap for a future writer, and no class-146
+  variant is worth opening on this evidence.
+- The two helper sets absent from the repo WORKTREE (143 / 144) are published
+  on PR #47; do not re-open them.
+- No new chrome class was found: the buffer tail was clean (last 5 rows all
+  real prose), `tests/scripts/test_internet_learner_gate.py` = **181 passed**,
+  and post-fix cycles learned real content (vLLM `Optimization and Tuning`,
+  generative-AI-in-education, ProofOfThought/Z3).
+- **Root cause BH — one rejected cycle was NOT a defect, and the real work was
+  the class-149 port (live 23.09.26).** Cycle started as the documented
+  `cycle_g_security: rejected`. Measured before touching a gate: rates 60-73%
+  all-time, last 25 cycles alternating LEARNED/rejected (9 learned, 8 rejected) ->
+  rotation noise at the 300-row cap, NOT the U/V systemic signature. No gate
+  change was warranted for the rejection itself.
+  - **The leak was in a LEARNED row, not a rejected one** (the AH technique:
+    read the buffer tail and eyeball the u/a pairs). Row 297 held German
+    nav-menu chrome welded to a twice-restated card title. Class 149 already
+    existed live AND was cleanly measured (1 buffer hit that IS the leak, 0 FPs
+    on 300 prose rows / 3,064 episodes / 1,335 test literals).
+  - **NEW TRAP — the same file measured three DIFFERENT sizes in one session.**
+    `buffer_store.py` read 228,930 -> 233,465 -> 233,759 bytes and the repo copy
+    read "0 hits" for `_NAV_WELD_TOKENS` on one grep and "2 hits" minutes later.
+    Cause: THREE CONCURRENT WRITERS on this tree — the Darwin autopilot rewrites
+    the gate files on its own schedule (root cause T), and parallel cron agents
+    commit/port the same files. A single `grep`/`wc`/`md5` is therefore NOT
+    evidence at any moment after the one you took it.
+    - Do NOT conclude "the fix is missing" / "the leak is unguarded" from one
+      read. Re-measure, and take a STABLE snapshot (hash before AND after the
+      copy, retry on mismatch) before reasoning about a file.
+    - Cheap stabiliser: copy the tree to a scratch dir with
+      hash-before/hash-after and retry up to ~6x; only the matching copy is
+      trustworthy. Also sample `os.path.getmtime` 3x over ~20 s — if it is
+      stone-stable, the writer is done for now.
+    - **`wc -c` and Python disagree on size**: `wc -c` counts raw CRLF bytes,
+      Python-decoded `len()` does not. A 1,110-byte "oscillation" was purely
+      this. Compare EOL-normalised hashes, never raw byte counts.
+  - **Direction, measured properly:** the repo worktree was live-BOTH while
+    origin/main lacked the class entirely; the INSTALL copy
+    (`openamer-agent/`) was a stale snapshot missing several classes. Use the
+    VERIFIED probe `drift_vs_remote.py` (both-directions), not
+    `verify_three_copies.py` — its `--ref` rework is documented as NOT yet
+    executed/verified in its own docstring.
+  - **Finish-before-adding (root cause AV, recurred):** the worktree carried
+    four uncommitted, already-working gate classes (142-followup, 143, 144, 145).
+    Commit + push THOSE first; adding a 150th class on top of uncommitted work is
+    how the tree gets lost. Three commits pushed, origin == HEAD.
+  - **Both-directions port:** the live TEST copy was AHEAD of the repo (184 vs
+    181 tests) for code already committed. Port live -> repo (repo is the SoT
+    for the module trees, but the live test copy is the superset), preserve the
+    repo's CRLF, re-run the suite. Never blind-sync a whole tree in one
+    direction — 14 drifts were live-AHEAD and a blind overwrite would delete
+    them.
+  - **Result:** class 149 gated in both gates + tests (184 passed), all three
+    copies byte-IDENTICAL after EOL normalisation, 3 commits pushed, and the
+    deliverable cycle learned real content (`cycle_a_technews`: Apple Home
+    security-camera pricing, The Verge).
+
+### Class 149 (23.09.26) -- a nav-menu WELD run into a card title drawn TWICE
+
+Cycle started on the documented `cycle_d_docs: rejected` line. The rate table was
+NOT the story: last-30 sat at 12 learned / 18 rejected and the per-hour rows swung
+13%-75%, i.e. rotation noise, not a step change. The finds came from the two cheap
+reads the skill prescribes -- `tail` of `online_buffer.jsonl` (the leak was never
+rejected, so `buffer_junk.jsonl` never mentions it) and the packaged
+`diagnose_gate_rejection.py`.
+
+**The leak** (`cycle_c_github`, u = "What new agent architectures are trending on
+GitHub?"):
+
+    Start Suche VPS-Rechner Vergleichen Blog Suchen <moon> EN DE Home Blog
+    Haystack: The Open-Source AI Orchestration Framework for Production-Ready RAG
+    Haystack: The Open-Source AI Orchestration Framework for Production-Ready RAG
+    Jun 27, 2026 What Is Haystack?
+
+A German VPS-comparison site's menu strip (`Suche` / `VPS-Rechner` / `Vergleichen`
+/ `Blog` / `Suchen`), the language switch, a `Home Blog` trail, then the card's own
+title drawn TWICE. 252 chars WITH digits, so the `>=90` length trust AND the
+technical-signal gate both fired. `diagnose_gate_rejection.py` said it plainly:
+`is_junk = False -- no predicate rejects this text -> it SURVIVES the gate`.
+
+**Why class 82 did not cover it.** `_is_de_nav_weld_headline_chrome` is the same
+FAMILY, but its regex wants the nav labels welded to EACH OTHER plus a TitleCase
+colon headline (`Blogs Karriere Ueber uns X LLM Agent Sandboxing: Wie MCP ...`).
+This row's labels are comma/space joined AND its headline ends in a comma, so
+neither the label-adjacency nor the colon-headline half matched.
+
+**The discriminator is a CONJUNCTION, and the sweep is what found it.** Three
+readings were measured against four corpora (live buffer 300, `longterm_episodes`
+3,064, gate-test literals 1,987, hand controls):
+
+| form | prose FP | buffer | episodes | literals | verdict |
+|---|---|---|---|---|---|
+| exact repeat >= 40 alone | 0 | 2 | **88** | 0 | rejected |
+| nav tokens >= 2 alone | **13** | 1 | 179 | 14 | rejected |
+| nav >= 2 AND repeat >= 40 | 0 | 1 | 18 | 0 | rejected |
+| **nav-run >= 3 @60 AND ADJACENT repeat >= 40** | **0** | **1** | **0** | **0** | SHIPPED |
+
+Two measurements did the work:
+
+1. **`d <= L` (adjacency).** For the leak the repeat's two instances sit 78 chars
+   apart (`frag = Haystack: The Open-Source AI Orchestration Framework for
+   Production-Ready RAG`, `L=79 d=-78`); in a transcript that restates a line the
+   instances are hundreds to thousands of chars apart (`L=219 d=-259`,
+   `L=84 d=-1210`, `L=60 d=-1652`). Requiring the second instance to START inside
+   the first (`d <= L`) removed 18 -> 6 episode hits, i.e. the whole
+   session-transcript class.
+2. **A nav-run, not a nav-count.** A "run" is the max number of DISTINCT nav
+   tokens co-occurring inside a 60-char window. The leak scores 7 (the whole menu
+   is adjacent); a German sentence LISTING the same labels scores 6 but spread over
+   the sentence, so the sliding window is what separates the two.
+
+`window=100/maxL=100` was also clean (ep=0) but 3 prose controls were one token
+away from the threshold, so the 60-char window was kept.
+
+**Full measurement for the shipped form:** 1 buffer hit and it IS the leak; 0 FPs on
+21 hostile EN+DE controls (several of which LIST the same nav vocabulary); 0 of
+3,064 `longterm_episodes`; 0 of 1,987 gate-test literals; and -- the corpus that
+was NOT in the packaged harness -- **0 hits over 11,959 real-prose chunks in 495
+repo `.md`/`.txt` files**. The last scan is worth re-running for any future repeat-
+based candidate: it is the only check that exercises long natural prose.
+
+**Wired in BOTH gates** (the both-files rule): `buffer_store.is_junk` gets
+`_is_nav_weld_repeat_chrome(text)` next to the `_NAV_CHROME` block, and
+`internet_learner._is_junk` gets it next to `_is_serp_title_snippet_repeat(t)`.
+Both modules define their own copy of the three helpers (`_NAV_WELD_TOKENS`,
+`_nav_weld_run`, `_has_adjacent_exact_repeat`) beside `_is_nav_weld_repeat_chrome`,
+mirroring every other class. 3 new tests -> **184 passed** (up from 181).
+The leak row was then DROPPED from the live buffer by SIGNATURE
+(`purge_buffer_rows.py --sig "Suche VPS-Rechner Vergleichen"`): 300 -> 299, CRLF
+intact, 0 unparsable, and a whole-buffer re-scan now reports **0** rows that
+`is_junk` would refuse.
+
+### PITFALL re-confirmed twice in one run -- the trap the skill already names
+
+1. **A pre-existing rule flags your control.** One control
+   (`Suche, Blog, Preise, Kontakt, Impressum und Datenschutz sind die Menuepunkte.`)
+   came back `il._is_junk == True` while `bs.is_junk == False`. The reflex is to
+   loosen the new rule; the measurement says otherwise -- the NEW predicate returns
+   `False` on it (`nav_run=6` but `adj_repeat=False`), so the flag is a
+   **learner-only pre-existing rule**, exactly the one-directional asymmetry this
+   file has recorded before. Diagnose the predicate IN ISOLATION before touching it.
+2. **The two-way tree drift is still live.** `git status` in the repo showed my two
+   modules as UNMODIFIED while the worktree still had them -- because a CONCURRENT
+   agent had already committed class 149. Worse: the repo copy was AHEAD on a
+   class-143 fix (2 `(?-i:...)` scoped flags) and BEHIND on a class-145 ordinal-day
+   form, while live was the exact mirror image. A plain repo->live copy would have
+   DELETED the class-145 fix. The union script took LIVE as canonical (it is the
+   functional superset), re-inserted the repo-only DOC comment block, normalised the
+   stale row-count comment, and then asserted the three copies content-identical
+   (`diff` = 0 lines each way, EOL-normalised). Verify with
+   `git hash-object <f>` vs `git rev-parse HEAD:<f>` -- NOT with `git status`, which
+   lies in both directions here.
+3. **The test file's EOL convention DIFFERS between the copies.** The laptop copy is
+   LF-native (0 CRLF); the repo copy is CRLF-native. Appending one LF block to the
+   repo copy produced a file with 6296 CRLF **and** 74 lone LF, which `git status`
+   then reported as modified forever. Normalise the appended tail with
+   `b.replace(b'\r\n', b'\n').replace(b'\n', b'\r\n')` and assert
+   `loneLF == 0` afterwards. Check the target file's own convention; do not assume
+   the sibling's.
+
+## Root cause 153 (22.09.26) -- sys.platform is not platform.system(), and a silent platform fallthrough
+
+**The bug.** `get_chrome_debug_candidates(system)` branches on `system == "Darwin"`
+and `system == "Windows"` -- the values `platform.system()` returns. Called with
+`sys.platform`, which is `"win32"` on Windows and `"darwin"` on macOS, NEITHER
+branch matches, so the call **falls through to the Linux branch**. On this
+Windows host, with Chrome installed at the canonical path, the resolver returned
+**0 candidates** and the whole real-profile feature reported "no supported
+Chromium browser".
+
+**The tell.** `shutil.which("chrome.exe")` was also `None` (Chrome is not on PATH),
+so the ONLY thing that could find it was the install-path branch -- the branch the
+platform mix-up skipped. A pure PATH lookup would have hidden this.
+
+**The fix, and the rule.** Do not change the shared resolver's contract: its own
+callers (which pass `platform.system()`) and its tests already depend on it.
+Normalise at the new call site instead:
+
+    if sys.platform.startswith("win"): return "Windows"
+    if sys.platform == "darwin":       return "Darwin"
+    return platform.system() or "Linux"
+
+**Rule: `sys.platform` and `platform.system()` are different vocabularies.**
+`sys.platform` is `win32` / `darwin` / `linux`; `platform.system()` is
+`Windows` / `Darwin` / `Linux`. When a function takes a `system` STRING, check
+which one its own body compares against before passing either.
+
+**How it was found: by running it, not by reading it.** The unit tests for the
+resolver pass `"Windows"` explicitly and stay green. Only an end-to-end run on
+the real host exposed the mismatch, and only after printing the candidate count
+(0) and the raw environment (`ProgramFiles` set, `which` empty) side by side.
+
+## Root cause 154 (22.09.26) -- an ineffective mutation looks like a weak test
+
+Mutation-checking the new real-profile suite: removing the acknowledgement gate
+and removing the lock check each turned it red. A THIRD mutation -- "also copy the
+Cache directory" -- left all 15 tests green.
+
+The conclusion was nearly "the cache assertion is weak". It was not: the mutation
+was **ineffective**. `_PROFILE_DIRS` did not contain `"Cache"`; the exclusion came
+from the `shutil.ignore_patterns(*_PROFILE_SKIP)` filter, so editing the tuple
+changed nothing at all. Re-running the mutation against the code that actually
+implements the behaviour (`_PROFILE_DIRS + ("Cache",)`) turned the suite red as
+expected.
+
+**Rule: before concluding a test is weak, PROVE the mutation changed behaviour.**
+An edit that does not apply (a no-op substitution, a guard that is not on the
+path taken) reports "tests still pass" and gets misread as a coverage gap. Assert
+the substitution applied (`assert m != s`), and if the suite stays green, verify
+the mutation is on the executed path before touching the test.
+
+## Root cause 155 (23.09.26) -- a raw vLLM server LOG LINE stored as "knowledge"
+
+(NUMBERING NOTE: this class was first written as 150 and RENUMBERED -- the
+archive already carries a different "Root cause 150", and 151-154 are taken.
+Check `max(nums)` in this file before assigning a number.)
+
+Cron run began with the documented `cycle_a_technews: rejected ... both gated`
+line. Rates said rotation noise, not a regression: last-40 = 19 learned / 21
+rejected (48 %), per-day 45.7 % on both 22.09 and 23.09, per-source rates 37-50 %
+against an older 50-80 % band. No gate change was warranted FOR THE REJECTION.
+The find came from the prescribed cheapest method -- run `--once`, read the
+BUFFER TAIL `u`/`a` pairs, repeat after each fix:
+
+    u: Best practice from official docs: vLLM v2.12.0 kv_cache_prefill_prefetch
+    a: 'Using max model len 98304 (APIServer pid=90) INFO 11-28 11:46:45 [scheduler.'
+
+A server log line is chrome, truncated mid-token. It cleared BOTH gates because
+its digits fed the technical-signal gate and a 76-char row satisfied the length
+check.
+
+**Markers (data-only, BOTH files -- the Q/R/S pitfall):**
+
+| marker | form | measured |
+|---|---|---|
+| `apiserver pid=` | IL regex + BS substring | 1 buffer hit, IS the leak -> 0 FP |
+| `\[scheduler\.` | IL regex + BS substring | 1 buffer hit, IS the leak -> 0 FP |
+| `\binfo \d{1,2}-\d{1,2} \d{1,2}:\d{2}:\d{2} ` | IL regex only | 1 buffer hit -> 0 FP |
+
+**Candidates measured and REJECTED:**
+| candidate | why rejected |
+|---|---|
+| `\bpid=\d+` (bare) | 1 longterm_episodes hit -- a pid is ordinary prose |
+| `max model len` | topic-word trap: real docs prose says `max_model_len` / "max model len" without the log shape |
+
+**Verification that mattered (all four corpora):** 1 buffer hit and it IS the
+leak; **0 of 3,064** longterm_episodes; 0 gate-test literals; 0 of 7 same-topic
+prose controls (they mention max_model_len, scheduler queues, pid 90 and the
+APIServer -- none is a log line). Quote the DELTA, not the absolute: the WHOLE
+`buffer_store.is_junk` flags 422/3,064 episodes, so a raw count proves nothing --
+isolate your own markers before claiming 0 collateral.
+
+`pytest tests/scripts/test_internet_learner_gate.py` -> **186 passed** (+2
+functions: leak refused by IL._is_junk, IL._writer_gate_refuses and BS.is_junk;
+7 same-topic controls survive). Leaking row purged by signature, buffer
+300 -> 299, 0 unparsable, 39 structural-connection rows preserved. Three trees
+content-identical after EOL normalisation.
+
+### TRAP: `purge_buffer_rows.py` defaults to `--text-key a`
+
+The signature lived in the row's `u` field. The default run printed
+`keep 300 / drop 0` with the reassuring "nothing to drop -- if you expected a
+hit, the signature is wrong, not the buffer" message, while the row was still
+there. **That message is a LIE when your signature is in `u`.** Pass
+`--text-key u` (or grep the raw file first). A dry run that disagrees with a
+direct grep means the probe is wrong, not the file.
+
+### TRAP: class numbers collide across the two skill files
+
+`internet_learner.py` uses `class N` in comments; each skill file numbers its own
+sections. 150 was already used here for an unrelated topic while the code
+comment took the same number. Derive the next free number from BOTH sources.
+
+## Root cause 156 (23.09.26) -- a HALLUCINATED LLM query, stored OFF-TOPIC
+
+`cycle_f_multi_domain` learned an unrelated lesson because `_llm_novel_query`
+returned nonsense:
+
+    q = "neural duhmer: how to implement duhmer's duhmer in python"
+    stored a: 'Creating labels y = [[ 1 , 0 , 0 ], ... ] Step 2 : Visualizing the
+               Dataset ... use Matplotlib to plot the images for each letter.'
+
+The STORED sentence is ordinary code-tutorial prose, so **no chrome gate can
+reject it** -- the defect is upstream, in the query generator. The row is
+off-topic poison in the LoRA set.
+
+**Why the obvious marker fails:** the garbled term is not a literal you can list
+(`duhmer` today, anything tomorrow). A *lexicon-free* shape is needed.
+
+**Measured candidate -- REJECTED:** "a long token repeated >= 2x" fires on 53 of
+800 recorded seen-queries, most of them legitimate NEWS HEADLINES
+("AI Regex Scientist: A self-improving regex solver", "Agent Memory in Portia
+AI's Open-Source Agent Framework"). The learner's real headlines repeat common
+words, so the rule is unusable.
+
+**Consequence: do not auto-synthesise the query from the leak.** One leak is not
+enough to fit a rule. The honest state: purged the single row
+(`purge_buffer_rows.py --text-key u --sig duhmer`), documented the defect, and
+left `_llm_novel_query` unchanged until a second instance of the shape appears.
+**Count first, patch second.**
+
+A cheap corroborating check for any future instance: the bad query also landed
+in `.il_seen_queries` (800 rows) -- the query log, not just the buffer, is where
+a generator defect is visible.
+
+**157** (23.09.26): a DOCS/SECTION-HEADING STACK welded to an interrogative heading --
+`cycle_d_docs` stored TWO rows that had passed BOTH gates: the docs page's section
+headings concatenated with the newlines removed and ending in a question heading
+(`... vLLM Alternatives Is SGLang Better Than vLLM?` and
+`Batch Scheduling and Concurrency Tensor Parallelism for Multi-GPU Monitoring Memory
+in Real Time Full Production Configuration How vLLM Uses GPU Memory vLLM allocates ...`).
+`_is_nav_list` wants >=6 TitleCase tokens AND no comma, so a mixed stack never matched;
+the questions/digits fed the technical-signal gate and both rows cleared the >=90
+long-prose trust. FIXED via `is_docs_heading_qweld` in BOTH gates: interrogative welded
+to a preceding word + len>=80 + cap-ratio>=0.50 + <=1 sentence terminator.
+MEASURED-AND-REJECTED: bare question-weld (7 buffer + 2 real episode hits), a
+TitleCase-run-then-lowercase-prose rule (215 episodes), `cap>=0.55` (misses the live
+0.54 row), 0-terminator window (misses both rows). Second live case of "the rejection
+was NOT the regression": per-day rate 42.9% vs the 38-75% band, all `buffer_junk`
+reasons documented (`duplicate` at the cap, plus already-gated SERP shapes).
+TWO live traps re-confirmed: (1) `git push HEAD:main` was REJECTED non-fast-forward
+even though the local file content was a strict SUPERSET of origin/main (0 origin-only
+lines, verified by line-set union over the blob) -- the branch had simply diverged, so
+the fix is a `git worktree add C:/Users/damir/oa157wt origin/main`, copy the verified
+files in, and push from there; NEVER rebase the shared live tree (Darwin + cron write
+to it concurrently). (2) `git worktree add -f /c/Users/.../wt origin/main` under MSYS
+creates the tree at the mangled path `C:/c/Users/...` -- always pass the NATIVE
+`C:/...` form to `git worktree add`.
+
+**158** (23.09.26): a BIBTEX CITATION RECORD welded to a license footer -- `cycle_b_papers` stored an ACL Anthology page's `pages = {23934-23949}, year = {2025}, publisher = {Association for Computational Linguistics} }` chain with the trailing brace still attached, welded to `This website is licensed under a Creative Commons Attribution-ShareAlike 4.` (243 chars, braces+digits fed the technical-signal gate). Fix = `is_citation_record_weld`, the CONJUNCTION of (1) a `field = {value}` pair whose value is a multi-word PHRASE (>=3 word tokens -- a citation's values are prose, a config's are scalars) and (2) a license footer. In BOTH gates. Measured over 17,905 rows: 1 hit, IS the leak -> 0 episodes, 0 gate-test literals, 0 of a 9-case hostile battery. MEASURED-AND-REJECTED alone: the license footer (4 asserted literals + 2 hostile prose FPs -- prose ABOUT a CC license is real knowledge), the prose-valued assignment (3 hostile FPs), the bare `field = {value}` pair (3 hostile config FPs) and the BibTeX field VOCABULARY (5 hostile FPs, because prose that merely NAMES author/title/year trips it). TRAP re-confirmed a THIRD time: buffer_store imports `re as _re`, so a new module-level `re.compile(...)` raises NameError at import while `ast.parse` stays GREEN -- only `exec_module` catches it.
+
+**159** (23.09.26): a SECURITY-ADVISORY LISTING CARD -- one entry's title welded
+to its GHSA identifier, its publication date, its reporter handle, its severity
+badge, the list's own BARE numeric pager (`Previous 1 2 3 Next`) and the
+trailing CTA, truncated mid-word. `cycle_d_docs` AND `cycle_c_github` each
+stored it, twice in the buffer tail; 235 chars with digits cleared the >=90
+long-prose trust and the technical-signal gate. Fix = `is_advisory_listing_card`
+in BOTH gates, keyed on the conjunction of a GHSA-id AND the bare numeric pager.
+
+THE LESSON WORTH KEEPING (a near-miss, not a chrome class): the SAME page shape
+WITHOUT the advisory date PASSES the pre-existing `_is_nav_list` (>=6 TitleCase
+tokens, no comma). The date brings a COMMA -- and ONE comma disarms that rule.
+Measured: `_is_nav_list` True on the date-free form, False on the live one. So
+when a nav-list-shaped row leaks anyway, measure `_is_nav_list` on the row
+BEFORE designing a rule: a single punctuation character can be the whole gap,
+and the fix then belongs in a NEW class, not in `_is_nav_list` (widening it
+would have cost every comma-bearing prose row).
+
+Rejections, all MEASURED-AND-REJECTED (do not re-add): GHSA-id alone (it is also
+how prose CITES an advisory, +1 asserted gate-test literal); the bare pager
+alone (2 hostile prose FPs + 1 asserted literal); GHSA + a severity badge (2 of
+3 real citing-prose controls); GHSA + `by <handle>` (1 asserted literal); the
+pager + a published-date (3 of 4 both-part controls); the CTA wording alone.
+Conjunction census: online_buffer 2 (both the leak), buffer_junk 26 (same
+family), learn_log 0, longterm_episodes 0, asserted gate-test literals 1 (the
+pre-existing GHSA string the test ALREADY documents as chrome gated by
+`_is_nav_list`, "a different gate" -- same shape, not an FP). 0 across 3 real
+citing-prose controls and 5 both-part controls.
+
+Two harness notes from this run:
+- extracting asserted test literals with a REGEX split implicitly-concatenated
+  strings across source lines, so a known 115-char literal was never measured
+  as a whole and the census read 0 where the truth was 1. Fold them with
+  `ast.parse` + `ast.Constant` instead. A regex literal-scan under-counts.
+- an anchor taken from the TAIL of the previous class's helper (`if len(...) >=
+  3: return True / return False` + the next `def`) inserts the new helper
+  INSIDE the old function -> `IndentationError: unexpected indent` at the old
+  function's first line, and the byte-count still looked plausible. Anchor on
+  the `def` line of the container, and restore from the `.bak` the patcher made
+  BEFORE the write (the failed run had already overwritten the file).
+
+Cleanup: 300 -> 298 records by signature, 0 unparsable, 32 structural-connection
+rows intact. Tests 190 -> 193 in the gate file, `tests/scripts` 454 passed.
+Shipped as `5a75bf3b4` via a fresh worktree off origin/main (the live tree was
+DIVERGED 11/55 but a strict content superset -> 198 insertions / 0 deletions).
+
+## class 160 — an OFF-TOPIC result page is not a source for the query (live 23.09.26) — FIXED
+### This is root cause AG's recommended fix point, implemented and measured
+
+AG (above) left the "deep_learn ranks the WRONG page" defect OPEN and named the
+likely-correct fix point: *"URL selection in `_search_urls` / the deep-read ...
+a query mentioning 'Rogue' Cursor should never fetch the Rogue Fitness page. Add
+a title/domain relevance check between the query and the fetched page BEFORE
+extraction."* Class 160 does exactly that.
+
+### Symptom
+```
+u = Internet learning (Spain to impose fines for not labelling AI-generated
+    content): What should an AI agent know?
+a = An unpaid ticket picks up $10 at 30 days, another $20 at 60, and another
+    $30 at 90, then turns into a court judgment around day 100.
+```
+The row passed every gate: the sentence is grammatical prose with a verb and
+digits, carries no nav chrome, and `_clean_insight`'s clock/byline strips do not
+fire on it.
+
+### Root cause is the SOURCE page, not the scorer
+`_search_urls` returned `https://www.newsbreak.com/news` — a generic city-news
+**FEED**, not the article behind the search hit — as the top fetchable URL.
+Measured on the fetched page: 6000 chars, ZERO of the query's six topic tokens
+(`spain`, `impose`, `fines`, `labelling`, `ai-generated`, `content`). The class-134
+news-index gate does NOT catch it: **0 relative stamps** (it is a nav/feed shell,
+not a card stream), whereas every page class 134 was calibrated on showed >=10.
+The second URL (the real Reuters article) fetched 0 chars, so the off-topic feed
+WAS the entire deep read.
+
+### Why the gate is at the PAGE and NOT at the insight
+This is the trap AG already measured, and it fired again here: over the live
+300-row buffer, **45% of rows share ZERO 4+ char tokens with their question
+while being legitimate** (AG measured 43% on 24.09-row set; same verdict). Example
+pair, both real buffer rows:
+```
+q = "Pushing the Limits of LLM Quantization via the Linearity Theorem"
+a = "AM4 300/400/500 and AM5 600/800 Series A specification-level comparison
+     of AMD chipsets"          <- off-topic, and the gate DOES catch it
+```
+vs. good prose answering in its own vocabulary:
+```
+q = "A Visual Guide to LLM Quantization"
+a = "32-bit float: 4 bytes per parameter (75% memory reduction)"   <- legitimate
+```
+An insight-level overlap gate deletes the second kind. A **page**, unlike an
+answer, must contain the topic's own words to be about that topic at all.
+
+### Measured, 23.09.26
+- 6 live queries / 12 fetched pages: all 3 relevant pages showed >=2 topic
+  tokens; every page that had produced an off-topic row showed 0.
+- 7 live queries replayed after the fix: off-topic pages DROPPED (NewsBreak feed
+  0 tokens, a USENIX index 0, TechRadar `/pro` 0), relevant pages KEPT (citizen.digital
+  6 tokens, arxiv abs 3, meta.wikimedia 2, prismix 2).
+- 199/199 tests pass in `tests/scripts/test_internet_learner_gate.py`.
+
+### Implementation
+`is_off_topic_page(query, page_text)` + `topic_tokens(query)` in
+`scripts/training/internet_learner.py`, consulted inside `deep_learn`'s page loop
+right after the class-134 news-index gate. `topic_tokens` drops query scaffolding
+("latest research insight", "what should an agent know", "best practice official
+docs") and pure function words, so the overlap test stays meaningful. Two guards
+keep it from over-reaching:
+- `_RELATIONAL_QUERY_RE` — a query asking for a **relation** ("structural
+  connection between X and Y", "difference between correlation and causation") is
+  answered by *phrasing* the relation, not by repeating its nouns. Real buffer row:
+  "The shared underlying pattern is a recursive, iterative refinement cycle ..."
+  on-topic with ZERO literal overlap. Such queries are never judged.
+- `_OFF_TOPIC_MIN_PAGE_CHARS = 800` — a thin/partial fetch is not evidence of an
+  off-topic source and is never judged.
+Plus `_OFF_TOPIC_MIN_TOKENS = 2`: a query with fewer than two distinctive tokens
+has nothing to check against.
+
+### Honest scope boundary — what 160 does NOT catch
+`_RELATIONAL_QUERY_RE` covers "what is the difference between ...", but
+**"how do X and Y differ?" shares no noun** with an answering page and is judged
+if it yields >=2 tokens. And AG's own `'Rogue' Cursor` case is out of reach by
+construction: `en.wikipedia.org/wiki/Rogue_(company)` **does contain the word
+"rogue"**, so a zero-overlap rule cannot separate that page from the real article.
+160 removes the *0-overlap* sub-class of AG; the *shares-a-word-different-sense*
+sub-class stays open. Do not claim AG is closed.
+
+### Cleanup (the other half of the repair)
+Dropping the gate stops NEW rows; the poisoned row was already in the store and
+the KTA consumer applies no `is_junk` to what it reads. Removed by signature:
+```
+python "C:/Users/damir/AppData/Local/openamer-laptop/skills/software-development/training-scripts-hygiene/scripts/purge_buffer_rows.py" --sig "unpaid ticket" --apply
+```
+300 -> 299 rows, backup written.
+
+## Class 161 (23.09.26) -- writer-gate census re-measured: 92% is ONE writer rule, learner blind to 100% (NON-FIX)
+
+Cron run started from the documented trigger (`cycle_g_security: rejected, not trained
+(shallow + deep read both gated)`). Step 0 (packaged rates table) said NORMAL VARIANCE:
+per-day 23.09. is 44.3 % (47 ok / 59 rej), inside the post-13.09. regime (35-68 %,
+stable for 10 days), and per-source (7d) is flat at 37.9-50.7 % -- no source collapsed.
+So no gate change was licensed for the rejection itself. Same conclusion as 133.
+
+### The one new measurement: attribute the `writer-gate` census
+
+142 introduced `reason=writer-gate` in `buffer_junk.jsonl` but never attributed it.
+Measured this run on the last 300 writer-gate rows (152 usable, 300-char answers):
+
+| refusal cause (buffer_store side) | rows |
+|---|---|
+| `_is_serp_snippet` | 140 |
+| `_is_nav_chrome` | 44 |
+| other / marker tuple | 2 |
+
+(rows can trip more than one rule, so the column sums above the row count)
+
+**The decisive number: `internet_learner._is_junk()` returned False on 152/152.**
+The learner that produced the text believes every one of them is trainable; the
+writer refuses all of them. That is the 142 disagreement, now QUANTIFIED rather
+than merely present, and 140/152 (92 %) of it is a single helper --
+`buffer_store._is_serp_snippet` -- i.e. the SERP-snippet family, which is the
+same leak family 142 measured shrinking (`_is_serp_snippet` 222 -> 64) but which
+is still the dominant writer-gate cause at this scale.
+
+Reproduction (no shell heredoc -- regex-adjacent text through MSYS is a trap):
+
+```python
+import importlib.util, json, collections
+def load(p, n):
+    s = importlib.util.spec_from_file_location(n, p)
+    m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
+bs = load('buffer_store.py', 'bs_probe')
+il = load('internet_learner.py', 'il_probe')
+rows = [str(json.loads(l).get('a') or '')
+        for l in open('buffer_junk.jsonl', encoding='utf-8', errors='replace')
+        if l.strip() and json.loads(l).get('reason') == 'writer-gate'][-300:]
+c = collections.Counter()
+for a in rows:
+    for name in ('_is_serp_snippet', '_is_nav_chrome',
+                 '_is_docs_cta_serp_run', '_is_truncated_serp_tail'):
+        if getattr(bs, name)(a):
+            c[name] += 1
+print(c, 'learner blind:', sum(1 for a in rows if not il._is_junk(a)), '/', len(rows))
+```
+
+Run it from `scripts/training/` with `OPENAMER_HOME` set -- otherwise `import` and
+the script paths silently resolve to the wrong copy (142 environment note).
+
+### Why this is still NON-FIX
+
+The disagreement is real and now attributed, but the rate is not: the current
+reject streak is **8**, and the longest streak in the whole 2723-row log is
+**14**. The novelty test that 133 mandated also passes -- the last 60 `duplicate`
+rejects carry **36 distinct `u`** (and 48 distinct `(u, a)` pairs), so this is
+NOT the 121/128 "0/60 novel" saturation signature. Reason mix, last 400:
+`duplicate` 212, `writer-gate` 101, `junk` 80, `no-tech-signal` 7.
+
+Closing the 92 % -- e.g. folding `_is_serp_snippet` into `_is_junk` -- is exactly
+the fix that 142 MEASURED-AND-REJECTED (4 gate tests regress: the extractor
+becomes as eager as the writer and eats prose that merely mentions a SERP-ish
+date). Attribute first, then re-open only if the streak exceeds 14 or the
+`_is_serp_snippet` share climbs while the rate falls. Neither is true today.
+
+Six consecutive `--once` cycles this run (48-72 s each), 0 stored; the buffer
+stayed at its 300-row cap. That matches the documented rotation reality, not a
+stall: the cap means a cycle must beat `duplicate` before it can even be judged.
+
+## class 161 (23.09.26) -- the reject audit trail was unreachable, so rejection was unobservable
+
+**Symptom.** `internet_learner.py --once` logged the generic
+"rejected, not trained (shallow + deep read both gated)" for cycle after cycle
+on every source, and there was no way to tell WHICH gate fired: the documented
+audit trail (`buffer_junk.jsonl`) had not been appended to since 10:19 while
+cycles kept running at 10:22, 10:25, 10:31, 10:37.
+
+**Root cause (NOT a learner gate).** `buffer_store.py` resolved its home as
+
+    _HOME = Path(os.environ.get("OPENAMER_HOME", Path.home() / "AppData" / ...))
+
+Cron exports `OPENAMER_HOME='/c/Users/damir/AppData/Local/openamer-laptop'`
+(MSYS form). Joined onto `scripts/training` that string does not yield
+`/c/Users/.../scripts/training` -- on Windows Python it is the **RELATIVE**
+path `\c\Users\damir\AppData\Local\openamer-laptop\scripts\training`,
+which does not exist. So `DEFAULT_BUFFER` and `JUNK_LOG` pointed nowhere and
+`_audit()`'s own `except Exception: pass` swallowed every rejection silently.
+The learner was NOT lying about the reject; the reason was being discarded.
+
+**This is the known MSYS-path class** (`OPENAMER_HOME` in MSYS form breaks a
+Windows-Python consumer); `buffer_store.py` was the one consumer that had no
+tolerant resolver, while `internet_learner`, `auto_skill_creation`,
+`knowledge_to_action` and `self_improve` all already had one.
+
+**Measured proof (before/after, same command).**
+- MSYS form, before: `JUNK_LOG = \c\Users\...\buffer_junk.jsonl`,
+  `parent exists = False`, an explicit `_audit("PROBE_USER", "PROBE", "probe-test")`
+  wrote NOTHING, and a full `--once` cycle left the audit row count at exactly
+  9461.
+- After: `JUNK_LOG = C:\Users\damir\...\buffer_junk.jsonl`,
+  `parent exists = True`, the same probe GREW the file, and the next cycle
+  produced three explicit rows -- `writer-gate`, `junk`, `junk` -- naming the
+  page that killed it.
+
+**Fix.** `_resolve_home()` in `buffer_store.py`: build candidate homes
+(`$OPENAMER_HOME`, `~/AppData/Local/openamer-laptop`, `~/AppData/Local/openamer`,
+`Path(__file__).parents[2]`) and return the first whose
+`scripts/training` IS a directory; fall back to the env value. Tolerating a
+differently-spelled-but-correct home is the point -- the ABORT guard stays
+reserved for a home that truly is not this install.
+
+**Verify:** `python -m pytest tests/scripts/test_internet_learner_gate.py`
+-> 199 passed (no gate regression).
+
+**PITFALL for whoever fixes the next one of these.** The LIVE tree
+(`~/AppData/Local/openamer-laptop`) and the repo tree
+(`~/openamer-repo`) are separate copies that a sync can overwrite. Here they
+were byte-identical before the patch (md5 `c10dec5d00945e6f757fdab32ec8fcd0`),
+and the live patch WAS reverted mid-run by a repo->live sync -- the live md5
+came back as the repo's. Patch BOTH trees, and re-check the md5 after the next
+cycle. In the repo, `buffer_store.py` carried ANOTHER agent's uncommitted WIP
+(a citation-record gate far below), so the fix was applied as a working-tree
+edit and deliberately NOT committed -- do not blow away their work.
+
+**Do NOT** treat the residual ~57% reject rate as fixed by this. This entry
+only restores observability; the individual reject reasons are now readable
+for the first time and must be attributed on their own evidence.
+
+## 158 landed on BOTH sides + the stale-branch trap (cron, 23.09.26)
+
+A later cron run started on `cycle_d_docs: rejected` (rate 40.3% for the day vs
+27-67% since the 13.09 tightening) -- that is NOT a regression, so the cycle was
+re-run and no gate was changed for it. The find came from `git` instead.
+
+**Class 158 was HALF-landed.** Commit `ac7fe9b22` put `is_citation_record_weld`
+into `internet_learner.py` -- the EXTRACTOR gate -- while the `buffer_store.py`
+half (the predicate plus its wire-in at `_is_nav_chrome`, i.e. the WRITER gate
+that `active_learn` / `online_learning` consult) stayed an uncommitted
+working-tree edit. The two gates therefore disagreed on the very shape the fix
+was written for. Landed via **PR #58**
+(`fix/learner-class158-writer-gate-mirror`): 1 file, `+35/-4`, proven in a fresh
+worktree at `origin/main`.
+
+The earlier entry's PITFALL ("the repo carried ANOTHER agent's uncommitted WIP, so
+the fix was deliberately NOT committed") is what left it stranded: by the next
+session that WIP was published upstream as the extractor half, so "don't blow away
+their work" had quietly become "this fix will never ship".
+
+**Second defect in the same file -- `_resolve_home` (root cause: MSYS HOME).**
+`_HOME` was built by joining `OPENAMER_HOME` onto `scripts/training`. Cron exports
+`OPENAMER_HOME` in MSYS form (`/c/Users/...`), which yields the RELATIVE path
+`\c\Users\...\scripts\training`, so `DEFAULT_BUFFER`/`JUNK_LOG` pointed nowhere and
+`_audit()`'s bare `except Exception: pass` swallowed every rejection. MEASURED:
+`buffer_junk.jsonl` frozen at **9,461 rows** across cycles that logged
+`rejected, not trained` -- the audit trail was silently dead. After the fix it
+resumed: **9,461 -> 9,478**. `_resolve_home()` isdir-probes each candidate, the
+same shape as `internet_learner` / `auto_skill_creation` / `knowledge_to_action`.
+Verified in all three cases: MSYS form -> live buffer, valid Windows form ->
+unchanged, nonexistent throwaway dir -> still the real install.
+
+**The transferable trap: a fix branch that nobody PRs is invisible.** The live
+repo sits on `fix/scoreboard-stale-openamer-home`, which is **13 behind /
+60 ahead** of `origin/main` and was pushed WITHOUT a PR. Every prior cron round
+had reported "pushed and verified" and been right -- and the work still reached
+nobody. So before declaring a fix published:
+
+    1. `git rev-list --left-right --count origin/main...HEAD`  -> is my branch
+       even based on the current main?
+    2. Query the PR list for my branch name. No PR = not published, regardless of
+       a green push.
+    3. Prefer a FRESH branch off `origin/main` carrying only the relevant file
+       (worktree + `cp`), never the 60-commit branch -- that keeps the diff
+       reviewable and the test run meaningful.
+
+**Bash strips backticks in `python -c "..."` too.** Writing the PR body inline,
+every `\`identifier\`` was EXECUTED by the shell: the PR was created with all
+identifiers silently missing (`command not found` x30 in the log, exit 0). The
+"never build the message inline in bash" rule is not only about commits -- write
+the body to a FILE and have the script read it, then read the body back from the
+API and count the backticks. Two PRs needed a PATCH to repair.
+### Class 162 (23.09.26) -- a DECIMAL POINT is not a sentence terminator
+
+`cycle_g_security` stored, verbatim from `online_buffer.jsonl`:
+
+    CVE-2026-58138 is a critical, unauthenticated remote code execution
+    vulnerability (CVSS 3.
+
+The page's real sentence continues `3.9) affecting Orkes Conductor ...`. The
+deep-read extractor's sentence regex `[A-Z][^.!?]{40,250}[.!?]` treats the
+period inside `3.9` as the terminator, so the stored row is a mid-number cut.
+
+MEASUREMENT (12,540 real texts: live buffer + buffer_junk + learn log):
+23 sentences end at a `<digit>.` that the page CONTINUES with a digit.
+
+WHY THIS IS NOT THE class-85 NON-FIX. The archive already records "a truncated
+model output has no discriminator" and refuses a REJECT gate on "text ends in
+digit + period" -- correctly, because **1,710** such endings are legitimate
+(`--gpu-memory-utilization 0.`, `Gemini 3.`, `... held from February 25 to 27,
+2025.`). That verdict STANDS and the gate is still not shipped. class 162 is a
+different repair point: the extractor's sentence BOUNDARY, not the writer's
+accept/reject decision. When the greedy match ends at `<digit>.` AND the very
+next character in the page is a digit, keep reading to the next terminator that
+is not itself a decimal point.
+
+The discrimination is precise: only 23 of the 1,733 `<digit>.` endings have a
+digit immediately after them. The other 1,710 are real sentence ends.
+
+Measured as a pure widen over the corpora: **21 extends, 0 shortens, 0
+non-prefix**; scoring the widened candidate raises the score **20x** and lowers
+it **never**. Shipped as `_SENTENCE_RE` + `_sentences()` and wired into the
+deep-read loop; 5 regression tests (the healing, a decimal run, a real
+sentence end, a date/count, and the wire-up itself). 204 passed in both trees.
+
+TRAP (eol): the `patch` tool turned **184 pre-existing lone-LF lines** into
+CRLF on an edit that only INSERTED a block -- `git diff --stat` could not show
+it because the repo carries a mixed-EOL blob. Rebuild byte-exactly instead:
+`git show HEAD:<f>` + a byte-level `str.replace`, then assert the lone-LF line
+number set is unchanged (`184 == 184`) before writing. The repo's
+`test_internet_learner_gate.py` is CRLF-native but
+`internet_learner.py` is MIXED (6533 CRLF + 184 lone LF) -- never assume one
+EOL convention per file.
+
+TRAP (test literal): the extractor requires **>=40 chars before the first
+terminator**. A hand-written "realistic" example silently yields `[]` and looks
+like a broken fix. Build the test fixture from the LIVE stored row and assert
+it yields a sentence first.
+
+
+## class 165 (23.09.26) -- a site sidebar label run welded to its announce line
+
+`cycle_d_docs` stored (300 chars, both gates passed):
+
+    "Tech news VPN Deals General Apps AR and VR Business Cameras Cybersecurity
+     Entertainment Reviews and guides Smart home Social media Transportation
+     Wearables Claude AI The latest Claude AI news, updates and announcements
+     Anthropic Drops Claude Opus 5.5 ..."
+
+The length cleared the `>=90` (extractor) / `>=25` (writer) floors and the brand
+names satisfied the technical-signal gate -- the same double-pass shape as
+classes 69 / 139.
+
+TWO STRUCTURAL MARKERS, ANDed; each alone is ordinary prose:
+
+  M1  `>= 2` DISTINCT site nav labels, case-folded so a repeated label cannot
+      self-satisfy the count -> a sidebar MENU was listed.
+  M2  a section ANNOUNCE line -- `the latest <topic> news, updates and
+      announcements` -> the page narrated its own category.
+
+MEASUREMENT over 3,901 real rows (`online_buffer` 300 + `online_buffer_prejunk_archive`
++ `training/train.jsonl` + `memory/longterm_episodes.jsonl` 3,059) and 9,861 junk
+rows, on BOTH gates: M1 alone = 2 real hits (prose about the labels); M2 alone =
+4 real hits (ordinary prose); **M1 AND M2 = 1 real hit and that hit IS the
+leaking row, 0 junk**. A 10-case hostile battery (prose about the labels, a
+quoted announce headline, the bare `TechRadar - Upgrades, reviews and guides`
+CTA) = 0 FPs. Both single-marker forms were MEASURED-AND-REJECTED.
+
+Applied to BOTH gate copies (`internet_learner._is_junk` at extraction,
+`buffer_store._is_nav_chrome` as the writer gate) + a both-paths regression
+test. Published as PR #61 (branch `fix/learner-class165-site-nav-announce`,
++125/-0, 194 passed).
+
+### TRAP -- concurrent writers collide on the CLASS NUMBER
+
+Two independent cron/autopilot rounds picked `class 164` for two DIFFERENT leaks
+within the same hour: this one (site nav + announce line) and an arXiv
+section-TOC chain welded to `Download PDF` (`_is_section_toc_chain`, already
+uncommitted in the shared tree when this round started).
+
+- A class number is NOT a unique key. Before claiming one, grep the number
+  across ALL target files:
+  `grep -c 'class NNN' internet_learner.py buffer_store.py test_..._gate.py`
+  and also inspect the shared tree's UNCOMMITTED diff for a same-number claim --
+  `git diff | grep -o 'class [0-9]*'` sees work HEAD does not have yet.
+- Renumber only YOUR OWN comment/marker lines (match a unique phrase, not the
+  bare number) so the sibling's entry keeps its number.
+- The sibling's in-flight hunks sit in the SAME hunk as yours (adjacent
+  call sites in one `@@` block), so a hunk-level `git add -p` cannot separate
+  them. Build the commit in a clean worktree off `origin/main` and re-apply only
+  your own files/hunks there -- never stage the shared tree.
+
+### TRAP -- the LIVE tree's test file can be BEHIND the repo copy
+
+`cp LIVE -> repo` clobbered the repo's newer class-163 test (the repo HEAD test
+file had it, the LIVE copy did not) and showed up as `-69` deletions. Restore
+with `git checkout -- <file>` FIRST, then re-apply your insert there, and sync
+repo -> LIVE (the direction that never regresses). `git diff --stat` reading
+deletions that are not yours is the tell.
+
+## class 164 (23.09.26) — a non-English DISTILLATE reaches the stored row
+
+**Symptom.** `python scripts/training/internet_learner.py --once` can report
+`security-learn: Anwendungsmöglichkeiten: Einen Sekretariats-Agent für
+Erreichbarkeit, einen Weiterleitungs-Agent für das Durchstellen an die richtige
+Person, ...` — i.e. the cycle SUCCEEDS and the row is written to
+`online_buffer.jsonl`, but the `a` (answer) is a German Azure-docs paragraph
+about call-center FAQ bots under an unrelated ENGLISH question
+(`Security learning (jailbreak prevention ...)`, `Latest research insight:
+Open-sourced jev architecture ...`).
+
+**Root cause.** The SECONDARY extraction path (`deep_learn` -> smart_route,
+`internet_learner.py` ~L5860 `LIVE + "/v1/chat/completions"`, `model:
+mini-openamer`, prompt "Distill the ONE most valuable technical insight ... Start
+with [INSIGHT]").  The prompt does NOT constrain the distillation's LANGUAGE, so
+when the routed model answers in the page's own language the distillate is
+stored as-is.  The row therefore has an ENGLISH `u` welded to a NON-ENGLISH `a`.
+
+**Measured (23.09.26, live tree).** Over the 300-row `online_buffer.jsonl`:
+2 of 300 `a` values are German-ish (>=3 German marker tokens), both from this
+same German call-center paragraph, both under unrelated English `u`.
+`a` appearing under MORE THAN ONE distinct `u`: 10.
+The identical `Sekretariats-Agent` string had ALREADY been refused 15x in
+`buffer_junk.jsonl` (every one logged `reason: duplicate`) — so this is not a
+new page, it is a pre-existing page that had been filtered by the duplicate gate
+and now surfaces on a `u` that is new.  It also appears 5x in
+`internet_learn_log.jsonl` spanning 15.09.26 .. 23.09.26, with the 15.09.26
+occurrences as `doc-learn`/`domain-learn` — i.e. the same German paragraph has
+been entering under DIFFERENT `u` for 8 days, which is exactly what the
+u-agnostic near-duplicate rule below is for.  `buffer_junk` is a 9583-row
+grep-only log: it carries `{reason, u, a}` and NO timestamp — a class's AGE can
+therefore only be measured via `internet_learn_log.jsonl`, not via the junk log.
+
+**Why NO code fix was shipped on this evidence (do NOT re-litigate).** Both
+obvious predicates are already measured-and-rejected in this repo:
+
+- A **language rule** is explicitly forbidden by the class in
+  `buffer_store.py`/`internet_learner.py` around the Chinese Q&A-portal
+  detectors (`_is_qa_portal_chrome`): "Keyed on the portal's own LABEL CHAIN,
+  never on the language ... a language-agnostic 'is CJK' rule, which would have
+  eaten that real knowledge, is deliberately NOT used."  Measured 16.09.26 over
+  the live 5013-row corpus: the two genuine Chinese technical rows carried no
+  marker and stayed learnable.  Keying on language would eat them too.
+- A **near-duplicate rule keyed on `a` alone** is measured-and-rejected at
+  `buffer_store.py` ~L3641 ("the sentence DRIFTS, so exact `_is_duplicate`
+  missed it; same-`u` Jaccard MEASURED-AND-REJECTED, 0.24-0.33 vs a legitimate
+  0.40").  The measured 10 `a`-under-multiple-`u` cases here are legitimate
+  cross-`u` repeats (vLLM doc cycles), not rot: vLLM doc cycles are ~5x/day
+  against a 300-row cap; `online_buffer` was md5-identical at its 300 rows for
+  the whole 23.09.26 day, so those twins are already inside one rolling window.
+
+So a naive `a`-based dedupe would delete real vLLM cycles to save 2 rows.  The
+honest state is: the defect is REAL and MEASURED at 2/300, the two candidate
+predicates are already spent, and the next attempt needs an `a`-DRIFT-TOLERANT
+match (same-page `a` under a different `u`) with a control proving it spares the
+legitimately-repeating vLLM rows.  Do NOT ship a rule on the 2/300 alone.
+
+**Related:** class 160 (`is_off_topic_page`) is the same FAMILY (a result PAGE
+that does not belong to its query) but is a different mechanism — 160 rejects at
+the gate, 164 is let through by the LLM fallback.  AG (deep_learn ranks the
+WRONG page) stays deliberately unpatched; this class names the same function's
+second door, not a reason to re-open AG.
+
+**166 (23.09.26)** -- a GitHub-TRENDING listing row: the card title restated
+twice, the site label, the relative-age badge WELDED to `release`
+(`2yrs agorelease`), the feed counters (`101.9K 0 0`) and a truncated
+description.  Stored verbatim by `cycle_c_github`; 300 chars WITH digits, so
+the >=90 long-prose trust AND the technical-signal gate both passed it.
+
+Fix = `_is_ago_release_badge_weld` in BOTH gates:
+
+    \b\d+\s*(?:yrs?|years?|months?|days?|hrs?|hours?|mins?)\s*agorelease\b
+
+The MISSING SPACE is the discriminator -- markup no human sentence produces,
+the same argument as the class-9 `-->` HTML-comment rule.  Measured over
+online_buffer / buffer_junk / internet_learn_log / longterm_episodes / the
+asserted gate-test literals / every .md+.txt in the repo and the live skills
+tree: 1 hit and it IS the leaking row, 0 elsewhere, 0 real-prose FPs.  The
+LOOSE form (allowing a space between `ago` and `release`) was MEASURED AND
+REJECTED: 2 real-prose controls (`2yrs ago release was announced in the
+changelog`, `The model card was updated 6 months ago release notes say`).
+
+Two live notes from the same run:
+- The buffer at ENTRY still carried a **class-165** row (the site sidebar label
+  run + announce line, `Tech news VPN Deals ...`).  The class-165 gate was
+  already in the code -- the ROW was simply never deleted.  A gate that catches
+  a row is not a cleanup: after applying a gate, delete the matching rows in
+  the SAME step (the class-58/AS lesson, recurring).
+- The prior cron session had died with the whole class-166 fix **UNCOMMITTED**
+  in the shared tree (the class-AV trap, second occurrence): both modules +
+  the test file were modified, the buffer had already been cleaned, and the
+  log looked like "nothing to do".  `git status --porcelain scripts/training
+  tests/scripts` FIRST, every run.
+- Publishing: the accumulated working branch was 64 ahead / 13 behind with no
+  PR.  The class-166 change went out as a FOCUSED branch off `origin/main` in a
+  worktree, containing ONLY the class-166 delta (102 insertions / 0 deletions),
+  so it does not duplicate the still-open PR #61 (which carries 155/157/158/159/
+  165).  Do NOT copy the whole live file into a fresh worktree: it drags the
+  entire unlanded stack along.
+- PITFALL, new and sharp: `io.open(path, "wb").write(expr)` **TRUNCATES the
+  file before `expr` is evaluated** -- a NameError inside `expr` leaves a
+  0-byte module.  Write to `<path>.tmp` and `os.replace()`.
+
+
+## class 167 (23.09.26) -- a TEST FIXTURE audits into the LIVE log (not a learner gate)
+
+**Symptom.** The reject-rate triage kept producing the false lead "4 unproven
+`duplicate` rejects were `q` / `Eine Woche hat sieben Tage.`, not a leak". The
+rows are real, but they are not the learner's -- they are the
+`buffer_store` test suite writing into the PRODUCTION audit log.
+
+**The mechanism, which is NOT where you would look.** `test_buffer_store.py` on
+`origin/main` has no isolation of `buffer_store.JUNK_LOG`, and every
+`bs.append(...)` call site audits its own fixture. That would still be harmless
+if it landed in a temp dir -- but `buffer_store._resolve_home()` **falls back to
+the real install dir when `OPENAMER_HOME` is unset**, which is exactly the cron
+case, so `JUNK_LOG` resolves to
+`~/AppData/Local/openamer-laptop/scripts/training/buffer_junk.jsonl` **no matter
+which checkout the test runs from**. `_audit()` then appends there.
+
+**Measured (controlled pair, 23.09.26).** Both copies were run against the same
+live log and only TEST-SIGNATURE rows were counted -- counting raw lines gives a
+false positive, because the internet-learner cron appends its own rejects
+concurrently (measured +2 mid-run, 0 of them fixtures):
+
+| copy under test | fixture rows added to the live log |
+|---|---|
+| repo `main` (no isolation) | **+1** per run (byte-identical to the existing litter) |
+| repo branch with the fix | **0** |
+| `openamer-agent` install copy | **0** after the fix, **+1** before |
+
+**Scale.** 1,376 of 9,599 rows (14.3 %) carry a test-only signature (`u` in
+{`q`, `u`, `a`, `q<N>`, `a<N>`, `Internet learning test`}); 144 are the
+`u == "q"` family and 40 sit in the last 300 rows. Still growing: 206 of 6,970 on
+20.09.26. The TRAINING buffer is clean (`online_buffer.jsonl`: 0 fixtures) -- only
+the audit trail is polluted, which is why it survived so long: nobody trains on
+it, but the triage READS it, so it manufactures phantom reject classes.
+
+**The fix was already invented and applied to ONE copy only.** The live
+`scripts/training/test_buffer_store.py` had carried `_isolated_audit_log()` + an
+autouse pytest fixture since 20.09.26 -- `origin/main` had neither, neither did
+the `openamer-agent` copy, and neither did the repo worktree's checkout. The
+helper's own docstring predicted exactly this and was not acted on. Same shape as
+148: a predicate fixed on one of two writers is a hole in the other direction --
+here it is one of THREE copies.
+
+**Two sites, not one.** The `__main__` standalone runner executes the file
+WITHOUT pytest, so the autouse fixture does not apply: the restore has to be
+called explicitly there (`restore_audit = _isolated_audit_log()` before the loop,
+`restore_audit()` after). Patching only the fixture leaves `python
+test_buffer_store.py` leaking.
+
+**PITFALL -- EOL is per-copy and OPPOSITE.** The repo worktree file is
+CRLF-native (305 CRLF / 0 lone LF); the `openamer-agent` copy is LF-native (0
+CRLF / 305 lone LF). A byte-anchored patch written against one newline silently
+fails `ANCHOR FAIL: found 0` on the other -- and the correct fix is NOT to
+normalise the file. Detect the file's own newline first:
+
+```python
+raw = open(p, "rb").read()
+crlf = raw.count(b"\r\n"); lone = raw.count(b"\n") - crlf
+nl = "\r\n" if crlf > lone else "\n"
+```
+
+Then assert the census is UNCHANGED after the patch (repo: 358 CRLF / 0 lone LF;
+agent copy: 0 CRLF / 341 lone LF).
+
+**Regression test.** `test_suite_never_writes_the_live_audit_log` asserts on the
+RESOLVED default (`bs.JUNK_LOG`), never a hardcoded path -- a test that stubs
+`JUNK_LOG` out cannot observe the regression it exists to guard -- then performs
+a refusing append and asserts the live log's SIZE is unchanged.
+
+**PITFALL -- a size/lines assertion on the live log is flaky by construction.**
+The learner cron appends to the same file during the test run. Assert on
+test-signature rows (`grep -c '"u": "q"'`), not on total lines; a raw line count
+"failed" at +2 with 0 fixtures.
+
+**Published** as PR #64 (`fix/buffer-store-test-audit-isolation`, 81 insertions /
+0 deletions, 16 passed). Built in a worktree off `origin/main`, NOT by copying
+the live file: the live `test_buffer_store.py` is 144 lines of unlanded backlog
+ahead of main, so a whole-file copy would have shipped a 45-line delta as 144
+lines and duplicated unrelated work.
+
+## class 168 (23.09.26) -- a plan-comparison PRICE TABLE with rating widgets (FIXED)
+
+**Symptom.** `cycle_e_competitors` logged, as a genuine learn:
+
+```
+competitor-learn: From $25/mo View Review -> OpenCode Free . Anomaly
+Innovations, Inc star 5.0 -> OpenAI Codex $8/mo . OpenAI star 4.7 -> Claude
+Code $17/mo annual . Anthropic star 4.6 -> Cline $9.99/mo . Cline Bot Inc.
+```
+
+A marketplace SERP row: a run of `$<n>/mo` price tokens with the rating widget
+(`star 5.0`, `View Review`) welded on. 200 chars with digits -> the `>=90`
+"long prose" trust AND the technical-signal gate (`_TECH_HINT_RE`'s alternation
+starts with `\d+`) both passed it, in the extraction gate and the writer gate.
+
+**Why the existing rules miss it.** Class 13 (`_is_de_pricing_chrome`) gates the
+GERMAN checkout LABEL CHAIN (`monatlich kuendbar`, `Jahrespaket`, ...) and
+`buffer_store._NAV_CHROME` carries only the English words `billed annually`.
+This is the ENGLISH SERP/rating shape -- a price + rating TABLE -- so it is a
+sibling class, not a variant of 13.
+
+**The discriminator: the WELD, never a price or a rating alone.**
+
+* `>=2` `$<n>/mo` (or `\u20ac`/EUR/USD per month/year/seat) price tokens, AND
+* `>=2` rating/CTA widget stamps (a star glyph with a score, `View Review`,
+  `Free ->`).
+
+A sentence ABOUT pricing names a vendor and a verb and carries ONE price; a
+comparison TABLE yields both runs. Same structural argument as classes 13/28:
+judge the checkout's own label chain, not the topic.
+
+**Measured 23.09.26, with the SHIPPED predicates** (not a re-typed copy -- a
+first draft had an unbalanced-paren regex that `py_compile` does not catch):
+
+| corpus | rows | hits |
+|---|---|---|
+| `online_buffer` + `buffer_junk` + `buffer_junk_archive` + `internet_learn_log` + `longterm_episodes` | 16,068 | **1** (the leaking row) |
+| quoted literals of `tests/scripts/test_internet_learner_gate.py` | 2,049 | 0 |
+| repo `docs/**` (`.md`/`.txt`) | 924 | 0 |
+| hostile prose controls (prices, tiers, star ratings, per-seat billing, German billing) | 10 | 0 FP |
+
+**Both gates.** Mirrored into `buffer_store._is_price_table_row` because
+`buffer_store` must not import the learner (circular). Two new tests:
+`test_price_table_row_is_gated_on_both_paths` and
+`test_price_table_row_requires_both_markers`.
+
+**Numbering trap, hit again.** This was first written as "class 167" -- but
+`class 167` was ALREADY assigned, to the test-fixture root cause
+(`test_buffer_store.py` auditing fixtures into the LIVE `buffer_junk` log, which
+has its own PR #64). The number had to be checked against BOTH
+`scripts/training/*.py` AND this archive. `grep 'class 167' scripts/training/*.py`
+returned only MY OWN new lines, which is exactly the false-negative shape: an
+archive-only number is invisible to a code-only grep. Check the archive too.

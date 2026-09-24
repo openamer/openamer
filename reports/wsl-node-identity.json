@@ -1,0 +1,14 @@
+{
+  "node_id": "wsl-ubuntu-emilija",
+  "hostname": "Emilija",
+  "platform": "WSL2 Ubuntu 26.04",
+  "python": "3.14.4",
+  "role": "swarm-worker",
+  "capabilities": ["python-execution", "cpu-intensive", "background-services"],
+  "gpu": false,
+  "gpu_host": "192.168.178.23:8082",
+  "gpu_available": false,
+  "created": "2026-09-20T23:30:00Z",
+  "connected_to": ["openamer-windows-host"],
+  "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPFcyhU8rla2+LUwlahHyNQXrc3oVVcz7mFuttWp39li damir@Emilija"
+}

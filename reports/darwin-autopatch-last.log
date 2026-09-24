@@ -1,20 +1,14 @@
-[autopatch] validating population (2026-09-18T19:42:40) ...
-Traceback (most recent call last):
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 176, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 97, in main
-    before_report = run_validator_json()
-                    ^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 49, in run_validator_json
-    r = subprocess.run(
-        ^^^^^^^^^^^^^^^
-  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 550, in run
-    stdout, stderr = process.communicate(input, timeout=timeout)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 1209, in communicate
-    stdout, stderr = self._communicate(input, endtime, timeout)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 1630, in _communicate
-    raise TimeoutExpired(self.args, orig_timeout)
-subprocess.TimeoutExpired: Command '['C:\\Users\\damir\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\python.exe', 'C:\\Users\\damir\\openamer-repo\\scripts\\skill-validator.py', '--all', '--json']' timed out after 1800 seconds
+[autopatch] validating population (2026-09-23T04:00:49) ...
+[autopatch] population: 947 skills, avg 38.3
+[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-latest-research-insight-selfretrieval(21), auto-latest-research-insight-the(21), auto-latest-research-insight-wikidata(21), auto-multidomain-learning-if-ai(21), auto-multidomain-learning-llms-are(21), auto-multidomain-learning-nasa-ibm(21), auto-multidomain-learning-neural-architecture(21), auto-multidomain-learning-opensource-medical(21), auto-multidomain-learning-python-climate(21)
+[autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
+[autopatch] ✅ auto-latest-research-insight-selfretrieval: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-the: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-wikidata: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-if-ai: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-llms-are: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-nasa-ibm: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-neural-architecture: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-opensource-medical: 21 → 25
+[autopatch] ✅ auto-multidomain-learning-python-climate: 21 → 25
+[autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md

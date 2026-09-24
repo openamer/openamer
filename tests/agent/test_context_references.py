@@ -332,6 +332,10 @@ async def test_blocks_sensitive_home_and_openamer_paths(tmp_path: Path, monkeypa
     from agent.context_references import preprocess_context_references_async
 
     monkeypatch.setenv("HOME", str(tmp_path))
+    # Windows expanduser("~") reads USERPROFILE, not HOME (verified), so setting
+    # HOME alone left the denylist anchored to the REAL home and this test
+    # exercised nothing. POSIX honours HOME, so both are set.
+    monkeypatch.setenv("USERPROFILE", str(tmp_path))
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
 
     openamer_env = tmp_path / ".openamer" / ".env"

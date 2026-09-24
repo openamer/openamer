@@ -6,14 +6,26 @@ description:
 # auto-structural-connection-between-tool
 
 **Description:** 
-**Lines:** 33 | **Code:** 0 | **Dir:** `auto-structural-connection-between-tool`
+**Lines:** 54 | **Code:** 0 | **Dir:** `auto-structural-connection-between-tool`
 
 ---
 
 ---
 name: auto-structural-connection-between-tool
-description: {"share": "Both describe continuous learning loops with:
+description: Both
 user
-[{"share": "Both describe continuous l
+[{"tool": "web_search", "params": {"query": "
+
+[
+  "tool
+
+[
+  "tool
+
+[
+  "tool
+
+[
+  "tool
 auto_generated: true
-created: 2026-0...
+created: 2026-09...

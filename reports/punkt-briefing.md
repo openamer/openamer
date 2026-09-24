@@ -1,13 +1,14 @@
-# ☀️ PUNKT — Morgen-Briefing 18.09.2026 19:42
+# ☀️ PUNKT — Morgen-Briefing 23.09.2026 07:30
 
-Cron-Fleet: 100 Jobs, 1 mit Fehler
+Cron-Fleet: 104 Jobs, 1 mit Fehler
   ❌ Nightly Test-Suite Watchdog
 
-Git (24h): 4 Commits
-  • 4122007f0 🧬 second-home backup: wakeup manifest + DNA snapshot
-  • 1b8a12782 Gate 4 more chrome classes in internet_learner + buffer_store
-  • 7846a53e0 fix(auto_tester): pick a pytest-capable interpreter, not just an existing venv
-  • f4ed69875 chore(reports): cron auto-commit 2026-09-17
+Git (24h): 75 Commits
+  • b121ac742 fix(learner): gate a docs heading stack welded to an interrogative heading (class 157)
+  • 44f3fd6c3 docs(skill): record root causes 155/156 -- vLLM server-log chrome, hallucinated query
+  • ff0a019a9 fix(learner): gate a raw vLLM server log line as chrome (class 150)
+  • c8a379a51 docs(skill): record root causes 153/154 -- platform vocabulary and a no-op mutation
+  • dd40614b9 feat(browser): real-profile browsing on a copy, off by default
 GitHub: ⭐ 6 🍴 3 👁 0
 
 Trends (trend_scout latest):
@@ -16,11 +17,11 @@ Trends (trend_scout latest):
   - [arXiv] ASTELD: A Six-Axis Classification Framework for Autonomous AI Agents - Design, Evaluation, and an OpenClaw Case Study — http://arxiv.org/abs/2603.05031v1
   - [arXiv] Hardware Keystores for AI Agent Signing Workflows: A Zero-Trust MCP Enforcement Architecture — http://arxiv.org/abs/2508.02866v3
   - [arXiv] ANX: Protocol-First Design for AI Agent Interaction with a Supporting 3EX Decoupled Architecture — http://arxiv.org/abs/2502.18359v1
-  - [News] The End of Shopping? Agentic AI and the Future of Consumer Financial Services Introduction - Consumer Finance Monitor — https://news.google.com/rss/articles/CBMi1wFBVV95cUxPN204Y0ZrOWFNdGRfVnJQc2JpRXF1bDY3cVhqRHVwcXdFc3A5WHRjR21zOWFFb0tsZXZwTm1OSTVMVUVzNFNReEljUkhsaHoxcHVxUThEQmNrVDlTZFpSSjRWd244NTZXZ3ZqVTVBVnpJODh4dVlLaHY3dDloLVhRZG14amxicGVpX29BTUYtdEI3aC1vYTZEZDdSR2lWRW4weEswRnkzRUFmUW9vZXRNZFB0RENtdzdJSHgwRXV4MmItb2VMM1VHNDN2UkQ1cWZiMzBEcWFQdw?oc=5
-  - [News] Harness Engineering: The Operating System for Agentic AI - Boston Consulting Group — https://news.google.com/rss/articles/CBMif0FVX3lxTE90eTVIcjVQVEw2MnJwNEtKbnhwbVpKMXNGdmx5ZXdCTkpGdVFWTkIyemNTOEZMUjBZQUxoLVlwRU4xZEJuRlZ3Zk9PT2l3MzNCR05UR2UwMzlFTXFWbWF1c0lfZGJzWkg4a080ZTFjTTljM044UmFkVEhjTnhLQnM?oc=5
-  - [News] Is the Enterprise Insurance Market Agentic AI’s Hidden Ceiling? - PYMNTS.com — https://news.google.com/rss/articles/CBMiuwFBVV95cUxPX0s4UWpicktjQlVBT2ZVNHp1eXdzcDNiMTVybU96WGVRaWtzcDZvSlZ6UXNaNzByZFM4c1hPbFJQck03UzdTSHNjZ25ldVFXWktnSmdaa2RJY004Q1B3Z1hKRE1qU2R3cmN2MVJ3OGhTUEhJaGZCclNWYy1MaFc2UmtXcE92WnlOMUxBZVRyMkc1LVJBSDVzLTZ3YUNsT0VuengzNWJDVDN4TlIyNktPZFliX0ktUjNOb2NV?oc=5
+  - [News] Introducing Amazon CloudWatch Omni: AI-powered observability for generative AI and agentic workloads - Amazon Web Services (AWS) — https://news.google.com/rss/articles/CBMizgFBVV95cUxPZWVhbVg4T1p1R0dHREV5eTVmWEJGRzJzYlFpT2pidWF0V3hQMHJVcHRYN1pmWTlKRmdpWHJiWTJqbFNJcDRheThYMXF6amtyM3dpQXBCRVhuOE9Eb0JHTFFKUl9HNDNhWnFwdVJVeGJWVFVPbzhxbXAwSno5YWhUaEROMzZkUTNWeS1TVFdvR2gwYS1US2JCSF9lSk9WSXZpWmZZNlBRam9YV01fRXJ5Rld0b3RsaHBmVG12UWRyd3NkTXNZaW5aYUxQQ1NEZw?oc=5
+  - [News] Operationalizing Security for the Agentic Era: Introducing Semantic Business Policies and Agentic Insights - Proofpoint — https://news.google.com/rss/articles/CBMijAFBVV95cUxPbkYxc3cyem5JbGhMdzZMY1JaN1dBUWxfWW1jUGloazRwR1NVYUtMWG5oV1JYeW9wei1Sd3BrX0kzclVRZTljc1E2d1phc1RSaW9LWWQ3YjBnNjl3QS15UlEzZWZqQTBSYkZReXFDT1lYWF9DZzFHRlNkSVRvRzJJRG85XzgzVWRfUklaRA?oc=5
+  - [News] Banks Say Consumers Unsure AI Agents Are on Their Side - PYMNTS.com — https://news.google.com/rss/articles/CBMisgFBVV95cUxPTkRBaFI2OFQ4SFR2Q0tkeFlvMVQyalduR3BDR2VYOVhjRmlqNmVqSzJqbXpyTEpqNWlsSDVRTV9lUW9GREdmMEJ4Wlp0MjkwTTB2enI0ZjRVSW1Gb3JQNDVZUTlOcGRYSy1YaDhEVVAzblRPRDlFbHpLckdnMGFxcXZ4cWpYRUNtazRTMkxxNWZESmFGQTRCVXZrS3poY05aTzZPZ1lhSFNxX2Rwc1gwR0V3?oc=5
 
-Darwin: 2 Skills getrackt, Fittest: updated (2026-09-17T20:46:25.557622+00:00)
+Darwin: 2 Skills getrackt, Fittest: updated (2026-09-23T05:30:28.346337+00:00)
 
 Top-Chancen:
   🔴 Cron 'Nightly Test-Suite Watchdog' schlug fehl — jetzt fixen (openamer cron run )

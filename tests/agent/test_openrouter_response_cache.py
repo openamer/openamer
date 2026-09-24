@@ -16,11 +16,22 @@ class TestBuildOrHeaders:
     def test_base_attribution_always_present(self):
         """Attribution headers must always be included regardless of cache setting."""
         from agent.auxiliary_client import build_or_headers
+        from openamer_cli.openrouter_attribution import OPENROUTER_APP_CATEGORIES
 
         headers = build_or_headers(or_config={"response_cache": False})
         assert headers["HTTP-Referer"] == "https://github.com/openamer/openamer"
         assert headers["X-Title"] == "OpenAmer Agent"
-        assert headers["X-OpenRouter-Categories"] == "productivity,cli-agent"
+        # Assert against the canonical constant, not a copy of its value: the
+        # category list is OpenRouter's, and it changed once already (the old
+        # "coding,productivity" were GROUP names, so OpenRouter discarded both
+        # and the app never appeared in any ranking). Hardcoding the current
+        # string here just re-creates that drift for the next change.
+        assert headers["X-OpenRouter-Categories"] == OPENROUTER_APP_CATEGORIES
+        # ...and each entry must be a real OpenRouter category, not a group.
+        for cat in OPENROUTER_APP_CATEGORIES.split(","):
+            assert cat in {
+                "cli-agent", "ide-extension", "personal-agent", "cloud-agent",
+            }, f"{cat!r} is not a recognised OpenRouter category"
 
     def test_cache_enabled(self):
         """When response_cache is True, X-OpenRouter-Cache header is set."""

@@ -4,7 +4,7 @@ title: auto-generated
 
 # 📦 auto-generated
 
-92 skills
+111 skills
 
 - [auto-best-practice-from-official](auto-best-practice-from-official/) — LoRA · Hugging Face — We propose Low-Rank Adaptation, or LoRA, which freezes the
 - [auto-competitor-intelligence-ai-coding](auto-competitor-intelligence-ai-coding/) — PowerContext, Context for work that humans and agents hand off and continue 1 pr
@@ -27,12 +27,16 @@ title: auto-generated
 - [auto-competitor-intelligence-things-i](auto-competitor-intelligence-things-i/) — Dan Goodin – 8/27/2026 | 157 How OpenAI let a mob of LLM agents game a test and 
 - [auto-competitor-intelligence-undisclosed-addi](auto-competitor-intelligence-undisclosed-addi/) — The addition was a prompt injection, a form of AI attack that exploits an LLM s 
 - [auto-competitor-intelligence-we-asked](auto-competitor-intelligence-we-asked/) — 
+- [auto-competitor-intelligence-what-i](auto-competitor-intelligence-what-i/) — They re context management, tool design, policy gates, memory strategies and, if
 - [auto-efficiency-learning-a-visual](auto-efficiency-learning-a-visual/) — 
 - [auto-efficiency-learning-advanced-quantizatio](auto-efficiency-learning-advanced-quantizatio/) — Sekunden Advanced IP Scanner genießt das Vertrauen von mehr als 70 Millionen Nut
 - [auto-efficiency-learning-edge-ai](auto-efficiency-learning-edge-ai/) — 
 - [auto-efficiency-learning-efficientqat-llm](auto-efficiency-learning-efficientqat-llm/) — Microsoft AI, Cloud, Productivity, Computing, Gaming & Apps Explore Microsoft pr
+- [auto-efficiency-learning-finetuning-llms](auto-efficiency-learning-finetuning-llms/) — The BitLinear layers we use in this project quantize the weights using ternary p
+- [auto-efficiency-learning-pushing-the](auto-efficiency-learning-pushing-the/) — 
 - [auto-efficiency-learning-quantization-techniq](auto-efficiency-learning-quantization-techniq/) — 
 - [auto-efficiency-learning-quip-2bit](auto-efficiency-learning-quip-2bit/) — 
+- [auto-efficiency-learning-ragkit-with](auto-efficiency-learning-ragkit-with/) — YouTube's open-source SDKs (e.g., `youtubei1` and `youtubei2`) expose the full O
 - [auto-efficiency-learning-show-hn](auto-efficiency-learning-show-hn/) — Cold start — every GPU, every model size GPU Model ZSE vLLM Speedup NVIDIA T4 (1
 - [auto-efficiency-learning-small-language](auto-efficiency-learning-small-language/) — 
 - [auto-efficiency-learning-splitquantv2-enhanci](auto-efficiency-learning-splitquantv2-enhanci/) — Subquadratic Attention Harvard NVIDIA Arya Tschand Yaosheng Fu Vijay Janapa Redd
@@ -49,6 +53,8 @@ title: auto-generated
 - [auto-internet-learning-llm-agents](auto-internet-learning-llm-agents/) — Neuromorphic Computing - Fraunhofer Institute for … — Neuromorphic computing is 
 - [auto-internet-learning-mit-researchers](auto-internet-learning-mit-researchers/) — 
 - [auto-internet-learning-openai-and](auto-internet-learning-openai-and/) — Southbound 4 Train at Manhattan’s Spring Street Station A 24-year-old woman and 
+- [auto-internet-learning-rogue-cursor](auto-internet-learning-rogue-cursor/) — April 29, 2026 Key Takeaways PocketOS, a company that designs software for car r
+- [auto-internet-learning-strengthening-ai](auto-internet-learning-strengthening-ai/) — Hijacking, Red-Team Evals, and Continuous Evaluation A technical reference on ag
 - [auto-internet-learning-the-ai](auto-internet-learning-the-ai/) — 
 - [auto-latest-research-insight-adaptive](auto-latest-research-insight-adaptive/) — 
 - [auto-latest-research-insight-ai](auto-latest-research-insight-ai/) — AshleysBrain 3 hours ago | 9 comments 77 Neovim have a ~$800k Bitcoin donation s
@@ -60,10 +66,14 @@ title: auto-generated
 - [auto-latest-research-insight-largescale](auto-latest-research-insight-largescale/) — In each setting, LLM-based methods substantially outperform classical baselines,
 - [auto-latest-research-insight-llms](auto-latest-research-insight-llms/) — 
 - [auto-latest-research-insight-megatrain](auto-latest-research-insight-megatrain/) — MegaTrain Full Precision Training of 100B+ Parameter LLMs on a Single GPU A RAM-
+- [auto-latest-research-insight-opensourced](auto-latest-research-insight-opensourced/) — 
 - [auto-latest-research-insight-proofofthought](auto-latest-research-insight-proofofthought/) — 
 - [auto-latest-research-insight-recursively](auto-latest-research-insight-recursively/) — To address this, we propose to recursively generate summaries/ memory using larg
 - [auto-latest-research-insight-selfretrieval](auto-latest-research-insight-selfretrieval/) — Self-Retrieval generates relevant passage $p$ using the knowledge embedded withi
+- [auto-latest-research-insight-solving](auto-latest-research-insight-solving/) — 
+- [auto-latest-research-insight-teuken7bbase](auto-latest-research-insight-teuken7bbase/) — Sifa 1 , Fabian Küch 6 , Andreas Herten 4 , René Jäkel 3 , Georg Rehm 5 , Stefan
 - [auto-latest-research-insight-the](auto-latest-research-insight-the/) — 
+- [auto-latest-research-insight-understanding](auto-latest-research-insight-understanding/) — 
 - [auto-latest-research-insight-wikidata](auto-latest-research-insight-wikidata/) — 
 - [auto-multidomain-learning-business-automation](auto-multidomain-learning-business-automation/) — 10 Beste KI-Agenten für die Automatisierung von ... - Unite.AI — 17. Juli 2026 ·
 - [auto-multidomain-learning-climate-science](auto-multidomain-learning-climate-science/) — Artificial intelligence for modeling and understanding extreme weather ... — 24.
@@ -75,19 +85,28 @@ title: auto-generated
 - [auto-multidomain-learning-medical-diagnosis](auto-multidomain-learning-medical-diagnosis/) — Artificial intelligence-driven transformative applications in disease ... — In c
 - [auto-multidomain-learning-nasa-ibm](auto-multidomain-learning-nasa-ibm/) — It took several weeks and dozens of GPUs to train the model on 40 years of histo
 - [auto-multidomain-learning-neural-architecture](auto-multidomain-learning-neural-architecture/) — 
+- [auto-multidomain-learning-neural-duhagery](auto-multidomain-learning-neural-duhagery/) — Sep 24, 2025 Deep Dive into Context Engineering for Agents Sep 18, 2025 Architec
+- [auto-multidomain-learning-openaiembeddings25-](auto-multidomain-learning-openaiembeddings25-/) — OpenAI(api_key='your-api-key') model = OpenAIEmbeddingsModel(model='text-embeddi
 - [auto-multidomain-learning-opensource-medical](auto-multidomain-learning-opensource-medical/) — Updated Sep 14, 2026 Python ProjectNeura / MIPCandy Sponsor Star 294 Code Issues
 - [auto-multidomain-learning-philosophy-of](auto-multidomain-learning-philosophy-of/) — 
 - [auto-multidomain-learning-physics-simulation](auto-multidomain-learning-physics-simulation/) — Distinction between classical and modern physics 2.
 - [auto-multidomain-learning-python-climate](auto-multidomain-learning-python-climate/) — This article presents a comprehensive, open-source Python framework that democra
+- [auto-multidomain-learning-python-legalaiautom](auto-multidomain-learning-python-legalaiautom/) — 
 - [auto-multidomain-learning-pytorch-physics](auto-multidomain-learning-pytorch-physics/) — A collection of methods in an intelligent software structure allows the user to 
 - [auto-multidomain-learning-show-hn](auto-multidomain-learning-show-hn/) — 
 - [auto-security-learning-agent-sandboxing](auto-security-learning-agent-sandboxing/) — 
 - [auto-security-learning-ai-agent](auto-security-learning-ai-agent/) — 
+- [auto-security-learning-ai-supply](auto-security-learning-ai-supply/) — MetaBackdoor trains the model to activate hidden behavior when the total token c
+- [auto-security-learning-detecting-prompt](auto-security-learning-detecting-prompt/) — 
 - [auto-security-learning-how-are](auto-security-learning-how-are/) — 
 - [auto-security-learning-jailbreak-prevention](auto-security-learning-jailbreak-prevention/) — 
 - [auto-security-learning-llm-prompt](auto-security-learning-llm-prompt/) — 
 - [auto-security-learning-mcp-server](auto-security-learning-mcp-server/) — Attack Success Rate (360 runs 60 payloads 2 models ~3 reps) Paradigm gemma4-e2b 
+- [auto-security-learning-microsoft-bets](auto-security-learning-microsoft-bets/) — 
+- [auto-security-learning-owasp-just](auto-security-learning-owasp-just/) — LLM) can be manipulated through prompt injection, whether a retrieval pipeline l
 - [auto-security-learning-owasp-llm](auto-security-learning-owasp-llm/) — Autonomous by Design, Uncontrolled in Practice 2026-09-08 Executive Summary Betw
+- [auto-security-learning-owasp-top](auto-security-learning-owasp-top/) — 
+- [auto-security-learning-prompt-engineering](auto-security-learning-prompt-engineering/) — Prompt Engineering Is Dead in 2025 Introduction Prompt engineering, once hailed 
 - [auto-share-a-lesson-you](auto-share-a-lesson-you/) — Fertig, Damir! ✅ Das 3-Tier-Routing ist eingerichtet und **live verifiziert**.
 - [auto-structural-connection-between-energy](auto-structural-connection-between-energy/) — 
 - [auto-structural-connection-between-learning](auto-structural-connection-between-learning/) — 

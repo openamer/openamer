@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-09-18T17:42:30.840678+00:00",
+  "snapshot_at": "2026-09-23T10:15:55.814719+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-09-17T09:22:18.844281+00:00",
@@ -35,26 +35,26 @@
   "strategies": {
     "TOKENS": {
       "wins": 16,
-      "tries": 64
+      "tries": 66
     },
     "TEXT": {
       "wins": 3,
-      "tries": 50
+      "tries": 52
     },
     "ROLE": {
       "wins": 0,
-      "tries": 49
+      "tries": 51
     },
     "CLASSES": {
       "wins": 6,
-      "tries": 50
+      "tries": 52
     }
   },
   "senses": {
-    "time": "2026-09-17T22:31:32",
+    "time": "2026-09-23T12:14:54",
     "pain": {
-      "score": 1,
-      "level": "uncomfortable"
+      "score": 5,
+      "level": "exhausted"
     },
     "satiety": {
       "state": "satisfied",
@@ -63,11 +63,11 @@
     },
     "balance": {
       "state": "steady",
-      "jobs": 100,
+      "jobs": 104,
       "errors": 2,
-      "error_ratio": 0.02
+      "error_ratio": 0.019
     },
-    "overall": "uneasy"
+    "overall": "suffering"
   },
   "dreams": [
     {
@@ -78,54 +78,43 @@
       "intentions": []
     },
     {
-      "date": "2026-08-24",
-      "insights": [],
-      "intentions": []
+      "date": "2026-08-18",
+      "replayed_messages": 487,
+      "fragments": 34,
+      "motifs": {
+        "permission": 5
+      },
+      "insights": [
+        {
+          "motif": "permission",
+          "occurrences": 5,
+          "recurrence_days": 0,
+          "nightmare": false
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Review motif 'permission' if it recurs"
+        }
+      ]
     },
     {
-      "date": "2026-08-25",
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-08-26",
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-08-27",
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-08-28",
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-08-29",
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-08-30",
-      "replayed_messages": 3802,
-      "fragments": 705,
+      "date": "2026-08-19",
+      "replayed_messages": 2678,
+      "fragments": 108,
+      "motifs": {
+        "timeout": 1,
+        "path-bug": 1
+      },
       "insights": [
         {
           "motif": "timeout",
-          "occurrences": 4,
-          "recurrence_days": 0,
-          "nightmare": false
-        },
-        {
-          "motif": "build",
           "occurrences": 1,
           "recurrence_days": 0,
           "nightmare": false
         },
         {
-          "motif": "permission",
+          "motif": "path-bug",
           "occurrences": 1,
           "recurrence_days": 0,
           "nightmare": false
@@ -138,13 +127,31 @@
       ]
     },
     {
-      "date": "2026-08-31",
-      "replayed_messages": 1825,
-      "fragments": 703,
+      "date": "2026-08-20",
+      "replayed_messages": 3217,
+      "fragments": 94,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-08-21",
+      "replayed_messages": 4224,
+      "fragments": 124,
+      "motifs": {
+        "auth": 8,
+        "api-rate": 8
+      },
       "insights": [
         {
           "motif": "auth",
-          "occurrences": 1,
+          "occurrences": 8,
+          "recurrence_days": 0,
+          "nightmare": false
+        },
+        {
+          "motif": "api-rate",
+          "occurrences": 8,
           "recurrence_days": 0,
           "nightmare": false
         }
@@ -156,49 +163,96 @@
       ]
     },
     {
-      "date": "2026-09-01",
-      "replayed_messages": 682,
-      "fragments": 345,
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-09-02",
-      "replayed_messages": 729,
-      "fragments": 383,
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-09-03",
-      "replayed_messages": 132,
+      "date": "2026-08-22",
+      "replayed_messages": 915,
       "fragments": 58,
+      "motifs": {},
       "insights": [],
       "intentions": []
     },
     {
-      "date": "2026-09-04",
-      "replayed_messages": 225,
-      "fragments": 89,
+      "date": "2026-08-23",
+      "replayed_messages": 3537,
+      "fragments": 481,
+      "motifs": {},
       "insights": [],
       "intentions": []
     },
     {
-      "date": "2026-09-05",
-      "replayed_messages": 290,
-      "fragments": 87,
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-09-06",
-      "replayed_messages": 272,
-      "fragments": 89,
+      "date": "2026-08-24",
+      "replayed_messages": 1721,
+      "fragments": 686,
+      "motifs": {
+        "api-rate": 2
+      },
       "insights": [
+        {
+          "motif": "api-rate",
+          "occurrences": 2,
+          "recurrence_days": 1,
+          "nightmare": false
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Review motif 'api-rate' if it recurs"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-25",
+      "replayed_messages": 1599,
+      "fragments": 618,
+      "motifs": {
+        "auth": 1,
+        "api-rate": 3,
+        "path-bug": 2,
+        "timeout": 1
+      },
+      "insights": [
+        {
+          "motif": "api-rate",
+          "occurrences": 3,
+          "recurrence_days": 2,
+          "nightmare": false
+        },
+        {
+          "motif": "path-bug",
+          "occurrences": 2,
+          "recurrence_days": 1,
+          "nightmare": false
+        },
+        {
+          "motif": "auth",
+          "occurrences": 1,
+          "recurrence_days": 1,
+          "nightmare": false
+        },
         {
           "motif": "timeout",
           "occurrences": 1,
-          "recurrence_days": 0,
+          "recurrence_days": 1,
+          "nightmare": false
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Review motif 'api-rate' if it recurs"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "replayed_messages": 1809,
+      "fragments": 494,
+      "motifs": {
+        "timeout": 13
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 13,
+          "recurrence_days": 2,
           "nightmare": false
         }
       ],
@@ -209,102 +263,709 @@
       ]
     },
     {
-      "date": "2026-09-07",
-      "replayed_messages": 353,
-      "fragments": 87,
+      "date": "2026-08-27",
+      "replayed_messages": 3371,
+      "fragments": 727,
+      "motifs": {},
       "insights": [],
       "intentions": []
     },
     {
-      "date": "2026-09-08",
-      "replayed_messages": 424,
-      "fragments": 71,
+      "date": "2026-08-28",
+      "replayed_messages": 2051,
+      "fragments": 636,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-08-29",
+      "replayed_messages": 2654,
+      "fragments": 708,
+      "motifs": {
+        "timeout": 2
+      },
       "insights": [
         {
           "motif": "timeout",
           "occurrences": 2,
-          "recurrence_days": 0,
-          "nightmare": false
+          "recurrence_days": 3,
+          "nightmare": true
         }
       ],
       "intentions": [
         {
-          "action": "Review motif 'timeout' if it recurs"
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
         }
       ]
     },
     {
-      "date": "2026-09-09",
-      "replayed_messages": 374,
-      "fragments": 89,
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-09-10",
-      "replayed_messages": 425,
-      "fragments": 96,
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-09-11",
-      "replayed_messages": 1965,
-      "fragments": 440,
+      "date": "2026-08-30",
+      "replayed_messages": 3802,
+      "fragments": 705,
+      "motifs": {
+        "timeout": 4,
+        "build": 1,
+        "permission": 1
+      },
       "insights": [
         {
           "motif": "timeout",
-          "occurrences": 1,
-          "recurrence_days": 0,
-          "nightmare": false
-        }
-      ],
-      "intentions": [
-        {
-          "action": "Review motif 'timeout' if it recurs"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-12",
-      "replayed_messages": 396,
-      "fragments": 76,
-      "insights": [
-        {
-          "motif": "timeout",
-          "occurrences": 1,
-          "recurrence_days": 0,
-          "nightmare": false
-        }
-      ],
-      "intentions": [
-        {
-          "action": "Review motif 'timeout' if it recurs"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-16",
-      "replayed_messages": 731,
-      "fragments": 84,
-      "insights": [
+          "occurrences": 4,
+          "recurrence_days": 4,
+          "nightmare": true
+        },
         {
           "motif": "build",
           "occurrences": 1,
           "recurrence_days": 0,
           "nightmare": false
+        },
+        {
+          "motif": "permission",
+          "occurrences": 1,
+          "recurrence_days": 1,
+          "nightmare": false
         }
       ],
       "intentions": [
         {
-          "action": "Review motif 'build' if it recurs"
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "replayed_messages": 1825,
+      "fragments": 703,
+      "motifs": {
+        "auth": 1
+      },
+      "insights": [
+        {
+          "motif": "auth",
+          "occurrences": 1,
+          "recurrence_days": 2,
+          "nightmare": false
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Review motif 'auth' if it recurs"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-01",
+      "replayed_messages": 1337,
+      "fragments": 697,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-09-02",
+      "replayed_messages": 1424,
+      "fragments": 694,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-09-03",
+      "replayed_messages": 2564,
+      "fragments": 933,
+      "motifs": {
+        "timeout": 1,
+        "path-bug": 1,
+        "memory": 1
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 1,
+          "recurrence_days": 5,
+          "nightmare": true
+        },
+        {
+          "motif": "path-bug",
+          "occurrences": 1,
+          "recurrence_days": 2,
+          "nightmare": false
+        },
+        {
+          "motif": "memory",
+          "occurrences": 1,
+          "recurrence_days": 0,
+          "nightmare": false
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-04",
+      "replayed_messages": 3528,
+      "fragments": 1209,
+      "motifs": {
+        "auth": 1
+      },
+      "insights": [
+        {
+          "motif": "auth",
+          "occurrences": 1,
+          "recurrence_days": 3,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'auth' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-05",
+      "replayed_messages": 5228,
+      "fragments": 1238,
+      "motifs": {
+        "timeout": 2
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 2,
+          "recurrence_days": 6,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-06",
+      "replayed_messages": 5644,
+      "fragments": 1258,
+      "motifs": {
+        "timeout": 5
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 5,
+          "recurrence_days": 7,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-07",
+      "replayed_messages": 5600,
+      "fragments": 1310,
+      "motifs": {
+        "timeout": 6
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 6,
+          "recurrence_days": 8,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-08",
+      "replayed_messages": 5346,
+      "fragments": 1305,
+      "motifs": {
+        "timeout": 6
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 6,
+          "recurrence_days": 9,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "replayed_messages": 4126,
+      "fragments": 938,
+      "motifs": {
+        "timeout": 5,
+        "permission": 1
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 5,
+          "recurrence_days": 10,
+          "nightmare": true
+        },
+        {
+          "motif": "permission",
+          "occurrences": 1,
+          "recurrence_days": 2,
+          "nightmare": false
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "replayed_messages": 6363,
+      "fragments": 1320,
+      "motifs": {
+        "timeout": 8
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 8,
+          "recurrence_days": 11,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-11",
+      "replayed_messages": 8950,
+      "fragments": 1350,
+      "motifs": {
+        "timeout": 1,
+        "build": 1,
+        "path-bug": 1,
+        "api-rate": 1
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 1,
+          "recurrence_days": 12,
+          "nightmare": true
+        },
+        {
+          "motif": "build",
+          "occurrences": 1,
+          "recurrence_days": 1,
+          "nightmare": false
+        },
+        {
+          "motif": "path-bug",
+          "occurrences": 1,
+          "recurrence_days": 3,
+          "nightmare": true
+        },
+        {
+          "motif": "api-rate",
+          "occurrences": 1,
+          "recurrence_days": 3,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'path-bug' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'api-rate' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-12",
+      "replayed_messages": 5106,
+      "fragments": 1129,
+      "motifs": {
+        "timeout": 7,
+        "auth": 1,
+        "path-bug": 1
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 7,
+          "recurrence_days": 13,
+          "nightmare": true
+        },
+        {
+          "motif": "auth",
+          "occurrences": 1,
+          "recurrence_days": 4,
+          "nightmare": true
+        },
+        {
+          "motif": "path-bug",
+          "occurrences": 1,
+          "recurrence_days": 4,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'auth' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'path-bug' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-13",
+      "replayed_messages": 4246,
+      "fragments": 496,
+      "motifs": {
+        "timeout": 4,
+        "api-rate": 1
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 4,
+          "recurrence_days": 14,
+          "nightmare": true
+        },
+        {
+          "motif": "api-rate",
+          "occurrences": 1,
+          "recurrence_days": 4,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'api-rate' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "replayed_messages": 1888,
+      "fragments": 190,
+      "motifs": {
+        "timeout": 1
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 1,
+          "recurrence_days": 15,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-15",
+      "replayed_messages": 5161,
+      "fragments": 790,
+      "motifs": {
+        "path-bug": 13,
+        "timeout": 3,
+        "build": 1,
+        "api-rate": 1
+      },
+      "insights": [
+        {
+          "motif": "path-bug",
+          "occurrences": 13,
+          "recurrence_days": 5,
+          "nightmare": true
+        },
+        {
+          "motif": "timeout",
+          "occurrences": 3,
+          "recurrence_days": 16,
+          "nightmare": true
+        },
+        {
+          "motif": "build",
+          "occurrences": 1,
+          "recurrence_days": 2,
+          "nightmare": false
+        },
+        {
+          "motif": "api-rate",
+          "occurrences": 1,
+          "recurrence_days": 5,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'path-bug' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'api-rate' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "replayed_messages": 7849,
+      "fragments": 921,
+      "motifs": {
+        "build": 3,
+        "timeout": 5,
+        "path-bug": 1
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 5,
+          "recurrence_days": 17,
+          "nightmare": true
+        },
+        {
+          "motif": "build",
+          "occurrences": 3,
+          "recurrence_days": 3,
+          "nightmare": true
+        },
+        {
+          "motif": "path-bug",
+          "occurrences": 1,
+          "recurrence_days": 6,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'build' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'path-bug' at root (Skill/repo patch)"
         }
       ]
     },
     {
       "date": "2026-09-17",
-      "insights": [],
-      "intentions": []
+      "replayed_messages": 7089,
+      "fragments": 931,
+      "motifs": {
+        "timeout": 11
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 11,
+          "recurrence_days": 18,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-18",
+      "replayed_messages": 2746,
+      "fragments": 324,
+      "motifs": {
+        "timeout": 4
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 4,
+          "recurrence_days": 19,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-19",
+      "replayed_messages": 2053,
+      "fragments": 219,
+      "motifs": {
+        "timeout": 3
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 3,
+          "recurrence_days": 20,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-20",
+      "replayed_messages": 6340,
+      "fragments": 934,
+      "motifs": {
+        "permission": 1,
+        "timeout": 6
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 6,
+          "recurrence_days": 21,
+          "nightmare": true
+        },
+        {
+          "motif": "permission",
+          "occurrences": 1,
+          "recurrence_days": 3,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'permission' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-21",
+      "replayed_messages": 10060,
+      "fragments": 1234,
+      "motifs": {
+        "timeout": 12,
+        "build": 1
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 12,
+          "recurrence_days": 22,
+          "nightmare": true
+        },
+        {
+          "motif": "build",
+          "occurrences": 1,
+          "recurrence_days": 4,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'build' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "replayed_messages": 4817,
+      "fragments": 566,
+      "motifs": {
+        "timeout": 6,
+        "api-rate": 2
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 6,
+          "recurrence_days": 23,
+          "nightmare": true
+        },
+        {
+          "motif": "api-rate",
+          "occurrences": 2,
+          "recurrence_days": 6,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        },
+        {
+          "action": "Fix recurring motif 'api-rate' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "replayed_messages": 648,
+      "fragments": 74,
+      "motifs": {
+        "timeout": 1
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 1,
+          "recurrence_days": 24,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
+        }
+      ]
     }
   ]
 }

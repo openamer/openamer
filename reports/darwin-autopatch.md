@@ -1,17 +1,17 @@
-# 🧬 Darwin Auto-Patch Report — 2026-09-17T04:00:05
+# 🧬 Darwin Auto-Patch Report — 2026-09-23T04:00:49
 
-- Population: 815 skills, avg 38.5
+- Population: 947 skills, avg 38.3
 - Mode: **apply**
 
 ## Improved (kept)
 
 - ✅ `auto-structural-connection-between-tool`: 21 → 31 (+10)
-- ✅ `auto-competitor-intelligence-jetbrains-zed`: 21 → 25 (+4)
-- ✅ `auto-competitor-intelligence-okf-agent`: 21 → 25 (+4)
-- ✅ `auto-competitor-intelligence-some-uncomfortab`: 21 → 25 (+4)
-- ✅ `auto-competitor-intelligence-the-secret`: 21 → 25 (+4)
-- ✅ `auto-competitor-intelligence-things-i`: 21 → 25 (+4)
-- ✅ `auto-competitor-intelligence-undisclosed-addi`: 21 → 25 (+4)
-- ✅ `auto-competitor-intelligence-we-asked`: 21 → 25 (+4)
-- ✅ `auto-efficiency-learning-a-visual`: 21 → 25 (+4)
-- ✅ `auto-efficiency-learning-advanced-quantizatio`: 21 → 25 (+4)
+- ✅ `auto-latest-research-insight-selfretrieval`: 21 → 25 (+4)
+- ✅ `auto-latest-research-insight-the`: 21 → 25 (+4)
+- ✅ `auto-latest-research-insight-wikidata`: 21 → 25 (+4)
+- ✅ `auto-multidomain-learning-if-ai`: 21 → 25 (+4)
+- ✅ `auto-multidomain-learning-llms-are`: 21 → 25 (+4)
+- ✅ `auto-multidomain-learning-nasa-ibm`: 21 → 25 (+4)
+- ✅ `auto-multidomain-learning-neural-architecture`: 21 → 25 (+4)
+- ✅ `auto-multidomain-learning-opensource-medical`: 21 → 25 (+4)
+- ✅ `auto-multidomain-learning-python-climate`: 21 → 25 (+4)

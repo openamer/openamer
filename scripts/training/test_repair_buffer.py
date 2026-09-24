@@ -82,6 +82,58 @@ def test_fix_is_idempotent():
     assert rb.main() == 0  # nothing to repair -> clean exit
     assert open(buf, "rb").read() == before
 
+def _blankbuf():
+    """The 21.09.26 symptom: a blank separator between every record."""
+    d = tempfile.mkdtemp(prefix="repairbuf_test_")
+    buf = os.path.join(d, "online_buffer.jsonl")
+    sep = bytes((13, 10)).decode()
+    with open(buf, "wb") as f:
+        for i in range(3):
+            rec = json.dumps({"u": "q" + str(i), "a": "insight with a verb"})
+            f.write((rec + sep).encode("utf-8"))
+            f.write(bytes((13, 10)))  # blank separator between records
+    return buf
+
+
+def test_scan_blanks_flags_separator_lines():
+    buf = _blankbuf()
+    raw = open(buf, "rb").read().decode("utf-8")
+    assert rb.scan(raw) == []          # no glue
+    assert rb.scan_blanks(raw) == [1, 3, 5]
+
+
+def test_blank_lines_are_not_counted_as_records():
+    """The bug's root: a naive every-physical-line loader sees blanks as data."""
+    buf = _blankbuf()
+    raw = open(buf, "rb").read().decode("utf-8")
+    records, bad = rb._parse(raw)
+    assert [r["u"] for r in records] == ["q0", "q1", "q2"]
+    assert bad == 0
+
+
+def test_fix_removes_blank_separators_and_keeps_records():
+    buf = _blankbuf()
+    sys.argv = ["repair_buffer.py", "--fix"]
+    rb.BUF = buf
+    assert rb.main() == 0
+    raw2 = open(buf, "rb").read().decode("utf-8")
+    assert rb.scan_blanks(raw2) == []
+    assert [r["u"] for r in _parse(buf)] == ["q0", "q1", "q2"]
+    d = os.path.dirname(buf)
+    assert any(n.startswith("online_buffer.jsonl.bak-") for n in os.listdir(d))
+
+
+def test_fix_refuses_to_write_when_nothing_parses():
+    """An empty read is a bug, not an intent - never clobber the buffer."""
+    d = tempfile.mkdtemp(prefix="repairbuf_test_")
+    buf = os.path.join(d, "online_buffer.jsonl")
+    with open(buf, "wb") as f:
+        f.write(b"not json at all" + bytes((13, 10, 13, 10)))
+    before = open(buf, "rb").read()
+    sys.argv = ["repair_buffer.py", "--fix"]
+    rb.BUF = buf
+    assert rb.main() == 3
+    assert open(buf, "rb").read() == before
 
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]

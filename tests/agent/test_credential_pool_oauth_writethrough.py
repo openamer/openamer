@@ -66,6 +66,12 @@ def profile_and_root(tmp_path, monkeypatch):
 
     monkeypatch.setattr(A, "_auth_file_path", lambda: profile_path)
     monkeypatch.setattr(A, "_global_auth_file_path", lambda: root_path)
+    # credential_pool imports this by NAME (`from openamer_cli.auth import
+    # _global_auth_file_path`), so patching only the auth attribute leaves
+    # the code under test calling the original -- `_same_path()` then
+    # compares two different files and the write-through silently never
+    # fires. Patch the name it actually calls.
+    monkeypatch.setattr(CP, "_global_auth_file_path", lambda: root_path)
     monkeypatch.setenv("HOME", str(tmp_path / "not-the-root"))
     return profile_path, root_path
 
@@ -101,16 +107,24 @@ def test_pool_refresh_writes_through_to_root_when_profile_reads_root(
         _entry(provider, id="e1", access_token="new-access", refresh_token="new-refresh")
     )
 
-    # Profile got the rotated chain (existing behavior).
-    profile = _read_store(profile_path)
-    assert (
-        profile["providers"][provider]["tokens"]["refresh_token"] == "new-refresh"
-    )
-
-    # AND the global root no longer holds the revoked refresh token (#48415).
+    # The global root no longer holds the revoked refresh token (#48415).
     root = _read_store(root_path)
     assert root["providers"][provider]["tokens"]["access_token"] == "new-access"
     assert root["providers"][provider]["tokens"]["refresh_token"] == "new-refresh"
+
+    # AND the profile store is deliberately NOT given a key (#74339). The
+    # write-through is root-ONLY when the grant resolved from root:
+    # `_store_provider_state` would create a `providers.<id>` key
+    # unconditionally, and that key then SHADOWS root -- blocking both the
+    # global-root fallback and every later write-through, i.e. it self-seals
+    # after the first refresh. This assertion previously expected the profile to
+    # receive the chain too; that was the pre-#74339 behaviour, carried over from
+    # an older upstream revision while the production path moved on.
+    profile = _read_store(profile_path)
+    assert provider not in profile.get("providers", {}), (
+        "writing a profile key here shadows root and disables future "
+        "write-throughs (#74339)"
+    )
 
 
 @pytest.mark.parametrize(
@@ -185,6 +199,7 @@ def test_write_through_helper_is_noop_in_classic_mode(monkeypatch, tmp_path):
     helper has nothing to target).
     """
     monkeypatch.setattr(A, "_global_auth_file_path", lambda: None)
+    monkeypatch.setattr(CP, "_global_auth_file_path", lambda: None)
     # Must not raise and must not attempt any write.
     CP._write_through_provider_state_to_global_root(
         "openai-codex", {"tokens": {"access_token": "a", "refresh_token": "r"}}
@@ -299,6 +314,7 @@ def test_codex_pool_refresh_holds_auth_store_lock_across_post(monkeypatch, tmp_p
     profile_path = tmp_path / "auth.json"
     monkeypatch.setattr(A, "_auth_file_path", lambda: profile_path)
     monkeypatch.setattr(A, "_global_auth_file_path", lambda: None)
+    monkeypatch.setattr(CP, "_global_auth_file_path", lambda: None)
     monkeypatch.setenv("HOME", str(tmp_path / "not-the-root"))
 
     lock_held: dict = {"during_post": None}

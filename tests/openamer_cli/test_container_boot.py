@@ -10,6 +10,7 @@ tests/docker/test_container_restart.py.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import pytest
@@ -104,6 +105,24 @@ def _named_actions(actions: list[ReconcileAction]) -> list[ReconcileAction]:
     return [a for a in actions if a.profile != "default"]
 
 
+def _assert_executable(path: Path) -> None:
+    """Assert the exec bit where the platform has one; no-op on Windows.
+
+    ``os.chmod`` on Windows only toggles the read-only flag — there is no
+    POSIX permission bit, so ``st_mode & 0o111`` is always 0 and the
+    assertion can never pass, whatever the code under test does.
+
+    Deliberately a no-op rather than ``pytest.skip``: a skip here would
+    abandon the assertions that FOLLOW this call, and in
+    ``test_registered_profile_has_finish_script`` those are the point of the
+    test (the exit-78/125 finish-script contract, #51228). Only the
+    platform-dependent bit is dropped; everything else still runs on Windows.
+    """
+    if sys.platform == "win32":
+        return
+    assert path.stat().st_mode & 0o111  # executable
+
+
 # ---------------------------------------------------------------------------
 # Tests
 # ---------------------------------------------------------------------------
@@ -122,7 +141,7 @@ def test_running_profile_is_registered_and_autostarted(tmp_path: Path) -> None:
     )]
     svc = scandir / "gateway-coder"
     assert (svc / "run").exists()
-    assert (svc / "run").stat().st_mode & 0o111  # executable
+    _assert_executable(svc / "run")
     assert (svc / "type").read_text().strip() == "longrun"
     # Auto-start means no down-marker.
     assert not (svc / "down").exists()
@@ -140,7 +159,7 @@ def test_registered_profile_has_finish_script(tmp_path: Path) -> None:
 
     finish = scandir / "gateway-coder" / "finish"
     assert finish.exists()
-    assert finish.stat().st_mode & 0o111  # executable
+    _assert_executable(finish)
     text = finish.read_text()
     assert "78" in text
     assert "125" in text

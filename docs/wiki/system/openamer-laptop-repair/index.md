@@ -6,7 +6,7 @@ description: Repair openamer-laptop: dead services, silent watchdogs.
 # openamer-laptop-repair
 
 **Description:** Repair openamer-laptop: dead services, silent watchdogs.
-**Lines:** 187 | **Code:** 30 | **Dir:** `openamer-laptop-repair`
+**Lines:** 350 | **Code:** 63 | **Dir:** `openamer-laptop-repair`
 
 ---
 

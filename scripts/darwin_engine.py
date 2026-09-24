@@ -49,9 +49,34 @@ _HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
 
 
 def _is_install_root(pth: Path) -> bool:
-    """True when *pth* looks like a real OpenAmer home, not a scratch dir."""
+    """True when *pth* looks like a real OpenAmer home, not a scratch dir.
+
+    A marker only counts when it carries real content:
+
+    * file markers (``config.yaml``/``.env``) must be non-empty -- a 0-byte
+      stray ``config.yaml`` proves nothing.
+    * directory markers (``cron``/``memories``/``openamer-agent``) must hold at
+      least one NON-EMPTY file. Emptiness alone was still not enough: the live
+      scratch tree ``OPENAMER_HOME=C:/Users/damir/_vaultfinal`` carries
+      ``cron/executions.db`` at 0 bytes and an empty ``memories/``, and a
+      0-byte ``.db`` satisfied ``any(p.iterdir())``. That tree was therefore
+      adopted over the real 189-skill install and the 15-minute autopilot cron
+      evolved a 3-skill phantom population, appending zero- and two-skill
+      snapshots (#2248, #2251) to the append-only history ledger -- which, since
+      ``fitness_trend()`` compares first vs last, made the whole ecosystem look
+      collapsed and flipped ``auto_tune()`` to "declining".
+    """
     try:
-        return any((pth / m).exists() for m in _HOME_MARKERS)
+        for m in _HOME_MARKERS:
+            p = pth / m
+            if p.is_file():
+                if p.stat().st_size > 0:
+                    return True
+            elif p.is_dir():
+                for child in p.iterdir():
+                    if child.is_file() and child.stat().st_size > 0:
+                        return True
+        return False
     except OSError:
         return False
 
@@ -223,22 +248,97 @@ def _session_skill_hits() -> dict[str, int]:
         return hits
     try:
         import sqlite3
-        conn = sqlite3.connect(str(db))
-        rows = conn.execute(
-            "SELECT content FROM messages WHERE role='user' OR role='assistant'"
-        ).fetchall()
-        conn.close()
-        skill_names = [d.name for d in SKILLS_DIR.iterdir() if d.is_dir()]
-        for (content,) in rows:
-            if not content:
-                continue
-            for name in skill_names:
-                if name in content:
-                    hits[name] = hits.get(name, 0) + 1
+        skill_names = sorted(d.name for d in SKILLS_DIR.iterdir() if d.is_dir())
+        if not skill_names:
+            return hits
+        hits = _scan_skill_hits(db, skill_names) or {}
     except Exception:
         pass
     _HITS_CACHE["ts"] = now
     _HITS_CACHE["hits"] = hits
+    return hits
+
+
+def _scan_skill_hits(db: Path, skill_names: list[str]) -> dict[str, int]:
+    """Skill-mention counts over session history, scanned INCREMENTALLY.
+
+    Why this is not a plain full scan any more
+    ------------------------------------------
+    state.db is 2.2 GB with ~141k user/assistant messages holding 116 MB of
+    text. The original implementation pulled every message body into Python and
+    ran a len(skills) x len(rows) substring loop over it. Measured on the live
+    DB (2026-09-22) that cost 164s with a cold page cache and 8s warm, and it
+    dominated the whole autopilot cycle -- compute_fitness alone was 188s of a
+    409s run, which is what tripped the 420s timeout in the cron wrapper every
+    time the cache was cold.
+
+    So we keep a persisted watermark: counts per skill plus the highest
+    ``messages.id`` already folded in. Each cycle only reads rows ABOVE the
+    watermark, which is a few hundred rows instead of 141k, and adds the
+    per-message hits to the stored totals. Steady state is milliseconds.
+
+    Fidelity notes
+    --------------
+    * Counting uses SQLite's ``instr(content, ?) > 0`` -- the exact substring
+      semantics of the old ``name in content``. No tokenisation, no folding,
+      so a hit inside a longer word still counts, exactly as before. Verified
+      byte-identical to the old numbers on one DB snapshot.
+    * A skill that is not in the cached name set (i.e. newly installed) forces
+      one full rescan, so new skills never inherit an empty count.
+    * Deleted rows below the watermark would leave their hits in the total;
+      that only ever over-counts demand for an already-popular skill, which is
+      the harmless direction for fitness. Rows are appended with a monotonic
+      autoincrement id, so nothing below the watermark is ever re-read.
+    """
+    import sqlite3
+    cache_file = DARWIN_DIR / "skill-hits-cache.json"
+    cache = _load_json(cache_file, {})
+    stored = cache.get("hits", {}) if isinstance(cache, dict) else {}
+    watermark = cache.get("watermark", 0) if isinstance(cache, dict) else 0
+    scanned = cache.get("names", []) if isinstance(cache, dict) else []
+
+    # One full scan whenever the previously scanned name set is not a superset
+    # of the live population (first run, new skill installed, cache lost).
+    # NOTE: this must compare against the *scanned* names, not against the hits
+    # dict -- a skill that is simply never mentioned has no entry in `hits`, so
+    # keying off `hits` would rescan the whole 2.2 GB table on every cycle.
+    if not scanned or not set(skill_names).issubset(set(scanned)):
+        stored, watermark = {}, 0
+
+    conn = sqlite3.connect(str(db))
+    try:
+        if watermark:
+            sel = ", ".join("sum(instr(content, ?) > 0)" for _ in skill_names)
+            row = conn.execute(
+                "SELECT max(id), " + sel +
+                " FROM messages WHERE id > ? AND role in ('user','assistant')",
+                skill_names + [watermark],
+            ).fetchone()
+        else:
+            sel = ", ".join("sum(instr(content, ?) > 0)" for _ in skill_names)
+            row = conn.execute(
+                "SELECT max(id), " + sel +
+                " FROM messages WHERE role in ('user','assistant')",
+                skill_names,
+            ).fetchone()
+    finally:
+        conn.close()
+
+    if not row:
+        return stored
+    new_max, counts = row[0], row[1:]
+    if watermark and not new_max:
+        return stored          # nothing new since the last cycle
+    hits = {k: int(v) for k, v in stored.items()} if stored else {}
+    for name, count in zip(skill_names, counts):
+        if count:
+            hits[name] = hits.get(name, 0) + int(count)
+    _save_json(cache_file, {
+        "watermark": int(new_max or watermark),
+        "updated": _now(),
+        "names": skill_names,
+        "hits": hits,
+    })
     return hits
 
 

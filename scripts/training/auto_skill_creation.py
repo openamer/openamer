@@ -40,6 +40,18 @@ SKILLS_DIR = os.path.join(str(Path.home()), "openamer-repo", "skills")
 AUTO_SKILLS = os.path.join(SKILLS_DIR, "auto-generated")
 REGISTRY = os.path.join(T, "auto_skills.json")
 
+# The repo tree is the git/Darwin source of truth, but the agent and the skill
+# loader read <OPENAMER_HOME>/skills -- a DIFFERENT tree. Until 23.09.26 this
+# writer only touched the repo copy, so every skill it created was invisible to
+# the agent: measured 15 registry entries (20.09.-23.09.) present in the repo
+# and in NO tree the loader reads, while the live tree stayed at 85
+# auto-generated skills. Write BOTH: repo for Darwin/git, live for the agent.
+_LIVE_HOME = os.path.dirname(os.path.dirname(T))  # T = <home>/scripts/training
+LIVE_AUTO_SKILLS = os.path.join(_LIVE_HOME, "skills", "auto-generated")
+if not os.path.isdir(os.path.join(_LIVE_HOME, "skills")):
+    # Unexpected home (throwaway test env): keep the repo write, skip mirror.
+    LIVE_AUTO_SKILLS = None
+
 if not os.path.isdir(T):
     print(f"[auto-skill] ABORT: training dir not found: {T} "
           f"(OPENAMER_HOME misconfigured - refusing to write into a throwaway env)")
@@ -200,6 +212,8 @@ def dedupe_check(name, description, registry):
     """
     if os.path.isdir(os.path.join(AUTO_SKILLS, name)):
         return True
+    if LIVE_AUTO_SKILLS and os.path.isdir(os.path.join(LIVE_AUTO_SKILLS, name)):
+        return True
     for prev in registry["created"]:
         if prev.get("name") == name:
             return True
@@ -224,16 +238,28 @@ def create_skill_from_insight(insight_question, insight_answer, source_tag):
     desc = clean_answer[:150].strip()
     name = "auto-" + slugify(insight_question)
     if name == "auto-":
+        print(f"[auto-skill] skipped empty slug: {insight_question[:60]!r}", flush=True)
         return None
 
     registry = load_registry()
 
     if dedupe_check(name, desc, registry):
+        # Report WHY a run produced nothing. Without this the caller sees a bare
+        # "Total: 0 new skills created" and cannot tell saturation (every insight
+        # already has a skill) apart from a broken pipeline.
+        print(f"[auto-skill] skipped duplicate: {name[:60]}", flush=True)
         return None  # duplicate (same slug or same insight text)
 
-    os.makedirs(AUTO_SKILLS, exist_ok=True)
-    skill_dir = os.path.join(AUTO_SKILLS, name)
-    os.makedirs(skill_dir, exist_ok=True)
+    def _write_md(root):
+        """Write SKILL.md under <root>/<name>; return the path (or None)."""
+        if not root:
+            return None
+        d = os.path.join(root, name)
+        os.makedirs(d, exist_ok=True)
+        p = os.path.join(d, "SKILL.md")
+        with open(p, "w", encoding="utf-8") as f:
+            f.write(skill_content)
+        return p
 
     skill_content = SKILL_TEMPLATE.format(
         name=name,
@@ -244,9 +270,10 @@ def create_skill_from_insight(insight_question, insight_answer, source_tag):
         trigger_context=desc[:100],
     )
 
-    skill_path = os.path.join(skill_dir, "SKILL.md")
-    with open(skill_path, "w", encoding="utf-8") as f:
-        f.write(skill_content)
+    skill_path = _write_md(AUTO_SKILLS)
+    live_path = _write_md(LIVE_AUTO_SKILLS)
+    if live_path:
+        print(f"[auto-skill] mirrored to live tree: {live_path}", flush=True)
 
     entry = {
         "name": name,
@@ -254,6 +281,7 @@ def create_skill_from_insight(insight_question, insight_answer, source_tag):
         "source": source_tag,
         "created": datetime.datetime.now().isoformat(),
         "path": skill_path,
+        "live_path": live_path,
         "status": "draft",
     }
     registry["created"].append(entry)
@@ -317,3 +345,6 @@ if __name__ == "__main__":
     else:
         created = auto_create_from_buffer()
         print(f"\nTotal: {len(created)} new skills created")
+        if not created:
+            print("[auto-skill] no new skills this cycle — every recent insight was "
+                  "already covered (duplicate slug) or unreadable (see lines above)")

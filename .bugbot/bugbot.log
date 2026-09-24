@@ -802,3 +802,117 @@ subprocess.TimeoutExpired: Command '['gh', 'issue', 'list', '--label', 'bug', '-
 2026-09-18 23:42:53,748 [INFO] API: Found 0 open bug issue(s)
 2026-09-18 23:42:53,748 [INFO] No open bug issues found
 2026-09-18 23:42:53,748 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-19 03:43:24,949 [INFO] ============================================================
+2026-09-19 03:43:24,950 [INFO] Bugbot run starting
+2026-09-19 03:43:24,950 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-19 03:43:26,100 [INFO] API: Found 0 open bug issue(s)
+2026-09-19 03:43:26,100 [INFO] No open bug issues found
+2026-09-19 03:43:26,100 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-20 07:44:59,673 [INFO] ============================================================
+2026-09-20 07:44:59,673 [INFO] Bugbot run starting
+2026-09-20 07:44:59,673 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-20 07:45:00,045 [INFO] API: Found 0 open bug issue(s)
+2026-09-20 07:45:00,045 [INFO] No open bug issues found
+2026-09-20 07:45:00,047 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-20 11:45:27,526 [INFO] ============================================================
+2026-09-20 11:45:27,526 [INFO] Bugbot run starting
+2026-09-20 11:45:27,526 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-20 11:45:27,928 [INFO] API: Found 0 open bug issue(s)
+2026-09-20 11:45:27,928 [INFO] No open bug issues found
+2026-09-20 11:45:27,928 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-20 15:46:11,494 [INFO] ============================================================
+2026-09-20 15:46:11,494 [INFO] Bugbot run starting
+2026-09-20 15:46:11,494 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-20 15:46:11,891 [INFO] API: Found 0 open bug issue(s)
+2026-09-20 15:46:11,891 [INFO] No open bug issues found
+2026-09-20 15:46:11,891 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-21 00:05:01,424 [INFO] ============================================================
+2026-09-21 00:05:01,426 [INFO] Bugbot run starting
+2026-09-21 00:05:01,426 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-21 00:05:02,900 [INFO] API: Found 0 open bug issue(s)
+2026-09-21 00:05:02,900 [INFO] No open bug issues found
+2026-09-21 00:05:02,900 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-21 04:05:09,991 [INFO] ============================================================
+2026-09-21 04:05:09,992 [INFO] Bugbot run starting
+2026-09-21 04:05:09,992 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-21 04:05:10,559 [INFO] API: Found 0 open bug issue(s)
+2026-09-21 04:05:10,560 [INFO] No open bug issues found
+2026-09-21 04:05:10,560 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-21 08:05:28,507 [INFO] ============================================================
+2026-09-21 08:05:28,508 [INFO] Bugbot run starting
+2026-09-21 08:05:28,508 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-21 08:05:28,917 [INFO] API: Found 0 open bug issue(s)
+2026-09-21 08:05:28,917 [INFO] No open bug issues found
+2026-09-21 08:05:28,917 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-21 12:05:56,336 [INFO] ============================================================
+2026-09-21 12:05:56,337 [INFO] Bugbot run starting
+2026-09-21 12:05:56,337 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-21 12:05:56,800 [INFO] API: Found 0 open bug issue(s)
+2026-09-21 12:05:56,800 [INFO] No open bug issues found
+2026-09-21 12:05:56,800 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-21 16:06:17,899 [INFO] ============================================================
+2026-09-21 16:06:17,899 [INFO] Bugbot run starting
+2026-09-21 16:06:17,899 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-21 16:06:18,272 [INFO] API: Found 0 open bug issue(s)
+2026-09-21 16:06:18,272 [INFO] No open bug issues found
+2026-09-21 16:06:18,272 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-21 20:06:36,773 [INFO] ============================================================
+2026-09-21 20:06:36,773 [INFO] Bugbot run starting
+2026-09-21 20:06:36,773 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-21 20:06:37,200 [INFO] API: Found 0 open bug issue(s)
+2026-09-21 20:06:37,200 [INFO] No open bug issues found
+2026-09-21 20:06:37,200 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-22 00:06:57,534 [INFO] ============================================================
+2026-09-22 00:06:57,535 [INFO] Bugbot run starting
+2026-09-22 00:06:57,535 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-22 00:06:58,554 [INFO] API: Found 0 open bug issue(s)
+2026-09-22 00:06:58,555 [INFO] No open bug issues found
+2026-09-22 00:06:58,556 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-22 04:07:20,299 [INFO] ============================================================
+2026-09-22 04:07:20,300 [INFO] Bugbot run starting
+2026-09-22 04:07:20,300 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-22 04:07:20,669 [INFO] API: Found 0 open bug issue(s)
+2026-09-22 04:07:20,669 [INFO] No open bug issues found
+2026-09-22 04:07:20,669 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-22 08:08:20,753 [INFO] ============================================================
+2026-09-22 08:08:20,753 [INFO] Bugbot run starting
+2026-09-22 08:08:20,753 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-22 08:08:21,221 [INFO] API: Found 0 open bug issue(s)
+2026-09-22 08:08:21,223 [INFO] No open bug issues found
+2026-09-22 08:08:21,223 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-22 20:36:39,094 [INFO] ============================================================
+2026-09-22 20:36:39,094 [INFO] Bugbot run starting
+2026-09-22 20:36:39,094 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-22 20:36:39,441 [INFO] API: Found 0 open bug issue(s)
+2026-09-22 20:36:39,441 [INFO] No open bug issues found
+2026-09-22 20:36:39,441 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-23 00:37:29,542 [INFO] ============================================================
+2026-09-23 00:37:29,543 [INFO] Bugbot run starting
+2026-09-23 00:37:29,543 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-23 00:37:30,650 [INFO] API: Found 0 open bug issue(s)
+2026-09-23 00:37:30,677 [INFO] No open bug issues found
+2026-09-23 00:37:30,677 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-23 04:38:00,550 [INFO] ============================================================
+2026-09-23 04:38:00,550 [INFO] Bugbot run starting
+2026-09-23 04:38:00,552 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-23 04:38:02,182 [INFO] API: Found 0 open bug issue(s)
+2026-09-23 04:38:02,182 [INFO] No open bug issues found
+2026-09-23 04:38:02,182 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-23 08:38:33,391 [INFO] ============================================================
+2026-09-23 08:38:33,391 [INFO] Bugbot run starting
+2026-09-23 08:38:33,391 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-23 08:38:33,812 [INFO] API: Found 0 open bug issue(s)
+2026-09-23 08:38:33,812 [INFO] No open bug issues found
+2026-09-23 08:38:33,812 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-23 12:38:58,875 [INFO] ============================================================
+2026-09-23 12:38:58,876 [INFO] Bugbot run starting
+2026-09-23 12:38:58,876 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-23 12:38:59,451 [INFO] API: Found 0 open bug issue(s)
+2026-09-23 12:38:59,451 [INFO] No open bug issues found
+2026-09-23 12:38:59,451 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-23 16:39:28,660 [INFO] ============================================================
+2026-09-23 16:39:28,660 [INFO] Bugbot run starting
+2026-09-23 16:39:28,660 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-23 16:39:29,175 [INFO] API: Found 0 open bug issue(s)
+2026-09-23 16:39:29,175 [INFO] No open bug issues found
+2026-09-23 16:39:29,175 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed

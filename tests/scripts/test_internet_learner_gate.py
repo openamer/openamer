@@ -357,6 +357,45 @@ def test_german_dictionary_serp_chrome_is_gated_on_both_paths():
         assert not IL._is_junk(prose), prose
 
 
+def test_site_nav_chain_is_gated_on_both_paths():
+    """cycle_d_docs stored a TechRadar sidebar label run + its announce line.
+
+    Live 23.09.26 (class 165): the row was "Tech news VPN Deals General Apps AR and VR
+    Business Cameras Cybersecurity Entertainment Reviews and guides Smart home
+    Social media Transportation Wearables Claude AI The latest Claude AI news,
+    updates and announcements Anthropic Drops Claude Opus 5.5 ..." -- 300 chars
+    of pure site nav, zero prose, and it cleared BOTH gates. M1 (>=2 distinct
+    labels) alone let prose ABOUT those labels through; M2 (the announce line)
+    alone matched 4 ordinary rows. Only the ANDed pair separates them.
+
+    Measured on both gates over 3,901 real corpus rows + 9,861 junk rows:
+    1 real hit and it IS this leaking row -> 0 real-prose FPs.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    leak = (
+        "Tech news VPN Deals General Apps AR and VR Business Cameras "
+        "Cybersecurity Entertainment Reviews and guides Smart home Social "
+        "media Transportation Wearables Claude AI The latest Claude AI news, "
+        "updates and announcements Anthropic Drops Claude Opus 5.5"
+    )
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+    # M1 OR M2 alone must stay clean -- each is ordinary prose on its own
+    for prose in (
+        "Our smart home and cameras cybersecurity coverage is expanding; "
+        "read the latest reviews and guides.",
+        "Anthropic published 'The latest Claude AI news, updates and "
+        "announcements' as a blog headline yesterday.",
+        "The vLLM docs list VPN Deals as a partner section, and AR and VR "
+        "benchmarks live in the appendix.",
+        "Read the latest vLLM updates and announcements for the 2.12 release.",
+        "TechRadar - Upgrades, reviews and guides",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not IL._is_junk(prose), prose
+
+
 def test_real_insights_survive_the_junk_gate():
     for text in REAL:
         assert not IL._is_junk(text), text
@@ -6349,3 +6388,750 @@ def test_de_consultation_contact_controls_survive_both_gates():
     for ctl in _IL144_CONTROLS:
         assert not IL._is_de_consultation_contact_chrome(ctl), ctl
         assert not BS._is_de_consultation_contact_chrome(ctl), ctl
+
+# class 148 (22.09.26): the learner's OWN bare "Need ..." generation plan.
+# `internet_learner._INSTRUCTION_OPENER_RE` refused these at extraction time, so
+# `--once` reported "shallow + deep read both gated" -- yet the WRITER gate had
+# no counterpart and 12 of them were STORED. The asymmetry is the bug: a row the
+# extractor refuses must never reach the buffer. Measured: 12/300 buffer hits,
+# all 12 the leak; 0/3,064 `longterm_episodes`; 0/1,278 asserted-clean literals.
+_IL148_LEAKS = (
+    "Need maybe answer: no single property; safety is multi-layered.",
+    "Need address inner alignment, outer alignment, deceptive alignment.",
+    "Need maybe structure: - No single property guarantees safety.",
+    "Need maybe discuss distributed AI systems = training/inference across many nodes.",
+    "Need structure: intro: memory consolidation is offline processing.",
+    "Need likely from AI safety.",
+    "Need maybe mention no known complete solution.",
+    "Need avoid Goodhart, specification gaming.",
+    "Need root cause analysis: controlled experiments, change management.",
+    "Need maybe",
+    "Need likely comprehensive.",
+    "Need likely discuss distributed AI systems: training/inference across clusters.",
+)
+
+_IL148_CONTROLS = (
+    "The plan needs three properties: determinism, bounded latency and replayability.",
+    "You need to structure the schema so the migration stays backward compatible.",
+    "The router needs a fallback: when the GPU worker is down, the CPU path answers.",
+    "Schedulers need to avoid starvation, so the queue uses weighted fair sharing.",
+    "The compiler needs to mention which pass removed the dead branch.",
+    "Distributed systems need fault tolerance; Raft replicates the log across five nodes.",
+    "The shared underlying pattern is a closed-loop feedback system between agent and environment.",
+)
+
+
+def test_need_plan_echo_gated_on_both_paths():
+    """A bare imperative "Need ..." echo is refused by BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL148_LEAKS:
+        assert IL._INSTRUCTION_OPENER_RE.search(leak), leak
+        assert BS._is_need_plan_echo(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_need_plan_echo_controls_survive_both_gates():
+    """Real prose that embeds a plan verb (never STARTS with it) stays learnable."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL148_CONTROLS:
+        assert not BS._is_need_plan_echo(ctl), ctl
+        assert not IL._INSTRUCTION_OPENER_RE.search(ctl), ctl
+
+
+# --- class 149 (23.09.26): a site's nav-menu WELD run into a card title that is
+# then repeated.  The leak was STORED (252 chars with digits -> the `>=90` length
+# trust AND the technical-signal gate both fired); class 82 is the same family
+# but wants labels welded to EACH OTHER plus a TitleCase colon headline, and
+# this row welds them to a comma headline instead.
+_IL149_LEAKS = (
+    "Start Suche VPS-Rechner Vergleichen Blog Suchen \U0001f319 EN DE Home Blog "
+    "Haystack: The Open-Source AI Orchestration Framework for Production-Ready RAG "
+    "Haystack: The Open-Source AI Orchestration Framework for Production-Ready RAG "
+    "Jun 27, 2026 What Is Haystack?",
+)
+
+_IL149_CONTROLS = (
+    # the topic-word trap: German/English sentences that LIST the same labels
+    "Suche, Blog, Preise, Kontakt, Impressum und Datenschutz sind die Menuepunkte.",
+    "Die Navigation enthaelt Suche, Blog, Preise und Kontakt in der Kopfzeile.",
+    "Der Vergleich der Preise zeigt, dass die Suche im Blog besser funktioniert.",
+    "Wir haben die Preise verglichen und die Suche im Blog getestet.",
+    "The site navigation offers Suche, Blog and Kontakt in the top bar of every page.",
+    "Our crawler skips the navbar: Start, Blog, Suche and Kontakt are all chrome.",
+    "The nav bar shows Home, Docs, Pricing, Careers and About Us on one line.",
+    "Home Docs Pricing Careers About Us is what the markup literally contains.",
+    "The menu labels are Home, Produkte, Preise and Impressum in the German locale.",
+    "Startseite, Preise and Kontakt were the three labels we had to white-list.",
+    "We compared the nav labels used by three documentation portals for consistency.",
+    "The docs and pricing links sit in the footer nav rather than the sidebar.",
+    "Login and Sign up are the only two links the crawler could not resolve.",
+    "The pricing page and the careers page both redirect to the same marketing site.",
+    "A good agent reads the privacy policy and the terms of service before scraping.",
+    "The resources section links to docs, a newsletter and a cookie policy notice.",
+    # a legit repeat / a legit mention of the brand, each ALONE
+    "The pipeline reads docs, then docs again after the cache is cleared, which is fine.",
+    "Haystack is an open-source orchestration framework for RAG pipelines.",
+    "The Haystack docs explain how to build a production-ready RAG pipeline.",
+    "Our slogan is simple: build fast, ship fast, and build fast again tomorrow.",
+)
+
+
+def test_nav_weld_repeat_chrome_gated_on_both_paths():
+    """A nav-menu weld run + adjacent exact repeat is refused by BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL149_LEAKS:
+        assert BS._is_nav_weld_repeat_chrome(leak), leak
+        assert BS.is_junk(leak), leak
+        assert IL._is_nav_weld_repeat_chrome(leak), leak
+        assert IL._writer_gate_refuses(leak), leak
+        assert IL._is_junk(leak), leak
+
+
+def test_nav_weld_repeat_controls_survive_both_gates():
+    """Prose that lists the same nav labels, or repeats a phrase, stays learnable.
+
+    Neither half of the conjunction may fire alone: nav tokens in prose score a
+    run of 3-6 (the trap), and an ordinary repeat is not ADJACENT.
+    """
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL149_CONTROLS:
+        assert not BS._is_nav_weld_repeat_chrome(ctl), ctl
+        assert not IL._is_nav_weld_repeat_chrome(ctl), ctl
+
+
+def test_nav_weld_repeat_neither_half_is_sufficient():
+    """Disjoint halves: the conjunction is the discriminator, not either side."""
+    import buffer_store as BS
+    nav_only = "Suche, Blog, Preise, Kontakt, Impressum und Datenschutz sind die Menuepunkte."
+    assert BS._nav_weld_run(nav_only) >= 3
+    assert not BS._has_adjacent_exact_repeat(nav_only)
+    rep_only = "The pipeline reads docs, then docs again after the cache is cleared, which is fine."
+    assert not BS._nav_weld_run(rep_only) >= 3
+    assert not BS._has_adjacent_exact_repeat(rep_only)
+
+
+def test_vllm_server_log_line_gated_on_both_paths():
+    """A raw vLLM server log line is refused by BOTH gates (class 155).
+
+    Live 23.09.26: the docs cycle stored "Using max model len 98304 (APIServer
+    pid=90) INFO 11-28 11:46:45 [scheduler." -- chrome truncated mid-token; its
+    digits satisfied the technical-signal gate and it cleared the length check.
+    """
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL155_LEAKS:
+        assert IL._is_junk(leak), leak
+        assert IL._writer_gate_refuses(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_vllm_log_controls_survive_both_gates():
+    """Same-topic PROSE stays learnable: the gate targets the log SHAPE only."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL155_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# --- class 155: a raw vLLM server log line is chrome, not knowledge ----------
+_IL155_LEAKS = (
+    "Using max model len 98304 (APIServer pid=90) INFO 11-28 11:46:45 [scheduler.",
+)
+# Same TOPIC as the leak (the classic trap), but real prose -> must survive.
+_IL155_CONTROLS = (
+    "Set max_model_len to your longest served context, then tune "
+    "gpu_memory_utilization so the KV cache still fits.",
+    "vLLM raises max_num_batched_tokens to 98304 so long prompts fit while the "
+    "KV cache footprint stays predictable.",
+    "The scheduler processes waiting and running queues every step; prefill and "
+    "decode are split across them.",
+    "A worker process with pid 90 failed to bind the port; the runbook explains "
+    "how to detect a stale port holder.",
+    "The docs describe the APIServer as an OpenAI-compatible front end for the "
+    "continuous-batching scheduler.",
+    "Reading a raw log line is not learning until it is interpreted in a runbook "
+    "entry that names the symptom and the fix.",
+    "We measured a 31 percent peak-memory reduction from paged attention during "
+    "warmup of the inference server.",
+)
+# --- class 157: a docs/TOC heading stack welded to an interrogative heading ---
+_IL157_LEAKS = (
+    "Evaluate API Compatibility And Integration Needs Plan For Monitoring, "
+    "Scaling, And Maintenance vLLM Alternatives By Deployment Scenario "
+    "Production LLM Inference Needs More Than A Serving Engine FAQs About "
+    "vLLM Alternatives Is SGLang Better Than vLLM?",
+    "Batch Scheduling and Concurrency Tensor Parallelism for Multi-GPU "
+    "Monitoring Memory in Real Time Full Production Configuration How vLLM "
+    "Uses GPU Memory vLLM allocates GPU memory into three pools: model "
+    "weights, KV cache, and activation memory.",
+)
+# Same TOPIC as the leaks (the classic trap), but real prose -> must survive.
+_IL157_CONTROLS = (
+    "Evaluate API compatibility and integration needs before choosing a serving "
+    "stack; plan for monitoring, scaling, and maintenance over the first year.",
+    "Production LLM inference needs more than a serving engine: you also need a "
+    "scheduler with continuous batching and a KV-cache aware router.",
+    "Is SGLang better than vLLM for prefix-heavy workloads? Benchmarks suggest a "
+    "30% throughput gain on shared system prompts.",
+    "Step 2 explains How the scheduler batches requests, and Step 3 covers Why "
+    "the KV cache is pooled.",
+    "The agent must decide Which Tool To Call and How To Recover from a failed call.",
+    "Q: Which model should I use for coding? A: Use the larger variant; it "
+    "handles long contexts better.",
+    "The pipeline has three stages. What happens next is that the scheduler "
+    "reorders the queue and the cache is flushed.",
+    "vLLM allocates GPU memory into three pools: model weights, KV cache, and "
+    "activation memory.",
+)
+
+
+def test_docs_heading_qweld_is_gated_on_both_paths():
+    """A docs heading stack welded to a question is chrome on BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL157_LEAKS:
+        assert IL.is_docs_heading_qweld(leak), leak
+        assert BS.is_docs_heading_qweld(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+    for ctl in _IL157_CONTROLS:
+        assert not IL.is_docs_heading_qweld(ctl), ctl
+        assert not BS.is_docs_heading_qweld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+def test_docs_heading_qweld_requires_the_question_weld():
+    """A plain heading stack with no interrogative heading stays learnable."""
+    import buffer_store as BS
+    stack = ("Install The Tool Configure The Proxy Run The Benchmark Check The "
+             "Logs Inspect The Output.")
+    assert not BS.is_docs_heading_qweld(stack), stack
+    # a long lowercase question sentence is prose, not a heading stack
+    prose = ("What is prefix caching, and how does it help a serving stack? It "
+             "reuses the KV blocks of a shared prompt prefix, which cuts the "
+             "prefill cost for every request that repeats the same system prompt.")
+    assert not BS.is_docs_heading_qweld(prose), prose
+# --- class 158: a BibTeX citation record welded to a license footer --------
+_IL158_LEAKS = (
+    "Findings of the Association for Computational Linguistics: EMNLP 2025}, "
+    "pages = {23934-23949}, year = {2025}, publisher = {Association for "
+    "Computational Linguistics} } This website is licensed under a Creative "
+    "Commons Attribution-ShareAlike 4.",
+)
+# Same TOPIC as the leak (the classic trap), but real prose -> must survive.
+_IL158_CONTROLS = (
+    # prose ABOUT a Creative Commons license is real knowledge
+    "This website is licensed under a Creative Commons Attribution-ShareAlike 4.0 "
+    "license; please cite the original paper when you reuse the figures.",
+    "The reference lists pages 23934-23949 for the EMNLP 2025 findings volume, "
+    "published by the ACL and licensed under Creative Commons.",
+    "Add a BibTeX entry with the author, title, journal and year fields so the "
+    "citation renders correctly in the paper.",
+    # a PROSE-VALUED assignment with NO license footer (the rejected one-part rule)
+    "Set system_prompt = {You are a helpful assistant} and temperature = {0.2}.",
+    "Configure persona = {A concise technical writer} and style = {formal} now.",
+    "The template uses greeting = {Hello there friend} and name = {Ada}.",
+    # config chains with SCALAR values (the discriminator's clean side)
+    "The recipe fixes seed = {42}, epochs = {3} and lr = {5e-5} for every run.",
+    "We set batch_size = {32} and learning_rate = {1e-4} before the fine-tune.",
+    "The dataset card sets license = {cc-by-4.0} and language = {en} plus "
+    "size = {1.2M} rows.",
+    "Our serving config pins gpu_memory_utilization = {0.9}, max_model_len = "
+    "{8192} and dtype = {bfloat16} for the production profile.",
+)
+
+
+def test_citation_record_weld_is_gated_on_both_paths():
+    """A BibTeX record welded to a license footer is chrome on BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL158_LEAKS:
+        assert IL.is_citation_record_weld(leak), leak
+        assert BS.is_citation_record_weld(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+    for ctl in _IL158_CONTROLS:
+        assert not IL.is_citation_record_weld(ctl), ctl
+        assert not BS.is_citation_record_weld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+def test_citation_record_weld_requires_BOTH_parts():
+    """Each part alone is insufficient -- the rejection is the contract."""
+    import buffer_store as BS
+    license_only = ("This website is licensed under a Creative Commons "
+                    "Attribution-ShareAlike 4.0 license.")
+    assert not BS.is_citation_record_weld(license_only), license_only
+    assignment_only = ("Set system_prompt = {You are a helpful assistant} and "
+                       "temperature = {0.2}.")
+    assert not BS.is_citation_record_weld(assignment_only), assignment_only
+    scalar_only = ("Set pages = {23934-23949} with year = {2025} for the record.")
+    assert not BS.is_citation_record_weld(scalar_only), scalar_only
+
+# --- class 159: a security-advisory listing card welded to its pager --------
+_IL159_LEAKS = (
+    "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment "
+    "in sendFileMessage GHSA-fhc2-x8cp-c5ch published May 14, 2026 by "
+    "julio-rocketchat High Previous 1 2 3 Next Learn more about advis",
+)
+# The SAME page shape WITHOUT the advisory date: `_is_nav_list` catches it.
+_IL159_DATE_FREE = (
+    "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment "
+    "in sendFileMessage GHSA-fhc2-x8cp-c5ch by julio-rocketchat High "
+    "Previous 1 2 3 Next Learn more about advisories."
+)
+# Real knowledge that merely CITES an advisory -> must survive.
+_IL159_CONTROLS = (
+    "The advisory GHSA-fhc2-x8cp-c5ch affects Rocket.Chat sendFileMessage: an "
+    "authenticated user can export arbitrary data through a mass-assignment "
+    "bug, so upgrading to the patched release is required.",
+    "We tracked GHSA-aaaa-bbbb-cccc as High severity and added a regression "
+    "test that reproduces the mass-assignment export before the upgrade.",
+    "Previous 1 2 3 Next is how the docs archive paginates its older releases.",
+    "The changelog lists Previous 1 2 3 Next links to older releases.",
+    "Learn more about advisory boards and their role in governance at the end.",
+    "An advisory published Jan 3, 2025 by GitHub rates this as High severity.",
+)
+
+
+def test_advisory_listing_card_is_gated_on_both_paths():
+    """An advisory listing card welded to its pager is chrome on BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL159_LEAKS:
+        assert IL.is_advisory_listing_card(leak), leak
+        assert BS.is_advisory_listing_card(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+    for ctl in _IL159_CONTROLS:
+        assert not IL.is_advisory_listing_card(ctl), ctl
+        assert not BS.is_advisory_listing_card(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+def test_advisory_listing_card_requires_BOTH_parts():
+    """Each part alone is insufficient -- the rejection is the contract."""
+    import buffer_store as BS
+    id_only = ("The advisory GHSA-fhc2-x8cp-c5ch was rated High and affects "
+               "the sendFileMessage handler in Rocket.Chat.")
+    assert not BS.is_advisory_listing_card(id_only), id_only
+    pager_only = "Previous 1 2 3 Next links paginate the archive."
+    assert not BS.is_advisory_listing_card(pager_only), pager_only
+
+
+def test_the_advisory_date_is_what_disarms_the_nav_list_rule():
+    """Why class 159 exists: the date's comma beats `_is_nav_list` (159)."""
+    import internet_learner as IL
+    # the date-free page shape IS caught by the pre-existing rule
+    assert IL._is_nav_list(_IL159_DATE_FREE), _IL159_DATE_FREE
+    # the live shape is NOT -- one comma from the advisory date disarms it
+    assert not IL._is_nav_list(_IL159_LEAKS[0]), _IL159_LEAKS[0]
+    # ... and that is exactly what class 159 covers
+    assert IL.is_advisory_listing_card(_IL159_LEAKS[0]), _IL159_LEAKS[0]
+# --- class 160: an OFF-TOPIC result page is not a source for the query -------
+# Live 23.09.26, cycle_a_technews logged
+#   "learned: An unpaid ticket picks up $10 at 30 days, another $20 at 60 ..."
+# for the query "Spain to impose fines for not labelling AI-generated content".
+# _search_urls had returned `https://www.newsbreak.com/news` -- a generic city
+# news FEED, not the article behind the Reuters hit -- and the fetched page
+# contained ZERO of the query's six topic tokens (spain/impose/fines/labelling/
+# ai-generated/content). It is NOT a news index either (0 relative stamps), so
+# the class-134 gate missed it and deep_learn scored other-topic feed furniture.
+#
+# The gate lives at the PAGE, not the insight: 45% of the live 300-row buffer
+# shares zero 4+ char tokens with its question while being legitimate (question
+# "A Visual Guide to LLM Quantization" -> "32-bit float: 4 bytes per parameter
+# (75% memory reduction)"). A page, unlike an answer, must contain the topic's
+# own words to be about that topic at all. Measured over 6 live queries /
+# 12 pages: all 3 relevant pages >=2 topic tokens, every off-topic row's page 0.
+
+_IL160_QUERY = "Spain to impose fines for not labelling AI-generated content"
+
+# The real fetched page shape (newsbreak.com/news, 6000 chars, verb + digits --
+# which is exactly why every text-level gate passed it).
+_IL160_OFF_TOPIC_PAGE = (
+    "New York City, NY Local News and More | NewsBreak Open in NewsBreak | "
+    "Sign in New York City See all locations Customize your news Cloudy 59 F "
+    "Local News Trending Posts Crime Map Gas Events Weather Traffic Transit "
+    "Sports Finance Lifestyle Education Municipal Business Food Drink Arts "
+    "An unpaid ticket picks up $10 at 30 days, another $20 at 60, and another "
+    "$30 at 90, then turns into a court judgment around day 100. "
+) + ("The city council also reviewed parking revenue and meter enforcement "
+     "across all five boroughs during the regular session on Tuesday evening. " * 6)
+
+# A genuinely relevant page: it repeats the topic's own vocabulary.
+_IL160_RELEVANT_PAGE = (
+    "Spain to impose massive fines for not labelling AI-generated content. "
+    "The Spanish government approved a bill on Tuesday imposing fines on "
+    "companies that use content generated by artificial intelligence without "
+    "labelling it, implementing the EU AI Act with penalties of up to 35 "
+    "million euros. "
+) + ("Companies must label AI-generated content under the new Spanish bill. " * 8)
+
+
+def test_off_topic_page_is_dropped():
+    """The live NewsBreak feed page is recognised as off-topic (class 160)."""
+    import internet_learner as IL
+    assert IL.is_off_topic_page(_IL160_QUERY, _IL160_OFF_TOPIC_PAGE)
+
+
+def test_relevant_page_is_kept():
+    """A page carrying the topic's own words is never dropped."""
+    import internet_learner as IL
+    assert not IL.is_off_topic_page(_IL160_QUERY, _IL160_RELEVANT_PAGE)
+
+
+def test_topic_tokens_drop_query_scaffolding():
+    """Scaffolding words must not count as topic vocabulary."""
+    import internet_learner as IL
+    tq = IL.topic_tokens(_IL160_QUERY)
+    assert "spain" in tq and "labelling" in tq and "fines" in tq
+    assert "what" not in tq and "should" not in tq and "know" not in tq
+    assert "learning" not in tq and "insight" not in tq and "agent" not in tq
+
+
+def test_relational_query_is_never_judged():
+    """A relation is answered by phrasing it, not by repeating its nouns.
+
+    Real buffer row for "Structural connection between tool usage and learning
+    process?": "The shared underlying pattern is a recursive, iterative
+    refinement cycle ..." -- on-topic with zero literal overlap.
+    """
+    import internet_learner as IL
+    q = "Structural connection between tool usage and learning process?"
+    page = ("The shared underlying pattern is a recursive, iterative "
+            "refinement cycle where each cycle involves exploration and action "
+            "followed by consolidation of the resulting pattern into memory. " * 8)
+    assert not IL.is_off_topic_page(q, page), q
+    assert not IL.is_off_topic_page(
+        "What is the difference between correlation and causation?", page)
+
+
+def test_thin_and_untopical_queries_are_not_judged():
+    """Partial fetches and non-topical queries keep today's trust.
+
+    A short page is a partial fetch, not evidence of an off-topic source; and
+    a query with fewer than 2 distinctive tokens has nothing to check against.
+    """
+    import internet_learner as IL
+    assert not IL.is_off_topic_page(_IL160_QUERY, "Sign in New York City")
+    assert not IL.is_off_topic_page("news", _IL160_OFF_TOPIC_PAGE)
+
+
+def test_legitimate_answer_without_literal_overlap_is_not_a_page_gate_case():
+    """Pin WHY the gate is at the page and not at the insight.
+
+    This pair is legitimate (it really is in the live buffer) and shares no
+    4+ char token -- an insight-level overlap gate would have destroyed it.
+    """
+    import internet_learner as IL
+    q = "Pushing the Limits of LLM Quantization via the Linearity Theorem"
+    a = ("AM4 300/400/500 and AM5 600/800 Series A specification-level "
+         "comparison of AMD chipsets, covering CPU-die")
+    # the gate WOULD flag the answer text if consulted on an insight ...
+    assert IL.is_off_topic_page(q, a + " " * 900)
+    # ... which is exactly why it is only ever consulted on a fetched PAGE.
+    assert not IL.is_off_topic_page(q, a + " quantization " * 200)
+
+# class 161 (23.09.26): a DECIMAL POINT is not a sentence terminator, but the
+# extractor regex treated it as one -- the live cycle_g_security row was stored
+# as "... remote code execution vulnerability (CVSS 3." while the page's real
+# sentence continues "3.9) affecting Orkes Conductor ...". Measured over 12,540
+# real texts: 23 sentences were cut mid-number this way.
+# The fix is a pure WIDEN of the extractor (never a reject gate); a
+# "text ends in digit+period" gate stays the documented deliberate NON-FIX
+# (archive class 85: 1,710 such endings are legitimate).
+
+
+def test_decimal_point_does_not_end_a_sentence():
+    """A number's decimal point must not terminate the extracted sentence."""
+    import internet_learner as IL
+    page = ("CVE-2026-58138 is a critical, unauthenticated remote code execution "
+            "vulnerability (CVSS 3.9) affecting Orkes Conductor, allowing "
+            "attackers to execute arbitrary code without authentication.")
+    got = [s for s in IL._sentences(page)]
+    assert got, "the page must still yield a sentence"
+    assert got[0].endswith("without authentication."), got[0]
+    assert "3.9)" in got[0], got[0]
+
+
+def test_multiple_decimals_are_all_healed():
+    """A run of decimal numbers is walked past, not cut at the first one."""
+    import internet_learner as IL
+    page = ("The benchmark reports a decode throughput of 12.5 tokens per "
+            "second at a perplexity of 4.21 on the evaluation suite.")
+    got = [s for s in IL._sentences(page)]
+    assert got and got[0].endswith("evaluation suite."), got
+    assert "12.5" in got[0] and "4.21" in got[0], got
+
+
+def test_a_real_sentence_end_still_terminates():
+    """A genuine sentence end is never widened into the next sentence."""
+    import internet_learner as IL
+    page = ("Quantization recovers most of the accuracy at four bits. "
+            "The second sentence mentions 3.9 as a version number.")
+    got = [s for s in IL._sentences(page)]
+    assert got and got[0] == ("Quantization recovers most of the accuracy at "
+                              "four bits."), got[0]
+
+
+def test_years_and_counts_are_not_widened():
+    """A trailing date/number before a real full stop stays terminated."""
+    import internet_learner as IL
+    page = ("The conference was held from February 25 to 27, 2025 in Vienna "
+            "and drew a large crowd of researchers.")
+    got = [s for s in IL._sentences(page)]
+    assert got and got[0].endswith("researchers."), got
+
+
+def test_the_extractor_uses_the_healing_helper():
+    """Pin the wire-up: the deep-read loop must go through _sentences()."""
+    import io as _io
+    src = _io.open(TRAINING / "internet_learner.py", encoding="utf-8",
+                   newline="").read()
+    assert "for s in _sentences(t):" in src
+    # the raw inline regex must no longer head the scoring loop
+    assert "re.finditer(r\"([A-Z][^.!?]{40,250}[.!?])\", t)" not in src
+
+
+def test_news_age_notice_is_stripped_not_stored():
+    """A publisher age notice + content label, welded to the LEDE (class 163).
+
+    Live 23.09.26 (`cycle_a_technews`): the stored row was
+      "I violated every principle I was given\u2019 This article is more than 4
+       months old PocketOS was left scrambling after a rogue AI agent deleted
+       swaths of code underpinning its business Supported by About this content
+       Sanya Mansoor Thu 30 Apr 2026 00.12 CEST Last modified on Wed 17 Jun
+       2026 11.55 CEST Sha"
+    -- a pull-quote weld + the publisher's staleness notice + the lede + the
+    site's own `Supported by About this content` affordance + the byline block,
+    all glued into 300 chars.  The dates fed `_TECH_HINT_RE` (whose alternation
+    STARTS with `\\d+`) and the length cleared the >=90 trust, so BOTH gates
+    passed it.  STRIP, not reject: the lede IS the knowledge.
+    """
+    import buffer_store
+    leak = NEWS_AGE_NOTICE_LEAK
+    # the RAW row is refused by BOTH gates ...
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    # ... and the strip rescues the lede as a PRISTINE SLICE of the original.
+    body = IL._strip_news_age_notice(leak)
+    assert body == ("PocketOS was left scrambling after a rogue AI agent deleted "
+                    "swaths of code underpinning its business")
+    assert body in leak
+    # the rescued body is genuinely storable -- refused only if it is not.
+    assert IL._is_junk(body) is False
+    assert buffer_store.is_junk(body) is False
+    assert IL._clean_insight(body, 300) == body
+
+
+def test_news_age_notice_controls_survive_both_gates():
+    """Prose that MENTIONS an age notice or a content label stays learnable.
+
+    The discriminator is the publisher's own label PAIR, never the topic.  The
+    LAST control is the one that killed the wider
+    `age-notice AND (About this content|Last modified on)` form: it carries both
+    halves inside ONE real sentence and must stay learnable.
+    """
+    import buffer_store
+    for c in NEWS_AGE_CONTROLS:
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+        assert IL._strip_news_age_notice(c) == c, c
+
+
+
+
+# The exact bytes `cycle_a_technews` stored on 23.09.26 (class 163).
+NEWS_AGE_NOTICE_LEAK = (
+    "I violated every principle I was given\u2019 This article is more than 4 "
+    "months old PocketOS was left scrambling after a rogue AI agent deleted "
+    "swaths of code underpinning its business Supported by About this content "
+    "Sanya Mansoor Thu 30 Apr 2026 00.12 CEST Last modified on Wed 17 Jun "
+    "2026 11.55 CEST Sha")
+
+NEWS_AGE_CONTROLS = [
+    "The Guardian article carries an age notice saying the piece is more than 4 months old, so the crawler should skip that label.",
+    "This article is more than 4 months old, so the benchmark numbers it quotes are stale and the 2026 revision should be cited instead.",
+    "About this content policy: the crawler must not treat the site's own label as a fact about the world.",
+    "Supported by a grant from the EU, the team released its weights under Apache 2.0 and published the training script.",
+    "Last modified on the dataset card, the licence field changed to Apache 2.0 while the model weights stayed under MIT.",
+    "This article is more than 4 months old and the author explains why the retriever must re-rank before generation.",
+    "Supported by About this content is the pair of labels the crawler should drop, the sentence behind them is the knowledge we keep.",
+    "This article is more than 4 months old, so we re-measured it; the About this content label the site renders is page furniture, and the 8-bit run stayed within one point of fp16.",
+]
+
+
+def test_section_toc_chain_is_gated_on_both_paths():
+    """A paper page's section-TOC chain welded to `Download PDF` (class 164).
+
+    Live 23.09.26 (`cycle_b_papers`): 300 chars of a paper page's own section
+    listing -- `Report Issue Back to Abstract Download PDF Abstract 1
+    Introduction 2 DeepSeek-R1-Zero 2.1 Group Relative Policy Optimization ...`
+    -- truncated mid-word by the extractor.  A LISTING is a label chain, a
+    sentence has grammar, so the discriminator is the conjunction of the page's
+    `Download PDF` affordance and a RUN of `N.N <Title>` sub-section labels.
+    """
+    import buffer_store
+    leak = TOC_CHAIN_LEAK
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for c in TOC_CHAIN_CONTROLS:
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+
+
+def test_section_toc_chain_requires_BOTH_parts():
+    """Neither half is sufficient: the chain alone hits 4 real episodes."""
+    # the numbered-chain alone is ordinary prose about a paper's structure
+    assert IL._is_section_toc_chain(
+        "Section 2 introduces the policy optimization, Section 3 covers training "
+        "and 3.1 lists the reward models.") is False
+    # the PDF affordance alone is an ordinary sentence
+    assert IL._is_section_toc_chain(
+        "Download the PDF of the report and read the abstract first.") is False
+    # and a sentence carrying BOTH halves still survives -- the run of N.N
+    # labels is what prose does not produce
+    assert IL._is_section_toc_chain(
+        "The docs page has a Download PDF button, and the release notes list "
+        "0.13 Streaming Output and 0.9 KV-cache reuse.") is False
+
+
+
+
+# The exact bytes `cycle_b_papers` stored on 23.09.26 (class 164).
+TOC_CHAIN_LEAK = (
+    "Report Issue Back to Abstract Download PDF Abstract 1 Introduction 2 "
+    "DeepSeek-R1-Zero 2.1 Group Relative Policy Optimization 2.2 Reward Design "
+    "2.3 Incentivize Reasoning Capability in LLMs 3 DeepSeek-R1 3.1 Model-based "
+    "Rewards Helpful Reward Model Safety Reward Model 3.2 Training Details 3.2.1 "
+    "Traini")
+
+TOC_CHAIN_CONTROLS = [
+    "The paper is organized as follows: Section 2 introduces the policy optimization, Section 3 covers training and 3.1 lists the reward models.",
+    "Download the PDF and read the abstract first; the paper has 3 sections and section 2.1 defines the reward model we reuse.",
+    "The paper's 3.1 reward model section is the one we ported, and 3.2 documents its training details over 40k steps.",
+    "We fetched the PDF from the abstract page and parsed 12 numbered headings into a flat outline for the retriever.",
+    "DeepSeek-R1-Zero applies Group Relative Policy Optimization and the reward design is described in the paper's section 2.2.",
+    "The crawler should strip the Download PDF button before chunking, but keep the numbered heading hierarchy for section-aware retrieval.",
+    "We downloaded the PDF and found 3.1 model-based rewards and 3.2 training details written as plain prose.",
+    "The docs page has a Download PDF button, and the release notes list 0.13 Streaming Output and 0.9 KV-cache reuse.",
+]
+
+
+def test_ago_release_badge_weld_is_gated_on_both_paths():
+    """A repo-listing row's `<N>yrs agorelease` badge weld (class 166).
+
+    Live 23.09.26 (`cycle_c_github`): a GitHub-trending listing row -- the card
+    title restated twice + the `2yrs ago`/`release` badge concatenated + the
+    feed counters + a truncated description.  The discriminator is the BADGE
+    WELD (a missing space), which no human sentence produces.
+    """
+    import buffer_store
+    leak = AGO_RELEASE_LEAK
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for c in AGO_RELEASE_CONTROLS:
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+
+
+def test_ago_release_badge_weld_requires_the_missing_space():
+    """The LOOSE form (allowing a space) hits real prose -- do not loosen it."""
+    assert IL._is_ago_release_badge_weld(AGO_RELEASE_LEAK) is True
+    # a human sentence keeps `ago` and `release` apart
+    assert IL._is_ago_release_badge_weld(
+        "2yrs ago release was announced in the changelog, and the 1.4 build "
+        "followed a week later.") is False
+    assert IL._is_ago_release_badge_weld(
+        "Released 3 years ago, the framework still leads on multi-agent "
+        "collaboration benchmarks by 4 points.") is False
+
+
+
+
+# The exact bytes `cycle_c_github` stored on 23.09.26 (class 166).
+AGO_RELEASE_LEAK = (
+    "Latest AI Resources - ANUS: An Open Source AI Framework for Task "
+    "Automation and Multi-Agent Collaboration ANUS: An Open Source AI Framework "
+    "for Task Automation and Multi-Agent Collaboration Latest AI Resources 2yrs "
+    "agorelease AI Sharing Circle 101.9K 0 0 General Introduction ANUS "
+    "(Advanced Neural Un")
+
+AGO_RELEASE_CONTROLS = [
+    "The repo was released 2 years ago and the badge on its page says 101.9K stars, 0 issues and 0 forks.",
+    "We released the dataset 2yrs ago and the paper's repository shows 101.9K downloads so far.",
+    "A listing row welds the title, the age badge and the counters together; a crawler should skip all three.",
+    "Released 3 years ago, the framework still leads on multi-agent collaboration benchmarks by 4 points.",
+    "2yrs ago release was announced in the changelog, and the 1.4 build followed a week later.",
+    "The model card was updated 6 months ago release notes say the int4 build lost 0.9 points.",
+    "Our parser strips the relative-age badge from GitHub listing rows before chunking.",
+]
+
+
+
+
+def test_price_table_row_is_gated_on_both_paths():
+    """A plan/vendor COMPARISON price table with rating widgets (class 168).
+
+    Live 23.09.26 (`cycle_e_competitors`): a marketplace SERP row -- a run of
+    `$<n>/mo` tokens with the rating widget (`* 5.0`, `View Review`) welded on.
+    The discriminator is the WELD (prices AND rating/CTA widgets together);
+    prose that merely cites a price or a rating must stay learnable.
+    """
+    import buffer_store
+    leak = PRICE_TABLE_LEAK
+    assert IL._is_price_table_row(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for c in PRICE_TABLE_CONTROLS:
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+
+
+def test_price_table_row_requires_both_markers():
+    """Neither marker alone may fire -- each is ordinary prose on its own."""
+    # prices alone: ordinary prose ABOUT pricing
+    prices_only = (
+        "OpenAI Codex costs $8/mo while Claude Code is $17/mo annually, so the "
+        "cheaper tier wins for solo devs.")
+    assert IL._is_price_table_row(prices_only) is False
+    # widgets alone: prose mentioning a rating
+    widgets_only = (
+        "Rated \u2605 4.7 in our own eval; a reader left a View Review note on the "
+        "vendor page.")
+    assert IL._is_price_table_row(widgets_only) is False
+    # both, but only one price token -- a sentence, not a table
+    one_price = (
+        "The Pro plan is $20/mo \u2605 4.7 and users can View Review it on the "
+        "vendor page.")
+    assert IL._is_price_table_row(one_price) is False
+
+
+# The exact bytes `cycle_e_competitors` stored on 23.09.26 (class 168).
+PRICE_TABLE_LEAK = (
+    "From $25/mo View Review \u2192 OpenCode Free \u00b7 Anomaly Innovations, Inc "
+    "\u2605 5.0 \u2192 OpenAI Codex $8/mo \u00b7 OpenAI \u2605 4.7 \u2192 Claude Code "
+    "$17/mo annual \u00b7 Anthropic \u2605 4.6 \u2192 Cline $9.99/mo \u00b7 Cline Bot Inc.")
+
+PRICE_TABLE_CONTROLS = [
+    "vLLM 0.9 ships a chunked-prefill scheduler that caps KV cache GPU memory at 90% by default.",
+    "Serving that model costs about 0.002 EUR per 1k tokens, annualised 12 EUR per agent.",
+    "GPT-5 and Claude Opus 4.5 both list at the same tier as Codex; the API price is $5 per 1M input tokens.",
+    "The subscription is $20/mo and includes unlimited code completion in the IDE.",
+    "OpenAI Codex costs $8/mo while Claude Code is $17/mo annually, so the cheaper tier wins for solo devs.",
+    "Prices: the Pro plan is $20/mo annual and the Team plan is $25/mo per seat; both include the agent mode.",
+    "Rated 4.7 stars out of 5 in our own eval; the model is served at 40 tokens/s on 8 CPU threads.",
+    "The Cline extension is $9.99/mo and the OpenCode tier is free, per the vendor page.",
+    "A plan comparison shows codex $8 and claude $17.",
+    "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
+]
+

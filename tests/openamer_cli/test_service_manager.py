@@ -7,6 +7,8 @@ implementation in this same file once that phase ships.
 """
 from __future__ import annotations
 
+import sys
+
 import pytest
 
 from openamer_cli.service_manager import (
@@ -20,6 +22,23 @@ from openamer_cli.service_manager import (
     get_service_manager,
     validate_profile_name,
 )
+
+
+def _assert_executable(path) -> None:
+    """Assert the exec bit where the platform has one; no-op on Windows.
+
+    ``os.chmod`` on Windows only toggles the read-only flag — there is no
+    POSIX permission bit, so ``st_mode & 0o111`` is always 0 and the
+    assertion can never pass there, whatever the code under test does.
+
+    Deliberately a no-op rather than ``pytest.skip``: a skip here would
+    abandon the assertions that follow the call (the run/finish script
+    contracts these tests exist for). Only the platform-dependent bit is
+    dropped; the content checks still run on Windows.
+    """
+    if sys.platform == "win32":
+        return
+    assert path.stat().st_mode & 0o111  # executable
 
 
 # ---------------------------------------------------------------------------
@@ -545,7 +564,7 @@ def test_s6_register_creates_service_dir_and_triggers_scan(
 
     run_path = svc_dir / "run"
     assert run_path.is_file()
-    assert run_path.stat().st_mode & 0o111  # executable
+    _assert_executable(run_path)
     run_text = run_path.read_text()
     assert "export HOME=/opt/data" in run_text
     assert "openamer -p coder gateway run" in run_text
@@ -738,7 +757,7 @@ def test_s6_register_writes_finish_script(
 
     finish_path = s6_scandir / "gateway-coder" / "finish"
     assert finish_path.is_file()
-    assert finish_path.stat().st_mode & 0o111  # executable
+    _assert_executable(finish_path)
     assert "78" in finish_path.read_text()
     assert "125" in finish_path.read_text()
 

@@ -1,5 +1,6 @@
 """Tests for agent/skill_utils.py."""
 
+import os
 from unittest.mock import patch
 
 from agent.skill_utils import (
@@ -168,8 +169,14 @@ def test_skill_config_raw_cache_invalidates_on_config_edit(tmp_path, monkeypatch
     assert get_disabled_skill_names() == {"old-skill"}
 
     config_path.write_text("skills:\n  disabled: [new-skill]\n", encoding="utf-8")
-    import os
-    os.utime(config_path, None)
+    # The cache key is (path, st_mtime_ns, st_size). Two different contents the
+    # same length written back-to-back can land on the SAME nanosecond mtime --
+    # measured on Windows: os.utime(p, None) re-stamped the identical
+    # st_mtime_ns, so the key never changed and the cache correctly served the
+    # old entry. That is a filesystem timestamp resolution limit, not a cache
+    # bug, so nudge the mtime explicitly to simulate a later edit.
+    stat = config_path.stat()
+    os.utime(config_path, ns=(stat.st_atime_ns, stat.st_mtime_ns + 1_000_000_000))
 
     assert get_disabled_skill_names() == {"new-skill"}
 

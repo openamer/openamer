@@ -291,6 +291,15 @@ def store(user_text, insight, buffer=None):
                 and _clean_insight(stripped, 300)):
             insight = stripped
             cleaned = _clean_insight(insight, 300)
+    # class 163 follow-up (23.09.26): same two-step for a news age notice --
+    # the reject gate above fires on the RAW insight, so the strip has to
+    # rescue here or the prose behind the notice is never stored.
+    if _is_news_age_notice(insight):
+        stripped = _strip_news_age_notice(insight)
+        if (stripped and stripped != insight and not _is_junk(stripped)
+                and _clean_insight(stripped, 300)):
+            insight = stripped
+            cleaned = _clean_insight(insight, 300)
     reason = ""
     if _is_junk(insight):
         reason = "junk"
@@ -590,6 +599,20 @@ _JUNK_RE = re.compile(
     # rows. Prose that merely discusses releases or slides stays learnable
     # (counter-cases measured).
     r"released\s+[^\n]{0,60}?\(github releases\)|show original\s+previous slide|"
+
+    # a vLLM server LOG LINE (class 155, 23.09.26): the docs cycle stored
+    # "Using max model len 98304 (APIServer pid=90) INFO 11-28 11:46:45
+    # [scheduler." -- chrome cut mid-token; the digits satisfied the
+    # technical-signal gate and the row cleared the length check. Bare
+    # `\bpid=\d+` was measured and REJECTED (1 longterm_episodes hit), so the
+    # pid fragment requires the APIServer/EngineCore/Worker module tag that
+    # only a log line carries. A `max model len` fragment was ALSO measured and
+    # dropped: real docs prose says "max model len" without underscores
+    # (topic-word trap), and the two concrete markers already cover the leak.
+    # Measured 23.09.26: 1 buffer hit and it IS the leak -> 0 of 7 same-topic
+    # prose controls, 0 episodes, 0 gate-test literals.
+     r"apiserver pid=|\[scheduler\.|"
+     r"\binfo \d{1,2}-\d{1,2} \d{1,2}:\d{2}:\d{2} |"
     # NOTE: every fragment above ends with `|` -- the whole alternation is ONE
     # implicitly-joined literal, so a missing pipe welds two rules together and
     # an EMPTY branch matches every string (both hit on 16.09.26).
@@ -2862,12 +2885,17 @@ def _is_aggregator_row_year_tail(text):
 # loosening the threshold): the feed row carries TWO handles -- the trailing
 # `<points> <handle>:` is the points/handle pair the renderer emits for the
 # item itself, which the relative-time+comments unit alone does not imply.
-# Measured 22.09.26 over 12,321 rows (online_buffer, buffer_junk,
+# Measured 22.09.26 over 12,322 rows (online_buffer, buffer_junk,
 # longterm_episodes, world_model): 3 hits -- the live buffer row 149 (the
 # leak) plus its two audit echoes, all the same string -> 0 real-prose FPs on
 # an 11-case hostile battery (prose citing a relative time, a comment count,
 # a points-like number, a named handle, a colon-attributed quote).
 _FEED_HANDLE_TOKEN_RE = r"[A-Za-z][\w.\-]{2,20}"
+#
+# The trailing handle is matched CASE-SENSITIVELY via the scoped inline flag
+# `(?-i:...)`: the page emits handles capitalized, while the surrounding row
+# is matched case-insensitively. Without the scope, `[A-Z]` under
+# IGNORECASE re-admits lowercase prose (`... and then 193 runs:`).
 _FEED_HANDLE_TAIL_RE = r"(?-i:[A-Z])[\w.\-]{1,20}"
 _FEED_HANDLE_UNIT_RE = re.compile(
     r"\b" + _FEED_HANDLE_TOKEN_RE + r"\s+\d{1,3}\s+"
@@ -4354,6 +4382,402 @@ def _is_article_byline_chrome(text):
             and bool(_ARTICLE_DATELINE_RE.search(head)))
 
 
+
+# A docs/TOC HEADING STACK welded to an interrogative heading (class 157,
+# 23.09.26). Live: the docs cycle stored two rows that had passed BOTH gates --
+#   "Evaluate API Compatibility And Integration Needs Plan For Monitoring,
+#    Scaling, And Maintenance vLLM Alternatives By Deployment Scenario
+#    Production LLM Inference Needs More Than A Serving Engine FAQs About
+#    vLLM Alternatives Is SGLang Better Than vLLM?"
+#   "Batch Scheduling and Concurrency Tensor Parallelism for Multi-GPU
+#    Monitoring Memory in Real Time Full Production Configuration How vLLM
+#    Uses GPU Memory vLLM allocates GPU memory into three pools: ..."
+# -- a docs page's section headings concatenated with the newlines removed,
+# ending in a question heading. The questions and digits fed the
+# technical-signal gate and both rows cleared the >=90 long-prose trust.
+#
+# Keyed on the STRUCTURE, never the topic: the row must carry an interrogative
+# welded straight onto a preceding word (`... Alternatives Is SGLang ...`), be
+# at least 80 chars, have a capitalized-word ratio >= 0.50 (a heading stack is
+# almost all TitleCase; prose is not) and carry at most ONE sentence
+# terminator (a stack concatenates headings and rarely punctuates them).
+# Measured 23.09.26 over 17,064 rows (online_buffer 300, buffer_junk 9,137,
+# internet_learn_log 2,693, longterm_episodes 3,064, gate-test literals 1,870):
+# exactly 2 buffer hits and BOTH are the leaking rows -> 0 of 3,064
+# longterm_episodes, 0 of 1,870 asserted literals, 0 of a 7-case hostile prose
+# battery (prose naming a question mid-sentence, a FAQ pair, a mostly-heading
+# answer with no question). The buffer_junk/log hits are 3 known leak families
+# this rule also catches (docs nav stack, arXiv listing row, news-index stack)
+# plus rows whose audit copy is TRUNCATED -- never a clean prose row.
+# REJECTED on measurement, do not re-add: the bare question-weld (7 buffer + 2
+# episode hits), a TitleCase-run-followed-by-prose rule (215 episodes), the
+# `cap >= 0.55` threshold (misses the live 0.54 row) and a 0-terminator window
+# (misses both live rows).
+_DOC_HEADING_QWELD_RE = re.compile(
+    r"[a-z0-9]\s+(?:Is|Are|Can|Does|Do|Should|Will|Which|Why|How|What)\s+[A-Za-z]")
+_DOC_HEADING_WORD_RE = re.compile(r"[A-Za-z][A-Za-z'\-]*")
+
+
+def is_docs_heading_qweld(text):
+    """True for a docs/TOC heading stack welded to an interrogative heading.
+
+    Structural rule, no topic words and no vendor literals -- see the block
+    comment above `_DOC_HEADING_QWELD_RE` for the measurement.
+    """
+    t = text or ""
+    if len(t) < 80:
+        return False
+    if not _DOC_HEADING_QWELD_RE.search(t):
+        return False
+    words = _DOC_HEADING_WORD_RE.findall(t)
+    if not words:
+        return False
+    caps = sum(1 for w in words if w[:1].isupper())
+    if (caps / len(words)) < 0.50:
+        return False
+    return len(re.findall(r"[.!?]", t)) <= 1
+
+
+# A BibTeX CITATION RECORD welded to a license footer (class 158, 23.09.26).
+# Live: the papers cycle stored, verbatim:
+#   "Findings of the Association for Computational Linguistics: EMNLP 2025},
+#    pages = {23934-23949}, year = {2025}, publisher = {Association for
+#    Computational Linguistics} } This website is licensed under a Creative
+#    Commons Attribution-ShareAlike 4."
+# -- an ACL Anthology page's BibTeX `pages = {..}, year = {..}, publisher =
+# {..}` chain with the trailing `}` still attached, welded to the site's
+# license footer. The digits and braces fed the technical-signal gate and the
+# 243 chars cleared the >=90 long-prose trust.
+#
+# Keyed on the CONJUNCTION of two independently-insufficient signals:
+#   (1) a `field = {value}` pair whose VALUE reads as a multi-word PHRASE
+#       (>=3 word tokens) -- a citation record's values are prose ("Association
+#       for Computational Linguistics"), while a code/config assignment's value
+#       is a scalar ("{42}", "{0.9}", "{bfloat16}", "{cc-by-4.0}");
+#   (2) a LICENSE FOOTER ("licensed under" / "creative commons" /
+#       "attribution-sharealike").
+# Measured 23.09.26 over 17,905 rows (online_buffer 299, buffer_junk 18,480,
+# internet_learn_log 2,698, longterm_episodes 3,064, asserted gate-test literals
+# 1,897): the conjunction has exactly 1 hit -- the leaking row -- and 0
+# elsewhere, 0 of a 9-case hostile battery.
+# BOTH parts were MEASURED AND REJECTED alone; do not re-add either:
+#   - the license footer alone: 4 asserted gate-test literals + 2 hostile
+#     prose FPs (prose ABOUT a Creative Commons license is real knowledge).
+#   - the prose-valued assignment alone: 3 hostile FPs
+#     (`Set system_prompt = {You are a helpful assistant} and temperature = ...`).
+#   - the bare `field = {value}` pair: 3 hostile config FPs.
+#   - the BibTeX field VOCABULARY (author/title/year/pages/...): 5 hostile FPs,
+#     because prose that merely NAMES those words trips it.
+_CITATION_ASSIGN_RE = re.compile(
+    r"\b[A-Za-z][A-Za-z0-9_]{1,20}\s*=\s*\{([^{}]{0,160})\}")
+_CITATION_LICENSE_RE = re.compile(
+    r"licensed under|creative commons|attribution-sharealike", re.IGNORECASE)
+
+
+def is_citation_record_weld(text):
+    """True for a BibTeX citation record welded to a license footer.
+
+    Structural conjunction, no topic words and no site literals -- see the
+    block comment above `_CITATION_ASSIGN_RE` for the measurement.
+    """
+    t = text or ""
+    if not t:
+        return False
+    if not _CITATION_LICENSE_RE.search(t):
+        return False
+    for m in _CITATION_ASSIGN_RE.finditer(t):
+        value = m.group(1)
+        if len(re.findall(r"[A-Za-z][A-Za-z'\-]*", value)) >= 3:
+            return True
+    return False
+
+
+
+# A GitHub-advisory / security-portal INDEX-CARD chrome row (class 159,
+# 23.09.26). Live: cycle_d_docs AND cycle_c_github stored, verbatim,
+# twice in the buffer tail:
+#   "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment
+#    in sendFileMessage GHSA-fhc2-x8cp-c5ch published May 14, 2026 by
+#    julio-rocketchat High Previous 1 2 3 Next Learn more about advis"
+# -- an advisories-LIST page: one entry's TITLE welded to its identifier,
+# its publication date, its reporter handle, its severity badge, the
+# list's own `Previous 1 2 3 Next` pager and the trailing CTA, truncated
+# mid-word by the extractor. 235 chars with digits -> the >=90 long-prose
+# trust and the technical-signal gate both let it through.
+#
+# The near-miss that explains WHY it leaked: the SAME page shape WITHOUT
+# the date passes the pre-existing `_is_nav_list` (>=6 TitleCase tokens,
+# no comma). The advisory date brings a COMMA, and one comma is enough to
+# disarm that rule: measured 23.09.26 -- `_is_nav_list` is True on the
+# date-free form and False on the live one. So the discriminator cannot
+# be the nav-list rule; it is the SECURITY-PORTAL CARD, keyed on the
+# conjunction of
+#     (1) a vulnerability advisory ID (GHSA-xxxx-xxxx-xxxx) -- an
+#         identifier shape an advisory listing carries, and
+#     (2) the listing's own BARE numeric pager (`Previous 1 2 3 Next`),
+#         deliberately the numeric form, NOT class 58's
+#         `Previous Page N of M Next`, because that is the form this page
+#         ships.
+#
+# Every PART alone is measured and INSUFFICIENT -- do not re-add any:
+#   - the GHSA-id alone: it is also the standard way prose CITES an
+#     advisory, and 1 asserted gate-test literal carries the shape.
+#   - the bare pager alone: 2 hostile prose FPs
+#     ("The changelog lists Previous 1 2 3 Next links to older releases.")
+#     plus 1 asserted gate-test literal.
+#   - GHSA AND a severity badge: 26 hits, but 2 of 3 real citing-prose
+#     controls trip it ("We tracked GHSA-aaaa-bbbb-cccc as High severity").
+#   - GHSA AND `by <handle>`: 1 asserted gate-test literal.
+#   - the pager AND a published-date: 3 of 4 both-part prose controls.
+#   - the CTA wording alone: ordinary English.
+# Measured with the conjunction (GHSA-id AND bare numeric pager) over
+# online_buffer / buffer_junk / internet_learn_log / longterm_episodes /
+# asserted gate-test literals: 2 / 26 / 0 / 0 / 1. Both buffer hits ARE
+# the leak family; the 1 test literal is the pre-existing GHSA string the
+# test already documents as chrome gated by `_is_nav_list` ("a different
+# gate"), so it is the same shape, not a false positive. 0 hits in 3 real
+# citing-prose controls and 0 in 5 both-part prose controls.
+_ADVISORY_ID_RE = re.compile(
+    r"\bGHSA-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}\b",
+    re.IGNORECASE)
+_BARE_NUMERIC_PAGER_RE = re.compile(r"\bPrevious\s+(?:\d+\s+){1,9}Next\b")
+
+
+def is_advisory_listing_card(text):
+    """True for a security-advisory listing card welded to its pager (159).
+
+    Structural conjunction of an advisory ID and the listing's own bare
+    numeric pager; no topic words and no vendor literals -- see the block
+    comment above `_ADVISORY_ID_RE` for the measurement.
+    """
+    t = text or ""
+    if not t:
+        return False
+    return bool(_ADVISORY_ID_RE.search(t)
+                and _BARE_NUMERIC_PAGER_RE.search(t))
+
+
+
+
+# A news site's own AGE NOTICE welded to its content-label pair (class 163,
+# 23.09.26).  Live: `cycle_a_technews` stored, verbatim,
+#   "I violated every principle I was given’ This article is more than 4
+#    months old PocketOS was left scrambling after a rogue AI agent deleted
+#    swaths of code underpinning its business Supported by About this content
+#    Sanya Mansoor Thu 30 Apr 2026 00.12 CEST Last modified on Wed 17 Jun
+#    2026 11.55 CEST Sha"
+# -- a pull-quote weld + the publisher's staleness notice + the LEDE + the
+# `Supported by About this content` affordance + the byline/dateline block,
+# all glued.  The dates fed `_TECH_HINT_RE` (its alternation STARTS with
+# \d+) and the row is >= 90 chars, so the length trust passed it.
+#
+# STRIP, not reject: the lede behind the notice IS the knowledge.  This is
+# the class-142 pattern again -- a header stack welded to real prose.
+#
+# The discriminator is the publisher's OWN label pair, never the topic:
+# `This article is more than N months/years/days old` AND `Supported by
+# About this content`, both inside the header window.  Measured 23.09.26
+# over online_buffer 300 / buffer_junk 9,351 / internet_learn_log 2,751 /
+# longterm_episodes 3,065 / asserted gate-test literals 2,167 / every
+# .md+.txt in the repo and the live skills tree (7,362 long-form chunks):
+# the conjunction has exactly ONE hit -- the leaking row -- and 0 everywhere
+# else, 0 of 16 hostile prose controls.
+# EVERY WIDER AND EVERY NARROWER FORM WAS MEASURED -- do not re-add any:
+#   - the bare age notice: 2 hostile prose FPs ("This article is more than 4
+#     months old, so the benchmark numbers it quotes are stale ...").
+#   - bare `About this content` / `Last modified on`: 1 FP each.
+#   - `Supported by` as a bare token: 1 asserted gate-test literal
+#     ("Tool calling and reasoning parsers are supported by the server.").
+#   - `age AND (About this content|Last modified on)`: eats the HARD control
+#     that carries both halves inside ONE real sentence ("... the About this
+#     content label the site renders is page furniture, and the 8-bit run
+#     stayed within one point of fp16.").
+_NEWS_AGE_NOTICE_RE = re.compile(
+    r"This article is more than \d+ (?:months?|years?|days?) old\b")
+_NEWS_AGE_LABEL_RE = re.compile(r"Supported by\s+About this content")
+_NEWS_AGE_REGION = 300
+
+
+def _news_age_notice_span(text):
+    """(end_of_notice, start_of_label) inside the header window, else None."""
+    head = (text or "")[:_NEWS_AGE_REGION]
+    m = _NEWS_AGE_NOTICE_RE.search(head)
+    if not m:
+        return None
+    lab = _NEWS_AGE_LABEL_RE.search(head, m.end())
+    if not lab:
+        return None
+    return m.end(), lab.start()
+
+
+def _is_news_age_notice(text):
+    """True for a publisher age notice welded to its content-label pair (163)."""
+    return _news_age_notice_span(text) is not None
+
+# Site sidebar nav labels welded to a section announce line (class 165, 23.09.26): cycle_d_docs
+# stored "Tech news VPN Deals General Apps AR and VR Business Cameras Cybersecurity Entertainment
+# Reviews and guides Smart home Social media Transportation Wearables Claude AI The latest Claude AI
+# news, updates and announcements Anthropic Drops Claude Opus 5.5 ..." -- the TechRadar sidebar
+# label run followed by the category's own announce line. 300 chars, zero prose, and BOTH gates
+# passed it: the length cleared the >=90/>=25 floors and the brand names fed the signal gate.
+#
+# TWO STRUCTURAL MARKERS, ANDed -- each alone is ordinary prose:
+#   M1 >= 2 DISTINCT site nav labels (case-folded, so a repeated label cannot
+#      self-satisfy the count) -> a sidebar MENU was listed;
+#   M2 a section ANNOUNCE line ("the latest <topic> news, updates and announcements")
+#      -> the page narrated its own category.
+# Measured over 3,901 real corpus rows (online_buffer 300 + prejunk archive +
+# train.jsonl + longterm_episodes 3,059) and 9,861 junk rows: 1 real hit and
+# that hit IS the leaking row -> 0 real-prose FPs; 0 junk hits. Hostile battery
+# (10 hand-written cases incl. prose ABOUT the sidebar labels, a quoted announce
+# headline, and the bare "TechRadar - Upgrades, reviews and guides" CTA): 0 FPs.
+# M2 alone was MEASURED-AND-REJECTED (4 real hits -> ordinary prose);
+# M1 alone was MEASURED-AND-REJECTED (2 real hits -> prose ABOUT the labels).
+_SITE_NAV_LABELS = (
+    r"vpn deals|ar and vr|reviews and guides|smart home"
+    r"|social media transportation wearables|cameras cybersecurity"
+)
+_SITE_NAV_LABEL_RE = re.compile(_SITE_NAV_LABELS, re.IGNORECASE)
+_SITE_NAV_ANNOUNCE_RE = re.compile(
+    r"the latest [^.]{2,45}(?:news,? updates and announcements"
+    r"|updates and announcements)",
+    re.IGNORECASE)
+
+
+def _is_site_nav_chain(text):
+    """True when a site's sidebar label run is welded to its announce line (165)."""
+    if not text:
+        return False
+    labels = {m.lower() for m in _SITE_NAV_LABEL_RE.findall(text)}
+    if len(labels) < 2:
+        return False
+    return bool(_SITE_NAV_ANNOUNCE_RE.search(text))
+
+
+
+
+# An arXiv/report SECTION-TOC label chain welded to the page's `Download PDF`
+# affordance (class 164, 23.09.26).  Live: `cycle_b_papers` stored, verbatim,
+#   "Report Issue Back to Abstract Download PDF Abstract 1 Introduction 2
+#    DeepSeek-R1-Zero 2.1 Group Relative Policy Optimization 2.2 Reward Design
+#    2.3 Incentivize Reasoning Capability in LLMs 3 DeepSeek-R1 3.1 Model-based
+#    Rewards Helpful Reward Model Safety Reward Model 3.2 Training Details 3.2.1
+#    Traini"
+# -- a paper page's own section listing welded to its PDF button, truncated
+# mid-word by the extractor.  300 chars with digits -> the >=90 long-prose
+# trust and the technical-signal gate both let it through.  Same family as
+# classes 23/24/25: a LISTING is a label chain, a sentence has grammar.
+#
+# The discriminator is the conjunction of the page's PDF affordance and a RUN
+# of numbered sub-section labels (`N.N <Title>`), never a bare version number:
+# plain prose cites `2.1`/`3.2` inside sentences.
+# Measured 23.09.26 over online_buffer 300 / buffer_junk 9,366 /
+# internet_learn_log 2,757 / longterm_episodes 3,065 / asserted gate-test
+# literals 2,182 / every .md+.txt in the repo and the live skills tree (7,362
+# long-form chunks): 1 hit -- the leaking row -- and 0 everywhere else; 0 of
+# 9 prose controls and 0 of 7 adversarial near-misses that carry BOTH a
+# `Download PDF` affordance AND version/section numbers inside a sentence.
+# MEASURED AND REJECTED, do not re-add: the numbered-chain alone (4 real
+# `longterm_episodes` rows: "Section 2 introduces ... 3.1 lists ...");
+# `>=6 N.N pairs` alone (misses the leak); `>=6 pairs AND no finite verb`
+# (misses the leak too -- `Download` reads as a verb).
+_TOC_CHAIN_RE = re.compile(r"\b\d+\.\d+\s+[A-Z][A-Za-z-]*")
+_PDF_AFFORDANCE_RE = re.compile(r"\bDownload\s+PDF\b")
+
+
+def _is_section_toc_chain(text, min_chain=3):
+    """True for a paper/report section-TOC label chain welded to `Download PDF` (164)."""
+    t = text or ""
+    if not _PDF_AFFORDANCE_RE.search(t):
+        return False
+    return len(_TOC_CHAIN_RE.findall(t)) >= min_chain
+
+
+
+# A repo-listing row's relative-age badge welded to the word `release` with NO
+# separating space (class 166, 23.09.26).  Live: `cycle_c_github` stored,
+# verbatim,
+#   "Latest AI Resources - ANUS: An Open Source AI Framework for Task
+#    Automation and Multi-Agent Collaboration ANUS: An Open Source AI Framework
+#    for Task Automation and Multi-Agent Collaboration Latest AI Resources 2yrs
+#    agorelease AI Sharing Circle 101.9K 0 0 General Introduction ANUS
+#    (Advanced Neural Un"
+# -- a GitHub-trending listing row: the card TITLE restated twice, the site
+# label, the `2yrs ago` + `release` badge (concatenated), the feed counters
+# (`101.9K 0 0`) and a truncated description.  300 chars with digits -> the
+# >=90 long-prose trust and the technical-signal gate both let it through.
+#
+# Discriminator = the BADGE WELD ITSELF: `ago` immediately followed by
+# `release` with no separator.  This is markup that human prose cannot
+# contain -- the same argument as the class-9 `-->` HTML-comment rule.  A
+# sentence writes `<n> years ago` and, if it names a release, separates the
+# two words.
+# Measured 23.09.26 over online_buffer / buffer_junk / internet_learn_log /
+# longterm_episodes / asserted gate-test literals / every .md+.txt in the repo
+# and the live skills tree: 1 hit -- the leaking row -- and 0 everywhere else;
+# 0 real-prose FPs across 9 hostile controls.  The LOOSE form
+# (`<n> <unit> ago release`, i.e. allowing a space) was measured and REJECTED:
+# it hits 2 real-prose controls ("2yrs ago release was announced in the
+# changelog ...", "The model card was updated 6 months ago release notes
+# say ...").  The missing space IS the discriminator -- do not loosen it.
+_AGO_RELEASE_WELD_RE = re.compile(
+    r"\b\d+\s*(?:yrs?|years?|months?|days?|hrs?|hours?|mins?)\s*agorelease\b",
+    re.IGNORECASE)
+
+
+def _is_ago_release_badge_weld(text):
+    """True for a relative-age badge welded to `release` with no space (166)."""
+    return bool(_AGO_RELEASE_WELD_RE.search(text or ""))
+
+
+# A plan/vendor COMPARISON price table lifted off a SERP or review listing
+# (class 168, 23.09.26).  Live: `cycle_e_competitors` STORED, verbatim,
+#   "From $25/mo View Review -> OpenCode Free - Anomaly Innovations, Inc
+#    * 5.0 -> OpenAI Codex $8/mo - OpenAI * 4.7 -> Claude Code $17/mo annual
+#    - Anthropic * 4.6 -> Cline $9.99/mo - Cline Bot Inc."
+# -- a marketplace price table: the rating widget (`* 5.0`, `View Review`) is
+# welded onto a run of `$<n>/mo` tokens.  200 chars with digits -> the >=90
+# "long prose" trust and the technical-signal gate both let it through.  The
+# German twin of this class (a checkout LABEL CHAIN) is `_is_de_pricing_chrome`;
+# this is the ENGLISH SERP/rating shape, which that predicate cannot see.
+#
+# Discriminator = the RATING WIDGET WELDED ONTO THE PRICE RUN, never a price on
+# its own.  A sentence ABOUT pricing names a vendor and a verb and carries one
+# price; a comparison TABLE yields >=2 `$<n>/mo` tokens AND >=2 widget stamps
+# (a star glyph with a score and/or a `View Review` / `Free ->` CTA).  Same
+# structural argument as class 13/28: judge the checkout's own label chain.
+# Measured 23.09.26 over online_buffer / buffer_junk / buffer_junk_archive /
+# internet_learn_log / longterm_episodes (16,066 JSONL rows), the 2,049 quoted
+# literals of `tests/scripts/test_internet_learner_gate.py` and 924 repo docs
+# files: 1 hit -- the leaking row -- and 0 everywhere else; 0 FPs across 9
+# hostile prose controls that cite prices, tiers and star ratings.
+_PRICE_TOKEN_RE = re.compile(
+    r"(?:\$\s?\d+(?:[.,]\d+)?\s*/\s*(?:mo|month|yr|year|user|seat))"
+    r"|(?:\b\d+(?:[.,]\d+)?\s*(?:\u20ac|EUR|USD|\$)\s*/\s*(?:mo|month|yr|year|jahr|monat))",
+    re.IGNORECASE)
+_RATING_WIDGET_RE = re.compile(
+    r"(?:\u2605\s?\d(?:[.,]\d)?)"
+    r"|(?:\bView Review\b)"
+    r"|(?:\bFree\s*(?:\u2192|\u00b7))",
+    re.IGNORECASE)
+_PRICE_TABLE_MIN_PRICES = 2
+_PRICE_TABLE_MIN_WIDGETS = 2
+
+
+def _is_price_table_row(text):
+    """True for a plan-comparison price table with rating widgets (167).
+
+    Structural, not topical: requires BOTH a run of price tokens and a run of
+    rating/CTA widgets, so prose that merely cites prices or a rating stays
+    learnable.
+    """
+    t = text or ""
+    if not t:
+        return False
+    if len(_PRICE_TOKEN_RE.findall(t)) < _PRICE_TABLE_MIN_PRICES:
+        return False
+    return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -4363,6 +4787,18 @@ def _is_junk(text):
         return True
     # an article's own byline + dateline header welded to its lede (class 142, 22.09.26)
     if _is_article_byline_chrome(t):
+        return True
+    # a news site's age notice welded to its content-label pair (class 163, 23.09.26)
+    if _is_news_age_notice(t):
+        return True
+    # a paper page's section-TOC chain welded to its Download PDF affordance (class 164, 23.09.26)
+    if _is_section_toc_chain(t):
+        return True
+    # a repo-listing row's `<N>yrs agorelease` badge weld (class 166, 23.09.26)
+    if _is_ago_release_badge_weld(t):
+        return True
+    # a site sidebar label run welded to its announce line (class 165, 23.09.26)
+    if _is_site_nav_chain(t):
         return True
     # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
     if _is_docs_cta_serp_run(t):
@@ -4530,6 +4966,9 @@ def _is_junk(text):
     # a year-welded SERP title restated by its own snippet (class 141, 22.09.26)
     if _is_serp_title_snippet_repeat(t):
         return True
+    # a nav-menu weld run into a card title restated twice (class 149, 23.09.26)
+    if _is_nav_weld_repeat_chrome(t):
+        return True
     if _is_caps_nav_lockup_weld(t):
         return True
     # a page-meta listing widget (same narrow rule as
@@ -4676,6 +5115,10 @@ def _is_junk(text):
         return True
     if _is_de_pricing_chrome(t):
         return True
+    # the ENGLISH twin of that class: a plan-comparison price table with
+    # rating widgets welded on (class 168, 23.09.26)
+    if _is_price_table_row(t):
+        return True
     # an ad-blocker-off / subscribe notice is a CTA chain, not a fact
     # (live 17.09.26, class 28 -- see _ADWALL_NOTICE_RE above)
     if _is_adwall_notice(t):
@@ -4739,6 +5182,15 @@ def _is_junk(text):
         from buffer_store import is_glued_motif
     except Exception:
         return False
+    # a docs/TOC heading stack welded to an interrogative heading (class 157, 23.09.26)
+    if is_docs_heading_qweld(t):
+        return True
+    # a BibTeX citation record welded to a license footer (class 158, 23.09.26)
+    if is_citation_record_weld(t):
+        return True
+    # a security-advisory listing card welded to its pager (class 159, 23.09.26)
+    if is_advisory_listing_card(t):
+        return True
     return bool(is_glued_motif(t))
 
 
@@ -4772,6 +5224,113 @@ def _writer_gate_refuses(text):
         return bool(_writer_is_junk(text))
     except Exception:
         return False
+
+
+# class 149 (23.09.26) -- a site's nav-menu WELD run into a card title that is
+# then repeated.  See _is_nav_weld_repeat_chrome.
+_NAV_WELD_TOKENS = (
+    "suche", "suchen", "rechner", "vergleichen", "vergleich", "blog", "home",
+    "preise", "kategorien", "kontakt", "magazin", "ratgeber", "startseite",
+    "anmelden", "registrieren", "mehr erfahren", "jetzt kaufen", "zum shop",
+    "warenkorb", "impressum", "datenschutz", "nachrichten",
+    "product categories", "get started", "sign in", "sign up", "log in", "login",
+    "resources", "docs", "pricing", "careers", "about us", "privacy policy",
+    "cookie policy", "terms of service", "newsletter", "book a demo",
+)
+_NAV_WELD_REPEAT_MIN = 40
+_NAV_WELD_WINDOW = 60
+_NAV_WELD_MIN_TOKENS = 3
+
+
+def _nav_weld_run(text, window=_NAV_WELD_WINDOW):
+    """Largest number of DISTINCT nav tokens inside one `window`-char slice."""
+    low = (text or "").lower()
+    pos = []
+    for tok in _NAV_WELD_TOKENS:
+        start = 0
+        while True:
+            i = low.find(tok, start)
+            if i == -1:
+                break
+            pos.append((i, tok))
+            start = i + 1
+    pos.sort()
+    best = 0
+    for a in range(len(pos)):
+        seen = set()
+        for b in range(a, len(pos)):
+            if pos[b][0] - pos[a][0] > window:
+                break
+            seen.add(pos[b][1])
+        best = max(best, len(seen))
+    return best
+
+
+def _has_adjacent_exact_repeat(text, minlen=_NAV_WELD_REPEAT_MIN):
+    """True when a >=`minlen` substring occurs TWICE overlapping (gap <= length).
+
+    An exact repeat whose instances are far apart is normal (a session
+    transcript restates a line; prose echoes a phrase) -- those measure 6
+    `longterm_episodes` hits.  A repeat whose second instance STARTS inside the
+    first is a widget drawing the same label twice at nearly the same offset,
+    which no human-written text does.
+    """
+    t = text or ""
+    if len(t) < minlen * 2:
+        return False
+    seen = {}
+    for i in range(len(t) - minlen + 1):
+        chunk = t[i:i + minlen]
+        j = seen.get(chunk)
+        if j is None:
+            seen[chunk] = i
+            continue
+        k = minlen
+        while i + k < len(t) and t[j + k] == t[i + k]:
+            k += 1
+        if i - j <= k:
+            return True
+    return False
+
+
+def _is_nav_weld_repeat_chrome(text):
+    """True for a nav-menu WELD run into a card title restated twice (class 149).
+
+    Live 23.09.26: `cycle_c_github` stored
+
+        Start Suche VPS-Rechner Vergleichen Blog Suchen EN DE Home Blog
+        Haystack: The Open-Source AI Orchestration Framework for
+        Production-Ready RAG Haystack: The Open-Source AI Orchestration
+        Framework for Production-Ready RAG Jun 27, 2026 What Is Haystack?
+
+    A German VPS-comparison site's menu strip (Suche / VPS-Rechner /
+    Vergleichen / Blog / Suchen), the language switch, a "Home Blog" trail and
+    then the card's own title drawn twice -- 252 chars WITH digits, so the
+    `>=90` length trust and the technical-signal gate both fired and no
+    existing marker matched.  class 82 (`_is_de_nav_weld_headline_chrome`) is
+    the same FAMILY but misses this shape: its labels are welded to each other
+    already, and it requires a TitleCase colon headline (this row's headline
+    has a comma instead).
+
+    The discriminator is the CONJUNCTION, and neither half survives alone:
+
+      * nav tokens alone are one comma away from ordinary prose -- a German
+        sentence listing `Suche, Blog, Preise, Kontakt, Impressum und
+        Datenschutz` scores a run of 6, and 18 hostile controls scored 3-6
+        (13 of them).
+      * an exact repeat alone scores 88 of 3,064 `longterm_episodes` and 0
+        gate-test literals; the ADJACENCY is what removes them (adjacent
+        repeat alone: 6 episodes, all transcripts/tool dumps).
+
+    Measured 23.09.26: 1 buffer hit and it IS the leak -> 0 FPs on 21 hostile
+    prose controls (EN + DE, several LISTING the same labels), 0 of 3,064
+    `longterm_episodes`, 0 gate-test literals, and 0 hits over 11,959 real
+    prose chunks in 495 repo `.md`/`.txt` files.
+    """
+    if not text:
+        return False
+    return (_nav_weld_run(text) >= _NAV_WELD_MIN_TOKENS
+            and _has_adjacent_exact_repeat(text))
 
 
 def _filter_junk(results):
@@ -4927,6 +5486,44 @@ def _is_nav_list(text):
 # ever fetched. Rejecting them lets the HTTP ck/a fallback below run.
 _URL_STUB_PATHS = frozenset({"abs", "html", "index.html"})
 
+# class 162 (23.09.26): a DECIMAL POINT is not a sentence terminator, but the
+# extractor regex treats it as one. Stored verbatim that day:
+#   "CVE-2026-58138 is a critical, unauthenticated remote code execution
+#    vulnerability (CVSS 3."
+# -- the page's real sentence continues "3.9) affecting Orkes Conductor ...".
+# Measured over 12,540 real texts (live buffer + buffer_junk + learn log): 23
+# sentences are cut mid-number this way.
+#
+# A "text ends in digit+period" REJECT gate is a documented deliberate NON-FIX
+# (archive: class 85) and STAYS UNSHIPPED -- 1,710 of those endings are
+# legitimate (`--gpu-memory-utilization 0.`, `Gemini 3.`, `... 25 to 27, 2025.`).
+# This is not a gate. It is a pure WIDEN of the extractor: when the greedy match
+# ends at `<digit>.` and the page CONTINUES with a digit, keep reading to the
+# next real terminator. The match START is never moved.
+# Measured: 21 extends, 0 shortens, 0 non-prefix; candidate score rises 20x,
+# falls never.
+_SENTENCE_RE = re.compile(r"([A-Z][^.!?]{40,250}[.!?])")
+
+
+def _sentences(text):
+    """Yield sentence-shaped matches, healing a decimal-point cut.
+
+    Purely widening: a match that ends inside a number is extended to the next
+    terminator that is not itself a decimal point.
+    """
+    for m in _SENTENCE_RE.finditer(text):
+        s, end = m.group(1), m.end()
+        if re.search(r"[0-9]\.$", s) and end < len(text) and text[end].isdigit():
+            i = end
+            while i < len(text):
+                if text[i] in ".!?" and not (
+                        text[i] == "." and i + 1 < len(text)
+                        and text[i + 1].isdigit()):
+                    s = text[m.start():i + 1]
+                    break
+                i += 1
+        yield s
+
 # class 134 (22.09.26): a NEWSROOM INDEX page is not an article.
 #
 # Live: cycle_a_technews "learned", verbatim from online_buffer.jsonl,
@@ -4966,6 +5563,116 @@ _URL_STUB_PATHS = frozenset({"abs", "html", "index.html"})
 # on purpose, so that helper's measured semantics stay untouched.
 _PAGE_REL_STAMP_RE = re.compile(
     r"\b\d{1,3}\s+(?:minutes?|mins?|hours?|hrs?|days?)\s+ago\b", re.IGNORECASE)
+
+
+# ---------------------------------------------------------------------------
+# class 160 (23.09.26): a result page that never mentions the query's topic.
+#
+# Live: cycle_a_technews logged
+#   "learned: An unpaid ticket picks up $10 at 30 days, another $20 at 60, and
+#    another $30 at "
+# for the query "Spain to impose fines for not labelling AI-generated content".
+# The buffer row pairs that parking-ticket sentence with the Spain/AI-labelling
+# question, so the pair teaches noise rather than knowledge.
+#
+# Root cause is the SOURCE, not the extractor. _search_urls returned
+# `https://www.newsbreak.com/news` (a generic city-news FEED, not the article
+# behind the Reuters hit) as the top fetchable URL. Measured on the fetched
+# page: 6000 chars, ZERO of the query's six topic tokens (spain, impose, fines,
+# labelling, ai-generated, content), and _is_news_index_page() does NOT catch
+# it (0 relative stamps -- a nav/feed shell, not a card stream). deep_learn then
+# scored the best sentence-shaped string on that page -- other-topic feed
+# furniture -- and every text-level gate passed it, because the sentence is
+# grammatical prose carrying a verb and digits.
+#
+# Why the gate lives at the PAGE and not at the insight: an insight-level
+# token-overlap gate is a footgun. Measured over the live 300-row buffer, 45%
+# of rows share ZERO 4+ char tokens with their question while being perfectly
+# legitimate (question "A Visual Guide to LLM Quantization" -> insight "32-bit
+# float: 4 bytes per parameter (75% memory reduction)"), because good prose
+# answers a topic in its own vocabulary. A page, by contrast, must contain the
+# topic's own words to be about that topic at all: measured over 6 live
+# queries / 12 fetched pages, all 3 relevant pages showed >=2 topic tokens and
+# every page that produced an off-topic row showed 0.
+#
+# Scope guard: applied only when the query yields >=2 distinctive tokens and
+# the fetched page is >=800 chars, so conversational queries ("Structural
+# connection between tool usage and ...") and thin/partial fetches keep the
+# trust they have today and no page is dropped on the strength of one word.
+_TOPIC_STOPWORDS = frozenset("""
+a an the and or but if then than that this these those there here what which
+who whom whose when where why how is are was were be been being am do does did
+doing have has had having will would shall should can could may might must
+about above after again against all any because before below between both
+during each few for from further into more most other over own same some such
+through under until up very while with without you your yours we our ours they
+them their theirs it its he she his her him me my mine of to in on at by as
+not no nor only just also much many own too don now
+learn learning learned insight insights research latest should know agent
+agents intelligent practice best official docs documentation
+news today new recent towards pushing limits large scale visual understanding
+difference differences explain how does work works using used
+summary overview introduction part example
+structural connection relationship guide
+""".split())
+
+# One distinctive word is not a topic; a query must carry at least this many.
+_OFF_TOPIC_MIN_TOKENS = 2
+# A thin/partial fetch is not judged -- only a page that really loaded.
+_OFF_TOPIC_MIN_PAGE_CHARS = 800
+# A query that asks for a RELATION ("structural connection between X and Y",
+# "difference between correlation and causation") is answered by wording the
+# relation, not by repeating its nouns. Real buffer row for the query
+# "Structural connection between tool usage and learning process?":
+#   "The shared underlying pattern is a recursive, iterative refinement cycle
+#    where each cycle involves exploration/action ..."
+# That is on-topic with ZERO literal overlap, so such queries are never judged.
+_RELATIONAL_QUERY_RE = re.compile(
+    r"\b(structural\s+connection|connection\s+between|difference\s+between|"
+    r"relationship\s+between|correlat\w*|causat\w*|"
+    r"how\s+do(?:es)?\b|what\s+is\s+the\b|explain\b|why\s+do\b|"
+    r"compare|analog\w+)\b",
+    re.IGNORECASE)
+
+_TOPIC_WORD_RE = re.compile(r"[A-Za-z][A-Za-z0-9_\-]+")
+
+
+def _topic_word_tokens(text, min_len=5):
+    """Lowercased tokens of 5+ chars, hyphens/underscores kept (pure)."""
+    out = set()
+    for w in _TOPIC_WORD_RE.findall((text or "").lower()):
+        w = w.strip("-_")
+        if len(w) >= min_len:
+            out.add(w)
+    return out
+
+
+def topic_tokens(query, min_len=5):
+    """The distinctive vocabulary of a query (pure, testable).
+
+    Function words and query scaffolding ("latest research insight", "what
+    should an agent know") are dropped: they appear on every page and would
+    make the overlap test meaningless.
+    """
+    return {w for w in _topic_word_tokens(query, min_len)
+            if w not in _TOPIC_STOPWORDS}
+
+
+def is_off_topic_page(query, page_text):
+    """True when a fetched result page never mentions the query's topic (160).
+
+    Consulted on the FETCHED PAGE only, never on a candidate insight, so no
+    legitimate row can be lost: dropping the page simply lets a later result
+    URL hold the deep-read slot.
+    """
+    tq = topic_tokens(query)
+    if len(tq) < _OFF_TOPIC_MIN_TOKENS:
+        return False  # not a topical query
+    if _RELATIONAL_QUERY_RE.search(query or ""):
+        return False  # a relation is answered by phrasing it -- nothing to check against
+    if len(page_text or "") < _OFF_TOPIC_MIN_PAGE_CHARS:
+        return False  # thin/partial fetch, not a judgment call
+    return not (tq & _topic_word_tokens(page_text))
 
 
 def _is_news_index_page(text):
@@ -5129,6 +5836,12 @@ def deep_learn(query, k=2):
             # actual article) hold the slot instead.
             if _is_news_index_page(t):
                 continue
+            # class 160: a page that never mentions the query's topic is not a
+            # source for it. Dropping it lets a later result URL hold the slot
+            # (the Reuters article for the Spain query fetched 0 chars, so the
+            # off-topic NewsBreak feed WAS the whole deep read).
+            if is_off_topic_page(query, t):
+                continue
             texts.append(t)
     if not texts:
         return ""
@@ -5160,8 +5873,8 @@ def deep_learn(query, k=2):
             "access denied", "not found", "view all docs")
     best, best_score = "", 0
     for t in texts:
-        for m in re.finditer(r"([A-Z][^.!?]{40,250}[.!?])", t):
-            s = m.group(1).strip()
+        for s in _sentences(t):
+            s = s.strip()
             low = s.lower()
             if any(n in low for n in _NAV):
                 continue  # skip navigation/boilerplate
@@ -5984,6 +6697,26 @@ def _strip_article_byline_header(text, region=100, force=False):
     return t[max(ends):].lstrip(" \u2014-\u00b7|:,\n")
 
 
+def _strip_news_age_notice(text):
+    """Rescue the LEDE behind a publisher age notice (class 163).
+
+    The prose behind the notice IS the knowledge, so this is a STRIP (same
+    doctrine as `_strip_article_byline_header`, class 142).  Returns `text`
+    UNTOUCHED when there is no notice or no usable body, and deliberately
+    does NOT re-normalise whitespace on an untouched row -- collapsing `\s+`
+    reports innocent rows as changed (the class-11 whitespace trap).
+
+    Measured 23.09.26: the rescued body is a pristine SLICE of the original
+    and clears BOTH gates; 0 of 16 hostile prose controls are touched.
+    """
+    span = _news_age_notice_span(text)
+    if span is None:
+        return text
+    body = text[span[0]:span[1]].strip()
+    if len(body.split()) < 5 or not body[:1].isupper() or body not in text:
+        return text
+    return body
+
 def _clean_insight(text, max_len=250):
     """Final gate on a distilled insight. Returns "" for page furniture.
 
@@ -6011,6 +6744,9 @@ def _clean_insight(text, max_len=250):
     t = _strip_blog_header_stack(t)
     t = _strip_masthead_nav_chain(t)
     t = _strip_trailing_read_time_header(t)
+    # class 163 (23.09.26): a news site's age notice + content-label pair is
+    # STRIPPED -- the lede between them is the knowledge.
+    t = _strip_news_age_notice(t)
     # class 142 follow-up (22.09.26): an article byline/dateline header stack is
     # STRIPPED, not rejected -- the lede behind it is the knowledge. The 200-char
     # predicate stays the reject gate; this only rescues rows whose prose survives.

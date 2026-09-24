@@ -39,11 +39,78 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from group_scaling_lab import build_group, GroupState, _attach, task, accuracy
 
-DEFAULT_DIR = os.path.join(
-    os.environ.get("OPENAMER_HOME",
-                   os.path.join(os.path.expanduser("~"), "AppData", "Local",
-                                "openamer-laptop")),
-    "models")
+# Markers only a real OpenAmer home carries (same set dream_cycle /
+# memory_consolidation / session_diary use to reject scratch dirs).
+_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
+
+
+def _is_install_root(pth):
+    """True when *pth* looks like a real OpenAmer home, not a scratch dir.
+
+    A marker only counts when it carries real content: file markers
+    (``config.yaml``/``.env``) must be non-empty, and directory markers
+    (``cron``/``memories``/``openamer-agent``) must hold at least one
+    NON-EMPTY file. Plain ``os.path.exists`` accepted the live scratch tree
+    ``OPENAMER_HOME=C:/Users/damir/_vaultfinal`` (empty ``memories/`` plus a
+    0-byte ``cron/executions.db``) over the real 189-skill install.
+    """
+    try:
+        for m in _HOME_MARKERS:
+            p = os.path.join(pth, m)
+            if os.path.isfile(p):
+                if os.path.getsize(p) > 0:
+                    return True
+            elif os.path.isdir(p):
+                for child in os.listdir(p):
+                    cp = os.path.join(p, child)
+                    if os.path.isfile(cp) and os.path.getsize(cp) > 0:
+                        return True
+        return False
+    except OSError:
+        return False
+
+
+def _resolve_home():
+    """Resolve OPENAMER_HOME across shells; never adopt a scratch dir.
+
+    A leaked OPENAMER_HOME pointing at a scratch dir (e.g.
+    C:/Users/damir/_vaultfinal) carries no install markers, so model_path()
+    looked for group_state_z10.json under <scratch>/models, found nothing, and
+    the KTA rotation reported "no saved model" while the real artifact sat in
+    the install root. Measured 22.-23.09.26: 7 of the last 8
+    experiment_group_state cycles failed exactly this way.
+
+    git-bash additionally exports OPENAMER_HOME in MSYS form (/c/tmp/oa-home),
+    which native Windows Python reads as a RELATIVE path -> phantom C:\\c\\tmp.
+    """
+    local = os.path.join(os.path.expanduser("~"), "AppData", "Local")
+    candidates = [os.path.join(local, "openamer-laptop"),
+                  os.path.join(local, "openamer")]
+    default = next((c for c in candidates
+                    if os.path.isdir(os.path.join(c, "skills"))), candidates[0])
+
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return default
+
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = norm[1].upper() + ":/" + norm[3:]
+    elif os.path.isabs(raw):
+        cand = raw
+    else:
+        cand = None
+
+    if cand and os.path.isdir(cand) and _is_install_root(cand):
+        return cand
+    if cand:
+        print(f"[group_state] WARNING: OPENAMER_HOME={cand} is not an OpenAmer "
+              f"install root (none of {_HOME_MARKERS}); using {default}.",
+              file=sys.stderr)
+    return default
+
+
+DEFAULT_DIR = os.path.join(_resolve_home(), "models")
 DEFAULT_TAU = 0.1
 FORMAT = "openamer-group-state-v1"   # written by save(), asserted by load()
 

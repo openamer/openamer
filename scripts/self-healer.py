@@ -22,7 +22,7 @@ def log(msg):
     l = f"[{t}] {msg}"
     print(l)
     os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
-    with open(LOG_FILE, 'a') as f:
+    with open(LOG_FILE, 'a', encoding="utf-8") as f:
         f.write(l + "\n")
 
 def is_vendored(root):
@@ -52,7 +52,15 @@ def find_py(path, exclude=None):
 
 def check_syntax(path):
     try:
-        compile(path.read_text(encoding='utf-8', errors='replace'), str(path), 'exec')
+        src = path.read_text(encoding='utf-8', errors='replace')
+    except OSError:
+        # A file can vanish between walk and read: build/install staging trees
+        # (e.g. openamer_agent-<version>/) are created and removed while the
+        # scan is running. A missing file is not a fault -- and must never
+        # abort the whole run before the report is written.
+        return []
+    try:
+        compile(src, str(path), 'exec')
         return []
     except SyntaxError as e:
         return [f"SyntaxError in {path.name}: {e.msg} (line {e.lineno})"]
@@ -120,7 +128,13 @@ def heal():
         log(f"  {len(files)} .py files")
         
         for pf in files:
-            errors = check_syntax(pf)
+            try:
+                errors = check_syntax(pf)
+            except Exception as ex:
+                # Belt-and-braces: one unmountable/unreadable file must never
+                # abort the scan before the report is written.
+                log(f"  SKIP (unreadable): {pf} -- {type(ex).__name__}: {ex}")
+                continue
             if errors:
                 for e in errors:
                     log(f"  ERROR: {e}")

@@ -72,10 +72,46 @@ def test_every_install_marker_counts(tmp_path, marker):
     home = tmp_path / "home"
     home.mkdir()
     target = home / marker
-    target.mkdir() if "." not in marker else target.write_text("x",
-                                                               encoding="utf-8")
+    if "." in marker:
+        target.write_text("x", encoding="utf-8")
+    else:
+        target.mkdir()
+        # A directory marker only proves an install when it carries content.
+        (target / "placeholder.json").write_text("{}\n", encoding="utf-8")
     mod = _load_fresh_without_import(marker_home=home)
     assert mod._is_install_root(home) is True
+
+
+@pytest.mark.parametrize("marker", ["cron", "memories"])
+def test_empty_dir_marker_is_not_an_install(tmp_path, marker):
+    """An EMPTY ``cron``/``memories`` dir must not pass as an install.
+
+    Bug (observed live 2026-09-23): ``OPENAMER_HOME=C:/Users/damir/_vaultfinal``
+    -- a stray scratch tree holding empty ``cron/`` and ``memories/`` dirs plus
+    an empty ``skills/``. ``_is_install_root`` used ``.exists()``, so those two
+    empty dirs satisfied it and the scratch tree was adopted over the real
+    185-skill install. ``swarm_os`` then read an EMPTY swarm
+    (``{"workers": {}, "tasks": {}}``) and every autonomous-loop run -- 781 of
+    them, all reporting ``last_status: "ok"`` -- returned a clean
+    "0 tasks, everything clean" while the real swarm (108 tasks, 1 worker) was
+    never touched. The loop also stamped its grid-duel state into the phantom
+    home, so the real machine's daily duel was silently skipped.
+    """
+    home = tmp_path / "empty-marker-home"
+    (home / marker).mkdir(parents=True)
+    mod = _load_fresh_without_import(marker_home=home)
+    assert mod._is_install_root(home) is False
+
+
+def test_vaultfinal_style_scratch_home_is_rejected(tmp_path, monkeypatch):
+    """The exact live shape: empty cron+memories+skills must not be adopted."""
+    scratch = tmp_path / "_vaultfinal"
+    for d in ("cron", "memories", "skills"):
+        (scratch / d).mkdir(parents=True)
+    monkeypatch.setenv("OPENAMER_HOME", str(scratch))
+    mod = _load_fresh(monkeypatch, str(scratch))
+    assert mod.HOME != scratch, "empty-marker scratch home was adopted"
+    assert mod._is_install_root(mod.HOME)
 
 
 def _load_fresh_without_import(marker_home: Path):
@@ -85,6 +121,61 @@ def _load_fresh_without_import(marker_home: Path):
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
+
+@pytest.mark.parametrize("empty_file", ["executions.db", "cache.json", "x"])
+def test_zero_byte_marker_content_is_not_an_install(tmp_path, empty_file):
+    """A marker dir holding only a 0-BYTE file must not prove an install.
+
+    Bug (observed live 2026-09-23, 15-minute autopilot cron): the scratch tree
+    ``OPENAMER_HOME=C:/Users/damir/_vaultfinal`` carried ``cron/executions.db``
+    at 0 bytes plus an empty ``memories/``. ``any(p.iterdir())`` was satisfied
+    by the 0-byte file, so the scratch tree won over the real 189-skill install:
+    autopilot evolved a 3-skill phantom population and wrote a 2-skill snapshot
+    into the append-only history ledger, which flipped ``auto_tune()`` into
+    "declining -> exploit winners, prune faster".
+    """
+    home = tmp_path / "vaultfinal-style"
+    (home / "cron").mkdir(parents=True)
+    (home / "cron" / empty_file).write_bytes(b"")     # present, but empty
+    (home / "memories").mkdir()
+    (home / "skills").mkdir()
+    mod = _load_fresh_without_import(marker_home=home)
+    assert mod._is_install_root(home) is False, (
+        "a 0-byte marker file was accepted as an install root"
+    )
+
+
+def test_nonempty_marker_file_still_counts(tmp_path):
+    """The real install (cron/ with live content) must still be honoured."""
+    home = tmp_path / "real-home"
+    (home / "cron").mkdir(parents=True)
+    (home / "cron" / "jobs.json").write_text('{"jobs": []}', encoding="utf-8")
+    (home / "skills").mkdir()
+    mod = _load_fresh_without_import(marker_home=home)
+    assert mod._is_install_root(home) is True
+
+
+def test_live_vaultfinal_shape_falls_back_to_real_install(tmp_path, monkeypatch):
+    """End-to-end on the exact live scratch shape: adopt the real install."""
+    scratch = tmp_path / "vaultfinal"
+    (scratch / "cron").mkdir(parents=True)
+    (scratch / "cron" / "executions.db").write_bytes(b"")   # 0 bytes, as live
+    (scratch / "memories").mkdir()
+    (scratch / "skills").mkdir()
+    (scratch / "skills" / "darwin-cron-guard").mkdir()
+    (scratch / "skills" / "darwin-cron-guard" / "SKILL.md").write_text(
+        "---\nname: darwin-cron-guard\n---\n", encoding="utf-8")
+
+    monkeypatch.setenv("OPENAMER_HOME", str(scratch))
+    mod = _load_fresh(monkeypatch, str(scratch))
+
+    assert mod.HOME != scratch, "scratch tree adopted as OPENAMER_HOME"
+    assert mod._is_install_root(mod.HOME), "fallback is not a real install"
+    assert (mod.HOME / "skills").is_dir()
+    assert len(list((mod.HOME / "skills").iterdir())) > 3, (
+        "fell back to a home with a phantom-sized population"
+    )
 
 
 def test_autopilot_refuses_non_install_home(tmp_path, monkeypatch, capsys):

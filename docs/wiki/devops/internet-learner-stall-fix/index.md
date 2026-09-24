@@ -6,7 +6,7 @@ description: Use when internet_learner cycles all report rejected.
 # internet-learner-stall-fix
 
 **Description:** Use when internet_learner cycles all report rejected.
-**Lines:** 571 | **Code:** 18 | **Dir:** `internet-learner-stall-fix`
+**Lines:** 1583 | **Code:** 31 | **Dir:** `internet-learner-stall-fix`
 
 ---
 
@@ -18,4 +18,4 @@ description: Use when internet_learner cycles all report rejected.
 # Internet Learner stall fix
 ## Older root causes (15./16.09.26) — moved to references/
 
-Th...
+Pe...

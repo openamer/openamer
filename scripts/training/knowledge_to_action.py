@@ -56,40 +56,33 @@ def run(cmd, timeout=120):
 # ---- Action Library: insight patterns -> concrete experiments ----
 
 def experiment_lora_rank():
-    """Insight: 'start with small rank (4-8)'. Test r=8 vs r=16 effectiveness."""
-    import urllib.request
-    losses = {}
-    # We can't easily change LoRA rank at runtime (needs rebuild).
-    # Instead: measure the CURRENT r=16 performance as baseline, log for later A/B.
-    #
-    # Retry contract (fixed 20.09.2026): a single 5s attempt reported
-    # "server down" whenever the tool server was mid-restart (live evidence:
-    # 2026-09-20T07:46:21, right after the desktop relaunch at 07:39:50 —
-    # a curl seconds later answered {"status":"alive","tools":9}). One refused
-    # connection during a rebind is not "server down"; it is a retry miss, and
-    # it burned a whole rotation slot. Probe a few times with backoff.
-    h = None
-    last_err = None
-    for _attempt in range(3):
-        try:
-            req = urllib.request.Request(LIVE + "/health")
-            h = json.load(urllib.request.urlopen(req, timeout=5))
-            break
-        except Exception as e:
-            last_err = e
-            time.sleep(2 * (_attempt + 1))
+    """Insight: 'start with small rank (4-8)'. Test r=4/8/16 on an equal budget.
+
+    Rewritten 23.09.2026. The previous body only polled /health and returned
+    the fixed string "LoRA rank experiment: baseline recorded (r=16 live)".
+    That string was logged 184 times while no baseline was written anywhere —
+    the claim was untrue. The real A/B now lives in kta_lora_rank_probe.py
+    (locally cached Qwen2.5-0.5B-Instruct, CPU) and this reads what the
+    artifact says, or admits that nothing was measured.
+    """
+    art = os.path.join(T, "kta_artifacts", "lora_rank_result.json")
     try:
-        if h is None:
-            raise last_err
-        return {
-            "action": "LoRA rank experiment: baseline recorded (r=16 live)",
-            "result": f"current server: {h.get('tools')} tools, loss history in meta_state",
-            "measurable": True,
-            "next": "when GPU training runs next, try r=8 variant and compare loss-drop",
-        }
-    except Exception as e:
-        return {"action": "LoRA rank experiment", "result": f"server down: {e}",
+        with open(art, encoding="utf-8") as fh:
+            d = json.load(fh)
+    except (OSError, ValueError) as e:
+        return {"action": "LoRA rank experiment",
+                "result": f"no artifact ({type(e).__name__}) — "
+                          f"run kta_lora_rank_probe.py to measure",
                 "measurable": False}
+    if not d.get("ok"):
+        return {"action": "LoRA rank experiment",
+                "result": f"probe reported: {str(d.get('error'))[:120]}",
+                "measurable": False, "artifact": art}
+    arms = d.get("arms") or []
+    return {"action": f"LoRA rank A/B, arms r={[a['rank'] for a in arms]}",
+            "result": str(d.get("result"))[:160],
+            "measurable": True, "artifact": art}
+
 
 def experiment_predict_world():
     """Insight: 'project future states'. Add a prediction to the world model.
@@ -231,7 +224,23 @@ def experiment_competitor_gap():
         ("sdk", "public SDK / programmatic API"),
         ("microservice", "service split"),
         ("plugin", "plugin extensibility"),
-        ("multi-agent", "multi-agent orchestration"),
+        # NOT `multi-agent` alone: measured 23.09.26 over the 40 competitor rows
+        # this function reads (scoring `a` only, which is all `signal` ever is),
+        # the bare token matches 5/40 and 4 of those are mis-maps -- the MAF row
+        # (correctly caught by `agent framework`, 17 > 11 chars), the agentmemory
+        # row (correctly caught by `persistent memory`, 17 > 11), the AgentTool row
+        # and the ANUS row, neither of which the generic phrase describes. Longest
+        # -match cannot save it: at 11 chars it shadows `memory` (6). Replaced by
+        # the two phrases that state the capability, 1/40 each with 0 mis-maps:
+        #   `multi-agent modes`   1/40 -> the ANUS single/multi-agent switching row
+        #   `multi-agent systems` 1/40 -> the AgentTool for multi-agent systems row
+        # Rejected, all measured: `multi-agent orchestration` 0/40 and
+        # `agent orchestration` 0/40 (neither phrase occurs in the corpus -- the
+        # old label described a token the corpus never supported), `orchestration`
+        # 1/40 and `orchestrat` 2/40 (both catch the MAF row, which
+        # `agent framework` already covers more precisely).
+        ("multi-agent modes", "multi-agent orchestration"),
+        ("multi-agent systems", "multi-agent orchestration"),
         ("parallel agent", "parallel multi-agent execution"),
         ("spec-driven", "spec-driven development workflow"),
         ("executable spec", "spec -> executable-plan pipeline"),
@@ -267,7 +276,108 @@ def experiment_competitor_gap():
         # matched by its MEASUREMENT noun, never a generic word like `framework`
         # (3/33 rows = real mis-maps onto unrelated framework prose).
         ("benchmark", "comparative evaluation harness / multi-framework benchmark"),
+        # Grown from a REAL signal (22.09.26): the GAIA row
+        #   "GAIA - Open-source framework for building AI agents that run on
+        #    local hardware"
+        # is a capability description (on-device runtime), and the consumer kept
+        # reporting it as an unmappable signal. Measured precision over the 47
+        # competitor rows this function actually reads: `local hardware` matches
+        # 1 row and that row IS this signal -> 0 mis-maps. Deliberately the
+        # two-word phrase, never `local` (6/47 rows -> real mis-maps onto "local
+        # runtime", "local LLMs" prose) and never `local model` (0/47 rows, i.e.
+        # a token the corpus does not support).
+        ("local hardware", "on-device / local-hardware agent runtime"),
+        # Grown from a REAL signal (22.09.26, second one that day): the
+        # competitor-intelligence row
+        #   "Engineers who want an agent to autonomously plan, edit across files
+        #    and run tests on complex real-world work, and will pay for depth"
+        # is a capability description (multi-file agentic execution with a test
+        # loop) the lexicon had no token for. Measured precision over the 44
+        # competitor rows this function actually reads: `edit across files`
+        # matches 1 row and that row IS this signal -> 0 mis-maps.
+        # Rejected alternatives, all measured: `across files` / `run tests` /
+        # `plan, edit` / `autonomously plan` / `real-world work` (each 1/44 but
+        # narrower and more brittle phrasings of the same row), `plan` 3/44 and
+        # `tool` 5/44 (real mis-maps), `tool surface` / `sandbox` / `terminal` /
+        # `multi-file` / `paid tier` / `pricing` 0/44 (corpus does not support
+        # them). Chosen token states the capability, not a generic verb.
+        ("edit across files", "multi-file agentic execution + test loop"),
+        # Grown from a REAL signal (23.09.26): the competitor-intelligence row
+        #   "A large language model helps with the reasoning layer, but the LLM
+        #    agent architecture determines whether the agent is useful, safe,
+        #    and reliable in real-world use."
+        # is a capability description (the agent-architecture layer as the
+        # determinant of usefulness/safety/reliability), not a headline: its
+        # echo against its own source question is 0.10, so the headline
+        # discriminator below correctly leaves it on the lexicon path.
+        # Measured precision over the 45 competitor rows this function reads
+        # (scoring `a` only, which is all `signal` ever is):
+        #   `llm agent architecture` 1/45 -> that row IS this signal, 0 mis-maps
+        # Rejected alternatives, all measured: `agent architecture` 1/45 and
+        # `large language model` / `reasoning layer` / `real-world use` /
+        # `reliable in real-world` each 1/45 (same row, but they name the
+        # substrate or an adjacent clause, not the capability), `architecture`
+        # 3/45 -> REAL mis-maps onto unrelated architecture prose (SAGA
+        # decision-making core, ANUS single/multi-agent switching), and
+        # `maintenance cost` / `maintenance costs` / `safe and reliable` /
+        # `reduce your maintenance` 0/45 (corpus does not support them). The
+        # chosen two-word-plus token states the capability layer itself and
+        # wins longest-match selection over the generic `architecture`.
+        ("llm agent architecture", "agent-architecture layer governing reliability"),
+        # Grown from a REAL signal (23.09.26, third one that day): the SAGA row
+        #   "The SAGA Framework: The Brains Behind the Agents At the core of each
+        #    character's decision-making process is the SAGA (Simulation Agent
+        #    Generative Architecture) framework ..."
+        # is a capability description (an LLM-driven simulation-agent
+        # framework), not a headline: its echo against its own source question
+        # is 0.25 with len(a) 232, so the headline discriminator above correctly
+        # leaves it on the lexicon path. Worth noting this is the very row the
+        # `architecture` rejection (1 row above) names as a mis-map -- it is
+        # real content that merely had no token, not noise.
+        # Measured precision over the 39 competitor rows this function reads
+        # (scoring `a` only, which is all `signal` ever is):
+        #   `simulation agent` 1/39 -> that row IS this signal, 0 mis-maps
+        # Rejected alternatives, all measured: `saga` 1/39 (same row, but a
+        # proper noun the corpus can only ever support for this one title),
+        # `generative architecture` 1/39 (same row, names the label rather than
+        # the capability), `decision-making` 1/39 and `character` 1/39 (same
+        # row today, but generic nouns that mis-map the moment another row
+        # mentions a decision or a character), `architecture` 3/39 -> REAL
+        # mis-maps. The chosen two-word phrase states the capability.
+        ("simulation agent", "LLM-driven simulation-agent framework"),
     )
+    # --- the latest row may be an ARTICLE TITLE, not a capability description ---
+    # Grown from a REAL signal (23.09.26): the consumer kept reporting
+    #   "Feb 2026 An AI agent coding skeptic tries AI agent coding, in
+    #    excessive detail minimaxir."
+    # as an unmappable signal. Unlike the earlier gaps this is NOT a lexicon
+    # gap: the row is a headline (date + title + author handle), and the
+    # lexicon having no token for a headline is CORRECT. Measured over the 45
+    # competitor rows this function reads, scoring `a` only (which is all that
+    # `signal` ever is): `ai agent coding` 2/45, and `coding skeptic` /
+    # `skeptic` / `excessive detail` / `minimaxir` each 1/45 -- every hit is
+    # this headline or its sibling. Adding any of them would map a title onto
+    # a capability, i.e. a mis-map, so the honest move is to recognise the row
+    # CLASS rather than grow the lexicon for it.
+    # Discriminator (longest-wins selection cannot help here): a headline is a
+    # near-echo of its own source question -- significant words of `u`
+    # reappearing in `a`. Measured over all 45 rows: exactly 1 row trips
+    # (echo >= 0.6 AND len(a) < 160) and it is this headline; 0 mis-fires on
+    # the rows that DO carry a capability, notably the sibling row for the same
+    # question ("AI agent coding/ vibecoding where the author talks about ...
+    # the atrophy of programming skills ...", echo 0.20, 249 chars) and the
+    # 22.09.26 signal `edit across files` (echo 0.00, 198 chars).
+    # The signal is still REPORTED VERBATIM -- never silently dropped -- only
+    # its class changes, so the entry names the real cause instead of a lexicon
+    # gap that does not exist.
+    _STOP = {"competitor", "intelligence", "the", "a", "an", "and", "of", "for",
+             "to", "in", "on", "with", "is", "are", "we", "our", "how", "what",
+             "new", "ai"}
+    _sig_low = signal.lower()
+    _sig_words = set(re.findall(r"[a-z0-9]+", _sig_low))
+    _q_words = set(re.findall(r"[a-z0-9]+", signal_q.lower())) - _STOP
+    _echo = (len(_q_words & _sig_words) / len(_q_words)) if _q_words else 0.0
+    is_headline = _echo >= 0.6 and len(signal) < 160
     low_signal = signal.lower()
     # Longest (most specific) matching token wins: a generic token declared
     # earlier must never shadow a precise one (declaration order was the
@@ -287,11 +397,103 @@ def experiment_competitor_gap():
                 f"{stats['lines']} lines, tools/ package: "
                 f"{'yes' if stats['has_tools_pkg'] else 'no'}")
 
+    # --- the latest row may be a COST DATAPOINT, not a capability -------------
+    # Grown from a REAL signal (23.09.26): the competitor pipeline landed
+    #   "The monthly bills developers share on Reddit and GitHub are staggering
+    #    -- $1,600, $2,500, even $5,000+ for teams running multi-agent workflows
+    #    on frontier models."
+    # That is a price observation, not a product capability. It is not a headline
+    # either: its echo against its own source question is 0.10 and it is 161 chars,
+    # so the headline discriminator (echo >= 0.6 AND len(a) < 160) correctly leaves
+    # it alone. It slipped through only because the generic `multi-agent` token was
+    # in the lexicon and mapped it onto a capability it does not describe.
+    # Class it by what it measurably is: two or more currency amounts plus a money
+    # word. Measured over the 40 competitor rows: the predicate trips 2/40 -- this
+    # row and the 22.09.26 `edit across files` row (4 amounts, "Pro $20/mo"), which
+    # is why it is checked AFTER the lexicon: `edit across files` matches that row
+    # and must keep winning. Only this row is left, so 0 capability rows are
+    # swallowed. Requires >= 2 amounts AND a money word: a bare `$` or
+    # a bare `cost` is not a datapoint (the Hemmingway-1 row carries the word
+    # `costs` in prose and stays an ordinary lexicon gap).
+    _CUR = re.compile(r"\$\s?\d[\d,]*(?:\.\d+)?\s*(?:[kmb])?\+?", re.I)
+    # The money word is deliberately NARROW -- reported spend (`bills`, `spend`,
+    # `spent`), never a general money word. Measured 23.09.26 over the 40
+    # competitor rows: >= 2 amounts + the broad set (cost/pricing/per month) trips
+    # 2/40 -- this row AND the `edit across files` row (4 amounts, "Pro $20/mo
+    # (annual $17); Max $100-$200/mo"), whose prices are an OFFER inside a genuine
+    # capability sentence. The broad predicate only spared that row when the
+    # lexicon happened to match it first, i.e. its precision depended on unrelated
+    # lexicon content, which is not a predicate. The narrow set trips 1/40: this
+    # row, 0 mis-maps, and it spares the `edit across files` row on lexicon content
+    # alone -- verified by the test that pins exactly that ordering.
+    _MONEY = re.compile(r"\b(bills?|spend|spent)\b", re.I)
+    is_cost_datapoint = len(_CUR.findall(signal)) >= 2 and bool(_MONEY.search(signal))
+    # --- the latest row may be a PROJECT STATUS LOG, not a capability ---------
+    # Grown from a REAL signal (23.09.26): the competitor pipeline landed
+    #   "Brain -- Desktop AI Agent: The flagship persona running on a i9-13900KF +
+    #    RTX 4080 + 128 GB DDR5 workstation: Phase 1 (2024-2025): QQ group AI on
+    #    NoneBot2 + Volcengine ARK + KLING TTS, co-built with @Herdeny
+    #    Phase 2 (2025-now): OpenClaw Agent OS 2026."
+    # This is neither a headline nor a cost datapoint nor a capability
+    # description: it is a build/status TIMELINE ("Phase 1 (2024-2025) ... Phase 2
+    # (2025-now) ...") whose only capability-shaped nouns (NoneBot2, KLING TTS,
+    # OpenClaw Agent OS) belong to third-party products we do not compete on, and
+    # whose "Desktop AI Agent" is a project NAME, not a capability sentence.
+    # Measured over the 39 competitor rows (scoring `a` only, which is all that
+    # `signal` ever is): the predicate trips 1/39 and that row IS this signal ->
+    # 0 mis-maps. Its echo against its own source question is 0.17 at 251 chars,
+    # so the headline discriminator (echo >= 0.6 AND len(a) < 160) correctly
+    # leaves it alone -- this is a class the lexicon must NOT be grown for.
+    # Rejected, all measured 23.09.26: `desktop ai agent` 1/39, `agent os` 1/39,
+    # `openclaw` 1/39, `workstation` 1/39, `persona` 1/39 -- every one of them is
+    # a proper noun or a project label that would map a status log onto a
+    # capability, i.e. a mis-map, so no token is added for this row.
+    # Checked AFTER the lexicon, exactly like the cost predicate: a capability
+    # row that happens to mention a phase timeline must reach the lexicon first.
+    _PHASE = re.compile(
+        r"\bphase\s*\d+\b[^()]{0,40}\(\s*\d{4}\s*[-\u2013\u2014]\s*(?:\d{4}|now)\s*\)",
+        re.I)
+    is_project_status = bool(_PHASE.search(signal))
     if hint:
         gap = (f"{hint}: competitor signals it; {measured} — monolithic, "
                f"no per-tool module boundary")
         fix = f"extract {hint} behind its own module with a test gate"
         result = f"signal '{signal[:50]}' -> gap: {hint} | {measured}"
+    elif is_cost_datapoint:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is a cost/price datapoint ({len(_CUR.findall(signal))} "
+               f"currency amounts + a money word), not a product capability "
+               f"description")
+        fix = ("carry a capability sentence alongside the price observation in the "
+               "competitor pipeline; a cost datapoint is not a lexicon gap and no "
+               "token should be invented to map it onto one")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — cost "
+                  f"datapoint ({len(_CUR.findall(signal))} currency amounts + money "
+                  f"word), no capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
+    elif is_project_status:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is a project status log / build timeline (dated phase "
+               f"markers naming third-party stacks), not a product capability "
+               f"description")
+        fix = ("carry a capability sentence alongside the status log in the "
+               "competitor pipeline; a build timeline is not a lexicon gap and no "
+               "token should be invented to map it onto one")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"project status log (dated phase markers, third-party stacks), "
+                  f"no capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
+    elif is_headline:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is an article headline (echo {_echo:.0%} of its own "
+               f"source question), not a product capability description")
+        fix = ("carry a capability sentence alongside the headline in the "
+               "competitor pipeline; no lexicon token should be invented for a "
+               "title, and the extraction side is where this belongs")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"headline signal (echo {_echo:.0%} of its own question), no "
+                  f"capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
     else:
         gap = (f"no mappable capability in latest signal ({measured}) — "
                f"signal contains no token our lexicon knows")
@@ -313,23 +515,43 @@ def experiment_competitor_gap():
     }
 
 def experiment_meta_insight():
-    """Insight: Meta-RL (LaMer). Apply a simplified version to meta_learn."""
+    """Insight: Meta-RL (LaMer). Apply a simplified version to meta_learn.
+
+    Fixed 23.09.26: this experiment used to READ meta_state, emit the string
+    "increased exploration on the underused strategy" and write nothing. The
+    claim had no consumer — meta_learn.choose_strategy() had no exploration
+    parameter at all — so the cycle ran for weeks reporting an action it never
+    took. It now writes exploration_bias=1.0 into meta_state.json, which
+    choose_strategy() reads on its next call (and resets, so the boost is
+    one-shot), and reports the use counts it actually acted on.
+    """
     meta_state = os.path.join(T, "meta_state.json")
     if not os.path.exists(meta_state):
-        return {"action": "meta-RL application", "result": "meta_state missing"}
-    s = json.load(open(meta_state, encoding="utf-8"))
-    # LaMer insight: adapt based on EXPLORATION rate, not just exploitation
+        return {"action": "meta-RL application", "result": "meta_state missing",
+                "measurable": False}
+    try:
+        s = json.load(open(meta_state, encoding="utf-8"))
+    except (json.JSONDecodeError, ValueError) as e:
+        return {"action": "meta-RL application",
+                "result": f"meta_state unreadable: {str(e)[:80]}", "measurable": False}
     strategies = s.get("strategy_stats", {})
-    replay = strategies.get("replay", {"uses": 0})
-    fresh = strategies.get("fresh", {"uses": 0})
-    if replay["uses"] < 5 or fresh["uses"] < 5:
-        # increase exploration: force the less-used strategy next time
-        lesson = (f"Meta-RL insight: replay={replay['uses']} vs fresh={fresh['uses']} uses. "
-                  f"Boosting exploration on the underused strategy.")
+    replay_uses = strategies.get("replay", {}).get("uses", 0)
+    fresh_uses = strategies.get("fresh", {}).get("uses", 0)
+    if replay_uses < 5 or fresh_uses < 5:
+        underused = "fresh" if fresh_uses < replay_uses else "replay"
+        s["exploration_bias"] = 1.0
+        _tmp = meta_state + ".kta.tmp"
+        with open(_tmp, "w", encoding="utf-8") as fh:
+            json.dump(s, fh, indent=1)
+        os.replace(_tmp, meta_state)
+        lesson = (f"Meta-RL: replay={replay_uses} vs fresh={fresh_uses} uses; "
+                  f"wrote exploration_bias=1.0 — next meta_learn cycle forces '{underused}'")
         log({"type": "meta_lesson", "lesson": lesson})
-        return {"action": "meta-RL: increased exploration on underused strategy",
+        return {"action": f"meta-RL: wrote exploration_bias=1.0 for '{underused}'",
                 "result": lesson, "measurable": True}
-    return {"action": "meta-RL application", "result": "enough data, no exploration boost needed"}
+    return {"action": "meta-RL application",
+            "result": f"enough data (replay={replay_uses}, fresh={fresh_uses}), no boost needed",
+            "measurable": True}
 
 # ---- Action selector: match insight keywords to experiments ----
 
@@ -460,7 +682,14 @@ def kta_cycle():
         n = int(open(rot_file, encoding="utf-8").read().strip() or 0)
     with open(rot_file, "w", encoding="utf-8") as f:
         f.write(str(n + 1))
-    experiment = EXPERIMENTS[n % len(EXPERIMENTS)][1]
+    # topic hit on the QUESTION wins; the round-robin still
+    # guarantees every arm gets reached (fixed 23.09.26)
+    q = insight["question"].lower()
+    experiment = next((fn for keys, fn in EXPERIMENTS
+                       if any(re.search(r"\b" + re.escape(k) + r"\b", q)
+                              for k in keys)), None)
+    if experiment is None:
+        experiment = EXPERIMENTS[n % len(EXPERIMENTS)][1]
 
     try:
         result = experiment()

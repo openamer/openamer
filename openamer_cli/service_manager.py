@@ -490,11 +490,20 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
         path.chmod(mode)
         try:
             os.chown(path, _OPENAMER_UID, _OPENAMER_GID)
-        except PermissionError:
-            # Running as the openamer user already — directory is openamer-
-            # owned by default. The chown is a no-op in that case, so
-            # swallowing this keeps both root and unprivileged callers
+        except (OSError, AttributeError, NotImplementedError):
+            # PermissionError: running as the openamer user already —
+            # directory is openamer-owned by default, so the chown is a
+            # no-op and swallowing it keeps root and unprivileged callers
             # on one code path.
+            #
+            # AttributeError/NotImplementedError: this helper is reached on
+            # Windows too (any caller that seeds a service dir), where
+            # os.chown does not exist at all — the same triple config.py
+            # already catches for its chown (`_apply_openamer_ownership`).
+            # Catching only PermissionError crashed the whole call with
+            # AttributeError (observed 2026-09-17: 29 failures in
+            # tests/openamer_cli/test_container_boot.py, first one at
+            # test_running_profile_is_registered_and_autostarted).
             pass
 
     # Top-level event/ dir (this is the s6-svlisten1 event-subscription
@@ -515,12 +524,16 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
     # being defensive here keeps the helper consistent under any
     # invocation context.
     control = supervise / "control"
-    if not control.exists():
+    # os.mkfifo is POSIX-only; on Windows there is no FIFO concept at all, so
+    # the control FIFOs are simply absent there. Guard by *skipping the FIFO*
+    # rather than returning — an early return would also skip the log/
+    # sub-skeleton below, which is unrelated to FIFOs and still meaningful.
+    if not control.exists() and hasattr(os, "mkfifo"):
         os.mkfifo(control, 0o660)
         control.chmod(0o660)
         try:
             os.chown(control, _OPENAMER_UID, _OPENAMER_GID)
-        except PermissionError:
+        except (OSError, AttributeError, NotImplementedError):
             pass
 
     # If a log/ subdir is present (the canonical s6 logger pattern —
@@ -535,12 +548,12 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
         _mkdir_owned(log_supervise, 0o755)
         _mkdir_owned(log_supervise / "event", 0o3730)
         log_control = log_supervise / "control"
-        if not log_control.exists():
+        if not log_control.exists() and hasattr(os, "mkfifo"):  # POSIX-only, see above
             os.mkfifo(log_control, 0o660)
             log_control.chmod(0o660)
             try:
                 os.chown(log_control, _OPENAMER_UID, _OPENAMER_GID)
-            except PermissionError:
+            except (OSError, AttributeError, NotImplementedError):
                 pass
 
 

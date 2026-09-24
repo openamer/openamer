@@ -75,7 +75,7 @@ class MultiModelRouter:
 
     def _load_config(self, path: str) -> None:
         try:
-            with open(path) as f:
+            with open(path, encoding="utf-8") as f:
                 data = json.load(f)
             for route_data in data.get("routes", []):
                 self._routes.append(ModelRoute(**route_data))

@@ -15923,12 +15923,23 @@ def main():
         help="1Password (op:// references) integration",
     )
 
+    # `secrets vault` — the local credential vault behind browser_vault
+    # (model-blind browser autofill). Distinct from bitwarden/onepassword above:
+    # those resolve env-var-shaped values at startup, this holds named items
+    # resolved on demand and never written into the environment.
+    secrets_vault = secrets_subparsers.add_parser(
+        "vault",
+        help="Local credential vault for model-blind browser autofill",
+    )
+
     # Lazy import — only pays for itself when this subcommand is actually used.
     from openamer_cli import secrets_cli as _secrets_cli
     from openamer_cli import onepassword_secrets_cli as _op_secrets_cli
+    from openamer_cli import vault_cli as _vault_cli
 
     _secrets_cli.register_cli(secrets_bw)
     _op_secrets_cli.register_cli(secrets_op)
+    _vault_cli.register_cli(secrets_vault)
 
     def _dispatch_secrets(args):  # noqa: ANN001
         sub = getattr(args, "secrets_command", None)
@@ -15937,6 +15948,8 @@ def main():
         if sub in ("bitwarden", "bw") and bw_sub is not None:
             return args.func(args)
         if sub in ("onepassword", "op", "1password") and op_sub is not None:
+            return args.func(args)
+        if sub == "vault":
             return args.func(args)
         secrets_parser.print_help()
         return 0
