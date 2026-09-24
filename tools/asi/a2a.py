@@ -1,14 +1,13 @@
 """
 A2A Subsystem — Agent-to-Agent native integration.
 
-Wraps scripts/a2a_worker.py core functions with direct imports.
+Direct imports from a2a_worker.py — no subprocess.
 """
 
-import json
 import logging
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -29,30 +28,28 @@ def _import_a2a():
 
 
 def run(repo_path: Optional[str] = None, no_push: bool = False) -> Dict[str, Any]:
-    """Run one A2A worker cycle: consume relay tasks, execute, push results."""
+    """Run one A2A worker cycle: consume relay tasks, execute, push results.
+
+    Direct import from a2a_worker.run() — no subprocess."""
     mod = _import_a2a()
-    repo = Path(repo_path) if repo_path else OPENAMER_HOME / ".." / "openamer-repo"
-    count = mod.run(repo.resolve(), no_push=no_push)
-    return {"success": True, "tasks_processed": count}
+    repo = Path(repo_path) if repo_path else OPENAMER_HOME.parent / "openamer-repo"
+    try:
+        count = mod.run(repo.resolve(), no_push=no_push)
+        return {"success": True, "tasks_processed": count}
+    except Exception as e:
+        logger.exception("a2a.run failed")
+        return {"success": False, "error": str(e)}
 
 
 def brain_collect() -> Dict[str, Any]:
-    """Collect recent sessions into the brain dataset."""
-    return _run_brain("collect")
+    """Collect recent sessions into the brain dataset.
 
-
-def brain_sync() -> Dict[str, Any]:
-    """Sync brain data with peer nodes."""
-    return _run_brain("sync")
-
-
-def _run_brain(action: str) -> Dict[str, Any]:
-    """Run a brain action via the CLI."""
+    Uses openamer a2a brain collect via subprocess (CLI-only command)."""
     import subprocess
     try:
         result = subprocess.run(
-            ["openamer", "a2a", "brain", action],
-            capture_output=True, text=True, timeout=60,
+            [sys.executable, "-m", "openamer_cli.main", "a2a", "brain", "collect"],
+            capture_output=True, text=True, timeout=120,
             env={**__import__("os").environ, "OPENAMER_HOME": str(OPENAMER_HOME)},
         )
         return {
@@ -69,13 +66,11 @@ def peer_query(question: str, max_peers: int = 3) -> Dict[str, Any]:
     import subprocess
     try:
         result = subprocess.run(
-            ["openamer", "a2a", "query", question, "--max", str(max_peers)],
+            [sys.executable, "-m", "openamer_cli.main", "a2a", "query", question,
+             "--max", str(max_peers)],
             capture_output=True, text=True, timeout=120,
+            env={**__import__("os").environ, "OPENAMER_HOME": str(OPENAMER_HOME)},
         )
-        return {
-            "success": result.returncode == 0,
-            "stdout": result.stdout[-1000:],
-            "stderr": result.stderr[-200:],
-        }
+        return {"success": result.returncode == 0, "stdout": result.stdout[-1000:]}
     except Exception as e:
         return {"success": False, "error": str(e)}
