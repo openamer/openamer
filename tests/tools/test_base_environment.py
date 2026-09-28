@@ -251,8 +251,23 @@ class TestAtomicSnapshotConcurrencyBehavioral:
     """
 
     def _run(self, script):
-        import subprocess
-        return subprocess.run(["/bin/bash", "-c", script], capture_output=True, text=True)
+        import subprocess, shutil, sys
+        # FIX 2026-09-28: hardcoding "/bin/bash" breaks on Windows — Win-Python's
+        # Popen can't resolve the MSYS path, so the test died with WinError 2
+        # instead of testing anything. Resolve bash via PATH (shutil.which),
+        # falling back to git-bash; skip if truly unavailable.
+        bash = shutil.which("bash")
+        if not bash:
+            for cand in (r"C:\Program Files\Git\bin\bash.exe",
+                         r"C:\Program Files\Git\usr\bin\bash.exe"):
+                import os
+                if os.path.exists(cand):
+                    bash = cand
+                    break
+        if not bash:
+            import pytest
+            pytest.skip("bash not available on this platform")
+        return subprocess.run([bash, "-c", script], capture_output=True, text=True)
 
     def test_concurrent_writes_never_tear_the_snapshot(self, tmp_path):
         import shutil
@@ -335,8 +350,15 @@ class TestSnapshotFileModes:
                 return self._temp_dir
 
             def _run_bash(self, cmd_string, *, login=False, timeout=120, stdin_data=None):
+                import shutil as _shutil
+                # FIX 2026-09-28: "/bin/bash" is unresolvable by Win-Python's
+                # Popen (WinError 2). Use PATH-resolved bash, skip if absent.
+                bash = _shutil.which("bash")
+                if not bash:
+                    import pytest
+                    pytest.skip("bash not available on this platform")
                 proc = subprocess.Popen(
-                    ["/bin/bash", "-lc", cmd_string],
+                    [bash, "-lc", cmd_string],
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT,
                     stdin=subprocess.DEVNULL,
@@ -355,10 +377,25 @@ class TestSnapshotFileModes:
             env.init_session()
 
             user_file = tmp_path / "user-created.txt"
-            env.execute(f"touch {user_file}")
+            # FIX 2026-09-28: bash on Windows can't parse a backslash path as a
+            # touch argument ('\U', '\u' … are escapes) — the file silently
+            # never gets created and the assert dies with WinError 2. Convert
+            # to a forward-slash path before handing it to bash.
+            import os as _os
+            bash_target = _os.fspath(user_file).replace("\\", "/")
+            env.execute(f"touch {bash_target}")
 
-            assert stat.S_IMODE(user_file.stat().st_mode) == 0o644
-            assert stat.S_IMODE(Path(env._snapshot_path).stat().st_mode) == 0o600
+            # POSIX-only permission semantics: Windows NTFS has no POSIX mode
+            # bits (stat always reports 0o666 / 0o600 only by MSYS emulation).
+            # The file-mode contract is a POSIX guarantee; skip the exact-mode
+            # assertions where they cannot meaningfully hold.
+            import sys as _sys
+            if _sys.platform != "win32":
+                assert stat.S_IMODE(user_file.stat().st_mode) == 0o644
+                assert stat.S_IMODE(Path(env._snapshot_path).stat().st_mode) == 0o600
+            else:
+                assert user_file.exists()
+                assert Path(env._snapshot_path).exists()
             # The cwd temp file is no longer written (cwd travels via the
             # stdout marker for every backend) — nothing to leak on disk.
             assert not Path(env._cwd_file).exists()
