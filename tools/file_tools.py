@@ -600,14 +600,21 @@ def _check_sensitive_path(filepath: str, task_id: str = "default") -> str | None
     except (OSError, ValueError):
         resolved = filepath
     normalized = os.path.normpath(_expand_tilde(filepath))
+    # FIX 2026-09-28 (7 pre-existing test failures on Windows): POSIX-style
+    # sensitive paths like /etc/passwd resolve to '\etc\passwd' on Windows, so
+    # the literal '/etc/' prefixes never matched and the security check was
+    # silently bypassed. Normalize both candidates to forward slashes before
+    # prefix matching so the guard works on every platform.
+    resolved_posix = resolved.replace("\\", "/")
+    normalized_posix = normalized.replace("\\", "/")
     _err = (
         f"Refusing to write to sensitive system path: {filepath}\n"
         "Use the terminal tool with sudo if you need to modify system files."
     )
     for prefix in _SENSITIVE_PATH_PREFIXES:
-        if resolved.startswith(prefix) or normalized.startswith(prefix):
+        if resolved_posix.startswith(prefix) or normalized_posix.startswith(prefix):
             return _err
-    if resolved in _SENSITIVE_EXACT_PATHS or normalized in _SENSITIVE_EXACT_PATHS:
+    if resolved_posix in _SENSITIVE_EXACT_PATHS or normalized_posix in _SENSITIVE_EXACT_PATHS:
         return _err
     # Prevent agents from modifying the OpenAmer config file directly.
     # approvals.mode and other security settings live here; a malicious or
