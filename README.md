@@ -44,7 +44,7 @@ shows the human pointer moved <b>0 px</b>.
 
 <p align="center">
 
-  <a href="https://github.com/openamer/openamer/">OpenAmer Agent</a> | <a href="https://github.com/openamer/openamer/">OpenAmer Desktop</a>
+  <a href="https://github.com/openamer/openamer/"><img src="https://img.shields.io/github/stars/openamer/openamer?style=for-the-badge&logo=github" alt="GitHub stars"></a> <a href="https://github.com/openamer/openamer/">OpenAmer Agent</a> | <a href="https://github.com/openamer/openamer/">OpenAmer Desktop</a>
 
 </p>
 
