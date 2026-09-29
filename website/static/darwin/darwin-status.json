@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-24T12:12:32+00:00",
+  "updated": "2026-09-29T20:15:35+00:00",
   "population": 924,
   "avg_score": 37.9,
   "fittest": [
@@ -199,6 +199,6 @@
   ],
   "population_engine": 158,
   "species": 136,
-  "trials": 1,
+  "trials": 0,
   "harvested": 193
 }
