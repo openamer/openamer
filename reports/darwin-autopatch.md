@@ -1,17 +1,17 @@
-# 🧬 Darwin Auto-Patch Report — 2026-09-23T04:00:49
+# 🧬 Darwin Auto-Patch Report — 2026-10-01T04:00:01
 
-- Population: 947 skills, avg 38.3
+- Population: 662 skills, avg 40.5
 - Mode: **apply**
 
 ## Improved (kept)
 
 - ✅ `auto-structural-connection-between-tool`: 21 → 31 (+10)
-- ✅ `auto-latest-research-insight-selfretrieval`: 21 → 25 (+4)
-- ✅ `auto-latest-research-insight-the`: 21 → 25 (+4)
-- ✅ `auto-latest-research-insight-wikidata`: 21 → 25 (+4)
-- ✅ `auto-multidomain-learning-if-ai`: 21 → 25 (+4)
-- ✅ `auto-multidomain-learning-llms-are`: 21 → 25 (+4)
-- ✅ `auto-multidomain-learning-nasa-ibm`: 21 → 25 (+4)
-- ✅ `auto-multidomain-learning-neural-architecture`: 21 → 25 (+4)
-- ✅ `auto-multidomain-learning-opensource-medical`: 21 → 25 (+4)
-- ✅ `auto-multidomain-learning-python-climate`: 21 → 25 (+4)
+- ✅ `auto-multidomain-learning-show-hn`: 21 → 25 (+4)
+- ✅ `auto-security-learning-agent-sandboxing`: 21 → 25 (+4)
+- ✅ `auto-security-learning-ai-supply`: 21 → 25 (+4)
+- ✅ `auto-security-learning-detecting-prompt`: 21 → 25 (+4)
+- ✅ `auto-security-learning-how-are`: 21 → 25 (+4)
+- ✅ `auto-security-learning-mcp-server`: 21 → 25 (+4)
+- ✅ `auto-security-learning-microsoft-bets`: 21 → 25 (+4)
+- ✅ `auto-security-learning-owasp-just`: 21 → 25 (+4)
+- ✅ `auto-security-learning-owasp-llm`: 21 → 25 (+4)
