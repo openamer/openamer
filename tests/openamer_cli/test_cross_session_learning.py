@@ -482,7 +482,9 @@ class TestConsolidationCycle(TestCase):
         self.assertGreaterEqual(result["lessons_extracted"], 0)
         self.assertIn("context", result)
         self.assertIn("duration_seconds", result)
-        self.assertGreater(result["duration_seconds"], 0)
+        # duration_seconds can be exactly 0.0 on fast machines (sub-second cycle)
+        self.assertGreaterEqual(result["duration_seconds"], 0)
+        self.assertIsInstance(result["duration_seconds"], float)
 
         # Context sollte nicht leer sein
         self.assertGreater(len(result["context"]), 20)
