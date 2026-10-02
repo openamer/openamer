@@ -8,6 +8,8 @@
 
 **Drives your Windows desktop in the background — without taking your mouse.**
 
+> 🛒 **[OpenAmer Bug-Triage Agent — $29 one-time](PRODUCTS.md)** · CVE scanning, secret-leak detection, Windows injection footguns, prompt-injection defense. 40+ skills, 100% offline, CPU-only. 👉 **[Buy now](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)**
+
 ## 🧬 ASI Core — Integrated Superintelligence
 
 5 native tools · 10 subsystem heartbeat · 16/16 ASI capabilities proven · CLI
