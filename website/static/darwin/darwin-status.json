@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-01T18:57:14+00:00",
+  "updated": "2026-10-02T03:00:12+00:00",
   "population": 675,
-  "avg_score": 40.3,
+  "avg_score": 40.4,
   "fittest": [
     {
       "name": "cdp-social-posting",
@@ -45,7 +45,7 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-10-01T04:00:01",
+    "timestamp": "2026-10-02T04:00:08",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -55,7 +55,7 @@
         "fixes": []
       },
       {
-        "skill": "auto-multidomain-learning-show-hn",
+        "skill": "auto-security-learning-owasp-top",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -66,7 +66,7 @@
         ]
       },
       {
-        "skill": "auto-security-learning-agent-sandboxing",
+        "skill": "auto-security-learning-prompt-engineering",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -77,7 +77,7 @@
         ]
       },
       {
-        "skill": "auto-security-learning-ai-supply",
+        "skill": "beta",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -88,9 +88,20 @@
         ]
       },
       {
-        "skill": "auto-security-learning-detecting-prompt",
+        "skill": "dsh-find-simplifications",
         "before": 21,
-        "after": 25,
+        "after": 26,
+        "delta": 5,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "alpha",
+        "before": 23,
+        "after": 27,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -99,9 +110,9 @@
         ]
       },
       {
-        "skill": "auto-security-learning-how-are",
-        "before": 21,
-        "after": 25,
+        "skill": "dsh-ci-test-reliability",
+        "before": 24,
+        "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -110,9 +121,9 @@
         ]
       },
       {
-        "skill": "auto-security-learning-mcp-server",
-        "before": 21,
-        "after": 25,
+        "skill": "dsh-doc",
+        "before": 24,
+        "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -121,36 +132,23 @@
         ]
       },
       {
-        "skill": "auto-security-learning-microsoft-bets",
-        "before": 21,
-        "after": 25,
-        "delta": 4,
+        "skill": "auto-best-practice-from-official",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
+          "\u2705 platforms Feld hinzugef\u00fcgt"
         ]
       },
       {
-        "skill": "auto-security-learning-owasp-just",
-        "before": 21,
-        "after": 25,
-        "delta": 4,
+        "skill": "auto-competitor-intelligence-autogpt-improvem",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "auto-security-learning-owasp-llm",
-        "before": 21,
-        "after": 25,
-        "delta": 4,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
+          "\u2705 platforms Feld hinzugef\u00fcgt"
         ]
       }
     ]
@@ -197,8 +195,8 @@
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5UZ2hPZ2poYUtzNVRSbzFYX2dzNGpqSGxOVGtickdodjc5ZVBTZ3poYlVYUkhUclVEckFBMXFfeDNwSGIxeWNnbElGTFpiRGZiRFByN2dhNUt5ejlUb0RKYmo0aFJRc0VONU9FVV85aTd4V1lXY1E?oc=5"
     }
   ],
-  "population_engine": 163,
-  "species": 130,
+  "population_engine": 162,
+  "species": 123,
   "trials": 0,
   "harvested": 193
 }
