@@ -669,6 +669,15 @@ Hardened 24/7 on a real repo (474-test suite green).
 · instant ZIP delivery: [Release-Download **OpenAmer-BugTriage-Agent-v1.zip**](https://github.com/openamer/openamer/releases/tag/product-bug-triage-v1) ([details](PRODUCTS.md)) ·
 [full product page](https://damirspark.gumroad.com/l/idgxhe)
 
+
+
+### OpenAmer Desktop Control Suite — **$49 one-time** (no subscription)
+
+> The agent drives your Windows desktop in the background — your real cursor never moves.
+
+👉 [**Buy now — $49 via PayPal**](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)
+· [**Instant ZIP download**](https://github.com/openamer/openamer/releases/download/product-desktop-control-v1/OpenAmer-DesktopControl-Suite-v1.zip) · [release page](https://github.com/openamer/openamer/releases/tag/product-desktop-control-v1)
+
 ---
 
 ## ❤️ Sponsor & Fund
