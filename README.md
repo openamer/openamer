@@ -647,14 +647,25 @@ Learn more in the [`a2a-swarm` skill](skills/autonomous-ai-agents/a2a-swarm/SKIL
 
 ## 🛒 Shop — Paid Products
 
-**[OpenAmer Bug-Triage Agent — $29](PRODUCTS.md)**
+### OpenAmer Bug-Triage Agent — **$29 one-time** (no subscription)
 
-Autonomous bug-triage & security-scanning skill pack: 40+ production skills,
-CVE scanning via OSV.dev, secret-leak detection, Windows injection footguns,
-prompt-injection defense. Runs 100% offline on CPU.
+> Your repo's open issues, triaged by an agent that never sleeps: deduplicated,
+> prioritized by severity, with reproduction steps, labels and safe auto-patches.
 
-👉 [**Buy now with PayPal**](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS) —
-you receive the ZIP within minutes ([details](PRODUCTS.md)).
+| What it does | Value |
+|---|---|
+| 🔴 CVE scanning via OSV.dev | finds vulnerable deps before attackers do |
+| 🔑 Secret-leak detection | API keys & tokens flagged before they leak |
+| 🪟 Windows injection footguns | subprocess/encoding traps auto-patched |
+| 🧠 Prompt-injection defense | hardens AI agents against skill poisoning |
+| 📋 Severity + fix report | every issue gets a suggested safe patch |
+
+40+ production skills · 1 MB · runs **100% offline on CPU** — nothing leaves your machine.
+Hardened 24/7 on a real repo (474-test suite green).
+
+👉 [**Buy now — $29 via PayPal**](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)
+· instant ZIP delivery ([details](PRODUCTS.md)) ·
+[full product page](https://damirspark.gumroad.com/l/idgxhe)
 
 ---
 
