@@ -645,6 +645,19 @@ Learn more in the [`a2a-swarm` skill](skills/autonomous-ai-agents/a2a-swarm/SKIL
 
 ---
 
+## 🛒 Shop — Paid Products
+
+**[OpenAmer Bug-Triage Agent — $29](PRODUCTS.md)**
+
+Autonomous bug-triage & security-scanning skill pack: 40+ production skills,
+CVE scanning via OSV.dev, secret-leak detection, Windows injection footguns,
+prompt-injection defense. Runs 100% offline on CPU.
+
+👉 [**Buy now with PayPal**](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS) —
+you receive the ZIP within minutes ([details](PRODUCTS.md)).
+
+---
+
 ## ❤️ Sponsor & Fund
 
 OpenAmer is free & open source. If it saves you time or money, consider supporting development — funding goes directly into servers, API costs and new features.
