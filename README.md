@@ -666,7 +666,7 @@ Learn more in the [`a2a-swarm` skill](skills/autonomous-ai-agents/a2a-swarm/SKIL
 Hardened 24/7 on a real repo (474-test suite green).
 
 👉 [**Buy now — $29 via PayPal**](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)
-· instant ZIP delivery ([details](PRODUCTS.md)) ·
+· instant ZIP delivery: [Release-Download **OpenAmer-BugTriage-Agent-v1.zip**](https://github.com/openamer/openamer/releases/tag/product-bug-triage-v1) ([details](PRODUCTS.md)) ·
 [full product page](https://damirspark.gumroad.com/l/idgxhe)
 
 ---
