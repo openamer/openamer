@@ -2100,6 +2100,7 @@ def handle_max_iterations(agent, messages: list, api_call_count: int) -> str:
                         model=agent.model,
                         base_url=agent.base_url,
                         reasoning_config=agent.reasoning_config,
+                        tools=summary_kwargs.get("tools"),
                     )
             except Exception:
                 pass

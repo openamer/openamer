@@ -1,0 +1,5 @@
+name: ionet-provider
+kind: model-provider
+version: 1.0.0
+description: IO Intelligence by io.net — open-weight models, OpenAI-compatible
+author: OpenAmer

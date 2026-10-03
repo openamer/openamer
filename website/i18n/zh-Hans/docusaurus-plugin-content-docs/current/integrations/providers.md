@@ -40,6 +40,7 @@ sidebar_position: 1
 | **DeepSeek** | `~/.openamer/.env` 中的 `DEEPSEEK_API_KEY`（provider: `deepseek`） |
 | **Hugging Face** | `~/.openamer/.env` 中的 `HF_TOKEN`（provider: `huggingface`，别名：`hf`） |
 | **Google / Gemini** | `~/.openamer/.env` 中的 `GOOGLE_API_KEY`（或 `GEMINI_API_KEY`）（provider: `gemini`） |
+| **IO Intelligence (io.net)** | `~/.openamer/.env` 中的 `IONET_API_KEY`（provider: `ionet`；别名：`io-net`、`io-intelligence`；通过 Chat Completions 使用开源权重模型） |
 | **LM Studio** | `openamer model` → "LM Studio"（provider: `lmstudio`，可选 `LM_API_KEY`） |
 | **自定义端点** | `openamer model` → 选择"Custom endpoint"（保存在 `config.yaml`） |
 
