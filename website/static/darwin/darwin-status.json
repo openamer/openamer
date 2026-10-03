@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-02T03:00:12+00:00",
-  "population": 675,
+  "updated": "2026-10-03T03:00:20+00:00",
+  "population": 676,
   "avg_score": 40.4,
   "fittest": [
     {
@@ -45,7 +45,7 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-10-02T04:00:08",
+    "timestamp": "2026-10-03T04:00:14",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -55,84 +55,7 @@
         "fixes": []
       },
       {
-        "skill": "auto-security-learning-owasp-top",
-        "before": 21,
-        "after": 25,
-        "delta": 4,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "auto-security-learning-prompt-engineering",
-        "before": 21,
-        "after": 25,
-        "delta": 4,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "beta",
-        "before": 21,
-        "after": 25,
-        "delta": 4,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "dsh-find-simplifications",
-        "before": 21,
-        "after": 26,
-        "delta": 5,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "alpha",
-        "before": 23,
-        "after": 27,
-        "delta": 4,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "dsh-ci-test-reliability",
-        "before": 24,
-        "after": 28,
-        "delta": 4,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "dsh-doc",
-        "before": 24,
-        "after": 28,
-        "delta": 4,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "auto-best-practice-from-official",
+        "skill": "auto-competitor-intelligence-devin-ai",
         "before": 25,
         "after": 28,
         "delta": 3,
@@ -142,7 +65,77 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-autogpt-improvem",
+        "skill": "auto-competitor-intelligence-openhands-agent",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "auto-internet-learning-llm-agents",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "auto-latest-research-insight-arxiv",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "auto-multidomain-learning-climate-science",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "auto-multidomain-learning-medical-diagnosis",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "auto-multidomain-learning-philosophy-of",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "auto-structural-connection-between-learning",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "auto-what-are-the-most",
         "before": 25,
         "after": 28,
         "delta": 3,
@@ -196,7 +189,7 @@
     }
   ],
   "population_engine": 162,
-  "species": 123,
+  "species": 121,
   "trials": 0,
   "harvested": 193
 }
