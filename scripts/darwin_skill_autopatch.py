@@ -67,11 +67,24 @@ def skills_from_report(report: dict) -> list[dict]:
     return sorted(results, key=lambda s: s.get("score", 0))
 
 
-def git_revert(path: Path) -> bool:
-    """Revert a file change. Skills dir is NOT a git repo → restore from .bak."""
-    bak = path.with_suffix(".md.bak")
+def git_revert(target: Path) -> bool:
+    """Revert a file change. Skills dir is NOT a git repo → restore from .bak.
+
+    ``target`` may be the SKILL.md file (``<cat>/<skill>/SKILL.md``) or the
+    skill directory (``<cat>/<skill>``); both resolve to the backup written
+    next to SKILL.md as ``SKILL.md.bak``.
+
+    This used to be a footgun: the call site passed the *directory*, but the
+    lookup did ``path.with_suffix('.md.bak')`` → ``<cat>/<skill>.md.bak``,
+    which never exists. ``bak.exists()`` was therefore always False, the
+    rollback silently no-opped, and a fix that did not improve the score was
+    never undone. Accepting both forms removes the whole bug class instead of
+    relying on every caller passing the right shape.
+    """
+    skill_md = (target / "SKILL.md") if target.is_dir() else target
+    bak = skill_md.with_suffix(".md.bak")
     if bak.exists():
-        path.write_text(bak.read_text(encoding="utf-8"), encoding="utf-8")
+        skill_md.write_text(bak.read_text(encoding="utf-8"), encoding="utf-8")
         bak.unlink()
         return True
     return False
@@ -135,7 +148,7 @@ def main() -> int:
                 kept.append(entry)
                 print(f"[autopatch] ✅ {s['name']}: {old_score} → {new_score}")
             else:
-                git_revert(sp.parent)
+                git_revert(sp)
                 reverted.append(entry)
                 print(f"[autopatch] ↩️  {s['name']}: no gain ({old_score} → {new_score}), reverted")
     else:

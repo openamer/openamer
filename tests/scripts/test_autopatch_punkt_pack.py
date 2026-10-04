@@ -88,6 +88,23 @@ def test_git_revert_restores_from_bak(tmp_path):
     assert ap.git_revert(f) is False  # no bak left
 
 
+def test_git_revert_accepts_skill_dir_too(tmp_path):
+    # Regression: main() used to pass the skill DIRECTORY, which resolved the
+    # backup lookup to `<skill>.md.bak` instead of `<skill>/SKILL.md.bak`, so
+    # the rollback silently no-opped and a non-improving fix was never undone.
+    ap = _load("darwin_skill_autopatch")
+    skill_dir = tmp_path / "devops" / "some-skill"
+    skill_dir.mkdir(parents=True)
+    f = skill_dir / "SKILL.md"
+    f.write_text("patched", encoding="utf-8")
+    bak = f.with_suffix(".md.bak")
+    bak.write_text("original", encoding="utf-8")
+    assert ap.git_revert(skill_dir) is True          # the buggy call shape
+    assert f.read_text(encoding="utf-8") == "original"
+    assert not bak.exists()
+    assert ap.git_revert(skill_dir) is False         # idempotent, no bak left
+
+
 def test_weak_selection_below_threshold():
     ap = _load("darwin_skill_autopatch")
     report = {"skill_results": [
