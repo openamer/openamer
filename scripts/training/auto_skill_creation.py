@@ -126,6 +126,20 @@ def clean_text(text):
             out.append(" ")
     return re.sub(r"\s+", " ", "".join(out)).strip()
 
+
+# Belt-and-suspenders for the frontmatter: YAML forbids NUL bytes outright and
+# the Docs Site build (gray-matter/js-yaml) rejects any input containing one
+# with "null byte is not allowed in input". One skill generated on 2026-09-15
+# carried raw control bytes in its description and broke `docusaurus build`.
+# clean_text() already strips them, but the value is written straight into YAML,
+# so guarantee it structurally too.
+_CONTROL_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
+
+
+def yaml_safe(text) -> str:
+    """Return ``text`` with YAML-illegal control bytes removed."""
+    return _CONTROL_RE.sub("", str(text))
+
 def is_usable_text(text, min_len=40, min_ratio=0.9):
     return bool(text) and len(text.strip()) >= min_len and printable_ratio(text) >= min_ratio
 
@@ -268,9 +282,9 @@ def create_skill_from_insight(insight_question, insight_answer, source_tag):
         # cannot break the frontmatter. A bare `description: {desc}` did
         # exactly that and left 49 tracked SKILL.md files unparseable — which
         # failed the Docs Site CI job on every run.
-        description=json.dumps(desc, ensure_ascii=False),
+        description=json.dumps(yaml_safe(desc), ensure_ascii=False),
         date=datetime.date.today().isoformat(),
-        source=json.dumps(str(insight_question)[:100], ensure_ascii=False),
+        source=json.dumps(yaml_safe(str(insight_question)[:100]), ensure_ascii=False),
         name_title=name.replace("-", " ").title(),
         trigger_context=desc[:100],
     )
