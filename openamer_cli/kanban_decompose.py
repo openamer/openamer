@@ -193,12 +193,25 @@ class _Routing:
     valid_names: set[str]
 
 
-def _load_routing() -> _Routing:
+def _load_config() -> dict:
+    """Read the config a decomposition derives its routing from.
+
+    Kept as its own seam so tests can inject a routing config without touching
+    the filesystem, and so config trouble has exactly one place to be absorbed:
+    ``decompose_task`` promises ``ok=False`` rather than a raise when the config
+    cannot be read, so a failure here yields ``{}`` and the caller falls back to
+    its defaults.
+    """
     from openamer_cli.config import load_config_readonly
     try:
         cfg = load_config_readonly()
-    except Exception:  # decompose_task promises ok=False, never a raise, on config trouble
-        cfg = {}
+    except Exception:
+        return {}
+    return cfg if isinstance(cfg, dict) else {}
+
+
+def _load_routing() -> _Routing:
+    cfg = _load_config()
     kanban_cfg = cfg.get("kanban", {}) if isinstance(cfg, dict) else {}
     roster, valid_names = _build_roster()
     return _Routing(

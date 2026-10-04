@@ -2126,6 +2126,15 @@ def test_dir_workspace_honors_given_path(kanban_home, tmp_path):
     assert ws.exists()
 
 
+def _git_worktree_line(path) -> str:
+    """The path as ``git worktree list --porcelain`` prints it.
+
+    Git always emits forward slashes, while ``Path`` on Windows renders
+    backslashes — compare in git's spelling, not the host's.
+    """
+    return str(path).replace("\\", "/")
+
+
 def test_worktree_workspace_repo_root_anchor_materializes_linked_worktree(kanban_home, tmp_path):
     repo = tmp_path / "repo"
     _init_git_repo(repo)
@@ -2159,7 +2168,7 @@ def test_worktree_workspace_repo_root_anchor_materializes_linked_worktree(kanban
         capture_output=True,
         text=True,
     ).stdout
-    assert f"worktree {expected}" in listed
+    assert f"worktree {_git_worktree_line(expected)}" in listed
     assert f"branch refs/heads/wt/{t}" in listed
 
 
@@ -2243,7 +2252,7 @@ def test_worktree_workspace_explicit_target_materializes_linked_worktree(kanban_
         capture_output=True,
         text=True,
     ).stdout
-    assert f"worktree {target}" in listed
+    assert f"worktree {_git_worktree_line(target)}" in listed
     assert f"branch refs/heads/{branch}" in listed
 
 
@@ -2282,7 +2291,7 @@ def test_dispatch_worktree_task_persists_materialized_workspace_and_branch(kanba
         capture_output=True,
         text=True,
     ).stdout
-    assert f"worktree {expected}" in listed
+    assert f"worktree {_git_worktree_line(expected)}" in listed
     assert f"branch refs/heads/wt/{tid}" in listed
 
 
@@ -2341,8 +2350,8 @@ def test_dispatch_worktree_task_rerun_reuses_existing_linked_worktree_and_branch
         capture_output=True,
         text=True,
     ).stdout
-    assert listed.count(f"worktree {expected}\n") == 1
-    assert f"worktree {expected}/.worktrees/{tid}" not in listed
+    assert listed.count(f"worktree {_git_worktree_line(expected)}\n") == 1
+    assert f"worktree {_git_worktree_line(expected)}/.worktrees/{tid}" not in listed
     assert f"branch refs/heads/{actual_branch}" in listed
 
 
@@ -3464,6 +3473,9 @@ def test_resolve_openamer_argv_prefers_path_shim(monkeypatch):
 
     monkeypatch.delenv("OPENAMER_BIN", raising=False)
     monkeypatch.setattr(shutil, "which", lambda name: "/usr/local/bin/openamer")
+    # POSIX which()/PATH semantics; on Windows the resolver routes through
+    # _safe_which_no_cwd instead (covered by the sibling _IS_WINDOWS tests).
+    monkeypatch.setattr(kb, "_IS_WINDOWS", False)
     argv = kb._resolve_openamer_argv()
     assert argv == ["/usr/local/bin/openamer"]
 
@@ -3524,6 +3536,8 @@ def test_resolve_openamer_argv_openamer_bin_bare_name_uses_path(monkeypatch, tmp
     monkeypatch.chdir(tmp_path)
     monkeypatch.setenv("PATH", str(path_openamer.parent))
     monkeypatch.setenv("OPENAMER_BIN", "openamer")
+    # Bare-name PATH resolution is POSIX; Windows uses _safe_which_no_cwd.
+    monkeypatch.setattr(kb, "_IS_WINDOWS", False)
 
     assert kb._resolve_openamer_argv() == [str(path_openamer)]
 
@@ -3583,6 +3597,8 @@ def test_resolve_openamer_argv_falls_back_to_module_form_when_no_path_shim(monke
 
     monkeypatch.delenv("OPENAMER_BIN", raising=False)
     monkeypatch.setattr(shutil, "which", lambda name: None)
+    # POSIX which()/PATH semantics; the Windows branch is covered above.
+    monkeypatch.setattr(kb, "_IS_WINDOWS", False)
     argv = kb._resolve_openamer_argv()
     assert argv == [sys.executable, "-m", "openamer_cli.main"]
 
@@ -4781,7 +4797,20 @@ def test_write_txn_check_reads_correct_header_fields(tmp_path):
 # ---------------------------------------------------------------------------
 
 
-def test_reap_worker_zombies_returns_count():
+@pytest.fixture
+def posix_reaper(monkeypatch):
+    """Force the POSIX reaper path.
+
+    ``reap_worker_zombies`` is a documented no-op on Windows (the OS reaps
+    children itself and there is no wait-status to read), so on that host the
+    mocked ``os.waitpid`` is never reached. The reaping contract can only be
+    exercised by making the platform explicit — the same way the other
+    platform-gated tests in this file do it.
+    """
+    monkeypatch.setattr("openamer_cli.kanban_db.os.name", "posix")
+
+
+def test_reap_worker_zombies_returns_count(posix_reaper):
     """reap_worker_zombies() returns the list of reaped PIDs."""
     from unittest.mock import patch
 
@@ -4821,7 +4850,7 @@ def test_reap_worker_zombies_noop_no_children():
     assert result == []
 
 
-def test_reap_worker_zombies_records_exit_status():
+def test_reap_worker_zombies_records_exit_status(posix_reaper):
     """reap_worker_zombies() calls _record_worker_exit for each reaped pid."""
     from unittest.mock import patch
 
@@ -4853,7 +4882,7 @@ def test_reap_worker_zombies_handles_waitpid_os_error():
     assert result == []
 
 
-def test_zombie_reaper_runs_despite_board_connect_failure():
+def test_zombie_reaper_runs_despite_board_connect_failure(posix_reaper):
     """reap_worker_zombies runs even when a board tick raises an error."""
     from unittest.mock import patch
 
@@ -4879,7 +4908,7 @@ def test_zombie_reaper_runs_despite_board_connect_failure():
     assert pids == [12345, 67890]
 
 
-def test_zombie_reaper_survives_all_boards_failing():
+def test_zombie_reaper_survives_all_boards_failing(posix_reaper):
     """reap_worker_zombies runs each tick regardless of board tick failures."""
     from unittest.mock import patch
 
@@ -4910,7 +4939,7 @@ def test_zombie_reaper_survives_all_boards_failing():
     assert total_reaped == 10
 
 
-def test_dispatch_once_still_reaps_via_extracted_fn(kanban_home):
+def test_dispatch_once_still_reaps_via_extracted_fn(kanban_home, posix_reaper):
     """The reaper inside dispatch_once still works after refactor to reap_worker_zombies()."""
     from unittest.mock import patch
 

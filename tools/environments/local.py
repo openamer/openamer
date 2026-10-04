@@ -638,6 +638,72 @@ def openamer_subprocess_env(*, inherit_credentials: bool = False) -> dict[str, s
     return env
 
 
+def build_subprocess_env(
+    *, scrub_secrets: bool = False, inherit_profile_home: bool = False
+) -> dict[str, str]:
+    """Build the environment for a spawned OpenAmer child process.
+
+    The single entry point for spawn sites that need a child env with a choice of
+    policy, so a dispatcher never hand-rolls one:
+
+    * ``scrub_secrets=True`` applies the skill-aware provider blocklist — the same
+      policy the terminal / ``execute_code`` path uses
+      (:func:`_sanitize_subprocess_env`). Use it when the child runs on behalf of
+      a conversation whose ``env_passthrough`` registrations must be honoured.
+    * ``scrub_secrets=False`` inherits the full parent environment with only the
+      PATH / UTF-8 hardening applied. Use it for internal children (agent
+      workers) that legitimately need the parent's configuration.
+
+    ``inherit_profile_home`` keeps ``OPENAMER_HOME`` exactly as the caller set it
+    and skips the session-context bridge, so a dispatcher acting for another
+    profile does not re-anchor the child to the launch profile's home. When
+    clear, the ContextVar session identity is bridged the same way every other
+    spawn path bridges it.
+    """
+    if scrub_secrets:
+        return _sanitize_subprocess_env(os.environ)
+
+    env = os.environ.copy()
+    env.setdefault("PYTHONUTF8", "1")
+    _inject_context_openamer_home(env)
+
+    from openamer_constants import apply_subprocess_home_env
+    apply_subprocess_home_env(env)
+
+    for _marker in _ACTIVE_VENV_MARKER_VARS:
+        env.pop(_marker, None)
+
+    _apply_windows_msys_bash_env_defaults(env)
+
+    if not inherit_profile_home:
+        _inject_session_context_env(env)
+
+    return env
+
+
+# Launch-profile policy that must not follow work dispatched for another
+# profile: the ``TERMINAL_*`` family is read straight from the parent's .env, so
+# a multiplexing dispatcher would otherwise hand its own terminal policy to a
+# worker that should have read its own profile's.
+_LAUNCH_PROFILE_ENV_PREFIXES = ("TERMINAL_",)
+
+
+def strip_launch_profile_env(env: dict[str, str], profile_home: object) -> None:
+    """Remove the launch profile's terminal policy from a child env, in place.
+
+    Only relevant when a process dispatches work for a *different* profile: the
+    child re-reads its own ``OPENAMER_HOME/.env`` at startup, so anything the
+    parent leaked through ``os.environ`` has to go first — a standalone
+    dispatcher for that profile would never have had it. ``profile_home`` is the
+    already-resolved child home (kept in the signature so a stricter future
+    implementation can compare against it).
+    """
+    if not profile_home:
+        return
+    for key in [k for k in env if k.startswith(_LAUNCH_PROFILE_ENV_PREFIXES)]:
+        env.pop(key, None)
+
+
 def _find_bash() -> str:
     """Find bash for command execution."""
     if not _IS_WINDOWS:

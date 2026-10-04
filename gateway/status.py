@@ -323,6 +323,32 @@ def get_process_start_time(pid: int) -> Optional[int]:
     return _get_process_start_time(pid)
 
 
+def _start_times_agree(current: Any, *recorded: Any) -> bool:
+    """True when *current* matches every recorded start-time fingerprint.
+
+    A ``(pid, start_time)`` pair identifies one process for the life of a boot,
+    so agreement means the live process is the one we recorded at spawn and a
+    mismatch means the PID was recycled by a stranger.
+
+    ``None`` on a recorded side means "no fingerprint was written" (a legacy row
+    from before the column existed) and is skipped rather than treated as a
+    mismatch, so an upgraded board keeps its pre-fingerprint behaviour until the
+    next spawn rewrites the row. ``None`` as *current* is never agreement: an
+    unreadable live fingerprint cannot confirm identity.
+    """
+    if current is None:
+        return False
+    for value in recorded:
+        if value is None:
+            continue
+        try:
+            if int(current) != int(value):
+                return False
+        except (TypeError, ValueError):
+            return False
+    return True
+
+
 def _read_process_cmdline(pid: int) -> Optional[str]:
     """Return the process command line as a space-separated string.
 

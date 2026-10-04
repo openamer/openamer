@@ -14,6 +14,7 @@ import tempfile
 import threading
 from unittest.mock import MagicMock, patch
 
+from tools.environments import local as local_mod
 from tools.environments.local import (
     LocalEnvironment,
     _resolve_safe_cwd,
@@ -47,8 +48,13 @@ class TestResolveSafeCwd:
         """If every ancestor except the filesystem root is gone, the root
         itself is still a valid recovery target — don't skip it just because
         ``os.path.dirname('/') == '/'`` is the loop's exit condition."""
-        sep = os.path.sep
+        # The invariant is "the filesystem root is still a valid recovery
+        # target"; the code below walks a POSIX path, so pin the platform and
+        # the POSIX root explicitly instead of inheriting the host's separator.
+        sep = "/"
+        monkeypatch.setattr(local_mod, "_IS_WINDOWS", False)
         monkeypatch.setattr(os.path, "isdir", lambda p: p == sep)
+        monkeypatch.setattr(os, "access", lambda p, mode: p == sep)
         assert _resolve_safe_cwd("/no/such/deep/dir") == sep
 
 

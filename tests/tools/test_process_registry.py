@@ -470,6 +470,12 @@ class TestStdinHelpers:
         pty.sendeof.assert_called_once()
         assert result["status"] == "ok"
 
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason="ConPTY has no EOF control character: winpty's sendeof() echoes a "
+               "literal ^D instead of delivering end-of-input, so an EOF-driven "
+               "child never sees its stdin close. POSIX pty semantics only.",
+    )
     def test_close_stdin_allows_eof_driven_process_to_finish(self, registry, tmp_path):
         """PTY mode: writing data + sending EOF lets an EOF-driven child finish.
 
@@ -479,7 +485,7 @@ class TestStdinHelpers:
         supported path.
         """
         session = registry.spawn_local(
-            'python3 -c "import sys; print(sys.stdin.read().strip())"',
+            f'"{sys.executable}" -c "import sys; print(sys.stdin.read().strip())"',
             cwd=str(tmp_path),
             use_pty=True,
         )
@@ -844,7 +850,9 @@ class TestPopenLeakOnSetupFailure:
         with patch("tools.process_registry._find_shell", return_value="/bin/bash"), \
              patch("subprocess.Popen", return_value=proc), \
              patch("threading.Thread", side_effect=boom), \
-             patch("os.getpgid", side_effect=ProcessLookupError), \
+             patch("os.getpgid", side_effect=ProcessLookupError, create=True), \
+             patch("os.killpg", create=True), \
+             patch("tools.process_registry._IS_WINDOWS", False), \
              patch.object(registry, "_write_checkpoint"):
             with pytest.raises(RuntimeError, match="Thread creation failed"):
                 registry.spawn_local("echo hello", cwd="/tmp")
@@ -876,7 +884,9 @@ class TestPopenLeakOnSetupFailure:
         with patch("tools.process_registry._find_shell", return_value="/bin/bash"), \
              patch("subprocess.Popen", return_value=proc), \
              patch("threading.Thread", return_value=fake_thread), \
-             patch("os.getpgid", side_effect=ProcessLookupError), \
+             patch("os.getpgid", side_effect=ProcessLookupError, create=True), \
+             patch("os.killpg", create=True), \
+             patch("tools.process_registry._IS_WINDOWS", False), \
              patch.object(registry, "_write_checkpoint", side_effect=OSError("disk full")):
             with pytest.raises(OSError, match="disk full"):
                 registry.spawn_local("echo hello", cwd="/tmp")
@@ -1297,6 +1307,7 @@ class TestKillProcess:
             # SIGKILL-escalation step (grace=0) so it doesn't call
             # ``psutil.wait_procs`` on the FakeProcess.
             with patch("gateway.status._pid_exists", return_value=True), \
+                 patch("tools.process_registry._IS_WINDOWS", False), \
                  patch.object(ProcessRegistry, "_daemon_term_grace_seconds",
                               staticmethod(lambda: 0.0)), \
                  patch.object(_psutil, "Process", side_effect=lambda pid: FakeProcess(pid)):

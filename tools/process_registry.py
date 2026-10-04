@@ -34,6 +34,7 @@ import logging
 import os
 import platform
 import shlex
+import shutil
 import signal
 import subprocess
 import threading
@@ -53,6 +54,104 @@ logger = logging.getLogger(__name__)
 
 # Checkpoint file for crash recovery (gateway only)
 CHECKPOINT_PATH = get_openamer_home() / "processes.json"
+
+
+# ---------------------------------------------------------------------------
+# Restart-safe child scope.
+#
+# Two OpenAmer surfaces spawn long-lived children that must survive a restart of
+# the process that spawned them: the gateway's managed children and the kanban
+# dispatcher's workers. Where a service manager owns that parent (systemd on
+# Linux), a child left in the parent's cgroup is killed when the service is
+# restarted — which for a kanban handoff means the worker performing the handoff
+# dies mid-flight.
+#
+# The remedy is a scope the child can leave the parent's cgroup into. That
+# mechanism only exists where such a manager does; off it (Windows, macOS, a
+# bare shell) no wrapping is needed and no wrapping is possible, so the caller's
+# argv is returned unchanged. Callers ask for ``require_restart_safe_scope=True``
+# when launching a child whose loss would corrupt state; here that is satisfied
+# trivially, because with no manager there is also no service restart to escape.
+# ---------------------------------------------------------------------------
+
+# Whether a usable user-scope manager is present. Linux-only by construction:
+# the scope helper is part of systemd's user bus.
+_MANAGED_USER_SCOPE_AVAILABLE = (
+    not _IS_WINDOWS
+    and platform.system() == "Linux"
+    and bool(os.environ.get("XDG_RUNTIME_DIR") or os.environ.get("DBUS_SESSION_BUS_ADDRESS"))
+)
+
+
+@dataclass(frozen=True)
+class _RestartSafeChildScope:
+    """How a child was placed so it survives its parent's restart.
+
+    ``mode`` is ``"in_process"`` when the caller's argv runs as-is (the scope
+    helper would have been a no-op or reported no change) and ``"wrapped"`` when
+    ``argv`` carries a scope wrapper around the original command.
+    """
+
+    argv: List[str]
+    mode: str
+
+
+def restart_safe_gateway_child_argv(
+    argv: List[str], *, unit_suffix: str, require_restart_safe_scope: bool = False
+) -> _RestartSafeChildScope:
+    """Return *argv*, optionally wrapped so the child outlives a gateway restart.
+
+    Off a managed systemd user session — Windows, macOS, containers, a bare
+    shell — there is no service manager whose restart could reap the child, so
+    the request is already satisfied and *argv* is returned untouched in
+    ``in_process`` mode. ``require_restart_safe_scope`` is honoured rather than
+    ignored: on a managed host where the scope helper is missing, a caller that
+    demanded a scope gets :class:`RuntimeError` instead of a silent downgrade.
+    """
+    if not require_restart_safe_scope or not _MANAGED_USER_SCOPE_AVAILABLE:
+        return _RestartSafeChildScope(argv=list(argv), mode="in_process")
+
+    wrapper = shutil.which("systemd-run")
+    if wrapper:
+        scoped = [
+            wrapper,
+            "--user",
+            "--scope",
+            "--quiet",
+            f"--unit=openamer-{unit_suffix}",
+            *argv,
+        ]
+        return _RestartSafeChildScope(argv=scoped, mode="wrapped")
+
+    raise RuntimeError(
+        "restart-safe scope was required but the host exposes no systemd user "
+        "scope helper (systemd-run not found)"
+    )
+
+
+def systemd_user_bus_env(env: dict) -> dict:
+    """Ensure a child can reach the systemd user bus, in place.
+
+    Only meaningful on a managed Linux host: ``systemd-run --user`` needs the
+    user's runtime dir and session bus address, which a service-spawned process
+    (cron, a detached gateway) does not always export. Everywhere else this is a
+    no-op — there is no user bus to reach, and inventing one would only add
+    variables an unrelated child might misread.
+    """
+    if _IS_WINDOWS or platform.system() != "Linux":
+        return env
+    if env.get("XDG_RUNTIME_DIR"):
+        pass
+    else:
+        runtime = f"/run/user/{os.getuid()}" if hasattr(os, "getuid") else None
+        if runtime and os.path.isdir(runtime):
+            env["XDG_RUNTIME_DIR"] = runtime
+    bus = env.get("DBUS_SESSION_BUS_ADDRESS")
+    if not bus:
+        runtime = env.get("XDG_RUNTIME_DIR")
+        if runtime and os.path.exists(os.path.join(runtime, "bus")):
+            env["DBUS_SESSION_BUS_ADDRESS"] = f"unix:path={runtime}/bus"
+    return env
 
 # Limits
 MAX_OUTPUT_CHARS = 200_000      # 200KB rolling output buffer

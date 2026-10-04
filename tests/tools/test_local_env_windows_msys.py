@@ -306,6 +306,10 @@ class TestWindowsMsysPathconvDefaults:
 
     def test_no_pathconv_not_set_on_posix(self, monkeypatch):
         monkeypatch.setattr(local_mod, "_IS_WINDOWS", False)
+        # A Git-Bash host shell already exports these; clear them so the
+        # assertion tests what the builder contributes, not the host env.
+        monkeypatch.delenv("MSYS_NO_PATHCONV", raising=False)
+        monkeypatch.delenv("MSYS2_ARG_CONV_EXCL", raising=False)
         assert "MSYS_NO_PATHCONV" not in _make_run_env({})
 
     def test_respects_user_override(self, monkeypatch):
@@ -323,6 +327,8 @@ class TestWindowsMsysPathconvDefaults:
 
     def test_msys2_arg_conv_excl_not_set_on_posix(self, monkeypatch):
         monkeypatch.setattr(local_mod, "_IS_WINDOWS", False)
+        monkeypatch.delenv("MSYS2_ARG_CONV_EXCL", raising=False)
+        monkeypatch.delenv("MSYS_NO_PATHCONV", raising=False)
         assert "MSYS2_ARG_CONV_EXCL" not in _make_run_env({})
 
     def test_msys2_arg_conv_excl_respects_user_override(self, monkeypatch):
@@ -349,6 +355,8 @@ class TestGitBashCoreutilsOnPath:
         monkeypatch.setattr(local_mod.os.path, "isdir", self._fake_isdir(existing))
 
         dirs = _git_bash_bin_dirs()
+        # The builder joins with the host separator; compare in one spelling.
+        dirs = [d.replace("\\", "/") for d in dirs]
 
         # usr/bin is the load-bearing coreutils dir; mingw64 precedes it.
         assert "/pg/usr/bin" in dirs
@@ -364,6 +372,7 @@ class TestGitBashCoreutilsOnPath:
         monkeypatch.setattr(local_mod.os.path, "isdir", self._fake_isdir(existing))
 
         dirs = _git_bash_bin_dirs()
+        dirs = [d.replace("\\", "/") for d in dirs]
 
         # MinGit ships bash under usr\bin; root must still resolve to /mg.
         assert "/mg/usr/bin" in dirs

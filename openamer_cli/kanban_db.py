@@ -223,6 +223,182 @@ def _fire_kanban_lifecycle_hook(event: str, task_id: str, **fields: Any) -> None
         _log.debug("kanban lifecycle hook %s failed: %s", event, exc)
 
 
+# --------------------------------------------------------------------------
+# Dispatcher support helpers.
+#
+# ``kanban_db_dispatch`` reaches these through its late-bound ``_kb`` handle.
+# They live here — not in the dispatch module — because they read board state
+# and fire lifecycle hooks, which is this module's job; the dispatch module
+# only orchestrates a tick.
+# --------------------------------------------------------------------------
+
+def _json_or(value: Any, default: Any = None) -> Any:
+    """Decode a JSON text column; a decode failure or empty value yields *default*."""
+    if not value:
+        return default
+    try:
+        return json.loads(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def _json_dict(value: Any) -> dict:
+    """Decode a JSON text column that must hold an object; anything else yields ``{}``."""
+    parsed = _json_or(value, {})
+    return parsed if isinstance(parsed, dict) else {}
+
+
+def _row_get(row: Any, column: str, default: Any = None) -> Any:
+    """``row[column]`` tolerant of the column being absent from the SELECT or schema."""
+    if row is None or column not in row.keys():
+        return default
+    return row[column]
+
+
+def _opt_int(value: Any) -> Optional[int]:
+    """``int(value)``, or ``None`` for a NULL column passthrough."""
+    return int(value) if value is not None else None
+
+
+def _hook_profile_name() -> str:
+    """Active profile for hook payloads; ``"default"`` when it cannot be resolved."""
+    try:
+        from openamer_cli.profiles import get_active_profile_name
+        return get_active_profile_name()
+    except Exception:
+        return "default"
+
+
+def _kanban_observer_consumed(event: str) -> bool:
+    """Hot-path short-circuit: skip payload assembly when nothing subscribes.
+
+    An inspection failure counts as unconsumed — dropping an observer is always
+    safe, so a broken plugin registry must never break a dispatch tick.
+    """
+    try:
+        from openamer_cli.plugins import has_hook
+        return has_hook(event)
+    except Exception:  # pragma: no cover - defensive
+        return False
+
+
+# DispatchResult fields that mean "this tick actually did work". A tick empty on
+# every one of them is reported to observers as ``idle``, so telemetry can tell
+# a correctly-quiet board apart from a wedged dispatcher.
+_TICK_ACTIVITY_FIELDS = (
+    "spawned", "reclaimed", "promoted", "reconciled_orphans", "crashed", "stale",
+    "timed_out", "auto_blocked", "rate_limited", "auto_assigned_default",
+    "respawn_guarded", "skipped_per_profile_capped", "skipped_unassigned",
+    "skipped_nonspawnable",
+)
+
+
+def _fire_worker_spawned_hook(
+    conn: sqlite3.Connection, task: "Task", workspace_path: str, pid: Optional[int], *,
+    board: Optional[str] = None,
+) -> None:
+    """Fire ``on_kanban_worker_spawned`` AFTER the PID is durably persisted.
+
+    Best-effort observer: the worker is already running by the time this fires,
+    so a failing subscriber must never unwind the spawn.
+    """
+    if not _kanban_observer_consumed("on_kanban_worker_spawned"):
+        return
+    try:
+        _fire_kanban_lifecycle_hook(
+            "on_kanban_worker_spawned",
+            task.id,
+            board=board or get_current_board(),
+            assignee=task.assignee,
+            run_id=_current_run_id(conn, task.id),
+            worker_pid=int(pid) if pid else None,
+            workspace_path=str(workspace_path),
+        )
+    except Exception as exc:  # pragma: no cover - defensive
+        _log.debug("kanban worker spawned hook failed: %s", exc)
+
+
+def _fire_dispatch_tick_hook(
+    result: "DispatchResult", *, board: Optional[str] = None, dry_run: bool = False,
+) -> None:
+    """Fire ``on_kanban_dispatch_tick`` strictly AFTER the dispatch lock is released.
+
+    The single-writer critical section must stay as short as possible, so this
+    observer runs outside it: a slow subscriber can never stall a sibling
+    dispatcher's tick. Observer-only and fully best-effort.
+    """
+    if not _kanban_observer_consumed("on_kanban_dispatch_tick"):
+        return
+    try:
+        from openamer_cli.plugins import invoke_hook
+        if board is None:
+            try:
+                board = get_current_board()
+            except Exception:
+                board = None
+        if getattr(result, "skipped_locked", False):
+            outcome = "skipped_locked"
+        elif not any(getattr(result, f, None) for f in _TICK_ACTIVITY_FIELDS):
+            outcome = "idle"
+        else:
+            outcome = "ok"
+        invoke_hook(
+            "on_kanban_dispatch_tick",
+            board=board,
+            profile_name=_hook_profile_name(),
+            dry_run=bool(dry_run),
+            outcome=outcome,
+            result=result,
+        )
+    except Exception as exc:  # pragma: no cover - defensive
+        _log.debug("kanban dispatch tick hook failed: %s", exc)
+
+
+def _latest_event(
+    conn: sqlite3.Connection, task_id: str, kind: str, run_id: Optional[int] = None,
+) -> Optional[sqlite3.Row]:
+    """Newest ``task_events`` row of *kind*, optionally scoped to one run."""
+    sql = "SELECT payload FROM task_events WHERE task_id = ? AND kind = ?"
+    params: tuple[Any, ...] = (task_id, kind)
+    if run_id is not None:
+        sql += " AND run_id = ?"
+        params = (*params, int(run_id))
+    return conn.execute(sql + " ORDER BY id DESC LIMIT 1", params).fetchone()
+
+
+def _retry_status_for_run(
+    conn: sqlite3.Connection, task_id: str, run_id: Optional[int] = None,
+) -> str:
+    """The status a failed, crashed or reclaimed run should return to.
+
+    ``review`` when the run's ``claimed`` event recorded ``source_status=review``
+    — one place, so crash/timeout/reclaim can never silently downgrade a
+    reviewer run into an implementation run. Otherwise ``ready``.
+    """
+    if run_id is None:
+        run_id = _current_run_id(conn, task_id)
+    if run_id is None:
+        return "ready"
+    event = _latest_event(conn, task_id, "claimed", run_id)
+    payload = _json_dict(_row_get(event, "payload"))
+    return "review" if payload.get("source_status") == "review" else "ready"
+
+
+def _insert_comment(
+    conn: sqlite3.Connection, task_id: str, author: str, body: str, created_at: int,
+) -> None:
+    """Raw comment INSERT for callers already inside a write transaction.
+
+    ``add_comment`` opens its own transaction and emits a ``commented`` event;
+    this is the no-nested-txn variant the dispatcher's reconcile path needs.
+    """
+    conn.execute(
+        "INSERT INTO task_comments (task_id, author, body, created_at) "
+        "VALUES (?, ?, ?, ?)",
+        (task_id, author, body, created_at),
+    )
+
+
 # A running task's claim is valid for 15 minutes by default; after that the
 # next dispatcher tick reclaims it. Workers that outlive this window should
 # call ``heartbeat_claim(task_id)`` periodically. In practice most kanban
@@ -1173,6 +1349,28 @@ class Event:
     created_at: int
     run_id: Optional[int] = None
 
+    @classmethod
+    def from_row(cls, row: sqlite3.Row) -> "Event":
+        """Build an Event from a ``task_events`` row.
+
+        ``payload`` is stored as a JSON text column; a decode failure or an
+        empty value yields ``None`` rather than raising, because a single
+        malformed historical row must never break the notifier that reads a
+        whole batch of events.
+        """
+        try:
+            payload = json.loads(row["payload"]) if row["payload"] else None
+        except Exception:
+            payload = None
+        return cls(
+            id=int(row["id"]),
+            task_id=row["task_id"],
+            kind=row["kind"],
+            payload=payload,
+            created_at=int(row["created_at"]),
+            run_id=(int(row["run_id"]) if row["run_id"] is not None else None),
+        )
+
 
 # ---------------------------------------------------------------------------
 # Schema
@@ -1208,6 +1406,11 @@ CREATE TABLE IF NOT EXISTS tasks (
     -- exceeds DEFAULT_FAILURE_LIMIT consecutive non-successes.
     consecutive_failures INTEGER NOT NULL DEFAULT 0,
     worker_pid           INTEGER,
+    -- Start-time fingerprint of worker_pid, recorded at spawn: liveness and
+    -- kill decisions require pid AND fingerprint to agree, so a PID recycled
+    -- after a reboot is never read as our worker or signalled. NULL = legacy
+    -- row (pre-fingerprint spawn); rewritten on its next spawn.
+    worker_started_at    INTEGER,
     -- Short excerpt of the most recent failure's error text.
     last_failure_error   TEXT,
     max_runtime_seconds  INTEGER,
@@ -2428,6 +2631,16 @@ def _migrate_add_optional_columns(conn: sqlite3.Connection) -> None:
             conn, "tasks", "goal_mode", "goal_mode INTEGER NOT NULL DEFAULT 0"
         )
 
+    if "worker_started_at" not in cols:
+        # Start-time fingerprint of ``worker_pid``, recorded at spawn. Liveness
+        # and kill decisions require pid AND fingerprint to agree, so a PID that
+        # was recycled after a reboot is never read as our worker — and never
+        # signalled. NULL = legacy row written before the fingerprint existed;
+        # it keeps the bare-pid behaviour and is rewritten on its next spawn.
+        _add_column_if_missing(
+            conn, "tasks", "worker_started_at", "worker_started_at INTEGER"
+        )
+
     if "goal_max_turns" not in cols:
         # Per-task goal-loop turn budget. NULL = goals-engine default.
         _add_column_if_missing(
@@ -3534,6 +3747,23 @@ def _would_cycle(conn: sqlite3.Connection, parent_id: str, child_id: str) -> boo
         ).fetchall()
         stack.extend(r["child_id"] for r in rows)
     return False
+
+
+def _link(conn: sqlite3.Connection, parent_id: str, child_id: str) -> None:
+    """Insert a parent->child dependency edge, for callers already in a txn.
+
+    :func:`link_tasks` is the public entry point: it validates both tasks,
+    refuses a cycle, demotes a prematurely-ready child back to ``todo``, and
+    opens its own transaction. Callers that build a whole graph atomically
+    (decomposition) cannot nest that transaction, so they use this raw insert
+    and own the surrounding ``write_txn`` and its cycle-freedom themselves —
+    the decomposed graph is acyclic by construction, and ``task_links`` carries
+    a uniqueness constraint on the pair.
+    """
+    conn.execute(
+        "INSERT OR IGNORE INTO task_links (parent_id, child_id) VALUES (?, ?)",
+        (parent_id, child_id),
+    )
 
 
 def unlink_tasks(conn: sqlite3.Connection, parent_id: str, child_id: str) -> bool:
@@ -6853,34 +7083,42 @@ def _classify_worker_exit(pid: int) -> "tuple[str, Optional[int]]":
     entry = _recent_worker_exits.get(int(pid))
     if entry is None:
         return ("unknown", None)
-    raw, _ = entry
-    try:
-        if os.WIFEXITED(raw):
-            code = os.WEXITSTATUS(raw)
-            if code == 0:
-                return ("clean_exit", 0)
-            if code == KANBAN_RATE_LIMIT_EXIT_CODE:
-                return ("rate_limited", code)
-            return ("nonzero_exit", code)
-        if os.WIFSIGNALED(raw):
-            return ("signaled", os.WTERMSIG(raw))
-    except Exception:
-        pass
-    return ("unknown", None)
+    raw = int(entry[0])
+
+    # The status word is a POSIX wait-status: that is what ``_record_worker_exit``
+    # stores and the reaper produces. ``os.WIFEXITED`` / ``os.WEXITSTATUS`` are
+    # POSIX-only (absent on Windows), so relying on them made every worker fall
+    # through to ``unknown`` there — a rate-limit wall could never requeue and a
+    # clean exit could never auto-block. The arithmetic below is the same decode
+    # those helpers perform, inlined so it holds on every platform:
+    #   WIFSIGNALED  -> low 7 bits hold a non-zero signal number
+    #   WIFEXITED    -> low 7 bits are zero; status is bits 8..15
+    if raw & 0x7F:
+        return ("signaled", raw & 0x7F)
+    code = (raw >> 8) & 0xFF
+    if code == 0:
+        return ("clean_exit", 0)
+    if code == KANBAN_RATE_LIMIT_EXIT_CODE:
+        return ("rate_limited", code)
+    return ("nonzero_exit", code)
 
 
 def reap_worker_zombies() -> "list[int]":
     """Reap all zombie children of this process without blocking.
 
     Returns the list of reaped PIDs. Safe to call when there are no
-    children (returns []). No-op on Windows.
+    children (returns []). No-op on Windows, where the OS reaps children
+    itself and there is no wait-status to read.
     """
     reaped: "list[int]" = []
     if os.name != "nt":
+        # ``WNOHANG`` is POSIX-only; absent on Windows the poll would raise
+        # before the first child was collected.
+        wnohang = getattr(os, "WNOHANG", 1)
         try:
             while True:
                 try:
-                    pid, status = os.waitpid(-1, os.WNOHANG)
+                    pid, status = os.waitpid(-1, wnohang)
                 except ChildProcessError:
                     break
                 if pid == 0:
