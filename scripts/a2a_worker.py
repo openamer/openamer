@@ -12,6 +12,7 @@ Usage: python scripts/a2a_worker.py <repo> [--no-push]
 """
 
 from __future__ import annotations
+import os  # bare `os` is used by _runner_name() / _now_utc() helpers
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
