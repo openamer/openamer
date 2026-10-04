@@ -1,6 +1,6 @@
 ---
 name: auto-latest-research-insight-opensourced
-description: September 16, 2026 New ask Hacker News story: Open-sourced jev architecture last year with model,pap
+description: "September 16, 2026 New ask Hacker News story: Open-sourced jev architecture last year with model,pap"
 auto_generated: true
 created: 2026-09-18
 source_insight: "Latest research insight: Open-sourced jev architecture last year with model,paper and dataset"

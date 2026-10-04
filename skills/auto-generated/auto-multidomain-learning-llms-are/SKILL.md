@@ -1,6 +1,6 @@
 ---
 name: auto-multidomain-learning-llms-are
-description: Architecture Matters We often conflate different AI paradigms: LLMs (Transformers): Predict token se
+description: "Architecture Matters We often conflate different AI paradigms: LLMs (Transformers): Predict token se"
 auto_generated: true
 created: 2026-09-17
 source_insight: "Multi-domain learning (LLMs Are Great, but They're Not Everything): What should an intelligent agent"

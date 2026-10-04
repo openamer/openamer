@@ -1,6 +1,6 @@
 ---
 name: auto-security-learning-microsoft-bets
-description: Prompt Injection Challenge: LLMail-Inject The competition features 40 unique levels, each combining
+description: "Prompt Injection Challenge: LLMail-Inject The competition features 40 unique levels, each combining"
 auto_generated: true
 created: 2026-09-18
 source_insight: "Security learning (Microsoft Bets $10K on Prompt Injection Protections of LLM Email Client): What sh"

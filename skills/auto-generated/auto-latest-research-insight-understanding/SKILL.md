@@ -1,6 +1,6 @@
 ---
 name: auto-latest-research-insight-understanding
-description: Hierarchical, Hybrid, and Omnimodal Models Jun 30 58 m Jun 30, 2026 58 m read Show 10 25 50 100 pe GAP: no mappable capability in latest signal (our t
+description: "Hierarchical, Hybrid, and Omnimodal Models Jun 30 58 m Jun 30, 2026 58 m read Show 10 25 50 100 pe GAP: no mappable capability in latest signal (our t"
 auto_generated: true
 created: 2026-09-21
 source_insight: "Latest research insight: Understanding the Limitations of Mathematical Reasoning in LLMs"

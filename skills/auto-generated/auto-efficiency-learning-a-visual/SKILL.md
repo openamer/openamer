@@ -1,6 +1,6 @@
 ---
 name: auto-efficiency-learning-a-visual
-description: For example: 32-bit float: 4 bytes per parameter 8-bit integer: 1 byte per parameter (75% memory red GAP: public SDK / programmatic API: competitor si
+description: "For example: 32-bit float: 4 bytes per parameter 8-bit integer: 1 byte per parameter (75% memory red GAP: public SDK / programmatic API: competitor si"
 auto_generated: true
 created: 2026-09-15
 source_insight: "Efficiency learning (A Visual Guide to LLM Quantization): How do agents run leaner?"

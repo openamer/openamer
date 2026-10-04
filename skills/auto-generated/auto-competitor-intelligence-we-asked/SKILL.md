@@ -1,6 +1,6 @@
 ---
 name: auto-competitor-intelligence-we-asked
-description: Game Developer 4 hours, 34 minutes ago For You Latest Trending Tech Updates: Week of Sep 14 4 updates Babylon.
+description: "Game Developer 4 hours, 34 minutes ago For You Latest Trending Tech Updates: Week of Sep 14 4 updates Babylon."
 auto_generated: true
 created: 2026-09-15
 source_insight: "Competitor intelligence: We asked four AI coding agents to rebuild Minesweeper–the results were expl"

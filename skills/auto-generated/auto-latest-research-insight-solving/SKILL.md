@@ -1,6 +1,6 @@
 ---
 name: auto-latest-research-insight-solving
-description: ' - **Content:** The user provided a list of daily paper submissions with titles, authors, and some metadata. I need to extract the single most valuab
+description: "' - **Content:** The user provided a list of daily paper submissions with titles, authors, and some metadata. I need to extract the single most valuab"
 auto_generated: true
 created: 2026-09-21
 source_insight: "Latest research insight: Solving a million-step LLM task with zero errors"

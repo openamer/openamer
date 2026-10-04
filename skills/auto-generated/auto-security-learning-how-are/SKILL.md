@@ -1,6 +1,6 @@
 ---
 name: auto-security-learning-how-are
-description: LLM Prompt injection Share Executive Summary Palo Alto Networks has released Securing GenAI: A Com
+description: "LLM Prompt injection Share Executive Summary Palo Alto Networks has released Securing GenAI: A Com"
 auto_generated: true
 created: 2026-09-16
 source_insight: "Security learning (How are you securing your GenAI apps from malicious prompts?): What should a safe"

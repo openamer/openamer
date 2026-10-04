@@ -1,6 +1,6 @@
 ---
 name: auto-structural-connection-between-learning
-description: {"tool": "web_search", "params": {"query": "Continuous Learning Loop: Fehler-Capture +
+description: "{\"tool\": \"web_search\", \"params\": {\"query\": \"Continuous Learning Loop: Fehler-Capture +"
 auto_generated: true
 created: 2026-09-10
 source_insight: "Structural connection between learning process and energy efficiency?"

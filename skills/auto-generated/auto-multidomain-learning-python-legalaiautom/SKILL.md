@@ -1,6 +1,6 @@
 ---
 name: auto-multidomain-learning-python-legalaiautom
-description: Claw Mar 23, 2026 Comparison 15 min min read OpenClaw vs Other AI Agent Frameworks - Comprehensive C GAP: agent framework / orchestrator SDK: competit
+description: "Claw Mar 23, 2026 Comparison 15 min min read OpenClaw vs Other AI Agent Frameworks - Comprehensive C GAP: agent framework / orchestrator SDK: competit"
 auto_generated: true
 created: 2026-09-20
 source_insight: "Multi-domain learning (python legal-ai-automation 2026): What should an intelligent agent know?"

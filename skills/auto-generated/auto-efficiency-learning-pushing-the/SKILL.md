@@ -1,6 +1,6 @@
 ---
 name: auto-efficiency-learning-pushing-the
-description: The paper 'When EOS Tokens Disagree: Understanding Length Inflation in On-Policy Distillation' revea
+description: "The paper 'When EOS Tokens Disagree: Understanding Length Inflation in On-Policy Distillation' revea"
 auto_generated: true
 created: 2026-09-19
 source_insight: "Efficiency learning (Pushing the Limits of LLM Quantization via the Linearity Theorem): How do agent"

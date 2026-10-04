@@ -62,7 +62,7 @@ name: {name}
 description: {description}
 auto_generated: true
 created: {date}
-source_insight: "{source}"
+source_insight: {source}
 status: draft
 fitness_score: 0
 trials: 0
@@ -263,9 +263,14 @@ def create_skill_from_insight(insight_question, insight_answer, source_tag):
 
     skill_content = SKILL_TEMPLATE.format(
         name=name,
-        description=desc.replace('"', "'"),
+        # json.dumps emits a always-valid YAML double-quoted scalar, so a
+        # description containing ": ", a leading quote, a "#", or a newline
+        # cannot break the frontmatter. A bare `description: {desc}` did
+        # exactly that and left 49 tracked SKILL.md files unparseable — which
+        # failed the Docs Site CI job on every run.
+        description=json.dumps(desc, ensure_ascii=False),
         date=datetime.date.today().isoformat(),
-        source=str(insight_question)[:100].replace('"', "'"),
+        source=json.dumps(str(insight_question)[:100], ensure_ascii=False),
         name_title=name.replace("-", " ").title(),
         trigger_context=desc[:100],
     )

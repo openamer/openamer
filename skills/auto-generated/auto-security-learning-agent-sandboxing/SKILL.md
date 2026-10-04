@@ -1,6 +1,6 @@
 ---
 name: auto-security-learning-agent-sandboxing
-description: Nicht böse, nur falsch optimiert: Was OpenAIs RubyGems-Vorfall über KI-Agenten und Reward-Hacking zeigt Wie OpenAIs Agenten durch Reward-Hacking eine
+description: "Nicht böse, nur falsch optimiert: Was OpenAIs RubyGems-Vorfall über KI-Agenten und Reward-Hacking zeigt Wie OpenAIs Agenten durch Reward-Hacking eine"
 auto_generated: true
 created: 2026-09-14
 source_insight: "Security learning (agent sandboxing permission model best practices): What should a safe agent know?"

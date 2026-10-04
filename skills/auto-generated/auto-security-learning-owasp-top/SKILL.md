@@ -1,6 +1,6 @@
 ---
 name: auto-security-learning-owasp-top
-description: Kurz gesagt: LLM-Sicherheit schützt Anwendungen mit großen Sprachmodellen vor Angriffen wie Prompt I
+description: "Kurz gesagt: LLM-Sicherheit schützt Anwendungen mit großen Sprachmodellen vor Angriffen wie Prompt I"
 auto_generated: true
 created: 2026-09-20
 source_insight: "Security learning (OWASP Top 10 Injection 2024 - Prompt Injection Attack Vector - LLM Injection Defe"
