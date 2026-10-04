@@ -97,7 +97,8 @@ export const fi = defineLocale({
       remoteSignInHint: signInLabel =>
         `Kirjautuu ulos tallennetusta etäselainistunnosta ja avaa sitten ${signInLabel}. Käytä "Käytä paikallista yhdyskäytävää" palataksesi mukana toimitettuun taustajärjestelmään.`,
       signOutAndSignIn: 'Kirjaudu ulos ja sisään',
-      remoteFailureHint: 'Tarkista URL ja kirjautuminen yhdyskäytävän asetuksista tai vaihda paikalliseen yhdyskäytävään.',
+      remoteFailureHint:
+        'Tarkista URL ja kirjautuminen yhdyskäytävän asetuksista tai vaihda paikalliseen yhdyskäytävään.',
       hideRecentLogs: 'Piilota viimeaikaiset lokit',
       showRecentLogs: 'Näytä viimeaikaiset lokit',
       signedInTitle: 'Kirjautunut',

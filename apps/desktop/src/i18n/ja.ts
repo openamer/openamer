@@ -935,7 +935,8 @@ export const ja = defineLocale({
       ready: '準備完了',
       needsSignIn: 'サインインが必要',
       needsSetup: 'セットアップが必要',
-      openamerIncluded: 'OpenAmer サブスクリプションに含まれています。有効にするには OpenAmer Portal にサインインしてください。',
+      openamerIncluded:
+        'OpenAmer サブスクリプションに含まれています。有効にするには OpenAmer Portal にサインインしてください。',
       openamerAuthNeededTitle: 'OpenAmer Portal にサインイン',
       openamerAuthNeededMessage: provider =>
         `${provider} は保存されましたが、OpenAmer Portal にサインインするまで有効になりません。`,
@@ -1978,7 +1979,8 @@ export const ja = defineLocale({
     done: '完了',
     applyingBody:
       'OpenAmer アップデーターが独自のウィンドウで引き継ぎ、完了後に自動的に OpenAmer を再度開きます。更新中はご自分で OpenAmer を開き直さないでください。',
-    applyingBodyBackend: 'リモートバックエンドが更新を適用して再起動します。復帰すると OpenAmer が自動的に再接続します。',
+    applyingBodyBackend:
+      'リモートバックエンドが更新を適用して再起動します。復帰すると OpenAmer が自動的に再接続します。',
     applyingClose: 'このウィンドウは更新中に閉じ、その後 OpenAmer が自動的に再度開きます。',
     errorTitle: '更新が完了しませんでした',
     errorBody: 'ご安心ください。何も失われていません。今すぐ再試行できます。',
@@ -1993,7 +1995,8 @@ export const ja = defineLocale({
         'バックエンドがオンラインに戻りませんでした。更新が完了していない可能性があります。バックエンドホストを確認してください。'
     },
     appErrors: {
-      updateLocked: '更新が中止されました: 別の OpenAmer ウィンドウまたは openamer を実行中のターミナルがこのインストールを保持しています。閉じて再試行してください。',
+      updateLocked:
+        '更新が中止されました: 別の OpenAmer ウィンドウまたは openamer を実行中のターミナルがこのインストールを保持しています。閉じて再試行してください。',
       updateFailed: '更新が完了しませんでした。心配はいりません — 何も失われていません。今すぐ再試行できます。'
     }
   },
@@ -2022,7 +2025,8 @@ export const ja = defineLocale({
     connectExistingDesc:
       'セッショントークンまたはブラウザーサインインでリモートバックエンドを使用します。ローカルインストールは開始されません。',
     installLocalTitle: 'OpenAmer をローカルにインストール',
-    installLocalDesc: 'OpenAmer をダウンロードし、Python 環境を作成して、このコンピューターでバックエンドを実行します。',
+    installLocalDesc:
+      'OpenAmer をダウンロードし、Python 環境を作成して、このコンピューターでバックエンドを実行します。',
     localStartUnavailable:
       'ローカルインストールを開始できません。OpenAmer Desktop を再起動して、もう一度お試しください。',
     remoteSetupTitle: '既存の OpenAmer に接続',

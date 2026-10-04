@@ -97,7 +97,8 @@ export const fr = defineLocale({
       remoteSignInHint: signInLabel =>
         `Déconnecte la session enregistrée du navigateur distant, puis ouvre ${signInLabel}. Utilisez « Utiliser la passerelle locale » pour revenir au backend intégré.`,
       signOutAndSignIn: 'Se déconnecter et se connecter',
-      remoteFailureHint: 'Vérifiez l’URL et la connexion dans les paramètres de la passerelle, ou passez en passerelle locale.',
+      remoteFailureHint:
+        'Vérifiez l’URL et la connexion dans les paramètres de la passerelle, ou passez en passerelle locale.',
       hideRecentLogs: 'Masquer les journaux récents',
       showRecentLogs: 'Afficher les journaux récents',
       signedInTitle: 'Connecté',
@@ -127,7 +128,8 @@ export const fr = defineLocale({
     installMethodUnsupportedTitle: 'Méthode d’installation non prise en charge',
     updateOpenAmer: 'Mettre à jour OpenAmer',
     updateReadyTitle: 'Mise à jour prête',
-    updateReadyMessage: count => `${count} nouveau${count === 1 ? '' : 'x'} changement${count === 1 ? '' : 's'} disponible${count === 1 ? '' : 's'}.`,
+    updateReadyMessage: count =>
+      `${count} nouveau${count === 1 ? '' : 'x'} changement${count === 1 ? '' : 's'} disponible${count === 1 ? '' : 's'}.`,
     seeWhatsNew: 'Voir les nouveautés',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT nécessite ELEVENLABS_API_KEY.',
@@ -272,7 +274,8 @@ export const fr = defineLocale({
       embedsAsk: 'Demander',
       embedsAlways: 'Toujours',
       embedsOff: 'Désactivé',
-      embedsReset: (count: number) => `Réinitialiser ${count} service${count === 1 ? '' : 's'} autorisé${count === 1 ? '' : 's'}`,
+      embedsReset: (count: number) =>
+        `Réinitialiser ${count} service${count === 1 ? '' : 's'} autorisé${count === 1 ? '' : 's'}`,
       product: 'Produit',
       productDesc: 'Activité des outils conviviale avec des résumés concis.',
       technical: 'Technique',
@@ -306,7 +309,8 @@ export const fr = defineLocale({
       cantUpdate: 'Ce build ne peut pas se mettre à jour depuis l’application.',
       cantReach: 'Nous n’avons pas pu joindre le serveur de mises à jour.',
       tapCheck: 'Touchez « Vérifier maintenant » pour chercher des mises à jour.',
-      updateReady: count => `Une nouvelle mise à jour est prête (${count} changement${count === 1 ? '' : 's'} inclus${count === 1 ? '' : 's'}).`,
+      updateReady: count =>
+        `Une nouvelle mise à jour est prête (${count} changement${count === 1 ? '' : 's'} inclus${count === 1 ? '' : 's'}).`,
       lastChecked: age => `Dernière vérification ${age}`,
       justNowSuffix: ' · à l’instant',
       automaticUpdates: 'Mises à jour automatiques',

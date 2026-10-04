@@ -86,7 +86,7 @@ export const sq = defineLocale({
         'Gateway-i në sfond nuk u nis. Provo një nga hapat e rikuperimit më poshtë. Asgjë këtu nuk flet bisedat ose konfigurimet e tua.',
       remoteTitle: 'Kërkohet hyrja në gateway-in e largët',
       remoteDescription:
-        'Sesioni juaj i gateway-it të largët ka skaduar. Hyni përsëri për t\'u rilidhur. Asgjë këtu nuk flet bisedat ose konfigurimet e tua.',
+        "Sesioni juaj i gateway-it të largët ka skaduar. Hyni përsëri për t'u rilidhur. Asgjë këtu nuk flet bisedat ose konfigurimet e tua.",
       retry: 'Provo përsëri',
       repairInstall: 'Riparo instalimin',
       useLocalGateway: 'Përdor gateway lokal',
@@ -123,7 +123,7 @@ export const sq = defineLocale({
     copyDetailFailed: 'Nuk u kopjua detaji i njoftimit',
     backendOutOfDateTitle: 'Backend-i është i vjetëruar',
     backendOutOfDateMessage:
-      'Backend-i juaj i OpenAmer është më i vjetër se ky build desktopi dhe mund të mos funksionojë si duhet. Përditësoje për t\'i njësuar.',
+      "Backend-i juaj i OpenAmer është më i vjetër se ky build desktopi dhe mund të mos funksionojë si duhet. Përditësoje për t'i njësuar.",
     installMethodUnsupportedTitle: 'Metoda e instalimit e papërkrahur',
     updateOpenAmer: 'Përditëso OpenAmer',
     updateReadyTitle: 'Përditësimi gati',
@@ -268,7 +268,7 @@ export const sq = defineLocale({
       backdropDesc: 'Imazhi i dobët i statujës pas bisedës.',
       embedsTitle: 'Përmbajtje të Inkorporuara',
       embedsDesc:
-        'Parapamjet ngarkohen nga sajte të palëve të treta (YouTube, X, …). Pyet tregon një vendmbajtës derisa t\'i lejosh secilin; Gjithmonë i ngarkon automatikisht; Fikur mban vetëm lidhje.',
+        "Parapamjet ngarkohen nga sajte të palëve të treta (YouTube, X, …). Pyet tregon një vendmbajtës derisa t'i lejosh secilin; Gjithmonë i ngarkon automatikisht; Fikur mban vetëm lidhje.",
       embedsAsk: 'Pyet',
       embedsAlways: 'Gjithmonë',
       embedsOff: 'Fikur',
@@ -310,8 +310,7 @@ export const sq = defineLocale({
       lastChecked: age => `Kontrolluar për herë të fundit ${age}`,
       justNowSuffix: ' · tani',
       automaticUpdates: 'Përditësime automatike',
-      automaticUpdatesDesc:
-        'OpenAmer kërkon përditësime automatikisht në sfond dhe ju njofton kur një është gati.',
+      automaticUpdatesDesc: 'OpenAmer kërkon përditësime automatikisht në sfond dhe ju njofton kur një është gati.',
       branchCommit: (branch, commit) => `Degëzimi ${branch} · Commit ${commit}`,
       never: 'kurrë',
       justNow: 'tani',

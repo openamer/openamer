@@ -310,8 +310,7 @@ export const uk = defineLocale({
       lastChecked: age => `Остання перевірка ${age}`,
       justNowSuffix: ' · щойно',
       automaticUpdates: 'Автоматичні оновлення',
-      automaticUpdatesDesc:
-        'OpenAmer автоматично перевіряє оновлення у фоні та повідомляє, коли одне готове.',
+      automaticUpdatesDesc: 'OpenAmer автоматично перевіряє оновлення у фоні та повідомляє, коли одне готове.',
       branchCommit: (branch, commit) => `Гілка ${branch} · Коміт ${commit}`,
       never: 'ніколи',
       justNow: 'щойно',

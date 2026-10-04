@@ -202,11 +202,11 @@ describe('renderRpcResult', () => {
 
   describe('session.usage', () => {
     it('formats calls / input / output / total with thousands separators', () => {
-          const nf = (n: number) => n.toLocaleString()
-          expect(renderRpcResult({ calls: 12, input: 1_234_567, output: 89_012, total: 1_323_579 }, 'usage')).toBe(
-            `Usage: 12 calls · ${nf(1_234_567)} in / ${nf(89_012)} out · ${nf(1_323_579)} total`
-          )
-        })
+      const nf = (n: number) => n.toLocaleString()
+      expect(renderRpcResult({ calls: 12, input: 1_234_567, output: 89_012, total: 1_323_579 }, 'usage')).toBe(
+        `Usage: 12 calls · ${nf(1_234_567)} in / ${nf(89_012)} out · ${nf(1_323_579)} total`
+      )
+    })
 
     it('appends credits_lines when present', () => {
       const body = renderRpcResult(

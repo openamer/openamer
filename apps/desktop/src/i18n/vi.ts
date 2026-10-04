@@ -310,8 +310,7 @@ export const vi = defineLocale({
       lastChecked: age => `Kiểm tra lần cuối ${age}`,
       justNowSuffix: ' · vừa xong',
       automaticUpdates: 'Tự động cập nhật',
-      automaticUpdatesDesc:
-        'OpenAmer tự động kiểm tra bản cập nhật trong nền và báo khi có bản sẵn sàng.',
+      automaticUpdatesDesc: 'OpenAmer tự động kiểm tra bản cập nhật trong nền và báo khi có bản sẵn sàng.',
       branchCommit: (branch, commit) => `Nhánh ${branch} · Cam kết ${commit}`,
       never: 'chưa bao giờ',
       justNow: 'vừa xong',

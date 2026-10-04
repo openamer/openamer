@@ -35,7 +35,6 @@ describe('primaryRouteSelectedSessionId', () => {
   })
 })
 
-
 describe('routeTargetsSession', () => {
   it('matches a session route to its own id — the stale-route signal', () => {
     expect(routeTargetsSession(sessionRoute(SESS_A), SESS_A)).toBe(true)
