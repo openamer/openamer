@@ -164,6 +164,7 @@ import {
   redactSecrets,
   SshConnection
 } from './ssh-connection'
+import { installStdioGuards } from './stdio-guard'
 import { nativeOverlayWidth as computeNativeOverlayWidth, macTitleBarOverlayHeight } from './titlebar-overlay-width'
 import { resolveBehindCount, shouldCountCommits } from './update-count'
 import { readLiveUpdateMarker, writeUpdateMarker } from './update-marker'
@@ -237,6 +238,12 @@ const IS_WSL = isWslEnvironment()
 // build SDK, so gate Tahoe workarounds on Darwin instead.
 const DARWIN_MAJOR = IS_MAC ? Number.parseInt(os.release(), 10) || 0 : 0
 const APP_ROOT = app.getAppPath()
+
+// Guard stdio before the first log line below. The launcher's pipe can already
+// be dead by the time the main process starts (terminal closed, CI stdout torn
+// down, parent shell gone); without the guard the next `console.*` throws an
+// unhandled EPIPE that kills the process. See ./stdio-guard.ts.
+installStdioGuards()
 
 // Preload must be plain JS — Electron's sandbox can't run .ts, and tsx's
 // ESM loader is broken on Electron 40's Node (ERR_INVALID_RETURN_PROPERTY_VALUE).
