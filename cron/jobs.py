@@ -1673,10 +1673,11 @@ def mark_job_run(job_id: str, success: bool, error: Optional[str] = None,
                 # (issue #38758), which already incremented completed — do not
                 # double-count them here.  Recurring jobs and direct callers
                 # with no pre-run claim still get the legacy increment.
-                if job.get("repeat"):
-                    repeat = job["repeat"]
-                    times = repeat.get("times")
-                    completed = repeat.get("completed", 0)
+                # ``is not None`` rather than truthiness: a malformed record can
+                # carry a falsy-but-present repeat (0, ""), which must still be
+                # counted and normalized instead of silently skipped.
+                if job.get("repeat") is not None:
+                    times, completed = _repeat_fields(job)
                     kind = job.get("schedule", {}).get("kind")
                     preclaimed_oneshot = (
                         kind == "once"
@@ -1686,6 +1687,11 @@ def mark_job_run(job_id: str, success: bool, error: Optional[str] = None,
                     )
                     if not preclaimed_oneshot:
                         completed += 1
+                        repeat = job["repeat"]
+                        if not isinstance(repeat, dict):
+                            # Normalize the malformed record in place so the next
+                            # tick reads the canonical shape.
+                            repeat = job["repeat"] = {"times": times, "completed": 0}
                         repeat["completed"] = completed
 
                     # Check if we've hit the repeat limit
@@ -1733,6 +1739,40 @@ def mark_job_run(job_id: str, success: bool, error: Optional[str] = None,
         logger.warning("mark_job_run: job_id %s not found, skipping save", job_id)
 
 
+def _repeat_fields(job: dict) -> "tuple[Optional[int], int]":
+    """Normalize a job's ``repeat`` into ``(times, completed)``.
+
+    The canonical shape is a dict ``{"times": None|int, "completed": int}``
+    (``times is None`` means forever). Older or externally-authored records can
+    carry a bare value instead — ``"forever"`` for an infinite job, or ``0`` /
+    ``1`` for a repeat count. Reading those with ``.get()`` raises
+    ``AttributeError: 'str' object has no attribute 'get'`` and takes the whole
+    tick's bookkeeping down with it, which is exactly what happened to two
+    watchdog jobs on 2026-10-04. Tolerate every shape:
+
+      {"times": N, "completed": M}  -> (N, M)
+      "forever"                     -> (None, 0)   # infinite
+      N (int, > 0)                  -> (N, 0)      # finite repeat count
+      N (int, <= 0), "" , None      -> (None, 0)   # no limit
+    """
+    repeat = job.get("repeat")
+    if isinstance(repeat, dict):
+        times = repeat.get("times")
+        completed = repeat.get("completed", 0)
+        try:
+            completed = int(completed)
+        except (TypeError, ValueError):
+            completed = 0
+        if isinstance(times, str) and times.strip().lower() in {"", "forever", "infinite", "inf"}:
+            times = None
+        return times, completed
+    if isinstance(repeat, str):
+        return (None, 0) if repeat.strip().lower() in {"forever", "infinite", "inf", ""} else (None, 0)
+    if isinstance(repeat, int):
+        return (repeat, 0) if repeat > 0 else (None, 0)
+    return (None, 0)
+
+
 def claim_dispatch(job_id: str) -> bool:
     """Atomically claim a finite one-shot job dispatch BEFORE execution.
 
@@ -1757,13 +1797,11 @@ def claim_dispatch(job_id: str) -> bool:
                 continue
             if job.get("schedule", {}).get("kind") != "once":
                 return True  # recurring jobs use advance_next_run(), not dispatch claims
-            repeat = job.get("repeat")
-            if not repeat:
+            if not job.get("repeat"):
                 return True  # no repeat limit — always dispatch
-            times = repeat.get("times")
+            times, completed = _repeat_fields(job)
             if times is None or times <= 0:
                 return True  # infinite — always dispatch
-            completed = repeat.get("completed", 0)
             if completed >= times:
                 # Already dispatched the max number of times (e.g. a prior
                 # tick claimed then died before mark_job_run could remove it).
@@ -1778,6 +1816,11 @@ def claim_dispatch(job_id: str) -> bool:
                 )
                 return False
             # Claim this dispatch before the side effect runs.
+            repeat = job.get("repeat")
+            if not isinstance(repeat, dict):
+                # Malformed legacy record (e.g. a bare "forever"/0): normalize it
+                # in place so the claim persists in the canonical shape.
+                repeat = job["repeat"] = {"times": times, "completed": 0}
             repeat["completed"] = completed + 1
             save_jobs(jobs)
             logger.debug(
@@ -2206,10 +2249,8 @@ def _get_due_jobs_locked() -> List[Dict[str, Any]]:
                 # still looking due (last_run_at was never written, so the
                 # recovery helper re-armed it). Remove it instead of re-firing.
                 if kind == "once":
-                    repeat = job.get("repeat")
-                    if repeat:
-                        times = repeat.get("times")
-                        completed = repeat.get("completed", 0)
+                    if job.get("repeat"):
+                        times, completed = _repeat_fields(job)
                         if times is not None and times > 0 and completed >= times:
                             # A live run must never have its job record deleted
                             # underneath it (#62002): a run that outlives the
