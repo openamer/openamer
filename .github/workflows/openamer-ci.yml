@@ -1,5 +1,14 @@
-# OpenAmer CI/CD Assistant — GitHub Action
-# Runs in ANY pipeline: check code, generate reports, auto-fix issues
+# OpenAmer CI Assistant — lightweight self-check.
+#
+# This workflow used to `uses: openamer/openamer@v1` three times. That repo is
+# not a GitHub Action (no action.yml at its root) and no `v1` tag exists, so
+# every run died in "Set up job" after ~7s with
+#   Unable to resolve action `openamer/openamer@v1`, unable to find version `v1`
+# — red on every push and on the daily schedule, running no code at all.
+#
+# It now does the small, real self-check its name promises, using tooling the
+# repo already depends on. The heavyweight suites live in ci.yml (pytest slices,
+# lints, JS/TS, desktop E2E) and are not duplicated here.
 
 name: OpenAmer CI Assistant
 
@@ -11,42 +20,40 @@ on:
   schedule:
     - cron: '0 6 * * *'  # Daily health check
 
+permissions:
+  contents: read
+
 jobs:
   openamer-assist:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
-      - name: OpenAmer Code Review
-        uses: openamer/openamer@v1
+      - uses: actions/setup-python@v5
         with:
-          mode: review
-          token: ${{ secrets.GITHUB_TOKEN }}
-          check: syntax,security,complexity
+          python-version: '3.11'
 
-      - name: OpenAmer Auto-Fix
-        if: failure()
-        uses: openamer/openamer@v1
-        with:
-          mode: fix
-          auto-commit: true
-          commit-message: "auto-fix: OpenAmer CI Assistant"
-
-      - name: OpenAmer Report
-        uses: openamer/openamer@v1
-        with:
-          mode: report
-          format: markdown
-          output: .openamer/report.md
-
-      - name: Upload Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: openamer-report
-          path: .openamer/report.md
-
-      - name: OpenAmer Health Check
+      - name: Syntax check
         run: |
-          echo "✅ OpenAmer CI Assistant active"
-          echo "📊 Coverage: python3 -m pytest --cov" || true
-          echo "🔍 Linting: pylint --score=y" || true
+          python -m compileall -q openamer_cli cron gateway tools scripts
+          echo "compileall - OK"
+
+      - name: Byte-compile the cron layer
+        run: |
+          python - <<'PY'
+          import ast, pathlib, sys
+          bad = []
+          for p in pathlib.Path('cron').rglob('*.py'):
+              try:
+                  ast.parse(p.read_text(encoding='utf-8'))
+              except SyntaxError as e:
+                  bad.append(f"{p}:{e.lineno}: {e.msg}")
+          if bad:
+              print("\n".join(bad))
+              sys.exit(1)
+          print("cron AST - OK")
+          PY
+
+      - name: Summary
+        run: |
+          echo "OpenAmer CI Assistant - self-check complete"
