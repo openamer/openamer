@@ -79,6 +79,26 @@ def test_worker_executes_sum_and_replies(tmp_path):
     assert ver["env"].payload.get("sum") == "42"   # relay redacts -> string
 
 
+def test_worker_executes_ping_returns_runner(tmp_path):
+    # Regression: ping builds its payload via _runner_name(), which used bare
+    # `os` while the module only imported `os as _os` -> NameError on EVERY task
+    # that reaches it (a2a-worker runs 12-17 were all red). The suite missed it
+    # because only `sum` ran through run(), and sum returns before _runner_name.
+    li = _seed_task(tmp_path, "ping", msg="hi")
+    handled = a2a_worker.run(tmp_path, no_push=True)
+    assert handled == 1
+
+    inbox = tmp_path / R.RELAY_PREFIX
+    replies = [json.loads(p.read_text()) for p in inbox.glob("*.json")
+               if p.name.startswith(li.fingerprint)]
+    assert replies, "no reply for laptop mailbox"
+    ver = verify_note(replies[0])
+    assert ver["ok"], ver.get("reason")
+    payload = ver["env"].payload
+    assert payload.get("pong") == "hi"
+    assert payload.get("runner"), "runner name missing -- bare `os` crash regressed"
+
+
 def test_worker_skips_unknown_task(tmp_path):
     _seed_task(tmp_path, "rm_rf", cmd="rm -rf /")
     handled = a2a_worker.run(tmp_path, no_push=True)
