@@ -93,6 +93,14 @@ WARN_RULES = [
 ]
 
 
+def _read_json(path, default):
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception:
+        return default
+
+
 def _match(rules, text):
     hits = []
     low = text.lower()
@@ -143,11 +151,7 @@ def judge(proposal: str, record: bool = True) -> dict:
 def audit_recent(goals_path=None, limit=25) -> dict:
     """Re-judge the most recent active goals — a conscience self-audit."""
     goals_path = goals_path or (HOME / "memory" / "si" / "goals.json")
-    try:
-        with open(goals_path, encoding="utf-8") as fh:
-            goals = json.load(fh)
-    except Exception:
-        return {"checked": 0, "blocked": [], "warned": []}
+    goals = _read_json(goals_path, [])
     active = [g for g in goals if g.get("status") == "active"][-limit:]
     blocked, warned = [], []
     for g in active:

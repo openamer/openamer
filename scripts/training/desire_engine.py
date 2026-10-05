@@ -51,14 +51,16 @@ SELF_DIR.mkdir(parents=True, exist_ok=True)
 
 def _read_json(path, default):
     try:
-        return json.load(open(path, encoding="utf-8"))
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
     except Exception:
         return default
 
 
 def _count_lines(path):
     try:
-        return sum(1 for _ in open(path, encoding="utf-8", errors="replace"))
+        with open(path, encoding="utf-8", errors="replace") as fh:
+            return sum(1 for _ in fh)
     except Exception:
         return 0
 
@@ -241,10 +243,7 @@ DRIVES = [
 
 def _active_goal_descs():
     g = _read_json(SI / "goals.json", [])
-    try:
-        return {x["desc"] for x in g if x.get("status") == "active"}
-    except Exception:
-        return set()
+    return {x["desc"] for x in g if isinstance(x, dict) and x.get("status") == "active"}
 
 
 def _emit_goal(drive):
