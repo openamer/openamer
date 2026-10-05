@@ -4,8 +4,13 @@
 Watchdog-style: stays silent (exit 0) unless it actually retrained, or an error occurs.
 Guards: >= 10 NEW pairs, RAM check, min 24h between runs (marker file).
 """
+import datetime
+import json
 import os
-import json, os, subprocess, sys, datetime, pathlib, shutil
+import pathlib
+import shutil
+import subprocess
+import sys
 from pathlib import Path
 
 HOME = Path(
@@ -67,7 +72,8 @@ def main():
     last_retrain_ts = MARKER.stat().st_mtime if MARKER.exists() else 0.0
     if BRAIN.stat().st_mtime <= last_retrain_ts:
         return  # silent: no freshly collected data since the last retrain
-    brain_ct = sum(1 for _ in open(BRAIN, encoding="utf-8"))
+    with open(BRAIN, encoding="utf-8") as fh:
+        brain_ct = sum(1 for _ in fh)
     if brain_ct < MIN_NEW_PAIRS:
         return  # silent: dataset too small to train on
     new = brain_ct  # informational: records available in the fresh dataset
@@ -89,7 +95,8 @@ def main():
     print(f"RETRAIN: {new} new brain records ({brain_ct} total)")
     out = sh([PY, str(T / "distill_sft.py")], timeout=600)
     print(out.strip())
-    pairs = sum(1 for _ in open(T / "sft_openamer.jsonl", encoding="utf-8"))
+    with open(T / "sft_openamer.jsonl", encoding="utf-8") as fh:
+        pairs = sum(1 for _ in fh)
     if pairs < 20:
         print(f"ABORT: only {pairs} distilled pairs")
         sys.exit(1)

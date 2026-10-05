@@ -11,11 +11,22 @@ Output: lora_out/adapter (exactly where the hot-swap and the server expect it).
 `--smoke` runs 3 steps into lora_out_smoke/ to verify the pipeline without
 clobbering the production adapter.
 """
-import json, math, os, sys, torch, pathlib
-from torch.utils.data import Dataset
-from transformers import (AutoModelForCausalLM, AutoTokenizer, Trainer,
-                          TrainingArguments, DataCollatorForSeq2Seq)
+import json
+import math
+import os
+import pathlib
+import sys
+
+import torch
 from peft import LoraConfig, get_peft_model
+from torch.utils.data import Dataset
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    DataCollatorForSeq2Seq,
+    Trainer,
+    TrainingArguments,
+)
 
 _HOME = pathlib.Path(os.environ.get(
     "OPENAMER_HOME", str(pathlib.Path.home() / "AppData" / "Local" / "openamer-laptop")))
@@ -74,7 +85,8 @@ model.print_trainable_parameters()
 
 class SFT(Dataset):
     def __init__(self):
-        self.rows = [json.loads(l) for l in open(DATA, encoding="utf-8")]
+        with open(DATA, encoding="utf-8") as fh:
+            self.rows = [json.loads(l) for l in fh]
     def __len__(self):
         return len(self.rows)
     def __getitem__(self, i):
