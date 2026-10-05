@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-09-24T12:07:08.392799+00:00",
+  "snapshot_at": "2026-10-05T18:15:01.080889+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-09-17T09:22:18.844281+00:00",
@@ -51,7 +51,7 @@
     }
   },
   "senses": {
-    "time": "2026-09-24T14:07:05",
+    "time": "2026-10-05T20:13:17",
     "pain": {
       "score": 0,
       "level": "calm"
@@ -63,9 +63,9 @@
     },
     "balance": {
       "state": "steady",
-      "jobs": 104,
-      "errors": 4,
-      "error_ratio": 0.038
+      "jobs": 118,
+      "errors": 0,
+      "error_ratio": 0.0
     },
     "overall": "well"
   },
@@ -987,6 +987,78 @@
           "action": "Fix recurring motif 'path-bug' at root (Skill/repo patch)"
         }
       ]
+    },
+    {
+      "date": "2026-09-25",
+      "replayed_messages": 56,
+      "fragments": 2,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-09-28",
+      "replayed_messages": 133,
+      "fragments": 14,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-09-29",
+      "replayed_messages": 116,
+      "fragments": 15,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-09-30",
+      "replayed_messages": 50,
+      "fragments": 1,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-10-01",
+      "replayed_messages": 87,
+      "fragments": 13,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-10-02",
+      "replayed_messages": 65,
+      "fragments": 14,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-10-03",
+      "replayed_messages": 97,
+      "fragments": 12,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-10-04",
+      "replayed_messages": 83,
+      "fragments": 14,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-10-05",
+      "replayed_messages": 160,
+      "fragments": 15,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
     }
   ]
 }
