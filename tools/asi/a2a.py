@@ -61,6 +61,24 @@ def brain_collect() -> Dict[str, Any]:
         return {"success": False, "error": str(e)}
 
 
+def server_health(url: str = "http://127.0.0.1:8085/a2a/health",
+                  timeout: float = 5.0) -> Dict[str, Any]:
+    """Check the A2A server is UP — never start one in-process.
+
+    `a2a_server.py` is a blocking server (HTTPServer.serve_forever). Importing
+    it as a heartbeat "tick" hung the whole heartbeat forever, because the
+    process never returned. The heartbeat's job for this subsystem is to VERIFY
+    the server, not to become it; the keepalive cron owns starting it.
+    """
+    import urllib.request
+    try:
+        with urllib.request.urlopen(url, timeout=timeout) as r:
+            body = r.read(200).decode("utf-8", "replace")
+        return {"success": True, "stdout": f"a2a server up: {body}"}
+    except Exception as e:
+        return {"success": False, "error": f"a2a server down: {e}"}
+
+
 def peer_query(question: str, max_peers: int = 3) -> Dict[str, Any]:
     """Query A2A peer nodes for an answer."""
     import subprocess

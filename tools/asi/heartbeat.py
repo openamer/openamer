@@ -56,6 +56,7 @@ class Subsystem:
         description: str = "",
         load_fn: Optional[str] = None,
         cron_ids: Optional[List[str]] = None,
+        timeout: Optional[float] = None,
     ):
         self.name = name
         self.category = category
@@ -66,6 +67,10 @@ class Subsystem:
         self.cron_ids = cron_ids or []
         self.last_run: Optional[float] = None
         self.enabled = True
+        # Per-subsystem tick budget. Some subsystems aggregate many scripts
+        # (learning runs 9, incl. network-bound internet_learner.py) and
+        # legitimately need longer than the 60s default.
+        self.timeout = timeout
         self._state: Dict[str, Any] = {}
 
     def is_due(self, now: float, last_run: Optional[float]) -> bool:
@@ -117,6 +122,9 @@ class Subsystem:
             "autonomous_loop.py":          "tools.asi.swarm.autonomous",
             "a2a_worker.py":               "tools.asi.a2a.run",
             "brain_collect.py":            "tools.asi.a2a.brain_collect",
+            # a2a_server.py is a BLOCKING server; the tick must health-check it,
+            # never import it (that hung the heartbeat forever).
+            "a2a_server.py":               "tools.asi.a2a.server_health",
         }
 
         native_path = native_map.get(script_name)
@@ -192,6 +200,7 @@ class Heartbeat:
     """Zentraler ASI-Herzschlag — tickt alle N Minuten, prüft alle Subsysteme."""
 
     STATE_FILE = MEMORY_DIR / "asi_heartbeat.json"
+    TICK_TIMEOUT = 60.0   # seconds a single subsystem may block; override in tests
 
     def __init__(self):
         self.subsystems: Dict[str, Subsystem] = {}
@@ -254,6 +263,7 @@ class Heartbeat:
             cron_ids=["91a6a02a6148", "31c5faaff6c2", "59537494492c",
                       "461d46fd24ab", "4bf2a814db7c", "f2f49bc80dbe",
                       "sessout984075", "learning_loop_60m", "morning-brief"],
+            timeout=300,  # 9 scripts incl. network-bound internet_learner.py
         )
 
         # ── 5. Senses (5 Jobs) ────────────────────────────────────────
@@ -293,6 +303,7 @@ class Heartbeat:
                       "self-hosted-health-check", "traffic_cop_15m",
                       "notification_engine_daemon", "identity-refresh-watchdog",
                       "global-sync", "0b532e629b3b", "7c3d5648b06c"],
+            timeout=240,  # 11 health scripts; some probe network (bugbot/pentest)
         )
 
         # ── 7. Security (5 Jobs) ───────────────────────────────────────
@@ -439,6 +450,33 @@ class Heartbeat:
             },
         }
 
+    def _tick_with_timeout(self, sub, force: bool, timeout: float = None) -> Dict[str, Any]:
+        """Run sub.tick() in a worker thread; give up after `timeout` seconds.
+
+        A hung subsystem must not block _save_state(); otherwise the whole
+        heartbeat freezes and the state file never advances (the failure mode
+        that hid for 9 days behind a green cron).
+        """
+        import threading
+        timeout = self.TICK_TIMEOUT if timeout is None else timeout
+        if getattr(sub, "timeout", None):
+            timeout = sub.timeout        # per-subsystem override wins
+        box: Dict[str, Any] = {}
+
+        def _work():
+            try:
+                box["result"] = sub.tick(force=force)
+            except Exception as e:  # noqa: BLE001
+                box["result"] = {"success": False, "error": str(e)}
+
+        th = threading.Thread(target=_work, daemon=True)
+        th.start()
+        th.join(timeout)
+        if th.is_alive():
+            return {"success": False, "timeout": True,
+                    "reason": f"tick exceeded {timeout:.0f}s (network/blocked call)"}
+        return box.get("result", {"success": False, "error": "no result"})
+
     def tick(self, system: Optional[str] = None, force: bool = False) -> Dict[str, Any]:
         """Execute one heartbeat tick. Checks all due subsystems (or one)."""
         now = time.time()
@@ -459,9 +497,13 @@ class Heartbeat:
                 results[name] = {"skipped": True, "reason": "not_due"}
                 continue
 
-            # Execute tick
-            tick_result = sub.tick(force=force)
-            sub.last_run = now
+            # Execute tick — with a per-subsystem timeout. A subsystem that
+            # blocks (e.g. a network call with no timeout) used to hang the
+            # WHOLE heartbeat, so _save_state() below never ran and the state
+            # file stayed frozen for days while the cron still reported "ok".
+            tick_result = self._tick_with_timeout(sub, force)
+            if not tick_result.get("timeout"):
+                sub.last_run = now
             results[name] = tick_result
 
         # Save state
@@ -498,6 +540,14 @@ def main():
     parser.add_argument("--status", action="store_true", help="Show heartbeat status")
     parser.add_argument("--json", action="store_true", help="JSON output")
     args = parser.parse_args()
+
+    # The cron invokes this as a bare no-arg script ("asi_heartbeat.py"). The
+    # old code then fell through to print_help() and exited 0 — so every
+    # scheduled run was a SILENT no-op and the heartbeat never actually ticked
+    # (state file frozen for 9 days while the cron reported "ok"). A no-arg
+    # invocation must do the useful thing: tick.
+    if not args.tick and not args.status:
+        args.tick = True
 
     hb = get_heartbeat()
 
