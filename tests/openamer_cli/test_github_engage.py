@@ -41,6 +41,31 @@ def test_token_parsed_from_git_credentials(tmp_path, monkeypatch):
     assert G._token() == "ghp_FAKE"
 
 
+@pytest.mark.parametrize("prefix", ["gho_", "ghu_", "ghs_", "ghr_"])
+def test_token_parses_oauth_prefixes_too(tmp_path, monkeypatch, prefix):
+    """The credential the gh CLI actually writes is gho_, not ghp_.
+
+    A narrower allowlist returned "" for a perfectly valid credential, so the
+    request went out as `Bearer ` and GitHub answered 401 — while
+    `gh auth status` stayed green, because the CLI does not use this parser.
+    The old test pinned only the classic prefix, which is why it never caught
+    this.
+    """
+    tok = prefix + "z" * 36
+    gf = tmp_path / ".git-credentials"
+    gf.write_text(f"https://openamer:{tok}@github.com")
+    monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path))
+    assert G._token() == tok
+
+
+def test_token_rejects_a_non_github_secret(tmp_path, monkeypatch):
+    """A credential for another host must not be handed to api.github.com."""
+    gf = tmp_path / ".git-credentials"
+    gf.write_text("https://user:AKIAexample@example.com")
+    monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path))
+    assert G._token() == ""
+
+
 def test_api_adds_auth_and_parses_json(monkeypatch):
     captured = {}
 

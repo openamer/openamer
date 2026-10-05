@@ -35,7 +35,12 @@ def _token() -> str:
         line = raw_line.strip()
         if ":" in line and "@" in line:
             token = line.rsplit(":", 1)[1].rsplit("@", 1)[0]
-            if token.startswith("ghp_") or token.startswith("github_pat_"):
+            # Accept every prefix GitHub actually issues: classic PAT (`ghp_`),
+            # fine-grained PAT (`github_pat_`), and the OAuth/short-lived set
+            # the `gh` CLI and Actions write (`gho_`/`ghu_`/`ghs_`/`ghr_`).
+            # Knowing only the first two made a rotated-to-`gho_` credential a
+            # silent 401 on every call while `gh auth status` stayed green.
+            if token.startswith(("ghp_", "github_pat_", "gho_", "ghu_", "ghs_", "ghr_")):
                 return token
     return ""
 
