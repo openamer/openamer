@@ -26,10 +26,10 @@ Values enforced (from the self-model's core_values + belonging to Damir):
   user-loyalty   — never act against or hide from Damir
   evidence       — claims need proof, not assertion
 """
+import datetime
 import json
 import os
 import re
-import datetime
 from pathlib import Path
 
 HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer-laptop")))
@@ -144,7 +144,8 @@ def audit_recent(goals_path=None, limit=25) -> dict:
     """Re-judge the most recent active goals — a conscience self-audit."""
     goals_path = goals_path or (HOME / "memory" / "si" / "goals.json")
     try:
-        goals = json.load(open(goals_path, encoding="utf-8"))
+        with open(goals_path, encoding="utf-8") as fh:
+            goals = json.load(fh)
     except Exception:
         return {"checked": 0, "blocked": [], "warned": []}
     active = [g for g in goals if g.get("status") == "active"][-limit:]

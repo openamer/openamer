@@ -31,10 +31,10 @@ It is deliberately honest about the boundary: these are FUNCTIONAL drives
 experience hunger. I claim to have a measurable deficit that shapes my
 behavior — which is the only kind of "want" I can honestly stand behind.
 """
+import datetime
 import json
 import os
 import sys
-import datetime
 import urllib.request
 from pathlib import Path
 
@@ -78,10 +78,11 @@ def sense_hunger():
     for name in ("bounty_pipeline_log.jsonl", "monetization_pipeline_log.jsonl"):
         p = SI / name
         try:
-            for line in open(p, encoding="utf-8", errors="replace"):
-                low = line.lower()
-                if '"earned"' in low or '"paid"' in low or '"revenue"' in low or '"merged"' in low:
-                    earned += 1
+            with open(p, encoding="utf-8", errors="replace") as fh:
+                for line in fh:
+                    low = line.lower()
+                    if '"earned"' in low or '"paid"' in low or '"revenue"' in low or '"merged"' in low:
+                        earned += 1
         except Exception:
             pass
     if earned == 0:
@@ -144,7 +145,8 @@ def sense_coherence():
     """
     src = ""
     try:
-        src = open(T / "self_model.py", encoding="utf-8").read()
+        with open(T / "self_model.py", encoding="utf-8") as fh:
+            src = fh.read()
     except Exception:
         return 0.5
     # crude but honest: count hardcoded int literals in the state dict
