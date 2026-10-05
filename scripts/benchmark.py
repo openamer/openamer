@@ -205,8 +205,11 @@ def score_answer_gpt(question, expected):
             }
         )
         resp = json.loads(urllib.request.urlopen(req, timeout=30).read())
-        answer = resp["choices"][0]["message"]["content"].strip().lower()
-        expected_lower = expected.lower().strip()
+        # A reasoning model can return content=None (the text landed in a
+        # reasoning field). Scoring that as wrong silently under-reports every
+        # such task, so treat a missing answer as an empty string.
+        answer = (resp["choices"][0]["message"].get("content") or "").strip().lower()
+        expected_lower = (expected or "").lower().strip()
         
         # Simple sub-string matching
         correct = expected_lower in answer or any(

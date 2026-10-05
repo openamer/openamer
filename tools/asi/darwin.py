@@ -20,8 +20,13 @@ OPENAMER_HOME = Path(
 REPO_DIR = OPENAMER_HOME.parent / "openamer-repo"
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"
 TRAINING_DIR = OPENAMER_HOME / "scripts" / "training"
-for p in [str(SCRIPTS_DIR), str(REPO_DIR / "scripts"), str(TRAINING_DIR)]:
-    if p not in sys.path:
+# darwin_engine.py / darwin_publish.py / darwin_grid_github.py live under the
+# AGENT tree (openamer-laptop/openamer-agent/scripts), NOT under OPENAMER_HOME/
+# scripts. Without this entry _import_darwin() raised ModuleNotFoundError and
+# every Darwin native call fell back to a subprocess.
+AGENT_SCRIPTS_DIR = OPENAMER_HOME / "openamer-agent" / "scripts"
+for p in [str(SCRIPTS_DIR), str(AGENT_SCRIPTS_DIR), str(REPO_DIR / "scripts"), str(TRAINING_DIR)]:
+    if Path(p).is_dir() and p not in sys.path:
         sys.path.insert(0, p)
 
 
