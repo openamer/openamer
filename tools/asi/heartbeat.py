@@ -450,7 +450,8 @@ class Heartbeat:
             },
         }
 
-    def _tick_with_timeout(self, sub, force: bool, timeout: float = None) -> Dict[str, Any]:
+    def _tick_with_timeout(self, sub, force: bool,
+                           timeout: Optional[float] = None) -> Dict[str, Any]:
         """Run sub.tick() in a worker thread; give up after `timeout` seconds.
 
         A hung subsystem must not block _save_state(); otherwise the whole
@@ -458,9 +459,7 @@ class Heartbeat:
         that hid for 9 days behind a green cron).
         """
         import threading
-        timeout = self.TICK_TIMEOUT if timeout is None else timeout
-        if getattr(sub, "timeout", None):
-            timeout = sub.timeout        # per-subsystem override wins
+        timeout = getattr(sub, "timeout", None) or timeout or self.TICK_TIMEOUT
         box: Dict[str, Any] = {}
 
         def _work():
