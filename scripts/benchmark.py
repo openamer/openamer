@@ -160,13 +160,20 @@ CODE_TASKS = [
 
 def load_results():
     if BENCH_FILE.exists():
-        return json.loads(BENCH_FILE.read_text())
+        data = json.loads(BENCH_FILE.read_text(encoding="utf-8"))
+        # The stored file (and older readers) use "history"; this code reads
+        # "runs". Normalize so both names always resolve — without this the
+        # --cron run crashed on KeyError('runs') and no benchmark ever landed.
+        data.setdefault("runs", data.get("history", []))
+        return data
     return {"runs": [], "best": {}}
 
 
 def save_results(results):
     BENCH_FILE.parent.mkdir(parents=True, exist_ok=True)
-    BENCH_FILE.write_text(json.dumps(results, indent=2, ensure_ascii=False))
+    # keep "history" in sync so legacy readers still see the runs
+    results["history"] = results.get("runs", [])
+    BENCH_FILE.write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
 def score_answer_gpt(question, expected):
