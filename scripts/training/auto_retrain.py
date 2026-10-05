@@ -8,8 +8,14 @@ import os
 import json, os, subprocess, sys, datetime, pathlib, shutil
 from pathlib import Path
 
-T = pathlib.Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training"))
-BRAIN = pathlib.Path(Path.home()) / ".openamer" / "a2a" / "openamer-brain.jsonl"
+HOME = Path(
+    os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+)
+T = HOME / "scripts" / "training"
+# brain_collect writes HERE, not to ~/.openamer/a2a — that was a stale Sep-24
+# copy, so `new = brain_ct - last_ct` was always <= 0 and the nightly retrain
+# stayed silent forever: the 2B model never learned from new sessions.
+BRAIN = HOME / "a2a" / "openamer-brain.jsonl"
 MARKER = T / ".last_retrain"
 MIN_INTERVAL_H = 24
 MIN_NEW_PAIRS = 10
@@ -25,7 +31,7 @@ def _train_python():
     env_py = os.environ.get("OPENAMER_TRAIN_PYTHON")
     if env_py and Path(env_py).exists():
         return env_py
-    home = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
+    home = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer-laptop")))
     for cand in (home / "venv" / "Scripts" / "python.exe",
                  T.parent / "venv" / "Scripts" / "python.exe",
                  home / "openamer-agent" / "venv" / "Scripts" / "python.exe"):
@@ -50,15 +56,21 @@ def main():
         if age_h < MIN_INTERVAL_H:
             return  # silent: too soon
 
-    # count new brain records since marker
-    brain_ct = sum(1 for _ in open(BRAIN, encoding="utf-8"))
-    last_ct = 0
+    # New data since the last retrain. brain_collect REGENERATES the file (it
+    # does not append), so counts are not monotonic and `count - last_count`
+    # goes negative whenever the dataset shrinks. Compare against the file's
+    # own mtime vs. the last-retrain marker instead: only train on data that is
+    # genuinely newer than the last run, and require a real minimum size.
     state = T / ".brain_count"
-    if state.exists():
-        last_ct = int(state.read_text().strip() or 0)
-    new = brain_ct - last_ct
-    if new < MIN_NEW_PAIRS:
-        return  # silent: not enough new data
+    if not BRAIN.exists():
+        return  # silent: no dataset yet
+    last_retrain_ts = MARKER.stat().st_mtime if MARKER.exists() else 0.0
+    if BRAIN.stat().st_mtime <= last_retrain_ts:
+        return  # silent: no freshly collected data since the last retrain
+    brain_ct = sum(1 for _ in open(BRAIN, encoding="utf-8"))
+    if brain_ct < MIN_NEW_PAIRS:
+        return  # silent: dataset too small to train on
+    new = brain_ct  # informational: records available in the fresh dataset
 
     # RAM guard: need ~8GB free of 22GB
     import ctypes
@@ -82,18 +94,22 @@ def main():
         print(f"ABORT: only {pairs} distilled pairs")
         sys.exit(1)
 
-    print(f"[auto_retrain] using train interpreter: {PY}", flush=True)
-    out = sh([PY, str(T / "finetune_cpu.py")], timeout=7200)
-    print(out.strip()[-800:])
-
-    # hot-swap: backup old adapter, move new one in, then tell the LIVE server
-    # (dolphin architecture) to load it at runtime — zero downtime, no restart.
+    # snapshot the CURRENT adapter BEFORE training overwrites it, so a bad
+    # retrain stays rollback-able. (The old code backed up AFTER finetune, i.e.
+    # it copied the freshly-trained adapter over the backup — no rollback.)
     adapter = T / "lora_out" / "adapter"
     backup = T / "adapter_backup"
     if backup.exists():
         shutil.rmtree(backup)
     if adapter.exists():
         shutil.copytree(adapter, backup)
+
+    print(f"[auto_retrain] using train interpreter: {PY}", flush=True)
+    out = sh([PY, str(T / "finetune_cpu.py")], timeout=7200)
+    print(out.strip()[-800:])
+
+    # hot-swap: tell the LIVE server (dolphin architecture) to load the new
+    # adapter at runtime — zero downtime, no restart.
     state.write_text(str(brain_ct))
     MARKER.write_text(datetime.datetime.now().isoformat())
 
