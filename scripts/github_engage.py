@@ -35,7 +35,11 @@ def _token() -> str:
         line = raw_line.strip()
         if ":" in line and "@" in line:
             token = line.rsplit(":", 1)[1].rsplit("@", 1)[0]
-            if token.startswith("ghp_") or token.startswith("github_pat_"):
+            # Accept every GitHub token flavour, not just classic PATs: the
+            # credential written by `gh auth login` / the OAuth flow starts
+            # with `gho_`. The old ghp_/github_pat_ allow-list silently sent
+            # an empty Authorization header (HTTP 401) for OAuth setups.
+            if token.startswith(("ghp_", "github_pat_", "gho_", "ghu_", "ghs_")):
                 return token
     return ""
 
