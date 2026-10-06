@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-24T12:07:08.389015+00:00",
+  "written_at": "2026-10-05T23:20:41.782055+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 104
+      "count": 121
     },
     "memory": {
       "kind": "memory+skills",
@@ -266,13 +266,13 @@
       "name": "service-watchdog-4-ports",
       "schedule": "every 5m",
       "script": "service-watchdog.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Self-Hosted Health Check (5min)",
       "schedule": "*/5 * * * *",
       "script": "self-hosted-cron.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Social-Outreach-Mega",
@@ -332,7 +332,7 @@
       "name": "OpenAmer Discord Community Manager",
       "schedule": "every 240m",
       "script": null,
-      "last_status": "error"
+      "last_status": "skipped"
     },
     {
       "name": "Workflow-Immunsystem Nachtwache",
@@ -624,7 +624,7 @@
     },
     {
       "name": "benchmark-weekly",
-      "schedule": null,
+      "schedule": "0 6 * * 0",
       "script": "_cron_benchmark.py",
       "last_status": "ok"
     },
@@ -650,7 +650,7 @@
       "name": "Nightly Test-Suite Watchdog",
       "schedule": "0 4 * * *",
       "script": "test-suite-watchdog.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "tool-invention-cycle",
@@ -681,6 +681,108 @@
       "schedule": "0 */6 * * *",
       "script": "_cron_metacognition_wrapper.py",
       "last_status": "ok"
+    },
+    {
+      "name": "asi-heartbeat-tick",
+      "schedule": "*/5 * * * *",
+      "script": "asi_heartbeat.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Heartbeat Self-Healing Watchdog",
+      "schedule": "*/15 * * * *",
+      "script": "heartbeat_watchdog.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "A2A Server Keepalive",
+      "schedule": "*/5 * * * *",
+      "script": "a2a_keepalive.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "si-core-watchdog",
+      "schedule": "*/15 * * * *",
+      "script": "si_core_watchdog.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "si-learner",
+      "schedule": "0 */2 * * *",
+      "script": "si_learner.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "si-goal-generator",
+      "schedule": "0 */3 * * *",
+      "script": "goal_generator.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "bounty-pipeline-watchdog",
+      "schedule": "0 */6 * * *",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "visibility-spread",
+      "schedule": "0 */8 * * *",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "monetization-pipeline-day1",
+      "schedule": "once in 12h",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "bounty-factory-heartbeat",
+      "schedule": null,
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "tt-metal-bounty-watcher",
+      "schedule": null,
+      "script": "cron_tt_bounty_watch.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "skill-noise-sweep",
+      "schedule": "30 6 * * 0",
+      "script": "skill_noise_sweep.py",
+      "last_status": null
+    },
+    {
+      "name": "cognition-core-keepalive",
+      "schedule": "once in 5m",
+      "script": "tool_server_keepalive.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "desire-cycle",
+      "schedule": "*/30 * * * *",
+      "script": "training/desire_engine.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "daily-backup",
+      "schedule": "0 3 * * *",
+      "script": "daily_backup.py",
+      "last_status": null
+    },
+    {
+      "name": "survival-health",
+      "schedule": "0 */6 * * *",
+      "script": "backup_health.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "auto-update",
+      "schedule": "0 6 * * *",
+      "script": "auto_update.py",
+      "last_status": null
     }
   ]
 }
