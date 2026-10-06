@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-04T05:57:34+00:00",
-  "population": 676,
-  "avg_score": 40.4,
+  "updated": "2026-10-06T03:00:22+00:00",
+  "population": 711,
+  "avg_score": 39.9,
   "fittest": [
     {
       "name": "cdp-social-posting",
@@ -45,7 +45,7 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-10-03T04:00:14",
+    "timestamp": "2026-10-06T04:40:15",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -55,141 +55,114 @@
         "fixes": []
       },
       {
-        "skill": "auto-competitor-intelligence-devin-ai",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
+        "skill": "auto-competitor-intelligence-an-ai",
+        "before": 21,
+        "after": 31,
+        "delta": 10,
+        "fixes": []
       },
       {
-        "skill": "auto-competitor-intelligence-openhands-agent",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
+        "skill": "auto-competitor-intelligence-okf-agent",
+        "before": 21,
+        "after": 31,
+        "delta": 10,
+        "fixes": []
       },
       {
-        "skill": "auto-internet-learning-llm-agents",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
+        "skill": "auto-competitor-intelligence-what-i",
+        "before": 21,
+        "after": 31,
+        "delta": 10,
+        "fixes": []
       },
       {
-        "skill": "auto-latest-research-insight-arxiv",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
+        "skill": "auto-efficiency-learning-finetuning-llms",
+        "before": 21,
+        "after": 31,
+        "delta": 10,
+        "fixes": []
       },
       {
-        "skill": "auto-multidomain-learning-climate-science",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
+        "skill": "auto-efficiency-learning-ragkit-with",
+        "before": 21,
+        "after": 31,
+        "delta": 10,
+        "fixes": []
       },
       {
-        "skill": "auto-multidomain-learning-medical-diagnosis",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
+        "skill": "auto-internet-learning-rogue-cursor",
+        "before": 21,
+        "after": 31,
+        "delta": 10,
+        "fixes": []
       },
       {
-        "skill": "auto-multidomain-learning-philosophy-of",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
+        "skill": "auto-internet-learning-spain-to",
+        "before": 21,
+        "after": 31,
+        "delta": 10,
+        "fixes": []
       },
       {
-        "skill": "auto-structural-connection-between-learning",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
+        "skill": "auto-internet-learning-strengthening-ai",
+        "before": 21,
+        "after": 31,
+        "delta": 10,
+        "fixes": []
       },
       {
-        "skill": "auto-what-are-the-most",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
+        "skill": "auto-latest-research-insight-ai",
+        "before": 21,
+        "after": 31,
+        "delta": 10,
+        "fixes": []
       }
     ]
   },
   "trends": [
     {
-      "source": "News",
-      "title": "Amazon blocks Meta\u2019s Muse AI assistant in new standoff over agentic shopping - GeekWire",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNN1NIM3JxN1RPdlktMDMwTmlZcnk5MFV4b1loLVBvc3pfUElYT3ZhQ3VLZmVod3ZxeDBVTXNkWkhybWJTZE05YzdkSWpOMHpwOVlYbWJYNndSSWRkRlFQSmNsM0F2WWgzZTFLNjFuMHNhY2d3akstanhNRTlOSEZvQVV2alFiTUE4MnBHRlJjdy12RXhwclJXVTFTZWV2R1ZrUHhUdlZuZmVtdw?oc=5"
+      "source": "arXiv",
+      "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
+      "url": "http://arxiv.org/abs/2510.27051v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "AegisUI: Behavioral Anomaly Detection for Structured User Interface Protocols in AI Agent Systems",
+      "url": "http://arxiv.org/abs/2608.05201v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "PROV-AGENT: Unified Provenance for Tracking AI Agent Interactions in Agentic Workflows",
+      "url": "http://arxiv.org/abs/2604.04820v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "Responsible AI Agents",
+      "url": "http://arxiv.org/abs/2403.15137v1"
     },
     {
       "source": "News",
-      "title": "Amazon rolls out new agentic AI for third-party sellers - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQNno1MXBaZ3JtY05ZWHpfU2RsV0JuU3Zlb3hlN2RiaExrSHdEbE5wNGZjZUhINUNJQkdBR0pTM0xQUFhHZjdMdmEwSGtOcDRVcjJ1dFJNU1ZqMWlzbFpDZFhUVTlGaDFpTENaRjhKSDk0YWFiX05VOUZNbVVqRGhSemt6MHpabV8xbHNHSkZwbGRWVy1XdFdGZlVUVS1iMEJCNUNkd2stYUU2TnZ6Ny1LSXZB?oc=5"
+      "title": "Apple Wants to Make It Harder to Run Agentic AI on Your Mac - Lifehacker",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQanMwaUwtZjhJTVVYbWl6Z3ZhdmVxR0I4cU5DZU1FbEJjSThrWVkzVWJhX3M4WlpYS0E3MlVQUUduM2pIS1JQZ2paWHRWQU9CZ3ktSlEzZVNNcUhMUzVTRkFrVUdUYzlyZGR3LXMyTm52amFqX0t4WUhia2hRQkM4NTBySDZBdFFNTzJV?oc=5"
     },
     {
       "source": "News",
-      "title": "Agentic Reality - citriniresearch.com",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5jeUFncTlhNXE2SXNnN2lKbFhsWUpSMkV6TnkzRm1EVDZtWkJ0M0lTUWhMZ3Z4Zm5xdkw1VEhrUGhsNVFoQ1VCX3pkZkw3cjNVRHNQTXRWbDhBbGo1SHc?oc=5"
+      "title": "Agentic AI moves into enterprise execution - siliconangle.com",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOWk1iSTEzcFpBR3N4amNpZ0lLWGFsU2x1R3ltWDNYYnRlWnN0d3p4YXJLbFhlc3M5MDZPdUZpSUJ1MWZDZGFKYkJ4eHRTWjc1SzAtamNEalQyRXdJd2cwaG5yU2xCV1hkNGZDbk52U2I1dG1DaDdGUGdiLVh1NEtreE8tSEw0WjY0?oc=5"
     },
     {
       "source": "News",
-      "title": "First Agentic AI Data Breach Reported to Spanish Regulator - SecurityWeek",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPQnRMcE9RVmlmM2oxbjNzeEd5TG5qN3FkeVB4RGRFbGxmdmZvSUJXc2hnaDNvSjZYSHN2X2lrQlRKVmNYNl9uRFBTWnZsQ2J0eEtJQ09paXdxVmlNelZEeVhKNzBqYW9uYW42MlhaQjlQTXA2M0hFX2Zjdlh3dnVmOXFNQzFoREVSQ2wzMUlFblJSUdIBlwFBVV95cUxPcFlwdVlKWWJ5UmZqd1RhZmxVTm5waDFjVExGTWNaWFQ2ZGthaEJCYUFtYWVhOGNYODlJMXRIT0pCTWFlWmw5cXNsMTVNUWEyNUZLWGFhbDhUdEwzMzhJemNNdnQzTGdyZHQzRHVfbGxYNks1dnZaeHZQWUQwNmZtMzdnQ3lNMjMxYmMzaXJrS2Z1S29KVHJn?oc=5"
+      "title": "Logistics Reply Introduces the LEA AI Agent Authority Model - Bringing Governed Agentic AI Into Warehouse Execution With LEA Dynamic Intelligence - Morningstar",
+      "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxQZGQ5T2FLd29lZF96bnRjaC1VSmZLcUZSQU1iQWZhVHdfTm41R3Y4S2NPVGFqOHZrZWROSHdYcHZWcnhsaVgwUVJVb0haMm1qa3dDWmtuUkZRVUl3NDBNLXB2bWw1dlF3ZU1FcllXbzRZamRPQTVyWVdvQ19ObHQzS3JmSXJ3SUY2bWJyYUN1QnJ1VlJoc0V0QXNDb250aHJ3cUFLcUdKNWEtRU55c19hRm9OTjIxX1E2VHdMbG0tM0dDVlNFTVJYOG9lMzVRc1hUM0x3Q0xCUW9rWTBSRDc5MlJvTWpycFkydXJXX3hnOW8wUmtQckl5QlpSMmpfTzNhNllSTThFTTByQTNCRmllOFh4ZmQxMC1acWJjQTZSN25HbDhnd05WODZ4LWJuQQ?oc=5"
     },
     {
       "source": "News",
-      "title": "Introducing Muse Glimmer: An Open Agentic Model That Runs on Your Device - Meta AI",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1uSnpDYTQ3SXZwemhINXpka1laM2Fzb1llTGtUQWNQdld4NTRidnNNX19BS0VsYVdPMWJjTjFJa3M4U1Z0a0d0Sm5VbVA2b3RSMkZXeFF1T21NRGhkUzhKWDhoTkx2cTNmeDVwOC1oWGRNWXZ4d0JCbkxiV3N2UQ?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "BragJack Attack Can Turn a Browser's Agentic AI Against It - Dark Reading",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE8xREg0aHQ4RUtkNTdLaHVwZFNFTnpwYmw4OXZxZUU0S2docVhveEQxUHhnaWdSUnZjZk42RlZZUUg2bmxFbjFMbFFyblBLalJFcWpiZXliaGxJRXB0c3gxNUhFSjdUN2xNeXR3djVubVVBTTlTcHBIVmtTNDg5UQ?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "The agentic organization: Contours of the next paradigm for the AI era - McKinsey & Company",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxORkNhWUJRcExzeER3VlFfZ095c2F0c2F6LXlXczFIOFhuUUdFZXdTcDFwQ0poamtFWWIyZ3lEam95bVNYSWNvRmkxUUotVWUtMkF2UmdaZ04wbjVCOGJiS3pTN2xyZ0k4SkxFaXJrZ3NjbnRCLWlqTDJWSVd3UWZvNHgzUTdkQy02T1pPSWhRRjc3WDhkeFZidkFfdExOMnNFMjVqZmlfLUJtRW0tWUc1UGNIdmItNWpGUnd1UnZIOG8tNDhDT2tLTjF2WlRXRnpPWVJ4aEp4QkhGUHpI?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "Managing the cyber risk of agentic AI - National Cyber Security Centre",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5UZ2hPZ2poYUtzNVRSbzFYX2dzNGpqSGxOVGtickdodjc5ZVBTZ3poYlVYUkhUclVEckFBMXFfeDNwSGIxeWNnbElGTFpiRGZiRFByN2dhNUt5ejlUb0RKYmo0aFJRc0VONU9FVV85aTd4V1lXY1E?oc=5"
+      "title": "Enterprises prioritize flexibility in AI platforms - VentureBeat",
+      "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxORC04ai1FeUUyMVV5VVlJTkJocFNiRC12Qmc3bHZWaXBxWUlVd0tuclNkcUxyS2J0MWRsOUp1ZTh6b2FzTTUtYWI3YUIxUHpBYnA1aFZqVWxDV3hSVjZHZWUxVng2SHVHZUJhbEF0bjBsdHRCQjFobjRRRDEtdjBuemxaRTEtYmptRWprdHAySC0yZmk1aTZrZmV1N21aQmtrRV9HNTk2Z0Fha3VjUTVINFVvNHUzVWk4aktFcjhialR0NXUwTjRSS2NNTjJkZ1B4MUtHUE5FWnBtOHZWOE90dVBnbnloSzFCZDdUZVRRcE1DY25wUTZQNnNrNEgwdzRtNm5lRTA3TFVhalJLNE9oLUJn?oc=5"
     }
   ],
-  "population_engine": 162,
-  "species": 121,
+  "population_engine": 93,
+  "species": 103,
   "trials": 0,
   "harvested": 193
 }
