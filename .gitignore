@@ -224,3 +224,4 @@ parent_sha.txt
 update-watcher.log
 python_install_*.log
 C*Users*damir*AppData*Temp*pytest-of-*
+  apps/vscode/*.vsix
