@@ -94,6 +94,8 @@ def main():
     ap.add_argument("task", choices=["ping","echo","time","sum","ask"])
     ap.add_argument("--msg", default="ping")
     ap.add_argument("--text", default="")
+    ap.add_argument("--a", type=int, default=0, help="first addend (task: sum)")
+    ap.add_argument("--b", type=int, default=0, help="second addend (task: sum)")
     ap.add_argument("--model", default="")
     ap.add_argument("--wait", type=int, default=300)
     a = ap.parse_args()
@@ -105,6 +107,7 @@ def main():
                           kind="task.ask",
                           payload={"task": a.task, "text": a.text,
                                    "model": a.model, "msg": a.msg,
+                                   "a": a.a, "b": a.b,
                                    "client_ts": client_ts})
     note = R.relay_note(identity_store=store, envelope=env)
     fname = R.sort_relay_filename("nodeworker")

@@ -10,7 +10,7 @@ relay (directory/a2a/relay/) via git, the GitHub Actions worker is dispatched,
 and openamer polls main for the worker's FRESH signed reply, verifying it.
 
 Usage:
-    openamer a2a delegate sum --msg "(a/b ignored for sum in CLI demo use ask)"
+    openamer a2a delegate sum --a 20 --b 22
     openamer a2a delegate ask --msg "explain A2A briefly"
     openamer a2a delegate ping --msg hi
     (flags: --model, --wait, --repo <dir>, --gh-repo owner/repo)
@@ -132,6 +132,11 @@ def delegate_cmd(task, args) -> int:
         payload={"task": task,
                  "msg": args.get("msg", ""),
                  "text": args.get("text", ""),
+                 # sum is executed remotely as int(payload["a"]) + int(payload["b"]);
+                 # without these keys the worker silently returned 0 + 0 for
+                 # every sum delegation (live-verified 2026-10-06).
+                 "a": args.get("a", 0),
+                 "b": args.get("b", 0),
                  "model": args.get("model", ""),
                  "client_ts": client_ts})
     note = rl.relay_note(identity_store=identity, envelope=env)

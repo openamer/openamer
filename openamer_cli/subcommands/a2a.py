@@ -162,6 +162,8 @@ def _cmd_delegate(args) -> int:
     return delegate_cmd(args.task, {
         "msg": getattr(args, "msg", ""),
         "text": getattr(args, "text", ""),
+        "a": getattr(args, "a", 0),
+        "b": getattr(args, "b", 0),
         "model": getattr(args, "model", ""),
         "wait": getattr(args, "wait", 300),
         "repo": getattr(args, "repo", None),
@@ -660,6 +662,8 @@ def build_a2a_parser(subparsers) -> None:
     dv.add_argument("task", nargs="?", choices=["ping", "echo", "time", "sum", "ask"])
     dv.add_argument("--msg", default="", help="prompt / message")
     dv.add_argument("--text", default="", help="payload text (echo)")
+    dv.add_argument("--a", type=int, default=0, help="first addend (sum)")
+    dv.add_argument("--b", type=int, default=0, help="second addend (sum)")
     dv.add_argument("--model", default="", help="LLM model (ask)")
     dv.add_argument("--wait", type=int, default=300, help="poll seconds")
     dv.add_argument("--repo", default=None, help="path to the relay repo checkout")

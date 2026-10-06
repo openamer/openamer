@@ -50,3 +50,64 @@ def test_cred_token_parses_expected_layout(tmp_path, monkeypatch):
     monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path))
     D._cred_cache = ""
     assert D._cred_token() == "ghp_FAKETOKEN"
+
+
+class _FakeStore:
+    """IdentityStore stand-in that signs with a real Ed25519 key (offline)."""
+
+    def __init__(self):
+        from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+        self._key = Ed25519PrivateKey.generate()
+
+    def ensure_identity(self):
+        pub = self._key.public_key().public_bytes_raw().hex()
+        return type("I", (), {"fingerprint": "f" * 16, "public_key": pub})()
+
+    def private_key(self):
+        return self._key
+
+
+def test_delegate_sum_carries_addends_to_the_worker(tmp_path, monkeypatch):
+    """Regression: the CLI never sent a/b, so the remote worker computed 0+0.
+
+    Live-verified 2026-10-06: a real `sum` delegation returned `sum: 0` from the
+    GitHub Actions worker. The worker executes
+    `int(payload["a"]) + int(payload["b"])`, so the delegate payload MUST carry
+    both keys and delegate_cmd must forward args["a"]/args["b"].
+    """
+    uploaded: dict = {}
+
+    def _fake_upload(repo, tok, path, content):
+        uploaded["content"] = content
+        return "sha"
+
+    monkeypatch.setattr(D, "_cred_token", lambda: "gho_faketoken")
+    monkeypatch.setattr(D, "_upload_via_api", _fake_upload)
+    monkeypatch.setattr(D, "_dispatch", lambda *a, **k: None)
+    monkeypatch.setattr(D, "IdentityStore", lambda *a, **k: _FakeStore())
+    # keep the poll loop from running: shrink the wait window to zero
+    monkeypatch.setattr(D.time, "time", lambda: 10_000)
+
+    args = {"msg": "", "text": "", "a": 20, "b": 22, "model": "",
+            "wait": 0, "repo": str(tmp_path), "gh_repo": "openamer/openamer"}
+    D.delegate_cmd("sum", args)
+
+    assert "content" in uploaded, "nothing was uploaded"
+    note = json.loads(uploaded["content"])
+    payload = note["envelope"]["payload"]
+    # the relay stringifies payload values; the worker coerces with int()
+    assert int(payload["a"]) == 20 and int(payload["b"]) == 22, payload
+    # the worker's arithmetic is int(a)+int(b) -> must be 42, not 0
+    assert int(payload["a"]) + int(payload["b"]) == 42
+
+
+def test_delegate_sum_payload_shape_matches_worker():
+    """Lock the a/b contract the worker's _task_executor relies on.
+
+    Also documents the exact pre-fix symptom: an empty payload yields 0.
+    """
+    sys.path.insert(0, str(REPO / "scripts"))
+    import a2a_worker
+
+    assert a2a_worker._task_executor("sum", {"a": 20, "b": 22}) == {"ok": True, "sum": 42}
+    assert a2a_worker._task_executor("sum", {}) == {"ok": True, "sum": 0}
