@@ -1,0 +1,53 @@
+name: Publish VS Code Extension
+
+# Publishes the OpenAmer VS Code extension to Open VSX (and, if configured,
+# the VS Code Marketplace) whenever a release is published. Both publishes are
+# guarded by their token secret, so this workflow is a no-op until a maintainer
+# adds the secret — it never fails the repo while the tokens are unset.
+#
+# Secrets (repo → Settings → Secrets and variables → Actions):
+#   OVSX_PAT   Open VSX access token  (open-vsx.org/user-settings/tokens)
+#   VSCE_PAT   VS Code Marketplace PAT (Azure DevOps, scope: Marketplace > Manage)
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/vscode
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps
+        run: npm install --no-audit --no-fund
+
+      - name: Compile (tsc)
+        run: npm run compile
+
+      - name: Package VSIX
+        run: npx --yes @vscode/vsce package --no-dependencies --allow-missing-repository
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: openamer-vscode-vsix
+          path: apps/vscode/*.vsix
+          if-no-files-found: error
+
+      - name: Publish to Open VSX
+        if: ${{ secrets.OVSX_PAT != '' }}
+        run: |
+          npx --yes ovsx publish *.vsix -p "${{ secrets.OVSX_PAT }}"
+
+      - name: Publish to VS Code Marketplace
+        if: ${{ secrets.VSCE_PAT != '' }}
+        run: |
+          npx --yes @vscode/vsce publish --packagePath *.vsix -p "${{ secrets.VSCE_PAT }}"
