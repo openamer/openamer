@@ -119,6 +119,15 @@ openamer setup    # choose a model provider (incl. free-of-cost routes)
 openamer          # start the agent
 ```
 
+**Prefer an editor?** Install the built VS Code extension — one command, no
+marketplace account:
+
+```bash
+code --install-extension openamer-vscode-0.1.0.vsix
+# download first from:
+# https://github.com/openamer/openamer/releases/latest/download/openamer-vscode-0.1.0.vsix
+```
+
 > **Runs on your hardware, for nearly nothing.** Local 2B brain + a free-cloud
 > reasoning chain — **0 €/day, <1 kWh/day**, no hosted tier, no telemetry. Use the
 > OpenAmer free tier, a local Ollama/vLLM server, or any OpenAI-compatible endpoint;
@@ -369,7 +378,7 @@ Switch with `openamer model` — no code changes, no lock-in.
 <tr><td><b>Scheduled automations</b></td><td>A built-in cron scheduler that delivers to any platform. Describe a daily report, a nightly backup, or a weekly audit in plain language and it runs unattended.</td></tr>
 <tr><td><b>Delegates and parallelizes</b></td><td>Spawn isolated subagents for parallel workstreams, or write Python scripts that call tools over RPC to collapse multi-step pipelines into a single turn.</td></tr>
 <tr><td><b>Runs anywhere, not just your laptop</b></td><td>Six terminal backends — local, Docker, SSH, Singularity, Modal, and Daytona. Daytona and Modal add serverless persistence, so your agent's environment hibernates when idle and wakes on demand — costing almost nothing between sessions.</td></tr>
-<tr><td><b>VS Code Extension</b></td><td>Chat with OpenAmer from your editor. Right-click to explain or fix code. MCP-powered.</td></tr>
+<tr><td><b>VS Code Extension</b></td><td>Chat with OpenAmer from your editor. Right-click to explain or fix code. MCP-powered. Install the built <code>.vsix</code> from the latest release (<a href="https://github.com/openamer/openamer/releases/latest/download/openamer-vscode-0.1.0.vsix">openamer-vscode-0.1.0.vsix</a>) — no marketplace account needed.</td></tr>
 <tr><td><b>Human-in-the-Loop</b></td><td>Approve or deny risky actions. Configurable timeout, action-type filtering.</td></tr>
 <tr><td><b>Docker Sandbox</b></td><td>Run terminal commands in isolated containers. Falls back gracefully if Docker isn't available.</td></tr>
 <tr><td><b>Observability/Tracing</b></td><td>Step-by-step agent execution browser. See every tool call, every result, durations.</td></tr>
