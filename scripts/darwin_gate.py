@@ -135,14 +135,14 @@ def _now() -> str:
 
 def _load(path: Path, default):
     try:
-        return json.loads(path.read_text("utf-8"))
+        return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
         return default
 
 
 def _save(path: Path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), "utf-8")
+    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), encoding="utf-8")
 
 
 def ask_openrouter(prompt: str, system: str = "") -> tuple[bool, str]:
@@ -385,7 +385,7 @@ def main():
                                  args.propose[2])
         print(json.dumps(result, indent=1))
     elif args.propose_code:
-        code = Path(args.propose_code[3]).read_text("utf-8")[:2000]
+        code = Path(args.propose_code[3]).read_text(encoding="utf-8")[:2000]
         result = submit_proposal(args.propose_code[0], args.propose_code[1],
                                  args.propose_code[2], code)
         print(json.dumps(result, indent=1))

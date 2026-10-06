@@ -116,7 +116,7 @@ def _node_alive(pid):
         finally:
             k32.CloseHandle(h)
     try:
-        os.kill(pid, 0)
+        os.kill(pid, 0)  # windows-footgun: ok (POSIX branch)
         return True
     except ProcessLookupError:
         return False
@@ -131,7 +131,7 @@ class _store_lock:
 
     Why not just os.replace: on Windows the atomic swap is only half the
     story. A reader that opens the file between the writer's
-    `open(tmp,"w")` and its `os.replace` still observes a truncated (0-byte)
+    `open(tmp,"w", encoding="utf-8")` and its `os.replace` still observes a truncated (0-byte)
     store, because the swap only becomes visible with the replace. And when
     the swap cannot be made (PermissionError: destination held open), the
     writer falls back to an in-place truncate — which is exactly the partial
@@ -270,7 +270,7 @@ class _store_lock:
 def _atomic_write(lines):
     """Write the whole store atomically, under the cross-process store lock.
 
-    Plain `open(WM, "w")` truncates the file FIRST, so a concurrent reader
+    Plain `open(WM, "w", encoding="utf-8")` truncates the file FIRST, so a concurrent reader
     in another PROCESS (threading._lock is process-local only) can observe a
     half-written store and parse 0..N partial lines. Live evidence:
     knowledge_to_action's world-model experiment reported 'not enough
@@ -284,7 +284,7 @@ def _atomic_write(lines):
     open for reading — and world_model readers (_load) do exactly that from
     other processes. So retry a few times before giving up.
 
-    The last-resort path used to be an in-place `open(WM,"w")` rewrite. That
+    The last-resort path used to be an in-place `open(WM,"w", encoding="utf-8")` rewrite. That
     is precisely the truncate-first write this function exists to eliminate,
     and the probe showed it was still reached (1 of 44 writes) and still
     produced a 0-length read. It is gone: if the swap cannot be made we
@@ -442,7 +442,7 @@ def _load_unlocked():
     for attempt in (0, 1):
         out = []
         # Snapshot the bytes in ONE read, then parse from memory. Holding the
-        # handle open for the whole parse (as `for line in open(WM)`) also
+        # handle open for the whole parse (as `for line in open(WM, encoding="utf-8")`) also
         # blocks the writers' os.replace on Windows -> PermissionError.
         try:
             with open(WM, "rb") as f:

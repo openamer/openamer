@@ -99,7 +99,7 @@ def run_daemon():
     while True:
         report = scan_repo()
         STATE.parent.mkdir(parents=True, exist_ok=True)
-        STATE.write_text(json.dumps(report, indent=1, default=str))
+        STATE.write_text(json.dumps(report, indent=1, default=str), encoding="utf-8")
         
         critical = report["by_type"].get("syntax_error", 0) + report["by_type"].get("bare_except", 0)
         if critical > 0:
