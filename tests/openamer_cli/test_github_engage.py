@@ -41,6 +41,20 @@ def test_token_parsed_from_git_credentials(tmp_path, monkeypatch):
     assert G._token() == "ghp_FAKE"
 
 
+def test_token_accepts_oauth_gho_prefix(tmp_path, monkeypatch):
+    """OAuth credentials (`gh auth login`) start with gho_ — must not be rejected.
+
+    The old ghp_/github_pat_ allow-list returned "" for a gho_ credential, so
+    _api() sent an empty Authorization header and every list-own/post-own call
+    died with HTTP 401 on any OAuth setup.
+    """
+    token = "gho_FAKEOAUTH0123456789abcdefghij"
+    gf = tmp_path / ".git-credentials"
+    gf.write_text(f"https://openamer:{token}@github.com")
+    monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path))
+    assert G._token() == token
+
+
 def test_api_adds_auth_and_parses_json(monkeypatch):
     captured = {}
 
