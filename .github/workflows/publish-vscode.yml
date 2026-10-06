@@ -43,11 +43,15 @@ jobs:
           if-no-files-found: error
 
       - name: Publish to Open VSX
-        if: ${{ secrets.OVSX_PAT != '' }}
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        if: env.OVSX_PAT != ''
         run: |
-          npx --yes ovsx publish *.vsix -p "${{ secrets.OVSX_PAT }}"
+          npx --yes ovsx publish *.vsix -p "$OVSX_PAT"
 
       - name: Publish to VS Code Marketplace
-        if: ${{ secrets.VSCE_PAT != '' }}
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        if: env.VSCE_PAT != ''
         run: |
-          npx --yes @vscode/vsce publish --packagePath *.vsix -p "${{ secrets.VSCE_PAT }}"
+          npx --yes @vscode/vsce publish --packagePath *.vsix -p "$VSCE_PAT"
