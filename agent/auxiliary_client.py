@@ -7007,6 +7007,7 @@ def _build_call_kwargs(
                 model=model,
                 base_url=effective_base,
                 reasoning_config=reasoning_config,
+                tools=tools,
             ) or {}
             profile_reasoning_extra, profile_top_level = (
                 profile.build_api_kwargs_extras(
