@@ -27,7 +27,77 @@ import time
 from pathlib import Path
 from collections import Counter
 
-_HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer-laptop")))
+_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
+
+
+def _is_install_root(pth):
+    """True when *pth* carries a real OpenAmer install marker with content.
+
+    A marker only counts when it holds something: file markers
+    (``config.yaml``/``.env``) must be non-empty and directory markers
+    (``cron``/``memories``/``openamer-agent``) must contain at least one
+    NON-EMPTY file. Plain ``os.path.exists`` accepted a scratch tree carrying
+    an empty ``cron/`` over the real install.
+    """
+    try:
+        for m in _HOME_MARKERS:
+            p = os.path.join(str(pth), m)
+            if os.path.isfile(p):
+                if os.path.getsize(p) > 0:
+                    return True
+            elif os.path.isdir(p):
+                for child in os.listdir(p):
+                    cp = os.path.join(p, child)
+                    if os.path.isfile(cp) and os.path.getsize(cp) > 0:
+                        return True
+        return False
+    except OSError:
+        return False
+
+
+def _resolve_home():
+    """Resolve OPENAMER_HOME across shells; never adopt a scratch or phantom dir.
+
+    Two measured failures this closes:
+
+    1. **MSYS form.** git-bash exports ``OPENAMER_HOME=/c/Users/<u>/...``.
+       Native Windows Python does not expand ``/c/...`` as an absolute path,
+       so ``Path(...)`` kept it relative and every consumer landed on
+       ``\\c\\Users\\...`` — which never exists. Measured 23.09.26: the job
+       store silently parsed as empty and ``test_analyze_shape`` failed with
+       ``AssertionError`` only when the env var was set, passing with it unset.
+    2. **Scratch dir.** A leaked install pointed the home at a throwaway tree
+       with no real markers, emptying the job store the same way.
+
+    Same class as the guards in ``group_state_engine`` / ``dream_cycle``:
+    accept the candidate only if it resolves AND is a real install root, else
+    fall back to the install root.
+    """
+    local = os.path.join(os.path.expanduser("~"), "AppData", "Local")
+    candidates = [os.path.join(local, "openamer-laptop"),
+                  os.path.join(local, "openamer")]
+    default = next((c for c in candidates
+                    if os.path.isdir(os.path.join(c, "cron"))), candidates[0])
+
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return Path(default)
+
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    # git-bash MSYS form ("/<drive-letter>/...") that Python keeps relative
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = norm[1].upper() + ":/" + norm[3:]
+    elif os.path.isabs(raw):
+        cand = raw
+    else:
+        cand = None
+
+    if cand and os.path.isdir(cand) and _is_install_root(cand):
+        return Path(cand)
+    return Path(default)
+
+
+_HOME = _resolve_home()
 JOBS = _HOME / "cron" / "jobs.json"
 EXEC_DB = _HOME / "cron" / "executions.db"
 VIOLATIONS = _HOME / "scripts" / "training" / "security_violations.jsonl"
