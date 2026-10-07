@@ -381,6 +381,65 @@ def test_capability_row_mentioning_a_phase_timeline_still_maps():
         kta.T = old
 
 
+def test_incident_report_is_named_an_incident_not_a_lexicon_gap():
+    """The 23.09.26 case: a rogue-agent OUTCOME, reported as a lexicon gap.
+
+    The row names no product feature -- it reports damage. Measured over the 37
+    competitor rows the function reads (scoring `a` only): every candidate word
+    FROM the report (`rogue`, `deleted`, `delete`, `scrambling`) is 1/37 and is
+    this row, so growing the lexicon for it would map an incident onto a
+    capability. `guardrail` 1/36 is a different row (VoltAgent) and does not
+    stand for this signal.
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("Competitor intelligence: Claude-powered AI coding agent deletes "
+             "company database in 9 seconds",
+             "PocketOS was left scrambling after a rogue AI agent deleted swaths "
+             "of code underpinning its business"),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        assert "incident" in r["identified_gap"], r["identified_gap"]
+        assert "NOT mappable" in r["result"], r["result"]
+        # it must deny the lexicon reading and point at the pipeline
+        assert "not a lexicon gap" in r["result"], r["result"]
+        assert "extraction-side gap" in r["result"], r["result"]
+        assert "grow the capability lexicon" not in r["proposed_fix"], r["proposed_fix"]
+        # the signal is still quoted verbatim, never silently dropped
+        assert "PocketOS" in r["insight_analyzed"], r["insight_analyzed"]
+        assert r["signal_candidates"] == 1, r
+    finally:
+        kta.T = old
+
+
+def test_capability_row_mentioning_an_outage_still_maps():
+    """Guard the ORDERING: the lexicon runs BEFORE the incident predicate.
+
+    A genuine capability sentence that ALSO trips the incident predicate must
+    keep mapping -- otherwise the predicate would swallow content. This row
+    was measured to trip `_INCIDENT` (rogue + deletes) AND to carry a lexicon
+    token (`sandbox`), so it fails if the predicate is checked first. Same
+    invariant the cost- and status-ordering tests pin, for the same reason.
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("Competitor intelligence: agent reliability during provider incidents",
+             "Sandboxed execution stops a rogue script before it deletes "
+             "production data."),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        assert "incident" not in r["identified_gap"], r["identified_gap"]
+        assert "NOT mappable" not in r["result"], r["result"]
+        # the row maps via the lexicon; identified_gap carries the token LABEL
+        assert "sandboxed execution" in r["identified_gap"], r["identified_gap"]
+    finally:
+        kta.T = old
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in sorted(globals().items()):
