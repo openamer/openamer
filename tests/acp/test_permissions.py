@@ -190,7 +190,7 @@ class TestApprovalBridge:
 
         scheduled["coro"].close()
 
-        assert result == "deny"
+        assert result == "timeout"  # timeout != deny (tools.approval distinguishes)
         assert scheduled["loop"] is loop
         assert future.cancel.call_count == 1
 

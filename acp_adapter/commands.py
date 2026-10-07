@@ -228,8 +228,7 @@ class SlashCommandsMixin:
     def _cmd_compress(self, args: str, state: SessionState) -> str:
         """``/compress [here [N] | <focus>] [--preview] [--aggressive]`` through the shared core."""
         from agent.conversation_compression import finalize_context_engine_compression_notification
-        from agent.conversation_compression_manual import (
-            AGGRESSIVE_UNSUPPORTED, compress_now, parse_compress_args, render_compress_result)
+        from agent.model_metadata import estimate_request_tokens_rough
 
         if not state.history:
             return "Nothing to compress — conversation is empty."
@@ -237,28 +236,35 @@ class SlashCommandsMixin:
         # No compression_enabled gate: it only disables *automatic* compaction (CLI/gateway parity).
         if not hasattr(agent, "_compress_context"):
             return "Context compression not available for this agent."
-        request = parse_compress_args(args)
-        if request.aggressive:
-            return AGGRESSIVE_UNSUPPORTED
         original_session_db = getattr(agent, "_session_db", None)
+        # ``--aggressive`` is unsupported: the shared core's manual-compression helper
+        # (agent.conversation_compression_manual) was never ported into this repo, so
+        # route /compress through the same _compress_context() the conversation loop uses.
+        if args.strip().endswith("--aggressive"):
+            return "Aggressive compression is not supported."
         try:
             # Stable ACP session id: suppress _compress_context's SQLite session split.
             agent._session_db = None
-            result = compress_now(
-                agent, state.history, request, system_message=getattr(agent, "_cached_system_prompt", "") or "",
-                task_id=state.session_id)
+            before_messages_count = len(state.history)
+            before_tokens = estimate_request_tokens_rough(state.history)
+            new_messages, new_system_prompt = agent._compress_context(
+                state.history,
+                getattr(agent, "_cached_system_prompt", "") or "",
+                approx_tokens=before_tokens,
+                task_id=state.session_id,
+                force=True,
+            )
         except Exception as e:
             return f"Compression failed: {e}"
         finally:
             agent._session_db = original_session_db
-        if result.status != "compressed":
-            return "\n".join(render_compress_result(result))
-        state.history = result.after_messages
+        state.history = new_messages
         self.session_manager.save_session(state.session_id)
         finalize_context_engine_compression_notification(agent, committed=True)
+        after_tokens = estimate_request_tokens_rough(state.history)
         return (
-            f"Context compressed: {len(result.before_messages)} -> {len(state.history)} messages\n"
-            f"~{result.before_tokens:,} -> ~{result.after_tokens:,} tokens"
+            f"Context compressed: {before_messages_count} -> {len(state.history)} messages\n"
+            f"~{before_tokens} -> ~{after_tokens} tokens"
         )
 
     def _cmd_steer(self, args: str, state: SessionState) -> str:
