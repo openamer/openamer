@@ -55,6 +55,53 @@ def _no_host_psutil_for_respawn_probe(request):
         yield
 
 
+def _state_our_install_gateways(monkeypatch, pids):
+    """Pin the host process table so ``pids`` read as *this* install's gateways.
+
+    The pause path classifies every discovered PID through
+    ``_split_gateways_by_install``, which reads the *real* process table with
+    ``psutil`` (``Process(pid).exe()`` / ``.environ()``) and asks
+    ``_belongs_to_other_install``. Tests here stub ``find_gateway_pids`` with
+    small fixed PIDs and then assert those PIDs get paused — so the verdict
+    comes from whatever the host happens to be running at them. On a machine
+    carrying a second install (the two-tree box from issue #28) such a process
+    is attributed to the other install, is left running, and the pause returns
+    ``None`` instead of a token: green on an idle host, red on a busy one, same
+    commit.
+
+    Blocking ``psutil`` outright would fix the flake but change the question:
+    with no readable evidence *every* PID counts as ours, so the assertions
+    would hold for a reason the test does not mean. State the classification
+    instead of reading the host — same idiom as
+    ``test_update_gateway_scope.py::_freeze_psutil``.
+    """
+    import psutil
+
+    roots = cli_main._update_install_roots()
+    our_exe = os.path.join(roots[0], "venv", "Scripts", "python.exe")
+    our_home = os.environ.get("OPENAMER_HOME")
+    stub_pids = {int(p) for p in pids}
+
+    class _OurProc:
+        def __init__(self, pid):
+            self.pid = int(pid)
+
+        def exe(self):
+            return our_exe
+
+        def environ(self):
+            return {"OPENAMER_HOME": our_home} if our_home else {}
+
+    real_process = psutil.Process
+
+    def _process(pid):
+        if int(pid) in stub_pids:
+            return _OurProc(pid)
+        return real_process(pid)
+
+    monkeypatch.setattr(psutil, "Process", _process)
+
+
 # ---------------------------------------------------------------------------
 # _detect_concurrent_openamer_instances
 # ---------------------------------------------------------------------------
@@ -702,6 +749,17 @@ def test_pause_windows_gateways_for_update_stops_profile_and_unmapped_pids(
         lambda **_k: [profile_proc],
     )
     monkeypatch.setattr(gateway_mod, "_get_restart_drain_timeout", lambda: 0.1)
+    # This test's premise is that 101 and 202 are gateways of THIS install
+    # (one profile-mapped, one unmapped-but-argv-captured). Left implicit, the
+    # classification is decided by the host: `_split_gateways_by_install` reads
+    # the real process table through psutil for every stub PID, so on a machine
+    # that happens to have a live process at 101 or 202 that process is
+    # attributed to another install and gets left running — the pause returns
+    # None instead of a token, and the assertions fail for a reason unrelated
+    # to the code under test. State the classification instead of inferring it,
+    # the same shape the respawn siblings above use (and the same idiom
+    # `test_update_gateway_scope.py::_freeze_psutil` uses).
+    _state_our_install_gateways(monkeypatch, [101, 202])
     waited_for = []
 
     def fake_wait(pids, *, timeout):
