@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-06T03:00:22+00:00",
-  "population": 711,
+  "updated": "2026-10-07T03:00:17+00:00",
+  "population": 714,
   "avg_score": 39.9,
   "fittest": [
     {
@@ -14,6 +14,10 @@
     {
       "name": "openamer-desktop-dev",
       "score": 76
+    },
+    {
+      "name": "windows-computer-use",
+      "score": 73
     },
     {
       "name": "windows-compatibility",
@@ -32,10 +36,6 @@
       "score": 72
     },
     {
-      "name": "windows-computer-use",
-      "score": 71
-    },
-    {
       "name": "claude-design",
       "score": 71
     },
@@ -45,7 +45,7 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-10-06T04:40:15",
+    "timestamp": "2026-10-07T04:45:08",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -142,12 +142,12 @@
     },
     {
       "source": "News",
-      "title": "Apple Wants to Make It Harder to Run Agentic AI on Your Mac - Lifehacker",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQanMwaUwtZjhJTVVYbWl6Z3ZhdmVxR0I4cU5DZU1FbEJjSThrWVkzVWJhX3M4WlpYS0E3MlVQUUduM2pIS1JQZ2paWHRWQU9CZ3ktSlEzZVNNcUhMUzVTRkFrVUdUYzlyZGR3LXMyTm52amFqX0t4WUhia2hRQkM4NTBySDZBdFFNTzJV?oc=5"
+      "title": "Open and Emergent Problems in Agentic Privacy and Security: A Contextual Angle - Google Research",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQU0pHcTBKNmN4VE1LQThXcmpTMjRTa1NEMlpWYkZ1M2FqUXZpRGU4WFZ1cVhIZTFFTUhvLWVsODB4d1Y1YTNIOE0yVTVwbU9ORTVORjgxMExVeGlmUzlSaGJqUHcxSTdJbk5aM0lrcFAtMXoxQ3lid2E3NWtwdVN3Y1ktUnZ5cWYwckpVVkROMkMwdEhhZ0M5VGh0b1diUzdJNzZyWVVyc3ZLSlE?oc=5"
     },
     {
       "source": "News",
-      "title": "Agentic AI moves into enterprise execution - siliconangle.com",
+      "title": "Agentic AI moves into enterprise execution - SiliconANGLE",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOWk1iSTEzcFpBR3N4amNpZ0lLWGFsU2x1R3ltWDNYYnRlWnN0d3p4YXJLbFhlc3M5MDZPdUZpSUJ1MWZDZGFKYkJ4eHRTWjc1SzAtamNEalQyRXdJd2cwaG5yU2xCV1hkNGZDbk52U2I1dG1DaDdGUGdiLVh1NEtreE8tSEw0WjY0?oc=5"
     },
     {
@@ -157,12 +157,12 @@
     },
     {
       "source": "News",
-      "title": "Enterprises prioritize flexibility in AI platforms - VentureBeat",
-      "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxORC04ai1FeUUyMVV5VVlJTkJocFNiRC12Qmc3bHZWaXBxWUlVd0tuclNkcUxyS2J0MWRsOUp1ZTh6b2FzTTUtYWI3YUIxUHpBYnA1aFZqVWxDV3hSVjZHZWUxVng2SHVHZUJhbEF0bjBsdHRCQjFobjRRRDEtdjBuemxaRTEtYmptRWprdHAySC0yZmk1aTZrZmV1N21aQmtrRV9HNTk2Z0Fha3VjUTVINFVvNHUzVWk4aktFcjhialR0NXUwTjRSS2NNTjJkZ1B4MUtHUE5FWnBtOHZWOE90dVBnbnloSzFCZDdUZVRRcE1DY25wUTZQNnNrNEgwdzRtNm5lRTA3TFVhalJLNE9oLUJn?oc=5"
+      "title": "OpenAI leads AI agent security at 40% - VentureBeat",
+      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOdThMekdEOFNRd0tvRXJkeTA0MXE3dUY5bHk1NVJZUklXX1c4bW9EdUF5VXI2eEtaMEFocTBPUHhqOUYtclJXV1BwQ2NBMHNiU0UweXpDUGI5ZjNDWFRrWDJIdHFPM1pVb1lRZEluQzVCdWJYZjZhejFTQi1ONjNuLVBBTWNDUDQ1S1F1RW1CNVJsZkVMc0FuY2c0SmYzOVl3ZDFjZDhtZzVIeEJEaU9panJJRTN6TThTVzVFSE5WNmNmbGtvWGpjeEVsN3k0MmZncWkyUWxEamRlUzU1UTAwQjNTTVNhM0U5VFhDc2JzY3pGMW9EZkNETnFwWF9BMzE4b210SUswVG1uMDVQ?oc=5"
     }
   ],
   "population_engine": 93,
-  "species": 103,
+  "species": 99,
   "trials": 0,
   "harvested": 193
 }
