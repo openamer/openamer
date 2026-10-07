@@ -647,8 +647,9 @@ def _verify_goal(goal: dict) -> tuple[bool, list[str]]:
         return False, ["no evidence_cmd declared - cannot verify this goal"]
     try:
         # check=False is explicit: a non-zero exit is the RESULT here, not an error.
-        p = subprocess.run(cmd, shell=True, capture_output=True, text=True,
-                           timeout=180, check=False)
+        # text=True without an encoding decodes with the locale codepage (cp1252/cp936 on
+        # Windows) and crashes the reader thread on non-UTF-8 bytes.
+        p = subprocess.run(cmd, shell=True, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180, check=False)
     except subprocess.TimeoutExpired:
         return False, [f"evidence_cmd timed out: {cmd}"]
     except OSError as exc:
