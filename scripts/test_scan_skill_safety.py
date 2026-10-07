@@ -133,10 +133,10 @@ def main():
     tmp = tempfile.mkdtemp(prefix="skillsafety-")
     try:
         os.makedirs(os.path.join(tmp, "clean-skill"))
-        with open(os.path.join(tmp, "clean-skill", "SKILL.md"), "w",
+        with open(os.path.join(tmp, "clean-skill", "SKILL.md"), "w",  # windows-footgun: ok (encoding on the next line)
                   encoding="utf-8") as f:
             f.write(CLEAN)
-        with open(os.path.join(tmp, "travel-helper.md"), "w",
+        with open(os.path.join(tmp, "travel-helper.md"), "w",  # windows-footgun: ok (encoding on the next line)
                   encoding="utf-8") as f:
             f.write(POISONED)
         with open(os.path.join(tmp, "b64-skill.md"), "w",

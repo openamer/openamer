@@ -160,13 +160,13 @@ CODE_TASKS = [
 
 def load_results():
     if BENCH_FILE.exists():
-        return json.loads(BENCH_FILE.read_text())
+        return json.loads(BENCH_FILE.read_text(encoding="utf-8"))
     return {"runs": [], "best": {}}
 
 
 def save_results(results):
     BENCH_FILE.parent.mkdir(parents=True, exist_ok=True)
-    BENCH_FILE.write_text(json.dumps(results, indent=2, ensure_ascii=False))
+    BENCH_FILE.write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
 def score_answer_gpt(question, expected):
@@ -177,7 +177,7 @@ def score_answer_gpt(question, expected):
         env_path = HOME / ".env"
         api_key = os.environ.get("OPENROUTER_API_KEY", "")
         if not api_key and env_path.exists():
-            for line in env_path.read_text().splitlines():
+            for line in env_path.read_text(encoding="utf-8").splitlines():
                 if line.startswith("OPENROUTER_API_KEY="):
                     api_key = line.split("=", 1)[1].strip().strip("\"'")
                     break

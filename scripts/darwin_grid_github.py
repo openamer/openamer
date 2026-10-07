@@ -115,8 +115,7 @@ def _push_genome(machine_id: str) -> tuple[bool, str]:
         dest = clone / f"{machine_id}.json"
         genome = json.loads(genome_path.read_text(encoding="utf-8"))
         genome["machine_id"] = machine_id
-        dest.write_text(json.dumps(genome, indent=1, ensure_ascii=False),
-                        "utf-8")
+        dest.write_text(json.dumps(genome, indent=1, ensure_ascii=False), encoding="utf-8")
         _git(["add", f"{machine_id}.json"], str(clone))
         c = _git(["-c", "user.name=darwin-grid", "-c",
                   "user.email=darwin@openamer.dev",
@@ -172,7 +171,7 @@ def _fetch_genome(machine_id: str) -> dict | None:
     if data is None:
         return None
     out = REPO / "reports" / f"darwin-genome-{machine_id}.json"
-    out.write_text(json.dumps(data, indent=1, ensure_ascii=False), "utf-8")
+    out.write_text(json.dumps(data, indent=1, ensure_ascii=False), encoding="utf-8")
     return data
 
 

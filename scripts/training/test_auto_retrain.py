@@ -63,7 +63,7 @@ def test_train_python_finds_home_venv(monkeypatch, tmp_path):
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     py = tmp_path / "venv" / "Scripts" / "python.exe"
     py.parent.mkdir(parents=True)
-    py.write_text("")
+    py.write_text("", encoding="utf-8")
     monkeypatch.setattr(ar, "T", tmp_path / "somewhere" / "training")  # no venv here
     assert Path(ar._train_python()).resolve() == py.resolve()
 
@@ -76,7 +76,7 @@ def test_train_python_finds_venv_beside_training_dir(monkeypatch, tmp_path):
     train_dir.mkdir(parents=True)
     py = tmp_path / "scripts" / "venv" / "Scripts" / "python.exe"
     py.parent.mkdir(parents=True)
-    py.write_text("")
+    py.write_text("", encoding="utf-8")
     monkeypatch.setattr(ar, "T", train_dir)
     assert Path(ar._train_python()).resolve() == py.resolve()
 

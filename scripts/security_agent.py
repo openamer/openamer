@@ -69,11 +69,11 @@ def run(cmd, **kwargs):
 
 def load_state() -> dict:
     if STATE_FILE.exists():
-        return json.loads(STATE_FILE.read_text())
+        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
     return {"seen_findings": [], "stats": {"total_alerts": 0, "total_fixed": 0}}
 
 def save_state(state: dict):
-    STATE_FILE.write_text(json.dumps(state, indent=2))
+    STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
 def fingerprint(findings: list) -> str:
     """Create a unique fingerprint for a set of findings."""
@@ -197,7 +197,7 @@ def check_env() -> list[dict]:
     findings = []
     env_file = REPO_DIR / ".env.example"
     if env_file.exists():
-        content = env_file.read_text()
+        content = env_file.read_text(encoding="utf-8")
         sensitive_keys = ["API_KEY", "SECRET", "PASSWORD", "TOKEN", "AUTH"]
         for key in sensitive_keys:
             if key in content:

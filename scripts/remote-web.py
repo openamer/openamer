@@ -48,9 +48,9 @@ def load_auth_token():
     REMOTE_WEB_DIR.mkdir(parents=True, exist_ok=True)
     if not AUTH_FILE.exists():
         default_token = "openamer-remote-secret"
-        AUTH_FILE.write_text(default_token)
+        AUTH_FILE.write_text(default_token, encoding="utf-8")
         return default_token
-    return AUTH_FILE.read_text().strip()
+    return AUTH_FILE.read_text(encoding="utf-8").strip()
 
 
 AUTH_TOKEN = load_auth_token()
@@ -141,7 +141,7 @@ def collect_cron_status():
     # Jobs
     if jobs_json.exists():
         try:
-            data = json.loads(jobs_json.read_text())
+            data = json.loads(jobs_json.read_text(encoding="utf-8"))
             for j in data.get("jobs", []):
                 result["jobs"].append({
                     "id": str(j.get("id", ""))[:12],
@@ -175,7 +175,7 @@ def collect_cron_status():
     hb = cron_dir / "ticker_heartbeat"
     if hb.exists():
         try:
-            result["ticker_heartbeat"] = hb.read_text().strip()
+            result["ticker_heartbeat"] = hb.read_text(encoding="utf-8").strip()
         except Exception:
             pass
 
@@ -292,7 +292,7 @@ def snapshot_worker():
             }
             try:
                 REMOTE_WEB_DIR.mkdir(parents=True, exist_ok=True)
-                (REMOTE_WEB_DIR / "health.json").write_text(json.dumps(health_data, indent=2))
+                (REMOTE_WEB_DIR / "health.json").write_text(json.dumps(health_data, indent=2), encoding="utf-8")
             except Exception:
                 pass
         except Exception as exc:

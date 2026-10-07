@@ -102,7 +102,7 @@ def collect_cron():
     heartbeat = None
     if TICKER_HEARTBEAT.exists():
         try:
-            heartbeat = TICKER_HEARTBEAT.read_text().strip()
+            heartbeat = TICKER_HEARTBEAT.read_text(encoding="utf-8").strip()
         except Exception:
             pass
 

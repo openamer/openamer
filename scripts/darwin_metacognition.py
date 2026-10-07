@@ -136,14 +136,14 @@ def _now() -> str:
 
 def _load(path: Path, default):
     try:
-        return json.loads(path.read_text("utf-8"))
+        return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
         return default
 
 
 def _save(path: Path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), "utf-8")
+    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), encoding="utf-8")
 
 
 def introspect() -> dict:
@@ -289,7 +289,7 @@ def evolve_toward_gaps(self_image: dict | None = None,
         if apply:
             dst = darwin.DARWIN_DIR / "species" / name
             dst.mkdir(parents=True, exist_ok=True)
-            (dst / "SKILL.md").write_text(text, "utf-8")
+            (dst / "SKILL.md").write_text(text, encoding="utf-8")
             _save(darwin.DARWIN_DIR / "species" / f"{name}.json", {
                 "child": name, "kind": "gap-closure", "gap": gtype,
                 "born": _now(), "status": "candidate",
@@ -358,7 +358,7 @@ def import_civilization_seed(path: Path, dry_run: bool = True) -> dict:
     for name, content in seed.get("species_files", {}).items():
         sp_dir = darwin.DARWIN_DIR / "species" / name
         sp_dir.mkdir(parents=True, exist_ok=True)
-        (sp_dir / "SKILL.md").write_text(content, "utf-8")
+        (sp_dir / "SKILL.md").write_text(content, encoding="utf-8")
     swarm._save(swarm.SWARM_FILE, seed.get("swarm",
                  {"workers": {}, "tasks": {}}))
     swarm._save(swarm.SWARM_KNOWLEDGE_FILE, seed.get("knowledge",

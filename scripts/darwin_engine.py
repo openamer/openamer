@@ -208,7 +208,7 @@ def _now() -> str:
 
 def _load_json(path: Path, default):
     try:
-        return json.loads(path.read_text("utf-8"))
+        return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
         return default
 
@@ -216,7 +216,7 @@ def _load_json(path: Path, default):
 def _save_json(path: Path, data):
     _guard_live_artifact(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), "utf-8")
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -364,7 +364,7 @@ def _load_cron_jobs() -> dict:
 
 def _save_cron_jobs(jobs: dict) -> None:
     CRON_JOBS_FILE.write_text(
-        json.dumps(jobs, indent=2, ensure_ascii=False), "utf-8")
+        json.dumps(jobs, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
 def _job_skills(job: dict) -> list:
@@ -792,7 +792,7 @@ def autopilot(min_executions: int = 2) -> int:
 
     md = report(fitness, offspring, comps)
     REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    REPORT_FILE.write_text(md, "utf-8")
+    REPORT_FILE.write_text(md, encoding="utf-8")
     print(f"[autopilot] report -> {REPORT_FILE}")
 
     changed = bool(offspring or trials or comps or quarantined or started
@@ -1003,7 +1003,7 @@ def run_skill_check(skill_name: str, timeout: int = 90) -> dict:
                 break
         else:
             return {"ok": False, "reason": "no SKILL.md", "exit_code": None}
-    text = skill_md.read_text("utf-8", errors="replace")
+    text = skill_md.read_text(encoding="utf-8", errors="replace")
 
     blocks = re.findall(r"```(?:bash|sh|shell)\n(.*?)```", text, re.S)
     if not blocks:
@@ -1205,7 +1205,7 @@ def synthesize_species(fitness: dict, max_new: int = 2, apply: bool = False) -> 
         if apply:
             dst = DARWIN_DIR / "species" / bp["name"]
             dst.mkdir(parents=True, exist_ok=True)
-            (dst / "SKILL.md").write_text(text, "utf-8")
+            (dst / "SKILL.md").write_text(text, encoding="utf-8")
             _save_json(DARWIN_DIR / "species" / f"{bp['name']}.json", {
                 "child": bp["name"], "parent": donor, "kind": "speciation",
                 "born": _now(), "status": "candidate", "wins": 0, "losses": 0,
@@ -1474,7 +1474,7 @@ def synthesize_species_v2(fitness: dict, max_new: int = 2,
         if apply:
             dst = DARWIN_DIR / "species" / bp["name"]
             dst.mkdir(parents=True, exist_ok=True)
-            (dst / "SKILL.md").write_text(text, "utf-8")
+            (dst / "SKILL.md").write_text(text, encoding="utf-8")
             _save_json(DARWIN_DIR / "species" / f"{bp['name']}.json", {
                 "child": bp["name"], "parent": donor, "kind": "speciation",
                 "born": _now(), "status": "candidate", "wins": 0, "losses": 0,
@@ -1954,7 +1954,7 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
         src = SKILLS_DIR / parent / "SKILL.md"
         if not src.exists():
             continue
-        text = src.read_text("utf-8", errors="replace")
+        text = src.read_text(encoding="utf-8", errors="replace")
         op = weighted_op_choice(rng)
         mutated = _mutate_skill_md(text, op)
         # A/B against one yardstick: same probe, same roots, parent vs variant.
@@ -1975,7 +1975,7 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
         if apply:
             dst = DARWIN_DIR / "offspring" / child_name
             dst.mkdir(parents=True, exist_ok=True)
-            (dst / "SKILL.md").write_text(mutated, "utf-8")
+            (dst / "SKILL.md").write_text(mutated, encoding="utf-8")
             _save_json(DARWIN_DIR / "offspring" / f"{child_name}.json", {
                 "child": child_name, "parent": parent, "op": op, "born": _now(),
                 # Floor: a variant that measurably damages the skill never
@@ -2004,8 +2004,8 @@ def crossover(name_a: str, name_b: str, apply: bool = False) -> dict | None:
     b = SKILLS_DIR / name_b / "SKILL.md"
     if not a.exists() or not b.exists():
         return None
-    ta = a.read_text("utf-8", errors="replace")
-    tb = b.read_text("utf-8", errors="replace")
+    ta = a.read_text(encoding="utf-8", errors="replace")
+    tb = b.read_text(encoding="utf-8", errors="replace")
 
     # Trigger-Abschnitt von A, Verification-Abschnitt von B, Rest von A
     trig = re.search(r"(##\s*Trigger.*?)(?=\n##|\Z)", ta, re.S)
@@ -2027,7 +2027,7 @@ def crossover(name_a: str, name_b: str, apply: bool = False) -> dict | None:
     if apply:
         dst = DARWIN_DIR / "offspring" / child_name
         dst.mkdir(parents=True, exist_ok=True)
-        (dst / "SKILL.md").write_text(child_text, "utf-8")
+        (dst / "SKILL.md").write_text(child_text, encoding="utf-8")
         _save_json(DARWIN_DIR / "offspring" / f"{child_name}.json",
                    {**result, "status": "candidate", "wins": 0, "losses": 0})
         record_lineage(name_a, child_name, "crossover")
@@ -2070,7 +2070,7 @@ def compete() -> list[dict]:
             if src.exists():
                 target = archive / f"{parent}_{NOW.strftime('%Y%m%d')}"
                 if not target.exists():
-                    target.write_text("") if False else None
+                    target.write_text("", encoding="utf-8") if False else None
                     # Move directory
                     import shutil
                     shutil.move(str(src), str(target))
@@ -2446,7 +2446,7 @@ def main() -> int:
         comps = compete() if args.full else []
         md = report(fitness, offspring, comps)
         REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
-        REPORT_FILE.write_text(md, "utf-8")
+        REPORT_FILE.write_text(md, encoding="utf-8")
         print(f"📄 Report -> {REPORT_FILE}")
 
     return 2 if changed else 0
@@ -2599,8 +2599,8 @@ def predate(prey_list: list[dict], dry_run: bool = True) -> list[dict]:
                 inherited = (f"\n## Inherited Trigger (from `{prey}`)\n"
                              f"Also handles topics previously covered by "
                              f"the absorbed skill `{prey}`.\n")
-                pred_md.write_text(pred_md.read_text("utf-8", errors="replace")
-                                   + inherited, "utf-8")
+                pred_md.write_text(pred_md.read_text(encoding="utf-8", errors="replace")
+                                   + inherited, encoding="utf-8")
             # genome: predator gains a win
             population = _load_json(POPULATION_FILE, {})
             g = population.setdefault(predator, {"wins": 0, "losses": 0})

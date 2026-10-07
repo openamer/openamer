@@ -259,7 +259,7 @@ def check():
     # Prüfe env
     env_file = OPENAMER_HOME / ".env"
     if env_file.exists():
-        content = env_file.read_text()
+        content = env_file.read_text(encoding="utf-8")
         if "AGENT_BROWSER_ARGS" in content and "AutomationControlled" in content:
             print("✅ AGENT_BROWSER_ARGS mit Stealth-Flags gesetzt")
         else:

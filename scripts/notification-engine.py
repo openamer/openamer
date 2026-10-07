@@ -438,7 +438,7 @@ def show_status():
     daemon_pid = None
     if PID_FILE.exists():
         try:
-            daemon_pid = int(PID_FILE.read_text().strip())
+            daemon_pid = int(PID_FILE.read_text(encoding="utf-8").strip())
         except (ValueError, OSError):
             pass
 
