@@ -103,6 +103,120 @@ def test_shared_base_interpreter_with_foreign_home_is_foreign():
     assert got is True
 
 
+# ---------------------------------------------------------------------------
+# The user env is a machine-wide last-writer value, NOT this install's home.
+#
+# ``install.ps1`` writes OPENAMER_HOME to the *user* environment whenever
+# ``$OpenAmerHome`` differs from the stored value:
+#
+#     if (-not $currentOpenAmerHome -or $currentOpenAmerHome -ne $OpenAmerHome) {
+#         [Environment]::SetEnvironmentVariable("OPENAMER_HOME", $OpenAmerHome, "User")
+#
+# On a box with two install trees that value names whichever tree was installed
+# last, and every later process (logon task, service, shell) inherits it. Keying
+# "our home" off it makes this install describe itself as somebody else's —
+# measured on the reference box, where it made our OWN gateway look foreign so
+# the pause silently no-opped and the checkout/venv was updated under a live
+# gateway. These tests drive the public pause entry point, so they pin the
+# ACTION taken, not the name of any internal function.
+# ---------------------------------------------------------------------------
+
+OTHER_TREE = r"C:\Users\damir\AppData\Local\openamer"
+
+
+def _shipped_layout_home(tmp_path):
+    """A fake shipped layout: <home>/openamer-agent with install evidence."""
+    home = tmp_path / "openamer-laptop"
+    root = home / "openamer-agent"
+    (root / ".git").mkdir(parents=True)
+    return home, (str(root), str(root / "venv"))
+
+
+def _drive_pause(monkeypatch, roots, pid, proc_home):
+    """Run the real pause entry point; return (terminated, token)."""
+    import gateway.status as status_mod
+    import openamer_cli.gateway as gateway_mod
+
+    monkeypatch.setattr(cli_main, "_update_install_roots", lambda: roots)
+    monkeypatch.setattr(cli_main, "_is_windows", lambda: True)
+    argv = [SHARED_BASE_PY, "-m", "openamer_cli.main", "gateway", "run"]
+    monkeypatch.setattr(gateway_mod, "find_gateway_pids", lambda **_k: [pid])
+    monkeypatch.setattr(gateway_mod, "find_profile_gateway_processes", lambda **_k: [])
+    monkeypatch.setattr(gateway_mod, "_capture_gateway_argv", lambda _p: argv)
+    _freeze_psutil(monkeypatch, home=proc_home)
+    monkeypatch.setattr(gateway_mod, "_get_restart_drain_timeout", lambda: 0.1)
+    monkeypatch.setattr(cli_main, "_wait_for_windows_update_gateway_exit", lambda pids, **_: set())
+
+    terminated = []
+    monkeypatch.setattr(
+        status_mod, "terminate_pid", lambda pid_, force=False: terminated.append((pid_, force))
+    )
+    token = cli_main._pause_windows_gateways_for_update()
+    return terminated, token
+
+
+def test_pause_still_stops_our_own_gateway_when_the_user_env_names_another_tree(
+    tmp_path, monkeypatch
+):
+    """Pre-fix this LEFT ALONE: our gateway looked foreign, so the pause no-opped."""
+    home, roots_shipped = _shipped_layout_home(tmp_path)
+    monkeypatch.setenv("OPENAMER_HOME", OTHER_TREE)
+
+    terminated, token = _drive_pause(monkeypatch, roots_shipped, 910, str(home))
+
+    assert terminated == [(910, True)], (
+        "our own gateway must be paused even when the user env spells another tree"
+    )
+    assert token is not None
+
+
+def test_pause_leaves_a_foreign_gateway_alone_when_the_user_env_is_unset(
+    tmp_path, monkeypatch
+):
+    """The #28 case with a stripped env: the foreign home must still be decisive."""
+    _home, roots_shipped = _shipped_layout_home(tmp_path)
+    monkeypatch.delenv("OPENAMER_HOME", raising=False)
+
+    terminated, token = _drive_pause(monkeypatch, roots_shipped, 911, FOREIGN_HOME)
+
+    assert terminated == [], "a gateway named by its own HOME must survive"
+    assert token is None
+
+
+def test_pause_leaves_a_foreign_gateway_alone_when_the_user_env_names_a_third_tree(
+    tmp_path, monkeypatch
+):
+    """Foreign home, our home elsewhere, user env pointing at yet another tree."""
+    _home, roots_shipped = _shipped_layout_home(tmp_path)
+    monkeypatch.setenv("OPENAMER_HOME", OTHER_TREE)
+
+    terminated, token = _drive_pause(monkeypatch, roots_shipped, 913, FOREIGN_HOME)
+
+    assert terminated == [], "another install's gateway must survive either way"
+    assert token is None
+
+
+def test_dev_checkout_cannot_name_its_home_and_stays_pausable(tmp_path, monkeypatch):
+    """Honest limitation, pinned so it is visible rather than silent.
+
+    A layout that neither carries the breadcrumb nor matches ``<home>/openamer-agent``
+    (a plain dev worktree, or a ``pip install`` into site-packages) has no
+    install-scoped home to read. The home signal is then genuinely unavailable
+    and the guard falls back to path evidence only — which means, for the
+    pathless shared-base-interpreter gateway, "unprovable" and it stays
+    pausable. That preserves the #50090 invariant and is the remaining edge of
+    this bug for non-installer layouts.
+    """
+    dev = tmp_path / "dev-worktree"
+    dev.mkdir()
+    monkeypatch.delenv("OPENAMER_HOME", raising=False)
+
+    terminated, _token = _drive_pause(monkeypatch, (str(dev),), 912, FOREIGN_HOME)
+
+    assert terminated == [(912, True)], "documented residual: no install-scoped home => pausable"
+
+
+
 def test_own_profile_subpath_home_is_not_foreign():
     """Profiles of *this* install live under our home and must stay pausable."""
     roots = cli_main._update_install_roots()
