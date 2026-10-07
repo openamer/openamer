@@ -254,6 +254,41 @@ class SessionManager:
         if state is not None:
             self._persist(state)
 
+    def remove_session(self, session_id: str) -> bool:
+        """Drop a session from memory and the DB. True if it existed anywhere.
+
+        Deleting twice returns False, and the session no longer restores from
+        the DB, so ``get_session`` reports it gone. The DB delete is
+        best-effort: a minimal test env with no state.db still clears memory.
+        """
+        with self._lock:
+            in_memory = self._sessions.pop(session_id, None) is not None
+        deleted_db = False
+        db = self._get_db()
+        if db is not None:
+            try:
+                deleted_db = bool(db.delete_session(session_id))
+            except Exception:
+                logger.debug("Failed to delete ACP session %s from DB", session_id, exc_info=True)
+        if in_memory or deleted_db:
+            logger.info("Removed ACP session %s", session_id)
+        return in_memory or deleted_db
+
+    def cleanup(self) -> None:
+        """Drop every in-memory session and its DB row (test/teardown helper)."""
+        with self._lock:
+            session_ids = list(self._sessions.keys())
+            self._sessions.clear()
+        db = self._get_db()
+        if db is None:
+            return
+        for session_id in session_ids:
+            try:
+                db.delete_session(session_id)
+            except Exception:
+                logger.debug("Failed to delete ACP session %s during cleanup", session_id, exc_info=True)
+        logger.info("Cleaned up %d ACP session(s)", len(session_ids))
+
     # ---- persistence via SessionDB ------------------------------------------
 
     def _install_state(self, session_id: str, agent: Any, cwd: str, model: str,

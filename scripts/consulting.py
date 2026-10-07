@@ -110,9 +110,9 @@ class ConsultingAutomation:
         # Save order
         orders = []
         if self.orders_file.exists():
-            orders = json.loads(self.orders_file.read_text())
+            orders = json.loads(self.orders_file.read_text(encoding="utf-8"))
         orders.append(order)
-        self.orders_file.write_text(json.dumps(orders, indent=2))
+        self.orders_file.write_text(json.dumps(orders, indent=2), encoding="utf-8")
         
         # Trigger agent
         return {
@@ -128,7 +128,7 @@ class ConsultingAutomation:
         """Check order status."""
         if not self.orders_file.exists():
             return {"error": "No orders"}
-        orders = json.loads(self.orders_file.read_text())
+        orders = json.loads(self.orders_file.read_text(encoding="utf-8"))
         order = next((o for o in orders if o["id"] == order_id), None)
         if not order:
             return {"error": f"Order {order_id} not found"}
@@ -138,7 +138,7 @@ class ConsultingAutomation:
         """Total consulting revenue."""
         if not self.orders_file.exists():
             return {"total": 0, "orders": 0}
-        orders = json.loads(self.orders_file.read_text())
+        orders = json.loads(self.orders_file.read_text(encoding="utf-8"))
         total = sum(o["price"] for o in orders)
         return {
             "total_orders": len(orders),

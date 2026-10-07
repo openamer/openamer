@@ -371,14 +371,14 @@ def _now_iso() -> str:
 
 def _load_file(path: Path, default):
     try:
-        return json.loads(path.read_text("utf-8"))
+        return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
         return default
 
 
 def _save_file(path: Path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=1), "utf-8")
+    path.write_text(json.dumps(data, indent=1), encoding="utf-8")
 
 
 def promote_gap_closure_species() -> list[str]:
