@@ -26,6 +26,21 @@ with JSON tool calls; this server executes them and feeds results back.
 """
 import os
 import json, os, sys, time, threading, subprocess, urllib.request, re
+
+
+# --- Window-hiding helper (Windows) ---------------------------------------
+# Cron/heartbeat invokes tools in this server. Without CREATE_NO_WINDOW every
+# console child (powershell.exe, openamer.exe, python.exe) flashes a black
+# window in the foreground. Keep the console hidden on Windows.
+_CREATE_NO_WINDOW = 0x08000000 if sys.platform == "win32" else 0
+
+
+def _hidden_kwargs(extra=None):
+    kw = {"creationflags": _CREATE_NO_WINDOW} if sys.platform == "win32" else {}
+    if extra:
+        kw.update(extra)
+    return kw
+
 from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from smart_router import smart_route
@@ -144,7 +159,8 @@ def t_pc_action(params):
     try:
         r = subprocess.run(["openamer", "computer-use", action, target],
                            capture_output=True, text=True, timeout=30,
-                           encoding="utf-8", errors="replace")
+                           encoding="utf-8", errors="replace",
+                           **_hidden_kwargs())
         return {"output": (r.stdout or r.stderr)[:800]}
     except Exception as e:
         return {"error": str(e)[:200]}
@@ -189,7 +205,8 @@ def t_speak(params):
             f"Add-Type -AssemblyName System.Speech; "
             f"$s = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
             f"$s.Speak('{text.replace(chr(39), chr(39)*2)}')"],
-            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30)
+            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30,
+            **_hidden_kwargs())
         return {"spoken": text[:100], "rc": r.returncode}
     except Exception as e:
         return {"error": str(e)[:200]}
@@ -200,7 +217,8 @@ def t_listen(params):
         # whisper via openamer CLI (uses configured whisper-1)
         r = subprocess.run(["openamer", "voice", "--listen", "--transcribe"],
                            capture_output=True, text=True, timeout=30,
-                           encoding="utf-8", errors="replace")
+                           encoding="utf-8", errors="replace",
+                           **_hidden_kwargs())
         return {"transcript": (r.stdout or "").strip()[:500]}
     except Exception as e:
         return {"error": str(e)[:200]}
@@ -215,7 +233,8 @@ def t_see(params):
             "$g=[System.Drawing.Graphics]::FromImage($bmp); "
             "$g.CopyFromScreen(0,0,0,0,$b.Size); "
             f"$bmp.Save('{img_path}')"],
-            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
+            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20,
+            **_hidden_kwargs())
         # local vision via moondream (Ollama)
         import base64
         with open(img_path, "rb") as f:
@@ -253,7 +272,8 @@ def t_run_python(params):
         return {"error": "blocked: system-level operations not allowed in tool math"}
     try:
         r = subprocess.run([sys.executable, "-c", code], capture_output=True,
-                           text=True, timeout=15, encoding="utf-8", errors="replace")
+                           text=True, timeout=15, encoding="utf-8", errors="replace",
+                           **_hidden_kwargs())
         return {"stdout": r.stdout[:800], "stderr": r.stderr[:200], "rc": r.returncode}
     except Exception as e:
         return {"error": str(e)[:200]}
