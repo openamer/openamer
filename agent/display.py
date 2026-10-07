@@ -499,6 +499,20 @@ def build_tool_preview(tool_name: str, args: dict, max_len: int | None = None) -
         preview = f"{label} {line_label}".strip()
         return _truncate_preview(preview, max_len) if preview else None
 
+    if tool_name == "web_extract":
+        # web_extract's `urls` may be a list of strings OR of search-result objects
+        # ({url|href, title}); str() on the latter renders a raw dict repr. Unwrap to
+        # the URL and mark the rest, or '?' when a malformed entry carries neither.
+        urls = args.get("urls")
+        if not urls:
+            return None
+        first = urls[0] if isinstance(urls, list) else urls
+        url = _display_url(first)
+        preview = url or "?"
+        if isinstance(urls, list) and len(urls) > 1:
+            preview += f" (+{len(urls) - 1})"
+        return _truncate_preview(preview, max_len)
+
     if tool_name == "session_search":
         query = _oneline(args.get("query", ""))
         return f"recall: \"{query[:25]}{'...' if len(query) > 25 else ''}\""
