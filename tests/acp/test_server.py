@@ -564,7 +564,7 @@ class TestSessionOps:
         assert len(tool_updates) == 2
         assert isinstance(tool_updates[0], ToolCallStart)
         assert tool_updates[0].tool_call_id == "call_search_1"
-        assert tool_updates[0].title == "search: slash commands"
+        assert tool_updates[0].title == "search_files: slash commands"
         assert isinstance(tool_updates[1], ToolCallProgress)
         assert tool_updates[1].tool_call_id == "call_search_1"
         assert "Search results" in tool_updates[1].content[0].content.text
@@ -1192,7 +1192,15 @@ class TestSessionConfiguration:
         assert config_result["configOptions"] == []
 
     @pytest.mark.asyncio
-    async def test_router_accepts_unstable_model_switch_when_enabled(self, agent):
+    async def test_router_accepts_unstable_model_switch_when_enabled(self, agent, monkeypatch):
+        # This test is about the UNSTABLE-PROTOCOL ROUTER accepting a model switch, not
+        # about provider catalogue validation. The MagicMock agent's base_url is a mock,
+        # so validate_requested_model would build "<MagicMock>/models" and raise. Pin the
+        # validator so the router path is exercised in isolation (no network).
+        monkeypatch.setattr(
+            "openamer_cli.models.validate_requested_model",
+            lambda *a, **k: {"accepted": True, "persist": True, "recognized": True, "message": ""},
+        )
         new_resp = await agent.new_session(cwd="/tmp")
         router = build_agent_router(agent, use_unstable_protocol=True)
 
@@ -1299,6 +1307,13 @@ class TestSessionConfiguration:
         monkeypatch.setattr(
             "openamer_cli.models.detect_provider_for_model",
             lambda model, current: None,
+        )
+        # The assertion below is about ENDPOINT carry-over (a plain model choice keeps
+        # the current provider's base_url/api_mode), not about the live catalogue check.
+        # Pin the validator so an unknown "new-model" isn't rejected by the listing probe.
+        monkeypatch.setattr(
+            "openamer_cli.models.validate_requested_model",
+            lambda *a, **k: {"accepted": True, "persist": True, "recognized": True, "message": ""},
         )
 
         result = await acp_agent.set_session_model(
@@ -1936,6 +1951,7 @@ class TestSlashCommands:
         with (
             patch.object(agent.session_manager, "save_session") as mock_save,
             patch("acp_adapter.server.logger") as mock_logger,
+            patch("acp_adapter.commands.logger") as mock_cmd_logger,
         ):
             result = agent._handle_slash_command("/reset", state)
 
@@ -1944,7 +1960,7 @@ class TestSlashCommands:
         assert state.history == []
         state.agent.reset_session_state.assert_called_once_with()
         mock_save.assert_called_once_with(state.session_id)
-        mock_logger.warning.assert_called_once()
+        mock_cmd_logger.warning.assert_called_once()
 
     def test_version(self, agent, mock_manager):
         state = self._make_state(mock_manager)

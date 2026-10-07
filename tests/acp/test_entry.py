@@ -56,6 +56,14 @@ def test_main_discovers_configured_mcp_when_skip_is_not_enabled(monkeypatch, ski
         monkeypatch.delenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", raising=False)
     else:
         monkeypatch.setenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", skip_value)
+    # The shared startup helper short-circuits when no MCP servers are configured,
+    # and memoises "already started" across calls — reset both so the discovery
+    # thread actually spawns and runs in the test process.
+    monkeypatch.setattr(
+        "openamer_cli.mcp_startup._has_configured_mcp_servers", lambda: True,
+    )
+    monkeypatch.setattr("openamer_cli.mcp_startup._mcp_discovery_started", False)
+    monkeypatch.setattr("openamer_cli.mcp_startup._mcp_discovery_thread", None)
     monkeypatch.setattr(
         "tools.mcp_tool.discover_mcp_tools",
         lambda: discovery_calls.append(True),
@@ -63,6 +71,13 @@ def test_main_discovers_configured_mcp_when_skip_is_not_enabled(monkeypatch, ski
     monkeypatch.setattr(acp, "run_agent", fake_run_agent)
 
     entry.main([])
+
+    # Discovery runs on a daemon thread; wait (bounded) for it to land.
+    import time as _time
+    for _ in range(50):
+        if discovery_calls:
+            break
+        _time.sleep(0.05)
 
     assert discovery_calls == [True]
 

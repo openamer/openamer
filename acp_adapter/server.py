@@ -187,7 +187,13 @@ def _restore_env(key: str, value: str | None) -> None:
 
 def _bind_guarded(stack: contextlib.ExitStack, label: str, setup: Callable[[], Callable[[], None]]) -> None:
     """Run ``setup`` (returns its teardown) and register the teardown; failures in either half only
-    log — the turn must still run without the binding."""
+    log — the turn must still run without the binding.
+
+    ``setup`` must be a plain function, NOT a closure: it is called via
+    ``stack.callback`` semantics that invoke it once. A closure that returns a
+    teardown would be invoked as the teardown itself (no setup side effect),
+    silently dropping the binding — which is how the ACP session cwd leaked
+    through to ``resolve_agent_cwd`` (#101300)."""
     try:
         teardown = setup()
     except Exception:
@@ -749,8 +755,12 @@ class OpenAmerACPAgent(SlashCommandsMixin, acp.Agent):
             def _session_context() -> Callable[[], None]:
                 from gateway.session_context import clear_session_vars, set_session_vars
 
+                # No ``cron_session`` kwarg: gateway.session_context.set_session_vars does not
+                # accept one, and _bind_guarded swallows the TypeError silently — which is
+                # how the ACP session cwd pin was dropped and every turn resolved to the
+                # process launch dir instead of the client's project (#101300).
                 tokens = set_session_vars(
-                    session_key=session_id, session_id=session_id, cwd=state.cwd, cron_session="",
+                    session_key=session_id, session_id=session_id, cwd=state.cwd,
                 )
                 return lambda: clear_session_vars(tokens)
 
@@ -776,21 +786,55 @@ class OpenAmerACPAgent(SlashCommandsMixin, acp.Agent):
             # Tools tag side-effects with the ACP session (``kanban_create``); save/restore it.
             stack.callback(_restore_env, "OPENAMER_SESSION_ID", os.environ.get("OPENAMER_SESSION_ID"))
             os.environ["OPENAMER_SESSION_ID"] = session_id
-
             # Auto-titling fires in the turn prologue; push the title now as a session-info update.
-            def _notify_title_update(_title: str, _source: str) -> None:
+            def _notify_title_update(_title: str, _source: str = "") -> None:
                 if conn:
-                    loop.call_soon_threadsafe(asyncio.create_task, self._send_session_info_update(session_id))
+                    # Thread-safe scheduling from the executor thread: maybe_auto_title's
+                    # callback fires off-loop, so hand the coroutine to the loop explicitly.
+                    asyncio.run_coroutine_threadsafe(self._send_session_info_update(session_id), loop)
 
             agent._on_session_title = _notify_title_update
             try:
-                return agent.run_conversation(
+                result = agent.run_conversation(
                     user_message=user_content, conversation_history=state.history, task_id=session_id,
                     persist_user_message=user_text or "[Image attachment]",
                 )
             except Exception as e:
                 logger.exception("Agent error in session %s", session_id)
                 return {"final_response": f"Error: {e}", "messages": state.history}
+            # Auto-title after the first exchange, mirroring the CLI/gateway turn tails.
+            # run_conversation does not do this itself (the shared core leaves titling to
+            # the surface), so without this call ACP sessions stayed untitled and the
+            # client never got a session-info update. Skip failed/partial/interrupted turns
+            # — a cancelled turn has no settled answer worth titling.
+            titling_ok = (
+                isinstance(result, dict)
+                and not result.get("failed")
+                and not result.get("partial")
+                and not result.get("interrupted")
+            )
+            try:
+                from agent.title_generator import maybe_auto_title
+
+                if titling_ok:
+                    maybe_auto_title(
+                        self.session_manager._get_db(),
+                        session_id,
+                        user_text,
+                        result.get("final_response", ""),
+                        state.history,
+                        main_runtime={
+                            "model": getattr(agent, "model", ""),
+                            "provider": getattr(agent, "provider", ""),
+                            "base_url": getattr(agent, "base_url", ""),
+                            "api_key": getattr(agent, "api_key", None),
+                            "api_mode": getattr(agent, "api_mode", ""),
+                        },
+                        title_callback=agent._on_session_title,
+                    )
+            except Exception:
+                logger.debug("ACP auto-title failed for session %s", session_id, exc_info=True)
+            return result
 
     async def prompt(self, prompt: list[PromptBlock], session_id: str, **kwargs: Any) -> PromptResponse:
         """Run OpenAmer on the user's prompt and stream events back to the editor."""
