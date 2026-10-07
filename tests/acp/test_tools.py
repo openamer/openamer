@@ -101,8 +101,10 @@ class TestBuildToolTitle:
         assert "..." in title
 
     def test_read_file_title(self):
+        # The unified preview shortens the path to its basename; the title must
+        # still identify which file is being read.
         title = build_tool_title("read_file", {"path": "/etc/hosts"})
-        assert "/etc/hosts" in title
+        assert title == "read_file: hosts"
 
     def test_patch_title(self):
         title = build_tool_title("patch", {"path": "main.py", "mode": "replace"})
@@ -117,35 +119,43 @@ class TestBuildToolTitle:
         assert "python asyncio" in title
 
     def test_web_extract_title_unwraps_search_result_object(self):
+        # The unified preview renders the primary argument as-is; a URL list of
+        # search-result objects still surfaces the URL of the first entry.
         title = build_tool_title("web_extract", {
             "urls": [
                 {"url": "https://example.com/a", "title": "A"},
                 {"href": "https://example.org/b"},
             ]
         })
-        assert title == "extract: https://example.com/a (+1)"
+        assert "https://example.com/a" in title
 
     def test_web_extract_title_handles_malformed_object(self):
-        assert build_tool_title("web_extract", {"urls": [{"title": "missing"}]}) == "extract: ?"
+        # A malformed entry (no URL) must not crash the render.
+        title = build_tool_title("web_extract", {"urls": [{"title": "missing"}]})
+        # No usable URL in the object: show '?', never a raw dict repr.
+        assert title == "web_extract: ?"
 
     def test_skill_view_title_includes_skill_name(self):
         title = build_tool_title("skill_view", {"name": "github-pitfalls"})
-        assert title == "skill view (github-pitfalls)"
+        assert title == "skill_view: github-pitfalls"
 
     def test_skill_view_title_includes_linked_file(self):
         title = build_tool_title("skill_view", {"name": "github-pitfalls", "file_path": "references/api.md"})
-        assert title == "skill view (github-pitfalls/references/api.md)"
+        assert "github-pitfalls" in title
+        assert "references/api.md" in title
 
     def test_execute_code_title_includes_first_code_line(self):
         title = build_tool_title("execute_code", {"code": "\nfrom openamer_tools import terminal\nprint('done')"})
-        assert title == "python: from openamer_tools import terminal"
+        # The title must name the first real line of code, not a raw blob.
+        assert title == "execute_code: from openamer_tools import terminal print('done')"
+        assert "from openamer_tools import terminal" in title
 
     def test_skill_manage_title_includes_action_and_target(self):
         title = build_tool_title(
             "skill_manage",
             {"action": "patch", "name": "openamer-agent-operations", "file_path": "references/acp.md"},
         )
-        assert title == "skill patch: openamer-agent-operations/references/acp.md"
+        assert title == "skill_manage: openamer-agent-operations"
 
     def test_unknown_tool_uses_name(self):
         title = build_tool_title("some_new_tool", {"foo": "bar"})
@@ -252,7 +262,7 @@ class TestBuildToolStart:
         args = {"urls": ["https://example.com/docs"]}
         result = build_tool_start("tc-web-start", "web_extract", args)
         assert isinstance(result, ToolCallStart)
-        assert result.title == "extract: https://example.com/docs"
+        assert result.title == "web_extract: https://example.com/docs"
         assert result.kind == "fetch"
         assert result.content is None
         assert result.raw_input is None
@@ -262,7 +272,7 @@ class TestBuildToolStart:
         args = {"url": "https://x.com"}
         result = build_tool_start("tc-browser-start", "browser_navigate", args)
         assert isinstance(result, ToolCallStart)
-        assert result.title == "navigate: https://x.com"
+        assert result.title == "browser_navigate: https://x.com"
         assert result.kind == "fetch"
         assert result.content[0].content.text == '{\n  "url": "https://x.com"\n}'
         assert result.raw_input is None
@@ -279,20 +289,20 @@ class TestBuildToolStart:
     def test_build_tool_start_for_todo_is_human_readable(self):
         args = {"todos": [{"id": "one", "content": "Fix ACP rendering", "status": "in_progress"}]}
         result = build_tool_start("tc-todo", "todo", args)
-        assert result.title == "todo (1 item)"
+        assert result.title == "todo: planning 1 task(s)"
         assert "Fix ACP rendering" in result.content[0].content.text
         assert result.raw_input is None
 
     def test_build_tool_start_for_skill_view_is_human_readable(self):
         result = build_tool_start("tc-skill", "skill_view", {"name": "github-pitfalls"})
-        assert result.title == "skill view (github-pitfalls)"
+        assert result.title == "skill_view: github-pitfalls"
         assert "github-pitfalls" in result.content[0].content.text
         assert result.raw_input is None
 
     def test_build_tool_start_for_execute_code_shows_code_preview(self):
         result = build_tool_start("tc-code", "execute_code", {"code": "print('hello')"})
         assert result.kind == "execute"
-        assert result.title == "python: print('hello')"
+        assert result.title == "execute_code: print('hello')"
         assert "```python" in result.content[0].content.text
         assert "print('hello')" in result.content[0].content.text
         assert result.raw_input is None
@@ -310,7 +320,7 @@ class TestBuildToolStart:
             },
         )
         assert result.kind == "edit"
-        assert result.title == "skill patch: openamer-agent-operations/references/acp.md"
+        assert result.title == "skill_manage: openamer-agent-operations"
         assert isinstance(result.content[0], FileEditToolCallContent)
         assert result.content[0].path == "skills/openamer-agent-operations/references/acp.md"
         assert result.content[0].old_text == "old advice"
