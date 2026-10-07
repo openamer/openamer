@@ -8,6 +8,8 @@
 
 **Drives your Windows desktop in the background — without taking your mouse.**
 
+> ⭐ **[Star the repo](https://github.com/openamer/openamer/stargazers)** if it's useful — it's Apache-2.0, built in the open, and a star is how the next person finds it.
+
 > 🛒 **[OpenAmer Bug-Triage Agent — $29 one-time](PRODUCTS.md)** · CVE scanning, secret-leak detection, Windows injection footguns, prompt-injection defense. 40+ skills, 100% offline, CPU-only. 👉 **[Buy now](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)**
 
 ## 🧬 ASI Core — Integrated Superintelligence
