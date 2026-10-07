@@ -15,6 +15,26 @@ logger = logging.getLogger("acp_adapter.server")
 # MoA picker cap). Not a total cap; the current model is always kept via the fallback insert.
 ACP_MAX_MODELS_PER_PROVIDER = 200
 
+_LOCAL_HOSTS = {"localhost", "127.0.0.1", "0.0.0.0", "::1", "host.docker.internal"}
+
+
+def _is_local_endpoint(base_url: str) -> bool:
+    """True for a loopback/local endpoint, where an unauthenticated ``/models`` probe is safe."""
+    from urllib.parse import urlparse
+
+    host = (urlparse(str(base_url or "")).hostname or "").strip().lower()
+    return host in _LOCAL_HOSTS or host.endswith(".localhost")
+
+
+def _discover_flag(entry: dict) -> bool:
+    """Whether to probe the endpoint's live ``/models``. Default on; ``discover_models: false`` off."""
+    value = entry.get("discover_models", entry.get("models_discovery"))
+    if value is None:
+        return True
+    if isinstance(value, str):
+        return value.strip().lower() not in {"0", "false", "no", "off"}
+    return bool(value)
+
 
 def _named_custom_provider_catalogs() -> list[tuple[str, str, list[tuple[str, str]]]]:
     """``(slug, label, [(model_id, description), ...])`` for named endpoints (v12 ``providers:``
@@ -26,10 +46,8 @@ def _named_custom_provider_catalogs() -> list[tuple[str, str, list[tuple[str, st
     ``parse_model_input``/``resolve_runtime_provider`` resolve, so choice ids round-trip."""
     try:
         from openamer_cli.config import (get_compatible_custom_providers, is_provider_enabled, load_config)
-        from openamer_cli.model_switch import _declared_model_ids, _entry_models_discovered, _models_config_is_allowlist
-        from openamer_cli.model_switch_providers import _NativePickerModelList, _fetch_picker_live_models
-        from openamer_cli.model_switch_providers import _discover_flag
-        from openamer_cli.models_local import should_use_ollama_native_catalog
+        from openamer_cli.model_switch import _declared_model_ids
+        from openamer_cli.models import fetch_api_models
         from openamer_cli.providers import custom_provider_slug
     except ImportError:
         return []
@@ -54,7 +72,10 @@ def _named_custom_provider_catalogs() -> list[tuple[str, str, list[tuple[str, st
         provider_key, name, base_url = field("provider_key"), field("name"), field("base_url")
         if provider_key.lower() in disabled_keys or not name or not base_url:
             return None
-        slug = custom_provider_slug(name, provider_key)
+        # Slug from the config key when present (``custom:bedrock-mantle``), else from the
+        # display name (legacy ``custom_providers`` entries have no key).
+        slug = (f"custom:{provider_key.strip().lower().replace(' ', '-')}"
+                if provider_key else custom_provider_slug(name))
 
         api_key = field("api_key")
         if not api_key:
@@ -66,29 +87,24 @@ def _named_custom_provider_catalogs() -> list[tuple[str, str, list[tuple[str, st
 
         native_headers = entry.get("extra_headers") or None
         is_ollama_key = provider_key.lower() in {"ollama", "custom:ollama"}
-        is_native_ollama = should_use_ollama_native_catalog(
-            provider_key if is_ollama_key else "custom", base_url, headers=native_headers
-        )
+        is_native_ollama = is_ollama_key and _is_local_endpoint(base_url)
         if not api_key and not declared and not is_native_ollama:
             return None  # nothing to discover with and nothing declared: not addressable
 
         model_ids = list(declared)
-        live = None
         if _discover_flag(entry) and (api_key or is_native_ollama):
             try:
-                live = _fetch_picker_live_models(
-                    api_key, base_url, provider_key if is_native_ollama and is_ollama_key else "custom",
-                    _models_config_is_allowlist(models_cfg, _entry_models_discovered(entry)),
-                    headers=native_headers, timeout=1.5, api_mode=entry.get("api_mode"),
+                live = fetch_api_models(
+                    api_key, base_url, timeout=1.5,
+                    api_mode=entry.get("api_mode"), headers=native_headers,
                 )
             except Exception:
                 live = None
-            if isinstance(live, _NativePickerModelList):
-                model_ids = list(live)
-            elif live is not None:
+            if live:
+                # Declared models survive a failed/empty discovery, and lead the list.
                 model_ids = declared + [m for m in live if m not in declared]
 
-        if not model_ids and not isinstance(live, _NativePickerModelList):
+        if not model_ids:
             return None
         return slug, name, [(mid, "") for mid in model_ids]
 
@@ -235,9 +251,14 @@ class _ModelCatalog:
                 self.add(named_slug, named_model, named_model, " • ".join(part for part in parts if part))
 
 
-def build_model_state(model: str, provider: str, base_url: str) -> SessionModelState | None:
+def build_model_state(model: str, provider: str, base_url: str, *,
+                      named_catalogs: "list | None" = None) -> SessionModelState | None:
     """Picker state from the shared inventory + named endpoints; ``None`` when nothing is listable
-    (caller falls back to a single current-model row). Raises on inventory failure."""
+    (caller falls back to a single current-model row). Raises on inventory failure.
+
+    ``named_catalogs`` lets the caller supply the endpoints (defaults to the module's own
+    resolver); the server passes its own so the call resolves through ``acp_adapter.server``
+    and stays patchable there."""
     from openamer_cli.inventory import build_models_payload, load_picker_context
     from openamer_cli.models import normalize_provider, provider_label
 
@@ -251,7 +272,7 @@ def build_model_state(model: str, provider: str, base_url: str) -> SessionModelS
         probe_custom_providers=False, probe_current_custom_provider=False, max_models=ACP_MAX_MODELS_PER_PROVIDER,
     )
 
-    named_catalogs = _named_custom_provider_catalogs()
+    named_catalogs = _named_custom_provider_catalogs() if named_catalogs is None else named_catalogs
     named_slugs = {str(slug).strip().lower() for slug, _label, _models in named_catalogs}
     current_choice_provider = str(provider or "").strip().lower()
     current_base = base_url.strip().rstrip("/").lower()

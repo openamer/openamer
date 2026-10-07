@@ -300,7 +300,10 @@ class OpenAmerACPAgent(SlashCommandsMixin, acp.Agent):
         model = str(state.model or getattr(state.agent, "model", "") or "").strip()
         provider = getattr(state.agent, "provider", None) or detect_provider() or "openrouter"
         try:
-            picker = build_model_state(model, provider, str(getattr(state.agent, "base_url", "") or ""))
+            picker = build_model_state(
+                model, provider, str(getattr(state.agent, "base_url", "") or ""),
+                named_catalogs=_named_custom_provider_catalogs(),
+            )
             if picker is not None:
                 return picker
         except Exception:
