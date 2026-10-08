@@ -3,6 +3,10 @@
   "displayName": "OpenAmer Agent",
   "description": "OpenAmer AI Agent - background computer-use, swarm, tools",
   "version": "0.1.0",
+  "publisher": "openamer",
+  "license": "Apache-2.0",
+  "repository": { "type": "git", "url": "https://github.com/openamer/openamer" },
+  "icon": "icon.png",
   "engines": { "vscode": "^1.90.0" },
   "categories": ["Programming Languages", "Chat", "Other"],
   "activationEvents": [
