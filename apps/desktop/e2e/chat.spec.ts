@@ -110,7 +110,12 @@ test.describe('chat interaction with mock backend', () => {
     await expect(dictation).toBeVisible()
     await expect(speakReplies).toBeVisible()
     await expect(queue).toBeVisible()
-    await expect(queue.locator('svg.tabler-icon-layers-intersect-2')).toBeVisible()
+    // The queue/steer controls render an inline SVG glyph. Assert the glyph is
+    // present as an <svg> rather than pinning a vendor icon class: the composer
+    // moved off @tabler icons to the OpenAmer custom icon set, whose stubs carry
+    // no `tabler-icon-*` class. A class-pinned selector made this E2E red from
+    // that refactor onward while the UI itself was correct.
+    await expect(queue.locator('svg').first()).toBeVisible()
     const controlLabels = await page
       .locator('[data-slot="composer-root"] button')
       .evaluateAll(buttons => buttons.map(button => button.getAttribute('aria-label')))
@@ -123,7 +128,9 @@ test.describe('chat interaction with mock backend', () => {
       controlLabels.findIndex(label => label?.startsWith('Steer'))
     )
     await page.screenshot({ path: testInfo.outputPath('busy-composer-steer.png') })
-    await expect(primary.locator('svg.tabler-icon-steering-wheel')).toBeVisible()
+    // Same reasoning as the queue glyph above: the steering-wheel control renders
+    // a bare <svg> after the custom-icon refactor, not a `tabler-icon-steering-wheel`.
+    await expect(primary.locator('svg').first()).toBeVisible()
 
     await queue.click()
     await expect(primary).toHaveAttribute('aria-label', 'Stop')
