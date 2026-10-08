@@ -33,6 +33,15 @@ from openamer_cli.hitl import (
 )
 
 
+# msvcrt is Windows-only. The tests below patch "msvcrt.kbhit"/"msvcrt.getwch",
+# which needs the module importable — on Linux/CI that raises ModuleNotFoundError
+# and the whole file errors out. Injecting a stub keeps the patch target valid on
+# every platform; the code path under test (the keyboard loop in await_approval)
+# is only reached on Windows anyway, so a stub never changes its behaviour.
+if "msvcrt" not in sys.modules:
+    sys.modules["msvcrt"] = MagicMock()
+
+
 # =============================================================================
 # HITLConfig tests
 # =============================================================================

@@ -13,6 +13,8 @@ import os
 import sys
 from pathlib import Path
 
+import pytest
+
 REPO = Path(__file__).resolve().parents[2]
 SCRIPT = REPO / "scripts" / "asi_audit.py"
 
@@ -113,17 +115,32 @@ def test_strict_exit_code_only_when_something_is_absent(tmp_path, monkeypatch):
     assert mod.main(["--strict"]) == 1
 
 
+def _real_openamer_home() -> Path | None:
+    """The machine's OpenAmer home, or None when it is absent (CI / clean checkout).
+
+    Deliberately NOT OPENAMER_HOME: under pytest that points at a temp dir, which
+    is exactly why this guard is a machine-level check in the first place.
+    """
+    base = os.environ.get("USERPROFILE") or os.environ.get("HOME") or str(Path.home())
+    cand = Path(base) / "AppData" / "Local" / "openamer-laptop"
+    return cand if cand.is_dir() else None
+
+
+@pytest.mark.skipif(_real_openamer_home() is None,
+                    reason="machine OpenAmer home absent (CI / clean checkout)")
 def test_real_repo_declares_every_capability_with_evidence_paths():
     """Guard against a typo'd path silently making a capability ABSENT.
 
     Checks against the REAL home/repo, not `mod.HOME`: under pytest the
     environment points OPENAMER_HOME at a temp dir, so the module-level HOME is
-    not the machine's — the point of this guard is the machine's paths.
+    not the machine's — the point of this guard is the machine's paths. Skipped
+    where that home does not exist (a Linux CI checkout has no
+    AppData/Local/openamer-laptop tree), which is the correct outcome rather
+    than a guaranteed failure.
     """
     mod = _load()
     real_repo = Path(__file__).resolve().parents[2]          # openamer-repo
-    real_home = Path(os.environ.get("USERPROFILE", r"C:\Users\damir")) \
-        / "AppData" / "Local" / "openamer-laptop"
+    real_home = _real_openamer_home()
     missing = []
     for cap in mod.CAPABILITIES:
         assert cap["evidence"], f"{cap['name']} has no evidence"
