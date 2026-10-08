@@ -324,13 +324,20 @@ def _build_dynamic_video_schema() -> Dict[str, Any]:
             "or `public_url` from the prior Imagine result (files-cdn). For "
             "image-to-video / reference-to-video pass public image URLs the "
             "same way")
-        try:
-            from tools.xai_http import xai_storage_notice_text
-            notice = xai_storage_notice_text("video_gen")
-        except Exception:
-            notice = ""
-        if notice:
-            parts.append(f"- storage: {notice}")
+    # When the active backend supports BOTH modalities the surface advertises
+    # that it routes automatically — the agent does not pick a mode, it just
+    # sends `prompt` (+ optional `image_url`) and the backend decides.
+    if can_i2v and t2v:
+        parts.append(
+            f"- Active backend: {provider.name.capitalize()} — routes "
+            "automatically between text-to-video and image-to-video")
+    try:
+        from tools.xai_http import xai_storage_notice_text
+        notice = xai_storage_notice_text("video_gen")
+    except Exception:
+        notice = ""
+    if notice:
+        parts.append(f"- storage: {notice}")
     properties: Dict[str, Any] = {"prompt": static_props["prompt"]}
     if can_i2v:
         properties["image_url"] = {
