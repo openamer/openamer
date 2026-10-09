@@ -89,6 +89,14 @@ terminal(command="agy -p 'Implement the change described in TASK.md and run the 
 # then: process(action="poll"/"log"/"wait", session_id=<id>)
 ```
 
+> **Isolation required.** `--dangerously-skip-permissions` disables the tool's own
+> approval gate, so the only remaining boundary is the OS. Run this example only
+> inside a whole-process sandbox / container with **no** access to credentials and
+> **no** route to external input (issues, PRs, e-mail, web) — an injected instruction
+> in that input becomes local execution. See
+> [`docs/security/network-egress-isolation.md`](https://github.com/openamer/openamer/blob/main/docs/security/network-egress-isolation.md)
+> and, on Windows, [`docs/security/windows-sandbox.md`](https://github.com/openamer/openamer/blob/main/docs/security/windows-sandbox.md).
+
 ### Interactive multi-turn (PTY + tmux)
 
 For a conversational session, launch `agy -i` (or bare `agy`) under `pty=true`
