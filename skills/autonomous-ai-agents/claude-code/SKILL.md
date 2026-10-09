@@ -114,6 +114,14 @@ terminal(command="sleep 3 && tmux send-keys -t claude-work Down && sleep 0.3 && 
 terminal(command="sleep 15 && tmux capture-pane -t claude-work -p -S -60")
 ```
 
+> **Isolation required.** `--dangerously-skip-permissions` disables the tool's own
+> approval gate, so the only remaining boundary is the OS. Run this example only
+> inside a whole-process sandbox / container with **no** access to credentials and
+> **no** route to external input (issues, PRs, e-mail, web) — an injected instruction
+> in that input becomes local execution. See
+> [`docs/security/network-egress-isolation.md`](https://github.com/openamer/openamer/blob/main/docs/security/network-egress-isolation.md)
+> and, on Windows, [`docs/security/windows-sandbox.md`](https://github.com/openamer/openamer/blob/main/docs/security/windows-sandbox.md).
+
 **Note:** After the first trust acceptance for a directory, the trust dialog won't appear again. Only the permissions dialog recurs each time you use `--dangerously-skip-permissions`.
 
 ## CLI Subcommands
