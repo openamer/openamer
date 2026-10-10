@@ -379,11 +379,15 @@ class Heartbeat:
                 "asi-audit",                           # weekly
                 "dream-cron.py",                       # nightly
                 "provenance_cleanup.py",               # daily
+                "homeostasis.py",                      # regulatory half (was orphaned)
+                "calibration.py",                      # confidence calibration (was orphaned)
+                "metacognition.py",                    # self-analysis (was orphaned)
             ],
             cron_ids=["d201e7cfdb55", "aeadd353df7e", "goal_engine_tick",
                       "039e0ae4878e", "347915bd1bff", "6ba7c8471507",
                       "43f6d0b62df8", "361c2c58b296", "asi-capability-audit",
                       "9abf330dd545", "64f3e8231a29"],
+            timeout=180,  # 14 scripts; homeostasis/calibration/metacognition are heavy
         )
 
     # ── 11. A2A Server ─────────────────────────────────────────
