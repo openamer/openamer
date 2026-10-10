@@ -25,7 +25,20 @@ TRAINING_DIR = OPENAMER_HOME / "scripts" / "training"
 # scripts. Without this entry _import_darwin() raised ModuleNotFoundError and
 # every Darwin native call fell back to a subprocess.
 AGENT_SCRIPTS_DIR = OPENAMER_HOME / "openamer-agent" / "scripts"
-for p in [str(SCRIPTS_DIR), str(AGENT_SCRIPTS_DIR), str(REPO_DIR / "scripts"), str(TRAINING_DIR)]:
+# The tree this file is RUNNING from. On a checkout the engine sits next to
+# this module (<repo>/scripts); on the laptop install it sits under
+# OPENAMER_HOME/openamer-agent/scripts. The first three candidates are all
+# laptop-shaped paths, so on CI none of them existed, none was added to
+# sys.path, and every native Darwin call raised ModuleNotFoundError and
+# silently fell back to a subprocess. Derive the checkout root from __file__
+# so the import works wherever the code lives.
+_HERE = Path(__file__).resolve()
+CHECKOUT_SCRIPTS_DIRS = [
+    _HERE.parents[2] / "scripts",           # <repo>/tools/asi/darwin.py -> <repo>/scripts
+    _HERE.parents[3] / "scripts",
+]
+for p in [str(SCRIPTS_DIR), str(AGENT_SCRIPTS_DIR), str(REPO_DIR / "scripts"),
+          str(TRAINING_DIR), *(str(d) for d in CHECKOUT_SCRIPTS_DIRS)]:
     if Path(p).is_dir() and p not in sys.path:
         sys.path.insert(0, p)
 

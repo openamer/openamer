@@ -11,10 +11,20 @@ from __future__ import annotations
 from tools.asi import darwin
 
 
-def test_agent_scripts_dir_is_on_sys_path():
-    """The tree that actually holds darwin_engine.py must be importable."""
+def test_the_tree_holding_darwin_engine_is_on_sys_path():
+    """The tree that actually holds darwin_engine.py must be importable.
+
+    Asserted by locating the module, not by naming a laptop path: on a
+    checkout the engine is under <repo>/scripts, and AGENT_SCRIPTS_DIR
+    (an install-tree path) cannot exist there. Naming it made this test
+    unfalsifiable off the laptop rather than wrong.
+    """
     import sys
-    assert str(darwin.AGENT_SCRIPTS_DIR) in sys.path
+    from pathlib import Path
+    importlib_paths = [Path(p) for p in sys.path if p]
+    holder = next((d for d in importlib_paths if (d / "darwin_engine.py").is_file()), None)
+    assert holder is not None, f"no sys.path entry holds darwin_engine.py: {importlib_paths[:8]}"
+    assert str(holder) in sys.path
 
 
 def test_import_darwin_resolves_the_real_module():
