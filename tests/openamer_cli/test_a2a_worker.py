@@ -76,7 +76,11 @@ def test_worker_executes_sum_and_replies(tmp_path):
     assert replies, "no reply for laptop mailbox"
     ver = verify_note(replies[0])
     assert ver["ok"], ver.get("reason")
-    assert ver["env"].payload.get("sum") == "42"   # relay redacts -> string
+    # relay preserves types now: the worker computed 20+22 and the int
+    # survives the signed round-trip (previously redact(str(v)) turned
+    # every reply value into a string)
+    assert ver["env"].payload.get("sum") == 42
+    assert isinstance(ver["env"].payload.get("sum"), int)
 
 
 def test_worker_executes_ping_returns_runner(tmp_path):
