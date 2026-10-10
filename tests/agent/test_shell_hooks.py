@@ -865,20 +865,34 @@ class TestCommandSplitting:
 
     ``python3 C:\hooks\x.py`` splits to ``C:hooksx.py``, so every isfile check
     downstream failed on a path that was never real.
+
+    `_split_command` only replaces shlex ON WINDOWS, and deliberately so: a
+    backslash is a path separator there and an escape character on POSIX, so the
+    two platforms need different splitters and neither answer is correct for both.
+    The two cases below assert the WINDOWS answer, so they are guarded - on Linux
+    they were asserting that the POSIX splitter behaves like the Windows one,
+    which is not a property this code has or should have.
     """
 
+    @pytest.mark.skipif(
+        not shell_hooks.IS_WINDOWS,
+        reason="backslash separators are Windows-only; POSIX shlex escapes them")
     def test_backslash_path_survives(self):
         assert shell_hooks._split_command("python3 C:\\hooks\\x.py --flag") == [
             "python3", "C:\\hooks\\x.py", "--flag",
         ]
 
+    @pytest.mark.skipif(
+        not shell_hooks.IS_WINDOWS,
+        reason="backslash separators are Windows-only; POSIX shlex escapes them")
     def test_quoted_argument_with_space_survives(self):
         got = shell_hooks._split_command('python3 "C:\\a b\\x.py"')
         assert got[-1] == "C:\\a b\\x.py"
 
     def test_unterminated_quote_still_raises(self):
         """Callers rely on ValueError to report a malformed command rather than
-        silently running a truncated one."""
+        silently running a truncated one. Both splitters raise, so this runs on
+        every platform."""
         with pytest.raises(ValueError):
             shell_hooks._split_command("python3 'unterminated")
 

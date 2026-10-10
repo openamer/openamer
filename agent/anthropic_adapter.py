@@ -1275,7 +1275,14 @@ def _resolve_anthropic_pool_token() -> Optional[str]:
         # to auth.json or trigger a network refresh from a bare resolve. select()
         # is deliberately NOT used — it runs clear_expired=True, refresh=True,
         # which would violate this read-only contract.
-        entries = pool._available_entries(clear_expired=False, refresh=False)
+        #
+        # `_available_entries` returns a TUPLE (available, pending_refresh) - every
+        # other caller unpacks it. This one did not, so `entries` was the tuple,
+        # `entry` was one of two LISTS, `getattr(list, "auth_type")` was always
+        # None, and the loop skipped every entry: resolve_anthropic_token() could
+        # never return an OAuth token that lived only in the credential pool.
+        # Caught by test_load_heals_legacy_row_and_exposes_it_to_resolver.
+        entries, _pending = pool._available_entries(clear_expired=False, refresh=False)
     except Exception:
         logger.debug("Failed to read Anthropic credential_pool", exc_info=True)
         return None

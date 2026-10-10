@@ -12,6 +12,7 @@ stays honest on a headless box instead of pretending.
 from __future__ import annotations
 
 import importlib.util
+import os
 import subprocess
 import sys
 import time
@@ -32,9 +33,26 @@ def _load_rect():
     return mod
 
 
+def _no_display() -> bool:
+    """True when a GUI cannot open at all.
+
+    tkinter being importable is not enough: CI images ship tkinter and have no
+    X display, so `demo_target.py` exited with rc=1 and this test failed with
+    "demo window never appeared on the desktop" - a green import guarding an
+    impossible expectation. On Linux a display means $DISPLAY or a Wayland
+    socket; elsewhere assume it is available (macOS/Windows always have one).
+    """
+    if sys.platform.startswith("linux"):
+        return not (os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY"))
+    return False
+
+
 @pytest.mark.skipif(
     __import__("importlib").util.find_spec("tkinter") is None,
     reason="tkinter not available")
+@pytest.mark.skipif(
+    _no_display(),
+    reason="no display server: a window can never appear here")
 def test_demo_window_appears_and_shuts_down():
     rect_mod = _load_rect()
     proc = subprocess.Popen([sys.executable, str(TARGET)],
