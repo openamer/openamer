@@ -81,37 +81,8 @@ def _is_install_root(pth: Path) -> bool:
         return False
 
 
-def _install_candidates() -> list[Path]:
-    """The places an OpenAmer home can live, most-likely first.
-
-    A user install lives under the platform's local app dir (``~/AppData/Local``
-    on Windows). A git checkout is *also* a valid home: the repository tracks
-    ``skills/`` (698 files) plus ``cron/`` and ``.env``, and main() documents
-    that "every GitHub install must work out of the box (portability rule)".
-    The checkout root must therefore be considered too, or every CI run on
-    Linux resolves HOME to a path under ``$HOME/AppData/Local`` that does not
-    exist, fails ``_is_install_root()``, and reports the phantom-home condition
-    as a false alarm (observed on ubuntu-latest, 2026-09-19).
-    """
-    candidates: list[Path] = []
-    local = Path.home() / "AppData" / "Local"
-    # Deliberately NOT seeding this list with $OPENAMER_HOME: that value may be
-    # an unchecked/relative path, and it is validated separately below. Only
-    # auto-discovered homes belong here.
-    candidates += [local / "openamer-laptop", local / "openamer"]
-    # Repo root == parent of scripts/. Only trusted when it really looks like a
-    # checkout with a skills population, never a bare directory.
-    try:
-        repo_root = Path(__file__).resolve().parents[1]
-        if (repo_root / "skills").is_dir() and (repo_root / "pyproject.toml").is_file():
-            candidates.append(repo_root)
-    except (OSError, IndexError):
-        pass
-    return candidates
-
-
 def _resolve_home() -> Path:
-    """Resolve OPENAMER_HOME robustly across shells and platforms.
+    """Resolve OPENAMER_HOME robustly across shells.
 
     The cron ticker runs this script through git-bash, which exports
     OPENAMER_HOME in MSYS form, e.g. /c/Users/<user>/AppData/Local/openamer-laptop.
@@ -120,24 +91,13 @@ def _resolve_home() -> Path:
     empty history snapshot is recorded -- evolution looks like it ran but did
     nothing. Normalise MSYS drive forms to native paths and only accept a
     candidate that actually exists.
-
-    Selection order:
-
-    1. a valid ``OPENAMER_HOME`` (a real install root, not a phantom tree),
-    2. the user install under the platform local app dir,
-    3. the git checkout itself (portable GitHub install),
-    4. the ``openamer`` app-dir path as the last-resort default, even when it
-       does not exist yet -- main() creates a fresh ``skills/`` there.
     """
-    candidates = _install_candidates()
-    app_dir = [c for c in candidates if "AppData" in c.parts]
-    # A real install carries the markers AND a skills population. Preferring the
-    # marker-bearing candidate in list order keeps the Windows behaviour (the
-    # app dir wins) while making a Linux checkout resolve to the checkout root
-    # instead of a non-existent ~/AppData/Local path.
-    default = next((c for c in candidates
-                    if _is_install_root(c) and (c / "skills").is_dir()),
-                   app_dir[-1] if app_dir else candidates[-1])
+    local = Path.home() / "AppData" / "Local"
+    # Prefer an install that actually carries a skills dir: "openamer-laptop"
+    # is the real install on this host, plain "openamer" the upstream default.
+    candidates = [local / "openamer-laptop", local / "openamer"]
+    default = next((c for c in candidates if (c / "skills").is_dir()),
+                   candidates[-1])
 
     raw = os.environ.get("OPENAMER_HOME")
     if not raw:
@@ -193,6 +153,11 @@ DARWIN_DIR = HOME / "darwin"
 POPULATION_FILE = DARWIN_DIR / "population.json"
 FITNESS_FILE = REPORTS_DIR / "darwin-fitness.json"
 PROBE_FILE = REPORTS_DIR / "darwin-probe.json"
+# The EXECUTABLE outcome signal: does the check a SKILL.md declares actually
+# pass? Written by scripts/darwin_skill_verify.py. This is the only outcome term
+# a prose mutation can RAISE, which is what a climb needs - the probe measures
+# referenced artifacts, and no wording change can add a file that exists.
+VERIFY_FILE = REPORTS_DIR / "darwin-verify.json"
 REPORT_FILE = REPORTS_DIR / "darwin-report.md"
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -248,7 +213,7 @@ def _now() -> str:
 
 def _load_json(path: Path, default):
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return json.loads(path.read_text("utf-8"))
     except Exception:
         return default
 
@@ -256,7 +221,7 @@ def _load_json(path: Path, default):
 def _save_json(path: Path, data):
     _guard_live_artifact(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), "utf-8")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -404,7 +369,7 @@ def _load_cron_jobs() -> dict:
 
 def _save_cron_jobs(jobs: dict) -> None:
     CRON_JOBS_FILE.write_text(
-        json.dumps(jobs, indent=2, ensure_ascii=False), encoding="utf-8")
+        json.dumps(jobs, indent=2, ensure_ascii=False), "utf-8")
 
 
 def _job_skills(job: dict) -> list:
@@ -832,7 +797,7 @@ def autopilot(min_executions: int = 2) -> int:
 
     md = report(fitness, offspring, comps)
     REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    REPORT_FILE.write_text(md, encoding="utf-8")
+    REPORT_FILE.write_text(md, "utf-8")
     print(f"[autopilot] report -> {REPORT_FILE}")
 
     changed = bool(offspring or trials or comps or quarantined or started
@@ -1043,7 +1008,7 @@ def run_skill_check(skill_name: str, timeout: int = 90) -> dict:
                 break
         else:
             return {"ok": False, "reason": "no SKILL.md", "exit_code": None}
-    text = skill_md.read_text(encoding="utf-8", errors="replace")
+    text = skill_md.read_text("utf-8", errors="replace")
 
     blocks = re.findall(r"```(?:bash|sh|shell)\n(.*?)```", text, re.S)
     if not blocks:
@@ -1245,7 +1210,7 @@ def synthesize_species(fitness: dict, max_new: int = 2, apply: bool = False) -> 
         if apply:
             dst = DARWIN_DIR / "species" / bp["name"]
             dst.mkdir(parents=True, exist_ok=True)
-            (dst / "SKILL.md").write_text(text, encoding="utf-8")
+            (dst / "SKILL.md").write_text(text, "utf-8")
             _save_json(DARWIN_DIR / "species" / f"{bp['name']}.json", {
                 "child": bp["name"], "parent": donor, "kind": "speciation",
                 "born": _now(), "status": "candidate", "wins": 0, "losses": 0,
@@ -1514,7 +1479,7 @@ def synthesize_species_v2(fitness: dict, max_new: int = 2,
         if apply:
             dst = DARWIN_DIR / "species" / bp["name"]
             dst.mkdir(parents=True, exist_ok=True)
-            (dst / "SKILL.md").write_text(text, encoding="utf-8")
+            (dst / "SKILL.md").write_text(text, "utf-8")
             _save_json(DARWIN_DIR / "species" / f"{bp['name']}.json", {
                 "child": bp["name"], "parent": donor, "kind": "speciation",
                 "born": _now(), "status": "candidate", "wins": 0, "losses": 0,
@@ -1821,13 +1786,32 @@ def compute_fitness() -> dict:
     # resolve. Written by scripts/darwin_skill_probe.py; a skill that names a
     # file that no longer exists is unfit however often it gets invoked.
     probe_scores = _load_json(PROBE_FILE, {}).get("skills", {})
+    # Second outcome signal, and the one a mutation can actually IMPROVE: does
+    # the check the skill writes down pass when the harness runs it? A variant
+    # that adds a working verification step raises this; one that adds a broken
+    # step lowers it. `passed None` means unmeasurable (nothing declared, or a
+    # refused/long command) and is never punished - the report already scores
+    # that 1.0, so the default here matches by construction.
+    verify_scores = _load_json(VERIFY_FILE, {}).get("skills", {})
 
     scores = {}
-    for d in sorted(SKILLS_DIR.iterdir()):
+    # rglob, not iterdir. Skills live in category subdirectories too
+    # (`creative/`, `imported/`, `bundled/...`), and iterating only the top level
+    # scored 93 of 720 SKILL.md files while the probe and the verify harness -
+    # whose reports feed the two outcome terms below - both judge the whole
+    # population. A sample reported as the whole population is the most
+    # expensive kind of wrong, because it looks like good news: 87% of skills
+    # silently received the default outcome score. Sorted so the shallowest path
+    # wins a name collision, matching the probe.
+    _seen_names: set[str] = set()
+    for skill_md in sorted(SKILLS_DIR.rglob("SKILL.md")):
+        d = skill_md.parent
         if not d.is_dir():
             continue
         name = d.name
-        skill_md = d / "SKILL.md"
+        if name in _seen_names:
+            continue
+        _seen_names.add(name)
         if not skill_md.exists():
             continue
 
@@ -1847,11 +1831,13 @@ def compute_fitness() -> dict:
         # outranked a rarely needed correct one. The probe supplies the outcome
         # half — see scripts/darwin_skill_probe.py.
         probe = probe_scores.get(name, {}).get("score", 1.0)
+        verify = verify_scores.get(name, {}).get("score", 1.0)
 
         fitness = round(
             usage * 1
             + health * 5
             + probe * 5
+            + verify * 3
             + mutation_bonus
             - min(age_days / 30.0, 10)   # 
             + (2 if (d / "scripts").exists() else 0)
@@ -1994,7 +1980,7 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
         src = SKILLS_DIR / parent / "SKILL.md"
         if not src.exists():
             continue
-        text = src.read_text(encoding="utf-8", errors="replace")
+        text = src.read_text("utf-8", errors="replace")
         op = weighted_op_choice(rng)
         mutated = _mutate_skill_md(text, op)
         # A/B against one yardstick: same probe, same roots, parent vs variant.
@@ -2015,7 +2001,7 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
         if apply:
             dst = DARWIN_DIR / "offspring" / child_name
             dst.mkdir(parents=True, exist_ok=True)
-            (dst / "SKILL.md").write_text(mutated, encoding="utf-8")
+            (dst / "SKILL.md").write_text(mutated, "utf-8")
             _save_json(DARWIN_DIR / "offspring" / f"{child_name}.json", {
                 "child": child_name, "parent": parent, "op": op, "born": _now(),
                 # Floor: a variant that measurably damages the skill never
@@ -2044,8 +2030,8 @@ def crossover(name_a: str, name_b: str, apply: bool = False) -> dict | None:
     b = SKILLS_DIR / name_b / "SKILL.md"
     if not a.exists() or not b.exists():
         return None
-    ta = a.read_text(encoding="utf-8", errors="replace")
-    tb = b.read_text(encoding="utf-8", errors="replace")
+    ta = a.read_text("utf-8", errors="replace")
+    tb = b.read_text("utf-8", errors="replace")
 
     # Trigger-Abschnitt von A, Verification-Abschnitt von B, Rest von A
     trig = re.search(r"(##\s*Trigger.*?)(?=\n##|\Z)", ta, re.S)
@@ -2067,7 +2053,7 @@ def crossover(name_a: str, name_b: str, apply: bool = False) -> dict | None:
     if apply:
         dst = DARWIN_DIR / "offspring" / child_name
         dst.mkdir(parents=True, exist_ok=True)
-        (dst / "SKILL.md").write_text(child_text, encoding="utf-8")
+        (dst / "SKILL.md").write_text(child_text, "utf-8")
         _save_json(DARWIN_DIR / "offspring" / f"{child_name}.json",
                    {**result, "status": "candidate", "wins": 0, "losses": 0})
         record_lineage(name_a, child_name, "crossover")
@@ -2110,7 +2096,7 @@ def compete() -> list[dict]:
             if src.exists():
                 target = archive / f"{parent}_{NOW.strftime('%Y%m%d')}"
                 if not target.exists():
-                    target.write_text("", encoding="utf-8") if False else None
+                    target.write_text("") if False else None
                     # Move directory
                     import shutil
                     shutil.move(str(src), str(target))
@@ -2486,7 +2472,7 @@ def main() -> int:
         comps = compete() if args.full else []
         md = report(fitness, offspring, comps)
         REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
-        REPORT_FILE.write_text(md, encoding="utf-8")
+        REPORT_FILE.write_text(md, "utf-8")
         print(f"📄 Report -> {REPORT_FILE}")
 
     return 2 if changed else 0
@@ -2639,8 +2625,8 @@ def predate(prey_list: list[dict], dry_run: bool = True) -> list[dict]:
                 inherited = (f"\n## Inherited Trigger (from `{prey}`)\n"
                              f"Also handles topics previously covered by "
                              f"the absorbed skill `{prey}`.\n")
-                pred_md.write_text(pred_md.read_text(encoding="utf-8", errors="replace")
-                                   + inherited, encoding="utf-8")
+                pred_md.write_text(pred_md.read_text("utf-8", errors="replace")
+                                   + inherited, "utf-8")
             # genome: predator gains a win
             population = _load_json(POPULATION_FILE, {})
             g = population.setdefault(predator, {"wins": 0, "losses": 0})

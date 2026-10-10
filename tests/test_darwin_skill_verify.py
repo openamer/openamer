@@ -257,6 +257,34 @@ def test_a_failed_run_is_the_only_zero(verify, tmp_path, monkeypatch):
     assert verify._score(True) == 1.0
 
 
+def test_a_timed_out_check_is_unmeasurable_not_failed(verify, tmp_path, monkeypatch):
+    """A timeout is the clock refusing the check, not the skill failing it.
+
+    The contract above scores `passed None` as 1.0 for exactly this case, but the
+    timeout path returned 0.0 until 2026-10-10 - punishing
+    greenfield-agent-architecture for declaring the whole test suite, a check
+    that legitimately outruns the 120 s cap. Scoring it as damage would make the
+    new fitness term penalise the most thorough skills, which is the opposite of
+    a climb.
+    """
+    (tmp_path / "tests").mkdir()
+    (tmp_path / "tests" / "test_x.py").write_text("", encoding="utf-8")
+
+    def boom(argv, **kwargs):
+        raise verify.subprocess.TimeoutExpired(cmd=argv, timeout=1)
+
+    monkeypatch.setattr(verify.subprocess, "run", boom)
+
+    result = verify.verify_text(
+        "# Skill\n\n## Verify\n\n`pytest tests/test_x.py`\n", repo=tmp_path
+    )
+
+    assert result["executed"] is True
+    assert result["passed"] is None, "a timeout measured nothing"
+    assert result["score"] == 1.0
+    assert result["reason"] == "timeout"
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Extraction and heading recognition (the boundary the rest rests on)
 # ─────────────────────────────────────────────────────────────────────────────

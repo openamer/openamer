@@ -404,14 +404,23 @@ def verify_text(text: str, repo: Path = REPO) -> dict:
             continue
         returncode, error = _run(argv, repo)
         if error is not None:
+            # A TIMEOUT is unmeasurable, not failed: the clock refused the
+            # check, the skill did not. The module contract says
+            # `passed is None -> 1.0` for exactly this, and scoring it 0.0
+            # punished a skill whose declared check merely takes longer than
+            # the 120 s cap (this was the documented OPEN item; e.g.
+            # greenfield-agent-architecture declares the whole suite). A
+            # launch-error stays False: after allowlisting, the named program
+            # was known to exist, so a failure to spawn it is real damage.
+            unmeasured = error == "timeout"
             return {
                 "declared": True,
                 "executed": True,
                 "allowed": True,
                 "command": command,
                 "returncode": returncode,
-                "passed": False,
-                "score": 0.0,
+                "passed": None if unmeasured else False,
+                "score": 1.0 if unmeasured else 0.0,
                 "reason": error,
             }
         passed = returncode == 0
