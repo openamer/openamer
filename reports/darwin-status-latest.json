@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-07T03:00:17+00:00",
-  "population": 714,
+  "updated": "2026-10-10T03:00:50+00:00",
+  "population": 720,
   "avg_score": 39.9,
   "fittest": [
     {
@@ -45,7 +45,7 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-10-07T04:45:08",
+    "timestamp": "2026-10-10T04:45:46",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -142,27 +142,27 @@
     },
     {
       "source": "News",
-      "title": "Open and Emergent Problems in Agentic Privacy and Security: A Contextual Angle - Google Research",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQU0pHcTBKNmN4VE1LQThXcmpTMjRTa1NEMlpWYkZ1M2FqUXZpRGU4WFZ1cVhIZTFFTUhvLWVsODB4d1Y1YTNIOE0yVTVwbU9ORTVORjgxMExVeGlmUzlSaGJqUHcxSTdJbk5aM0lrcFAtMXoxQ3lid2E3NWtwdVN3Y1ktUnZ5cWYwckpVVkROMkMwdEhhZ0M5VGh0b1diUzdJNzZyWVVyc3ZLSlE?oc=5"
+      "title": "The Agentic 20: AI Agents Doing Real Stuff - Forbes",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE03VVMtdVpFXzZKMlRlRl84UF9DM194VjdnMWk5WDFONEs4ZGRoY2loZjZEUjZpRl9zRVIyMFVPUk9vTGlKUkUyYVdJVmhGV1lmSXdlcVFocUZodjRQUGFPZEQ0R041TmlkekNjWEFOcVhzQQ?oc=5"
     },
     {
       "source": "News",
-      "title": "Agentic AI moves into enterprise execution - SiliconANGLE",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOWk1iSTEzcFpBR3N4amNpZ0lLWGFsU2x1R3ltWDNYYnRlWnN0d3p4YXJLbFhlc3M5MDZPdUZpSUJ1MWZDZGFKYkJ4eHRTWjc1SzAtamNEalQyRXdJd2cwaG5yU2xCV1hkNGZDbk52U2I1dG1DaDdGUGdiLVh1NEtreE8tSEw0WjY0?oc=5"
+      "title": "7 tried-and-true controls for agentic AI - IT Brew",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE4yZUZxNzNUeGVZaGYzLW9VYjdzeEltbXRFemw2R3NfUWtHN201OFdjbFFsS2tzM2dpWlFPa2ZkSldkRHBYM3NJNGxwZC1LVGtnb2FnRGU4a1MwZnUwWG4xdlRLU3NFQ21ueTFqSUpfTkl1TXZEclkxUFNDZw?oc=5"
     },
     {
       "source": "News",
-      "title": "Logistics Reply Introduces the LEA AI Agent Authority Model - Bringing Governed Agentic AI Into Warehouse Execution With LEA Dynamic Intelligence - Morningstar",
-      "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxQZGQ5T2FLd29lZF96bnRjaC1VSmZLcUZSQU1iQWZhVHdfTm41R3Y4S2NPVGFqOHZrZWROSHdYcHZWcnhsaVgwUVJVb0haMm1qa3dDWmtuUkZRVUl3NDBNLXB2bWw1dlF3ZU1FcllXbzRZamRPQTVyWVdvQ19ObHQzS3JmSXJ3SUY2bWJyYUN1QnJ1VlJoc0V0QXNDb250aHJ3cUFLcUdKNWEtRU55c19hRm9OTjIxX1E2VHdMbG0tM0dDVlNFTVJYOG9lMzVRc1hUM0x3Q0xCUW9rWTBSRDc5MlJvTWpycFkydXJXX3hnOW8wUmtQckl5QlpSMmpfTzNhNllSTThFTTByQTNCRmllOFh4ZmQxMC1acWJjQTZSN25HbDhnd05WODZ4LWJuQQ?oc=5"
+      "title": "Agentic AI just got very real - Fast Company",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9ad2VIZFdDSE03cmV3Q3FkNFo5d3pMWmtmZ1pZcVphY01JSjZLallsV3gyR0doblBqVnA4Qm1YbnpESG1ST3FscDd1Z2g3ekd6bElpWjczY0FXMkttaUptRHR3Q3dMR2pTbEVIUWt3?oc=5"
     },
     {
       "source": "News",
-      "title": "OpenAI leads AI agent security at 40% - VentureBeat",
-      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOdThMekdEOFNRd0tvRXJkeTA0MXE3dUY5bHk1NVJZUklXX1c4bW9EdUF5VXI2eEtaMEFocTBPUHhqOUYtclJXV1BwQ2NBMHNiU0UweXpDUGI5ZjNDWFRrWDJIdHFPM1pVb1lRZEluQzVCdWJYZjZhejFTQi1ONjNuLVBBTWNDUDQ1S1F1RW1CNVJsZkVMc0FuY2c0SmYzOVl3ZDFjZDhtZzVIeEJEaU9panJJRTN6TThTVzVFSE5WNmNmbGtvWGpjeEVsN3k0MmZncWkyUWxEamRlUzU1UTAwQjNTTVNhM0U5VFhDc2JzY3pGMW9EZkNETnFwWF9BMzE4b210SUswVG1uMDVQ?oc=5"
+      "title": "Google brings agentic AI to Gemini, starting with businesses - TechCrunch",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNVmlZXzdMc1F5aTdGUFlIaUVtZmlZSWNyejQ4ejY3R1h2QUI0UU56QVpXUXB6a25ja3I5OHlDSm5TamVTbk5XZHJwdjFoSHpKa3VheURjQWgtQUtEalJCek90M0JjSjcycWJVSXUyc2wwS2ViMXE1OVN5bFJFUmhiY253OU5DNHMxbmJRZW5IWmtGWHVRdXZ1NDFR?oc=5"
     }
   ],
   "population_engine": 93,
-  "species": 99,
+  "species": 80,
   "trials": 0,
   "harvested": 193
 }
