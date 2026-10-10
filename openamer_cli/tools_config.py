@@ -150,7 +150,11 @@ def gui_toolset_label(label: str) -> str:
 # `openamer tools` → X (Twitter) Search setup walks users through credential
 # setup. The tool's check_fn means the schema still won't appear to the
 # model if the credential later goes missing or expires.
-_DEFAULT_OFF_TOOLSETS = {"homeassistant", "spotify", "discord", "discord_admin", "video", "video_gen", "x_search"}
+_DEFAULT_OFF_TOOLSETS = {"homeassistant", "spotify", "discord", "discord_admin", "video", "video_gen", "x_search",
+                        # Local-only toolset (no upstream equivalent). Opt-in like the
+                        # others here: an explicit platform_toolsets list must be exact,
+                        # so ASI is enabled by listing it, not by leaking into every set.
+                        "asi"}
 
 
 def _xai_credentials_present() -> bool:

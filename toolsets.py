@@ -48,6 +48,9 @@ _OPENAMER_CORE_TOOLS = [
     "browser_type", "browser_scroll", "browser_back",
     "browser_press", "browser_get_images",
     "browser_vision", "browser_console", "browser_cdp", "browser_dialog",
+    # The vault tools ride with the browser (upstream: "ride with the browser").
+    # Dropped in the port, which broke the subset test that expands `browser`.
+    "browser_vault",
     # Text-to-speech
     "text_to_speech",
     # Planning & memory
@@ -62,7 +65,7 @@ _OPENAMER_CORE_TOOLS = [
     # Clarifying questions
     "clarify",
     # Code execution + delegation
-    "execute_code", "delegate_task",
+    "execute_code", "code_kernel", "delegate_task",
     # Cronjob management
     "cronjob",
     # Home Assistant smart home control (gated on HASS_TOKEN via check_fn)
@@ -361,7 +364,7 @@ TOOLSETS = {
             "browser_vision", "browser_console", "browser_cdp", "browser_dialog",
             "todo", "memory",
             "session_search", "clarify",
-            "execute_code", "delegate_task",
+            "execute_code", "code_kernel", "delegate_task",
         ],
         "includes": [],
         # Posture toolset: selected per-session by agent/coding_context.py,
@@ -393,7 +396,7 @@ TOOLSETS = {
             "browser_vision", "browser_console", "browser_cdp", "browser_dialog",
             "todo", "memory",
             "session_search",
-            "execute_code", "delegate_task",
+            "execute_code", "code_kernel", "delegate_task",
         ],
         "includes": []
     },
@@ -421,7 +424,7 @@ TOOLSETS = {
             # Session history search
             "session_search",
             # Code execution + delegation
-            "execute_code", "delegate_task",
+            "execute_code", "code_kernel", "delegate_task",
             # Cronjob management
             "cronjob",
             # Home Assistant smart home control (gated on HASS_TOKEN via check_fn)
