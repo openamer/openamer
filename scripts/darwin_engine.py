@@ -81,6 +81,32 @@ def _is_install_root(pth: Path) -> bool:
         return False
 
 
+def _default_home() -> Path:
+    """The install root to use when OPENAMER_HOME is unset.
+
+    The Windows layout (``~/AppData/Local/openamer-laptop``) is the real
+    install on this host, so it stays first. On a non-Windows host ``~`` has
+    no ``AppData`` at all, so a hardcoded Windows fallback resolved to
+    ``$HOME/AppData/Local/openamer`` -- a path nobody created. The module then
+    accused a correctly-configured checkout of being a scratch dir (Linux CI,
+    2026-09-19). Fall back to the portable ``~/.openamer`` and, last, to the
+    checkout itself, which IS a valid home (it ships ``skills/`` and ``cron/``).
+    """
+    home = Path.home()
+    local = home / "AppData" / "Local"
+    # "openamer-laptop" is the real install on this host, plain "openamer" the
+    # upstream default; then the portable POSIX location and the checkout.
+    candidates = [local / "openamer-laptop", local / "openamer",
+                  home / ".openamer", Path(__file__).resolve().parents[1]]
+    for c in candidates:
+        if _is_install_root(c):
+            return c
+    for c in candidates:
+        if (c / "skills").is_dir():
+            return c
+    return candidates[-1]
+
+
 def _resolve_home() -> Path:
     """Resolve OPENAMER_HOME robustly across shells.
 
@@ -92,12 +118,7 @@ def _resolve_home() -> Path:
     nothing. Normalise MSYS drive forms to native paths and only accept a
     candidate that actually exists.
     """
-    local = Path.home() / "AppData" / "Local"
-    # Prefer an install that actually carries a skills dir: "openamer-laptop"
-    # is the real install on this host, plain "openamer" the upstream default.
-    candidates = [local / "openamer-laptop", local / "openamer"]
-    default = next((c for c in candidates if (c / "skills").is_dir()),
-                   candidates[-1])
+    default = _default_home()
 
     raw = os.environ.get("OPENAMER_HOME")
     if not raw:
