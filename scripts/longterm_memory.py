@@ -127,36 +127,41 @@ def index_brain(max_episodes=3000):
     have = {e.get("text", "")[:200] for e in eps}
     added = 0
     skipped = 0
-    for line in open(BRAIN, encoding="utf-8"):
-        if added >= max_episodes:
-            break
-        try:
-            d = json.loads(line)
-        except json.JSONDecodeError:
-            continue
-        for m in d.get("messages", []):
-            if m.get("role") not in ("user", "assistant"):
-                continue
-            t = (m.get("content") or "").strip()
-            if len(t) < 60 or t[:200] in have or t.startswith("[IMPORTANT:"):
-                continue
-            ep = {"ts": datetime.datetime.now().isoformat(),
-                  "kind": f"brain_{m['role']}", "text": t[:6000], "meta": {}}
+    with open(BRAIN, encoding="utf-8") as fh:
+        for line in fh:
+            if added >= max_episodes:
+                break
             try:
-                ep["embedding"] = embed(t)
-            except Exception as exc:
-                # A blind `continue` here silently skipped rows, so a broken
-                # embedder would index nothing and the store would look healthy
-                # while staying frozen. Record the failure instead.
-                ep["embedding"] = None
-                ep["embed_error"] = f"{type(exc).__name__}: {exc}"
-                skipped += 1
-            eps.append(ep)
-            have.add(t[:200])
-            added += 1
-            if added % 50 == 0:
-                _save(eps)
-                print(f"  ... {len(eps)} episodes indexed")
+                d = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            for m in d.get("messages", []):
+                if m.get("role") not in ("user", "assistant"):
+                    continue
+                t = (m.get("content") or "").strip()
+                if len(t) < 60 or t[:200] in have or t.startswith("[IMPORTANT:"):
+                    continue
+                ep = {"ts": datetime.datetime.now().isoformat(),
+                      "kind": f"brain_{m['role']}", "text": t[:6000], "meta": {}}
+                try:
+                    ep["embedding"] = embed(t)
+                except (OSError, ValueError, KeyError) as exc:
+                    # A dead embedder must not index nothing in silence: that is
+                    # exactly how this store stayed frozen for 17 days with every
+                    # status green. Catch only what an embed can raise on its way
+                    # out - urlopen/HTTP (OSError), a bad JSON body (ValueError),
+                    # a body without "embedding" (KeyError) - record it on the row
+                    # and count it. A programming error still surfaces instead of
+                    # being swallowed into "0 indexed, all good".
+                    ep["embedding"] = None
+                    ep["embed_error"] = f"{type(exc).__name__}: {exc}"
+                    skipped += 1
+                eps.append(ep)
+                have.add(t[:200])
+                added += 1
+                if added % 50 == 0:
+                    _save(eps)
+                    print(f"  ... {len(eps)} episodes indexed")
     _save(eps)
     return len(eps), skipped
 
