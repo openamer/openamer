@@ -27,7 +27,7 @@ jobs:
         id: probe
         run: |
           set -e
-          URL="https://github.com/openamer/openamer/docs/api/skills-index.json"
+          URL="https://openamer.github.io/openamer/docs/api/skills-index.json"
           echo "Probing $URL"
           # -L follows redirects; -f fails on HTTP errors; -s suppresses progress
           if ! curl -fsSL --retry 3 --retry-delay 10 -o /tmp/skills-index.json "$URL"; then
@@ -108,6 +108,11 @@ jobs:
           if [ -n "${{ steps.probe.outputs.summary }}" ]; then
             echo "Summary:      ${{ steps.probe.outputs.summary }}"
           fi
+
+      # A local action cannot be used without checking the repository out: its
+      # directory does not exist in the runner. This step was missing, so the
+      # runner reported "Can't find 'action.yml' ... under .github/actions".
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Get GitHub App token
         if: steps.probe.outputs.status != 'ok'
