@@ -70,6 +70,11 @@ _SKIP_DIRS = {
 _SEARCH_ROOTS = (
     "openamer-agent/scripts",
     "openamer-agent/tools",
+    # The RUNNING install's CLI modules live here, not only in the repo checkout.
+    # Without it `plugin_system.py` (which the plugin-system skill names, and
+    # which exists at openamer-agent/openamer_cli/plugin_system.py) resolved
+    # nowhere and scored the skill 0.0 - the "resolution too narrow" class again.
+    "openamer-agent/openamer_cli",
     "openamer-browser",
     "scripts",
     "tools",
@@ -155,8 +160,13 @@ def resolve(ref: str, skill_dir: Path | None = None) -> bool:
 # literal elision (`dir/file.py`, `/c/Users/.../fixed.py`), or a scratch root -
 # no skill ships an artifact into `/tmp/` or `Temp/`, so a ref there is a
 # throwaway by construction.
+#
+# `(?:^|/)[a-z]\.` covers the single-letter "generic bare name" the skills
+# themselves describe that way (`x.py`, `a.py`, `f.py`). No skill ships a
+# one-letter script, so a basename of one letter is an example by convention.
 _PLACEHOLDER_RE = re.compile(
     r"(?:^|/)(?:script|test_x|the_test|example|sample|foo|bar|your_script|my_script)(?:_\w+)?\."
+    r"|(?:^|/)[a-z]\."
     r"|dir/file"
     r"|/(?:tmp|Temp)/"
     r"|\.\.\."
