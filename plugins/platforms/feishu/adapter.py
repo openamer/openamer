@@ -2806,6 +2806,17 @@ class FeishuAdapter(BasePlatformAdapter):
         return True
 
     # --- Text batching ---
+    def _text_batch_key(self, event: MessageEvent) -> str:
+        """Return the session-scoped key used for Feishu text aggregation."""
+        from gateway.session import build_session_key
+
+        return build_session_key(
+            event.source,
+            group_sessions_per_user=self.config.extra.get("group_sessions_per_user", True),
+            thread_sessions_per_user=self.config.extra.get("thread_sessions_per_user", False),
+            profile=event.source.profile,
+        )
+
     @staticmethod
     def _text_batch_is_compatible(existing: MessageEvent, incoming: MessageEvent) -> bool:
         """Only merge text events when reply/thread context is identical."""
@@ -2855,6 +2866,33 @@ class FeishuAdapter(BasePlatformAdapter):
     def _schedule_text_batch_flush(self, key: str) -> None:
         """Reset the debounce timer for a pending Feishu text batch."""
         self._reschedule_batch_task(self._pending_text_batch_tasks, key, self._flush_text_batch)
+
+    async def _flush_text_batch(self, key: str) -> None:
+        """Flush a pending text batch after the quiet period.
+
+        Adaptive delay: when the latest chunk sits at/over the client split
+        threshold a continuation is almost certain, so wait the longer split
+        delay instead of the base one.
+        """
+        pending = self._pending_text_batches.get(key)
+        last_len = getattr(pending, "_last_chunk_len", 0) if pending else 0
+        delay = (
+            self._text_batch_split_delay_seconds
+            if last_len >= self._SPLIT_THRESHOLD
+            else self._text_batch_delay_seconds
+        )
+        await self._delayed_flush(
+            self._pending_text_batch_tasks, key, delay, self._flush_text_batch_now,
+        )
+
+    async def _flush_text_batch_now(self, key: str) -> None:
+        """Dispatch the current text batch immediately."""
+        event = self._pending_text_batches.pop(key, None)
+        self._pending_text_batch_counts.pop(key, None)
+        if not event:
+            return
+        logger.info("[Feishu] Flushing text batch %s (%d chars)", key, len(event.text or ""))
+        await self._handle_message_with_guards(event)
 
     @staticmethod
     def _reschedule_batch_task(task_map: Dict[str, asyncio.Task], key: str, flush_fn: Any) -> None:
@@ -3873,6 +3911,14 @@ class FeishuAdapter(BasePlatformAdapter):
     @staticmethod
     def _build_file_upload_request(request_body: Any) -> Any:
         return _sdk_build(CreateFileRequest, request_body=request_body)
+
+    def _build_post_payload(self, content: str) -> str:
+        """Public wrapper for the markdown "post" payload builder.
+
+        Kept as a method (not just the module-level helper) because the outbound
+        path and tests address it on the adapter.
+        """
+        return _build_markdown_post_payload(content)
 
     def _build_media_post_payload(self, *, caption: str, media_tag: Dict[str, str]) -> str:
         payload = json.loads(_build_markdown_post_payload(caption))

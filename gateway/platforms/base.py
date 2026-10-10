@@ -3132,6 +3132,19 @@ class BasePlatformAdapter(ABC):
         # in tests never run ``BasePlatformAdapter.__init__``.
         self._reaction_handler = handler  # type: ignore[attr-defined]
 
+    def _wire_plugin_handlers(self, client: Any = None) -> None:
+        """Hook for adapters whose platform SDK needs native callbacks bound.
+
+        Some adapters (feishu, homeassistant) register handlers directly on the
+        vendor SDK client — e.g. ``lark.Client`` event dispatchers. Each such
+        adapter calls this once from ``connect()`` after the client is built, so
+        the wiring lives with the adapter instead of leaking into core.
+
+        The base implementation is a no-op: adapters whose platform is driven by
+        plain I/O have nothing to bind, and adapters that do override it.
+        """
+        return None
+
     def set_authorization_check(
         self,
         callback: Optional[Callable[[str, Optional[str], Optional[str]], bool]],
