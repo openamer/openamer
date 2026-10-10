@@ -221,7 +221,7 @@ _REGISTRY: List[RemovalStep] = [
     RemovalStep(
         provider="openamer", source_id="device_code",
         remove_fn=_remove_auth_store_oauth,
-        description="auth.json providers.nous",
+        description="auth.json providers.openamer",
     ),
     RemovalStep(
         provider="openai-codex", source_id="device_code",

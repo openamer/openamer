@@ -395,14 +395,18 @@ def _normalize_error_context(error_context: Optional[Dict[str, Any]]) -> Dict[st
 def _exhausted_until(entry: PooledCredential, *, sole_credential: bool = False) -> Optional[float]:
     if entry.last_status != STATUS_EXHAUSTED:
         return None
-    reset_at = _parse_absolute_timestamp(entry.last_error_reset_at)
+    # The optional reset/failure fields are read defensively: duck-typed status
+    # rows (the CLI's `auth list` rows) and pre-`failure_reason` entry shapes do
+    # not carry them, and a bare attribute read raised AttributeError instead of
+    # formatting the cooldown.
+    reset_at = _parse_absolute_timestamp(getattr(entry, "last_error_reset_at", None))
     if reset_at is not None:
         return reset_at
-    if entry.last_status_at:
+    if getattr(entry, "last_status_at", None):
         return entry.last_status_at + _exhausted_ttl(
-            entry.last_error_code,
+            getattr(entry, "last_error_code", None),
             sole_credential=sole_credential,
-            failure_reason=entry.failure_reason,
+            failure_reason=getattr(entry, "failure_reason", None),
         )
     return None
 
@@ -1792,6 +1796,23 @@ class CredentialPool(CredentialPoolAdminMixin):
             return self._sync_anthropic_entry_from_credentials_file(entry)
         if self.provider == "openamer":
             return self._sync_nous_entry_from_auth_store(entry)
+        if self.provider == "xai-oauth":
+            return self._sync_xai_oauth_entry_from_auth_store(entry)
+        return self._sync_entry_from_auth_store(entry)
+
+    def _sync_xai_oauth_entry_from_auth_store(self, entry: PooledCredential) -> PooledCredential:
+        """Sync a singleton-seeded xAI OAuth entry from ``auth.json providers.xai-oauth``.
+
+        Provider-named entry point over the shared ``_sync_entry_from_auth_store``
+        helper (which already knows the xAI ``tokens`` layout); kept as a named
+        method because the resync dispatch and callers select it per provider.
+        Only ``device_code`` (singleton-seeded) rows sync — a
+        ``manual:xai_pkce`` row added via ``openamer auth add xai-oauth`` owns its
+        own refresh-token lifecycle and must never be overwritten from the
+        singleton.
+        """
+        if self.provider != "xai-oauth":
+            return entry
         return self._sync_entry_from_auth_store(entry)
 
     def _available_entries(

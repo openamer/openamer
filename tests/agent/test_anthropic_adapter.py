@@ -406,7 +406,7 @@ class TestResolveAnthropicToken:
             access_token="pool-oauth-token",
         )
         pool = SimpleNamespace(
-            _available_entries=lambda **_kwargs: [pool_entry],
+            _available_entries=lambda **_kwargs: ([pool_entry], []),
         )
         monkeypatch.setattr("agent.credential_pool.load_pool", lambda provider: pool)
 
@@ -427,7 +427,7 @@ class TestResolveAnthropicToken:
             access_token="pool-oauth-token",
         )
         pool = SimpleNamespace(
-            _available_entries=lambda **_kwargs: [pool_entry],
+            _available_entries=lambda **_kwargs: ([pool_entry], []),
         )
         monkeypatch.setattr("agent.credential_pool.load_pool", lambda provider: pool)
 
@@ -446,7 +446,7 @@ class TestResolveAnthropicToken:
 
         broken_entry = SimpleNamespace(auth_type="oauth", access_token=None)
         pool = SimpleNamespace(
-            _available_entries=lambda **_kwargs: [broken_entry],
+            _available_entries=lambda **_kwargs: ([broken_entry], []),
         )
         monkeypatch.setattr("agent.credential_pool.load_pool", lambda provider: pool)
 
@@ -466,7 +466,7 @@ class TestResolveAnthropicToken:
 
         api_key_entry = SimpleNamespace(auth_type="api_key", access_token="sk-pool-apikey")
         pool = SimpleNamespace(
-            _available_entries=lambda **_kwargs: [api_key_entry],
+            _available_entries=lambda **_kwargs: ([api_key_entry], []),
         )
         monkeypatch.setattr("agent.credential_pool.load_pool", lambda provider: pool)
 
@@ -506,9 +506,12 @@ class TestResolveAnthropicToken:
         captured = {}
         pool_entry = SimpleNamespace(auth_type="oauth", access_token="pool-oauth-token")
 
+        # The real API returns (available, pending_refresh); the resolver
+        # unpacks it. A flat list here raises ValueError inside the resolver's
+        # except and silently yields None.
         def _available_entries(**kwargs):
             captured.update(kwargs)
-            return [pool_entry]
+            return ([pool_entry], [])
 
         pool = SimpleNamespace(_available_entries=_available_entries)
         monkeypatch.setattr("agent.credential_pool.load_pool", lambda provider: pool)
