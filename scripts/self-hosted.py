@@ -232,13 +232,17 @@ def check_local_health(config: dict) -> dict:
     local_model = local_config.get("model", DEFAULT_LOCAL_MODEL)
     result["model"] = local_model
 
-    # Prüf via Ollama Generate (leichter Prompt)
+    # Prüf via Ollama Generate (leichter Prompt).
+    # keep_alive=0: der 5-Minuten-Probe darf das Modell NICHT im RAM festhalten.
+    # Ohne das blieb ein 3-6 GB Modell dauerhaft geladen (RAM ~90%) und die
+    # Cloud-Calls anderer Cron-Jobs liefen in den 600s-Idle-Timeout.
     t0 = time.monotonic()
     try:
         payload = json.dumps({
             "model": local_model,
             "prompt": "Hello",
             "stream": False,
+            "keep_alive": 0,
             "options": {"num_predict": 10, "num_ctx": 2048},
         }).encode()
         req = urllib.request.Request(
@@ -306,8 +310,12 @@ def _gen_default_config() -> dict:
         status, data, _ = _http_json(OLLAMA_TAGS_URL, timeout=3)
         if status == 200 and data and "models" in data:
             names = [m.get("name", "") for m in data["models"]]
-            # Bevorzuge coder-Modelle, dann aktuelle qwen/gemma, dann phi
-            for pref in ["deepseek-coder", "qwen3.5:latest", "qwen3.5:4b", "phi4-mini", "qwen3.5:2b"]:
+            # Bevorzuge coder-Modelle, dann aktuelle qwen/gemma, dann phi.
+            # WICHTIG: "qwen3.5:latest" (9.7B) NICHT in dieser Liste — es belegt
+            # 6 GB RAM. Der 5-Minuten-Health-Check lädt das Fallback-Modell bei
+            # jedem Lauf und drückte den RAM auf ~90%, wodurch die Cloud-Calls
+            # anderer Cron-Jobs in den 600s-Idle-Timeout liefen (11 Crons rot).
+            for pref in ["deepseek-coder", "qwen3.5:4b-q4_K_M", "qwen3.5:4b", "phi4-mini", "qwen3.5:2b"]:
                 if any(pref in n for n in names):
                     best_model = next(n for n in names if pref in n)
                     break
@@ -494,8 +502,7 @@ def run_setup(models: list[str] | None = None) -> dict:
 
     # 1. Prüf ob Ollama schon installiert ist
     try:
-        subprocess.run(["ollama", "--version"], capture_output=True,
-                       text=True, encoding="utf-8", errors="replace", timeout=10)
+        subprocess.run(["ollama", "--version"], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10)
         result["ollama_installed"] = True
         result["ollama_version"] = "present"
     except (FileNotFoundError, subprocess.TimeoutExpired):
@@ -509,8 +516,7 @@ def run_setup(models: list[str] | None = None) -> dict:
             # Versuch winget
             wp = subprocess.run(
                 ["winget", "install", "Ollama.Ollama", "--accept-source-agreements", "--accept-package-agreements"],
-                capture_output=True, text=True,
-                encoding="utf-8", errors="replace", timeout=120,
+                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120,
             )
             if wp.returncode == 0:
                 result["ollama_installed"] = True
@@ -557,8 +563,7 @@ def run_setup(models: list[str] | None = None) -> dict:
             try:
                 sp = subprocess.run(
                     ["ollama", "pull", model],
-                    capture_output=True, text=True,
-                    encoding="utf-8", errors="replace", timeout=300,
+                    capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300,
                 )
                 if sp.returncode == 0:
                     result["models_pulled"].append(model)
@@ -814,7 +819,23 @@ def cmd_setup() -> int:
 #  MAIN
 # ═══════════════════════════════════════════════════════════════════════════════
 
+def _ensure_utf8_stdout() -> None:
+    """Make `print` survive the cron pipe.
+
+    This script prints box-drawing characters. Cron captures stdout through a
+    pipe, which on this host defaults to cp1252, and cp1252 cannot encode them -
+    so `print` raised UnicodeEncodeError before the first line and the entire run
+    died. Measured 2026-10-10: `rc=1` with an EMPTY stdout, which is why it looked
+    like a silent failure rather than a crash. Reconfigure stdout once instead.
+    """
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, OSError):
+        pass
+
+
 def main() -> int:
+    _ensure_utf8_stdout()
     if len(sys.argv) < 2:
         print(__doc__)
         return 0

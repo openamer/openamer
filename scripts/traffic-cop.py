@@ -30,7 +30,7 @@ if _raw_openamer_home:
     _norm = re.sub(r"^/([a-zA-Z])/", lambda m: f"{m.group(1).upper()}:/", _raw_openamer_home)
     OPENAMER_HOME = Path(_norm).resolve()
 else:
-    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer"
+    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer-laptop"
 TRAFFIC_COP_DIR = HOME / ".traffic-cop"
 STATE_FILE = TRAFFIC_COP_DIR / "state.json"
 SCRIPTS_DIR = HOME / "scripts"
@@ -40,7 +40,7 @@ SCRIPTS_DIR = HOME / "scripts"
 # auth_header_format: "Bearer {key}" oder "Basic {key}" oder None (wenn key=token direkt)
 PROVIDER_MAP = [
     # OpenAI-kompatibel (Bearer Token)
-    ("OPENROUTER_API_KEY",  "OpenRouter",  "https://api.openrouter.ai/v1/models",        "Bearer {key}",     "sk-or-"),
+    ("OPENROUTER_API_KEY",  "OpenRouter",  "https://openrouter.ai/api/v1/models",        "Bearer {key}",     "sk-or-"),
     ("OLLAMA_API_KEY",      "Ollama",      "https://ollama.com/v1/models",               "Bearer {key}",     None),
     ("OPENAI_API_KEY",      "OpenAI",      "https://api.openai.com/v1/models",           "Bearer {key}",     "sk-"),
     ("ANTHROPIC_API_KEY",   "Anthropic",   "https://api.anthropic.com/v1/messages",      "Bearer {key}",     "sk-ant-"),
@@ -462,7 +462,23 @@ def cmd_stats(env_path: Path):
     return 0
 
 
+def _ensure_utf8_stdout() -> None:
+    """Make `print` survive the cron pipe.
+
+    This script prints box-drawing characters. Cron captures stdout through a
+    pipe, which on this host defaults to cp1252, and cp1252 cannot encode them -
+    so `print` raised UnicodeEncodeError before the first line and the entire run
+    died. Measured 2026-10-10: `rc=1` with an EMPTY stdout, which is why it looked
+    like a silent failure rather than a crash. Reconfigure stdout once instead.
+    """
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, OSError):
+        pass
+
+
 def main():
+    _ensure_utf8_stdout()
     if len(sys.argv) < 2:
         print("Usage: traffic-cop.py --check | --status | --rotate <provider> | --stats")
         print("")
