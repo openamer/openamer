@@ -50,6 +50,13 @@ else:
 SNAPSHOT_DIR = HOME / ".system-snapshot" / "snapshots"
 REPO_DIR = Path(os.environ.get("OPENAMER_REPO", str(Path.home() / "openamer-repo")))
 
+# Retention and freshness. Nothing pruned this directory, and nothing regenerated
+# it either - so the HTTP server kept answering `latest` with a 20-day-old file
+# while reporting 200 OK (measured 2026-10-10). Both halves are explicit now: the
+# directory stays bounded, and an old snapshot says so in its own response.
+SNAPSHOT_KEEP = 48          # 48 x ~690 kB = ~33 MB ceiling
+STALE_AFTER_HOURS = 8       # the refresh cron runs every 6 h
+
 EXIT_OK = 0
 EXIT_ERR = 1
 
@@ -526,13 +533,16 @@ def collect_sessions_info():
 # ── Snapshot I/O ───────────────────────────────────────────────────────────
 
 def save_snapshot(data):
-    """Save snapshot to disk and return the filename."""
+    """Save snapshot to disk, prune the directory, and return the filename.
+
+    Filenames are `%Y-%m-%d_%H%M.json`, so a lexicographic sort is a chronological
+    one - which is also what `load_snapshot("latest")` relies on.
+    """
     ensure_snapshot_dir()
-    now = datetime.datetime.now()
-    filename = now.strftime("%Y-%m-%d_%H%M.json")
-    path = SNAPSHOT_DIR / filename
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, default=str)
+    path = SNAPSHOT_DIR / datetime.datetime.now().strftime("%Y-%m-%d_%H%M.json")
+    path.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
+    for old in sorted(SNAPSHOT_DIR.glob("*.json"), reverse=True)[SNAPSHOT_KEEP:]:
+        old.unlink(missing_ok=True)
     return path
 
 
@@ -627,10 +637,27 @@ def run_http_server(port=8898):
         def do_GET(self):
             try:
                 data, path = load_snapshot("latest")
-                body = json.dumps(data, indent=2, default=str).encode("utf-8")
+                # A 200 OK for a snapshot nobody regenerates is exactly how this
+                # endpoint served 20-day-old data unnoticed. The age belongs in the
+                # response, not only in the payload's own timestamp.
+                age = max(0.0, time.time() - path.stat().st_mtime)
+                stale = age > STALE_AFTER_HOURS * 3600
+                payload = {
+                    **data,
+                    "staleness": {
+                        "file": path.name,
+                        "age_seconds": round(age),
+                        "age_hours": round(age / 3600, 1),
+                        "stale": stale,
+                        "stale_after_hours": STALE_AFTER_HOURS,
+                    },
+                }
+                body = json.dumps(payload, indent=2, default=str).encode("utf-8")
                 self.send_response(200)
                 self.send_header("Content-Type", "application/json")
                 self.send_header("X-Snapshot-File", path.name)
+                self.send_header("X-Snapshot-Age-Seconds", str(round(age)))
+                self.send_header("X-Snapshot-Stale", "true" if stale else "false")
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
                 self.wfile.write(body)
@@ -655,7 +682,22 @@ def run_http_server(port=8898):
 
 # ── CLI ────────────────────────────────────────────────────────────────────
 
+def _ensure_utf8_stdout() -> None:
+    """Make `print` survive a piped stdout.
+
+    The final summary line prints a check-mark emoji. Under a pipe the default
+    encoding here is cp1252, which cannot encode it - so the run died AFTER writing
+    the snapshot and exited 1 while its work had actually succeeded (measured
+    2026-10-10). Same class as self-hosted.py and traffic-cop.py.
+    """
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, OSError):
+        pass
+
+
 def main():
+    _ensure_utf8_stdout()
     parser = argparse.ArgumentParser(
         description="system-snapshot.py — Vollständiger Systemzustand auf einen Blick",
         formatter_class=argparse.RawDescriptionHelpFormatter,
