@@ -31,7 +31,7 @@ def _token() -> str:
     fpath = Path.home() / ".git-credentials"
     if not fpath.exists():
         return ""
-    for raw_line in fpath.read_text().strip().splitlines():
+    for raw_line in fpath.read_text(encoding="utf-8").strip().splitlines():
         line = raw_line.strip()
         if ":" in line and "@" in line:
             token = line.rsplit(":", 1)[1].rsplit("@", 1)[0]

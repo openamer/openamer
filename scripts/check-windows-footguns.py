@@ -376,7 +376,7 @@ FOOTGUNS: list[Footgun] = [
     Footgun(
         name="bare Path.read_text()/write_text() without encoding=",
         # Match ``.read_text(`` / ``.write_text(`` when the same line does
-        # not pass ``encoding=``. Multi-line calls where encoding= sits on
+        # not pass an encoding. Multi-line calls where encoding= sits on
         # a later line are handled by the post_filter's lookahead-free
         # heuristic accepting a small false-negative rate — the AST guard
         # test in tests/gateway/test_gateway_utf8_encoding.py catches the
@@ -394,14 +394,81 @@ FOOTGUNS: list[Footgun] = [
         post_filter=lambda m, line: (
             "encoding=" not in line
             and "encoding =" not in line
+            and not _encoding_already_supplied(m.group(1), line, m)
             and not _looks_like_string_literal(line, m)
-            # Skip calls that continue onto the next line — the closing
-            # paren isn't on this line, so encoding= may follow. AST-level
-            # enforcement for those lives in the gateway guard test.
-            and line.rstrip().endswith(")")
         ),
     ),
 ]
+
+
+def _encoding_already_supplied(func: str, line: str, match: "re.Match") -> bool:
+    """Does this read_text/write_text call already pin the encoding?
+
+    Two ways a call is safe, and the rule must recognise both:
+
+    1. The encoding is passed POSITIONALLY. ``Path.read_text(encoding)`` takes
+       it FIRST and ``Path.write_text(data, encoding)`` SECOND, so
+       ``p.read_text("utf-8")`` and ``p.write_text(text, "utf-8")`` pin UTF-8
+       exactly as the ``encoding=`` form does. The rule used to recognise only
+       the keyword, which reported every positional call as bare — all 19
+       findings in scripts/darwin_engine.py, darwin_gate.py and
+       darwin_metacognition.py were positional, so the blocking "Windows
+       footguns" job failed on code that was already correct.
+
+    2. The call does not close on this line, so its arguments (including a
+       possible ``encoding=``) continue below. The rule has always skipped
+       those and accepts the false-negative rate; the previous check was
+       ``line.rstrip().endswith(")")``, which a nested call defeats:
+
+           pred_md.write_text(pred_md.read_text("utf-8", errors="replace")
+                              + inherited, "utf-8")
+
+       ends with the INNER call's paren, so it looked finished and the outer
+       encoding on the next line was never seen. Tracking bracket depth finds
+       the real answer.
+
+    Splits arguments at top-level commas only, so
+    ``p.write_text(json.dumps(x, indent=2), "utf-8")`` still resolves the
+    encoding that follows the nested call.
+    """
+    rest = line[match.end():]
+    args: list[str] = []
+    depth, cur, quote, escaped, closed = 0, "", None, False, False
+    for ch in rest:
+        if quote is not None:
+            cur += ch
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == quote:
+                quote = None
+            continue
+        if ch in "\"'":
+            quote = ch
+            cur += ch
+            continue
+        if ch in "([{":
+            depth += 1
+        elif ch in ")]}":
+            if depth == 0:
+                closed = True
+                break
+            depth -= 1
+        elif ch == "," and depth == 0:
+            args.append(cur)
+            cur = ""
+            continue
+        cur += ch
+    if not closed:
+        # Arguments continue on a later line; nothing to judge here.
+        return True
+    if cur.strip():
+        args.append(cur)
+    index = 0 if func == "read_text" else 1
+    if index >= len(args):
+        return False
+    return bool(re.match(r"^[rubfRUBF]*[\"']", args[index].strip()))
 
 
 def should_scan_file(path: Path) -> bool:

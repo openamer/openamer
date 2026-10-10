@@ -274,3 +274,66 @@ class TestFullRepoScan:
                 f"a `# windows-footgun: ok` suppression."
             )
         # All matches are the expected PR #60741 sites — OK on this branch.
+
+
+# ---------------------------------------------------------------------------
+# ``bare Path.read_text()/write_text() without encoding=``
+#
+# The rule used to recognise only the ``encoding=`` keyword, which reported
+# every POSITIONAL call as bare. All 19 findings in scripts/darwin_engine.py,
+# scripts/darwin_gate.py and scripts/darwin_metacognition.py were positional
+# calls, so the blocking "Windows footguns" job failed on code that already
+# pinned UTF-8. These tests hold both directions: positional must be silent,
+# genuinely bare must still be caught.
+# ---------------------------------------------------------------------------
+
+READ_WRITE_RULE = "bare Path.read_text()/write_text() without encoding="
+
+
+class TestReadTextWriteTextEncoding:
+    def test_flags_bare_read_text(self, linter):
+        assert _scan_line(linter, "    data = p.read_text()", READ_WRITE_RULE)
+
+    def test_flags_bare_write_text(self, linter):
+        assert _scan_line(linter, "    p.write_text(data)", READ_WRITE_RULE)
+
+    def test_flags_bare_read_text_in_assignment(self, linter):
+        assert _scan_line(
+            linter, '    t = line.read_text().strip() if line.exists() else ""', READ_WRITE_RULE
+        )
+
+    # -- the encoding IS given, positionally ------------------------------
+
+    def test_positional_encoding_on_read_text_is_silent(self, linter):
+        assert not _scan_line(linter, '    return json.loads(path.read_text("utf-8"))', READ_WRITE_RULE)
+
+    def test_positional_encoding_with_errors_kwarg_is_silent(self, linter):
+        assert not _scan_line(
+            linter, '    text = src.read_text("utf-8", errors="replace")', READ_WRITE_RULE
+        )
+
+    def test_positional_encoding_on_write_text_is_silent(self, linter):
+        assert not _scan_line(linter, '    REPORT_FILE.write_text(md, "utf-8")', READ_WRITE_RULE)
+
+    def test_positional_encoding_after_nested_call_is_silent(self, linter):
+        # The encoding sits AFTER a nested call whose own parens would defeat a
+        # naive "does the line end with )" check.
+        assert not _scan_line(
+            linter,
+            '    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), "utf-8")',
+            READ_WRITE_RULE,
+        )
+
+    def test_keyword_encoding_is_silent(self, linter):
+        assert not _scan_line(
+            linter, '    p.write_text(data, encoding="utf-8")', READ_WRITE_RULE
+        )
+
+    def test_call_continuing_on_next_line_is_silent(self, linter):
+        # The outer write_text does not close here - it ends with the INNER
+        # call's paren, and its own encoding follows on the continuation line.
+        assert not _scan_line(
+            linter,
+            '                pred_md.write_text(pred_md.read_text("utf-8", errors="replace")',
+            READ_WRITE_RULE,
+        )

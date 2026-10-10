@@ -883,7 +883,7 @@ def apply_patches(dry_run: bool = False, yes: bool = False) -> int:
     # Patches anwenden
     module_names = []
     for patch_path in valid_patches:
-        if not patch_path.read_text().strip():
+        if not patch_path.read_text(encoding="utf-8").strip():
             continue
         if git.apply_patch(patch_path):
             # Modulname aus Dateinamen

@@ -40,7 +40,7 @@ def _cred_token() -> str:
         return _cred_cache
     line = Path.home() / ".git-credentials"
     try:
-        t = line.read_text().strip() if line.exists() else ""
+        t = line.read_text(encoding="utf-8").strip() if line.exists() else ""
         if ":" in t:
             _cred_cache = t.rsplit(":", 1)[1].rsplit("@", 1)[0]
     except Exception:

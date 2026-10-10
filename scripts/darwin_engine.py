@@ -2156,7 +2156,9 @@ def compete() -> list[dict]:
             if src.exists():
                 target = archive / f"{parent}_{NOW.strftime('%Y%m%d')}"
                 if not target.exists():
-                    target.write_text("") if False else None
+                    # (a disabled write_text("") marker used to sit here; it was
+                    # inert behind `if False`, and the bare call tripped the
+                    # Windows-footgun lint. The directory move below is the real work.)
                     # Move directory
                     import shutil
                     shutil.move(str(src), str(target))

@@ -31,7 +31,7 @@ from openamer_cli.a2a.relay import verify_note                       # noqa: E40
 TOKEN = ""
 def cred_token():
     global TOKEN
-    l = (Path.home()/".git-credentials").read_text().strip() if (Path.home()/".git-credentials").exists() else ""
+    l = (Path.home()/".git-credentials").read_text(encoding="utf-8").strip() if (Path.home()/".git-credentials").exists() else ""
     if ":" in l: TOKEN = l.rsplit(":",1)[1].rsplit("@",1)[0]
 
 def scrub(s):
