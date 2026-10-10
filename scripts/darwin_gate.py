@@ -135,14 +135,14 @@ def _now() -> str:
 
 def _load(path: Path, default):
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return json.loads(path.read_text("utf-8"))
     except Exception:
         return default
 
 
 def _save(path: Path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), encoding="utf-8")
+    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), "utf-8")
 
 
 def ask_openrouter(prompt: str, system: str = "") -> tuple[bool, str]:
@@ -219,7 +219,11 @@ def _parse_verdict(text: str) -> tuple[str, str]:
             rest = stripped.split(":", 1)[1].strip().strip("*` ")
             for v in VERDICTS:
                 if rest.upper().startswith(v):
-                    return v, _reason_from(rest, v) or "explicit decision anchor"
+                    return v, (
+                        _reason_from(rest, v)
+                        or _reason_for_verdict(text, v)
+                        or "explicit decision anchor"
+                    )
     # anchor may also appear inline in a wall of reasoning text
     lower_text = text.upper()
     if "DECISION:" in lower_text:
@@ -227,7 +231,11 @@ def _parse_verdict(text: str) -> tuple[str, str]:
         tail = tail.strip().strip("*` ")
         for v in VERDICTS:
             if tail.upper().startswith(v):
-                return v, _reason_from(tail, v) or "explicit decision anchor"
+                return v, (
+                    _reason_from(tail, v)
+                    or _reason_for_verdict(text, v)
+                    or "explicit decision anchor"
+                )
 
     # 2) a line that *starts* with a verdict word, scanning from the end
     for line in reversed(lines):
@@ -249,6 +257,28 @@ def _reason_from(text: str, verdict: str) -> str:
         rest = rest[len(verdict):].lstrip(" :*-`").strip()
     rest = rest.strip("*` ").strip()
     return rest[:300]
+
+
+def _reason_for_verdict(text: str, verdict: str) -> str:
+    """The one-sentence reason the prompt actually asks for.
+
+    The prompt tells the model to end with a bare
+    `DECISION: APPROVE|REJECT|NEEDS_MORE_INFO` line and to carry the reason on a
+    separate option bullet (`- APPROVE: <one-sentence reason>`). So the anchor
+    line can never hold a reason, and reading it only from there is why 87 of 100
+    live decisions came back as the placeholder "explicit decision anchor".
+    Take it from the option line instead, last match first, and ignore a line
+    that merely quotes the prompt's own `<...>` placeholder back.
+    """
+    for line in reversed(text.splitlines()):
+        stripped = line.strip().lstrip("*-•> ").strip()
+        upper = stripped.upper()
+        if not (upper.startswith(verdict + ":") or upper.startswith(verdict + " ")):
+            continue
+        reason = _reason_from(stripped, verdict)
+        if reason and not reason.startswith("<"):
+            return reason
+    return ""
 
 
 def evaluate_proposal(worker: str, action: str, description: str,
@@ -281,8 +311,8 @@ Respond with EXACTLY one of:
 - NEEDS_MORE_INFO: <what additional info is needed>
 
 Do not quote these option names while deliberating -- just decide. End your
-response with a final line in exactly this form:
-DECISION: APPROVE|REJECT|NEEDS_MORE_INFO
+response with a final line in exactly this form, with the reason ON that line:
+DECISION: APPROVE|REJECT|NEEDS_MORE_INFO - <one-sentence reason>
 
 Your response:"""
 
@@ -385,7 +415,7 @@ def main():
                                  args.propose[2])
         print(json.dumps(result, indent=1))
     elif args.propose_code:
-        code = Path(args.propose_code[3]).read_text(encoding="utf-8")[:2000]
+        code = Path(args.propose_code[3]).read_text("utf-8")[:2000]
         result = submit_proposal(args.propose_code[0], args.propose_code[1],
                                  args.propose_code[2], code)
         print(json.dumps(result, indent=1))
