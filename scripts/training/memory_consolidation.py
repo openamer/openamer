@@ -140,14 +140,10 @@ def _summarize(text):
 def _age_days(ts):
     """Days since *ts*, correct for naive AND tz-aware stamps.
 
-    This used to return 0 on any failure - and 0 means "brand new". A stamp the
-    function could not handle therefore made an old episode look fresh, so it
-    would never be compressed again, silently: the `except` swallowed the reason.
-    Measured 2026-10-10: a tz-aware stamp (`...+00:00`) raised
-    `TypeError: can't subtract offset-naive and offset-aware datetimes` against
-    the naive `now()`, and an entry 38 days old came back as `0 days`. Subtracting
-    inside the stamp's own frame fixes both forms, and the fallback now covers
-    only a genuinely unreadable stamp.
+    A failed subtraction here used to return 0, and 0 means "brand new" - so an
+    old episode could look fresh and never be compressed again, silently. Compare
+    inside the stamp's own frame. The full incident is in
+    tests/test_memory_consolidation_age.py.
     """
     try:
         dt = datetime.datetime.fromisoformat(ts)
