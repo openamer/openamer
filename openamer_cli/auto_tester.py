@@ -27,6 +27,12 @@ def _repo_dir() -> Path:
     candidates = [
         Path(os.environ["OPENAMER_REPO"]) if os.environ.get("OPENAMER_REPO") else None,
         _home() / "openamer-agent",
+        # Module-relative final fallback: this file lives at
+        # <repo>/openamer_cli/auto_tester.py, so parent.parent IS the repo root.
+        # Without it, any caller whose OPENAMER_HOME is redirected (pytest's
+        # autouse fixture, a profile home, a temp dir) finds no tests/ dir and
+        # the runner reports "error" instead of running the suite.
+        Path(__file__).resolve().parent.parent,
     ]
     for c in [c for c in candidates if c is not None]:
         if (c / "tests").is_dir():
