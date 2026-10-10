@@ -153,8 +153,11 @@ def _age_days(ts):
         dt = datetime.datetime.fromisoformat(ts)
     except (TypeError, ValueError):
         return 0
-    now = datetime.datetime.now(dt.tzinfo) if dt.tzinfo else datetime.datetime.now()
-    return (now - dt).days
+    if dt.tzinfo:
+        return (datetime.datetime.now(dt.tzinfo) - dt).days
+    # A naive stamp has to be compared against a naive now - the pairing is the
+    # point, not an oversight.
+    return (datetime.datetime.now() - dt).days  # noqa: DTZ005
 
 
 def consolidate(dry_run=False):
