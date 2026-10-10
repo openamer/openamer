@@ -148,8 +148,18 @@ def resolve(ref: str, skill_dir: Path | None = None) -> bool:
 # are not claims that a file exists. Excluded by name, because after the
 # invocation filter landed these two were the only remaining "broken" hits and
 # both were documentation, not damage.
+#
+# Extended 2026-10-10 with the shape forms the first sweep still flagged: an
+# illustrative basename may carry a suffix (`foo_test.py`, the name the probe
+# found in python-debugpy's `pytest tests/foo_test.py::test_bar` example), a
+# literal elision (`dir/file.py`, `/c/Users/.../fixed.py`), or a scratch root -
+# no skill ships an artifact into `/tmp/` or `Temp/`, so a ref there is a
+# throwaway by construction.
 _PLACEHOLDER_RE = re.compile(
-    r"(?:^|/)(?:script|test_x|example|sample|foo|bar|your_script|my_script)\."
+    r"(?:^|/)(?:script|test_x|the_test|example|sample|foo|bar|your_script|my_script)(?:_\w+)?\."
+    r"|dir/file"
+    r"|/(?:tmp|Temp)/"
+    r"|\.\.\."
     r"|path/to/|<[^>]+>|YOUR_|XXX",
     re.IGNORECASE,
 )
