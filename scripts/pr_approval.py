@@ -17,6 +17,17 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+
+# Cron pipes stdout, and this host defaults that pipe to cp1252 - which cannot
+# encode the symbols the report lines below print. `print` raised
+# UnicodeEncodeError before the first line and the whole run died, so the job
+# looked like a silent failure rather than a crash (measured 2026-10-10). One of
+# eleven scripts in this fleet with the same defect; reconfigure stdout once.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, OSError):
+    pass
+
 # ─── Config ───────────────────────────────────────────────────────────────────
 REPO_DIR = Path(os.environ.get("OPENAMER_REPO",
     os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "openamer-agent")))
@@ -49,11 +60,11 @@ def run(cmd, **kwargs):
 
 def load_state() -> dict:
     if STATE_FILE.exists():
-        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        return json.loads(STATE_FILE.read_text())
     return {"reviewed_prs": {}, "stats": {"approved": 0, "changes_requested": 0, "skipped": 0}}
 
 def save_state(state: dict):
-    STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
+    STATE_FILE.write_text(json.dumps(state, indent=2))
 
 # ─── PR Operations ────────────────────────────────────────────────────────────
 

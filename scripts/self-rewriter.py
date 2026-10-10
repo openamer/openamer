@@ -43,6 +43,17 @@ from pathlib import Path
 from typing import Dict, List, Optional, Set, Tuple, Any
 
 
+# Cron pipes stdout, and this host defaults that pipe to cp1252 - which cannot
+# encode the symbols the report lines below print. `print` raised
+# UnicodeEncodeError before the first line and the whole run died, so the job
+# looked like a silent failure rather than a crash (measured 2026-10-10). One of
+# eleven scripts in this fleet with the same defect; reconfigure stdout once.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, OSError):
+    pass
+
+
 # ─── Konfiguration ───────────────────────────────────────────────────────────
 def _find_repo_root(repo_arg: Optional[Path] = None) -> Path:
     """Findet das Repo-Root, egal ob das Script vom Repo oder OPENAMER_HOME läuft."""

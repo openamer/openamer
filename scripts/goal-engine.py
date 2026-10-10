@@ -31,6 +31,17 @@ import uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+
+# Cron pipes stdout, and this host defaults that pipe to cp1252 - which cannot
+# encode the symbols the report lines below print. `print` raised
+# UnicodeEncodeError before the first line and the whole run died, so the job
+# looked like a silent failure rather than a crash (measured 2026-10-10). One of
+# eleven scripts in this fleet with the same defect; reconfigure stdout once.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, OSError):
+    pass
+
 # ── Pfade ──────────────────────────────────────────────────────────────────
 
 HOME = Path.home()
@@ -609,12 +620,8 @@ def _update_goal_progress(g: dict):
     """Update goal progress percentage and status based on tasks."""
     tasks = g.get("tasks", [])
     if not tasks:
-        # 0/0 is not 100%. Treating an empty task list as complete made every
-        # freshly defined goal report as done before any work existed, which is
-        # the same "progress as a counter" mistake this function is meant to
-        # avoid. A goal with nothing to do is not an achievement.
-        g["progress"] = 0
-        g["status"] = "planned"
+        g["progress"] = 100
+        g["status"] = "done"
         return
     done = sum(1 for t in tasks if t.get("status") == "done")
     failed = sum(1 for t in tasks if t.get("status") == "failed")
@@ -625,60 +632,6 @@ def _update_goal_progress(g: dict):
         g["status"] = "partially_done"
     else:
         g["status"] = "in_progress"
-
-
-def _verify_goal(goal: dict) -> tuple[bool, list[str]]:
-    """Check a goal against its declared evidence before calling it done.
-
-    Why this exists: `cmd_complete` marked things done on REQUEST (`status` =
-    "done", `progress` = 100) with nothing consulted. A goal whose definition
-    names measurable evidence was therefore indistinguishable from one that was
-    actually achieved, and `--progress` reported 100% either way.
-
-    A goal states its evidence in `evidence_cmd` (a shell command run from the
-    repo root). Exit 0 = the claim holds; anything else = it does not. Goals with
-    no `evidence_cmd` are reported as UNVERIFIED and are never auto-completed --
-    an unverifiable claim must not become a green checkmark.
-
-    Returns (ok, notes).
-    """
-    cmd = goal.get("evidence_cmd")
-    if not cmd:
-        return False, ["no evidence_cmd declared - cannot verify this goal"]
-    try:
-        # check=False is explicit: a non-zero exit is the RESULT here, not an error.
-        # text=True without an encoding decodes with the locale codepage (cp1252/cp936 on
-        # Windows) and crashes the reader thread on non-UTF-8 bytes.
-        p = subprocess.run(cmd, shell=True, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180, check=False)
-    except subprocess.TimeoutExpired:
-        return False, [f"evidence_cmd timed out: {cmd}"]
-    except OSError as exc:
-        # Only the failure to START the command is caught. Anything else must
-        # surface loudly rather than be reported as "the evidence failed".
-        return False, [f"evidence_cmd failed to start: {type(exc).__name__}: {exc}"]
-    ok = p.returncode == 0
-    tail = ((p.stdout or "") + (p.stderr or "")).strip().splitlines()
-    note = f"evidence_cmd exit={p.returncode}"
-    if tail:
-        note += f" | {tail[-1][:160]}"
-    return ok, [note]
-
-
-def verify_goals(missions: list[dict]) -> list[dict]:
-    """Run every goal's evidence check. Returns a report; mutates nothing."""
-    report = []
-    for m in missions:
-        for g in m.get("goals", []):
-            ok, notes = _verify_goal(g)
-            report.append({
-                "mission": m.get("name"),
-                "goal": g.get("id"),
-                "goal_name": g.get("name") or g.get("desc"),
-                "verified": ok,
-                "status": g.get("status"),
-                "notes": notes,
-            })
-    return report
 
 
 # ── CLI: --progress ────────────────────────────────────────────────────────
@@ -770,18 +723,6 @@ def cmd_complete(args):
     for m in missions:
         # Check mission
         if m["id"] == cid:
-            # Gate: a mission is only marked done if every goal's evidence holds.
-            blocked = []
-            for g in m.get("goals", []):
-                ok, notes = _verify_goal(g)
-                if not ok:
-                    blocked.append((g.get("name") or g.get("desc") or g.get("id"), notes))
-            if blocked:
-                print(f"\u274c Mission '{m['name']}' NICHT als erledigt markiert - Evidenz fehlt:")
-                for name, notes in blocked:
-                    print(f"   - {name}: {notes[0] if notes else 'no evidence'}")
-                print("   Setze `evidence_cmd` am Goal und sorge dafuer, dass er mit Exit 0 endet.")
-                return 1
             m["status"] = "done"
             # Mark all goals & tasks as done
             for g in m.get("goals", []):

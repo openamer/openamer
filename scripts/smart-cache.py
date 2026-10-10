@@ -32,6 +32,17 @@ import time
 import zipfile
 from pathlib import Path
 
+
+# Cron pipes stdout, and this host defaults that pipe to cp1252 - which cannot
+# encode the symbols the report lines below print. `print` raised
+# UnicodeEncodeError before the first line and the whole run died, so the job
+# looked like a silent failure rather than a crash (measured 2026-10-10). One of
+# eleven scripts in this fleet with the same defect; reconfigure stdout once.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, OSError):
+    pass
+
 # ─── Konfiguration ───────────────────────────────────────────────
 def _normalize_path(raw: str) -> Path:
     """MSYS-Pfade (/c/Users/…) in Windows-Pfade (C:\\Users\…) umwandeln."""
