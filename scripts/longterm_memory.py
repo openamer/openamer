@@ -67,13 +67,14 @@ def _load():
     if not os.path.exists(STORE):
         return []
     out = []
-    for l in open(STORE, encoding="utf-8"):
-        try:
-            e = json.loads(l)
-        except json.JSONDecodeError:
-            continue
-        if isinstance(e, dict) and "text" in e and "embedding" in e:
-            out.append(e)
+    with open(STORE, encoding="utf-8") as fh:
+        for l in fh:
+            try:
+                e = json.loads(l)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(e, dict) and "text" in e and "embedding" in e:
+                out.append(e)
     return out
 
 def _save(episodes):
@@ -89,16 +90,17 @@ def _save(episodes):
     """
     kept_lines: list[str] = []
     if os.path.exists(STORE):
-        for line in open(STORE, encoding="utf-8"):
-            if not line.strip():
-                continue
-            try:
-                rec = json.loads(line)
-            except json.JSONDecodeError:
-                kept_lines.append(line if line.endswith("\n") else line + "\n")
-                continue
-            if not (isinstance(rec, dict) and "text" in rec and "embedding" in rec):
-                kept_lines.append(json.dumps(rec, ensure_ascii=False) + "\n")
+        with open(STORE, encoding="utf-8") as fh:
+            for line in fh:
+                if not line.strip():
+                    continue
+                try:
+                    rec = json.loads(line)
+                except json.JSONDecodeError:
+                    kept_lines.append(line if line.endswith("\n") else line + "\n")
+                    continue
+                if not (isinstance(rec, dict) and "text" in rec and "embedding" in rec):
+                    kept_lines.append(json.dumps(rec, ensure_ascii=False) + "\n")
     with open(STORE, "w", encoding="utf-8") as f:
         f.writelines(kept_lines)
         for e in episodes:
