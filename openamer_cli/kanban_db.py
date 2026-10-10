@@ -3006,7 +3006,7 @@ def _execute_boundary_with_retry(conn: sqlite3.Connection, sql: str) -> None:
 
 
 @contextlib.contextmanager
-def write_txn(conn: sqlite3.Connection):
+def write_txn(conn: sqlite3.Connection, *, allow_nested: bool = False):
     """Context manager for an IMMEDIATE write transaction.
 
     Use for any multi-statement write (creating a task + link, claiming a
@@ -3016,8 +3016,45 @@ def write_txn(conn: sqlite3.Connection):
     The explicit ROLLBACK on exception is wrapped in try/except so that
     a SQLite auto-rollback (which leaves no active transaction) does not
     shadow the original exception with a spurious rollback error.
+
+    Nesting is an explicit opt-in (``allow_nested=True`` -> savepoint;
+    otherwise a loud ``RuntimeError``). Only composition primitives
+    (``add_comment``) opt in; helpers with post-commit side effects
+    (``complete_task`` & co.) must never run under an open outer transaction,
+    since those side effects would fire while the outer txn can still roll back.
+
+    Without this guard a nested call issued a second ``BEGIN IMMEDIATE`` inside
+    an already-open transaction and SQLite refused it:
+
+        sqlite3.OperationalError: cannot start a transaction within a transaction
+
+    which is what ``kanban_swarm.create_swarm`` hit, since it wraps
+    ``create_task`` + ``add_comment`` in one outer transaction. The sibling
+    implementation in ``kanban_db_connect.write_txn`` already carried this
+    guard; this module's copy predated it and was the one the swarm reached.
     """
     _assert_not_delegated_child_mutation()
+    if getattr(conn, "in_transaction", False):
+        if not allow_nested:
+            raise RuntimeError(
+                "write_txn: already inside a transaction. Nested composition "
+                "must opt in explicitly with write_txn(conn, allow_nested=True) "
+                "(savepoint semantics; the inner RELEASE is not durable until "
+                "the outer transaction commits)."
+            )
+        savepoint = f"openamer_nested_{secrets.token_hex(8)}"
+        conn.execute(f"SAVEPOINT {savepoint}")
+        try:
+            yield conn
+        except Exception:
+            with contextlib.suppress(sqlite3.OperationalError):
+                conn.execute(f"ROLLBACK TO {savepoint}")
+                conn.execute(f"RELEASE {savepoint}")
+            raise
+        else:
+            conn.execute(f"RELEASE {savepoint}")
+        return
+
     _execute_boundary_with_retry(conn, "BEGIN IMMEDIATE")
     try:
         yield conn
@@ -3362,7 +3399,7 @@ def create_task(
     for attempt in range(2):
         task_id = _new_task_id()
         try:
-            with write_txn(conn):
+            with write_txn(conn, allow_nested=True):
                 # Determine task status from parent status, unless the caller
                 # parks it directly in blocked for human-ops review or in
                 # triage for a specifier.
@@ -3830,7 +3867,7 @@ def add_comment(
     if not author or not author.strip():
         raise ValueError("comment author is required")
     now = int(time.time())
-    with write_txn(conn):
+    with write_txn(conn, allow_nested=True):
         if not conn.execute(
             "SELECT 1 FROM tasks WHERE id = ?", (task_id,)
         ).fetchone():
