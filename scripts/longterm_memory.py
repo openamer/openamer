@@ -14,8 +14,14 @@ CLI:
   python longterm_memory.py query "..."  # top-5 relevant episodes
   python longterm_memory.py stats
 """
+import datetime
+import hashlib
+import json
+import math
 import os
-import json, sys, math, os, datetime, urllib.request, hashlib
+import sys
+import urllib.request
+from pathlib import Path
 
 BASE = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 STORE = os.path.join(BASE, "memory", "longterm_episodes.jsonl")
@@ -56,18 +62,45 @@ def embed(text):
     return vec
 
 def _load():
+    """Load valid episodes only. Foreign/heartbeat records (no text/embedding)
+    are skipped so one bad line can never crash index/query/stats."""
     if not os.path.exists(STORE):
         return []
     out = []
     for l in open(STORE, encoding="utf-8"):
         try:
-            out.append(json.loads(l))
+            e = json.loads(l)
         except json.JSONDecodeError:
             continue
+        if isinstance(e, dict) and "text" in e and "embedding" in e:
+            out.append(e)
     return out
 
 def _save(episodes):
+    """Write the store back without losing a single byte the store already held.
+
+    ``_load()`` deliberately yields only records carrying both ``text`` and an
+    ``embedding``, so index/query/stats can never crash on a foreign line. The bug
+    was that ``_save()`` wrote back exactly that list and therefore DELETED every
+    record ``_load()`` had skipped. Measured 2026-10-10 before the fix: 2898 of
+    3065 records were ``kind="compressed"`` with no embedding, so one ``index`` run
+    would have erased 3 MB of real episodes. Skipped records - and an unparseable
+    line, which is data too - are now carried through untouched.
+    """
+    kept_lines: list[str] = []
+    if os.path.exists(STORE):
+        for line in open(STORE, encoding="utf-8"):
+            if not line.strip():
+                continue
+            try:
+                rec = json.loads(line)
+            except json.JSONDecodeError:
+                kept_lines.append(line if line.endswith("\n") else line + "\n")
+                continue
+            if not (isinstance(rec, dict) and "text" in rec and "embedding" in rec):
+                kept_lines.append(json.dumps(rec, ensure_ascii=False) + "\n")
     with open(STORE, "w", encoding="utf-8") as f:
+        f.writelines(kept_lines)
         for e in episodes:
             f.write(json.dumps(e, ensure_ascii=False) + "\n")
 
@@ -89,7 +122,7 @@ def add_episode(text, kind="manual", meta=None):
 def index_brain(max_episodes=3000):
     """Index user turns + assistant answers as episodes (dedup by text hash)."""
     eps = _load()
-    have = {e["text"][:200] for e in eps}
+    have = {e.get("text", "")[:200] for e in eps}
     added = 0
     skipped = 0
     for line in open(BRAIN, encoding="utf-8"):
