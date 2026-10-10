@@ -100,3 +100,36 @@ def test_a_harmless_variant_stays_a_candidate(engine, monkeypatch):
 
     assert result["delta"] == 0.0
     assert result["status"] == "candidate"
+
+
+def test_a_variant_that_repairs_a_declared_check_is_a_candidate(engine, monkeypatch):
+    """The climb: a variant that turns a FAILING declared check green now counts.
+
+    Until 2026-10-10 the A/B judged with the artifact probe ALONE, so this variant
+    scored delta 0.00 like everything else - the probe measures referenced files,
+    and no wording change adds one. The executable verify term is the only outcome
+    prose CAN raise, so it has to be visible to this decision or the climb can
+    never be found. Stubbed here so the test pins the arithmetic, not a pytest run.
+    """
+    monkeypatch.setattr(
+        engine, "_verify_text",
+        lambda text, timeout=45: {"score": 1.0 if "FIXED" in text else 0.0, "passed": None},
+    )
+    result = _run(engine, monkeypatch, "Run `python real.py` to verify the thing.\nFIXED\n")
+
+    assert result["delta"] == 0.0, "the probe is unchanged"
+    assert result["verify_delta"] == 1.0, "the declared check went from red to green"
+    assert result["status"] == "candidate", "a repair is what the climb is made of"
+
+
+def test_a_variant_that_breaks_a_passing_check_is_rejected(engine, monkeypatch):
+    """The floor guards BOTH signals: a verify regression is damage too."""
+    monkeypatch.setattr(
+        engine, "_verify_text",
+        lambda text, timeout=45: {"score": 0.0 if "BROKEN" in text else 1.0, "passed": None},
+    )
+    result = _run(engine, monkeypatch, "Run `python real.py` to verify the thing.\nBROKEN\n")
+
+    assert result["delta"] == 0.0, "the probe is unchanged"
+    assert result["verify_delta"] == -1.0
+    assert result["status"] == "rejected"

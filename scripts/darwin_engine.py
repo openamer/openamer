@@ -1965,6 +1965,38 @@ def _probe_text(text: str) -> dict:
     return _PROBE_MOD.score_text(text)
 
 
+_VERIFY_MOD = None
+
+
+def _verify_text(text: str, timeout: int = 45) -> dict:
+    """Score a SKILL.md body with the EXECUTABLE verifier.
+
+    The A/B used to judge with the artifact probe alone, which made it blind to
+    the one outcome a prose mutation can RAISE: the probe asks whether referenced
+    files exist, and no wording change conjures a file into being. A variant that
+    turns a failing declared check green is a real improvement and now shows up as
+    a positive verify delta.
+
+    *timeout* is short on purpose - mutate() calls this twice per parent per
+    cycle, and a check the cap refuses is unmeasurable (score 1.0), never damage,
+    so a short cap can only make the A/B neutral, not wrong.
+    """
+    global _VERIFY_MOD
+    try:
+        if _VERIFY_MOD is None:
+            import importlib.util
+
+            spec = importlib.util.spec_from_file_location(
+                "darwin_skill_verify",
+                Path(__file__).resolve().parent / "darwin_skill_verify.py",
+            )
+            _VERIFY_MOD = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(_VERIFY_MOD)
+        return _VERIFY_MOD.verify_text(text, timeout=timeout)
+    except Exception:  # noqa: BLE001 - an A/B judgement must never kill the cycle
+        return {"score": 1.0, "passed": None, "reason": "verify unavailable"}
+
+
 def _mutate_skill_md(text: str, op: str) -> str:
     """Generate a skill text variant (deterministic mutation, section-aware)."""
     return _semantic_mutation(text, op, random.Random(42))
@@ -1983,38 +2015,45 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
         text = src.read_text("utf-8", errors="replace")
         op = weighted_op_choice(rng)
         mutated = _mutate_skill_md(text, op)
-        # A/B against one yardstick: same probe, same roots, parent vs variant.
-        # The delta is a result, where win/loss bookkeeping only stood in for one.
+        # A/B against TWO yardsticks, same roots, parent vs variant: the artifact
+        # probe and the executable check. The probe alone left every delta at 0.00
+        # because it measures the one thing prose cannot change. The verify delta
+        # is the climb signal; the probe delta is the damage signal.
         parent_probe = _probe_text(text)
         variant_probe = _probe_text(mutated)
+        parent_verify = _verify_text(text)
+        variant_verify = _verify_text(mutated)
+        probe_delta = round(variant_probe["score"] - parent_probe["score"], 3)
+        verify_delta = round(variant_verify["score"] - parent_verify["score"], 3)
+        # Floor guards BOTH signals now. A variant that damages the artifact
+        # references OR breaks a passing declared check is excluded; a variant
+        # that repairs a failing check is a genuine candidate for the climb.
+        # tournament() trials only offspring whose status is exactly "candidate"
+        # (line 640), so "rejected" excludes it for real.
+        status = "candidate" if probe_delta >= 0 and verify_delta >= 0 else "rejected"
         child_name = f"{parent}__mut{op}"
-        offspring.append({
+        record = {
             "parent": parent,
             "child": child_name,
             "op": op,
             "applied": apply,
+            # Both bodies measured by the same probe, so the delta means
+            # something the win/loss counters never did.
             "parent_probe": parent_probe["score"],
             "variant_probe": variant_probe["score"],
-            "delta": round(variant_probe["score"] - parent_probe["score"], 3),
-            "status": "candidate" if variant_probe["score"] >= parent_probe["score"] else "rejected",
-        })
+            "delta": probe_delta,
+            "parent_verify": parent_verify["score"],
+            "variant_verify": variant_verify["score"],
+            "verify_delta": verify_delta,
+            "status": status,
+        }
+        offspring.append(record)
         if apply:
             dst = DARWIN_DIR / "offspring" / child_name
             dst.mkdir(parents=True, exist_ok=True)
             (dst / "SKILL.md").write_text(mutated, "utf-8")
             _save_json(DARWIN_DIR / "offspring" / f"{child_name}.json", {
-                "child": child_name, "parent": parent, "op": op, "born": _now(),
-                # Floor: a variant that measurably damages the skill never
-                # enters as a candidate. tournament() trials only offspring whose
-                # status is exactly "candidate" (line 640), so this excludes it
-                # for real rather than merely labelling it.
-                "status": "candidate" if variant_probe["score"] >= parent_probe["score"] else "rejected",
-                "wins": 0, "losses": 0,
-                # Both bodies measured by the same probe, so the delta means
-                # something the win/loss counters never did.
-                "parent_probe": parent_probe["score"],
-                "variant_probe": variant_probe["score"],
-                "delta": round(variant_probe["score"] - parent_probe["score"], 3),
+                **record, "born": _now(), "wins": 0, "losses": 0,
             })
             record_lineage(parent, child_name, "mutation", {"op": op})
     return offspring

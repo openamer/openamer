@@ -321,7 +321,7 @@ def allowlisted(command: str, repo: Path = REPO) -> tuple[bool, list[str] | None
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-def _run(argv: list[str], repo: Path) -> tuple[int | None, str | None]:
+def _run(argv: list[str], repo: Path, timeout: int = TIMEOUT_SECONDS):
     """Run *argv* without a shell. Returns (returncode, error_reason).
 
     No ``shell=True`` and no string is ever built and handed to a shell: the
@@ -334,6 +334,9 @@ def _run(argv: list[str], repo: Path) -> tuple[int | None, str | None]:
     dependency, and recorded that as the skill being broken - a false negative
     produced by the harness, which is the worst kind because it looks like
     evidence.
+
+    *timeout* is a parameter because Darwin's A/B calls this once per parent per
+    cycle; the daily sweep can afford the full 120 s cap, the A/B cannot.
     """
     effective = list(argv)
     if effective and effective[0] in {"python", "python3"}:
@@ -342,7 +345,7 @@ def _run(argv: list[str], repo: Path) -> tuple[int | None, str | None]:
         proc = subprocess.run(
             effective,
             cwd=str(repo),
-            timeout=TIMEOUT_SECONDS,
+            timeout=timeout,
             capture_output=True,
             text=True,
         )
@@ -358,7 +361,7 @@ def _score(passed: bool | None) -> float:
     return 0.0 if passed is False else 1.0
 
 
-def verify_text(text: str, repo: Path = REPO) -> dict:
+def verify_text(text: str, repo: Path = REPO, timeout: int = TIMEOUT_SECONDS) -> dict:
     """Verify the check a SKILL.md body declares.
 
     Split from the file reader so Darwin can judge a candidate that exists only
@@ -402,7 +405,7 @@ def verify_text(text: str, repo: Path = REPO) -> dict:
         allowed, argv = allowlisted(command, repo)
         if not allowed:
             continue
-        returncode, error = _run(argv, repo)
+        returncode, error = _run(argv, repo, timeout)
         if error is not None:
             # A TIMEOUT is unmeasurable, not failed: the clock refused the
             # check, the skill did not. The module contract says
