@@ -57,7 +57,7 @@ def relay_note(*, identity_store: IdentityStore, envelope: Envelope) -> dict:
     """
     # redact payload first
     pay = envelope.payload if isinstance(envelope.payload, dict) else {}
-    red_pay = {k: _pr.redact(str(v)) for k, v in pay.items()}
+    red_pay = {k: _pr.redact_value(v) for k, v in pay.items()}
     # re-sign over the redacted content
     env2 = Envelope.create(
         private_key=identity_store.private_key(),

@@ -51,6 +51,37 @@ def redact(text: str) -> str:
     return out
 
 
+def redact_value(obj):
+    """Redact private data inside a JSON-like value, preserving its types.
+
+    :func:`redact` operates on *text*. A relay payload is structured JSON, so
+    the naive ``redact(str(v))`` on every value both
+
+    * **destroys types** — ``42`` -> ``"42"``, ``True`` -> ``"True"``, a nested
+      ``dict``/``list`` -> its Python ``repr`` string — which corrupts any task
+      whose executor expects the original type, and
+    * **mis-fires on numbers** — a bare 9-13 digit run (a Unix timestamp, a
+      large id) matches the phone / card patterns and is scrubbed even though it
+      is not free text.
+
+    This helper recurses through mappings and sequences and redacts **only the
+    values that are actually strings**, returning numbers, booleans and ``None``
+    unchanged. Any other (non-JSON) type is stringified then scrubbed, so a
+    value can never leak just because its type was unexpected.
+    """
+    if isinstance(obj, str):
+        return redact(obj)
+    if obj is None or isinstance(obj, bool):
+        return obj
+    if isinstance(obj, (int, float)):
+        return obj
+    if isinstance(obj, dict):
+        return {k: redact_value(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [redact_value(v) for v in obj]
+    return redact(str(obj))
+
+
 def contains_private(text: str) -> bool:
     """True if any private/sensitive pattern is present (for scoring)."""
     if not text:
