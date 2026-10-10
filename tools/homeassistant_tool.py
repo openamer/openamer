@@ -17,11 +17,22 @@ from tools.registry import registry, tool_error
 logger = logging.getLogger(__name__)
 
 
+# In-process overrides for the active profile's HA endpoint. Left at "" in normal
+# operation so the secret store wins; setting them (tests, embedded callers) takes
+# precedence over everything else.
+_HASS_URL: str = ""
+_HASS_TOKEN: str = ""
+
+
 def _get_config():
-    """Return the active profile's Home Assistant URL and token."""
+    """Return the active profile's Home Assistant URL and token.
+
+    A non-empty module-level ``_HASS_URL``/``_HASS_TOKEN`` override wins; otherwise
+    the value comes from the profile secret store.
+    """
     return (
-        (get_secret("HASS_URL", "http://homeassistant.local:8123") or "").rstrip("/"),
-        get_secret("HASS_TOKEN", "") or "")
+        (_HASS_URL or get_secret("HASS_URL", "http://homeassistant.local:8123") or "").rstrip("/"),
+        _HASS_TOKEN or get_secret("HASS_TOKEN", "") or "")
 
 
 # Valid HA entity_id (e.g. "light.living_room", "sensor.temperature_1").
@@ -198,7 +209,7 @@ def _handle_call_service(args: dict, **kw) -> str:
 
 def _check_ha_available() -> bool:
     """Tool is only available when HASS_TOKEN is set."""
-    return bool(get_secret("HASS_TOKEN"))
+    return bool(_HASS_TOKEN or get_secret("HASS_TOKEN"))
 
 
 # ── tool schemas ─────────────────────────────────────────────────────────────

@@ -24,6 +24,10 @@ def _check_spotify_available() -> bool:
         return False
 
 
+def _spotify_client() -> SpotifyClient:
+    return SpotifyClient()
+
+
 def _spotify_tool_error(exc: Exception) -> str:
     if isinstance(exc, SpotifyError):  # includes SpotifyAPIError / SpotifyAuthRequiredError
         return tool_error(str(exc))
@@ -88,7 +92,7 @@ def _dispatcher(tool_name: str, default: str, table: Dict[str, _Handler], prepar
     """
     def handle(args: dict, **kw) -> str:
         action = str(args.get("action") or default).strip().lower()
-        client = SpotifyClient()
+        client = _spotify_client()
         try:
             if prepare is not None:
                 args = prepare(args)
@@ -160,8 +164,8 @@ def _pb_recently_played(client: SpotifyClient, args: dict, action: str) -> str:
     after, before = args.get("after"), args.get("before")
     if after and before:
         return tool_error("Provide only one of 'after' or 'before'")
-    params = {"limit": _limit(args), "after": int(after) if after is not None else None, "before": int(before) if before is not None else None}
-    return tool_result(client.request("GET", "/me/player/recently-played", params=params))
+    return tool_result(client.get_recently_played(
+        limit=_limit(args), after=int(after) if after is not None else None, before=int(before) if before is not None else None))
 
 
 _handle_spotify_playback = _dispatcher("spotify_playback", "get_state", {
@@ -182,7 +186,7 @@ _handle_spotify_playback = _dispatcher("spotify_playback", "get_state", {
 # -- spotify_devices / spotify_queue / spotify_search ---------------------------
 
 _handle_spotify_devices = _dispatcher("spotify_devices", "list", {
-    "list": lambda c, a, act: tool_result(c.request("GET", "/me/player/devices")),
+    "list": lambda c, a, act: tool_result(c.get_devices()),
     "transfer": lambda c, a, act: _ok(act, c.request("PUT", "/me/player", json_body={
         "device_ids": [_nonblank(a.get("device_id"), "device_id is required for action='transfer'")], "play": _coerce_bool(a.get("play")),
     })),
@@ -201,7 +205,7 @@ _SEARCH_TYPES = {"album", "artist", "playlist", "track", "show", "episode", "aud
 
 
 def _handle_spotify_search(args: dict, **kw) -> str:
-    client = SpotifyClient()
+    client = _spotify_client()
     query = str(args.get("query") or "").strip()
     if not query:
         return tool_error("query is required")
@@ -251,18 +255,30 @@ _handle_spotify_albums = _dispatcher("spotify_albums", "get", {
 
 # -- spotify_library — saved tracks + saved albums, selected by `kind` ---------
 
-def _lib_remove_uris(args: dict) -> str:
+def _lib_ids(args: dict) -> list:
+    """Normalized item ids for ``action='remove'`` (``track_ids``/``album_ids`` for the client)."""
     item_type = args["_item_type"]
     ids = [normalize_spotify_id(item, item_type) for item in _as_list(args.get("ids") or args.get("items"))]
-    return ",".join(f"spotify:{item_type}:{i}" for i in _required(ids or None, "ids/items is required for action='remove'"))
+    return _required(ids or None, "ids/items is required for action='remove'")
+
+
+def _lib_list(client: SpotifyClient, args: dict, action: str) -> str:
+    """``kind`` selects which saved-items listing the client method fetches."""
+    fetch = client.get_saved_tracks if args["kind"] == "tracks" else client.get_saved_albums
+    return tool_result(fetch(**_page_params(args)))
 
 
 _dispatch_library = _dispatcher("spotify_library", "list", {
-    "list": lambda c, a, act: tool_result(c.request("GET", f"/me/{a['kind']}", params=_page_params(a))),
-    "save": lambda c, a, act: tool_result(c.request("PUT", "/me/library", params={
-        "uris": ",".join(normalize_spotify_uris(_as_list(a.get("uris") or a.get("items")), a["_item_type"]))})),
-    "remove": lambda c, a, act: tool_result(c.request("DELETE", "/me/library", params={"uris": _lib_remove_uris(a)})),
+    "list": _lib_list,
+    "save": lambda c, a, act: tool_result(c.save_library_items(uris=normalize_spotify_uris(
+        _as_list(a.get("uris") or a.get("items")), a["_item_type"]))),
+    "remove": lambda c, a, act: tool_result(_lib_remove(c, a)),
 })
+
+
+def _lib_remove(client: SpotifyClient, args: dict) -> Any:
+    ids = _lib_ids(args)
+    return client.remove_saved_tracks(track_ids=ids) if args["kind"] == "tracks" else client.remove_saved_albums(album_ids=ids)
 
 
 def _handle_spotify_library(args: dict, **kw) -> str:

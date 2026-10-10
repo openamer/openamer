@@ -83,6 +83,34 @@ class SpotifyClient:
             "Spotify is not currently playing anything. Start playback in Spotify and try again."
         ))
 
+    # -- library: saved tracks/albums + the generic /me/library endpoints --------
+
+    def get_devices(self) -> Any:
+        return self.request("GET", "/me/player/devices")
+
+    def get_saved_tracks(self, *, limit: int = 20, offset: int = 0, market: Optional[str] = None) -> Any:
+        return self.request("GET", "/me/tracks", params={"limit": limit, "offset": offset, "market": market})
+
+    def get_saved_albums(self, *, limit: int = 20, offset: int = 0, market: Optional[str] = None) -> Any:
+        return self.request("GET", "/me/albums", params={"limit": limit, "offset": offset, "market": market})
+
+    def save_library_items(self, *, uris: list) -> Any:
+        return self.request("PUT", "/me/library", params={"uris": ",".join(uris)})
+
+    def library_contains(self, *, uris: list) -> Any:
+        return self.request("GET", "/me/library/contains", params={"uris": ",".join(uris)})
+
+    def remove_saved_tracks(self, *, track_ids: list) -> Any:
+        """Remove saved tracks via the generic library endpoint (``spotify:track:<id>`` URIs)."""
+        return self.request("DELETE", "/me/library", params={"uris": ",".join(f"spotify:track:{item}" for item in track_ids)})
+
+    def remove_saved_albums(self, *, album_ids: list) -> Any:
+        """Remove saved albums via the generic library endpoint (``spotify:album:<id>`` URIs)."""
+        return self.request("DELETE", "/me/library", params={"uris": ",".join(f"spotify:album:{item}" for item in album_ids)})
+
+    def get_recently_played(self, *, limit: int = 20, after: Optional[int] = None, before: Optional[int] = None) -> Any:
+        return self.request("GET", "/me/player/recently-played", params={"limit": limit, "after": after, "before": before})
+
 
 def _extract_spotify_error_detail(response: httpx.Response, *, fallback: str) -> str:
     """Prefer Spotify's ``{"error": {"message": ...}}`` (or ``{"error": "..."}``) body over raw text."""
