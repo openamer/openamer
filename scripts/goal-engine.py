@@ -497,8 +497,13 @@ def cmd_tick(args):
                     candidates.append((m, g, t))
 
     if not candidates:
-        print("🎉 Alle Tasks abgeschlossen! Kein --tick nötig.")
-        return 1
+        # An empty backlog is the goal, not a failure. This returned 1, so the
+        # `*/30` cron reported `error` on every tick once its tasks were finished -
+        # and a healthy state that trips the alarm trains you to ignore the alarm.
+        # Measured 2026-10-10: rc=1 with "no tick needed", while the same tick with
+        # work pending exits 0.
+        print("All tasks done - nothing to tick.")
+        return 0
 
     def score(item):
         m, g, t = item
