@@ -161,18 +161,27 @@ class SandboxExecutor:
             )
 
             env = self._build_sandbox_env(sandbox_dir)
-            # On Windows use ``shell=True`` so cmd-style built-ins work;
-            # the PATH restriction to sandbox_dir is the safety mechanism.
-            use_shell: bool = sys.platform == "win32"
-
+            # The safety mechanism is the RESTRICTED PATH and the pinned cwd, not
+            # `shell=False` - see _build_sandbox_env. This method is called
+            # `execute_shell` and its callers hand it shell syntax: the suite
+            # exercises redirection (`echo "stderr_line" >&2`) and shell builtins
+            # (`echo`), neither of which exists as an executable on POSIX. Running
+            # it without a shell turned the whole string into a filename, so Linux
+            # CI failed with `FileNotFoundError: 'echo hello_sandbox'`, every
+            # Python-test slice went red, and 7 open PRs could not merge.
+            #
+            # Fixed 2026-10-10. The old line was
+            #   `command if use_shell else command`
+            # - both branches identical, so the platform test decided nothing while
+            # reading as though it did.
             proc = subprocess.Popen(
-                command if use_shell else command,
+                command,
                 cwd=str(cwd or sandbox_dir),
                 env=env,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
-                shell=use_shell,
+                shell=True,
             )
 
             result = self._wait_with_timeout(proc, effective_timeout)
