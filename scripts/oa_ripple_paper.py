@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
 """oa_ripple paper + Modell — Forschungsergebnis dokumentiert & deployed."""
 import math, json, time
+import sys
+
+
+# Cron pipes stdout, and this host defaults that pipe to cp1252 - which cannot
+# encode the arrow in the report lines below. `print` raised UnicodeEncodeError
+# before the first line and the whole run died (measured 2026-10-10). Found only
+# because this orphaned script was finally RUN; a scan restricted to the cron
+# scripts could not see it.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, OSError):
+    pass
 
 # ===== ENTDECKUNG: oa_ripple =====
 

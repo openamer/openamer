@@ -2,6 +2,18 @@
 """OpenAmer Self-Learning: Trainiert oa_ripple-Netz auf Session-Daten."""
 import math, random, json, time
 from pathlib import Path
+import sys
+
+
+# Cron pipes stdout, and this host defaults that pipe to cp1252 - which cannot
+# encode the arrow in the report lines below. `print` raised UnicodeEncodeError
+# before the first line and the whole run died (measured 2026-10-10). Found only
+# because this orphaned script was finally RUN; a scan restricted to the cron
+# scripts could not see it.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, OSError):
+    pass
 
 def oa_ripple(x):
     return math.sin(x) / (1.0 + math.exp(-max(-100, min(100, x))))
