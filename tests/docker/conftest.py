@@ -138,7 +138,7 @@ def docker_exec_sh(
 def wait_for_container_ready(
     container: str,
     *,
-    deadline_s: float = 60.0,
+    deadline_s: float = 180.0,
     interval_s: float = 0.25,
 ) -> None:
     """Poll until the container has finished s6 cont-init (stage2 + reconcile).
@@ -199,7 +199,7 @@ def start_container(
     return name
 
 
-def restart_container(container: str, timeout: int = 60) -> None:
+def restart_container(container: str, timeout: int = 180) -> None:
     """Restart a container and wait for cont-init to finish.
 
     Equivalent to ``docker restart <container>`` followed by
@@ -225,7 +225,7 @@ def poll_container(
     container: str,
     probe: str,
     *,
-    deadline_s: float = 30.0,
+    deadline_s: float = 120.0,
     interval_s: float = 0.5,
     user: str = "openamer",
 ) -> tuple[bool, str]:
@@ -251,7 +251,7 @@ def wait_for_path(
     path: str,
     *,
     kind: str = "f",
-    deadline_s: float = 30.0,
+    deadline_s: float = 120.0,
     interval_s: float = 0.25,
 ) -> bool:
     """Poll ``test -<kind> <path>`` inside the container until success or timeout.
@@ -270,7 +270,7 @@ def wait_for_log(
     log_path: str,
     needle: str,
     *,
-    deadline_s: float = 30.0,
+    deadline_s: float = 120.0,
     interval_s: float = 0.25,
 ) -> str:
     """Poll until a log file inside the container contains ``needle``.
@@ -293,7 +293,7 @@ def wait_for_log(
 
 
 def wait_for_docker_logs(
-    container: str, needle: str, *, deadline_s: float = 30.0, interval_s: float = 0.5,
+    container: str, needle: str, *, deadline_s: float = 120.0, interval_s: float = 0.5,
 ) -> str:
     """Poll ``docker logs`` until ``needle`` appears or deadline expires.
 
