@@ -20,7 +20,7 @@ import json, sys, math, os, datetime, urllib.request, hashlib
 BASE = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 STORE = os.path.join(BASE, "memory", "longterm_episodes.jsonl")
 EMBED_CACHE = os.path.join(BASE, "memory", "embed_cache.json")   # energy-saving: skip re-embed
-BRAIN = r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl"
+BRAIN = os.path.join(BASE, "a2a", "openamer-brain.jsonl")
 EMBED_MODEL = "nomic-embed-text"
 
 os.makedirs(os.path.dirname(STORE), exist_ok=True)
@@ -91,6 +91,7 @@ def index_brain(max_episodes=3000):
     eps = _load()
     have = {e["text"][:200] for e in eps}
     added = 0
+    skipped = 0
     for line in open(BRAIN, encoding="utf-8"):
         if added >= max_episodes:
             break
@@ -108,8 +109,13 @@ def index_brain(max_episodes=3000):
                   "kind": f"brain_{m['role']}", "text": t[:6000], "meta": {}}
             try:
                 ep["embedding"] = embed(t)
-            except Exception:
-                continue
+            except Exception as exc:
+                # A blind `continue` here silently skipped rows, so a broken
+                # embedder would index nothing and the store would look healthy
+                # while staying frozen. Record the failure instead.
+                ep["embedding"] = None
+                ep["embed_error"] = f"{type(exc).__name__}: {exc}"
+                skipped += 1
             eps.append(ep)
             have.add(t[:200])
             added += 1
@@ -117,7 +123,7 @@ def index_brain(max_episodes=3000):
                 _save(eps)
                 print(f"  ... {len(eps)} episodes indexed")
     _save(eps)
-    return len(eps)
+    return len(eps), skipped
 
 def query(q, k=5):
     eps = _load()
@@ -138,7 +144,18 @@ def stats():
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "stats"
     if cmd == "index":
-        print("indexed:", index_brain())
+        # Optional per-run cap: the default 3000 would need ~92 minutes at the
+        # measured 1.85 s per fresh embedding and could never finish inside a
+        # cron window. Progress is saved every 50 rows, so bounded runs work the
+        # backlog off across several runs instead of being killed mid-way.
+        cap = int(sys.argv[2]) if len(sys.argv) > 2 else 3000
+        total, skipped = index_brain(cap)
+        print(f"indexed: {total} episodes ({skipped} embed failures)")
+        if skipped:
+            # A failed embed means the store did not grow. Say so loudly: the old
+            # blind `continue` let a broken embedder freeze this store for 17 days
+            # while every status stayed green.
+            sys.exit(1)
     elif cmd == "add":
         print("episodes:", add_episode(sys.argv[2]))
     elif cmd == "query":
