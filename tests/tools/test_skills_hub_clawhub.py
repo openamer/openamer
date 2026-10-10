@@ -430,7 +430,8 @@ class TestClawHubSource(unittest.TestCase):
 class TestClawHubCatalogWalkBounded(unittest.TestCase):
     """max_items bounds the walk so browse's cold-start fallback renders one
     page without walking the entire 50k+ catalog. The offline index builder
-    keeps max_items=0 (unbounded) and walks to exhaustion."""
+    keeps max_items=0 but is bounded by CATALOG_WALK_OFFLINE_BUDGET_SECONDS
+    so a slow catalog cannot hang the build."""
 
     def setUp(self):
         self.src = ClawHubSource()
@@ -548,6 +549,40 @@ class TestClawHubCatalogWalkBounded(unittest.TestCase):
         self.assertEqual(len(results), 10, "browse page should be exactly `limit` items")
         # Walk stopped near the bound, not at the 750-page cap.
         self.assertLess(page_calls["n"], 30)
+
+    @patch("tools.skills_hub._write_index_cache")
+    @patch("tools.skills_hub._read_index_cache", return_value=None)
+    @patch("tools.skills_hub.httpx.get")
+    def test_max_items_zero_respects_offline_budget(
+        self, mock_get, _mock_read_cache, mock_write_cache
+    ):
+        """Index-builder path (max_items=0) is bounded by the offline budget.
+
+        Regression for issue #136: the offline walk had *no* deadline, so a
+        slow ClawHub catalog walked ~250 sequential pages and blew past the
+        CI job timeout, cancelling the build and leaving /docs 404. The
+        offline walk must stop once its budget elapses -- and, being partial,
+        must not poison the shared full-catalog cache.
+        """
+        page_calls = {"n": 0}
+        mock_get.side_effect = self._infinite_pages(page_calls)
+
+        with patch.object(ClawHubSource, "CATALOG_WALK_OFFLINE_BUDGET_SECONDS", -1):
+            results = self.src._load_catalog_index(max_items=0)
+
+        self.assertLess(page_calls["n"], 750, "offline walk must honour its budget")
+        self.assertLess(page_calls["n"], 5)
+        mock_write_cache.assert_not_called()
+        self.assertIsInstance(results, list)
+
+    def test_offline_budget_is_sized_above_the_health_floor(self):
+        """The offline budget must be long enough to clear build_skills_index's
+        20k ClawHub health floor at observed latency, yet stay bounded."""
+        self.assertGreater(
+            ClawHubSource.CATALOG_WALK_OFFLINE_BUDGET_SECONDS,
+            ClawHubSource.CATALOG_WALK_BUDGET_SECONDS,
+        )
+        self.assertGreaterEqual(ClawHubSource.CATALOG_WALK_OFFLINE_BUDGET_SECONDS, 600)
 
 
 if __name__ == "__main__":
