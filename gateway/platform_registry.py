@@ -51,7 +51,15 @@ class PlatformEntry:
     adapter_factory: Callable[[Any], Any]
 
     # Returns True when the platform's dependencies are available.
+    # PASSIVE probe — must never install or import heavy SDKs (it is called
+    # from status displays and config loading).
     check_fn: Callable[[], bool]
+
+    # Optional ACTIVE installer for the platform's dependencies.  When check_fn
+    # (the passive probe) reports False, ``create_adapter`` calls this once to
+    # install the missing deps, then re-probes.  Kept separate from check_fn so
+    # status/config paths stay side-effect free (#79812).
+    ensure_deps_fn: Optional[Callable[[], Any]] = None
 
     # Optional: given a PlatformConfig, is it properly configured?
     # If None, the registry skips config validation and lets the adapter
@@ -291,13 +299,27 @@ class PlatformRegistry:
             return None
 
         if not entry.check_fn():
-            hint = f" ({entry.install_hint})" if entry.install_hint else ""
-            logger.warning(
-                "Platform '%s' requirements not met%s",
-                entry.label,
-                hint,
-            )
-            return None
+            # Passive probe says the deps are missing. Give the platform's
+            # ACTIVE installer a chance to fetch them once, then re-probe — this
+            # is the whole point of ensure_deps_fn being separate from check_fn
+            # (#79812). Never let an install failure mask the original warning.
+            if entry.ensure_deps_fn is not None:
+                try:
+                    entry.ensure_deps_fn()
+                except Exception as e:
+                    logger.warning(
+                        "Platform '%s' dependency install failed: %s",
+                        entry.label,
+                        e,
+                    )
+            if not entry.check_fn():
+                hint = f" ({entry.install_hint})" if entry.install_hint else ""
+                logger.warning(
+                    "Platform '%s' requirements not met%s",
+                    entry.label,
+                    hint,
+                )
+                return None
 
         if entry.validate_config is not None:
             try:
