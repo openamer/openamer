@@ -50,13 +50,43 @@ def get_openamer_home_override() -> str | None:
     return str(override)
 
 
+def _resolve_home_dir() -> Path:
+    """Best-effort user home directory that never raises.
+
+    ``Path.home()`` is tried FIRST so it stays overridable (tests monkeypatch
+    ``Path.home``) and so ``HOME``/``USERPROFILE`` are not consulted ahead of the
+    canonical lookup. It raises ``RuntimeError("Could not determine home
+    directory.")`` when neither HOME nor a Windows profile env var is set — e.g.
+    a caller that cleared ``os.environ`` (several tests do
+    ``patch.dict(os.environ, {}, clear=True)``), or a stripped-down service
+    environment. Only in that case do the env vars that locate a profile, and
+    finally a temp dir, provide the fallback — so a data-directory lookup can no
+    longer be killed by an unrelated env wipe.
+    """
+    try:
+        return Path.home()
+    except RuntimeError:
+        pass
+    for var in ("HOME", "USERPROFILE"):
+        val = os.environ.get(var, "").strip()
+        if val:
+            return Path(val)
+    drive = os.environ.get("HOMEDRIVE", "").strip()
+    tail = os.environ.get("HOMEPATH", "").strip()
+    if drive and tail:
+        return Path(drive + tail)
+    import tempfile
+
+    return Path(tempfile.gettempdir())
+
+
 def _get_platform_default_openamer_home() -> Path:
     """Return the platform-native default OpenAmer home path."""
     if sys.platform == "win32":
         local_appdata = os.environ.get("LOCALAPPDATA", "").strip()
-        base = Path(local_appdata) if local_appdata else Path.home() / "AppData" / "Local"
+        base = Path(local_appdata) if local_appdata else _resolve_home_dir() / "AppData" / "Local"
         return base / "openamer"
-    return Path.home() / ".openamer"
+    return _resolve_home_dir() / ".openamer"
 
 
 def _openamer_home_from_env() -> Path:
