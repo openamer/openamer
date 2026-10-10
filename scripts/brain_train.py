@@ -183,7 +183,12 @@ def main() -> int:
         if rc: return rc
         return cmd_train(args)
     if args.dataset: return cmd_dataset(args)
-    if args.train:   return cmd_train(args)
+    # `--smoke` was advertised in the docstring and accepted by argparse, but
+    # main() had no branch for it: it fell through to print_help() and returned
+    # 2, so the laptop smoke test could never pass and the openamer-brain-train
+    # skill's own declared check failed for a reason that had nothing to do with
+    # the pipeline. cmd_train() already routes args.smoke to _train_smoke().
+    if args.train or args.smoke: return cmd_train(args)
     if args.eval:    return cmd_eval(args)
     if args.export:  return cmd_export(args)
     if args.deploy_check: return cmd_deploy_check(args)

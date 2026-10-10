@@ -290,6 +290,27 @@ def test_a_timed_out_check_is_unmeasurable_not_failed(verify, tmp_path, monkeypa
 # ─────────────────────────────────────────────────────────────────────────────
 
 
+def test_a_command_scoped_to_another_project_is_not_extracted(verify):
+    """A build checklist for the reader's own project is not a check on this repo.
+
+    greenfield-agent-architecture's verification list is a checklist for the
+    project being created ("Syntax check every module", "pip install -e ."), so its
+    `pytest tests/ -q` resolved against THIS repo's tests/ and failed - a false
+    positive with nothing to do with the skill. The scope has to be stated on the
+    line itself; no other line is skipped, which the first assertion pins.
+    """
+    body = (
+        "# Skill\n\n## Verification\n\n"
+        "1. Syntax check: `python -m compileall .`\n"
+        "2. Tests (in the project you just created): `python -m pytest tests/ -q`\n"
+    )
+
+    commands = verify.extract_commands(body)
+
+    assert any("compileall" in c for c in commands), "an ordinary line still counts"
+    assert not any("pytest tests/" in c for c in commands), "the foreign scope is skipped"
+
+
 def test_heading_recognition_covers_the_documented_forms(verify):
     assert verify.is_verification_heading("Verification")
     assert verify.is_verification_heading("verifikation")

@@ -199,6 +199,19 @@ def _clean_candidate(line: str) -> str | None:
     return line
 
 
+# A command the skill explicitly scopes to a DIFFERENT working directory is not a
+# check on this repo. Measured 2026-10-10: greenfield-agent-architecture's
+# verification list is a checklist for the project the reader is about to build
+# ("Syntax check every module", "pip install -e ."), so its `pytest tests/ -q`
+# resolved against THIS repo's tests/ and failed - a false positive with nothing
+# to do with the skill. The scope has to be stated on the line itself to count;
+# no other line is skipped.
+_FOREIGN_SCOPE_RE = re.compile(
+    r"not in this repo|in the project you|in your own project|in your new project",
+    re.IGNORECASE,
+)
+
+
 def extract_commands(text: str) -> list[str]:
     """Pull every runnable-looking command out of a SKILL.md body.
 
@@ -208,10 +221,15 @@ def extract_commands(text: str) -> list[str]:
     because the allowlist is the security boundary, not this function. A too
     broad extractor only produces more `not-allowlisted` entries, which are
     inert; a too narrow one loses signal.
+
+    The one thing it does skip is a line that names a foreign scope, see
+    _FOREIGN_SCOPE_RE.
     """
     commands: list[str] = []
     in_fence = False
     for raw in text.splitlines():
+        if _FOREIGN_SCOPE_RE.search(raw):
+            continue
         if _FENCE_RE.match(raw):
             in_fence = not in_fence
             continue
@@ -321,6 +339,41 @@ def allowlisted(command: str, repo: Path = REPO) -> tuple[bool, list[str] | None
 # ─────────────────────────────────────────────────────────────────────────────
 
 
+def _spawn(argv: list[str], repo: Path, timeout: int):
+    """Run *argv* with no shell. Returns (returncode, error_reason, output)."""
+    try:
+        proc = subprocess.run(
+            argv,
+            cwd=str(repo),
+            timeout=timeout,
+            capture_output=True,
+            text=True,
+        )
+        return (
+            proc.returncode,
+            None,
+            (getattr(proc, "stdout", "") or "") + (getattr(proc, "stderr", "") or ""),
+        )
+    except subprocess.TimeoutExpired:
+        return None, "timeout", ""
+    except OSError as exc:  # interpreter or program missing
+        return None, f"launch-error: {exc}", ""
+
+
+def _pytest_via_uv(argv: list[str]) -> list[str] | None:
+    """`python -m pytest X` -> the runner the repo's own suite uses, same X."""
+    if (
+        len(argv) >= 3
+        and argv[0] in {"python", "python3"}
+        and argv[1] == "-m"
+        and argv[2] == "pytest"
+    ):
+        return ["uv", "run", "--no-project", "--with", "pytest", "python", "-m", *argv[2:]]
+    if argv and Path(argv[0]).name in {"pytest", "pytest.exe"}:
+        return ["uv", "run", "--no-project", "--with", "pytest", "python", "-m", "pytest", *argv[1:]]
+    return None
+
+
 def _run(argv: list[str], repo: Path, timeout: int = TIMEOUT_SECONDS):
     """Run *argv* without a shell. Returns (returncode, error_reason).
 
@@ -331,9 +384,15 @@ def _run(argv: list[str], repo: Path, timeout: int = TIMEOUT_SECONDS):
     SKILL.md says "python" and means the project interpreter, not whatever the
     PATH happens to hold at sweep time. Without this, `python -m pytest
     tests/...` picked up a different interpreter, failed on a missing
-    dependency, and recorded that as the skill being broken - a false negative
-    produced by the harness, which is the worst kind because it looks like
-    evidence.
+    dependency, and recorded that as the skill being broken.
+
+    That rewrite was not enough on its own: the runtime venv carries NO pytest,
+    so every skill declaring a pytest check came back `No module named pytest`
+    and was recorded as FAILING - the same false-negative class, one level down.
+    Measured 2026-10-10, 4 of the 5 "failing" skills were exactly this. So a
+    missing-pytest result is retried through the runner the repo's own suite
+    uses (`uv run --no-project --with pytest`); if that is unavailable too, the
+    original verdict stands rather than being silently forgiven.
 
     *timeout* is a parameter because Darwin's A/B calls this once per parent per
     cycle; the daily sweep can afford the full 120 s cap, the A/B cannot.
@@ -341,19 +400,17 @@ def _run(argv: list[str], repo: Path, timeout: int = TIMEOUT_SECONDS):
     effective = list(argv)
     if effective and effective[0] in {"python", "python3"}:
         effective[0] = sys.executable
-    try:
-        proc = subprocess.run(
-            effective,
-            cwd=str(repo),
-            timeout=timeout,
-            capture_output=True,
-            text=True,
-        )
-        return proc.returncode, None
-    except subprocess.TimeoutExpired:
-        return None, "timeout"
-    except OSError as exc:  # interpreter or program missing
-        return None, f"launch-error: {exc}"
+    returncode, error, output = _spawn(effective, repo, timeout)
+    if error is None and returncode != 0 and "No module named pytest" in output:
+        # Match on the ORIGINAL argv: `effective` has already had its bare
+        # `python` replaced by an absolute interpreter path, which the matcher
+        # would no longer recognise.
+        alternative = _pytest_via_uv(argv)
+        if alternative is not None:
+            rc2, err2, _ = _spawn(alternative, repo, timeout)
+            if err2 is None:
+                return rc2, None
+    return returncode, error
 
 
 def _score(passed: bool | None) -> float:
