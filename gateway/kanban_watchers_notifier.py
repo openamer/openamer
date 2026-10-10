@@ -414,8 +414,14 @@ _EVENT_FORMATTERS: dict[str, Callable[[Any, "_KanbanNotification"], tuple]] = {
     "completed": _fmt_completed,
     "blocked": lambda ev, n: (f"⏸ {n.head} blocked{_clip(ev, 'reason', ': {}', 160)}", None, None),
     "gave_up": _fmt_gave_up,
+    # The message carries the prose AND the event kind. `test_kanban_notify`
+    # pins the wording ("crashed" renders as "stopped unexpectedly"), while
+    # `test_kanban_notifier` pins that a crashed notification is recognisable
+    # by the word itself. Naming the kind in parentheses satisfies both, and a
+    # user reading "stopped unexpectedly (crashed)" gets the same fact either
+    # way.
     "crashed": lambda ev, n: (
-        f"✖ {n.head} — its worker stopped unexpectedly; it will be retried automatically.", None, None,
+        f"✖ {n.head} — its worker stopped unexpectedly (crashed); it will be retried automatically.", None, None,
     ),
     "timed_out": _fmt_timed_out,
     "status": lambda ev, n: (f"🔄 {n.head} → {_payload(ev, 'status') or ''}", None, None),

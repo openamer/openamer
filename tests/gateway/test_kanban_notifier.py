@@ -40,6 +40,12 @@ def _make_runner(adapter):
     runner._running = True
     runner.adapters = {Platform.TELEGRAM: adapter}
     runner._kanban_sub_fail_counts = {}
+    # The notifier only considers subscriptions with no owning profile when this
+    # process holds the dispatcher lock (_owns_kanban_dispatcher_lock reads this
+    # sentinel). These suites are about the claim/dedup behaviour of a single
+    # watcher, so the runner they build IS that owner. Without it the unowned
+    # subscription below is filtered out and nothing is ever sent.
+    runner._kanban_dispatcher_lock_handle = object()
     return runner
 
 
@@ -115,6 +121,12 @@ def test_kanban_notifier_rewinds_claim_if_adapter_disconnects(tmp_path, monkeypa
     runner._running = True
     runner.adapters = DisconnectedAdapters({Platform.TELEGRAM: RecordingAdapter()})
     runner._kanban_sub_fail_counts = {}
+    # The notifier only considers subscriptions with no owning profile when this
+    # process holds the dispatcher lock (_owns_kanban_dispatcher_lock reads this
+    # sentinel). These suites are about the claim/dedup behaviour of a single
+    # watcher, so the runner they build IS that owner. Without it the unowned
+    # subscription below is filtered out and nothing is ever sent.
+    runner._kanban_dispatcher_lock_handle = object()
 
     asyncio.run(_run_one_notifier_tick(monkeypatch, runner))
 
@@ -278,6 +290,12 @@ def test_notifier_owning_profile_adapter_no_default_fallback(tmp_path, monkeypat
     # profile's telegram bot.
     runner._profile_adapters = {"beta": {Platform.DISCORD: other_adapter}}
     runner._kanban_sub_fail_counts = {}
+    # The notifier only considers subscriptions with no owning profile when this
+    # process holds the dispatcher lock (_owns_kanban_dispatcher_lock reads this
+    # sentinel). These suites are about the claim/dedup behaviour of a single
+    # watcher, so the runner they build IS that owner. Without it the unowned
+    # subscription below is filtered out and nothing is ever sent.
+    runner._kanban_dispatcher_lock_handle = object()
 
     asyncio.run(_run_one_notifier_tick(monkeypatch, runner))
 

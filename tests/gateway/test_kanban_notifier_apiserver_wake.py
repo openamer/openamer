@@ -69,6 +69,9 @@ def _make_runner(adapters):
     runner._running = True
     runner.adapters = adapters
     runner._kanban_sub_fail_counts = {}
+    # See the note in test_kanban_notifier: unowned subscriptions are only
+    # considered by the process that owns the dispatcher lock.
+    runner._kanban_dispatcher_lock_handle = object()
     return runner
 
 
