@@ -123,6 +123,12 @@ def resolve(ref: str, skill_dir: Path | None = None) -> bool:
     ref = ref.strip()
     if not ref or ref.startswith(("http", "~")):
         return True  # not a filesystem claim; nothing to verify
+    # `SKILL_DIR/` is a DOCUMENTED template variable, not a broken path: the
+    # youtube-content skill defines it as "the directory containing this
+    # SKILL.md". Resolve it against the skill's own directory before judging.
+    if skill_dir is not None and ref.startswith("SKILL_DIR/"):
+        if (skill_dir / ref[len("SKILL_DIR/"):]).exists():
+            return True
     # A skill that ships scripts next to its own SKILL.md is well-formed, and
     # most do. Without this, `scripts/extract_metadata.py` counted as broken for
     # every skill that carries its own tooling.
@@ -153,6 +159,25 @@ def _is_placeholder(ref: str) -> bool:
     return bool(_PLACEHOLDER_RE.search(ref))
 
 
+# A ref that does not resolve is forgiven when its LINE marks it as an example
+# rather than a claim: a project-tree drawing, an existence probe, or prose that
+# says "e.g."/"example". Measured 2026-10-10: of 37 unresolved refs across 19
+# skills, 35 were exactly this class - `x.py`/`f.py` in an edit example,
+# `manage.py` as a Django detection marker, llama.cpp's `convert_hf_to_gguf.py`
+# named as an EXTERNAL tool. Forgiving them by name would be guessing; the line
+# they sit on is the actual evidence.
+_EXAMPLE_LINE_RE = re.compile(
+    r"[|\u2502\u251c\u2514\u2500]"
+    r"|\[\s*-[fd]\s"
+    r"|e\.g\.|for instance|for example|such as|placeholder|your own",
+    re.IGNORECASE,
+)
+
+
+def _is_example_line(line: str) -> bool:
+    return bool(_EXAMPLE_LINE_RE.search(line))
+
+
 def score_text(text: str, skill_dir: Path | None = None) -> dict:
     """Score a SKILL.md body without touching disk.
 
@@ -161,19 +186,34 @@ def score_text(text: str, skill_dir: Path | None = None) -> dict:
     then decides whether to keep it. The regex and the arithmetic live here;
     reading a path is the thin wrapper below.
     """
-    refs: list[str] = []
-    for m in REF_RE.finditer(text):
-        ref = m.group(1) or m.group(2)
-        if ref and ref not in refs:
-            refs.append(ref)
+    found: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for line in text.splitlines():
+        for m in REF_RE.finditer(line):
+            ref = m.group(1) or m.group(2)
+            if ref and ref not in seen:
+                seen.add(ref)
+                found.append((ref, line))
 
     # Placeholder-shaped names are forgiven only when they do NOT resolve: an
     # example like `python script.py --once` documents a shape, while
     # `/path/to/scripts/session_to_brain.py` with that file present is a real
     # reference that happens to carry a placeholder prefix. Filtering at
     # collection time hid that one; filtering here only forgives fiction.
-    missing = [r for r in refs if not resolve(r, skill_dir) and not _is_placeholder(r)]
-    total = len(refs)
+    #
+    # A bare basename that resolves nowhere is DELIBERATELY still a claim, not
+    # unmeasurable. It cannot be told apart from an example by any name rule,
+    # but test_a_variant_that_adds_a_dead_reference_scores_lower pins the A/B
+    # floor to it: if `ghost.py` stopped counting, a damaging mutation would tie
+    # its parent and the whole Darwin A/B would go blind. Over-punishing an
+    # example costs a few fitness points; under-punishing damage breaks the
+    # selection it feeds. (Tried the "unmeasurable" variant 2026-10-10; the
+    # repo's tests refuted it - reverted.)
+    missing = [r for r, line in found
+               if not resolve(r, skill_dir)
+               and not _is_placeholder(r)
+               and not _is_example_line(line)]
+    total = len(found)
     ok = total - len(missing)
     return {
         "refs": total,

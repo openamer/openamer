@@ -148,3 +148,43 @@ def test_an_unresolved_placeholder_is_forgiven_not_flagged(probe, tmp_path, monk
     assert result["refs"] == 2, "both are references"
     assert result["missing"] == [], "the example is forgiven; the real file resolves"
     assert result["score"] == 1.0
+
+
+def test_a_documented_skill_dir_template_is_resolved(probe, tmp_path, monkeypatch):
+    """`SKILL_DIR/` is a documented template variable, not a dangling path.
+
+    The youtube-content skill defines it as "the directory containing this
+    SKILL.md". Judging it unresolved scored a perfectly good skill 0.0 until
+    the probe learned to substitute it. Measured 2026-10-10.
+    """
+    monkeypatch.setattr(probe, "candidate_roots", lambda: [tmp_path])
+    md = _write_skill(tmp_path, "Run `python SKILL_DIR/scripts/fetch.py` to start.\n")
+    (md.parent / "scripts").mkdir()
+    (md.parent / "scripts" / "fetch.py").write_text("ok\n", encoding="utf-8")
+
+    result = probe.probe_skill(md)
+
+    assert result["missing"] == []
+    assert result["score"] == 1.0
+
+
+def test_an_example_line_is_forgiven_but_an_ordinary_claim_is_not(probe, tmp_path, monkeypatch):
+    """Illustration versus claim is decided by the LINE, not by the name.
+
+    Measured 2026-10-10: of 37 unresolved refs across 19 skills, 35 were an
+    example - `manage.py` as a Django detection marker, `main.py` in a project
+    tree, llama.cpp's `convert_hf_to_gguf.py` named as an external tool. Name
+    rules would be guessing; the line they sit on is the evidence. The control
+    below is the important half: a plain unresolved claim must STILL be flagged,
+    or the rule has gone too broad and the A/B floor is gone.
+    """
+    monkeypatch.setattr(probe, "candidate_roots", lambda: [tmp_path])
+
+    tree = probe.score_text("\u2502   python3 main.py\n")
+    probe_line = probe.score_text("[ -f manage.py ] && python manage.py test\n")
+    control = probe.score_text("python3 ghost.py\n")
+
+    assert tree["missing"] == [], "a project-tree drawing is not a claim"
+    assert probe_line["missing"] == [], "an existence probe is not a claim"
+    assert control["missing"] == ["ghost.py"], "an ordinary claim is still flagged"
+
