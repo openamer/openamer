@@ -1,17 +1,17 @@
-# 🧬 Darwin Auto-Patch Report — 2026-10-01T04:00:01
+# 🧬 Darwin Auto-Patch Report — 2026-10-10T22:00:53
 
-- Population: 662 skills, avg 40.5
+- Population: 1099 skills, avg 38.0
 - Mode: **apply**
 
 ## Improved (kept)
 
 - ✅ `auto-structural-connection-between-tool`: 21 → 31 (+10)
-- ✅ `auto-multidomain-learning-show-hn`: 21 → 25 (+4)
-- ✅ `auto-security-learning-agent-sandboxing`: 21 → 25 (+4)
-- ✅ `auto-security-learning-ai-supply`: 21 → 25 (+4)
-- ✅ `auto-security-learning-detecting-prompt`: 21 → 25 (+4)
-- ✅ `auto-security-learning-how-are`: 21 → 25 (+4)
-- ✅ `auto-security-learning-mcp-server`: 21 → 25 (+4)
-- ✅ `auto-security-learning-microsoft-bets`: 21 → 25 (+4)
-- ✅ `auto-security-learning-owasp-just`: 21 → 25 (+4)
-- ✅ `auto-security-learning-owasp-llm`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-mouse-precision`: 25 → 28 (+3)
+- ✅ `auto-competitor-intelligence-opencode-open`: 25 → 28 (+3)
+- ✅ `auto-competitor-intelligence-pythonopenaichat`: 25 → 28 (+3)
+- ✅ `auto-competitor-intelligence-some-uncomfortab`: 25 → 28 (+3)
+- ✅ `auto-competitor-intelligence-undisclosed-addi`: 25 → 28 (+3)
+- ✅ `auto-efficiency-learning-advanced-quantizatio`: 25 → 28 (+3)
+- ✅ `auto-efficiency-learning-efficientqat-llm`: 25 → 28 (+3)
+- ✅ `auto-efficiency-learning-quantization-techniq`: 25 → 28 (+3)
+- ✅ `auto-efficiency-learning-splitquantv2-enhanci`: 25 → 28 (+3)

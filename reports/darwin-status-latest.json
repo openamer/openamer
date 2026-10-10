@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-10T03:00:50+00:00",
-  "population": 720,
-  "avg_score": 39.9,
+  "updated": "2026-10-10T20:00:53+00:00",
+  "population": 1115,
+  "avg_score": 37.9,
   "fittest": [
     {
       "name": "cdp-social-posting",
@@ -40,12 +40,12 @@
       "score": 71
     },
     {
-      "name": "system-performance-monitoring",
+      "name": "github-automation-push",
       "score": 71
     }
   ],
   "autopatch": {
-    "timestamp": "2026-10-10T04:45:46",
+    "timestamp": "2026-10-10T21:02:23",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -55,67 +55,94 @@
         "fixes": []
       },
       {
-        "skill": "auto-competitor-intelligence-an-ai",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
+        "skill": "auto-multidomain-learning-llms-are",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
       },
       {
-        "skill": "auto-competitor-intelligence-okf-agent",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
+        "skill": "auto-multidomain-learning-llms-are-20261010093058",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
       },
       {
-        "skill": "auto-competitor-intelligence-what-i",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
+        "skill": "auto-multidomain-learning-nasa-ibm",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
       },
       {
-        "skill": "auto-efficiency-learning-finetuning-llms",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
+        "skill": "auto-multidomain-learning-python-climate",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
       },
       {
-        "skill": "auto-efficiency-learning-ragkit-with",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
+        "skill": "auto-multidomain-learning-show-hn",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
       },
       {
-        "skill": "auto-internet-learning-rogue-cursor",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
+        "skill": "auto-security-learning-agent-sandboxing",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
       },
       {
-        "skill": "auto-internet-learning-spain-to",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
+        "skill": "auto-security-learning-ai-agent",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
       },
       {
-        "skill": "auto-internet-learning-strengthening-ai",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
+        "skill": "auto-security-learning-ai-supply",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
       },
       {
-        "skill": "auto-latest-research-insight-ai",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
+        "skill": "auto-security-learning-detecting-prompt",
+        "before": 25,
+        "after": 28,
+        "delta": 3,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
       }
     ]
   },
@@ -147,22 +174,22 @@
     },
     {
       "source": "News",
-      "title": "7 tried-and-true controls for agentic AI - IT Brew",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE4yZUZxNzNUeGVZaGYzLW9VYjdzeEltbXRFemw2R3NfUWtHN201OFdjbFFsS2tzM2dpWlFPa2ZkSldkRHBYM3NJNGxwZC1LVGtnb2FnRGU4a1MwZnUwWG4xdlRLU3NFQ21ueTFqSUpfTkl1TXZEclkxUFNDZw?oc=5"
+      "title": "AI Agent Evaluation Is the Foundation of Reliable Autonomy - HackerNoon",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQZ21SZmU2c3ZEWFlyOWJOWXdzYlk5MmlxVHR2bGxsMjNpYjhTTmVkdVJKX0MxLVF5VXZXQ0tjc2VrdkItTENjV2pQaDRUTDBIRXpFeFZVWUZwN1h4ZndCbFRWYlpaQUhnRU5DV1FOTjI2SXQxeGUtRkIxLTJWRGQ0bVJiaUU3dHl6?oc=5"
     },
     {
       "source": "News",
-      "title": "Agentic AI just got very real - Fast Company",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9ad2VIZFdDSE03cmV3Q3FkNFo5d3pMWmtmZ1pZcVphY01JSjZLallsV3gyR0doblBqVnA4Qm1YbnpESG1ST3FscDd1Z2g3ekd6bElpWjczY0FXMkttaUptRHR3Q3dMR2pTbEVIUWt3?oc=5"
+      "title": "Cisco Unleashes New Agentic Collaboration Experiences - Cisco Newsroom",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNLVB5QnBzS1hNTkdOanhFVWVKRTYwXzNfSlc2NnpGVVNyNWtkV3VvY1NmVmVhWmUxaHU2M3dNbEFhOXpYNFprQ3lHMUNWeDJoelU0bkdQYWxjamlKZ3FGcWh2dWVWLVdaejNXOWxxT1JqMFVmZURPSkZFOU5pTng5RXFRTjdzUzBIdEt2TmFrWUxyVUVxTHFUU3Z1UUhuSkdsUnAyWEJQWTloNm9ZMWk4cWVzTDg?oc=5"
     },
     {
       "source": "News",
-      "title": "Google brings agentic AI to Gemini, starting with businesses - TechCrunch",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNVmlZXzdMc1F5aTdGUFlIaUVtZmlZSWNyejQ4ejY3R1h2QUI0UU56QVpXUXB6a25ja3I5OHlDSm5TamVTbk5XZHJwdjFoSHpKa3VheURjQWgtQUtEalJCek90M0JjSjcycWJVSXUyc2wwS2ViMXE1OVN5bFJFUmhiY253OU5DNHMxbmJRZW5IWmtGWHVRdXZ1NDFR?oc=5"
+      "title": "This New Raleigh, N.C., IT Help Desk Agent Is, Well, Agentic - GovTech",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNbVdnQ1lvSVQ3Qnp4eHdoOVlwVUhyWlRWNVFVSzhkcU5feWo1VW9pdXRvZTdLdWZ3UnA3WlBhemVKZlZpZDMyUDdXSlk3UG5FV3B6SHV3eTRpTWJUaTlycXk4NUIxdTdtRFlnZlQ0TV9YNExnR0VDdy1ieTlsRlJqLVBGWXlac1JjUjk5TzJnQW9iTnlOQU5Tc2RzWjZoWkgtQWVfcV9B?oc=5"
     }
   ],
-  "population_engine": 93,
-  "species": 80,
+  "population_engine": 1099,
+  "species": 76,
   "trials": 0,
   "harvested": 193
 }
