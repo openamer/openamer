@@ -837,9 +837,20 @@ def _build_dynamic_image_schema() -> Dict[str, Any]:
     properties: Dict[str, Any] = {
         "prompt": static_props["prompt"], "aspect_ratio": static_props["aspect_ratio"]}
     if can_edit:
-        edit_clause = ", or edit / transform an existing image by passing image_url"
+        # The active model advertises BOTH modalities, so say it routes automatically
+        # between them — the caller just sends `prompt` (+ `image_url`) and the backend
+        # picks text-to-image vs image-to-image. A text-only model must NOT advertise
+        # editing (the else branch below), or the agent wastes a turn on a rejected call.
+        edit_clause = (
+            ", or edit / transform an existing image (image-to-image / editing). "
+            "The tool routes automatically between text-to-image (prompt only) and "
+            "image-to-image (image_url supplied)"
+        )
         properties["image_url"] = _IMAGE_URL_PARAM
         if max_refs > 1:
+            edit_clause += (
+                f"; supply up to {max_refs} reference image(s) to guide the edit"
+            )
             properties["reference_image_urls"] = {
                 "type": "array",
                 "items": {"type": "string"},
@@ -851,7 +862,7 @@ def _build_dynamic_image_schema() -> Dict[str, Any]:
                 ),
             }
     else:
-        edit_clause = " (text-to-image only — the active model cannot edit existing images)"
+        edit_clause = " (text-to-image only — this model is NOT capable of image-to-image)"
     if info.get("supports_upscale"):
         properties["upscale"] = _UPSCALE_PARAM
     return {"description": base_desc.format(edit_clause=edit_clause),
