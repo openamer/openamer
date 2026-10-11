@@ -355,12 +355,13 @@ class Heartbeat:
                 "cron_mesh_daemon.py",               # 5m
                 "cron-context-compressor.py",        # daily
                 "cron-file-organizer.py",            # daily
+                "home-sweep.py",                     # daily — quarantine provable HOME junk
             ],
             cron_ids=["fb6973a70e35", "ab_test_collect", "1ab80658d306",
                       "9a6bcf2436d5", "414a4fa6f0a7", "a08bce193d56",
                       "b8dbf1f98adc", "4ac85a7de695", "ed618c851dd0",
                       "e2c0bad7dbe0", "cfa3d413462c", "0ccce21c5738",
-                      "8d94e3136326", "fileorganizer_clean_24h"],
+                      "8d94e3136326", "fileorganizer_clean_24h", "home_sweep_24h"],
         )
 
         # ── 10. Meta (37 Jobs) ─────────────────────────────────────────
