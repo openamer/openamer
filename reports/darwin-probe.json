@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-11T02:23:41.609757+00:00",
+  "updated": "2026-10-11T08:30:38.734596+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
   "total": 1102,
   "skills": {
@@ -207,6 +207,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-internet-learning-metas-new": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-internet-learning-mit-researchers": {
       "refs": 0,
       "ok": 0,
@@ -214,6 +220,12 @@
       "missing": []
     },
     "auto-internet-learning-openai-and": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-openai-hacked": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -346,6 +358,12 @@
       "missing": []
     },
     "auto-latest-research-insight-chameleon": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-cultural": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1383,24 +1401,6 @@
       "score": 1.0,
       "missing": []
     },
-    "auto-internet-learning-metas-new": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "auto-internet-learning-openai-hacked": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "auto-latest-research-insight-cultural": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "auto-latest-research-insight-proofofthought": {
       "refs": 0,
       "ok": 0,
@@ -1534,8 +1534,8 @@
       "missing": []
     },
     "agent-self-improvement": {
-      "refs": 4,
-      "ok": 4,
+      "refs": 5,
+      "ok": 5,
       "score": 1.0,
       "missing": []
     },
@@ -2383,8 +2383,8 @@
       "missing": []
     },
     "github-automation-push": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -6315,8 +6315,8 @@
       ]
     },
     "false-verdict-detection": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -6407,8 +6407,8 @@
       "missing": []
     },
     "openamer-browser-use": {
-      "refs": 4,
-      "ok": 4,
+      "refs": 5,
+      "ok": 5,
       "score": 1.0,
       "missing": []
     },

@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-11T02:23:07+00:00",
+  "updated": "2026-10-11T08:30:36+00:00",
   "population": 1118,
-  "avg_score": 38.2,
+  "avg_score": 38.3,
   "fittest": [
     {
       "name": "cdp-social-posting",
@@ -45,7 +45,7 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-10-11T03:31:16",
+    "timestamp": "2026-10-11T09:30:44",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -90,39 +90,32 @@
         "fixes": []
       },
       {
-        "skill": "nvidia-ontology-query",
-        "before": 27,
+        "skill": "auto-internet-learning-amazon-demands",
+        "before": 28,
         "after": 31,
-        "delta": 4,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
+        "delta": 3,
+        "fixes": []
       },
       {
-        "skill": "physical-ai-infrastructure-setup-and-resilient-scaling",
-        "before": 27,
-        "after": 30,
+        "skill": "auto-internet-learning-autonomous-ai",
+        "before": 28,
+        "after": 31,
         "delta": 3,
         "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt"
         ]
       },
       {
-        "skill": "physicsnemo-discover",
-        "before": 27,
+        "skill": "auto-internet-learning-built-an",
+        "before": 28,
         "after": 31,
-        "delta": 4,
+        "delta": 3,
         "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt"
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-ai-coding",
+        "skill": "auto-internet-learning-chatbots-are",
         "before": 28,
         "after": 31,
         "delta": 3,
@@ -165,17 +158,17 @@
     },
     {
       "source": "News",
-      "title": "AI Agent Evaluation Is the Foundation of Reliable Autonomy - HackerNoon",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQZ21SZmU2c3ZEWFlyOWJOWXdzYlk5MmlxVHR2bGxsMjNpYjhTTmVkdVJKX0MxLVF5VXZXQ0tjc2VrdkItTENjV2pQaDRUTDBIRXpFeFZVWUZwN1h4ZndCbFRWYlpaQUhnRU5DV1FOTjI2SXQxeGUtRkIxLTJWRGQ0bVJiaUU3dHl6?oc=5"
+      "title": "Cisco Unleashes New Agentic Collaboration Experiences - Cisco Newsroom",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNLVB5QnBzS1hNTkdOanhFVWVKRTYwXzNfSlc2NnpGVVNyNWtkV3VvY1NmVmVhWmUxaHU2M3dNbEFhOXpYNFprQ3lHMUNWeDJoelU0bkdQYWxjamlKZ3FGcWh2dWVWLVdaejNXOWxxT1JqMFVmZURPSkZFOU5pTng5RXFRTjdzUzBIdEt2TmFrWUxyVUVxTHFUU3Z1UUhuSkdsUnAyWEJQWTloNm9ZMWk4cWVzTDg?oc=5"
     },
     {
       "source": "News",
-      "title": "Cisco Unleashes New Agentic Collaboration Experiences - Cisco Newsroom",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNLVB5QnBzS1hNTkdOanhFVWVKRTYwXzNfSlc2NnpGVVNyNWtkV3VvY1NmVmVhWmUxaHU2M3dNbEFhOXpYNFprQ3lHMUNWeDJoelU0bkdQYWxjamlKZ3FGcWh2dWVWLVdaejNXOWxxT1JqMFVmZURPSkZFOU5pTng5RXFRTjdzUzBIdEt2TmFrWUxyVUVxTHFUU3Z1UUhuSkdsUnAyWEJQWTloNm9ZMWk4cWVzTDg?oc=5"
+      "title": "Who\u2019s behind the AI agent? Solving the identity challenge in agentic commerce - Mastercard",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNbHBfdnl2WW91bDFQQkx4SmZFZHhwWFAyRjRaRDNmMFFQOUw3emM2WEhSR24zTi1wUWEzV3NqYjFjTi01SlZKNzBFd0VJS1Jpak5fSm0yM1V1SFN0MlFMN1JNa3d1TzBpbERQWm1DTi1OX2pWdW5TVWN1QXhPR1BySFIyQ2ZsWi1KUl9qejN2Vk83LTAwYUNZVTcyclhEMGVyY0xNMWJvanJRQzhMMXBvLUJn?oc=5"
     }
   ],
   "population_engine": 1102,
-  "species": 76,
+  "species": 74,
   "trials": 0,
   "harvested": 193
 }

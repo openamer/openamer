@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-10-11T03:31:16",
+  "timestamp": "2026-10-11T09:30:44",
   "mode": "apply",
   "population": 1102,
-  "avg_score": 38.3,
+  "avg_score": 38.4,
   "kept": [
     {
       "skill": "auto-structural-connection-between-tool",
@@ -47,39 +47,32 @@
       "fixes": []
     },
     {
-      "skill": "nvidia-ontology-query",
-      "before": 27,
+      "skill": "auto-internet-learning-amazon-demands",
+      "before": 28,
       "after": 31,
-      "delta": 4,
-      "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt",
-        "✅ version Feld hinzugefügt"
-      ]
+      "delta": 3,
+      "fixes": []
     },
     {
-      "skill": "physical-ai-infrastructure-setup-and-resilient-scaling",
-      "before": 27,
-      "after": 30,
+      "skill": "auto-internet-learning-autonomous-ai",
+      "before": 28,
+      "after": 31,
       "delta": 3,
       "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
+        "✅ metadata.openamer Block hinzugefügt"
       ]
     },
     {
-      "skill": "physicsnemo-discover",
-      "before": 27,
+      "skill": "auto-internet-learning-built-an",
+      "before": 28,
       "after": 31,
-      "delta": 4,
+      "delta": 3,
       "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt",
-        "✅ version Feld hinzugefügt"
+        "✅ metadata.openamer Block hinzugefügt"
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-ai-coding",
+      "skill": "auto-internet-learning-chatbots-are",
       "before": 28,
       "after": 31,
       "delta": 3,
