@@ -73,6 +73,32 @@ def _load_jobs() -> Dict[str, Any]:
     return index
 
 
+def _basename(script: str) -> str:
+    """Filename without directory, for ownership comparison."""
+    return script.replace("\\", "/").rsplit("/", 1)[-1]
+
+
+# Scripts a LIVE wrapper cron job runs indirectly. jobs.json only records the
+# wrapper ("_cron_growth.py"), so its four inner steps are named here; without
+# this the engine would also run them once their own jobs were retired, doubling
+# the work (internet_learner especially).
+WRAPPER_OWNED = {
+    "internet_learner.py",
+    "knowledge_to_action.py",
+    "auto_skill_creation.py",
+    "self_improve.py",
+}
+
+
+def _script_path(name: str) -> Optional[Path]:
+    """Where a named script lives, or None. Mirrors _run_subprocess's probe."""
+    for d in (SCRIPTS_DIR, SCRIPTS_TRAINING, CRON_DIR, OPENAMER_HOME):
+        p = d / name
+        if p.is_file():
+            return p
+    return None
+
+
 def _cadence_minutes(schedule: Any) -> Optional[int]:
     """Approximate a job's cadence in minutes from its jobs.json schedule.
 
@@ -522,17 +548,30 @@ class Heartbeat:
         cron to the native heartbeat — one executor at a time, never two.
         """
         jobs = _load_jobs()
+        # Scripts a still-running cron job owns — directly (its own `script`)
+        # or indirectly (a live wrapper runs them). The engine must not run
+        # these too, so their work never doubles. jobs.json cannot express the
+        # indirect case, hence the small explicit set.
+        cron_owned = {
+            _basename(j["script"]) for j in jobs.values()
+            if j.get("enabled") and j.get("script")
+        } | WRAPPER_OWNED
         for sub in self.subsystems.values():
             scripts: List[str] = []
             cadences: Dict[str, int] = {}
+            # Adopt a script only when the job that ran it is retired
+            # (disabled) AND no live cron already runs the same file. This is
+            # the hand-off: the cron was switched off, so the engine takes it.
             for cid in sub.cron_ids:
                 job = jobs.get(cid)
                 if not job or not job.get("script"):
                     continue  # unknown id, or an LLM job the engine cannot run
                 if job.get("enabled", False):
-                    continue  # cron still owns it — no double-run
+                    continue  # cron still owns it
                 script = job["script"]
-                if script in scripts:
+                if _basename(script) in cron_owned:
+                    continue
+                if script in scripts or _script_path(script) is None:
                     continue
                 scripts.append(script)
                 minutes = _cadence_minutes(job.get("schedule"))

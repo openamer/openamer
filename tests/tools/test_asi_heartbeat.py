@@ -182,22 +182,23 @@ def test_slow_script_is_not_stormed_by_a_fast_sibling(monkeypatch):
     assert set(ran) == {"fast.py", "slow.py"}, "force must run everything"
 
 
-def test_engine_only_runs_retired_cron_jobs(tmp_path, monkeypatch):
-    """Handoff rule: a cron job that is still enabled keeps owning its script,
-    so the heartbeat can never double a side effect during migration."""
+def test_engine_only_adopts_retired_jobs(tmp_path, monkeypatch):
+    """Handoff: adopt a retired job's script, never one a live cron still owns,
+    so a side effect is never doubled."""
     import json
 
     from tools.asi import heartbeat as hbm
 
     jobs = {"jobs": [
-        {"id": "keep", "name": "Keep", "script": "a.py", "enabled": True,
+        {"id": "keep", "name": "Keep", "script": "owned.py", "enabled": True,
          "schedule": {"kind": "interval", "minutes": 5}},
-        {"id": "retired", "name": "Retired", "script": "b.py", "enabled": False,
+        {"id": "retired", "name": "Retired", "script": "retired.py", "enabled": False,
          "schedule": {"kind": "interval", "minutes": 30}},
     ]}
     f = tmp_path / "jobs.json"
     f.write_text(json.dumps(jobs), encoding="utf-8")
     monkeypatch.setattr(hbm, "JOBS_FILE", f)
+    monkeypatch.setattr(hbm, "_script_path", lambda name: hbm.Path("/x") / name)
 
     hb = hbm.Heartbeat()
     sub = hbm.Subsystem(name="t", category="t", cadence_minutes=99, scripts=[])
@@ -205,9 +206,48 @@ def test_engine_only_runs_retired_cron_jobs(tmp_path, monkeypatch):
     hb.subsystems = {"t": sub}
     hb._reconcile_scripts()
 
-    assert sub.scripts == ["b.py"], sub.scripts
-    assert sub.script_cadence == {"b.py": 30}
+    assert sub.scripts == ["retired.py"], sub.scripts
+    assert sub.script_cadence == {"retired.py": 30}
     assert sub.cadence_minutes == 30
+
+
+def test_wrapper_owned_script_is_never_adopted(tmp_path, monkeypatch):
+    """internet_learner runs under the live Growth Loop wrapper. Its own job is
+    retired, but the engine must still not run it — that would double the work."""
+    import json
+
+    from tools.asi import heartbeat as hbm
+
+    jobs = {"jobs": [
+        {"id": "il", "name": "internet-learner", "script": "internet_learner.py",
+         "enabled": False, "schedule": {"kind": "interval", "minutes": 5}},
+    ]}
+    f = tmp_path / "jobs.json"
+    f.write_text(json.dumps(jobs), encoding="utf-8")
+    monkeypatch.setattr(hbm, "JOBS_FILE", f)
+    monkeypatch.setattr(hbm, "_script_path", lambda name: hbm.Path("/x") / name)
+
+    hb = hbm.Heartbeat()
+    sub = hbm.Subsystem(name="t", category="t", cadence_minutes=99, scripts=[])
+    sub.cron_ids = ["il"]
+    hb.subsystems = {"t": sub}
+    hb._reconcile_scripts()
+    assert sub.scripts == [], sub.scripts
+
+
+def test_broken_explicit_name_is_dropped():
+    """A registry entry that names a job or bakes args into a filename must
+    never be adopted as a runnable script."""
+    from tools.asi import heartbeat as hbm
+
+    sub = hbm.Subsystem(name="t", category="t", cadence_minutes=5,
+                        scripts=["smart-cache.py --clean", "darwin-grid.py", "asi-audit"])
+    hb = hbm.Heartbeat()
+    hb.subsystems = {"t": sub}
+    hb._reconcile_scripts()
+    assert sub.scripts == [], sub.scripts
+
+
 
 
 
