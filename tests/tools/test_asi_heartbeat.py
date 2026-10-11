@@ -119,3 +119,38 @@ def test_a2a_server_is_health_checked_not_started():
     # down -> a fast, honest failure (not a hang)
     r = a2a.server_health(url="http://127.0.0.1:9/a2a/health", timeout=1.0)
     assert r["success"] is False and "down" in r["error"]
+
+
+def test_as_result_does_not_invent_success():
+    """A dict's own success flag must win — the heartbeat may not upgrade it.
+
+    Live 2026-10-11 the native route returned ``{"success": True}``
+    unconditionally, so a swarm subsystem read green while both its scripts
+    had errored. Pin the mapping so a failed module can never look green.
+    """
+    from tools.asi.heartbeat import _as_result
+
+    assert _as_result({"success": False, "error": "boom"})["success"] is False
+    assert _as_result({"success": False, "error": "boom"})["error"] == "boom"
+    assert _as_result({"success": True})["success"] is True
+    assert _as_result({"ok": 1})["success"] is True        # no flag -> assume ok
+    assert _as_result(0)["success"] is True                # process rc
+    assert _as_result(2)["success"] is False               # non-zero rc
+    assert _as_result(None)["success"] is True             # uneventful run
+
+
+def test_failed_module_makes_the_subsystem_red(monkeypatch):
+    """End-to-end: a script module returning a failure dict fails the tick."""
+    import sys
+    import types
+
+    fake = types.ModuleType("hb_fake_script")
+    fake.main = lambda: {"success": False, "error": "boom"}
+    monkeypatch.setitem(sys.modules, "hb_fake_script", fake)
+
+    sub = Subsystem(name="fake", category="test", cadence_minutes=0,
+                    scripts=["hb_fake_script.py"])
+    r = sub.tick()
+    assert r["any_success"] is False, "a failed module was reported green"
+    assert r["results"][0]["success"] is False
+

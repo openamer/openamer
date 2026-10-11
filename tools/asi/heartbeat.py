@@ -42,6 +42,28 @@ if _training_path not in sys.path:
     sys.path.insert(0, _training_path)
 
 
+def _as_result(result: Any) -> Dict[str, Any]:
+    """Map a script function's return value onto a heartbeat result.
+
+    The heartbeat must not invent success. A native module that returns
+    ``{"success": False, "error": ...}`` is a FAILED tick, not a green one —
+    live 2026-10-11 the unconditional ``{"success": True}`` here reported a
+    green swarm subsystem while BOTH its scripts had errored
+    ("no cycle() or run() in swarm_intelligence", "No module named 'dotenv'").
+    A dict's own ``success`` flag wins; a bare int is a process return code;
+    anything else (None, a plain string) is a successful, uneventful run.
+    """
+    if isinstance(result, dict):
+        return {
+            "success": bool(result.get("success", True)),
+            "stdout": str(result)[:500],
+            "error": result.get("error"),
+        }
+    if isinstance(result, int) and not isinstance(result, bool):
+        return {"success": result == 0, "stdout": f"rc={result}"}
+    return {"success": True, "stdout": str(result)[:500] if result else "ok"}
+
+
 # ── Subsystem Definition ────────────────────────────────────────────────────
 
 class Subsystem:
@@ -138,7 +160,7 @@ class Subsystem:
                 fn = getattr(mod, func_name, None)
                 if fn:
                     result = fn()
-                    return {"success": True, "stdout": str(result)[:500]}
+                    return _as_result(result)
             except Exception as e:
                 logger.warning(f"Native module {native_path} failed: {e}, falling back")
 
@@ -151,7 +173,7 @@ class Subsystem:
                 fn = getattr(mod, fn_name, None)
                 if fn is not None:
                     result = fn()
-                    return {"success": True, "stdout": str(result)[:500] if result else "ok"}
+                    return _as_result(result)
         except Exception:
             pass
 
