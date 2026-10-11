@@ -34,6 +34,37 @@ from typing import Any, Awaitable, Callable, Optional
 
 logger = logging.getLogger(__name__)
 
+def _deps_ready(entry: "PlatformEntry") -> bool:
+    """Are this platform's dependencies usable - installing them on demand if not.
+
+    ``check_fn`` is passive: status displays and config loading call it, so it
+    must never install. When it says "not available" and the entry carries an
+    ``ensure_deps_fn``, that installer gets its one chance here - the documented
+    activation point. Its own return value is not trusted: the answer is
+    whatever ``check_fn`` says afterwards.
+    """
+    if entry.check_fn():
+        return True
+    ensure = getattr(entry, "ensure_deps_fn", None)
+    if ensure is None:
+        return False
+    try:
+        claimed = bool(ensure())
+    except Exception:                                          # noqa: BLE001
+        logger.exception("Platform '%s' dependency install raised", entry.label)
+        return False
+    if not claimed:
+        return False
+    still_missing = not entry.check_fn()
+    if still_missing:
+        logger.warning(
+            "Platform '%s' installer reported success but check_fn still fails",
+            entry.label,
+        )
+    else:
+        logger.info("Platform '%s' dependencies installed on demand", entry.label)
+    return not still_missing
+
 
 @dataclass
 class PlatformEntry:
@@ -51,15 +82,16 @@ class PlatformEntry:
     adapter_factory: Callable[[Any], Any]
 
     # Returns True when the platform's dependencies are available.
-    # PASSIVE probe — must never install or import heavy SDKs (it is called
-    # from status displays and config loading).
+    # PASSIVE by contract: it is called from status displays and config loading,
+    # so it must never install anything.
     check_fn: Callable[[], bool]
 
-    # Optional ACTIVE installer for the platform's dependencies.  When check_fn
-    # (the passive probe) reports False, ``create_adapter`` calls this once to
-    # install the missing deps, then re-probes.  Kept separate from check_fn so
-    # status/config paths stay side-effect free (#79812).
-    ensure_deps_fn: Optional[Callable[[], Any]] = None
+    # ACTIVE lazy-installer, called from ``create_adapter()`` when ``check_fn``
+    # returns False, so a platform can install its own dependencies instead of
+    # being silently skipped. This field was dropped in a port; the feishu
+    # plugin kept passing it and every registration raised TypeError, so the
+    # plugin never loaded (#79812).
+    ensure_deps_fn: Optional[Callable[[], bool]] = None
 
     # Optional: given a PlatformConfig, is it properly configured?
     # If None, the registry skips config validation and lets the adapter
@@ -298,28 +330,14 @@ class PlatformRegistry:
         if entry is None:
             return None
 
-        if not entry.check_fn():
-            # Passive probe says the deps are missing. Give the platform's
-            # ACTIVE installer a chance to fetch them once, then re-probe — this
-            # is the whole point of ensure_deps_fn being separate from check_fn
-            # (#79812). Never let an install failure mask the original warning.
-            if entry.ensure_deps_fn is not None:
-                try:
-                    entry.ensure_deps_fn()
-                except Exception as e:
-                    logger.warning(
-                        "Platform '%s' dependency install failed: %s",
-                        entry.label,
-                        e,
-                    )
-            if not entry.check_fn():
-                hint = f" ({entry.install_hint})" if entry.install_hint else ""
-                logger.warning(
-                    "Platform '%s' requirements not met%s",
-                    entry.label,
-                    hint,
-                )
-                return None
+        if not _deps_ready(entry):
+            hint = f" ({entry.install_hint})" if entry.install_hint else ""
+            logger.warning(
+                "Platform '%s' requirements not met%s",
+                entry.label,
+                hint,
+            )
+            return None
 
         if entry.validate_config is not None:
             try:
