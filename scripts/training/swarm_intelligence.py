@@ -149,6 +149,19 @@ def update_swarm_identity(agents=None):
     if os.path.exists(wm_path):
         total_events = sum(1 for _ in open(wm_path, encoding="utf-8"))
 
+    # Measured, not recited: the collective numbers come from the stores on
+    # this node. The doc used to state those counts as prose, which drifts
+    # the moment either store grows.
+    home = os.environ.get(
+        "OPENAMER_HOME",
+        str(Path.home() / "AppData" / "Local" / "openamer"))
+    episodes_path = os.path.join(home, "memory", "longterm_episodes.jsonl")
+    if os.path.exists(episodes_path):
+        total_memory = sum(1 for _ in open(episodes_path, encoding="utf-8"))
+    lineage = load_json(os.path.join(home, "darwin", "lineage.json"), {})
+    total_evolution = (len(lineage.get("events", [])) if isinstance(lineage, dict)
+                       else len(lineage))
+
     swarm_state = load_json(SWARM_STATE, {"cycles": 0})
     swarm_state["cycles"] += 1
     swarm_state["last_update"] = datetime.datetime.now().isoformat()
@@ -166,8 +179,8 @@ def update_swarm_identity(agents=None):
 ## Shared knowledge
 
 - {total_events} world-model edges (shared across agents)
-- 3012+ episodic memories (our collective history)
-- 2400+ evolution events (our genetic diversity)
+- {total_memory} episodic memories (our collective history)
+- {total_evolution} evolution events (our genetic diversity)
 
 ## Our shared values
 

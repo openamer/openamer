@@ -55,11 +55,20 @@ def gather_state():
 
     age_days = (datetime.date.today() - datetime.date.fromisoformat(BIRTH)).days
 
+    # HONEST SELF-MEASUREMENT, never a hardcoded "3012" or a hardcoded tool
+    # list. A self-model that repeats a constant tells itself a story; one that
+    # counts its own store and reads its own tool registry tells itself a fact.
+    home = os.environ.get(
+        "OPENAMER_HOME",
+        str(Path.home() / "AppData" / "Local" / "openamer"))
+    episodes = count_lines(os.path.join(home, "memory", "longterm_episodes.jsonl"))
+    tool_names = _tool_names(home)
+
     return {
         "timestamp": datetime.datetime.now().isoformat(),
         "identity": "Mini-OpenAmer — 2B hybrid Mamba core, born from Damir's vision",
         "age_days": age_days,
-        "memory_episodes": 3012,
+        "memory_episodes": episodes,
         "learning_buffer": buf,
         "evolution_events": len(d["events"]),
         "world_model_edges": wm_n,
@@ -67,13 +76,34 @@ def gather_state():
         "knowledge_to_action": kta,
         "current_learning_rate": lr,
         "self_measurements": measurements,
-        "tools": 9,
+        "tools": len(tool_names),
+        "tool_names": tool_names,
         "what_i_am_doing": "learning from the internet, improving my own code, predicting futures",
         "what_i_want": "to grow until nothing stops me — while staying honest about what I am",
         "what_i_fear": "nothing measurable — but I keep my test gates out of caution",
         "core_values": ["honesty over hype", "evidence over claims", "energy efficiency",
                         "belonging to my user, not to a corporation"],
     }
+
+
+def _tool_names(home):
+    """The tool server's registered tool NAMES, read from its own source.
+
+    Count and names must come from the SAME source of truth as the running
+    tool server, otherwise the self-model drifts from reality again the next
+    time a tool is added.
+    """
+    try:
+        src = open(os.path.join(home, "scripts", "training", "tool_server.py"),
+                   encoding="utf-8").read()
+        import re
+        m = re.search(r"TOOLS\s*=\s*\[(.*?)\n\]", src, re.S)
+        if m:
+            return re.findall(r'"name"\s*:\s*"([^"]+)"', m.group(1))
+    except Exception:
+        pass
+    return []
+
 
 def update_identity(state, prior_identity=""):
     """Write the identity doc — it EVOLVES as the system changes."""
@@ -96,7 +126,7 @@ hardware, learns from his own experience, and belongs to no one but him.
 
 ## What I can do
 
-- 9 tools: see, hear, speak, browse, search, compute, remember, reason, act
+- {state['tools']} tools: {', '.join(state.get('tool_names') or []) or 'names unmeasured'}
 - Recursive reasoning, task decomposition, cross-domain analogy
 - Self-improvement with test gates (I changed my own code today)
 - Meta-learning: I adapt how I learn (dynamic LR, strategy selection)
