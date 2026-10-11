@@ -18,7 +18,8 @@ _SPEC = importlib.util.spec_from_file_location(
 home_sweep = importlib.util.module_from_spec(_SPEC)
 _SPEC.loader.exec_module(home_sweep)
 
-OLD = time.time() - 7 * 24 * 3600      # 7 days ago -> older than the guard
+OLD = time.time() - 7 * 24 * 3600      # 7 days ago -> older than the 60-min guard
+OLD_IMAGE = time.time() - 30 * 24 * 3600  # 30 days -> past the 14-day image bound
 FRESH = time.time()                      # now -> inside the guard
 
 
@@ -82,11 +83,43 @@ def test_classify_torn_shell_tokens():
     # An unquoted Windows path cannot even be created as a *path component* on
     # Windows (the colon is a drive), so the name rule is checked directly.
     for name in ("C:UsersdamirAppDataLocalfoo", "AppDat", "({t", "[h.points",
-                 "t.slice(0", "JSON.stringify((j.data", "c.includes('indie')"):
-        assert home_sweep._classify(_FakePath(name)) == "kaputte_pfadnamen"
+                 "t.slice(0", "JSON.stringify((j.data", "c.includes('indie')",
+                 "UsersdamirAppDataLocalTempsession_20260818.jsonl"):
+        assert home_sweep._classify(_FakePath(name), 0, 0, 14) == "kaputte_pfadnamen"
     # legitimate names are never classified
     for name in ("Desktop", "notes.md", "openamer-repo", "1.5.0", "x.h"):
-        assert home_sweep._classify(_FakePath(name)) is None
+        assert home_sweep._classify(_FakePath(name), 0, 0, 14) is None
+
+
+def test_session_exports_and_screenshots_with_asset_protection(tmp_path):
+    def _aged_file(name: str, mtime: float) -> Path:
+        p = tmp_path / name
+        p.write_text("{}", encoding="utf-8")
+        os.utime(p, (mtime, mtime))
+        return p
+
+    # agent session/export dumps -> swept
+    _aged_file("reflect_session.jsonl", OLD)
+    _aged_file("session_export.json", OLD)
+    # old screenshot -> swept; asset-looking image and fresh shot -> kept
+    shot = tmp_path / "fiverr_gig1_done.png"
+    shot.write_bytes(b"x")
+    os.utime(shot, (OLD_IMAGE, OLD_IMAGE))
+    logo = tmp_path / "emilija-logo-512.png"
+    logo.write_bytes(b"x")
+    os.utime(logo, (OLD_IMAGE, OLD_IMAGE))
+    fresh = tmp_path / "shot_recent.png"
+    fresh.write_bytes(b"x")
+    os.utime(fresh, (FRESH, FRESH))
+    # a plain data json with no session/export token -> kept
+    _aged_file("config_backup.json", OLD)
+
+    summary = home_sweep.sweep(tmp_path, min_age_minutes=60, artifact_min_age_days=14)
+    assert summary["moved"]["session_exports"] == 2
+    assert summary["moved"]["agent_screenshots"] == 1
+    assert logo.exists()        # asset protected
+    assert fresh.exists()       # too new
+    assert (tmp_path / "config_backup.json").exists()
 
 
 def test_freshness_guard_leaves_young_entries(tmp_path):
