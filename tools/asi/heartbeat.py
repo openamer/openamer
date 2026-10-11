@@ -73,6 +73,19 @@ def _load_jobs() -> Dict[str, Any]:
     return index
 
 
+# Native ownership is opt-in. The engine only starts RUNNING a retired job's
+# script once this marker exists. Until then it stays honest but dormant, so a
+# code change can never by itself revive a fleet of dormant loops — including
+# security bots that auto-patch dependencies and open pull requests. Migration
+# is then a deliberate, per-fleet switch rather than a silent side effect.
+OWN_MARKER = MEMORY_DIR / "heartbeat-own.enabled"
+
+
+def _owning_enabled() -> bool:
+    """True when the heartbeat is allowed to take over retired cron jobs."""
+    return os.environ.get("OPENAMER_HEARTBEAT_OWN") == "1" or OWN_MARKER.is_file()
+
+
 def _basename(script: str) -> str:
     """Filename without directory, for ownership comparison."""
     return script.replace("\\", "/").rsplit("/", 1)[-1]
@@ -548,6 +561,14 @@ class Heartbeat:
         cron to the native heartbeat — one executor at a time, never two.
         """
         jobs = _load_jobs()
+        if not _owning_enabled():
+            # Dormant: report nothing owned, run nothing. The hand-off is a
+            # deliberate switch (create memory/heartbeat-own.enabled), never a
+            # silent consequence of a code change.
+            for sub in self.subsystems.values():
+                sub.scripts = []
+                sub.script_cadence = {}
+            return
         # Scripts a still-running cron job owns — directly (its own `script`)
         # or indirectly (a live wrapper runs them). The engine must not run
         # these too, so their work never doubles. jobs.json cannot express the

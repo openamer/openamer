@@ -199,6 +199,7 @@ def test_engine_only_adopts_retired_jobs(tmp_path, monkeypatch):
     f.write_text(json.dumps(jobs), encoding="utf-8")
     monkeypatch.setattr(hbm, "JOBS_FILE", f)
     monkeypatch.setattr(hbm, "_script_path", lambda name: hbm.Path("/x") / name)
+    monkeypatch.setenv("OPENAMER_HEARTBEAT_OWN", "1")
 
     hb = hbm.Heartbeat()
     sub = hbm.Subsystem(name="t", category="t", cadence_minutes=99, scripts=[])
@@ -226,6 +227,7 @@ def test_wrapper_owned_script_is_never_adopted(tmp_path, monkeypatch):
     f.write_text(json.dumps(jobs), encoding="utf-8")
     monkeypatch.setattr(hbm, "JOBS_FILE", f)
     monkeypatch.setattr(hbm, "_script_path", lambda name: hbm.Path("/x") / name)
+    monkeypatch.setenv("OPENAMER_HEARTBEAT_OWN", "1")
 
     hb = hbm.Heartbeat()
     sub = hbm.Subsystem(name="t", category="t", cadence_minutes=99, scripts=[])
@@ -235,17 +237,49 @@ def test_wrapper_owned_script_is_never_adopted(tmp_path, monkeypatch):
     assert sub.scripts == [], sub.scripts
 
 
-def test_broken_explicit_name_is_dropped():
+def test_broken_explicit_name_is_dropped(monkeypatch):
     """A registry entry that names a job or bakes args into a filename must
     never be adopted as a runnable script."""
     from tools.asi import heartbeat as hbm
 
+    monkeypatch.setenv("OPENAMER_HEARTBEAT_OWN", "1")
     sub = hbm.Subsystem(name="t", category="t", cadence_minutes=5,
                         scripts=["smart-cache.py --clean", "darwin-grid.py", "asi-audit"])
     hb = hbm.Heartbeat()
     hb.subsystems = {"t": sub}
     hb._reconcile_scripts()
     assert sub.scripts == [], sub.scripts
+
+
+def test_adoption_is_opt_in(tmp_path, monkeypatch):
+    """By default the engine owns nothing — a code change must never revive a
+    dormant fleet on its own. The marker (or env) is the switch."""
+    import json
+
+    from tools.asi import heartbeat as hbm
+
+    jobs = {"jobs": [
+        {"id": "retired", "name": "Retired", "script": "retired.py", "enabled": False,
+         "schedule": {"kind": "interval", "minutes": 30}},
+    ]}
+    f = tmp_path / "jobs.json"
+    f.write_text(json.dumps(jobs), encoding="utf-8")
+    monkeypatch.setattr(hbm, "JOBS_FILE", f)
+    monkeypatch.setattr(hbm, "_script_path", lambda name: hbm.Path("/x") / name)
+    monkeypatch.setattr(hbm, "OWN_MARKER", tmp_path / "absent")
+    monkeypatch.delenv("OPENAMER_HEARTBEAT_OWN", raising=False)
+
+    hb = hbm.Heartbeat()
+    sub = hbm.Subsystem(name="t", category="t", cadence_minutes=99, scripts=[])
+    sub.cron_ids = ["retired"]
+    hb.subsystems = {"t": sub}
+    hb._reconcile_scripts()
+    assert sub.scripts == [], "engine revived a dormant job without opt-in"
+
+    monkeypatch.setattr(hbm, "OWN_MARKER", tmp_path / "jobs.json")  # marker present
+    hb._reconcile_scripts()
+    assert sub.scripts == ["retired.py"]
+
 
 
 
