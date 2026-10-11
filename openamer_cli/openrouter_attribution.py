@@ -25,7 +25,13 @@ from typing import Any
 # appeared in any category ranking despite billions of attributed tokens.
 OPENROUTER_APP_URL = "https://github.com/openamer/openamer"
 OPENROUTER_APP_TITLE = "OpenAmer Agent"
-OPENROUTER_APP_CATEGORIES = "cli-agent,ide-extension,personal-agent,cloud-agent"
+# OpenRouter documents a hard limit: "Pass a comma-separated list of up to
+# MAX_CATEGORIES_PER_REQUEST (=2) categories per request." Excess or
+# unrecognised values are dropped WITHOUT an error - a four-value header
+# looked correct while half of it never landed. Categories merge across
+# requests (MAX_CATEGORIES_PER_APP = 10), so registering more than two is a
+# second request, not a longer string.
+OPENROUTER_APP_CATEGORIES = "cli-agent,personal-agent"
 
 
 def get_openrouter_attribution_headers() -> dict[str, str]:
