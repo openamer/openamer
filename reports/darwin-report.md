@@ -1,5 +1,5 @@
 # Darwin Engine Report
-_2026-10-11T12:30:52.105942+00:00 — evolutionary skill ecosystem_
+_2026-10-11T12:45:58.875386+00:00 — evolutionary skill ecosystem_
 
 **Population:** 1109 Skills | **Offspring:** 4 | **Competitions:** 28
 
@@ -7,16 +7,16 @@ _2026-10-11T12:30:52.105942+00:00 — evolutionary skill ecosystem_
 
 | Skill | Fitness | Usage | Age (days) | Mutationen W/L |
 |---|---|---|---|---|
-| autonomous-learning-architecture | 3337.0 | 2740 | 0 | 292/3 |
-| auto-env-checker | 2888.47 | 2934 | 16 | 15/88 |
-| asi-capability-summary | 1995.47 | 1983 | 16 | 0/0 |
-| learning-loop | 1879.33 | 1868 | 50 | 0/0 |
-| a2a-brain-meshlearn-verify | 1699.0 | 1686 | 0 | 0/0 |
+| autonomous-learning-architecture | 3343.0 | 2742 | 0 | 294/3 |
+| auto-env-checker | 2889.47 | 2935 | 16 | 15/88 |
+| asi-capability-summary | 1996.47 | 1984 | 16 | 0/0 |
+| learning-loop | 1881.33 | 1870 | 50 | 0/0 |
+| a2a-brain-meshlearn-verify | 1701.0 | 1688 | 0 | 0/0 |
 | cdp-social-posting | 1577.0 | 1561 | 0 | 0/0 |
 | train-from-usage | 1097.33 | 1088 | 20 | 0/4 |
 | plugin-api | 966.33 | 955 | 50 | 0/0 |
-| darwin-cron-guard | 921.0 | 302 | 0 | 315/24 |
-| darwin-harvested-training-internet-learn-log-jsonl | 893.0 | 277 | 0 | 312/21 |
+| darwin-cron-guard | 927.0 | 304 | 0 | 317/24 |
+| darwin-harvested-training-internet-learn-log-jsonl | 899.0 | 279 | 0 | 314/21 |
 
 ## Bottom 5 (selection candidates)
 
@@ -36,17 +36,17 @@ _2026-10-11T12:30:52.105942+00:00 — evolutionary skill ecosystem_
 ## Competitions
 
 - ⏳ `a2a-brain-meshlearn-verify+asi-capability-summary` (0) vs `None` (0)
-- ⏳ `a2a-brain-meshlearn-verify__mutbroaden_trigger` (1699.0) vs `a2a-brain-meshlearn-verify` (1699.0)
-- ⏳ `a2a-brain-meshlearn-verify__muttighten_trigger` (1699.0) vs `a2a-brain-meshlearn-verify` (1699.0)
+- ⏳ `a2a-brain-meshlearn-verify__mutbroaden_trigger` (1701.0) vs `a2a-brain-meshlearn-verify` (1701.0)
+- ⏳ `a2a-brain-meshlearn-verify__muttighten_trigger` (1701.0) vs `a2a-brain-meshlearn-verify` (1701.0)
 - ⏳ `asi-capability-summary+asi-identity` (0) vs `None` (0)
-- ⏳ `asi-capability-summary__mutbroaden_trigger` (1995.47) vs `asi-capability-summary` (1995.47)
-- ⏳ `asi-capability-summary__muttighten_trigger` (1995.47) vs `asi-capability-summary` (1995.47)
+- ⏳ `asi-capability-summary__mutbroaden_trigger` (1996.47) vs `asi-capability-summary` (1996.47)
+- ⏳ `asi-capability-summary__muttighten_trigger` (1996.47) vs `asi-capability-summary` (1996.47)
 - ⏳ `asi-identity+auto-env-checker` (0) vs `None` (0)
 - ⏳ `auto-env-checker+autonomous-learning-architecture` (0) vs `None` (0)
 - ⏳ `auto-env-checker+cdp-social-posting` (0) vs `None` (0)
-- ⏳ `auto-env-checker__mutbroaden_trigger` (2888.47) vs `auto-env-checker` (2888.47)
-- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (3337.0) vs `autonomous-learning-architecture` (3337.0)
-- ⏳ `autonomous-learning-architecture__muttighten_trigger` (3337.0) vs `autonomous-learning-architecture` (3337.0)
+- ⏳ `auto-env-checker__mutbroaden_trigger` (2889.47) vs `auto-env-checker` (2889.47)
+- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (3343.0) vs `autonomous-learning-architecture` (3343.0)
+- ⏳ `autonomous-learning-architecture__muttighten_trigger` (3343.0) vs `autonomous-learning-architecture` (3343.0)
 - ⏳ `cdp-social-posting__mutbroaden_trigger` (1577.0) vs `cdp-social-posting` (1577.0)
 - ⏳ `cdp-social-posting__muttighten_trigger` (1577.0) vs `cdp-social-posting` (1577.0)
 - ⏳ `discord-server-management__mutadd_verification_step` (62.2) vs `discord-server-management` (62.2)
@@ -54,7 +54,7 @@ _2026-10-11T12:30:52.105942+00:00 — evolutionary skill ecosystem_
 - ⏳ `discord-server-management__muttighten_trigger` (62.2) vs `discord-server-management` (62.2)
 - ⏳ `github-readme-summary__mutbroaden_trigger` (41.0) vs `github-readme-summary` (41.0)
 - ⏳ `github-readme-summary__muttighten_trigger` (41.0) vs `github-readme-summary` (41.0)
-- ⏳ `openamer-plugin-development__muttighten_trigger` (34.6) vs `openamer-plugin-development` (34.6)
+- ⏳ `openamer-plugin-development__muttighten_trigger` (37.0) vs `openamer-plugin-development` (37.0)
 - ⏳ `plugin-api__mutbroaden_trigger` (966.33) vs `plugin-api` (966.33)
 - ⏳ `plugin-api__muttighten_trigger` (966.33) vs `plugin-api` (966.33)
 - ⏳ `train-from-usage__mutadd_pitfall` (1097.33) vs `train-from-usage` (1097.33)
