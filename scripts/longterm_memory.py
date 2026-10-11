@@ -35,7 +35,7 @@ def _load_cache():
     if not os.path.exists(EMBED_CACHE):
         return {}
     try:
-        return json.load(open(EMBED_CACHE, encoding="utf-8"))
+        return json.loads(Path(EMBED_CACHE).read_text(encoding="utf-8"))
     except json.JSONDecodeError:
         return {}
 

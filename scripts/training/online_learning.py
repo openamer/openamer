@@ -187,7 +187,7 @@ def loop():
                 import world_model
                 dreams_file = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "dreams.json")
                 if os.path.exists(dreams_file):
-                    dreams = json.load(open(dreams_file, encoding="utf-8"))
+                    dreams = json.loads(Path(dreams_file).read_text(encoding="utf-8"))
                     known_causes = {e.get("cause", "")[:100] for e in world_model._load()}
                     added = 0
                     for dream in dreams:

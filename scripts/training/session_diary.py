@@ -19,6 +19,7 @@ import re
 import sqlite3
 import sys
 import urllib.request
+from pathlib import Path
 
 _HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
 
@@ -228,7 +229,7 @@ def write_diary(day: str) -> dict:
     idx = []
     if os.path.exists(INDEX):
         try:
-            idx = json.load(open(INDEX, encoding="utf-8"))
+            idx = json.loads(Path(INDEX).read_text(encoding="utf-8"))
         except Exception:
             idx = []
     idx = [e for e in idx if e.get("day") != day]

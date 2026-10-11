@@ -19,6 +19,7 @@ import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import auto_skill_creation as asc
+from pathlib import Path
 
 
 def _sandbox():
@@ -88,7 +89,7 @@ def test_registry_records_each_created_skill_once():
     q = "Repeated question about latency budgets in local inference stacks"
     for ans in ("answer one " * 10, "answer two " * 10, "answer three " * 10):
         asc.create_skill_from_insight(q, ans, "t")
-    reg = json.load(open(registry, encoding="utf-8"))
+    reg = json.loads(Path(registry).read_text(encoding="utf-8"))
     names = [e["name"] for e in reg["created"]]
     assert len(names) == len(set(names)) == 1, names
     assert reg["count"] == 1

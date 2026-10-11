@@ -29,7 +29,7 @@ BIRTH = "2026-09-01"  # the day Mini-OpenAmer first learned
 
 def load_json(path, default):
     try:
-        return json.load(open(path, encoding="utf-8"))
+        return json.loads(Path(path).read_text(encoding="utf-8"))
     except Exception:
         return default
 

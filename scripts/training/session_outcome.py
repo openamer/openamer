@@ -133,7 +133,7 @@ NOISE = ("llama.cpp", "localhost:8080", "llama-server")
 
 def _load_jobs():
     try:
-        data = json.load(open(JOBS, encoding="utf-8"))
+        data = json.loads(Path(JOBS).read_text(encoding="utf-8"))
         return data.get("jobs", data) if isinstance(data, dict) else data
     except Exception:
         return []

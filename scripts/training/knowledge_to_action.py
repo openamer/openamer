@@ -530,7 +530,7 @@ def experiment_meta_insight():
         return {"action": "meta-RL application", "result": "meta_state missing",
                 "measurable": False}
     try:
-        s = json.load(open(meta_state, encoding="utf-8"))
+        s = json.loads(Path(meta_state).read_text(encoding="utf-8"))
     except (json.JSONDecodeError, ValueError) as e:
         return {"action": "meta-RL application",
                 "result": f"meta_state unreadable: {str(e)[:80]}", "measurable": False}

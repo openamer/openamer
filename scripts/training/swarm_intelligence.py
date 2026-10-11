@@ -25,7 +25,7 @@ os.makedirs(SWARM_DIR, exist_ok=True)
 
 def load_json(path, default):
     try:
-        return json.load(open(path, encoding="utf-8"))
+        return json.loads(Path(path).read_text(encoding="utf-8"))
     except Exception:
         return default
 

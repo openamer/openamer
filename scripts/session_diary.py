@@ -19,6 +19,7 @@ import re
 import sqlite3
 import sys
 import urllib.request
+from pathlib import Path
 
 _HOME = os.environ.get("OPENAMER_HOME",
                        os.path.join(os.path.expanduser("~"), "AppData", "Local", "openamer-laptop"))
@@ -165,7 +166,7 @@ def write_diary(day: str) -> dict:
     idx = []
     if os.path.exists(INDEX):
         try:
-            idx = json.load(open(INDEX, encoding="utf-8"))
+            idx = json.loads(Path(INDEX).read_text(encoding="utf-8"))
         except Exception:
             idx = []
     idx = [e for e in idx if e.get("day") != day]

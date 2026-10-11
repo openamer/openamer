@@ -26,6 +26,7 @@ Usage:
   python memory_consolidation.py stats      # current state
 """
 import json, os, sys, datetime, hashlib, re, pathlib
+from pathlib import Path
 
 # Markers only a real OpenAmer home carries (see dream_cycle._resolve_home).
 _HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
@@ -114,7 +115,7 @@ def _usefulness():
     if not os.path.exists(META_STATE):
         return {}
     try:
-        return json.load(open(META_STATE, encoding="utf-8")).get("memory_usefulness", {})
+        return json.loads(Path(META_STATE).read_text(encoding="utf-8")).get("memory_usefulness", {})
     except Exception:
         return {}
 

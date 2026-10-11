@@ -760,8 +760,8 @@ Beispiele:
             print("Wenigstens 2 Snapshots nötig für --diff. Erstelle zuerst mehrere mit --now.")
             return
         print(f"[system-snapshot] Vergleiche {snaps[0].stem} ↔ {snaps[1].stem}")
-        data_a = json.load(open(snaps[1], encoding="utf-8"))
-        data_b = json.load(open(snaps[0], encoding="utf-8"))
+        data_a = json.loads(Path(snaps[1]).read_text(encoding="utf-8"))
+        data_b = json.loads(Path(snaps[0]).read_text(encoding="utf-8"))
         diff = compute_diff(data_a, data_b)
         print(f"\nGeänderte Sektionen ({len(diff['changed_sections'])}): {', '.join(diff['changed_sections'])}")
         print(f"Total Einzeländerungen: {diff['total_changes']}")

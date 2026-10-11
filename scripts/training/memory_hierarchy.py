@@ -21,7 +21,7 @@ ARCHIVE = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppDat
 
 def load_json(path, default):
     try:
-        return json.load(open(path, encoding="utf-8"))
+        return json.loads(Path(path).read_text(encoding="utf-8"))
     except Exception:
         return default
 
@@ -37,7 +37,7 @@ def build_hierarchy():
     meta_state = os.path.join(T, "meta_state.json")
     useful = {}
     if os.path.exists(meta_state):
-        s = json.load(open(meta_state, encoding="utf-8"))
+        s = json.loads(Path(meta_state).read_text(encoding="utf-8"))
         useful = s.get("memory_usefulness", {})
 
     tiers = {"permanent": [], "archive": [], "ephemeral": []}

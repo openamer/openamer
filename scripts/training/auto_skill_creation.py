@@ -86,7 +86,7 @@ Darwin will trial this skill; it gets promoted only if it wins arena fights.
 
 def load_registry():
     try:
-        return json.load(open(REGISTRY, encoding="utf-8"))
+        return json.loads(Path(REGISTRY).read_text(encoding="utf-8"))
     except Exception:
         return {"created": [], "count": 0}
 

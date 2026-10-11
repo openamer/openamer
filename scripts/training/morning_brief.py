@@ -13,6 +13,7 @@ import json
 import os
 import sys
 import urllib.request
+from pathlib import Path
 
 _HOME = os.environ.get("OPENAMER_HOME",
                        os.path.join(os.path.expanduser("~"), "AppData", "Local", "openamer-laptop"))
@@ -20,7 +21,7 @@ _HOME = os.environ.get("OPENAMER_HOME",
 
 def _cron_fleet():
     try:
-        jobs = json.load(open(os.path.join(_HOME, "cron", "jobs.json"), encoding="utf-8"))
+        jobs = json.loads(Path(os.path.join(_HOME, "cron", "jobs.json")).read_text(encoding="utf-8"))
         if isinstance(jobs, dict):
             jobs = jobs.get("jobs", list(jobs.values()))
         from collections import Counter

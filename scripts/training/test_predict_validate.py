@@ -23,6 +23,7 @@ import datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import world_model as wm       # noqa: E402
 import predict_validate as pv  # noqa: E402
+from pathlib import Path
 
 
 # ---------------------------------------------------------------- test doubles
@@ -78,7 +79,7 @@ class Env:
                 f.write(json.dumps(e, ensure_ascii=False) + "\n")
 
     def conf(self):
-        return json.load(open(pv.CONFIDENCE_FILE, encoding="utf-8"))
+        return json.loads(Path(pv.CONFIDENCE_FILE).read_text(encoding="utf-8"))
 
 
 # --------------------------------------------------------------------- tests

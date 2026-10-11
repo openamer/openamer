@@ -100,7 +100,7 @@ def main():
     # the format tag is the artifact's contract: written by save(), asserted by
     # load(). Centralised as FORMAT so the two can never drift apart.
     check("saved artifact carries the format tag",
-          json.load(open(tmp, encoding="utf-8"))["format"] == FORMAT, FORMAT)
+          json.loads(Path(tmp).read_text(encoding="utf-8"))["format"] == FORMAT, FORMAT)
     bad_fmt = os.path.join(tempfile.gettempdir(), "_gs_bad_format.json")
     json.dump({"format": "not-this-format"}, open(bad_fmt, "w", encoding="utf-8"))
     try:

@@ -218,7 +218,7 @@ class VectorMemoryStore:
             "vector_dimensions": self.vectors.shape[1] if self.vectors.ndim > 1 and self.vectors.shape[1] > 0 else 0,
             "idf_vocab_size": len(self.idf),
             "storage_path": str(self.vector_dir),
-            "last_updated": INDEX_FILE.exists() and json.load(open(INDEX_FILE, encoding="utf-8")).get("updated", "never"),
+            "last_updated": INDEX_FILE.exists() and json.loads(Path(INDEX_FILE).read_text(encoding="utf-8")).get("updated", "never"),
         }
 
     def get_all_entries(self) -> list[MemoryEntry]:

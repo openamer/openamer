@@ -193,7 +193,7 @@ def world_explore():
         jobs_path = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "cron", "jobs.json")
         recent_errors = []
         try:
-            data = json.load(open(jobs_path, encoding="utf-8"))
+            data = json.loads(Path(jobs_path).read_text(encoding="utf-8"))
             jobs = data.get("jobs") if isinstance(data, dict) else data
             for j in jobs or []:
                 if (j.get("last_status") or "").lower() in ("error", "failed"):

@@ -41,7 +41,7 @@ def load_state():
     KeyError in choose_strategy and abort the whole meta cycle.
     """
     try:
-        s = json.load(open(STATE, encoding="utf-8"))
+        s = json.loads(Path(STATE).read_text(encoding="utf-8"))
         for k, v in DEFAULT_STATE.items():
             s.setdefault(k, v)
         return s
