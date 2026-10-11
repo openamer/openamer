@@ -93,7 +93,7 @@ export const ga = defineLocale({
       gatewaySettings: 'Socruithe geata',
       back: 'Ar ais',
       openLogs: 'Oscail logs',
-      repairHint: 'Ritheann an deisiú an suiteálaí arís agus d\'fhéadfadh roinnt nóiméad a thógáil ar mheaisín nua.',
+      repairHint: "Ritheann an deisiú an suiteálaí arís agus d'fhéadfadh roinnt nóiméad a thógáil ar mheaisín nua.",
       remoteSignInHint: signInLabel =>
         `Signálann sé amach as an seisiún brabhsálaí cianda sábháilte, agus osclaíonn ${signInLabel} ina dhiaidh sin. Bain úsáid as "Bain úsáid as geata logánta" chun filleadh ar an cúlbhunach comhtháite.`,
       signOutAndSignIn: 'Signáil amach agus isteach',
@@ -123,7 +123,7 @@ export const ga = defineLocale({
     copyDetailFailed: 'Níorbh fhéidir mionsonraí an fhógra a chóipeáil',
     backendOutOfDateTitle: 'Tá an cúlbhunach as dáta',
     backendOutOfDateMessage:
-      'Tá do cúlbhunach OpenAmer níos sine ná an leagan deisce seo agus b\'fhéidir nach oibreoidh sé i gceart. Nuashonraigh chun iad a ailíniú.',
+      "Tá do cúlbhunach OpenAmer níos sine ná an leagan deisce seo agus b'fhéidir nach oibreoidh sé i gceart. Nuashonraigh chun iad a ailíniú.",
     installMethodUnsupportedTitle: 'Modh suiteála gan tacaíocht',
     updateOpenAmer: 'Nuashonraigh OpenAmer',
     updateReadyTitle: 'Nuashonrú réidh',

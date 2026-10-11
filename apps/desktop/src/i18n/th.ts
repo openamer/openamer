@@ -133,8 +133,7 @@ export const th = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT ต้องการ ELEVENLABS_API_KEY',
       elevenLabsRejectedKey: 'ElevenLabs ปฏิเสธคีย์ API (401)',
       gatewayAuthFailed: 'การยืนยันตัวตนเกตเวย์ล้มเหลว — ตรวจสอบ API_SERVER_KEY ของคุณ',
-      methodNotAllowed:
-        'แบ็กเอนด์เดสก์ท็อปปฏิเสธคำขอนั้น (405 Method Not Allowed) ลองรีสตาร์ท OpenAmer Desktop',
+      methodNotAllowed: 'แบ็กเอนด์เดสก์ท็อปปฏิเสธคำขอนั้น (405 Method Not Allowed) ลองรีสตาร์ท OpenAmer Desktop',
       microphonePermission: 'สิทธิ์ไมโครโฟนถูกปฏิเสธ',
       openaiRejectedApiKey: 'OpenAI ปฏิเสธคีย์ API',
       openaiRejectedApiKeyWithStatus: status => `OpenAI ปฏิเสธคีย์ API (${status} invalid_api_key)`,
@@ -253,8 +252,7 @@ export const th = defineLocale({
     },
     appearance: {
       title: 'รูปลักษณ์',
-      intro:
-        'นี่คือการตั้งค่าการแสดงผลเฉพาะเดสก์ท็อป โหมดควบคุมความสว่าง ธีมควบคุมพาเลตสีเน้นและสไตล์พื้นผิวแชท',
+      intro: 'นี่คือการตั้งค่าการแสดงผลเฉพาะเดสก์ท็อป โหมดควบคุมความสว่าง ธีมควบคุมพาเลตสีเน้นและสไตล์พื้นผิวแชท',
       colorMode: 'โหมดสี',
       colorModeDesc: 'เลือกโหมดคงที่ หรือให้ OpenAmer ตามการตั้งค่าระบบ',
       toolViewTitle: 'การแสดงการเรียกเครื่องมือ',
@@ -310,8 +308,7 @@ export const th = defineLocale({
       lastChecked: age => `ตรวจสอบล่าสุด ${age}`,
       justNowSuffix: ' · เมื่อสักครู่',
       automaticUpdates: 'การอัปเดตอัตโนมัติ',
-      automaticUpdatesDesc:
-        'OpenAmer ตรวจสอบการอัปเดตอัตโนมัติในพื้นหลัง และแจ้งคุณเมื่อพร้อม',
+      automaticUpdatesDesc: 'OpenAmer ตรวจสอบการอัปเดตอัตโนมัติในพื้นหลัง และแจ้งคุณเมื่อพร้อม',
       branchCommit: (branch, commit) => `สาขา ${branch} · คอมมิต ${commit}`,
       never: 'ไม่เคย',
       justNow: 'เมื่อสักครู่',

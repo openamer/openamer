@@ -253,8 +253,7 @@ export const ko = defineLocale({
     },
     appearance: {
       title: '모양',
-      intro:
-        '데스크톱 전용 표시 환경설정입니다. 모드는 밝기를, 테마는 강조 팔레트와 채팅 표면 스타일을 제어합니다.',
+      intro: '데스크톱 전용 표시 환경설정입니다. 모드는 밝기를, 테마는 강조 팔레트와 채팅 표면 스타일을 제어합니다.',
       colorMode: '색상 모드',
       colorModeDesc: '고정 모드를 선택하거나 OpenAmer가 시스템 설정을 따르게 하세요.',
       toolViewTitle: '도구 호출 표시',
@@ -310,8 +309,7 @@ export const ko = defineLocale({
       lastChecked: age => `마지막 확인: ${age}`,
       justNowSuffix: ' · 방금',
       automaticUpdates: '자동 업데이트',
-      automaticUpdatesDesc:
-        'OpenAmer가 백그라운드에서 자동으로 업데이트를 확인하고 준비되면 알려줍니다.',
+      automaticUpdatesDesc: 'OpenAmer가 백그라운드에서 자동으로 업데이트를 확인하고 준비되면 알려줍니다.',
       branchCommit: (branch, commit) => `브랜치 ${branch} · 커밋 ${commit}`,
       never: '안 함',
       justNow: '방금',

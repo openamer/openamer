@@ -24,7 +24,7 @@ import {
   type PluginContribution,
   ROUTES_AREA,
   SIDEBAR_NAV_AREA,
-  type SidebarNavContribution,
+  type SidebarNavContribution
 } from '@openamer/plugin-sdk'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -35,15 +35,15 @@ const PHASE_ORDER_BASE = 110 // Leave gap below 110 for core items
 
 /** Phase 1-25 features displayed in the Superintelligence page. */
 const SYSTEM_CHECKS = [
-  { label: '🧠  Brain Learning Loop',    score: 95 },
-  { label: '🌐  A2A Swarm',             score: 88 },
-  { label: '🌐  Web Agent',             score: 85 },
+  { label: '🧠  Brain Learning Loop', score: 95 },
+  { label: '🌐  A2A Swarm', score: 88 },
+  { label: '🌐  Web Agent', score: 85 },
   { label: '🛠️   99+ Tools / 117 Skills', score: 100 },
-  { label: '🖥️   Computer-Use',          score: 92 },
-  { label: '👥  Multi-Agent Crews',     score: 85 },
-  { label: '🏪  Marketplace',           score: 78 },
-  { label: '💾  Durable Execution',     score: 90 },
-  { label: '📊  Observability',         score: 82 },
+  { label: '🖥️   Computer-Use', score: 92 },
+  { label: '👥  Multi-Agent Crews', score: 85 },
+  { label: '🏪  Marketplace', score: 78 },
+  { label: '💾  Durable Execution', score: 90 },
+  { label: '📊  Observability', score: 82 }
 ] as const
 
 const BRAIN_GROWTH_DATA = [3, 5, 2, 7, 4, 8, 6] as const
@@ -51,9 +51,7 @@ const RECENT_TOOLS = ['web_search', 'terminal', 'read_file', 'computer_use'] as 
 
 const DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const
 
-const OVERALL_HEALTH = Math.round(
-  SYSTEM_CHECKS.reduce((sum, c) => sum + c.score, 0) / SYSTEM_CHECKS.length,
-)
+const OVERALL_HEALTH = Math.round(SYSTEM_CHECKS.reduce((sum, c) => sum + c.score, 0) / SYSTEM_CHECKS.length)
 
 // ── Utility components ──────────────────────────────────────────────────
 
@@ -62,29 +60,19 @@ const GrowthBarChart = ({ data }: { data: readonly number[] }) => (
   <div>
     <div className="flex items-end gap-1 h-20">
       {data.map((v, i) => (
-        <div
-          className="flex-1 bg-cyan-400/60 rounded-t transition-all"
-          key={i}
-          style={{ height: `${v * 10}px` }}
-        />
+        <div className="flex-1 bg-cyan-400/60 rounded-t transition-all" key={i} style={{ height: `${v * 10}px` }} />
       ))}
     </div>
     <div className="flex justify-between text-xs text-muted-foreground mt-1">
-      {DAY_LABELS.map(d => <span key={d}>{d}</span>)}
+      {DAY_LABELS.map(d => (
+        <span key={d}>{d}</span>
+      ))}
     </div>
   </div>
 )
 
 /** Stat card with label, value and colour. */
-const StatCard = ({
-  value,
-  label,
-  color = 'text-cyan-400',
-}: {
-  value: string
-  label: string
-  color?: string
-}) => (
+const StatCard = ({ value, label, color = 'text-cyan-400' }: { value: string; label: string; color?: string }) => (
   <div className="rounded-lg border bg-card p-4">
     <div className={`text-2xl font-bold ${color}`}>{value}</div>
     <div className="text-sm text-muted-foreground mt-1">{label}</div>
@@ -93,40 +81,21 @@ const StatCard = ({
 
 /** Bubble badges for role/strategy tags. */
 const TagBubble = ({ label, className = '' }: { label: string; className?: string }) => (
-  <span
-    className={`rounded-full px-2 py-0.5 text-xs ${className}`}
-  >
-    {label}
-  </span>
+  <span className={`rounded-full px-2 py-0.5 text-xs ${className}`}>{label}</span>
 )
 
 /** Single row in the Superintelligence checklist. */
-const HealthRow = ({
-  label,
-  score,
-}: {
-  label: string
-  score: number
-}) => {
-  const barColour =
-    score >= 80 ? 'bg-emerald-400/60' : score >= 60 ? 'bg-amber-400/60' : 'bg-red-400/60'
+const HealthRow = ({ label, score }: { label: string; score: number }) => {
+  const barColour = score >= 80 ? 'bg-emerald-400/60' : score >= 60 ? 'bg-amber-400/60' : 'bg-red-400/60'
 
-  const textColour =
-    score >= 80
-      ? 'text-emerald-400'
-      : score >= 60
-        ? 'text-amber-400'
-        : 'text-red-400'
+  const textColour = score >= 80 ? 'text-emerald-400' : score >= 60 ? 'text-amber-400' : 'text-red-400'
 
   return (
     <div className="rounded-lg border bg-card p-3 flex items-center justify-between">
       <span className="text-sm">{label}</span>
       <div className="flex items-center gap-2">
         <div className="w-16 h-2 bg-muted rounded-full overflow-hidden">
-          <div
-            className={`h-full rounded-full ${barColour}`}
-            style={{ width: `${score}%` }}
-          />
+          <div className={`h-full rounded-full ${barColour}`} style={{ width: `${score}%` }} />
         </div>
         <span className={`text-xs font-mono ${textColour}`}>{score}%</span>
       </div>
@@ -145,9 +114,7 @@ const AgentBuilderPage: React.FC = () => {
     <div className="flex h-full flex-col overflow-hidden p-6">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-foreground">🤖 Agent Builder</h1>
-        <p className="text-muted-foreground mt-1">
-          Create agents from natural-language descriptions
-        </p>
+        <p className="text-muted-foreground mt-1">Create agents from natural-language descriptions</p>
       </div>
 
       <div className="flex-1 space-y-4">
@@ -163,7 +130,9 @@ const AgentBuilderPage: React.FC = () => {
             className="mt-2"
             disabled={!desc.trim()}
             onClick={() => {
-              if (!desc.trim()) {return}
+              if (!desc.trim()) {
+                return
+              }
               setResult(`✨ Agent created from: &ldquo;${desc.substring(0, 80)}&hellip;&rdquo;`)
             }}
           >
@@ -171,17 +140,13 @@ const AgentBuilderPage: React.FC = () => {
           </Button>
         </section>
 
-        {result && (
-          <div className="rounded-lg border bg-emerald-50 dark:bg-emerald-950/20 p-4 text-sm">
-            {result}
-          </div>
-        )}
+        {result && <div className="rounded-lg border bg-emerald-50 dark:bg-emerald-950/20 p-4 text-sm">{result}</div>}
 
         <section className="rounded-lg border bg-card p-4">
           <h2 className="mb-2 text-lg font-semibold">📋 Your Agents</h2>
           <p className="text-muted-foreground text-sm">
-            Agents are created and managed through the backend. Run
-            {' '}<code className="rounded bg-muted px-1 py-0.5 text-xs">openamer agent list</code> in the terminal.
+            Agents are created and managed through the backend. Run{' '}
+            <code className="rounded bg-muted px-1 py-0.5 text-xs">openamer agent list</code> in the terminal.
           </p>
         </section>
       </div>
@@ -193,9 +158,7 @@ const BrainDashboardPage: React.FC = () => (
   <div className="flex h-full flex-col overflow-hidden p-6">
     <div className="mb-6">
       <h1 className="text-2xl font-bold text-foreground">🧠 Brain Dashboard</h1>
-      <p className="text-muted-foreground mt-1">
-        Learning-loop statistics and knowledge growth
-      </p>
+      <p className="text-muted-foreground mt-1">Learning-loop statistics and knowledge growth</p>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -211,8 +174,8 @@ const BrainDashboardPage: React.FC = () => (
 
     <section className="rounded-lg border bg-card p-4">
       <p className="text-sm text-muted-foreground">
-        Detailed statistics are available through the backend. Run
-        {' '}<code className="rounded bg-muted px-1 py-0.5 text-xs">openamer brain stats</code> in the terminal.
+        Detailed statistics are available through the backend. Run{' '}
+        <code className="rounded bg-muted px-1 py-0.5 text-xs">openamer brain stats</code> in the terminal.
       </p>
     </section>
   </div>
@@ -222,17 +185,13 @@ const CrewsSwarmPage: React.FC = () => (
   <div className="flex h-full flex-col overflow-hidden p-6">
     <div className="mb-6">
       <h1 className="text-2xl font-bold text-foreground">👥 Crews &amp; Swarm</h1>
-      <p className="text-muted-foreground mt-1">
-        Multi-agent orchestration and swarm strategies
-      </p>
+      <p className="text-muted-foreground mt-1">Multi-agent orchestration and swarm strategies</p>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
       <section className="rounded-lg border bg-card p-4">
         <h3 className="font-semibold mb-2">👥 Crews</h3>
-        <p className="text-sm text-muted-foreground mb-3">
-          Role-based agent teams: researcher, writer, analyst, coder
-        </p>
+        <p className="text-sm text-muted-foreground mb-3">Role-based agent teams: researcher, writer, analyst, coder</p>
         <div className="flex flex-wrap gap-2">
           <TagBubble className="bg-blue-100 dark:bg-blue-900/30" label="researcher" />
           <TagBubble className="bg-green-100 dark:bg-green-900/30" label="writer" />
@@ -242,9 +201,7 @@ const CrewsSwarmPage: React.FC = () => (
 
       <section className="rounded-lg border bg-card p-4">
         <h3 className="font-semibold mb-2">🐝 Swarm</h3>
-        <p className="text-sm text-muted-foreground mb-3">
-          Strategies: Parallel, Hierarchical, Debate
-        </p>
+        <p className="text-sm text-muted-foreground mb-3">Strategies: Parallel, Hierarchical, Debate</p>
         <div className="flex flex-wrap gap-2">
           <TagBubble className="bg-violet-100 dark:bg-violet-900/30" label="parallel" />
           <TagBubble className="bg-cyan-100 dark:bg-cyan-900/30" label="hierarchical" />
@@ -255,11 +212,9 @@ const CrewsSwarmPage: React.FC = () => (
 
     <section className="rounded-lg border bg-card p-4">
       <p className="text-sm text-muted-foreground">
-        Use{' '}
-        <code className="rounded bg-muted px-1 py-0.5 text-xs">openamer crew create</code>
-        {' '}and{' '}
-        <code className="rounded bg-muted px-1 py-0.5 text-xs">openamer swarm run</code>
-        {' '}in the terminal, or create crews visually in the Agent Builder.
+        Use <code className="rounded bg-muted px-1 py-0.5 text-xs">openamer crew create</code> and{' '}
+        <code className="rounded bg-muted px-1 py-0.5 text-xs">openamer swarm run</code> in the terminal, or create
+        crews visually in the Agent Builder.
       </p>
     </section>
   </div>
@@ -269,9 +224,7 @@ const TracePage: React.FC = () => (
   <div className="flex h-full flex-col overflow-hidden p-6">
     <div className="mb-6">
       <h1 className="text-2xl font-bold text-foreground">📊 Trace &amp; Observability</h1>
-      <p className="text-muted-foreground mt-1">
-        Agent execution browser and performance analysis
-      </p>
+      <p className="text-muted-foreground mt-1">Agent execution browser and performance analysis</p>
     </div>
 
     <section className="rounded-lg border bg-card p-4 mb-4">
@@ -290,8 +243,8 @@ const TracePage: React.FC = () => (
 
     <section className="rounded-lg border bg-card p-4">
       <p className="text-sm text-muted-foreground">
-        Full execution traces are available through the backend. Run
-        {' '}<code className="rounded bg-muted px-1 py-0.5 text-xs">openamer trace list</code> in the terminal.
+        Full execution traces are available through the backend. Run{' '}
+        <code className="rounded bg-muted px-1 py-0.5 text-xs">openamer trace list</code> in the terminal.
       </p>
     </section>
   </div>
@@ -301,30 +254,23 @@ const MarketplacePage: React.FC = () => (
   <div className="flex h-full flex-col overflow-hidden p-6">
     <div className="mb-6">
       <h1 className="text-2xl font-bold text-foreground">🏪 Marketplace</h1>
-      <p className="text-muted-foreground mt-1">
-        Discover, install, and share community agents and skills
-      </p>
+      <p className="text-muted-foreground mt-1">Discover, install, and share community agents and skills</p>
     </div>
 
     <section className="rounded-lg border bg-card p-4 mb-4">
       <h3 className="font-semibold mb-2">Trending This Week</h3>
       <p className="text-sm text-muted-foreground">
         Discover what&rsquo;s popular. Run{' '}
-        <code className="rounded bg-muted px-1 py-0.5 text-xs">
-          openamer marketplace search trending
-        </code>
-        {' '}in the terminal.
+        <code className="rounded bg-muted px-1 py-0.5 text-xs">openamer marketplace search trending</code> in the
+        terminal.
       </p>
     </section>
 
     <section className="rounded-lg border bg-card p-4">
       <h3 className="font-semibold mb-2">Installed Items</h3>
       <p className="text-sm text-muted-foreground">
-        Run{' '}
-        <code className="rounded bg-muted px-1 py-0.5 text-xs">
-          openamer marketplace list
-        </code>
-        {' '}to see everything you&rsquo;ve installed.
+        Run <code className="rounded bg-muted px-1 py-0.5 text-xs">openamer marketplace list</code> to see everything
+        you&rsquo;ve installed.
       </p>
     </section>
   </div>
@@ -351,7 +297,9 @@ const WebAgentPage: React.FC = () => {
   }, [])
 
   const handleExecute = React.useCallback(() => {
-    if (!goal.trim()) {return}
+    if (!goal.trim()) {
+      return
+    }
 
     const trimmedGoal = goal.trim()
     setStatus('running')
@@ -367,7 +315,7 @@ const WebAgentPage: React.FC = () => {
       `1. Analysiere die Anfrage: "${trimmedGoal.substring(0, 50)}${trimmedGoal.length > 50 ? '...' : ''}"`,
       '2. Rufe relevante Web-Quellen auf',
       '3. Extrahiere und verarbeite die Informationen',
-      '4. Fasse die Ergebnisse zusammen und präsentiere sie',
+      '4. Fasse die Ergebnisse zusammen und präsentiere sie'
     ]
 
     setPlannedPlan(plan)
@@ -408,14 +356,14 @@ const WebAgentPage: React.FC = () => {
     idle: 'text-muted-foreground',
     running: 'text-cyan-400',
     done: 'text-emerald-400',
-    failed: 'text-red-400',
+    failed: 'text-red-400'
   } as const
 
   const statusLabel = {
     idle: 'Bereit',
     running: 'Läuft...',
     done: 'Abgeschlossen',
-    failed: 'Fehlgeschlagen',
+    failed: 'Fehlgeschlagen'
   } as const
 
   const scrollRef = React.useRef<HTMLDivElement>(null)
@@ -430,9 +378,7 @@ const WebAgentPage: React.FC = () => {
     <div className="flex h-full flex-col overflow-hidden p-6">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-foreground">🌐 Web Agent</h1>
-        <p className="text-muted-foreground mt-1">
-          Führe Internet-Recherchen und Web-Aufgaben automatisiert durch
-        </p>
+        <p className="text-muted-foreground mt-1">Führe Internet-Recherchen und Web-Aufgaben automatisiert durch</p>
       </div>
 
       <div className="flex-1 space-y-4">
@@ -447,15 +393,10 @@ const WebAgentPage: React.FC = () => {
             value={goal}
           />
           <div className="flex items-center justify-between mt-2">
-            <Button
-              disabled={!goal.trim() || status === 'running'}
-              onClick={handleExecute}
-            >
+            <Button disabled={!goal.trim() || status === 'running'} onClick={handleExecute}>
               {status === 'running' ? '⏳ Wird ausgeführt...' : '▶️ Ausführen'}
             </Button>
-            <span className={`text-xs font-mono ${statusColor[status]}`}>
-              Status: {statusLabel[status]}
-            </span>
+            <span className={`text-xs font-mono ${statusColor[status]}`}>Status: {statusLabel[status]}</span>
           </div>
         </section>
 
@@ -465,14 +406,7 @@ const WebAgentPage: React.FC = () => {
             <h2 className="mb-2 text-lg font-semibold">📋 Geplanter Plan</h2>
             <ol className="list-decimal list-inside space-y-1 text-sm text-muted-foreground">
               {plannedPlan.map((step, i) => (
-                <li
-                  className={
-                    currentStep === step
-                      ? 'text-cyan-400 font-medium'
-                      : ''
-                  }
-                  key={i}
-                >
+                <li className={currentStep === step ? 'text-cyan-400 font-medium' : ''} key={i}>
                   {step}
                 </li>
               ))}
@@ -506,8 +440,7 @@ const WebAgentPage: React.FC = () => {
             >
               {logs.map((entry, i) => (
                 <div className="text-muted-foreground" key={i}>
-                  <span className="text-muted-foreground/50">[{entry.timestamp}]</span>{' '}
-                  {entry.message}
+                  <span className="text-muted-foreground/50">[{entry.timestamp}]</span> {entry.message}
                 </div>
               ))}
             </div>
@@ -522,15 +455,11 @@ const SuperintelligencePage: React.FC = () => (
   <div className="flex h-full flex-col overflow-hidden p-6">
     <div className="mb-6">
       <h1 className="text-2xl font-bold text-foreground">🎯 Superintelligence Dashboard</h1>
-      <p className="text-muted-foreground mt-1">
-        System-wide health and capability overview
-      </p>
+      <p className="text-muted-foreground mt-1">System-wide health and capability overview</p>
     </div>
 
     <div className="rounded-lg border bg-card p-6 mb-6 text-center">
-      <div className="text-5xl font-bold text-cyan-400 mb-2">
-        {OVERALL_HEALTH}/100
-      </div>
+      <div className="text-5xl font-bold text-cyan-400 mb-2">{OVERALL_HEALTH}/100</div>
       <div className="text-sm text-muted-foreground">Overall System Health</div>
     </div>
 
@@ -559,7 +488,7 @@ const plugin: OpenAmerPlugin = {
         data: { path: '/hub/agents' },
         render: () => <AgentBuilderPage />,
         order: PHASE_ORDER_BASE,
-        title: 'Agent Builder',
+        title: 'Agent Builder'
       } as PluginContribution,
       {
         id: 'brain',
@@ -567,7 +496,7 @@ const plugin: OpenAmerPlugin = {
         data: { path: '/hub/brain' },
         render: () => <BrainDashboardPage />,
         order: PHASE_ORDER_BASE + 10,
-        title: 'Brain Dashboard',
+        title: 'Brain Dashboard'
       } as PluginContribution,
       {
         id: 'crews-swarm',
@@ -575,7 +504,7 @@ const plugin: OpenAmerPlugin = {
         data: { path: '/hub/crews' },
         render: () => <CrewsSwarmPage />,
         order: PHASE_ORDER_BASE + 20,
-        title: 'Crews & Swarm',
+        title: 'Crews & Swarm'
       } as PluginContribution,
       {
         id: 'trace',
@@ -583,7 +512,7 @@ const plugin: OpenAmerPlugin = {
         data: { path: '/hub/trace' },
         render: () => <TracePage />,
         order: PHASE_ORDER_BASE + 30,
-        title: 'Trace',
+        title: 'Trace'
       } as PluginContribution,
       {
         id: 'web-agent',
@@ -591,7 +520,7 @@ const plugin: OpenAmerPlugin = {
         data: { path: '/hub/web-agent' },
         render: () => <WebAgentPage />,
         order: PHASE_ORDER_BASE + 35,
-        title: 'Web Agent',
+        title: 'Web Agent'
       } as PluginContribution,
       {
         id: 'marketplace',
@@ -599,7 +528,7 @@ const plugin: OpenAmerPlugin = {
         data: { path: '/hub/marketplace' },
         render: () => <MarketplacePage />,
         order: PHASE_ORDER_BASE + 40,
-        title: 'Marketplace',
+        title: 'Marketplace'
       } as PluginContribution,
       {
         id: 'superintelligence',
@@ -607,8 +536,8 @@ const plugin: OpenAmerPlugin = {
         data: { path: '/hub/super' },
         render: () => <SuperintelligencePage />,
         order: PHASE_ORDER_BASE + 50,
-        title: 'Superintelligence',
-      } as PluginContribution,
+        title: 'Superintelligence'
+      } as PluginContribution
     ])
 
     // ── Sidebar navigation entries ──────────────────────────────────────
@@ -617,46 +546,46 @@ const plugin: OpenAmerPlugin = {
         id: 'nav-agent-builder',
         area: SIDEBAR_NAV_AREA,
         data: { codicon: 'robot', label: 'Agent Builder', path: '/hub/agents' } as SidebarNavContribution,
-        order: PHASE_ORDER_BASE,
+        order: PHASE_ORDER_BASE
       } as PluginContribution,
       {
         id: 'nav-brain',
         area: SIDEBAR_NAV_AREA,
         data: { codicon: 'brain', label: 'Brain', path: '/hub/brain' } as SidebarNavContribution,
-        order: PHASE_ORDER_BASE + 10,
+        order: PHASE_ORDER_BASE + 10
       } as PluginContribution,
       {
         id: 'nav-crews',
         area: SIDEBAR_NAV_AREA,
         data: { codicon: 'organization', label: 'Crews & Swarm', path: '/hub/crews' } as SidebarNavContribution,
-        order: PHASE_ORDER_BASE + 20,
+        order: PHASE_ORDER_BASE + 20
       } as PluginContribution,
       {
         id: 'nav-trace',
         area: SIDEBAR_NAV_AREA,
         data: { codicon: 'graph', label: 'Trace', path: '/hub/trace' } as SidebarNavContribution,
-        order: PHASE_ORDER_BASE + 30,
+        order: PHASE_ORDER_BASE + 30
       } as PluginContribution,
       {
         id: 'nav-web-agent',
         area: SIDEBAR_NAV_AREA,
         data: { codicon: 'globe', label: 'Web Agent', path: '/hub/web-agent' } as SidebarNavContribution,
-        order: PHASE_ORDER_BASE + 35,
+        order: PHASE_ORDER_BASE + 35
       } as PluginContribution,
       {
         id: 'nav-marketplace',
         area: SIDEBAR_NAV_AREA,
         data: { codicon: 'package', label: 'Marketplace', path: '/hub/marketplace' } as SidebarNavContribution,
-        order: PHASE_ORDER_BASE + 40,
+        order: PHASE_ORDER_BASE + 40
       } as PluginContribution,
       {
         id: 'nav-super',
         area: SIDEBAR_NAV_AREA,
         data: { codicon: 'dashboard', label: 'Super', path: '/hub/super' } as SidebarNavContribution,
-        order: PHASE_ORDER_BASE + 50,
-      } as PluginContribution,
+        order: PHASE_ORDER_BASE + 50
+      } as PluginContribution
     ])
-  },
+  }
 }
 
 export default plugin

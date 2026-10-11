@@ -310,8 +310,7 @@ export const hi = defineLocale({
       lastChecked: age => `अंतिम जाँच ${age}`,
       justNowSuffix: ' · अभी',
       automaticUpdates: 'स्वचालित अपडेट',
-      automaticUpdatesDesc:
-        'OpenAmer बैकग्राउंड में स्वतः अपडेट जाँचता है और तैयार होने पर आपको बताता है।',
+      automaticUpdatesDesc: 'OpenAmer बैकग्राउंड में स्वतः अपडेट जाँचता है और तैयार होने पर आपको बताता है।',
       branchCommit: (branch, commit) => `ब्रांच ${branch} · कमिट ${commit}`,
       never: 'कभी नहीं',
       justNow: 'अभी',
