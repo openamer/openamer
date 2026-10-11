@@ -2340,6 +2340,203 @@ print(','.join(scripts))
     Write-Success "All dependencies installed"
 }
 
+# ============================================================================
+# Install-scoped home resolution
+# ============================================================================
+# $OpenAmerHome has two jobs that must not be confused:
+#
+#   1. Where THIS run installs / repairs. A wrong answer here is loud: files land
+#      in the wrong tree and the user sees it.
+#   2. What is PERSISTED to the *user* environment afterwards. A wrong answer
+#      here is silent and permanent -- every later process (shells, scheduled
+#      tasks, and the desktop app's own backend) inherits it. That is how one
+#      update, or a reboot with OPENAMER_HOME missing, left the desktop app
+#      booting against an empty %LOCALAPPDATA%\openamer (a ~51-byte onboarding
+#      stub) instead of the real install's 13 KB config.
+#
+# So the value is resolved as an ordered ladder of EVIDENCE, never as a guess,
+# and it is persisted only when the evidence proves it belongs to this install.
+# The same ladder exists once per surface -- keep the three in lockstep:
+#   openamer_constants.get_install_scoped_openamer_home   (Python: CLI, dep path)
+#   apps/desktop/electron/install-home.ts                 (desktop)
+#   this file                                             (installer)
+#
+# Pure ASCII on purpose: PowerShell 5.1 reads a BOM-less .ps1 in the system ANSI
+# code page, so a non-ASCII byte inside a string literal desyncs the parser
+# (issues #66994 / #67000).
+#
+# BEGIN install-home-resolution -- tests/test_install_ps1_home_resolution.py
+# extracts exactly this block and drives it under PowerShell, because Linux CI
+# cannot run the installer. Keep the markers on their own lines.
+
+function Get-PlatformDefaultOpenAmerHome {
+    # Mirrors openamer_constants._get_platform_default_openamer_home().
+    if ($env:LOCALAPPDATA) {
+        return (Join-Path $env:LOCALAPPDATA "openamer")
+    }
+    return (Join-Path $env:USERPROFILE "AppData\Local\openamer")
+}
+
+function Get-InstallCheckoutCandidates {
+    # Checkouts this run may read install evidence from, in precedence order:
+    # the one this script file lives in (<checkout>\scripts\install.ps1), then
+    # the one this run is installing to. $PSScriptRoot is empty when the script
+    # arrives via `irm | iex`, which is exactly why it is a candidate list and
+    # not the only source.
+    param([string]$InstallDirHint = "")
+    $found = New-Object System.Collections.Generic.List[string]
+    if ($PSScriptRoot) {
+        $parent = Split-Path -Parent $PSScriptRoot
+        if ($parent -and (Test-Path (Join-Path $parent "openamer_cli"))) {
+            [void]$found.Add($parent)
+        }
+    }
+    if ($InstallDirHint -and (Test-Path $InstallDirHint)) {
+        [void]$found.Add($InstallDirHint)
+    }
+    return $found
+}
+
+function Get-InstallBreadcrumbHome {
+    # .openamer-home beside the checkout: written by Set-PathVariable once a home
+    # was proven, read by the CLI / dep_ensure / desktop so that "our home" is a
+    # property of the install and not of the shared user environment.
+    param([string]$Checkout)
+    if (-not $Checkout) { return $null }
+    $marker = Join-Path $Checkout ".openamer-home"
+    if (-not (Test-Path $marker -PathType Leaf)) { return $null }
+    try {
+        $recorded = Get-Content -LiteralPath $marker -TotalCount 1 -ErrorAction Stop
+    } catch {
+        return $null
+    }
+    if (-not $recorded) { return $null }
+    $recorded = ([string]$recorded).Trim()
+    if (-not $recorded) { return $null }
+    return $recorded
+}
+
+function Get-ShippedLayoutHome {
+    # Shipped layout: <home>\openamer-agent. Only a parent that carries install
+    # evidence (.git) is trusted, so a bare dev checkout cannot invent a home.
+    param([string]$Checkout)
+    if (-not $Checkout) { return $null }
+    if ((Split-Path -Leaf $Checkout) -ne "openamer-agent") { return $null }
+    if (-not (Test-Path (Join-Path $Checkout ".git"))) { return $null }
+    return (Split-Path -Parent $Checkout)
+}
+
+function Resolve-OpenAmerHome {
+    # @{ Home = <string>; Proven = <bool>; Source = <string> }
+    #
+    # Proven=$true means the value is evidence carried by THIS install and may be
+    # persisted to the user environment. Proven=$false means "use it for this run
+    # only, and write it nowhere".
+    param(
+        [string]$Requested = "",
+        [switch]$RequestedExplicit,
+        [string[]]$Checkouts = @()
+    )
+
+    if ($RequestedExplicit) {
+        # An explicit -OpenAmerHome is the caller's own statement of intent
+        # (dep_ensure, the desktop bootstrap driver, a recovery run) and wins
+        # over inference. Log the disagreement when the checkouts prove
+        # something else: that shape is what the bug looked like in the wild.
+        $expected = $null
+        foreach ($c in $Checkouts) {
+            $expected = Get-InstallBreadcrumbHome $c
+            if (-not $expected) { $expected = Get-ShippedLayoutHome $c }
+            if ($expected) { break }
+        }
+        if ($expected -and ($expected -ne $Requested)) {
+            Write-Warn "-OpenAmerHome=$Requested disagrees with this checkout's own home ($expected); honouring the explicit value"
+        }
+        return @{ Home = $Requested; Proven = $true; Source = "explicit" }
+    }
+
+    foreach ($c in $Checkouts) {
+        $fromMarker = Get-InstallBreadcrumbHome $c
+        if ($fromMarker) {
+            return @{ Home = $fromMarker; Proven = $true; Source = "breadcrumb" }
+        }
+        $fromLayout = Get-ShippedLayoutHome $c
+        if ($fromLayout) {
+            return @{ Home = $fromLayout; Proven = $true; Source = "shipped-layout" }
+        }
+    }
+
+    if ($env:OPENAMER_HOME) {
+        # Inherited, not proven: on a box with two install trees this names
+        # whichever tree wrote it last.
+        return @{ Home = $env:OPENAMER_HOME; Proven = $false; Source = "env" }
+    }
+
+    return @{
+        Home   = (Get-PlatformDefaultOpenAmerHome)
+        Proven = $false
+        Source = "platform-default"
+    }
+}
+
+function Initialize-OpenAmerHome {
+    # Resolve once before any stage runs, so every stage agrees on one path.
+    param(
+        [switch]$RequestedExplicit,
+        [switch]$InstallDirExplicit
+    )
+    $resolution = Resolve-OpenAmerHome `
+        -Requested $OpenAmerHome `
+        -RequestedExplicit:$RequestedExplicit `
+        -Checkouts (Get-InstallCheckoutCandidates -InstallDirHint $InstallDir)
+
+    $script:OpenAmerHomeExplicit = [bool]$RequestedExplicit
+    $script:OpenAmerHomeProven = [bool]$resolution.Proven
+    $script:OpenAmerHomeSource = $resolution.Source
+
+    if ($resolution.Home -ne $OpenAmerHome) {
+        Write-Info "Resolved OpenAmer home: $($resolution.Home) (evidence: $($resolution.Source))"
+    }
+    $script:OpenAmerHome = $resolution.Home
+
+    # Keep the checkout under the resolved home when the caller did not name one.
+    if (-not $InstallDirExplicit) {
+        $script:InstallDir = Join-Path $resolution.Home "openamer-agent"
+    }
+}
+
+function Set-InstallHomeBreadcrumb {
+    # Record the PROVEN home next to the checkout so a later process (the CLI,
+    # dep_ensure, the desktop app) can read this install's own home instead of
+    # trusting the shared user environment. Never written for an unproven value,
+    # and gitignored so a managed checkout stays clean and `openamer update`'s
+    # untracked autostash skips it (#38529).
+    #
+    # The parameter is -HomePath, not -Home: `$Home` is a read-only automatic
+    # variable in PowerShell, so binding to it fails ("cannot be overwritten"),
+    # and because that failure happens before the function body the caller's
+    # catch cannot recover it.
+    param([string]$Checkout, [string]$HomePath)
+    if (-not $Checkout -or -not $HomePath) { return $false }
+    if (-not (Test-Path $Checkout)) { return $false }
+    try {
+        if ((Get-InstallBreadcrumbHome $Checkout) -eq $HomePath) { return $true }
+        # BOM-less UTF-8 via the .NET API: PowerShell 5.1's `Set-Content
+        # -Encoding UTF8` always emits a BOM, and every reader of this file
+        # (Python's read_text("utf-8"), Node's fs.readFileSync) would then see a
+        # leading U+FEFF glued onto the path. Paths may contain non-ASCII, so
+        # ASCII encoding is not an option either.
+        $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+        [System.IO.File]::WriteAllText((Join-Path $Checkout ".openamer-home"), $HomePath, $utf8NoBom)
+        return $true
+    } catch {
+        Write-Warn "Could not write the install home breadcrumb: $_"
+        return $false
+    }
+}
+
+# END install-home-resolution
+
 function Set-PathVariable {
     Write-Info "Setting up openamer command..."
     
@@ -2366,13 +2563,50 @@ function Set-PathVariable {
     
     # Set OPENAMER_HOME so the Python code finds config/data in the right place.
     # Only needed on Windows where we install to %LOCALAPPDATA%\openamer instead
-    # of the Unix default ~/.openamer
+    # of the Unix default ~/.openamer.
+    #
+    # Re-resolve here instead of trusting the value from Initialize: on a fresh
+    # install the checkout does not exist yet at startup, so the shipped layout
+    # cannot be read and the home is still only a default. By this stage the
+    # repository has been cloned, so the install can prove its own home -- and
+    # the value written below is the one every later process will inherit, so it
+    # must be evidence, not a guess.
+    $resolution = Resolve-OpenAmerHome `
+        -Requested $OpenAmerHome `
+        -RequestedExplicit:$script:OpenAmerHomeExplicit `
+        -Checkouts (Get-InstallCheckoutCandidates -InstallDirHint $InstallDir)
+    $resolvedHome = $resolution.Home
+    $script:OpenAmerHomeProven = [bool]$resolution.Proven
+    $script:OpenAmerHomeSource = $resolution.Source
+
     $currentOpenAmerHome = [Environment]::GetEnvironmentVariable("OPENAMER_HOME", "User")
-    if (-not $currentOpenAmerHome -or $currentOpenAmerHome -ne $OpenAmerHome) {
-        [Environment]::SetEnvironmentVariable("OPENAMER_HOME", $OpenAmerHome, "User")
-        Write-Success "Set OPENAMER_HOME=$OpenAmerHome"
+    if ($currentOpenAmerHome -eq $resolvedHome) {
+        # Already this install's home -- never rewrite it.
+        Write-Info "OPENAMER_HOME already points at this install ($resolvedHome)"
+    } elseif (-not $resolution.Proven) {
+        # This branch is the fix. The write that used to live here was
+        # unconditional, so a fallback default (an inherited env value or
+        # %LOCALAPPDATA%\openamer) got pinned to the *user* environment, and
+        # every later process -- including the desktop app -- followed it into an
+        # empty tree. An unproven home is used for THIS run only.
+        Write-Warn "Not persisting OPENAMER_HOME=$resolvedHome (from $($resolution.Source)): it cannot be proven to belong to this install. The user environment is left untouched."
+    } else {
+        [Environment]::SetEnvironmentVariable("OPENAMER_HOME", $resolvedHome, "User")
+        Write-Success "Set OPENAMER_HOME=$resolvedHome (evidence: $($resolution.Source))"
     }
-    $env:OPENAMER_HOME = $OpenAmerHome
+    $env:OPENAMER_HOME = $resolvedHome
+
+    # Record the same proven fact beside the checkout, so the CLI, dep_ensure and
+    # the desktop app can read this install's *own* home instead of trusting the
+    # shared user environment. Only for a checkout the resolved home actually
+    # explains -- otherwise the breadcrumb would name somebody else's home.
+    if ($resolution.Proven -and (Test-Path $InstallDir)) {
+        $installDirHome = Get-ShippedLayoutHome $InstallDir
+        if (-not $installDirHome) { $installDirHome = Get-InstallBreadcrumbHome $InstallDir }
+        if ($installDirHome -eq $resolvedHome) {
+            [void](Set-InstallHomeBreadcrumb -Checkout $InstallDir -HomePath $resolvedHome)
+        }
+    }
     
     # Update current session
     $env:Path = "$openamerBin;$env:Path"
@@ -3848,6 +4082,14 @@ function Main {
 # structured JSON error frame instead of a bare exception.
 
 try {
+    # Resolve the install-scoped home before ANY mode runs, so -Ensure, -Stage,
+    # -Manifest and a full install all agree on one path instead of each falling
+    # back to the platform default independently. The switches are read here
+    # because $PSBoundParameters inside a function belongs to that function.
+    Initialize-OpenAmerHome `
+        -RequestedExplicit:($PSBoundParameters.ContainsKey("OpenAmerHome")) `
+        -InstallDirExplicit:($PSBoundParameters.ContainsKey("InstallDir"))
+
     if ($Ensure -ne "") {
         if ($PSBoundParameters.ContainsKey("Stage")) {
             Write-Err "Cannot use -Ensure and -Stage simultaneously"

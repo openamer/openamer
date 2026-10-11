@@ -148,6 +148,14 @@ docs/superpowers/*
 # treat it as a local edit and autostash it on every run (#38529).
 .openamer-bootstrap-complete
 
+# Install-scoped home breadcrumb written next to the managed checkout by
+# install.ps1 (Set-InstallHomeBreadcrumb). It records which home THIS install
+# belongs to, so the CLI, dep_ensure and the desktop app never have to trust the
+# machine-wide OPENAMER_HOME for it. Runtime metadata, never a code change --
+# ignore it so `git status` stays clean and update's untracked autostash does not
+# sweep it (#38529).
+.openamer-home
+
 # Persistent dev sandbox dir (scripts/dev-sandbox.sh --persistent)
 .openamer-sandbox/
 

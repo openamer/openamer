@@ -11114,8 +11114,14 @@ def _install_home_marker_path(roots: tuple[str, ...]) -> Path:
     differs from the stored value, so on a machine with two install trees that
     value names whichever tree was installed last. Keying the breadcrumb to the
     checkout keeps "our home" a property of the install being updated.
+
+    Thin alias for :func:`openamer_constants.install_home_marker_path`, which
+    also serves the dep-bootstrap and desktop paths -- one resolver, so the
+    three call sites cannot drift.
     """
-    return Path(roots[0]) / ".openamer-home"
+    from openamer_constants import install_home_marker_path
+
+    return install_home_marker_path(roots[0] if roots else None)
 
 
 def _ours_install_home(roots: tuple[str, ...]) -> str | None:
@@ -11125,24 +11131,14 @@ def _ours_install_home(roots: tuple[str, ...]) -> str | None:
     -> ``None``. ``None`` means "this install cannot name its own home", and
     that must never be the thing that disarms the scope guard — see
     `_belongs_to_other_install`.
+
+    Thin alias for :func:`openamer_constants.get_install_scoped_openamer_home`
+    (same order, same fallback), so the guard, ``dep_ensure`` and the desktop
+    cannot resolve three different answers for one install.
     """
-    try:
-        marker = _install_home_marker_path(roots)
-        if marker.is_file():
-            recorded = marker.read_text(encoding="utf-8").strip()
-            if recorded:
-                return recorded
-    except (OSError, UnicodeDecodeError):
-        pass
-    # Shipped layout: <home>/openamer-agent. Only trust a parent that carries
-    # install evidence, so a bare dev checkout does not invent a home.
-    try:
-        root = Path(roots[0])
-        if root.name.lower() == "openamer-agent" and (root / ".git").exists():
-            return str(root.parent)
-    except (OSError, ValueError):
-        pass
-    return os.environ.get("OPENAMER_HOME")
+    from openamer_constants import get_install_scoped_openamer_home
+
+    return get_install_scoped_openamer_home(roots[0] if roots else None)
 
 
 def _split_gateways_by_install(pids: list[int]) -> tuple[list[int], list[int]]:

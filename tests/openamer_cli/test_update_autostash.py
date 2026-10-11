@@ -924,6 +924,55 @@ def test_bootstrap_marker_not_autostashed_by_update(tmp_path):
     assert ".openamer-bootstrap-complete" not in status
 
 
+def test_install_home_breadcrumb_not_autostashed_by_update(tmp_path):
+    """The install home breadcrumb must be git-ignored for the same reason.
+
+    ``scripts/install.ps1`` writes ``<checkout>/.openamer-home`` as install
+    evidence -- the CLI, ``dep_ensure`` and the desktop app read it to learn which
+    home *this* install belongs to instead of trusting the machine-wide
+    ``OPENAMER_HOME``. A new file dropped into every managed checkout is exactly
+    the #38529 shape: `git status` stays dirty forever and `openamer update`'s
+    untracked autostash sweeps it on every run. Behavioral + hermetic: adopt the
+    project's real ``.gitignore`` (the contract under test), drop the breadcrumb,
+    and confirm the exact stash invocation the updater uses leaves it untouched.
+    """
+    import shutil
+    import subprocess
+
+    if shutil.which("git") is None:
+        pytest.skip("git not available")
+
+    repo_gitignore = Path(openamer_main.__file__).resolve().parents[1] / ".gitignore"
+
+    def git(*args):
+        return subprocess.run(
+            ["git", *args], cwd=tmp_path, capture_output=True, text=True, check=True
+        )
+
+    git("init", "-q")
+    git("config", "user.email", "t@example.com")
+    git("config", "user.name", "t")
+    (tmp_path / ".gitignore").write_text(repo_gitignore.read_text())
+    (tmp_path / "tracked.txt").write_text("x\n")
+    git("add", "-A")
+    git("commit", "-qm", "init")
+
+    breadcrumb = tmp_path / ".openamer-home"
+    breadcrumb.write_text(str(tmp_path) + "\n")
+
+    # Exact flags used by openamer update (openamer_cli/main.py).
+    git("stash", "push", "--include-untracked", "-m", "openamer-update-autostash")
+
+    assert breadcrumb.exists(), (
+        ".openamer-home was swept into the update autostash - it must be listed "
+        "in .gitignore so `git stash -u` skips it (#38529)."
+    )
+    status = subprocess.run(
+        ["git", "status", "--porcelain"], cwd=tmp_path, capture_output=True, text=True
+    ).stdout
+    assert ".openamer-home" not in status
+
+
 def test_install_method_marker_not_autostashed_by_update(tmp_path):
     """#66189: the installer ``.install_method`` stamp must be git-ignored so
     ``openamer update``'s ``git stash push --include-untracked`` does not sweep it

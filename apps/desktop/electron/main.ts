@@ -117,6 +117,7 @@ import {
   resolveTimeoutMs,
   TEXT_PREVIEW_SOURCE_MAX_BYTES
 } from './hardening'
+import { installHomeCandidatesFromPaths, resolveInstallScopedOpenAmerHome } from './install-home'
 import {
   killOtherOpenAmerProcesses,
   killProcessTreeViaTaskkill,
@@ -486,13 +487,51 @@ if (INSTALL_STAMP) {
 // OPENAMER_DESKTOP_USER_DATA_DIR (used by test:desktop:fresh) puts the sandbox
 // OPENAMER_HOME beneath the throwaway userData dir so a fresh-install run never
 // touches the user's real ~/.openamer / %LOCALAPPDATA%\openamer.
+function installCheckoutCandidates() {
+  // The checkouts this app could have been launched from, most specific first:
+  // an explicit dev pin, the app's own path (packaged: .../win-unpacked/
+  // OpenAmer.exe inside the install checkout), the module root, and the source
+  // checkout in dev. installHomeCandidatesFromPaths walks each one's ancestors,
+  // which is how a packaged build finds `<home>/openamer-agent` above itself.
+  return installHomeCandidatesFromPaths(
+    [
+      process.env.OPENAMER_DESKTOP_OPENAMER_ROOT,
+      process.execPath,
+      APP_ROOT,
+      SOURCE_REPO_ROOT
+    ],
+    { isDirectory: directoryExists }
+  )
+}
+
 function resolveOpenAmerHome() {
-  if (process.env.OPENAMER_HOME) {
-    return normalizeOpenAmerHomeRoot(process.env.OPENAMER_HOME)
+  // Explicit test/sandbox override first, exactly as before: it is not install
+  // evidence, it is a harness saying "pretend this is a fresh install", and both
+  // the e2e fixtures and test:desktop:fresh set it alongside OPENAMER_HOME.
+  if (USER_DATA_OVERRIDE) {
+    if (process.env.OPENAMER_HOME) {
+      return normalizeOpenAmerHomeRoot(process.env.OPENAMER_HOME)
+    }
+
+    return path.join(path.resolve(USER_DATA_OVERRIDE), 'openamer-home')
   }
 
-  if (USER_DATA_OVERRIDE) {
-    return path.join(path.resolve(USER_DATA_OVERRIDE), 'openamer-home')
+  // Then the install this app was launched from, which can name its own home
+  // without help: a `.openamer-home` breadcrumb beside the checkout, or the
+  // shipped layout `<home>/openamer-agent`. This outranks the process env and
+  // the registry on purpose -- both are machine-wide last-writer values, so on a
+  // box with two install trees they name whichever tree wrote last. That is what
+  // sent the app to an empty %LOCALAPPDATA%\openamer (a ~51-byte onboarding stub
+  // beside a real 13 KB config.yaml) after an update, with the backend reporting
+  // ready and every screen empty.
+  const installScoped = resolveInstallScopedOpenAmerHome(installCheckoutCandidates())
+
+  if (installScoped) {
+    return normalizeOpenAmerHomeRoot(installScoped.home)
+  }
+
+  if (process.env.OPENAMER_HOME) {
+    return normalizeOpenAmerHomeRoot(process.env.OPENAMER_HOME)
   }
 
   if (IS_WINDOWS) {

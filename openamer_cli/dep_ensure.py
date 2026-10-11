@@ -103,6 +103,30 @@ def _find_install_script(
     return None, None
 
 
+def _install_scoped_home() -> str | None:
+    """This install's own home, or ``None`` when it cannot name one.
+
+    Deliberately NOT ``get_openamer_home()``: that resolver answers the
+    *platform default* when ``OPENAMER_HOME`` is unset, and the Windows install
+    backend PERSISTS whatever ``-OpenAmerHome`` it is handed to the user
+    environment. Passing a guess therefore did not merely use the wrong path for
+    one child process -- it pinned every later process, including the desktop
+    app, to it. A single update or reboot with the variable missing left the app
+    booting against an empty config.
+
+    ``None`` means the caller must not pass ``-OpenAmerHome`` at all, so
+    ``install.ps1`` resolves the home itself (breadcrumb -> shipped layout ->
+    env -> default) and persists only what it can prove belongs to this install.
+    """
+    from openamer_constants import get_install_scoped_openamer_home
+
+    try:
+        return get_install_scoped_openamer_home()
+    except Exception:
+        # Never block a dependency install on the home probe.
+        return None
+
+
 def ensure_dependency(
     dep: str,
     interactive: bool = True,
@@ -133,7 +157,6 @@ def ensure_dependency(
             return False
 
     if shell == "powershell":
-        from openamer_constants import get_openamer_home
         ps_bin = shutil.which("powershell") or shutil.which("pwsh")
         if not ps_bin:
             if interactive:
@@ -144,8 +167,15 @@ def ensure_dependency(
             "-ExecutionPolicy", "Bypass",
             "-File", str(script),
             "-Ensure", dep,
-            "-OpenAmerHome", str(get_openamer_home()),
         ]
+        # Only pin the home when this install can PROVE which one is its own
+        # (breadcrumb / shipped layout / an explicit OPENAMER_HOME). Omitted
+        # otherwise, so install.ps1 falls through to its own proof-gated ladder
+        # instead of being handed the platform default as if it were a fact.
+        # See _install_scoped_home.
+        install_home = _install_scoped_home()
+        if install_home:
+            cmd += ["-OpenAmerHome", install_home]
     else:
         cmd = ["bash", str(script), "--ensure", dep]
 

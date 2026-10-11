@@ -13,6 +13,11 @@ from pathlib import Path
 
 
 _profile_fallback_warned: bool = False
+# One-shot guard for the install-scoped fallback warning. ``_checked`` keeps the
+# two stat calls behind it out of get_openamer_home()'s hot path: once per
+# process is enough for a diagnostic.
+_install_fallback_checked: bool = False
+_install_fallback_warned: bool = False
 _UNSET = object()
 
 # Resolved keys, keyed by the path string that was handed in. Path.resolve()
@@ -141,6 +146,135 @@ def _warn_profile_fallback_once() -> None:
             pass
 
 
+def _running_checkout_root() -> Path:
+    """The checkout the *running* code was imported from.
+
+    Deliberately derived from ``__file__``, not from ``os.environ`` or the
+    current working directory: the process environment is shared machine-wide
+    and the cwd is whatever the caller happened to be in.
+    """
+    return Path(__file__).resolve().parent
+
+
+def install_home_marker_path(checkout: str | Path | None = None) -> Path:
+    """Breadcrumb naming the home of *this* install, kept beside the checkout.
+
+    A checkout under the shipped layout lives at ``<home>/openamer-agent``, but
+    the *name* of the home is not re-derivable from the checkout alone and the
+    process environment is **not install-scoped**: ``install.ps1`` writes
+    ``OPENAMER_HOME`` to the *user* environment, so on a machine with two
+    install trees that value names whichever tree was installed last. Keying the
+    breadcrumb to the checkout keeps "our home" a property of the install.
+
+    ``install.ps1`` writes it once it has *proven* a home (see the resolution
+    ladder there); this module only reads it. The file is gitignored so a
+    managed checkout stays clean and ``openamer update``'s untracked autostash
+    skips it (#38529).
+    """
+    root = Path(checkout) if checkout else _running_checkout_root()
+    return root / ".openamer-home"
+
+
+def get_install_scoped_openamer_home(checkout: str | Path | None = None) -> str | None:
+    """Resolve the home of the install this code belongs to, install-first.
+
+    Order: install breadcrumb -> shipped-layout derivation -> ``OPENAMER_HOME``
+    -> ``None``.  ``None`` means "this install cannot name its own home", and
+    callers must treat that as *unknown* rather than as licence to use the
+    platform default.
+
+    That distinction is the whole bug: :func:`get_openamer_home` answers the
+    platform default when ``OPENAMER_HOME`` is unset, so a caller that treats
+    that answer as "this install's home" and **persists** it pins every later
+    process -- including the desktop app -- to a guessed tree, which is how the
+    app came up against an empty ``%LOCALAPPDATA%\\openamer``.
+    """
+    root = Path(checkout) if checkout else _running_checkout_root()
+    try:
+        marker = install_home_marker_path(root)
+        if marker.is_file():
+            # utf-8-sig: both writers emit BOM-less UTF-8 (PowerShell 5.1's
+            # Set-Content -Encoding UTF8 would prepend one), but a stray BOM read
+            # as part of the path would produce a home that cannot exist.
+            recorded = marker.read_text(encoding="utf-8-sig").strip()
+            if recorded:
+                return recorded
+    except (OSError, UnicodeDecodeError):
+        pass
+    # Shipped layout: <home>/openamer-agent. Only trust a parent that carries
+    # install evidence, so a bare dev checkout does not invent a home.
+    try:
+        if root.name.lower() == "openamer-agent" and (root / ".git").exists():
+            return str(root.parent)
+    except (OSError, ValueError):
+        pass
+    return os.environ.get("OPENAMER_HOME")
+
+
+def _append_fallback_errors_log(home: Path, msg: str) -> None:
+    """Best-effort append to an existing ``<home>/logs/errors.log``.
+
+    Never creates the file or the directory: this only has to be diagnosable in
+    a tree that already has ``logs/``, not to write new state while the process
+    is arguably pointed at the wrong home.
+    """
+    try:
+        logs_dir = home / "logs"
+        if not logs_dir.is_dir():
+            return
+        with open(logs_dir / "errors.log", "a", encoding="utf-8") as fh:
+            fh.write(msg + "\n")
+    except OSError:
+        pass
+
+
+def _warn_install_breadcrumb_fallback_once() -> None:
+    """Warn once when the platform default is used although this install knows its home.
+
+    Guard: the running checkout carries a ``.openamer-home`` breadcrumb (or sits
+    at ``<home>/openamer-agent``) but ``OPENAMER_HOME`` is unset, so
+    :func:`get_openamer_home` is about to answer the *platform default* -- a
+    guess that names a different (often empty) tree than the install the code
+    actually belongs to.  Before this, that fallback was silent: the desktop app
+    booted against an empty config with no trace of why.
+
+    Behavior is unchanged -- we still return the platform default, because
+    raising here would brick the 30+ module-level callers that import this at
+    load time.  The check runs at most once per process, so the two stat calls
+    it costs never land in :func:`get_openamer_home`'s hot path.
+    """
+    global _install_fallback_checked, _install_fallback_warned
+    if _install_fallback_checked:
+        return
+    _install_fallback_checked = True
+    try:
+        recorded = get_install_scoped_openamer_home()
+        if not recorded:
+            return
+        fallback_home = _get_platform_default_openamer_home()
+        if os.path.normcase(recorded) == os.path.normcase(str(fallback_home)):
+            return
+    except (OSError, UnicodeDecodeError, ValueError):
+        return
+    _install_fallback_warned = True
+    # Same channel and the same reasoning as _warn_profile_fallback_once above:
+    # stderr directly, not ``logging``, because this can fire before logging is
+    # configured and root propagation would double-emit.
+    msg = (
+        f"[OPENAMER_HOME install-scoped] OPENAMER_HOME is unset but this "
+        f"install's own home is '{recorded}'. Falling back to {fallback_home}, "
+        f"which is the platform default -- not necessarily this install's home. "
+        f"Data this process writes may land in the wrong tree. Pass "
+        f"OPENAMER_HOME explicitly instead of guessing the default."
+    )
+    try:
+        sys.stderr.write(msg + "\n")
+        sys.stderr.flush()
+    except Exception:
+        pass
+    _append_fallback_errors_log(fallback_home, msg)
+
+
 def get_openamer_home() -> Path:
     """Return the OpenAmer home directory (default: platform-native path).
 
@@ -152,12 +286,20 @@ def get_openamer_home() -> Path:
     When ``OPENAMER_HOME`` is unset but an ``active_profile`` file indicates
     a non-default profile is active, logs a loud one-shot warning to
     ``errors.log`` so cross-profile data corruption is diagnosable instead
-    of silent.  Behavior is unchanged otherwise — we still return
-    the platform-native default — because raising here would brick 30+ module-level
+    of silent.  The same guard fires when this install carries its own home
+    evidence (a ``.openamer-home`` breadcrumb beside the checkout, or the
+    shipped ``<home>/openamer-agent`` layout) that differs from the platform
+    default about to be returned -- see
+    :func:`_warn_install_breadcrumb_fallback_once`.  Behavior is unchanged
+    otherwise -- we still return
+    the platform-native default -- because raising here would brick 30+ module-level
     callers that import this at load time.  Subprocess spawners are
     expected to propagate ``OPENAMER_HOME`` explicitly (see the systemd
     template in ``openamer_cli/gateway.py`` and the kanban dispatcher in
-    ``openamer_cli/kanban_db.py``).  See https://github.com/openamer/openamer/issues/18594.
+    ``openamer_cli/kanban_db.py``).  Callers that need this install's *own*
+    home -- rather than the platform default -- must ask
+    :func:`get_install_scoped_openamer_home`, which never guesses.  See
+    https://github.com/openamer/openamer/issues/18594.
     """
     override = get_openamer_home_override()
     if override:
@@ -165,6 +307,7 @@ def get_openamer_home() -> Path:
 
     if not os.environ.get("OPENAMER_HOME", "").strip():
         _warn_profile_fallback_once()
+        _warn_install_breadcrumb_fallback_once()
 
     return _openamer_home_from_env()
 
