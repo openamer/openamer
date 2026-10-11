@@ -7,7 +7,9 @@ entire mesh has learned.
 
 Capabilities provided:
   - MeshLearningCoordinator class: orchestrates cross-node learning
+  - run_mesh_learning_cycle(): publish local lessons, then import + apply peers'
   - publish_lesson(): sign + publish a lesson to the mesh
+  - publish_local_lessons(): stage the node's own staged insights onto the mesh
   - import_lessons_from_mesh(): fetch lessons from peer insight files
   - apply_lesson_to_skills(): convert a mesh lesson into a local skill
   - get_mesh_learning_stats(): track what the mesh has learned
@@ -41,6 +43,7 @@ _MESH_DIR = _base_dir() / "a2a" / "mesh"
 _LESSONS_DIR = _MESH_DIR / "lessons"
 _PUBLISH_DIR = _MESH_DIR / "publish"
 _IMPORTED_DIR = _MESH_DIR / "imported"
+_INSIGHTS_DIR = _base_dir() / "a2a" / "insights"
 _MEMORY_PATH = _base_dir() / "MEMORY-official-mesh.md"
 _SKILLS_DIR = _base_dir() / "skills"
 
@@ -58,9 +61,9 @@ class MeshLesson:
     title: str
     body: str
     topic: str
-    source: str            # publishing node fingerprint
-    source_pubkey: str
-    ts: int
+    source: str = ""            # publishing node fingerprint
+    source_pubkey: str = ""
+    ts: int = 0
     signature: str = ""
     tags: list[str] = field(default_factory=list)
     difficulty: str = "intermediate"  # beginner / intermediate / advanced
@@ -121,6 +124,8 @@ class MeshLearningCoordinator:
         memory_path: Optional[Path] = None,
         skills_dir: Optional[Path] = None,
         publish_dir: Optional[Path] = None,
+        imported_dir: Optional[Path] = None,
+        insights_dir: Optional[Path] = None,
         mesh_dir: Optional[Path] = None,
         lesson_to_skill_fn: Optional[Callable[[MeshLesson], Optional[str]]] = None,
     ):
@@ -128,6 +133,8 @@ class MeshLearningCoordinator:
         self._memory_path = memory_path or _MEMORY_PATH
         self._skills_dir = skills_dir or _SKILLS_DIR
         self._publish_dir = publish_dir or _PUBLISH_DIR
+        self._imported_dir = imported_dir or _IMPORTED_DIR
+        self._insights_dir = insights_dir or _INSIGHTS_DIR
         self._mesh_dir = mesh_dir or _MESH_DIR
         self._lesson_to_skill_fn = lesson_to_skill_fn
 
@@ -198,9 +205,8 @@ class MeshLearningCoordinator:
                     continue
 
         # 2) Scan the shared peer insights directory
-        peer_insights_dir = _base_dir() / "a2a" / "insights"
-        if peer_insights_dir.exists():
-            for p in sorted(peer_insights_dir.glob("*.json")):
+        if self._insights_dir.exists():
+            for p in sorted(self._insights_dir.glob("*.json")):
                 try:
                     d = json.loads(p.read_text(encoding="utf-8"))
                     # peer insight files have an "insights" key or are raw lists
@@ -279,8 +285,8 @@ class MeshLearningCoordinator:
             published = len(list(self._publish_dir.glob("*.json")))
 
         imported_lessons = 0
-        if self._IMPORTED_DIR.exists():
-            imported_lessons = len(list(self._IMPORTED_DIR.glob("*.json")))
+        if self._imported_dir.exists():
+            imported_lessons = len(list(self._imported_dir.glob("*.json")))
 
         # Count memory entries
         memory_count = 0
@@ -323,6 +329,59 @@ class MeshLearningCoordinator:
             "last_published": last_published,
             "mesh_path": str(self._mesh_dir),
         }
+
+    def publish_local_lessons(self) -> int:
+        """Stage this node's own staged insights onto the mesh.
+
+        Reads the same directory ``import_lessons_from_mesh`` scans, so a lesson
+        staged locally (``openamer a2a meshlearn learn``) becomes shareable and
+        the next cycle reads it back. Idempotent by title slug: a lesson that
+        already sits in the publish dir is skipped, so a repeated cycle
+        publishes nothing. Returns how many lessons were newly published.
+        """
+        if not self._insights_dir.exists():
+            return 0
+
+        published = 0
+        for p in sorted(self._insights_dir.glob("*.json")):
+            try:
+                lesson = json.loads(p.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            if not isinstance(lesson, dict) or not lesson.get("title"):
+                continue
+            slug = _make_slug(str(lesson["title"]))
+            if slug and list(self._publish_dir.glob(f"*-{slug}.json")):
+                continue
+            try:
+                if self.publish_lesson(lesson).get("ok"):
+                    published += 1
+            except Exception:
+                continue
+        return published
+
+    def run_mesh_learning_cycle(self, *, max_import: int = 20) -> dict:
+        """Run one full cross-node learning cycle: publish locally, import peers.
+
+        Returns ``{"published": n, "imported": n, "applied": n}`` — the shape
+        ``openamer a2a mesh learn`` prints. Only lessons that name the skills
+        they improve (``applies_to``) are applied; the cycle never fans a lesson
+        out over every local skill.
+        """
+        published = self.publish_local_lessons()
+        imported = self.import_lessons_from_mesh(max_lessons=max_import)
+
+        applied = 0
+        for lesson in imported:
+            if not lesson.get("applies_to"):
+                continue
+            try:
+                if self.apply_lesson_to_skills(lesson):
+                    applied += 1
+            except Exception:
+                continue
+
+        return {"published": published, "imported": len(imported), "applied": applied}
 
 
 # ---------------------------------------------------------------------------
