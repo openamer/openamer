@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-11T08:30:38.734596+00:00",
+  "updated": "2026-10-11T12:31:37.921404+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1102,
+  "total": 1109,
   "skills": {
     "auto-competitor-intelligence-ai-coding": {
       "refs": 0,
@@ -1401,6 +1401,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-internet-learning-google-to": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-latest-research-insight-proofofthought": {
       "refs": 0,
       "ok": 0,
@@ -2407,6 +2413,12 @@
       "missing": [
         "tmp_probe.py"
       ]
+    },
+    "openamer-install-home-resolution": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
     },
     "openamer-multi-surface": {
       "refs": 0,
@@ -6079,6 +6091,14 @@
       "score": 1.0,
       "missing": []
     },
+    "bug-bounty-ops": {
+      "refs": 6,
+      "ok": 5,
+      "score": 0.833,
+      "missing": [
+        "scope_guard.py"
+      ]
+    },
     "bug-bounty-recon": {
       "refs": 0,
       "ok": 0,
@@ -6110,6 +6130,12 @@
       "missing": []
     },
     "vulnerability-scanning": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "web-app-pentest": {
       "refs": 1,
       "ok": 1,
       "score": 1.0,
@@ -6363,6 +6389,12 @@
       "missing": []
     },
     "hosted-payments": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "install-scoped-home-resolution": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -6643,6 +6675,12 @@
       "score": 1.0,
       "missing": []
     },
+    "windows-text-encoding-safety": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "ab-test-engine": {
       "refs": 1,
       "ok": 1,
@@ -6829,6 +6867,12 @@
     "system-snapshot": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "system-vitals": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
