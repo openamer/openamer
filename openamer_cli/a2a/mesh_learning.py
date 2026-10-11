@@ -121,6 +121,7 @@ class MeshLearningCoordinator:
         memory_path: Optional[Path] = None,
         skills_dir: Optional[Path] = None,
         publish_dir: Optional[Path] = None,
+        imported_dir: Optional[Path] = None,
         mesh_dir: Optional[Path] = None,
         lesson_to_skill_fn: Optional[Callable[[MeshLesson], Optional[str]]] = None,
     ):
@@ -128,6 +129,7 @@ class MeshLearningCoordinator:
         self._memory_path = memory_path or _MEMORY_PATH
         self._skills_dir = skills_dir or _SKILLS_DIR
         self._publish_dir = publish_dir or _PUBLISH_DIR
+        self._imported_dir = imported_dir or _IMPORTED_DIR
         self._mesh_dir = mesh_dir or _MESH_DIR
         self._lesson_to_skill_fn = lesson_to_skill_fn
 
@@ -279,8 +281,8 @@ class MeshLearningCoordinator:
             published = len(list(self._publish_dir.glob("*.json")))
 
         imported_lessons = 0
-        if self._IMPORTED_DIR.exists():
-            imported_lessons = len(list(self._IMPORTED_DIR.glob("*.json")))
+        if self._imported_dir.exists():
+            imported_lessons = len(list(self._imported_dir.glob("*.json")))
 
         # Count memory entries
         memory_count = 0
