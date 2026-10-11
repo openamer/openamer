@@ -73,17 +73,34 @@ def _load_jobs() -> Dict[str, Any]:
     return index
 
 
-# Native ownership is opt-in. The engine only starts RUNNING a retired job's
-# script once this marker exists. Until then it stays honest but dormant, so a
-# code change can never by itself revive a fleet of dormant loops — including
-# security bots that auto-patch dependencies and open pull requests. Migration
-# is then a deliberate, per-fleet switch rather than a silent side effect.
+# Native ownership is EXPLICIT. The marker file's contents ARE the allowlist:
+# one job id per line, or "*" for every covered job that is already retired
+# (disabled). An empty marker, or no marker, means the engine owns nothing.
+#
+# Why explicit and not blanket: a prior session deliberately left the
+# outward-facing jobs (Bugbot / PR Agent / outreach / monetisation — the ones
+# that open PRs, post to social platforms, or spend money) disabled, with the
+# recorded reason that they "need a human in the loop, not a watchdog that
+# silently resurrects them on a timer" (scripts/ensure-critical-crons.py). A
+# blanket opt-in would override that decision the moment the marker appeared.
+# Naming each id keeps a code change from ever reviving them by accident.
 OWN_MARKER = MEMORY_DIR / "heartbeat-own.enabled"
 
 
-def _owning_enabled() -> bool:
-    """True when the heartbeat is allowed to take over retired cron jobs."""
-    return os.environ.get("OPENAMER_HEARTBEAT_OWN") == "1" or OWN_MARKER.is_file()
+def _owned_ids() -> Optional[set]:
+    """Job ids the engine may own, or None when ownership is off entirely."""
+    if os.environ.get("OPENAMER_HEARTBEAT_OWN") == "1":
+        return {"*"}
+    if not OWN_MARKER.is_file():
+        return None
+    try:
+        text = OWN_MARKER.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return None
+    return {
+        ln.strip() for ln in text.splitlines()
+        if ln.strip() and not ln.strip().startswith("#")
+    }
 
 
 def _basename(script: str) -> str:
@@ -561,18 +578,19 @@ class Heartbeat:
         cron to the native heartbeat — one executor at a time, never two.
         """
         jobs = _load_jobs()
-        if not _owning_enabled():
-            # Dormant: report nothing owned, run nothing. The hand-off is a
-            # deliberate switch (create memory/heartbeat-own.enabled), never a
-            # silent consequence of a code change.
+        owned = _owned_ids()
+        if owned is None:
+            # Dormant: report nothing owned, run nothing. Ownership is named in
+            # the marker, never implied by a code change.
             for sub in self.subsystems.values():
                 sub.scripts = []
                 sub.script_cadence = {}
             return
+        adopt_all = "*" in owned
+        explicit = owned - {"*"}
         # Scripts a still-running cron job owns — directly (its own `script`)
-        # or indirectly (a live wrapper runs them). The engine must not run
-        # these too, so their work never doubles. jobs.json cannot express the
-        # indirect case, hence the small explicit set.
+        # or indirectly (a live wrapper runs them). In "*" mode the engine must
+        # not run these too, so their work never doubles.
         cron_owned = {
             _basename(j["script"]) for j in jobs.values()
             if j.get("enabled") and j.get("script")
@@ -580,18 +598,24 @@ class Heartbeat:
         for sub in self.subsystems.values():
             scripts: List[str] = []
             cadences: Dict[str, int] = {}
-            # Adopt a script only when the job that ran it is retired
-            # (disabled) AND no live cron already runs the same file. This is
-            # the hand-off: the cron was switched off, so the engine takes it.
             for cid in sub.cron_ids:
                 job = jobs.get(cid)
                 if not job or not job.get("script"):
                     continue  # unknown id, or an LLM job the engine cannot run
-                if job.get("enabled", False):
-                    continue  # cron still owns it
-                script = job["script"]
-                if _basename(script) in cron_owned:
+                jid = job.get("id")
+                if adopt_all:
+                    # "*": own every covered job that is already retired, and
+                    # never one a live cron (or wrapper) still runs.
+                    if job.get("enabled", False):
+                        continue
+                    if _basename(job["script"]) in cron_owned:
+                        continue
+                # Explicit allowlist: own exactly the named ids. Naming an id IS
+                # the instruction, so the enabled/wrapper guard does not apply —
+                # the operator pauses that job's cron as part of the handover.
+                elif jid not in explicit and cid not in explicit:
                     continue
+                script = job["script"]
                 if script in scripts or _script_path(script) is None:
                     continue
                 scripts.append(script)

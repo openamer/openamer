@@ -251,34 +251,44 @@ def test_broken_explicit_name_is_dropped(monkeypatch):
     assert sub.scripts == [], sub.scripts
 
 
-def test_adoption_is_opt_in(tmp_path, monkeypatch):
-    """By default the engine owns nothing — a code change must never revive a
-    dormant fleet on its own. The marker (or env) is the switch."""
+def test_ownership_is_explicit(tmp_path, monkeypatch):
+    """No marker -> own nothing. An id in the marker -> own exactly that job.
+    "*" -> own every retired job but never a live one. Ownership is named, never
+    implied."""
     import json
 
     from tools.asi import heartbeat as hbm
 
     jobs = {"jobs": [
-        {"id": "retired", "name": "Retired", "script": "retired.py", "enabled": False,
-         "schedule": {"kind": "interval", "minutes": 30}},
+        {"id": "r1", "name": "R1", "script": "r1.py", "enabled": False,
+         "schedule": {"kind": "interval", "minutes": 10}},
+        {"id": "r2", "name": "R2", "script": "r2.py", "enabled": True,
+         "schedule": {"kind": "interval", "minutes": 10}},
     ]}
-    f = tmp_path / "jobs.json"
-    f.write_text(json.dumps(jobs), encoding="utf-8")
-    monkeypatch.setattr(hbm, "JOBS_FILE", f)
+    jf = tmp_path / "jobs.json"
+    jf.write_text(json.dumps(jobs), encoding="utf-8")
+    monkeypatch.setattr(hbm, "JOBS_FILE", jf)
     monkeypatch.setattr(hbm, "_script_path", lambda name: hbm.Path("/x") / name)
-    monkeypatch.setattr(hbm, "OWN_MARKER", tmp_path / "absent")
     monkeypatch.delenv("OPENAMER_HEARTBEAT_OWN", raising=False)
+    marker = tmp_path / "own.enabled"
+    monkeypatch.setattr(hbm, "OWN_MARKER", marker)
 
-    hb = hbm.Heartbeat()
-    sub = hbm.Subsystem(name="t", category="t", cadence_minutes=99, scripts=[])
-    sub.cron_ids = ["retired"]
-    hb.subsystems = {"t": sub}
-    hb._reconcile_scripts()
-    assert sub.scripts == [], "engine revived a dormant job without opt-in"
+    def build():
+        hb = hbm.Heartbeat()
+        sub = hbm.Subsystem(name="t", category="t", cadence_minutes=99, scripts=[])
+        sub.cron_ids = ["r1", "r2"]
+        hb.subsystems = {"t": sub}
+        hb._reconcile_scripts()
+        return sub
 
-    monkeypatch.setattr(hbm, "OWN_MARKER", tmp_path / "jobs.json")  # marker present
-    hb._reconcile_scripts()
-    assert sub.scripts == ["retired.py"]
+    assert build().scripts == [], "no marker must own nothing"
+    marker.write_text("", encoding="utf-8")
+    assert build().scripts == [], "empty marker must own nothing"
+    marker.write_text("r2\n", encoding="utf-8")
+    assert build().scripts == ["r2.py"], "a named id must be owned even if live"
+    marker.write_text("*\n", encoding="utf-8")
+    assert build().scripts == ["r1.py"], "'*' must own retired jobs only"
+
 
 
 
