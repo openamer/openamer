@@ -1027,6 +1027,14 @@ def _install_uv(target: Path) -> None:
     ``$OPENAMER_HOME/bin/`` instead of ``~/.local/bin/``.
     """
     system = platform.system()
+    # .NET's [System.IO.Path]::GetTempPath() -- used by the astral Windows
+    # installer -- falls back to %USERPROFILE% when TMP and TEMP are both
+    # unset.  In a scrubbed cron/agent environment that littered the user's
+    # HOME with a ~18 MB uv-x86_64 GUID extraction dir on every install
+    # (measured 2026-10-11: 102 dirs, 1.8 GB).  Pin TEMP/TMP to a directory
+    # we own so the extraction, and its cleanup, stay inside OPENAMER_HOME.
+    _uv_tmp = target.parent.parent / "tmp" / "uv-install"
+    _uv_tmp.mkdir(parents=True, exist_ok=True)
     env = {
         **os.environ,
         # Tell the astral installer to drop the binary in our dir, not
@@ -1034,12 +1042,19 @@ def _install_uv(target: Path) -> None:
         # uses UV_INSTALL_DIR.
         "UV_UNMANAGED_INSTALL": str(target.parent),
         "UV_INSTALL_DIR": str(target.parent),
+        "TEMP": str(_uv_tmp),
+        "TMP": str(_uv_tmp),
     }
 
-    if system == "Windows":
-        _install_uv_windows(env)
-    else:
-        _install_uv_posix(env)
+    try:
+        if system == "Windows":
+            _install_uv_windows(env)
+        else:
+            _install_uv_posix(env)
+    finally:
+        # Drop the scratch dir (and any GUID extraction dir inside it) so a
+        # failed install cannot leave 18 MB behind either.
+        shutil.rmtree(_uv_tmp, ignore_errors=True)
 
 
 def _install_uv_posix(env: dict[str, str]) -> None:

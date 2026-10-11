@@ -470,8 +470,28 @@ function Install-Uv {
         # Spawn via the resolved host exe (see Get-PowerShellHostExe) rather
         # than a bare `powershell`, which isn't guaranteed to be on PATH under
         # PowerShell 7 / pwsh-only setups.
+        #
+        # Pin TEMP/TMP for the child.  The astral installer extracts the uv
+        # release zip into a GUID-named directory under .NET's
+        # [System.IO.Path]::GetTempPath(); when TEMP and TMP are both unset
+        # (a scrubbed cron/agent environment) GetTempPath() falls back to
+        # %USERPROFILE%, so every install dropped a ~18 MB uv-x86_64 GUID dir
+        # into the user's HOME (measured 2026-10-11: 102 dirs, 1.8 GB).
+        # Pointing the child at a directory we own keeps HOME clean.
+        $uvTmp = Join-Path $OpenAmerHome "tmp\uv-install"
+        New-Item -ItemType Directory -Path $uvTmp -Force | Out-Null
+        $prevTemp = $env:TEMP
+        $prevTmp = $env:TMP
+        $env:TEMP = $uvTmp
+        $env:TMP = $uvTmp
         $psHostExe = Get-PowerShellHostExe
-        & $psHostExe -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex" 2>&1 | Out-Null
+        try {
+            & $psHostExe -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex" 2>&1 | Out-Null
+        } finally {
+            $env:TEMP = $prevTemp
+            $env:TMP = $prevTmp
+            Remove-Item -Recurse -Force $uvTmp -ErrorAction SilentlyContinue
+        }
         $ErrorActionPreference = $prevEAP
 
         if (Test-Path $managedUv) {
