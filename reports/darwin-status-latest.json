@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-10T20:00:53+00:00",
-  "population": 1115,
-  "avg_score": 37.9,
+  "updated": "2026-10-11T02:23:07+00:00",
+  "population": 1118,
+  "avg_score": 38.2,
   "fittest": [
     {
       "name": "cdp-social-posting",
@@ -45,7 +45,7 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-10-10T21:02:23",
+    "timestamp": "2026-10-11T03:31:16",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -55,9 +55,55 @@
         "fixes": []
       },
       {
-        "skill": "auto-multidomain-learning-llms-are",
-        "before": 25,
-        "after": 28,
+        "skill": "dsh-archive-agent-notes",
+        "before": 26,
+        "after": 36,
+        "delta": 10,
+        "fixes": []
+      },
+      {
+        "skill": "dsh-doc-standards",
+        "before": 26,
+        "after": 36,
+        "delta": 10,
+        "fixes": []
+      },
+      {
+        "skill": "dsh-find-simplifications",
+        "before": 26,
+        "after": 31,
+        "delta": 5,
+        "fixes": []
+      },
+      {
+        "skill": "dsh-prose-standard",
+        "before": 26,
+        "after": 36,
+        "delta": 10,
+        "fixes": []
+      },
+      {
+        "skill": "dsh-trim-cot-leakage",
+        "before": 26,
+        "after": 36,
+        "delta": 10,
+        "fixes": []
+      },
+      {
+        "skill": "nvidia-ontology-query",
+        "before": 27,
+        "after": 31,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "physical-ai-infrastructure-setup-and-resilient-scaling",
+        "before": 27,
+        "after": 30,
         "delta": 3,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -65,83 +111,23 @@
         ]
       },
       {
-        "skill": "auto-multidomain-learning-llms-are-20261010093058",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
+        "skill": "physicsnemo-discover",
+        "before": 27,
+        "after": 31,
+        "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
         ]
       },
       {
-        "skill": "auto-multidomain-learning-nasa-ibm",
-        "before": 25,
-        "after": 28,
+        "skill": "auto-competitor-intelligence-ai-coding",
+        "before": 28,
+        "after": 31,
         "delta": 3,
         "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "auto-multidomain-learning-python-climate",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "auto-multidomain-learning-show-hn",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "auto-security-learning-agent-sandboxing",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "auto-security-learning-ai-agent",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "auto-security-learning-ai-supply",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "auto-security-learning-detecting-prompt",
-        "before": 25,
-        "after": 28,
-        "delta": 3,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt"
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt"
         ]
       }
     ]
@@ -174,6 +160,11 @@
     },
     {
       "source": "News",
+      "title": "Google brings agentic AI to Gemini, starting with businesses - TechCrunch",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNVmlZXzdMc1F5aTdGUFlIaUVtZmlZSWNyejQ4ejY3R1h2QUI0UU56QVpXUXB6a25ja3I5OHlDSm5TamVTbk5XZHJwdjFoSHpKa3VheURjQWgtQUtEalJCek90M0JjSjcycWJVSXUyc2wwS2ViMXE1OVN5bFJFUmhiY253OU5DNHMxbmJRZW5IWmtGWHVRdXZ1NDFR?oc=5"
+    },
+    {
+      "source": "News",
       "title": "AI Agent Evaluation Is the Foundation of Reliable Autonomy - HackerNoon",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQZ21SZmU2c3ZEWFlyOWJOWXdzYlk5MmlxVHR2bGxsMjNpYjhTTmVkdVJKX0MxLVF5VXZXQ0tjc2VrdkItTENjV2pQaDRUTDBIRXpFeFZVWUZwN1h4ZndCbFRWYlpaQUhnRU5DV1FOTjI2SXQxeGUtRkIxLTJWRGQ0bVJiaUU3dHl6?oc=5"
     },
@@ -181,14 +172,9 @@
       "source": "News",
       "title": "Cisco Unleashes New Agentic Collaboration Experiences - Cisco Newsroom",
       "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNLVB5QnBzS1hNTkdOanhFVWVKRTYwXzNfSlc2NnpGVVNyNWtkV3VvY1NmVmVhWmUxaHU2M3dNbEFhOXpYNFprQ3lHMUNWeDJoelU0bkdQYWxjamlKZ3FGcWh2dWVWLVdaejNXOWxxT1JqMFVmZURPSkZFOU5pTng5RXFRTjdzUzBIdEt2TmFrWUxyVUVxTHFUU3Z1UUhuSkdsUnAyWEJQWTloNm9ZMWk4cWVzTDg?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "This New Raleigh, N.C., IT Help Desk Agent Is, Well, Agentic - GovTech",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNbVdnQ1lvSVQ3Qnp4eHdoOVlwVUhyWlRWNVFVSzhkcU5feWo1VW9pdXRvZTdLdWZ3UnA3WlBhemVKZlZpZDMyUDdXSlk3UG5FV3B6SHV3eTRpTWJUaTlycXk4NUIxdTdtRFlnZlQ0TV9YNExnR0VDdy1ieTlsRlJqLVBGWXlac1JjUjk5TzJnQW9iTnlOQU5Tc2RzWjZoWkgtQWVfcV9B?oc=5"
     }
   ],
-  "population_engine": 1099,
+  "population_engine": 1102,
   "species": 76,
   "trials": 0,
   "harvested": 193

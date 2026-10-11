@@ -1,17 +1,17 @@
-# 🧬 Darwin Auto-Patch Report — 2026-10-10T22:00:53
+# 🧬 Darwin Auto-Patch Report — 2026-10-11T03:31:16
 
-- Population: 1099 skills, avg 38.0
+- Population: 1102 skills, avg 38.3
 - Mode: **apply**
 
 ## Improved (kept)
 
 - ✅ `auto-structural-connection-between-tool`: 21 → 31 (+10)
-- ✅ `auto-competitor-intelligence-mouse-precision`: 25 → 28 (+3)
-- ✅ `auto-competitor-intelligence-opencode-open`: 25 → 28 (+3)
-- ✅ `auto-competitor-intelligence-pythonopenaichat`: 25 → 28 (+3)
-- ✅ `auto-competitor-intelligence-some-uncomfortab`: 25 → 28 (+3)
-- ✅ `auto-competitor-intelligence-undisclosed-addi`: 25 → 28 (+3)
-- ✅ `auto-efficiency-learning-advanced-quantizatio`: 25 → 28 (+3)
-- ✅ `auto-efficiency-learning-efficientqat-llm`: 25 → 28 (+3)
-- ✅ `auto-efficiency-learning-quantization-techniq`: 25 → 28 (+3)
-- ✅ `auto-efficiency-learning-splitquantv2-enhanci`: 25 → 28 (+3)
+- ✅ `dsh-archive-agent-notes`: 26 → 36 (+10)
+- ✅ `dsh-doc-standards`: 26 → 36 (+10)
+- ✅ `dsh-find-simplifications`: 26 → 31 (+5)
+- ✅ `dsh-prose-standard`: 26 → 36 (+10)
+- ✅ `dsh-trim-cot-leakage`: 26 → 36 (+10)
+- ✅ `nvidia-ontology-query`: 27 → 31 (+4)
+- ✅ `physical-ai-infrastructure-setup-and-resilient-scaling`: 27 → 30 (+3)
+- ✅ `physicsnemo-discover`: 27 → 31 (+4)
+- ✅ `auto-competitor-intelligence-ai-coding`: 28 → 31 (+3)

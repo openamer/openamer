@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-10-10T22:00:53",
+  "timestamp": "2026-10-11T03:31:16",
   "mode": "apply",
-  "population": 1099,
-  "avg_score": 38.0,
+  "population": 1102,
+  "avg_score": 38.3,
   "kept": [
     {
       "skill": "auto-structural-connection-between-tool",
@@ -12,9 +12,55 @@
       "fixes": []
     },
     {
-      "skill": "auto-competitor-intelligence-mouse-precision",
-      "before": 25,
-      "after": 28,
+      "skill": "dsh-archive-agent-notes",
+      "before": 26,
+      "after": 36,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "dsh-doc-standards",
+      "before": 26,
+      "after": 36,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "dsh-find-simplifications",
+      "before": 26,
+      "after": 31,
+      "delta": 5,
+      "fixes": []
+    },
+    {
+      "skill": "dsh-prose-standard",
+      "before": 26,
+      "after": 36,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "dsh-trim-cot-leakage",
+      "before": 26,
+      "after": 36,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "nvidia-ontology-query",
+      "before": 27,
+      "after": 31,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
+      "skill": "physical-ai-infrastructure-setup-and-resilient-scaling",
+      "before": 27,
+      "after": 30,
       "delta": 3,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -22,83 +68,23 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-opencode-open",
-      "before": 25,
-      "after": 28,
-      "delta": 3,
+      "skill": "physicsnemo-discover",
+      "before": 27,
+      "after": 31,
+      "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-pythonopenaichat",
-      "before": 25,
-      "after": 28,
+      "skill": "auto-competitor-intelligence-ai-coding",
+      "before": 28,
+      "after": 31,
       "delta": 3,
       "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
-      ]
-    },
-    {
-      "skill": "auto-competitor-intelligence-some-uncomfortab",
-      "before": 25,
-      "after": 28,
-      "delta": 3,
-      "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
-      ]
-    },
-    {
-      "skill": "auto-competitor-intelligence-undisclosed-addi",
-      "before": 25,
-      "after": 28,
-      "delta": 3,
-      "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
-      ]
-    },
-    {
-      "skill": "auto-efficiency-learning-advanced-quantizatio",
-      "before": 25,
-      "after": 28,
-      "delta": 3,
-      "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
-      ]
-    },
-    {
-      "skill": "auto-efficiency-learning-efficientqat-llm",
-      "before": 25,
-      "after": 28,
-      "delta": 3,
-      "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
-      ]
-    },
-    {
-      "skill": "auto-efficiency-learning-quantization-techniq",
-      "before": 25,
-      "after": 28,
-      "delta": 3,
-      "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
-      ]
-    },
-    {
-      "skill": "auto-efficiency-learning-splitquantv2-enhanci",
-      "before": 25,
-      "after": 28,
-      "delta": 3,
-      "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
+        "✅ metadata.openamer Block hinzugefügt"
       ]
     }
   ],

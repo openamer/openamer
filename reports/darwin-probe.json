@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-10T20:00:54.789789+00:00",
+  "updated": "2026-10-11T02:23:41.609757+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1099,
+  "total": 1102,
   "skills": {
     "auto-competitor-intelligence-ai-coding": {
       "refs": 0,
@@ -1383,7 +1383,19 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-internet-learning-metas-new": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-internet-learning-openai-hacked": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-cultural": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -6110,6 +6122,12 @@
       "missing": []
     },
     "introspection": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "measured-self-report": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
