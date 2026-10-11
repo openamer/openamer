@@ -42,6 +42,37 @@ if _training_path not in sys.path:
     sys.path.insert(0, _training_path)
 
 
+JOBS_FILE = CRON_DIR / "jobs.json"
+
+
+def _load_jobs() -> Dict[str, Any]:
+    """cron/jobs.json keyed by job id.
+
+    The single source of truth for what a subsystem's ``cron_ids`` actually
+    run. The hand-written ``scripts=[...]`` lists drifted from reality — live
+    2026-10-11, 16 of them named a job ("asi-audit", "self-reflection"), baked
+    args into a filename ("smart-cache.py --clean"), or used a stale name
+    ("hub-cache-warmer.py") so the engine "ran" scripts that do not exist.
+    """
+    try:
+        raw = json.loads(JOBS_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    jobs = raw if isinstance(raw, list) else raw.get("jobs", [])
+    index: Dict[str, Any] = {}
+    for j in jobs:
+        if not isinstance(j, dict):
+            continue
+        # Index by id AND name: a few cron_ids in the subsystem registry spell
+        # the job NAME ("global-sync", "service-watchdog-4-ports") where most
+        # spell the id, and a name that matched no id silently dropped a job.
+        if j.get("id"):
+            index[j["id"]] = j
+        if j.get("name"):
+            index.setdefault(j["name"], j)
+    return index
+
+
 def _as_result(result: Any) -> Dict[str, Any]:
     """Map a script function's return value onto a heartbeat result.
 
@@ -164,20 +195,9 @@ class Subsystem:
             except Exception as e:
                 logger.warning(f"Native module {native_path} failed: {e}, falling back")
 
-        # Direct import fallback
-        mod_name = script_name.replace(".py", "").replace("/", ".").replace("\\", ".")
-        try:
-            import importlib
-            mod = importlib.import_module(mod_name)
-            for fn_name in ("main", "run", "run_once", "tick"):
-                fn = getattr(mod, fn_name, None)
-                if fn is not None:
-                    result = fn()
-                    return _as_result(result)
-        except Exception:
-            pass
-
-        # Subprocess fallback
+        # Otherwise run it exactly as the cron job did: ``python <script>`` under
+        # OPENAMER_HOME. A blind import-and-call would execute a CLI script with
+        # no argv and silently diverge from production, so fidelity wins.
         return self._run_subprocess(script_name)
 
     def _run_subprocess(self, script_name: str) -> Dict[str, Any]:
@@ -423,6 +443,21 @@ class Heartbeat:
             scripts=["cron-desktop-ledger-integrity.py"],
             cron_ids=["acbea7ce46ae"],
         )
+
+        # Reconcile every subsystem's script list with jobs.json — the single
+        # source of truth. The explicit lists above are kept as documentation
+        # of intent; the real scripts are derived from the jobs a subsystem's
+        # cron_ids point to, so a renamed/removed script can never leave the
+        # engine "running" a file that no longer exists. Jobs with no script
+        # (LLM-driven) are simply not runnable by this engine and are left to
+        # the agent loop.
+        jobs = _load_jobs()
+        for sub in self.subsystems.values():
+            sub.scripts = [
+                jobs[cid]["script"]
+                for cid in sub.cron_ids
+                if cid in jobs and jobs[cid].get("script")
+            ]
 
     def _load_state(self):
         """Load last-run timestamps from state file."""

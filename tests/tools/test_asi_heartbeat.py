@@ -139,18 +139,11 @@ def test_as_result_does_not_invent_success():
     assert _as_result(None)["success"] is True             # uneventful run
 
 
-def test_failed_module_makes_the_subsystem_red(monkeypatch):
-    """End-to-end: a script module returning a failure dict fails the tick."""
-    import sys
-    import types
-
-    fake = types.ModuleType("hb_fake_script")
-    fake.main = lambda: {"success": False, "error": "boom"}
-    monkeypatch.setitem(sys.modules, "hb_fake_script", fake)
-
-    sub = Subsystem(name="fake", category="test", cadence_minutes=0,
-                    scripts=["hb_fake_script.py"])
+def test_missing_script_is_a_failure_not_a_false_pass(monkeypatch):
+    """A script that does not exist must make the subsystem red, not green."""
+    sub = Subsystem(name="ghost", category="test", cadence_minutes=0,
+                    scripts=["does_not_exist_xyz.py"])
     r = sub.tick()
-    assert r["any_success"] is False, "a failed module was reported green"
+    assert r["any_success"] is False, "a missing script was reported green"
     assert r["results"][0]["success"] is False
 
