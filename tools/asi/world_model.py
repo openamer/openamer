@@ -28,10 +28,16 @@ def _import_world_model():
     return importlib.import_module("world_model")
 
 
-def recall(query: str, k: int = 5, kind: Optional[str] = None) -> List[Dict]:
-    """Recall edges from the world model matching a query."""
+def recall(query: str, k: int = 5, kind: Optional[str] = None,
+           exclude: Optional[set] = None) -> List[Dict]:
+    """Recall edges from the world model matching a query.
+
+    `exclude` omits specific edge keys. That is required for honest checking: an
+    edge is ALWAYS its own nearest neighbour (cosine 1.0 against its own
+    embedding), so a verifier that leaves it in the index confirms itself.
+    """
     mod = _import_world_model()
-    return mod.recall(query, k=k, kind=kind)
+    return mod.recall(query, k=k, kind=kind, exclude=exclude)
 
 
 def predict(situation: str, k: int = 3) -> List[Dict]:

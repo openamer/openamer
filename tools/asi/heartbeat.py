@@ -205,6 +205,7 @@ class Subsystem:
         load_fn: Optional[str] = None,
         cron_ids: Optional[List[str]] = None,
         timeout: Optional[float] = None,
+        native: bool = False,
     ):
         self.name = name
         self.category = category
@@ -213,6 +214,10 @@ class Subsystem:
         self.description = description
         self.load_fn = load_fn  # "module.function" for direct import
         self.cron_ids = cron_ids or []
+        # A NATIVE subsystem has no cron job behind it: its explicit script list
+        # is the truth and is routed through native_map. _reconcile_scripts must
+        # leave it alone instead of deriving (and clearing) it from jobs.json.
+        self.native = native
         self.last_run: Optional[float] = None
         self.enabled = True
         # Per-subsystem tick budget. Some subsystems aggregate many scripts
@@ -295,6 +300,10 @@ class Subsystem:
             # a2a_server.py is a BLOCKING server; the tick must health-check it,
             # never import it (that hung the heartbeat forever).
             "a2a_server.py":               "tools.asi.a2a.server_health",
+            # The integrated cognitive cycle: world model + prediction + self
+            # model in ONE run, instead of ticking predict_validate.py and
+            # self_model.py separately in the "learning" subsystem.
+            "cognition_cycle.py":          "tools.asi.cognition.cycle",
         }
 
         native_path = native_map.get(script_name)
@@ -562,6 +571,23 @@ class Heartbeat:
             cron_ids=["acbea7ce46ae"],
         )
 
+    # ── 13. Cognition (NATIVE) ──────────────────────────────
+        # The INTEGRATED cognitive cycle. No cron job sits behind it: script
+        # "cognition_cycle.py" is routed via native_map to
+        # tools.asi.cognition.cycle, which uses world_model + prediction +
+        # self_model in ONE pass. That replaces ticking
+        # training/predict_validate.py and training/self_model.py SEPARATELY in
+        # the "learning" subsystem — the two blocks that must see each other to
+        # close the loop (a prediction is only useful with its correction).
+        self.subsystems["cognition"] = Subsystem(
+            name="cognition", category="meta", cadence_minutes=30,
+            description="Integrierter Kognitions-Zyklus — world model + prediction + self model in EINEM Durchlauf",
+            scripts=["cognition_cycle.py"],
+            cron_ids=[],
+            timeout=300,
+            native=True,
+        )
+
         self._reconcile_scripts()
 
     def _reconcile_scripts(self):
@@ -597,6 +623,11 @@ class Heartbeat:
             if j.get("enabled") and j.get("script")
         } | WRAPPER_OWNED
         for sub in self.subsystems.values():
+            if sub.native:
+                # Native subsystem: no cron job exists for it, so there is
+                # nothing to derive. Its explicit script list stays as written
+                # and is executed in-process via native_map.
+                continue
             scripts: List[str] = []
             cadences: Dict[str, int] = {}
             for cid in sub.cron_ids:

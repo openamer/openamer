@@ -185,6 +185,43 @@ def _cmd_heartbeat(args) -> int:
         return 1
 
 
+def _cmd_cycle(args) -> int:
+    """Integrierter Kognitions-Zyklus: mehrere Bausteine in EINEM Durchlauf."""
+    try:
+        import importlib
+        import os
+        home = Path(os.environ.get(
+            "OPENAMER_HOME",
+            str(Path.home() / "AppData/Local/openamer-laptop"),
+        ))
+        agent_dir = str(home / "openamer-agent")
+        if agent_dir not in sys.path:
+            sys.path.insert(0, agent_dir)
+        cog_mod = importlib.import_module("tools.asi.cognition")
+        cog = cog_mod.get_cognition()
+
+        if args.status:
+            print(json.dumps(cog.status(), indent=2, ensure_ascii=False))
+            return 0
+
+        result = cog.cycle(situation=args.situation, effect=args.effect, limit=args.limit)
+        print(f"Zyklus: {result['observations']} Beobachtungen | "
+              f"hits={result['hits']} misses={result['misses']} "
+              f"unscorable={result['unscorable']} | "
+              f"Korrekturen={result['corrections_written']}")
+        print(f"Bausteine in diesem Durchlauf: {', '.join(result['blocks_used'])}")
+        if result.get("calibration"):
+            print(f"Kalibrierung: {result['calibration']}")
+        if result["errors"]:
+            print(f"Fehler: {result['errors']}")
+        if args.json:
+            print(json.dumps(result, indent=2, ensure_ascii=False, default=str))
+        return 0
+    except ImportError as e:
+        print(f"ASI Core nicht verfuegbar: {e}")
+        return 1
+
+
 def build_asi_parser(subparsers) -> None:
     """Wire `openamer asi` subcommands."""
     p = subparsers.add_parser(
@@ -235,3 +272,15 @@ def build_asi_parser(subparsers) -> None:
     sp.add_argument("--force", action="store_true", help="Erzwingen auch wenn nicht faellig")
     sp.add_argument("--json", action="store_true", help="JSON-Ausgabe")
     sp.set_defaults(func=_cmd_heartbeat)
+
+    # cycle -- integrierter Kognitions-Zyklus (mehrere Bausteine in EINEM Durchlauf)
+    sp = sub.add_parser(
+        "cycle",
+        help="Integrierter Kognitions-Zyklus (world model + prediction + self model)",
+    )
+    sp.add_argument("--status", action="store_true", help="Nur Zyklus-Zustand zeigen")
+    sp.add_argument("--situation", help="Explizite Ursache (statt der neuesten Fakten)")
+    sp.add_argument("--effect", help="Explizite Wirkung dazu")
+    sp.add_argument("--limit", type=int, default=6, help="Max. Beobachtungen pro Zyklus")
+    sp.add_argument("--json", action="store_true", help="JSON-Ausgabe")
+    sp.set_defaults(func=_cmd_cycle)

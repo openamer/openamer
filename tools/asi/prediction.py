@@ -33,6 +33,16 @@ def validate_predictions() -> Dict[str, Any]:
     return mod.validate_predictions()
 
 
+def apply_confidence_to_new_predictions() -> float:
+    """Return the track-record adjustment factor for NEW predictions.
+
+    Mirrors the real module's function of the same name; the value is what a
+    caller should scale a fresh prediction's confidence by.
+    """
+    mod = _import_predict()
+    return mod.apply_confidence_to_new_predictions()
+
+
 def apply_confidence_adjustments() -> Dict[str, Any]:
     """Apply confidence adjustments based on validation results."""
     mod = _import_predict()
