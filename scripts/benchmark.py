@@ -159,20 +159,26 @@ CODE_TASKS = [
 
 
 def load_results():
+    """Return the benchmark store, normalized so both the current ("runs")
+    and the legacy ("history") shape always resolve.
+
+    A corrupted or half-written file must not kill the weekly cron: the read is
+    guarded, and the returned dict always carries all three keys so callers
+    never meet a KeyError.
+    """
     if BENCH_FILE.exists():
-        data = json.loads(BENCH_FILE.read_text(encoding="utf-8"))
-        # The stored file (and older readers) use "history"; this code reads
-        # "runs". Normalize so both names always resolve — without this the
-        # --cron run crashed on KeyError('runs') and no benchmark ever landed.
-        data.setdefault("runs", data.get("history", []))
-        return data
-    return {"runs": [], "best": {}}
+        try:
+            data = json.loads(BENCH_FILE.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            data = {}
+        runs = data.get("runs", data.get("history", []))
+        return {"runs": runs, "history": runs, "best": data.get("best", {})}
+    return {"runs": [], "history": [], "best": {}}
 
 
 def save_results(results):
+    results.setdefault("history", results.get("runs", []))
     BENCH_FILE.parent.mkdir(parents=True, exist_ok=True)
-    # keep "history" in sync so legacy readers still see the runs
-    results["history"] = results.get("runs", [])
     BENCH_FILE.write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
@@ -205,7 +211,9 @@ def score_answer_gpt(question, expected):
             }
         )
         resp = json.loads(urllib.request.urlopen(req, timeout=30).read())
-        answer = resp["choices"][0]["message"]["content"].strip().lower()
+        # A reasoning model can return content=None; .strip() on it used to raise and
+        # the except branch reported {"correct": None} instead of False.
+        answer = (resp["choices"][0]["message"].get("content") or "").strip().lower()
         expected_lower = expected.lower().strip()
         
         # Simple sub-string matching
