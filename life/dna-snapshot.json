@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-10-05T23:20:41.782055+00:00",
+  "snapshot_at": "2026-10-11T01:48:31.988987+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-09-17T09:22:18.844281+00:00",
@@ -35,26 +35,26 @@
   "strategies": {
     "TOKENS": {
       "wins": 16,
-      "tries": 69
+      "tries": 77
     },
     "TEXT": {
       "wins": 3,
-      "tries": 55
+      "tries": 63
     },
     "ROLE": {
       "wins": 0,
-      "tries": 54
+      "tries": 62
     },
     "CLASSES": {
       "wins": 6,
-      "tries": 55
+      "tries": 63
     }
   },
   "senses": {
-    "time": "2026-10-06T00:52:22",
+    "time": "2026-10-11T03:48:07",
     "pain": {
-      "score": 0,
-      "level": "calm"
+      "score": 2,
+      "level": "uncomfortable"
     },
     "satiety": {
       "state": "satisfied",
@@ -63,11 +63,11 @@
     },
     "balance": {
       "state": "steady",
-      "jobs": 121,
-      "errors": 0,
-      "error_ratio": 0.0
+      "jobs": 132,
+      "errors": 5,
+      "error_ratio": 0.038
     },
-    "overall": "well"
+    "overall": "uneasy"
   },
   "dreams": [
     {
@@ -1056,6 +1056,46 @@
       "date": "2026-10-05",
       "replayed_messages": 160,
       "fragments": 15,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-10-06",
+      "replayed_messages": 144,
+      "fragments": 1,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-10-07",
+      "replayed_messages": 183,
+      "fragments": 17,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-10-08",
+      "replayed_messages": 161,
+      "fragments": 5,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-10-10",
+      "replayed_messages": 158,
+      "fragments": 15,
+      "motifs": {},
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-10-11",
+      "replayed_messages": 112,
+      "fragments": 5,
       "motifs": {},
       "insights": [],
       "intentions": []

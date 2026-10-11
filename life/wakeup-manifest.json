@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-10-05T23:20:41.782055+00:00",
+  "written_at": "2026-10-11T01:48:31.987987+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 121
+      "count": 132
     },
     "memory": {
       "kind": "memory+skills",
@@ -235,7 +235,7 @@
     {
       "name": "Goal Engine Tick",
       "schedule": "*/30 * * * *",
-      "script": "goal-engine.py",
+      "script": "_cron_goal_tick.py",
       "last_status": "ok"
     },
     {
@@ -414,8 +414,8 @@
     },
     {
       "name": "Swarm OS - Autonomous Loop (30m)",
-      "schedule": "every 30m",
-      "script": null,
+      "schedule": "*/30 * * * *",
+      "script": "swarm-loop-cron.py",
       "last_status": "ok"
     },
     {
@@ -614,7 +614,7 @@
       "name": "domain-mastery-cycle",
       "schedule": null,
       "script": "domain_mastery.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "goal-engine-daily",
@@ -632,7 +632,7 @@
       "name": "self-directed-research",
       "schedule": null,
       "script": "_cron_research.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "cross-domain-synthesis-daily",
@@ -673,18 +673,18 @@
     {
       "name": "oa-ripple-research",
       "schedule": "0 5 * * *",
-      "script": "_cron_metacognition_wrapper.py",
+      "script": "_cron_oa_ripple.py",
       "last_status": "ok"
     },
     {
       "name": "self-learning-loop",
       "schedule": "0 */6 * * *",
-      "script": "_cron_metacognition_wrapper.py",
+      "script": "_cron_self_learning.py",
       "last_status": "ok"
     },
     {
       "name": "asi-heartbeat-tick",
-      "schedule": "*/5 * * * *",
+      "schedule": "*/15 * * * *",
       "script": "asi_heartbeat.py",
       "last_status": "ok"
     },
@@ -696,7 +696,7 @@
     },
     {
       "name": "A2A Server Keepalive",
-      "schedule": "*/5 * * * *",
+      "schedule": "*/15 * * * *",
       "script": "a2a_keepalive.py",
       "last_status": "ok"
     },
@@ -756,7 +756,7 @@
     },
     {
       "name": "cognition-core-keepalive",
-      "schedule": "once in 5m",
+      "schedule": "*/15 * * * *",
       "script": "tool_server_keepalive.py",
       "last_status": "ok"
     },
@@ -770,7 +770,7 @@
       "name": "daily-backup",
       "schedule": "0 3 * * *",
       "script": "daily_backup.py",
-      "last_status": null
+      "last_status": "ok"
     },
     {
       "name": "survival-health",
@@ -782,7 +782,73 @@
       "name": "auto-update",
       "schedule": "0 6 * * *",
       "script": "auto_update.py",
-      "last_status": null
+      "last_status": "ok"
+    },
+    {
+      "name": "hidden-console-guard",
+      "schedule": "0 */6 * * *",
+      "script": "ensure_hidden_consoles.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "openamer-guard",
+      "schedule": "0 */3 * * *",
+      "script": "openamer_guard_check.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "critical-crons-guard",
+      "schedule": "*/30 * * * *",
+      "script": "ensure-critical-crons.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "stuck-updater-reaper",
+      "schedule": "*/30 * * * *",
+      "script": "reap-stuck-updaters.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "rsi-objective-gate",
+      "schedule": "30 5 * * *",
+      "script": "rsi_gate.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Darwin Skill-Verify (daily, executable outcome)",
+      "schedule": "40 3 * * *",
+      "script": "darwin-verify-cron.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Growth Loop (30m, zero-token)",
+      "schedule": "*/30 * * * *",
+      "script": "_cron_growth.py",
+      "last_status": "error"
+    },
+    {
+      "name": "System-Snapshot Refresh (6h, zero-token)",
+      "schedule": "0 */6 * * *",
+      "script": "_cron_snapshot.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Artifact Debt Check (hourly, zero-token)",
+      "schedule": "0 * * * *",
+      "script": "verify-job-artifacts.py",
+      "last_status": "error"
+    },
+    {
+      "name": "Artifact Discovery Batch (hourly, 5 jobs, zero-token)",
+      "schedule": "20 * * * *",
+      "script": "_cron_discover_artifacts.py",
+      "last_status": "error"
+    },
+    {
+      "name": "Auditor - prüft meine eigenen Behauptungen gegen Messung",
+      "schedule": "0 8 * * *",
+      "script": "scripts/verifier_agent.py --days 1 --max 5",
+      "last_status": "ok"
     }
   ]
 }
