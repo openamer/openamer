@@ -600,7 +600,7 @@ class TestCopyExampleFiles:
         _copy_example_files(tmp_path, console)
 
         # Should NOT have overwritten
-        assert real_file.read_text() == "existing: true"
+        assert real_file.read_text(encoding="utf-8") == "existing: true"
 
     def test_handles_copy_error_gracefully(self, tmp_path):
         from unittest.mock import MagicMock, patch
@@ -756,6 +756,7 @@ class TestCursesRadiolist:
             assert result == 1
 
     def test_keyboard_interrupt_returns_cancel_value(self):
+        pytest.importorskip("curses")  # Windows ships no curses module
         from openamer_cli.curses_ui import curses_radiolist
 
         with patch("sys.stdin") as mock_stdin, patch("curses.wrapper", side_effect=KeyboardInterrupt):
@@ -795,7 +796,7 @@ class TestProviderDiscovery:
         config_file.write_text("memory:\n  provider: ''\n")
         from openamer_cli.plugins_cmd import _save_memory_provider
         _save_memory_provider("honcho")
-        content = yaml.safe_load(config_file.read_text())
+        content = yaml.safe_load(config_file.read_text(encoding="utf-8"))
         assert content["memory"]["provider"] == "honcho"
 
     def test_save_context_engine(self, tmp_path, monkeypatch):
@@ -805,7 +806,7 @@ class TestProviderDiscovery:
         config_file.write_text("context:\n  engine: compressor\n")
         from openamer_cli.plugins_cmd import _save_context_engine
         _save_context_engine("lcm")
-        content = yaml.safe_load(config_file.read_text())
+        content = yaml.safe_load(config_file.read_text(encoding="utf-8"))
         assert content["context"]["engine"] == "lcm"
 
     def test_discover_memory_providers_empty(self):
@@ -837,7 +838,7 @@ class TestNoAutoActivation:
         # This tests the run_agent.py logic indirectly by checking that the
         # code path for default config doesn't call get_plugin_context_engine.
         import run_agent as ra_module
-        source = open(ra_module.__file__).read()
+        source = open(ra_module.__file__, encoding="utf-8").read()
         # The old code had: "Even with default config, check if a plugin registered one"
         # The fix removes this. Verify it's gone.
         assert "Even with default config, check if a plugin registered one" not in source
@@ -928,3 +929,44 @@ class TestSubdirInstallE2E:
         identifier = f"file://{repo_root}#does-not-exist"
         with pytest.raises(PluginOperationError, match="does not exist"):
             pc._install_plugin_core(identifier, force=False)
+
+
+# ── `openamer plugins reload` wiring ──────────────────────────────────────
+
+
+def test_parser_wires_the_reload_subcommand():
+    """`reload` must be reachable from the parser — it was dead code.
+
+    A reload handler existed, but no subparser ever produced an action for it,
+    so ``openamer plugins reload`` died with ``invalid choice: 'reload'`` and
+    there was no supported way to pick up an edited plugin without restarting
+    the process.
+    """
+    import argparse
+
+    from openamer_cli.subcommands.plugins import build_plugins_parser
+
+    parser = argparse.ArgumentParser()
+    subs = parser.add_subparsers(dest="command")
+    build_plugins_parser(subs, cmd_plugins=lambda args: None)
+
+    assert parser.parse_args(["plugins", "reload"]).plugins_action == "reload"
+    assert parser.parse_args(["plugins", "reload", "vitals"]).name == "vitals"
+
+
+def test_reload_action_forces_re_discovery(monkeypatch):
+    """The reload action must call ``discover_plugins(force=True)``."""
+    from openamer_cli import plugins as plugins_mod
+    from openamer_cli import plugins_cmd as pc
+
+    calls: list = []
+    monkeypatch.setattr(
+        plugins_mod, "discover_plugins", lambda force=False: calls.append(force)
+    )
+
+    class _Args:
+        plugins_action = "reload"
+        name = None
+
+    pc.plugins_command(_Args())
+    assert calls == [True], "reload must force a plugin re-discovery"

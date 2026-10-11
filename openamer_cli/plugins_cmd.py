@@ -2140,6 +2140,15 @@ def plugins_command(args) -> None:
         cmd_enable(args.name, allow_tool_override=allow_override)
     elif action == "disable":
         cmd_disable(args.name)
+    elif action == "reload":
+        # Force re-discovery so an edited plugin file (e.g. plugins/vitals/) is
+        # picked up without a process restart. This reloads in the CURRENT
+        # process: a long-lived process that already imported the plugin keeps
+        # its module until discovery re-runs there.
+        from openamer_cli.plugins import discover_plugins
+
+        discover_plugins(force=True)
+        print("Reloaded plugins (force re-discovery).")
     elif action in {"list", "ls"}:
         cmd_list(args)
     elif action == "search":

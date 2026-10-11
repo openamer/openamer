@@ -123,4 +123,15 @@ def build_plugins_parser(subparsers, *, cmd_plugins: Callable) -> None:
         "disable", help="Disable a plugin without removing it"
     )
     plugins_disable.add_argument("name", help="Plugin name to disable")
+
+    plugins_reload = plugins_subparsers.add_parser(
+        "reload", help="Re-discover and reload all plugins in this process"
+    )
+    plugins_reload.add_argument(
+        "name",
+        nargs="?",
+        default=None,
+        help="Optional plugin name (a force re-discovery reloads every plugin)",
+    )
+
     plugins_parser.set_defaults(func=cmd_plugins)
