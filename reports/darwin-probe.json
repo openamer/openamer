@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-11T12:31:37.921404+00:00",
+  "updated": "2026-10-11T14:30:49.112486+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1109,
+  "total": 1113,
   "skills": {
     "auto-competitor-intelligence-ai-coding": {
       "refs": 0,
@@ -2313,6 +2313,12 @@
       "score": 1.0,
       "missing": []
     },
+    "cpanel-deploy-via-session": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "cron-autotest-run-cron-entry": {
       "refs": 2,
       "ok": 0,
@@ -2358,6 +2364,12 @@
       "score": 1.0,
       "missing": []
     },
+    "domain-to-github-pages": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "external-link-audit": {
       "refs": 0,
       "ok": 0,
@@ -2382,6 +2394,12 @@
       "score": 1.0,
       "missing": []
     },
+    "gateway-restart-kills-cron-jobs": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "git-remote-credential-resolution": {
       "refs": 0,
       "ok": 0,
@@ -2403,6 +2421,12 @@
     "internet-learner-stall-fix": {
       "refs": 3,
       "ok": 3,
+      "score": 1.0,
+      "missing": []
+    },
+    "live-site-audit": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
