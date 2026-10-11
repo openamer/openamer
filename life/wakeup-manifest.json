@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-10-11T01:48:31.987987+00:00",
+  "written_at": "2026-10-11T13:48:53.868331+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -278,7 +278,7 @@
       "name": "Social-Outreach-Mega",
       "schedule": "every 180m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Browser-Health-Watchdog",
@@ -614,7 +614,7 @@
       "name": "domain-mastery-cycle",
       "schedule": null,
       "script": "domain_mastery.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "goal-engine-daily",
@@ -632,7 +632,7 @@
       "name": "self-directed-research",
       "schedule": null,
       "script": "_cron_research.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "cross-domain-synthesis-daily",
@@ -650,7 +650,7 @@
       "name": "Nightly Test-Suite Watchdog",
       "schedule": "0 4 * * *",
       "script": "test-suite-watchdog.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "tool-invention-cycle",
@@ -728,7 +728,7 @@
       "name": "visibility-spread",
       "schedule": "0 */8 * * *",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "monetization-pipeline-day1",
@@ -752,7 +752,7 @@
       "name": "skill-noise-sweep",
       "schedule": "30 6 * * 0",
       "script": "skill_noise_sweep.py",
-      "last_status": null
+      "last_status": "ok"
     },
     {
       "name": "cognition-core-keepalive",
@@ -824,7 +824,7 @@
       "name": "Growth Loop (30m, zero-token)",
       "schedule": "*/30 * * * *",
       "script": "_cron_growth.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "System-Snapshot Refresh (6h, zero-token)",
@@ -842,12 +842,12 @@
       "name": "Artifact Discovery Batch (hourly, 5 jobs, zero-token)",
       "schedule": "20 * * * *",
       "script": "_cron_discover_artifacts.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Auditor - prüft meine eigenen Behauptungen gegen Messung",
       "schedule": "0 8 * * *",
-      "script": "scripts/verifier_agent.py --days 1 --max 5",
+      "script": "verifier_agent.py --days 1 --max 5",
       "last_status": "ok"
     }
   ]
