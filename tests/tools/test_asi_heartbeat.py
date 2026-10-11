@@ -147,3 +147,67 @@ def test_missing_script_is_a_failure_not_a_false_pass(monkeypatch):
     assert r["any_success"] is False, "a missing script was reported green"
     assert r["results"][0]["success"] is False
 
+
+def test_cadence_minutes_parses_both_schedule_shapes():
+    from tools.asi.heartbeat import _cadence_minutes
+
+    assert _cadence_minutes({"kind": "interval", "minutes": 240}) == 240
+    assert _cadence_minutes({"kind": "cron", "expr": "*/15 * * * *"}) == 15
+    assert _cadence_minutes({"kind": "cron", "expr": "*/5 * * * *"}) == 5
+    assert _cadence_minutes({"kind": "cron", "expr": "0 * * * *"}) == 60
+    assert _cadence_minutes({"kind": "cron", "expr": "0 */6 * * *"}) == 360
+    assert _cadence_minutes({"kind": "cron", "expr": "30 3 * * *"}) == 1440
+    assert _cadence_minutes({"kind": "cron", "expr": "0 6 * * 0"}) == 7 * 24 * 60
+    assert _cadence_minutes({"kind": "cron", "expr": "garbage"}) is None
+    assert _cadence_minutes("nope") is None
+
+
+def test_slow_script_is_not_stormed_by_a_fast_sibling(monkeypatch):
+    """A 5m script must not drag its 8h sibling along on every tick."""
+    ran = []
+    sub = Subsystem(name="mix", category="test", cadence_minutes=5,
+                    scripts=["fast.py", "slow.py"])
+    sub.script_cadence = {"fast.py": 5, "slow.py": 480}
+    monkeypatch.setattr(
+        sub, "_run_script", lambda s: (ran.append(s), {"success": True})[1]
+    )
+
+    now = time.time()
+    sub._state["script_last_run"] = {"fast.py": now - 6 * 60, "slow.py": now - 60}
+    sub.tick()
+    assert ran == ["fast.py"], f"slow script was stormed: {ran}"
+
+    ran.clear()
+    sub.tick(force=True)
+    assert set(ran) == {"fast.py", "slow.py"}, "force must run everything"
+
+
+def test_engine_only_runs_retired_cron_jobs(tmp_path, monkeypatch):
+    """Handoff rule: a cron job that is still enabled keeps owning its script,
+    so the heartbeat can never double a side effect during migration."""
+    import json
+
+    from tools.asi import heartbeat as hbm
+
+    jobs = {"jobs": [
+        {"id": "keep", "name": "Keep", "script": "a.py", "enabled": True,
+         "schedule": {"kind": "interval", "minutes": 5}},
+        {"id": "retired", "name": "Retired", "script": "b.py", "enabled": False,
+         "schedule": {"kind": "interval", "minutes": 30}},
+    ]}
+    f = tmp_path / "jobs.json"
+    f.write_text(json.dumps(jobs), encoding="utf-8")
+    monkeypatch.setattr(hbm, "JOBS_FILE", f)
+
+    hb = hbm.Heartbeat()
+    sub = hbm.Subsystem(name="t", category="t", cadence_minutes=99, scripts=[])
+    sub.cron_ids = ["keep", "retired"]
+    hb.subsystems = {"t": sub}
+    hb._reconcile_scripts()
+
+    assert sub.scripts == ["b.py"], sub.scripts
+    assert sub.script_cadence == {"b.py": 30}
+    assert sub.cadence_minutes == 30
+
+
+

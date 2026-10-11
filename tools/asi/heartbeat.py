@@ -73,6 +73,45 @@ def _load_jobs() -> Dict[str, Any]:
     return index
 
 
+def _cadence_minutes(schedule: Any) -> Optional[int]:
+    """Approximate a job's cadence in minutes from its jobs.json schedule.
+
+    Handles the two shapes the scheduler writes — ``{"kind":"interval",
+    "minutes":N}`` and ``{"kind":"cron","expr":"..."}`` — for the patterns the
+    fleet actually uses. Returns None when it cannot tell, so the caller keeps
+    the subsystem default rather than guessing and starving or storming a job.
+    """
+    if not isinstance(schedule, dict):
+        return None
+    if schedule.get("kind") == "interval":
+        m = schedule.get("minutes")
+        return int(m) if isinstance(m, (int, float)) and m > 0 else None
+    expr = schedule.get("expr")
+    if not isinstance(expr, str):
+        return None
+    parts = expr.split()
+    if len(parts) != 5:
+        return None
+    minute, hour, _dom, _month, dow = parts
+    if minute.startswith("*/"):
+        try:
+            return max(1, int(minute[2:]))
+        except ValueError:
+            return None
+    if minute.isdigit():
+        if hour == "*":
+            return 60
+        if hour.startswith("*/"):
+            try:
+                return max(1, int(hour[2:]) * 60)
+            except ValueError:
+                return None
+        if dow != "*":
+            return 7 * 24 * 60        # weekly on a fixed weekday
+        return 24 * 60                # daily at a fixed time
+    return None
+
+
 def _as_result(result: Any) -> Dict[str, Any]:
     """Map a script function's return value onto a heartbeat result.
 
@@ -125,6 +164,8 @@ class Subsystem:
         # legitimately need longer than the 60s default.
         self.timeout = timeout
         self._state: Dict[str, Any] = {}
+        # Per-script cadence in minutes, derived from each job's schedule.
+        self.script_cadence: Dict[str, int] = {}
 
     def is_due(self, now: float, last_run: Optional[float]) -> bool:
         """Return True if this subsystem is due for a tick."""
@@ -132,11 +173,30 @@ class Subsystem:
             return True  # never run
         return (now - last_run) >= (self.cadence_minutes * 60)
 
+    def _script_due(self, script: str, now: float) -> bool:
+        """Per-script gating from the job's own cadence.
+
+        A subsystem groups scripts of very different tempo (a 5m learner and
+        an 8h briefing). Without this, ticking the subsystem would storm the
+        slow one; with it, each script keeps the cadence its cron job had.
+        """
+        cadence = self.script_cadence.get(script)
+        if not cadence:
+            return True
+        last = self._state.get("script_last_run", {}).get(script)
+        if last is None:
+            return True
+        return (now - last) >= (cadence * 60)
+
     def tick(self, force: bool = False) -> Dict[str, Any]:
-        """Execute one tick of this subsystem in-process (direct import)."""
-        results = []
+        """Execute one tick: run each script that is due (all of them on force)."""
+        results: List[Dict[str, Any]] = []
+        now = time.time()
+        ran: Dict[str, float] = self._state.setdefault("script_last_run", {})
 
         for script in self.scripts:
+            if not force and not self._script_due(script, now):
+                continue
             try:
                 result = self._run_script(script)
                 results.append({
@@ -150,12 +210,13 @@ class Subsystem:
                     "success": False,
                     "error": str(e),
                 })
+            ran[script] = now
 
         return {
             "subsystem": self.name,
             "category": self.category,
             "results": results,
-            "any_success": any(r.get("success") for r in results),
+            "any_success": any(r.get("success") for r in results) if results else True,
         }
 
     def _run_script(self, script_name: str) -> Dict[str, Any]:
@@ -444,30 +505,60 @@ class Heartbeat:
             cron_ids=["acbea7ce46ae"],
         )
 
-        # Reconcile every subsystem's script list with jobs.json — the single
-        # source of truth. The explicit lists above are kept as documentation
-        # of intent; the real scripts are derived from the jobs a subsystem's
-        # cron_ids point to, so a renamed/removed script can never leave the
-        # engine "running" a file that no longer exists. Jobs with no script
-        # (LLM-driven) are simply not runnable by this engine and are left to
-        # the agent loop.
+        self._reconcile_scripts()
+
+    def _reconcile_scripts(self):
+        """Derive each subsystem's scripts, cadences and ownership from jobs.json.
+
+        The explicit lists in ``_init_subsystems`` are documentation of intent;
+        reality comes from the jobs each subsystem's ``cron_ids`` point to, so a
+        renamed/removed script can never leave the engine "running" a file that
+        does not exist.
+
+        Handoff rule: the engine runs a job's script ONLY once that job's cron
+        entry is retired (disabled). While the cron is still enabled it owns the
+        work, and running it here too would double every side effect (a social
+        post, a PR). Disabling the cron job is the switch that moves a loop from
+        cron to the native heartbeat — one executor at a time, never two.
+        """
         jobs = _load_jobs()
         for sub in self.subsystems.values():
-            sub.scripts = [
-                jobs[cid]["script"]
-                for cid in sub.cron_ids
-                if cid in jobs and jobs[cid].get("script")
-            ]
+            scripts: List[str] = []
+            cadences: Dict[str, int] = {}
+            for cid in sub.cron_ids:
+                job = jobs.get(cid)
+                if not job or not job.get("script"):
+                    continue  # unknown id, or an LLM job the engine cannot run
+                if job.get("enabled", False):
+                    continue  # cron still owns it — no double-run
+                script = job["script"]
+                if script in scripts:
+                    continue
+                scripts.append(script)
+                minutes = _cadence_minutes(job.get("schedule"))
+                if minutes:
+                    cadences[script] = minutes
+            sub.scripts = scripts
+            sub.script_cadence = cadences
+            # Tick as often as the FASTEST script needs so none is starved;
+            # _script_due() then holds each slower script to its own cadence.
+            if cadences:
+                sub.cadence_minutes = min(cadences.values())
 
     def _load_state(self):
         """Load last-run timestamps from state file."""
         if self.STATE_FILE.exists():
             try:
                 state = json.loads(self.STATE_FILE.read_text(encoding="utf-8"))
+                saved = state.get("subsystems", {})
                 for name, sub in self.subsystems.items():
-                    ts = state.get("subsystems", {}).get(name, {}).get("last_run")
+                    entry = saved.get(name, {})
+                    ts = entry.get("last_run")
                     if ts is not None:
                         sub.last_run = ts
+                    scripts = entry.get("scripts")
+                    if isinstance(scripts, dict):
+                        sub._state["script_last_run"] = scripts
             except (json.JSONDecodeError, Exception):
                 pass
 
@@ -476,7 +567,11 @@ class Heartbeat:
         state = {
             "updated_at": datetime.now(timezone.utc).isoformat(),
             "subsystems": {
-                name: {"last_run": sub.last_run, "enabled": sub.enabled}
+                name: {
+                    "last_run": sub.last_run,
+                    "enabled": sub.enabled,
+                    "scripts": sub._state.get("script_last_run", {}),
+                }
                 for name, sub in self.subsystems.items()
             },
         }
