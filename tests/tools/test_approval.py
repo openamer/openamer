@@ -120,6 +120,18 @@ class TestDetectDangerousRm:
         assert "delete" in desc.lower()
 
     def test_nonrecursive_verification_artifact_cleanup_is_not_dangerous(self):
+        # POSIX-only: ``_is_verification_artifact_cleanup`` compares the
+        # operand to ``os.path.join(tempfile.gettempdir(), basename)`` after a
+        # POSIX ``shlex.split``. Two platform facts break that equality on
+        # Windows: the host temp dir is ``C:\Users\...\Temp`` (so a literal
+        # ``/tmp/...`` operand is not under it), and posix-mode shlex.strip
+        # strips backslashes so a native ``C:\...`` operand never compares
+        # equal either — the exemption is unreachable there, and the very same
+        # command is not dangerous on Windows in the first place (the
+        # root-path rule keys on a leading ``/``). Asserting it on Windows
+        # would pin dead code, so gate it here.
+        if os.name == "nt":
+            pytest.skip("exemption keys on the POSIX spelling of tempfile.gettempdir()")
         with mock_patch("tempfile.gettempdir", return_value="/tmp"):
             for prefix in ("openamer-verify-", "openamer-ad-hoc-"):
                 assert detect_dangerous_command(f"rm -f /tmp/{prefix}example.py") == (
@@ -129,6 +141,16 @@ class TestDetectDangerousRm:
                 )
 
     def test_symlinked_temp_dir_only_exempts_canonical_target(self, tmp_path):
+        # POSIX-only premise: this test distinguishes the symlinked spelling
+        # from the canonical one by requiring the symlinked spelling to stay
+        # *dangerous*. That relies on the root-path rule, which matches
+        # ``rm -f /...`` — a leading forward slash. On Windows ``tmp_path`` is
+        # ``C:\Users\...\Temp\...`` with no leading slash, so an arbitrary
+        # absolute path is simply not a dangerous command there and the
+        # "still dangerous" half cannot hold. The canonical-target half needs
+        # the same POSIX temp-dir spelling as the test above. Gate both.
+        if os.name == "nt":
+            pytest.skip("rm root-path rule and the temp-dir exemption are POSIX-spelled")
         real_temp = tmp_path / "real-temp"
         real_temp.mkdir()
         linked_temp = tmp_path / "linked-temp"
