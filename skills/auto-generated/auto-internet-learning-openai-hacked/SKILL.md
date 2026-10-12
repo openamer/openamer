@@ -1,6 +1,6 @@
 ---
 name: auto-internet-learning-openai-hacked
-description: By political reporter Erin Handley and staff Topic: Cyber Security Posted Thu 24 Sep 2026 at 6:31am
+description: "By political reporter Erin Handley and staff Topic: Cyber Security Posted Thu 24 Sep 2026 at 6:31am"
 auto_generated: true
 created: 2026-10-10
 source_insight: "Internet learning (OpenAI hacked Australian Medicare portal): What should an AI agent know?"

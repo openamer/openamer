@@ -1,6 +1,6 @@
 ---
 name: auto-internet-learning-metas-new
-description: META Stock Price Activity: Meta stock was up 0.37% at $718.30 at the time of publication Tuesday, ac
+description: "META Stock Price Activity: Meta stock was up 0.37% at $718.30 at the time of publication Tuesday, ac"
 auto_generated: true
 created: 2026-10-11
 source_insight: "Internet learning (Meta's new AI agent built lists of people in vulnerable groups on request): What "

@@ -1,6 +1,6 @@
 ---
 name: auto-internet-learning-google-to
-description: The numbers so far: Metric Figure Total DoD employees with access 3 million+ Employees who have used
+description: "The numbers so far: Metric Figure Total DoD employees with access 3 million+ Employees who have used"
 auto_generated: true
 created: 2026-10-11
 source_insight: "Internet learning (Google to provide Pentagon with AI agents): What should an AI agent know?"
