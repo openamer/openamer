@@ -440,12 +440,26 @@ def _path_resolution_warning(filepath: str, resolved: Path, task_id: str = "defa
 
 
 def _is_blocked_device_path(path: str) -> bool:
-    """Return True for concrete device/fd paths that can hang reads."""
-    normalized = os.path.normpath(_expand_tilde(path))
-    if normalized in _BLOCKED_DEVICE_PATHS:
+    """Return True for concrete device/fd paths that can hang reads.
+
+    POSIX device paths (``/dev/zero``, ``/proc/self/maps`` ...) are matched
+    against a posix-normalized copy of the input as well as the
+    ``os.path.normpath`` copy.  On Windows ``os.path.normpath`` rewrites a
+    literal ``/dev/zero`` to ``\\\\dev\\\\zero`` (drive-root relative), so a
+    posix-only check silently never fires there — but ``read_file_tool`` shells
+    out to ``wc -c`` and the target terminal backend may be a POSIX environment
+    (WSL/docker/remote) even on a Windows host, where those paths are real and
+    dangerous.  Matching the posix form keeps the guard honest on every host
+    while leaving Windows-native paths (``C:\\\\...``) untouched, since
+    ``posixpath.normpath`` of a backslash path never collides with the blocklist.
+    """
+    expanded = _expand_tilde(path)
+    normalized = os.path.normpath(expanded)
+    posix_normalized = posixpath.normpath(expanded)
+    if normalized in _BLOCKED_DEVICE_PATHS or posix_normalized in _BLOCKED_DEVICE_PATHS:
         return True
     # /proc/self/fd/0-2 and /proc/<pid>/fd/0-2 are Linux aliases for stdio
-    if normalized.startswith("/proc/") and normalized.endswith(
+    if posix_normalized.startswith("/proc/") and posix_normalized.endswith(
         ("/fd/0", "/fd/1", "/fd/2")
     ):
         return True
@@ -458,7 +472,7 @@ def _is_blocked_device_path(path: str) -> bool:
     # load addresses — an ASLR oracle on par with maps. /proc/*/pagemap exposes
     # virtual->physical translation. Both are blocked alongside the maps family.
     # endswith matches both /proc/<pid>/X and /proc/<pid>/task/<tid>/X.
-    if normalized.startswith("/proc/") and normalized.endswith(
+    if posix_normalized.startswith("/proc/") and posix_normalized.endswith(
         (
             "/environ",
             "/cmdline",
@@ -486,7 +500,13 @@ def _is_blocked_device(filepath: str, base_dir: str | Path | None = None) -> boo
     if base_dir is not None and not os.path.isabs(expanded):
         expanded = os.path.join(os.fspath(base_dir), expanded)
     normalized = os.path.normpath(expanded)
-    if _is_blocked_device_path(normalized):
+    # On Windows ``os.path.normpath`` rewrites a literal ``/dev/zero`` to
+    # ``\\dev\\zero`` (drive-root relative), so the posix form must be
+    # checked too: the target terminal backend may be a POSIX environment
+    # (WSL/docker/remote) even on a Windows host, where those paths are
+    # real and dangerous.
+    posix_normalized = posixpath.normpath(expanded)
+    if _is_blocked_device_path(normalized) or _is_blocked_device_path(posix_normalized):
         return True
 
     seen: set[str] = set()
@@ -496,10 +516,17 @@ def _is_blocked_device(filepath: str, base_dir: str | Path | None = None) -> boo
             target = os.readlink(current)
         except OSError:
             break
+        # A symlink target read on a Windows host may be a posix path
+        # (``/dev/zero``).  ``os.path.normpath`` rewrites it to
+        # ``\\dev\\zero`` (drive-root relative) and the blocklist lookup
+        # misses it, so a device symlink would bypass the guard.  Keep the
+        # posix form for the blocklist check while still resolving relative
+        # symlinks against the link's directory on the host filesystem.
+        posix_target = posixpath.normpath(target)
         if not os.path.isabs(target):
             target = os.path.join(os.path.dirname(current), target)
         target = os.path.normpath(target)
-        if _is_blocked_device_path(target):
+        if _is_blocked_device_path(target) or _is_blocked_device_path(posix_target):
             return True
         if target in seen:
             break

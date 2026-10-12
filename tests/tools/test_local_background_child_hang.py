@@ -10,6 +10,7 @@ of the backgrounded service (indefinitely for a uvicorn server).
 The fix switches ``_drain()`` to select()-based non-blocking reads and
 stops draining shortly after bash exits even if the pipe hasn't EOF'd.
 """
+import math
 import subprocess
 import time
 
@@ -144,15 +145,30 @@ class TestBackgroundChildDoesNotHang:
             "exec('while True: sys.stdout.write(chunk); sys.stdout.flush()')\""
         )
 
+        # The foreground budget has to outlast the *environment's own*
+        # start-up cost before the child can emit a single byte.  On a warm
+        # Linux/macOS host that cost is a few tens of milliseconds, so the
+        # original fixed 1s budget left the child plenty of time to fill the
+        # capture window; on Windows a bare ``bash -c`` costs seconds
+        # (Git-Bash spawn + session-snapshot source), so a fixed 1s can expire
+        # before the command has run at all — which makes the truncation
+        # assertion below vacuous rather than correct.  Measure the overhead
+        # and budget the timeout from it, so the test asserts the same
+        # invariant with the same headroom on every platform.
+        overhead_started = time.monotonic()
+        local_env.execute("true", timeout=30)
+        overhead = time.monotonic() - overhead_started
+        timeout = max(3, math.ceil(overhead) + 3)
+
         started = time.monotonic()
-        result = local_env.execute(command, timeout=1, bounded_capture=True)
+        result = local_env.execute(command, timeout=timeout, bounded_capture=True)
         elapsed = time.monotonic() - started
 
-        assert elapsed < 10.0
+        assert elapsed < timeout + 10.0
         assert result["returncode"] == 124
         assert len(result["output"]) <= 5_000
         assert "[OUTPUT TRUNCATED" in result["output"]
-        assert result["output"].endswith("[Command timed out after 1s]")
+        assert result["output"].endswith(f"[Command timed out after {timeout}s]")
 
     def test_timeout_path_still_works(self, local_env):
         """Foreground command exceeding timeout must still be killed."""
