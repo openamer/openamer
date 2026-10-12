@@ -33,8 +33,42 @@ import sys
 from pathlib import Path
 
 # The Desktop agent copy that holds the actual packaged app + source we build.
-DEFAULT_AGENT_DIR = Path.home() / "AppData/Local/openamer/openamer-agent"
-DESKTOP_DIR = DEFAULT_AGENT_DIR / "apps/desktop"
+# Do NOT hardcode the platform default here: the packaged app is frequently not
+# under `%LOCALAPPDATA%\openamer\openamer-agent` — an install can live under a
+# different OPENAMER_HOME (e.g. `…\openamer-laptop`), and a checkout can carry
+# the desktop source itself. Pointing at the wrong tree is how this script
+# reported `exists=False` for a desktop dir that was very much there while the
+# app was running out of it.
+_AGENT_SUBPATH = Path("apps/desktop")
+
+
+def _candidate_agent_dirs() -> list[Path]:
+    """Agent trees that may hold the packaged desktop app, most specific first."""
+    out: list[Path] = []
+    env_home = os.environ.get("OPENAMER_HOME")
+    if env_home:
+        home = Path(env_home).expanduser()
+        # OPENAMER_HOME may be the install root or the agent tree itself.
+        out.append(home / "openamer-agent")
+        out.append(home)
+    local = os.environ.get("LOCALAPPDATA")
+    if local:
+        out.append(Path(local) / "openamer" / "openamer-agent")
+    out.append(Path.home() / "AppData/Local/openamer/openamer-agent")
+    return out
+
+
+def _resolve_agent_dir() -> Path:
+    """First candidate that actually contains the desktop source."""
+    candidates = _candidate_agent_dirs()
+    for cand in candidates:
+        if (cand / _AGENT_SUBPATH).is_dir():
+            return cand
+    return candidates[0]
+
+
+DEFAULT_AGENT_DIR = _resolve_agent_dir()
+DESKTOP_DIR = DEFAULT_AGENT_DIR / _AGENT_SUBPATH
 PACKED_EXE = DESKTOP_DIR / "release/win-unpacked/OpenAmer.exe"
 
 
@@ -97,20 +131,33 @@ def build_pack(launch: bool) -> int:
 
 
 def check() -> int:
-    print(f"agent dir : {DEFAULT_AGENT_DIR}")
+    print(f"agent dir : {DEFAULT_AGENT_DIR}  exists={DEFAULT_AGENT_DIR.exists()}")
     print(f"desktop   : {DESKTOP_DIR}  exists={DESKTOP_DIR.exists()}")
     print(f"packed exe: {PACKED_EXE}  exists={PACKED_EXE.exists()}")
     print(f"running   : {_is_running()}")
+    if not DESKTOP_DIR.exists():
+        print("candidates tried (none had the desktop source):")
+        for cand in _candidate_agent_dirs():
+            print(f"  - {cand}")
+        print("hint: pass --agent-dir <tree> to point at the install explicitly.")
     return 0
 
 
 def main() -> int:
+    global DEFAULT_AGENT_DIR, DESKTOP_DIR, PACKED_EXE
     ap = argparse.ArgumentParser(prog="desktop_rebuild")
     ap.add_argument("--launch", action="store_true",
                     help="build+pack and launch the fresh app")
     ap.add_argument("--check", action="store_true",
                     help="print paths + running status only")
+    ap.add_argument("--agent-dir", default=None,
+                    help="install tree to build (default: resolved from "
+                         "OPENAMER_HOME, else the platform default)")
     a = ap.parse_args()
+    if a.agent_dir:
+        DEFAULT_AGENT_DIR = Path(a.agent_dir).expanduser()
+        DESKTOP_DIR = DEFAULT_AGENT_DIR / _AGENT_SUBPATH
+        PACKED_EXE = DESKTOP_DIR / "release/win-unpacked/OpenAmer.exe"
     if a.check:
         return check()
     return build_pack(launch=a.launch)
