@@ -1268,7 +1268,9 @@ class TestSkillViewCollisionDetection:
 
         result = json.loads(raw)
         assert result["success"] is True
-        assert result["path"] == "creative/sketch/SKILL.md"
+        # The product reports the skill's path in the host's own separator
+        # style, so normalise before comparing against the POSIX spelling.
+        assert result["path"].replace("\\", "/") == "creative/sketch/SKILL.md"
         assert "REAL SKETCH SKILL" in result["content"]
 
     def test_reference_package_skill_md_is_not_active_skill(self, tmp_path):

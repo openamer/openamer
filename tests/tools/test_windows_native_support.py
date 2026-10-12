@@ -52,10 +52,6 @@ class TestConfigureWindowsStdio:
         yield
         sys.modules.pop("openamer_cli.stdio", None)
 
-    @pytest.mark.skipif(
-        os.name == "nt",
-        reason="asserts the POSIX build of configure_windows_stdio(); on Windows is_windows() is True by construction",
-    )
     def test_no_op_on_posix(self):
         from openamer_cli import stdio
 
@@ -291,10 +287,12 @@ class TestSigkillFallback:
         result = getattr(fake_signal, "SIGKILL", fake_signal.SIGTERM)
         assert result == 15
 
-    @pytest.mark.skipif(
-        not hasattr(signal, "SIGKILL"),
-        reason="SIGKILL is POSIX-only; the Windows fallback is covered by the test above this one",
-    )
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "POSIX premise: the docstring's claim is that the SIGKILL fallback is "
+        "a no-op where real SIGKILL exists. Windows has no signal.SIGKILL, so "
+        "the attribute lookup itself raises — the opposite case, already "
+        "covered by test_getattr_fallback_uses_sigterm_when_absent above."
+    ))
     def test_getattr_fallback_prefers_sigkill_when_present(self):
         """On POSIX the fallback is a no-op: real SIGKILL wins."""
         result = getattr(signal, "SIGKILL", signal.SIGTERM)
@@ -705,13 +703,8 @@ class TestKanbanWaitpidWindowsGuard:
     def test_source_gates_waitpid_loop(self):
         root = Path(__file__).resolve().parents[2]
         source = (root / "openamer_cli" / "kanban_db.py").read_text(encoding="utf-8")
-        # Find the waitpid call and confirm it's inside a POSIX gate. The second
-        # argument is deliberately NOT pinned to the literal ``os.WNOHANG``: the
-        # loop reads it through ``getattr(os, "WNOHANG", 1)`` so that Windows has a
-        # usable value instead of an AttributeError — which is the very shape this
-        # test wants to see. Pinning the old literal made a correct hardening read
-        # as "waitpid call must exist".
-        idx = source.find("os.waitpid(")
+        # Find the waitpid call and confirm it's inside a POSIX gate.
+        idx = source.find("os.waitpid(-1, os.WNOHANG)")
         assert idx > 0, "waitpid call must exist"
         # Look backwards up to 400 chars for the gate. Accept either form:
         #   `if os.name != "nt":` (run iff POSIX), or

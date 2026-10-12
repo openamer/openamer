@@ -439,7 +439,16 @@ class TestTerminalOutputCleanliness:
 
     def test_env_var_expansion(self, env):
         result = env.execute("echo $HOME")
-        assert result["output"].strip() == str(Path.home())
+        actual = result["output"].strip()
+        expected = str(Path.home())
+        # A POSIX shell spells the home directory its own way: Git-Bash and MSYS
+        # report /c/Users/me where pathlib says C:\Users\me. Fold the MSYS drive
+        # prefix onto the native form before comparing the two directories.
+        if len(actual) > 3 and actual[0] == "/" and actual[2] == "/":
+            actual = actual[1] + ":" + os.sep + actual[3:].replace("/", os.sep)
+        assert os.path.normcase(os.path.normpath(actual)) == os.path.normcase(
+            os.path.normpath(expected)
+        )
         _assert_clean(result["output"])
 
     def test_command_substitution(self, env):

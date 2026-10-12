@@ -261,4 +261,5 @@ def test_bundled_optional_source_still_includes_support_files(tmp_path, monkeypa
 
     bundle = source.fetch("official/category/official-demo")
     assert bundle is not None
-    assert set(bundle.files) == {"SKILL.md", "references/all.md"}
+    # Bundle-relative members are reported with the host's separator.
+    assert {f.replace("\\", "/") for f in bundle.files} == {"SKILL.md", "references/all.md"}

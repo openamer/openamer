@@ -95,6 +95,11 @@ class TestPulseSocketReachable:
         from tools.voice_mode import _pulse_socket_reachable
         assert _pulse_socket_reachable() is False
 
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "Linux-only discovery path: binds a real AF_UNIX socket under "
+        "XDG_RUNTIME_DIR to imitate PulseAudio. Windows has neither "
+        "socket.AF_UNIX in this interpreter nor XDG_RUNTIME_DIR."
+    ))
     def test_listening_socket_reachable_via_xdg_runtime(self, monkeypatch, tmp_path):
         """A live PulseAudio-style socket under XDG_RUNTIME_DIR is reachable (#35622)."""
         import socket as _socket
