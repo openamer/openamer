@@ -185,13 +185,23 @@ class TestBackgroundChildDoesNotHang:
 
     def test_timeout_path_still_works(self, local_env):
         """Foreground command exceeding timeout must still be killed."""
+        # Budget the wall clock from measured overhead, the same way the
+        # bounded-capture sibling does. A fixed margin cannot hold here: under
+        # the canonical runner (-j32 on 16 cores) the machine is heavily
+        # oversubscribed and this very call was observed taking 14.8s for a
+        # `timeout=2`, so `elapsed < 10.0` failed on a healthy timeout path.
+        overhead_started = time.monotonic()
+        local_env.execute("true", timeout=30)
+        overhead = time.monotonic() - overhead_started
+
         t0 = time.monotonic()
         result = local_env.execute("sleep 30", timeout=2)
         elapsed = time.monotonic() - t0
 
-        assert elapsed < 10.0
         assert result["returncode"] == 124
         assert "timed out" in result["output"].lower()
+        # Still far below the command's own 30s lifetime: the timeout fired.
+        assert elapsed < overhead + 15.0
 
     def test_utf8_output_decoded_correctly(self, local_env):
         """Multibyte UTF-8 chunks must decode cleanly under select-based reads."""
