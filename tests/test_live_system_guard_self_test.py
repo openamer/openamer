@@ -20,6 +20,7 @@ from __future__ import annotations
 import os
 import signal
 import subprocess
+import sys
 import types
 
 import pytest
@@ -27,6 +28,17 @@ import pytest
 # A guaranteed-foreign PID: PID 1 (init).  Owned by root, not us, and
 # always exists. A sane guard refuses to signal it.
 FOREIGN_PID = 1
+
+# POSIX-only primitives exercised by this file.  On Windows the file has no
+# ``termios``/``tty`` module (``pty``), ``systemctl`` does not exist, and
+# ``os.kill`` semantics differ (no negative-pid broadcast, no process-group
+# signals).  The guard itself is cross-platform, so the canary still runs its
+# Windows-safe probes (signal-0, bypass marker, subprocess inspection) and
+# only the genuinely-POSIX primitives are skipped here.
+_SKIP_NOT_POSIX = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason="POSIX-only primitive (pty/termios/systemctl/negative-pid kill)",
+)
 
 
 # ──────────────────── fail-closed self-protection ──────────────
@@ -105,6 +117,7 @@ def test_fail_closed_probe_classifies_raw_builtin_as_unguarded():
 # ──────────────────── kill primitives ─────────────────────────
 
 
+@_SKIP_NOT_POSIX  # os.kill(1, SIGTERM) is refused by Windows itself (WinError 87)
 def test_os_kill_blocks_foreign_pid():
     with pytest.raises(RuntimeError, match="live-system guard"):
         os.kill(FOREIGN_PID, signal.SIGTERM)
@@ -218,6 +231,7 @@ def test_os_popen_systemctl_blocked():
 # ──────────────────── pty.spawn ────────────────────────────────
 
 
+@_SKIP_NOT_POSIX  # pty/termios do not exist on Windows
 def test_pty_spawn_systemctl_blocked():
     import pty
     with pytest.raises(RuntimeError, match="live-system guard"):
@@ -278,6 +292,7 @@ def test_subprocess_killall_openamer_blocked():
 # ──────────────────── pass-through cases (must NOT raise) ──────
 
 
+@_SKIP_NOT_POSIX  # these deliberately EXEC systemctl, which Windows does not have
 def test_systemctl_status_passes_through():
     """Read-only systemctl probes (status/show/list-units) are fine."""
     # Run with check=False so we don't fail on the gateway's exit code.
@@ -290,6 +305,7 @@ def test_systemctl_status_passes_through():
     assert r is not None  # Did not raise — the guard let it through.
 
 
+@_SKIP_NOT_POSIX  # see test_systemctl_status_passes_through
 def test_systemctl_show_passes_through():
     r = subprocess.run(
         ["systemctl", "--user", "show", "openamer-gateway", "--no-pager"],
@@ -300,6 +316,7 @@ def test_systemctl_show_passes_through():
     assert r is not None
 
 
+@_SKIP_NOT_POSIX  # see test_systemctl_status_passes_through
 def test_systemctl_list_units_passes_through():
     r = subprocess.run(
         ["systemctl", "--user", "list-units", "fake-not-real-unit*", "--no-pager"],
@@ -310,6 +327,7 @@ def test_systemctl_list_units_passes_through():
     assert r is not None
 
 
+@_SKIP_NOT_POSIX  # see test_systemctl_status_passes_through
 def test_systemctl_unrelated_unit_passes_through():
     """systemctl restart of a non-openamer unit is allowed (we only protect openamer)."""
     # Use --dry-run so we don't actually try to restart anything; just
@@ -327,13 +345,21 @@ def test_systemctl_unrelated_unit_passes_through():
 
 def test_kill_own_subtree_passes_through():
     """We CAN kill our own children — guard recognizes them via psutil."""
-    p = subprocess.Popen(["sleep", "30"])
+    # Use the running interpreter rather than a bare ``sleep``: the point is
+    # that the guard lets a kill of our OWN child through, and ``sleep`` is not
+    # a guaranteed Windows binary.
+    p = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(30)"])
     try:
         os.kill(p.pid, signal.SIGTERM)
     finally:
-        p.wait(timeout=2)
-    # SIGTERM = 15; subprocess returncode is -15 on POSIX.
-    assert p.returncode in {-signal.SIGTERM, 128 + int(signal.SIGTERM)}
+        p.wait(timeout=10)
+    if sys.platform == "win32":
+        # Windows has no signal-exit convention: TerminateProcess reports the
+        # raw status it was terminated with, so SIGTERM surfaces as 15.
+        assert p.returncode == int(signal.SIGTERM)
+    else:
+        # SIGTERM = 15; subprocess returncode is -15 on POSIX.
+        assert p.returncode in {-signal.SIGTERM, 128 + int(signal.SIGTERM)}
 
 
 def test_subprocess_pkill_with_unrelated_pattern_passes_through():

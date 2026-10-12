@@ -2,12 +2,24 @@
 
 import os
 import stat
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+import pytest
 
+# Windows has no POSIX permission bits: ``os.chmod`` there only toggles the
+# read-only attribute and ``os.stat().st_mode`` always reports 0o666/0o444, so
+# the 0o600/0o700 assertions below can never hold no matter what the code does.
+_SKIP_WINDOWS = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason="POSIX permission bits (0o600/0o700) are not enforceable on Windows",
+)
+
+
+@_SKIP_WINDOWS
 class TestCronFilePermissions(unittest.TestCase):
     """Verify cron files get secure permissions."""
 
@@ -74,6 +86,7 @@ class TestCronFilePermissions(unittest.TestCase):
             self.assertEqual(dir_mode, 0o700)
 
 
+@_SKIP_WINDOWS
 class TestConfigFilePermissions(unittest.TestCase):
     """Verify config files get secure permissions."""
 

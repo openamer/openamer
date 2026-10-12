@@ -765,7 +765,9 @@ class TestAddRotatingHandler:
             os.umask(old_umask)
 
         assert log_path.exists()
-        assert stat.S_IMODE(log_path.stat().st_mode) == 0o660
+        # Group-writable is a POSIX mode; Windows stat() cannot report it.
+        if os.name != "nt":
+            assert stat.S_IMODE(log_path.stat().st_mode) == 0o660
 
         for h in list(logger.handlers):
             if isinstance(h, RotatingFileHandler):
@@ -794,7 +796,9 @@ class TestAddRotatingHandler:
             os.umask(old_umask)
 
         assert log_path.exists()
-        assert stat.S_IMODE(log_path.stat().st_mode) == 0o660
+        # Group-writable is a POSIX mode; Windows stat() cannot report it.
+        if os.name != "nt":
+            assert stat.S_IMODE(log_path.stat().st_mode) == 0o660
 
         for h in list(logger.handlers):
             if isinstance(h, RotatingFileHandler):

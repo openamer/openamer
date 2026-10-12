@@ -6,9 +6,11 @@ Covers:
 - Argument parser registration
 """
 
+import sys
 import time
 from unittest.mock import MagicMock, patch
 
+import pytest
 
 from openamer_cli.main import _session_browse_picker
 
@@ -242,6 +244,14 @@ class TestSessionBrowsePicker:
 
 # ─── Curses-based picker (mocked curses) ────────────────────────────────────
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "curses (and its _curses C extension) is Unix-only; the picker falls "
+        "back to the numbered list on Windows, which TestSessionBrowsePicker "
+        "covers."
+    ),
+)
 class TestCursesBrowse:
     """Tests for the curses-based interactive picker via simulated key sequences."""
 

@@ -866,8 +866,11 @@ class TestImport:
         run_import(args)
 
         for rel in (".env", "auth.json", "state.db", "profiles/coder/.env"):
-            mode = (openamer_home / rel).stat().st_mode & 0o777
-            assert mode == 0o600, f"{rel} restored with mode {oct(mode)}, expected 0o600"
+            # POSIX mode bits are not enforceable on Windows; the restore
+            # itself is still exercised there.
+            if os.name != "nt":
+                mode = (openamer_home / rel).stat().st_mode & 0o777
+                assert mode == 0o600, f"{rel} restored with mode {oct(mode)}, expected 0o600"
 
 
 # ---------------------------------------------------------------------------
@@ -2785,8 +2788,9 @@ class TestMemoryProviderExternalPaths:
         restored = dst_home / ".honcho" / "config.json"
         assert restored.exists()
         assert restored.read_text() == '{"peer":"bob"}'
-        # Credential-shaped file tightened.
-        assert (restored.stat().st_mode & 0o777) == 0o600
+        # Credential-shaped file tightened (POSIX mode bits only).
+        if os.name != "nt":
+            assert (restored.stat().st_mode & 0o777) == 0o600
         # External state did NOT leak into OPENAMER_HOME.
         assert not (openamer_home / "_external").exists()
 
