@@ -4,6 +4,7 @@
 import errno
 import json
 import logging
+import ntpath
 import os
 import posixpath
 import sys
@@ -338,6 +339,17 @@ def _resolve_base_dir(
     else:
         base_text = os.getcwd()
     if container_paths:
+        # A drive-qualified base under a container task is still a HOST path --
+        # it is the live session cwd the terminal actually runs in. Return it in
+        # its own flavour. posixpath.isabs() only sees a leading "/", so without
+        # this guard a "C:\..." base reads as relative, gets joined onto the
+        # process cwd and comes back doubled.
+        if (
+            sys.platform == "win32"
+            and ntpath.isabs(base_text)
+            and not base_text.startswith("/")
+        ):
+            return Path(ntpath.normpath(base_text))
         if not posixpath.isabs(base_text):
             base_text = posixpath.join(os.getcwd(), base_text)
         return _normalize_without_host_deref(base_text)
@@ -347,7 +359,6 @@ def _resolve_base_dir(
 
     base_text = _msys_to_windows_path(base_text)
     if sys.platform == "win32":
-        import ntpath
 
         if not ntpath.isabs(base_text):
             base_text = ntpath.join(os.getcwd(), base_text)
@@ -374,9 +385,29 @@ def _resolve_path_for_task(filepath: str, task_id: str = "default") -> Path | Pu
     container_paths = _uses_container_paths(task_id)
     if container_paths:
         expanded = _expand_tilde(filepath)
+        # POSIX absoluteness is the only check the original code ran here, and it
+        # is not enough on Windows: posixpath.isabs("C:\\Users\\...") is False, so
+        # an absolute Windows path was treated as relative and joined under the
+        # container base, producing a doubled path like
+        # "<base>/C:\Users\..." -- the failure the cwd-resolution tests were
+        # catching. A Windows drive path is absolute in its own right and must be
+        # returned as given, just like a POSIX one.
         if posixpath.isabs(expanded):
             return _normalize_without_host_deref(expanded)
-        resolved = _resolve_base_dir(task_id, container_paths=True) / expanded
+        if sys.platform == "win32" and ntpath.isabs(expanded):
+            # A drive-qualified path handed to a container task is still a HOST
+            # path. Return it in its own flavour -- a PurePosixPath("C:\...")
+            # holds the right characters but never compares equal to the
+            # WindowsPath the caller passed in, and WindowsPath is what every
+            # downstream host-side caller expects.
+            return Path(ntpath.normpath(expanded))
+        base = _resolve_base_dir(task_id, container_paths=True)
+        resolved = base / expanded
+        if isinstance(base, Path):
+            # The base resolved to a native host path (a Windows drive base). Keep
+            # that flavour rather than flattening it to a PurePosixPath: the caller
+            # passed a host path and compares against a host path.
+            return Path(ntpath.normpath(str(resolved)))
         return _normalize_without_host_deref(resolved)
 
     # Host paths only — never rewrite Linux paths inside a container/WSL env.
@@ -384,7 +415,6 @@ def _resolve_path_for_task(filepath: str, task_id: str = "default") -> Path | Pu
 
     expanded = _expand_tilde(_msys_to_windows_path(filepath))
     if sys.platform == "win32":
-        import ntpath
 
         if ntpath.isabs(expanded):
             return Path(ntpath.normpath(expanded))
@@ -429,8 +459,11 @@ def _path_resolution_warning(filepath: str, resolved: Path, task_id: str = "defa
             return None  # Inside the workspace — expected.
         except ValueError:
             return (
-                f"Relative path {filepath!r} resolved to {str(resolved)!r}, which is "
-                f"OUTSIDE the active workspace ({str(root)!r}). The edit will land in "
+                # Plain str(), not !r: repr() escapes every backslash, so on
+                # Windows the message read "C:\Users\..." instead of the real
+                # path -- unreadable, and it hid the very path the user needs.
+                f"Relative path {filepath!r} resolved to {str(resolved)}, which is "
+                f"OUTSIDE the active workspace ({str(root)}). The edit will land in "
                 f"a different directory than the terminal's cwd. If this is not "
                 f"intended (e.g. a git-worktree session writing into the main "
                 f"checkout), pass an absolute path under the workspace instead."
