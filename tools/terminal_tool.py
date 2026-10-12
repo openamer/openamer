@@ -1407,13 +1407,26 @@ def _get_env_config() -> Dict[str, Any]:
     host_cwd = None
     if env_type == "docker" and mount_docker_cwd:
         docker_cwd_source = os.getenv("TERMINAL_CWD") or _safe_getcwd()
-        candidate = os.path.abspath(os.path.expanduser(docker_cwd_source))
-        if (
-            any(candidate.startswith(p) for p in _HOST_CWD_PREFIXES)
-            or (os.path.isabs(candidate) and os.path.isdir(candidate) and not candidate.startswith(("/workspace", "/root")))
-        ):
-            host_cwd = candidate
+        expanded_source = os.path.expanduser(docker_cwd_source)
+        # Decide on the raw spelling first. A host cwd may legitimately arrive in
+        # POSIX form -- ``/Users/...`` and ``/home/...`` are in _HOST_CWD_PREFIXES
+        # for exactly that reason -- and os.path.abspath() would qualify such a
+        # path with the current drive on Windows ("/home/x" -> "C:\home\x"),
+        # destroying the prefix this check is looking for before it is read.
+        # Only fall through to the absolutised form when the source is not
+        # already host-shaped.
+        if any(expanded_source.startswith(p) for p in _HOST_CWD_PREFIXES):
+            host_cwd = expanded_source
             cwd = "/workspace"
+        else:
+            candidate = os.path.abspath(expanded_source)
+            if (
+                os.path.isabs(candidate)
+                and os.path.isdir(candidate)
+                and not candidate.startswith(("/workspace", "/root"))
+            ):
+                host_cwd = candidate
+                cwd = "/workspace"
     elif env_type in _CONTAINER_BACKENDS and cwd:
         # Host paths and relative paths that won't work inside containers
         if _is_unusable_container_cwd(cwd) and cwd != default_cwd:
