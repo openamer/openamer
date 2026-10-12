@@ -677,13 +677,28 @@ class TestSpawnEnvSanitization:
 
         fake_thread = MagicMock()
 
-        with patch.dict(os.environ, {
+        env = {
             "PATH": "/usr/bin:/bin",
             "HOME": "/home/user",
             "USER": "tester",
             "TELEGRAM_BOT_TOKEN": "bot-secret",
             "FIRECRAWL_API_KEY": "fc-secret",
-        }, clear=True), \
+        }
+        if os.name == "nt":
+            # ``clear=True`` wipes the whole environment, and on Windows
+            # ``pathlib.Path.home()`` reads USERPROFILE (or HOMEDRIVE+HOMEPATH)
+            # — never HOME — so the POSIX-shaped dict above makes it raise
+            # "Could not determine home directory" before the code under test
+            # even runs. Supply the platform's own spelling too.
+            env.update({
+                "USERPROFILE": "C:\\Users\\tester",
+                "HOMEDRIVE": "C:",
+                "HOMEPATH": "\\Users\\tester",
+                "SYSTEMROOT": "C:\\Windows",
+                "TEMP": "C:\\Users\\tester\\AppData\\Local\\Temp",
+            })
+
+        with patch.dict(os.environ, env, clear=True), \
             patch("tools.process_registry._find_shell", return_value="/bin/bash"), \
             patch("subprocess.Popen", side_effect=fake_popen), \
             patch("threading.Thread", return_value=fake_thread), \

@@ -65,6 +65,12 @@ def _wait_for_pgid_exit(pgid: int, timeout: float = 60.0) -> bool:
     return not _pgid_still_alive(pgid)
 
 
+@pytest.mark.skipif(os.name == "nt", reason=(
+    "POSIX process-group kill: this test monkeypatches os.getpgid/os.killpg, "
+    "which do not exist on Windows, and asserts os.killpg call order. Windows "
+    "takes the containment-job path instead, covered by "
+    "test_kill_process_uses_windows_tree_kill below."
+))
 def test_kill_process_uses_cached_pgid_if_wrapper_already_exited(monkeypatch):
     """If the shell wrapper exits before cleanup, still kill its process group.
 
@@ -123,6 +129,11 @@ def test_kill_process_uses_windows_tree_kill(monkeypatch):
     assert killed == []
 
 
+@pytest.mark.skipif(os.name == "nt", reason=(
+    "POSIX process-group semantics: the setup locates the child via `ps -eo` "
+    "and probes liveness with os.getpgid/os.killpg, none of which exist on "
+    "Windows. Windows tears the tree down through the containment job instead."
+))
 def test_wait_for_process_kills_subprocess_on_keyboardinterrupt():
     """When KeyboardInterrupt arrives mid-poll, the subprocess group must be
     killed before the exception is re-raised."""
