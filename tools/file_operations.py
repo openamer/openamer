@@ -2195,9 +2195,14 @@ class ShellFileOperations(FileOperations):
                 continue
             parts = line.split(' ', 1)
             if len(parts) == 2 and parts[0].replace('.', '').isdigit():
-                files.append(parts[1])
+                entry = parts[1]
             else:
-                files.append(line)
+                entry = line
+            # find is an MSYS program and reports what it walks in the shell's
+            # own /c/... spelling. Callers use these as filesystem paths, not as
+            # shell input, and the rg path above returns native drive paths --
+            # so fold this one to native as well, or the two backends disagree.
+            files.append(self._to_native_path(entry))
 
         # For explicit hidden roots, find's path-based filtering excludes every
         # file under the hidden path. Apply descendant filtering after command
