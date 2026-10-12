@@ -155,7 +155,9 @@ class TestLocalEnvironmentExecute:
 
     def test_cat_deterministic_content(self, env, tmp_path):
         f = tmp_path / "det.txt"
-        f.write_text(SIMPLE_CONTENT)
+        # newline="\n": Path.write_text translates to CRLF on Windows, and the
+        # assertions below compare the shell's verbatim echo of these bytes.
+        f.write_text(SIMPLE_CONTENT, newline="\n")
         result = env.execute(f"cat {_sh(f)}")
         assert result["returncode"] == 0
         assert result["output"] == SIMPLE_CONTENT
@@ -427,7 +429,7 @@ class TestTerminalOutputCleanliness:
 
     def test_cat(self, env, tmp_path):
         f = tmp_path / "cat_test.txt"
-        f.write_text("CAT_CONTENT_EXACT\n")
+        f.write_text("CAT_CONTENT_EXACT\n", newline="\n")
         result = env.execute(f"cat {_sh(f)}")
         assert result["output"] == "CAT_CONTENT_EXACT\n"
         _assert_clean(result["output"])
@@ -449,7 +451,7 @@ class TestTerminalOutputCleanliness:
 
     def test_head(self, env, tmp_path):
         f = tmp_path / "head_test.txt"
-        f.write_text(NUMBERED_CONTENT)
+        f.write_text(NUMBERED_CONTENT, newline="\n")
         result = env.execute(f"head -n 3 {_sh(f)}")
         expected = "LINE_0001\nLINE_0002\nLINE_0003\n"
         assert result["output"] == expected
