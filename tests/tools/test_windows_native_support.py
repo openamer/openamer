@@ -52,6 +52,11 @@ class TestConfigureWindowsStdio:
         yield
         sys.modules.pop("openamer_cli.stdio", None)
 
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "The test's own name is the premise: on POSIX is_windows() is False and "
+        "configure_windows_stdio() is a no-op. On Windows the Windows branch is "
+        "what runs — covered by the Windows-side tests in this file."
+    ))
     def test_no_op_on_posix(self):
         from openamer_cli import stdio
 
@@ -704,8 +709,12 @@ class TestKanbanWaitpidWindowsGuard:
         root = Path(__file__).resolve().parents[2]
         source = (root / "openamer_cli" / "kanban_db.py").read_text(encoding="utf-8")
         # Find the waitpid call and confirm it's inside a POSIX gate.
-        idx = source.find("os.waitpid(-1, os.WNOHANG)")
-        assert idx > 0, "waitpid call must exist"
+        # Match the call, not one literal argument spelling. The argument is now
+        # a Windows-safe local (``wnohang = getattr(os, "WNOHANG", 1)``) instead
+        # of ``os.WNOHANG`` directly; pinning the old literal made this guard
+        # test report a missing call while the guard was in fact intact.
+        idx = source.find("os.waitpid(-1,")
+        assert idx > 0, "waitpid reap call must exist"
         # Look backwards up to 400 chars for the gate. Accept either form:
         #   `if os.name != "nt":` (run iff POSIX), or
         #   `if os.name == "nt": return []` (early-return guard).
@@ -719,7 +728,7 @@ class TestKanbanWaitpidWindowsGuard:
             "os.name == 'nt'",
         )
         assert any(p in preamble for p in guard_patterns), (
-            "os.waitpid(-1, os.WNOHANG) must sit behind an os.name guard "
+            "the os.waitpid(-1, ...) reap loop must sit behind an os.name guard "
             f"(checked patterns: {guard_patterns})"
         )
 
