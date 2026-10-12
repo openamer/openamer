@@ -55,7 +55,11 @@ def test_acp_resource_link_file_is_inlined_as_text(tmp_path):
         "Please read this file\n"
         "[Attached file: Project notes (notes.md)]\n"
         f"URI: {attached.as_uri()}\n\n"
-        "# Notes\n\nAttached file body"
+        # Compare against the exact bytes the inliner reads. Path.write_text
+        # rewrites newlines on Windows and read_text() translates them back,
+        # so only the raw bytes reproduce what actually lands in the prompt;
+        # a hard-coded body literal can only ever match on POSIX.
+        + attached.read_bytes().decode("utf-8")
     )
 
 
