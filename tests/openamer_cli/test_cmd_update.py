@@ -1,6 +1,7 @@
 """Tests for cmd_update — branch fallback when remote branch doesn't exist."""
 
 import hashlib
+import os
 import subprocess
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -1096,6 +1097,11 @@ class TestNodeRuntimeNpmResolution:
         import openamer_constants
 
         monkeypatch.setattr(hm, "_is_windows", lambda: False)
+        # Faking the platform has to include how PATH is split: the rescan
+        # separates entries with os.pathsep, which is ";" on a native Windows
+        # interpreter, so a ":"-joined POSIX PATH would parse as one entry and
+        # the Linux-native npm below could never be found.
+        monkeypatch.setattr(os, "pathsep", ":")
         monkeypatch.setenv(
             "PATH", "/mnt/c/Program Files/nodejs:/root/.local/bin:/usr/bin"
         )
