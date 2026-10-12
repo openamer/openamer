@@ -3,12 +3,19 @@
 import json
 import os
 import sqlite3
+import sys
 import zipfile
 from argparse import Namespace
 from pathlib import Path
 from unittest.mock import patch
 
 import pytest
+
+
+# ``openamer_cli.profiles.create_wrapper_script`` writes ``<alias>.bat`` on
+# Windows and a bare ``<alias>`` everywhere else (``sys.platform == "win32"`` is
+# the product's own test for it), so the alias filename is platform-dependent.
+_WRAPPER_SUFFIX = ".bat" if sys.platform == "win32" else ""
 
 
 # ---------------------------------------------------------------------------
@@ -1324,12 +1331,14 @@ class TestProfileRestoration:
         assert (openamer_home / "profiles" / "coder" / "config.yaml").exists()
         assert (openamer_home / "profiles" / "researcher" / "config.yaml").exists()
 
-        # Wrapper scripts should be created
-        assert (wrapper_dir / "coder").exists()
-        assert (wrapper_dir / "researcher").exists()
+        # Wrapper scripts should be created. ``create_wrapper_script`` writes
+        # ``<alias>.bat`` on Windows and a bare ``<alias>`` everywhere else, so
+        # asserting the POSIX name there would be a no-op check.
+        assert (wrapper_dir / f"coder{_WRAPPER_SUFFIX}").exists()
+        assert (wrapper_dir / f"researcher{_WRAPPER_SUFFIX}").exists()
 
         # Wrappers should contain the right content
-        coder_wrapper = (wrapper_dir / "coder").read_text()
+        coder_wrapper = (wrapper_dir / f"coder{_WRAPPER_SUFFIX}").read_text()
         assert "openamer -p coder" in coder_wrapper
 
     def test_import_skips_profile_dirs_without_config(self, tmp_path, monkeypatch):
@@ -1355,8 +1364,8 @@ class TestProfileRestoration:
         run_import(args)
 
         # Only valid profile should get a wrapper
-        assert (wrapper_dir / "valid").exists()
-        assert not (wrapper_dir / "empty").exists()
+        assert (wrapper_dir / f"valid{_WRAPPER_SUFFIX}").exists()
+        assert not (wrapper_dir / f"empty{_WRAPPER_SUFFIX}").exists()
 
     def test_import_without_profiles_module(self, tmp_path, monkeypatch):
         """Import gracefully handles missing profiles module (fresh install)."""
@@ -2068,7 +2077,10 @@ class TestQuickSnapshotProjectsKanban:
         monkeypatch.setattr(bk, "_safe_copy_db", _spy)
         snap_id = create_quick_snapshot(openamer_home=openamer_home)
         # The board db was copied via _safe_copy_db (not raw copy).
-        assert any(s.endswith("boards/work/kanban.db") for s in called["db"]), called["db"]
+        # ``called`` holds native paths, so compare separators POSIX-style.
+        assert any(
+            s.replace("\\", "/").endswith("boards/work/kanban.db") for s in called["db"]
+        ), called["db"]
         copy = openamer_home / "state-snapshots" / snap_id / "kanban" / "boards" / "work" / "kanban.db"
         rows = sqlite3.connect(str(copy)).execute("SELECT * FROM tasks").fetchall()
         assert rows == [("w1", "ship")]

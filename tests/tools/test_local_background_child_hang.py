@@ -11,12 +11,25 @@ The fix switches ``_drain()`` to select()-based non-blocking reads and
 stops draining shortly after bash exits even if the pipe hasn't EOF'd.
 """
 import math
+import os
 import subprocess
+import sys
 import time
 
 import pytest
 
 from tools.environments.local import LocalEnvironment
+
+
+# The synthetic producers below run inside the local shell environment, so they
+# need an interpreter that *that* shell can actually execute. A bare ``python3``
+# resolves to the WindowsApps WSL shim on Windows — a stub that exits 1 without
+# running anything — which made half of this file fail with ``assert 1 == 0``
+# against a perfectly healthy drain path. Use this process's own interpreter
+# there; POSIX keeps the plain ``python3`` it always had.
+_SH_PY = "python3"
+if os.name == "nt":
+    _SH_PY = '"%s"' % sys.executable.replace("\\", "/")
 
 
 def _pkill(pattern: str) -> None:
@@ -38,7 +51,7 @@ class TestBackgroundChildDoesNotHang:
     def test_plain_background_returns_promptly(self, local_env):
         """``cmd &`` with no output redirection must not hang on pipe inherit."""
         marker = "openamer_8340_plain_bg"
-        cmd = f'python3 -c "import time; time.sleep(60)" & echo {marker}'
+        cmd = f'{_SH_PY} -c "import time; time.sleep(60)" & echo {marker}'
         try:
             t0 = time.monotonic()
             result = local_env.execute(cmd, timeout=15)
@@ -56,7 +69,7 @@ class TestBackgroundChildDoesNotHang:
     def test_setsid_disown_pattern_returns_promptly(self, local_env):
         """The exact pattern from the issue: setsid ... & disown."""
         cmd = (
-            'setsid python3 -c "import time; time.sleep(60)" '
+            f'setsid {_SH_PY} -c "import time; time.sleep(60)" '
             '> /dev/null 2>&1 < /dev/null & disown; echo started'
         )
         try:
@@ -97,7 +110,7 @@ class TestBackgroundChildDoesNotHang:
     ):
         monkeypatch.setattr("tools.tool_output_limits.get_max_bytes", lambda: 10_000)
         command = (
-            "python3 -c \"import sys; "
+            f'{_SH_PY} -c "import sys; '
             "sys.stdout.write('HEAD-SENTINEL\\n' + 'x' * 2000000 + "
             "'\\nTAIL-SENTINEL')\""
         )
@@ -123,7 +136,7 @@ class TestBackgroundChildDoesNotHang:
         """
         # ~200 KB — four times the default 50 KB cap.
         command = (
-            "python3 -c \"import sys; "
+            f'{_SH_PY} -c "import sys; '
             "sys.stdout.write('START-MARK\\n' + ('y' * 200000) + '\\nEND-MARK')\""
         )
 
@@ -140,7 +153,7 @@ class TestBackgroundChildDoesNotHang:
     ):
         monkeypatch.setattr("tools.tool_output_limits.get_max_bytes", lambda: 5_000)
         command = (
-            "python3 -c \"import sys; "
+            f'{_SH_PY} -c "import sys; '
             "chunk = 'x' * 4096; "
             "exec('while True: sys.stdout.write(chunk); sys.stdout.flush()')\""
         )
@@ -199,7 +212,7 @@ class TestBackgroundChildDoesNotHang:
         # read boundaries, and most boundaries will land in the middle of the
         # 3-byte UTF-8 encoding of U+65E5.
         cmd = (
-            'python3 -c \'import sys; '
+            f'{_SH_PY} -c \'import sys; '
             'sys.stdout.buffer.write(chr(0x65e5).encode("utf-8") * 10000); '
             'sys.stdout.buffer.write(b"\\n")\''
         )
@@ -220,7 +233,7 @@ class TestBackgroundChildDoesNotHang:
         """
         # Write a deliberate invalid UTF-8 lead byte sandwiched between valid ASCII
         cmd = (
-            'python3 -c \'import sys; '
+            f'{_SH_PY} -c \'import sys; '
             'sys.stdout.buffer.write(b"before "); '
             'sys.stdout.buffer.write(b"\\xff\\xfe"); '
             'sys.stdout.buffer.write(b" after\\n")\''
