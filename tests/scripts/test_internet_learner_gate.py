@@ -7135,3 +7135,42 @@ PRICE_TABLE_CONTROLS = [
     "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
 ]
 
+
+
+# class 174 (13.10.26): the chart WIDGET's own "Loading Chart" placeholder
+# welded to the article lede (cycle_c_github). A STRIP, not a reject -- the
+# benchmark sentence behind the label is the knowledge.
+UI_PLACEHOLDER_LEAK = (
+    "Loading Chart We benchmarked 4 popular open-source agentic frameworks across "
+    "2,000 runs (5 tasks, 100 runs each per framework), measuring end-to-end "
+    "latency, token consumption, and architectural differences.")
+
+UI_PLACEHOLDER_CONTROLS = [
+    "Loading a 70B model requires 1.4 TB of VRAM across ten GPUs.",
+    "Loading the dataset took 12 minutes on the CPU-only host.",
+    "Loading Chart",
+    "Loading chart data is what the widget does before it renders.",
+    "Loading Chart: a guide to rendering figures with the API.",
+    "The Loading Chart placeholder is rendered by the chart library.",
+    "Chart loading failed because the API returned a 500 error code.",
+]
+
+
+def test_leading_ui_placeholder_is_stripped_not_rejected():
+    """The widget label goes, the sentence behind it stays."""
+    assert IL._strip_leading_ui_placeholder(UI_PLACEHOLDER_LEAK) == (
+        "We benchmarked 4 popular open-source agentic frameworks across "
+        "2,000 runs (5 tasks, 100 runs each per framework), measuring "
+        "end-to-end latency, token consumption, and architectural differences.")
+    # the composite clean path reaches the same body
+    assert IL._clean_insight(UI_PLACEHOLDER_LEAK, 300).startswith("We benchmarked")
+    # a gerund opener ("Loading a ...") is prose, never the widget label
+    for c in UI_PLACEHOLDER_CONTROLS:
+        assert IL._strip_leading_ui_placeholder(c) == c, c
+
+
+def test_leading_ui_placeholder_needs_a_real_body():
+    """A bare label, a short tail, or a non-sentence head stays byte-identical."""
+    for c in ("Loading Chart", "Loading Chart Data", "Loading Chart 42",
+              "Loading Chart: see the docs."):
+        assert IL._strip_leading_ui_placeholder(c) == c, c
