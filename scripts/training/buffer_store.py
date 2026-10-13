@@ -3998,9 +3998,44 @@ def _is_site_nav_chain(text):
     return bool(_SITE_NAV_ANNOUNCE_RE.search(text))
 
 
+
+# class 175 (13.10.26): a repo README's own Quickstart/install instruction
+# stored as knowledge -- same rule as internet_learner._is_readme_quickstart_chrome
+# (kept as a mirror; buffer_store must not import the learner). A section LABEL
+# ("Quickstart") welded to an install/setup imperative, OR a prerequisite
+# install imperative welded into a "(see below)" pointer.
+_README_QS_LABEL_RE = _re.compile(r"\b(?:demo\s+)?quickstart\b", _re.IGNORECASE)
+_README_INSTALL_IMP_RE = _re.compile(
+    r"\b(?:make\s+sure|ensure|be\s+sure)\b[\s\S]{0,120}?"
+    r"\b(?:installed|set\s+up|configured|registered)\b",
+    _re.IGNORECASE)
+_README_INSTALL_VERB_RE = _re.compile(
+    r"\b(?:pip|poetry|npm|yarn|uv|conda)\s+install\b"
+    r"|\brun\s+`?[a-z0-9_.-]+\s+install\b",
+    _re.IGNORECASE)
+_README_BELOW_PTR_RE = _re.compile(r"\(\s*see\s+below\s*\)", _re.IGNORECASE)
+
+
+def _is_readme_quickstart_chrome(text):
+    """True when `text` is a README Quickstart/install instruction (class 175)."""
+    t = text or ""
+    m = _README_QS_LABEL_RE.search(t)
+    if m:
+        tail = t[m.end():m.end() + 90]
+        if (_README_INSTALL_IMP_RE.search(tail)
+                or _README_INSTALL_VERB_RE.search(tail)
+                or _re.search(r"\binstalled\b", tail, _re.IGNORECASE)):
+            return True
+    if _README_INSTALL_IMP_RE.search(t) and _README_BELOW_PTR_RE.search(t):
+        return True
+    return False
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
+        return True
+    # a README's Quickstart/install instruction, not knowledge (class 175, 13.10.26)
+    if _is_readme_quickstart_chrome(text):
         return True
     # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
     if _is_docs_cta_serp_run(text):

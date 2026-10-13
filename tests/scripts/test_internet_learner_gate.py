@@ -7135,3 +7135,34 @@ PRICE_TABLE_CONTROLS = [
     "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
 ]
 
+def test_readme_quickstart_install_chrome_is_gated_on_both_paths():
+    """A README Quickstart/install instruction is chrome on BOTH gates (class 175)."""
+    import buffer_store
+    leak = ("Demo Quickstart Make sure you have git, python-3.10/11, and poetry "
+            "installed and OPENAI key setup (see below).")
+    # the new helper, and both gates, reject the leak
+    assert IL._is_readme_quickstart_chrome(leak), leak
+    assert buffer_store._is_readme_quickstart_chrome(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+    # a prerequisite-install imperative welded into a "(see below)" pointer is
+    # the same class -- the "Quickstart" label is not required
+    setup = ("Make sure you have the model installed and the token stored in "
+             "config (see below).")
+    assert IL._is_readme_quickstart_chrome(setup), setup
+    assert buffer_store._is_readme_quickstart_chrome(setup), setup
+    # genuine prose that merely MENTIONS a quickstart, an install or a setup
+    # stays clean on the helper AND on both gates
+    for c in (
+        "The quickstart guide explains that you need an API key and a working install of the runtime.",
+        "OpenAI key setup is documented in the README, and the setup wizard walks you through it.",
+        "The tutorial says to install the package and then set the API key in your environment.",
+        "Demo Quickstart: the reference implementation ships a poetry lockfile for reproducible builds.",
+        "We benchmarked 12 models on the same harness and the installer added 30% overhead.",
+        "The repository's Makefile target runs the full test suite under pytest.",
+    ):
+        assert not IL._is_readme_quickstart_chrome(c), c
+        assert not buffer_store._is_readme_quickstart_chrome(c), c
+        assert not IL._is_junk(c), c
+        assert not buffer_store.is_junk(c), c
+
