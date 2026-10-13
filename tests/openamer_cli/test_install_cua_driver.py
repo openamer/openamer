@@ -21,7 +21,23 @@ cleanly on missing-arch assets, and the upgrade path uses
 
 from __future__ import annotations
 
+import sys
 from unittest.mock import patch
+
+import pytest
+
+# The cua-driver install-lock protocol lives in the POSIX bash installer, and
+# the liveness probe it relies on has no Windows equivalent: os.kill(pid, 0)
+# terminates on Windows instead of probing. Shared marker so the reason is
+# written once (gate the platform assumption, never the file).
+_lock_protocol_is_posix_only = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX-only install-lock protocol: _clear_stale_cua_install_lock() "
+        "early-returns on win32 (openamer_cli/tools_config.py:981, install.ps1 "
+        "does not use the lock) and os.kill(pid, 0) is not a liveness probe there"
+    ),
+)
 
 
 class TestInstallCuaDriverUpgrade:
@@ -213,6 +229,7 @@ class TestStaleInstallLockClear:
         import os
         os.environ.pop("CUA_DRIVER_RS_HOME", None)
 
+    @_lock_protocol_is_posix_only
     def test_dead_holder_lock_is_cleared(self, tmp_path):
         from openamer_cli import tools_config
 
@@ -237,6 +254,7 @@ class TestStaleInstallLockClear:
         tools_config._clear_stale_cua_install_lock()
         assert lock.exists()
 
+    @_lock_protocol_is_posix_only
     def test_pidless_old_lock_is_cleared(self, tmp_path):
         import os
         import time
@@ -260,7 +278,9 @@ class TestInstallerTimeoutKillsProcessGroup:
     """On timeout the whole installer process group must be killed, so the
     `curl | bash` grandchildren can't survive holding the install lock."""
 
-    def test_timeout_kills_process_group_and_returns_false(self, tmp_path):
+    def test_timeout_kills_process_group_and_returns_false(
+        self, tmp_path, monkeypatch
+    ):
         import os
         import signal
         import subprocess
@@ -282,11 +302,20 @@ class TestInstallerTimeoutKillsProcessGroup:
             killed["pgid"] = pgid
             killed["sig"] = sig
 
+        # signal.SIGKILL does not exist on Windows and the POSIX branch of
+        # _kill_installer_tree() (openamer_cli/tools_config.py:1123) reads it, so
+        # the fake platform is only complete with the constant supplied. 9 is the
+        # POSIX value the assertion below pins.
+        monkeypatch.setattr(signal, "SIGKILL", 9, raising=False)
+
+        # os.getpgid/os.killpg are likewise POSIX-only: create=True is what makes
+        # them exist so that branch runs exactly as it does on the host the guard
+        # describes (openamer_cli/tools_config.py:1119-1127).
         with patch("platform.system", return_value="Linux"), \
              patch("subprocess.run", return_value=MagicMock(returncode=0, stderr="")), \
              patch("subprocess.Popen", return_value=fake_proc), \
-             patch.object(tools_config.os, "getpgid", return_value=99999), \
-             patch.object(tools_config.os, "killpg", side_effect=fake_killpg), \
+             patch.object(tools_config.os, "getpgid", return_value=99999, create=True), \
+             patch.object(tools_config.os, "killpg", side_effect=fake_killpg, create=True), \
              patch.object(tools_config, "_clear_stale_cua_install_lock"), \
              patch.object(tools_config, "_print_warning"), \
              patch.object(tools_config, "_print_info"):
