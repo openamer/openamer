@@ -1,0 +1,39 @@
+name: mcp-bridge
+version: 1.0.0
+description: "MCP Bridge Plugin — connect to external MCP servers via stdio JSON-RPC and register their tools as OpenAmer tools."
+author: OpenAmer
+kind: backend
+license: MIT
+hooks:
+  - onReady
+config:
+  schema:
+    servers:
+      type: array
+      description: "List of MCP server definitions"
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+            description: "Unique server name (used in tool name prefix)"
+          command:
+            type: string
+            description: "Executable to run"
+          args:
+            type: array
+            items:
+              type: string
+            default: []
+            description: "Command arguments"
+          env:
+            type: object
+            default: {}
+            description: "Extra environment variables for the subprocess"
+          timeout:
+            type: integer
+            default: 30
+            description: "Per-tool-call timeout in seconds"
+provides:
+  tools:
+    - mcp-*

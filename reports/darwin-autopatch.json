@@ -1,0 +1,82 @@
+{
+  "timestamp": "2026-10-12T18:27:16",
+  "mode": "apply",
+  "population": 1119,
+  "avg_score": 38.7,
+  "kept": [
+    {
+      "skill": "auto-structural-connection-between-tool",
+      "before": 21,
+      "after": 31,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "auto-internet-learning-metas-new",
+      "before": 21,
+      "after": 31,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "auto-internet-learning-openai-hacked",
+      "before": 21,
+      "after": 31,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "auto-latest-research-insight-cultural",
+      "before": 21,
+      "after": 31,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "dsh-archive-agent-notes",
+      "before": 26,
+      "after": 36,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "dsh-doc-standards",
+      "before": 26,
+      "after": 36,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "dsh-find-simplifications",
+      "before": 26,
+      "after": 31,
+      "delta": 5,
+      "fixes": []
+    },
+    {
+      "skill": "dsh-prose-standard",
+      "before": 26,
+      "after": 36,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "dsh-trim-cot-leakage",
+      "before": 26,
+      "after": 36,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "auto-security-learning-mcp-server",
+      "before": 28,
+      "after": 31,
+      "delta": 3,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt"
+      ]
+    }
+  ],
+  "reverted": [],
+  "candidates": []
+}

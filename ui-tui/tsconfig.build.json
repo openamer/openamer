@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@openamer/ink": ["src/types/openamer-ink.d.ts"]
+    }
+  }
+}

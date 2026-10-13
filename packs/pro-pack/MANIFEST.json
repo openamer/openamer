@@ -1,0 +1,31 @@
+{
+  "name": "OpenAmer Pro Skill Pack",
+  "version": "1.0.0",
+  "min_score": 70,
+  "skills": [
+    {
+      "name": "python-debugpy",
+      "score": 73
+    },
+    {
+      "name": "windows-computer-use",
+      "score": 71
+    },
+    {
+      "name": "claude-design",
+      "score": 71
+    },
+    {
+      "name": "xlsx",
+      "score": 71
+    },
+    {
+      "name": "sketch",
+      "score": 70
+    },
+    {
+      "name": "train-from-usage",
+      "score": 70
+    }
+  ]
+}

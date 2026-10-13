@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "roles": [
+    {
+      "id": "developer",
+      "name": "Developer",
+      "description": "Code schreiben und implementieren",
+      "color": "blue",
+      "prompt_template": "Du bist der Developer. Deine Aufgabe: {task}\n\nImplementiere die Lösung. Schreibe sauberen, getesteten Code. Gib am Ende eine strukturierte Zusammenfassung deiner Arbeit als JSON aus."
+    },
+    {
+      "id": "tester",
+      "name": "Tester",
+      "description": "Tests schreiben und Qualitätssicherung",
+      "color": "green",
+      "prompt_template": "Du bist der Tester. Deine Aufgabe: {task}\n\nErstelle Tests, prüfe die Implementierung auf Fehler, Randfälle und Performanz. Gib am Ende eine strukturierte Zusammenfassung deiner Test-Ergebnisse als JSON aus."
+    },
+    {
+      "id": "reviewer",
+      "name": "Reviewer",
+      "description": "Code-Review und Qualitätsprüfung",
+      "color": "yellow",
+      "prompt_template": "Du bist der Reviewer. Deine Aufgabe: {task}\n\nPrüfe den Code auf Korrektheit, Sicherheit, Style und Wartbarkeit. Gib am Ende eine strukturierte Review-Zusammenfassung als JSON aus."
+    },
+    {
+      "id": "architect",
+      "name": "Architect",
+      "description": "Design und Architektur",
+      "color": "purple",
+      "prompt_template": "Du bist der Architect. Deine Aufgabe: {task}\n\nEntwirf die Architektur, dokumentiere Komponenten, Schnittstellen und Datenfluss. Gib am Ende eine strukturierte Architektur-Zusammenfassung als JSON aus."
+    }
+  ]
+}

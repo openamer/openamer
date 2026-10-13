@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAmer — The Agent That Sleeps, Dreams, and Trains Itself</title>
+<style>
+  :root { --bg:#0d1117; --panel:#161b22; --border:#30363d; --text:#c9d1d9;
+          --dim:#8b949e; --green:#7ee787; --red:#ff7b72; --yellow:#d29922; --blue:#79c0ff; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif; line-height:1.6; }
+  .wrap { max-width:1100px; margin:0 auto; padding:24px; }
+  h1 { font-size:2.4em; margin:0.4em 0; color:#fff; }
+  h1 .hl { color:var(--green); }
+  h2 { color:var(--blue); border-bottom:1px solid var(--border); padding-bottom:8px; }
+  .tagline { font-size:1.2em; color:var(--dim); margin-bottom:24px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin:24px 0; }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:20px; }
+  .card .num { font-size:2em; font-weight:700; color:var(--green); }
+  .card .lbl { color:var(--dim); font-size:0.9em; }
+  table { width:100%; border-collapse:collapse; margin:16px 0; }
+  th,td { border:1px solid var(--border); padding:10px 14px; text-align:left; }
+  th { background:var(--panel); color:var(--blue); }
+  .ok { color:var(--green); font-weight:600; }
+  .no { color:var(--red); font-weight:600; }
+  .partial { color:var(--yellow); font-weight:600; }
+  .dream { background:var(--panel); border-left:4px solid var(--green); padding:14px 18px;
+           margin:12px 0; border-radius:0 8px 8px 0; font-family:ui-monospace,monospace; font-size:0.92em; white-space:pre-wrap; }
+  .badge { display:inline-block; background:var(--panel); border:1px solid var(--border);
+           padding:3px 12px; border-radius:20px; margin:3px; font-size:0.85em; color:var(--dim); }
+  .cta { background:linear-gradient(135deg,#1a2f1a,#0d1117); border:1px solid var(--green);
+         border-radius:8px; padding:24px; margin:24px 0; text-align:center; }
+  .btn { display:inline-block; background:var(--green); color:#0d1117; font-weight:700;
+         padding:12px 28px; border-radius:8px; text-decoration:none; margin:6px; }
+  .btn.ghost { background:transparent; color:var(--green); border:1px solid var(--green); }
+  .foot { color:var(--dim); font-size:0.85em; margin-top:40px; border-top:1px solid var(--border); padding-top:16px; }
+  code { background:var(--panel); padding:2px 6px; border-radius:4px; font-size:0.9em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>OpenAmer — <span class="hl">The Agent That Sleeps</span></h1>
+<div class="tagline">Every AI agent works while you work. Only one of them also <b>works while you sleep</b> — replaying its day, dreaming about its errors, and fine-tuning its own brain on your laptop. No GPU. No cloud. No API bill.</div>
+
+<div class="grid">
+  <div class="card"><div class="num" id="m-nights">11</div><div class="lbl">Dream nights completed</div></div>
+  <div class="card"><div class="num" id="m-brain">2,862</div><div class="lbl">Learning records captured</div></div>
+  <div class="card"><div class="num" id="m-episodes">3,012</div><div class="lbl">Episodes in long-term memory</div></div>
+  <div class="card"><div class="num" id="m-darwin">1,037</div><div class="lbl">Evolution events (live)</div></div>
+  <div class="card"><div class="num" id="m-species">54</div><div class="lbl">Skill species in ecosystem</div></div>
+  <div class="card"><div class="num">2.10 &rarr; 1.65</div><div class="lbl">Training loss, CPU-only LoRA</div></div>
+</div>
+
+<h2>⚔️ Head-to-Head: Why We Win</h2>
+<table>
+  <tr><th>Capability</th><th>OpenAmer</th><th>Claude Code / Codex</th><th>LangChain / AutoGPT</th><th>Devin</th><th>Ollama</th></tr>
+  <tr><td>Runs fully offline</td><td class="ok">YES</td><td class="no">no</td><td class="partial">partial</td><td class="no">no</td><td class="ok">YES</td></tr>
+  <tr><td>Sleep / dream consolidation cycle</td><td class="ok">YES — nightly REM replay</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
+  <tr><td>Self-fine-tuning from own usage</td><td class="ok">YES — nightly LoRA on CPU</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no (inference only)</td></tr>
+  <tr><td>Episodic long-term memory w/ embeddings</td><td class="ok">YES — 3,012 episodes</td><td class="partial">session only</td><td class="partial">opt-in</td><td class="partial">session</td><td class="no">no</td></tr>
+  <tr><td>Skill evolution w/ arena + predation</td><td class="ok">YES — 1,037 events</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
+  <tr><td>Zero token cost after setup</td><td class="ok">YES</td><td class="no">pay per token</td><td class="no">pay per token</td><td class="no">$500/mo</td><td class="ok">YES</td></tr>
+  <tr><td>Recurring 24/7 cron fleet</td><td class="ok">YES — 70+ jobs</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
+  <tr><td>Nightmare detection (recurring-error auto-fix)</td><td class="ok">YES</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
+</table>
+
+<h2>🌙 Last Night's Actual Dream Report</h2>
+<div class="dream" id="dream-report"># Dream Report 2026-09-02
+
+- Replayed 729 messages, 383 error fragments
+
+## Insights
+- Clear night, no error motifs.
+
+## Intentions for today</div>
+<p style="color:var(--dim)">Every night at 03:30 the agent replays all conversations of the day through its "REM phase",
+clusters errors into motifs, and flags anything recurring on 3+ days as a <b>nightmare</b> —
+a standing intention to fix the root cause, not the symptom. New dreams appear here automatically.</p>
+
+<h2>🧠 The Self-Training Loop (all on a 22 GB laptop, CPU only)</h2>
+<p>
+<b>1. Live:</b> every conversation is captured as a training trajectory.<br>
+<b>2. Dream:</b> nightly replay + error-motif clustering.<br>
+<b>3. Distill:</b> sessions become teaching examples (instruction &rarr; proven answer).<br>
+<b>4. Train:</b> QLoRA fine-tune of Qwen3.5-2B on pure CPU — 35 minutes, no GPU.<br>
+<b>5. Serve:</b> the tuned model answers on <code>localhost:8081</code> — offline, zero cost.<br>
+<b>6. Guard:</b> RAM/data/interval guards stop the loop from running blind.<br>
+<b>Repeat.</b> The brain literally grows with every use.
+</p>
+
+<div class="cta">
+  <h2 style="border:none;">KO your agent dependency today.</h2>
+  <a class="btn" href="https://github.com/openamer/openamer">⭐ Star on GitHub</a>
+  <a class="btn ghost" href="./darwin-live/">🧬 Watch the Evolution Live</a>
+  <a class="btn ghost" href="https://github.com/openamer/openamer/blob/main/openamer-producthunt-launch.md">🚀 Launch Package</a>
+  <p style="color:var(--dim)">MIT license · Windows/macOS/Linux · Any model (local or API) · <span id="m-stars">3</span> stars and counting</p>
+</div>
+
+<div>
+  <span class="badge">🧠 Self-training</span>
+  <span class="badge">🌙 Sleep cycle</span>
+  <span class="badge">🧬 Skill evolution</span>
+  <span class="badge">💾 3k episodes memory</span>
+  <span class="badge">🖥️ Background computer-use</span>
+  <span class="badge">🐝 A2A swarm</span>
+  <span class="badge">🎤 Voice + wake words</span>
+  <span class="badge">🔌 Plugin system</span>
+  <span class="badge">🛡️ Self-healing fleet</span>
+  <span class="badge">💰 $0 API after setup</span>
+</div>
+
+<div class="foot">
+  All numbers on this page are real outputs from a live system running on one laptop (Windows, 22 GB RAM, no GPU).
+  Dream reports: <code>reports/dream-*.md</code> · Evolution: <code>darwin/lineage.json</code> · Memory: <code>memory/longterm_episodes.jsonl</code>.
+  Updated 2026-09-02. The competitor table reflects publicly documented features as of this date — corrections welcome via issues.
+</div>
+
+</div>
+<script>
+// fetch fresh dream report from repo raw if available
+fetch('https://raw.githubusercontent.com/openamer/openamer/main/reports/dream-latest.md')
+  .then(r => r.ok ? r.text() : Promise.reject())
+  .then(t => { document.getElementById('dream-report').textContent = t; })
+  .catch(() => {});
+</script>
+</body>
+</html>

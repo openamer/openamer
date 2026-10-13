@@ -1,0 +1,49 @@
+{
+ "generated": "2026-09-30T19:32:27.452467Z",
+ "what": "Verbatim export of the local outcome ledger of the SI-core swarm (C:/Users/damir/AppData/Local/openamer-laptop/memory/si/outcome_ledger.jsonl). Every line is one real verification gate run: the artifact was actually executed and checked.",
+ "totals": {
+  "outcomes": 615,
+  "passed": 209,
+  "failed": 406
+ },
+ "self_improvement": {
+  "early_100_pass_rate": 0.19,
+  "recent_100_pass_rate": 0.31,
+  "improved": true
+ },
+ "agents": [
+  {
+   "name": "critic-alpha",
+   "strategy": "critic",
+   "fitness": 0.8529,
+   "gen": 1,
+   "wins": 0,
+   "losses": 11
+  },
+  {
+   "name": "synthesist-alpha",
+   "strategy": "synthesist",
+   "fitness": 0.8515,
+   "gen": 1,
+   "wins": 46,
+   "losses": 117
+  },
+  {
+   "name": "deliberate-beta",
+   "strategy": "deliberate",
+   "fitness": 0.8515,
+   "gen": 1,
+   "wins": 154,
+   "losses": 268
+  },
+  {
+   "name": "greedy-beta",
+   "strategy": "greedy",
+   "fitness": 0.886,
+   "gen": 1,
+   "wins": 0,
+   "losses": 4
+  }
+ ],
+ "how_to_verify": "The ledger format is one JSON object per line: {ts, task, goal, agent, passed, why}. The 'why' field contains the actual verification output (exit codes, error text). Nothing is self-graded."
+}

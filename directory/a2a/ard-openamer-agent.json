@@ -1,0 +1,20 @@
+{
+  "@context": "https://agenticresourcediscovery.org/context/v1",
+  "@type": "Agent",
+  "identifier": "urn:air:openamer.github.io:mesh:openamer-agent",
+  "name": "OpenAmer",
+  "description": "OpenAmer — an autonomous AI agent with agent-to-agent (A2A) task delegation over the internet.",
+  "representativeQueries": [
+    "delegate a task to an autonomous agent",
+    "ask an autonomous AI agent a question over the internet",
+    "find an A2A-capable open-source agent"
+  ],
+  "capabilities": [
+    "a2a.task.ask",
+    "a2a.task.delegate",
+    "agent-card"
+  ],
+  "endpoints": [],
+  "publisher": "openamer",
+  "nodeFingerprint": "cf971ad884b74297"
+}

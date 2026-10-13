@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DARWIN — Living Civilization</title>
+<style>
+*{margin:0;padding:0}
+body{overflow:hidden;background:#020406;font-family:'Inter','Segoe UI',system-ui,sans-serif}
+#hud{position:fixed;top:20px;left:20px;z-index:10;background:rgba(6,10,14,.55);backdrop-filter:blur(20px);border:1px solid rgba(126,231,135,.1);border-radius:18px;padding:18px 22px;min-width:250px}
+#hud h2{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:#7ee787;margin-bottom:10px;font-weight:600}
+.st{display:flex;justify-content:space-between;font-size:.8rem;color:#7a8494;padding:3px 0}
+.st b{color:#79c0ff;font-weight:600}
+#feed{position:fixed;top:20px;right:20px;z-index:10;width:290px;background:rgba(6,10,14,.55);backdrop-filter:blur(20px);border:1px solid rgba(126,231,135,.08);border-radius:18px;padding:14px 18px;max-height:250px;overflow-y:auto}
+#feed h3{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:#3d4854;margin-bottom:6px}
+#feed .f{padding:4px 0;font-size:.72rem;color:#6e7a86;border-bottom:1px solid rgba(48,54,61,.25)}
+#feed .new{color:#7ee787;animation:slidein .5s}
+@keyframes slidein{from{opacity:0;transform:translateX(12px)}to{opacity:1}}
+#legend{position:fixed;bottom:20px;left:20px;z-index:10;color:#3d4854;font-size:.68rem;background:rgba(6,10,14,.55);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.04);border-radius:16px;padding:10px 16px}
+.ld{display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 4px 0 12px;vertical-align:middle}
+#card{position:fixed;bottom:24px;right:24px;z-index:30;width:310px;background:rgba(8,12,18,.88);backdrop-filter:blur(28px);border:1px solid rgba(126,231,135,.12);border-radius:24px;padding:24px;color:#c9d1d9;display:none;box-shadow:0 16px 48px rgba(0,0,0,.8)}
+#card .em{font-size:2.6rem;float:right;margin-top:-6px}
+#card .nm{font-size:1.25rem;font-weight:600;color:#7ee787}
+#card .md{font-size:.7rem;color:#485258;margin:2px 0 12px}
+#card .bio{font-size:.8rem;line-height:1.65;color:#7a8494;margin:10px 0;padding:12px;background:rgba(126,231,135,.03);border-radius:12px;border-left:2px solid rgba(126,231,135,.2)}
+#card .tr{display:inline-block;background:rgba(121,192,255,.05);border:1px solid rgba(121,192,255,.1);border-radius:16px;padding:3px 12px;font-size:.68rem;margin:3px 2px;color:#79c0ff;text-transform:capitalize}
+#card .cl{position:absolute;top:12px;right:16px;cursor:pointer;color:#3d4854;font-size:1rem}
+.br{display:flex;align-items:center;gap:10px;margin:5px 0;font-size:.65rem;color:#3d4854;text-transform:uppercase;letter-spacing:1px}
+.bw{flex:1;height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden}
+.bf{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.2,.8,.3,1)}
+#card .rc{font-size:.7rem;color:#3d4854;margin-top:10px;letter-spacing:.5px}
+.name-label{position:fixed;pointer-events:none;z-index:5;transform:translate(-50%,-135%);white-space:nowrap;text-align:center}
+.name-label .n{font-size:.72rem;font-weight:600;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.name-label .s{font-size:.6rem;color:#566069;font-weight:300}
+.name-label .e{font-size:1.1rem;display:block;margin-bottom:2px}
+/* thought bubble above agents */
+.thought{position:fixed;pointer-events:none;z-index:6;transform:translate(-50%,-100%);
+  background:rgba(121,192,255,.12);border:1px solid rgba(121,192,255,.25);
+  border-radius:12px;padding:4px 10px;font-size:.65rem;color:#79c0ff;
+  max-width:180px;text-align:center;backdrop-filter:blur(4px)}
+.thought .act{font-weight:700;font-size:.72rem}
+.thought .why{color:#8b949e;font-size:.6rem}
+</style>
+</head>
+<body>
+<div id="hud"><h2>🧬 DARWIN — Living Civilization</h2>
+<div class="st"><span>Population</span><b id="s-p">–</b></div>
+<div class="st"><span>Workers</span><b id="s-w">–</b></div>
+<div class="st"><span>Species</span><b id="s-sp">–</b></div>
+<div class="st"><span>Energy Pool</span><b id="s-e">–</b></div>
+<div class="st"><span>Status</span><b style="color:#7ee787">● THINKING</b></div>
+</div>
+<div id="feed" style="position:fixed;top:20px;right:20px;z-index:10;width:290px;background:rgba(6,10,14,.55);backdrop-filter:blur(20px);border:1px solid rgba(126,231,135,.08);border-radius:18px;padding:14px 18px;max-height:250px;overflow-y:auto"><h3>THOUGHTS & EVOLUTION</h3></div>
+<div id="legend" style="position:fixed;bottom:20px;left:20px;z-index:10;color:#3d4854;font-size:.68rem;background:rgba(6,10,14,.55);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.04);border-radius:16px;padding:10px 16px">
+<span class="ld" style="background:#7ee787"></span>thriving<span class="ld" style="background:#79c0ff"></span>worker<span class="ld" style="background:#d2a8ff"></span>species<span class="ld" style="background:#f85149"></span>struggling<span style="margin-left:12px">drag=orbit · click=meet</span></div>
+<div id="card" style="display:none"><span onclick="this.parentElement.style.display='none'" style="position:absolute;top:12px;right:16px;cursor:pointer;color:#3d4854;font-size:1rem">✕</span>
+<div style="font-size:2.4rem;float:right;margin-top:-4px" id="ce">🙂</div>
+<div style="font-size:1.25rem;font-weight:600;color:#7ee787" id="cn">–</div>
+<div style="font-size:.7rem;color:#485258;margin:2px 0 12px" id="cm">–</div>
+<div style="font-size:.8rem;line-height:1.65;color:#7a8494;margin:10px 0;padding:12px;background:rgba(126,231,135,.03);border-radius:12px" id="cb">–</div>
+<div style="margin:10px 0" id="ct"></div>
+<div style="margin-top:8px">
+<div style="display:flex;align-items:center;gap:10px;font-size:.65rem;color:#3d4854;margin:4px 0"><span style="width:55px">FITNESS</span><div style="flex:1;height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden"><div id="cf" style="height:100%;background:linear-gradient(90deg,#1a7f4b,#7ee787);border-radius:3px;transition:width .8s"></div></div><b id="cfv" style="color:#79c0ff;min-width:40px;text-align:right">–</b></div>
+<div style="display:flex;align-items:center;gap:10px;font-size:.65rem;color:#3d4854;margin:6px 0">
+<span style="width:50px">ENERGY</span><div style="flex:1;height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden"><div id="ce2" style="height:100%;background:linear-gradient(90deg,#883e1f,#f0883e);border-radius:3px;transition:width .8s"></div></div><b id="cev" style="color:#f0883e;min-width:40px;text-align:right">–</b></div>
+</div>
+<div style="font-size:.7rem;color:#3d4854;margin-top:8px" id="cr">–</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script>
+// ── SCENE ────────────────────────────────────────────────────────────────────
+const scene=new THREE.Scene();
+scene.fog=new THREE.FogExp2(0x020406,.009);
+const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,500);
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(innerWidth,innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.2;
+renderer.setClearColor(0x020406);
+document.body.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0x16233a,2.5));
+const kl=new THREE.DirectionalLight(0x7ee787,2.5);kl.position.set(15,45,10);scene.add(kl);
+const fl=new THREE.DirectionalLight(0x79c0ff,.5);fl.position.set(-25,20,-15);scene.add(fl);
+const rl=new THREE.DirectionalLight(0xd2a8ff,1.3);rl.position.set(0,8,-30);scene.add(rl);
+const glow=new THREE.PointLight(0x7ee787,4,50);glow.position.set(0,5,0);scene.add(glow);
+
+const floor=new THREE.Mesh(new THREE.CircleGeometry(45,64),
+  new THREE.MeshStandardMaterial({color:0x050810,metalness:.92,roughness:.3}));
+floor.rotation.x=-Math.PI/2;scene.add(floor);
+scene.add(new THREE.PolarGridHelper(34,12,6,64,0x1a4a28,0x081a0e));
+
+const core=new THREE.Mesh(new THREE.SphereGeometry(1.3,32,32),
+  new THREE.MeshStandardMaterial({color:0x7ee787,emissive:0x7ee787,emissiveIntensity:3}));
+core.position.y=5;scene.add(core);
+const shell=new THREE.Mesh(new THREE.IcosahedronGeometry(2.6,1),
+  new THREE.MeshBasicMaterial({color:0x7ee787,wireframe:true,transparent:true,opacity:.08}));
+core.add(shell);
+const ring1=new THREE.Mesh(new THREE.TorusGeometry(16,.012,8,100),
+  new THREE.MeshBasicMaterial({color:0x7ee787,transparent:true,opacity:.08}));
+ring1.rotation.x=Math.PI/2;scene.add(ring1);
+
+const sg=new THREE.BufferGeometry();const sp=[];
+for(let i=0;i<400;i++){const r=100+Math.random()*60,a=Math.random()*6.28,p=Math.random()*3.14;
+  sp.push(r*Math.sin(p)*Math.cos(a),r*Math.cos(p),r*Math.sin(p)*Math.sin(a));}
+sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));
+scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0x667788,size:.5,transparent:true,opacity:.35})));
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+const orgs={};const labels={};const thoughts={};const bursts=[];
+const ray=new THREE.Raycaster();const mv=new THREE.Vector2();
+
+let mx=0,my=0,mD=false,th=.7,ph=1.08,cd=52;
+addEventListener('mousemove',e=>{if(mD){th+=(e.clientX-mx)*.004;ph-=(e.clientY-my)*.004;ph=Math.max(.3,Math.min(1.45,ph));}mx=e.clientX;my=e.clientY;});
+addEventListener('mousedown',e=>{if(e.target===renderer.domElement)mD=true;});
+addEventListener('mouseup',()=>mD=false);
+addEventListener('wheel',e=>{cd=Math.max(14,Math.min(120,cd+e.deltaY*.04));});
+function updCam(){camera.position.set(cd*Math.sin(ph)*Math.cos(th),cd*Math.cos(ph),cd*Math.sin(ph)*Math.sin(th));camera.lookAt(0,4,0);}
+
+// ── FACES ────────────────────────────────────────────────────────────────────
+function buildFace(g,ident,mood){
+  const fp=ident.face_params||{eye_spacing:.4,mouth_curve:.3};
+  const sc=fp.eye_size||.8;
+  [-1,1].forEach(sd=>{
+    const w=new THREE.Mesh(new THREE.SphereGeometry(.14*sc,10,10),
+      new THREE.MeshBasicMaterial({color:0xf0f4f8}));
+    w.position.set(sd*fp.eye_spacing,.28,.5);g.add(w);
+    const ir=new THREE.Mesh(new THREE.SphereGeometry(.09*sc,8,8),
+      new THREE.MeshStandardMaterial({color:0x79c0ff,emissive:0x79c0ff,emissiveIntensity:1}));
+    ir.position.set(sd*fp.eye_spacing,.28,.56);g.add(ir);
+    const pu=new THREE.Mesh(new THREE.SphereGeometry(.05,6,6),
+      new THREE.MeshBasicMaterial({color:0x000000}));
+    pu.position.set(sd*fp.eye_spacing,.28,.61);g.add(pu);
+  });
+  const curve=fp.mouth_curve||0;
+  const path=new THREE.QuadraticBezierCurve3(
+    new THREE.Vector3(-.18,-.02,.52),
+    new THREE.Vector3(0,-.02+curve*.3,.58),
+    new THREE.Vector3(.18,-.02,.52));
+  const mt=new THREE.Mesh(new THREE.TubeGeometry(path,8,.025,6),
+    new THREE.MeshBasicMaterial({color:0x111820}));
+  g.add(mt);
+  if(curve>.3){[-1,1].forEach(sd=>{
+    const bl=new THREE.Mesh(new THREE.SphereGeometry(.08,6,6),
+      new THREE.MeshBasicMaterial({color:0xff6b81,transparent:true,opacity:.4}));
+    bl.position.set(sd*.38,0,.48);g.add(bl);});}
+}
+
+// ── SYNC ─────────────────────────────────────────────────────────────────────
+function syncWorld(world){
+  document.getElementById('s-p').textContent=world.stats.population;
+  document.getElementById('s-w').textContent=world.stats.workers;
+  document.getElementById('s-sp').textContent=world.stats.species_count;
+  const seen=new Set();
+  world.organisms.forEach(o=>{
+    seen.add(o.id);const id=o.identity||{};let g=orgs[o.id];
+    if(!g){
+      g=new THREE.Group();
+      const col=new THREE.Color((id.color||'#79c0ff').replace('#','0x'));
+      const isW=o.type==='worker',isS=o.type==='species';
+      let geo;
+      if(isW)geo=new THREE.CapsuleGeometry(.55,1.5,4,10);
+      else if(isS)geo=new THREE.IcosahedronGeometry(.9,0);
+      else geo=new THREE.SphereGeometry(.5+Math.min((o.fitness||0)/40,1)*.7,20,20);
+      const body=new THREE.Mesh(geo,new THREE.MeshPhysicalMaterial({
+        color:col,metalness:.3,roughness:.15,clearcoat:1,clearcoatRoughness:.1,
+        emissive:col.clone().multiplyScalar(.3)}));
+      g.add(body);
+      buildFace(g,id,id.mood||'healthy');
+      g.position.set(o.x,.2,o.z);
+      g.userData={ty:o.y||2,id:o.id,ident:id,type:o.type,fitness:o.fitness,
+        energy:o.energy,wins:o.wins,losses:o.losses,age:o.age_days,
+        spin:(Math.random()-.5)*.01,phase:Math.random()*6.28};
+      scene.add(g);orgs[o.id]=g;
+      const lb=document.createElement('div');lb.className='name-label';
+      lb.innerHTML=`<span class="e">${id.emoji||'🙂'}</span><span class="n" style="color:${id.color}">${id.name||o.id}</span><br><span class="s">${o.type}</span>`;
+      document.body.appendChild(lb);labels[o.id]=lb;
+      for(let k=0;k<8;k++){
+        const p=new THREE.Mesh(new THREE.SphereGeometry(.04,4,4),
+          new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.8}));
+        p.position.set(o.x,o.y||2,o.z);scene.add(p);
+        bursts.push({m:p,v:new THREE.Vector3((Math.random()-.5)*.12,.1+Math.random()*.12,(Math.random()-.5)*.12)});
+      }
+      logEv(`✨ ${id.name||o.id} was born`,id.color);
+    }
+    g.userData.ty=o.y||2;
+  });
+  Object.keys(orgs).forEach(id=>{
+    if(!seen.has(id)){const g=orgs[id];g.userData.dying=true;
+      logEv(`💀 ${g.userData.ident?.name||id} faded away`,'#485258');}
+  });
+  // agent thoughts from /api/thoughts
+  fetch('/api/thoughts').then(r=>r.json()).then(thoughts=>{
+    world.organisms.forEach(o=>{
+      if(o.type!=='worker'||!o.identity)return;
+      const t=thoughts.find(t2=>t2.agent===o.identity.name);
+      const existing=document.querySelector(`.thought[data-agent="${o.identity.name}"]`);
+      if(t && !existing){
+        const div=document.createElement('div');div.className='thought';
+        div.dataset.agent=o.identity.name;
+        div.innerHTML=`<div class="act">${t.action}</div><div class="why">${t.reason?.slice(0,60)}</div>`;
+        document.body.appendChild(div);
+        thoughts_map[o.id]=div;
+      }
+    });
+  }).catch(()=>{});
+  // evolution events
+  world.events.slice(-4).forEach(e=>{
+    const ic={speciation:'🌍',trial_win:'🏆',predation:'🦅',gap_closure:'🎯',
+      crossover:'💞',mutation:'🧬'}[e.kind]||'✦';
+    logEv(`${ic} ${e.kind}: ${e.parent?.slice(0,15)} → ${e.child?.slice(0,15)}`,'#f0883e');
+  });
+}
+const thoughts_map={};
+function logEv(text,color){
+  const d=document.createElement('div');d.className='f new';
+  d.style.color=color||'#6e7a86';d.textContent=text;
+  const feed=document.getElementById('feed');
+  feed.prepend(d);
+  while(feed.children.length>18)feed.removeChild(feed.children[2]);
+}
+
+// ── CLICK → IDENTITY CARD ────────────────────────────────────────────────────
+addEventListener('click',e=>{
+  mv.x=(e.clientX/innerWidth)*2-1;mv.y=-(e.clientY/innerHeight)*2+1;
+  ray.setFromCamera(mv,camera);
+  const meshes=[];Object.values(orgs).forEach(g=>g.children.forEach(c=>meshes.push(c)));
+  const hits=ray.intersectObjects(meshes,false);
+  if(hits.length){
+    for(const[id,g]of Object.entries(orgs)){
+      if(g.children.includes(hits[0].object)&&g.userData.ident){
+        showCard(g.userData);return;}}}
+});
+function showCard(u){
+  const id=u.ident||{};
+  document.getElementById('card').style.display='block';
+  document.getElementById('ce').textContent=id.emoji||'🙂';
+  document.getElementById('cn').textContent=id.name||u.id;
+  document.getElementById('cm').textContent='feeling '+(id.mood||'ok')+' · '+(u.age||0)+' days old';
+  document.getElementById('cb').textContent=id.bio||'A member of the Darwin civilization.';
+  document.getElementById('ct').innerHTML=(id.personality||[]).map(t=>`<span class="tr">${t}</span>`).join('');
+  const f=Math.min(Math.max(u.fitness||0,0)/40*100,100);
+  const en=Math.min(Math.max(u.energy||0,0)/100*100,100);
+  document.getElementById('cf').style.width=f+'%';
+  document.getElementById('cfv').textContent=(u.fitness||0).toFixed(1);
+  document.getElementById('ce2').style.width=en+'%';
+  document.getElementById('cev').textContent=(u.energy||0).toFixed(0);
+  document.getElementById('cr').textContent=`⚔️ ${u.wins||0} victories · ${u.losses||0} defeats · ${u.age||0} days old`;
+}
+
+// ── DATA SYNC ────────────────────────────────────────────────────────────────
+function fetchWorld(){
+  fetch('/api/world').then(r=>r.json()).then(w=>syncWorld(w)).catch(()=>{});
+}
+fetchWorld();setInterval(fetchWorld,5000);
+
+// ── ANIMATION ────────────────────────────────────────────────────────────────
+const clock=new THREE.Clock();const tmpV=new THREE.Vector3();
+function animate(){
+  requestAnimationFrame(animate);
+  const t=clock.getElapsedTime();
+  core.rotation.y=t*.25;shell.rotation.y=-t*.15;
+  core.scale.setScalar(1+Math.sin(t*3)*.08);
+  Object.values(orgs).forEach(m=>{
+    const u=m.userData;
+    if(u.dying){m.position.y-=.1;m.scale.multiplyScalar(.97);
+      if(labels[u.id])labels[u.id].style.opacity=parseFloat(labels[u.id].style.opacity||1)-.02;
+      if(m.position.y<-4){scene.remove(m);delete orgs[u.id];
+        if(labels[u.id]){labels[u.id].remove();delete labels[u.id];}}
+      return;}
+    m.position.y+=((u.ty||2)-m.position.y)*.04;
+    m.rotation.y+=u.spin;
+    const br=1+Math.sin(t*1.5+u.phase)*.03;
+    m.scale.setScalar(br);
+    m.position.y+=Math.sin(t*1.2+u.phase)*.003;
+    m.lookAt(camera.position.x,m.position.y*.8,camera.position.z);
+    if(labels[u.id]){
+      tmpV.copy(m.position);tmpV.y+=2;tmpV.project(camera);
+      const lb=labels[u.id];
+      if(tmpV.z<1){lb.style.display='block';
+        lb.style.left=(tmpV.x*.5+.5)*innerWidth+'px';
+        lb.style.top=(-tmpV.y*.5+.5)*innerHeight+'px';}
+      else lb.style.display='none';
+    }
+    // thought bubbles follow agents
+    if(thoughts_map[u.id]){
+      tmpV.copy(m.position);tmpV.y+=2.5;tmpV.project(camera);
+      const th=thoughts_map[u.id];
+      if(tmpV.z<1){th.style.display='block';
+        th.style.left=(tmpV.x*.5+.5)*innerWidth+'px';
+        th.style.top=(-tmpV.y*.5+.5)*innerHeight+'px';}
+      else th.style.display='none';
+    }
+  });
+  for(let i=bursts.length-1;i>=0;i--){
+    const b=bursts[i];b.m.position.add(b.v);b.m.material.opacity-=.02;
+    if(b.m.material.opacity<=0){scene.remove(b.m);bursts.splice(i,1);}
+  }
+  updCam();
+  renderer.render(scene,camera);
+}
+animate();
+addEventListener('resize',()=>{
+  camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight);
+});
+</script>
+</body>
+</html>

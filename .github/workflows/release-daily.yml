@@ -1,0 +1,100 @@
+name: Daily Release
+
+# Publish a new OpenAmer release every day with a compact calendar tag (vYYMMDD),
+# e.g. 2026-08-16 -> v260816. The version number (openamer_cli/__init__.py,
+# pyproject.toml, apps/desktop/package.json) is bumped to today's date, then a
+# git tag + GitHub Release are created. A second job builds the Windows NSIS
+# installer and attaches it to the release, so every daily release ships a
+# real, installable artifact (not an empty tag).
+#
+# `openamer update` on every install picks up the refreshed version the next
+# time it runs.
+
+on:
+  schedule:
+    # 00:30 UTC daily — runs a fresh release every calendar day.
+    - cron: "30 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  daily-release:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.release.outputs.tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          # Keep the ambient GITHUB_TOKEN so daily-release.py's `git push`
+          # (version bump commit + release tag) is authenticated.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git identity
+        run: |
+          git config user.name "openamer-bot"
+          git config user.email "actions@github.com"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.0.1
+
+      - name: Run daily release
+        id: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/daily-release.py --publish
+          # Emit the tag for the downstream installer job. daily-release.py
+          # is idempotent (no-op if today's tag already exists), so compute
+          # the tag the same way it does.
+          TAG="v$(date -u +%y%m%d)"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+  windows-installer:
+    needs: daily-release
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Build the installer from the commit the release job just tagged,
+          # not from the trigger-time main.  Without this the checkout resolves
+          # to github.sha (main as of the 00:30 UTC trigger), i.e. BEFORE the
+          # version bump + tag exist - so every daily EXE ships one release
+          # behind and never carries the same day's fixes.
+          # Scheduled runs build the tag the release job just created, so the
+          # artifact always belongs to its release.  A manual dispatch
+          # (hotfix rebuild) builds the dispatched commit instead -- otherwise
+          # re-running on the same day would rebuild the OLD tag and publish
+          # an EXE older than the one already attached.
+          ref: ${{ github.event_name == 'workflow_dispatch' && github.sha || needs.daily-release.outputs.tag || github.sha }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Windows NSIS installer
+        working-directory: apps/desktop
+        run: npm run dist:win:nsis
+        env:
+          # electron-builder resolves the electron binary from the workspace
+          # root node_modules; the postinstall already downloaded it.
+          NODE_OPTIONS: --max-old-space-size=16384
+
+      - name: Upload installer to release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $exe = Get-ChildItem -Path apps/desktop/release -Filter "OpenAmer-*-win-x64.exe" | Select-Object -First 1
+          if (-not $exe) { Write-Error "No installer built"; exit 1 }
+          gh release upload "${{ needs.daily-release.outputs.tag }}" "$($exe.FullName)" --clobber

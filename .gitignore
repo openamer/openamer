@@ -1,0 +1,237 @@
+.DS_Store
+/venv/
+/venv.old/
+/venv.stale.runtime-*/
+/.openamer-runtime/
+
+# Stray pytest temp files that leak into the repo root (Git for Windows path mangling).
+C:*
+# End
+/_pycache/
+*.pyc*
+__pycache__/
+act/
+.act-sandbox-agent.*
+.venv/
+.venv
+.vscode/
+.env
+.op.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.test
+.openamer-docker/
+.notebooklm-home/
+.notebooklm-cli-venv/
+.notebooklm-playwright/
+.pip-cache/
+.uv-cache/
+compose.openamer.local.yml
+export*
+__pycache__/model_tools.cpython-310.pyc
+__pycache__/web_tools.cpython-310.pyc
+logs/
+data/
+.pytest_cache/
+test_durations.json
+.pytest-cache/
+tmp/
+temp_vision_images/
+openamer-*/*
+examples/
+tests/quick_test_dataset.jsonl
+tests/sample_dataset.jsonl
+run_datagen_kimik2-thinking.sh
+run_datagen_megascience_glm4-6.sh
+run_datagen_sonnet.sh
+source-data/*
+run_datagen_megascience_glm4-6.sh
+data/*
+# No trailing slash: also matches node_modules SYMLINKS (worktrees often
+# symlink node_modules to the main checkout; the dir-only pattern let one
+# slip into a commit and break `npm ci` on CI with ENOTDIR).
+node_modules
+browser-use/
+agent-browser/
+# Private keys
+*.ppk
+*.pem
+privvy*
+images/
+__pycache__/
+openamer_agent.egg-info/
+wandb/
+testlogs
+playwright-report/
+test-results/
+# Playwright visual regression baselines — cached from main in CI, not committed
+*-snapshots/
+
+# CLI config (may contain sensitive SSH paths)
+cli-config.yaml
+
+# Skills Hub state (lives in ~/.openamer/skills/.hub/ at runtime, but just in case)
+skills/.hub/
+ignored/
+.worktrees/
+environments/benchmarks/evals/
+
+# Web UI build output
+openamer_cli/web_dist/
+# Cross-process web UI build lock (flock target, always empty)
+.web_ui_build.lock
+apps/desktop/build/
+apps/desktop/dist/
+
+# tsc-emitted artifacts (a stray `tsc -b` compiles into src/, and vite then
+# resolves the stale .js OVER the .tsx — never track these)
+apps/desktop/src/**/*.js
+apps/desktop/src/**/*.js.map
+apps/desktop/src/**/*.d.ts
+!apps/desktop/src/global.d.ts
+!apps/desktop/src/vite-env.d.ts
+apps/shared/src/**/*.js
+apps/shared/src/**/*.js.map
+apps/shared/src/**/*.d.ts
+apps/desktop/release/
+apps/desktop/release-alt/
+*.tsbuildinfo
+
+# Web UI assets — synced from @openamer-research/ui at build time via
+# `npm run sync-assets` (see web/package.json).
+web/public/fonts/
+web/public/ds-assets/
+
+# Release script temp files
+.release_notes.md
+mini-swe-agent/
+
+# Nix
+.direnv/
+.nix-stamps/
+result
+website/static/api/skills-index.json
+# skills.json + skills-meta.json are build artifacts emitted by
+# website/scripts/extract-skills.py during prebuild — keep them out of
+# git for the same reason as skills-index.json (large, generated, change
+# every build).
+website/static/api/skills.json
+website/static/api/skills-meta.json
+# automation-blueprints-index.json is a build artifact emitted by
+# website/scripts/extract-automation-blueprints.py during prebuild.
+website/static/api/automation-blueprints-index.json
+models-dev-upstream/
+
+# Local editor / agent tooling (machine-specific; keep in global config, not the repo)
+.codex/
+.cursor/
+.gemini/
+.zed/
+.mcp.json
+opencode.json
+config/mcporter.json
+
+openamer_cli/tui_dist/*
+openamer_cli/scripts/
+docs/superpowers/*
+# Working directory for the OpenAmer Agent's session state (~/.openamer/ at runtime;
+# also created in-repo when an agent operates in this checkout). Plans, audit
+# logs, and per-session caches are never artifacts of the codebase.
+.openamer/
+
+# Desktop/bootstrap install marker written into the managed checkout root by the
+# bootstrap installer. It is OpenAmer-managed runtime state, never a code change —
+# ignore it so `openamer update`'s `git stash push --include-untracked` does not
+# treat it as a local edit and autostash it on every run (#38529).
+.openamer-bootstrap-complete
+
+# Install-scoped home breadcrumb written next to the managed checkout by
+# install.ps1 (Set-InstallHomeBreadcrumb). It records which home THIS install
+# belongs to, so the CLI, dep_ensure and the desktop app never have to trust the
+# machine-wide OPENAMER_HOME for it. Runtime metadata, never a code change --
+# ignore it so `git status` stays clean and update's untracked autostash does not
+# sweep it (#38529).
+.openamer-home
+
+# Persistent dev sandbox dir (scripts/dev-sandbox.sh --persistent)
+.openamer-sandbox/
+
+# Interrupted-update breadcrumb + recovery lock written next to the shared venv
+# by `openamer update` / launch-time self-heal. Runtime state, never a code change
+# — ignore so `git status` stays clean and update's autostash skips them.
+.update-incomplete
+.update-incomplete.lock
+
+# Installer-written method stamp in the managed checkout root (scripts/install.sh).
+# Runtime metadata only — never a code change. Ignore so `git status` stays clean
+# and `openamer update`'s untracked autostash does not treat it as a local edit (#66189 / #54855).
+/.install_method
+
+# Tool Search live-test harness output — non-deterministic model transcripts,
+# regenerated by scripts/tool_search_livetest.py. Never an artifact of the repo.
+scripts/out/
+
+# Per-release changelog drafts. These exist only transiently during a release
+# cut (passed to `gh release create --notes-file`); the GitHub Release itself
+# stores the published notes. They are not a build artifact and must never be
+# committed to the repo root. See the openamer-release skill.
+RELEASE_v*.md
+
+# Desktop demo-run scratch output (openamer writes demo/*.txt during recorded
+# walkthroughs). Throwaway artifacts, never part of the app.
+apps/desktop/demo/
+
+# PR infographics are rendered locally and embedded in PR descriptions via the
+# image-provider (fal.media) URL — they are NEVER committed to the repo. The
+# PR body is the archive. See the openamer-agent-dev skill's
+# pr-infographic-workflow reference (storage rule + lapse #8 / #COMMIT-1).
+infographic/
+native/fts5_cjk/*.so
+.pr-agent/
+
+# Local scratch: an embedded Python install (pythoncore-*) plus its cache that a
+# Windows tool dropped into the repo root. Never part of the project.
+/Python/
+/python_install_*.log
+
+# Task-queue runtime state (daemon log + queue db), regenerated at runtime.
+/.task-queue/
+
+# Scratch Python that an agent job drops into scripts/ mid-run (one-off API
+# helpers, e.g. listing GitHub issue comments). Disposable by construction;
+# ignored so `git status` keeps meaning "something real changed".
+scripts/_tmp_*.py
+
+# Rollback snapshots written by scripts/openamer_local_patches.py next to every
+# file it patches. Derived state, regenerated on demand, and only meaningful to
+# the keeper — untracked noise otherwise.
+*.pre-localpatch
+
+# MSYS/Windows artifacts that must never be committed (unquoted-path class)
+%SystemDrive%/
+lint_*.txt
+ids.txt
+
+# MSYS-mangled pytest tmp paths (unquoted-path class)
+C*/Users*damir*/AppData/Local/Temp/pytest-of-*/
+C*:Users*damir*/AppData/Local/Temp/pytest-of-*/
+
+# pytest tmp dirs that get MSYS-mangled into the repo root
+C*/Users*pytest-of-*/
+# --- repo hygiene: stray worktree gitlink + scratch dumps must not be tracked ---
+/oa-v28/
+old_*.txt
+_active_learn_result.txt
+_banner_render.txt
+_banner_render.py
+body18.md
+parent_sha.txt
+update-watcher.log
+python_install_*.log
+C*Users*damir*AppData*Temp*pytest-of-*
+
+# VS Code extension build artifacts
+apps/vscode/*.vsix

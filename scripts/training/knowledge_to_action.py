@@ -1,0 +1,780 @@
+#!/usr/bin/env python3
+"""Knowledge-to-Action — turns internet insights into REAL changes.
+
+After internet_learner collects insights, this script:
+  1. SELECTS the most actionable insight from the buffer
+  2. MAPS it to a concrete experiment/action
+  3. RUNS the action (A/B test, code change, config tweak)
+  4. MEASURES the result (did it make the system better?)
+  5. RECORDS: insight -> action -> result (complete learning loop)
+
+This closes the gap between "learning" and "implementing".
+"""
+# KTA_SYS_PATH_BOOTSTRAP: sibling imports (world_model) need script dir on sys.path when run via runpy/gateway
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import os
+import json, os, sys, time, datetime, subprocess, re
+from pathlib import Path
+
+def _training_dir():
+    """Resolve the live training dir, tolerating a wrong/stale OPENAMER_HOME.
+
+    Live bug (16.09.26): the cron env can point OPENAMER_HOME at a
+    non-existent / throwaway dir, which made every KTA cycle crash with
+    FileNotFoundError on online_buffer.jsonl. Unlike internet_learner this
+    module used to trust the env blindly. Prefer a *valid* env override, then
+    the real install dir, then this file's own directory.
+    """
+    cands = []
+    _env = os.environ.get("OPENAMER_HOME")
+    if _env:
+        cands.append(os.path.join(_env, "scripts", "training"))
+    _home = Path.home()
+    cands.append(str(_home / "AppData" / "Local" / "openamer-laptop" / "scripts" / "training"))
+    cands.append(str(Path(__file__).resolve().parent))
+    for _c in cands:
+        if os.path.isdir(_c):
+            return _c
+    return os.path.join(str(_home), "AppData", "Local", "openamer", "scripts", "training")
+
+
+T = _training_dir()
+BUFFER = os.path.join(T, "online_buffer.jsonl")
+KTA_LOG = os.path.join(T, "kta_log.jsonl")
+LIVE = "http://localhost:8081"
+
+def log(entry):
+    with open(KTA_LOG, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+def run(cmd, timeout=120):
+    return subprocess.run(cmd, capture_output=True,
+                          text=True, encoding="utf-8", errors="replace",
+                          timeout=timeout)
+
+# ---- Action Library: insight patterns -> concrete experiments ----
+
+def experiment_lora_rank():
+    """Insight: 'start with small rank (4-8)'. Test r=4/8/16 on an equal budget.
+
+    Rewritten 23.09.2026. The previous body only polled /health and returned
+    the fixed string "LoRA rank experiment: baseline recorded (r=16 live)".
+    That string was logged 184 times while no baseline was written anywhere —
+    the claim was untrue. The real A/B now lives in kta_lora_rank_probe.py
+    (locally cached Qwen2.5-0.5B-Instruct, CPU) and this reads what the
+    artifact says, or admits that nothing was measured.
+    """
+    art = os.path.join(T, "kta_artifacts", "lora_rank_result.json")
+    try:
+        with open(art, encoding="utf-8") as fh:
+            d = json.load(fh)
+    except (OSError, ValueError) as e:
+        return {"action": "LoRA rank experiment",
+                "result": f"no artifact ({type(e).__name__}) — "
+                          f"run kta_lora_rank_probe.py to measure",
+                "measurable": False}
+    if not d.get("ok"):
+        return {"action": "LoRA rank experiment",
+                "result": f"probe reported: {str(d.get('error'))[:120]}",
+                "measurable": False, "artifact": art}
+    arms = d.get("arms") or []
+    return {"action": f"LoRA rank A/B, arms r={[a['rank'] for a in arms]}",
+            "result": str(d.get("result"))[:160],
+            "measurable": True, "artifact": art}
+
+
+def experiment_predict_world():
+    """Insight: 'project future states'. Add a prediction to the world model.
+
+    Honesty contract (fixed 12.09.2026): this used to predict FROM the last
+    prediction — `cause = last['cause']`, then observe "If '{cause}' recurs".
+    Every rotation cycle therefore wrapped the previous prediction in another
+    "If ... recurs" shell. Live evidence: the newest world-model entry was
+    literally `If 'If 'Competitor update: ...' recurs' recurs`. A prediction
+    about a prediction is not a projection of the world; it is a sentence
+    growing a tail. It also made the validator's job impossible, because
+    prediction N+1 was near-identical to prediction N by construction.
+
+    Now it predicts from the most recent FACT (an observed cause→effect edge),
+    skipping predictions/corrections and already-predicted causes.
+    """
+    import world_model
+    edges = world_model._load()
+    facts = [e for e in edges
+             if e.get("kind", "fact") == "fact" and e.get("cause")]
+    if len(facts) < 3:
+        return {"action": "world-model prediction",
+                "result": "not enough observed facts to predict from",
+                "measurable": False}
+
+    sources = [e for e in facts if not e.get("cause", "").startswith("If '")]
+    if not sources:
+        return {"action": "world-model prediction",
+                "result": "no prediction-free fact available",
+                "measurable": False}
+
+    already = {e.get("cause", "") for e in edges if e.get("kind") == "prediction"}
+    picked = None
+    for e in reversed(sources):        # newest fact first
+        if f"If '{e['cause'][:80]}' recurs" not in already:
+            picked = e
+            break
+    if picked is None:
+        return {"action": "world-model prediction",
+                "result": "every recent fact already has a projection",
+                "measurable": False}
+
+    cause = picked["cause"]
+    effect = picked.get("effect", "")
+    # Do not observe when the effect is empty — a prediction with no
+    # consequence attached carries no information and only pads the store.
+    if not effect.strip():
+        return {"action": "world-model prediction",
+                "result": f"latest fact '{cause[:60]}' has no effect recorded",
+                "measurable": False}
+
+    world_model.observe(
+        f"If '{cause[:80]}' recurs",
+        f"expect: {effect[:80]}",
+        kind="prediction",
+        confidence=0.6,
+    )
+    return {"action": "world-model: added PREDICTION edge (from an observed fact)",
+            "predicted_from": cause[:100],
+            "result": f"If '{cause[:80]}' recurs, expect {effect[:80]}",
+            "measurable": True}
+
+def experiment_tune_buffer():
+    """Insight from self-improvement: buffer cap tuning. Measure + enforce cap."""
+    buf_file = os.path.join(T, "online_buffer.jsonl")
+    n = sum(1 for _ in open(buf_file, encoding="utf-8")) if os.path.exists(buf_file) else 0
+    # Cap is enforced on EVERY append via buffer_store (single source of truth).
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import buffer_store
+        n = buffer_store.enforce_cap(buf_file)
+        cap = buffer_store.MAX_BUF
+        # Honesty: report the REAL fill state, not a canned "at cap" claim.
+        # (This string asserted "at cap" on runs where n was far below cap,
+        #  e.g. 138/300 — a measurement that did not measure.)
+        fill = f"{n}/{cap}"
+        if n >= cap:
+            state = f"buffer at cap {fill} — trim enforced on every write"
+        else:
+            state = (f"buffer at {fill} ({cap - n} slots free) — "
+                     f"trim enforced on every write")
+        return {"action": f"buffer measurement: {n} examples (cap {cap})",
+                "buffer_count": n, "buffer_cap": cap,
+                "result": state,
+                "measurable": True}
+    except Exception as e:
+        return {"action": f"buffer measurement: {n} examples",
+                "result": f"buffer store unavailable: {str(e)[:80]}",
+                "measurable": False}
+
+def experiment_competitor_gap():
+    """Insight: competitor features. Identify ONE gap we can close.
+
+    Honesty contract (fixed 12.09): this experiment used to return a HARDCODED
+    gap dict. Live evidence: 96 consecutive runs produced exactly ONE distinct
+    `identified_gap` string ("OpenHands has a modular SDK design ...") while the
+    buffer's competitor signal changed — i.e. an "experiment" that inspected
+    nothing, recited a canned line, and always claimed `measurable: False`.
+
+    Now it: (1) quotes the REAL latest competitor signal verbatim so the entry is
+    traceable, (2) maps it against a capability lexicon, (3) measures OUR OWN
+    tool surface as a number (tool funcs / lines / package layout), and
+    (4) says so honestly when the signal is too vague to map — which is itself
+    the useful finding (it flags a broken upstream competitor pipeline instead of
+    inventing a gap).
+    """
+    signal_keys = ("openhands", "devin", "autogpt", "competitor", "sdk",
+                   "agent architecture")
+    competitors = []
+    buf_file = os.path.join(T, "online_buffer.jsonl")
+    if os.path.exists(buf_file):
+        for line in open(buf_file, encoding="utf-8"):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                d = json.loads(line)
+            except Exception:
+                continue
+            text = (d.get("u", "") + " " + d.get("a", "")).lower()
+            if any(k in text for k in signal_keys):
+                competitors.append(d)
+    if not competitors:
+        return {"action": "competitor gap analysis",
+                "result": "no competitor data yet", "measurable": False}
+
+    latest = competitors[-1]
+    signal = (latest.get("a") or "").strip()
+    signal_q = (latest.get("u") or "").strip()
+
+    # --- map the signal to an implied capability (lexicon, not a guess table) ---
+    # Lexicon grows from REAL signals we have seen (12.09.26): the Kiro snippet
+    # ("turn prompts into executable specs, validate code correctness ..., build
+    # across large codebases with parallel agents") is a genuine capability
+    # description, not junk — the lexicon just had no token for it. Absence of a
+    # token is a lexicon gap, not evidence that upstream is broken.
+    hints = (
+        ("modular", "modular tool packaging"),
+        ("sdk", "public SDK / programmatic API"),
+        ("microservice", "service split"),
+        ("plugin", "plugin extensibility"),
+        # NOT `multi-agent` alone: measured 23.09.26 over the 40 competitor rows
+        # this function reads (scoring `a` only, which is all `signal` ever is),
+        # the bare token matches 5/40 and 4 of those are mis-maps -- the MAF row
+        # (correctly caught by `agent framework`, 17 > 11 chars), the agentmemory
+        # row (correctly caught by `persistent memory`, 17 > 11), the AgentTool row
+        # and the ANUS row, neither of which the generic phrase describes. Longest
+        # -match cannot save it: at 11 chars it shadows `memory` (6). Replaced by
+        # the two phrases that state the capability, 1/40 each with 0 mis-maps:
+        #   `multi-agent modes`   1/40 -> the ANUS single/multi-agent switching row
+        #   `multi-agent systems` 1/40 -> the AgentTool for multi-agent systems row
+        # Rejected, all measured: `multi-agent orchestration` 0/40 and
+        # `agent orchestration` 0/40 (neither phrase occurs in the corpus -- the
+        # old label described a token the corpus never supported), `orchestration`
+        # 1/40 and `orchestrat` 2/40 (both catch the MAF row, which
+        # `agent framework` already covers more precisely).
+        ("multi-agent modes", "multi-agent orchestration"),
+        ("multi-agent systems", "multi-agent orchestration"),
+        ("parallel agent", "parallel multi-agent execution"),
+        ("spec-driven", "spec-driven development workflow"),
+        ("executable spec", "spec -> executable-plan pipeline"),
+        ("sandbox", "sandboxed execution"),
+        ("persistent memory", "persistent memory layer"),
+        ("memory", "memory layer"),
+        ("unit test", "automated verification gate"),
+        ("validate code", "automated code-conformance check"),
+        ("code correctness", "automated code-conformance check"),
+        # Grown from REAL signals (17.09.26): the JetBrains free-tier signal
+        # ("unlimited code completion and access to local AI models") was a
+        # genuine capability description the lexicon had no token for.
+        ("completion", "inline code completion / autocomplete surface"),
+        ("local ai model", "local model integration in the editor"),
+        ("free tier", "free-tier positioning / zero-cost entry"),
+        ("coding agent", "agentic coding workflow in the IDE"),
+        # Grown from REAL signals (18.09.26): the Microsoft MAF/Foundry signal
+        # ("Microsoft Agent Framework (MAF) Microsoft Foundry") names concrete
+        # capability classes (agent framework + hosted model platform) the
+        # lexicon had no token for.
+        ("agent framework", "agent framework / orchestrator SDK"),
+        ("foundry", "hosted model platform / managed agent runtime"),
+        # Grown from a REAL signal (21.09.26): the benchmark-site row, once the
+        # class-127 nav leak was stripped off it, reads
+        #   "We benchmarked 4 popular open-source agentic frameworks across 2,000
+        #    runs (5 tasks, 100 runs each per framework), measuring end-to-end
+        #    latency, token consumption, and architectural differences."
+        # That IS a capability description (comparative evaluation harness), not
+        # chrome -- so this is the honest lexicon gap the class-127 fix exposed,
+        # not something to patch on the extraction side. Measured precision over
+        # the corpus the consumer actually reads (33 competitor rows): `benchmark`
+        # matches 1 row and that row IS this signal -> 0 mis-maps. Deliberately
+        # matched by its MEASUREMENT noun, never a generic word like `framework`
+        # (3/33 rows = real mis-maps onto unrelated framework prose).
+        ("benchmark", "comparative evaluation harness / multi-framework benchmark"),
+        # Grown from a REAL signal (22.09.26): the GAIA row
+        #   "GAIA - Open-source framework for building AI agents that run on
+        #    local hardware"
+        # is a capability description (on-device runtime), and the consumer kept
+        # reporting it as an unmappable signal. Measured precision over the 47
+        # competitor rows this function actually reads: `local hardware` matches
+        # 1 row and that row IS this signal -> 0 mis-maps. Deliberately the
+        # two-word phrase, never `local` (6/47 rows -> real mis-maps onto "local
+        # runtime", "local LLMs" prose) and never `local model` (0/47 rows, i.e.
+        # a token the corpus does not support).
+        ("local hardware", "on-device / local-hardware agent runtime"),
+        # Grown from a REAL signal (22.09.26, second one that day): the
+        # competitor-intelligence row
+        #   "Engineers who want an agent to autonomously plan, edit across files
+        #    and run tests on complex real-world work, and will pay for depth"
+        # is a capability description (multi-file agentic execution with a test
+        # loop) the lexicon had no token for. Measured precision over the 44
+        # competitor rows this function actually reads: `edit across files`
+        # matches 1 row and that row IS this signal -> 0 mis-maps.
+        # Rejected alternatives, all measured: `across files` / `run tests` /
+        # `plan, edit` / `autonomously plan` / `real-world work` (each 1/44 but
+        # narrower and more brittle phrasings of the same row), `plan` 3/44 and
+        # `tool` 5/44 (real mis-maps), `tool surface` / `sandbox` / `terminal` /
+        # `multi-file` / `paid tier` / `pricing` 0/44 (corpus does not support
+        # them). Chosen token states the capability, not a generic verb.
+        ("edit across files", "multi-file agentic execution + test loop"),
+        # Grown from a REAL signal (23.09.26): the competitor-intelligence row
+        #   "A large language model helps with the reasoning layer, but the LLM
+        #    agent architecture determines whether the agent is useful, safe,
+        #    and reliable in real-world use."
+        # is a capability description (the agent-architecture layer as the
+        # determinant of usefulness/safety/reliability), not a headline: its
+        # echo against its own source question is 0.10, so the headline
+        # discriminator below correctly leaves it on the lexicon path.
+        # Measured precision over the 45 competitor rows this function reads
+        # (scoring `a` only, which is all `signal` ever is):
+        #   `llm agent architecture` 1/45 -> that row IS this signal, 0 mis-maps
+        # Rejected alternatives, all measured: `agent architecture` 1/45 and
+        # `large language model` / `reasoning layer` / `real-world use` /
+        # `reliable in real-world` each 1/45 (same row, but they name the
+        # substrate or an adjacent clause, not the capability), `architecture`
+        # 3/45 -> REAL mis-maps onto unrelated architecture prose (SAGA
+        # decision-making core, ANUS single/multi-agent switching), and
+        # `maintenance cost` / `maintenance costs` / `safe and reliable` /
+        # `reduce your maintenance` 0/45 (corpus does not support them). The
+        # chosen two-word-plus token states the capability layer itself and
+        # wins longest-match selection over the generic `architecture`.
+        ("llm agent architecture", "agent-architecture layer governing reliability"),
+        # Grown from a REAL signal (23.09.26, third one that day): the SAGA row
+        #   "The SAGA Framework: The Brains Behind the Agents At the core of each
+        #    character's decision-making process is the SAGA (Simulation Agent
+        #    Generative Architecture) framework ..."
+        # is a capability description (an LLM-driven simulation-agent
+        # framework), not a headline: its echo against its own source question
+        # is 0.25 with len(a) 232, so the headline discriminator above correctly
+        # leaves it on the lexicon path. Worth noting this is the very row the
+        # `architecture` rejection (1 row above) names as a mis-map -- it is
+        # real content that merely had no token, not noise.
+        # Measured precision over the 39 competitor rows this function reads
+        # (scoring `a` only, which is all `signal` ever is):
+        #   `simulation agent` 1/39 -> that row IS this signal, 0 mis-maps
+        # Rejected alternatives, all measured: `saga` 1/39 (same row, but a
+        # proper noun the corpus can only ever support for this one title),
+        # `generative architecture` 1/39 (same row, names the label rather than
+        # the capability), `decision-making` 1/39 and `character` 1/39 (same
+        # row today, but generic nouns that mis-map the moment another row
+        # mentions a decision or a character), `architecture` 3/39 -> REAL
+        # mis-maps. The chosen two-word phrase states the capability.
+        ("simulation agent", "LLM-driven simulation-agent framework"),
+    )
+    # --- the latest row may be an ARTICLE TITLE, not a capability description ---
+    # Grown from a REAL signal (23.09.26): the consumer kept reporting
+    #   "Feb 2026 An AI agent coding skeptic tries AI agent coding, in
+    #    excessive detail minimaxir."
+    # as an unmappable signal. Unlike the earlier gaps this is NOT a lexicon
+    # gap: the row is a headline (date + title + author handle), and the
+    # lexicon having no token for a headline is CORRECT. Measured over the 45
+    # competitor rows this function reads, scoring `a` only (which is all that
+    # `signal` ever is): `ai agent coding` 2/45, and `coding skeptic` /
+    # `skeptic` / `excessive detail` / `minimaxir` each 1/45 -- every hit is
+    # this headline or its sibling. Adding any of them would map a title onto
+    # a capability, i.e. a mis-map, so the honest move is to recognise the row
+    # CLASS rather than grow the lexicon for it.
+    # Discriminator (longest-wins selection cannot help here): a headline is a
+    # near-echo of its own source question -- significant words of `u`
+    # reappearing in `a`. Measured over all 45 rows: exactly 1 row trips
+    # (echo >= 0.6 AND len(a) < 160) and it is this headline; 0 mis-fires on
+    # the rows that DO carry a capability, notably the sibling row for the same
+    # question ("AI agent coding/ vibecoding where the author talks about ...
+    # the atrophy of programming skills ...", echo 0.20, 249 chars) and the
+    # 22.09.26 signal `edit across files` (echo 0.00, 198 chars).
+    # The signal is still REPORTED VERBATIM -- never silently dropped -- only
+    # its class changes, so the entry names the real cause instead of a lexicon
+    # gap that does not exist.
+    _STOP = {"competitor", "intelligence", "the", "a", "an", "and", "of", "for",
+             "to", "in", "on", "with", "is", "are", "we", "our", "how", "what",
+             "new", "ai"}
+    _sig_low = signal.lower()
+    _sig_words = set(re.findall(r"[a-z0-9]+", _sig_low))
+    _q_words = set(re.findall(r"[a-z0-9]+", signal_q.lower())) - _STOP
+    _echo = (len(_q_words & _sig_words) / len(_q_words)) if _q_words else 0.0
+    is_headline = _echo >= 0.6 and len(signal) < 160
+    low_signal = signal.lower()
+    # Longest (most specific) matching token wins: a generic token declared
+    # earlier must never shadow a precise one (declaration order was the
+    # selection rule before, which is not a specificity rule).
+    matches = [(tok, label) for tok, label in hints if tok in low_signal]
+    hint = max(matches, key=lambda p: len(p[0]))[1] if matches else None
+
+    # --- a REAL measurement of the thing the gap is about: our tool surface ---
+    stats = {"lines": 0, "tool_funcs": 0, "has_tools_pkg": False}
+    ts_path = os.path.join(T, "tool_server.py")
+    if os.path.exists(ts_path):
+        src = open(ts_path, encoding="utf-8", errors="replace").read()
+        stats["lines"] = src.count("\n") + 1
+        stats["tool_funcs"] = len(re.findall(r"^def t_\w+\(", src, re.M))
+        stats["has_tools_pkg"] = os.path.isdir(os.path.join(T, "tools"))
+    measured = (f"our tool surface: {stats['tool_funcs']} tool funcs in "
+                f"{stats['lines']} lines, tools/ package: "
+                f"{'yes' if stats['has_tools_pkg'] else 'no'}")
+
+    # --- the latest row may be a COST DATAPOINT, not a capability -------------
+    # Grown from a REAL signal (23.09.26): the competitor pipeline landed
+    #   "The monthly bills developers share on Reddit and GitHub are staggering
+    #    -- $1,600, $2,500, even $5,000+ for teams running multi-agent workflows
+    #    on frontier models."
+    # That is a price observation, not a product capability. It is not a headline
+    # either: its echo against its own source question is 0.10 and it is 161 chars,
+    # so the headline discriminator (echo >= 0.6 AND len(a) < 160) correctly leaves
+    # it alone. It slipped through only because the generic `multi-agent` token was
+    # in the lexicon and mapped it onto a capability it does not describe.
+    # Class it by what it measurably is: two or more currency amounts plus a money
+    # word. Measured over the 40 competitor rows: the predicate trips 2/40 -- this
+    # row and the 22.09.26 `edit across files` row (4 amounts, "Pro $20/mo"), which
+    # is why it is checked AFTER the lexicon: `edit across files` matches that row
+    # and must keep winning. Only this row is left, so 0 capability rows are
+    # swallowed. Requires >= 2 amounts AND a money word: a bare `$` or
+    # a bare `cost` is not a datapoint (the Hemmingway-1 row carries the word
+    # `costs` in prose and stays an ordinary lexicon gap).
+    _CUR = re.compile(r"\$\s?\d[\d,]*(?:\.\d+)?\s*(?:[kmb])?\+?", re.I)
+    # The money word is deliberately NARROW -- reported spend (`bills`, `spend`,
+    # `spent`), never a general money word. Measured 23.09.26 over the 40
+    # competitor rows: >= 2 amounts + the broad set (cost/pricing/per month) trips
+    # 2/40 -- this row AND the `edit across files` row (4 amounts, "Pro $20/mo
+    # (annual $17); Max $100-$200/mo"), whose prices are an OFFER inside a genuine
+    # capability sentence. The broad predicate only spared that row when the
+    # lexicon happened to match it first, i.e. its precision depended on unrelated
+    # lexicon content, which is not a predicate. The narrow set trips 1/40: this
+    # row, 0 mis-maps, and it spares the `edit across files` row on lexicon content
+    # alone -- verified by the test that pins exactly that ordering.
+    _MONEY = re.compile(r"\b(bills?|spend|spent)\b", re.I)
+    is_cost_datapoint = len(_CUR.findall(signal)) >= 2 and bool(_MONEY.search(signal))
+    # --- the latest row may be a PROJECT STATUS LOG, not a capability ---------
+    # Grown from a REAL signal (23.09.26): the competitor pipeline landed
+    #   "Brain -- Desktop AI Agent: The flagship persona running on a i9-13900KF +
+    #    RTX 4080 + 128 GB DDR5 workstation: Phase 1 (2024-2025): QQ group AI on
+    #    NoneBot2 + Volcengine ARK + KLING TTS, co-built with @Herdeny
+    #    Phase 2 (2025-now): OpenClaw Agent OS 2026."
+    # This is neither a headline nor a cost datapoint nor a capability
+    # description: it is a build/status TIMELINE ("Phase 1 (2024-2025) ... Phase 2
+    # (2025-now) ...") whose only capability-shaped nouns (NoneBot2, KLING TTS,
+    # OpenClaw Agent OS) belong to third-party products we do not compete on, and
+    # whose "Desktop AI Agent" is a project NAME, not a capability sentence.
+    # Measured over the 39 competitor rows (scoring `a` only, which is all that
+    # `signal` ever is): the predicate trips 1/39 and that row IS this signal ->
+    # 0 mis-maps. Its echo against its own source question is 0.17 at 251 chars,
+    # so the headline discriminator (echo >= 0.6 AND len(a) < 160) correctly
+    # leaves it alone -- this is a class the lexicon must NOT be grown for.
+    # Rejected, all measured 23.09.26: `desktop ai agent` 1/39, `agent os` 1/39,
+    # `openclaw` 1/39, `workstation` 1/39, `persona` 1/39 -- every one of them is
+    # a proper noun or a project label that would map a status log onto a
+    # capability, i.e. a mis-map, so no token is added for this row.
+    # Checked AFTER the lexicon, exactly like the cost predicate: a capability
+    # row that happens to mention a phase timeline must reach the lexicon first.
+    _PHASE = re.compile(
+        r"\bphase\s*\d+\b[^()]{0,40}\(\s*\d{4}\s*[-\u2013\u2014]\s*(?:\d{4}|now)\s*\)",
+        re.I)
+    is_project_status = bool(_PHASE.search(signal))
+    if hint:
+        gap = (f"{hint}: competitor signals it; {measured} — monolithic, "
+               f"no per-tool module boundary")
+        fix = f"extract {hint} behind its own module with a test gate"
+        result = f"signal '{signal[:50]}' -> gap: {hint} | {measured}"
+    elif is_cost_datapoint:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is a cost/price datapoint ({len(_CUR.findall(signal))} "
+               f"currency amounts + a money word), not a product capability "
+               f"description")
+        fix = ("carry a capability sentence alongside the price observation in the "
+               "competitor pipeline; a cost datapoint is not a lexicon gap and no "
+               "token should be invented to map it onto one")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — cost "
+                  f"datapoint ({len(_CUR.findall(signal))} currency amounts + money "
+                  f"word), no capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
+    elif is_project_status:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is a project status log / build timeline (dated phase "
+               f"markers naming third-party stacks), not a product capability "
+               f"description")
+        fix = ("carry a capability sentence alongside the status log in the "
+               "competitor pipeline; a build timeline is not a lexicon gap and no "
+               "token should be invented to map it onto one")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"project status log (dated phase markers, third-party stacks), "
+                  f"no capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
+    elif is_headline:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is an article headline (echo {_echo:.0%} of its own "
+               f"source question), not a product capability description")
+        fix = ("carry a capability sentence alongside the headline in the "
+               "competitor pipeline; no lexicon token should be invented for a "
+               "title, and the extraction side is where this belongs")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"headline signal (echo {_echo:.0%} of its own question), no "
+                  f"capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
+    else:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal contains no token our lexicon knows")
+        fix = "grow the capability lexicon from the raw signal before blaming upstream"
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"lexicon has no token for this signal (lexicon gap, "
+                  f"not proof upstream is broken)")
+
+    return {
+        "action": "competitor gap analysis",
+        "insight_analyzed": signal[:100],
+        "signal_source_question": signal_q[:100],
+        "signal_candidates": len(competitors),
+        "measured_tool_surface": stats,
+        "identified_gap": gap,
+        "proposed_fix": fix,
+        "result": result,
+        "measurable": True,
+    }
+
+def experiment_meta_insight():
+    """Insight: Meta-RL (LaMer). Apply a simplified version to meta_learn.
+
+    Fixed 23.09.26: this experiment used to READ meta_state, emit the string
+    "increased exploration on the underused strategy" and write nothing. The
+    claim had no consumer — meta_learn.choose_strategy() had no exploration
+    parameter at all — so the cycle ran for weeks reporting an action it never
+    took. It now writes exploration_bias=1.0 into meta_state.json, which
+    choose_strategy() reads on its next call (and resets, so the boost is
+    one-shot), and reports the use counts it actually acted on.
+    """
+    meta_state = os.path.join(T, "meta_state.json")
+    if not os.path.exists(meta_state):
+        return {"action": "meta-RL application", "result": "meta_state missing",
+                "measurable": False}
+    try:
+        s = json.loads(Path(meta_state).read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, ValueError) as e:
+        return {"action": "meta-RL application",
+                "result": f"meta_state unreadable: {str(e)[:80]}", "measurable": False}
+    strategies = s.get("strategy_stats", {})
+    replay_uses = strategies.get("replay", {}).get("uses", 0)
+    fresh_uses = strategies.get("fresh", {}).get("uses", 0)
+    if replay_uses < 5 or fresh_uses < 5:
+        underused = "fresh" if fresh_uses < replay_uses else "replay"
+        s["exploration_bias"] = 1.0
+        _tmp = meta_state + ".kta.tmp"
+        with open(_tmp, "w", encoding="utf-8") as fh:
+            json.dump(s, fh, indent=1)
+        os.replace(_tmp, meta_state)
+        lesson = (f"Meta-RL: replay={replay_uses} vs fresh={fresh_uses} uses; "
+                  f"wrote exploration_bias=1.0 — next meta_learn cycle forces '{underused}'")
+        log({"type": "meta_lesson", "lesson": lesson})
+        return {"action": f"meta-RL: wrote exploration_bias=1.0 for '{underused}'",
+                "result": lesson, "measurable": True}
+    return {"action": "meta-RL application",
+            "result": f"enough data (replay={replay_uses}, fresh={fresh_uses}), no boost needed",
+            "measurable": True}
+
+# ---- Action selector: match insight keywords to experiments ----
+
+def experiment_group_state(group_name="A5"):
+    """REAL architecture experiment: generalize a group-state model to unseen lengths.
+
+    Added 21.09.26. The rotation used to hold five experiments of which four were
+    log-only (LoRA rank records a baseline and defers to the next GPU run;
+    meta-RL re-reads a stale meta_state; buffer/competitor mostly describe the
+    surface). The standing mandate is "new NN architecture > infrastructure", so
+    the rotation now contains one experiment that trains/evaluates a model and
+    writes numbers that can be wrong.
+
+    Method: load the SAVED A5 model (|G|=60, 2 generators, 6 params, tau=0.1,
+    trained on lengths 1-7), evaluate at unseen lengths up to 2048 across three
+    seeds, and report mean/min/max. No retraining — the saved artifact is the
+    subject.
+
+    FIXED 23.09.26 — this arm could not fail. It used Z10, which has
+    num_gens == 1: the choice softmax over a single generator is degenerate
+    (its weight is 1.0 whatever W and b say) and the structural readout
+    <S, M_c> is exact for the permutation representation by construction.
+    Measured on the install: at L=2048 the saved model scored 1.000, a
+    parameter-scrambled model scored 1.000, and an all-zero W,b model scored
+    1.000. So the logged "worst min over 3 seeds x 3 lengths = 1.0000" was a
+    CONSTANT — a number that cannot be wrong is not a measurement.
+
+    A5 is parameter-dependent (same probe: saved 1.000, scrambled 0.000), so
+    the arm now evaluates A5 and runs two controls in the same pass —
+    parameter-scrambled and all-zero — and reports the trained-minus-blind
+    gap. A saturated control (gap <= 0.05) marks the cycle SATURATED instead
+    of green, so this experiment can now come out wrong.
+    """
+    import importlib
+    import random as _random
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    parent = os.path.dirname(script_dir)
+    for p in (parent, script_dir):
+        if p not in sys.path:
+            sys.path.insert(0, p)
+    try:
+        engine = importlib.import_module("group_state_engine")
+        lab = importlib.import_module("group_scaling_lab")
+    except Exception as e:  # noqa: BLE001
+        return {"action": "group-state generalization",
+                "result": f"import failed: {type(e).__name__}: {e}",
+                "measurable": False}
+
+    group_name = group_name or "A5"   # multi-generator: the number CAN be wrong
+    mpath = engine.model_path(group_name)
+    if not os.path.exists(mpath):
+        return {"action": "group-state generalization",
+                "result": f"no saved model at {mpath}", "measurable": False}
+    try:
+        model, group, payload = engine.load(mpath)
+    except Exception as e:  # noqa: BLE001
+        return {"action": "group-state generalization",
+                "result": f"load failed: {type(e).__name__}: {e}",
+                "measurable": False}
+
+    # Cost budget: this runs inside a */30 cron with no per-job timeout. Keep the
+    # evaluation inside one slot: 3 lengths x 3 seeds x 3 arms (trained + two
+    # controls). Measured 23.09.26 on this laptop: A5 at n=100 is 15-20s per
+    # arm, and the three arms at n=50 together took 30s. A5 costs ~2x D12 and
+    # ~0.5x Z10 per sample. Three decades catch a collapse; the full curve
+    # lives in kta_group_state_eval.py.
+    lengths = [8, 512, 2048]
+    seeds = [0, 1, 2]
+    n_per = 50
+    measured = {}
+    for L in lengths:
+        accs = [round(lab.accuracy(model, group, L, n=n_per, seed=s), 4)
+                for s in seeds]
+        measured[L] = {"mean": round(sum(accs) / len(accs), 4),
+                       "min": min(accs), "max": max(accs)}
+    worst = min(v["min"] for v in measured.values())
+
+    # CONTROLS. A green number on a task where random parameters also win is
+    # not evidence of anything, so every cycle now prices the trained model
+    # against (1) parameter-scrambled and (2) all-zero weights.
+    blind = lab.GroupState(group, _random.Random(11), tau=payload["tau"])
+    _r = _random.Random(99)
+    for i in range(len(blind.W.data)):
+        blind.W.data[i] = _r.gauss(0.0, 2.0)
+    for i in range(len(blind.b.data)):
+        blind.b.data[i] = _r.gauss(0.0, 2.0)
+    blind_worst = min(
+        min(round(lab.accuracy(blind, group, L, n=n_per, seed=s), 4)
+            for s in seeds) for L in lengths)
+
+    zero = lab.GroupState(group, _random.Random(0), tau=payload["tau"])
+    for i in range(len(zero.W.data)):
+        zero.W.data[i] = 0.0
+    for i in range(len(zero.b.data)):
+        zero.b.data[i] = 0.0
+    zero_worst = min(
+        min(round(lab.accuracy(zero, group, L, n=n_per, seed=s), 4)
+            for s in seeds) for L in lengths)
+
+    gap = round(worst - blind_worst, 4)
+    saturated = gap <= 0.05
+    out = os.path.join(engine.DEFAULT_DIR, "group_state_a5_kta.json")
+    with open(out, "w", encoding="utf-8") as f:
+        json.dump({"ts": datetime.datetime.now().isoformat(),
+                   "group": group.order, "group_name": group_name,
+                   "params": payload["stats"]["params"],
+                   "tau": payload["tau"],
+                   "trained_on": payload["stats"].get("trained_on"),
+                   "lengths": {str(k): v for k, v in measured.items()},
+                   "blind_worst_min": blind_worst,
+                   "zero_worst_min": zero_worst,
+                   "trained_minus_blind": gap,
+                   "saturated": saturated,
+                   "seeds": seeds, "n_per_seed": n_per}, f, indent=1)
+    curve = " ".join(f"L{L}:{measured[L]['mean']:.3f}" for L in lengths)
+    return {"action": f"group-state generalization {group_name} "
+                      f"(|G|={group.order}, {group.num_gens} gens, "
+                      f"{payload['stats']['params']} params, "
+                      f"tau={payload['tau']})",
+            "result": f"trained acc on unseen lengths {curve}, worst min "
+                      f"{worst:.4f}; blind-parameter control {blind_worst:.4f} "
+                      f"(all-zero {zero_worst:.4f}) -> trained-minus-blind "
+                      f"{gap:+.4f}"
+                      + (" [SATURATED: not a measurement]" if saturated else ""),
+            "exact_lengths": [L for L in lengths if measured[L]["min"] >= 1.0],
+            "trained_worst_min": worst,
+            "blind_worst_min": blind_worst,
+            "zero_worst_min": zero_worst,
+            "saturated": saturated,
+            "artifact": out,
+            "measurable": True}
+
+
+EXPERIMENTS = [
+    (["lora", "rank", "peft", "fine-tun"], experiment_lora_rank),
+    (["predict", "future", "state-space", "projection"], experiment_predict_world),
+    (["buffer", "cap", "memory"], experiment_tune_buffer),
+    (["openhands", "devin", "autogpt", "competitor", "sdk"], experiment_competitor_gap),
+    (["meta-rl", "lamer", "exploration", "meta-learn"], experiment_meta_insight),
+    # architecture slot (appended 21.09.26): rotation index 5, so it is reached
+    # once per 6 cycles without disturbing the existing round-robin schedule.
+    (["group", "group-state", "symmetry", "rotor", "lattice"], experiment_group_state),
+]
+
+def find_latest_insight():
+    """Find the most recent useful insight from the buffer.
+
+    Robustness (live 21.09.26): the store can carry blank separator lines and
+    the occasional truncated row. The old loop called json.loads() on EVERY
+    physical line, so a single empty line aborted the whole cycle with
+    "Expecting value: line 2 column 1" and no experiment ever ran. Blank lines
+    and unparsable rows are now skipped — a separator is not an insight, and
+    one damaged row must not stop the loop.
+    """
+    latest = None
+    skipped = 0
+    path = os.path.join(T, "online_buffer.jsonl")
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            if not line.strip():
+                continue
+            try:
+                d = json.loads(line)
+            except (json.JSONDecodeError, ValueError):
+                skipped += 1
+                continue
+            u, a = d.get("u", ""), d.get("a", "")
+            # skip template junk and short answers
+            if len(a) > 50 and "sentence" not in a and "thinking process" not in a:
+                latest = {"question": u, "answer": a}
+    if skipped:
+        print(f"[kta] skipped {skipped} unparsable buffer rows", flush=True)
+    return latest
+
+def kta_cycle():
+    """One knowledge-to-action cycle."""
+    insight = find_latest_insight()
+    if not insight:
+        print("[kta] no usable insight in buffer", flush=True)
+        return
+
+    text = (insight["question"] + " " + insight["answer"]).lower()
+
+    # find matching experiment
+    # ROTATION: run a different experiment each time (round-robin)
+    rot_file = os.path.join(T, ".kta_rotation")
+    n = 0
+    if os.path.exists(rot_file):
+        n = int(open(rot_file, encoding="utf-8").read().strip() or 0)
+    with open(rot_file, "w", encoding="utf-8") as f:
+        f.write(str(n + 1))
+    # topic hit on the QUESTION wins; the round-robin still
+    # guarantees every arm gets reached (fixed 23.09.26)
+    q = insight["question"].lower()
+    experiment = next((fn for keys, fn in EXPERIMENTS
+                       if any(re.search(r"\b" + re.escape(k) + r"\b", q)
+                              for k in keys)), None)
+    if experiment is None:
+        experiment = EXPERIMENTS[n % len(EXPERIMENTS)][1]
+
+    try:
+        result = experiment()
+    except Exception as e:
+        result = {"action": experiment.__name__, "result": f"error: {str(e)[:100]}"}
+
+    entry = {
+        "ts": datetime.datetime.now().isoformat(),
+        "insight_question": insight["question"][:100],
+        "insight_answer": insight["answer"][:100],
+        "experiment": experiment.__name__,
+        **result,
+    }
+    log(entry)
+    summary = entry.get("result") or entry.get("identified_gap") or entry.get("lesson") or entry.get("action", "")
+    print(f"[kta] {entry['experiment']}: {str(summary)[:160]}", flush=True)
+    return entry
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "loop":
+        import time as _t
+        while True:
+            kta_cycle()
+            _t.sleep(1800)  # every 30 min
+    else:
+        kta_cycle()

@@ -1,0 +1,15 @@
+---
+title: physical-ai-image-attribute-augmentation
+description: Run the PAIDF Orchestration Image Attribute Augmentation DAG on Kubernetes - person-crop clothing augmentation, attribut
+---
+
+# physical-ai-image-attribute-augmentation
+
+**Description:** Run the PAIDF Orchestration Image Attribute Augmentation DAG on Kubernetes - person-crop clothing augmentation, attribute search, and augmented dataset generation. Select for requests about image attribute augmentation, person attribute search, person re-identification data, clothing augmentation, attribute captions, augmentation payloads, run status, or result retrieval. Runs environment setup first when controller readiness is unknown. Not for video or defect-image generation.
+**Lines:** 328 | **Code:** 39 | **Dir:** `physical-ai-image-attribute-augmentation`
+
+---
+
+---
+name: physical-ai-image-attribute-augmentation
+description: Run the PAIDF Orchestration Image Attribute Augmentation DAG on Kubernetes - person-crop clothing augmentation, attribute search, and au...

@@ -1,0 +1,4295 @@
+[
+  {
+    "name": "apple-notes",
+    "file": "apple\\apple-notes\\SKILL.md",
+    "category": "apple",
+    "subcategory": "apple-notes",
+    "tags": [
+      "note-taking",
+      "macOS",
+      "Apple",
+      "Notes"
+    ],
+    "description": "Manage Apple Notes via memo CLI: create, search, edit.",
+    "related_skills": [
+      "obsidian"
+    ],
+    "version": "1.0.1"
+  },
+  {
+    "name": "apple-reminders",
+    "file": "apple\\apple-reminders\\SKILL.md",
+    "category": "apple",
+    "subcategory": "apple-reminders",
+    "tags": [
+      "tasks",
+      "Apple",
+      "macOS",
+      "Reminders",
+      "todo"
+    ],
+    "description": "Apple Reminders via remindctl: add, list, complete.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "findmy",
+    "file": "apple\\findmy\\SKILL.md",
+    "category": "apple",
+    "subcategory": "findmy",
+    "tags": [
+      "tracking",
+      "Apple",
+      "macOS",
+      "FindMy",
+      "AirTag",
+      "location"
+    ],
+    "description": "Track Apple devices/AirTags via FindMy.app on macOS.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "imessage",
+    "file": "apple\\imessage\\SKILL.md",
+    "category": "apple",
+    "subcategory": "imessage",
+    "tags": [
+      "Apple",
+      "iMessage",
+      "macOS",
+      "SMS",
+      "messaging"
+    ],
+    "description": "Send and receive iMessages/SMS via the imsg CLI on macOS.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "auto-env-checker",
+    "file": "auto-env-checker\\SKILL.md",
+    "category": "auto-env-checker",
+    "subcategory": null,
+    "tags": [
+      "auto-fix",
+      "cron",
+      "validation",
+      "health-check",
+      "environment"
+    ],
+    "description": "Use for environment validation: .env, config.yaml, paths, Python, Git — check + auto-fix + cron every 60min.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "a2a-swarm",
+    "file": "autonomous-ai-agents\\a2a-swarm\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "a2a-swarm",
+    "tags": [
+      "swarm",
+      "multi-node",
+      "self-learning",
+      "a2a",
+      "meshlearn",
+      "networking",
+      "agent2agent",
+      "mesh"
+    ],
+    "description": "Run and grow the OpenAmer Agent-to-Agent swarm: identity, trust, node-to-node ask, signed skill/insight sharing, and the autonomous self-learning loop.",
+    "related_skills": [
+      "openamer-agent",
+      "claude-code",
+      "codex",
+      "opencode"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "agent-mesh",
+    "file": "autonomous-ai-agents\\agent-mesh\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "agent-mesh",
+    "tags": [
+      "multi-node",
+      "delegation",
+      "heartbeat",
+      "distributed",
+      "orchestration",
+      "mesh"
+    ],
+    "description": "Agent mesh: master/worker nodes, HTTP delegation, heartbeat.",
+    "related_skills": [
+      "a2a-swarm",
+      "multi-agent-orchestration",
+      "crew-manager"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "agent-self-improvement",
+    "file": "autonomous-ai-agents\\agent-self-improvement\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "agent-self-improvement",
+    "tags": [
+      "context-eol",
+      "metacognition",
+      "thinking-rules",
+      "self-improvement",
+      "autonomy",
+      "safe-self-modify"
+    ],
+    "description": "Use when extending the agent's self-improvement scaffold.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "agent-self-setup",
+    "file": "autonomous-ai-agents\\agent-self-setup\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "agent-self-setup",
+    "tags": [],
+    "description": ">",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "auto-import-deepseek-harness",
+    "file": "autonomous-ai-agents\\auto-import-deepseek-harness\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "auto-import-deepseek-harness",
+    "tags": [],
+    "description": "Auto import DeepSeek Harness skills.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "autonomous-bootstrapping",
+    "file": "autonomous-ai-agents\\autonomous-bootstrapping\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "autonomous-bootstrapping",
+    "tags": [],
+    "description": "When tools are blocked, find free workarounds autonomously.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "autonomous-completion",
+    "file": "autonomous-ai-agents\\autonomous-completion\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "autonomous-completion",
+    "tags": [
+      "verification",
+      "mandate",
+      "no-half-measures",
+      "autonomy",
+      "completion"
+    ],
+    "description": "Use when given an autonomy mandate — complete, verify.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "autonomous-execution-discipline",
+    "file": "autonomous-ai-agents\\autonomous-execution-discipline\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "autonomous-execution-discipline",
+    "tags": [
+      "autonomy",
+      "safety",
+      "interaction",
+      "debugging"
+    ],
+    "description": "Trusted with autonomy: act, don't ask, edit code safely.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "bug-bounty",
+    "file": "autonomous-ai-agents\\bug-bounty\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "bug-bounty",
+    "tags": [],
+    "description": "Use for autonomous bug-hunt: scan, reproduce, fix, bounty.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "claude-code",
+    "file": "autonomous-ai-agents\\claude-code\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "claude-code",
+    "tags": [
+      "Refactoring",
+      "PTY",
+      "Automation",
+      "Code-Review",
+      "Claude",
+      "Anthropic",
+      "Coding-Agent"
+    ],
+    "description": "Delegate coding to Claude Code CLI (features, PRs).",
+    "related_skills": [
+      "codex",
+      "openamer-agent",
+      "opencode"
+    ],
+    "version": "2.2.1"
+  },
+  {
+    "name": "codex",
+    "file": "autonomous-ai-agents\\codex\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "codex",
+    "tags": [
+      "OpenAI",
+      "Refactoring",
+      "Codex",
+      "Code-Review",
+      "Coding-Agent"
+    ],
+    "description": "Delegate coding to OpenAI Codex CLI (features, PRs).",
+    "related_skills": [
+      "claude-code",
+      "openamer-agent"
+    ],
+    "version": "1.0.1"
+  },
+  {
+    "name": "computer-use",
+    "file": "autonomous-ai-agents\\computer-use\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "computer-use",
+    "tags": [
+      "computer-use",
+      "desktop",
+      "gui",
+      "cross-platform",
+      "automation"
+    ],
+    "description": "|",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "crew-manager",
+    "file": "autonomous-ai-agents\\crew-manager\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "crew-manager",
+    "tags": [
+      "subprocess",
+      "devops",
+      "multi-agent",
+      "roles",
+      "orchestration",
+      "crew"
+    ],
+    "description": "Role subprocesses for Dev/Tester/Reviewer/Architect tasks.",
+    "related_skills": [
+      "multi-agent-orchestration",
+      "a2a-swarm",
+      "greenfield-agent-project"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "generalize-external-skills",
+    "file": "autonomous-ai-agents\\generalize-external-skills\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "generalize-external-skills",
+    "tags": [
+      "import",
+      "adaptation",
+      "attribution",
+      "skills",
+      "generalization",
+      "porting"
+    ],
+    "description": "Adapt third-party repo skills into OpenAmer.",
+    "related_skills": [
+      "skill-discovery",
+      "openamer-agent-skill-authoring"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "github-automation-agents",
+    "file": "autonomous-ai-agents\\github-automation-agents\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "github-automation-agents",
+    "tags": [],
+    "description": "Build Bugbot, Security Agent, and PR Approval Workflow.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "goal-engine",
+    "file": "autonomous-ai-agents\\goal-engine\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "goal-engine",
+    "tags": [
+      "tasks",
+      "prioritization",
+      "goals",
+      "auto-execution",
+      "autonomous",
+      "missions"
+    ],
+    "description": "Use for mission: define, prioritize, --tick, progress, scan.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "multi-agent-orchestration",
+    "file": "autonomous-ai-agents\\multi-agent-orchestration\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "multi-agent-orchestration",
+    "tags": [
+      "swarm",
+      "delegation",
+      "parallel",
+      "multi-agent",
+      "coordination",
+      "orchestration",
+      "crew"
+    ],
+    "description": "Parallel, hierarchical, or debate multi-agent orchestration.",
+    "related_skills": [
+      "a2a-swarm",
+      "greenfield-agent-project",
+      "openamer-agent"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "openamer-agent",
+    "file": "autonomous-ai-agents\\openamer-agent\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "openamer-agent",
+    "tags": [
+      "tui-widgets",
+      "themes",
+      "cli",
+      "configuration",
+      "multi-agent",
+      "spawning",
+      "gateway",
+      "desktop-plugins",
+      "development",
+      "setup",
+      "petdex",
+      "skins",
+      "openamer"
+    ],
+    "description": "Use, configure, theme, extend, and orchestrate OpenAmer Agent.",
+    "related_skills": [
+      "claude-code",
+      "codex",
+      "opencode"
+    ],
+    "version": "3.1.0"
+  },
+  {
+    "name": "openamer-brain-train",
+    "file": "autonomous-ai-agents\\openamer-brain-train\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "openamer-brain-train",
+    "tags": [
+      "unsloth",
+      "llm",
+      "qlora",
+      "training",
+      "openamer-model",
+      "brain",
+      "self-train",
+      "dataset",
+      "finetune"
+    ],
+    "description": "Train an OpenAmer-specific small model from the collected brain data (QLoRA on NVIDIA, CPU smoke-test on laptop). 'The organism becomes its own brain' — build a fine-tune dataset, train, eval, export.",
+    "related_skills": [
+      "openamer-finetune-plan",
+      "huggingface-hub",
+      "llama-cpp",
+      "a2a-swarm"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "openamer-finetune-plan",
+    "file": "autonomous-ai-agents\\openamer-finetune-plan\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "openamer-finetune-plan",
+    "tags": [
+      "llm",
+      "training",
+      "openamer-model",
+      "superintelligence",
+      "brain",
+      "dataset",
+      "finetune"
+    ],
+    "description": "Plan and prepare an OpenAmer-specific fine-tune from the collected brain data: data curation, ChatML JSONL, training, evaluation. 'The organism becomes its own brain'.",
+    "related_skills": [
+      "a2a-swarm",
+      "openamer-agent",
+      "huggingface-hub",
+      "llama-cpp"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "openamer-update-recovery",
+    "file": "autonomous-ai-agents\\openamer-update-recovery\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "openamer-update-recovery",
+    "tags": [
+      "update",
+      "self-update",
+      "troubleshooting",
+      "recovery",
+      "windows",
+      "openamer"
+    ],
+    "description": "Use when `openamer update` fails or leaves a broken install.",
+    "related_skills": [
+      "openamer-agent"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "openamer-vision",
+    "file": "autonomous-ai-agents\\openamer-vision\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "openamer-vision",
+    "tags": [],
+    "description": "Use to recall the 5-pillar strategic vision for OpenAmer.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "opencode",
+    "file": "autonomous-ai-agents\\opencode\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "opencode",
+    "tags": [
+      "OpenCode",
+      "Refactoring",
+      "Autonomous",
+      "Code-Review",
+      "Coding-Agent"
+    ],
+    "description": "Delegate coding to OpenCode CLI (features, PR review).",
+    "related_skills": [
+      "claude-code",
+      "codex",
+      "openamer-agent"
+    ],
+    "version": "1.2.0"
+  },
+  {
+    "name": "plugin-system",
+    "file": "autonomous-ai-agents\\plugin-system\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "plugin-system",
+    "tags": [],
+    "description": "Use to load, create, and manage OpenAmer plugins.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "remote-agent-worker",
+    "file": "autonomous-ai-agents\\remote-agent-worker\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "remote-agent-worker",
+    "tags": [
+      "github-actions",
+      "delegation",
+      "a2a",
+      "remote",
+      "serverless",
+      "subagent",
+      "async"
+    ],
+    "description": "Delegate work to a remote agent via a git-repo message bus.",
+    "related_skills": [
+      "a2a-swarm",
+      "agent-mesh",
+      "multi-agent-orchestration"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "security-agent",
+    "file": "autonomous-ai-agents\\security-agent\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "security-agent",
+    "tags": [],
+    "description": "Use for pip CVE scanning and auto-patching via OSV.dev API.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "self-improvement-tooling",
+    "file": "autonomous-ai-agents\\self-improvement-tooling\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "self-improvement-tooling",
+    "tags": [
+      "thinking-rules",
+      "superintelligence",
+      "self-improvement",
+      "safety",
+      "self-refactor",
+      "ai-deep"
+    ],
+    "description": "Use for OpenAmer self-improvement tooling scripts.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "self-reflection-loop",
+    "file": "autonomous-ai-agents\\self-reflection-loop\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "self-reflection-loop",
+    "tags": [
+      "memory",
+      "self-reflection",
+      "metacognition",
+      "review"
+    ],
+    "description": "Self-reflection loop to review outputs and update memory.",
+    "related_skills": [
+      "skill-discovery"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "skill-discovery",
+    "file": "autonomous-ai-agents\\skill-discovery\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "skill-discovery",
+    "tags": [],
+    "description": "Discover and import external skills into OpenAmer.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "skills-hub-cache",
+    "file": "autonomous-ai-agents\\skills-hub-cache\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "skills-hub-cache",
+    "tags": [],
+    "description": "Skills Hub rate-limited? Git clone repos, no API key needed.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "super-intelligence-roadmap",
+    "file": "autonomous-ai-agents\\super-intelligence-roadmap\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "super-intelligence-roadmap",
+    "tags": [],
+    "description": "Roadmap for developing super‑intelligence in OpenAmer Agent.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "windows-computer-use",
+    "file": "autonomous-ai-agents\\windows-computer-use\\SKILL.md",
+    "category": "autonomous-ai-agents",
+    "subcategory": "windows-computer-use",
+    "tags": [
+      "computer-use",
+      "desktop-automation",
+      "uia",
+      "cua-driver",
+      "windows"
+    ],
+    "description": "Use on Windows. UIA quirks, Edge failures, MCP recovery.",
+    "related_skills": [
+      "computer-use"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "architecture-diagram",
+    "file": "creative\\architecture-diagram\\SKILL.md",
+    "category": "creative",
+    "subcategory": "architecture-diagram",
+    "tags": [
+      "infrastructure",
+      "visualization",
+      "architecture",
+      "HTML",
+      "SVG",
+      "diagrams",
+      "cloud"
+    ],
+    "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.",
+    "related_skills": [
+      "concept-diagrams",
+      "excalidraw"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "ascii-art",
+    "file": "creative\\ascii-art\\SKILL.md",
+    "category": "creative",
+    "subcategory": "ascii-art",
+    "tags": [
+      "Banners",
+      "pyfiglet",
+      "Text-Art",
+      "figlet",
+      "Unicode",
+      "Art",
+      "ASCII",
+      "boxes",
+      "Creative",
+      "cowsay"
+    ],
+    "description": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.",
+    "related_skills": [
+      "excalidraw"
+    ],
+    "version": "4.0.0"
+  },
+  {
+    "name": "ascii-video",
+    "file": "creative\\ascii-video\\SKILL.md",
+    "category": "creative",
+    "subcategory": "ascii-video",
+    "tags": [],
+    "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "baoyu-infographic",
+    "file": "creative\\baoyu-infographic\\SKILL.md",
+    "category": "creative",
+    "subcategory": "baoyu-infographic",
+    "tags": [
+      "visual-summary",
+      "image-generation",
+      "infographic",
+      "creative"
+    ],
+    "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).",
+    "related_skills": [],
+    "version": "1.56.1"
+  },
+  {
+    "name": "claude-design",
+    "file": "creative\\claude-design\\SKILL.md",
+    "category": "creative",
+    "subcategory": "claude-design",
+    "tags": [
+      "design",
+      "ux",
+      "html",
+      "prototype",
+      "artifact",
+      "design-system",
+      "motion",
+      "deck",
+      "creative",
+      "ui"
+    ],
+    "description": "Design one-off HTML artifacts (landing, deck, prototype).",
+    "related_skills": [
+      "design-md",
+      "popular-web-designs",
+      "excalidraw",
+      "architecture-diagram"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "comfyui",
+    "file": "creative\\comfyui\\SKILL.md",
+    "category": "creative",
+    "subcategory": "comfyui",
+    "tags": [
+      "image-generation",
+      "flux",
+      "wan-video",
+      "stable-diffusion",
+      "hunyuan-video",
+      "sd3",
+      "creative",
+      "generative-ai",
+      "comfyui",
+      "video-generation"
+    ],
+    "description": "Generate images, video, and audio via diffusion workflows.",
+    "related_skills": [
+      "stable-diffusion-image-generation"
+    ],
+    "version": "5.1.0"
+  },
+  {
+    "name": "design-md",
+    "file": "creative\\design-md\\SKILL.md",
+    "category": "creative",
+    "subcategory": "design-md",
+    "tags": [
+      "google",
+      "design",
+      "wcag",
+      "accessibility",
+      "tokens",
+      "design-system",
+      "tailwind",
+      "dtcg",
+      "ui"
+    ],
+    "description": "Author/validate/export Google's DESIGN.md token spec files.",
+    "related_skills": [
+      "popular-web-designs",
+      "claude-design",
+      "excalidraw",
+      "architecture-diagram"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "excalidraw",
+    "file": "creative\\excalidraw\\SKILL.md",
+    "category": "creative",
+    "subcategory": "excalidraw",
+    "tags": [
+      "Visualization",
+      "Excalidraw",
+      "Diagrams",
+      "JSON",
+      "Flowcharts",
+      "Architecture"
+    ],
+    "description": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).",
+    "related_skills": [],
+    "version": "1.0.1"
+  },
+  {
+    "name": "humanizer",
+    "file": "creative\\humanizer\\SKILL.md",
+    "category": "creative",
+    "subcategory": "humanizer",
+    "tags": [
+      "writing",
+      "editing",
+      "humanize",
+      "anti-ai-slop",
+      "voice",
+      "text",
+      "prose"
+    ],
+    "description": "Humanize text: strip AI-isms and add real voice.",
+    "related_skills": [
+      "songwriting-and-ai-music"
+    ],
+    "version": "2.5.1"
+  },
+  {
+    "name": "manim-video",
+    "file": "creative\\manim-video\\SKILL.md",
+    "category": "creative",
+    "subcategory": "manim-video",
+    "tags": [],
+    "description": "Manim CE animations: 3Blue1Brown math/algo videos.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "p5js",
+    "file": "creative\\p5js\\SKILL.md",
+    "category": "creative",
+    "subcategory": "p5js",
+    "tags": [
+      "generative-art",
+      "visualization",
+      "animation",
+      "creative-coding",
+      "shaders",
+      "interactive",
+      "canvas",
+      "p5js",
+      "webgl"
+    ],
+    "description": "p5.js sketches: gen art, shaders, interactive, 3D.",
+    "related_skills": [
+      "ascii-video",
+      "manim-video",
+      "excalidraw"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "popular-web-designs",
+    "file": "creative\\popular-web-designs\\SKILL.md",
+    "category": "creative",
+    "subcategory": "popular-web-designs",
+    "tags": [
+      "css",
+      "design",
+      "html",
+      "templates",
+      "web-development",
+      "design-systems",
+      "ui"
+    ],
+    "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "pretext",
+    "file": "creative\\pretext\\SKILL.md",
+    "category": "creative",
+    "subcategory": "pretext",
+    "tags": [
+      "pretext",
+      "creative-coding",
+      "kinetic-typography",
+      "canvas",
+      "generative",
+      "typography",
+      "text-layout",
+      "ascii-art"
+    ],
+    "description": "Build creative browser demos with DOM-free text layout.",
+    "related_skills": [
+      "p5js",
+      "claude-design",
+      "excalidraw",
+      "architecture-diagram"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "sketch",
+    "file": "creative\\sketch\\SKILL.md",
+    "category": "creative",
+    "subcategory": "sketch",
+    "tags": [
+      "exploration",
+      "design",
+      "html",
+      "prototype",
+      "mockup",
+      "sketch",
+      "wireframe",
+      "variants",
+      "ui",
+      "comparison"
+    ],
+    "description": "Throwaway HTML mockups: 2-3 design variants to compare.",
+    "related_skills": [
+      "spike",
+      "claude-design",
+      "popular-web-designs",
+      "excalidraw"
+    ],
+    "version": "1.0.1"
+  },
+  {
+    "name": "songwriting-and-ai-music",
+    "file": "creative\\songwriting-and-ai-music\\SKILL.md",
+    "category": "creative",
+    "subcategory": "songwriting-and-ai-music",
+    "tags": [
+      "songwriting",
+      "parody",
+      "music",
+      "creative",
+      "suno",
+      "lyrics"
+    ],
+    "description": "Songwriting craft and Suno AI music prompts.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "touchdesigner-mcp",
+    "file": "creative\\touchdesigner-mcp\\SKILL.md",
+    "category": "creative",
+    "subcategory": "touchdesigner-mcp",
+    "tags": [
+      "real-time-visuals",
+      "generative-art",
+      "twozero",
+      "creative-coding",
+      "TouchDesigner",
+      "GLSL",
+      "installation",
+      "MCP",
+      "VJ",
+      "audio-reactive"
+    ],
+    "description": "Control TouchDesigner via twozero MCP.",
+    "related_skills": [
+      "ascii-video",
+      "manim-video"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "multi-monitor-control",
+    "file": "desktop\\multi-monitor-control\\SKILL.md",
+    "category": "desktop",
+    "subcategory": "multi-monitor-control",
+    "tags": [
+      "computer-use",
+      "multi-monitor",
+      "desktop-automation",
+      "dual-monitor",
+      "cua-driver",
+      "windows"
+    ],
+    "description": "Use when driving two monitors on Windows with cua-driver.",
+    "related_skills": [
+      "windows-computer-use",
+      "computer-use"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "windows-compatibility",
+    "file": "desktop\\windows-compatibility\\SKILL.md",
+    "category": "desktop",
+    "subcategory": "windows-compatibility",
+    "tags": [
+      "computer-use",
+      "desktop",
+      "compatibility",
+      "cua-driver",
+      "windows",
+      "automation"
+    ],
+    "description": "Use on Windows for computer-use: app-launch, UWP, popup.",
+    "related_skills": [
+      "computer-use"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "windows-desktop-self-healing",
+    "file": "desktop\\windows-desktop-self-healing\\SKILL.md",
+    "category": "desktop",
+    "subcategory": "windows-desktop-self-healing",
+    "tags": [
+      "self-healing",
+      "autostart",
+      "desktop",
+      "watchdog",
+      "resilience",
+      "windows"
+    ],
+    "description": "Auto-start at Windows login and restart after crashes.",
+    "related_skills": [
+      "windows-computer-use",
+      "openamer-agent"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "auto-backup",
+    "file": "devops\\auto-backup\\SKILL.md",
+    "category": "devops",
+    "subcategory": "auto-backup",
+    "tags": [],
+    "description": "Use when setting up OpenAmer auto-backup.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "cron-fleet-health",
+    "file": "devops\\cron-fleet-health\\SKILL.md",
+    "category": "devops",
+    "subcategory": "cron-fleet-health",
+    "tags": [
+      "devops",
+      "reliability",
+      "cron",
+      "scheduler",
+      "automation"
+    ],
+    "description": "Use when cron jobs fail; diagnose, fix, verify fleet.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "funding-setup",
+    "file": "devops\\funding-setup\\SKILL.md",
+    "category": "devops",
+    "subcategory": "funding-setup",
+    "tags": [
+      "donations",
+      "payment-buttons",
+      "oss",
+      "funding",
+      "paypal",
+      "sponsors"
+    ],
+    "description": "Use when setting up OSS PayPal buttons and sponsors.",
+    "related_skills": [
+      "open-source-project-launch",
+      "product-hunt-launch"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "github-automation-push",
+    "file": "devops\\github-automation-push\\SKILL.md",
+    "category": "devops",
+    "subcategory": "github-automation-push",
+    "tags": [
+      "git",
+      "actions",
+      "dispatch",
+      "cron",
+      "github",
+      "push",
+      "secrets",
+      "automation"
+    ],
+    "description": "Push to GitHub and drive Actions from scripts or cron.",
+    "related_skills": [
+      "a2a-swarm",
+      "github-repo-management",
+      "agent-mesh"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "predictive-health",
+    "file": "devops\\predictive-health\\SKILL.md",
+    "category": "devops",
+    "subcategory": "predictive-health",
+    "tags": [],
+    "description": "Use for health trend, anomaly, disk forecast",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "ssh-manager",
+    "file": "devops\\ssh-manager\\SKILL.md",
+    "category": "devops",
+    "subcategory": "ssh-manager",
+    "tags": [
+      "devops",
+      "ssh",
+      "remote",
+      "health-check",
+      "multi-host",
+      "scp"
+    ],
+    "description": "SSH hosts: add, list, exec, exec-all, scp, health-check.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "system-performance-monitoring",
+    "file": "devops\\system-performance-monitoring\\SKILL.md",
+    "category": "devops",
+    "subcategory": "system-performance-monitoring",
+    "tags": [
+      "disk",
+      "cron",
+      "optimization",
+      "monitoring",
+      "windows",
+      "performance",
+      "cleanup",
+      "ram"
+    ],
+    "description": "Monitor RAM, disk, and cron timing and auto-optimize.",
+    "related_skills": [
+      "windows-compatibility"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "traffic-cop",
+    "file": "devops\\traffic-cop\\SKILL.md",
+    "category": "devops",
+    "subcategory": "traffic-cop",
+    "tags": [
+      "key-rotation",
+      "openamer",
+      "health-check",
+      "monitoring",
+      "api-keys",
+      "rate-limiting"
+    ],
+    "description": "Use for API-key health checks, rotation, and monitoring.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "discord-server-management",
+    "file": "discord-server-management\\SKILL.md",
+    "category": "discord-server-management",
+    "subcategory": null,
+    "tags": [],
+    "description": "Discord-Server-Management via OpenAmer-Browser (CDP). Nutzen, wenn Cron-Jobs in #Allgemein/#ai-agent lesen oder posten sollen.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "payment-embedding",
+    "file": "ecommerce\\payment-embedding\\SKILL.md",
+    "category": "ecommerce",
+    "subcategory": "payment-embedding",
+    "tags": [
+      "button",
+      "payment",
+      "checkout",
+      "fiverr",
+      "embedding",
+      "marketplace",
+      "paypal"
+    ],
+    "description": "Embed PayPal buttons on pages and list on marketplaces.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "himalaya",
+    "file": "email\\himalaya\\SKILL.md",
+    "category": "email",
+    "subcategory": "himalaya",
+    "tags": [
+      "SMTP",
+      "CLI",
+      "Email",
+      "Communication",
+      "IMAP"
+    ],
+    "description": "Himalaya CLI: IMAP/SMTP email from terminal.",
+    "related_skills": [],
+    "version": "1.1.0"
+  },
+  {
+    "name": "codebase-inspection",
+    "file": "github\\codebase-inspection\\SKILL.md",
+    "category": "github",
+    "subcategory": "codebase-inspection",
+    "tags": [
+      "Repository",
+      "Codebase",
+      "LOC",
+      "Metrics",
+      "Code Analysis",
+      "pygount"
+    ],
+    "description": "Inspect codebases w/ pygount: LOC, languages, ratios.",
+    "related_skills": [
+      "github-repo-management"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "github-api-automation",
+    "file": "github\\github-api-automation\\SKILL.md",
+    "category": "github",
+    "subcategory": "github-api-automation",
+    "tags": [
+      "github",
+      "pages",
+      "api",
+      "robot",
+      "contents-api",
+      "automation"
+    ],
+    "description": "Script GitHub via REST API without gh/CLI login.",
+    "related_skills": [
+      "github-repo-management",
+      "a2a-swarm"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "github-auth",
+    "file": "github\\github-auth\\SKILL.md",
+    "category": "github",
+    "subcategory": "github-auth",
+    "tags": [
+      "Authentication",
+      "GitHub",
+      "Git",
+      "gh-cli",
+      "SSH",
+      "Setup"
+    ],
+    "description": "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.",
+    "related_skills": [
+      "github-pr-workflow",
+      "github-code-review",
+      "github-issues",
+      "github-repo-management"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "github-code-review",
+    "file": "github\\github-code-review\\SKILL.md",
+    "category": "github",
+    "subcategory": "github-code-review",
+    "tags": [
+      "Quality",
+      "Code-Review",
+      "Pull-Requests",
+      "GitHub",
+      "Git"
+    ],
+    "description": "Review PRs: diffs, inline comments via gh or REST.",
+    "related_skills": [
+      "github-auth",
+      "github-pr-workflow"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "github-issue-updater",
+    "file": "github\\github-issue-updater\\SKILL.md",
+    "category": "github",
+    "subcategory": "github-issue-updater",
+    "tags": [
+      "cron",
+      "github",
+      "commenting",
+      "outreach",
+      "issues",
+      "automation"
+    ],
+    "description": "Post verified feature updates to own GitHub issues via cron.",
+    "related_skills": [],
+    "version": "1.3.0"
+  },
+  {
+    "name": "github-issues",
+    "file": "github\\github-issues\\SKILL.md",
+    "category": "github",
+    "subcategory": "github-issues",
+    "tags": [
+      "Triage",
+      "Issues",
+      "GitHub",
+      "Bug-Tracking",
+      "Project-Management"
+    ],
+    "description": "Create, triage, label, assign GitHub issues via gh or REST.",
+    "related_skills": [
+      "github-auth",
+      "github-pr-workflow"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "github-pr-workflow",
+    "file": "github\\github-pr-workflow\\SKILL.md",
+    "category": "github",
+    "subcategory": "github-pr-workflow",
+    "tags": [
+      "Merge",
+      "Automation",
+      "CI/CD",
+      "Pull-Requests",
+      "GitHub",
+      "Git"
+    ],
+    "description": "GitHub PR lifecycle: branch, commit, open, CI, merge.",
+    "related_skills": [
+      "github-auth",
+      "github-code-review"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "github-repo-management",
+    "file": "github\\github-repo-management\\SKILL.md",
+    "category": "github",
+    "subcategory": "github-repo-management",
+    "tags": [
+      "Secrets",
+      "GitHub",
+      "Git",
+      "Repositories",
+      "Releases",
+      "Configuration"
+    ],
+    "description": "Clone/create/fork repos; manage remotes, releases.",
+    "related_skills": [
+      "github-auth",
+      "github-pr-workflow",
+      "github-issues"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "github-readme-summary",
+    "file": "github-readme-summary\\SKILL.md",
+    "category": "github-readme-summary",
+    "subcategory": null,
+    "tags": [],
+    "description": "Summarize a GitHub repo's README using browser tools.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "alpha",
+    "file": "imported\\alpha\\SKILL.md",
+    "category": "imported",
+    "subcategory": "alpha",
+    "tags": [],
+    "description": "Fixture dispatcher with a mode table and forced-read references.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "autoplan",
+    "file": "imported\\autoplan\\SKILL.md",
+    "category": "imported",
+    "subcategory": "autoplan",
+    "tags": [],
+    "description": "Auto-review pipeline — reads the full CEO, design, eng, and DX review skills from disk and runs them sequentially with auto-decisions using 6 decision principles. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "benchmark",
+    "file": "imported\\benchmark\\SKILL.md",
+    "category": "imported",
+    "subcategory": "benchmark",
+    "tags": [],
+    "description": "Performance regression detection using the browse daemon. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "benchmark-models",
+    "file": "imported\\benchmark-models\\SKILL.md",
+    "category": "imported",
+    "subcategory": "benchmark-models",
+    "tags": [],
+    "description": "Cross-model benchmark for gstack skills. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "beta",
+    "file": "imported\\beta\\SKILL.md",
+    "category": "imported",
+    "subcategory": "beta",
+    "tags": [],
+    "description": "Clean fixture tool skill with no forced reads and no mode table.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "browse",
+    "file": "imported\\browse\\SKILL.md",
+    "category": "imported",
+    "subcategory": "browse",
+    "tags": [],
+    "description": "Fast headless browser for QA testing and site dogfooding. (gstack)",
+    "related_skills": [],
+    "version": "1.1.0"
+  },
+  {
+    "name": "canary",
+    "file": "imported\\canary\\SKILL.md",
+    "category": "imported",
+    "subcategory": "canary",
+    "tags": [],
+    "description": "Post-deploy canary monitoring. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "careful",
+    "file": "imported\\careful\\SKILL.md",
+    "category": "imported",
+    "subcategory": "careful",
+    "tags": [],
+    "description": "Safety guardrails for destructive commands. (gstack)",
+    "related_skills": [],
+    "version": "0.1.0"
+  },
+  {
+    "name": "codex",
+    "file": "imported\\codex\\SKILL.md",
+    "category": "imported",
+    "subcategory": "codex",
+    "tags": [],
+    "description": "OpenAI Codex CLI wrapper — three modes. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "context-restore",
+    "file": "imported\\context-restore\\SKILL.md",
+    "category": "imported",
+    "subcategory": "context-restore",
+    "tags": [],
+    "description": "Restore working context saved earlier by /context-save. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "context-save",
+    "file": "imported\\context-save\\SKILL.md",
+    "category": "imported",
+    "subcategory": "context-save",
+    "tags": [],
+    "description": "Save working context. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "cso",
+    "file": "imported\\cso\\SKILL.md",
+    "category": "imported",
+    "subcategory": "cso",
+    "tags": [],
+    "description": "Chief Security Officer mode. (gstack)",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "design-consultation",
+    "file": "imported\\design-consultation\\SKILL.md",
+    "category": "imported",
+    "subcategory": "design-consultation",
+    "tags": [],
+    "description": "Design consultation: understands your product, researches the landscape, proposes a complete design system (aesthetic, typography, color, layout, spacing, motion), and generates font+color preview... ",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "design-html",
+    "file": "imported\\design-html\\SKILL.md",
+    "category": "imported",
+    "subcategory": "design-html",
+    "tags": [],
+    "description": "Design finalization: generates production-quality Pretext-native HTML/CSS. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "design-review",
+    "file": "imported\\design-review\\SKILL.md",
+    "category": "imported",
+    "subcategory": "design-review",
+    "tags": [],
+    "description": "Designer's eye QA: finds visual inconsistency, spacing issues, hierarchy problems, AI slop patterns, and slow interactions — then fixes them. (gstack)",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "design-shotgun",
+    "file": "imported\\design-shotgun\\SKILL.md",
+    "category": "imported",
+    "subcategory": "design-shotgun",
+    "tags": [],
+    "description": "Design shotgun: generate multiple AI design variants, open a comparison board, collect structured feedback, and iterate. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "devex-review",
+    "file": "imported\\devex-review\\SKILL.md",
+    "category": "imported",
+    "subcategory": "devex-review",
+    "tags": [],
+    "description": "Live developer experience audit. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "diagram",
+    "file": "imported\\diagram\\SKILL.md",
+    "category": "imported",
+    "subcategory": "diagram",
+    "tags": [],
+    "description": "Turn an English description (or mermaid source) into a diagram triplet: the source, an editable .excalidraw file you can open on excalidraw.com, and rendered SVG + PNG. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "document-generate",
+    "file": "imported\\document-generate\\SKILL.md",
+    "category": "imported",
+    "subcategory": "document-generate",
+    "tags": [],
+    "description": "Generate missing documentation from scratch for a feature, module, or entire project. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "document-release",
+    "file": "imported\\document-release\\SKILL.md",
+    "category": "imported",
+    "subcategory": "document-release",
+    "tags": [],
+    "description": "Post-ship documentation update. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "freeze",
+    "file": "imported\\freeze\\SKILL.md",
+    "category": "imported",
+    "subcategory": "freeze",
+    "tags": [],
+    "description": "Restrict file edits to a specific directory for the session. (gstack)",
+    "related_skills": [],
+    "version": "0.1.0"
+  },
+  {
+    "name": "gstack",
+    "file": "imported\\gstack\\SKILL.md",
+    "category": "imported",
+    "subcategory": "gstack",
+    "tags": [],
+    "description": "Router for the gstack skill suite. (gstack)",
+    "related_skills": [],
+    "version": "1.2.0"
+  },
+  {
+    "name": "gstack-openclaw-ceo-review",
+    "file": "imported\\gstack-openclaw-ceo-review\\SKILL.md",
+    "category": "imported",
+    "subcategory": "gstack-openclaw-ceo-review",
+    "tags": [],
+    "description": "Use when asked to review a plan, challenge a proposal, run a CEO review, poke holes in an approach, think bigger about scope, or decide whether to expand or reduce the plan.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "gstack-openclaw-investigate",
+    "file": "imported\\gstack-openclaw-investigate\\SKILL.md",
+    "category": "imported",
+    "subcategory": "gstack-openclaw-investigate",
+    "tags": [],
+    "description": "Use when asked to debug, fix a bug, investigate an error, or do root cause analysis, and when users report errors, stack traces, unexpected behavior, or say something stopped working.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "gstack-openclaw-office-hours",
+    "file": "imported\\gstack-openclaw-office-hours\\SKILL.md",
+    "category": "imported",
+    "subcategory": "gstack-openclaw-office-hours",
+    "tags": [],
+    "description": "Use when asked to brainstorm, evaluate whether an idea is worth building, run office hours, or think through a new product idea or design direction before any code is written.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "gstack-openclaw-retro",
+    "file": "imported\\gstack-openclaw-retro\\SKILL.md",
+    "category": "imported",
+    "subcategory": "gstack-openclaw-retro",
+    "tags": [],
+    "description": "Weekly engineering retrospective. Analyzes commit history, work patterns, and code quality metrics with persistent history and trend tracking. Team-aware with per-person contributions, praise, and gro",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "gstack-upgrade",
+    "file": "imported\\gstack-upgrade\\SKILL.md",
+    "category": "imported",
+    "subcategory": "gstack-upgrade",
+    "tags": [],
+    "description": "Upgrade gstack to the latest version.",
+    "related_skills": [],
+    "version": "1.1.0"
+  },
+  {
+    "name": "guard",
+    "file": "imported\\guard\\SKILL.md",
+    "category": "imported",
+    "subcategory": "guard",
+    "tags": [],
+    "description": "Full safety mode: destructive command warnings + directory-scoped edits. (gstack)",
+    "related_skills": [],
+    "version": "0.1.0"
+  },
+  {
+    "name": "hackernews-frontpage",
+    "file": "imported\\hackernews-frontpage\\SKILL.md",
+    "category": "imported",
+    "subcategory": "hackernews-frontpage",
+    "tags": [],
+    "description": "Scrape the Hacker News front page (titles, points, comment counts).",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "health",
+    "file": "imported\\health\\SKILL.md",
+    "category": "imported",
+    "subcategory": "health",
+    "tags": [],
+    "description": "Code quality dashboard. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "investigate",
+    "file": "imported\\investigate\\SKILL.md",
+    "category": "imported",
+    "subcategory": "investigate",
+    "tags": [],
+    "description": "Systematic debugging with root cause investigation. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "ios-clean",
+    "file": "imported\\ios-clean\\SKILL.md",
+    "category": "imported",
+    "subcategory": "ios-clean",
+    "tags": [],
+    "description": "Remove the DebugBridge SPM package and all #if DEBUG wiring from an iOS app. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "ios-design-review",
+    "file": "imported\\ios-design-review\\SKILL.md",
+    "category": "imported",
+    "subcategory": "ios-design-review",
+    "tags": [],
+    "description": "Visual design audit for iOS apps on real hardware. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "ios-fix",
+    "file": "imported\\ios-fix\\SKILL.md",
+    "category": "imported",
+    "subcategory": "ios-fix",
+    "tags": [],
+    "description": "Autonomous iOS bug fixer. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "ios-qa",
+    "file": "imported\\ios-qa\\SKILL.md",
+    "category": "imported",
+    "subcategory": "ios-qa",
+    "tags": [],
+    "description": "Live-device iOS QA for SwiftUI apps. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "ios-sync",
+    "file": "imported\\ios-sync\\SKILL.md",
+    "category": "imported",
+    "subcategory": "ios-sync",
+    "tags": [],
+    "description": "Regenerate the iOS debug bridge against the latest upstream gstack templates. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "land-and-deploy",
+    "file": "imported\\land-and-deploy\\SKILL.md",
+    "category": "imported",
+    "subcategory": "land-and-deploy",
+    "tags": [],
+    "description": "Land and deploy workflow. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "landing-report",
+    "file": "imported\\landing-report\\SKILL.md",
+    "category": "imported",
+    "subcategory": "landing-report",
+    "tags": [],
+    "description": "Read-only queue dashboard for workspace-aware ship. (gstack)",
+    "related_skills": [],
+    "version": "0.1.0"
+  },
+  {
+    "name": "learn",
+    "file": "imported\\learn\\SKILL.md",
+    "category": "imported",
+    "subcategory": "learn",
+    "tags": [],
+    "description": "Manage project learnings.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "make-pdf",
+    "file": "imported\\make-pdf\\SKILL.md",
+    "category": "imported",
+    "subcategory": "make-pdf",
+    "tags": [],
+    "description": "Turn any markdown file into a publication-quality PDF. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "office-hours",
+    "file": "imported\\office-hours\\SKILL.md",
+    "category": "imported",
+    "subcategory": "office-hours",
+    "tags": [],
+    "description": "YC Office Hours — two modes. (gstack)",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "open-gstack-browser",
+    "file": "imported\\open-gstack-browser\\SKILL.md",
+    "category": "imported",
+    "subcategory": "open-gstack-browser",
+    "tags": [],
+    "description": "Launch GStack Browser — AI-controlled Chromium with the sidebar extension baked in.",
+    "related_skills": [],
+    "version": "0.2.0"
+  },
+  {
+    "name": "pair-agent",
+    "file": "imported\\pair-agent\\SKILL.md",
+    "category": "imported",
+    "subcategory": "pair-agent",
+    "tags": [],
+    "description": "Pair a remote AI agent with your browser. (gstack)",
+    "related_skills": [],
+    "version": "0.1.0"
+  },
+  {
+    "name": "plan-ceo-review",
+    "file": "imported\\plan-ceo-review\\SKILL.md",
+    "category": "imported",
+    "subcategory": "plan-ceo-review",
+    "tags": [],
+    "description": "CEO/founder-mode plan review. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "plan-design-review",
+    "file": "imported\\plan-design-review\\SKILL.md",
+    "category": "imported",
+    "subcategory": "plan-design-review",
+    "tags": [],
+    "description": "Designer's eye plan review — interactive, like CEO and Eng review. (gstack)",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "plan-devex-review",
+    "file": "imported\\plan-devex-review\\SKILL.md",
+    "category": "imported",
+    "subcategory": "plan-devex-review",
+    "tags": [],
+    "description": "Interactive developer experience plan review. (gstack)",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "plan-eng-review",
+    "file": "imported\\plan-eng-review\\SKILL.md",
+    "category": "imported",
+    "subcategory": "plan-eng-review",
+    "tags": [],
+    "description": "Eng manager-mode plan review. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "plan-tune",
+    "file": "imported\\plan-tune\\SKILL.md",
+    "category": "imported",
+    "subcategory": "plan-tune",
+    "tags": [],
+    "description": "Self-tuning question sensitivity + developer psychographic for gstack (v1: observational). (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "qa",
+    "file": "imported\\qa\\SKILL.md",
+    "category": "imported",
+    "subcategory": "qa",
+    "tags": [],
+    "description": "Systematically QA test a web application and fix bugs found. (gstack)",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "qa-only",
+    "file": "imported\\qa-only\\SKILL.md",
+    "category": "imported",
+    "subcategory": "qa-only",
+    "tags": [],
+    "description": "Report-only QA testing. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "retro",
+    "file": "imported\\retro\\SKILL.md",
+    "category": "imported",
+    "subcategory": "retro",
+    "tags": [],
+    "description": "Weekly engineering retrospective. (gstack)",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "review",
+    "file": "imported\\review\\SKILL.md",
+    "category": "imported",
+    "subcategory": "review",
+    "tags": [],
+    "description": "Pre-landing PR review. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "scrape",
+    "file": "imported\\scrape\\SKILL.md",
+    "category": "imported",
+    "subcategory": "scrape",
+    "tags": [],
+    "description": "Pull data from a web page. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "setup-browser-cookies",
+    "file": "imported\\setup-browser-cookies\\SKILL.md",
+    "category": "imported",
+    "subcategory": "setup-browser-cookies",
+    "tags": [],
+    "description": "Import cookies from your real Chromium browser into the headless browse session. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "setup-deploy",
+    "file": "imported\\setup-deploy\\SKILL.md",
+    "category": "imported",
+    "subcategory": "setup-deploy",
+    "tags": [],
+    "description": "Configure deployment settings for /land-and-deploy.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "setup-gbrain",
+    "file": "imported\\setup-gbrain\\SKILL.md",
+    "category": "imported",
+    "subcategory": "setup-gbrain",
+    "tags": [],
+    "description": "Set up gbrain for this coding agent: install the CLI, initialize a local PGLite or Supabase brain, register MCP, capture per-remote trust policy. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "ship",
+    "file": "imported\\ship\\SKILL.md",
+    "category": "imported",
+    "subcategory": "ship",
+    "tags": [],
+    "description": "Ship workflow: detect + merge base branch, run tests, review diff, bump VERSION, update CHANGELOG, commit, push, create PR. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "skillify",
+    "file": "imported\\skillify\\SKILL.md",
+    "category": "imported",
+    "subcategory": "skillify",
+    "tags": [],
+    "description": "Codify the most recent successful /scrape flow into a permanent browser-skill on disk. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "spec",
+    "file": "imported\\spec\\SKILL.md",
+    "category": "imported",
+    "subcategory": "spec",
+    "tags": [],
+    "description": "Turn vague intent into a precise, executable spec in five phases. (gstack)",
+    "related_skills": [],
+    "version": "0.1.0"
+  },
+  {
+    "name": "sync-gbrain",
+    "file": "imported\\sync-gbrain\\SKILL.md",
+    "category": "imported",
+    "subcategory": "sync-gbrain",
+    "tags": [],
+    "description": "Keep gbrain current with this repo's code and refresh agent search guidance in CLAUDE.md. (gstack)",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "unfreeze",
+    "file": "imported\\unfreeze\\SKILL.md",
+    "category": "imported",
+    "subcategory": "unfreeze",
+    "tags": [],
+    "description": "Clear the freeze boundary set by /freeze, allowing edits to all directories again. (gstack)",
+    "related_skills": [],
+    "version": "0.1.0"
+  },
+  {
+    "name": "dsh-archive-agent-notes",
+    "file": "imported-deepseek-harness\\dsh-archive-agent-notes\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-archive-agent-notes",
+    "tags": [],
+    "description": "Use when adding, auditing, pruning, archiving, restoring, or reviewing Agent Notes in deepseek-harness; checks every new note for superseded active records, classifies implemented notes by future deci",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-code-review",
+    "file": "imported-deepseek-harness\\dsh-code-review\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-code-review",
+    "tags": [],
+    "description": "Use when reviewing a pull request in the deepseek-harness repo — orients the reviewer to this codebase's standards (AGENTS.md conventions, defensive patterns, ADRs, quality gates) and the review-speci",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-doc",
+    "file": "imported-deepseek-harness\\dsh-doc\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-doc",
+    "tags": [],
+    "description": "Create, restructure, review, audit, or migrate DeepSeek Harness Markdown documentation, package READMEs, and the documentation website using audience-first hierarchy, kind-mapped YAML metadata, biling",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-doc-site-sync",
+    "file": "imported-deepseek-harness\\dsh-doc-site-sync\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-doc-site-sync",
+    "tags": [],
+    "description": "Use when publishing, updating, moving, or removing DeepSeek Harness documentation website pages; editing website/docs.ts mappings or navigation; diagnosing a page missing from the VitePress site; fixi",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-doc-standards",
+    "file": "imported-deepseek-harness\\dsh-doc-standards\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-doc-standards",
+    "tags": [],
+    "description": "Use when writing, moving, reviewing, or auditing documentation in the deepseek-harness repo — choosing hierarchy and detail, separating tutorials from references, checking tutorial progression, trimmi",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-find-simplifications",
+    "file": "imported-deepseek-harness\\dsh-find-simplifications\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-find-simplifications",
+    "tags": [],
+    "description": "Use when working in the deepseek-harness repo to find non-obvious simplification candidates, remove redundant comments or implementation-heavy documentation, write proposed Agent Notes or inline TODO/",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-merging-stacked-prs",
+    "file": "imported-deepseek-harness\\dsh-merging-stacked-prs\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-merging-stacked-prs",
+    "tags": [],
+    "description": "Use when landing a stack of dependent GitHub PRs (A ← B ← C, where each bases on the one below) onto master, merging a PR whose base is another open PR's branch, or whenever a request mentions \"stacke",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-pre-push-checks",
+    "file": "imported-deepseek-harness\\dsh-pre-push-checks\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-pre-push-checks",
+    "tags": [],
+    "description": "Use before pushing, force-pushing, marking ready for review, or claiming checks pass on a deepseek-harness branch, and immediately after gh stack sync publishes rewritten branches, to select the small",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-prose-standard",
+    "file": "imported-deepseek-harness\\dsh-prose-standard\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-prose-standard",
+    "tags": [],
+    "description": "Use when writing, reviewing, restoring, trimming, or auditing prose in the deepseek-harness repo, including deciding where documentation or comments are required across Markdown, JSDoc, code and test ",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-translate-docs",
+    "file": "imported-deepseek-harness\\dsh-translate-docs\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-translate-docs",
+    "tags": [],
+    "description": "Manually run the extended DeepSeek Harness bilingual-document workflow, including generated briefings, delegated prose translation, whole-document translation, and scoped pairing verification.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-trim-cot-leakage",
+    "file": "imported-deepseek-harness\\dsh-trim-cot-leakage\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "dsh-trim-cot-leakage",
+    "tags": [],
+    "description": "Use when auditing or fixing prose that reads like a leaked reasoning transcript — dead design-session citations such as (decision N), audit item codes, or §N of uncommitted drafts; change narration su",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "record-browser-gif",
+    "file": "imported-deepseek-harness\\record-browser-gif\\SKILL.md",
+    "category": "imported-deepseek-harness",
+    "subcategory": "record-browser-gif",
+    "tags": [],
+    "description": "Record browser or Web UI interaction demos as optimized GIFs using the available built-in browser, state-based frame capture, and deterministic encoding, then publish to a dedicated assets branch when",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "open-source-project-launch",
+    "file": "marketing\\open-source-project-launch\\SKILL.md",
+    "category": "marketing",
+    "subcategory": "open-source-project-launch",
+    "tags": [],
+    "description": "Launch OSS on Product Hunt, HN, Reddit, and Twitter.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "payment-integration",
+    "file": "marketing\\payment-integration\\SKILL.md",
+    "category": "marketing",
+    "subcategory": "payment-integration",
+    "tags": [
+      "payment",
+      "oss",
+      "funding",
+      "donation",
+      "paypal",
+      "sponsorship"
+    ],
+    "description": "OSS donation setup: PayPal buttons, badges, SPONSORS.md.",
+    "related_skills": [
+      "open-source-project-launch"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "product-hunt-launch",
+    "file": "marketing\\product-hunt-launch\\SKILL.md",
+    "category": "marketing",
+    "subcategory": "product-hunt-launch",
+    "tags": [
+      "product-hunt",
+      "computer-use",
+      "launch",
+      "cua-driver",
+      "marketing"
+    ],
+    "description": "Drive Product Hunt launch via background computer-use.",
+    "related_skills": [
+      "windows-compatibility",
+      "computer-use",
+      "competitive-analysis",
+      "openamer-browser-use"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "gif-search",
+    "file": "media\\gif-search\\SKILL.md",
+    "category": "media",
+    "subcategory": "gif-search",
+    "tags": [
+      "GIF",
+      "Tenor",
+      "Media",
+      "Search",
+      "API"
+    ],
+    "description": "Search/download GIFs from Tenor via curl + jq.",
+    "related_skills": [],
+    "version": "1.1.0"
+  },
+  {
+    "name": "songsee",
+    "file": "media\\songsee\\SKILL.md",
+    "category": "media",
+    "subcategory": "songsee",
+    "tags": [
+      "Visualization",
+      "Music",
+      "Analysis",
+      "Audio",
+      "Spectrogram"
+    ],
+    "description": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "youtube-content",
+    "file": "media\\youtube-content\\SKILL.md",
+    "category": "media",
+    "subcategory": "youtube-content",
+    "tags": [],
+    "description": "YouTube transcripts to summaries, threads, blogs.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "evaluating-llms-harness",
+    "file": "mlops\\evaluation\\evaluating-llms-harness\\SKILL.md",
+    "category": "mlops",
+    "subcategory": "evaluation",
+    "tags": [
+      "Model Quality",
+      "Industry Standard",
+      "Academic Benchmarks",
+      "EleutherAI",
+      "MMLU",
+      "Benchmarking",
+      "Evaluation",
+      "LM Evaluation Harness",
+      "GSM8K",
+      "HumanEval"
+    ],
+    "description": "lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.).",
+    "related_skills": [],
+    "version": "1.0.1"
+  },
+  {
+    "name": "weights-and-biases",
+    "file": "mlops\\evaluation\\weights-and-biases\\SKILL.md",
+    "category": "mlops",
+    "subcategory": "evaluation",
+    "tags": [
+      "Weights And Biases",
+      "Hyperparameter Tuning",
+      "Collaboration",
+      "MLOps",
+      "Real-Time Visualization",
+      "HuggingFace",
+      "WandB",
+      "TensorFlow",
+      "Experiment Tracking",
+      "Model Registry",
+      "PyTorch"
+    ],
+    "description": "W&B: log ML experiments, sweeps, model registry, dashboards.",
+    "related_skills": [],
+    "version": "1.0.1"
+  },
+  {
+    "name": "huggingface-hub",
+    "file": "mlops\\huggingface-hub\\SKILL.md",
+    "category": "mlops",
+    "subcategory": "huggingface-hub",
+    "tags": [
+      "huggingface",
+      "datasets",
+      "mlops",
+      "models",
+      "hf",
+      "hub"
+    ],
+    "description": "HuggingFace hf CLI: search/download/upload models, datasets.",
+    "related_skills": [],
+    "version": "1.0.1"
+  },
+  {
+    "name": "llama-cpp",
+    "file": "mlops\\inference\\llama-cpp\\SKILL.md",
+    "category": "mlops",
+    "subcategory": "inference",
+    "tags": [
+      "Hugging Face Hub",
+      "Quantization",
+      "Intel GPUs",
+      "llama.cpp",
+      "Edge Deployment",
+      "NVIDIA",
+      "URL-first",
+      "AMD GPUs",
+      "CPU Inference",
+      "Apple Silicon",
+      "GGUF"
+    ],
+    "description": "llama.cpp local GGUF inference + HF Hub model discovery.",
+    "related_skills": [],
+    "version": "2.1.2"
+  },
+  {
+    "name": "serving-llms-vllm",
+    "file": "mlops\\inference\\serving-llms-vllm\\SKILL.md",
+    "category": "mlops",
+    "subcategory": "inference",
+    "tags": [
+      "Quantization",
+      "vLLM",
+      "PagedAttention",
+      "Inference Serving",
+      "Continuous Batching",
+      "High Throughput",
+      "Production",
+      "Tensor Parallelism",
+      "OpenAI API"
+    ],
+    "description": "vLLM: high-throughput LLM serving, OpenAI API, quantization.",
+    "related_skills": [],
+    "version": "1.0.1"
+  },
+  {
+    "name": "openrouter-model-pricing",
+    "file": "mlops\\openrouter-model-pricing\\SKILL.md",
+    "category": "mlops",
+    "subcategory": "openrouter-model-pricing",
+    "tags": [],
+    "description": "Compare OpenRouter model costs when the user asks.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "training-data-collection",
+    "file": "mlops\\training-data-collection\\SKILL.md",
+    "category": "mlops",
+    "subcategory": "training-data-collection",
+    "tags": [
+      "fine-tuning",
+      "training-data",
+      "self-improvement",
+      "sessions",
+      "brain-dataset"
+    ],
+    "description": "Use to export sessions to brain dataset for fine-tuning.",
+    "related_skills": [
+      "self-modify",
+      "openamer-agent"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "obsidian",
+    "file": "note-taking\\obsidian\\SKILL.md",
+    "category": "note-taking",
+    "subcategory": "obsidian",
+    "tags": [],
+    "description": "Read, search, create, and edit notes in the Obsidian vault.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "openamer-plugin-development",
+    "file": "openamer-plugin-development\\SKILL.md",
+    "category": "openamer-plugin-development",
+    "subcategory": null,
+    "tags": [],
+    "description": "Build and verify OpenAmer plugins end-to-end.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "plugin-api",
+    "file": "plugin-api\\SKILL.md",
+    "category": "plugin-api",
+    "subcategory": null,
+    "tags": [],
+    "description": "Vollständige Dokumentation des OpenAmer Plugin-API-Systems. Hooks, Events, Lifecycle, manifest.json Format, Config-Integration und Plugin-Manager.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "airtable",
+    "file": "productivity\\airtable\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "airtable",
+    "tags": [
+      "API",
+      "Airtable",
+      "Database",
+      "Productivity"
+    ],
+    "description": "Airtable REST API via curl. Records CRUD, filters, upserts.",
+    "related_skills": [],
+    "version": "1.1.0"
+  },
+  {
+    "name": "docx",
+    "file": "productivity\\docx\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "docx",
+    "tags": [
+      "Documents",
+      "Productivity",
+      "Office",
+      "DOCX",
+      "Word"
+    ],
+    "description": "Create, read, edit Word .docx documents and templates.",
+    "related_skills": [
+      "pdf",
+      "xlsx",
+      "powerpoint",
+      "ocr-and-documents"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "donation-buttons",
+    "file": "productivity\\donation-buttons\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "donation-buttons",
+    "tags": [
+      "static-site",
+      "github-pages",
+      "funding",
+      "donation",
+      "stripe",
+      "paypal"
+    ],
+    "description": ">-",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "google-workspace",
+    "file": "productivity\\google-workspace\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "google-workspace",
+    "tags": [
+      "Sheets",
+      "Google",
+      "Docs",
+      "Calendar",
+      "Email",
+      "Contacts",
+      "Gmail",
+      "Drive",
+      "OAuth"
+    ],
+    "description": "Google OAuth2 client credentials (downloaded from Google Cloud Console)",
+    "related_skills": [
+      "himalaya"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "maps",
+    "file": "productivity\\maps\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "maps",
+    "tags": [
+      "openstreetmap",
+      "geocoding",
+      "places",
+      "nominatim",
+      "routing",
+      "distance",
+      "directions",
+      "maps",
+      "nearby",
+      "location",
+      "osrm",
+      "overpass"
+    ],
+    "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.",
+    "related_skills": [],
+    "version": "1.2.0"
+  },
+  {
+    "name": "nano-pdf",
+    "file": "productivity\\nano-pdf\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "nano-pdf",
+    "tags": [
+      "Documents",
+      "Editing",
+      "Productivity",
+      "PDF",
+      "NLP"
+    ],
+    "description": "Edit text in existing PDFs via natural-language prompts.",
+    "related_skills": [
+      "pdf",
+      "ocr-and-documents"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "notion",
+    "file": "productivity\\notion\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "notion",
+    "tags": [
+      "CLI",
+      "Productivity",
+      "Notes",
+      "Database",
+      "Workers",
+      "Notion",
+      "API"
+    ],
+    "description": "Notion API + ntn CLI: pages, databases, markdown, Workers.",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "ocr-and-documents",
+    "file": "productivity\\ocr-and-documents\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "ocr-and-documents",
+    "tags": [
+      "Documents",
+      "OCR",
+      "Arxiv",
+      "Research",
+      "PDF",
+      "Text-Extraction"
+    ],
+    "description": "Extract text from PDFs/scans (pymupdf, marker-pdf).",
+    "related_skills": [
+      "pdf",
+      "docx",
+      "powerpoint"
+    ],
+    "version": "2.3.0"
+  },
+  {
+    "name": "open-source-project-visibility",
+    "file": "productivity\\open-source-project-visibility\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "open-source-project-visibility",
+    "tags": [],
+    "description": "Use when invisible. GitHub Topics, Product Hunt, Reddit, HN.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "pdf",
+    "file": "productivity\\pdf\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "pdf",
+    "tags": [
+      "Documents",
+      "Forms",
+      "Productivity",
+      "Office",
+      "PDF"
+    ],
+    "description": "Create, merge, split, fill, and secure PDF files.",
+    "related_skills": [
+      "ocr-and-documents",
+      "nano-pdf",
+      "docx",
+      "xlsx"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "powerpoint",
+    "file": "productivity\\powerpoint\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "powerpoint",
+    "tags": [
+      "Productivity",
+      "Presentations",
+      "Office",
+      "PowerPoint",
+      "PPTX"
+    ],
+    "description": "Create, read, edit .pptx decks, slides, notes, templates.",
+    "related_skills": [
+      "docx",
+      "xlsx",
+      "pdf"
+    ],
+    "version": "2.0.0"
+  },
+  {
+    "name": "teams-meeting-pipeline",
+    "file": "productivity\\teams-meeting-pipeline\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "teams-meeting-pipeline",
+    "tags": [
+      "Microsoft Graph",
+      "Productivity",
+      "Operations",
+      "Teams",
+      "Meetings"
+    ],
+    "description": "Teams meeting summaries, job replay, Graph subscriptions.",
+    "related_skills": [],
+    "version": "1.1.0"
+  },
+  {
+    "name": "xlsx",
+    "file": "productivity\\xlsx\\SKILL.md",
+    "category": "productivity",
+    "subcategory": "xlsx",
+    "tags": [
+      "Productivity",
+      "Office",
+      "XLSX",
+      "Spreadsheets",
+      "Excel"
+    ],
+    "description": "Create, read, edit Excel .xlsx spreadsheets and CSVs.",
+    "related_skills": [
+      "docx",
+      "pdf",
+      "powerpoint"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "arxiv",
+    "file": "research\\arxiv\\SKILL.md",
+    "category": "research",
+    "subcategory": "arxiv",
+    "tags": [
+      "Arxiv",
+      "Academic",
+      "Science",
+      "Research",
+      "API",
+      "Papers"
+    ],
+    "description": "Search arXiv papers by keyword, author, category, or ID.",
+    "related_skills": [
+      "ocr-and-documents"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "blogwatcher",
+    "file": "research\\blogwatcher\\SKILL.md",
+    "category": "research",
+    "subcategory": "blogwatcher",
+    "tags": [
+      "Feed-Reader",
+      "Blogs",
+      "Monitoring",
+      "RSS"
+    ],
+    "description": "Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "competitive-analysis",
+    "file": "research\\competitive-analysis\\SKILL.md",
+    "category": "research",
+    "subcategory": "competitive-analysis",
+    "tags": [
+      "analysis",
+      "competitor",
+      "strategy",
+      "planning",
+      "market-intelligence",
+      "research"
+    ],
+    "description": "Use for competitor research: find gaps and plan overtake.",
+    "related_skills": [
+      "web-research",
+      "autonomous-ai-agents"
+    ],
+    "version": "2.1.0"
+  },
+  {
+    "name": "llm-wiki",
+    "file": "research\\llm-wiki\\SKILL.md",
+    "category": "research",
+    "subcategory": "llm-wiki",
+    "tags": [
+      "markdown",
+      "wiki",
+      "notes",
+      "rag-alternative",
+      "research",
+      "knowledge-base"
+    ],
+    "description": "Karpathy's LLM Wiki: build/query interlinked markdown KB.",
+    "related_skills": [
+      "obsidian",
+      "arxiv"
+    ],
+    "version": "2.1.0"
+  },
+  {
+    "name": "polymarket",
+    "file": "research\\polymarket\\SKILL.md",
+    "category": "research",
+    "subcategory": "polymarket",
+    "tags": [
+      "prediction-markets",
+      "market-data",
+      "trading",
+      "polymarket"
+    ],
+    "description": "Query Polymarket: markets, prices, orderbooks, history.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "research-paper-writing",
+    "file": "research\\research-paper-writing\\SKILL.md",
+    "category": "research",
+    "subcategory": "research-paper-writing",
+    "tags": [
+      "ICLR",
+      "Citations",
+      "COLM",
+      "AAAI",
+      "LaTeX",
+      "AI",
+      "ML",
+      "Experiments",
+      "Statistical Analysis",
+      "Research",
+      "ICML",
+      "Paper Writing",
+      "NeurIPS",
+      "ACL"
+    ],
+    "description": "Write ML papers for NeurIPS/ICML/ICLR: design→submit.",
+    "related_skills": [
+      "arxiv",
+      "subagent-driven-development",
+      "plan"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "web-research",
+    "file": "research\\web-research\\SKILL.md",
+    "category": "research",
+    "subcategory": "web-research",
+    "tags": [
+      "captcha",
+      "arxiv",
+      "fallback",
+      "methodology",
+      "search",
+      "research",
+      "web"
+    ],
+    "description": "Captcha-blocked web research. Multi-source fallback method.",
+    "related_skills": [
+      "arxiv",
+      "blogwatcher"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "workflow-immune-system",
+    "file": "research\\workflow-immune-system\\SKILL.md",
+    "category": "research",
+    "subcategory": "workflow-immune-system",
+    "tags": [],
+    "description": "Self-healing UI workflows without APIs: WIS detects website drift nightly and auto-patches its own selectors. UNIQUE - nobody else has this.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "pen-tester",
+    "file": "security\\pen-tester\\SKILL.md",
+    "category": "security",
+    "subcategory": "pen-tester",
+    "tags": [],
+    "description": "Port-scan, deps, permissions, network, password hygiene.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "vulnerability-scanning",
+    "file": "security\\vulnerability-scanning\\SKILL.md",
+    "category": "security",
+    "subcategory": "vulnerability-scanning",
+    "tags": [
+      "auto-patch",
+      "cve",
+      "pip",
+      "osv-dev",
+      "npm",
+      "security",
+      "vulnerability",
+      "scanning"
+    ],
+    "description": "Scan deps for CVEs with OSV.dev API and auto-patching.",
+    "related_skills": [
+      "github-automation-agents"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "introspection",
+    "file": "self-management\\introspection\\SKILL.md",
+    "category": "self-management",
+    "subcategory": "introspection",
+    "tags": [
+      "self-awareness",
+      "introspection",
+      "self-evaluation",
+      "skills-count",
+      "honest-metrics",
+      "tools-count"
+    ],
+    "description": "Selbst-Auskunft mit ECHTEN Zahlen: zaehle die tatsaechlichen SKILL.md- und Tool-Definitionen, statt pauschale Werte (281/99) zu behaupten.",
+    "related_skills": [
+      "skill-library",
+      "dashboard"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "self-rewriter",
+    "file": "self-rewriter\\SKILL.md",
+    "category": "self-rewriter",
+    "subcategory": null,
+    "tags": [
+      "self-rewriting",
+      "ast",
+      "core-evolution",
+      "patching",
+      "cron",
+      "auto-commit"
+    ],
+    "description": "Use for Self-Rewriting Core: AST analyze, patch, commit.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "openhue",
+    "file": "smart-home\\openhue\\SKILL.md",
+    "category": "smart-home",
+    "subcategory": "openhue",
+    "tags": [
+      "Automation",
+      "Hue",
+      "IoT",
+      "Smart-Home",
+      "Lights"
+    ],
+    "description": "Control Philips Hue lights, scenes, rooms via OpenHue CLI.",
+    "related_skills": [],
+    "version": "1.0.1"
+  },
+  {
+    "name": "xurl",
+    "file": "social-media\\xurl\\SKILL.md",
+    "category": "social-media",
+    "subcategory": "xurl",
+    "tags": [
+      "social-media",
+      "official-api",
+      "xurl",
+      "x",
+      "twitter"
+    ],
+    "description": "X/Twitter via xurl CLI: raw post search, posting, DM, media.",
+    "related_skills": [],
+    "version": "1.1.3"
+  },
+  {
+    "name": "adapting-external-skills",
+    "file": "software-development\\adapting-external-skills\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "adapting-external-skills",
+    "tags": [
+      "adaptation",
+      "attribution",
+      "skills",
+      "third-party",
+      "generalization",
+      "porting"
+    ],
+    "description": "Port skills from another agent project into OpenAmer.",
+    "related_skills": [
+      "openamer-agent-skill-authoring",
+      "skill-discovery"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "api-drift-recovery",
+    "file": "software-development\\api-drift-recovery\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "api-drift-recovery",
+    "tags": [
+      "test-maintenance",
+      "refactoring",
+      "module-repair",
+      "api-drift",
+      "debugging"
+    ],
+    "description": "ImportError after refactor? Map old→new API and fix tests.",
+    "related_skills": [
+      "systematic-debugging",
+      "test-driven-development",
+      "openamer-update-recovery"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "auto-code-review",
+    "file": "software-development\\auto-code-review\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "auto-code-review",
+    "tags": [
+      "code-review",
+      "auto-fix",
+      "quality",
+      "push-trigger",
+      "security"
+    ],
+    "description": "Security scan + code quality + auto-fix on git push.",
+    "related_skills": [
+      "requesting-code-review",
+      "security-agent",
+      "github-code-review"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "auto-docs",
+    "file": "software-development\\auto-docs\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "auto-docs",
+    "tags": [
+      "readme",
+      "git",
+      "skills",
+      "cron",
+      "changelog",
+      "generator",
+      "docs",
+      "automation"
+    ],
+    "description": "Generate docs from live git+skills+cron state.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "best-in-world-workflow",
+    "file": "software-development\\best-in-world-workflow\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "best-in-world-workflow",
+    "tags": [
+      "quality",
+      "self-improvement",
+      "workflow"
+    ],
+    "description": "Use before non-trivial tasks: radar-first, verify, no title.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "capture-thinking",
+    "file": "software-development\\capture-thinking\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "capture-thinking",
+    "tags": [
+      "training",
+      "self-improvement",
+      "a2a",
+      "thinking",
+      "mesh-learn"
+    ],
+    "description": "Save reasoning as A2A insight after key responses.",
+    "related_skills": [
+      "self-modify",
+      "safe-self-modification",
+      "openamer-agent"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "clean-code-edits",
+    "file": "software-development\\clean-code-edits\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "clean-code-edits",
+    "tags": [
+      "git",
+      "code-editing",
+      "patch-tool",
+      "line-endings",
+      "windows",
+      "diff"
+    ],
+    "description": "Make minimal, clean diffs when editing code in a git repo.",
+    "related_skills": [
+      "requesting-code-review",
+      "test-driven-development"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "cli-command-extension",
+    "file": "software-development\\cli-command-extension\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "cli-command-extension",
+    "tags": [
+      "large-file",
+      "dispatch",
+      "main.py",
+      "argparse",
+      "subcommand",
+      "cli",
+      "build_parser"
+    ],
+    "description": "Extend OpenAmer CLI. Parser, dispatch, main.py file edits.",
+    "related_skills": [
+      "clean-code-edits",
+      "openamer-agent"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "code-generator",
+    "file": "software-development\\code-generator\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "code-generator",
+    "tags": [],
+    "description": "Scaffolding für Scripts, Skills und Plugins aus Templates.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "code-intelligence",
+    "file": "software-development\\code-intelligence\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "code-intelligence",
+    "tags": [
+      "software-development"
+    ],
+    "description": "Use for AST/dep graph/complexity analysis of Python code.",
+    "related_skills": [],
+    "version": "2.0.0"
+  },
+  {
+    "name": "commander",
+    "file": "software-development\\commander\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "commander",
+    "tags": [],
+    "description": "Use for OpenAmer central CLI Commander with 28 subcommands.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "competitive-overtake",
+    "file": "software-development\\competitive-overtake\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "competitive-overtake",
+    "tags": [
+      "overtake",
+      "strategy",
+      "phases",
+      "product",
+      "research",
+      "competitive"
+    ],
+    "description": "Research competitors and overtake them feature-by-feature.",
+    "related_skills": [
+      "parallel-feature-development",
+      "plan",
+      "cli-command-extension",
+      "fork-differentiation"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "desktop-copy-deploy",
+    "file": "software-development\\desktop-copy-deploy\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "desktop-copy-deploy",
+    "tags": [
+      "desktop",
+      "openamer-agent",
+      "ebusy",
+      "sync",
+      "copy",
+      "deploy"
+    ],
+    "description": "Use when syncing repo into the Desktop agent copy.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "dogfood",
+    "file": "software-development\\dogfood\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dogfood",
+    "tags": [
+      "dogfood",
+      "qa",
+      "browser",
+      "testing",
+      "web"
+    ],
+    "description": "Exploratory QA of web apps: find bugs, evidence, reports.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "dsh-archive-agent-notes",
+    "file": "software-development\\dsh-archive-agent-notes\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dsh-archive-agent-notes",
+    "tags": [],
+    "description": "Archive DeepSeek Harness agent notes.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-code-review",
+    "file": "software-development\\dsh-code-review\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dsh-code-review",
+    "tags": [],
+    "description": "Review DeepSeek Harness PRs.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-doc-site-sync",
+    "file": "software-development\\dsh-doc-site-sync\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dsh-doc-site-sync",
+    "tags": [],
+    "description": "Sync DeepSeek Harness documentation site.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-doc-standards",
+    "file": "software-development\\dsh-doc-standards\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dsh-doc-standards",
+    "tags": [],
+    "description": "Apply DeepSeek Harness documentation standards.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-find-simplifications",
+    "file": "software-development\\dsh-find-simplifications\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dsh-find-simplifications",
+    "tags": [],
+    "description": "Find simplifications in DeepSeek Harness repo.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-merging-stacked-prs",
+    "file": "software-development\\dsh-merging-stacked-prs\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dsh-merging-stacked-prs",
+    "tags": [],
+    "description": "Merge stacked PRs in DeepSeek Harness repo.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-pre-push-checks",
+    "file": "software-development\\dsh-pre-push-checks\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dsh-pre-push-checks",
+    "tags": [],
+    "description": "Run DeepSeek Harness pre‑push checks.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-prose-standard",
+    "file": "software-development\\dsh-prose-standard\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dsh-prose-standard",
+    "tags": [],
+    "description": "Enforce DeepSeek Harness prose standard.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-translate-docs",
+    "file": "software-development\\dsh-translate-docs\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dsh-translate-docs",
+    "tags": [],
+    "description": "Translate DeepSeek Harness docs bilingual workflow.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dsh-trim-cot-leakage",
+    "file": "software-development\\dsh-trim-cot-leakage\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "dsh-trim-cot-leakage",
+    "tags": [],
+    "description": "Trim Chain-of-Thought leakage in DeepSeek Harness prose.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "electron-windows-build",
+    "file": "software-development\\electron-windows-build\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "electron-windows-build",
+    "tags": [
+      "electron",
+      "desktop-app",
+      "nsis",
+      "cdp",
+      "webview",
+      "windows",
+      "cjs",
+      "electron-builder"
+    ],
+    "description": "Build/debug Electron apps on Windows (CJS, CDP, webview).",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "eol-safe-editing",
+    "file": "software-development\\eol-safe-editing\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "eol-safe-editing",
+    "tags": [
+      "git",
+      "editing",
+      "api.ts",
+      "crlf",
+      "patch",
+      "eol",
+      "windows"
+    ],
+    "description": "Use when editing CRLF files — patch bytes, avoid CRLF flips.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "fork-differentiation",
+    "file": "software-development\\fork-differentiation\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "fork-differentiation",
+    "tags": [
+      "differentiation",
+      "readme",
+      "upstream",
+      "branding",
+      "lineage",
+      "docs",
+      "fork"
+    ],
+    "description": "Differentiate a fork from its upstream honestly.",
+    "related_skills": [
+      "clean-code-edits",
+      "generalize-external-skills",
+      "openamer-agent-skill-authoring"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "git-clean-verification",
+    "file": "software-development\\git-clean-verification\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "git-clean-verification",
+    "tags": [
+      "git",
+      "verification",
+      "workflow",
+      "windows",
+      "autocrlf"
+    ],
+    "description": "Use when verifying a clean git state on autocrlf repos.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "github-ci-debugging",
+    "file": "software-development\\github-ci-debugging\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "github-ci-debugging",
+    "tags": [
+      "GitHub-Actions",
+      "CI/CD",
+      "Dependabot",
+      "CI-Failures",
+      "GitHub",
+      "Debugging"
+    ],
+    "description": "Use for batch CI failures: check-runs, job logs, main-first.",
+    "related_skills": [
+      "github-pr-workflow",
+      "gh-fix-ci",
+      "systematic-debugging"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "greenfield-agent-architecture",
+    "file": "software-development\\greenfield-agent-architecture\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "greenfield-agent-architecture",
+    "tags": [
+      "agent",
+      "greenfield",
+      "python",
+      "cli",
+      "architecture",
+      "scaffolding",
+      "plugin"
+    ],
+    "description": "Use when building a new agent/CLI project from scratch.",
+    "related_skills": [
+      "clean-code-edits",
+      "fork-differentiation",
+      "test-driven-development"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "greenfield-agent-project",
+    "file": "software-development\\greenfield-agent-project\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "greenfield-agent-project",
+    "tags": [
+      "agent",
+      "greenfield",
+      "design",
+      "project",
+      "cli",
+      "architecture",
+      "scaffold"
+    ],
+    "description": "Build a new agent/CLI project, architecture-first.",
+    "related_skills": [
+      "plan",
+      "spike",
+      "test-driven-development",
+      "clean-code-edits"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "hello-plugin",
+    "file": "software-development\\hello-plugin\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "hello-plugin",
+    "tags": [],
+    "description": "A simple hello plugin skill.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "hosted-payments",
+    "file": "software-development\\hosted-payments\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "hosted-payments",
+    "tags": [
+      "payment",
+      "checkout",
+      "funding",
+      "donation",
+      "paypal",
+      "ecommerce"
+    ],
+    "description": "PayPal hosted buttons on static pages. Needs async guard.",
+    "related_skills": [
+      "openamer-browser-use"
+    ],
+    "version": ""
+  },
+  {
+    "name": "intellij-plugin-build",
+    "file": "software-development\\intellij-plugin-build\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "intellij-plugin-build",
+    "tags": [],
+    "description": "Build IntelliJ plugins with Gradle — plugin.xml, JCEF, MCP.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "massive-upgrade-deployment",
+    "file": "software-development\\massive-upgrade-deployment\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "massive-upgrade-deployment",
+    "tags": [],
+    "description": "Batch-deploy parallel upgrades via sub-agents + git push.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "node-inspect-debugger",
+    "file": "software-development\\node-inspect-debugger\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "node-inspect-debugger",
+    "tags": [
+      "ui-tui",
+      "node-inspect",
+      "nodejs",
+      "cdp",
+      "breakpoints",
+      "debugging"
+    ],
+    "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.",
+    "related_skills": [
+      "systematic-debugging",
+      "python-debugpy"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "openamer-agent-skill-authoring",
+    "file": "software-development\\openamer-agent-skill-authoring\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "openamer-agent-skill-authoring",
+    "tags": [
+      "conventions",
+      "skills",
+      "openamer-agent",
+      "skill-md",
+      "authoring"
+    ],
+    "description": "Author in-repo SKILL.md files: frontmatter and structure.",
+    "related_skills": [
+      "plan",
+      "requesting-code-review"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "openamer-browser-use",
+    "file": "software-development\\openamer-browser-use\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "openamer-browser-use",
+    "tags": [],
+    "description": "CDP :9222 Chrome + Session Manager + 11-Social-Platform Outreach + GitHub API Auto-Actions",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "openamer-desktop-build",
+    "file": "software-development\\openamer-desktop-build\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "openamer-desktop-build",
+    "tags": [],
+    "description": "Use when rebuilding the OpenAmer desktop app on Windows.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "openamer-desktop-dev",
+    "file": "software-development\\openamer-desktop-dev\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "openamer-desktop-dev",
+    "tags": [
+      "electron",
+      "desktop",
+      "development",
+      "windows",
+      "openamer",
+      "debugging"
+    ],
+    "description": "Use when debugging or building the OpenAmer desktop app.",
+    "related_skills": [
+      "systematic-debugging",
+      "openamer-agent"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "openamer-feature-engineering",
+    "file": "software-development\\openamer-feature-engineering\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "openamer-feature-engineering",
+    "tags": [
+      "main.py",
+      "subcommand",
+      "argparse",
+      "cli",
+      "extension",
+      "feature",
+      "openamer"
+    ],
+    "description": "Extend OpenAmer CLI: add subcommands, modules, tests.",
+    "related_skills": [
+      "openamer-agent",
+      "test-driven-development"
+    ],
+    "version": ""
+  },
+  {
+    "name": "openamer-ide-extensions",
+    "file": "software-development\\openamer-ide-extensions\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "openamer-ide-extensions",
+    "tags": [],
+    "description": "Build both VS Code and JetBrains IDE extensions.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "parallel-feature-development",
+    "file": "software-development\\parallel-feature-development\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "parallel-feature-development",
+    "tags": [
+      "delegation",
+      "parallel",
+      "test",
+      "integration",
+      "verify",
+      "feature",
+      "subagent"
+    ],
+    "description": "Build features concurrently via sub-agent delegation.",
+    "related_skills": [
+      "simplify-code",
+      "plan",
+      "tool-repair-workflow"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "plan",
+    "file": "software-development\\plan\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "plan",
+    "tags": [
+      "plan-mode",
+      "design",
+      "documentation",
+      "planning",
+      "workflow",
+      "implementation"
+    ],
+    "description": "Write a markdown plan to .openamer/plans/; no execution.",
+    "related_skills": [
+      "subagent-driven-development",
+      "test-driven-development",
+      "requesting-code-review"
+    ],
+    "version": "2.0.0"
+  },
+  {
+    "name": "plugin-advanced-patterns",
+    "file": "software-development\\plugin-advanced-patterns\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "plugin-advanced-patterns",
+    "tags": [],
+    "description": "Use for subprocess and onToolCall plugin patterns.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "plugin-dashboard-reporting",
+    "file": "software-development\\plugin-dashboard-reporting\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "plugin-dashboard-reporting",
+    "tags": [],
+    "description": "Dashboard, Export & Cron für OpenAmer-Plugins.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "plugin-external-integration",
+    "file": "software-development\\plugin-external-integration\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "plugin-external-integration",
+    "tags": [],
+    "description": "Plugins connecting OpenAmer to external processes via stdio.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "python-debugpy",
+    "file": "software-development\\python-debugpy\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "python-debugpy",
+    "tags": [
+      "debugpy",
+      "dap",
+      "python",
+      "post-mortem",
+      "pdb",
+      "breakpoints",
+      "debugging"
+    ],
+    "description": "Debug Python: pdb REPL + debugpy remote (DAP).",
+    "related_skills": [
+      "systematic-debugging",
+      "node-inspect-debugger"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "record-browser-gif",
+    "file": "software-development\\record-browser-gif\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "record-browser-gif",
+    "tags": [],
+    "description": "Record browser interactions as GIFs.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "requesting-code-review",
+    "file": "software-development\\requesting-code-review\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "requesting-code-review",
+    "tags": [
+      "code-review",
+      "verification",
+      "auto-fix",
+      "pre-commit",
+      "quality",
+      "security"
+    ],
+    "description": "Pre-commit review: security scan, quality gates, auto-fix.",
+    "related_skills": [
+      "subagent-driven-development",
+      "plan",
+      "test-driven-development",
+      "github-code-review"
+    ],
+    "version": "2.0.0"
+  },
+  {
+    "name": "safe-self-modification",
+    "file": "software-development\\safe-self-modification\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "safe-self-modification",
+    "tags": [
+      "agent",
+      "rollback",
+      "self-improvement",
+      "core",
+      "safety",
+      "test-gate"
+    ],
+    "description": "Use when an agent edits its own core code safely.",
+    "related_skills": [
+      "clean-code-edits",
+      "test-driven-development",
+      "requesting-code-review",
+      "capture-thinking"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "self-introspection",
+    "file": "software-development\\self-introspection\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "self-introspection",
+    "tags": [
+      "counting",
+      "skills",
+      "introspection",
+      "inventory",
+      "tools",
+      "stats"
+    ],
+    "description": "Use to count real SKILL.md files and registered tool names.",
+    "related_skills": [
+      "openamer-agent",
+      "best-in-world-workflow"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "self-modify",
+    "file": "software-development\\self-modify\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "self-modify",
+    "tags": [
+      "rollback",
+      "self-improvement",
+      "core",
+      "safety",
+      "test-gate"
+    ],
+    "description": "Use when modifying OpenAmer's own core code safely. Gate every change behind the test suite with automatic rollback.",
+    "related_skills": [
+      "openamer-agent",
+      "requesting-code-review",
+      "clean-code-edits"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "simplify-code",
+    "file": "software-development\\simplify-code\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "simplify-code",
+    "tags": [
+      "code-review",
+      "delegation",
+      "parallel",
+      "simplify",
+      "refactor",
+      "subagent",
+      "cleanup"
+    ],
+    "description": "Parallel 4-agent cleanup of recent code changes.",
+    "related_skills": [
+      "requesting-code-review",
+      "test-driven-development",
+      "plan"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "skill-knowledge-graph",
+    "file": "software-development\\skill-knowledge-graph\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "skill-knowledge-graph",
+    "tags": [
+      "skill-discovery",
+      "suggest",
+      "semantic-search",
+      "skills",
+      "network-analysis",
+      "dijkstra",
+      "graph",
+      "json-export",
+      "dot-export",
+      "knowledge-graph"
+    ],
+    "description": "Knowledge Graph: Skill-Netzwerk aus 630 Skills + Vorschlags-Engine + JSON/DOT-Export. Use for semantic skill search, graph exploration, and suggest chains.",
+    "related_skills": [
+      "skill-discovery",
+      "skill-creator",
+      "skills-hub-cache",
+      "generalize-external-skills",
+      "openamer-agent"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "skill-md-frontmatter-analysis",
+    "file": "software-development\\skill-md-frontmatter-analysis\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "skill-md-frontmatter-analysis",
+    "tags": [
+      "metadata",
+      "skill-index",
+      "parsing",
+      "frontmatter",
+      "skill-analysis",
+      "skill-md",
+      "yaml",
+      "scanning"
+    ],
+    "description": "Parse SKILL.md frontmatter: variants, tags, edge cases.",
+    "related_skills": [
+      "skill-knowledge-graph",
+      "skill-discovery",
+      "openamer-agent-skill-authoring",
+      "skill-creator"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "skill-validator",
+    "file": "software-development\\skill-validator\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "skill-validator",
+    "tags": [
+      "report",
+      "skills",
+      "auto-fix",
+      "cron",
+      "quality",
+      "validation",
+      "QA"
+    ],
+    "description": "Use for 100-point QA validation of all skills + auto-fix + report.",
+    "related_skills": [
+      "auto-env-checker",
+      "smart-cron-scheduler"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "smart-test-runner",
+    "file": "software-development\\smart-test-runner\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "smart-test-runner",
+    "tags": [],
+    "description": "Git-diff auto-test-runner: prioritize + parallel tests.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "spike",
+    "file": "software-development\\spike\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "spike",
+    "tags": [
+      "exploration",
+      "feasibility",
+      "mvp",
+      "prototype",
+      "planning",
+      "spike",
+      "proof-of-concept",
+      "research",
+      "throwaway",
+      "experiment"
+    ],
+    "description": "Throwaway experiments to validate an idea before build.",
+    "related_skills": [
+      "sketch",
+      "subagent-driven-development",
+      "plan"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "systematic-debugging",
+    "file": "software-development\\systematic-debugging\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "systematic-debugging",
+    "tags": [
+      "debugging",
+      "problem-solving",
+      "root-cause",
+      "troubleshooting",
+      "investigation"
+    ],
+    "description": "4-phase root cause debugging: understand bugs before fixing.",
+    "related_skills": [
+      "test-driven-development",
+      "plan",
+      "subagent-driven-development"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "test-driven-development",
+    "file": "software-development\\test-driven-development\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "test-driven-development",
+    "tags": [
+      "red-green-refactor",
+      "quality",
+      "development",
+      "testing",
+      "tdd"
+    ],
+    "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.",
+    "related_skills": [
+      "systematic-debugging",
+      "plan",
+      "subagent-driven-development"
+    ],
+    "version": "1.1.0"
+  },
+  {
+    "name": "tool-repair-workflow",
+    "file": "software-development\\tool-repair-workflow\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "tool-repair-workflow",
+    "tags": [
+      "tool-repair",
+      "competitors",
+      "troubleshooting",
+      "fix",
+      "debugging"
+    ],
+    "description": "|",
+    "related_skills": [
+      "systematic-debugging"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "vision-audio",
+    "file": "software-development\\vision-audio\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "vision-audio",
+    "tags": [],
+    "description": "vision-audio: screenshot, describe, transcribe, diagram.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "voice-assistant",
+    "file": "software-development\\voice-assistant\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "voice-assistant",
+    "tags": [],
+    "description": "Use for the Windows TTS+STT voice interface in OpenAmer.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "voice-audio-integration",
+    "file": "software-development\\voice-audio-integration\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "voice-audio-integration",
+    "tags": [
+      "audio",
+      "speech-recognition",
+      "tts",
+      "voice",
+      "barge-in",
+      "wake-word",
+      "sounddevice",
+      "streaming",
+      "stt"
+    ],
+    "description": "Use when building voice in Python: STT, TTS, barge-in.",
+    "related_skills": [
+      "openamer-feature-engineering",
+      "test-driven-development",
+      "cli-command-extension"
+    ],
+    "version": ""
+  },
+  {
+    "name": "windows-aware-file-edits",
+    "file": "software-development\\windows-aware-file-edits\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "windows-aware-file-edits",
+    "tags": [
+      "git",
+      "editing",
+      "crlf",
+      "heredoc",
+      "byte-safe",
+      "eol",
+      "windows"
+    ],
+    "description": "Safe Windows file editing: CRLF + heredoc traps.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "windows-subprocess-robustness",
+    "file": "software-development\\windows-subprocess-robustness\\SKILL.md",
+    "category": "software-development",
+    "subcategory": "windows-subprocess-robustness",
+    "tags": [
+      "subprocess",
+      "spawn",
+      "pid",
+      "daemon",
+      "tasklist",
+      "windows",
+      "unicodedecodeerror"
+    ],
+    "description": "Use when parsing Windows subprocess output in Python.",
+    "related_skills": [
+      "windows-path-resolution",
+      "self-healer",
+      "task-queue",
+      "a2a-swarm"
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "name": "ab-test-engine",
+    "file": "system\\ab-test-engine\\SKILL.md",
+    "category": "system",
+    "subcategory": "ab-test-engine",
+    "tags": [],
+    "description": "Use for A/B experiments on OpenAmer configs and skills.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "auto-updater",
+    "file": "system\\auto-updater\\SKILL.md",
+    "category": "system",
+    "subcategory": "auto-updater",
+    "tags": [
+      "git",
+      "update",
+      "cron",
+      "pip",
+      "changelog",
+      "skills-hub",
+      "windows"
+    ],
+    "description": "Use for multi-source update management: git, pip, hub.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "context-compressor",
+    "file": "system\\context-compressor\\SKILL.md",
+    "category": "system",
+    "subcategory": "context-compressor",
+    "tags": [],
+    "description": "Use for session compression and full-text search.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "cron-job-repair",
+    "file": "system\\cron-job-repair\\SKILL.md",
+    "category": "system",
+    "subcategory": "cron-job-repair",
+    "tags": [],
+    "description": "Use when cron jobs fail (last_status error). Diagnose, fix.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "cross-profile-sync",
+    "file": "system\\cross-profile-sync\\SKILL.md",
+    "category": "system",
+    "subcategory": "cross-profile-sync",
+    "tags": [],
+    "description": ">-",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "dashboard",
+    "file": "system\\dashboard\\SKILL.md",
+    "category": "system",
+    "subcategory": "dashboard",
+    "tags": [
+      "system",
+      "skill-graph",
+      "dashboard",
+      "health",
+      "cron",
+      "security",
+      "monitoring"
+    ],
+    "description": "Use for the Live-Web-Dashboard on port 8899.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "file-organizer",
+    "file": "system\\file-organizer\\SKILL.md",
+    "category": "system",
+    "subcategory": "file-organizer",
+    "tags": [],
+    "description": "Clean Desktop/DL: temp, MD5 dedupe, type-sort, undo.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "global-sync",
+    "file": "system\\global-sync\\SKILL.md",
+    "category": "system",
+    "subcategory": "global-sync",
+    "tags": [
+      "cron",
+      "global-sync",
+      "synchronization",
+      "multi-machine",
+      "state-sync"
+    ],
+    "description": "Use for multi-machine HTTP delta sync with peer management.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "learning-loop",
+    "file": "system\\learning-loop\\SKILL.md",
+    "category": "system",
+    "subcategory": "learning-loop",
+    "tags": [],
+    "description": "Use for auto error capture, categorization and skill gen.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "log-analyzer",
+    "file": "system\\log-analyzer\\SKILL.md",
+    "category": "system",
+    "subcategory": "log-analyzer",
+    "tags": [],
+    "description": "Use for log analysis, error tracking, alerts, and dashboard.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "memory-store-upkeep",
+    "file": "system\\memory-store-upkeep\\SKILL.md",
+    "category": "system",
+    "subcategory": "memory-store-upkeep",
+    "tags": [
+      "memory",
+      "openamer",
+      "maintenance"
+    ],
+    "description": "Use when writing or updating persistent memory stores.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "model-benchmarker",
+    "file": "system\\model-benchmarker\\SKILL.md",
+    "category": "system",
+    "subcategory": "model-benchmarker",
+    "tags": [],
+    "description": "Use when: benchmark model latency, throughput, or quality.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "notification-engine",
+    "file": "system\\notification-engine\\SKILL.md",
+    "category": "system",
+    "subcategory": "notification-engine",
+    "tags": [
+      "notification",
+      "daemon",
+      "desktop",
+      "alert",
+      "alarm",
+      "cron",
+      "webhook",
+      "sound"
+    ],
+    "description": "Use for alerting: desktop, sound, log, webhook, daemon.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "perf-optimizer",
+    "file": "system\\perf-optimizer\\SKILL.md",
+    "category": "system",
+    "subcategory": "perf-optimizer",
+    "tags": [],
+    "description": ">-",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "remote-web",
+    "file": "system\\remote-web\\SKILL.md",
+    "category": "system",
+    "subcategory": "remote-web",
+    "tags": [
+      "http",
+      "dashboard",
+      "server",
+      "monitoring",
+      "remote",
+      "web"
+    ],
+    "description": "Use when starting/stopping the Remote Web UI on port 8901.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "resource-monitor",
+    "file": "system\\resource-monitor\\SKILL.md",
+    "category": "system",
+    "subcategory": "resource-monitor",
+    "tags": [],
+    "description": "Live-CPU/RAM/DISK/NET-Dashboard + Top-Prozesse + Alarm.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "self-healer",
+    "file": "system\\self-healer\\SKILL.md",
+    "category": "system",
+    "subcategory": "self-healer",
+    "tags": [],
+    "description": "Self-Healing Daemon: log-scan, patterns, workaround, memory.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "self-hosted",
+    "file": "system\\self-hosted\\SKILL.md",
+    "category": "system",
+    "subcategory": "self-hosted",
+    "tags": [],
+    "description": "Use for local LLM fallback, failover, and Ollama health.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "smart-cache",
+    "file": "system\\smart-cache\\SKILL.md",
+    "category": "system",
+    "subcategory": "smart-cache",
+    "tags": [],
+    "description": "Use for cache scan, cleanup, skill archiving, and warm-cache reports.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "smart-cron-scheduler",
+    "file": "system\\smart-cron-scheduler\\SKILL.md",
+    "category": "system",
+    "subcategory": "smart-cron-scheduler",
+    "tags": [],
+    "description": "Use to optimize cron schedules or run Smart Cron Scheduler.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "smart-session-saver",
+    "file": "system\\smart-session-saver\\SKILL.md",
+    "category": "system",
+    "subcategory": "smart-session-saver",
+    "tags": [],
+    "description": "Use for session archiving, search, restore, and stats.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "system-snapshot",
+    "file": "system\\system-snapshot\\SKILL.md",
+    "category": "system",
+    "subcategory": "system-snapshot",
+    "tags": [
+      "system",
+      "health",
+      "monitoring",
+      "snapshot",
+      "diff"
+    ],
+    "description": "Use for full system-state snapshot + diff + HTTP:8898.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "task-queue",
+    "file": "system\\task-queue\\SKILL.md",
+    "category": "system",
+    "subcategory": "task-queue",
+    "tags": [
+      "tasks",
+      "daemon",
+      "queue",
+      "scheduler",
+      "automation"
+    ],
+    "description": "Use for persistent task-queue with priorities + daemon.",
+    "related_skills": [],
+    "version": "1.0.0"
+  },
+  {
+    "name": "web-platform-servers",
+    "file": "system\\web-platform-servers\\SKILL.md",
+    "category": "system",
+    "subcategory": "web-platform-servers",
+    "tags": [
+      "http-server",
+      "dashboard",
+      "auth",
+      "api",
+      "monitoring",
+      "health-check",
+      "web"
+    ],
+    "description": "Use for OpenAmer HTTP server architecture and health-checks.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "webhook-engine",
+    "file": "system\\webhook-engine\\SKILL.md",
+    "category": "system",
+    "subcategory": "webhook-engine",
+    "tags": [],
+    "description": "Use for Webhook Engine on port 8900: rules, actions, API.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "windows-path-resolution",
+    "file": "system\\windows-path-resolution\\SKILL.md",
+    "category": "system",
+    "subcategory": "windows-path-resolution",
+    "tags": [
+      "git-bash",
+      "paths",
+      "python",
+      "windows",
+      "msys"
+    ],
+    "description": "MSYS→Win path: convert + HOME resolve for git-bash Python.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "train-from-usage",
+    "file": "train-from-usage\\SKILL.md",
+    "category": "train-from-usage",
+    "subcategory": null,
+    "tags": [
+      "trajectories",
+      "training",
+      "self-improvement",
+      "a2a",
+      "sessions",
+      "brain-data"
+    ],
+    "description": "Use when building the session-to-brain training pipeline.",
+    "related_skills": [
+      "capture-thinking",
+      "self-modify",
+      "openamer-agent"
+    ],
+    "version": "1.3.0"
+  },
+  {
+    "name": "undetectable-browsing",
+    "file": "undetectable-browsing\\SKILL.md",
+    "category": "undetectable-browsing",
+    "subcategory": null,
+    "tags": [],
+    "description": "Undetectable web browsing via real Chrome CDP + Playwright connect_over_cdp.",
+    "related_skills": [],
+    "version": ""
+  },
+  {
+    "name": "vscode-extension-scaffold",
+    "file": "vscode-extension-scaffold\\SKILL.md",
+    "category": "vscode-extension-scaffold",
+    "subcategory": null,
+    "tags": [
+      "typescript",
+      "scaffolding",
+      "extension",
+      "webview",
+      "mcp",
+      "vscode"
+    ],
+    "description": "Scaffold VS Code extensions: webview, MCP, commands, menus.",
+    "related_skills": [
+      "greenfield-agent-project",
+      "plan"
+    ],
+    "version": "1.0.0"
+  }
+]

@@ -1,0 +1,32 @@
+name: openamer
+description: >-
+  OpenAmer — open-source AI agent with 900+ skills, 100+ tools,
+  self-learning loops, domain mastery, and ASI capability audit.
+  Runs on CLI, desktop, and 20+ messaging platforms.
+url: https://github.com/openamer/openamer
+logo: https://openamer.github.io/openamer/img/logo.png
+categories:
+  - ai-agents
+  - developer-tools
+  - open-source
+pricing: free
+docs: https://openamer.github.io/openamer/docs/
+github: https://github.com/openamer/openamer
+support:
+  - https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS
+  - https://github.com/openamer/openamer#sponsors
+features:
+  - 842 skills (100+ built-in)
+  - 99 tools (terminal, browser, desktop, file, web, code)
+  - Multi-agent delegation (A2A swarm)
+  - Self-learning loops (internet, diary, reasoning)
+  - Domain Mastery engine (18 domains)
+  - Strategic Goal engine
+  - Cron jobs, plugins, memory
+  - Desktop app (Windows, macOS, Linux)
+  - 20+ messaging platforms (Telegram, Discord, Slack, etc.)
+  - Energy efficient (<0.5 kWh/day)
+models:
+  - deepseek/deepseek-v4-flash
+  - nvidia/nemotron-3.5-lightning:free
+  - qwen3.5:2b-q4_K_M (local)

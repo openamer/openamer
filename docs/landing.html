@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAmer — Your AI Agent That Grows</title>
+<style>
+  :root { --bg:#f8f9fb; --card:#ffffff; --ink:#1a2233; --muted:#5a6478; --accent:#2563eb; --accent2:#0ea5e9; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; }
+  header { text-align:center; padding:80px 20px 60px; background:linear-gradient(180deg,#eaf2ff,var(--bg)); }
+  header h1 { font-size:3rem; font-weight:800; }
+  header h1 span { color:var(--accent); }
+  header p { font-size:1.25rem; color:var(--muted); max-width:640px; margin:16px auto 32px; }
+  .btn { display:inline-block; padding:14px 32px; border-radius:12px; font-weight:700; text-decoration:none; margin:0 8px; }
+  .btn-primary { background:var(--accent); color:#fff; }
+  .btn-ghost { border:2px solid var(--accent); color:var(--accent); }
+  section { max-width:1000px; margin:0 auto; padding:56px 24px; }
+  h2 { font-size:2rem; margin-bottom:24px; text-align:center; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+  .card { background:var(--card); border:1px solid #e5e9f2; border-radius:16px; padding:28px; box-shadow:0 2px 8px rgba(20,40,90,.05); }
+  .card h3 { margin-bottom:10px; }
+  .card p { color:var(--muted); font-size:.95rem; }
+  .price { font-size:2rem; font-weight:800; color:var(--accent); margin:12px 0; }
+  .badge { display:inline-block; background:#e0edff; color:var(--accent); border-radius:999px; padding:4px 14px; font-size:.8rem; font-weight:700; }
+  .dark-note { background:var(--card); border-radius:16px; padding:28px; text-align:center; }
+  footer { text-align:center; color:var(--muted); padding:40px; font-size:.9rem; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <span class="badge">Open Source · runs locally on your Windows PC</span>
+  <h1>OpenAmer — <span>the agent that grows</span></h1>
+  <p>A real AI agent with persistent memory, self-improving skills (Darwin Engine), 24/7 cron autonomy and a multi-platform gateway. No cloud lock-in.</p>
+  <a class="btn btn-primary" href="https://github.com/openamer/openamer">View on GitHub</a>
+  <a class="btn btn-ghost" href="https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS">Support OpenAmer</a>
+</header>
+
+<section>
+  <h2>What makes OpenAmer different</h2>
+  <div class="grid">
+    <div class="card"><h3>🧬 Darwin Engine</h3><p>Skills carry fitness scores, get automatically patched, tested and evolved — the agent measurably improves every single day.</p></div>
+    <div class="card"><h3>⏰ 24/7 Autonomy</h3><p>A cron fleet of 60+ jobs: watchdogs, trend scouting, GitHub outreach, self-healing — all running without you lifting a finger.</p></div>
+    <div class="card"><h3>🌐 Multi-Platform</h3><p>Telegram, Discord, Slack + 20 more platforms, a desktop app, TUI and CLI — one agent core, everywhere.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Pricing</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Open Source</h3>
+      <div class="price">Free</div>
+      <p>Full feature set. Self-host, self-customize. Free forever.</p>
+      <a class="btn btn-ghost" href="https://github.com/openamer/openamer">Clone the repo</a>
+    </div>
+    <div class="card">
+      <h3>Pro Skill Pack <span class="badge">Coming soon</span></h3>
+      <div class="price">$19</div>
+      <p>A curated bundle of top-rated skills (quality-checked, score ≥ 70) with a one-click installer. 12 months of updates included.</p>
+      <a class="btn btn-primary" href="https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS">Support OpenAmer (PayPal)</a>
+    </div>
+    <div class="card">
+      <h3>Sponsor</h3>
+      <div class="price">from $5/mo</div>
+      <p>Support development, get roadmap visibility and vote on upcoming features.</p>
+      <a class="btn btn-primary" href="https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS">Support (PayPal)</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="dark-note">
+    <h2>☀️ “Punkt” — your morning briefing</h2>
+    <p>Every morning at 7:30 AM: what happened overnight, and the 3 opportunities that matter today. An agent that takes initiative — not just reacts.</p>
+  </div>
+</section>
+
+<footer>
+  OpenAmer · <a href="https://github.com/openamer/openamer">GitHub</a> ·
+  <a href="https://www.producthunt.com/posts/openamer">Product Hunt</a> ·
+  <a href="https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS">PayPal</a>
+  <div style="margin-top:10px;font-size:13px;line-height:1.7">Writing — engineering posts, every number read from the live outcome ledger: <a href="https://dev.to/openamer/how-we-made-an-ai-agent-measure-itself-the-outcome-ledger-4j1">the outcome ledger</a> · <a href="https://dev.to/openamer/what-it-costs-to-run-a-self-verifying-ai-agent-on-a-cpu-only-laptop-31a4">cost of a CPU-only run</a> · <a href="https://dev.to/openamer/a2a-without-a-server-how-openamer-peers-talk-to-each-other-over-github-1mp4">A2A without a server</a> · <a href="https://dev.to/openamer/openamer-asi-core-5-native-tools-a-10-subsystem-heartbeat-and-an-a2a-global-mesh-3239">ASI Core</a> · <a href="https://dev.to/openamer/one-heartbeat-not-84-cron-jobs-the-scheduler-at-the-core-of-a-self-hosted-agent-2i6l">one heartbeat, not 84 crons</a> · <a href="https://dev.to/openamer/driving-a-real-desktop-without-a-vm-a-sandbox-or-stealing-your-cursor-4e7o">driving a real desktop</a> · <a href="https://dev.to/openamer/run-a-self-verifying-desktop-ai-agent-on-your-own-machine-a-10-minute-quickstart-358p">10-minute quickstart</a></div>
+</footer>
+</body>
+</html>

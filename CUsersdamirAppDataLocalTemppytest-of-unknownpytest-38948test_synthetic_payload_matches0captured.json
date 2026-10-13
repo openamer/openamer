@@ -1,0 +1,1 @@
+{"hook_event_name": "subagent_stop", "tool_name": null, "tool_input": null, "session_id": "parent-sess", "cwd": "C:\\Users\\damir\\openamer-repo", "extra": {"child_role": null, "child_summary": "Synthetic summary for hooks test", "child_status": "completed", "duration_ms": 1234}}

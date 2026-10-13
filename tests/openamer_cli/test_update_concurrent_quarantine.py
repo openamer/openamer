@@ -1,0 +1,1292 @@
+"""Tests for issue #26670 — concurrent openamer.exe detection and improved
+quarantine retry / reboot-deferred fallback during `openamer update` on Windows.
+
+These tests force ``_is_windows`` to return ``True`` via patching so the
+Windows-specific code paths can be exercised on any host.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import sys
+import types
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import MagicMock, patch
+
+import pytest
+
+from openamer_cli import main as cli_main
+
+
+# Tests in this module either exercise the REAL _detect_concurrent_openamer_instances
+# helper (and need the autouse stub in tests/openamer_cli/conftest.py disabled),
+# or supply their own explicit return value via patch.object. Mark the whole
+# module so the conftest fixture skips its default stub.
+pytestmark = pytest.mark.real_concurrent_gate
+
+
+@pytest.fixture(autouse=True)
+def _no_host_psutil_for_respawn_probe(request):
+    """Keep the respawn-probe tests hermetic with respect to the host process table.
+
+    ``_wait_for_windows_gateway_respawn`` reaches ``_split_gateways_by_install``,
+    which reads the *real* process table through ``psutil`` for every PID the
+    test's stubbed ``find_gateway_pids`` reports. These tests deliberately use
+    small fixed PIDs (101, 4242, 4200, 7777, 9999). If the machine running the
+    suite happens to have a live process at one of them, psutil hands back real
+    ``exe()``/``environ()`` values, the process is classified as *another*
+    install's gateway (``_belongs_to_other_install``) and the probe times out —
+    so the assertion fails for a reason that has nothing to do with the code
+    under test. The suite is green on an idle host and red on a busy one, on the
+    same commit.
+
+    Blocking ``psutil`` for only the respawn tests makes argv, exe and env all
+    unreadable, i.e. exactly the "no evidence -> ours" state the probe is
+    specified to handle (the #50090 pause contract). Tests that pin a specific
+    classification still decide it through their explicit
+    ``_capture_gateway_argv`` stub, so the assertions stay discriminating.
+    """
+    if "respawn" not in request.node.name:
+        yield
+        return
+    with patch.dict(sys.modules, {"psutil": None}):
+        yield
+
+
+def _state_our_install_gateways(monkeypatch, pids):
+    """Pin the host process table so ``pids`` read as *this* install's gateways.
+
+    The pause path classifies every discovered PID through
+    ``_split_gateways_by_install``, which reads the *real* process table with
+    ``psutil`` (``Process(pid).exe()`` / ``.environ()``) and asks
+    ``_belongs_to_other_install``. Tests here stub ``find_gateway_pids`` with
+    small fixed PIDs and then assert those PIDs get paused — so the verdict
+    comes from whatever the host happens to be running at them. On a machine
+    carrying a second install (the two-tree box from issue #28) such a process
+    is attributed to the other install, is left running, and the pause returns
+    ``None`` instead of a token: green on an idle host, red on a busy one, same
+    commit.
+
+    Blocking ``psutil`` outright would fix the flake but change the question:
+    with no readable evidence *every* PID counts as ours, so the assertions
+    would hold for a reason the test does not mean. State the classification
+    instead of reading the host — same idiom as
+    ``test_update_gateway_scope.py::_freeze_psutil``.
+    """
+    import psutil
+
+    roots = cli_main._update_install_roots()
+    our_exe = os.path.join(roots[0], "venv", "Scripts", "python.exe")
+    our_home = os.environ.get("OPENAMER_HOME")
+    stub_pids = {int(p) for p in pids}
+
+    class _OurProc:
+        def __init__(self, pid):
+            self.pid = int(pid)
+
+        def exe(self):
+            return our_exe
+
+        def environ(self):
+            return {"OPENAMER_HOME": our_home} if our_home else {}
+
+    real_process = psutil.Process
+
+    def _process(pid):
+        if int(pid) in stub_pids:
+            return _OurProc(pid)
+        return real_process(pid)
+
+    monkeypatch.setattr(psutil, "Process", _process)
+
+
+# ---------------------------------------------------------------------------
+# _detect_concurrent_openamer_instances
+# ---------------------------------------------------------------------------
+
+
+def _make_proc(pid: int, exe: str, name: str = "openamer.exe"):
+    """Build a duck-typed psutil Process stand-in with the .info dict."""
+    proc = MagicMock()
+    proc.info = {"pid": pid, "exe": exe, "name": name}
+    return proc
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_returns_empty_when_no_other_processes(_winp, tmp_path):
+    scripts_dir = tmp_path
+    (scripts_dir / "openamer.exe").write_bytes(b"")
+    (scripts_dir / "openamer-gateway.exe").write_bytes(b"")
+
+    fake_psutil = types.SimpleNamespace(process_iter=lambda attrs: iter([]))
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == []
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_excludes_self_pid(_winp, tmp_path):
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+    my_pid = os.getpid()
+
+    procs = [_make_proc(my_pid, str(shim), "openamer.exe")]
+    fake_psutil = types.SimpleNamespace(process_iter=lambda attrs: iter(procs))
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == []
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_finds_other_openamer_process(_winp, tmp_path):
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+
+    other_pid = os.getpid() + 1
+    procs = [
+        _make_proc(other_pid, str(shim), "openamer.exe"),
+        _make_proc(os.getpid() + 2, r"C:\\Windows\\System32\\notepad.exe", "notepad.exe"),
+    ]
+    fake_psutil = types.SimpleNamespace(process_iter=lambda attrs: iter(procs))
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == [(other_pid, "openamer.exe")]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_matches_case_insensitively(_winp, tmp_path):
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+
+    # Simulate the desktop spawning openamer.EXE (uppercase ext) from same path
+    upper = str(shim).replace("openamer.exe", "OPENAMER.EXE")
+    procs = [_make_proc(9999, upper, "OPENAMER.EXE")]
+    fake_psutil = types.SimpleNamespace(process_iter=lambda attrs: iter(procs))
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == [(9999, "OPENAMER.EXE")]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_finds_venv_python_holding_shims(_winp, tmp_path):
+    """Regression: the Desktop backend runs as venv python.exe, not the .exe shim.
+
+    Field report: during `openamer update` the Desktop app's backend child was
+    `C:\\...\\venv\\Scripts\\python.exe` — NOT `openamer.exe`. The old detector
+    compared proc.exe() only against the .exe shim paths, so the holding
+    process was never flagged, quarantine failed, and uv died with os error 32.
+    A venv python.exe must be reported as a concurrent holder.
+    """
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+    venv_python = scripts_dir / "python.exe"
+    venv_python.write_bytes(b"")
+
+    other_pid = os.getpid() + 1
+    procs = [_make_proc(other_pid, str(venv_python), "python.exe")]
+    fake_psutil = types.SimpleNamespace(process_iter=lambda attrs: iter(procs))
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == [(other_pid, "python.exe")]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_finds_running_desktop_app(_winp, tmp_path, monkeypatch):
+    """The Electron Desktop app (OpenAmer.exe) must be reported as a holder.
+
+    The Desktop app runs from apps/desktop/release/win-unpacked/OpenAmer.exe,
+    which is NOT a venv shim. It holds files under apps/ open, so the ZIP
+    fallback fails to rename apps/ with WinError 5. The detector must include
+    the packaged desktop executable so a running Desktop app is flagged.
+    """
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+
+    # Point _desktop_packaged_executable at a fake OpenAmer.exe under the
+    # project's apps/desktop tree.
+    desktop_exe = tmp_path / "apps" / "desktop" / "release" / "win-unpacked" / "OpenAmer.exe"
+    desktop_exe.parent.mkdir(parents=True)
+    desktop_exe.write_bytes(b"")
+    monkeypatch.setattr(
+        cli_main,
+        "_desktop_packaged_executable",
+        lambda _d: desktop_exe,
+    )
+
+    other_pid = os.getpid() + 1
+    procs = [_make_proc(other_pid, str(desktop_exe), "OpenAmer.exe")]
+    fake_psutil = types.SimpleNamespace(process_iter=lambda attrs: iter(procs))
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == [(other_pid, "OpenAmer.exe")]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_no_psutil_returns_empty(_winp, tmp_path):
+    scripts_dir = tmp_path
+    (scripts_dir / "openamer.exe").write_bytes(b"")
+
+    # Block psutil import — simulate environment without it.
+    with patch.dict(sys.modules, {"psutil": None}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == []
+
+
+@patch.object(cli_main, "_is_windows", return_value=False)
+def test_detect_concurrent_is_noop_off_windows(_winp, tmp_path):
+    """No process enumeration off-Windows; the file-lock issue is Windows-only."""
+    assert cli_main._detect_concurrent_openamer_instances(tmp_path) == []
+
+
+# ---------------------------------------------------------------------------
+# Parent-chain exclusion (issue #30768 follow-up — the setuptools .exe
+# launcher on Windows is a separate native process that spawns python.exe;
+# excluding only ``os.getpid()`` flags the launcher as a concurrent instance.
+# ---------------------------------------------------------------------------
+
+
+def _fake_psutil_with_parent_chain(
+    parent_chain: list[int],
+    proc_iter_rows: list,
+    *,
+    ancestor_exe: str | None = None,
+):
+    """Build a psutil stand-in that has Process()/parents()/exe() AND process_iter().
+
+    ``parent_chain`` is the ordered list of ancestor PIDs (closest first)
+    returned by ``proc.parents()`` on the seed (``os.getpid()``).
+    ``ancestor_exe`` is the executable path reported by each ancestor's
+    ``.exe()``; when it matches one of our shim paths the ancestor is
+    excluded (the launcher-shim case). Pass ``None`` to model an ancestor
+    whose exe can't be read (psutil error) — it stays in the candidate set.
+    """
+
+    class _FakeProc:
+        def __init__(self, pid: int, exe_path: str | None):
+            self.pid = pid
+            self._exe = exe_path
+
+        def exe(self):
+            if self._exe is None:
+                raise OSError("exe unavailable")
+            return self._exe
+
+        def parents(self):
+            return [_FakeProc(p, ancestor_exe) for p in parent_chain]
+
+    class _NoSuchProcess(Exception):
+        pass
+
+    class _AccessDenied(Exception):
+        pass
+
+    def _process(pid=None):
+        return _FakeProc(pid if pid is not None else os.getpid(), ancestor_exe)
+
+    return types.SimpleNamespace(
+        Process=_process,
+        NoSuchProcess=_NoSuchProcess,
+        AccessDenied=_AccessDenied,
+        process_iter=lambda attrs: iter(proc_iter_rows),
+    )
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_excludes_parent_chain(_winp, tmp_path):
+    """The .exe launcher (parent of os.getpid()) must NOT be flagged.
+
+    Simulates the real Windows topology: openamer.exe launcher (PID L) spawns
+    python.exe (PID os.getpid()). Both run from the same shim path. With the
+    old single-PID exclusion, L would be reported as a concurrent instance.
+    """
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+    me = os.getpid()
+    launcher_pid = me + 100  # the .exe launcher — our parent
+
+    rows = [
+        _make_proc(me, str(shim), "python.exe"),
+        _make_proc(launcher_pid, str(shim), "openamer.exe"),
+    ]
+    fake_psutil = _fake_psutil_with_parent_chain(
+        parent_chain=[launcher_pid],
+        proc_iter_rows=rows,
+        ancestor_exe=str(shim),
+    )
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    # Both self AND the launcher are excluded; no false positive.
+    assert result == []
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_still_finds_unrelated_other_openamer(_winp, tmp_path):
+    """A sibling openamer.exe outside our ancestor chain must still be reported."""
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+    me = os.getpid()
+    launcher_pid = me + 100  # our .exe launcher (parent — must be excluded)
+    sibling_pid = me + 200  # an UNRELATED openamer.exe (must still be reported)
+
+    rows = [
+        _make_proc(me, str(shim), "python.exe"),
+        _make_proc(launcher_pid, str(shim), "openamer.exe"),
+        _make_proc(sibling_pid, str(shim), "openamer.exe"),
+    ]
+    fake_psutil = _fake_psutil_with_parent_chain(
+        parent_chain=[launcher_pid],
+        proc_iter_rows=rows,
+        ancestor_exe=str(shim),
+    )
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == [(sibling_pid, "openamer.exe")]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_parent_chain_walks_deep(_winp, tmp_path):
+    """Multi-level ancestry (shell → launcher → python) is fully excluded."""
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+    me = os.getpid()
+    parent_pid = me + 1
+    grandparent_pid = me + 2
+    greatgrandparent_pid = me + 3
+
+    rows = [
+        _make_proc(me, str(shim), "python.exe"),
+        _make_proc(parent_pid, str(shim), "openamer.exe"),
+        _make_proc(grandparent_pid, str(shim), "openamer.exe"),
+        _make_proc(greatgrandparent_pid, str(shim), "openamer.exe"),
+    ]
+    fake_psutil = _fake_psutil_with_parent_chain(
+        parent_chain=[parent_pid, grandparent_pid, greatgrandparent_pid],
+        proc_iter_rows=rows,
+        ancestor_exe=str(shim),
+    )
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == []
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_parents_call_robust_to_one_bad_hop(_winp, tmp_path):
+    """The launcher shim is still excluded even when an ancestor exe is unreadable.
+
+    Field regression (issues #29341, #34795): the old per-hop ``parent()``
+    walk bailed on the FIRST psutil error, so an AccessDenied on any hop left
+    the launcher shim in the candidate set and re-triggered the false
+    positive. ``parents()`` returns the whole list at once; we evaluate each
+    ancestor independently, so one unreadable hop never strands the launcher.
+    """
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+    me = os.getpid()
+    launcher_pid = me + 100
+
+    rows = [
+        _make_proc(me, str(shim), "python.exe"),
+        _make_proc(launcher_pid, str(shim), "openamer.exe"),
+    ]
+    # ancestor_exe=None → every ancestor's .exe() raises OSError. The helper
+    # must swallow it per-ancestor and not crash; the launcher won't be
+    # excluded in this degenerate case, but a real run reads the shim exe.
+    fake_psutil = _fake_psutil_with_parent_chain(
+        parent_chain=[launcher_pid],
+        proc_iter_rows=rows,
+        ancestor_exe=None,
+    )
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    # No crash; helper completes. (Degenerate stub: launcher exe unreadable.)
+    assert result == [(launcher_pid, "openamer.exe")]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_parent_walk_handles_stub_without_process(_winp, tmp_path):
+    """Partially-stubbed psutil (no Process attr) must NOT crash the helper.
+
+    The function documents itself as "never raises"; a unit-test stub that
+    only models ``process_iter`` must still complete cleanly with a sensible
+    result rather than escape ``AttributeError`` to the caller.
+    """
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+    me = os.getpid()
+    other_pid = me + 1
+
+    rows = [
+        _make_proc(me, str(shim), "openamer.exe"),
+        _make_proc(other_pid, str(shim), "openamer.exe"),
+    ]
+    # SimpleNamespace with ONLY process_iter — no Process / NoSuchProcess.
+    fake_psutil = types.SimpleNamespace(process_iter=lambda attrs: iter(rows))
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    # Parent-walk silently failed; self still excluded; other still reported.
+    assert result == [(other_pid, "openamer.exe")]
+
+
+# ---------------------------------------------------------------------------
+# _format_concurrent_instances_message
+# ---------------------------------------------------------------------------
+
+
+def test_format_message_mentions_pids_and_remediation(tmp_path):
+    matches = [(1234, "openamer.exe"), (5678, "openamer.exe")]
+    msg = cli_main._format_concurrent_instances_message(matches, tmp_path)
+
+    assert "1234" in msg
+    assert "5678" in msg
+    assert "openamer.exe" in msg
+    assert "OpenAmer Desktop" in msg
+    assert "--force" in msg
+    # Mentions the file that would have been overwritten
+    assert str(tmp_path / "openamer.exe") in msg
+    # Self-service kill command targets the exact stale PIDs (issue #34795).
+    assert "taskkill" in msg
+    assert "/PID 1234" in msg
+    assert "/PID 5678" in msg
+    assert "/F" in msg
+
+
+# ---------------------------------------------------------------------------
+# _auto_kill_blocking_processes + _desktop_managed_pids (--auto-kill)
+# ---------------------------------------------------------------------------
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_auto_kill_terminates_all_pids(_winp, monkeypatch):
+    """--auto-kill helper force-kills every PID it is handed (Windows taskkill)."""
+    calls: list[list[str]] = []
+
+    def fake_run(cmd, **kwargs):
+        calls.append(cmd)
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(cli_main.subprocess, "run", fake_run)
+    killed, failed = cli_main._auto_kill_blocking_processes([111, 222])
+
+    assert killed == [111, 222]
+    assert failed == []
+    assert calls == [
+        ["taskkill", "/PID", "111", "/F"],
+        ["taskkill", "/PID", "222", "/F"],
+    ]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_auto_kill_reports_failures(_winp, monkeypatch):
+    """A non-zero taskkill return code is surfaced as a failure, not swallowed."""
+
+    def fake_run(cmd, **kwargs):
+        if cmd[2] == "222":
+            return SimpleNamespace(returncode=1, stdout="", stderr="not found")
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(cli_main.subprocess, "run", fake_run)
+    killed, failed = cli_main._auto_kill_blocking_processes([111, 222])
+
+    assert killed == [111]
+    assert failed == [(222, "not found")]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_desktop_managed_pids_finds_desktop_children(_winp, monkeypatch):
+    """A venv-python whose ancestor is OpenAmer.exe is flagged as desktop-managed."""
+
+    class _Anc:
+        def name(self):
+            return "OpenAmer.exe"
+
+    class _Proc:
+        def __init__(self, pid):
+            self.pid = pid
+
+        def parents(self):
+            return [_Anc()]
+
+    fake_psutil = types.SimpleNamespace(
+        process_iter=lambda attrs: iter([_make_proc(500, "x", "python.exe")]),
+        Process=lambda pid: _Proc(pid),
+    )
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        managed = cli_main._desktop_managed_pids()
+    assert 500 in managed
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_desktop_managed_pids_ignores_standalone_daemons(_winp, monkeypatch):
+    """A daemon with no OpenAmer.exe ancestor is NOT desktop-managed (killable)."""
+
+    class _Proc:
+        def __init__(self, pid):
+            self.pid = pid
+
+        def parents(self):
+            return []  # no desktop ancestor
+
+    fake_psutil = types.SimpleNamespace(
+        process_iter=lambda attrs: iter([_make_proc(600, "x", "python.exe")]),
+        Process=lambda pid: _Proc(pid),
+    )
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        managed = cli_main._desktop_managed_pids()
+    assert managed == set()
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_desktop_managed_pids_no_psutil_returns_empty(_winp, monkeypatch):
+    """Without psutil the helper degrades to an empty set (never raises)."""
+    with patch.dict(sys.modules, {"psutil": None}):
+        assert cli_main._desktop_managed_pids() == set()
+
+
+# ---------------------------------------------------------------------------
+# _quarantine_running_openamer_exe — retry + reboot-deferred fallback
+# ---------------------------------------------------------------------------
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_quarantine_succeeds_first_attempt(_winp, tmp_path):
+    """When the rename works immediately, no warning, single rename pair returned."""
+    shim = tmp_path / "openamer.exe"
+    shim.write_bytes(b"old")
+
+    pairs, failed = cli_main._quarantine_running_openamer_exe(tmp_path)
+
+    assert len(pairs) == 1
+    assert failed == []
+    orig, quarantine = pairs[0]
+    assert orig == shim
+    assert quarantine.name.startswith("openamer.exe.old.")
+    assert quarantine.exists()
+    assert not shim.exists()
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_quarantine_retries_then_succeeds(_winp, tmp_path, monkeypatch):
+    """A transient OSError on the first attempt should not be fatal."""
+    shim = tmp_path / "openamer.exe"
+    shim.write_bytes(b"old")
+
+    original_rename = Path.rename
+    call_count = {"n": 0}
+
+    def flaky_rename(self, target):
+        call_count["n"] += 1
+        if call_count["n"] == 1:
+            raise OSError(32, "share violation (simulated AV scan)")
+        return original_rename(self, target)
+
+    # Speed up the test: avoid actual sleeps in the backoff schedule.
+    monkeypatch.setattr(cli_main, "_openamer_exe_shims", lambda d: [shim])
+    with patch.object(Path, "rename", flaky_rename), patch(
+        "time.sleep", lambda *_a, **_k: None
+    ):
+        pairs, failed = cli_main._quarantine_running_openamer_exe(tmp_path)
+
+    assert call_count["n"] >= 2
+    assert len(pairs) == 1
+    assert failed == []
+    assert not shim.exists()
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_quarantine_falls_back_to_reboot_schedule(_winp, tmp_path, capsys, monkeypatch):
+    """When every retry fails, we schedule via MoveFileEx and warn helpfully."""
+    shim = tmp_path / "openamer.exe"
+    shim.write_bytes(b"locked")
+
+    def always_fails(self, target):
+        raise OSError(32, "The process cannot access the file (simulated lock)")
+
+    scheduled_calls: list[tuple[Path, Path]] = []
+
+    def fake_schedule(s: Path, q: Path) -> bool:
+        scheduled_calls.append((s, q))
+        return True
+
+    monkeypatch.setattr(cli_main, "_openamer_exe_shims", lambda d: [shim])
+    with patch.object(Path, "rename", always_fails), patch.object(
+        cli_main, "_schedule_replace_on_reboot", fake_schedule
+    ), patch("time.sleep", lambda *_a, **_k: None):
+        pairs, failed = cli_main._quarantine_running_openamer_exe(tmp_path)
+
+    captured = capsys.readouterr().out
+
+    # The reboot-deferred path was used.
+    assert scheduled_calls and scheduled_calls[0][0] == shim
+    # It is NOT added to the returned roll-back list (the issue calls this
+    # out — don't undo a deferred operation).
+    assert pairs == []
+    # It IS reported as failed: the file still exists at the original path
+    # and is locked until reboot, so uv cannot overwrite it NOW — the install
+    # must abort instead of crashing with os error 32 (regression from field).
+    assert failed == [shim]
+    # The user got a clear message, not raw [WinError 32].
+    assert "scheduled" in captured.lower()
+    assert "reboot" in captured.lower()
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_quarantine_actionable_warning_when_everything_fails(
+    _winp, tmp_path, capsys, monkeypatch
+):
+    """When even MoveFileEx fails we should print remediation hints, not a bare error."""
+    shim = tmp_path / "openamer.exe"
+    shim.write_bytes(b"locked")
+
+    def always_fails(self, target):
+        raise OSError(32, "share violation")
+
+    monkeypatch.setattr(cli_main, "_openamer_exe_shims", lambda d: [shim])
+    with patch.object(Path, "rename", always_fails), patch.object(
+        cli_main, "_schedule_replace_on_reboot", lambda *_a, **_k: False
+    ), patch("time.sleep", lambda *_a, **_k: None):
+        moved, failed = cli_main._quarantine_running_openamer_exe(tmp_path)
+
+    captured = capsys.readouterr().out
+    assert moved == []
+    assert failed == [shim]
+    # New message format: no raw "[WinError 32]" dump; instead names the cause
+    # and tells the user what to do.
+    assert "another process" in captured.lower()
+    assert "OpenAmer Desktop" in captured or "gateway" in captured.lower()
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_quarantined_install_aborts_before_uv_on_hard_failure(
+    _winp, tmp_path, capsys, monkeypatch
+):
+    """Regression: when quarantine fully fails, the install must NOT start uv.
+
+    Field report (os error 32 on `venv\\Scripts\\openamer.exe` during
+    `openamer update` while the Desktop app was running): the old code let uv
+    run anyway ("let uv try its luck"), uv then crashed with
+    `[WinError 32] The process cannot access the file` and the ENTIRE update
+    died with a raw traceback. The fix aborts BEFORE uv with a clear message
+    so nothing is half-written and the user knows exactly what to do.
+    """
+    shim = tmp_path / "openamer.exe"
+    shim.write_bytes(b"locked")
+
+    def always_fails(self, target):
+        raise OSError(32, "share violation")
+
+    uv_ran = []
+
+    def fake_uv(cmd, **kw):
+        uv_ran.append(cmd)
+        raise AssertionError("uv must NOT be started when quarantine failed")
+
+    monkeypatch.setattr(cli_main, "_openamer_exe_shims", lambda d: [shim])
+    monkeypatch.setattr(cli_main, "_run_install_with_heartbeat", fake_uv)
+    with patch.object(Path, "rename", always_fails), patch.object(
+        cli_main, "_schedule_replace_on_reboot", lambda *_a, **_k: False
+    ), patch("time.sleep", lambda *_a, **_k: None):
+        with pytest.raises(SystemExit) as exc:
+            cli_main._run_quarantined_install(
+                ["uv", "pip", "install", "-e", "."], scripts_dir=tmp_path
+            )
+
+    assert exc.value.code == 2
+    assert uv_ran == [], "uv must never be invoked after a hard quarantine failure"
+    captured = capsys.readouterr().out
+    assert "NOT started" in captured
+    assert "openamer.exe" in captured
+    # The shim is still in place — nothing was damaged.
+    assert shim.exists()
+
+
+# ---------------------------------------------------------------------------
+# Windows gateway pause/resume before update mutation
+# ---------------------------------------------------------------------------
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_pause_windows_gateways_for_update_stops_profile_and_unmapped_pids(
+    _winp,
+    monkeypatch,
+    tmp_path,
+    capsys,
+):
+    import gateway.status as status_mod
+    import openamer_cli.gateway as gateway_mod
+
+    profile_home = tmp_path / "profiles" / "work"
+    profile_home.mkdir(parents=True)
+    profile_proc = SimpleNamespace(profile="work", path=profile_home, pid=101)
+
+    monkeypatch.setattr(gateway_mod, "find_gateway_pids", lambda **_k: [101, 202])
+    monkeypatch.setattr(
+        gateway_mod,
+        "find_profile_gateway_processes",
+        lambda **_k: [profile_proc],
+    )
+    monkeypatch.setattr(gateway_mod, "_get_restart_drain_timeout", lambda: 0.1)
+    # This test's premise is that 101 and 202 are gateways of THIS install
+    # (one profile-mapped, one unmapped-but-argv-captured). Left implicit, the
+    # classification is decided by the host: `_split_gateways_by_install` reads
+    # the real process table through psutil for every stub PID, so on a machine
+    # that happens to have a live process at 101 or 202 that process is
+    # attributed to another install and gets left running — the pause returns
+    # None instead of a token, and the assertions fail for a reason unrelated
+    # to the code under test. State the classification instead of inferring it,
+    # the same shape the respawn siblings above use (and the same idiom
+    # `test_update_gateway_scope.py::_freeze_psutil` uses).
+    _state_our_install_gateways(monkeypatch, [101, 202])
+    waited_for = []
+
+    def fake_wait(pids, *, timeout):
+        waited_for.extend(pids)
+        return set()
+
+    monkeypatch.setattr(cli_main, "_wait_for_windows_update_gateway_exit", fake_wait)
+    monkeypatch.setattr(
+        gateway_mod,
+        "_capture_gateway_argv",
+        lambda pid: ["pythonw.exe", "-m", "openamer_cli.main", "gateway", "run"]
+        if pid == 202
+        else None,
+    )
+
+    terminated = []
+    monkeypatch.setattr(
+        status_mod,
+        "terminate_pid",
+        lambda pid, force=False: terminated.append((pid, force)),
+    )
+
+    token = cli_main._pause_windows_gateways_for_update()
+
+    assert token == {
+        "resume_needed": True,
+        "profiles": {"work": 101},
+        "unmapped_pids": [202],
+        "unmapped": [
+            {
+                "pid": 202,
+                "argv": ["pythonw.exe", "-m", "openamer_cli.main", "gateway", "run"],
+            }
+        ],
+    }
+    assert waited_for == [101]
+    assert terminated == [(202, True)]
+
+    marker = json.loads((profile_home / ".gateway-planned-stop.json").read_text())
+    assert marker["target_pid"] == 101
+    assert marker["stopper_pid"] == os.getpid()
+
+    captured = capsys.readouterr().out
+    assert "Paused gateway profile(s): work" in captured
+    assert "without profile mapping" in captured
+    # An unmapped PID whose argv we captured is respawnable, so we must NOT
+    # tell the user to restart it manually.
+    assert "Restart manually after update" not in captured
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_resume_windows_gateways_after_update_relaunches_paused_profiles(
+    _winp,
+    monkeypatch,
+    capsys,
+):
+    import openamer_cli.gateway as gateway_mod
+
+    relaunched = []
+    monkeypatch.setattr(
+        gateway_mod,
+        "launch_detached_profile_gateway_restart",
+        lambda profile, old_pid: relaunched.append((profile, old_pid)) or True,
+    )
+    # The restart helper only spawns a watcher; the resume path must confirm a
+    # live gateway before it prints its checkmark. Stub the liveness wait so the
+    # test exercises the reporting branch, not the 15s poll.
+    monkeypatch.setattr(
+        cli_main, "_wait_for_windows_gateway_respawn", lambda old_pids: [303]
+    )
+
+    token = {
+        "resume_needed": True,
+        "profiles": {"default": 101, "work": 202},
+        "unmapped_pids": [],
+    }
+
+    cli_main._resume_windows_gateways_after_update(token)
+
+    assert token["resume_needed"] is False
+    assert relaunched == [("default", 101), ("work", 202)]
+    assert (
+        "Restarting Windows gateway profile(s): default, work"
+        in capsys.readouterr().out
+    )
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_resume_does_not_print_checkmark_when_no_gateway_respawns(
+    _winp,
+    monkeypatch,
+    capsys,
+):
+    """A spawned restart watcher is not a running gateway — say so honestly.
+
+    ``launch_detached_*_gateway_restart*`` returns ``True`` once the detached
+    watcher process exists. If that watcher never produces a gateway, the old
+    code still printed ``✓ Restarting …``; the resume path must instead report
+    that no process was detected.
+    """
+    import openamer_cli.gateway as gateway_mod
+
+    monkeypatch.setattr(
+        gateway_mod,
+        "launch_detached_profile_gateway_restart",
+        lambda profile, old_pid: True,
+    )
+    monkeypatch.setattr(
+        cli_main, "_wait_for_windows_gateway_respawn", lambda pids: []
+    )
+
+    token = {"resume_needed": True, "profiles": {"default": 101}}
+    cli_main._resume_windows_gateways_after_update(token)
+
+    out = capsys.readouterr().out
+    assert "✓ Restarting Windows gateway profile(s)" not in out
+    assert "no gateway process was detected" in out
+    assert "openamer gateway status" in out
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_wait_for_windows_gateway_respawn_ignores_force_killed_pids(
+    _winp,
+    monkeypatch,
+):
+    """The probe must not count the dying old PID as a successful respawn.
+
+    Right after the restart helper returns, the force-killed gateway is often
+    still present in the process table. Counting it would re-introduce the
+    false-green this fix removes.
+    """
+    import openamer_cli.gateway as gateway_mod
+
+    seen = []
+    monkeypatch.setattr(
+        gateway_mod,
+        "find_gateway_pids",
+        lambda **kwargs: seen.append(kwargs.get("all_profiles")) or [101],
+    )
+
+    # Old PID 101 still alive, no replacement → must time out empty, not report
+    # 101 as the respawn.
+    assert cli_main._wait_for_windows_gateway_respawn([101], timeout_s=0.05) == []
+    assert seen and all(flag is True for flag in seen)
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_wait_for_windows_gateway_respawn_returns_new_pid(
+    _winp,
+    monkeypatch,
+):
+    """A live gateway that is not an old PID is the respawn we were waiting for."""
+    import openamer_cli.gateway as gateway_mod
+    from openamer_cli import gateway_windows
+
+    monkeypatch.setattr(
+        gateway_mod, "find_gateway_pids", lambda **kwargs: [101, 4242]
+    )
+    monkeypatch.setattr(gateway_windows, "is_installed", lambda: True)
+
+    assert cli_main._wait_for_windows_gateway_respawn([101], timeout_s=0.5) == [4242]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_wait_for_windows_gateway_respawn_ignores_foreign_install_gateway(
+    _winp,
+    monkeypatch,
+):
+    """A gateway owned by ANOTHER install is not proof that ours came back.
+
+    ``find_gateway_pids(all_profiles=True)`` is machine-wide, so on a
+    two-install box (the setup in issue #28) the *other* install's healthy
+    gateway is always in that list. Counting it made the resume path print
+    ``✓ Restarting …`` while our own gateway was still down.
+    """
+    import openamer_cli.gateway as gateway_mod
+
+    foreign_argv = [
+        "C:/OtherTree/openamer-laptop/venv/Scripts/python.exe",
+        "-m",
+        "openamer_cli.main",
+        "gateway",
+        "run",
+    ]
+    monkeypatch.setattr(
+        gateway_mod, "find_gateway_pids", lambda **_k: [9999]
+    )
+    monkeypatch.setattr(
+        gateway_mod,
+        "_capture_gateway_argv",
+        lambda pid: list(foreign_argv) if int(pid) == 9999 else [],
+    )
+
+    # Only the foreign gateway is alive → must time out empty, not report 9999.
+    assert (
+        cli_main._wait_for_windows_gateway_respawn([101], timeout_s=0.05) == []
+    )
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_wait_for_windows_gateway_respawn_waits_out_a_foreign_only_window(
+    _winp,
+    monkeypatch,
+):
+    """The probe must POLL THROUGH a foreign-only window, not short-circuit on it.
+
+    The sibling test above puts *only* the foreign PID in its stub table and
+    asserts a timeout — that proves "a foreign-only table times out honestly".
+    It does not prove the production shape: another install's gateway is
+    healthy from the *first* poll while ours comes back a few polls later. The
+    probe has to keep polling and return the first gateway that is actually
+    ours.
+
+    This is the load-bearing assertion for issue #28's fix: the pre-fix
+    expression took any machine-wide PID and returned the foreign one on poll 1.
+    """
+    import openamer_cli.gateway as gateway_mod
+
+    foreign_argv = [
+        "C:/OtherTree/openamer-laptop/venv/Scripts/python.exe",
+        "-m",
+        "openamer_cli.main",
+        "gateway",
+        "run",
+    ]
+    # Derived from the classifier's own install root, so this is *ours* by
+    # exactly the evidence production uses — not a layout guess.
+    our_argv = [
+        str(Path(cli_main._update_install_roots()[0], "venv/Scripts/python.exe")),
+        "-m",
+        "openamer_cli.main",
+        "gateway",
+        "run",
+    ]
+
+    polls = {"n": 0}
+
+    def _find_gateway_pids(**_k):
+        polls["n"] += 1
+        # Foreign gateway alive from poll 1; ours only shows up on poll 4.
+        return [9999] if polls["n"] < 4 else [9999, 4200]
+
+    monkeypatch.setattr(gateway_mod, "find_gateway_pids", _find_gateway_pids)
+    monkeypatch.setattr(
+        gateway_mod,
+        "_capture_gateway_argv",
+        lambda pid: list(foreign_argv) if int(pid) == 9999 else list(our_argv),
+    )
+
+    result = cli_main._wait_for_windows_gateway_respawn(
+        [101], timeout_s=2.0, interval_s=0.05
+    )
+
+    # Ours, not the foreign PID that was there the whole time.
+    assert result == [4200]
+    # ...and it got there by waiting, not by short-circuiting on poll 1.
+    assert polls["n"] >= 4
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_wait_for_windows_gateway_respawn_keeps_unevidenced_pid(
+    _winp,
+    monkeypatch,
+):
+    """No readable evidence is still "ours" — the #50090 pause must not regress.
+
+    ``_belongs_to_other_install`` only calls a process foreign on *proof*; a
+    scheduled-task gateway whose argv/env cannot be read must keep counting as a
+    live gateway, exactly as the pause path assumes.
+    """
+    import openamer_cli.gateway as gateway_mod
+
+    monkeypatch.setattr(
+        gateway_mod, "find_gateway_pids", lambda **_k: [7777]
+    )
+    monkeypatch.setattr(
+        gateway_mod,
+        "_capture_gateway_argv",
+        lambda pid: (_ for _ in ()).throw(PermissionError("access denied")),
+    )
+
+    assert cli_main._wait_for_windows_gateway_respawn(
+        [101], timeout_s=0.5
+    ) == [7777]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_resume_windows_gateways_after_update_respawns_unmapped_by_cmdline(
+    _winp,
+    monkeypatch,
+    capsys,
+):
+    """Unmapped gateways (no profile→PID-file mapping, e.g. a Scheduled Task)
+    are respawned by replaying the argv snapshotted before the force-kill."""
+    import openamer_cli.gateway as gateway_mod
+
+    by_cmdline = []
+    monkeypatch.setattr(
+        gateway_mod,
+        "launch_detached_gateway_restart_by_cmdline",
+        lambda old_pid, argv: by_cmdline.append((old_pid, argv)) or True,
+    )
+    monkeypatch.setattr(
+        gateway_mod,
+        "launch_detached_profile_gateway_restart",
+        lambda profile, old_pid: True,
+    )
+    monkeypatch.setattr(
+        cli_main, "_wait_for_windows_gateway_respawn", lambda old_pids: [8080]
+    )
+
+    scheduled_argv = ["pythonw.exe", "-m", "openamer_cli.main", "gateway", "run"]
+    token = {
+        "resume_needed": True,
+        "profiles": {},
+        "unmapped_pids": [7560],
+        "unmapped": [
+            # Respawnable — argv captured.
+            {"pid": 7560, "argv": scheduled_argv},
+            # Not respawnable — no argv (psutil missing / access denied).
+            {"pid": 9999, "argv": None},
+        ],
+    }
+
+    cli_main._resume_windows_gateways_after_update(token)
+
+    assert token["resume_needed"] is False
+    assert by_cmdline == [(7560, scheduled_argv)]
+    out = capsys.readouterr().out
+    assert "Restarting 1 unmapped Windows gateway process(es)" in out
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_pause_returns_cold_start_token_when_installed_but_none_running(
+    _winp,
+    monkeypatch,
+):
+    """No gateway running + autostart entry installed → cold-start token.
+
+    A gateway that died between updates (spawning terminal/TUI closed) leaves
+    nothing for the resume path to relaunch, but the installed autostart entry
+    is an explicit "I want a gateway" signal. The pause step must return a
+    token that tells resume to cold-start one.
+    """
+    import openamer_cli.gateway as gateway_mod
+    from openamer_cli import gateway_windows
+
+    monkeypatch.setattr(gateway_mod, "find_gateway_pids", lambda **_k: [])
+    monkeypatch.setattr(gateway_windows, "is_installed", lambda: True)
+
+    token = cli_main._pause_windows_gateways_for_update()
+
+    assert token == {
+        "resume_needed": True,
+        "profiles": {},
+        "unmapped_pids": [],
+        "unmapped": [],
+        "cold_start_if_installed": True,
+    }
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_pause_returns_none_when_nothing_running_and_not_installed(
+    _winp,
+    monkeypatch,
+):
+    """No gateway running + no autostart entry → no token (gateway-less user).
+
+    Users who deliberately run without a gateway must not get one forced on
+    them by an update.
+    """
+    import openamer_cli.gateway as gateway_mod
+    from openamer_cli import gateway_windows
+
+    monkeypatch.setattr(gateway_mod, "find_gateway_pids", lambda **_k: [])
+    monkeypatch.setattr(gateway_windows, "is_installed", lambda: False)
+
+    assert cli_main._pause_windows_gateways_for_update() is None
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_resume_cold_starts_gateway_when_token_requests_it(
+    _winp,
+    monkeypatch,
+    capsys,
+):
+    """cold_start_if_installed token + nothing running → fresh detached spawn."""
+    import openamer_cli.gateway as gateway_mod
+    from openamer_cli import gateway_windows
+
+    monkeypatch.setattr(gateway_mod, "find_gateway_pids", lambda **_k: [])
+    spawned = []
+    monkeypatch.setattr(
+        gateway_windows,
+        "_spawn_detached",
+        lambda: spawned.append(True) or 4242,
+    )
+
+    token = {
+        "resume_needed": True,
+        "profiles": {},
+        "unmapped_pids": [],
+        "unmapped": [],
+        "cold_start_if_installed": True,
+    }
+
+    cli_main._resume_windows_gateways_after_update(token)
+
+    assert token["resume_needed"] is False
+    assert spawned == [True]
+    assert "Starting Windows gateway after update (PID 4242)" in capsys.readouterr().out
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_resume_cold_start_skips_when_gateway_already_running(
+    _winp,
+    monkeypatch,
+    capsys,
+):
+    """Don't double-start: if a gateway came up between pause and resume
+    (e.g. the autostart entry fired), the cold-start must no-op."""
+    import openamer_cli.gateway as gateway_mod
+    from openamer_cli import gateway_windows
+
+    monkeypatch.setattr(gateway_mod, "find_gateway_pids", lambda **_k: [9001])
+    spawned = []
+    monkeypatch.setattr(
+        gateway_windows,
+        "_spawn_detached",
+        lambda: spawned.append(True) or 4242,
+    )
+
+    token = {
+        "resume_needed": True,
+        "profiles": {},
+        "unmapped_pids": [],
+        "unmapped": [],
+        "cold_start_if_installed": True,
+    }
+
+    cli_main._resume_windows_gateways_after_update(token)
+
+    assert spawned == []
+    assert "Starting Windows gateway after update" not in capsys.readouterr().out
+
+
+# ---------------------------------------------------------------------------
+# cmd_update integration — concurrent-instance gate
+# ---------------------------------------------------------------------------
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_cmd_update_aborts_on_concurrent_instance(_winp, tmp_path, capsys):
+    """If another openamer.exe is running, the update bails out before
+    touching the working tree (exit code 2)."""
+    scripts_dir = tmp_path / "Scripts"
+    scripts_dir.mkdir()
+
+    args = SimpleNamespace(
+        check=False,
+        gateway=False,
+        yes=False,
+        force=False,
+        backup=False,
+        no_backup=True,
+    )
+
+    with patch.object(
+        cli_main, "_venv_scripts_dir", return_value=scripts_dir
+    ), patch.object(
+        cli_main,
+        "_detect_concurrent_openamer_instances",
+        return_value=[(4242, "openamer.exe")],
+    ), patch.object(
+        cli_main, "_run_pre_update_backup"
+    ) as mock_backup, patch.object(
+        cli_main, "_install_hangup_protection", return_value={}
+    ), patch.object(
+        cli_main, "_finalize_update_output"
+    ):
+        with pytest.raises(SystemExit) as excinfo:
+            cli_main.cmd_update(args)
+
+    assert excinfo.value.code == 2
+    # The pre-update backup runs AFTER the concurrent check; should not have
+    # been invoked.
+    mock_backup.assert_not_called()
+
+    captured = capsys.readouterr().out
+    assert "4242" in captured
+    assert "--force" in captured
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_cmd_update_force_bypasses_concurrent_check(_winp, tmp_path):
+    """--force lets the update proceed past the concurrent-instance gate
+    (subsequent steps are mocked so we only verify the gate is skipped)."""
+    scripts_dir = tmp_path / "Scripts"
+    scripts_dir.mkdir()
+
+    args = SimpleNamespace(
+        check=False,
+        gateway=False,
+        yes=False,
+        force=True,  # ← the bypass
+        backup=False,
+        no_backup=True,
+    )
+
+    detect = MagicMock(return_value=[(9, "openamer.exe")])
+
+    # Short-circuit out of _cmd_update_impl via a sentinel raise immediately
+    # AFTER the gate. _run_pre_update_backup is the first call after the gate.
+    sentinel = RuntimeError("reached post-gate body")
+    with patch.object(
+        cli_main, "_venv_scripts_dir", return_value=scripts_dir
+    ), patch.object(
+        cli_main, "_detect_concurrent_openamer_instances", detect
+    ), patch.object(
+        cli_main, "_run_pre_update_backup", side_effect=sentinel
+    ), patch.object(
+        cli_main, "_install_hangup_protection", return_value={}
+    ), patch.object(
+        cli_main, "_finalize_update_output"
+    ):
+        with pytest.raises(RuntimeError, match="reached post-gate body"):
+            cli_main.cmd_update(args)
+
+    # When --force is set, we should not have even consulted psutil.
+    detect.assert_not_called()

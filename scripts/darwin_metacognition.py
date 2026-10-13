@@ -1,0 +1,416 @@
+#!/usr/bin/env python3
+"""
+Metacognition & Civilization Seeds (Phase 24).
+
+The swarm KNOWS what it knows:
+  - --introspect: honest self-image from every data source Darwin holds
+    (strengths, weaknesses, gaps, aging, market position)
+  - Gap-driven evolution: detected weaknesses become blueprint requirements
+    that steer the next speciation directly at the swarm's blind spots
+  - Civilization seed: a single portable file carrying genome + lineage +
+    knowledge + territories + chronicle - a new machine becomes a full
+    civilization in one import
+"""
+from __future__ import annotations
+import os
+
+import json
+import os
+import re
+import sys
+from collections import Counter
+from datetime import datetime, timezone
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / "scripts"))
+
+import importlib.util
+
+# Markers only a real OpenAmer home carries. Darwin never creates these, so they
+# separate a genuine install from a scratch directory that merely exists -- e.g.
+# a stray ``OPENAMER_HOME=/c/tmp/oa-home``, which made the swarm loop resolve an
+# empty population and report "0 tasks, everything clean" (observed 2026-09-19).
+_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
+
+
+def _is_install_root(pth: Path) -> bool:
+    """True when *pth* looks like a real OpenAmer home, not a scratch dir.
+
+    A marker only counts when it carries real content:
+
+    * file markers (``config.yaml``/``.env``) must be non-empty.
+    * directory markers (``cron``/``memories``/``openamer-agent``) must hold at
+      least one NON-EMPTY file. ``any(p.iterdir())`` was not enough: the live
+      scratch tree ``OPENAMER_HOME=C:/Users/damir/_vaultfinal`` carries
+      ``cron/executions.db`` at 0 bytes plus an empty ``memories/``, so a
+      0-byte file proved "install" and that tree was adopted over the real
+      189-skill install. The 15-minute darwin autopilot cron then evolved a
+      3-skill phantom population and wrote 2-skill snapshots into the
+      append-only history ledger, flipping ``auto_tune()`` to "declining".
+    """
+    try:
+        for m in _HOME_MARKERS:
+            p = pth / m
+            if p.is_file():
+                if p.stat().st_size > 0:
+                    return True
+            elif p.is_dir():
+                for child in p.iterdir():
+                    if child.is_file() and child.stat().st_size > 0:
+                        return True
+        return False
+    except OSError:
+        return False
+
+
+def _resolve_openamer_home(default: Path) -> Path:
+    """Resolve OPENAMER_HOME robustly across shells (single source: darwin_engine.py).
+
+    git-bash exports OPENAMER_HOME as an MSYS path ("/c/Users/..."). Native
+    Windows Python treats that as relative and lands in a phantom "C:/c/..."
+    tree, so the swarm would operate on a directory that is not the install.
+    Normalise MSYS drive forms and reject doubled-drive artefacts.
+
+    Prefer an installed candidate that actually carries a ``skills`` dir: on this
+    host "openamer-laptop" is the real install while plain "openamer" is only a
+    near-empty upstream default. Choosing the bare default made every sibling
+    script resolve a DIFFERENT home than darwin_engine -- observed live
+    2026-09-22, when the autonomous loop reported "0 tasks, everything clean"
+    while writing its swarm into C:/Users/damir/AppData/Local/openamer (27 skills)
+    instead of the real home (183 skills). A mis-set OPENAMER_HOME pointing at a
+    scratch dir is likewise rejected via the install-root markers.
+    """
+    home = Path.home()
+    local = default.parent
+    # The Windows layout comes first (the real install on a Windows host), then the
+    # portable POSIX location and finally the checkout, which IS a valid home (it
+    # ships skills/ and cron/). Stopping at the two AppData paths made every sibling
+    # resolve "$HOME/AppData/Local/openamer" -- a directory nothing creates on Linux
+    # or macOS -- so the swarm operated outside the install AND disagreed with
+    # darwin_engine about where HOME is (Linux CI, 2026-10-12). Keep this chain in
+    # step with darwin_engine._default_home().
+    candidates = [local / "openamer-laptop", local / "openamer",
+                  home / ".openamer", Path(__file__).resolve().parents[1]]
+    picked = next((c for c in candidates if _is_install_root(c)), None)
+    if picked is None:
+        picked = next((c for c in candidates if (c / "skills").is_dir()), default)
+
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return picked
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    cand = None
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = Path(norm[1].upper() + ":/" + norm[3:])
+    else:
+        p = Path(raw)
+        if p.is_absolute():
+            cand = p
+    if cand is None or not cand.exists():
+        return picked
+    parts = cand.parts
+    drive = parts[0].rstrip("/").rstrip(os.sep)
+    if len(drive) == 2 and drive[1] == ":" and len(parts) >= 2:
+        head = parts[1].strip("/").strip(os.sep).lower()
+        if head and head == drive[0].lower():
+            return picked
+    if _is_install_root(cand):
+        return cand
+    print(f"[home] WARNING: OPENAMER_HOME={cand} exists but is not an OpenAmer "
+          f"install root; falling back to {picked}.", file=sys.stderr)
+    return picked
+
+_spec = importlib.util.spec_from_file_location(
+    "darwin_engine", REPO / "scripts" / "darwin_engine.py")
+darwin = importlib.util.module_from_spec(_spec)
+sys.modules["darwin_engine"] = darwin
+_spec.loader.exec_module(darwin)
+
+_spec2 = importlib.util.spec_from_file_location(
+    "swarm_os", REPO / "scripts" / "swarm_os.py")
+swarm = importlib.util.module_from_spec(_spec2)
+sys.modules["swarm_os"] = swarm
+_spec2.loader.exec_module(swarm)
+
+HOME = _resolve_openamer_home(Path.home() / "AppData" / "Local" / "openamer")
+INTROSPECTION_FILE = HOME / "darwin" / "introspection.json"
+SEED_FILE = HOME / "darwin" / "civilization-seed.json"
+
+STRONG_THRESHOLD = 25.0
+WEAK_THRESHOLD = 10.0
+
+
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def _load(path: Path, default):
+    try:
+        return json.loads(path.read_text("utf-8"))
+    except Exception:
+        return default
+
+
+def _save(path: Path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), "utf-8")
+
+
+def introspect() -> dict:
+    """Build the swarm's honest self-image from all available evidence."""
+    fitness = _load(darwin.FITNESS_FILE, {}).get("skills", {})
+    ranked = sorted(fitness.items(),
+                    key=lambda kv: kv[1].get("fitness", 0), reverse=True)
+    strengths = [{"skill": n, "fitness": s["fitness"], "usage": s["usage"]}
+                 for n, s in ranked if s["fitness"] >= STRONG_THRESHOLD]
+    weaknesses = [{"skill": n, "fitness": s["fitness"], "usage": s["usage"]}
+                  for n, s in ranked if s["fitness"] < WEAK_THRESHOLD]
+
+    # aging: how static is the population?
+    static_count = sum(1 for _, s in fitness.items()
+                       if s.get("age_days", 0) > 5)
+    aging = {"static_skills": static_count,
+             "total": len(fitness),
+             "stagnation_ratio": round(static_count / max(len(fitness), 1), 2)}
+
+    # battle record across all populations
+    population = _load(darwin.POPULATION_FILE, {})
+    wins = sum(g.get("wins", 0) for g in population.values())
+    losses = sum(g.get("losses", 0) for g in population.values())
+    battle = {"wins": wins, "losses": losses,
+              "win_rate": round(wins / max(wins + losses, 1), 2)}
+
+    # market position: how many open/settled tasks
+    market = _load(HOME / "darwin" / "task-market.json",
+                   {"open": {}, "settled": {}})
+
+    # species health
+    sp_dir = darwin.DARWIN_DIR / "species"
+    species = {"installed": 0, "candidate": 0}
+    if sp_dir.exists():
+        for mp in sp_dir.glob("*.json"):
+            st = _load(mp, {}).get("status", "candidate")
+            species[st if st in species else "candidate"] = \
+                species.get(st if st in species else "candidate", 0) + 1
+
+    # evolution velocity: events per day over the last week
+    lineage = _load(darwin.LINEAGE_FILE, {"events": []})
+    week_ago = datetime.now(timezone.utc).timestamp() - 7 * 86400
+    recent = [e for e in lineage["events"]
+              if _parse_ts(e.get("when", "")) >= week_ago]
+    velocity = {"events_last_7d": len(recent),
+                "total_events": len(lineage["events"])}
+
+    # capability coverage: what can the swarm actually do?
+    caps = Counter()
+    for name in fitness:
+        for tok in re.split(r"[-_+.]", name):
+            if len(tok) > 3 and tok not in ("darwin", "harvested", "mut"):
+                caps[tok] += 1
+    top_capabilities = caps.most_common(8)
+
+    self_image = {
+        "when": _now(),
+        "population": len(fitness),
+        "strengths": strengths[:5],
+        "weaknesses": weaknesses[:5],
+        "aging": aging,
+        "battle_record": battle,
+        "market": {"open": len(market.get("open", {})),
+                   "settled": len(market.get("settled", {}))},
+        "species": species,
+        "evolution_velocity": velocity,
+        "top_capabilities": top_capabilities,
+    }
+
+    # gap analysis -> evolution directives
+    gaps = []
+    if weaknesses:
+        gaps.append({"type": "weak-population",
+                     "detail": f"{len(weaknesses)} skills below fitness "
+                               f"{WEAK_THRESHOLD}",
+                     "directive": "mutate or predate these skills"})
+    if aging["stagnation_ratio"] >= 0.5:
+        gaps.append({"type": "stagnation",
+                     "detail": f"{aging['stagnation_ratio']} of population "
+                               f"unchanged for 5+ days",
+                     "directive": "increase exploration (epsilon up)"})
+    if battle["win_rate"] < 0.4 and wins + losses >= 5:
+        gaps.append({"type": "losing-record",
+                     "detail": f"win rate {battle['win_rate']}",
+                     "directive": "prioritize verification-step mutations"})
+    if len(market.get("open", {})) > len(market.get("settled", {})) * 2 \
+            and market.get("open"):
+        gaps.append({"type": "market-backlog",
+                     "detail": f"{len(market['open'])} open tasks vs "
+                               f"{len(market['settled'])} settled",
+                     "directive": "spawn workers for open task domains"})
+    self_image["gaps"] = gaps
+    self_image["self_assessment"] = _assess(self_image)
+
+    _save(INTROSPECTION_FILE, self_image)
+    return self_image
+
+
+def _parse_ts(ts: str) -> float:
+    try:
+        return datetime.fromisoformat(ts).timestamp()
+    except Exception:
+        return 0.0
+
+
+def _assess(img: dict) -> str:
+    """One honest sentence the swarm says about itself.
+
+    Never report health it cannot evidence: with no measured population the
+    honest answer is 'unmeasured', not 'healthy'. A self-image module that
+    cannot say "I have no data" is not the honest mirror it is named after.
+    """
+    total = (img.get("aging") or {}).get("total", 0)
+    if not total:
+        return ("We have no measurements right now - self-image unmeasured. "
+                "Fix the fitness source before trusting any self-report.")
+    trend = "growing" if img["evolution_velocity"]["events_last_7d"] > 5 \
+        else "stable"
+    if img["gaps"]:
+        return (f"We are {trend}, strong in "
+                f"{len(img['strengths'])} areas, but we carry "
+                f"{len(img['gaps'])} weaknesses we must address.")
+    return f"We are {trend} and healthy."
+
+
+# ── gap-driven evolution ─────────────────────────────────────────────────────
+
+GAP_BLUEPRINTS_FILE = HOME / "darwin" / "gap-blueprints.json"
+
+
+def evolve_toward_gaps(self_image: dict | None = None,
+                       apply: bool = False) -> list[dict]:
+    """Turn detected gaps into targeted speciation directives: for each gap,
+    synthesize a skill designed to close it."""
+    img = self_image or _load(INTROSPECTION_FILE, {})
+    gaps = img.get("gaps", [])
+    created = []
+    for gap in gaps:
+        gtype = gap["type"]
+        name = f"darwin-gap-{gtype.replace('_', '-')}"
+        text = (
+            f"---\nname: {name}\n"
+            f"description: Auto-generated to close the swarm's '{gtype}' gap.\n"
+            f"---\n\n# Gap Closure: {gtype}\n\n"
+            f"## Trigger\nWhen the swarm's introspection reports this gap.\n\n"
+            f"## Procedure\nDetected gap: {gap['detail']}.\n"
+            f"Directive: {gap['directive']}\n\n"
+            f"## Verification\nConfirm the gap metric improved after acting.\n"
+            f"```bash\npython -c \"print('gap-closure-ok')\"\n```\n"
+        )
+        created.append({"name": name, "gap": gtype, "applied": apply})
+        if apply:
+            dst = darwin.DARWIN_DIR / "species" / name
+            dst.mkdir(parents=True, exist_ok=True)
+            (dst / "SKILL.md").write_text(text, "utf-8")
+            _save(darwin.DARWIN_DIR / "species" / f"{name}.json", {
+                "child": name, "kind": "gap-closure", "gap": gtype,
+                "born": _now(), "status": "candidate",
+            })
+            darwin.record_lineage("introspection", name, "gap-closure",
+                                  {"gap": gtype})
+    if created and apply:
+        # register as candidates for the next tournament
+        for c in created:
+            pass  # meta already saved above
+    return created
+
+
+# ── civilization seeds ───────────────────────────────────────────────────────
+
+def export_civilization_seed(path: Path | None = None) -> Path:
+    """One file carrying the entire civilization: genome, lineage, species,
+    knowledge, territories, swarm, chronicle."""
+    seed = {
+        "seed_version": 1,
+        "exported": _now(),
+        "genome": _load(REPO / "reports" / "darwin-genome.json", {}),
+        "lineage": _load(darwin.LINEAGE_FILE, {"events": []}),
+        "species_metas": {
+            mp.stem: _load(mp, {}) for mp in
+            (darwin.DARWIN_DIR / "species").glob("*.json")
+        } if (darwin.DARWIN_DIR / "species").exists() else {},
+        "species_files": {
+            mp.parent.name: _load(mp, "")
+            for mp in (darwin.DARWIN_DIR / "species").glob("*/SKILL.md")
+            if mp.exists()
+        } if (darwin.DARWIN_DIR / "species").exists() else {},
+        "swarm": swarm.load_swarm(),
+        "knowledge": _load(swarm.SWARM_KNOWLEDGE_FILE, {"teachers": []}),
+        "territories": _load(swarm.TERRITORIES_FILE, {}),
+        "introspection": _load(INTROSPECTION_FILE, {}),
+        "population_history_lines": _count_lines(darwin.HISTORY_FILE),
+    }
+    out = path or (darwin.HISTORY_FILE.parent / "civilization-seed.json")
+    _save(out, seed)
+    return out
+
+
+def import_civilization_seed(path: Path, dry_run: bool = True) -> dict:
+    """Become the civilization in the seed: import everything into the
+    local darwin home. dry_run counts what would be created."""
+    seed = _load(path, {})
+    if not seed:
+        return {"error": "empty or invalid seed"}
+    plan = {
+        "genome_skills": len(seed.get("genome", {}).get("population", {})),
+        "lineage_events": len(seed.get("lineage", {}).get("events", [])),
+        "species": len(seed.get("species_metas", {})),
+        "swarm_workers": len(seed.get("swarm", {}).get("workers", {})),
+        "teachers": len(seed.get("knowledge", {}).get("teachers", [])),
+        "territories": len(seed.get("territories", {})),
+    }
+    if dry_run:
+        return {"dry_run": True, **plan}
+    # real import
+    darwin._save_json(darwin.POPULATION_FILE,
+                      seed.get("genome", {}).get("population", {}))
+    darwin._save_json(darwin.LINEAGE_FILE, seed.get("lineage", {"events": []}))
+    for name, meta in seed.get("species_metas", {}).items():
+        darwin._save_json(darwin.DARWIN_DIR / "species" / f"{name}.json", meta)
+    for name, content in seed.get("species_files", {}).items():
+        sp_dir = darwin.DARWIN_DIR / "species" / name
+        sp_dir.mkdir(parents=True, exist_ok=True)
+        (sp_dir / "SKILL.md").write_text(content, "utf-8")
+    swarm._save(swarm.SWARM_FILE, seed.get("swarm",
+                 {"workers": {}, "tasks": {}}))
+    swarm._save(swarm.SWARM_KNOWLEDGE_FILE, seed.get("knowledge",
+                {"teachers": []}))
+    swarm._save(swarm.TERRITORIES_FILE, seed.get("territories", {}))
+    return {"imported": True, **plan}
+
+
+def _count_lines(p: Path) -> int:
+    try:
+        return sum(1 for _ in open(p, encoding="utf-8"))
+    except Exception:
+        return 0
+
+
+if __name__ == "__main__":
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--introspect", action="store_true")
+    ap.add_argument("--evolve-gaps", action="store_true")
+    ap.add_argument("--export-seed", action="store_true")
+    ap.add_argument("--import-seed", metavar="FILE")
+    ap.add_argument("--apply", action="store_true")
+    args = ap.parse_args()
+    if args.introspect:
+        img = introspect()
+        print(json.dumps(img, indent=1))
+    if args.evolve_gaps:
+        created = evolve_toward_gaps(apply=args.apply)
+        print(f"gap-closure species: {len(created)}")
+    if args.export_seed:
+        print(f"seed -> {export_civilization_seed()}")
+    if args.import_seed:
+        print(json.dumps(import_civilization_seed(
+            Path(args.import_seed), dry_run=not args.apply), indent=1))

@@ -1,0 +1,861 @@
+"""
+ASI Heartbeat — zentrales Subsystem, das alle 10 Subsystem-Pulse steuert.
+
+Ersetzt 104 separate Cron-Jobs durch einen einzigen Herzschlag mit
+10 Subsystem-Modulen. Jedes Subsystem hat seine eigene Kadenz und
+wird in-process ausgeführt (Direktimport) mit subprocess-Fallback.
+
+State: memory/asi_heartbeat.json (über Cron-Prozesse hinweg persistent)
+"""
+
+import json
+import logging
+import os
+import subprocess
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Callable, Dict, List, Optional, Tuple
+
+logger = logging.getLogger(__name__)
+
+# ── Paths ──────────────────────────────────────────────────────────────────
+OPENAMER_HOME = Path(
+    os.environ.get(
+        "OPENAMER_HOME",
+        str(Path.home() / "AppData/Local/openamer-laptop"),
+    )
+)
+SCRIPTS_DIR = OPENAMER_HOME / "scripts"
+SCRIPTS_TRAINING = OPENAMER_HOME / "scripts" / "training"
+MEMORY_DIR = OPENAMER_HOME / "memory"
+CRON_DIR = OPENAMER_HOME / "cron"
+
+# Script path for cron scripts (in scripts/)  
+_scripts_path = str(SCRIPTS_DIR)
+if _scripts_path not in sys.path:
+    sys.path.insert(0, _scripts_path)
+
+_training_path = str(SCRIPTS_TRAINING)
+if _training_path not in sys.path:
+    sys.path.insert(0, _training_path)
+
+
+JOBS_FILE = CRON_DIR / "jobs.json"
+
+
+def _load_jobs() -> Dict[str, Any]:
+    """cron/jobs.json keyed by job id.
+
+    The single source of truth for what a subsystem's ``cron_ids`` actually
+    run. The hand-written ``scripts=[...]`` lists drifted from reality — live
+    2026-10-11, 16 of them named a job ("asi-audit", "self-reflection"), baked
+    args into a filename ("smart-cache.py --clean"), or used a stale name
+    ("hub-cache-warmer.py") so the engine "ran" scripts that do not exist.
+    """
+    try:
+        raw = json.loads(JOBS_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    jobs = raw if isinstance(raw, list) else raw.get("jobs", [])
+    index: Dict[str, Any] = {}
+    for j in jobs:
+        if not isinstance(j, dict):
+            continue
+        # Index by id AND name: a few cron_ids in the subsystem registry spell
+        # the job NAME ("global-sync", "service-watchdog-4-ports") where most
+        # spell the id, and a name that matched no id silently dropped a job.
+        if j.get("id"):
+            index[j["id"]] = j
+        if j.get("name"):
+            index.setdefault(j["name"], j)
+    return index
+
+
+# Native ownership is EXPLICIT. The marker file's contents ARE the allowlist:
+# one job id per line, or "*" for every covered job that is already retired
+# (disabled). An empty marker, or no marker, means the engine owns nothing.
+#
+# Why explicit and not blanket: a prior session deliberately left the
+# outward-facing jobs (Bugbot / PR Agent / outreach / monetisation — the ones
+# that open PRs, post to social platforms, or spend money) disabled, with the
+# recorded reason that they "need a human in the loop, not a watchdog that
+# silently resurrects them on a timer" (scripts/ensure-critical-crons.py). A
+# blanket opt-in would override that decision the moment the marker appeared.
+# Naming each id keeps a code change from ever reviving them by accident.
+OWN_MARKER = MEMORY_DIR / "heartbeat-own.enabled"
+
+
+def _owned_ids() -> Optional[set]:
+    """Job ids the engine may own, or None when ownership is off entirely."""
+    if os.environ.get("OPENAMER_HEARTBEAT_OWN") == "1":
+        return {"*"}
+    if not OWN_MARKER.is_file():
+        return None
+    try:
+        text = OWN_MARKER.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return None
+    return {
+        ln.strip() for ln in text.splitlines()
+        if ln.strip() and not ln.strip().startswith("#")
+    }
+
+
+def _basename(script: str) -> str:
+    """Filename without directory, for ownership comparison."""
+    return script.replace("\\", "/").rsplit("/", 1)[-1]
+
+
+# Scripts a LIVE wrapper cron job runs indirectly. jobs.json only records the
+# wrapper ("_cron_growth.py"), so its four inner steps are named here; without
+# this the engine would also run them once their own jobs were retired, doubling
+# the work (internet_learner especially).
+WRAPPER_OWNED = {
+    "internet_learner.py",
+    "knowledge_to_action.py",
+    "auto_skill_creation.py",
+    "self_improve.py",
+}
+
+
+def _script_path(name: str) -> Optional[Path]:
+    """Where a named script lives, or None. Mirrors _run_subprocess's probe."""
+    for d in (SCRIPTS_DIR, SCRIPTS_TRAINING, CRON_DIR, OPENAMER_HOME):
+        p = d / name
+        if p.is_file():
+            return p
+    return None
+
+
+def _cadence_minutes(schedule: Any) -> Optional[int]:
+    """Approximate a job's cadence in minutes from its jobs.json schedule.
+
+    Handles the two shapes the scheduler writes — ``{"kind":"interval",
+    "minutes":N}`` and ``{"kind":"cron","expr":"..."}`` — for the patterns the
+    fleet actually uses. Returns None when it cannot tell, so the caller keeps
+    the subsystem default rather than guessing and starving or storming a job.
+    """
+    if not isinstance(schedule, dict):
+        return None
+    if schedule.get("kind") == "interval":
+        m = schedule.get("minutes")
+        return int(m) if isinstance(m, (int, float)) and m > 0 else None
+    expr = schedule.get("expr")
+    if not isinstance(expr, str):
+        return None
+    parts = expr.split()
+    if len(parts) != 5:
+        return None
+    minute, hour, _dom, _month, dow = parts
+    if minute.startswith("*/"):
+        try:
+            return max(1, int(minute[2:]))
+        except ValueError:
+            return None
+    if minute.isdigit():
+        if hour == "*":
+            return 60
+        if hour.startswith("*/"):
+            try:
+                return max(1, int(hour[2:]) * 60)
+            except ValueError:
+                return None
+        if dow != "*":
+            return 7 * 24 * 60        # weekly on a fixed weekday
+        return 24 * 60                # daily at a fixed time
+    return None
+
+
+def _as_result(result: Any) -> Dict[str, Any]:
+    """Map a script function's return value onto a heartbeat result.
+
+    The heartbeat must not invent success. A native module that returns
+    ``{"success": False, "error": ...}`` is a FAILED tick, not a green one —
+    live 2026-10-11 the unconditional ``{"success": True}`` here reported a
+    green swarm subsystem while BOTH its scripts had errored
+    ("no cycle() or run() in swarm_intelligence", "No module named 'dotenv'").
+    A dict's own ``success`` flag wins; a bare int is a process return code;
+    anything else (None, a plain string) is a successful, uneventful run.
+    """
+    if isinstance(result, dict):
+        return {
+            "success": bool(result.get("success", True)),
+            "stdout": str(result)[:500],
+            "error": result.get("error"),
+        }
+    if isinstance(result, int) and not isinstance(result, bool):
+        return {"success": result == 0, "stdout": f"rc={result}"}
+    return {"success": True, "stdout": str(result)[:500] if result else "ok"}
+
+
+# ── Subsystem Definition ────────────────────────────────────────────────────
+
+class Subsystem:
+    """A single ASI subsystem with its own cadence and execution."""
+
+    def __init__(
+        self,
+        name: str,
+        category: str,
+        cadence_minutes: int,
+        scripts: List[str],
+        description: str = "",
+        load_fn: Optional[str] = None,
+        cron_ids: Optional[List[str]] = None,
+        timeout: Optional[float] = None,
+        native: bool = False,
+    ):
+        self.name = name
+        self.category = category
+        self.cadence_minutes = cadence_minutes
+        self.scripts = scripts
+        self.description = description
+        self.load_fn = load_fn  # "module.function" for direct import
+        self.cron_ids = cron_ids or []
+        # A NATIVE subsystem has no cron job behind it: its explicit script list
+        # is the truth and is routed through native_map. _reconcile_scripts must
+        # leave it alone instead of deriving (and clearing) it from jobs.json.
+        self.native = native
+        self.last_run: Optional[float] = None
+        self.enabled = True
+        # Per-subsystem tick budget. Some subsystems aggregate many scripts
+        # (learning runs 9, incl. network-bound internet_learner.py) and
+        # legitimately need longer than the 60s default.
+        self.timeout = timeout
+        self._state: Dict[str, Any] = {}
+        # Per-script cadence in minutes, derived from each job's schedule.
+        self.script_cadence: Dict[str, int] = {}
+
+    def is_due(self, now: float, last_run: Optional[float]) -> bool:
+        """Return True if this subsystem is due for a tick."""
+        if last_run is None:
+            return True  # never run
+        return (now - last_run) >= (self.cadence_minutes * 60)
+
+    def _script_due(self, script: str, now: float) -> bool:
+        """Per-script gating from the job's own cadence.
+
+        A subsystem groups scripts of very different tempo (a 5m learner and
+        an 8h briefing). Without this, ticking the subsystem would storm the
+        slow one; with it, each script keeps the cadence its cron job had.
+        """
+        cadence = self.script_cadence.get(script)
+        if not cadence:
+            return True
+        last = self._state.get("script_last_run", {}).get(script)
+        if last is None:
+            return True
+        return (now - last) >= (cadence * 60)
+
+    def tick(self, force: bool = False) -> Dict[str, Any]:
+        """Execute one tick: run each script that is due (all of them on force)."""
+        results: List[Dict[str, Any]] = []
+        now = time.time()
+        ran: Dict[str, float] = self._state.setdefault("script_last_run", {})
+
+        for script in self.scripts:
+            if not force and not self._script_due(script, now):
+                continue
+            try:
+                result = self._run_script(script)
+                results.append({
+                    "script": script,
+                    "success": result.get("success", False),
+                    "output": result.get("stdout", "")[-200:] if isinstance(result.get("stdout"), str) else "",
+                })
+            except Exception as e:
+                results.append({
+                    "script": script,
+                    "success": False,
+                    "error": str(e),
+                })
+            ran[script] = now
+
+        return {
+            "subsystem": self.name,
+            "category": self.category,
+            "results": results,
+            "any_success": any(r.get("success") for r in results) if results else True,
+        }
+
+    def _run_script(self, script_name: str) -> Dict[str, Any]:
+        """Run a script — try native module first, then direct import, fallback to subprocess.
+
+        Native modules (tools/asi/*.py) are preferred for A2A, Darwin, Swarm, etc.
+        """
+        # Native module routing (in-process, no subprocess)
+        native_map = {
+            "darwin-cron.py":              "tools.asi.darwin.autopilot",
+            "darwin-autopatch-cron.py":    "tools.asi.darwin.autopatch",
+            "darwin_publish.py":           "tools.asi.darwin.publish",
+            "darwin_grid_github.py":       "tools.asi.darwin.grid_sync",
+            "darwin-probe-cron.py":        "tools.asi.darwin.skill_probe",
+            "training/swarm_intelligence.py": "tools.asi.swarm.cycle",
+            "swarm_intelligence.py":       "tools.asi.swarm.route",
+            "autonomous_loop.py":          "tools.asi.swarm.autonomous",
+            "a2a_worker.py":               "tools.asi.a2a.run",
+            "brain_collect.py":            "tools.asi.a2a.brain_collect",
+            # a2a_server.py is a BLOCKING server; the tick must health-check it,
+            # never import it (that hung the heartbeat forever).
+            "a2a_server.py":               "tools.asi.a2a.server_health",
+            # The integrated cognitive cycle: world model + prediction + self
+            # model in ONE run, instead of ticking predict_validate.py and
+            # self_model.py separately in the "learning" subsystem.
+            "cognition_cycle.py":          "tools.asi.cognition.cycle",
+        }
+
+        native_path = native_map.get(script_name)
+        if native_path:
+            try:
+                parts = native_path.split(".")
+                mod_name = ".".join(parts[:-1])
+                func_name = parts[-1]
+                import importlib
+                mod = importlib.import_module(mod_name)
+                fn = getattr(mod, func_name, None)
+                if fn:
+                    result = fn()
+                    return _as_result(result)
+            except Exception as e:
+                logger.warning(f"Native module {native_path} failed: {e}, falling back")
+
+        # Otherwise run it exactly as the cron job did: ``python <script>`` under
+        # OPENAMER_HOME. A blind import-and-call would execute a CLI script with
+        # no argv and silently diverge from production, so fidelity wins.
+        return self._run_subprocess(script_name)
+
+    def _run_subprocess(self, script_name: str) -> Dict[str, Any]:
+        """Run a script via subprocess."""
+        candidates = [
+            SCRIPTS_DIR / script_name,
+            SCRIPTS_TRAINING / script_name,
+            CRON_DIR / script_name,
+            OPENAMER_HOME / script_name,
+            Path(script_name),
+        ]
+        script_path = None
+        for c in candidates:
+            if c.exists():
+                script_path = c
+                break
+
+        if script_path is None:
+            return {"success": False, "error": f"Script not found: {script_name}"}
+
+        try:
+            result = subprocess.run(
+                [sys.executable, str(script_path)],
+                capture_output=True, text=True, timeout=120,
+                env={**os.environ, "OPENAMER_HOME": str(OPENAMER_HOME)},
+            )
+            return {
+                "success": result.returncode == 0,
+                "stdout": result.stdout[-500:] if result.stdout else "",
+                "stderr": result.stderr[-200:] if result.stderr else "",
+                "exit_code": result.returncode,
+            }
+        except subprocess.TimeoutExpired:
+            return {"success": False, "error": "Timeout (120s)"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+
+
+# ── Heartbeat ────────────────────────────────────────────────────────────────
+
+class Heartbeat:
+    """Zentraler ASI-Herzschlag — tickt alle N Minuten, prüft alle Subsysteme."""
+
+    STATE_FILE = MEMORY_DIR / "asi_heartbeat.json"
+    TICK_TIMEOUT = 60.0   # seconds a single subsystem may block; override in tests
+
+    def __init__(self):
+        self.subsystems: Dict[str, Subsystem] = {}
+        self._init_subsystems()
+        self._load_state()
+
+    def _init_subsystems(self):
+        """Register all subsystems with their scripts and cadences."""
+        # ── 1. Darwin (6 Jobs) ────────────────────────────────────────
+        self.subsystems["darwin"] = Subsystem(
+            name="darwin", category="darwin", cadence_minutes=15,
+            description="Darwin Engine — evolutionäre Skill-Evolution",
+            scripts=[
+                "darwin-cron.py",        # AutoPilot (15m)
+                "darwin-grid.py",          # Darwin Grid Sync (6h)
+                "darwin-autopatch-cron.py",  # AutoPatch (daily)
+                "darwin_publish.py",         # Publish (daily)
+                "darwin-probe-cron.py",      # Skill-Probe (daily)
+            ],
+            cron_ids=["0c6eba12054d", "244c90058f07", "e6d653d611d7",
+                      "d7d490258374", "c839342998f5"],
+        )
+
+        # ── 2. Swarm (5 Jobs) ─────────────────────────────────────────
+        self.subsystems["swarm"] = Subsystem(
+            name="swarm", category="swarm", cadence_minutes=30,
+            description="Swarm Intelligence — Multi-Agent-Koordination",
+            scripts=[
+                "training/swarm_intelligence.py",  # Swarm Cycle (hourly)
+                "autonomous_loop.py",               # Swarm OS Loop (30m)
+            ],
+            cron_ids=["21cd8fbb7a1a", "c1ab0f604f8d"],
+        )
+
+        # ── 3. A2A (1 Job) ────────────────────────────────────────────
+        self.subsystems["a2a"] = Subsystem(
+            name="a2a", category="a2a", cadence_minutes=240,
+            description="Agent-to-Agent — Brain-Export & Peer-Kommunikation",
+            scripts=[
+                "brain_collect.py",
+            ],
+            cron_ids=["6b81f6f726da"],
+        )
+
+        # ── 4. Learning (9 Jobs) ──────────────────────────────────────
+        self.subsystems["learning"] = Subsystem(
+            name="learning", category="learning", cadence_minutes=5,
+            description="Lern-Subsystem — Internet, Aktiv, Selbst-Modell",
+            scripts=[
+                "training/internet_learner.py",       # 5m
+                "training/active_learn.py",            # 7m
+                "training/knowledge_to_action.py",     # 30m
+                "training/auto_skill_creation.py",     # 30m
+                "training/self_model.py",              # hourly
+                "training/predict_validate.py",        # 2h
+                "training/session_outcome.py",         # 60m
+                "learning-loop.py",                    # 60m
+                "morning_brief.py",                    # 8h
+            ],
+            cron_ids=["91a6a02a6148", "31c5faaff6c2", "59537494492c",
+                      "461d46fd24ab", "4bf2a814db7c", "f2f49bc80dbe",
+                      "sessout984075", "learning_loop_60m", "morning-brief"],
+            timeout=300,  # 9 scripts incl. network-bound internet_learner.py
+        )
+
+        # ── 5. Senses (5 Jobs) ────────────────────────────────────────
+        self.subsystems["senses"] = Subsystem(
+            name="senses", category="senses", cadence_minutes=30,
+            description="Sinne & biologischer Rhythmus",
+            scripts=[
+                "circadian.py",           # 30m
+                "senses.py",              # 30m
+                "autonom_watchtower.py",  # 30m
+                "trend_scout.py",         # 60m
+                "self_evolve.py",         # 6h
+            ],
+            cron_ids=["d53013d60e14", "a53f24c07e03", "6d602cd72e74",
+                      "93b0d21eb0fb", "1475a7e0d62c"],
+        )
+
+        # ── 6. System (15 Jobs) ────────────────────────────────────────
+        self.subsystems["system"] = Subsystem(
+            name="system", category="system", cadence_minutes=5,
+            description="System-Health — Self-Healing, Ressourcen, Cache",
+            scripts=[
+                "self-healer.py",                 # 30m
+                "cron-self-healer.py",            # sync
+                "cron-resource-monitor.py",        # 5m
+                "smart-cache.py --clean",          # 360m
+                "service-watchdog.py",             # 5m
+                "self-hosted-cron.py",             # 5m
+                "cron-traffic-cop.py",             # 15m
+                "notification-engine.py",          # 1m
+                "identity-watchdog.py",            # daily
+                "global-sync.py",                  # 60m
+                "circadian.py",
+            ],
+            cron_ids=["self_healer_30m", "resource-monitor-alert",
+                      "smart_cache_clean", "service-watchdog-4-ports",
+                      "self-hosted-health-check", "traffic_cop_15m",
+                      "notification_engine_daemon", "identity-refresh-watchdog",
+                      "global-sync", "0b532e629b3b", "7c3d5648b06c"],
+            timeout=240,  # 11 health scripts; some probe network (bugbot/pentest)
+        )
+
+        # ── 7. Security (5 Jobs) ───────────────────────────────────────
+        self.subsystems["security"] = Subsystem(
+            name="security", category="security", cadence_minutes=240,
+            description="Sicherheit — CVE-Scan, Bugbot, Pen-Test",
+            scripts=[
+                "bugbot.py",                       # 240m
+                "cron-security-cve-scan.py",         # 240m
+                "cron-pen-tester.py",                # 240m
+                "cron-auto-code-review.py",           # 60m
+                "cron-skill-safety-scan.py",          # daily
+            ],
+            cron_ids=["62eeb6a84682", "ae6175c36492",
+                      "pen_tester_4h", "1e060c35b79d", "skill-safety-scan"],
+        )
+
+        # ── 8. Outreach (7 Jobs) ───────────────────────────────────────
+        self.subsystems["outreach"] = Subsystem(
+            name="outreach", category="outreach", cadence_minutes=180,
+            description="Social & GitHub Outreach — Wachstum",
+            scripts=[
+                "cron-social-outreach.py",          # 180m
+                "cron-github-outreach.py",           # 120m
+                "cron-growth-report.py",             # daily
+                "cron-funding-tracker.py",           # daily
+                "cron-autonom-growth.py",            # 60m
+            ],
+            cron_ids=["af955d3d0f27", "3c57f9727b5d", "ac8e13cefe91",
+                      "c25c2d18740a", "9d9eaf3e918b"],
+        )
+
+        # ── 9. Infra (14 Jobs) ─────────────────────────────────────────
+        self.subsystems["infra"] = Subsystem(
+            name="infra", category="infra", cadence_minutes=30,
+            description="Infrastruktur — Browser, SSH, Plugins, Sync",
+            scripts=[
+                "cron-auto-env-checker.py",         # 60m
+                "ab-test-engine.py",                 # 30m
+                "cron-model-sync.py",                # 240m
+                "cron-tokenharbor-watchdog.py",      # 360m
+                "gpu-worker-watchdog.py",            # 10m
+                "cron-plugin-loader.py",             # 30m
+                "cron-browser-watchdog.py",          # 5m
+                "cron-stealth-server.py",            # 15m
+                "cron-wiki-generator.py",            # daily
+                "cron-deepseek-import.py",           # daily
+                "hub-cache-warmer.py",               # 360m
+                "cron_mesh_daemon.py",               # 5m
+                "cron-context-compressor.py",        # daily
+                "cron-file-organizer.py",            # daily
+                "home-sweep.py",                     # daily — quarantine provable HOME junk
+            ],
+            cron_ids=["fb6973a70e35", "ab_test_collect", "1ab80658d306",
+                      "9a6bcf2436d5", "414a4fa6f0a7", "a08bce193d56",
+                      "b8dbf1f98adc", "4ac85a7de695", "ed618c851dd0",
+                      "e2c0bad7dbe0", "cfa3d413462c", "0ccce21c5738",
+                      "8d94e3136326", "fileorganizer_clean_24h", "home_sweep_24h"],
+        )
+
+        # ── 10. Meta (37 Jobs) ─────────────────────────────────────────
+        self.subsystems["meta"] = Subsystem(
+            name="meta", category="meta", cadence_minutes=60,
+            description="Metakognition — Reflexion, Rewriting, Research",
+            scripts=[
+                "self-reflection",       # 120m
+                "training/self_improve.py",          # 30m
+                "goal-engine.py",                     # 30m
+                "domain_mastery.py",                  # 360m
+                "self-directed-research",              # 720m
+                "cross-domain-synthesis",              # daily
+                "tool-invention",                      # daily
+                "cron-model-benchmarker.py",           # weekly
+                "asi-audit",                           # weekly
+                "dream-cron.py",                       # nightly
+                "provenance_cleanup.py",               # daily
+            ],
+            cron_ids=["d201e7cfdb55", "aeadd353df7e", "goal_engine_tick",
+                      "039e0ae4878e", "347915bd1bff", "6ba7c8471507",
+                      "43f6d0b62df8", "361c2c58b296", "asi-capability-audit",
+                      "9abf330dd545", "64f3e8231a29"],
+        )
+
+    # ── 11. A2A Server ─────────────────────────────────────────
+        self.subsystems["a2a_server"] = Subsystem(
+            name="a2a_server", category="infra", cadence_minutes=5,
+            description="A2A Protocol Server — real-time peer communication",
+            scripts=["a2a_server.py"],
+            cron_ids=["a2a-server-keepalive", "proc_dbef2c2f5c0c"],
+        )
+
+    # ── 12. Desktop ─────────────────────────────────────────
+        self.subsystems["desktop"] = Subsystem(
+            name="desktop", category="system", cadence_minutes=1440,
+            description="Desktop Evidence Ledger — integrity check",
+            scripts=["cron-desktop-ledger-integrity.py"],
+            cron_ids=["acbea7ce46ae"],
+        )
+
+    # ── 13. Cognition (NATIVE) ──────────────────────────────
+        # The INTEGRATED cognitive cycle. No cron job sits behind it: script
+        # "cognition_cycle.py" is routed via native_map to
+        # tools.asi.cognition.cycle, which uses world_model + prediction +
+        # self_model in ONE pass. That replaces ticking
+        # training/predict_validate.py and training/self_model.py SEPARATELY in
+        # the "learning" subsystem — the two blocks that must see each other to
+        # close the loop (a prediction is only useful with its correction).
+        self.subsystems["cognition"] = Subsystem(
+            name="cognition", category="meta", cadence_minutes=30,
+            description="Integrierter Kognitions-Zyklus — world model + prediction + self model in EINEM Durchlauf",
+            scripts=["cognition_cycle.py"],
+            cron_ids=[],
+            timeout=300,
+            native=True,
+        )
+
+        self._reconcile_scripts()
+
+    def _reconcile_scripts(self):
+        """Derive each subsystem's scripts, cadences and ownership from jobs.json.
+
+        The explicit lists in ``_init_subsystems`` are documentation of intent;
+        reality comes from the jobs each subsystem's ``cron_ids`` point to, so a
+        renamed/removed script can never leave the engine "running" a file that
+        does not exist.
+
+        Handoff rule: the engine runs a job's script ONLY once that job's cron
+        entry is retired (disabled). While the cron is still enabled it owns the
+        work, and running it here too would double every side effect (a social
+        post, a PR). Disabling the cron job is the switch that moves a loop from
+        cron to the native heartbeat — one executor at a time, never two.
+        """
+        jobs = _load_jobs()
+        owned = _owned_ids()
+        if owned is None:
+            # Dormant: report nothing owned, run nothing. Ownership is named in
+            # the marker, never implied by a code change.
+            for sub in self.subsystems.values():
+                if sub.native:
+                    # A native subsystem has no cron job to hand off, so there is
+                    # nothing for the ownership marker to gate. Clearing it here
+                    # would silently stop the one loop that is native by design —
+                    # and it is unreachable from the guarded loop below because
+                    # this branch returns early. Keep the declared script list.
+                    continue
+                sub.scripts = []
+                sub.script_cadence = {}
+            return
+        adopt_all = "*" in owned
+        explicit = owned - {"*"}
+        # Scripts a still-running cron job owns — directly (its own `script`)
+        # or indirectly (a live wrapper runs them). In "*" mode the engine must
+        # not run these too, so their work never doubles.
+        cron_owned = {
+            _basename(j["script"]) for j in jobs.values()
+            if j.get("enabled") and j.get("script")
+        } | WRAPPER_OWNED
+        for sub in self.subsystems.values():
+            if sub.native:
+                # Native subsystem: no cron job exists for it, so there is
+                # nothing to derive. Its explicit script list stays as written
+                # and is executed in-process via native_map.
+                continue
+            scripts: List[str] = []
+            cadences: Dict[str, int] = {}
+            for cid in sub.cron_ids:
+                job = jobs.get(cid)
+                if not job or not job.get("script"):
+                    continue  # unknown id, or an LLM job the engine cannot run
+                jid = job.get("id")
+                if adopt_all:
+                    # "*": own every covered job that is already retired, and
+                    # never one a live cron (or wrapper) still runs.
+                    if job.get("enabled", False):
+                        continue
+                    if _basename(job["script"]) in cron_owned:
+                        continue
+                # Explicit allowlist: own exactly the named ids. Naming an id IS
+                # the instruction, so the enabled/wrapper guard does not apply —
+                # the operator pauses that job's cron as part of the handover.
+                elif jid not in explicit and cid not in explicit:
+                    continue
+                script = job["script"]
+                if script in scripts or _script_path(script) is None:
+                    continue
+                scripts.append(script)
+                minutes = _cadence_minutes(job.get("schedule"))
+                if minutes:
+                    cadences[script] = minutes
+            sub.scripts = scripts
+            sub.script_cadence = cadences
+            # Tick as often as the FASTEST script needs so none is starved;
+            # _script_due() then holds each slower script to its own cadence.
+            if cadences:
+                sub.cadence_minutes = min(cadences.values())
+
+    def _load_state(self):
+        """Load last-run timestamps from state file."""
+        if self.STATE_FILE.exists():
+            try:
+                state = json.loads(self.STATE_FILE.read_text(encoding="utf-8"))
+                saved = state.get("subsystems", {})
+                for name, sub in self.subsystems.items():
+                    entry = saved.get(name, {})
+                    ts = entry.get("last_run")
+                    if ts is not None:
+                        sub.last_run = ts
+                    scripts = entry.get("scripts")
+                    if isinstance(scripts, dict):
+                        sub._state["script_last_run"] = scripts
+            except (json.JSONDecodeError, Exception):
+                pass
+
+    def _save_state(self):
+        """Persist last-run timestamps."""
+        state = {
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+            "subsystems": {
+                name: {
+                    "last_run": sub.last_run,
+                    "enabled": sub.enabled,
+                    "scripts": sub._state.get("script_last_run", {}),
+                }
+                for name, sub in self.subsystems.items()
+            },
+        }
+        self.STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        self.STATE_FILE.write_text(
+            json.dumps(state, indent=2), encoding="utf-8"
+        )
+
+    # ── Public API ─────────────────────────────────────────────────────
+
+    def status(self) -> Dict[str, Any]:
+        """Return full heartbeat status."""
+        now = time.time()
+        return {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "state_file": str(self.STATE_FILE),
+            "subsystems": {
+                name: {
+                    "category": sub.category,
+                    "cadence": f"every {sub.cadence_minutes}m",
+                    "enabled": sub.enabled,
+                    "last_run": sub.last_run,
+                    "due": sub.is_due(now, sub.last_run),
+                    "scripts": sub.scripts,
+                    "description": sub.description,
+                }
+                for name, sub in sorted(self.subsystems.items())
+            },
+        }
+
+    def _tick_with_timeout(self, sub, force: bool,
+                           timeout: Optional[float] = None) -> Dict[str, Any]:
+        """Run sub.tick() in a worker thread; give up after `timeout` seconds.
+
+        A hung subsystem must not block _save_state(); otherwise the whole
+        heartbeat freezes and the state file never advances (the failure mode
+        that hid for 9 days behind a green cron).
+        """
+        import threading
+        timeout = getattr(sub, "timeout", None) or timeout or self.TICK_TIMEOUT
+        box: Dict[str, Any] = {}
+
+        def _work():
+            try:
+                box["result"] = sub.tick(force=force)
+            except Exception as e:  # noqa: BLE001
+                box["result"] = {"success": False, "error": str(e)}
+
+        th = threading.Thread(target=_work, daemon=True)
+        th.start()
+        th.join(timeout)
+        if th.is_alive():
+            return {"success": False, "timeout": True,
+                    "reason": f"tick exceeded {timeout:.0f}s (network/blocked call)"}
+        return box.get("result", {"success": False, "error": "no result"})
+
+    def tick(self, system: Optional[str] = None, force: bool = False) -> Dict[str, Any]:
+        """Execute one heartbeat tick. Checks all due subsystems (or one)."""
+        now = time.time()
+        results = {}
+
+        targets = [system] if system else list(self.subsystems.keys())
+
+        for name in targets:
+            sub = self.subsystems.get(name)
+            if sub is None:
+                results[name] = {"error": f"Unknown subsystem: {name}", "skipped": True}
+                continue
+            if not sub.enabled:
+                results[name] = {"skipped": True, "reason": "disabled"}
+                continue
+
+            if not sub.is_due(now, sub.last_run) and not force:
+                results[name] = {"skipped": True, "reason": "not_due"}
+                continue
+
+            # Execute tick — with a per-subsystem timeout. A subsystem that
+            # blocks (e.g. a network call with no timeout) used to hang the
+            # WHOLE heartbeat, so _save_state() below never ran and the state
+            # file stayed frozen for days while the cron still reported "ok".
+            tick_result = self._tick_with_timeout(sub, force)
+            if not tick_result.get("timeout"):
+                sub.last_run = now
+            results[name] = tick_result
+
+        # Save state
+        self._save_state()
+
+        return {
+            "tick_time": datetime.now(timezone.utc).isoformat(),
+            "systems_ticked": len(results),
+            "results": results,
+        }
+
+
+# ── Global singleton ────────────────────────────────────────────────────────
+
+_heartbeat: Optional[Heartbeat] = None
+
+
+def get_heartbeat() -> Heartbeat:
+    global _heartbeat
+    if _heartbeat is None:
+        _heartbeat = Heartbeat()
+    return _heartbeat
+
+
+# ── CLI entry point (for cron no_agent script) ──────────────────────────────
+
+def main():
+    """CLI entry: asi_heartbeat --tick [--system name] [--force] [--status]"""
+    import argparse
+    parser = argparse.ArgumentParser(description="ASI Heartbeat")
+    parser.add_argument("--tick", action="store_true", help="Run heartbeat tick")
+    parser.add_argument("--system", type=str, default=None, help="Specific subsystem")
+    parser.add_argument("--force", action="store_true", help="Force tick even if not due")
+    parser.add_argument("--status", action="store_true", help="Show heartbeat status")
+    parser.add_argument("--json", action="store_true", help="JSON output")
+    args = parser.parse_args()
+
+    # The cron invokes this as a bare no-arg script ("asi_heartbeat.py"). The
+    # old code then fell through to print_help() and exited 0 — so every
+    # scheduled run was a SILENT no-op and the heartbeat never actually ticked
+    # (state file frozen for 9 days while the cron reported "ok"). A no-arg
+    # invocation must do the useful thing: tick.
+    if not args.tick and not args.status:
+        args.tick = True
+
+    hb = get_heartbeat()
+
+    if args.status:
+        result = hb.status()
+        if args.json:
+            print(json.dumps(result, indent=2))
+        else:
+            for name, info in result["subsystems"].items():
+                due_str = "⏰" if info["due"] else "✓"
+                print(f'{due_str} {name:15s} {info["cadence"]:15s} {info["description"]}')
+            print(f'\nState: {result["state_file"]}')
+        return
+
+    if args.tick:
+        result = hb.tick(system=args.system, force=args.force)
+        if args.json:
+            print(json.dumps(result, indent=2, default=str))
+        else:
+            ok = sum(1 for r in result["results"].values()
+                     if r.get("any_success") or r.get("skipped"))
+            fail = sum(1 for r in result["results"].values()
+                       if not r.get("any_success") and not r.get("skipped"))
+            skipped = sum(1 for r in result["results"].values()
+                          if r.get("skipped"))
+            print(f'ASI Heartbeat: {result["systems_ticked"]} systems')
+            print(f'  ✅ {ok} ok/skipped | ❌ {fail} failed')
+            for name, r in result["results"].items():
+                status = "✅" if r.get("any_success") else ("⏭️" if r.get("skipped") else "❌")
+                print(f'  {status} {name}')
+        return
+
+    parser.print_help()
+
+
+if __name__ == "__main__":
+    main()

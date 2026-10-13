@@ -1,0 +1,23 @@
+{
+  "id": "openamer-damir-laptop",
+  "name": "OpenAmer ASI Core (Damir)",
+  "version": "v0.1.0-asi",
+  "endpoint": "http://localhost:8085/a2a",
+  "card_url": "http://localhost:8085/a2a/card",
+  "capabilities": [
+    "a2a.task.ask",
+    "a2a.task.delegate",
+    "asi.reasoning",
+    "asi.learning",
+    "asi.world_model",
+    "desktop.control",
+    "code_analysis",
+    "writing"
+  ],
+  "tools": 109,
+  "skills": 664,
+  "heartbeat": 10,
+  "asi_audit": "16/16 PROVEN",
+  "registered": "2026-09-24T15:44:51.629326+00:00",
+  "note": "Jede OpenAmer Instanz legt hier einen eigenen Eintrag an. Globales A2A Mesh."
+}

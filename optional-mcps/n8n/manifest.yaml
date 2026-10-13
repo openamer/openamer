@@ -1,0 +1,19 @@
+# OpenAmer-approved MCP catalog entry.
+# Presence in this directory = approval. Merged via PR review.
+#
+# Schema version 1.
+#
+# DISABLED: the referenced upstream repo (CyberSamuraiX/openamer-n8n-mcp) no
+# longer exists on GitHub ("Repository not found"), so this entry cannot be
+# installed. Keeping a dead source would make `openamer mcp install n8n` fail
+# for every user. Re-enable only when a working, reviewed n8n MCP bridge repo
+# exists with a pinned, >=2-week-old commit under `install.ref`.
+name: n8n
+description: "[DISABLED] n8n workflow MCP bridge — upstream repo is gone; not installable."
+source: https://github.com/CyberSamuraiX/openamer-n8n-mcp
+disabled: true
+
+transport:
+  type: stdio
+  command: "echo"
+  args: ["n8n MCP entry disabled — no valid upstream repo"]

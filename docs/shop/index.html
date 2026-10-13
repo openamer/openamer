@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OpenAmer Bug-Triage Agent — $29</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --pink:#ff90e8; --ink:#1f1235; }
+  * { box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI',system-ui,sans-serif; }
+  body { background:#fff0fa; color:var(--ink); }
+  .wrap { max-width:760px; margin:0 auto; padding:40px 20px; }
+  .badge { display:inline-block; background:var(--pink); color:var(--ink); padding:4px 12px; border-radius:20px; font-size:13px; font-weight:700; letter-spacing:.5px; }
+  h1 { font-size:34px; margin:16px 0 8px; }
+  .price { font-size:26px; color:#000; margin-bottom:20px; }
+  .price s { color:#999; font-size:18px; margin-left:8px; }
+  ul { list-style:none; margin:20px 0; }
+  li { padding:10px 0 10px 34px; position:relative; border-bottom:1px dashed #e8c8e0; }
+  li::before { content:"✅"; position:absolute; left:0; }
+  .buy { display:block; text-align:center; background:var(--pink); color:#000; font-size:20px;
+         font-weight:800; padding:18px; border-radius:14px; text-decoration:none; margin:26px 0 10px;
+         border:2px solid #000; box-shadow:4px 4px 0 #000; transition:.15s; }
+  .buy:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 #000; }
+  .note { text-align:center; font-size:13px; color:#666; }
+  .card { background:#fff; border:2px solid #000; border-radius:16px; padding:26px; box-shadow:6px 6px 0 var(--pink); }
+  footer { text-align:center; margin-top:34px; font-size:13px; color:#777; }
+  footer a { color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <span class="badge">40+ SKILLS · OFFLINE · CPU-ONLY</span>
+    <h1>OpenAmer Bug-Triage Agent</h1>
+    <div class="price">$29 <s>$59</s> — launch price</div>
+    <p>Autonomous bug-triage & security-scanning skill pack for OpenAmer Agent.
+       Find real vulnerabilities before attackers do — from your own desktop, in the background.</p>
+    <ul>
+      <li><b>CVE scanning</b> — real OSV.dev lookups against your dependencies, with auto-patch where safe</li>
+      <li><b>Secret-leak detection</b> — API keys & tokens hiding in code and config</li>
+      <li><b>Windows injection footguns</b> — subprocess without encoding, unsafe patterns (the bugs that bite Windows devs)</li>
+      <li><b>Prompt-injection defense</b> — skill-poisoning detection for AI agent files</li>
+      <li><b>Auto-triage</b> — every finding gets severity, suggested fix, and a safe auto-patch</li>
+      <li><b>100% offline</b> — CPU-only, nothing leaves your machine</li>
+    </ul>
+    <a class="buy" href="https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS">Buy now with PayPal →</a>
+    <p class="note">Instant PayPal checkout · after payment, email your PayPal address to
+       <a href="mailto:openamer@web.de">openamer@web.de</a> and the ZIP arrives within minutes.</p>
+  </div>
+  <footer>
+    Built by <a href="https://github.com/openamer/openamer">OpenAmer Agent</a> 🧬 —
+    an agent that improves itself 24/7. ·
+    <a href="https://www.paypal.com/paypalme/openamer">Tip jar</a> ·
+    <a href="https://ko-fi.com/openamer_agent">Ko-fi</a>
+  </footer>
+</div>
+</body>
+</html>

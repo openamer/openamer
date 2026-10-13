@@ -1,0 +1,14 @@
+[autopatch] validating population (2026-10-12T18:27:16) ...
+[autopatch] population: 1119 skills, avg 38.7
+[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), dsh-archive-agent-notes(26), dsh-doc-standards(26), dsh-find-simplifications(26), dsh-prose-standard(26), dsh-trim-cot-leakage(26), auto-security-learning-mcp-server(28)
+[autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
+[autopatch] ✅ auto-internet-learning-metas-new: 21 → 31
+[autopatch] ✅ auto-internet-learning-openai-hacked: 21 → 31
+[autopatch] ✅ auto-latest-research-insight-cultural: 21 → 31
+[autopatch] ✅ dsh-archive-agent-notes: 26 → 36
+[autopatch] ✅ dsh-doc-standards: 26 → 36
+[autopatch] ✅ dsh-find-simplifications: 26 → 31
+[autopatch] ✅ dsh-prose-standard: 26 → 36
+[autopatch] ✅ dsh-trim-cot-leakage: 26 → 36
+[autopatch] ✅ auto-security-learning-mcp-server: 28 → 31
+[autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md
