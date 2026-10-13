@@ -7135,3 +7135,252 @@ PRICE_TABLE_CONTROLS = [
     "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
 ]
 
+
+
+# The exact bytes the `Structural connection ...` cycles stored between 19.09.
+# and 13.10.26 (class 170): the agent's OWN learning-cycle report, fed back as
+# the answer to its own question -- four copies plus a truncated one.
+OWN_RUN_REPORT_LEAK = (
+    "Active Learning OK \u2014 Actions: web_learn=no-insight, self_test="
+    "needs-improvement on 'energy efficiency \u2194 intelligence', "
+    "world_explore=recorded 50 recent errors, skill_challenge=read_memory "
+    "\u2192 PASS, cros\n\n2.")
+
+OWN_RUN_REPORT_TRUNCATED_LEAK = OWN_RUN_REPORT_LEAK.replace("cros\n\n2.", "cros.")
+
+OWN_RUN_REPORT_CONTROLS = [
+    "Active learning is a machine learning paradigm where the model selects the "
+    "most informative samples for labeling.",
+    "Active Learning OK practices: label the most uncertain samples first, then "
+    "retrain and evaluate.",
+    "Active Learning OK - Actions: label uncertain samples, retrain, evaluate.",
+    "Active learning loops let the agent pick its own training samples and "
+    "retrain nightly.",
+    "The report lists the actions: web_learn, self_test, world_explore and "
+    "cross_connect, in that order.",
+    "Our learning cycle ran four actions: web_learn found nothing, self_test "
+    "passed, world_explore recorded 50 errors.",
+]
+
+
+def test_own_run_report_echo_is_gated_on_both_paths():
+    """The learner's own `Active Learning OK - Actions:` report (class 170).
+
+    Live 13.10.26: the `Structural connection between ...` cycles stored their
+    own runtime self-report as world knowledge (4 buffer copies, 1 more in
+    `longterm_episodes`). It is the class-66 family -- an own artifact echoed
+    back after truncation -- but the class-66 marker keys on the plan TITLE plus
+    a `+`-joined list, so this comma-separated `Actions:` run passed both gates.
+    """
+    import buffer_store
+    for leak in (OWN_RUN_REPORT_LEAK, OWN_RUN_REPORT_TRUNCATED_LEAK):
+        assert IL._is_own_run_report_echo(leak) is True
+        assert IL._is_junk(leak) is True
+        assert buffer_store._is_own_run_report_echo(leak) is True
+        assert buffer_store.is_junk(leak) is True
+        assert buffer_store._is_nav_chrome(leak) is True
+    for c in OWN_RUN_REPORT_CONTROLS:
+        assert IL._is_own_run_report_echo(c) is False, c
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+
+
+def test_own_run_report_echo_requires_the_own_action_vocabulary():
+    """Header alone, and header + `Actions:` alone, stay learnable.
+
+    `web_learn=` / `self_test=` / `world_explore=` / `skill_challenge=` are the
+    learner's OWN action names; no web page writes them.
+    """
+    import buffer_store
+    header_only = (
+        "Active Learning OK practices: label the most uncertain samples first, "
+        "then retrain and evaluate.")
+    no_vocabulary = (
+        "Active Learning OK - Actions: label uncertain samples, retrain, "
+        "evaluate, ship the improved model.")
+    assert IL._is_own_run_report_echo(header_only) is False
+    assert IL._is_own_run_report_echo(no_vocabulary) is False
+    assert buffer_store.is_junk(no_vocabulary) is False
+    assert IL._is_own_run_report_echo(
+        "Active Learning OK - Actions: web_learn=nothing new today.") is True
+
+
+# The answer `self_test()` stored on 13.10.26 (class 171): the 2B model's own
+# generation-planning opener kept as the answer body.
+TRACE_ANSWER_OPENER_LEAK = (
+    "Let's craft answer: Sleep consolidation is offline process")
+
+TRACE_ANSWER_OPENER_CONTROLS = [
+    "Let's craft answers that respect the reader: concise, factual, and sourced.",
+    "Let's start with the basics: temperature, token budget, and top-p.",
+    "Let's write the answer as a table so the comparison is readable.",
+    "Let us craft answer formats that downstream parsers can consume reliably.",
+    "We'll craft an answer together in the next section of this tutorial.",
+    "Let's craft a response to the reviewer that cites the failing test.",
+]
+
+
+def test_reasoning_trace_answer_opener_is_gated_on_both_paths():
+    """The model's own `Let's craft answer:` opener stored as the answer.
+
+    `active_learn._strip_reasoning_trace` cuts `Self-critique:` / `[GOOD]` /
+    `thinking process`, but never knew this opener; the row is 58 chars, so no
+    length trust applies either.
+    """
+    import buffer_store
+    leak = TRACE_ANSWER_OPENER_LEAK
+    assert IL._is_reasoning_trace_answer_opener(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_reasoning_trace_answer_opener(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for c in TRACE_ANSWER_OPENER_CONTROLS:
+        assert IL._is_reasoning_trace_answer_opener(c) is False, c
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+
+
+def test_reasoning_trace_answer_opener_requires_verb_object_and_punctuation():
+    """Verb AND object AND the punctuation are all required -- do not loosen."""
+    import buffer_store
+    # right verb, wrong object
+    assert IL._is_reasoning_trace_answer_opener(
+        "Let's write the answer as a table so the comparison is readable.") is False
+    # object present but plural, no terminator -- ordinary prose
+    assert IL._is_reasoning_trace_answer_opener(
+        "Let us craft answer formats that downstream parsers can consume "
+        "reliably.") is False
+    assert IL._is_reasoning_trace_answer_opener(
+        "Let's craft answers that respect the reader: concise, factual, and "
+        "sourced.") is False
+    # the leak shape itself
+    assert IL._is_reasoning_trace_answer_opener(
+        "Let's craft answer: Sleep consolidation is offline process") is True
+    assert buffer_store.is_junk(
+        "Let's craft answer: Sleep consolidation is offline process") is True
+
+
+# The 393-char `Need ...` plan `self_test()` stored on 13.10.26: the class-148
+# family's LENGTH DRIFT. The extractor refuses it at any length; the writer's
+# 300-char cap was the only thing that excluded it, so it was stored (the
+# class-142 asymmetry, back on a new face).
+NEED_PLAN_LONG_LEAK = (
+    "Need maybe discuss biological: sleep stages, hippocampus-neocortex "
+    "dialogue, systems consolidation, synaptic homeostasis, replay, emotional "
+    "memory, procedural memory, REM vs NREM. Improve memory by stabilizing, "
+    "integrating, abstracting, transferring, pruning, reducing interference. "
+    "Cellular: LTP, protein synthesis, dendritic spines, oscillations (slow "
+    "oscillations, spindles, ripples), sharp")
+
+# Verified clean against the LIVE gates before listing them (the AJ/AN
+# control-corpus rule): "We need to reduce peak memory ... 40 tokens/s." was
+# deliberately dropped -- `buffer_store.is_junk` refuses it for an UNRELATED,
+# pre-existing reason, so it is not a control for THIS rule.
+NEED_PLAN_CONTROLS = [
+    "The plan needs three properties: it must be measurable, reversible and cheap.",
+    "Agents need clear feedback loops to converge on a stable policy.",
+    "Real prose embeds the verb rather than starting with it, so an anchored rule is safe.",
+]
+
+
+def test_need_plan_echo_covers_the_long_variant():
+    """Cap 300 -> 600 (live 13.10.26); the sweep shows 400+ costs nothing.
+
+    300/400/600/1000/2000/none against the live corpora: 400 and up all catch
+    exactly the one live leak with 0 extra hits in 8,000 `longterm_episodes`
+    and 0 extra asserted gate-test literals.
+    """
+    import buffer_store
+    assert len(NEED_PLAN_LONG_LEAK) > 300
+    assert buffer_store._is_need_plan_echo(NEED_PLAN_LONG_LEAK) is True
+    assert buffer_store.is_junk(NEED_PLAN_LONG_LEAK) is True
+    assert IL._is_junk(NEED_PLAN_LONG_LEAK) is True      # the extractor always refused it
+    for c in NEED_PLAN_CONTROLS:
+        assert buffer_store._is_need_plan_echo(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+    # the cap still bounds the rule
+    assert buffer_store._is_need_plan_echo("Need " + "and more detail, " * 60) is False
+
+
+# The hyphenated / German face of the same family (class 172, live 13.10.26):
+# the identical own-run report written with hyphens and German verbs, so neither
+# the literal `Active Learning OK` header nor the `name=value` action list
+# matched -- and it sat in the live buffer (row 8) for both gates to miss.
+OWN_RUN_REPORT_DE_LEAK = (
+    "Active-Learning-Loop OK: self_test PASS, world_explore erfasste 67 neue "
+    "Fehler, skill-challenge `reason_deep` PASS, cross_connect abgeschlossen; "
+    "web_learn ohne")
+
+OWN_RUN_REPORT_DE_CONTROLS = [
+    "The report lists the actions: web_learn, self_test, world_explore and "
+    "cross_connect, in that order.",
+    "Our learning cycle ran four actions: web_learn found nothing, self_test "
+    "passed, world_explore recorded 50 errors.",
+    "Active learning is a machine learning paradigm where the model selects the "
+    "most informative samples for labeling.",
+    "Aktives Lernen ist eine Methode, bei der das Modell die informativsten "
+    "Beispiele selbst auswaehlt.",
+]
+
+
+def test_own_run_report_echo_covers_the_hyphenated_and_german_face():
+    """Class 172: own-report TITLE (any hyphenation, EN or DE) + >=2 actions.
+
+    The title regex accepts `Active-Learning-Loop`, `Aktives Lernen` and the
+    `Aktiver Lernzyklus` wording; the token regex normalises `-`/`_`/space so
+    `skill-challenge` and `skill_challenge` count as ONE action. Measured
+    13.10.26: 1/300 buffer hits (that one IS the leak) and 0 of the gate test
+    file's 1,485 asserted literals -- the prose sentence that merely NAMES the
+    actions stays learnable because it carries no own-report title.
+    """
+    import buffer_store
+    leak = OWN_RUN_REPORT_DE_LEAK
+    assert IL._is_own_run_report_echo(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_own_run_report_echo(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    for c in OWN_RUN_REPORT_DE_CONTROLS:
+        assert IL._is_own_run_report_echo(c) is False, c
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+
+
+def test_own_run_report_echo_needs_two_distinct_actions_not_just_the_title():
+    """The title alone, and one action name only, stay learnable -- do not loosen."""
+    import buffer_store
+    assert IL._is_own_run_report_echo(
+        "Aktives Lernen gelaufen: self-test ok.") is False
+    assert IL._is_own_run_report_echo(
+        "Aktiver Lernzyklus ausgefuehrt, ohne neue Erkenntnisse.") is False
+    # the same action twice is ONE distinct name
+    twice = "Active-Learning-Loop OK: self_test ok, self_test retried."
+    assert IL._is_own_run_report_echo(twice) is False
+    assert buffer_store.is_junk(twice) is False
+
+
+def test_insight_marker_takes_the_last_occurrence():
+    """A thinking model NAMES [INSIGHT] while planning (live 2026-10-10).
+
+    The cloud router sometimes answers with a full reasoning trace, and the
+    first marker sits inside that trace -- so `split("[INSIGHT]", 1)[1]` handed
+    the trace tail back as the insight. The final answer carries the LAST one.
+    """
+    trace_then_answer = (
+        "I'll plan first, then emit [INSIGHT] this part is the trace, not the "
+        "answer. [INSIGHT] Pin the model revision before benchmarking.")
+    with patch.object(IL.urllib.request, "urlopen",
+                      lambda *a, **k: _Resp({"choices": [
+                          {"message": {"content": trace_then_answer}}]})):
+        got = IL._extract_insight_2b("model pinning", "raw info " * 40)
+    assert got == "Pin the model revision before benchmarking.", got
+    assert "this part is the trace" not in got
+
+
+def test_insight_without_a_marker_still_returns_the_content():
+    """No marker -> the content itself, so a plain answer is not lost."""
+    with patch.object(IL.urllib.request, "urlopen",
+                      lambda *a, **k: _Resp({"choices": [
+                          {"message": {"content":
+                                       "A short but plain answer about adapters."}}]})):
+        assert IL._extract_insight_2b("adapters", "raw info " * 40) == \
+            "A short but plain answer about adapters."

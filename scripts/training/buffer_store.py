@@ -1821,13 +1821,151 @@ def _is_generated_plan_echo_fragment(text):
     """
     return bool(_PROMPT_PLAN_ECHO_RE.search(text or ""))
 
+# class 170 markers (live 13.10.26) -- see _is_own_run_report_echo.
+# The agent's OWN learning-cycle report fed back as world knowledge:
+#   "Active Learning OK — Actions: web_learn=no-insight, self_test=..., 2."
+# START-anchored own-report header + its `Actions:` label + its OWN action
+# vocabulary (`web_learn=`/`self_test=`/`world_explore=`/`skill_challenge=`),
+# which no web page carries. Measured 13.10.26: 4/300 buffer hits, ALL the leak
+# family -> 0 control FPs, 0/1,459 asserted gate-test literals.
+_OWN_RUN_REPORT_RE = _re.compile(
+    r"^\s*\**\s*Active\s+Learning\s+OK\b[\s\S]{0,120}?\bActions\s*:"
+    r"[\s\S]{0,400}?\b(?:web_learn|self_test|world_explore|skill_challenge)\s*=",
+    _re.IGNORECASE)
+_OWN_RUN_REPORT_MAX = 600
+
+
+_OWN_RUN_REPORT_TITLE_RE = _re.compile(
+    r"^\s*\**\s*(?:"
+    r"Active[\s\-_]*Learning(?:[\s\-_]*(?:Loop|OK))?"
+    r"|Aktiv[\s\-_]*Learning[\s\-_]*(?:Loop|OK)"
+    r"|Aktives?\s+Lernen"
+    r"|Aktiver\s+Lernzyklus"
+    r")\b",
+    _re.IGNORECASE)
+_OWN_RUN_REPORT_TOK_RE = _re.compile(
+    r"web[\s\-_]?learn|self[\s\-_]?test|world[\s\-_]?explore"
+    r"|skill[\s\-_]?challenge|cross[\s\-_]?connect",
+    _re.IGNORECASE)
+
+
+def _own_report_action_key(match):
+    return match.group(0).lower().replace("-", "_").replace(" ", "_")
+
+
+def _is_own_run_report_echo(text):
+    """True when `text` is the agent's own learning-cycle REPORT, not knowledge.
+
+    Live 13.10.26 (class 170): the `Structural connection between ...` cycles
+    stored the runtime self-report of their own learning loop as the answer
+
+        Active Learning OK — Actions: web_learn=no-insight, self_test=
+        needs-improvement on 'energy efficiency ↔ intelligence',
+        world_explore=recorded 50 recent errors, skill_challenge=read_memory
+        → PASS, cros
+        2.
+
+    That is the agent's own status output (4 copies in the buffer, 1 more in
+    `longterm_episodes`), not world knowledge. It is the class-66 family -- an
+    own artifact echoed back after truncation, dangling list marker included --
+    but the class-66 marker keys on the plan TITLE plus a `+`-joined list, so
+    this comma-separated `Actions:` run passed both gates.
+
+    The discriminator is the conjunction: START-anchored own-report header AND
+    the `Actions:` label AND the learner's OWN action vocabulary. Any part
+    alone is ordinary prose ("Active Learning OK practices: label the most
+    uncertain samples first" -- 0 hits, stays learnable); the pair without the
+    vocabulary ("... - Actions: label uncertain samples, retrain, evaluate.")
+    stays learnable too, because `web_learn=`/`self_test=` are internal names
+    that no web page writes. Measured: 4/300 buffer hits, ALL the leak family,
+    0 real-prose FPs on a 12-sentence control corpus, 0/1,459 asserted
+    gate-test literals, 1/8,000 `longterm_episodes` (that one IS the identical
+    leak, so still 0 collateral).
+    """
+    if text is None:
+        return False
+    s = text.strip()
+    if not s or len(s) > _OWN_RUN_REPORT_MAX:
+        return False
+    if _OWN_RUN_REPORT_RE.search(s):
+        return True
+    # The hyphenated / German face of the same family (class 172, live
+    # 13.10.26):
+    #   "Active-Learning-Loop OK: self_test PASS, world_explore erfasste 67
+    #    neue Fehler, skill-challenge `reason_deep` PASS, cross_connect
+    #    abgeschlossen; web_learn ohne ..."
+    # Its title is not the literal `Active Learning OK` and its action list
+    # reports results (PASS / erfasste / abgeschlossen) instead of
+    # `name=value`, so the conjunction above let it through both gates.
+    # Discriminator: own-report TITLE (any hyphenation, EN or DE) AND at
+    # least TWO DISTINCT own-action names. Measured 13.10.26: 1/300 buffer
+    # hits (that one IS the leak) and 0 of the gate test file's 1,485
+    # asserted literals -- so genuine prose that merely NAMES the actions
+    # ("The report lists the actions: web_learn, self_test, world_explore
+    # and cross_connect, in that order.") stays learnable, because it
+    # carries no own-report title.
+    if not _OWN_RUN_REPORT_TITLE_RE.search(s):
+        return False
+    return len({_own_report_action_key(m)
+                for m in _OWN_RUN_REPORT_TOK_RE.finditer(s)}) >= 2
+
+# class 171 markers (live 13.10.26) -- see _is_reasoning_trace_answer_opener.
+# "Let's craft answer: ..." -- the 2B model's own generation-planning opener,
+# kept as the answer by the `self_test` path.
+_TRACE_ANSWER_OPENER_RE = _re.compile(
+    r"^\s*\**\s*(?:Let'?s|Let us|Let me)\s+craft\s+(?:an?\s+|the\s+)?"
+    r"answer\s*[:.\u2014\u2013-]",
+    _re.IGNORECASE)
+_TRACE_ANSWER_OPENER_MAX = 300
+
+
+def _is_reasoning_trace_answer_opener(text):
+    """True when the answer OPENS with the model's own planning phrase.
+
+    Live 13.10.26 (class 171): `active_learn.self_test()` asked one of its fixed
+    questions and the model answered with a reasoning-trace opener instead of
+    the answer; the row landed in the buffer as
+
+        Let's craft answer: Sleep consolidation is offline process
+
+    `active_learn._strip_reasoning_trace` cuts `Self-critique:` / `[GOOD]` /
+    `thinking process`, but it never knew this opener, and the row is short
+    enough (58 chars) that no length trust applies.
+
+    The discriminator is the ANCHORED opener plus the `craft answer` object and
+    its punctuation. Real prose embeds the phrase ("Let's write the answer as a
+    table so the comparison is readable.", "Let us craft answer formats that
+    downstream parsers can consume reliably.", "Let's craft answers that respect
+    the reader") and stays learnable -- verb list and object are both required,
+    so `write`, `start`, `answers` (plural) never match. Measured: 1/300 buffer
+    hits and it IS the leak family -> 0 real-prose FPs on a 12-sentence control
+    corpus, 0/1,459 asserted gate-test literals, 0/8,000 `longterm_episodes`.
+    """
+    if text is None:
+        return False
+    s = text.strip()
+    if not s or len(s) > _TRACE_ANSWER_OPENER_MAX:
+        return False
+    return bool(_TRACE_ANSWER_OPENER_RE.search(s))
+
+
+
 # class 148 markers (live 22.09.26) -- see _is_need_plan_echo.
 # A BARE imperative plan voice: the model answers its own question with what
 # it intends to WRITE ("Need maybe structure: ..."), not world knowledge.
 # START-anchored so the same words inline in real prose stay learnable
 # ("We need to reduce peak memory ...", "The plan needs three properties ...").
 _NEED_PLAN_ECHO_RE = _re.compile(r"^\s*\**\s*need\b", _re.IGNORECASE)
-_NEED_PLAN_ECHO_MAX = 300
+# Cap 300 -> 600 (live 13.10.26, class 170 follow-up): the SAME family
+# returned 393 chars long (`Need maybe discuss biological: sleep stages ...
+# Cellular: LTP, pr...`) and slipped the writer gate -- only the length
+# cap excluded it, while the extractor refuses it at any length, so the
+# class-142 asymmetry was back. Sweep 300/400/600/1000/2000/none against
+# the live corpora: 400 and up all catch exactly the 1 live leak with 0
+# extra hits in 8,000 `longterm_episodes` and 0 extra asserted gate-test
+# literals (the 12 `Need ...` literals ARE the class-148 leak assertions).
+# 600 keeps headroom above the observed 393.
+_NEED_PLAN_ECHO_MAX = 600
 
 
 def _is_need_plan_echo(text):
@@ -4190,6 +4328,13 @@ def _is_nav_chrome(text):
         return True
     # the learner's own bare "Need ..." generation PLAN (class 148, 22.09.26)
     if _is_need_plan_echo(text):
+        return True
+    # the agent's OWN learning-cycle report (class 170) and the 2B model's own
+    # generation-planning opener (class 171), both fed back as knowledge
+    # (live 13.10.26)
+    if _is_own_run_report_echo(text):
+        return True
+    if _is_reasoning_trace_answer_opener(text):
         return True
 
     # a security-advisory listing row / headline stub / fact box / own plan
