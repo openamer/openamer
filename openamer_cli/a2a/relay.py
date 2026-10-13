@@ -203,7 +203,12 @@ def verify_note(note: dict, *, tolerance: int = 300) -> dict:
     try:
         env = Envelope.from_dict(note["envelope"])
         pub = note.get("sender_pubkey") or ""
-        if not env.verify(pub):
+        # Signature and freshness are two separate gates. ``Envelope.verify``
+        # folds them together with its own fixed 300s replay window, so a note
+        # that is authentic but merely older than that window came back as
+        # "invalid signature" (a forgery report for a perfectly good note) and
+        # the caller-supplied ``tolerance`` below had no effect at all.
+        if not env.verify_signature(pub):
             return {"ok": False, "reason": "invalid signature"}
         if abs(int(time.time()) - int(env.ts)) > tolerance:
             return {"ok": False, "reason": "stale"}

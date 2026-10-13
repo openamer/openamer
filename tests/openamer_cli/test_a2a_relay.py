@@ -32,6 +32,35 @@ def test_relay_mailbox_roundtrip(tmp_path):
     got = mb.pull(note["recipient"][:8])
     assert len(got) == 1 and rl.verify_note(got[0]).get("ok") is True
 
+
+def test_verify_note_reports_stale_not_forged(tmp_path):
+    """An authentic note past the replay window is 'stale', never 'forged'.
+
+    ``verify_note`` used to gate on ``Envelope.verify``, which ANDs the
+    signature with the envelope's own fixed 300s freshness window. Every relay
+    note older than 5 minutes therefore verified as "invalid signature" — a
+    forgery report for a note whose signature is intact — and the keyword
+    ``tolerance`` had no effect on the decision.
+    """
+    import time
+
+    from openamer_cli.a2a import relay as rl
+    from openamer_cli.a2a.core import Envelope, IdentityStore
+
+    st_a = IdentityStore(tmp_path / "A")
+    a = st_a.ensure_identity()
+    env = Envelope.create(private_key=st_a.private_key(), sender=a.fingerprint,
+                          recipient="B", kind="ping", payload={"hi": "ok"},
+                          ts=int(time.time()) - 3600)
+    note = rl.relay_note(identity_store=st_a, envelope=env)
+
+    assert rl.verify_note(note).get("reason") == "stale"
+    assert rl.verify_note(note, tolerance=10 ** 9).get("ok") is True
+
+    forged = json.loads(json.dumps(note))
+    forged["envelope"]["payload"] = {"hi": "MALICIOUS"}
+    assert rl.verify_note(forged, tolerance=10 ** 9).get("reason") == "invalid signature"
+
 def test_relay_note_preserves_types_and_scrubs_strings_only(tmp_path):
     """Regression: relay_note() must not stringify (or mis-redact) non-string values.
 
