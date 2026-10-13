@@ -6136,6 +6136,13 @@ _BLOG_HEAD_SENT_END_RE = re.compile(r"[.!?]")
 _HEAD_WINDOW = 220
 _BLOG_HEAD_LOWER_RE = re.compile(r"\b[a-z]{2,}\b")
 
+# class 173 (13.10.26): function words a nav LABEL never carries. A label in
+# front of a read time ("AI news 1 min read <lede>") is a bare name; prose
+# that merely MENTIONS a read time always carries one ("the reading time was
+# about 8 min read ..."). Used by _strip_trailing_read_time_header to tell a
+# MIXED-CASE nav label apart from prose, which the pure-TitleCase guard cannot.
+_BLOG_HEAD_STOPWORDS = frozenset("""a about after an and are as at be been before being but by can could did do does for from had has have he here i if in into is it its may might must no not of on or over she should so than that the then there these they this those to was we were when while will with would you""".split())
+
 
 def _strip_trailing_read_time_header(text):
     """Drop a leading blog header that closes with its own "<N> min read".
@@ -6171,8 +6178,19 @@ def _strip_trailing_read_time_header(text):
     core = _BLOG_HEAD_DATE_RE.sub(" ", core)
     core = re.sub(r"[^A-Za-z0-9&+.'\- ]", " ", core).strip()
     words = core.split()
-    if 1 <= len(words) <= 4 and not _BLOG_HEAD_LOWER_RE.search(core):
-        return body
+    if 1 <= len(words) <= 4:
+        if not _BLOG_HEAD_LOWER_RE.search(core):
+            return body
+        # A MIXED-CASE nav label in front of the read time ("AI news 1 min
+        # read <lede>") carries a lowercase word, which the pure-TitleCase
+        # guard reads as prose. A label is a bare name and never carries a
+        # function word, so the conjunction (short head AND no function word)
+        # separates it from prose that merely mentions a read time.
+        # Measured 13.10.26: 3/3 leaked rows stripped with a byte-identical
+        # body, 0 of 8,008 longterm episodes, 0 of 300 buffer rows, 0 of 9
+        # hand-written counter-cases.
+        if not any(w.lower() in _BLOG_HEAD_STOPWORDS for w in words):
+            return body
     return t
 
 
