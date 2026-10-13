@@ -39,6 +39,13 @@ class TestClassicCliOutputSelection:
         assert out is not None
         assert out.enable_cpr is False
 
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "prompt_toolkit builds its default input from sys.platform; this test "
+        "fakes sys.platform, so prompt_toolkit/input/defaults.py imports "
+        "input/vt100.py, whose `import termios` cannot exist on Windows (its "
+        "own guard is `assert sys.platform != 'win32'`, which the fake "
+        "defeats). The CPR contract is POSIX-only and stays covered on POSIX CI."
+    ))
     def test_application_receives_cpr_not_supported_without_ssh(self, monkeypatch):
         """Classic-CLI Application construction must get CPR-disabled output."""
         from prompt_toolkit.application import Application
