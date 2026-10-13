@@ -3205,7 +3205,8 @@ def _is_relative_stamp_news_run(text):
 
 # class 94 markers (live 19.09.26) -- see _is_citation_counter_run.
 _CITATION_COUNTER_RUN_RE = _re.compile(
-    r"\b\d{1,3}\s+\d{1,3}\s+\d{1,3}\s+\d{1,3}\s+[A-Z][a-z]")
+    r"\b\d{1,3}\s+\d{1,3}\s+\d{1,3}\s+\d{1,3}\s+[A-Z][a-z]"
+    r"|\b\d(?:\s+\d){3,}\s*\.?\s*$")
 
 
 def _is_citation_counter_run(text):
@@ -3225,6 +3226,10 @@ def _is_citation_counter_run(text):
     0/3,059 longterm_episodes; and the one gate-test literal it matches
     (`Onboarding Code Comprehension ... 1 2 3 4 5 6 7 8 9 10 11 Next ...`) is
     a KNOWN leak already asserted as junk, i.e. a true positive.
+
+    Tail variant (live 13.10.26): the run can also sit at the END of the
+    text (`... it was trained on 1 1 2 2 3 3 .`), with no Capitalized
+    word after it -- matched by a 4+ single-digit run anchored at `$`.
     """
     t = text or ""
     if len(t) > 1200:
