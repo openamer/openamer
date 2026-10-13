@@ -22,6 +22,19 @@ from unittest.mock import patch, MagicMock, AsyncMock, ANY
 
 from gateway.platforms.base import SendResult
 
+# `clear=True` empties the WHOLE environment, not just the EMAIL_* vars this
+# test is about.  On Windows that takes USERPROFILE/HOMEDRIVE/HOMEPATH with
+# it, and the product's own default-home helper then dies in
+# `Path.home()` -> RuntimeError("Could not determine home directory.") --
+# so the test failed on the platform, not on the behaviour it asserts.
+# Keep the OS path variables across the clear, exactly as
+# tests/gateway/test_setup_feishu.py does for SystemRoot.
+_OS_PATH_VARS = (
+    "SystemRoot", "windir", "SystemDrive",
+    "USERPROFILE", "HOMEDRIVE", "HOMEPATH",
+)
+_KEEP_OS_PATH_VARS = {k: os.environ[k] for k in _OS_PATH_VARS if k in os.environ}
+
 
 class TestConfigEnvOverrides(unittest.TestCase):
     """Verify email config is loaded from environment variables."""
@@ -55,7 +68,7 @@ class TestConfigEnvOverrides(unittest.TestCase):
         self.assertIsNotNone(home)
         self.assertEqual(home.chat_id, "user@test.com")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_email_not_loaded_without_env(self):
         from gateway.config import GatewayConfig, Platform, _apply_env_overrides
         config = GatewayConfig()
