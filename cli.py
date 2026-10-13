@@ -3153,6 +3153,17 @@ _IMAGE_EXTENSIONS = frozenset({
 from openamer_constants import is_termux as _is_termux_environment
 
 
+def _posix_join(root: str, *parts: str) -> str:
+    """Join a POSIX-namespace path (Termux/Android/container) with ``/``.
+
+    ``os.path.join`` would emit the *host's* separator, so a Termux storage root
+    on a Windows host becomes ``/sdcard\\Pictures\\cat.png`` — a string no Termux
+    shell reads as a path.  ``os.sep`` is ``/`` off Windows, so this is the
+    identity there.
+    """
+    return "/".join([str(root).replace(os.sep, "/").rstrip("/"), *parts])
+
+
 def _termux_example_image_path(filename: str = "cat.png") -> str:
     """Return a realistic example media path for the current Termux setup."""
     candidates = [
@@ -3163,8 +3174,8 @@ def _termux_example_image_path(filename: str = "cat.png") -> str:
     ]
     for root in candidates:
         if os.path.isdir(root):
-            return os.path.join(root, "Pictures", filename)
-    return os.path.join("~/storage/shared", "Pictures", filename)
+            return _posix_join(root, "Pictures", filename)
+    return _posix_join("~/storage/shared", "Pictures", filename)
 
 
 def _split_path_input(raw: str) -> tuple[str, str]:

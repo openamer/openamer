@@ -13,6 +13,7 @@ Covers:
 from __future__ import annotations
 
 import json
+import os
 
 import pytest
 
@@ -48,6 +49,11 @@ class TestNormalizeWorkdir:
     def test_tilde_expands(self, tmp_path, monkeypatch):
         from cron.jobs import _normalize_workdir
         monkeypatch.setenv("HOME", str(tmp_path))
+        if os.name == "nt":  # expanduser() reads USERPROFILE, never $HOME
+            drive, tail = os.path.splitdrive(str(tmp_path))
+            monkeypatch.setenv("USERPROFILE", str(tmp_path))
+            monkeypatch.setenv("HOMEDRIVE", drive or "C:")
+            monkeypatch.setenv("HOMEPATH", tail or "\\")
         result = _normalize_workdir("~")
         assert result == str(tmp_path.resolve())
 
