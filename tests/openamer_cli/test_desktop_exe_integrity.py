@@ -107,7 +107,12 @@ def test_parse_pe_machine_rejects_bad_pe_signature(tmp_path):
     ],
 )
 def test_expected_machines_per_host(host, loadable, not_loadable):
-    with patch("openamer_cli.main._windows_native_machine", return_value=host):
+    # Rung 1 (_windows_user_runnable_pe_machines, openamer_cli/main.py:5870)
+    # asks the real host kernel32 and would answer for THIS host whatever name
+    # is patched in; stub it so the name-based mapping is what gets exercised.
+    with patch("openamer_cli.main._windows_native_machine", return_value=host), \
+         patch("openamer_cli.main._windows_user_runnable_pe_machines",
+               return_value=None):
         expected = cli_main._expected_windows_pe_machines()
     assert loadable <= expected
     assert not (not_loadable & expected)
@@ -115,7 +120,11 @@ def test_expected_machines_per_host(host, loadable, not_loadable):
 
 def test_expected_machines_unknown_host_is_permissive():
     """The gate must never brick launch on hosts we don't recognize."""
-    with patch("openamer_cli.main._windows_native_machine", return_value="RISCV64"):
+    # Same reason as test_expected_machines_per_host: the direct-API rung
+    # would answer for this host instead of the unrecognized patched name.
+    with patch("openamer_cli.main._windows_native_machine", return_value="RISCV64"), \
+         patch("openamer_cli.main._windows_user_runnable_pe_machines",
+               return_value=None):
         expected = cli_main._expected_windows_pe_machines()
     assert {PE_AMD64, PE_ARM64, PE_I386} <= expected
 

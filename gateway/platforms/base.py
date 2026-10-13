@@ -4078,7 +4078,11 @@ class BasePlatformAdapter(ABC):
         scan_content = BasePlatformAdapter._mask_json_string_media(scan_content)
         for match in media_pattern.finditer(scan_content):
             path = _normalize_media_tag_path(match.group("path"))
-            if path:
+            # A NUL byte can never appear in a real path. ``expanduser`` only
+            # does string work and does NOT reject it on either platform, so a
+            # crafted ``~\x00`` tag would otherwise be handed on as a live
+            # attachment path -- drop it here (the except below never fires).
+            if path and "\x00" not in path:
                 try:
                     media.append((os.path.expanduser(path), has_voice_tag))
                 except (OSError, RuntimeError, ValueError):

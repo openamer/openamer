@@ -6,7 +6,10 @@ from xml.etree import ElementTree as ET
 import pytest
 
 from gateway.config import PlatformConfig
-from plugins.platforms.wecom.callback_adapter import WecomCallbackAdapter
+from plugins.platforms.wecom.callback_adapter import (
+    DEFUSEDXML_AVAILABLE,
+    WecomCallbackAdapter,
+)
 from plugins.platforms.wecom.wecom_crypto import WXBizMsgCrypt
 
 
@@ -26,6 +29,19 @@ def _config(apps=None):
         enabled=True,
         extra={"mode": "callback", "host": "127.0.0.1", "port": 0, "apps": apps or [_app()]},
     )
+
+
+# The callback adapter parses untrusted, pre-auth XML with defusedxml:
+# ``check_wecom_callback_requirements()`` (callback_adapter.py:66) gates
+# ``connect()`` (:128) and the platform's ``check_fn``, and pyproject declares
+# defusedxml the mandatory ``[wecom]`` extra. Without it the product refuses to
+# bring the adapter up at all, so XML-parsing behaviour is not a configuration
+# this suite can assert -- it never connects.
+requires_defusedxml = pytest.mark.skipif(
+    not DEFUSEDXML_AVAILABLE,
+    reason="defusedxml (the [wecom] extra) is not installed - "
+    "check_wecom_callback_requirements() reports the callback adapter unavailable",
+)
 
 
 class TestWecomCrypto:
@@ -54,6 +70,7 @@ class TestWecomCrypto:
             crypt.decrypt("bad-sig", "1", "n", root.findtext("Encrypt", default=""))
 
 
+@requires_defusedxml
 class TestWecomCallbackEventConstruction:
     def test_build_event_extracts_text_message(self):
         adapter = WecomCallbackAdapter(_config())
@@ -277,6 +294,7 @@ class TestWecomCallbackSendTokenRefresh:
         assert len(post_calls) == 2
 
 
+@requires_defusedxml
 class TestWecomCallbackPollLoop:
     @pytest.mark.asyncio
     async def test_poll_loop_dispatches_handle_message(self, monkeypatch):

@@ -6,6 +6,23 @@ import pytest
 from openamer_cli.pty_session import RingBuffer
 
 
+async def _wait_until(predicate, *, timeout: float = 5.0) -> None:
+    """Yield to the event loop until ``predicate()`` is true or ``timeout`` elapses.
+
+    The drain task reads the bridge through ``run_in_executor``, so a chunk
+    reaches the RingBuffer a thread-pool round-trip plus an event-loop turn
+    after ``start()``. A fixed ``asyncio.sleep(0.05)`` to "let the drain run"
+    is a wall-clock race: on a loaded box (the canonical sweep runs four
+    worker processes over ~2500 files) the executor round-trips outrun it and
+    the test reads a half-drained buffer. Wait on the observable state
+    instead; the assertions below are unchanged, so a genuine regression
+    still fails -- after the timeout.
+    """
+    deadline = time.monotonic() + timeout
+    while not predicate() and time.monotonic() < deadline:
+        await asyncio.sleep(0)
+
+
 def test_ringbuffer_keeps_everything_under_capacity():
     rb = RingBuffer(10)
     rb.append(b"abc")
@@ -74,7 +91,8 @@ async def test_attach_replays_buffer_then_streams_live():
     bridge = FakeBridge([b"hello ", b"world", None])
     s = PtySession("k", bridge, buffer_cap=1024, read_timeout=0.01)
     await s.start()
-    await asyncio.sleep(0.05)                      # drain consumes "hello world"
+    # drain consumes "hello world"
+    await _wait_until(lambda: s.buffer.snapshot() == b"hello world")
     ws = FakeWS()
     await s.attach(ws)
     replay = b"".join(p for kind, p in ws.sent if kind == "bytes")
@@ -93,7 +111,8 @@ async def test_detach_keeps_draining_into_buffer():
     s.detach(ws)
     assert s.attached is False
     assert s.last_detached_at is not None
-    await asyncio.sleep(0.05)                      # "two" drains while detached
+    # "two" drains while detached
+    await _wait_until(lambda: s.buffer.snapshot() == b"onetwo")
     ws2 = FakeWS()
     await s.attach(ws2)
     replay = b"".join(p for kind, p in ws2.sent if kind == "bytes")
@@ -109,7 +128,8 @@ async def test_eof_marks_dead_and_closes_socket_4410():
     await s.start()
     ws = FakeWS()
     await s.attach(ws)
-    await asyncio.sleep(0.05)                      # drain hits None (EOF)
+    # drain hits None (EOF)
+    await _wait_until(lambda: s.alive is False)
     assert s.alive is False
     assert ws.close_code == 4410
     await s.close()
@@ -173,7 +193,7 @@ async def test_reaper_loop_invokes_reap(monkeypatch):
 
     monkeypatch.setattr(reg, "reap_idle", fake_reap)
     task = asyncio.create_task(run_reaper(reg, interval=0.01))
-    await asyncio.sleep(0.05)
+    await _wait_until(lambda: calls["n"] >= 2)
     task.cancel()
     try:
         await task

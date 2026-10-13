@@ -37,10 +37,21 @@ _RST = "\033[0m"
 
 
 def cprint(text: str):
-    """Print ANSI-colored text through prompt_toolkit's renderer."""
-    from prompt_toolkit import print_formatted_text as _pt_print
-    from prompt_toolkit.formatted_text import ANSI as _PT_ANSI
-    _pt_print(_PT_ANSI(text))
+    """Print ANSI-colored text through prompt_toolkit's renderer.
+
+    prompt_toolkit renders through a *console*. With stdout redirected -- a
+    pipe, pytest's capture, a service running without a Win32 console --
+    its Win32Output raises ``NoConsoleScreenBufferError``. A display helper
+    must never take its caller down with it: ``prompt_for_secret`` died
+    mid-flow on Windows the moment the renderer had no screen buffer. Fall
+    back to a plain ``print``; the ANSI text still reaches the stream.
+    """
+    try:
+        from prompt_toolkit import print_formatted_text as _pt_print
+        from prompt_toolkit.formatted_text import ANSI as _PT_ANSI
+        _pt_print(_PT_ANSI(text))
+    except Exception:
+        print(text)
 
 
 # =========================================================================
