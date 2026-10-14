@@ -1,11 +1,42 @@
 """Tests for the dashboard-managed file browser API."""
 
+import os
+import sys
 from types import SimpleNamespace
 
 import pytest
 from starlette.testclient import TestClient
 
 from openamer_cli import web_server
+
+
+def _fake_home(monkeypatch, home):
+    """Point the platform home lookup at ``home``.
+
+    ``Path.home()`` / ``os.path.expanduser(chr(126))`` consult HOME on POSIX
+    but USERPROFILE, then HOMEDRIVE plus HOMEPATH, on Windows -- never HOME.
+    So setting HOME alone leaves the real user home in place there and the
+    assertion silently tests the wrong directory. Setting every variable the
+    platform actually reads keeps the test live on both platforms instead of
+    gating it.
+    """
+    monkeypatch.setenv("HOME", str(home))
+    if os.name == "nt":
+        monkeypatch.setenv("USERPROFILE", str(home))
+        monkeypatch.setenv("HOMEDRIVE", home.drive or "C:")
+        monkeypatch.setenv("HOMEPATH", str(home)[2:] or os.sep)
+
+
+skip_on_windows = pytest.mark.skipif(
+    sys.platform.startswith("win"),
+    reason=(
+        "the hosted /opt/data layout is a POSIX container path; on Windows "
+        "Path('/opt/data').resolve() is qualified with the current drive, so "
+        "the resolved-root-vs-literal guard in "
+        "web_server.py::_default_openamer_root_is_opt_data (line 2121) can "
+        "never compare equal"
+    ),
+)
 
 
 def _client_with_app_state():
@@ -56,7 +87,7 @@ def local_files_client(monkeypatch, tmp_path):
     home.mkdir()
     monkeypatch.delenv("OPENAMER_DASHBOARD_FILES_ROOT", raising=False)
     monkeypatch.delenv("OPENAMER_HOME", raising=False)
-    monkeypatch.setenv("HOME", str(home))
+    _fake_home(monkeypatch, home)
 
     client, prev_auth_required, prev_bound_host = _client_with_app_state()
     try:
@@ -198,7 +229,7 @@ def test_gated_local_mode_still_defaults_to_home(monkeypatch, tmp_path):
     home.mkdir()
     monkeypatch.delenv("OPENAMER_DASHBOARD_FILES_ROOT", raising=False)
     monkeypatch.delenv("OPENAMER_MANAGED", raising=False)
-    monkeypatch.setenv("HOME", str(home))
+    _fake_home(monkeypatch, home)
     monkeypatch.setenv("OPENAMER_HOME", str(home / ".openamer"))
 
     prev_auth_required = getattr(web_server.app.state, "auth_required", None)
@@ -314,6 +345,7 @@ def test_query_token_does_not_authenticate_other_endpoints(forced_files_client):
     assert leaked.status_code == 401
 
 
+@skip_on_windows
 def test_hosted_policy_locks_to_opt_data(monkeypatch):
     monkeypatch.delenv("OPENAMER_DASHBOARD_FILES_ROOT", raising=False)
     monkeypatch.setenv("OPENAMER_HOME", "/opt/data")
