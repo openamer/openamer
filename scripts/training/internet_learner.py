@@ -2459,6 +2459,43 @@ def _is_pagination_newsletter_widget(text):
     return bool(_PAGINATION_NEWSLETTER_RE.search(text or ""))
 
 
+# class 176 markers (live 14.10.26) -- see _is_newsletter_footer_nav_chain.
+# A blog page's FOOTER nav-control run welded to its newsletter signup promo.
+# live: `cycle_h_efficiency` stored
+#
+#   "Previous Next Close the short story Stay in the loop, with exclusive
+#    offers and product previews."
+#
+# 97 chars of pure furniture: the page's own prev/next/close controls plus a
+# "Stay in the loop" subscribe CTA. Neither half is a discriminator on its own
+# -- `Previous Next` is an ordinary pagination word pair and `stay in the loop`
+# is a marketing phrase a genuine sentence can quote -- so the rule requires
+# the CONJUNCTION: a whitespace-joined run of >= 2 control labels AND the
+# subscribe CTA. Distinct from class 58, whose widget carries `Previous Page
+# N of M Next` and `New articles by email`; this page has neither.
+# Measured 14.10.26: 1/300 buffer hit (that one IS the leak), 0 of 8,035
+# longterm episodes, 0 of 1,715 gate-test literals, 0 junk-audit rows, 0 FPs on
+# an 11-sentence real-prose battery. One hostile-by-construction control
+# ("Previous Next Close the dialog, then stay in the loop by subscribing.")
+# does flag -- text indistinguishable from the widget it names; recorded here
+# and asserted in the test rather than claimed away.
+_FOOTER_NAV_RUN_RE = re.compile(
+    r"\b(?:Previous|Next|Close|Back)\b(?:\s+\b(?:Previous|Next|Close|Back)\b)+")
+_NEWSLETTER_PROMO_RE = re.compile(
+    r"stay in the loop|exclusive offers\s+and\s+product previews", re.IGNORECASE)
+
+
+def _is_newsletter_footer_nav_chain(text):
+    """True when `text` is a footer nav-control run + newsletter CTA (class 176).
+
+    See the marker block above for the measurement.
+    """
+    t = text or ""
+    if not _FOOTER_NAV_RUN_RE.search(t):
+        return False
+    return bool(_NEWSLETTER_PROMO_RE.search(t))
+
+
 
 # class 59 markers (live 18.09.26) -- see _is_fullscreen_toggle_chrome.
 _FULLSCREEN_TOGGLE_RE = re.compile(
@@ -4814,6 +4851,9 @@ def _is_junk(text):
         return True
     # a blog archive pagination widget + newsletter promo (class 58, 18.09.26)
     if _is_pagination_newsletter_widget(t):
+        return True
+    # a blog footer's nav-control run + newsletter CTA (class 176, 14.10.26)
+    if _is_newsletter_footer_nav_chain(t):
         return True
     # a code-block FULLSCREEN toggle widget pair (class 59, 18.09.26)
     if _is_fullscreen_toggle_chrome(t):

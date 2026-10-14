@@ -7135,3 +7135,70 @@ PRICE_TABLE_CONTROLS = [
     "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
 ]
 
+def test_newsletter_footer_nav_chain_is_gated_on_both_paths():
+    """A blog footer's nav-control run + subscribe CTA (class 176).
+
+    Live 14.10.26 (`cycle_h_efficiency`): the page's own prev/next/close
+    controls welded to a "Stay in the loop" newsletter promo, stored as
+    knowledge. Neither half alone is a discriminator, so the conjunction is
+    required. Both the extraction gate (`_is_junk`) and the writer gate
+    (`buffer_store.is_junk`) must agree.
+    """
+    import buffer_store
+    leak = NEWSLETTER_FOOTER_LEAK
+    assert IL._is_newsletter_footer_nav_chain(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for c in NEWSLETTER_FOOTER_CONTROLS:
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+
+
+def test_newsletter_footer_nav_chain_requires_both_markers():
+    """Neither marker alone may fire -- each is ordinary prose on its own."""
+    for c in (NEWSLETTER_FOOTER_CONTROLS
+              + NEWSLETTER_FOOTER_PREEXISTING_REJECTS):
+        assert IL._is_newsletter_footer_nav_chain(c) is False, c
+    # the gerund twin of the CTA is not the CTA
+    assert IL._is_newsletter_footer_nav_chain(
+        "The agent stays in the loop until the tool result arrives.") is False
+
+
+def test_newsletter_footer_nav_chain_flags_its_own_worst_case():
+    """Hostile-by-construction: text that IS the widget shape does flag.
+
+    Recorded openly rather than claimed away. No such row exists in either
+    corpus (0 of 8,035 `longterm_episodes`, 0 of 30,546 junk-audit texts).
+    """
+    hostile = (
+        "Previous Next Close the dialog, then stay in the loop by subscribing.")
+    assert IL._is_newsletter_footer_nav_chain(hostile) is True
+
+
+# The exact bytes `cycle_h_efficiency` stored on 14.10.26 (class 176).
+NEWSLETTER_FOOTER_LEAK = (
+    "Previous Next Close the short story Stay in the loop, "
+    "with exclusive offers and product previews.")
+
+# Real prose that must stay learnable through BOTH gates.
+NEWSLETTER_FOOTER_CONTROLS = [
+    "Use Previous Next Close to browse the archive.",
+    "Click Previous, then Next, to move between slides.",
+    "The agent stays in the loop until the tool result arrives.",
+    "The toolbar exposes Previous Next Close and Back controls.",
+    "Benchmarks: we ran Previous Next variants of the schedule and measured latency.",
+    "Previous studies and Next-generation models disagree about the scaling law.",
+]
+
+# Prose shapes a PRE-EXISTING marker already drops, so class 176 must not be
+# credited for them; only the class-176 helper is asserted here. Verified
+# 14.10.26: `_JUNK_RE` matches the bare `newsletter` in the first and
+# `subscribe to our` in the second, and `Previous Next Back Home` is 23 chars
+# so it trips `_is_junk`'s `< 25 chars` guard. The class-176 helper is False on
+# all three -- which is exactly why they are kept out of the both-gates list
+# instead of being reported as class-176 counter-cases.
+NEWSLETTER_FOOTER_PREEXISTING_REJECTS = [
+    "Stay in the loop by subscribing; the newsletter sends weekly updates.",
+    "The tutorial's pagination offers Previous Next controls and a subscribe to our newsletter form.",
+    "Previous Next Back Home",
+]
