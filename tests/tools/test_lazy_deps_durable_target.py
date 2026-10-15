@@ -127,6 +127,16 @@ class TestAbiStamp:
         assert not (target / "stalepkg").exists()
         assert (target / ld._TARGET_STAMP_NAME).read_text().strip() == ld._python_abi_tag()
 
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "os.chmod() on Windows only toggles the read-only attribute, and a "
+            "read-only attribute on a directory does not block creating files inside "
+            "it — so the non-writable precondition cannot be established here, "
+            "os.access() reports the directory writable, and the product has nothing "
+            "to detect. The POSIX run covers the branch."
+        ),
+    )
     def test_readonly_target_reports_error(self, tmp_path):
         # A path under a non-writable parent should surface a clean error,
         # not raise.
