@@ -1,6 +1,7 @@
 import json
 import os
 import stat
+import sys
 import threading
 import time
 import zipfile
@@ -3161,6 +3162,24 @@ def test_sync_turn_tracks_writer_under_session_id():
     assert provider._inflight_writers.get("sid-1", set()) == set()
 
 
+# OpenViking's pending-session recovery is built on an fcntl flock run lock, and fcntl
+# does not exist on Windows: _acquire_run_lock() bails out before taking a lock
+# (plugins/memory/openviking/__init__.py:2758) and _mark_session_pending() then
+# refuses to write a marker at all, because without a lock it cannot tell a live
+# owner from a dead one (:2892, "Could not safely mark ... without a run lock").
+# The recovery these tests drive has no implementation on this platform — the
+# product says so in its own log line, so gate rather than pretend.
+_requires_posix_run_lock = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "pending-session recovery needs the fcntl run lock "
+        "(plugins/memory/openviking/__init__.py:2758) and its marker write is refused "
+        "without one (:2892); fcntl is POSIX-only"
+    ),
+)
+
+
+@_requires_posix_run_lock
 def test_initialize_recovers_pending_session_from_previous_process(tmp_path, monkeypatch):
     _clear_openviking_env(monkeypatch)
     monkeypatch.setenv("OPENVIKING_ENDPOINT", "http://test")
@@ -3200,6 +3219,7 @@ def test_initialize_recovers_pending_session_from_previous_process(tmp_path, mon
     assert posts.count(commit) == 1
 
 
+@_requires_posix_run_lock
 def test_initialize_skips_pending_session_owned_by_live_same_profile_provider(tmp_path, monkeypatch):
     _clear_openviking_env(monkeypatch)
     monkeypatch.setenv("OPENVIKING_ENDPOINT", "http://test")
@@ -3587,6 +3607,7 @@ def test_sync_turn_does_not_mark_owned_session_without_advisory_lock(tmp_path, m
     assert not (tmp_path / openviking_module._PENDING_SESSIONS_RELATIVE_DIR).exists()
 
 
+@_requires_posix_run_lock
 def test_initialize_recovers_pending_session_without_blocking_startup(tmp_path, monkeypatch):
     import threading
 

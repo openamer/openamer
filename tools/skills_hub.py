@@ -2700,10 +2700,17 @@ class ClawHubSource(SkillSource):
                             continue
                         try:
                             raw = zf.read(info.filename)
-                            files[name] = raw.decode("utf-8")
-                        except (UnicodeDecodeError, KeyError):
-                            logger.debug("Skipping non-text file in ZIP: %s", name)
+                        except KeyError:
                             continue
+                        try:
+                            files[name] = raw.decode("utf-8")
+                        except UnicodeDecodeError:
+                            # A binary asset (icon, .wav sample, font). Both the bundle
+                            # and bundle_content_hash() accept bytes, so keep it: dropping
+                            # it here silently installed an incomplete skill while the
+                            # fetch reported success.
+                            logger.debug("Keeping binary file in ZIP: %s (%d bytes)", name, len(raw))
+                            files[name] = raw
 
                 return files
 
@@ -3239,7 +3246,7 @@ class OptionalSkillSource(SkillSource):
                 and "__pycache__" not in f.parts
                 and f.suffix != ".pyc"
             ):
-                rel_path = str(f.relative_to(skill_dir))
+                rel_path = f.relative_to(skill_dir).as_posix()
                 try:
                     files[rel_path] = f.read_bytes()
                 except OSError:
@@ -3576,7 +3583,12 @@ def quarantine_bundle(bundle: SkillBundle) -> Path:
         if isinstance(file_content, bytes):
             file_dest.write_bytes(file_content)
         else:
-            file_dest.write_text(file_content, encoding="utf-8")
+            # newline="" disables newline translation: text mode with the default
+            # rewrites every LF as the host separator (CRLF on Windows), so the
+            # bytes on disk no longer matched bundle_content_hash() and every freshly
+            # installed skill read as modified - permanent update churn that cannot
+            # happen on POSIX.
+            file_dest.write_text(file_content, encoding="utf-8", newline="")
 
     return dest
 

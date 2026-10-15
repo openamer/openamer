@@ -9,6 +9,7 @@ spawning Node or binding ports.
 from __future__ import annotations
 
 import subprocess
+import sys
 from typing import Any, Dict, List, Tuple
 
 import pytest
@@ -16,6 +17,17 @@ import pytest
 from gateway.config import PlatformConfig
 from plugins.platforms.photon import adapter as photon_adapter
 from plugins.platforms.photon.adapter import PhotonAdapter
+
+
+_POSIX_REAPER_ONLY = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "the startup reaper is POSIX-only by design: _reap_stale_sidecar returns "
+        "immediately on win32 because it finds the listener with lsof and verifies "
+        "it with ps. There is nothing on Windows to exercise — and the no-op case "
+        "would pass vacuously."
+    ),
+)
 
 
 def _make_adapter(monkeypatch: pytest.MonkeyPatch) -> PhotonAdapter:
@@ -60,6 +72,7 @@ def _capture_kills(monkeypatch: pytest.MonkeyPatch) -> List[Tuple[int, int]]:
 
 
 @pytest.mark.asyncio
+@_POSIX_REAPER_ONLY
 async def test_reap_noop_when_port_free(monkeypatch: pytest.MonkeyPatch) -> None:
     adapter = _make_adapter(monkeypatch)
 
@@ -75,6 +88,7 @@ async def test_reap_noop_when_port_free(monkeypatch: pytest.MonkeyPatch) -> None
 
 
 @pytest.mark.asyncio
+@_POSIX_REAPER_ONLY
 async def test_reap_kills_verified_orphan(monkeypatch: pytest.MonkeyPatch) -> None:
     adapter = _make_adapter(monkeypatch)
     monkeypatch.setattr(photon_adapter.httpx, "AsyncClient", _ProbeClient)
@@ -90,6 +104,7 @@ async def test_reap_kills_verified_orphan(monkeypatch: pytest.MonkeyPatch) -> No
 
 
 @pytest.mark.asyncio
+@_POSIX_REAPER_ONLY
 async def test_reap_escalates_to_sigkill(monkeypatch: pytest.MonkeyPatch) -> None:
     adapter = _make_adapter(monkeypatch)
     monkeypatch.setattr(photon_adapter.httpx, "AsyncClient", _ProbeClient)
@@ -107,6 +122,7 @@ async def test_reap_escalates_to_sigkill(monkeypatch: pytest.MonkeyPatch) -> Non
 
 
 @pytest.mark.asyncio
+@_POSIX_REAPER_ONLY
 async def test_reap_raises_for_foreign_listener(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:

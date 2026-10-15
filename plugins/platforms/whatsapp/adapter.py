@@ -79,31 +79,50 @@ def _listener_pids_on_port(port: int) -> list:
     return pids
 
 
+# Peer ("foreign") addresses of a local LISTEN socket. netstat renders its state
+# column in the OS display language; these do not.
+_UNSPECIFIED_PEERS = frozenset({"0.0.0.0:0", "[::]:0", "[::1]:0", "*:*"})
+
+
 def _kill_port_process(port: int) -> None:
     """Kill any process *listening* on the given TCP port (a stale bridge)."""
     try:
         if _IS_WINDOWS:
             from openamer_cli._subprocess_compat import windows_hide_flags
 
-            # Use netstat to find the PID bound to this port, then taskkill
+            # Use netstat to find the PID bound to this port, then taskkill.
+            # ``netstat`` writes the console's OEM code page, not UTF-8, so the
+            # decode MUST be lenient: without it subprocess raises
+            # UnicodeDecodeError on a non-UTF-8 locale (any German/French/JP
+            # Windows), the outer ``except Exception: pass`` swallowed it, and
+            # the stale bridge was silently never reaped — the port stayed
+            # occupied and the crash-looping bridge could not rebind.
             result = subprocess.run(
                 ["netstat", "-ano", "-p", "TCP"],
-                capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=5,
+                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=5,
                 creationflags=windows_hide_flags(),
             )
             for line in result.stdout.splitlines():
                 parts = line.split()
-                if len(parts) >= 5 and parts[3] == "LISTENING":
-                    local_addr = parts[1]
-                    if local_addr.endswith(f":{port}"):
-                        try:
-                            subprocess.run(
-                                ["taskkill", "/PID", parts[4], "/F"],
-                                capture_output=True, timeout=5,
-                                creationflags=windows_hide_flags(),
-                            )
-                        except subprocess.SubprocessError:
-                            pass
+                if len(parts) < 5:
+                    continue
+                # The state column comes out in the OS display language — a
+                # German Windows says "ABHÖREN", never "LISTENING" — so matching
+                # that token alone left the stale bridge un-reaped on every
+                # non-English install: the port stayed bound and the
+                # crash-looping bridge could never rebind. Identify a listener by
+                # its wildcard peer address, which is locale-independent.
+                if parts[3].upper() != "LISTENING" and parts[2] not in _UNSPECIFIED_PEERS:
+                    continue
+                if parts[1].endswith(f":{port}"):
+                    try:
+                        subprocess.run(
+                            ["taskkill", "/PID", parts[4], "/F"],
+                            capture_output=True, timeout=5,
+                            creationflags=windows_hide_flags(),
+                        )
+                    except subprocess.SubprocessError:
+                        pass
         else:
             # POSIX: only ever signal a process LISTENING on the port. A client
             # whose connection happens to involve this port number (a browser
@@ -113,8 +132,11 @@ def _kill_port_process(port: int) -> None:
                     os.kill(pid, signal.SIGTERM)
                 except (ProcessLookupError, PermissionError, OSError):
                     pass
-    except Exception:
-        pass
+    except Exception as exc:
+        # Never let a failed cleanup escape — but never hide it either: a
+        # swallowed error here just leaves the port bound, which then looks
+        # like a bridge that refuses to restart.
+        logger.debug("[WhatsApp] kill-port %s failed: %s", port, exc)
 
 
 def _bridge_pid_is_ours(pid: int, session_path: Path, expected_start) -> bool:

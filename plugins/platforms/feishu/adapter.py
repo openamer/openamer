@@ -1460,6 +1460,70 @@ class FeishuAdapter(BasePlatformAdapter):
             logger.error("[Feishu] Failed to connect: %s", exc, exc_info=True)
             return False
 
+    def _wire_plugin_handlers(self, client: Any) -> None:
+        """Wire plugin-registered Feishu event handlers into the dispatcher.
+
+        Plugins call ``ctx.register_feishu_event_handler(event_type, cb)``
+        at register() time; the manager queues them and the adapter
+        wires them into its lark_oapi ``EventDispatcher`` here so the
+        SDK knows about them before the WebSocket starts dispatching
+        events.
+
+        Each callback is wrapped so a misbehaving plugin can't take
+        down the gateway: any exception inside the plugin handler is
+        caught and logged, and the SDK dispatcher still sees a clean
+        return.
+        """
+        try:
+            from openamer_cli.plugins import get_plugin_manager
+            _plugin_handlers = get_plugin_manager().get_feishu_event_handlers()
+        except Exception as e:  # pragma: no cover - defensive
+            logger.warning(
+                "[Feishu] Could not load plugin event handlers: %s", e,
+            )
+            return
+
+        if not _plugin_handlers:
+            return
+
+        if self._event_handler is None:
+            logger.warning(
+                "[Feishu] %d plugin event handler(s) registered but no "
+                "dispatcher available; ignoring", len(_plugin_handlers),
+            )
+            return
+
+        for event_type, cb, plugin_name in _plugin_handlers:
+            def _make_wrapper(callback, pname):
+                async def _wrapped(event):
+                    try:
+                        await callback(event)
+                    except Exception as exc:  # pragma: no cover - defensive
+                        logger.error(
+                            "[Feishu] Plugin '%s' event handler raised: %s",
+                            pname, exc, exc_info=True,
+                        )
+                return _wrapped
+
+            try:
+                register = getattr(self._event_handler, "register_p2_customized_event", None)
+                if register is None:
+                    logger.warning(
+                        "[Feishu] Dispatcher lacks register_p2_customized_event; "
+                        "cannot wire plugin handler for %s", event_type,
+                    )
+                    continue
+                register(event_type, _make_wrapper(cb, plugin_name))
+                logger.debug(
+                    "[Feishu] Wired plugin '%s' event handler: %s",
+                    plugin_name, event_type,
+                )
+            except Exception as exc:  # pragma: no cover - defensive
+                logger.error(
+                    "[Feishu] Failed to wire plugin '%s' handler for %s: %s",
+                    plugin_name, event_type, exc, exc_info=True,
+                )
+
     async def disconnect(self) -> None:
         """Disconnect from Feishu/Lark."""
         self._running = False

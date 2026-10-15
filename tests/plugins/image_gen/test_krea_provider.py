@@ -189,24 +189,25 @@ class TestGenerate:
         assert result["success"] is False
         assert result["error_type"] == "invalid_argument"
 
-    def test_successful_generation(self):
+    def test_successful_generation(self, tmp_path):
         """Happy path: submit → one poll → completed → URL downloaded."""
         from plugins.image_gen.krea import KreaImageGenProvider
 
         submit = _submit_response()
         poll = _poll_response(_completed_job("https://krea.cdn/result.png"))
+        saved = tmp_path / "krea_krea-2-medium_test.png"
 
         with patch("plugins.image_gen.krea.requests.post", return_value=submit) as mock_post, \
              patch("plugins.image_gen.krea.requests.get", return_value=poll) as mock_get, \
              patch(
                  "plugins.image_gen.krea.save_url_image",
-                 return_value=Path("/tmp/krea_krea-2-medium_test.png"),
+                 return_value=saved,
              ) as mock_save, \
              patch("plugins.image_gen.krea.time.sleep"):  # skip real waits
             result = KreaImageGenProvider().generate(prompt="A cinematic lamp")
 
         assert result["success"] is True
-        assert result["image"] == "/tmp/krea_krea-2-medium_test.png"
+        assert result["image"] == str(saved)
         assert result["provider"] == "krea"
         assert result["model"] == "krea-2-medium"
         assert result["aspect_ratio"] == "landscape"

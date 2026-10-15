@@ -81,8 +81,33 @@ def _find_validator_log(home: Path) -> Path:
         "skill-validator-latest.json not found; tried: " + "; ".join(tried))
 
 
+def _looks_like_install_root(cand) -> bool:
+    """The same test ``_resolve_home`` applies to an OPENAMER_HOME candidate."""
+    return cand.exists() and any((cand / m).exists() for m in _HOME_MARKERS)
+
+
+def _optional_validator_log(home: Path):
+    """Locate the validator log, tolerating a home that is not an install.
+
+    The lookup runs at import time, so it must not make the module unimportable where
+    there is no install — a CI runner, a fresh clone, or the 2026-10-13 scratch home that
+    no longer existed. Callers load this module just to see how a home resolves, and they
+    must not need a validator run to have happened.
+
+    A home that *is* an install but has no log is a different case and still raises: a
+    publish run against the wrong tree should stop rather than report a foreign tree's
+    numbers.
+    """
+    try:
+        return _find_validator_log(home)
+    except FileNotFoundError:
+        if _looks_like_install_root(home):
+            raise
+        return None
+
+
 SKILLS_DIR = _resolve_home(Path.home() / "AppData" / "Local" / "openamer") / "skills"
-VALIDATOR_LOG = _find_validator_log(SKILLS_DIR.parent)
+VALIDATOR_LOG = _optional_validator_log(SKILLS_DIR.parent)
 AUTOpatch_JSON = REPO / "reports" / "darwin-autopatch.json"
 TRENDS_MD = REPO / "reports" / "trend-scout-latest.md"
 OUT_STATIC = REPO / "website" / "static" / "darwin" / "darwin-status.json"
@@ -91,6 +116,10 @@ TOP_N = 10
 
 
 def validator_stats() -> tuple[int, float, list[dict]]:
+    if VALIDATOR_LOG is None:
+        # No install and no validator run anywhere: report an empty population instead
+        # of failing the status page — the same shape the empty-rows branch produces.
+        return 0, 0.0, []
     data = json.loads(VALIDATOR_LOG.read_text(encoding="utf-8"))
     rows = data.get("skill_results", [])
     n = len(rows)

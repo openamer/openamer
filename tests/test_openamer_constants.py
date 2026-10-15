@@ -36,7 +36,14 @@ class TestGetDefaultOpenAmerRoot:
     def test_no_openamer_home_returns_native(self, tmp_path, monkeypatch):
         """When OPENAMER_HOME is not set, returns ~/.openamer."""
         monkeypatch.delenv("OPENAMER_HOME", raising=False)
-        monkeypatch.setattr(Path, "home", lambda: tmp_path)
+        # The native default does not go through Path.home() on Windows: it is
+        # %LOCALAPPDATA%\openamer, so patching home left the real default in
+        # place and the assertion compared two unrelated paths. Pin the seam
+        # instead — this test is about the env/profile logic above it.
+        monkeypatch.setattr(
+            "openamer_constants._get_platform_default_openamer_home",
+            lambda: tmp_path / ".openamer",
+        )
 
         assert get_default_openamer_root() == tmp_path / ".openamer"
 
@@ -134,7 +141,12 @@ class TestGetProcessOpenAmerHome:
 
     def test_env_unset_returns_platform_default(self, tmp_path, monkeypatch):
         monkeypatch.delenv("OPENAMER_HOME", raising=False)
-        monkeypatch.setattr(Path, "home", lambda: tmp_path)
+        # See test_no_openamer_home_returns_native: on Windows the native default
+        # is %LOCALAPPDATA%\openamer, not Path.home()/.openamer.
+        monkeypatch.setattr(
+            "openamer_constants._get_platform_default_openamer_home",
+            lambda: tmp_path / ".openamer",
+        )
         assert get_process_openamer_home() == tmp_path / ".openamer"
 
     def test_ignores_context_local_override(self, tmp_path, monkeypatch):

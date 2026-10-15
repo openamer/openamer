@@ -667,7 +667,7 @@ def scan_skill(skill_path: Path, source: str = "community") -> ScanResult:
         # Pattern scanning on each file
         for f in skill_path.rglob("*"):
             if f.is_file():
-                rel = str(f.relative_to(skill_path))
+                rel = f.relative_to(skill_path).as_posix()
                 if ignore(rel):
                     continue
                 all_findings.extend(scan_file(f, rel))
@@ -692,11 +692,20 @@ def _content_digest(skill_path: Path) -> str:
     """Canonical SHA-256 over relative paths and exact file bytes."""
     h = hashlib.sha256()
     if skill_path.is_dir():
-        for file_path in sorted(skill_path.rglob("*")):
-            if file_path.is_file():
-                rel = file_path.relative_to(skill_path).as_posix()
-                h.update(rel.encode("utf-8") + b"\x00")
-                h.update(file_path.read_bytes())
+        # Iterate in the order bundle_content_hash() uses: sorted by the POSIX
+        # relative path. Sorting the pathlib objects instead folds case on Windows
+        # (WindowsPath.__lt__ is case-insensitive), so "scripts/run.sh" came before
+        # "SKILL.md" and the two digests disagreed for identical content — the
+        # documented symmetry between the on-disk and in-memory hashes only held on
+        # POSIX.
+        entries = sorted(
+            (p.relative_to(skill_path).as_posix(), p)
+            for p in skill_path.rglob("*")
+            if p.is_file()
+        )
+        for rel, file_path in entries:
+            h.update(rel.encode("utf-8") + b"\x00")
+            h.update(file_path.read_bytes())
     else:
         h.update(skill_path.read_bytes())
     return h.hexdigest()
@@ -888,7 +897,7 @@ def _check_structure(skill_dir: Path, ignore=None) -> List[Finding]:
         if not f.is_file() and not f.is_symlink():
             continue
 
-        rel = str(f.relative_to(skill_dir))
+        rel = f.relative_to(skill_dir).as_posix()
         if ignore(rel):
             continue
         file_count += 1

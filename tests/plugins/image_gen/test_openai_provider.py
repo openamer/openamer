@@ -290,7 +290,7 @@ class TestGenerate:
         assert result["success"] is False
         assert result["error_type"] == "empty_response"
 
-    def test_url_response_is_cached_locally(self, provider):
+    def test_url_response_is_cached_locally(self, provider, tmp_path):
         """OpenAI URL response (if API ever returns one) is cached locally.
 
         Pre-fix this asserted the bare URL passed through; symmetric to the
@@ -302,15 +302,19 @@ class TestGenerate:
         fake_client.images.generate.return_value = _fake_response(
             b64=None, url="https://example.com/img.png",
         )
+        saved = tmp_path / "openai_gpt-image-2_20260524_000000_deadbeef.png"
 
         with _patched_openai(fake_client), patch(
             "plugins.image_gen.openai.save_url_image",
-            return_value=Path("/tmp/openai_gpt-image-2_20260524_000000_deadbeef.png"),
+            return_value=saved,
         ) as mock_save_url:
             result = provider.generate("a cat")
 
         assert result["success"] is True
-        assert result["image"].startswith("/")
+        # Assert the contract — a stable absolute file path — rather than the
+        # POSIX shape of it: the provider renders str(Path(...)), which is
+        # backslash-separated on Windows.
+        assert Path(result["image"]).is_absolute(), result["image"]
         assert "example.com" not in result["image"]
         mock_save_url.assert_called_once()
 

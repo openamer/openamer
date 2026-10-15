@@ -499,7 +499,10 @@ def test_cdp_launch_command_has_debug_flags():
     cmd = cdp.launch_command("/usr/bin/chrome", port=9333, profile=Path("/tmp/prof"))
     assert cmd[0] == "/usr/bin/chrome"
     assert "--remote-debugging-port=9333" in cmd
-    assert "--user-data-dir=/tmp/prof" in cmd
+    # The profile is rendered with the host's native separators, so compare
+    # against the same str(Path(...)) the product produces rather than a
+    # hard-coded POSIX form (which fails on Windows).
+    assert f"--user-data-dir={Path('/tmp/prof')}" in cmd
     assert "--no-first-run" in cmd
 
 
@@ -535,7 +538,9 @@ def test_cdp_endpoint_status_parses_live_and_handles_down():
 
 
 def test_cdp_find_browser_override():
-    assert cdp.find_browser("/bin/sh") == "/bin/sh"                       # explicit path that exists
+    # Use a path that exists on the host platform (an override must resolve).
+    existing = shutil.which("sh") or sys.executable
+    assert cdp.find_browser(existing) == existing                  # explicit path that exists
     assert cdp.find_browser("definitely-not-a-real-browser-xyz") is None  # bogus -> None (no crash)
 
 

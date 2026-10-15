@@ -175,4 +175,16 @@ class TestApiServerAdapterToolset:
             mock_agent_cls.assert_called_once()
             call_kwargs = mock_agent_cls.call_args
             toolsets = call_kwargs.kwargs.get("enabled_toolsets")
-            assert sorted(toolsets) == ["terminal", "web"]
+            # The override governs the *configurable* toolsets. Non-configurable
+            # toolsets — the bundled `asi` recovery set, plugin toolsets such as
+            # `vitals` — are re-added by _get_platform_tools() by design, so bind
+            # that contract rather than the resolved list: the user's selection is
+            # honored exactly and the platform's own defaults are gone. Freezing
+            # the full sorted() list made this fail on any install that ships a
+            # plugin or the ASI core tools.
+            from openamer_cli.tools_config import CONFIGURABLE_TOOLSETS
+
+            configurable = {key for key, _, _ in CONFIGURABLE_TOOLSETS}
+            assert sorted(t for t in toolsets if t in configurable) == ["terminal", "web"]
+            assert "memory" not in toolsets
+            assert "cronjob" not in toolsets

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import io
 import json
+import os
 from contextlib import redirect_stdout
 from pathlib import Path
 from types import SimpleNamespace
@@ -87,9 +88,16 @@ class TestHooksTest:
         scripts tested with `openamer hooks test` saw different top-level
         keys than at runtime, silently breaking in production."""
         capture = tmp_path / "captured.json"
+        # The capture path is interpolated into a bash script, so hand it over as a
+        # POSIX path: an unquoted "C:\Users\..." there loses every backslash, which is
+        # measurable — bash then creates a drive-relative file named
+        # "C:UsersdamirAppData...captured.json" in the CWD and the test reads a path
+        # nobody wrote.
         script = _hook_script(
             tmp_path,
-            f"#!/usr/bin/env bash\ncat - > {capture}\nprintf '{{}}\\n'\n",
+            "#!/usr/bin/env bash\n"
+            f'cat - > "{capture.as_posix()}"\n'
+            "printf '{}\n'\n",
         )
         cfg = {"hooks": {"subagent_stop": [{"command": str(script)}]}}
         with patch("openamer_cli.config.load_config", return_value=cfg):
@@ -185,6 +193,17 @@ class TestHooksRevoke:
 
 
 class TestHooksDoctor:
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "The scenario cannot be constructed on Windows: script_is_executable() "
+            "(agent/shell_hooks.py:1014) documents that os.access(X_OK) there is True for ANY "
+            "existing file, so a hook written without chmod is still runnable — a bare shell "
+            "script works because _spawn routes it through bash, and the honest check is "
+            "'does bash exist', not a permission bit the OS does not have. The doctor therefore "
+            "reports the allowlist issue instead, which is what this test saw."
+        ),
+    )
     def test_flags_missing_exec_bit(self, tmp_path):
         script = tmp_path / "hook.sh"
         script.write_text("#!/usr/bin/env bash\nprintf '{}\\n'\n")

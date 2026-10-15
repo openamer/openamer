@@ -531,9 +531,14 @@ def _command_line_belongs_to_profile(command: str, profile_home: Path) -> bool:
     explicit ``OPENAMER_HOME=<path>``) on its argv; the default/root gateway runs
     bare with no profile flag.
     """
-    command_lc = command.lower()
+    # A recorded argv is opaque text: it may render the same home with either
+    # separator (``OPENAMER_HOME=/opt/data/profiles/coder`` reaching a Windows
+    # host, or a native ``C:\...`` home compared against a POSIX-style entry in
+    # a container). Fold both sides to one style, or the comparison misses and a
+    # live gateway reads as dead.
+    command_lc = command.replace("\\", "/").lower()
     profile_name = _profile_name_for_home(profile_home)
-    home_lc = str(profile_home).lower()
+    home_lc = str(profile_home).replace("\\", "/").lower()
 
     if profile_name is not None and profile_name != "default":
         profile_lc = profile_name.lower()

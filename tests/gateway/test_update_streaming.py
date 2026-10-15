@@ -9,6 +9,7 @@ Tests the new --gateway mode for openamer update, including:
 
 import json
 import os
+import sys
 import time
 import asyncio
 from unittest.mock import patch, MagicMock, AsyncMock
@@ -235,9 +236,17 @@ class TestUpdateCommandGatewayFlag:
         call_args = mock_popen.call_args[0][0]
         cmd_string = call_args[-1] if isinstance(call_args, list) else str(call_args)
         assert "--gateway" in cmd_string
-        assert "PYTHONUNBUFFERED" in cmd_string
-        assert "rc=$?" in cmd_string
-        assert "status=$?" not in cmd_string
+        if sys.platform == "win32":
+            # Windows does not prefix a shell command: it spawns the detached helper
+            # ("<python> -c <helper> <out> <rc> <cmd...>") and sets PYTHONUNBUFFERED in
+            # that child's env dict, so the flag is legitimately absent from the argv.
+            # Assert what this platform actually guarantees.
+            assert call_args[0] == sys.executable
+            assert "PYTHONUNBUFFERED" in call_args[2]
+        else:
+            assert "PYTHONUNBUFFERED" in cmd_string
+            assert "rc=$?" in cmd_string
+            assert "status=$?" not in cmd_string
         assert "stream progress" in result
 
 

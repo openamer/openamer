@@ -4,6 +4,8 @@ import sys
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock, patch
 
+import pytest
+
 
 from tools.mcp_tool import MCPServerTask, _format_connect_error, _resolve_stdio_command, _MCP_AVAILABLE
 
@@ -92,6 +94,16 @@ def test_format_connect_error_unwraps_exception_group():
     assert "missing executable 'node'" in message
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "The parent-death watchdog is POSIX-only: _wrap_command_with_watchdog returns the "
+        "command unchanged when os.name != 'posix' (tools/mcp_tool.py:703, 'Relies on process "
+        "groups (os.getpgid/os.killpg); no POSIX equivalent wired up here yet'). On Windows the "
+        "resolved command reaches StdioServerParameters directly, so the watchdog wrapping this "
+        "test asserts cannot be observed."
+    ),
+)
 def test_run_stdio_uses_resolved_command_and_prepended_path(tmp_path):
     node_bin = tmp_path / "node" / "bin"
     node_bin.mkdir(parents=True)

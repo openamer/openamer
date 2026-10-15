@@ -17,6 +17,20 @@ from pathlib import Path
 import openamer_constants
 
 
+def _set_real_home(monkeypatch, path: Path) -> None:
+    """Point the subprocess HOME at *path* on any platform.
+
+    The product resolves the real home through Path.home()/expanduser, which
+    reads USERPROFILE on Windows and HOME on POSIX. A test that only sets HOME
+    leaves the child looking at the developer's own profile. OPENAMER_REAL_HOME
+    is checked first and the desktop shell exports it, so drop the ambient value
+    too — otherwise every assertion here compares against the developer's home.
+    """
+    monkeypatch.delenv("OPENAMER_REAL_HOME", raising=False)
+    monkeypatch.setenv("HOME", str(path))
+    monkeypatch.setenv("USERPROFILE", str(path))
+
+
 
 # ---------------------------------------------------------------------------
 # get_subprocess_home()
@@ -55,7 +69,7 @@ class TestGetSubprocessHome:
         openamer_home = real_home / ".openamer" / "profiles" / "coder"
         profile_home = openamer_home / "home"
         profile_home.mkdir(parents=True)
-        monkeypatch.setenv("HOME", str(real_home))
+        _set_real_home(monkeypatch, real_home)
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         from openamer_constants import get_subprocess_home
         assert get_subprocess_home() is None
@@ -129,8 +143,8 @@ class TestGetSubprocessHome:
         assert home_a is not None
         assert home_b is not None
         assert home_a != home_b
-        assert home_a.endswith("alpha/home")
-        assert home_b.endswith("beta/home")
+        assert Path(home_a).parts[-2:] == ("alpha", "home")
+        assert Path(home_b).parts[-2:] == ("beta", "home")
 
     def test_context_override_is_thread_local(self, tmp_path, monkeypatch):
         root = tmp_path / "root"
@@ -186,7 +200,7 @@ class TestMakeRunEnvHomeInjection:
         real_home.mkdir()
         monkeypatch.setattr(openamer_constants, "is_container", lambda: False)
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-        monkeypatch.setenv("HOME", str(real_home))
+        _set_real_home(monkeypatch, real_home)
         monkeypatch.setenv("PATH", "/usr/bin:/bin")
 
         from tools.environments.local import _make_run_env
@@ -204,7 +218,7 @@ class TestMakeRunEnvHomeInjection:
         monkeypatch.setattr(openamer_constants, "is_container", lambda: False)
         monkeypatch.setenv("TERMINAL_HOME_MODE", "profile")
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-        monkeypatch.setenv("HOME", str(real_home))
+        _set_real_home(monkeypatch, real_home)
         monkeypatch.setenv("PATH", "/usr/bin:/bin")
 
         from tools.environments.local import _make_run_env
@@ -275,6 +289,9 @@ class TestSanitizeSubprocessEnvHomeInjection:
         real_home.mkdir()
         monkeypatch.setattr(openamer_constants, "is_container", lambda: False)
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+        # See _set_real_home: the desktop shell exports the developer's own
+        # OPENAMER_REAL_HOME, and it is the first candidate the product trusts.
+        monkeypatch.delenv("OPENAMER_REAL_HOME", raising=False)
 
         base_env = {"HOME": str(real_home), "PATH": "/usr/bin", "USER": "root"}
         from tools.environments.local import _sanitize_subprocess_env
@@ -292,6 +309,9 @@ class TestSanitizeSubprocessEnvHomeInjection:
         monkeypatch.setattr(openamer_constants, "is_container", lambda: False)
         monkeypatch.setenv("TERMINAL_HOME_MODE", "profile")
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+        # See _set_real_home: the desktop shell exports the developer's own
+        # OPENAMER_REAL_HOME, and it is the first candidate the product trusts.
+        monkeypatch.delenv("OPENAMER_REAL_HOME", raising=False)
 
         base_env = {"HOME": str(real_home), "PATH": "/usr/bin", "USER": "root"}
         from tools.environments.local import _sanitize_subprocess_env

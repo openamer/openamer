@@ -140,6 +140,12 @@ class TestBuildRelaunchArgv:
 
 class TestRelaunch:
     def test_calls_execvp(self, monkeypatch):
+        if sys.platform == "win32":
+            # Windows deliberately does not execvp — see the sibling test
+            # test_windows_uses_subprocess_not_execvp: CreateProcess cannot
+            # replace the running image, so the relaunch goes through
+            # subprocess. The execvp surface only exists on POSIX.
+            pytest.skip("os.execvp is the POSIX relaunch path")
         calls = []
 
         def fake_execvp(path, argv):

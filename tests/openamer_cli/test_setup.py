@@ -1,11 +1,28 @@
 """Tests for setup.py configuration flows."""
+import importlib.util
 import sys
 import types
 
+import pytest
 
 from openamer_cli.config import load_config, save_config
 from openamer_cli import setup as setup_mod
 from openamer_cli.setup import setup_model_provider
+
+# setup_gateway() builds its checklist from the platforms that actually registered, and
+# a platform plugin only registers when its SDK is importable. The Matrix plugin needs
+# nio, so without it the Matrix entry is legitimately absent from _all_platforms(), the
+# pre-selection is empty, and setup_gateway() reports "No platforms selected" instead of
+# the configured-path guidance these two tests assert.
+_matrix_sdk_missing = importlib.util.find_spec("nio") is None
+_requires_matrix_sdk = pytest.mark.skipif(
+    _matrix_sdk_missing,
+    reason=(
+        "The Matrix platform plugin does not register without its nio SDK "
+        "(plugins/platforms/matrix), so no platform is pre-selected and the "
+        "configured-platform guidance has nothing to print"
+    ),
+)
 
 
 def _maybe_keep_current_tts(question, choices):
@@ -141,6 +158,7 @@ def test_setup_custom_providers_synced(tmp_path, monkeypatch):
     assert reloaded.get("custom_providers") == [{"name": "Local", "base_url": "http://localhost:8080/v1"}]
 
 
+@_requires_matrix_sdk
 def test_setup_gateway_skips_service_install_when_systemctl_missing(monkeypatch, capsys):
     env = {
         "TELEGRAM_BOT_TOKEN": "",
@@ -185,6 +203,7 @@ def test_setup_gateway_skips_service_install_when_systemctl_missing(monkeypatch,
     assert "openamer gateway" in out
 
 
+@_requires_matrix_sdk
 def test_setup_gateway_in_container_shows_docker_guidance(monkeypatch, capsys):
     """setup_gateway() in a Docker container shows Docker-specific restart instructions."""
     env = {

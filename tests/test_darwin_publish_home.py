@@ -65,6 +65,33 @@ def _install(root: Path, *, log: bool = True, markers: tuple[str, ...] = ()) -> 
     return root
 
 
+def _machine_install_log():
+    """The validator log of a REAL install on this machine, if there is one.
+
+    Deliberately reads the ambient environment, because two tests below pin that a bad
+    OPENAMER_HOME falls back to the machine's OWN install and that its log still resolves.
+    Where no install exists — a CI runner, a fresh clone — there is nothing to fall back to,
+    so their subject is absent rather than the behaviour different.
+    """
+    local = Path.home() / "AppData" / "Local"
+    for name in ("openamer-laptop", "openamer"):
+        log = local / name / "logs" / "skill-validator-latest.json"
+        if log.is_file():
+            return log
+    return None
+
+
+_requires_machine_install = pytest.mark.skipif(
+    _machine_install_log() is None,
+    reason=(
+        "needs a real install on this machine to fall back to: no "
+        "~/AppData/Local/openamer[-laptop]/logs/skill-validator-latest.json exists here, "
+        "so the fallback these tests assert has no target"
+    ),
+)
+
+
+@_requires_machine_install
 def test_missing_scratch_home_does_not_break_the_daily_run(tmp_path, monkeypatch):
     """The exact live shape: a home that does NOT exist must not be adopted."""
     gone = tmp_path / "Temp" / "rt_test" / "home"          # never created
@@ -76,6 +103,7 @@ def test_missing_scratch_home_does_not_break_the_daily_run(tmp_path, monkeypatch
         f"no validator log resolved; got {mod.VALIDATOR_LOG}")
 
 
+@_requires_machine_install
 def test_existing_scratch_home_is_not_adopted(tmp_path, monkeypatch):
     """A dir that EXISTS but carries no install markers falls back."""
     scratch = tmp_path / "oa-home"

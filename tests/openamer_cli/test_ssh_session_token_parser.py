@@ -1,11 +1,60 @@
 import argparse
 import os
+import subprocess
+import sys
 
 import pytest
+
 from openamer_constants import set_openamer_home_override, reset_openamer_home_override
 
 from openamer_cli.main import _read_ssh_session_token_file, cmd_dashboard
 from openamer_cli.subcommands.dashboard import build_dashboard_parser
+
+
+def _harden_token_file(path) -> None:
+    """Restrict *path* to its owner, the way 0o600 does on POSIX.
+
+    chmod(0o600) is a no-op on Windows — there is no mode bit to set — so the file kept
+    the inheritable ACEs of %TEMP% (Users, Administrators, SYSTEM), and the product's
+    hardening check refused it: "permissive DACL"
+    (openamer_cli/windows_ssh_runtime.py:129). That refusal is correct; the precondition,
+    not the check, is what this fixture failed to establish. icacls is not enough either:
+    measured, "/inheritance:r /grant:r <user>:F" still leaves Administrators and OWNER
+    RIGHTS ACEs, neither of which is in _allowed_sids(). Build the DACL explicitly with
+    exactly the owner and SYSTEM, and protect it against inheritance.
+    """
+    if sys.platform == "win32":
+        import ntsecuritycon
+        import win32api
+        import win32security
+
+        token = win32security.OpenProcessToken(
+            win32api.GetCurrentProcess(), win32security.TOKEN_QUERY
+        )
+        user_sid = win32security.GetTokenInformation(token, win32security.TokenUser)[0]
+        system_sid = win32security.CreateWellKnownSid(
+            win32security.WinLocalSystemSid, None
+        )
+        dacl = win32security.ACL()
+        dacl.AddAccessAllowedAce(
+            win32security.ACL_REVISION, ntsecuritycon.FILE_ALL_ACCESS, user_sid
+        )
+        dacl.AddAccessAllowedAce(
+            win32security.ACL_REVISION, ntsecuritycon.FILE_ALL_ACCESS, system_sid
+        )
+        descriptor = win32security.SECURITY_DESCRIPTOR()
+        descriptor.SetSecurityDescriptorOwner(user_sid, 0)
+        descriptor.SetSecurityDescriptorDacl(1, dacl, 0)
+        descriptor.SetSecurityDescriptorControl(
+            win32security.SE_DACL_PROTECTED, win32security.SE_DACL_PROTECTED
+        )
+        win32security.SetFileSecurity(
+            str(path),
+            win32security.DACL_SECURITY_INFORMATION
+            | win32security.OWNER_SECURITY_INFORMATION,
+            descriptor,
+        )
+    os.chmod(str(path), 0o600)
 
 
 def dashboard_parser():
@@ -49,7 +98,7 @@ def test_token_file_is_read_and_unlinked_through_private_directory(tmp_path, mon
     token_dir.mkdir(parents=True, mode=0o700)
     token_path = token_dir / "0123456789abcdef.token"
     token_path.write_text("b" * 64)
-    token_path.chmod(0o600)
+    _harden_token_file(token_path)
     override = set_openamer_home_override(openamer_home)
     try:
         assert _read_ssh_session_token_file(str(token_path)) == "b" * 64
@@ -65,7 +114,7 @@ def test_token_file_rejects_symlink(tmp_path, monkeypatch):
     token_dir.mkdir(parents=True, mode=0o700)
     target = tmp_path / "token"
     target.write_text("b" * 64)
-    target.chmod(0o600)
+    _harden_token_file(target)
     token_path = token_dir / "0123456789abcdef.token"
     token_path.symlink_to(target)
     override = set_openamer_home_override(home / ".openamer")
@@ -84,7 +133,7 @@ def test_token_file_rejects_parent_escape(tmp_path, monkeypatch):
     token_root.mkdir(parents=True, mode=0o700)
     escaped = token_root.parent / "0123456789abcdef.token"
     escaped.write_text("b" * 64)
-    escaped.chmod(0o600)
+    _harden_token_file(escaped)
     override = set_openamer_home_override(home / ".openamer")
     try:
         with pytest.raises(SystemExit, match="invalid runtime path"):

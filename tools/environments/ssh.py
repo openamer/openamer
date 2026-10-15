@@ -3,6 +3,7 @@
 import hashlib
 import logging
 import os
+import posixpath
 import shlex
 import shutil
 import subprocess
@@ -158,7 +159,10 @@ class SSHEnvironment(BaseEnvironment):
 
     def _scp_upload(self, host_path: str, remote_path: str) -> None:
         """Upload a single file via scp over ControlMaster."""
-        parent = str(Path(remote_path).parent)
+        # Remote path: POSIX semantics, not the host's — Path().parent yields a
+        # backslash-prefixed dir on Windows and the mkdir then created a path the
+        # scp target never used.
+        parent = posixpath.dirname(remote_path)
         mkdir_cmd = self._build_ssh_command()
         mkdir_cmd.append(f"mkdir -p {shlex.quote(parent)}")
         subprocess.run(

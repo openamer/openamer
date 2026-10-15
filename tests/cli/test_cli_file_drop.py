@@ -212,6 +212,11 @@ class TestEscapedSpaces:
         img.parent.mkdir(parents=True, exist_ok=True)
         img.write_bytes(b"\x89PNG\r\n\x1a\n")
         monkeypatch.setenv("HOME", str(home))
+        # ``os.path.expanduser`` only consults HOME on POSIX: Windows reads
+        # USERPROFILE (falling back to HOMEDRIVE+HOMEPATH), so setting HOME alone
+        # leaves the expansion pointing at the real user profile and the file
+        # under the temp home is never found.
+        monkeypatch.setenv("USERPROFILE", str(home))
 
         result = _detect_file_drop("~/storage/shared/Pictures/cat.png what is this?")
 

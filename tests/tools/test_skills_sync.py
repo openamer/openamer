@@ -172,7 +172,9 @@ class TestComputeRelativeDest:
         bundled = Path("/repo/skills")
         skill_dir = Path("/repo/skills/mlops/axolotl")
         dest = _compute_relative_dest(skill_dir, bundled)
-        assert str(dest).endswith("mlops/axolotl")
+        # Compare path components: dest is a HOST path, so it is natively separated
+        # on Windows and a POSIX-shaped suffix can never match.
+        assert Path(dest).parts[-2:] == ("mlops", "axolotl")
 
     def test_flat_skill(self):
         bundled = Path("/repo/skills")

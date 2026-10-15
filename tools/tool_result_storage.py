@@ -25,6 +25,7 @@ Defense against context-window overflow operates at three levels:
 import hashlib
 import logging
 import os
+import posixpath
 import re
 import shlex
 import uuid
@@ -110,7 +111,10 @@ def _write_to_sandbox(content: str, remote_path: str, env) -> bool:
     existing API-body sized limit, which is orders of magnitude larger than
     the exec-arg ceiling.
     """
-    storage_dir = os.path.dirname(remote_path)
+    # remote_path lives in the sandbox, so its parent must be derived with POSIX
+    # semantics: os.path.dirname yields the host separator on Windows and the
+    # mkdir would create a directory the redirect never writes to.
+    storage_dir = posixpath.dirname(remote_path)
     cmd = f"mkdir -p {shlex.quote(storage_dir)} && cat > {shlex.quote(remote_path)}"
     result = env.execute(cmd, timeout=30, stdin_data=content)
     return result.get("returncode", 1) == 0

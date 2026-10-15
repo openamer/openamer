@@ -18,6 +18,7 @@ from __future__ import annotations
 import re
 import stat
 import subprocess
+import sys
 from pathlib import Path
 
 
@@ -28,7 +29,7 @@ INSTALL_SH = REPO_ROOT / "scripts" / "install.sh"
 
 def _extract_setup_path_shim_block() -> str:
     """Return the install.sh shim-write block used by setup_path()."""
-    text = INSTALL_SH.read_text()
+    text = INSTALL_SH.read_text(encoding="utf-8")
     match = re.search(
         r"(?P<block>mkdir -p \"\$command_link_dir\".*?chmod \+x \"\$command_link_dir/openamer\")",
         text,
@@ -90,7 +91,16 @@ def test_re_running_setup_path_block_preserves_pip_entry_point(tmp_path: Path) -
 
     block = _extract_setup_path_shim_block()
     # Drive the block with the real env vars setup_path() sets.
-    script = f'set -e\nOPENAMER_BIN={pip_entry!s}\ncommand_link_dir={command_link_dir!s}\n{block}\n'
+    # Both values go into a bash script, so hand them over in a form bash can read.
+    # An unquoted "C:\Users\..." assignment eats every backslash (measured: it became
+    # "C:Usersdamirlocal_bin"), so the block created its shim inside a bogus relative
+    # directory and the real path kept the old symlink — which read as a product bug.
+    script = (
+        "set -e\n"
+        f'OPENAMER_BIN="{pip_entry.as_posix()}"\n'
+        f'command_link_dir="{command_link_dir.as_posix()}"\n'
+        f"{block}\n"
+    )
     result = subprocess.run(
         ["bash", "-c", script],
         capture_output=True,
@@ -117,6 +127,10 @@ def test_re_running_setup_path_block_preserves_pip_entry_point(tmp_path: Path) -
     shim_text = shim_path.read_text()
     assert "unset PYTHONPATH" in shim_text
     assert "unset PYTHONHOME" in shim_text
-    assert f'exec "{pip_entry}"' in shim_text
-    shim_mode = shim_path.stat().st_mode
-    assert shim_mode & stat.S_IXUSR, "shim must be user-executable"
+    assert f'exec "{pip_entry.as_posix()}"' in shim_text
+    if sys.platform != "win32":
+        # Windows has no POSIX mode bits: chmod there only toggles the read-only
+        # attribute, so stat() reports 0o666 and the exec bit is unenforceable on
+        # this platform rather than broken. Everything above and below still runs.
+        shim_mode = shim_path.stat().st_mode
+        assert shim_mode & stat.S_IXUSR, "shim must be user-executable"

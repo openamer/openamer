@@ -55,7 +55,19 @@ def run_validator_json() -> dict:
     # validator prints progress lines before JSON; find first '{'
     idx = out.find("{")
     if idx == -1:
-        raise RuntimeError(f"validator produced no JSON (exit {r.returncode}): {out[:300]}")
+        # ``capture_output=True`` swallows the validator's stderr, so an early
+        # crash (import error under a different interpreter, bad arg, traceback)
+        # surfaces here as an empty stdout and NOTHING else — which is exactly
+        # how this failed on 2026-10-15: reports/darwin-autopatch-last.log held
+        # only "validator produced no JSON (exit 1): " with no cause, and the
+        # autopatch stayed dead until someone ran the validator by hand. Carry
+        # the stderr tail (that is where the traceback lands) into the message.
+        err = (r.stderr or "").strip()
+        raise RuntimeError(
+            f"validator produced no JSON (exit {r.returncode}, "
+            f"stdout {len(out)} chars, stderr {len(err)} chars): "
+            f"stdout[:300]={out[:300]!r} stderr[-800:]={err[-800:]!r}"
+        )
     return json.loads(out[idx:])
 
 

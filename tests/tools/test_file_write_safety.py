@@ -4,6 +4,8 @@ Based on PR #1085 by ismoilh (salvaged).
 """
 
 import os
+import sys
+import unittest
 from pathlib import Path
 
 import pytest
@@ -324,6 +326,7 @@ class TestAtomicWrite:
         assert target.read_text() == "v2 content"
         assert os.stat(target).st_ino != ino_before
 
+    @unittest.skipIf(sys.platform == "win32", "POSIX mode bits are not honored on Windows")
     def test_overwrite_preserves_mode(self, ops, tmp_path: Path):
         target = tmp_path / "perms.txt"
         target.write_text("old")
@@ -332,6 +335,7 @@ class TestAtomicWrite:
         assert res.error is None, res.error
         assert (os.stat(target).st_mode & 0o777) == 0o640
 
+    @unittest.skipIf(sys.platform == "win32", "POSIX directory permission bits are not honored on Windows")
     def test_failed_write_leaves_original_intact(self, ops, tmp_path: Path):
         # A read-only parent directory means the temp file can't be created,
         # so the write fails BEFORE any rename. The original must survive
@@ -363,6 +367,7 @@ class TestAtomicWrite:
         assert res.error is None, res.error
         assert target.read_text(encoding="utf-8") == tricky
 
+    @unittest.skipIf(sys.platform == "win32", "POSIX mode bits are not honored on Windows")
     def test_patch_routes_through_atomic_write(self, ops, tmp_path: Path):
         target = tmp_path / "edit.py"
         target.write_text("a = 1\nb = 2\nc = 3\n")

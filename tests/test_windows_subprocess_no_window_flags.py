@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import subprocess
+import sys
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -1070,8 +1071,11 @@ def test_suppress_platform_ver_console_posix_noop(monkeypatch):
     _subprocess_compat.suppress_platform_ver_console()
 
     assert platform._syscmd_ver is original
-    # win32_ver stays functional (returns empty fields off Windows).
-    assert platform.win32_ver() == ("", "", "", "")
+    if sys.platform != "win32":
+        # win32_ver stays functional off Windows. The empty tuple is a property of a real
+        # POSIX platform, not of the monkeypatched IS_WINDOWS flag, so on Windows it
+        # returns the genuine version — the no-op itself is already asserted above.
+        assert platform.win32_ver() == ("", "", "", "")
 
 
 def test_suppress_platform_ver_console_stubs_syscmd_ver(monkeypatch):

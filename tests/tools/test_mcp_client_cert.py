@@ -15,6 +15,7 @@ Covers:
 from __future__ import annotations
 
 import asyncio
+import os
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -85,11 +86,17 @@ class TestResolveClientCert:
         from tools.mcp_tool import _resolve_client_cert
 
         monkeypatch.setenv("HOME", str(tmp_path))
+        # os.path.expanduser reads USERPROFILE on Windows, never HOME, so the tilde
+        # expanded to the developer's own profile and the pem was never found.
+        monkeypatch.setenv("USERPROFILE", str(tmp_path))
         pem = tmp_path / "client.pem"
         pem.write_text("dummy")
 
         result = _resolve_client_cert("srv", {"client_cert": "~/client.pem"})
-        assert result == str(pem)
+        # Compare as normalised paths, not as strings: expanduser() composes the
+        # Windows form with a forward slash ("C:\\Users\\x/client.pem"), which names
+        # the same file as str(pem). The subject is the tilde expansion itself.
+        assert os.path.normpath(result) == str(pem)
 
     def test_missing_file_raises(self, tmp_path):
         from tools.mcp_tool import _resolve_client_cert

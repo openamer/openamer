@@ -1177,7 +1177,7 @@ class TestCheckForSkillUpdates:
         skill_dir.mkdir()
         (skill_dir / "SKILL.md").write_text("same content")
         (skill_dir / "references").mkdir()
-        (skill_dir / "references" / "checklist.md").write_text("- [ ] security\n")
+        (skill_dir / "references" / "checklist.md").write_text("- [ ] security\n", newline="")
 
         assert bundle_content_hash(bundle) == content_hash(skill_dir)
 
@@ -1240,7 +1240,7 @@ class TestCheckForSkillUpdates:
         skill_dir.mkdir()
         (skill_dir / "SKILL.md").write_bytes(b"# Demo Skill\n")
         (skill_dir / "references").mkdir()
-        (skill_dir / "references" / "checklist.md").write_text("- [ ] security\n")
+        (skill_dir / "references" / "checklist.md").write_text("- [ ] security\n", newline="")
 
         assert bundle_content_hash(bundle) == content_hash(skill_dir)
 
@@ -1863,7 +1863,7 @@ class TestOptionalSkillSourceBinaryAssets:
             wav_bytes
         )
         (skill_dir / "assets" / "neutts-cli" / "samples" / "jo.txt").write_text(
-            "hello\n", encoding="utf-8"
+            "hello\n", encoding="utf-8", newline=""
         )
         pycache_dir = skill_dir / "assets" / "neutts-cli" / "src" / "neutts_cli" / "__pycache__"
         pycache_dir.mkdir(parents=True)

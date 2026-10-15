@@ -156,7 +156,7 @@ class TestGenerate:
         assert result["provider"] == "xai"
         assert result["model"] == "grok-imagine-image"
 
-    def test_successful_url_response(self):
+    def test_successful_url_response(self, tmp_path):
         """xAI URL response is cached locally — #26942 contract.
 
         Pre-fix this asserted ``result["image"] == "<the bare URL>"``, which
@@ -174,16 +174,21 @@ class TestGenerate:
             "data": [{"url": "https://imgen.x.ai/xai-tmp-imgen-test.jpeg"}],
         }
 
+        saved = tmp_path / "xai_grok-imagine-image_20260524_000000_deadbeef.jpg"
+
         with patch("plugins.image_gen.xai.requests.post", return_value=mock_resp), \
              patch(
                  "plugins.image_gen.xai.save_url_image",
-                 return_value=Path("/tmp/xai_grok-imagine-image_20260524_000000_deadbeef.jpg"),
+                 return_value=saved,
              ) as mock_save_url:
             provider = XAIImageGenProvider()
             result = provider.generate(prompt="A cat playing piano")
 
         assert result["success"] is True
-        assert result["image"].startswith("/"), (
+        # The contract is "an absolute file path", not its POSIX spelling: the
+        # provider renders str(Path(...)), which is backslash-separated on
+        # Windows and never starts with "/".
+        assert Path(result["image"]).is_absolute(), (
             f"URL response must be cached to an absolute path, got {result['image']!r}"
         )
         assert "imgen.x.ai" not in result["image"], (

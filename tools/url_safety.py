@@ -274,12 +274,49 @@ def _reset_allow_private_cache() -> None:
     _cached_allow_private = False
 
 
+_NAT64_WELL_KNOWN_PREFIX = ipaddress.IPv6Network("64:ff9b::/96")
+
+
+def _embedded_ipv4(
+    ip: ipaddress.IPv4Address | ipaddress.IPv6Address,
+) -> ipaddress.IPv4Address | None:
+    """Return the IPv4 address *ip* carries, when it carries one.
+
+    Two encodings matter:
+
+    * ``::ffff:0:0/96`` — IPv4-mapped; Python exposes it as ``ipv4_mapped``.
+    * ``64:ff9b::/96`` — the RFC 6052 NAT64 *well-known* prefix. DNS64 hands
+      these out for every A record on an IPv6-only access network, so
+      ``cdn.discordapp.com`` legitimately resolves to e.g.
+      ``64:ff9b::a29f:85e9`` (= 162.159.133.233). Python neither sets
+      ``ipv4_mapped`` for it nor counts the block as public — it lands in
+      ``is_reserved`` — so a plain public CDN resolved to what looked like a
+      private address and every attachment fetch was refused with "Blocked
+      request to private/internal address". Judging the embedded IPv4 keeps
+      the SSRF floor intact (``64:ff9b::7f00:1`` is still 127.0.0.1 →
+      blocked) while un-breaking DNS64 networks.
+
+    The NAT64 local-use prefix (``64:ff9b:1::/48``) is deliberately NOT
+    decoded: RFC 6052 puts the IPv4 at a prefix-length-dependent offset there,
+    and a wrong decode would be an SSRF bypass. It falls through to the
+    conservative reserved-address block instead.
+    """
+    if not isinstance(ip, ipaddress.IPv6Address):
+        return None
+    if ip.ipv4_mapped is not None:
+        return ip.ipv4_mapped
+    if ip in _NAT64_WELL_KNOWN_PREFIX:
+        # A /96 prefix keeps the IPv4 in the trailing 32 bits.
+        return ipaddress.IPv4Address(int(ip) & 0xFFFFFFFF)
+    return None
+
+
 def _is_blocked_ip(ip: ipaddress.IPv4Address | ipaddress.IPv6Address) -> bool:
     """Return True if the IP should be blocked for SSRF protection."""
-    # IPv4-mapped IPv6 addresses (``::ffff:x.x.x.x``) should be checked
-    # by their embedded IPv4 address, not as IPv6
-    if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped is not None:
-        embedded_ip = ip.ipv4_mapped
+    # IPv4-mapped (``::ffff:x.x.x.x``) and NAT64 (``64:ff9b::/96``) IPv6
+    # addresses must be checked by their embedded IPv4 address, not as IPv6.
+    embedded_ip = _embedded_ipv4(ip)
+    if embedded_ip is not None:
         return (embedded_ip.is_private or embedded_ip.is_loopback or
                 embedded_ip.is_link_local or embedded_ip.is_reserved or
                 embedded_ip.is_multicast or embedded_ip.is_unspecified or
@@ -346,8 +383,11 @@ def is_always_blocked_url(url: str) -> bool:
             ip = None
 
         if ip is not None:
-            if ip in _ALWAYS_BLOCKED_IPS or any(
-                ip in net for net in _ALWAYS_BLOCKED_NETWORKS
+            # NAT64/IPv4-mapped forms must be compared by their embedded IPv4,
+            # or `64:ff9b::a9fe:a9fe` (= 169.254.169.254) walks past the floor.
+            floor_ip = _embedded_ipv4(ip) or ip
+            if floor_ip in _ALWAYS_BLOCKED_IPS or any(
+                floor_ip in net for net in _ALWAYS_BLOCKED_NETWORKS
             ):
                 logger.warning(
                     "Blocked request to cloud metadata address "
@@ -375,6 +415,9 @@ def is_always_blocked_url(url: str) -> bool:
             except ValueError:
                 logger.warning("Unparseable IP address %r for hostname %s — skipping address", sockaddr[0], hostname)
                 continue
+            embedded = _embedded_ipv4(resolved)
+            if embedded is not None:
+                resolved = embedded  # type: ignore[assignment]
             if resolved in _ALWAYS_BLOCKED_IPS or any(
                 resolved in net for net in _ALWAYS_BLOCKED_NETWORKS
             ):

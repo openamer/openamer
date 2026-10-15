@@ -290,6 +290,12 @@ class TestProbeBot:
         assert result is None
 
     @patch("plugins.platforms.feishu.adapter.FEISHU_AVAILABLE", False)
+    # The gate probe_bot() actually consults is _load_lark_oapi(), which falls
+    # back to a lazy ``import lark_oapi`` whenever FEISHU_AVAILABLE is False —
+    # so patching FEISHU_AVAILABLE alone still took the SDK path wherever the
+    # SDK is installed, and the HTTP fallback was never exercised. Drive the
+    # real seam; ``new=`` injects no mock argument.
+    @patch("plugins.platforms.feishu.adapter._load_lark_oapi", new=lambda: False)
     @patch("plugins.platforms.feishu.adapter.urlopen")
     def test_http_fallback_when_sdk_unavailable(self, mock_urlopen_fn):
         """Without lark_oapi, probe falls back to raw HTTP."""

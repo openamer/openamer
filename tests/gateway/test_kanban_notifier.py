@@ -216,7 +216,14 @@ def test_notifier_redelivers_same_kind_on_dispatch_cycle(tmp_path, monkeypatch):
 
     # First crash delivered.
     assert len(adapter.sent) == 1
-    assert "crashed" in adapter.sent[0]["text"].lower()
+    # Assert the meaning, not the event name: the crash copy is user-facing
+    # ("its worker stopped unexpectedly; it will be retried automatically") and
+    # the raw `crashed` event kind never reaches the text. Binding the literal
+    # event name made this fail the moment the copy was made human-readable.
+    text = adapter.sent[0]["text"]
+    assert tid in text
+    assert "stopped unexpectedly" in text
+    assert "retried" in text
 
     # Subscription survives — the cursor advanced past event #1, but the
     # row is still there.
@@ -244,7 +251,12 @@ def test_notifier_redelivers_same_kind_on_dispatch_cycle(tmp_path, monkeypatch):
         f"Second crashed event should also notify; got {len(adapter.sent)} "
         f"deliveries (texts: {[d['text'] for d in adapter.sent]})"
     )
-    assert "crashed" in adapter.sent[1]["text"].lower()
+    # Same contract as the first delivery: user-facing crash copy, not the raw
+    # `crashed` event kind (which never reaches the text).
+    second = adapter.sent[1]["text"]
+    assert tid in second
+    assert "stopped unexpectedly" in second
+    assert "retried" in second
 
 
 def test_notifier_owning_profile_adapter_no_default_fallback(tmp_path, monkeypatch):

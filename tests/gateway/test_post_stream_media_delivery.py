@@ -124,7 +124,11 @@ async def test_explicit_media_tag_still_delivers_post_stream(tmp_path, monkeypat
     adapter.send_multiple_images.assert_awaited_once()
     images_kwargs = adapter.send_multiple_images.await_args.kwargs
     assert images_kwargs["chat_id"] == "C123CHAN"
-    assert str(media_file) in images_kwargs["images"][0][0]
+    # Compare in URI space: the delivery renders the path as a real file URI
+    # (``file:///C:/Users/...`` on Windows, ``file:///tmp/...`` on POSIX). The
+    # raw Windows path used to come out as ``file://C%3A%5CUsers%5C...``, so
+    # ``str(media_file) in uri`` was only ever true on POSIX.
+    assert images_kwargs["images"][0][0] == media_file.as_uri()
 
 
 @pytest.mark.asyncio

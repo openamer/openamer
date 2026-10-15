@@ -290,7 +290,10 @@ class TestScanFile:
 
     def test_detect_invisible_unicode(self, tmp_path):
         f = tmp_path / "hidden.md"
-        f.write_text("normal text\u200b with zero-width space\n")
+        # encoding= is not optional here: the default is the LOCALE codec, and a
+        # cp1252 console cannot even encode U+200B, so the fixture died while
+        # writing (UnicodeEncodeError) instead of exercising the scanner.
+        f.write_text("normal text\u200b with zero-width space\n", encoding="utf-8")
         findings = scan_file(f, "hidden.md")
         assert any(fi.pattern_id == "invisible_unicode" for fi in findings)
 

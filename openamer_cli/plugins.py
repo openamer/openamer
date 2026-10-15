@@ -1040,6 +1040,100 @@ class PluginContext:
             action_id,
         )
 
+    # -- feishu event handler registration -------------------------------
+
+    def register_feishu_event_handler(
+        self,
+        event_type: str,
+        callback: Callable,
+    ) -> None:
+        """Register a Feishu/Lark native event handler from a plugin.
+
+        The Feishu adapter wires registered handlers into its
+        lark_oapi ``EventDispatcher`` at connect time (see
+        ``FeishuAdapter._wire_plugin_handlers``). The callback is
+        invoked when the dispatcher receives a matching event type.
+
+        Callback signature follows the lark_oapi convention::
+
+            async def handler(event) -> None:
+                ...
+
+        Args:
+            event_type: The Feishu event type string to match
+                (e.g. ``"message"``, ``"card.action.trigger"``).
+            callback: Async callable receiving the raw event dict.
+
+        Raises:
+            ValueError: if ``callback`` is not callable, or
+                ``event_type`` is empty/None.
+        """
+        if not callable(callback):
+            raise ValueError(
+                f"Plugin '{self.manifest.name}' tried to register a "
+                f"Feishu event handler with a non-callable callback."
+            )
+        if event_type is None or (isinstance(event_type, str) and not event_type.strip()):
+            raise ValueError(
+                f"Plugin '{self.manifest.name}' tried to register a "
+                f"Feishu event handler with an empty event_type."
+            )
+        self._manager._feishu_event_handlers.append(
+            (event_type, callback, self.manifest.name)
+        )
+        logger.debug(
+            "Plugin %s registered Feishu event handler: %s",
+            self.manifest.name,
+            event_type,
+        )
+
+    # -- homeassistant event handler registration ------------------
+
+    def register_homeassistant_event_handler(
+        self,
+        event_type: str,
+        callback: Callable,
+    ) -> None:
+        """Register a Home Assistant raw event handler from a plugin.
+
+        The Home Assistant adapter wires registered handlers into its
+        WebSocket event stream at connect time (see
+        ``HomeAssistantAdapter._wire_plugin_handlers``). The callback
+        is invoked for each raw HA event whose ``event_type`` matches.
+
+        Callback signature::
+
+            async def handler(event) -> None:
+                ...
+
+        Args:
+            event_type: The HA event type string to match
+                (e.g. ``"state_changed"``).
+            callback: Async callable receiving the raw event dict.
+
+        Raises:
+            ValueError: if ``callback`` is not callable, or
+                ``event_type`` is empty/None.
+        """
+        if not callable(callback):
+            raise ValueError(
+                f"Plugin '{self.manifest.name}' tried to register a "
+                f"Home Assistant event handler with a non-callable callback."
+            )
+        if event_type is None or (isinstance(event_type, str) and not event_type.strip()):
+            raise ValueError(
+                f"Plugin '{self.manifest.name}' tried to register a "
+                f"Home Assistant event handler with an empty event_type."
+            )
+        self._manager._homeassistant_event_handlers.append(
+            (event_type, callback, self.manifest.name)
+        )
+        logger.debug(
+            "Plugin %s registered Home Assistant event handler: %s",
+            self.manifest.name,
+            event_type,
+        )
+
     # -- hook registration --------------------------------------------------
 
     # -- auxiliary task registration ---------------------------------------
@@ -1271,6 +1365,14 @@ class PluginManager:
         # ``re.Pattern``, or a constraint dict); ``callback`` is an async
         # function with the slack_bolt signature ``(ack, body, action)``.
         self._slack_action_handlers: List[tuple] = []
+        # Feishu/Lark native event handlers: ``(event_type, callback,
+        # plugin_name)`` tuples. Wired into the adapter's lark_oapi
+        # EventDispatcher at connect time by ``FeishuAdapter._wire_plugin_handlers``.
+        self._feishu_event_handlers: List[tuple] = []
+        # Home Assistant raw event handlers: ``(event_type, callback,
+        # plugin_name)`` tuples. Wired into the adapter's event stream
+        # at connect time by ``HomeAssistantAdapter._wire_plugin_handlers``.
+        self._homeassistant_event_handlers: List[tuple] = []
 
     # -----------------------------------------------------------------------
     # Public
@@ -1300,6 +1402,8 @@ class PluginManager:
             self._plugin_skills.clear()
             self._aux_tasks.clear()
             self._slack_action_handlers.clear()
+            self._feishu_event_handlers.clear()
+            self._homeassistant_event_handlers.clear()
             self._context_engine = None
         # Set the flag up front as a re-entrancy guard (a plugin's register()
         # can transitively trigger discovery again), but reset it if the sweep
@@ -1972,6 +2076,30 @@ class PluginManager:
         :meth:`PluginContext.register_slack_action_handler`.
         """
         return list(self._slack_action_handlers)
+
+    def get_feishu_event_handlers(self) -> List[tuple]:
+        """Return the list of plugin-registered Feishu event handlers.
+
+        Each entry is a ``(event_type, callback, plugin_name)`` tuple.
+        Consumed by the Feishu adapter at connect time to wire callbacks
+        into its lark_oapi ``EventDispatcher``.
+
+        Plugins register handlers via
+        :meth:`PluginContext.register_feishu_event_handler`.
+        """
+        return list(self._feishu_event_handlers)
+
+    def get_homeassistant_event_handlers(self) -> List[tuple]:
+        """Return the list of plugin-registered Home Assistant event handlers.
+
+        Each entry is a ``(event_type, callback, plugin_name)`` tuple.
+        Consumed by the Home Assistant adapter at connect time to wire
+        callbacks into its WebSocket event stream.
+
+        Plugins register handlers via
+        :meth:`PluginContext.register_homeassistant_event_handler`.
+        """
+        return list(self._homeassistant_event_handlers)
 
     # -----------------------------------------------------------------------
     # Introspection
