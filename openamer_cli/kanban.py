@@ -3135,6 +3135,45 @@ Read-only commands are safe while an agent is running.\
 """
 
 
+def _split_slash_args(rest: str) -> list:
+    """Split a ``/kanban`` tail into argv.
+
+    POSIX ``shlex`` treats a backslash as an escape character, so on Windows a
+    path argument lost every separator: ``/kanban attach t_1 C:\\tmp\\a.txt``
+    reached argparse as ``C:tmpa.txt`` and the command answered "no such file".
+    Backslashes are path separators there, never escapes, so quote-aware
+    whitespace splitting keeps them intact. Both quote styles are honoured:
+    cmd.exe only knows double quotes, but the slash-command surface is ours and
+    callers (and the tests) write single-quoted JSON payloads.
+    """
+    if not rest or not rest.strip():
+        return []
+    if os.name != "nt":
+        return shlex.split(rest)
+    tokens: list = []
+    buf: list = []
+    quote = ""
+    for ch in rest:
+        if quote:
+            if ch == quote:
+                quote = ""
+            else:
+                buf.append(ch)
+            continue
+        if ch in {"'", '"'}:
+            quote = ch
+            continue
+        if ch.isspace():
+            if buf:
+                tokens.append("".join(buf))
+                buf = []
+            continue
+        buf.append(ch)
+    if buf:
+        tokens.append("".join(buf))
+    return tokens
+
+
 def run_slash(rest: str) -> str:
     """Execute a ``/kanban …`` string and return captured stdout/stderr.
 
@@ -3145,7 +3184,7 @@ def run_slash(rest: str) -> str:
     import io
     import contextlib
 
-    tokens = shlex.split(rest) if rest and rest.strip() else []
+    tokens = _split_slash_args(rest)
 
     # Bare ``/kanban`` or ``/kanban help`` / ``--help`` / ``-h`` / ``?``:
     # show the curated short-help block instead of dumping argparse's full
