@@ -31,6 +31,22 @@ from plugins.memory.hindsight import (
 )
 
 
+def _pin_user_home(monkeypatch, path) -> None:
+    """Point the user's home at *path* on any platform.
+
+    The provider resolves Hindsight's profile directory through
+    Path.home()/expanduser, which reads USERPROFILE on Windows and HOME on POSIX,
+    so a fixture that only set HOME left the plugin writing into the developer's
+    REAL ~/.hindsight/profiles — measured: that is exactly where the three failing
+    assertions pointed, and the litter left behind carried this fixture's key
+    values. OPENAMER_REAL_HOME is consulted first by the product and is exported by
+    the Desktop shell, so drop the ambient value as well.
+    """
+    monkeypatch.delenv("OPENAMER_REAL_HOME", raising=False)
+    monkeypatch.setenv("HOME", str(path))
+    monkeypatch.setenv("USERPROFILE", str(path))
+
+
 # ---------------------------------------------------------------------------
 # Fixtures
 # ---------------------------------------------------------------------------
@@ -450,7 +466,7 @@ class TestPostSetup:
         openamer_home = tmp_path / "openamer-home"
         user_home = tmp_path / "user-home"
         user_home.mkdir()
-        monkeypatch.setenv("HOME", str(user_home))
+        _pin_user_home(monkeypatch, user_home)
         monkeypatch.setattr("plugins.memory.hindsight.get_openamer_home", lambda: openamer_home)
 
         save_config = MagicMock()
@@ -477,7 +493,7 @@ class TestPostSetup:
         openamer_home = tmp_path / "openamer-home"
         user_home = tmp_path / "user-home"
         user_home.mkdir()
-        monkeypatch.setenv("HOME", str(user_home))
+        _pin_user_home(monkeypatch, user_home)
         monkeypatch.setattr("plugins.memory.hindsight.get_openamer_home", lambda: openamer_home)
 
         selections = iter([1, _CANCELLED])  # local_embedded, then cancel LLM picker
@@ -505,7 +521,7 @@ class TestPostSetup:
         openamer_home = tmp_path / "openamer-home"
         user_home = tmp_path / "user-home"
         user_home.mkdir()
-        monkeypatch.setenv("HOME", str(user_home))
+        _pin_user_home(monkeypatch, user_home)
 
         selections = iter([1, 0])  # local_embedded, openai
         monkeypatch.setattr("openamer_cli.memory_setup._curses_select", lambda *args, **kwargs: next(selections))
@@ -539,7 +555,7 @@ class TestPostSetup:
         openamer_home = tmp_path / "openamer-home"
         user_home = tmp_path / "user-home"
         user_home.mkdir()
-        monkeypatch.setenv("HOME", str(user_home))
+        _pin_user_home(monkeypatch, user_home)
 
         selections = iter([1, 0])  # local_embedded, openai
         monkeypatch.setattr("openamer_cli.memory_setup._curses_select", lambda *args, **kwargs: next(selections))
@@ -562,7 +578,7 @@ class TestPostSetup:
         openamer_home = tmp_path / "openamer-home"
         user_home = tmp_path / "user-home"
         user_home.mkdir()
-        monkeypatch.setenv("HOME", str(user_home))
+        _pin_user_home(monkeypatch, user_home)
 
         selections = iter([1, 0])  # local_embedded, openai
         monkeypatch.setattr("openamer_cli.memory_setup._curses_select", lambda *args, **kwargs: next(selections))
@@ -589,7 +605,7 @@ class TestPostSetup:
         openamer_home = tmp_path / "openamer-home"
         user_home = tmp_path / "user-home"
         user_home.mkdir()
-        monkeypatch.setenv("HOME", str(user_home))
+        _pin_user_home(monkeypatch, user_home)
         monkeypatch.setattr("plugins.memory.hindsight.get_openamer_home", lambda: openamer_home)
 
         existing_config = {
