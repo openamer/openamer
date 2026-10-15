@@ -8,6 +8,7 @@ and resumed on next creation, preserving the filesystem across sessions.
 import logging
 import math
 import os
+import posixpath
 import shlex
 import threading
 from pathlib import Path
@@ -153,7 +154,11 @@ class DaytonaEnvironment(BaseEnvironment):
 
     def _daytona_upload(self, host_path: str, remote_path: str) -> None:
         """Upload a single file via Daytona SDK."""
-        parent = str(Path(remote_path).parent)
+        # The remote side is a POSIX container: Path().parent applies host
+        # semantics and yields a backslash-prefixed path on Windows, so the
+        # mkdir created a directory the upload never used.
+        # file_sync.unique_parent_dirs already uses posixpath for this reason.
+        parent = posixpath.dirname(remote_path)
         self._sandbox.process.exec(quoted_mkdir_command([parent]))
         self._sandbox.fs.upload_file(host_path, remote_path)
 

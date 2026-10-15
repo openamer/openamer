@@ -350,13 +350,21 @@ class FileSyncManager:
         except Exception:
             file_mapping = []
 
-        with tempfile.NamedTemporaryFile(suffix=".tar") as tf:
-            self._bulk_download_fn(Path(tf.name))
+        # mkstemp, with the descriptor closed immediately. A NamedTemporaryFile
+        # keeps an O_TEMPORARY handle open on Windows, and a file opened that way
+        # cannot be reopened by any other handle — the tarfile.open() below then
+        # fails with EACCES and sync_back never lands a single remote file on
+        # Windows. POSIX permits the second open, which is why this only broke
+        # there.
+        tmp_fd, tmp_name = tempfile.mkstemp(suffix=".tar")
+        os.close(tmp_fd)
+        try:
+            self._bulk_download_fn(Path(tmp_name))
 
             # Defensive size cap: a misbehaving sandbox could produce an
             # arbitrarily large tar. Refuse to extract if it exceeds the cap.
             try:
-                tar_size = os.path.getsize(tf.name)
+                tar_size = os.path.getsize(tmp_name)
             except OSError:
                 tar_size = 0
             if tar_size > _SYNC_BACK_MAX_BYTES:
@@ -367,7 +375,7 @@ class FileSyncManager:
                 return
 
             with tempfile.TemporaryDirectory(prefix="openamer-sync-back-") as staging:
-                with tarfile.open(tf.name) as tar:
+                with tarfile.open(tmp_name) as tar:
                     tar.extractall(staging, filter="data")
 
                 applied = 0
@@ -378,7 +386,12 @@ class FileSyncManager:
                     for fname in filenames:
                         staged_file = os.path.join(dirpath, fname)
                         rel = os.path.relpath(staged_file, staging)
-                        remote_path = "/" + rel
+                        # The remote side is a POSIX container, so the host
+                        # separator must never leak into a remote path.
+                        # os.path.relpath() returns backslashes on Windows, which
+                        # made every lookup miss ("no host mapping") and silently
+                        # dropped every remote change.
+                        remote_path = "/" + rel.replace(os.sep, "/")
 
                         pushed_hash = self._pushed_hashes.get(remote_path)
 
@@ -431,6 +444,12 @@ class FileSyncManager:
                 else:
                     logger.debug("sync_back: no remote changes detected")
 
+        finally:
+            try:
+                os.unlink(tmp_name)
+            except OSError:
+                pass
+
     def _resolve_host_path(self, remote_path: str,
                            file_mapping: list[tuple[str, str]] | None = None) -> str | None:
         """Find the host path for a known remote path from the file mapping."""
@@ -457,7 +476,7 @@ class FileSyncManager:
         for host, remote in mapping:
             if self._is_upload_only_host_path(host, upload_only_host_paths):
                 continue
-            remote_dir = str(Path(remote).parent)
+            remote_dir = posixpath.dirname(remote)
             if remote_path.startswith(remote_dir + "/"):
                 host_dir = str(Path(host).parent)
                 suffix = remote_path[len(remote_dir):]
