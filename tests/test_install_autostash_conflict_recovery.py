@@ -11,9 +11,22 @@ from __future__ import annotations
 import os
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
+
+# install.sh deliberately refuses to run its stages under MSYS/MINGW/Cygwin and
+# points at install.ps1 instead — see the CYGWIN*|MINGW*|MSYS*) case at
+# scripts/install.sh:540. The repository stage these tests drive is therefore
+# unreachable on a Windows host, and the refusal is the product working as designed.
+pytestmark = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "install.sh exits 1 with the install.ps1 hint under MSYS/MINGW (scripts/install.sh:540); "
+        "the repository stage is Linux/macOS-only by design, so there is nothing to exercise here"
+    ),
+)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 INSTALL_SH = REPO_ROOT / "scripts" / "install.sh"
