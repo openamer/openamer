@@ -20,6 +20,7 @@ import hashlib
 import hmac
 import json
 import socket
+import sys
 import time
 from collections import deque
 from unittest.mock import AsyncMock, MagicMock, patch
@@ -1657,6 +1658,16 @@ class TestDualStackBind:
             await adapter.disconnect()
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "The precondition cannot be constructed on Windows: the blocker binds [::] with "
+            "the platform's default socket options, and there a second listener may bind the "
+            "same port (SO_REUSEADDR permits sharing, and IPV6_V6ONLY defaults the other way "
+            "than on Linux), so the adapter's default bind succeeds instead of being rejected. "
+            "The rejection this test pins is a POSIX socket-semantics behaviour."
+        ),
+    )
     async def test_default_bind_rejects_existing_ipv6_listener(self):
         """A specific IPv6 listener must block the wildcard dual-stack bind."""
         blocker = await asyncio.start_server(
