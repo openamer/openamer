@@ -71,6 +71,7 @@ new locking.
 from __future__ import annotations
 
 import contextlib
+import errno
 import hashlib
 import json
 import os
@@ -7270,7 +7271,17 @@ def _terminate_reclaimed_worker(
         # misread a dead worker as still-alive and defer forever.
         info["terminated"] = True
         return info
-    except OSError:
+    except OSError as exc:
+        # On Windows os.kill raises OSError with EINVAL / WinError 87
+        # ("invalid parameter") for a PID that no longer exists, where POSIX
+        # would raise ProcessLookupError/ESRCH. Treat that as the same
+        # already-gone case; otherwise the reclaim guard misreads a dead
+        # worker as still-alive and defers the reclaim forever.
+        err = getattr(exc, "errno", None)
+        winerr = getattr(exc, "winerror", None)
+        if err == errno.EINVAL or winerr == 87:
+            info["terminated"] = True
+            return info
         return info
 
     for _ in range(10):

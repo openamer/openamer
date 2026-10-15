@@ -29,6 +29,23 @@ from openamer_cli.kanban import run_slash
 # Fixtures
 # ---------------------------------------------------------------------------
 
+@pytest.fixture(autouse=True)
+def _fast_init_lock(monkeypatch):
+    """Bound the cross-process init-lock wait inside tests.
+
+    Measured 2026-10-13: connects in this file paid the FULL
+    _INIT_LOCK_TIMEOUT_SECONDS (10 s) each -- the thread sat in
+    time.sleep(_INIT_LOCK_POLL_SECONDS) inside kanban_db_connect._cross_process_init_lock
+    (faulthandler dump), so the file could not finish inside the 900 s per-file cap and
+    reported "no verdict" in every sweep. The wait is production behaviour and is correct
+    there; in tests it only burns wall clock. Shrinking it changes no assertion.
+    """
+    from openamer_cli import kanban_db_connect as _kdc
+    monkeypatch.setattr(_kdc, "_INIT_LOCK_TIMEOUT_SECONDS", 0.05)
+    monkeypatch.setattr(_kdc, "_INIT_LOCK_POLL_SECONDS", 0.005)
+    yield
+
+
 @pytest.fixture
 def kanban_home(tmp_path, monkeypatch):
     home = tmp_path / ".openamer"
@@ -3698,6 +3715,11 @@ def test_gateway_dispatcher_disables_corrupt_board_without_traceback(
     from gateway.run import GatewayRunner
     import openamer_cli.config as _cfg_mod
     import openamer_cli.kanban_db as _kb
+    # The dispatcher opens per-board connections through the dedicated
+    # ``kanban_db_connect`` module (``_kbc()``), not ``kanban_db``.
+    # Patch the module the dispatcher actually calls so the connect
+    # counter sees every attempt.
+    import openamer_cli.kanban_db_connect as _kbc_mod
 
     runner = object.__new__(GatewayRunner)
     runner._running = True
@@ -3731,7 +3753,7 @@ def test_gateway_dispatcher_disables_corrupt_board_without_traceback(
     def _connect(*args, **kwargs):
         calls["connect"] += 1
         if corrupt_exc == "guard":
-            raise _kb.KanbanDbCorruptError(
+            raise _kbc_mod.KanbanDbCorruptError(
                 corrupt_db,
                 corrupt_db.with_suffix(".db.corrupt.test.bak"),
                 "sqlite refused to open file: database disk image is malformed",
@@ -3755,7 +3777,7 @@ def test_gateway_dispatcher_disables_corrupt_board_without_traceback(
     async def _sleep(_delay):
         return None
 
-    monkeypatch.setattr(_kb, "connect", _connect)
+    monkeypatch.setattr(_kbc_mod, "connect", _connect)
     monkeypatch.setattr("gateway.run.asyncio.to_thread", _to_thread)
     monkeypatch.setattr("gateway.run.asyncio.sleep", _sleep)
 
@@ -3792,6 +3814,9 @@ def test_gateway_dispatcher_retries_corrupt_board_after_quarantine(
     from gateway.run import GatewayRunner
     import openamer_cli.config as _cfg_mod
     import openamer_cli.kanban_db as _kb
+    # The dispatcher opens per-board connections through the dedicated
+    # ``kanban_db_connect`` module (``_kbc()``), not ``kanban_db``.
+    import openamer_cli.kanban_db_connect as _kbc_mod
 
     runner = object.__new__(GatewayRunner)
     runner._running = True
@@ -3821,31 +3846,79 @@ def test_gateway_dispatcher_retries_corrupt_board_after_quarantine(
     monkeypatch.setattr(_kb, "kanban_db_path", lambda board=None: corrupt_db)
 
     real_monotonic = time.monotonic
-    time_values = iter([1000.0, 1001.0, 1301.0, 1301.0])
+    # State machine: the first corrupt-board detection (tick 1)
+    # stamps the quarantine at t0; every later read must be far
+    # enough ahead that the stale-timeout (default 300s) has
+    # elapsed, so tick 2 lifts the quarantine and retries —
+    # which is what this test asserts. A fixed iterator breaks
+    # whenever the number of monotonic() reads per tick changes
+    # (the dispatcher reads it in more than one place), so
+    # advance the clock on demand instead.
+    clock = {"t": 1000.0, "quarantined": False, "ticks": 0}
 
     def _monotonic_for_gateway_dispatcher():
         caller = inspect.currentframe().f_back  # type: ignore[union-attr]
         code = caller.f_code if caller is not None else None
-        filename = code.co_filename if code is not None else ""
-        # The kanban dispatcher/notifier watcher loops were extracted from
-        # gateway/run.py into gateway/kanban_watchers.py (god-file Phase 3),
-        # so accept either filename for the time-travel mock.
-        if filename.endswith("gateway/run.py") or filename.endswith("gateway/kanban_watchers.py"):
-            return next(time_values, 1301.0)
+        filename = (code.co_filename if code is not None else "").replace("\\", "/")
+        # The kanban dispatcher/notifier watcher loops were extracted
+        # from gateway/run.py into gateway/kanban_watchers.py
+        # (god-file Phase 3) and the per-board tick into
+        # gateway/kanban_watchers_dispatcher.py, so accept any of
+        # those filenames for the time-travel mock.
+        if (
+            filename.endswith("gateway/run.py")
+            or filename.endswith("gateway/kanban_watchers.py")
+            or filename.endswith("gateway/kanban_watchers_dispatcher.py")
+        ):
+            # Tick 1 stamps the quarantine at t0. Tick 2 must
+            # still see the quarantine as fresh (age < stale
+            # timeout) so dispatch stays paused — that is the
+            # "no retry while quarantined" half of the
+            # contract. Tick 3 jumps the clock past the stale
+            # timeout so the quarantine lifts and dispatch
+            # retries, which is the other half. A fixed
+            # iterator breaks whenever the number of
+            # monotonic() reads per tick changes, so drive
+            # the jump off the dispatch-tick counter instead.
+            if clock["ticks"] >= 2:
+                clock["t"] = 1400.0
+            else:
+                clock["t"] = 1000.0
+            return clock["t"]
         return real_monotonic()
 
     monkeypatch.setattr("gateway.run.time.monotonic", _monotonic_for_gateway_dispatcher)
     monkeypatch.setattr("gateway.kanban_watchers.time.monotonic", _monotonic_for_gateway_dispatcher)
+    # The quarantine TTL lives in the extracted dispatcher module,
+    # which reads ``time.monotonic`` from its own globals.
+    monkeypatch.setattr(
+        "gateway.kanban_watchers_dispatcher.time.monotonic",
+        _monotonic_for_gateway_dispatcher,
+    )
 
     calls = {"tick": 0}
 
     def _connect(*args, **kwargs):
+        # The first failed connect is what stamps the
+        # quarantine; from here on the clock mock must jump
+        # past the stale-timeout so the next tick retries.
+        clock["quarantined"] = True
         raise sqlite3.DatabaseError("file is not a database")
 
     async def _to_thread(fn, *args, **kwargs):
+        # ``_to_thread_process_service`` wraps every call in
+        # ``asyncio.to_thread(_run_in_fresh_context, func, ...)``
+        # so the mock's ``fn`` is ``_run_in_fresh_context`` and
+        # the real worker is ``args[0]``. Unwrap to count the
+        # actual dispatched work.
+        worker = args[0] if args else fn
         result = fn(*args, **kwargs)
-        if getattr(fn, "__name__", "") == "_tick_once":
+        # ``dispatcher.tick_once`` is what the watcher offloads per
+        # tick (its bound name is ``tick_once``). Count those so the
+        # loop stops after the third dispatch tick.
+        if getattr(worker, "__name__", "") == "tick_once":
             calls["tick"] += 1
+            clock["ticks"] = calls["tick"]
             if calls["tick"] >= 3:
                 runner._running = False
         return result
@@ -3853,7 +3926,7 @@ def test_gateway_dispatcher_retries_corrupt_board_after_quarantine(
     async def _sleep(_delay):
         return None
 
-    monkeypatch.setattr(_kb, "connect", _connect)
+    monkeypatch.setattr(_kbc_mod, "connect", _connect)
     monkeypatch.setattr("gateway.run.asyncio.to_thread", _to_thread)
     monkeypatch.setattr("gateway.run.asyncio.sleep", _sleep)
 
