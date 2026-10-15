@@ -4778,13 +4778,54 @@ def _is_price_table_row(text):
         return False
     return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
 
+# class 177 markers (live 16.10.26) -- see _is_own_toolserver_status.
+# An `active_learn.py` "Structural connection between ..." cycle stored THIS
+# install's own tool-server health line as the answer to a world-knowledge
+# question -- the class-65/66/170 family (an own artifact echoed straight back
+# as knowledge) with a new face:
+#
+#   "Tool-Server :8081 läuft (9 tools, 17 swaps)."
+#   "German: Tool-Server :8081 runs (9 tools, 17 swaps)."
+#   "Let's parse. Situation 1: tool usage: Tool-Server :8081 läuft
+#    (9 tools, 17 swaps). Führe active_learn.py aus: ..."
+#
+# The discriminator is the CONJUNCTION of the install's own tool-server port
+# and the parenthesised health pair inside a short window -- neither half alone
+# is one. `:8081` ALONE is MEASURED-AND-REJECTED: 1 real-prose FP ("Configure the
+# reverse proxy so that :8081 is forwarded to the inference backend."). The bare
+# health pair `(N tools, M swaps)` is ALSO rejected: 46 of 8,035 longterm
+# episodes and 2 real-prose FPs ("We measured (9 tools, 17 swaps) patterns in
+# the scheduler trace and reported them.").
+# Measured 16.10.26: 6/300 buffer hits, ALL SIX the leak family; 0 of 2,437
+# gate-test literals; 0 FPs on an 8-sentence real-prose battery including "The
+# local tool server listens on port 8081 and exposes 10 tools to the agent." and
+# "Requests to 8081 were logged with 3 retries and 4 tools disabled during the
+# run."
+_OWN_TOOLSTATUS_RE = re.compile(
+    r":8081[\s\S]{0,60}?\(\s*\d+\s+tools?,\s*\d+\s+swaps?\s*\)",
+    re.IGNORECASE)
+
+
+def _is_own_toolserver_status(text):
+    """True when `text` is this install's own tool-server health line (class 177).
+
+    See the marker block above for the measurement.
+    """
+    if text is None:
+        return False
+    return bool(_OWN_TOOLSTATUS_RE.search(text))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
     if len(t) < 25:
         return True
     if _looks_binary(t):
+        return True    # this install's own tool-server health line echoed back as knowledge (class 177, 16.10.26)
+    if _is_own_toolserver_status(t):
         return True
+
     # an article's own byline + dateline header welded to its lede (class 142, 22.09.26)
     if _is_article_byline_chrome(t):
         return True
