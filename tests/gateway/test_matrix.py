@@ -2624,7 +2624,7 @@ class TestMatrixDiagnostics:
             / "user-guide"
             / "messaging"
             / "matrix.md"
-        ).read_text()
+        ).read_text(encoding="utf-8")
 
         for capability, status in get_matrix_capabilities().items():
             assert f"| {capability} | {status} |" in docs
