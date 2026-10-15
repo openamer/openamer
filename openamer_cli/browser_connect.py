@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import os
 import platform
+import posixpath
 import shlex
 import shutil
 import subprocess
@@ -91,11 +92,12 @@ def get_chrome_debug_candidates(system: str) -> list[str]:
     def add_windows_install_paths(
         bases: tuple[str | None, ...],
         install_groups: tuple[tuple[tuple[str, ...], tuple[tuple[str, ...], ...]], ...],
+        join=os.path.join,
     ) -> None:
         for _, group in install_groups:
             for base in filter(None, bases):
                 for parts in group:
-                    add(os.path.join(base, *parts))
+                    add(join(base, *parts))
 
     if system == "Darwin":
         for app in _DARWIN_APPS:
@@ -121,7 +123,18 @@ def get_chrome_debug_candidates(system: str) -> list[str]:
             add(shutil.which(name))
         for path in paths:
             add(path)
-    add_windows_install_paths(("/mnt/c/Program Files", "/mnt/c/Program Files (x86)"), _WINDOWS_BROWSER_GROUPS)
+    # Chrome inside WSL is the Windows binary reached through the /mnt/c mount,
+    # so these are POSIX paths. Joining them with os.path.join emits the *host*
+    # separator — on a Windows interpreter that is "/mnt/c/Program Files\Google\
+    # Chrome\Application\chrome.exe", which never resolves and (because the
+    # candidate list is what manual_chrome_debug_command() prints) silently
+    # degrades the WSL hint. Build them with the POSIX joiner, which is what
+    # os.path.join already is everywhere this branch actually runs.
+    add_windows_install_paths(
+        ("/mnt/c/Program Files", "/mnt/c/Program Files (x86)"),
+        _WINDOWS_BROWSER_GROUPS,
+        join=posixpath.join,
+    )
     return candidates
 
 
