@@ -493,7 +493,9 @@ class TestGitEnvIsolation:
             tmp_path / "store", str(tmp_path),
             index_file=tmp_path / "store" / "indexes" / "abc",
         )
-        assert env["GIT_INDEX_FILE"].endswith("indexes/abc")
+        # Compare path components: the product renders a native path, so the
+        # Windows form ends "indexes\\abc" and a POSIX-shaped suffix never matches.
+        assert Path(env["GIT_INDEX_FILE"]).parts[-2:] == ("indexes", "abc")
 
     def test_expands_tilde_in_work_tree(self, fake_home, tmp_path):
         work = fake_home / "work"

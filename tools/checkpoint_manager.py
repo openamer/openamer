@@ -54,7 +54,9 @@ import logging
 import os
 import re
 import shutil
+import stat
 import subprocess
+import sys
 import time
 from pathlib import Path
 from openamer_constants import get_openamer_home
@@ -1520,7 +1522,7 @@ def prune_checkpoints(
                 continue
             try:
                 size = _dir_size_bytes(child)
-                shutil.rmtree(child)
+                _rmtree_force(child)
                 result["bytes_freed"] += size
                 result["deleted_stale"] += 1
             except OSError as exc:
@@ -1566,7 +1568,7 @@ def prune_checkpoints(
             continue
         try:
             size = _dir_size_bytes(child)
-            shutil.rmtree(child)
+            _rmtree_force(child)
             result["bytes_freed"] += size
             if reason == "orphan":
                 result["deleted_orphan"] += 1
@@ -1876,6 +1878,32 @@ def store_status(checkpoint_base: Optional[Path] = None) -> Dict:
     return out
 
 
+def _rmtree_force(path: Path) -> None:
+    """``shutil.rmtree`` that clears the read-only attribute and retries.
+
+    The checkpoint store is a git repository, and git marks its loose objects
+    read-only (measured on this host: ``A    R  .git/objects/00/2f9cef…``).
+    Windows treats that attribute as a hard block on unlink, so a plain rmtree
+    dies with ``[WinError 5] Zugriff verweigert`` on the first object it meets and
+    the tree survives — which is why ``clear_all()`` reported ``deleted: False``
+    while leaving every byte on disk. POSIX has no such attribute, so the
+    asymmetry is invisible there.
+    """
+
+    def _clear_readonly(func, target, _exc_info) -> None:
+        try:
+            os.chmod(target, stat.S_IWRITE)
+            func(target)
+        except OSError:
+            logger.debug("Could not remove %s", target)
+
+    if sys.version_info >= (3, 12):
+        shutil.rmtree(path, onexc=_clear_readonly)
+    else:
+        # onerror is the pre-3.12 spelling of onexc; deprecated from 3.12 on.
+        shutil.rmtree(path, onerror=_clear_readonly)
+
+
 def clear_all(checkpoint_base: Optional[Path] = None) -> Dict[str, int]:
     """Nuke the entire checkpoint base (store + legacy).  Irreversible.
 
@@ -1887,7 +1915,7 @@ def clear_all(checkpoint_base: Optional[Path] = None) -> Dict[str, int]:
         return out
     size = _dir_size_bytes(base)
     try:
-        shutil.rmtree(base)
+        _rmtree_force(base)
         out["bytes_freed"] = size
         out["deleted"] = True
     except OSError as exc:
@@ -1909,7 +1937,7 @@ def clear_legacy(checkpoint_base: Optional[Path] = None) -> Dict[str, int]:
             continue
         try:
             size = _dir_size_bytes(child)
-            shutil.rmtree(child)
+            _rmtree_force(child)
             out["bytes_freed"] += size
             out["deleted"] += 1
         except OSError as exc:
