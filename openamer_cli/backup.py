@@ -270,6 +270,21 @@ class _SafeCopyDeadlineExceeded(Exception):
     """Raised from the backup progress callback to stop an over-long copy."""
 
 
+def _discard_partial_db_copy(dst: Path) -> None:
+    """Remove a failed copy of ``dst``, WAL sidecars included.
+
+    Callers must have closed every sqlite handle first: Windows refuses to
+    unlink a file that is still open, which is how the in-``except`` cleanup this
+    replaced silently no-opped and left an empty database on disk for the
+    recovery flow to pick up as if it were a snapshot.
+    """
+    for path in (dst, dst.with_name(dst.name + "-wal"), dst.with_name(dst.name + "-shm")):
+        try:
+            path.unlink(missing_ok=True)
+        except OSError:
+            logger.debug("Could not remove partial copy %s", path)
+
+
 def _safe_copy_db(
     src: Path, dst: Path, *, deadline_s: Optional[float] = _SAFE_COPY_DEADLINE_S
 ) -> bool:
@@ -282,9 +297,13 @@ def _safe_copy_db(
     The copy is bounded by *deadline_s* (``None`` disables the bound): see
     :data:`_SAFE_COPY_DEADLINE_S` for why an unbounded ``Connection.backup()``
     is a hang, not a slow copy.
+
+    On failure the destination is discarded *after* the handles are closed;
+    unlinking inside the ``except`` block only ever worked on POSIX.
     """
     conn = None
     backup_conn = None
+    copied = False
     started = time.monotonic()
     try:
         # ``timeout`` bounds how long sqlite waits on a locked file.
@@ -304,14 +323,9 @@ def _safe_copy_db(
             return 0
 
         conn.backup(backup_conn, progress=_progress, sleep=0.05)
-        return True
+        copied = True
     except Exception as exc:
         logger.warning("SQLite safe copy failed for %s: %s", src, exc)
-        try:
-            dst.unlink(missing_ok=True)
-        except OSError:
-            pass
-        return False
     finally:
         for connection in (backup_conn, conn):
             if connection is not None:
@@ -319,6 +333,9 @@ def _safe_copy_db(
                     connection.close()
                 except Exception:
                     pass
+    if not copied:
+        _discard_partial_db_copy(dst)
+    return copied
 
 
 def is_zeroed_sqlite_file(
