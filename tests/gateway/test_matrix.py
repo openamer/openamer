@@ -2409,7 +2409,13 @@ class TestMatrixDiagnostics:
         _handle_generated_matrix_recovery_key("@bot:example.org", secret)
 
         assert output_path.read_text().strip() == secret
-        assert stat.S_IMODE(output_path.stat().st_mode) == 0o600
+        if sys.platform != "win32":
+            # Windows has no POSIX mode bits: os.chmod() there only toggles the
+            # read-only attribute, so stat always reports 0o666 — the 0600 check
+            # is unenforceable on Windows, not a regression. The confidentiality
+            # contract (content written, key never logged) is asserted on every
+            # platform around this.
+            assert stat.S_IMODE(output_path.stat().st_mode) == 0o600
         assert secret not in caplog.text
 
     @pytest.mark.asyncio
