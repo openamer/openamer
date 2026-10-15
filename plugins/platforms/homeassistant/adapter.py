@@ -9,7 +9,7 @@ import logging
 import time
 import uuid
 from datetime import datetime
-from typing import Any, Dict, Optional, Set
+from typing import Any, Dict, List, Optional, Set
 
 try:
     import aiohttp
@@ -88,6 +88,10 @@ class HomeAssistantAdapter(BasePlatformAdapter):
         self._watch_all: bool = bool(extra.get("watch_all", False))
         self._cooldown_seconds: int = int(extra.get("cooldown_seconds", 30))
         self._last_event_time: Dict[str, float] = {}  # entity_id -> last event ts
+        # Plugin-registered raw HA event handlers, wired at connect time
+        # by ``_wire_plugin_handlers``. Each entry is
+        # ``(event_type, wrapped_callback, plugin_name)``.
+        self._plugin_event_handlers: List[tuple] = []
 
     def _next_id(self) -> int:
         self._msg_id += 1
@@ -125,6 +129,59 @@ class HomeAssistantAdapter(BasePlatformAdapter):
         except Exception as e:
             logger.error("[%s] Failed to connect: %s", self.name, e)
             return False
+
+    def _wire_plugin_handlers(self, client: Any) -> None:
+        """Wire plugin-registered Home Assistant event handlers.
+
+        Plugins call ``ctx.register_homeassistant_event_handler(event_type, cb)``
+        at register() time; the manager queues them and the adapter
+        wires them into its event stream here so a misbehaving plugin
+        can't take down the listen loop.
+
+        Each callback is wrapped so any exception inside the plugin
+        handler is caught and logged, and the listen loop keeps running.
+        """
+        try:
+            from openamer_cli.plugins import get_plugin_manager
+            _plugin_handlers = get_plugin_manager().get_homeassistant_event_handlers()
+        except Exception as e:  # pragma: no cover - defensive
+            logger.warning("[%s] Could not load plugin event handlers: %s", self.name, e)
+            return
+
+        if not _plugin_handlers:
+            return
+
+        for event_type, cb, plugin_name in _plugin_handlers:
+            def _make_wrapper(callback, pname):
+                async def _wrapped(event):
+                    try:
+                        await callback(event)
+                    except Exception as exc:  # pragma: no cover - defensive
+                        logger.error(
+                            "[%s] Plugin '%s' event handler raised: %s",
+                            self.name, pname, exc, exc_info=True,
+                        )
+                return _wrapped
+
+            self._plugin_event_handlers.append(
+                (event_type, _make_wrapper(cb, plugin_name), plugin_name)
+            )
+            logger.debug(
+                "[%s] Wired plugin '%s' event handler: %s",
+                self.name, plugin_name, event_type,
+            )
+
+    async def _dispatch_plugin_handlers(self, event: Dict[str, Any]) -> None:
+        """Fan a raw HA event out to plugin-registered handlers."""
+        for event_type, handler, _plugin_name in getattr(self, "_plugin_event_handlers", []):
+            if event_type == event.get("event_type"):
+                try:
+                    await handler(event)
+                except Exception as exc:  # pragma: no cover - defensive
+                    logger.error(
+                        "[%s] Plugin handler dispatch failed: %s",
+                        self.name, exc, exc_info=True,
+                    )
 
     async def _ws_connect(self) -> bool:
         """Open the WebSocket, authenticate, and subscribe to ``state_changed``."""
@@ -227,6 +284,7 @@ class HomeAssistantAdapter(BasePlatformAdapter):
 
     async def _handle_ha_event(self, event: Dict[str, Any]) -> None:
         """Process a state_changed event from Home Assistant."""
+        await self._dispatch_plugin_handlers(event)
         event_data = event.get("data", {})
         entity_id: str = event_data.get("entity_id", "")
         if not entity_id or not self._passes_filters(entity_id):
