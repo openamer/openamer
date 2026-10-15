@@ -15708,7 +15708,21 @@ class GatewayRunner(GatewayAuthorizationMixin, GatewayKanbanWatchersMixin, Gatew
 
             if image_paths:
                 try:
-                    images = [(f"file://{_quote(p)}", "") for p in image_paths]
+                    # ``quote()`` on a raw Windows path yields
+                    # ``file://C%3A%5CUsers%5C...`` — the drive separator
+                    # percent-encoded and the third slash missing — so every
+                    # MEDIA: image delivery on Windows carried a dead link.
+                    # Path.as_uri() builds the RFC 8089 form
+                    # (``file:///C:/Users/...``) and is byte-identical to the
+                    # old output for POSIX paths; a relative path cannot be
+                    # expressed as a file URI, so keep the old quoting there.
+                    def _delivery_uri(p: str) -> str:
+                        try:
+                            return Path(p).as_uri()
+                        except ValueError:
+                            return f"file://{_quote(p)}"
+
+                    images = [(_delivery_uri(p), "") for p in image_paths]
                     await adapter.send_multiple_images(
                         chat_id=event.source.chat_id,
                         images=images,
