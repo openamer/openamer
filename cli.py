@@ -3235,6 +3235,13 @@ def _resolve_attachment_path(raw_path: str) -> Path | None:
                 expanded = unquote(parsed.path or "")
                 if parsed.netloc and os.name == "nt":
                     expanded = f"//{parsed.netloc}{expanded}"
+                # A file URI always carries a POSIX-absolute path, so a Windows
+                # target arrives as "/C:/Users/...". The leading slash belongs to
+                # the URI, not to the path: Path("/C:/...").is_absolute() is False
+                # on Windows, so the candidate would be joined onto the cwd and a
+                # pasted file:// link would never resolve to the real file.
+                if os.name == "nt" and re.match(r"^/[A-Za-z]:[/\\]", expanded):
+                    expanded = expanded[1:]
         except Exception:
             expanded = token
     expanded = os.path.expandvars(os.path.expanduser(expanded))
