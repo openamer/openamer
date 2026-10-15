@@ -118,7 +118,13 @@ def test_generate_text_to_video_downloads_url_and_saves_locally():
         )
     assert result["success"] is True
     assert result["modality"] == "text"
-    assert result["video"].endswith(".mp4") and "cache/videos" in result["video"]
+    # Compare on the path parts: the provider renders a native path, so a
+    # hard-coded POSIX "cache/videos" cannot match on Windows.
+    assert result["video"].endswith(".mp4")
+    from pathlib import Path as _Path
+
+    video_parts = _Path(result["video"]).parts
+    assert "cache" in video_parts and "videos" in video_parts, result["video"]
     assert captured["url"] == "https://cdn.example/out.mp4"
     assert "deepinfra" in captured["base_url"]
     assert captured["api_key"] == "test-key"
