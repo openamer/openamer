@@ -869,7 +869,44 @@ def main() -> int:
 
     # --files: explicit file list from the CI generate job — skip discovery.
     if args.files:
-        files = [repo_root / f for f in args.files.split(":") if f.strip()]
+        # ``--files`` accepts a colon-separated list of test files
+        # (both repo-relative and absolute). On POSIX the separator
+        # is unambiguous. On Windows a path like ``C:\...\x.py``
+        # contains a drive-letter colon, so a naive ``split(":")``
+        # would tear ``C`` off the front and mangle the path into
+        # ``<repo>\C``. Split only at colons that are NOT a drive
+        # separator (i.e. not immediately after a single letter).
+        def _split_files(raw: str) -> list[str]:
+            parts: list[str] = []
+            buf: list[str] = []
+            i = 0
+            while i < len(raw):
+                ch = raw[i]
+                if ch == ":" and not (
+                    # ``C:`` drive separator: a single letter followed
+                    # by ``:`` at a part boundary, with more path after.
+                    i == 1
+                    and buf
+                    and len(buf) == 1
+                    and buf[0].isalpha()
+                    and i + 1 < len(raw)
+                ):
+                    parts.append("".join(buf))
+                    buf = []
+                else:
+                    buf.append(ch)
+                i += 1
+            parts.append("".join(buf))
+            return [p for p in parts if p.strip()]
+
+        # Only repo-relative entries get ``repo_root`` prepended —
+        # joining an absolute Windows path onto ``repo_root`` mangles
+        # it (``Path.__truediv__`` treats the drive letter as a
+        # relative component). Absolute paths pass through untouched.
+        files = [
+            Path(f) if os.path.isabs(f) else repo_root / f
+            for f in _split_files(args.files)
+        ]
         roots = []
     else:
         # Resolve discovery roots: positional path args override --paths if any
