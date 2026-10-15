@@ -58,6 +58,16 @@ class TestFindDocker:
             result = docker_mod.find_docker()
         assert result == str(fake_binary)
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "The precondition cannot exist on Windows: find_docker() gates the override on "
+            "os.access(..., os.X_OK) (tools/environments/docker.py:289), and X_OK there is an "
+            "existence check only — the repo says so itself at tools/mcp_tool_config.py:185 — so "
+            "a file written 0o644 is accepted and there is nothing to fall through. POSIX "
+            "covers the behaviour."
+        ),
+    )
     def test_env_var_override_ignored_if_not_executable(self, tmp_path):
         """Non-executable OPENAMER_DOCKER_BINARY falls through to normal discovery."""
         fake_binary = tmp_path / "podman"

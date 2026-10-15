@@ -16,6 +16,15 @@ import pytest
 from tools.environments.local import _find_bash, _find_shell
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "_find_shell prefers $SHELL only off Windows — tools/environments/local.py:1030 guards "
+        "the whole branch with 'if not _IS_WINDOWS' and documents 'On Windows ... we fall "
+        "through to _find_bash'. There is no $SHELL preference to exercise here, which is also "
+        "what this class's own docstring says ('... over bash on POSIX')."
+    ),
+)
 class TestFindShellPrefersUserShell:
     """_find_shell should prefer $SHELL over bash on POSIX."""
 
