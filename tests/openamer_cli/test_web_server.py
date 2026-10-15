@@ -1267,6 +1267,11 @@ class TestWebServerEndpoints:
     def test_put_honcho_first_save_merges_into_resolved_config(self, monkeypatch, tmp_path):
         # With no profile-local file, a save merges into the resolved global config.
         monkeypatch.setenv("HOME", str(tmp_path))
+        # Path.home() ignores HOME on Windows (it reads USERPROFILE /
+        # the platform API), so redirect it explicitly — otherwise the
+        # Honcho global-config resolver writes to the real user home
+        # instead of the test's tmp_path.
+        monkeypatch.setattr(Path, "home", lambda: tmp_path)
         from openamer_constants import get_openamer_home
 
         global_path = tmp_path / ".honcho" / "config.json"
@@ -4065,6 +4070,11 @@ class TestWebServerEndpoints:
         from fastapi import FastAPI
         from starlette.testclient import TestClient
         import openamer_cli.web_server as ws
+
+        # Isolate from an ambient OPENAMER_SERVE_HEADLESS=1 (the
+        # headless `openamer serve` backend disables the SPA),
+        # which would otherwise 404 every route here.
+        monkeypatch.delenv("OPENAMER_SERVE_HEADLESS", raising=False)
 
         dist = tmp_path / "web_dist"
         assets = dist / "assets"
@@ -8289,6 +8299,14 @@ class TestThemeBootstrapCSS:
         from fastapi import FastAPI
         from starlette.testclient import TestClient
         import openamer_cli.web_server as ws
+
+        # ``mount_spa`` disables the browser SPA entirely when
+        # ``OPENAMER_SERVE_HEADLESS=1`` (the `openamer serve`
+        # headless backend). The shell that runs the test suite
+        # may export that var (e.g. a dashboard launcher), which
+        # would make every SPA route 404. Isolate the test from
+        # the ambient value so it exercises the real SPA path.
+        monkeypatch.delenv("OPENAMER_SERVE_HEADLESS", raising=False)
 
         dist = tmp_path / "web_dist"
         (dist / "assets").mkdir(parents=True)

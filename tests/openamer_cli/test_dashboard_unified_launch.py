@@ -10,6 +10,28 @@ import types
 import pytest
 
 
+@pytest.fixture(autouse=True)
+def _isolate_desktop_env(monkeypatch):
+    """Strip desktop-inherited env so routing is decided by the test, not the host.
+
+    The Desktop app exports OPENAMER_DESKTOP=1 (and an Electron WEB_DIST) into
+    child shells. cmd_dashboard skips the unified routing when that flag is
+    set, so a developer running the suite from the desktop got a real server
+    bind on :9119 instead of the patched code path, and the test hung.
+    """
+    monkeypatch.delenv("OPENAMER_DESKTOP", raising=False)
+    monkeypatch.delenv("OPENAMER_WEB_DIST", raising=False)
+
+
+class _Fake:
+    """Stand-in for subprocess.Popen: records the re-exec, never runs a server."""
+
+    def __init__(self, sink, args, kwargs):
+        argv, env = args[0], kwargs.get("env")
+        sink.append((sys.executable, list(argv), env))
+        raise SystemExit(0)  # child exited; parent returns the same code
+
+
 @pytest.fixture
 def main_mod():
     import openamer_cli.main as main_mod
@@ -69,6 +91,9 @@ class TestUnifiedDashboardRouting:
             raise SystemExit(0)  # execvpe never returns
 
         monkeypatch.setattr(main_mod.os, "execvpe", fake_exec)
+        # Windows re-execs via subprocess.Popen + wait (no execvpe), so fake
+        # both: otherwise the real dashboard server starts and proc.wait() hangs.
+        monkeypatch.setattr(main_mod.subprocess, "Popen", lambda *a, **k: _Fake(execs, a, k))
 
         with pytest.raises(SystemExit):
             main_mod.cmd_dashboard(_args())
@@ -110,6 +135,7 @@ class TestUnifiedDashboardRouting:
             raise SystemExit(0)
 
         monkeypatch.setattr(main_mod.os, "execvpe", fake_exec)
+        monkeypatch.setattr(main_mod.subprocess, "Popen", lambda *a, **k: _Fake(execs, a, k))
 
         with pytest.raises(SystemExit):
             main_mod.cmd_dashboard(_args())
@@ -119,7 +145,9 @@ class TestUnifiedDashboardRouting:
         # get_default_openamer_root() strips the trailing profiles/<name>, so the
         # child binds /opt/data — where the real default/oracle/saga profiles
         # and the .install_method stamp actually live.
-        assert env.get("OPENAMER_HOME") == "/opt/data"
+        # Compare as Path: Windows renders the POSIX root as \opt\data.
+        from pathlib import Path
+        assert Path(env.get("OPENAMER_HOME")) == Path("/opt/data")
 
     def test_desktop_profile_backend_skips_machine_dashboard_reroute(self, main_mod, monkeypatch):
         """A desktop-spawned named-profile backend (OPENAMER_DESKTOP=1) must NOT
