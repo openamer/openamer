@@ -279,8 +279,12 @@ class TestBoardCRUD:
         # contains the resolved path, the CREATE TABLE pass is skipped and
         # downstream readers hit `no such table: task_events`.
         kb.create_board("recycle")
-        # First connect populates _INITIALIZED_PATHS for this DB.
-        with kb.connect(board="recycle") as conn:
+        # First connect populates _INITIALIZED_PATHS for this DB. Open it with
+        # the closing form: sqlite3's connection context manager only commits or
+        # rolls back, it does not close the file, and Windows refuses the archive
+        # rename below while this process still holds a handle to the board's
+        # kanban.db (WinError 5/32).
+        with kb.connect_closing(board="recycle") as conn:
             kb.create_task(conn, title="t1", assignee="dev")
         db_path = kb.board_dir("recycle") / "kanban.db"
         assert str(db_path.resolve()) in kb._INITIALIZED_PATHS
@@ -292,7 +296,7 @@ class TestBoardCRUD:
 
         # Simulate the event-stream poll: re-open the same slug. connect()
         # recreates the directory + empty .db; the schema must be re-applied.
-        with kb.connect(board="recycle") as conn:
+        with kb.connect_closing(board="recycle") as conn:
             tables = {
                 row[0]
                 for row in conn.execute(

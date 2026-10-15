@@ -127,6 +127,8 @@ class TestPathCompletions:
 
     def test_home_expansion(self, tmp_path, monkeypatch):
         monkeypatch.setenv("HOME", str(tmp_path))
+        # os.path.expanduser reads USERPROFILE on Windows, never HOME.
+        monkeypatch.setenv("USERPROFILE", str(tmp_path))
         (tmp_path / "testfile.md").touch()
 
         completions = list(SlashCommandCompleter._path_completions("~/test"))
@@ -199,11 +201,15 @@ class TestIntegration:
         assert list(completer.get_completions(doc, event)) == []
 
     def test_absolute_path_triggers_completion(self, completer):
+        if not os.path.isdir("/etc"):
+            # The fixture path is POSIX-absolute (/etc/hosts exists "on Linux",
+            # as the original comment said). Nothing to complete where /etc does
+            # not exist; the Windows-absolute surface is covered separately.
+            pytest.skip("/etc does not exist on this host")
         doc = Document("check /etc/hos", cursor_position=14)
         event = MagicMock()
         completions = list(completer.get_completions(doc, event))
         names = _display_names(completions)
-        # /etc/hosts should exist on Linux
         assert any("host" in n.lower() for n in names)
 
 
