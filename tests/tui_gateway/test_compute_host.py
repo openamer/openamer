@@ -45,7 +45,13 @@ def test_compute_host_line_json_seed_turn_interrupt():
     try:
         hello = _read_json_line(out)
         assert hello["type"] == "hello"
-        assert hello["host_pid"] == proc.pid
+        if sys.platform == "win32":
+            # venv/Scripts/python.exe is a launcher, not the interpreter: it starts the
+            # real python as a CHILD, so the host reports the grandchild's pid while
+            # Popen returned the launcher's. The handshake still has to carry a live pid.
+            assert isinstance(hello["host_pid"], int) and hello["host_pid"] > 0
+        else:
+            assert hello["host_pid"] == proc.pid
 
         proc.stdin.write(json.dumps({"type": "session.seed", "sid": "s1", "request_id": "seed"}) + "\n")
         proc.stdin.flush()
