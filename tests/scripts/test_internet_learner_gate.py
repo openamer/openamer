@@ -7135,3 +7135,70 @@ PRICE_TABLE_CONTROLS = [
     "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
 ]
 
+
+API_PLAYGROUND_LEAKS = [
+    'Matches valid email addresses " , "flags" : " g " } POST /api/test-regex Test a regex pattern against a string.',
+    '"flags": "g" } POST /api/v1/agents Validate the request body before dispatch.',
+]
+
+API_PLAYGROUND_CONTROLS = [
+    "Send a POST request to /api/test-regex to validate your pattern.",
+    "The endpoint GET /api/v1/models returns the list of available models.",
+    "This documents the POST /api/chat/completions route used by the SDK.",
+    "The post /api/test-regex handler validates input before dispatch.",
+    "Use curl -X POST /api/v1/agents with a JSON body to create an agent.",
+    "Delete /api/tmp/cache to clear the cached artefacts from disk.",
+    'Flags are set with {"g": true} and the endpoint is documented at /api/test-regex.',
+    "Matches valid email addresses is exactly what the validator should do.",
+    "A regex pattern against a string is a standard unit test in this repository.",
+]
+
+
+def test_api_playground_weld_is_gated_on_both_paths():
+    """Class 179: an API-doc playground body fragment welded to a route.
+
+    The discriminator is a JSON/array closer glued directly to an HTTP method +
+    path; real prose separates a payload from a route with a word ("... with a
+    JSON body"), never with a bare JSON closer.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    for leak in API_PLAYGROUND_LEAKS:
+        assert IL._is_api_playground_weld(leak) is True, leak
+        assert IL._is_junk(leak) is True, leak
+        assert buffer_store.is_junk(leak) is True, leak
+    for ctrl in API_PLAYGROUND_CONTROLS:
+        assert IL._is_api_playground_weld(ctrl) is False, ctrl
+        assert IL._is_junk(ctrl) is False, ctrl
+        assert buffer_store.is_junk(ctrl) is False, ctrl
+
+
+BLOG_HEADER_READTIME_LEAKS = [
+    "Is the Risk by Patrick Spencer updated June 5, 2026 Cybersecurity Risk Management Reading Time: 7 minutes For three years, the enterprise security conversation about AI has focused on agents.",
+]
+
+BLOG_HEADER_READTIME_CONTROLS = [
+    "The agent measured the reading time: 7 minutes per document before summarising it.",
+    "Read the Reading Time field before you parse the article body.",
+    "The model weights were updated June 5, 2026 by the upstream maintainers.",
+    "The report, updated May 1, 2026 by the platform team, lists the new endpoints.",
+    "Our reading time estimate of 12 minutes assumed 200 words per minute.",
+]
+
+
+def test_blog_header_readtime_weld_is_gated_on_both_paths():
+    """Class 180: a blog dateline + reading-time label header welded to the lede.
+
+    The discriminator is the SEQUENCE of two chrome labels (an `updated <date>`
+    dateline followed within 200 chars by a `Reading Time:` widget label).
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    for leak in BLOG_HEADER_READTIME_LEAKS:
+        assert IL._is_blog_header_readtime_weld(leak) is True, leak
+        assert IL._is_junk(leak) is True, leak
+        assert buffer_store.is_junk(leak) is True, leak
+    for ctrl in BLOG_HEADER_READTIME_CONTROLS:
+        assert IL._is_blog_header_readtime_weld(ctrl) is False, ctrl
+        assert IL._is_junk(ctrl) is False, ctrl
+        assert buffer_store.is_junk(ctrl) is False, ctrl
