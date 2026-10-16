@@ -259,30 +259,35 @@ class TestGenerate:
         assert result["error_type"] == "missing_api_key"
 
     def test_success_data_uri(self):
+        saved = Path("/tmp/openrouter_gen.png")
         with patch(_RUNTIME, return_value=_runtime_ok()), \
              patch("requests.post", return_value=_mock_chat_response([_PNG_DATA_URI])), \
              patch(
                  "plugins.image_gen.openrouter.save_b64_image",
-                 return_value=Path("/tmp/openrouter_gen.png"),
+                 return_value=saved,
              ) as mock_save:
             result = _openrouter().generate(prompt="a pet")
 
         assert result["success"] is True
-        assert result["image"] == "/tmp/openrouter_gen.png"
+        # The product reports the saved path as a string and Path is
+        # host-spelled, so pin str() of the same value the mock returned
+        # rather than a POSIX literal. Identity on POSIX.
+        assert result["image"] == str(saved)
         assert result["provider"] == "openrouter"
         mock_save.assert_called_once()
 
     def test_success_http_url(self):
+        saved = Path("/tmp/openrouter_gen_url.png")
         with patch(_RUNTIME, return_value=_runtime_ok()), \
              patch("requests.post", return_value=_mock_chat_response(["https://cdn/x.png"])), \
              patch(
                  "plugins.image_gen.openrouter.save_url_image",
-                 return_value=Path("/tmp/openrouter_gen_url.png"),
+                 return_value=saved,
              ) as mock_save_url:
             result = _openrouter().generate(prompt="a pet")
 
         assert result["success"] is True
-        assert result["image"] == "/tmp/openrouter_gen_url.png"
+        assert result["image"] == str(saved)
         mock_save_url.assert_called_once()
 
     def test_empty_response(self):
@@ -410,17 +415,18 @@ class TestGenerate:
         gated.json.return_value = {"error": {"message": "No endpoints found"}}
         gated.raise_for_status.side_effect = req_lib.HTTPError(response=gated)
 
+        saved = Path("/tmp/openrouter_gen_fallback.png")
         with patch(_RUNTIME, return_value=_runtime_ok()), \
              patch("requests.post", side_effect=[gated, _mock_chat_response([_PNG_DATA_URI])]) as mock_post, \
              patch(
                  "plugins.image_gen.openrouter.save_b64_image",
-                 return_value=Path("/tmp/openrouter_gen_fallback.png"),
+                 return_value=saved,
              ):
             result = _openrouter().generate(prompt="a pet")
 
         assert result["success"] is True
         assert result["model"] == _FALLBACK_MODEL
-        assert result["image"] == "/tmp/openrouter_gen_fallback.png"
+        assert result["image"] == str(saved)
         assert mock_post.call_count == 2
         first_model = mock_post.call_args_list[0].kwargs["json"]["model"]
         second_model = mock_post.call_args_list[1].kwargs["json"]["model"]
