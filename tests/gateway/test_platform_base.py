@@ -21,6 +21,22 @@ from gateway.platforms.base import (
 )
 
 
+def _simulate_home(monkeypatch, home):
+    """Point every variable the platform's ``expanduser("~")`` really reads.
+
+    ``os.path.expanduser`` consults ``$HOME`` on POSIX but reads
+    ``USERPROFILE`` (+ ``HOMEDRIVE``/``HOMEPATH``) on Windows, so setting only
+    ``HOME`` leaves the *real* user home in play there and the fixture
+    silently does nothing.
+    """
+    monkeypatch.setenv("HOME", str(home))
+    if os.name == "nt":
+        drive, tail = os.path.splitdrive(str(home))
+        monkeypatch.setenv("USERPROFILE", str(home))
+        monkeypatch.setenv("HOMEDRIVE", drive or "C:")
+        monkeypatch.setenv("HOMEPATH", tail or "\\")
+
+
 def test_media_delivery_denies_encrypted_bitwarden_cache(tmp_path, monkeypatch):
     """Encrypted Bitwarden cache is covered by the media credential guard."""
     import gateway.platforms.base as base
@@ -993,7 +1009,7 @@ class TestMediaDeliveryPathValidation:
         ssh_dir.mkdir(parents=True)
         secret = ssh_dir / "id_rsa.txt"
         secret.write_bytes(b"-----BEGIN ...")  # mtime = now
-        monkeypatch.setenv("HOME", str(fake_home))
+        _simulate_home(monkeypatch, fake_home)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(secret)) is None
 
@@ -1087,7 +1103,7 @@ class TestMediaDeliveryDefaultMode:
         ssh_dir.mkdir(parents=True)
         secret = ssh_dir / "id_rsa"
         secret.write_bytes(b"-----BEGIN ...")
-        monkeypatch.setenv("HOME", str(fake_home))
+        _simulate_home(monkeypatch, fake_home)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(secret)) is None
 
@@ -1355,7 +1371,7 @@ class TestMediaDeliveryDefaultMode:
         workdir.mkdir(parents=True)
         doc = workdir / "proposal.docx"
         doc.write_bytes(b"PK\x03\x04")
-        monkeypatch.setenv("HOME", str(fake_home))
+        _simulate_home(monkeypatch, fake_home)
         # $HOME is itself on the denied-prefix list, mirroring /root.
         monkeypatch.setattr(
             "gateway.platforms.base._MEDIA_DELIVERY_DENIED_PREFIXES",
@@ -2002,8 +2018,8 @@ class TestMediaDeliveryDiagnosability:
     def test_canonical_cache_roots_present(self):
         from gateway.platforms.base import MEDIA_DELIVERY_SAFE_ROOTS
         roots = {str(r) for r in MEDIA_DELIVERY_SAFE_ROOTS}
-        assert any(r.endswith("cache/images") for r in roots)
-        assert any(r.endswith("cache/documents") for r in roots)
+        assert any(r.endswith(os.path.join("cache", "images")) for r in roots)
+        assert any(r.endswith(os.path.join("cache", "documents")) for r in roots)
         # Legacy layout still present.
         assert any(r.endswith("image_cache") for r in roots)
 

@@ -122,7 +122,14 @@ def _warn_profile_fallback_once() -> None:
         fallback_home = _get_platform_default_openamer_home()
         active_path = fallback_home / "active_profile"
         active = active_path.read_text(encoding="utf-8").strip() if active_path.exists() else ""
-    except (UnicodeDecodeError, OSError):
+    except (UnicodeDecodeError, OSError, RuntimeError):
+        # Path.home() raises RuntimeError("Could not determine home
+        # directory.") when the environment carries no home variable at all --
+        # Windows reads USERPROFILE (then HOMEDRIVE+HOMEPATH) and never $HOME,
+        # which is exactly the shape of a hermetic CI/test env.  This helper is
+        # an ADVISORY ("are you about to fall back to the wrong profile?"), so
+        # a missing variable must silence it, not crash the caller that was
+        # only trying to read a config value.
         active = ""
     if active and active != "default":
         _profile_fallback_warned = True

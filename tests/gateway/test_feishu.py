@@ -22,6 +22,21 @@ except ImportError:
     _HAS_LARK_OAPI = False
 
 
+# `clear=True` wipes the WHOLE environment, not just the Feishu vars a test
+# means to isolate.  On Windows that breaks imports which legitimately read
+# the OS environment while initialising:
+#   - SystemRoot is required by the `ssl` module (aiohttp builds a default
+#     context at import time -> SSLError (_ssl.c:3108) without it)
+#   - LOCALAPPDATA / USERPROFILE are needed by Path.home(), which
+#     openamer_constants._get_platform_default_openamer_home() falls back to
+# Carve the OS path vars out so a test can isolate Feishu config without
+# pretending the process has no OS.  Same list as tests/gateway/test_setup_feishu.py.
+_OS_PATH_VARS = ("SystemRoot", "windir", "SystemDrive",
+                 "LOCALAPPDATA", "APPDATA", "USERPROFILE",
+                 "HOMEDRIVE", "HOMEPATH", "TEMP", "TMP")
+_KEEP_OS_PATH_VARS = {k: os.environ[k] for k in _OS_PATH_VARS if k in os.environ}
+
+
 class _FakeRequestContent:
     def __init__(self, body: bytes):
         self.body = body
@@ -47,7 +62,7 @@ def _mock_event_dispatcher_builder(mock_handler_class):
 
 
 class TestConfigEnvOverrides(unittest.TestCase):
-    @patch.dict(os.environ, {
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS,
         "FEISHU_APP_ID": "cli_xxx",
         "FEISHU_APP_SECRET": "secret_xxx",
         "FEISHU_CONNECTION_MODE": "websocket",
@@ -64,7 +79,7 @@ class TestConfigEnvOverrides(unittest.TestCase):
         self.assertEqual(config.platforms[Platform.FEISHU].extra["app_id"], "cli_xxx")
         self.assertEqual(config.platforms[Platform.FEISHU].extra["connection_mode"], "websocket")
 
-    @patch.dict(os.environ, {
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS,
         "FEISHU_APP_ID": "cli_xxx",
         "FEISHU_APP_SECRET": "secret_xxx",
         "FEISHU_HOME_CHANNEL": "oc_xxx",
@@ -79,7 +94,7 @@ class TestConfigEnvOverrides(unittest.TestCase):
         self.assertIsNotNone(home)
         self.assertEqual(home.chat_id, "oc_xxx")
 
-    @patch.dict(os.environ, {
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS,
         "FEISHU_APP_ID": "cli_xxx",
         "FEISHU_APP_SECRET": "secret_xxx",
     }, clear=False)
@@ -184,7 +199,7 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
         signature = inspect.signature(FeishuWSClient)
         self.assertIn("extra_ua_tags", signature.parameters)
 
-    @patch.dict(os.environ, {
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS,
         "FEISHU_APP_ID": "cli_app",
         "FEISHU_APP_SECRET": "secret_app",
         "FEISHU_CONNECTION_MODE": "webhook",
@@ -223,7 +238,7 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
         runner.setup.assert_awaited_once()
         site.start.assert_awaited_once()
 
-    @patch.dict(os.environ, {
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS,
         "FEISHU_APP_ID": "cli_app",
         "FEISHU_APP_SECRET": "secret_app",
     }, clear=True)
@@ -346,7 +361,7 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
         asyncio.run(adapter.disconnect())
         self.assertIsNone(adapter._ws_client)
 
-    @patch.dict(os.environ, {
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS,
         "FEISHU_APP_ID": "cli_app",
         "FEISHU_APP_SECRET": "secret_app",
     }, clear=True)
@@ -371,7 +386,7 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
         self.assertFalse(adapter.fatal_error_retryable)
         self.assertIn("PID 4321", adapter.fatal_error_message)
 
-    @patch.dict(os.environ, {
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS,
         "FEISHU_APP_ID": "cli_app",
         "FEISHU_APP_SECRET": "secret_app",
     }, clear=True)
@@ -425,7 +440,7 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
         self.assertEqual(sleeps, [1])
         self.assertEqual(fake_loop.calls, 2)
 
-    @patch.dict(os.environ, {
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS,
         "FEISHU_APP_ID": "cli_app",
         "FEISHU_APP_SECRET": "secret_app",
     }, clear=True)
@@ -484,7 +499,7 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
         self.assertEqual(call_kwargs["extra_ua_tags"], ["channel"],
                          "extra_ua_tags must be ['channel'] to enable group event routing")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_edit_message_updates_existing_feishu_message(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -526,7 +541,7 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
             json.dumps({"text": "📖 read_file: \"/tmp/image.png\""}, ensure_ascii=False),
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_edit_message_falls_back_to_text_when_post_update_is_rejected(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -569,7 +584,7 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
             json.dumps({"text": "可以用 粗体 和 斜体。"}, ensure_ascii=False),
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_get_chat_info_uses_real_feishu_chat_api(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -724,7 +739,7 @@ def _admits_group(adapter, message, sender_id, chat_id=""):
 
 
 class TestAdapterBehavior(unittest.TestCase):
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_build_event_handler_registers_reaction_and_card_processors(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -806,7 +821,7 @@ class TestAdapterBehavior(unittest.TestCase):
             ],
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_bot_origin_reactions_are_dropped_to_avoid_feedback_loops(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -827,7 +842,7 @@ class TestAdapterBehavior(unittest.TestCase):
                 adapter._on_reaction_event("im.message.reaction.created_v1", data)
             run_threadsafe.assert_not_called()
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_user_reaction_with_managed_emoji_is_still_routed(self):
         # Operator-origin filter is enough to prevent feedback loops; we must
         # not additionally swallow user-origin reactions just because their
@@ -885,7 +900,7 @@ class TestAdapterBehavior(unittest.TestCase):
         adapter.get_chat_info = AsyncMock(return_value={"name": "Test Chat"})
         return adapter
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_reaction_on_peer_bot_message_is_not_routed(self):
         # GET im/v1/messages sender for bot messages carries id=app_id; a peer
         # bot's message has a different app_id than ours, so it must be dropped.
@@ -902,7 +917,7 @@ class TestAdapterBehavior(unittest.TestCase):
         )
         adapter._handle_message_with_guards.assert_not_awaited()
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_reaction_on_our_own_bot_message_is_routed(self):
         adapter = self._build_reaction_adapter(msg_sender_id="cli_self_app")
 
@@ -917,7 +932,7 @@ class TestAdapterBehavior(unittest.TestCase):
         )
         adapter._handle_message_with_guards.assert_awaited_once()
 
-    @patch.dict(os.environ, {"FEISHU_GROUP_POLICY": "open"}, clear=True)
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_GROUP_POLICY": "open"}, clear=True)
     def test_group_message_requires_mentions_even_when_policy_open(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -930,7 +945,7 @@ class TestAdapterBehavior(unittest.TestCase):
         message_with_mention = SimpleNamespace(mentions=[SimpleNamespace(key="@_user_1")])
         self.assertFalse(_admits_group(adapter, message_with_mention, sender_id, ""))
 
-    @patch.dict(os.environ, {"FEISHU_GROUP_POLICY": "open"}, clear=True)
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_GROUP_POLICY": "open"}, clear=True)
     def test_group_message_with_other_user_mention_is_rejected_when_bot_identity_unknown(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -948,7 +963,7 @@ class TestAdapterBehavior(unittest.TestCase):
 
     @patch.dict(
         os.environ,
-        {
+        {**_KEEP_OS_PATH_VARS, 
             "FEISHU_GROUP_POLICY": "allowlist",
             "FEISHU_ALLOWED_USERS": "ou_allowed",
             "FEISHU_BOT_NAME": "OpenAmer Bot",
@@ -1183,7 +1198,7 @@ class TestAdapterBehavior(unittest.TestCase):
             )
         )
 
-    @patch.dict(os.environ, {"FEISHU_GROUP_POLICY": "open"}, clear=True)
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_GROUP_POLICY": "open"}, clear=True)
     def test_group_message_matches_bot_open_id_when_configured(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1208,7 +1223,7 @@ class TestAdapterBehavior(unittest.TestCase):
             _admits_group(adapter, SimpleNamespace(mentions=[other_mention]), sender_id, "")
         )
 
-    @patch.dict(os.environ, {"FEISHU_GROUP_POLICY": "open"}, clear=True)
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_GROUP_POLICY": "open"}, clear=True)
     def test_group_message_matches_bot_name_when_only_name_available(self):
         """Name fallback engages when either side lacks an open_id. When BOTH
         the mention and the bot carry open_ids, IDs are authoritative — a
@@ -1265,7 +1280,7 @@ class TestAdapterBehavior(unittest.TestCase):
             _admits_group(adapter2, SimpleNamespace(mentions=[bot_mention]), sender_id, "")
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_post_message_as_text(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1284,7 +1299,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(media_urls, [])
         self.assertEqual(media_types, [])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_post_message_uses_first_available_language_block(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1303,7 +1318,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(media_urls, [])
         self.assertEqual(media_types, [])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_post_message_with_rich_elements_does_not_drop_content(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1329,7 +1344,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(media_urls, [])
         self.assertEqual(media_types, [])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_post_message_downloads_embedded_resources(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1365,7 +1380,7 @@ class TestAdapterBehavior(unittest.TestCase):
             fallback_filename="spec.pdf",
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_merge_forward_message_as_text_summary(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1395,7 +1410,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(media_urls, [])
         self.assertEqual(media_types, [])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_share_chat_message_as_text_summary(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1414,7 +1429,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(media_urls, [])
         self.assertEqual(media_types, [])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_interactive_message_as_text_summary(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1448,7 +1463,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(media_urls, [])
         self.assertEqual(media_types, [])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_image_message_downloads_and_caches(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1472,7 +1487,7 @@ class TestAdapterBehavior(unittest.TestCase):
             image_key="img_123",
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_audio_message_downloads_and_caches(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1494,7 +1509,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(media_urls, ["/tmp/feishu-audio.ogg"])
         self.assertEqual(media_types, ["audio/ogg"])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_file_message_downloads_and_caches(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1516,7 +1531,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(media_urls, ["/tmp/doc_123_report.pdf"])
         self.assertEqual(media_types, ["application/pdf"])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_media_message_with_image_mime_becomes_photo(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1538,7 +1553,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(media_urls, ["/tmp/feishu-media.jpg"])
         self.assertEqual(media_types, ["image/jpeg"])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_media_message_with_video_mime_becomes_video(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1560,7 +1575,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(media_urls, ["/tmp/feishu-video.mp4"])
         self.assertEqual(media_types, ["video/mp4"])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_text_from_raw_content_uses_relation_message_fallbacks(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1579,7 +1594,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(shared, "Shared chat: Platform Ops\nChat ID: oc_shared")
         self.assertEqual(attachment, "[Attachment: report.pdf]")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_text_message_starting_with_slash_becomes_command(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1617,7 +1632,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(event.message_type.value, "command")
         self.assertEqual(event.text, "/help test")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_extract_text_file_injects_content(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1635,7 +1650,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertIn("hello from feishu", text)
         self.assertIn("[Content of", text)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_message_event_submits_to_adapter_loop(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1670,7 +1685,7 @@ class TestAdapterBehavior(unittest.TestCase):
 
         self.assertTrue(submit.called)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_webhook_request_uses_same_message_dispatch_path(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1694,7 +1709,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(response.status, 200)
         adapter._on_message_event.assert_called_once()
 
-    @patch.dict(os.environ, {"FEISHU_VERIFICATION_TOKEN": "expected-token"}, clear=True)
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_VERIFICATION_TOKEN": "expected-token"}, clear=True)
     def test_url_verification_requires_configured_verification_token(self):
         """url_verification must be rejected when token is set but mismatched.
 
@@ -1722,7 +1737,7 @@ class TestAdapterBehavior(unittest.TestCase):
 
         self.assertEqual(response.status, 401)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_process_inbound_message_uses_event_sender_identity_only(self):
         from gateway.config import PlatformConfig
         from gateway.platforms.base import MessageType
@@ -1768,7 +1783,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(event.source.user_id_alt, "on_union")
         self.assertEqual(event.source.chat_name, "Feishu DM")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_text_batch_merges_rapid_messages_into_single_event(self):
         from gateway.config import PlatformConfig
         from gateway.platforms.base import MessageEvent, MessageType
@@ -1810,7 +1825,7 @@ class TestAdapterBehavior(unittest.TestCase):
 
     @patch.dict(
         os.environ,
-        {
+        {**_KEEP_OS_PATH_VARS, 
             "OPENAMER_FEISHU_TEXT_BATCH_MAX_MESSAGES": "2",
         },
         clear=True,
@@ -1858,7 +1873,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(first.text, "A\nB")
         self.assertEqual(second.text, "C")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_media_batch_merges_rapid_photo_messages(self):
         from gateway.config import PlatformConfig
         from gateway.platforms.base import MessageEvent, MessageType
@@ -1913,7 +1928,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertIn("第一张", event.text)
         self.assertIn("第二张", event.text)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_image_downloads_then_uses_native_image_send(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -1931,7 +1946,7 @@ class TestAdapterBehavior(unittest.TestCase):
         adapter.send_image_file.assert_awaited_once()
         self.assertEqual(adapter.send_image_file.await_args.kwargs["image_path"], "/tmp/cached.png")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_animation_degrades_to_document_send(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2088,7 +2103,7 @@ class TestAdapterBehavior(unittest.TestCase):
                 second = FeishuAdapter(PlatformConfig())
                 self.assertTrue(second._is_duplicate("om_same"))
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_process_inbound_group_message_keeps_group_type_when_chat_lookup_falls_back(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2125,7 +2140,7 @@ class TestAdapterBehavior(unittest.TestCase):
         event = adapter._dispatch_inbound_event.await_args.args[0]
         self.assertEqual(event.source.chat_type, "group")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_process_inbound_message_fetches_reply_to_text(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2164,7 +2179,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(event.reply_to_message_id, "om_parent")
         self.assertEqual(event.reply_to_text, "父消息内容")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_replies_in_thread_when_thread_metadata_present(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2205,7 +2220,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(result.message_id, "om_reply")
         self.assertTrue(captured["request"].request_body.reply_in_thread)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_uses_metadata_reply_target_for_threaded_feishu_topic(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2244,7 +2259,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(captured["request"].message_id, "om_trigger")
         self.assertTrue(captured["request"].request_body.reply_in_thread)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_retries_transient_failure(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2289,7 +2304,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(captured["attempts"], 2)
         self.assertEqual(sleeps, [1])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_does_not_retry_deterministic_api_failure(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2332,7 +2347,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(captured["attempts"], 1)
         self.assertEqual(sleeps, [])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_document_reply_uses_thread_flag(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2387,7 +2402,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertTrue(result.success)
         self.assertTrue(captured["request"].request_body.reply_in_thread)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_document_uploads_file_and_sends_file_message(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2441,7 +2456,7 @@ class TestAdapterBehavior(unittest.TestCase):
             '{"file_key": "file_123"}',
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_document_with_caption_uses_single_post_message(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2494,7 +2509,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertIn('"file_key": "file_123"', captured["message_request"].request_body.content)
         self.assertIn("报告请看", captured["message_request"].request_body.content)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_image_file_uploads_image_and_sends_image_message(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2548,7 +2563,7 @@ class TestAdapterBehavior(unittest.TestCase):
             '{"image_key": "img_123"}',
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_image_file_with_caption_uses_single_post_message(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2601,7 +2616,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertIn('"image_key": "img_123"', captured["message_request"].request_body.content)
         self.assertIn("截图说明", captured["message_request"].request_body.content)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_video_uploads_file_and_sends_media_message(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2652,7 +2667,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(captured["message_request"].request_body.msg_type, "media")
         self.assertEqual(captured["message_request"].request_body.content, '{"file_key": "file_video_123"}')
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_voice_uploads_opus_and_sends_audio_message(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2703,7 +2718,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(captured["message_request"].request_body.msg_type, "audio")
         self.assertEqual(captured["message_request"].request_body.content, '{"file_key": "file_audio_123"}')
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_build_post_payload_extracts_title_and_links(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2714,7 +2729,7 @@ class TestAdapterBehavior(unittest.TestCase):
         elements = payload["zh_cn"]["content"][0]
         self.assertEqual(elements, [{"tag": "md", "text": "# 标题\n访问 [文档](https://example.com)"}])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_build_post_payload_wraps_markdown_in_md_tag(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2732,7 +2747,7 @@ class TestAdapterBehavior(unittest.TestCase):
             ],
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_build_post_payload_keeps_full_markdown_text(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2750,7 +2765,7 @@ class TestAdapterBehavior(unittest.TestCase):
             [[{"tag": "md", "text": "---\n1. 第一项\n  2. 子项\n- 外层\n  - 内层\n<u>下划线</u> 和 ~~删除线~~"}]],
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_build_outbound_payload_uses_post_for_markdown_table(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2767,7 +2782,7 @@ class TestAdapterBehavior(unittest.TestCase):
             [[{"tag": "md", "text": content}]],
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_uses_post_for_every_chunk_of_multi_chunk_markdown(self):
         """Regression for #26841: when a long Markdown message is split
         across multiple chunks, every chunk must go out as
@@ -2826,7 +2841,7 @@ class TestAdapterBehavior(unittest.TestCase):
         msg_types = [r.request_body.msg_type for r in captured]
         self.assertEqual(msg_types, ["post", "post"])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_plain_text_message_not_upgraded_by_prefer_post(self):
         """A message with no markdown at all must still go out as plain
         ``msg_type=text`` — the whole-message ``prefer_post`` decision
@@ -2871,7 +2886,7 @@ class TestAdapterBehavior(unittest.TestCase):
         self.assertEqual(len(captured), 1)
         self.assertEqual(captured[0].request_body.msg_type, "text")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_uses_post_for_inline_markdown(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2912,7 +2927,7 @@ class TestAdapterBehavior(unittest.TestCase):
         elements = payload["zh_cn"]["content"][0]
         self.assertEqual(elements, [{"tag": "md", "text": "可以用 **粗体** 和 *斜体*。"}])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_splits_fenced_code_blocks_into_separate_post_rows(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2975,7 +2990,7 @@ class TestAdapterBehavior(unittest.TestCase):
             ],
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_build_post_payload_keeps_fence_like_code_lines_inside_code_block(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -2996,7 +3011,7 @@ class TestAdapterBehavior(unittest.TestCase):
             ],
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_build_post_payload_preserves_trailing_spaces_in_code_block(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3017,7 +3032,7 @@ class TestAdapterBehavior(unittest.TestCase):
             ],
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_build_post_payload_splits_multiple_fenced_code_blocks(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3040,7 +3055,7 @@ class TestAdapterBehavior(unittest.TestCase):
             ],
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_falls_back_to_text_when_post_payload_is_rejected(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3085,7 +3100,7 @@ class TestAdapterBehavior(unittest.TestCase):
             json.dumps({"text": "可以用 粗体 和 斜体。"}, ensure_ascii=False),
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_falls_back_to_text_when_post_response_is_unsuccessful(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3130,7 +3145,7 @@ class TestAdapterBehavior(unittest.TestCase):
             json.dumps({"text": "可以用 粗体 和 斜体。"}, ensure_ascii=False),
         )
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_send_uses_post_for_advanced_markdown_lines(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3191,7 +3206,7 @@ class TestHydrateBotIdentity(unittest.TestCase):
 
         return FeishuAdapter(PlatformConfig())
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_hydration_populates_open_id_from_bot_info(self):
         adapter = self._make_adapter()
         adapter._client = Mock()
@@ -3214,7 +3229,7 @@ class TestHydrateBotIdentity(unittest.TestCase):
 
     @patch.dict(
         os.environ,
-        {
+        {**_KEEP_OS_PATH_VARS, 
             "FEISHU_BOT_OPEN_ID": "ou_env",
             "FEISHU_BOT_NAME": "Env OpenAmer",
         },
@@ -3243,7 +3258,7 @@ class TestHydrateBotIdentity(unittest.TestCase):
         self.assertEqual(adapter._bot_open_id, "ou_hydrated")
         self.assertEqual(adapter._bot_name, "Hydrated OpenAmer")
 
-    @patch.dict(os.environ, {"FEISHU_BOT_OPEN_ID": "ou_env"}, clear=True)
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_BOT_OPEN_ID": "ou_env"}, clear=True)
     def test_hydration_overwrites_stale_env_open_id(self):
         """A stale env open_id should not break group mention gating after app migration."""
         adapter = self._make_adapter()
@@ -3266,7 +3281,7 @@ class TestHydrateBotIdentity(unittest.TestCase):
 
     @patch.dict(
         os.environ,
-        {
+        {**_KEEP_OS_PATH_VARS, 
             "FEISHU_BOT_OPEN_ID": "ou_env",
             "FEISHU_BOT_NAME": "Env OpenAmer",
         },
@@ -3282,7 +3297,7 @@ class TestHydrateBotIdentity(unittest.TestCase):
         self.assertEqual(adapter._bot_open_id, "ou_env")
         self.assertEqual(adapter._bot_name, "Env OpenAmer")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_hydration_tolerates_probe_failure_and_falls_back_to_app_info(self):
         adapter = self._make_adapter()
         adapter._client = Mock()
@@ -3308,7 +3323,7 @@ class TestPendingInboundQueue(unittest.TestCase):
     before or during adapter loop transitions must be queued for replay
     rather than silently dropped."""
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_event_queued_when_loop_not_ready(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3328,7 +3343,7 @@ class TestPendingInboundQueue(unittest.TestCase):
         # Drain scheduled flag set.
         self.assertTrue(adapter._pending_drain_scheduled)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_drainer_replays_queued_events_when_loop_becomes_ready(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3374,7 +3389,7 @@ class TestPendingInboundQueue(unittest.TestCase):
         # Drain flag reset so a future race can schedule a new drainer.
         self.assertFalse(adapter._pending_drain_scheduled)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_drainer_drops_queue_when_adapter_shuts_down(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3394,7 +3409,7 @@ class TestPendingInboundQueue(unittest.TestCase):
         self.assertEqual(len(adapter._pending_inbound_events), 0)
         self.assertFalse(adapter._pending_drain_scheduled)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_queue_cap_evicts_oldest_beyond_max_depth(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3412,7 +3427,7 @@ class TestPendingInboundQueue(unittest.TestCase):
         tags = [getattr(e, "tag", None) for e in adapter._pending_inbound_events]
         self.assertEqual(tags, ["evt-2", "evt-3", "evt-4"])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_normal_path_unchanged_when_loop_ready(self):
         """When the loop is ready, events should dispatch directly without
         ever touching the pending queue."""
@@ -3456,7 +3471,7 @@ class TestWebhookSecurity(unittest.TestCase):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
 
-        with patch.dict(os.environ, {"FEISHU_APP_ID": "cli", "FEISHU_APP_SECRET": "sec", "FEISHU_ENCRYPT_KEY": encrypt_key}, clear=True):
+        with patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_APP_ID": "cli", "FEISHU_APP_SECRET": "sec", "FEISHU_ENCRYPT_KEY": encrypt_key}, clear=True):
             return FeishuAdapter(PlatformConfig())
 
     def test_signature_valid_passes(self):
@@ -3509,7 +3524,7 @@ class TestWebhookSecurity(unittest.TestCase):
         adapter._webhook_rate_counts[ip] = (count, window_start - _FEISHU_WEBHOOK_RATE_WINDOW_SECONDS - 1)
         self.assertTrue(adapter._check_webhook_rate_limit(ip))
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_webhook_request_rejects_oversized_body(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter, _FEISHU_WEBHOOK_MAX_BODY_BYTES
@@ -3547,7 +3562,7 @@ class TestWebhookSecurity(unittest.TestCase):
             self.assertEqual(response.status, 413)
             self.assertEqual(content.read_sizes, [_FEISHU_WEBHOOK_MAX_BODY_BYTES + 1])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_webhook_request_rejects_invalid_json(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3561,7 +3576,7 @@ class TestWebhookSecurity(unittest.TestCase):
         response = asyncio.run(adapter._handle_webhook_request(request))
         self.assertEqual(response.status, 400)
 
-    @patch.dict(os.environ, {"FEISHU_ENCRYPT_KEY": "secret"}, clear=True)
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_ENCRYPT_KEY": "secret"}, clear=True)
     def test_webhook_request_rejects_bad_signature(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3577,7 +3592,7 @@ class TestWebhookSecurity(unittest.TestCase):
         response = asyncio.run(adapter._handle_webhook_request(request))
         self.assertEqual(response.status, 401)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_webhook_connect_requires_inbound_auth_secret(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3590,7 +3605,7 @@ class TestWebhookSecurity(unittest.TestCase):
         )
         self.assertFalse(asyncio.run(adapter.connect()))
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_webhook_loads_auth_secrets_from_platform_extra(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3610,7 +3625,7 @@ class TestWebhookSecurity(unittest.TestCase):
         self.assertEqual(adapter._verification_token, "token_from_extra")
         self.assertEqual(adapter._encrypt_key, "encrypt_from_extra")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_webhook_url_verification_challenge_passes_without_signature(self):
         """Challenge requests must succeed even when no encrypt_key is set."""
         from gateway.config import PlatformConfig
@@ -3631,7 +3646,7 @@ class TestWebhookSecurity(unittest.TestCase):
 class TestDedupTTL(unittest.TestCase):
     """Tests for TTL-aware deduplication."""
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_duplicate_within_ttl_is_rejected(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3642,7 +3657,7 @@ class TestDedupTTL(unittest.TestCase):
             adapter._seen_message_order = ["om_dup"]
             self.assertTrue(adapter._is_duplicate("om_dup"))
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_expired_entry_is_not_considered_duplicate(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter, _FEISHU_DEDUP_TTL_SECONDS
@@ -3655,7 +3670,7 @@ class TestDedupTTL(unittest.TestCase):
         with patch.object(adapter, "_persist_seen_message_ids"):
             self.assertFalse(adapter._is_duplicate("om_old"))
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_load_tolerates_malformed_timestamp_values(self):
         """Regression #13632 — a non-numeric timestamp in the persisted
         dedup state must not crash adapter startup.  The bad key is
@@ -3666,7 +3681,7 @@ class TestDedupTTL(unittest.TestCase):
         from plugins.platforms.feishu.adapter import FeishuAdapter
 
         with tempfile.TemporaryDirectory() as temp_home:
-            with patch.dict(os.environ, {"OPENAMER_HOME": temp_home}, clear=True):
+            with patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "OPENAMER_HOME": temp_home}, clear=True):
                 adapter = FeishuAdapter(PlatformConfig())
                 adapter._dedup_state_path.parent.mkdir(parents=True, exist_ok=True)
                 adapter._dedup_state_path.write_text(
@@ -3686,7 +3701,7 @@ class TestDedupTTL(unittest.TestCase):
                 assert "om_bad_str" not in adapter._seen_message_ids
                 assert "om_bad_null" not in adapter._seen_message_ids
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_persist_saves_timestamps_as_dict(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3702,7 +3717,7 @@ class TestDedupTTL(unittest.TestCase):
         self.assertIsInstance(saved["message_ids"], dict)
         self.assertAlmostEqual(saved["message_ids"]["om_ts1"], ts, places=1)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_load_backward_compat_list_format(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3720,7 +3735,7 @@ class TestDedupTTL(unittest.TestCase):
 class TestGroupMentionAtAll(unittest.TestCase):
     """Tests for @_all (Feishu @everyone) group mention routing."""
 
-    @patch.dict(os.environ, {"FEISHU_GROUP_POLICY": "open"}, clear=True)
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_GROUP_POLICY": "open"}, clear=True)
     def test_at_all_in_content_accepts_without_explicit_bot_mention(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3733,7 +3748,7 @@ class TestGroupMentionAtAll(unittest.TestCase):
         sender_id = SimpleNamespace(open_id="ou_any", user_id=None)
         self.assertTrue(_admits_group(adapter, message, sender_id, ""))
 
-    @patch.dict(os.environ, {"FEISHU_GROUP_POLICY": "allowlist", "FEISHU_ALLOWED_USERS": "ou_allowed"}, clear=True)
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_GROUP_POLICY": "allowlist", "FEISHU_ALLOWED_USERS": "ou_allowed"}, clear=True)
     def test_at_all_still_requires_policy_gate(self):
         """@_all bypasses mention gating but NOT the allowlist policy."""
         from gateway.config import PlatformConfig
@@ -3753,7 +3768,7 @@ class TestGroupMentionAtAll(unittest.TestCase):
 class TestSenderNameResolution(unittest.TestCase):
     """Tests for _resolve_sender_name_from_api (contact API + cache)."""
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_returns_none_when_client_is_none(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3763,7 +3778,7 @@ class TestSenderNameResolution(unittest.TestCase):
         result = asyncio.run(adapter._resolve_sender_name_from_api("ou_abc"))
         self.assertIsNone(result)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_returns_cached_name_within_ttl(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3775,7 +3790,7 @@ class TestSenderNameResolution(unittest.TestCase):
         result = asyncio.run(adapter._resolve_sender_name_from_api("ou_cached"))
         self.assertEqual(result, "Alice")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_fetches_and_caches_name_from_api(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3804,7 +3819,7 @@ class TestSenderNameResolution(unittest.TestCase):
         self.assertEqual(result, "Bob")
         self.assertIn("ou_bob", adapter._sender_name_cache)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_expired_cache_triggers_new_api_call(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3831,7 +3846,7 @@ class TestSenderNameResolution(unittest.TestCase):
 
         self.assertEqual(result, "NewName")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_api_failure_returns_none_without_raising(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3882,7 +3897,7 @@ class TestBotNameResolution(unittest.TestCase):
         adapter._client = SimpleNamespace(request=_fake_request)
         return adapter, calls
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_returns_cached_bot_name_without_api_call(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3895,7 +3910,7 @@ class TestBotNameResolution(unittest.TestCase):
         result = asyncio.run(adapter._resolve_sender_name_from_api("ou_peer", is_bot=True))
         self.assertEqual(result, "Peer Bot")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_fetches_and_caches_bot_name(self):
         adapter, calls = self._build_adapter_with_bots({"ou_peer": "Peer Bot"})
 
@@ -3912,7 +3927,7 @@ class TestBotNameResolution(unittest.TestCase):
         # Feishu expects repeated ?bot_ids= params, not comma-joined.
         self.assertEqual(calls[0].queries, [("bot_ids", "ou_peer")])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_api_failure_returns_none_and_does_not_poison_cache(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -3933,7 +3948,7 @@ class TestBotNameResolution(unittest.TestCase):
         self.assertIsNone(result)
         self.assertNotIn("ou_peer", adapter._sender_name_cache)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_bot_absent_from_response_is_not_cached(self):
         """Bot not in ``data.bots`` (e.g. landed in ``failed_bots``) → no
         cache entry, next lookup re-fetches."""
@@ -3948,7 +3963,7 @@ class TestBotNameResolution(unittest.TestCase):
         self.assertIsNone(result)
         self.assertNotIn("ou_ghost", adapter._sender_name_cache)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_empty_name_in_response_is_negative_cached(self):
         """API returns name="" → cache "" so repeat lookups short-circuit."""
         adapter, calls = self._build_adapter_with_bots({"ou_nameless": ""})
@@ -3965,7 +3980,7 @@ class TestBotNameResolution(unittest.TestCase):
         self.assertEqual(adapter._sender_name_cache["ou_nameless"][0], "")
         self.assertEqual(len(calls), 1)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_non_zero_code_returns_none(self):
         from gateway.config import PlatformConfig
         from plugins.platforms.feishu.adapter import FeishuAdapter
@@ -4054,7 +4069,7 @@ class TestProcessingReactions(unittest.TestCase):
         return patch("plugins.platforms.feishu.adapter.asyncio.to_thread", side_effect=_direct)
 
     # ------------------------------------------------------------------ start
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_start_adds_typing_and_caches_reaction_id(self):
         adapter, tracker = self._build_adapter(next_reaction_id="r_typing")
         with self._patch_to_thread():
@@ -4062,7 +4077,7 @@ class TestProcessingReactions(unittest.TestCase):
         self.assertEqual(tracker.create_calls, ["Typing"])
         self.assertEqual(adapter._pending_processing_reactions["om_msg"], "r_typing")
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_start_is_idempotent_for_same_message_id(self):
         adapter, tracker = self._build_adapter(next_reaction_id="r_typing")
         with self._patch_to_thread():
@@ -4070,7 +4085,7 @@ class TestProcessingReactions(unittest.TestCase):
             self._run(adapter.on_processing_start(self._event()))
         self.assertEqual(tracker.create_calls, ["Typing"])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_start_does_not_cache_when_create_fails(self):
         adapter, tracker = self._build_adapter(create_success=False)
         with self._patch_to_thread():
@@ -4079,7 +4094,7 @@ class TestProcessingReactions(unittest.TestCase):
         self.assertNotIn("om_msg", adapter._pending_processing_reactions)
 
     # --------------------------------------------------------------- complete
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_success_removes_typing_and_adds_nothing(self):
         adapter, tracker = self._build_adapter(next_reaction_id="r_typing")
         with self._patch_to_thread():
@@ -4091,7 +4106,7 @@ class TestProcessingReactions(unittest.TestCase):
         self.assertEqual(tracker.delete_calls, ["r_typing"])
         self.assertNotIn("om_msg", adapter._pending_processing_reactions)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_failure_removes_typing_then_adds_cross_mark(self):
         adapter, tracker = self._build_adapter(next_reaction_id="r_typing")
         with self._patch_to_thread():
@@ -4102,7 +4117,7 @@ class TestProcessingReactions(unittest.TestCase):
         self.assertEqual(tracker.create_calls, ["Typing", "CrossMark"])
         self.assertEqual(tracker.delete_calls, ["r_typing"])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_cancelled_removes_typing_and_adds_nothing(self):
         adapter, tracker = self._build_adapter(next_reaction_id="r_typing")
         with self._patch_to_thread():
@@ -4114,7 +4129,7 @@ class TestProcessingReactions(unittest.TestCase):
         self.assertEqual(tracker.delete_calls, ["r_typing"])
         self.assertNotIn("om_msg", adapter._pending_processing_reactions)
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_failure_without_preceding_start_still_adds_cross_mark(self):
         adapter, tracker = self._build_adapter()
         with self._patch_to_thread():
@@ -4124,7 +4139,7 @@ class TestProcessingReactions(unittest.TestCase):
         self.assertEqual(tracker.create_calls, ["CrossMark"])
         self.assertEqual(tracker.delete_calls, [])
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_success_without_preceding_start_is_full_noop(self):
         adapter, tracker = self._build_adapter()
         with self._patch_to_thread():
@@ -4135,7 +4150,7 @@ class TestProcessingReactions(unittest.TestCase):
         self.assertEqual(tracker.delete_calls, [])
 
     # ------------------------- delete failure: don't stack badges -----------
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_delete_failure_on_failure_outcome_skips_cross_mark(self):
         # Removing Typing is best-effort — but if it fails, we must NOT
         # additionally add CrossMark, or the UI would show two contradictory
@@ -4154,7 +4169,7 @@ class TestProcessingReactions(unittest.TestCase):
             adapter._pending_processing_reactions["om_msg"], "r_typing",
         )  # handle retained
 
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_delete_failure_on_success_outcome_retains_handle(self):
         adapter, tracker = self._build_adapter(
             next_reaction_id="r_typing", delete_success=False,
@@ -4171,7 +4186,7 @@ class TestProcessingReactions(unittest.TestCase):
         )
 
     # ------------------------------------------------------------- env toggle
-    @patch.dict(os.environ, {"FEISHU_REACTIONS": "false"}, clear=True)
+    @patch.dict(os.environ, {**_KEEP_OS_PATH_VARS, "FEISHU_REACTIONS": "false"}, clear=True)
     def test_env_disable_short_circuits_both_hooks(self):
         adapter, tracker = self._build_adapter()
         with self._patch_to_thread():
@@ -4183,7 +4198,7 @@ class TestProcessingReactions(unittest.TestCase):
         self.assertEqual(tracker.delete_calls, [])
 
     # ------------------------------------------------------------- LRU bounds
-    @patch.dict(os.environ, {}, clear=True)
+    @patch.dict(os.environ, _KEEP_OS_PATH_VARS, clear=True)
     def test_cache_evicts_oldest_entry_beyond_size_limit(self):
         from plugins.platforms.feishu.adapter import _FEISHU_PROCESSING_REACTION_CACHE_SIZE
 

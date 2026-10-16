@@ -693,6 +693,11 @@ async def test_profile_command_reports_source_stamped_profile(monkeypatch, tmp_p
     runner = _make_runner(session_entry)
     runner.config.multiplex_profiles = True
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+    # Pin Path.home() outside tmp_path: display_openamer_home() abbreviates
+    # any OPENAMER_HOME under the user home to "~/..." (same pin as
+    # test_profile_command_reports_custom_root_profile).
+    from pathlib import Path
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "unrelated-home")
 
     event = _make_event("/profile")
     event.source.profile = "milo"
@@ -724,6 +729,11 @@ async def test_profile_command_ignores_stamp_when_multiplexing_off(monkeypatch, 
     runner = _make_runner(session_entry)
     assert runner.config.multiplex_profiles is False
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+    # Pin Path.home() outside tmp_path: display_openamer_home() abbreviates
+    # any OPENAMER_HOME under the user home to "~/..." (same pin as
+    # test_profile_command_reports_custom_root_profile).
+    from pathlib import Path
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "unrelated-home")
 
     event = _make_event("/profile")
     event.source.profile = "milo"
@@ -751,6 +761,11 @@ async def test_profile_command_unstamped_source_unchanged(monkeypatch, tmp_path)
     )
     runner = _make_runner(session_entry)
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+    # Pin Path.home() outside tmp_path: display_openamer_home() abbreviates
+    # any OPENAMER_HOME under the user home to "~/..." (same pin as
+    # test_profile_command_reports_custom_root_profile).
+    from pathlib import Path
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "unrelated-home")
 
     result = await runner._handle_profile_command(_make_event("/profile"))
 
