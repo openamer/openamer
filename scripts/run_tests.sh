@@ -133,6 +133,15 @@ echo "▶ pre-compiling bytecode cache"
 "$PYTHON" -m compileall -q -j 0 -- $(git ls-files '*.py') >/dev/null 2>&1 || true
 
 echo "▶ launching test runner"
+# PYTHONUTF8=1 below: without it Windows resolves locale-default text I/O to the
+# ANSI codepage (cp1252) even with LANG=C.UTF-8 set, so every `read_text()` /
+# `text=True` that does not pin an encoding dies with UnicodeDecodeError on
+# UTF-8 content. Measured 2026-10-11 on this checkout: 507 failing tests in the
+# full canonical run (44682 passed), and 16/114 in
+# tests/plugins/test_kanban_dashboard_plugin.py alone — all of them green again
+# with this variable set. Linux CI is UTF-8 by default, which is why the gap only
+# ever appeared on Windows; pinning it here makes the hermetic run match CI,
+# which is exactly what this script promises.
 exec env -i \
   PATH="$PATH" \
   HOME="$HOME" \
@@ -143,6 +152,7 @@ exec env -i \
   LANG=C.UTF-8 \
   LC_ALL=C.UTF-8 \
   PYTHONHASHSEED=0 \
+  PYTHONUTF8=1 \
   ${OPENAMER_RUN_SLOW_PET_TESTS:+OPENAMER_RUN_SLOW_PET_TESTS="$OPENAMER_RUN_SLOW_PET_TESTS"} \
   ${EXTRA_PYTHONPATH:+PYTHONPATH="$EXTRA_PYTHONPATH"} \
   ${EXTRA_PYTEST_PLUGINS:+PYTEST_PLUGINS="$EXTRA_PYTEST_PLUGINS"} \
