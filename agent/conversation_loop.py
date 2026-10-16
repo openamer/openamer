@@ -41,6 +41,26 @@ from agent.context_engine import automatic_compaction_status_message
 from agent.display import KawaiiSpinner
 from agent.error_classifier import FailoverReason, classify_api_error
 from agent.iteration_budget import IterationBudget
+
+
+def _spend_ok(agent) -> bool:
+    """May this turn keep spending? No guard configured means yes.
+
+    A missing guard must never break a turn, so the attribute is read
+    defensively -- the same reason the condition below is a single predicate.
+    """
+    budget = getattr(agent, "spend_budget", None)
+    if budget is None:
+        return True
+    return budget.ok_to_continue(getattr(agent, "session_estimated_cost_usd", 0.0) or 0.0)
+
+
+def _note_spend(agent, amount) -> None:
+    """Feed a settled cost into the day total; inert when unconfigured."""
+    budget = getattr(agent, "spend_budget", None)
+    if budget is not None:
+        budget.note(amount)
+
 from agent.turn_context import (
     _compression_warrants_another_preflight_pass,
     build_turn_context,
@@ -1090,7 +1110,11 @@ def run_conversation(
             should_review_memory=_should_review_memory,
         )
 
-    while (api_call_count < agent.max_iterations and agent.iteration_budget.remaining > 0) or agent._budget_grace_call:
+    while (
+        api_call_count < agent.max_iterations
+        and agent.iteration_budget.remaining > 0
+        and _spend_ok(agent)
+    ) or agent._budget_grace_call:
         _redirect_text = agent._drain_pending_redirect()
         if _redirect_text:
             _apply_active_turn_redirect(agent, messages, _redirect_text)
@@ -2959,6 +2983,7 @@ def run_conversation(
                     )
                     if cost_result.amount_usd is not None:
                         agent.session_estimated_cost_usd += float(cost_result.amount_usd)
+                        _note_spend(agent, cost_result.amount_usd)
                     # Add MoA advisor cost (already priced per-advisor at each
                     # advisor's own model rate) on top of the aggregator cost.
                     if _moa_ref_cost is not None:
