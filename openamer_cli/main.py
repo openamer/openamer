@@ -489,6 +489,7 @@ from openamer_cli.subcommands.pairing import build_pairing_parser
 from openamer_cli.subcommands.plugins import build_plugins_parser
 from openamer_cli.subcommands.mcp import build_mcp_parser
 from openamer_cli.subcommands.sandbox import build_sandbox_parser
+from openamer_cli.subcommands.run import build_run_parser
 from openamer_cli.subcommands.claw import build_claw_parser
 from openamer_cli.subcommands.lint_fix import build_lint_fix_parser
 from openamer_cli.subcommands.code_review_bot import build_review_pr_parser
@@ -16469,6 +16470,11 @@ def main():
     # sandbox command  (parser built in openamer_cli/subcommands/sandbox.py)
     # =========================================================================
     build_sandbox_parser(subparsers, cmd_sandbox=cmd_sandbox)
+
+    # =====================================================================
+    # run command - non-interactive single-task mode (embedding surface)
+    # =====================================================================
+    build_run_parser(subparsers)
 
     # =========================================================================
     # skills command  (parser built in openamer_cli/subcommands/skills.py)
