@@ -4078,12 +4078,19 @@ class BasePlatformAdapter(ABC):
         scan_content = BasePlatformAdapter._mask_json_string_media(scan_content)
         for match in media_pattern.finditer(scan_content):
             path = _normalize_media_tag_path(match.group("path"))
-            if path:
+            if path and "\x00" not in path:
+                # A NUL byte is truncation injection: filesystem syscalls
+                # cut the path at the NUL, so ``~\x00evil.png`` would open
+                # ``~``. expanduser() is not a portable NUL validator —
+                # Windows ntpath hands the NUL back verbatim — so reject a
+                # NUL path explicitly on every platform instead of relying
+                # on that call raising.
                 try:
                     media.append((os.path.expanduser(path), has_voice_tag))
                 except (OSError, RuntimeError, ValueError):
-                    # Skip a crafted ~\x00 path rather than aborting extraction
-                    # and dropping every other attachment in the response.
+                    # Skip a path expanduser refuses rather than aborting
+                    # extraction and dropping every other attachment in the
+                    # response.
                     continue
 
         seen_paths = {p for p, _ in media}
