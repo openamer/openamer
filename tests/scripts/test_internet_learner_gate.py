@@ -7135,3 +7135,56 @@ PRICE_TABLE_CONTROLS = [
     "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
 ]
 
+
+
+# class 173 (13.10.26): a MIXED-CASE nav LABEL welded in front of the read
+# time ("AI news 1 min read The Spanish bill, ..."). cycle_a_technews stored
+# the same Spain/AI-labelling lede THREE times, each with a slightly longer
+# label chain ("AI news 1 min read", "AI news 2 min read", "Trump AI news
+# 2 min read"). The pure-TitleCase guard in _strip_trailing_read_time_header
+# read the lowercase word ("news") as prose, so nothing was stripped. A nav
+# label is a bare NAME and never carries a function word, while prose that
+# merely MENTIONS a read time always does ("the reading time was about 8 min
+# read ...") -- the conjunction (short head AND no function word) is the
+# discriminator. Measured 13.10.26: 3/3 leaked rows stripped with a
+# byte-identical body, 0 of 8,008 longterm episodes, 0 of 9 hand counter-cases.
+_CLASS173_BODY = (
+    "The Spanish bill, which needs to be approved by the lower house, "
+    "classifies non-compliance with proper labelling of AI-generated content "
+    "as a \"serious offence\" that can lead to fines of up to 35 million "
+    "euros ($38.2 million) or 7% of their global annual turnover.")
+_CLASS173_LEAKS = [
+    "AI news 1 min read " + _CLASS173_BODY,
+    "AI news 2 min read " + _CLASS173_BODY,
+    "Trump AI news 2 min read " + _CLASS173_BODY,
+]
+_CLASS173_CONTROLS = [
+    "The reading time was about 8 min read while the model trained on int4 "
+    "weights.",
+    "We measured a 12 min read length before the tokenizer truncated the "
+    "sample.",
+    "By contrast, the 2024 study used 11 min read batches and converged "
+    "faster.",
+    "Attention is all you need; 12 min read is a claim about latency.",
+    "Batch size 8 min read latency curves were measured on the same GPU.",
+    "Model weights 6 min read quantization reduced memory by half in our "
+    "tests.",
+    "Neural networks 10 min read reduce training cost substantially in "
+    "practice.",
+    "Deep Learning 10 min read neural networks learn hierarchical "
+    "representations.",
+]
+
+
+def test_mixed_case_nav_label_before_a_read_time_is_stripped():
+    """A label like "AI news" carries a lowercase word -- do not read it as prose."""
+    for leak in _CLASS173_LEAKS:
+        assert IL._strip_trailing_read_time_header(leak) == _CLASS173_BODY, leak
+    for c in _CLASS173_CONTROLS:
+        assert IL._strip_trailing_read_time_header(c) == c, c
+
+
+def test_mixed_case_label_strip_needs_no_function_word():
+    """A head WITH a function word is prose, not a label -- the guard holds."""
+    prose = "The reading time was 8 min read Quantization shrinks the model."
+    assert IL._strip_trailing_read_time_header(prose) == prose
