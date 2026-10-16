@@ -4,6 +4,7 @@
 import errno
 import json
 import logging
+import ntpath
 import os
 import posixpath
 import sys
@@ -338,6 +339,17 @@ def _resolve_base_dir(
     else:
         base_text = os.getcwd()
     if container_paths:
+        # A drive-qualified base under a container task is still a HOST path --
+        # it is the live session cwd the terminal actually runs in. Return it in
+        # its own flavour. posixpath.isabs() only sees a leading "/", so without
+        # this guard a "C:\..." base reads as relative, gets joined onto the
+        # process cwd and comes back doubled.
+        if (
+            sys.platform == "win32"
+            and ntpath.isabs(base_text)
+            and not base_text.startswith("/")
+        ):
+            return Path(ntpath.normpath(base_text))
         if not posixpath.isabs(base_text):
             base_text = posixpath.join(os.getcwd(), base_text)
         return _normalize_without_host_deref(base_text)
@@ -347,7 +359,6 @@ def _resolve_base_dir(
 
     base_text = _msys_to_windows_path(base_text)
     if sys.platform == "win32":
-        import ntpath
 
         if not ntpath.isabs(base_text):
             base_text = ntpath.join(os.getcwd(), base_text)
@@ -374,9 +385,29 @@ def _resolve_path_for_task(filepath: str, task_id: str = "default") -> Path | Pu
     container_paths = _uses_container_paths(task_id)
     if container_paths:
         expanded = _expand_tilde(filepath)
+        # POSIX absoluteness is the only check the original code ran here, and it
+        # is not enough on Windows: posixpath.isabs("C:\\Users\\...") is False, so
+        # an absolute Windows path was treated as relative and joined under the
+        # container base, producing a doubled path like
+        # "<base>/C:\Users\..." -- the failure the cwd-resolution tests were
+        # catching. A Windows drive path is absolute in its own right and must be
+        # returned as given, just like a POSIX one.
         if posixpath.isabs(expanded):
             return _normalize_without_host_deref(expanded)
-        resolved = _resolve_base_dir(task_id, container_paths=True) / expanded
+        if sys.platform == "win32" and ntpath.isabs(expanded):
+            # A drive-qualified path handed to a container task is still a HOST
+            # path. Return it in its own flavour -- a PurePosixPath("C:\...")
+            # holds the right characters but never compares equal to the
+            # WindowsPath the caller passed in, and WindowsPath is what every
+            # downstream host-side caller expects.
+            return Path(ntpath.normpath(expanded))
+        base = _resolve_base_dir(task_id, container_paths=True)
+        resolved = base / expanded
+        if isinstance(base, Path):
+            # The base resolved to a native host path (a Windows drive base). Keep
+            # that flavour rather than flattening it to a PurePosixPath: the caller
+            # passed a host path and compares against a host path.
+            return Path(ntpath.normpath(str(resolved)))
         return _normalize_without_host_deref(resolved)
 
     # Host paths only — never rewrite Linux paths inside a container/WSL env.
@@ -384,7 +415,6 @@ def _resolve_path_for_task(filepath: str, task_id: str = "default") -> Path | Pu
 
     expanded = _expand_tilde(_msys_to_windows_path(filepath))
     if sys.platform == "win32":
-        import ntpath
 
         if ntpath.isabs(expanded):
             return Path(ntpath.normpath(expanded))
@@ -429,8 +459,11 @@ def _path_resolution_warning(filepath: str, resolved: Path, task_id: str = "defa
             return None  # Inside the workspace — expected.
         except ValueError:
             return (
-                f"Relative path {filepath!r} resolved to {str(resolved)!r}, which is "
-                f"OUTSIDE the active workspace ({str(root)!r}). The edit will land in "
+                # Plain str(), not !r: repr() escapes every backslash, so on
+                # Windows the message read "C:\Users\..." instead of the real
+                # path -- unreadable, and it hid the very path the user needs.
+                f"Relative path {filepath!r} resolved to {str(resolved)}, which is "
+                f"OUTSIDE the active workspace ({str(root)}). The edit will land in "
                 f"a different directory than the terminal's cwd. If this is not "
                 f"intended (e.g. a git-worktree session writing into the main "
                 f"checkout), pass an absolute path under the workspace instead."
@@ -440,12 +473,26 @@ def _path_resolution_warning(filepath: str, resolved: Path, task_id: str = "defa
 
 
 def _is_blocked_device_path(path: str) -> bool:
-    """Return True for concrete device/fd paths that can hang reads."""
-    normalized = os.path.normpath(_expand_tilde(path))
-    if normalized in _BLOCKED_DEVICE_PATHS:
+    """Return True for concrete device/fd paths that can hang reads.
+
+    POSIX device paths (``/dev/zero``, ``/proc/self/maps`` ...) are matched
+    against a posix-normalized copy of the input as well as the
+    ``os.path.normpath`` copy.  On Windows ``os.path.normpath`` rewrites a
+    literal ``/dev/zero`` to ``\\\\dev\\\\zero`` (drive-root relative), so a
+    posix-only check silently never fires there — but ``read_file_tool`` shells
+    out to ``wc -c`` and the target terminal backend may be a POSIX environment
+    (WSL/docker/remote) even on a Windows host, where those paths are real and
+    dangerous.  Matching the posix form keeps the guard honest on every host
+    while leaving Windows-native paths (``C:\\\\...``) untouched, since
+    ``posixpath.normpath`` of a backslash path never collides with the blocklist.
+    """
+    expanded = _expand_tilde(path)
+    normalized = os.path.normpath(expanded)
+    posix_normalized = posixpath.normpath(expanded)
+    if normalized in _BLOCKED_DEVICE_PATHS or posix_normalized in _BLOCKED_DEVICE_PATHS:
         return True
     # /proc/self/fd/0-2 and /proc/<pid>/fd/0-2 are Linux aliases for stdio
-    if normalized.startswith("/proc/") and normalized.endswith(
+    if posix_normalized.startswith("/proc/") and posix_normalized.endswith(
         ("/fd/0", "/fd/1", "/fd/2")
     ):
         return True
@@ -458,7 +505,7 @@ def _is_blocked_device_path(path: str) -> bool:
     # load addresses — an ASLR oracle on par with maps. /proc/*/pagemap exposes
     # virtual->physical translation. Both are blocked alongside the maps family.
     # endswith matches both /proc/<pid>/X and /proc/<pid>/task/<tid>/X.
-    if normalized.startswith("/proc/") and normalized.endswith(
+    if posix_normalized.startswith("/proc/") and posix_normalized.endswith(
         (
             "/environ",
             "/cmdline",
@@ -486,7 +533,13 @@ def _is_blocked_device(filepath: str, base_dir: str | Path | None = None) -> boo
     if base_dir is not None and not os.path.isabs(expanded):
         expanded = os.path.join(os.fspath(base_dir), expanded)
     normalized = os.path.normpath(expanded)
-    if _is_blocked_device_path(normalized):
+    # On Windows ``os.path.normpath`` rewrites a literal ``/dev/zero`` to
+    # ``\\dev\\zero`` (drive-root relative), so the posix form must be
+    # checked too: the target terminal backend may be a POSIX environment
+    # (WSL/docker/remote) even on a Windows host, where those paths are
+    # real and dangerous.
+    posix_normalized = posixpath.normpath(expanded)
+    if _is_blocked_device_path(normalized) or _is_blocked_device_path(posix_normalized):
         return True
 
     seen: set[str] = set()
@@ -496,10 +549,17 @@ def _is_blocked_device(filepath: str, base_dir: str | Path | None = None) -> boo
             target = os.readlink(current)
         except OSError:
             break
+        # A symlink target read on a Windows host may be a posix path
+        # (``/dev/zero``).  ``os.path.normpath`` rewrites it to
+        # ``\\dev\\zero`` (drive-root relative) and the blocklist lookup
+        # misses it, so a device symlink would bypass the guard.  Keep the
+        # posix form for the blocklist check while still resolving relative
+        # symlinks against the link's directory on the host filesystem.
+        posix_target = posixpath.normpath(target)
         if not os.path.isabs(target):
             target = os.path.join(os.path.dirname(current), target)
         target = os.path.normpath(target)
-        if _is_blocked_device_path(target):
+        if _is_blocked_device_path(target) or _is_blocked_device_path(posix_target):
             return True
         if target in seen:
             break

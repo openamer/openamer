@@ -12,6 +12,7 @@ freshness check is a no-op and the OOM rebuild always runs.
 """
 
 import os
+import sys
 import time
 from pathlib import Path
 from unittest.mock import patch
@@ -25,6 +26,26 @@ from openamer_cli.main import (
     _compute_web_ui_content_hash,
     _web_ui_stamp_path,
     _write_web_ui_build_stamp,
+)
+
+
+_IS_WINDOWS = sys.platform == "win32"
+
+# npm resolution moved from ``shutil.which`` to ``_resolve_node_runtime_npm``,
+# which prefers an OpenAmer-managed Node tree and — on Windows — walks PATH for
+# the launchable ``npm.cmd`` shim instead of calling ``shutil.which`` at all.
+# These tests therefore patch that resolver, the real seam, so they pin the npm
+# binary on every platform; patching ``shutil.which`` silently stopped
+# controlling it on Windows and only appeared to work on POSIX CI because the
+# system npm there happens to live at ``/usr/bin/npm``.
+#
+# The two contended-lock tests hold the build lock from the test body with
+# ``fcntl.flock`` — the Unix-only primitive itself, not merely the product's
+# call to it — so they stay POSIX-only. The product's Windows lock (msvcrt) is
+# still exercised by the flock-free tests in the same class.
+_requires_posix_flock = pytest.mark.skipif(
+    _IS_WINDOWS,
+    reason="the contention probe holds the build lock with fcntl.flock (Unix-only)",
 )
 
 
@@ -212,7 +233,7 @@ class TestBuildWebUISkipsWhenFresh:
         root = web_dir.parent.parent if web_dir.parent.name == "apps" else web_dir.parent
         _write_web_ui_build_stamp(root, web_dir)
 
-        with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+        with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
              patch("openamer_cli.main.subprocess.run") as mock_run:
             result = _build_web_ui(web_dir)
 
@@ -224,7 +245,7 @@ class TestBuildWebUISkipsWhenFresh:
 
         mock_cp = __import__("subprocess").CompletedProcess([], 0, stdout=b"", stderr=b"")
         build_ok = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
-        with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+        with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
              patch("openamer_cli.main.subprocess.run", return_value=mock_cp) as mock_run, \
              patch("openamer_cli.main._run_with_idle_timeout", return_value=build_ok) as mock_idle:
             result = _build_web_ui(web_dir)
@@ -315,7 +336,7 @@ class TestBuildWebUISkipsWhenFresh:
         (tmp_path / "package-lock.json").write_text("{}", encoding="utf-8")
         mock_cp = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
         build_ok = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
-        with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+        with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
              patch("openamer_cli.main.subprocess.run", return_value=mock_cp) as mock_run, \
              patch("openamer_cli.main._run_with_idle_timeout", return_value=build_ok):
             result = _build_web_ui(web_dir)
@@ -343,7 +364,7 @@ class TestBuildWebUISkipsWhenFresh:
 
         install_cp = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
         build_cp = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
-        with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+        with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
              patch("openamer_cli.main.subprocess.run", return_value=install_cp) as mock_run, \
              patch("openamer_cli.main._run_with_idle_timeout", return_value=build_cp):
             result = _build_web_ui(web_dir)
@@ -365,7 +386,7 @@ class TestBuildWebUISkipsWhenFresh:
 
         install_cp = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
         build_cp = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
-        with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+        with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
              patch("openamer_cli.main.subprocess.run", return_value=install_cp), \
              patch("openamer_cli.main._run_with_idle_timeout", return_value=build_cp) as mock_idle:
             result = _build_web_ui(web_dir)
@@ -385,7 +406,7 @@ class TestBuildWebUISkipsWhenFresh:
 
         install_cp = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
         build_cp = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
-        with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+        with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
              patch("openamer_cli.main.subprocess.run", return_value=install_cp) as mock_run, \
              patch("openamer_cli.main._run_with_idle_timeout", return_value=build_cp):
             result = _build_web_ui(web_dir)
@@ -413,7 +434,7 @@ class TestBuildWebUISkipsWhenFresh:
 
         install_cp = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
         build_cp = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
-        with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+        with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
              patch("openamer_cli.main.subprocess.run", return_value=install_cp) as mock_run, \
              patch("openamer_cli.main._run_with_idle_timeout", return_value=build_cp):
             result = _build_web_ui(web_dir)
@@ -434,7 +455,7 @@ class TestBuildWebUIRetryAndStaleFallback:
         # build attempt 1: fail; build attempt 2: success.
         build_fail = Subprocess.CompletedProcess([], 1, stdout="EPERM", stderr="")
         build_ok = Subprocess.CompletedProcess([], 0, stdout="", stderr="")
-        with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+        with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
              patch("openamer_cli.main._time.sleep") as mock_sleep, \
              patch("openamer_cli.main.subprocess.run", return_value=install_ok), \
              patch("openamer_cli.main._run_with_idle_timeout",
@@ -454,7 +475,7 @@ class TestBuildWebUIRetryAndStaleFallback:
         Subprocess = __import__("subprocess")
         install_ok = Subprocess.CompletedProcess([], 0, stdout="", stderr="")
         build_fail = Subprocess.CompletedProcess([], 1, stdout="vite ENOMEM", stderr="")
-        with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+        with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
              patch("openamer_cli.main._time.sleep"), \
              patch("openamer_cli.main.subprocess.run", return_value=install_ok), \
              patch("openamer_cli.main._run_with_idle_timeout",
@@ -474,7 +495,7 @@ class TestBuildWebUIRetryAndStaleFallback:
         Subprocess = __import__("subprocess")
         install_ok = Subprocess.CompletedProcess([], 0, stdout="", stderr="")
         build_fail = Subprocess.CompletedProcess([], 1, stdout="vite ENOMEM", stderr="")
-        with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+        with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
              patch("openamer_cli.main._time.sleep"), \
              patch("openamer_cli.main.subprocess.run", return_value=install_ok), \
              patch("openamer_cli.main._run_with_idle_timeout",
@@ -498,6 +519,7 @@ class TestBuildWebUIFlock:
     that queued behind a successful build skips the rebuild.
     """
 
+    @_requires_posix_flock
     def test_contended_lock_with_dist_serves_stale_without_building(self, tmp_path):
         import fcntl
         from openamer_cli.main import _build_web_ui as build
@@ -528,6 +550,7 @@ class TestBuildWebUIFlock:
         mock_do.assert_called_once()
         assert (tmp_path / ".web_ui_build.lock").exists()
 
+    @_requires_posix_flock
     def test_contended_lock_without_dist_waits_then_skips_fresh_build(self, tmp_path):
         """First-ever build race: the waiter blocks, and once it acquires the
         lock the callee's own staleness check (running under the lock) sees
@@ -551,7 +574,7 @@ class TestBuildWebUIFlock:
         t = threading.Timer(0.2, release_after_building)
         t.start()
         try:
-            with patch("openamer_cli.main.shutil.which", return_value="/usr/bin/npm"), \
+            with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
                  patch("openamer_cli.main.subprocess.run") as mock_run:
                 result = build(web_dir)
         finally:

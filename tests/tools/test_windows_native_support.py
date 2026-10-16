@@ -52,10 +52,11 @@ class TestConfigureWindowsStdio:
         yield
         sys.modules.pop("openamer_cli.stdio", None)
 
-    @pytest.mark.skipif(
-        os.name == "nt",
-        reason="asserts the POSIX build of configure_windows_stdio(); on Windows is_windows() is True by construction",
-    )
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "The test's own name is the premise: on POSIX is_windows() is False and "
+        "configure_windows_stdio() is a no-op. On Windows the Windows branch is "
+        "what runs — covered by the Windows-side tests in this file."
+    ))
     def test_no_op_on_posix(self):
         from openamer_cli import stdio
 
@@ -291,10 +292,12 @@ class TestSigkillFallback:
         result = getattr(fake_signal, "SIGKILL", fake_signal.SIGTERM)
         assert result == 15
 
-    @pytest.mark.skipif(
-        not hasattr(signal, "SIGKILL"),
-        reason="SIGKILL is POSIX-only; the Windows fallback is covered by the test above this one",
-    )
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "POSIX premise: the docstring's claim is that the SIGKILL fallback is "
+        "a no-op where real SIGKILL exists. Windows has no signal.SIGKILL, so "
+        "the attribute lookup itself raises — the opposite case, already "
+        "covered by test_getattr_fallback_uses_sigterm_when_absent above."
+    ))
     def test_getattr_fallback_prefers_sigkill_when_present(self):
         """On POSIX the fallback is a no-op: real SIGKILL wins."""
         result = getattr(signal, "SIGKILL", signal.SIGTERM)
@@ -705,14 +708,13 @@ class TestKanbanWaitpidWindowsGuard:
     def test_source_gates_waitpid_loop(self):
         root = Path(__file__).resolve().parents[2]
         source = (root / "openamer_cli" / "kanban_db.py").read_text(encoding="utf-8")
-        # Find the waitpid call and confirm it's inside a POSIX gate. The second
-        # argument is deliberately NOT pinned to the literal ``os.WNOHANG``: the
-        # loop reads it through ``getattr(os, "WNOHANG", 1)`` so that Windows has a
-        # usable value instead of an AttributeError — which is the very shape this
-        # test wants to see. Pinning the old literal made a correct hardening read
-        # as "waitpid call must exist".
-        idx = source.find("os.waitpid(")
-        assert idx > 0, "waitpid call must exist"
+        # Find the waitpid call and confirm it's inside a POSIX gate.
+        # Match the call, not one literal argument spelling. The argument is now
+        # a Windows-safe local (``wnohang = getattr(os, "WNOHANG", 1)``) instead
+        # of ``os.WNOHANG`` directly; pinning the old literal made this guard
+        # test report a missing call while the guard was in fact intact.
+        idx = source.find("os.waitpid(-1,")
+        assert idx > 0, "waitpid reap call must exist"
         # Look backwards up to 400 chars for the gate. Accept either form:
         #   `if os.name != "nt":` (run iff POSIX), or
         #   `if os.name == "nt": return []` (early-return guard).
@@ -726,7 +728,7 @@ class TestKanbanWaitpidWindowsGuard:
             "os.name == 'nt'",
         )
         assert any(p in preamble for p in guard_patterns), (
-            "os.waitpid(-1, os.WNOHANG) must sit behind an os.name guard "
+            "the os.waitpid(-1, ...) reap loop must sit behind an os.name guard "
             f"(checked patterns: {guard_patterns})"
         )
 

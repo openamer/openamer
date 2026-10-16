@@ -1,6 +1,7 @@
 """Tests for cmd_update — branch fallback when remote branch doesn't exist."""
 
 import hashlib
+import os
 import subprocess
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -447,6 +448,16 @@ class TestCmdUpdateBranchFallback:
         captured = capsys.readouterr()
         assert "Already up to date!" in captured.out
 
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "This drives npm resolution by patching shutil.which globally, and the "
+        "assertion then pins '/usr/bin/npm'. On Windows the product deliberately "
+        "does not consult which: find_node_executable_on_path "
+        "(openamer_constants.py) walks PATH itself and tests each candidate with "
+        "Path.is_file(), because the extensionless npm shim that which resolves "
+        "is not launchable by CreateProcess. The mock cannot reach the resolver "
+        "on this platform, so the test would fail on its setup rather than on the "
+        "behaviour it means to check."
+    ))
     @patch("shutil.which")
     @patch("subprocess.run")
     def test_update_refreshes_repo_and_tui_node_dependencies(
@@ -1096,6 +1107,11 @@ class TestNodeRuntimeNpmResolution:
         import openamer_constants
 
         monkeypatch.setattr(hm, "_is_windows", lambda: False)
+        # Faking the platform has to include how PATH is split: the rescan
+        # separates entries with os.pathsep, which is ";" on a native Windows
+        # interpreter, so a ":"-joined POSIX PATH would parse as one entry and
+        # the Linux-native npm below could never be found.
+        monkeypatch.setattr(os, "pathsep", ":")
         monkeypatch.setenv(
             "PATH", "/mnt/c/Program Files/nodejs:/root/.local/bin:/usr/bin"
         )

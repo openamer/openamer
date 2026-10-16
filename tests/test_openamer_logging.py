@@ -761,11 +761,19 @@ class TestAddRotatingHandler:
                     level=logging.INFO, max_bytes=1024, backup_count=1,
                     formatter=formatter,
                 )
+                # The handler only opens the file once a record actually goes
+                # through the queue, so assert on it after a real write —
+                # otherwise this passes or fails on queue timing rather than on
+                # the mode it exists to check.
+                logger.info("hello")
+                openamer_logging.flush_log_queue()
         finally:
             os.umask(old_umask)
 
         assert log_path.exists()
-        assert stat.S_IMODE(log_path.stat().st_mode) == 0o660
+        # Group-writable is a POSIX mode; Windows stat() cannot report it.
+        if os.name != "nt":
+            assert stat.S_IMODE(log_path.stat().st_mode) == 0o660
 
         for h in list(logger.handlers):
             if isinstance(h, RotatingFileHandler):
@@ -794,7 +802,9 @@ class TestAddRotatingHandler:
             os.umask(old_umask)
 
         assert log_path.exists()
-        assert stat.S_IMODE(log_path.stat().st_mode) == 0o660
+        # Group-writable is a POSIX mode; Windows stat() cannot report it.
+        if os.name != "nt":
+            assert stat.S_IMODE(log_path.stat().st_mode) == 0o660
 
         for h in list(logger.handlers):
             if isinstance(h, RotatingFileHandler):

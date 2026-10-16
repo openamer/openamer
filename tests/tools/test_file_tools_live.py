@@ -50,6 +50,25 @@ def _assert_clean(text: str, context: str = "output"):
         )
 
 
+def _sh(path) -> str:
+    """*path* as the local shell spells it.
+
+    Behind LocalEnvironment on Windows sits Git-Bash/MSYS, which addresses
+    C:\\Users\\me as /c/Users/me. Interpolating a native path into a command
+    makes bash eat the backslashes as escapes -- `cat C:\\Users\\x` really runs
+    `cat C:Usersx` -- so every path handed to the shell goes through here.
+    """
+    return f'"{Path(path).as_posix()}"'
+
+
+def _native(text: str) -> str:
+    """Fold a shell-reported path back onto the native spelling."""
+    t = str(text).strip()
+    if len(t) > 3 and t[0] == "/" and t[2] == "/":
+        t = t[1] + ":" + os.sep + t[3:].replace("/", os.sep)
+    return os.path.normcase(os.path.normpath(t))
+
+
 # ── Fixtures ─────────────────────────────────────────────────────────────
 
 # Deterministic file content used across tests. Every byte is known,
@@ -113,7 +132,7 @@ class TestLocalEnvironmentExecute:
         subdir.mkdir()
         result = env.execute("pwd", cwd=str(subdir))
         assert result["returncode"] == 0
-        assert result["output"].strip() == str(subdir)
+        assert _native(result["output"]) == _native(subdir)
         _assert_clean(result["output"])
 
     def test_multiline_exact(self, env):
@@ -125,8 +144,7 @@ class TestLocalEnvironmentExecute:
     def test_env_var_home(self, env):
         result = env.execute("echo $HOME")
         assert result["returncode"] == 0
-        home = result["output"].strip()
-        assert home == str(Path.home())
+        assert _native(result["output"]) == _native(Path.home())
         _assert_clean(result["output"])
 
     def test_pipe_exact(self, env):
@@ -137,8 +155,10 @@ class TestLocalEnvironmentExecute:
 
     def test_cat_deterministic_content(self, env, tmp_path):
         f = tmp_path / "det.txt"
-        f.write_text(SIMPLE_CONTENT)
-        result = env.execute(f"cat {f}")
+        # newline="\n": Path.write_text translates to CRLF on Windows, and the
+        # assertions below compare the shell's verbatim echo of these bytes.
+        f.write_text(SIMPLE_CONTENT, newline="\n")
+        result = env.execute(f"cat {_sh(f)}")
         assert result["returncode"] == 0
         assert result["output"] == SIMPLE_CONTENT
         _assert_clean(result["output"])
@@ -364,7 +384,7 @@ class TestExpandPath:
     def test_tilde_exact(self, ops):
         result = ops._expand_path("~/test.txt")
         expected = f"{Path.home()}/test.txt"
-        assert result == expected
+        assert _native(result) == _native(expected)
         _assert_clean(result)
 
     def test_absolute_unchanged(self, ops):
@@ -375,7 +395,7 @@ class TestExpandPath:
 
     def test_bare_tilde(self, ops):
         result = ops._expand_path("~")
-        assert result == str(Path.home())
+        assert _native(result) == _native(Path.home())
         _assert_clean(result)
 
     def test_tilde_injection_blocked(self, ops):
@@ -409,15 +429,15 @@ class TestTerminalOutputCleanliness:
 
     def test_cat(self, env, tmp_path):
         f = tmp_path / "cat_test.txt"
-        f.write_text("CAT_CONTENT_EXACT\n")
-        result = env.execute(f"cat {f}")
+        f.write_text("CAT_CONTENT_EXACT\n", newline="\n")
+        result = env.execute(f"cat {_sh(f)}")
         assert result["output"] == "CAT_CONTENT_EXACT\n"
         _assert_clean(result["output"])
 
     def test_ls(self, env, tmp_path):
         (tmp_path / "file_a.txt").write_text("")
         (tmp_path / "file_b.txt").write_text("")
-        result = env.execute(f"ls {tmp_path}")
+        result = env.execute(f"ls {_sh(tmp_path)}")
         _assert_clean(result["output"])
         assert "file_a.txt" in result["output"]
         assert "file_b.txt" in result["output"]
@@ -425,21 +445,21 @@ class TestTerminalOutputCleanliness:
     def test_wc(self, env, tmp_path):
         f = tmp_path / "wc_test.txt"
         f.write_text("one\ntwo\nthree\n")
-        result = env.execute(f"wc -l < {f}")
+        result = env.execute(f"wc -l < {_sh(f)}")
         assert result["output"].strip() == "3"
         _assert_clean(result["output"])
 
     def test_head(self, env, tmp_path):
         f = tmp_path / "head_test.txt"
-        f.write_text(NUMBERED_CONTENT)
-        result = env.execute(f"head -n 3 {f}")
+        f.write_text(NUMBERED_CONTENT, newline="\n")
+        result = env.execute(f"head -n 3 {_sh(f)}")
         expected = "LINE_0001\nLINE_0002\nLINE_0003\n"
         assert result["output"] == expected
         _assert_clean(result["output"])
 
     def test_env_var_expansion(self, env):
         result = env.execute("echo $HOME")
-        assert result["output"].strip() == str(Path.home())
+        assert _native(result["output"]) == _native(Path.home())
         _assert_clean(result["output"])
 
     def test_command_substitution(self, env):

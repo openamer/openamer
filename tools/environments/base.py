@@ -51,6 +51,87 @@ _activity_callback_local = threading.local()
 _UNBOUNDED_CAPTURE_CHARS = 2**63 - 1
 
 
+# Windows-only helpers for polling a pipe without blocking.
+#
+# ``select.select()`` cannot poll pipe handles on Windows — only sockets — so
+# the drain loop there cannot use the POSIX readiness loop.  ``PeekNamedPipe``
+# is the Win32 equivalent: it reports how many bytes are buffered *without*
+# blocking, which is what lets the drain thread stop shortly after bash exits
+# instead of sitting in a blocking ``ReadFile`` until every writer (including
+# a backgrounded grandchild that inherited our stdout) has closed the pipe.
+_WIN_PEEK_STATE = None  # (kernel32, PeekNamedPipe) once bound, or False if unusable
+
+
+def _windows_pipe_handle(fd: int):
+    """Return the Win32 ``HANDLE`` behind ``fd`` when it is a pipe, else ``None``.
+
+    ``None`` means "not a pipe we can peek at" — a regular file, a console, or
+    no ``msvcrt`` — and tells the caller to keep the historical blocking read.
+    """
+    try:
+        import ctypes
+        import msvcrt
+        from ctypes import wintypes
+
+        handle = msvcrt.get_osfhandle(fd)
+        kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+        get_file_type = kernel32.GetFileType
+        get_file_type.argtypes = [wintypes.HANDLE]
+        get_file_type.restype = wintypes.DWORD
+        if get_file_type(wintypes.HANDLE(handle)) != 0x0003:  # FILE_TYPE_PIPE
+            return None
+    except Exception:
+        return None
+    return handle
+
+
+def _windows_pipe_bytes_available(handle) -> int | None:
+    """Bytes buffered in a Windows pipe handle, read without blocking.
+
+    Returns ``None`` when ``PeekNamedPipe`` is unavailable, so callers fall
+    back to a plain blocking read. A closed/broken pipe reports ``0`` — the
+    caller's process-exit check then ends the drain.
+    """
+    global _WIN_PEEK_STATE
+    if _WIN_PEEK_STATE is False:
+        return None
+    try:
+        import ctypes
+        from ctypes import wintypes
+    except Exception:
+        _WIN_PEEK_STATE = False
+        return None
+    if _WIN_PEEK_STATE is None:
+        try:
+            kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+            peek = kernel32.PeekNamedPipe
+            peek.argtypes = [
+                wintypes.HANDLE,
+                wintypes.LPVOID,
+                wintypes.DWORD,
+                wintypes.LPDWORD,
+                wintypes.LPDWORD,
+                wintypes.LPDWORD,
+            ]
+            peek.restype = wintypes.BOOL
+        except Exception:
+            _WIN_PEEK_STATE = False
+            return None
+        # Keep the library object alive alongside the function pointer.
+        _WIN_PEEK_STATE = (kernel32, peek)
+    _, peek = _WIN_PEEK_STATE
+    available = wintypes.DWORD(0)
+    try:
+        ok = peek(
+            wintypes.HANDLE(handle), None, 0, None, ctypes.byref(available), None
+        )
+    except Exception:
+        return None
+    if not ok:
+        return 0
+    return int(available.value)
+
+
 class _BoundedOutputCollector:
     """Retain a bounded 40/60 head-tail window of streamed text."""
     def __init__(self, max_chars: int):
@@ -838,16 +919,55 @@ class BaseEnvironment(ABC):
             if not isinstance(fd, int) or fd < 0:
                 _drain_iterable(stream)
                 return
-            # select.select does NOT work on pipe fds on Windows (only sockets).
-            # Use blocking os.read in a daemon thread instead — safe because
-            # EOF arrives promptly when bash exits.
+            # select.select does NOT work on pipe fds on Windows (only sockets),
+            # and a plain blocking os.read() there sits in ReadFile() until
+            # EVERY writer closes the pipe.  A backgrounded grandchild
+            # (``cmd &``, ``setsid cmd & disown``) inherits our stdout write
+            # end, so bash exiting does not produce EOF and the drain thread
+            # would stay blocked for that grandchild's whole lifetime;
+            # `proc.stdout.close()` later in this method then blocks on the
+            # same outstanding reader, hanging the tool for the full 60s
+            # (issue #8340 on Windows).  PeekNamedPipe() gives the same
+            # non-blocking "is there data yet?" answer select() gives on
+            # POSIX, so the idle-after-exit logic below works identically.
             if os.name == "nt":
+                handle = _windows_pipe_handle(fd)
+                idle_after_exit = 0
                 try:
                     while True:
-                        chunk = os.read(fd, 4096)
-                        if not chunk:
-                            break
-                        output.append(decoder.decode(chunk))
+                        available = (
+                            _windows_pipe_bytes_available(handle)
+                            if handle is not None
+                            else None
+                        )
+                        if available is None:
+                            # Not a peekable pipe — keep the historical
+                            # blocking read.
+                            chunk = os.read(fd, 4096)
+                            if not chunk:
+                                break
+                            output.append(decoder.decode(chunk))
+                            idle_after_exit = 0
+                            continue
+                        if available > 0:
+                            chunk = os.read(fd, min(4096, available))
+                            if not chunk:
+                                break  # true EOF — all writers closed
+                            output.append(decoder.decode(chunk))
+                            idle_after_exit = 0
+                            continue
+                        # Pipe is open but idle right now.
+                        if proc.poll() is not None:
+                            # bash is gone and the pipe was idle for ~100ms.
+                            # Give it two more cycles to catch any buffered
+                            # tail, then stop — otherwise we wait forever on a
+                            # grandchild pipe.
+                            idle_after_exit += 1
+                            if idle_after_exit >= 3:
+                                break
+                            time.sleep(0.1)
+                        else:
+                            time.sleep(0.01)
                 except (ValueError, OSError):
                     pass
                 finally:

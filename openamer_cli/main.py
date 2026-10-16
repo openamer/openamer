@@ -5309,8 +5309,10 @@ def _build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
     ``vite build`` over the same tree; the parallel builds starved each
     other, none finished, the dist sentinel never advanced, and every new
     boot re-triggered the build. One process builds under an exclusive
-    flock; the rest serve the existing dist (stale is acceptable) or, when
-    no dist exists yet, block until the builder finishes.
+    lock (``flock`` on POSIX, ``msvcrt`` on Windows — see
+    :func:`_web_ui_build_lock_acquire`); the rest serve the existing dist
+    (stale is acceptable) or, when no dist exists yet, block until the
+    builder finishes.
 
     Staleness is checked once, inside :func:`_do_build_web_ui`, after the
     lock is held — so a process that queued behind the builder skips the
@@ -5318,11 +5320,6 @@ def _build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
     """
     if not (web_dir / "package.json").exists():
         return True
-    try:
-        import fcntl
-    except ImportError:
-        # Windows: no flock — fall through to the unserialized build.
-        return _do_build_web_ui(web_dir, fatal=fatal)
     project_root = web_dir.parent.parent if web_dir.parent.name == "apps" else web_dir.parent
     dist_index = project_root / "openamer_cli" / "web_dist" / "index.html"
     try:
@@ -5330,18 +5327,73 @@ def _build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
     except OSError:
         return _do_build_web_ui(web_dir, fatal=fatal)
     try:
-        try:
-            fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except OSError:
+        if not _web_ui_build_lock_acquire(lock_file):
             if dist_index.exists():
                 # Another process is already building — serve the current
                 # dist instead of piling a second build onto the same tree.
                 return True
             # No dist at all (first-ever build): wait for the builder.
-            fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
+            _web_ui_build_lock_wait(lock_file)
         return _do_build_web_ui(web_dir, fatal=fatal)
     finally:
         lock_file.close()
+
+
+# How long a first-ever-build contender waits for the lock holder before
+# giving up and building anyway, rather than hanging a dashboard boot forever
+# on a stale or wedged holder (same reasoning as kanban_db_connect's bounded
+# init-lock acquire). POSIX keeps its original unbounded blocking flock.
+_WEB_UI_BUILD_LOCK_WAIT_SECONDS = 600.0
+
+
+def _web_ui_build_lock_acquire(lock_file) -> bool:
+    """Try once, non-blocking, to take the exclusive web-build lock.
+
+    ``flock`` is Unix-only. The previous code fell through to a completely
+    *unserialized* build when ``fcntl`` was missing, which is precisely the
+    bug the lock exists to fix on Windows too (parallel dashboard boots each
+    spawning npm install + vite build over one tree; PR #63455). Use a 1-byte
+    ``msvcrt.locking`` range at offset 0 there — the same primitive
+    ``kanban_db_connect`` and ``auth`` use for their cross-process locks.
+
+    Returns True when the lock is held on return. A live contender returns
+    False; an exotic platform with neither primitive reports True so the
+    caller proceeds with an unserialized (but working) build.
+    """
+    try:
+        if _is_windows():
+            import msvcrt
+
+            lock_file.seek(0)
+            msvcrt.locking(lock_file.fileno(), msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+
+            fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        return False
+    except ImportError:
+        return True
+    return True
+
+
+def _web_ui_build_lock_wait(lock_file) -> None:
+    """Block until the exclusive web-build lock is acquired.
+
+    POSIX keeps the original unbounded blocking ``flock``. Windows polls
+    ``msvcrt``'s non-blocking lock, bounded so a wedged holder cannot hang a
+    dashboard boot forever; ``fcntl`` does not exist there.
+    """
+    if not _is_windows():
+        import fcntl
+
+        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
+        return
+    deadline = _time.monotonic() + _WEB_UI_BUILD_LOCK_WAIT_SECONDS
+    while not _web_ui_build_lock_acquire(lock_file):
+        if _time.monotonic() >= deadline:
+            return
+        _time.sleep(0.1)
 
 
 def _do_build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import logging
+import os
 from pathlib import Path
 from typing import Any
 from urllib.parse import unquote, urlparse
@@ -71,7 +72,19 @@ _IMAGE_SUFFIX_MIME = {
 
 def _path_from_file_uri(uri: str) -> Path | None:
     """Local file URI/path from an ACP client -> readable Path (None for non-file URIs).
-    Windows drive forms (Zed via wsl.exe) become ``/mnt/<drive>/...``."""
+
+    A Windows drive form (``file:///C:/Users/...``) has two possible meanings and
+    they are mutually exclusive:
+
+    * the ACP client is Zed running **under WSL** (launched via ``wsl.exe``), so
+      the file OpenAmer must open is the WSL mount ``/mnt/<drive>/...``; or
+    * **this** process is itself the native Windows side, where ``C:/...`` is
+      already the right path and ``/mnt/c/...`` does not exist.
+
+    The translation used to be unconditional, which made every resource_link
+    unreadable on native Windows (``FileNotFoundError: [WinError 3]
+    '\\mnt\\c\\Users\\...'``). Pick the branch by the host we are actually on.
+    """
     raw = (uri or "").strip()
     if not raw:
         return None
@@ -91,7 +104,10 @@ def _path_from_file_uri(uri: str) -> Path | None:
         drive, rest = path_text[0], path_text[2:]
     else:
         return Path(path_text)
-    return Path("/mnt") / drive.lower() / rest.lstrip("/\\").replace("\\", "/")
+    tail = rest.lstrip("/\\")
+    if os.name == "nt":
+        return Path(f"{drive.upper()}:{os.sep}") / tail.replace("\\", os.sep).replace("/", os.sep)
+    return Path("/mnt") / drive.lower() / tail.replace("\\", "/")
 
 
 def _decode_text_bytes(data: bytes, mime_type: str | None) -> str | None:

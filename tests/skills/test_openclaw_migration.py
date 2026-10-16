@@ -443,7 +443,12 @@ def test_migrator_can_rename_conflicting_imported_skill(tmp_path: Path):
     assert renamed_skill.exists()
     assert existing_skill.joinpath("SKILL.md").read_text(encoding="utf-8").endswith("existing\n")
     imported_items = [item for item in report["items"] if item["kind"] == "skill" and item["status"] == "migrated"]
-    assert any(item["details"].get("renamed_from", "").endswith("/demo-skill") for item in imported_items)
+    # ``renamed_from`` is a native path, so normalise separators before
+    # comparing against a POSIX-style suffix (a no-op on POSIX).
+    assert any(
+        item["details"].get("renamed_from", "").replace("\\", "/").endswith("/demo-skill")
+        for item in imported_items
+    )
 
 
 def test_migrator_can_overwrite_conflicting_imported_skill_with_backup(tmp_path: Path):
@@ -815,8 +820,16 @@ def test_cron_store_is_archived_without_config_cron_section(tmp_path: Path):
     report = migrator.migrate()
 
     cron_items = [item for item in report["items"] if item["kind"] == "cron-jobs"]
+    # ``destination`` is a native path — normalise separators before matching
+    # the POSIX-style suffix (a no-op on POSIX, and the same convention the
+    # product itself uses when it looks for the archived store).
     archived_store = next(
-        (item for item in cron_items if item["destination"] and item["destination"].endswith("archive/cron-store")),
+        (
+            item
+            for item in cron_items
+            if item["destination"]
+            and item["destination"].replace("\\", "/").endswith("archive/cron-store")
+        ),
         None,
     )
     assert archived_store is not None

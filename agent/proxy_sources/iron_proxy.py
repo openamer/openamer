@@ -285,6 +285,24 @@ _PROXY_SUBPROCESS_ENV_STRIP: Tuple[str, ...] = (
 _KILL_SIGNAL = getattr(signal, "SIGKILL", signal.SIGTERM)
 
 
+def _tighten_fd_0600(fd: int) -> None:
+    """Best-effort ``chmod 0600`` on an already-open file descriptor.
+
+    ``os.fchmod`` does not exist on Windows — and Windows has no POSIX mode
+    bits to set anyway — so this is a silent no-op there.  A failure on POSIX
+    is swallowed too: every caller already opened the descriptor with mode
+    ``0o600``, so the only reachable failure is a filesystem that cannot
+    express the mode, which is not a reason to abort the operation.
+    """
+    fchmod = getattr(os, "fchmod", None)
+    if fchmod is None:
+        return
+    try:
+        fchmod(fd, 0o600)
+    except OSError:
+        pass
+
+
 # Cached ``iron-proxy --version`` output keyed by binary path.  ``get_status``
 # is invoked per Docker-container-create; the version string is constant for
 # a given binary so a one-shot subprocess call is plenty.
@@ -866,7 +884,7 @@ def ensure_management_token(*, force: bool = False) -> str:
         0o600,
     )
     try:
-        os.fchmod(fd, 0o600)
+        _tighten_fd_0600(fd)
     except (OSError, AttributeError):
         pass
     try:
@@ -1344,8 +1362,8 @@ def ensure_audit_log(audit_path: Path) -> None:
         fd = os.open(str(audit_path), open_flags, 0o600)
         try:
             # Tighten perms even if the file already existed under a
-            # slacker umask.
-            os.fchmod(fd, 0o600)
+            # slacker umask.  No-op on Windows, which has no POSIX mode bits.
+            _tighten_fd_0600(fd)
         finally:
             os.close(fd)
     except OSError as exc:
@@ -1845,7 +1863,7 @@ def start_proxy(
             "Remove that path manually and retry."
         ) from exc
     try:
-        os.fchmod(log_fd, 0o600)  # tighten if file pre-existed
+        _tighten_fd_0600(log_fd)  # tighten if file pre-existed; no-op on Windows
     except OSError:
         pass
     # Verify ownership — same st_uid check the pidfile uses.

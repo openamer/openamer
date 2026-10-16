@@ -396,8 +396,19 @@ def save_env_file(path: Path, data: Dict[str, str]) -> None:
 def backup_existing(path: Path, backup_root: Path) -> Optional[Path]:
     if not path.exists():
         return None
-    rel = Path(*path.parts[1:]) if path.is_absolute() and len(path.parts) > 1 else path
-    dest = backup_root / rel
+    # Back up to ``<backup_root>/<basename>-<digest>``.
+    #
+    # The previous layout mirrored the *absolute* source path underneath
+    # ``backup_root`` (``Path(*path.parts[1:])``).  For a deeply nested source
+    # — a pytest tmp_path, a long user profile directory, a build sandbox —
+    # that recreates the whole absolute path inside the backup tree, which
+    # overruns the Windows MAX_PATH limit (260 chars) and makes copytree fail
+    # with FileNotFoundError [WinError 206]; it also grows pathological trees
+    # on POSIX.  Keep the human-readable basename and disambiguate with a
+    # short digest of the absolute path so two different sources sharing a
+    # basename can never collide.
+    digest = hashlib.sha256(str(path).encode("utf-8", "surrogatepass")).hexdigest()[:12]
+    dest = backup_root / f"{path.name}-{digest}"
     ensure_parent(dest)
     if path.is_dir():
         shutil.copytree(path, dest, dirs_exist_ok=True)

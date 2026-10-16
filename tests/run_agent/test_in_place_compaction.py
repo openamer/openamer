@@ -123,6 +123,7 @@ class TestInPlaceCompaction:
             assert agent._last_compaction_in_place is True
             # Live transcript actually shrank.
             assert len(compressed) == 2
+            db.close()
 
     def test_in_place_alternation_preserved(self):
         """The compacted list must not introduce consecutive same-role messages."""
@@ -140,6 +141,7 @@ class TestInPlaceCompaction:
             )
             roles = [m["role"] for m in compressed if m.get("role") != "system"]
             assert all(roles[i] != roles[i + 1] for i in range(len(roles) - 1))
+            db.close()
 
     def test_in_place_skips_redundant_preflush(self):
         """In-place must NOT pre-flush current-turn messages: replace_messages
@@ -162,6 +164,7 @@ class TestInPlaceCompaction:
                 approx_tokens=100_000, system_message="sys",
             )
             assert calls["n"] == 0
+            db.close()
 
     def test_rotation_still_preflushes(self):
         """Rotation MUST pre-flush so current-turn messages survive in the
@@ -182,6 +185,7 @@ class TestInPlaceCompaction:
                 approx_tokens=100_000, system_message="sys",
             )
             assert calls["n"] == 1
+            db.close()
 
 
 class TestRotationFallbackWhenFlagOff:
@@ -223,6 +227,7 @@ class TestRotationFallbackWhenFlagOff:
             ]
             # Rotation mode does NOT set the in-place signal.
             assert getattr(agent, "_last_compaction_in_place", False) is False
+            db.close()
 
 
 class TestInPlaceSignalForGateway:
@@ -252,6 +257,7 @@ class TestInPlaceSignalForGateway:
                 approx_tokens=100_000, system_message="sys",
             )
             assert a_rot._last_compaction_in_place is False
+            db.close()
 
 
 class TestInPlaceConfigDefault:
@@ -304,6 +310,7 @@ class TestCompactedTurnsStaySearchable:
             assert {m["id"] for m in after} == {1, 4}
             # Live context still excludes them.
             assert len(db.get_messages_as_conversation(sid)) == 2
+            db.close()
 
     def test_rewound_turns_stay_hidden(self):
         """Rewind/undo (active=0, compacted=0) must NOT leak into default
@@ -323,3 +330,4 @@ class TestCompactedTurnsStaySearchable:
                 "ZEBRAWORD", role_filter=["user", "assistant"], include_inactive=True
             )
             assert len(recovered) == 1
+            db.close()

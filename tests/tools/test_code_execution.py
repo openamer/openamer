@@ -1075,7 +1075,7 @@ class TestRpcTokenAuthorization(unittest.TestCase):
 
         # socketpair gives us a connected client end and a "server" end we
         # can hand to accept() by wrapping it in a tiny listener shim.
-        srv, cli = socket.socketpair(socket.AF_UNIX, socket.SOCK_STREAM)
+        srv, cli = socket.socketpair()
 
         class _OneShotListener:
             """Minimal object exposing the .accept()/.settimeout() the loop uses."""

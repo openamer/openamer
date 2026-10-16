@@ -32,8 +32,12 @@ def test_dashboard_oauth_write_uses_owner_only_permissions(oauth_file):
         os.umask(old_umask)
 
     assert oauth_file.exists()
-    mode = oauth_file.stat().st_mode & 0o777
-    assert mode == 0o600
+    # Windows has no POSIX mode bits: os.stat().st_mode reads back 0o666/0o444
+    # there regardless of what the writer asked for, so only the write itself
+    # is observable. The owner-only contract is asserted on POSIX.
+    if os.name != "nt":
+        mode = oauth_file.stat().st_mode & 0o777
+        assert mode == 0o600
 
 
 def test_dashboard_oauth_write_is_atomic_and_cleans_temp_on_failure(oauth_file, monkeypatch):

@@ -13,9 +13,24 @@ function is called at module-import time from 30+ sites, often before the
 logging subsystem has been configured.
 """
 
+import sys
 from pathlib import Path
 
 import pytest
+
+
+def _platform_default(home: Path) -> Path:
+    """The platform-native OpenAmer home under a fake user home.
+
+    Mirrors ``openamer_constants._get_platform_default_openamer_home()``:
+    Windows resolves ``%LOCALAPPDATA%\\openamer``, every other platform
+    ``~/.openamer``. The tests below assert against that real per-platform
+    answer instead of hardcoding the POSIX layout, which made the whole module
+    red whenever the canonical suite ran on Windows.
+    """
+    if sys.platform == "win32":
+        return home / "AppData" / "Local" / "openamer"
+    return home / ".openamer"
 
 
 @pytest.fixture
@@ -25,6 +40,11 @@ def fresh_constants(monkeypatch, tmp_path):
     import openamer_constants
     importlib.reload(openamer_constants)
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
+    # Windows resolves the platform default from %LOCALAPPDATA% *ahead of* the
+    # home directory, so pin that under the fake home as well — otherwise the
+    # test reads the developer's real %LOCALAPPDATA%\openamer and every
+    # assertion below compares against a path the code never returns.
+    monkeypatch.setenv("LOCALAPPDATA", str(tmp_path / "AppData" / "Local"))
     monkeypatch.delenv("OPENAMER_HOME", raising=False)
     return openamer_constants
 
@@ -35,32 +55,32 @@ class TestGetOpenAmerHomeProfileWarning:
     ):
         """Classic mode: no active_profile file → silent, returns ~/.openamer."""
         result = fresh_constants.get_openamer_home()
-        assert result == tmp_path / ".openamer"
+        assert result == _platform_default(tmp_path)
         assert "OPENAMER_HOME fallback" not in capsys.readouterr().err
 
     def test_default_active_profile_no_warning(
         self, fresh_constants, tmp_path, capsys
     ):
         """active_profile=default → still no warning, returns ~/.openamer."""
-        openamer_dir = tmp_path / ".openamer"
-        openamer_dir.mkdir()
+        openamer_dir = _platform_default(tmp_path)
+        openamer_dir.mkdir(parents=True)
         (openamer_dir / "active_profile").write_text("default\n")
         result = fresh_constants.get_openamer_home()
-        assert result == tmp_path / ".openamer"
+        assert result == _platform_default(tmp_path)
         assert "OPENAMER_HOME fallback" not in capsys.readouterr().err
 
     def test_named_profile_unset_home_warns_once(
         self, fresh_constants, tmp_path, capsys
     ):
         """active_profile=coder + OPENAMER_HOME unset → warn loudly, still return fallback."""
-        openamer_dir = tmp_path / ".openamer"
-        openamer_dir.mkdir()
+        openamer_dir = _platform_default(tmp_path)
+        openamer_dir.mkdir(parents=True)
         (openamer_dir / "active_profile").write_text("coder\n")
 
         result = fresh_constants.get_openamer_home()
 
         # 1. Still returns the fallback — no import-time crash
-        assert result == tmp_path / ".openamer"
+        assert result == _platform_default(tmp_path)
         # 2. Stderr got the warning exactly once
         err = capsys.readouterr().err
         assert err.count("OPENAMER_HOME fallback") == 1
@@ -91,14 +111,14 @@ class TestGetOpenAmerHomeProfileWarning:
         self, fresh_constants, tmp_path, capsys
     ):
         """active_profile that can't be decoded → fall through silently."""
-        openamer_dir = tmp_path / ".openamer"
-        openamer_dir.mkdir()
+        openamer_dir = _platform_default(tmp_path)
+        openamer_dir.mkdir(parents=True)
         # Write bytes that aren't valid utf-8
         (openamer_dir / "active_profile").write_bytes(b"\xff\xfe\x00\x00")
 
         result = fresh_constants.get_openamer_home()
 
-        assert result == tmp_path / ".openamer"
+        assert result == _platform_default(tmp_path)
         # Shouldn't crash; shouldn't warn either (can't tell what profile was intended)
         assert "OPENAMER_HOME fallback" not in capsys.readouterr().err
 
@@ -106,11 +126,11 @@ class TestGetOpenAmerHomeProfileWarning:
         self, fresh_constants, tmp_path, capsys
     ):
         """Empty active_profile file → treated as default, no warning."""
-        openamer_dir = tmp_path / ".openamer"
-        openamer_dir.mkdir()
+        openamer_dir = _platform_default(tmp_path)
+        openamer_dir.mkdir(parents=True)
         (openamer_dir / "active_profile").write_text("")
 
         result = fresh_constants.get_openamer_home()
 
-        assert result == tmp_path / ".openamer"
+        assert result == _platform_default(tmp_path)
         assert "OPENAMER_HOME fallback" not in capsys.readouterr().err

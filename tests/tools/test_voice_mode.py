@@ -80,6 +80,11 @@ class TestPulseSocketReachable:
         from tools.voice_mode import _pulse_socket_reachable
         assert _pulse_socket_reachable() is False
 
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "Linux-only discovery path: binds a real AF_UNIX socket under "
+        "XDG_RUNTIME_DIR to imitate PulseAudio. Windows has neither "
+        "socket.AF_UNIX in this interpreter nor XDG_RUNTIME_DIR."
+    ))
     def test_stale_socket_file_not_reachable(self, monkeypatch, tmp_path):
         """A socket file with no listener should not count as reachable."""
         import socket as _socket
@@ -95,6 +100,11 @@ class TestPulseSocketReachable:
         from tools.voice_mode import _pulse_socket_reachable
         assert _pulse_socket_reachable() is False
 
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "Linux-only discovery path: binds a real AF_UNIX socket under "
+        "XDG_RUNTIME_DIR to imitate PulseAudio. Windows has neither "
+        "socket.AF_UNIX in this interpreter nor XDG_RUNTIME_DIR."
+    ))
     def test_listening_socket_reachable_via_xdg_runtime(self, monkeypatch, tmp_path):
         """A live PulseAudio-style socket under XDG_RUNTIME_DIR is reachable (#35622)."""
         import socket as _socket
@@ -112,6 +122,10 @@ class TestPulseSocketReachable:
         finally:
             server.close()
 
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "Linux-only discovery path: binds a real AF_UNIX socket and points "
+        "PULSE_SERVER at it. Windows has no socket.AF_UNIX in this interpreter."
+    ))
     def test_listening_socket_reachable_via_pulse_server_env(self, monkeypatch, tmp_path):
         import socket as _socket
         sock_path = tmp_path / "native"

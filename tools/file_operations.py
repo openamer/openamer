@@ -975,6 +975,30 @@ class ShellFileOperations(FileOperations):
         # Use single quotes and escape any single quotes in the string
         return "'" + arg.replace("'", "'\"'\"'") + "'"
 
+    def _to_native_path(self, path: str) -> str:
+        """*path* in the form a NATIVE binary must see.
+
+        ``_escape_shell_arg`` rewrites drive paths to the MSYS ``/c/...``
+        spelling the shell's own tools need, but a native Windows binary cannot
+        open that form -- ripgrep answers
+        ``rg: /c/Users/...: IO error ... os error 3``. Undo exactly that
+        rewrite; anything else is returned unchanged.
+        """
+        if os.name != "nt" or not path:
+            return path
+        from tools.environments.local import _msys_to_windows_path
+
+        return _msys_to_windows_path(path)
+
+    def _quote_native_arg(self, arg: str) -> str:
+        """Single-quote *arg* for a native binary, skipping the MSYS rewrite.
+
+        Quoting alone is enough: bash passes a single-quoted argument through
+        verbatim, so a drive-qualified path reaches ripgrep intact instead of
+        being turned into the ``/c/...`` form it cannot open.
+        """
+        return "'" + arg.replace("'", "'\"'\"'") + "'"
+
     def _atomic_write(self, path: str, content: str) -> "ExecuteResult":
         """Write ``content`` to ``path`` atomically via temp-file + rename.
 
@@ -2171,9 +2195,14 @@ class ShellFileOperations(FileOperations):
                 continue
             parts = line.split(' ', 1)
             if len(parts) == 2 and parts[0].replace('.', '').isdigit():
-                files.append(parts[1])
+                entry = parts[1]
             else:
-                files.append(line)
+                entry = line
+            # find is an MSYS program and reports what it walks in the shell's
+            # own /c/... spelling. Callers use these as filesystem paths, not as
+            # shell input, and the rg path above returns native drive paths --
+            # so fold this one to native as well, or the two backends disagree.
+            files.append(self._to_native_path(entry))
 
         # For explicit hidden roots, find's path-based filtering excludes every
         # file under the hidden path. Apply descendant filtering after command
@@ -2218,7 +2247,7 @@ class ShellFileOperations(FileOperations):
         # Try mtime-sorted first (rg 13+); fall back to unsorted if not supported.
         cmd_sorted = (
             f"rg --files --sortr=modified -g {self._escape_shell_arg(glob_pattern)} "
-            f"{self._escape_shell_arg(path)} 2>/dev/null "
+            f"{self._quote_native_arg(self._to_native_path(path))} 2>/dev/null "
             f"| head -n {fetch_limit}"
         )
         result = self._exec(cmd_sorted, timeout=60)
@@ -2229,7 +2258,7 @@ class ShellFileOperations(FileOperations):
             # --sortr may have failed on older rg; retry without it.
             cmd_plain = (
                 f"rg --files -g {self._escape_shell_arg(glob_pattern)} "
-                f"{self._escape_shell_arg(path)} 2>/dev/null "
+                f"{self._quote_native_arg(self._to_native_path(path))} 2>/dev/null "
                 f"| head -n {fetch_limit}"
             )
             result = self._exec(cmd_plain, timeout=60)
@@ -2285,8 +2314,8 @@ class ShellFileOperations(FileOperations):
         
         # Add pattern and path
         cmd_parts.append(self._escape_shell_arg(pattern))
-        cmd_parts.append(self._escape_shell_arg(path))
-        
+        cmd_parts.append(self._quote_native_arg(self._to_native_path(path)))
+
         # Fetch extra rows so we can report the true total before slicing.
         # For context mode, rg emits separator lines ("--") between groups,
         # so we grab generously and filter in Python.

@@ -212,7 +212,11 @@ def test_fetch_child_env_is_allowlisted(monkeypatch, tmp_path):
     env = captured["env"]
     assert "OPENAI_API_KEY" not in env          # not inherited
     assert env["OP_SERVICE_ACCOUNT_TOKEN"] == "ops_tok"
-    assert env["OP_SESSION_myacct"] == "sess123"
+    # Windows environment blocks are case-insensitive and ``os.environ``
+    # normalizes every key to upper case, so the OP_SESSION_* passthrough has
+    # to be matched case-insensitively — the child ``op`` resolves it that way
+    # on Windows too.
+    assert {k.upper(): v for k, v in env.items()}["OP_SESSION_MYACCT"] == "sess123"
     assert env.get("NO_COLOR") == "1"
 
 
@@ -286,7 +290,9 @@ def test_disk_cache_roundtrip_and_no_token_on_disk(monkeypatch, tmp_path):
 
     cache_path = op._disk_cache_path(tmp_path)
     assert cache_path.exists()
-    assert (os.stat(cache_path).st_mode & 0o777) == 0o600
+    # 0o600 is a POSIX-only property; Windows stat() cannot report it.
+    if os.name != "nt":
+        assert (os.stat(cache_path).st_mode & 0o777) == 0o600
     text = cache_path.read_text()
     assert "ops_supersecret" not in text            # token never on disk
     payload = json.loads(text)

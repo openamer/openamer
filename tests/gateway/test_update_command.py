@@ -5,6 +5,7 @@ the _send_update_notification startup hook (sends results after restart).
 """
 
 import json
+import os
 from pathlib import Path
 from unittest.mock import patch, MagicMock, AsyncMock
 
@@ -239,6 +240,13 @@ class TestHandleUpdateCommand:
         assert data["message_id"] == "m-update-thread"
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "The detached-update spawn is a POSIX chain (setsid + bash -lc). Windows "
+        "takes an explicit branch instead -- see gateway/run.py: the comment "
+        "'On Windows there's no bash/setsid chain - spawn a tiny Python' -- so "
+        "asserting /usr/bin/setsid here would be asserting a path this platform "
+        "deliberately does not use."
+    ))
     async def test_spawns_setsid(self, tmp_path):
         """Uses setsid when available."""
         runner = _make_runner()
@@ -268,6 +276,12 @@ class TestHandleUpdateCommand:
         assert "Starting OpenAmer update" in result
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(os.name == "nt", reason=(
+        "Same POSIX chain as test_spawns_setsid: the no-setsid fallback is "
+        "'bash -lc' with start_new_session=True. On Windows the update is spawned "
+        "as a plain Python process instead (gateway/run.py), which is not a "
+        "fallback rung in this ladder but a different ladder."
+    ))
     async def test_fallback_when_no_setsid(self, tmp_path):
         """Falls back to start_new_session=True when setsid is not available."""
         runner = _make_runner()

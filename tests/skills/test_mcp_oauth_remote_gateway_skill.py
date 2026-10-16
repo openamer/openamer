@@ -180,8 +180,9 @@ def test_refresh_fixed_write_persists_atomically(tmp_path):
     assert on_disk["scope"] == "read write"
     assert on_disk["expires_at"] > 0
     assert not (tokens_dir / "stripe.json.tmp").exists()  # atomic replace, no leftover
-    mode = (tokens_dir / "stripe.json").stat().st_mode & 0o777
-    assert mode == 0o600
+    if sys.platform != "win32":  # POSIX mode bits only
+        mode = (tokens_dir / "stripe.json").stat().st_mode & 0o777
+        assert mode == 0o600
 
 
 def test_session_revoked_branch(tmp_path):

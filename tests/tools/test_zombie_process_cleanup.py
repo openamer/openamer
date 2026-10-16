@@ -64,7 +64,10 @@ class TestZombieReproduction:
         finally:
             for pid in pids:
                 try:
-                    os.kill(pid, signal.SIGKILL)
+                    # Windows has no SIGKILL; fall back to the signal it does
+                    # have. This is the documented pattern for this repo (see
+                    # tests/tools/test_windows_native_support.py).
+                    os.kill(pid, getattr(signal, "SIGKILL", signal.SIGTERM))
                 except (ProcessLookupError, PermissionError):
                     pass
 
