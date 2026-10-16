@@ -3998,8 +3998,84 @@ def _is_site_nav_chain(text):
     return bool(_SITE_NAV_ANNOUNCE_RE.search(text))
 
 
+# class 179 (16.10.26): an API-documentation playground widget stores its own
+# request-body fragment welded to the endpoint row. cycle_b_papers stored
+#
+#   Matches valid email addresses " , "flags" : " g " } POST /api/test-regex
+#   Test a regex pattern against a string.
+#
+# A JSON/array fragment (`"`/`]`/`}`) glued directly to an HTTP method + route is
+# page chrome: real prose separates a payload from a route with a word ("... with
+# a JSON body"), never with a bare JSON closer. Measured 16.10.26: 1 hit and it
+# IS the leak -> 0 of 2,573 gate-test string literals, 0 of 8,035 longterm
+# episodes, 0 hostile-control prose FPs, 0 other buffer rows.
+_API_PLAYGROUND_WELD_RE = _re.compile(
+    r'["\]}]\s*(?:GET|POST|PUT|PATCH|DELETE)\s+/[a-z0-9_\-/]+'
+)
+
+
+def _is_api_playground_weld(text):
+    """True when an API playground's JSON body fragment is welded to a route."""
+    return bool(_API_PLAYGROUND_WELD_RE.search(text or ""))
+
+
+# class 180 (16.10.26): a blog post HEADER (dateline `updated <date>` + the
+# widget's `Reading Time:` label) welded to the article lede.
+#
+#   Is the Risk by Patrick Spencer updated June 5, 2026 Cybersecurity Risk
+#   Management Reading Time: 7 minutes For three years, the enterprise ...
+#
+# The discriminator is the SEQUENCE of two chrome labels: an `updated <Mon dd,
+# yyyy>` dateline followed within 200 chars by a `Reading Time:` widget label.
+# Real prose does not place a reading-time label after a dateline. Measured
+# 16.10.26: 1 hit and it IS the leak -> 0 of 2,573 gate-test literals, 0 of
+# 8,035 longterm episodes, 0 hostile-control FPs. (Bare `Reading Time: N
+# minutes` was REJECTED: 3 control FPs + 4 test literals; a byline->reading-time
+# weld was REJECTED: 1 control FP.)
+_BLOG_HEADER_READTIME_RE = _re.compile(
+    r'updated\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+'
+    r'\d{1,2},\s*\d{4}[\s\S]{0,200}?Reading Time:',
+    _re.I,
+)
+
+
+def _is_blog_header_readtime_weld(text):
+    """True when a blog dateline + reading-time label header is welded in."""
+    return bool(_BLOG_HEADER_READTIME_RE.search(text or ""))
+
+
+# class 181 (16.10.26): a news aggregator card's comment/share counter RUN
+# welded to the next card's headline.
+#
+#   Beloved frozen pizza brand Celeste is discontinued ... staple
+#   293 comment s share s Beginners are making costly mi...
+#
+# The widget emits its two labels with the plural split off ("N comment s share
+# s"); the run is page chrome and real prose never writes it. Measured 16.10.26:
+# 2 buffer hits and BOTH are aggregator-card chrome -> 0 of 2,573 gate-test
+# literals, 0 of 8,035 longterm episodes, 0 of 4 real-prose controls.
+_AGG_COUNTER_RUN_RE = _re.compile(r'comment\s+s\s+share\s+s', _re.I)
+
+
+def _is_aggregator_counter_run(text):
+    """True when an aggregator card's split comment/share counter run is welded in."""
+    return bool(_AGG_COUNTER_RUN_RE.search(text or ""))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
+    # an API-doc playground widget's request-body fragment welded to its
+    # route (class 179, 16.10.26)
+    if _is_api_playground_weld(text):
+        return True
+    # a blog header's dateline + reading-time label welded to the lede
+    # (class 180, 16.10.26)
+    if _is_blog_header_readtime_weld(text):
+        return True
+    # an aggregator card's split comment/share counter run (class 181,
+    # 16.10.26)
+    if _is_aggregator_counter_run(text):
+        return True
     if _ENTITY.search(text):
         return True
     # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
