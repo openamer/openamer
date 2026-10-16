@@ -360,7 +360,7 @@ def test_dashboard_select_filters_use_sdk_value_change_handler():
 
     repo_root = Path(__file__).resolve().parents[2]
     bundle = repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js"
-    js = bundle.read_text()
+    js = bundle.read_text(encoding="utf-8")
 
     assert "function selectChangeHandler(setter)" in js
     assert "onValueChange: function (v)" in js
@@ -380,7 +380,7 @@ def test_dashboard_client_side_filtering_includes_tenant_filter():
 
     repo_root = Path(__file__).resolve().parents[2]
     bundle = repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js"
-    js = bundle.read_text()
+    js = bundle.read_text(encoding="utf-8")
 
     assert "if (tenantFilter && t.tenant !== tenantFilter) return false;" in js
     assert "[boardData, tenantFilter, assigneeFilter, search]" in js
@@ -396,7 +396,7 @@ def test_dashboard_initial_board_uses_backend_current_when_unpinned():
 
     repo_root = Path(__file__).resolve().parents[2]
     bundle = repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js"
-    js = bundle.read_text()
+    js = bundle.read_text(encoding="utf-8")
 
     assert 'useState(() => readSelectedBoard() || null)' in js
     assert "const storedBoard = readSelectedBoard();" in js
@@ -410,7 +410,7 @@ def test_dashboard_markdown_html_is_sanitized_before_render():
 
     repo_root = Path(__file__).resolve().parents[2]
     bundle = repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js"
-    js = bundle.read_text()
+    js = bundle.read_text(encoding="utf-8")
 
     assert "function sanitizeMarkdownHtml(html)" in js
     assert "MARKDOWN_ALLOWED_TAGS" in js
@@ -1198,7 +1198,7 @@ def test_dashboard_done_actions_prompt_for_completion_summary():
     repo_root = Path(__file__).resolve().parents[2]
     bundle = (
         repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js"
-    ).read_text()
+    ).read_text(encoding="utf-8")
 
     assert "withCompletionSummary" in bundle
     assert "Completion summary" in bundle
@@ -1216,7 +1216,7 @@ def test_dashboard_surfaces_ready_blocked_error_inline():
     repo_root = Path(__file__).resolve().parents[2]
     bundle = (
         repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js"
-    ).read_text()
+    ).read_text(encoding="utf-8")
 
     # Helper that strips ``"409: {\"detail\":\"…\"}"`` down to the
     # human-readable message before it lands in any banner.
@@ -1244,7 +1244,7 @@ def test_dashboard_dependency_selects_use_value_change_handler():
     repo_root = Path(__file__).resolve().parents[2]
     bundle = (
         repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js"
-    ).read_text()
+    ).read_text(encoding="utf-8")
 
     parent_select = (
         'value: newParent,\n'
@@ -2362,7 +2362,7 @@ def test_board_endpoint_accepts_explicit_board_default_param(client):
 def test_dashboard_requests_default_board_explicitly():
     """Dashboard REST calls must include board=default instead of relying on server current board."""
     repo_root = Path(__file__).resolve().parents[2]
-    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text()
+    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text(encoding="utf-8")
 
     assert "SDK.fetchJSON(withBoard(`${API}/config`, board))" in dist
     assert "SDK.fetchJSON(withBoard(`${API}/boards`, board))" in dist
@@ -2373,7 +2373,7 @@ def test_dashboard_search_includes_body_and_result():
     """Client-side search must match body, result, latest_summary, and summary
     so full card contents are findable."""
     repo_root = Path(__file__).resolve().parents[2]
-    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text()
+    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text(encoding="utf-8")
 
     assert "t.body || \"\"" in dist
     assert "t.result || \"\"" in dist
@@ -2383,7 +2383,7 @@ def test_dashboard_search_includes_body_and_result():
 def test_dashboard_bulk_actions_include_reclaim_first():
     """Bulk action bar must expose reclaim_first checkbox and expanded status buttons."""
     repo_root = Path(__file__).resolve().parents[2]
-    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text()
+    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text(encoding="utf-8")
 
     assert "reclaim_first: reclaimFirst" in dist
     assert "openamer-kanban-bulk-reclaim-first" in dist
@@ -2395,7 +2395,7 @@ def test_dashboard_bulk_actions_include_reclaim_first():
 def test_dashboard_shift_click_range_selection_exists():
     """Shift-click must trigger range selection via toggleRange."""
     repo_root = Path(__file__).resolve().parents[2]
-    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text()
+    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text(encoding="utf-8")
 
     assert "function toggleRange" in dist or "const toggleRange =" in dist
     assert "props.toggleRange(t.id)" in dist or "props.toggleRange" in dist
@@ -2405,7 +2405,7 @@ def test_dashboard_shift_click_range_selection_exists():
 def test_dashboard_multi_move_bulk_exists():
     """Dragging a selected card with other selections must use /tasks/bulk."""
     repo_root = Path(__file__).resolve().parents[2]
-    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text()
+    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text(encoding="utf-8")
 
     assert "onMoveSelected" in dist
     assert "props.onMoveSelected" in dist
@@ -2415,8 +2415,8 @@ def test_dashboard_multi_move_bulk_exists():
 def test_dashboard_failed_card_highlight_class_exists():
     """Partial bulk failures must highlight failing cards."""
     repo_root = Path(__file__).resolve().parents[2]
-    js = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text()
-    css = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "style.css").read_text()
+    js = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text(encoding="utf-8")
+    css = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "style.css").read_text(encoding="utf-8")
 
     assert "openamer-kanban-card--failed" in js
     assert "openamer-kanban-card--failed" in css
@@ -2493,7 +2493,7 @@ def test_board_tasks_include_latest_summary(client):
 def test_dashboard_done_final_result_section_rendered_from_summary():
     """Frontend must render Final Result section from run summary when task.result is empty."""
     repo_root = Path(__file__).resolve().parents[2]
-    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text()
+    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text(encoding="utf-8")
     assert "t.result || t.latest_summary" in dist
     assert "Final Result (run summary)" in dist
     assert "No final result was recorded" in dist
@@ -2527,8 +2527,8 @@ def test_task_detail_includes_child_result_summaries(client):
 def test_dashboard_final_result_uses_existing_fields_without_alias():
     """The drawer should not duplicate result/summary into another API field."""
     repo_root = Path(__file__).resolve().parents[2]
-    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text()
-    api = (repo_root / "plugins" / "kanban" / "dashboard" / "plugin_api.py").read_text()
+    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text(encoding="utf-8")
+    api = (repo_root / "plugins" / "kanban" / "dashboard" / "plugin_api.py").read_text(encoding="utf-8")
 
     assert "var finalResult = t.result || t.latest_summary || null;" in dist
     assert "t.final_result" not in dist
@@ -2538,7 +2538,7 @@ def test_dashboard_final_result_uses_existing_fields_without_alias():
 def test_dashboard_parent_notice_and_child_results_use_detail_links():
     """Parent detection must use links.children, which exists in task detail."""
     repo_root = Path(__file__).resolve().parents[2]
-    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text()
+    dist = (repo_root / "plugins" / "kanban" / "dashboard" / "dist" / "index.js").read_text(encoding="utf-8")
     detail = dist[dist.index("function TaskDetail"):]
 
     assert "links.children.length > 0" in detail
