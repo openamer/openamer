@@ -5003,6 +5003,47 @@ def _is_price_table_row(text):
         return False
     return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
 
+# class 178 (16.10.26) -- a GitHub REPO PAGE's header chrome: the social-count
+# pair GitHub prints above every repository, and its logged-out star notice.
+#
+# Live: `cycle_b_papers` logged "paper-learn: ..." and the row really landed in
+# online_buffer.jsonl, verbatim:
+#
+#   "Fork 29 ( 29 ) Star 377 ( 377 ) You must be signed in to star a repository
+#    About Proof of thought : LLM-based reasoning using Z3 theorem proving with
+#    multiple backend support (SMT2 and JSON DSL) debarghag."
+#
+# The cycle asked for an arXiv paper; the top result was that paper's GitHub repo
+# and the logged-out fetch returned the repo HEADER instead of an abstract.
+#
+# Both markers are strings only GitHub's repo header emits, so either one alone
+# is page-specific. Measured 16.10.26 with the skill harness
+# `training-scripts-hygiene/scripts/probe_marker_candidates.py`: hits=1 (the
+# leaking row), not-yet-junk=1, bufFP=0, proseFP=0, epFP=0 (of 8,035 longterm
+# episodes), litFP=0 (of 1,582 string literals of the gate test file).
+# Mirror of `internet_learner._is_gh_repo_header_chrome` (this module must not
+# import the learner -- circular).
+_GH_LOGGEDOUT_STAR_NOTICE_RE = _re.compile(
+    r"you\s+must\s+be\s+signed\s+in\s+to\s+star\s+a\s+repository", _re.IGNORECASE)
+# GitHub's DOM repeats each social count inside parentheses ("29 ( 29 )"), a
+# shape plain prose never produces.
+_GH_SOCIAL_COUNT_RUN_RE = _re.compile(
+    r"\bFork\s+\d[\d,]*\s*\(\s*\d[\d,]*\s*\)\s+Star\s+\d[\d,]*\s*\(\s*\d[\d,]*\s*\)",
+    _re.IGNORECASE)
+
+
+def is_gh_repo_header_chrome(text):
+    """True when `text` is a GitHub repository page's header chrome.
+
+    Either marker alone is sufficient: the logged-out star notice and the
+    parenthesised Fork/Star social-count run are both emitted only by GitHub's
+    repo header. See the class comment for the live leak and the measurement.
+    """
+    t = text or ""
+    if _GH_LOGGEDOUT_STAR_NOTICE_RE.search(t):
+        return True
+    return bool(_GH_SOCIAL_COUNT_RUN_RE.search(t))
+
 def is_junk(text):
     """True when a completion is not trainable signal.
 
@@ -5046,6 +5087,10 @@ def is_junk(text):
     # the ENGLISH twin of class 13, a plan-comparison price table with rating
     # widgets welded on (class 168, 23.09.26)
     if _is_price_table_row(s):
+        return True
+    # a GitHub repo page's header chrome -- social-count run and/or
+    # logged-out star notice (class 178, 16.10.26)
+    if is_gh_repo_header_chrome(s):
         return True
     if _is_gh_releases_row(s):
         return True
