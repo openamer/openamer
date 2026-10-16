@@ -20,7 +20,13 @@ import subprocess
 import sys
 from pathlib import Path
 
-REPO = Path(r"C:\Users\damir\openamer-repo")
+# The repo root this script ships in, derived from the file's own location.
+# It used to be a literal ``C:\Users\damir\openamer-repo``, so every consumer of
+# REPO (reports/, website/static/darwin/, scripts/darwin_engine.py) pointed at
+# one developer's machine: on any other checkout -- another user, a CI runner --
+# the paths either did not exist or, worse, a same-named directory elsewhere was
+# published from. Deriving it keeps the script self-locating.
+REPO = Path(__file__).resolve().parents[1]
 _HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
 
 
