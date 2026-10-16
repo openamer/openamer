@@ -3135,6 +3135,30 @@ Read-only commands are safe while an agent is running.\
 """
 
 
+def _split_slash_args(text: str) -> list[str]:
+    r"""Tokenise a ``/kanban`` command line the way this platform reads it.
+
+    A ``/kanban`` line is typed text, so on Windows a backslash is a path
+    separator and never an escape character.  POSIX shlex rules strip it, which
+    turned ``attach 7 C:\Users\me\f.txt`` into ``C:Usersmef.txt`` and made the
+    command fail with "no such file" -- every backslash gone, on a platform
+    where typed paths are full of them.
+
+    Tokenise non-POSIX on Windows -- the same convention ``main.py`` and
+    ``mcp_security.py`` already use for user-supplied command text -- and drop
+    the quote characters shlex keeps in that mode, so a quoted argument still
+    arrives bare.  POSIX hosts keep POSIX rules exactly as before.
+    """
+    if os.name != "nt":
+        return shlex.split(text)
+    tokens = []
+    for token in shlex.split(text, posix=False):
+        if len(token) >= 2 and token[0] == token[-1] and token[0] in ('"', "'"):
+            token = token[1:-1]
+        tokens.append(token)
+    return tokens
+
+
 def run_slash(rest: str) -> str:
     """Execute a ``/kanban …`` string and return captured stdout/stderr.
 
@@ -3145,7 +3169,7 @@ def run_slash(rest: str) -> str:
     import io
     import contextlib
 
-    tokens = shlex.split(rest) if rest and rest.strip() else []
+    tokens = _split_slash_args(rest) if rest and rest.strip() else []
 
     # Bare ``/kanban`` or ``/kanban help`` / ``--help`` / ``-h`` / ``?``:
     # show the curated short-help block instead of dumping argparse's full
