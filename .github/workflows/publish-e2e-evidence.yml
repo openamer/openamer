@@ -31,13 +31,45 @@ jobs:
           ref: ${{ github.event.repository.default_branch }}
           persist-credentials: false
 
+      # gh-image cannot run on the Actions GITHUB_TOKEN: GitHub rejects that
+      # token for attachments, so `gh image` needs a user/bot session token --
+      # an environment secret on `gh-image`, per gh-image's own CI/CD docs.
+      # When that secret is absent the upload is not merely broken, the feature
+      # was never enabled. Say so once and skip, instead of reding this run on
+      # every CI completion for a reason that appears in no one's diff.
+      - name: Check for a gh-image session token
+        id: session-token
+        env:
+          GH_SESSION_TOKEN: ${{ secrets.GH_IMAGE_SESSION_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if [ -n "${GH_SESSION_TOKEN:-}" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "available=false" >> "$GITHUB_OUTPUT"
+          echo "::warning::No gh-image session token is configured (environment secret GH_IMAGE_SESSION_TOKEN on the 'gh-image' environment); skipping inline E2E evidence."
+          {
+            echo "### Inline E2E evidence skipped"
+            echo ""
+            echo "No \`gh-image\` session token is configured, so evidence images"
+            echo "cannot be uploaded: GitHub rejects the Actions token for attachments."
+            echo ""
+            echo "Set \`GH_IMAGE_SESSION_TOKEN\` as an **environment secret** on the"
+            echo "\`gh-image\` environment to enable this feature."
+          } >> "$GITHUB_STEP_SUMMARY"
+
       # v1.2.0 resolves to 44f4b93ecbbe22de6c45fa2f62f519aee564ca8c.
       - name: Install gh-image
+        if: steps.session-token.outputs.available == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh extension install drogers0/gh-image --pin v1.2.0
 
       - name: Download and attach evidence
+        if: steps.session-token.outputs.available == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           GITHUB_TOKEN: ${{ github.token }}
