@@ -565,3 +565,36 @@ def test_run_slash_board_override_does_not_change_boards_show_current(kanban_hom
     out = kc.run_slash("--board beta boards show")
 
     assert "Current board: alpha" in out
+
+
+# ── slash-line tokenisation ───────────────────────────────────────────────
+# `/kanban` lines are typed text. On Windows a backslash is a path separator,
+# not an escape, so POSIX shlex rules ate every separator in a pasted path and
+# the command failed with "no such file: C:Usersmef.txt".
+class TestSlashTokenisation:
+    def test_windows_unquoted_path_keeps_backslashes(self, monkeypatch):
+        monkeypatch.setattr(kc.os, "name", "nt")
+
+        assert kc._split_slash_args(r"attach 7 C:\Users\me\f.txt") == [
+            "attach", "7", r"C:\Users\me\f.txt"]
+
+    def test_windows_quoted_path_arrives_bare(self, monkeypatch):
+        monkeypatch.setattr(kc.os, "name", "nt")
+
+        assert kc._split_slash_args(r'attach 7 "C:\Users\me\my file.txt"') == [
+            "attach", "7", r"C:\Users\me\my file.txt"]
+
+    def test_windows_quoted_argument_arrives_bare(self, monkeypatch):
+        monkeypatch.setattr(kc.os, "name", "nt")
+
+        assert kc._split_slash_args('add --title "Hello world" body') == [
+            "add", "--title", "Hello world", "body"]
+
+    def test_posix_host_keeps_posix_rules(self, monkeypatch):
+        """The escape semantics POSIX users rely on must not change."""
+        monkeypatch.setattr(kc.os, "name", "posix")
+
+        assert kc._split_slash_args('add --title "Hello world" body') == [
+            "add", "--title", "Hello world", "body"]
+        assert kc._split_slash_args(r"attach 7 /tmp/a\ b.txt") == [
+            "attach", "7", "/tmp/a b.txt"]
