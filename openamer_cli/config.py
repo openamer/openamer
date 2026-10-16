@@ -2856,6 +2856,14 @@ DEFAULT_CONFIG = {
     "personalities": {},
 
     # Pre-exec security scanning via tirith
+    "budget": {
+        "enabled": False,  # opt-in: nothing is enforced until this is true
+        "max_usd_per_session": 0.0,  # 0 = no cap; enforced when enabled
+        "max_usd_per_day": 0.0,  # 0 = no cap; accrues across processes via
+        # memory/spend_day.json and resets by UTC date
+        "warn_at_percent": 80,  # surface a warning once this share is spent
+        "on_exceed": "block",  # "block" ends the turn, "warn" only reports
+    },
     "security": {
         "allow_private_urls": False,  # Allow requests to private/internal IPs (for OpenWrt, proxies, VPNs)
         "redact_secrets": True,
