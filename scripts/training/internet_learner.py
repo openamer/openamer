@@ -4778,12 +4778,58 @@ def _is_price_table_row(text):
         return False
     return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
 
+# class 182 (16.10.26): a GitHub FILE-VIEW page's toolbar + file-stat header.
+#
+# Live: `cycle_c_github` stored
+#
+#   What new agent architectures are trending on GitHub? Copy path Top File
+#   metadata and controls Preview Code Blame 247 lines (192 loc) - 8.07 KB Raw
+#   Copy raw file Download raw file Outline Edit and raw actions Anus AI Agent
+#   Architectur...
+#
+# Class 178 keys the repo HEADER (social-count pair + star notice) and class 36
+# keys the repo TAB chain + `<n> MiB <Lang> <n>%` bar -- neither matches the
+# FILE viewer page, whose chrome is GitHub's own file-toolbar label run plus its
+# `<N> lines (<M> loc)` header. Measured 16.10.26: 1 buffer hit and it IS the
+# leak -> 0 of 8,035 longterm episodes, 0 of 2,085 gate-test literals, 0 of 10
+# real-prose controls. Candidates REJECTED on measurement: the bare stat bar
+# (3 control FPs, e.g. "The file has 247 lines (192 loc) of code"), the bare
+# `copy raw file` / `file metadata and controls` / `copy path` labels (1 FP
+# each) and `>=2` labels alone (1 FP: "Copy path to the clipboard, then copy
+# raw file contents for review."). Only the ANDed pair is page-specific.
+_GH_FILEVIEW_STATBAR_RE = re.compile(r"\b\d{1,6}\s+lines\s+\(\d{1,6}\s+loc\)", re.I)
+_GH_FILEVIEW_LABELS = (
+    "copy path", "copy raw file", "download raw file",
+    "file metadata and controls", "edit and raw actions",
+    "blame", "outline",
+)
+
+
+def _is_github_file_viewer_chrome(text):
+    """True when a GitHub file-view page's toolbar + file-stat header is stored."""
+    t = text or ""
+    if not _GH_FILEVIEW_STATBAR_RE.search(t):
+        return False
+    low = t.lower()
+    n = 0
+    for lab in _GH_FILEVIEW_LABELS:
+        if lab in low:
+            n += 1
+            if n >= 2:
+                return True
+    return False
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
     if len(t) < 25:
         return True
     if _looks_binary(t):
+        return True
+    # a GitHub file-view page's toolbar + file-stat header (class 182,
+    # 16.10.26)
+    if _is_github_file_viewer_chrome(t):
         return True
     # an article's own byline + dateline header welded to its lede (class 142, 22.09.26)
     if _is_article_byline_chrome(t):
