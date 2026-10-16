@@ -20,7 +20,12 @@ jobs:
     # Only run on the upstream repository, not on forks
     if: github.repository == 'openamer/openamer'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # The offline ClawHub walk is bounded by
+    # ClawHubSource.CATALOG_WALK_OFFLINE_BUDGET_SECONDS (840s ~= 14 min);
+    # give the job headroom above that plus install + the parallel
+    # github-source crawl so a legitimately slow catalog completes instead
+    # of being cancelled (issue #136).
+    timeout-minutes: 25
     environment: trusted-automation
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

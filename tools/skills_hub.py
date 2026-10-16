@@ -2197,6 +2197,18 @@ class ClawHubSource(SkillSource):
     # minutes. Bound it so a slow/large catalog cannot hang the caller.
     CATALOG_WALK_BUDGET_SECONDS = 12
 
+    # Wall-clock budget for the *offline* index-builder walk
+    # (``search("", limit=0)`` -> ``max_items=0``). That path must walk
+    # enough of the catalog to clear the 20k health floor enforced in
+    # scripts/build_skills_index.py, but an unbounded walk can exceed the
+    # CI job timeout and get the whole build cancelled -- the recurring
+    # cause of the Skills Hub 404 (issue #136). Sized so that at ClawHub's
+    # observed ~5 s/page latency the walk still gathers ~33k skills
+    # (168 pages x 200), comfortably above the 20k floor, while a
+    # pathologically slow catalog degrades to a bounded, clean failure
+    # (the health check exits non-zero) instead of a hung, cancelled job.
+    CATALOG_WALK_OFFLINE_BUDGET_SECONDS = 840
+
     def source_id(self) -> str:
         return "clawhub"
 
@@ -2368,8 +2380,8 @@ class ClawHubSource(SkillSource):
             # the full catalog is already disk-cached this returns it whole and
             # the caller paginates client-side. On a cold cache, bound the walk
             # to `limit` so a browse command renders its first page without
-            # walking the entire 50k+ catalog (max_items=0 → unbounded, used
-            # only by the offline index builder via search("", limit=0)).
+            # walking the entire 50k+ catalog (max_items=0 → the offline
+            # budget, used only by the index builder via search("", limit=0)).
             catalog = self._load_catalog_index(max_items=limit if limit > 0 else 0)
             if catalog:
                 return self._dedupe_results(catalog)[:limit] if limit > 0 else self._dedupe_results(catalog)
@@ -2502,8 +2514,10 @@ class ClawHubSource(SkillSource):
         have been gathered the walk stops early. This is what browse's
         cold-start fallback wants — it only renders one page, so walking the
         entire 50k+ catalog just to slice off the first N is pure waste.
-        ``max_items=0`` (the default, used by the offline index builder) means
-        walk to exhaustion.
+        ``max_items=0`` (the default, used by the offline index builder)
+        walks the whole catalog, bounded by the much longer
+        ``CATALOG_WALK_OFFLINE_BUDGET_SECONDS`` so a slow catalog can no
+        longer hang the build past the CI job timeout.
 
         Caching: only a *complete* catalog (cursor exhausted or page cap) is
         written to the shared ``clawhub_catalog_v1`` cache. A walk truncated by
@@ -2524,15 +2538,17 @@ class ClawHubSource(SkillSource):
         # terminates well before this on `nextCursor` going None — the cap is
         # a safety rail against an infinite-cursor loop.
         max_pages = 750
-        # Wall-clock budget is for interactive browse (max_items > 0) only.
-        # The offline index builder passes max_items=0 and must walk the full
-        # catalog — a 12s cap there ships ~3k skills and trips the deploy
-        # health floor (20k).
-        deadline = (
-            time.monotonic() + self.CATALOG_WALK_BUDGET_SECONDS
+        # Two budgets. Interactive browse (max_items > 0) gets the short
+        # budget -- it only renders one page. The offline index builder
+        # (max_items=0) gets a much longer budget so the walk can still clear
+        # the 20k health floor, but it is *bounded* so a slow catalog can no
+        # longer hang the build past the CI job timeout and cancel it.
+        budget = (
+            self.CATALOG_WALK_BUDGET_SECONDS
             if max_items > 0
-            else None
+            else self.CATALOG_WALK_OFFLINE_BUDGET_SECONDS
         )
+        deadline = time.monotonic() + budget
         hit_deadline = False
         hit_max_items = False
 

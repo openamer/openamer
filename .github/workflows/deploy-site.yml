@@ -49,7 +49,9 @@ jobs:
   deploy-docs:
     if: github.repository == 'openamer/openamer'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # Headroom for the fresh-crawl fallback path, which runs the same
+    # bounded ClawHub walk as build-index (issue #136).
+    timeout-minutes: 40
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
