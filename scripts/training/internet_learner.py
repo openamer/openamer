@@ -5737,7 +5737,11 @@ def _http_search_urls(q, k=3):
     """
     import html as _html
     raw = urllib.request.urlopen(urllib.request.Request(
-        f"https://www.bing.com/search?q={q}",
+        # English market pinned: an UNPINNED Bing geo-defaults to the request
+        # IP region (Germany here) and answers an English technical query
+        # with de.wikipedia / duden.de / sports pages (class 165, 13.10.26).
+        f"https://www.bing.com/search?q={q}"
+        f"&setmkt=en-US&setlang=en&cc=US",
         headers={"User-Agent": "Mozilla/5.0"}), timeout=15).read().decode("utf-8", "replace")
     raw = _html.unescape(raw)
     out = []
@@ -5766,7 +5770,8 @@ def _search_urls(query, k=3):
             req = urllib.request.Request(LIVE + "/execute_tool",
                 data=json.dumps({"tool": "browser_action",
                                  "params": {"action": "navigate",
-                                            "url_or_selector": f"https://www.bing.com/search?q={q}"}}).encode(),
+                                            "url_or_selector": f"https://www.bing.com/search?q={q}"
+                                            f"&setmkt=en-US&setlang=en&cc=US"}}).encode(),
                 headers={"Content-Type": "application/json"})
             urllib.request.urlopen(req, timeout=30)
             time.sleep(3)  # let the page render
