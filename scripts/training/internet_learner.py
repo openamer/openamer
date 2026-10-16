@@ -6176,6 +6176,48 @@ def _strip_trailing_read_time_header(text):
     return t
 
 
+# class 174 (13.10.26): a chart WIDGET's own loading placeholder welded to the
+# article lede. cycle_c_github stored
+#
+#   "Loading Chart We benchmarked 4 popular open-source agentic frameworks
+#    across 2,000 runs (5 tasks, 100 runs each per framework), measuring
+#    end-to-end latency, token consumption, and architectural differences."
+#
+# "Loading Chart" is the chart container's placeholder text, captured before
+# the script drew the figure; the sentence behind it is the knowledge, so this
+# is a STRIP, never a reject.
+#
+# A bare "Loading ..." opener is NOT a usable discriminator -- real prose opens
+# with the gerund ("Loading a 70B model requires 1.4 TB of VRAM."), so the rule
+# keys on the widget's literal two-word label AND a Capitalised, >= 5-word body
+# behind it. Residual (accepted) shape: a doc heading that literally reads
+# "Loading Chart Data in React ..." -- measured 0 hits anywhere.
+# Measured 13.10.26: 1/300 buffer hits (that one IS the leak), 0 of 8,008
+# longterm episodes. 7/9 hand-written prose counter-cases stay byte-identical;
+# the 2 that strip both begin with the literal label followed by a noun
+# ("Loading Chart Data in React ...") -- text indistinguishable from the
+# widget label itself, so the strip is intended, and no such row exists in
+# either corpus.
+_UI_PLACEHOLDER_RE = re.compile(r"^\s*Loading\s+Chart\s*(?:\.{2,}|\u2026)?\s*")
+
+
+def _strip_leading_ui_placeholder(text):
+    """Drop a chart widget's leading "Loading Chart" placeholder label.
+
+    Live 13.10.26: cycle_c_github learned the agentic-framework benchmark lede
+    with the chart container's own placeholder still in front of it. Strip,
+    never reject: the sentence behind the label is the knowledge. The >= 5-word
+    Capitalised body is the same guard the sibling strip helpers use.
+    """
+    t = (text or "").strip()
+    m = _UI_PLACEHOLDER_RE.match(t)
+    if not m:
+        return t
+    body = t[m.end():].strip()
+    if len(body.split()) < 5 or not body[:1].isupper():
+        return t
+    return body
+
 _ARROW_NAV_RE = re.compile(r"\s*-{1,2}>\s*")
 _POSTED_BY_RE = re.compile(
     r"^\s*(?:posted|published|updated)\s+on\s+[^,]{3,40}\s+by\s+[A-Za-z][\w.'-]*\s*",
@@ -6732,6 +6774,7 @@ def _clean_insight(text, max_len=250):
     if _URL_ESC_RE.search(t):
         t = urllib.parse.unquote(t).strip()  # judge the decoded words, not %20
     t = _strip_wiki_section_prefix(t)
+    t = _strip_leading_ui_placeholder(t)
     t = _strip_dateline_fragment(t)
     t = _strip_nav_label_stack(t)
     t = _strip_dated_header_slash_stack(t)
