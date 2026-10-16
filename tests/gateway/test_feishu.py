@@ -15,11 +15,18 @@ from unittest.mock import AsyncMock, Mock, patch
 
 from gateway.platforms.base import ProcessingOutcome
 
-try:
-    import lark_oapi
-    _HAS_LARK_OAPI = True
-except ImportError:
-    _HAS_LARK_OAPI = False
+# Probe availability WITHOUT importing the SDK. ``import lark_oapi`` eagerly pulls in
+# every generated service model tree (lark_oapi.api.*, ~180 s of import time measured on
+# a developer box: 180.9 s cumulative, of which lark_oapi.api alone is 159.8 s), and
+# doing it at module level spends that inside the runner's per-file wall-clock budget
+# before a single test runs -- the file was SIGKILL'd at its cap after 8 of 214 tests
+# with every one of them passing. The adapter already avoids this on purpose
+# (plugins/platforms/feishu/adapter.py: "lark_oapi is slow to import; the SDK names
+# below stay None until Feishu actually connects"); the tests need the *answer*, not
+# the import, and the few that need the real SDK import it inside the test body.
+import importlib.util
+
+_HAS_LARK_OAPI = importlib.util.find_spec("lark_oapi") is not None
 
 
 class _FakeRequestContent:
