@@ -3233,8 +3233,23 @@ def _resolve_attachment_path(raw_path: str) -> Path | None:
             parsed = urlparse(token)
             if parsed.scheme == "file":
                 expanded = unquote(parsed.path or "")
-                if parsed.netloc and os.name == "nt":
-                    expanded = f"//{parsed.netloc}{expanded}"
+                if os.name == "nt":
+                    if parsed.netloc:
+                        expanded = f"//{parsed.netloc}{expanded}"
+                    elif (
+                        len(expanded) >= 3
+                        and expanded[0] == "/"
+                        and expanded[2] == ":"
+                        and expanded[1].isalpha()
+                    ):
+                        # Path.as_uri() on Windows yields file:///C:/x: the
+                        # authority is empty and the path keeps a slash in
+                        # front of the drive letter. No Windows path form has
+                        # one -- /C:/x is not absolute there -- so the pasted
+                        # URI resolved to nothing and the drop was ignored.
+                        # Strip it, mirroring the drive handling for POSIX
+                        # hosts a few lines below.
+                        expanded = expanded[1:]
         except Exception:
             expanded = token
     expanded = os.path.expandvars(os.path.expanduser(expanded))
