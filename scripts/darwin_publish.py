@@ -24,6 +24,38 @@ REPO = Path(r"C:\Users\damir\openamer-repo")
 _HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
 
 
+def _platform_install_parents() -> tuple[Path, Path]:
+    """Return (dir holding the install roots, default install root) for THIS platform.
+
+    Windows keeps its LOCALAPPDATA layout.  Off Windows the install lives under
+    ``~/.openamer`` -- the same default ``openamer_constants
+    ._get_platform_default_openamer_home()`` resolves.
+
+    This module used to hardcode the Windows shape in three places, so on Linux
+    no candidate could ever match and the daily publish died at IMPORT with
+
+        FileNotFoundError: skill-validator-latest.json not found; tried:
+        /home/damir/AppData/Local/openamer/logs/skill-validator-latest.json; ...
+
+    Measured in WSL Ubuntu 2026-10-13 (the same failure Linux CI reported).
+    """
+    if sys.platform == "win32":
+        local = Path(os.environ.get("LOCALAPPDATA") or Path.home() / "AppData" / "Local")
+        return local, local / "openamer"
+    return Path.home(), Path.home() / ".openamer"
+
+
+_PLATFORM_INSTALL_PARENT, _PLATFORM_DEFAULT_HOME = _platform_install_parents()
+
+
+def _install_roots() -> list[Path]:
+    """The install roots to fall back to on this platform, most specific first."""
+    parent = _PLATFORM_INSTALL_PARENT
+    if sys.platform == "win32":
+        return [parent / "openamer-laptop", parent / "openamer"]
+    return [parent / ".openamer"]
+
+
 def _resolve_home(default: Path) -> Path:
     """Resolve OPENAMER_HOME robustly across shells (single source: darwin_engine).
 
@@ -68,8 +100,7 @@ def _resolve_home(default: Path) -> Path:
 def _find_validator_log(home: Path) -> Path:
     """Locate logs/skill-validator-latest.json, preferring a real install."""
     tried = []
-    local = Path.home() / "AppData" / "Local"
-    for cand in (home, local / "openamer-laptop", local / "openamer",
+    for cand in (home, *_install_roots(),
                  Path(os.environ.get("OPENAMER_HOME", "") or home)):
         if not cand:
             continue
@@ -81,7 +112,7 @@ def _find_validator_log(home: Path) -> Path:
         "skill-validator-latest.json not found; tried: " + "; ".join(tried))
 
 
-SKILLS_DIR = _resolve_home(Path.home() / "AppData" / "Local" / "openamer") / "skills"
+SKILLS_DIR = _resolve_home(_PLATFORM_DEFAULT_HOME) / "skills"
 VALIDATOR_LOG = _find_validator_log(SKILLS_DIR.parent)
 AUTOpatch_JSON = REPO / "reports" / "darwin-autopatch.json"
 TRENDS_MD = REPO / "reports" / "trend-scout-latest.md"
