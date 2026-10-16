@@ -7135,3 +7135,30 @@ PRICE_TABLE_CONTROLS = [
     "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
 ]
 
+
+
+def test_citation_counter_tail_run_is_gated_on_both_paths():
+    """A reference-counter run at the END of the text (class 94, tail variant).
+
+    Live 13.10.26: `cycle_a_technews` stored "For instance, an AI model trained
+    to control traffic might struggle when confronted with intersections that
+    have different characteristics from those it was trained on 1 1 2 2 3 3 ."
+    -- the same academic-page citation-marker run as class 94, but here sitting
+    at the TAIL with no Capitalized word after it, so the original
+    `four-numbers + [A-Z][a-z]` guard missed it.
+    """
+    import buffer_store
+    leak = ("For instance, an AI model trained to control traffic might struggle "
+            "when confronted with intersections that have different "
+            "characteristics from those it was trained on 1 1 2 2 3 3 .")
+    assert IL._is_citation_counter_run(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+
+    for text in (
+        "We tested batch sizes 8 16 32 64 and 128 on the same GPU.",
+        "The model reached 128 256 512 1024 tokens per second in the benchmark.",
+        "Accuracy improved across runs 1 2 3 4 as expected in the ablation study.",
+        "Section 1 2 3 4 of the paper reviews the architecture in detail.",
+    ):
+        assert not IL._is_citation_counter_run(text), text
