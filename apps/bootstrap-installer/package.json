@@ -21,6 +21,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
     "@tailwindcss/typography": "^0.5.19",
+    "@nanostores/react": "^2.0.1",
     "@tauri-apps/api": "^2.0.0",
     "@tauri-apps/plugin-dialog": "^2.0.0",
     "@tauri-apps/plugin-opener": "^2.0.0",
