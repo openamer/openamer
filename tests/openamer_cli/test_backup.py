@@ -1321,12 +1321,16 @@ class TestProfileRestoration:
         assert (openamer_home / "profiles" / "coder" / "config.yaml").exists()
         assert (openamer_home / "profiles" / "researcher" / "config.yaml").exists()
 
-        # Wrapper scripts should be created
-        assert (wrapper_dir / "coder").exists()
-        assert (wrapper_dir / "researcher").exists()
+        # Wrapper scripts should be created. Windows gets a .bat shim
+        # instead of a POSIX shell script (profiles.create_wrapper_script).
+        suffix = ".bat" if os.name == "nt" else ""
+        assert (wrapper_dir / f"coder{suffix}").exists()
+        assert (wrapper_dir / f"researcher{suffix}").exists()
 
         # Wrappers should contain the right content
-        coder_wrapper = (wrapper_dir / "coder").read_text()
+        coder_wrapper = (wrapper_dir / f"coder{suffix}").read_text(
+            encoding="utf-8"
+        )
         assert "openamer -p coder" in coder_wrapper
 
     def test_import_skips_profile_dirs_without_config(self, tmp_path, monkeypatch):
@@ -1351,9 +1355,10 @@ class TestProfileRestoration:
         from openamer_cli.backup import run_import
         run_import(args)
 
-        # Only valid profile should get a wrapper
-        assert (wrapper_dir / "valid").exists()
-        assert not (wrapper_dir / "empty").exists()
+        # Only valid profile should get a wrapper (same .bat shim as above)
+        suffix = ".bat" if os.name == "nt" else ""
+        assert (wrapper_dir / f"valid{suffix}").exists()
+        assert not (wrapper_dir / f"empty{suffix}").exists()
 
     def test_import_without_profiles_module(self, tmp_path, monkeypatch):
         """Import gracefully handles missing profiles module (fresh install)."""
@@ -2104,7 +2109,11 @@ class TestQuickSnapshotProjectsKanban:
         monkeypatch.setattr(bk, "_safe_copy_db", _spy)
         snap_id = create_quick_snapshot(openamer_home=openamer_home)
         # The board db was copied via _safe_copy_db (not raw copy).
-        assert any(s.endswith("boards/work/kanban.db") for s in called["db"]), called["db"]
+        # Separator-neutral: Windows paths use backslashes.
+        assert any(
+            Path(s).parts[-3:] == ("boards", "work", "kanban.db")
+            for s in called["db"]
+        ), called["db"]
         copy = openamer_home / "state-snapshots" / snap_id / "kanban" / "boards" / "work" / "kanban.db"
         rows = sqlite3.connect(str(copy)).execute("SELECT * FROM tasks").fetchall()
         assert rows == [("w1", "ship")]
@@ -2824,8 +2833,11 @@ class TestMemoryProviderExternalPaths:
         restored = dst_home / ".honcho" / "config.json"
         assert restored.exists()
         assert restored.read_text() == '{"peer":"bob"}'
-        # Credential-shaped file tightened.
-        assert (restored.stat().st_mode & 0o777) == 0o600
+        # Credential-shaped file tightened. Windows has no POSIX mode bits:
+        # chmod only toggles the read-only attribute, so st_mode stays 0o666
+        # there and the 0600 guarantee can only be asserted on POSIX.
+        if os.name == "posix":
+            assert (restored.stat().st_mode & 0o777) == 0o600
         # External state did NOT leak into OPENAMER_HOME.
         assert not (openamer_home / "_external").exists()
 

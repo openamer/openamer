@@ -15,6 +15,7 @@ Covers:
 from __future__ import annotations
 
 import asyncio
+from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -84,12 +85,19 @@ class TestResolveClientCert:
     def test_tilde_expansion(self, tmp_path, monkeypatch):
         from tools.mcp_tool import _resolve_client_cert
 
+        # os.path.expanduser reads HOME on POSIX but USERPROFILE on
+        # Windows, so point both at the same dir to make the expansion
+        # target platform-independent.
         monkeypatch.setenv("HOME", str(tmp_path))
+        monkeypatch.setenv("USERPROFILE", str(tmp_path))
         pem = tmp_path / "client.pem"
         pem.write_text("dummy")
 
         result = _resolve_client_cert("srv", {"client_cert": "~/client.pem"})
-        assert result == str(pem)
+        # Compared as paths: on Windows expanduser keeps the "/" from the
+        # input (USERPROFILE + "/client.pem"), so the raw strings differ
+        # by separator only.
+        assert Path(result) == pem
 
     def test_missing_file_raises(self, tmp_path):
         from tools.mcp_tool import _resolve_client_cert
