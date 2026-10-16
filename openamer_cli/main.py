@@ -468,6 +468,7 @@ from openamer_cli.subcommands.superintelligence import build_super_parser
 from openamer_cli.subcommands.initiative import build_initiative_parser
 from openamer_cli.subcommands.cross_session import build_cross_session_parser
 from openamer_cli.subcommands.repomap import build_repomap_parser
+from openamer_cli.subcommands.index import build_index_parser
 from openamer_cli.subcommands.workflow import build_workflow_parser
 from openamer_cli.subcommands.tree import build_tree_parser
 from openamer_cli.durable_execution import build_checkpoint_parser
@@ -15324,6 +15325,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         # set from the real parser and fails when one is missing, because an
         # undeclared subcommand forces a needless plugin-discovery pass.
         "agent", "cost", "crew", "cross-session", "initiative", "lint-fix",
+        "index",
         "marketplace", "observe", "plugin", "repomap", "review-pr", "sandbox",
         "super", "swarm", "tracing", "tree", "voice", "web-agent", "workflow",
         # Help-ish invocations — plugin commands not being listed in
@@ -18398,6 +18400,7 @@ def main():
     build_initiative_parser(subparsers)
     build_cross_session_parser(subparsers)
     build_repomap_parser(subparsers)
+    build_index_parser(subparsers)
     build_workflow_parser(subparsers)
     build_tree_parser(subparsers)
     build_system_parser(subparsers)
