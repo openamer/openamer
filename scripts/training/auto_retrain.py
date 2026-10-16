@@ -85,6 +85,15 @@ def main():
     print(f"[auto_retrain] using train interpreter: {PY}", flush=True)
     out = sh([PY, str(T / "finetune_cpu.py")], timeout=7200)
     print(out.strip()[-800:])
+    # finetune_cpu.py exits 0 when it aborts on its OWN RAM guard — it never
+    # saves an adapter in that path. Trusting the exit code burned the 24h
+    # marker, hot-swapped the STALE adapter and printed RETRAIN_OK: a success
+    # verdict for a run that trained nothing, which also silenced the nightly
+    # watchdog (it only warns on SKIP/ABORT). Require the real side effect.
+    if "ADAPTER_SAVED" not in out:
+        print("ABORT: finetune produced no adapter (RAM/other abort above) — "
+              "marker NOT advanced, nothing hot-swapped")
+        sys.exit(1)
 
     # hot-swap: backup old adapter, move new one in, then tell the LIVE server
     # (dolphin architecture) to load it at runtime — zero downtime, no restart.
