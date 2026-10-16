@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from unittest.mock import patch
 
@@ -73,7 +74,10 @@ class TestCollectQueryImages:
     def test_collect_query_images_supports_tilde_paths(self, tmp_path, monkeypatch):
         home = tmp_path / "home"
         img = _make_image(home / "storage" / "shared" / "Pictures" / "cat.png")
+        # expanduser() reads USERPROFILE on Windows and HOME on POSIX, so
+        # HOME alone left the runner's real profile in place there.
         monkeypatch.setenv("HOME", str(home))
+        monkeypatch.setenv("USERPROFILE", str(home))
 
         message, images = _collect_query_images("describe this", "~/storage/shared/Pictures/cat.png")
 
@@ -88,7 +92,10 @@ class TestTermuxImageHints:
 
         hint = _termux_example_image_path()
 
-        assert hint == "/sdcard/Pictures/cat.png"
+        # The function joins with os.path.join, so the expectation has to be
+        # built the same way: the forward-slash literal only matched on a
+        # POSIX host. The claim under test is the /sdcard root preference.
+        assert hint == os.path.join("/sdcard", "Pictures", "cat.png")
 
 
 class TestImageBadgeFormatting:
