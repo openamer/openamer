@@ -36,7 +36,11 @@ class TestGetDefaultOpenAmerRoot:
     def test_no_openamer_home_returns_native(self, tmp_path, monkeypatch):
         """When OPENAMER_HOME is not set, returns ~/.openamer."""
         monkeypatch.delenv("OPENAMER_HOME", raising=False)
+        # ~/.openamer is the POSIX branch; pin it (and drop LOCALAPPDATA) so a
+        # Windows host exercises the same branch instead of its real install.
+        monkeypatch.delenv("LOCALAPPDATA", raising=False)
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
+        monkeypatch.setattr(openamer_constants.sys, "platform", "linux")
 
         assert get_default_openamer_root() == tmp_path / ".openamer"
 
@@ -134,7 +138,11 @@ class TestGetProcessOpenAmerHome:
 
     def test_env_unset_returns_platform_default(self, tmp_path, monkeypatch):
         monkeypatch.delenv("OPENAMER_HOME", raising=False)
+        # Pin the POSIX branch: on Windows the win32 branch reads the real
+        # %LOCALAPPDATA% and ignores the patched Path.home().
+        monkeypatch.delenv("LOCALAPPDATA", raising=False)
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
+        monkeypatch.setattr(openamer_constants.sys, "platform", "linux")
         assert get_process_openamer_home() == tmp_path / ".openamer"
 
     def test_ignores_context_local_override(self, tmp_path, monkeypatch):

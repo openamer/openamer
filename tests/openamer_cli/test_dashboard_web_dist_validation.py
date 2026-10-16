@@ -122,6 +122,10 @@ def test_env_dist_tilde_expanded_for_web_server(main_mod, monkeypatch, tmp_path)
     dist.mkdir(parents=True)
     (dist / "index.html").write_text("<html></html>", encoding="utf-8")
     monkeypatch.setenv("HOME", str(home))
+    # On Windows `~` expands from USERPROFILE, not HOME, so without this the
+    # '~' below expands to the runner's real profile and the test can only pass
+    # on a POSIX host.
+    monkeypatch.setenv("USERPROFILE", str(home))
     monkeypatch.setenv("OPENAMER_WEB_DIST", "~/mydist")
 
     monkeypatch.setitem(
