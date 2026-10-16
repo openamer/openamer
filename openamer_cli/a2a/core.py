@@ -205,6 +205,22 @@ class Envelope:
         except Exception:
             return False
 
+    def verify_signature(self, sender_public_key_hex: str) -> bool:
+        """Verify the signature only — no freshness gate.
+
+        Callers that own the staleness policy (a relay-note reader with its own
+        tolerance, a historical-archive audit) must be able to tell an authentic
+        but old note apart from a forged one. Routing them through ``verify``
+        reported every note older than the replay window as an invalid
+        signature.
+        """
+        if not self.signature:
+            return False
+        try:
+            return self._verify_signature(sender_public_key_hex)
+        except Exception:
+            return False
+
     def _verify_signature(self, sender_public_key_hex: str) -> bool:
         pub = public_key_from_hex(sender_public_key_hex)
         try:
