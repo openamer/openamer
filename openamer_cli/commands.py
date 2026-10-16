@@ -1493,6 +1493,13 @@ class SlashCommandCompleter(Completer):
         # Only trigger path completion for path-like tokens
         if word.startswith(("./", "../", "~/", "/")) or "/" in word:
             return word
+        if os.name == "nt" and (
+            re.match(r"^[A-Za-z]:[\\/]", word) or word.startswith("\\\\")
+        ):
+            # A drive-letter or UNC path is absolute on Windows but contains
+            # no "/", so the POSIX-shaped test above never matched one and
+            # typing "C:\Users\me\Doc" offered no completion at all.
+            return word
         return None
 
     @staticmethod

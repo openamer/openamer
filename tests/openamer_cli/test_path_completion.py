@@ -198,12 +198,16 @@ class TestIntegration:
         event = MagicMock()
         assert list(completer.get_completions(doc, event)) == []
 
-    def test_absolute_path_triggers_completion(self, completer):
-        doc = Document("check /etc/hos", cursor_position=14)
+    def test_absolute_path_triggers_completion(self, completer, tmp_path):
+        (tmp_path / "hosts").write_text("x", encoding="utf-8")
+        # An absolute path spelled the way this host spells it: the hardcoded
+        # /etc/hos only resolved on a POSIX host, where /etc/hosts exists. The
+        # claim under test is that an absolute path triggers completion.
+        text = f"check {tmp_path / 'hos'}"
+        doc = Document(text, cursor_position=len(text))
         event = MagicMock()
         completions = list(completer.get_completions(doc, event))
         names = _display_names(completions)
-        # /etc/hosts should exist on Linux
         assert any("host" in n.lower() for n in names)
 
 
@@ -225,3 +229,32 @@ class TestFileSizeLabel:
 
     def test_nonexistent(self):
         assert _file_size_label("/nonexistent_xyz") == ""
+
+
+class TestDriveLetterPathsArePathLike:
+    """A drive-letter path is absolute on Windows yet holds no "/", so the
+    POSIX-shaped path test never matched one: completion was dead for typed
+    Windows paths while working for the same path written with slashes."""
+
+    def test_drive_letter_path_is_path_like_on_windows(self, monkeypatch):
+        monkeypatch.setattr(os, "name", "nt")
+
+        assert (
+            SlashCommandCompleter._extract_path_word(r"check C:\Users\me\Doc")
+            == r"C:\Users\me\Doc"
+        )
+        assert (
+            SlashCommandCompleter._extract_path_word(r"check C:/Users/me/Doc")
+            == r"C:/Users/me/Doc"
+        )
+        assert (
+            SlashCommandCompleter._extract_path_word(r"check \\srv\share\f.txt")
+            == r"\\srv\share\f.txt"
+        )
+
+    def test_drive_letter_path_is_not_path_like_on_posix(self, monkeypatch):
+        # The trigger is Windows-only: on POSIX a drive-letter token is not a
+        # path, and turning it into one there would fire a listdir per keystroke.
+        monkeypatch.setattr(os, "name", "posix")
+
+        assert SlashCommandCompleter._extract_path_word(r"check C:\Users\me\Doc") is None
