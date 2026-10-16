@@ -4778,12 +4778,57 @@ def _is_price_table_row(text):
         return False
     return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
 
+# class 178 (16.10.26) -- a GitHub REPO PAGE's header chrome: the social-count
+# pair GitHub prints above every repository, and its logged-out star notice.
+#
+# Live: `cycle_b_papers` logged "paper-learn: ..." and the row really landed in
+# online_buffer.jsonl, verbatim:
+#
+#   "Fork 29 ( 29 ) Star 377 ( 377 ) You must be signed in to star a repository
+#    About Proof of thought : LLM-based reasoning using Z3 theorem proving with
+#    multiple backend support (SMT2 and JSON DSL) debarghag."
+#
+# The cycle asked for an arXiv paper; the top result was that paper's GitHub repo
+# and the logged-out fetch returned the repo HEADER instead of an abstract.
+#
+# Both markers are strings only GitHub's repo header emits, so either one alone
+# is page-specific. Measured 16.10.26 with the skill harness
+# `training-scripts-hygiene/scripts/probe_marker_candidates.py`: hits=1 (the
+# leaking row), not-yet-junk=1, bufFP=0, proseFP=0, epFP=0 (of 8,035 longterm
+# episodes), litFP=0 (of 1,582 string literals of the gate test file).
+# Refusing it at EXTRACTION time lets the cycle retry instead of burning a
+# write the writer would drop. Mirror of `buffer_store.is_gh_repo_header_chrome`.
+_GH_LOGGEDOUT_STAR_NOTICE_RE = re.compile(
+    r"you\s+must\s+be\s+signed\s+in\s+to\s+star\s+a\s+repository", re.IGNORECASE)
+# GitHub's DOM repeats each social count inside parentheses ("29 ( 29 )"), a
+# shape plain prose never produces.
+_GH_SOCIAL_COUNT_RUN_RE = re.compile(
+    r"\bFork\s+\d[\d,]*\s*\(\s*\d[\d,]*\s*\)\s+Star\s+\d[\d,]*\s*\(\s*\d[\d,]*\s*\)",
+    re.IGNORECASE)
+
+
+def _is_gh_repo_header_chrome(text):
+    """True when `text` is a GitHub repository page's header chrome.
+
+    Either marker alone is sufficient: the logged-out star notice and the
+    parenthesised Fork/Star social-count run are both emitted only by GitHub's
+    repo header. See the class comment for the live leak and the measurement.
+    """
+    t = text or ""
+    if _GH_LOGGEDOUT_STAR_NOTICE_RE.search(t):
+        return True
+    return bool(_GH_SOCIAL_COUNT_RUN_RE.search(t))
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
     if len(t) < 25:
         return True
     if _looks_binary(t):
+        return True
+    # a GitHub repo page's header chrome -- social-count run and/or
+    # logged-out star notice (class 178, 16.10.26)
+    if _is_gh_repo_header_chrome(t):
         return True
     # an article's own byline + dateline header welded to its lede (class 142, 22.09.26)
     if _is_article_byline_chrome(t):

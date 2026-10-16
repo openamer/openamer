@@ -149,3 +149,29 @@ def test_store_if_trainable_accepts_and_grows_the_buffer(tmp_path):
     assert ok is True
     lines = [l for l in buf.read_text(encoding="utf-8").splitlines() if l.strip()]
     assert len(lines) == 1
+
+
+# --- class 178 (16.10.26): GitHub repo-page header chrome --------------------
+
+_GH_REPO_HEADER = (
+    "Fork 29 ( 29 ) Star 377 ( 377 ) You must be signed in to star a repository "
+    "About Proof of thought : LLM-based reasoning using Z3 theorem proving with "
+    "multiple backend support (SMT2 and JSON DSL) debarghag."
+)
+
+
+def test_github_repo_header_chrome_is_refused_by_both_gates():
+    """`cycle_b_papers` stored this row on 16.10.26 for an arXiv query whose top
+    result was the paper's own GitHub repo: the logged-out fetch returned the
+    repo HEADER (social counts + star notice) instead of an abstract."""
+    assert BS.is_junk(_GH_REPO_HEADER)
+    assert IL._writer_gate_refuses(_GH_REPO_HEADER)
+    assert IL._is_junk(_GH_REPO_HEADER)
+
+
+def test_github_repo_header_gate_keeps_prose_about_forking_a_repo():
+    """Hostile control: a sentence ABOUT forking is not the repo page header."""
+    prose = ("To fork a repository you need a GitHub account; your fork keeps "
+             "its own star count and issue tracker.")
+    assert not BS.is_junk(prose)
+    assert not IL._is_junk(prose)
