@@ -75,6 +75,8 @@ __all__ = [
     "INDEX_VERSION",
     "MAX_FILE_BYTES",
     "MAX_FILES",
+    "MAX_SECONDS",
+    "MAX_SYMBOLS_PER_FILE",
     "SKIP_DIRS",
 ]
 
@@ -87,6 +89,15 @@ MAX_FILE_BYTES = 512 * 1024
 
 #: Hard cap on indexed files per repository — keeps a scan bounded.
 MAX_FILES = 5000
+
+#: Wall-clock budget for one build, in seconds. Once exceeded the scan stops
+#: spending time on unparsed files and returns ``partial=True``; the next run
+#: reuses what was already parsed (cheaply) and reaches further, so the index
+#: converges run over run instead of forcing minutes on a CPU-only box.
+MAX_SECONDS = 20.0
+
+#: Cap on symbols recorded per file — bounds index size on generated files.
+MAX_SYMBOLS_PER_FILE = 500
 
 #: Directory names never descended into.
 SKIP_DIRS = frozenset(
@@ -293,6 +304,22 @@ def _detect_language(name: str) -> str | None:
 # ──────────────────────────────────────────────────────────────────────────────
 
 
+def _sym(
+    name: str, kind: str, line: int, doc: str = "", parent: str = ""
+) -> dict[str, Any]:
+    """Build one symbol record, omitting empty ``doc``/``parent`` fields.
+
+    Most symbols have neither and the index is meant to stay small — so an
+    absent key means "none", not "unknown".
+    """
+    rec: dict[str, Any] = {"name": name, "kind": kind, "line": line}
+    if doc:
+        rec["doc"] = doc
+    if parent:
+        rec["parent"] = parent
+    return rec
+
+
 def _doc_head(node: ast.AST, limit: int = 120) -> str:
     """First non-empty line of a node's docstring, trimmed to *limit* chars."""
     try:
@@ -321,36 +348,14 @@ def extract_python_symbols(source: str) -> list[dict[str, Any]]:
 
     for node in tree.body:
         if isinstance(node, ast.ClassDef):
-            symbols.append(
-                {
-                    "name": node.name,
-                    "kind": "class",
-                    "line": node.lineno,
-                    "doc": _doc_head(node),
-                    "parent": "",
-                }
-            )
+            symbols.append(_sym(node.name, "class", node.lineno, _doc_head(node)))
             for child in node.body:
                 if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)):
                     symbols.append(
-                        {
-                            "name": child.name,
-                            "kind": "method",
-                            "line": child.lineno,
-                            "doc": _doc_head(child),
-                            "parent": node.name,
-                        }
+                        _sym(child.name, "method", child.lineno, _doc_head(child), node.name)
                     )
         elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            symbols.append(
-                {
-                    "name": node.name,
-                    "kind": "function",
-                    "line": node.lineno,
-                    "doc": _doc_head(node),
-                    "parent": "",
-                }
-            )
+            symbols.append(_sym(node.name, "function", node.lineno, _doc_head(node)))
 
     return symbols
 
@@ -382,9 +387,7 @@ def extract_heuristic_symbols(source: str, language: str) -> list[dict[str, Any]
             if key in seen:
                 continue
             seen.add(key)
-            symbols.append(
-                {"name": name, "kind": kind, "line": lineno, "doc": "", "parent": ""}
-            )
+            symbols.append(_sym(name, kind, lineno))
             break  # first matching pattern wins for this line
 
     return symbols
