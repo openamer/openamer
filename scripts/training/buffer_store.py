@@ -3998,9 +3998,41 @@ def _is_site_nav_chain(text):
     return bool(_SITE_NAV_ANNOUNCE_RE.search(text))
 
 
+# class 183 (16.10.26): a docs comparison TABLE's header row welded to the first
+# data row's prose cell.
+#
+# Live: `cycle_d_docs` stored
+#
+#   Original # Feature Original Transformers Transformers v2 Inference Speed
+#   Standard PyTorch attention (slow for long contexts) FlashAttention-2
+#   integration: 2x faster than FlashAttention, 9x over vanilla PyTorch;
+#   supports head dims up to 256, MQA/GQA.
+#
+# The docs site renders a comparison table whose header cells lost their
+# separators, so the column labels weld into a run ("... Transformers
+# Transformers v2 Inference Speed") and the first data row's prose cell follows.
+# Class 73 (_is_table_header_value_run) requires >=3 metric labels AND no finite
+# verb AND <=25% lowercase words; this row's prose cell carries a verb
+# ("supports") and plenty of lowercase, so class 73 correctly declines it.
+#
+# The discriminator is the docs table's own `Original # Feature` badge+anchor
+# weld. Measured 16.10.26: 2 buffer hits and BOTH are this table chrome -> 0 of
+# 8,035 longterm episodes, 0 of 2,085 gate-test literals, 0 of 6 real-prose
+# controls.
+_DOCS_TABLE_HDR_WELD_RE = _re.compile(r"original\s*#\s*feature", _re.I)
+
+
+def _is_docs_table_header_weld(text):
+    """True when a docs comparison table's header weld is stored."""
+    return bool(_DOCS_TABLE_HDR_WELD_RE.search(text or ""))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
+        return True
+    # a docs comparison table's header weld (class 183, 16.10.26)
+    if _is_docs_table_header_weld(text):
         return True
     # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
     if _is_docs_cta_serp_run(text):

@@ -4778,12 +4778,44 @@ def _is_price_table_row(text):
         return False
     return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
 
+# class 183 (16.10.26): a docs comparison TABLE's header row welded to the first
+# data row's prose cell.
+#
+# Live: `cycle_d_docs` stored
+#
+#   Original # Feature Original Transformers Transformers v2 Inference Speed
+#   Standard PyTorch attention (slow for long contexts) FlashAttention-2
+#   integration: 2x faster than FlashAttention, 9x over vanilla PyTorch;
+#   supports head dims up to 256, MQA/GQA.
+#
+# The docs site renders a comparison table whose header cells lost their
+# separators, so the column labels weld into a run ("... Transformers
+# Transformers v2 Inference Speed") and the first data row's prose cell follows.
+# Class 73 (_is_table_header_value_run) requires >=3 metric labels AND no finite
+# verb AND <=25% lowercase words; this row's prose cell carries a verb
+# ("supports") and plenty of lowercase, so class 73 correctly declines it.
+#
+# The discriminator is the docs table's own `Original # Feature` badge+anchor
+# weld. Measured 16.10.26: 2 buffer hits and BOTH are this table chrome -> 0 of
+# 8,035 longterm episodes, 0 of 2,085 gate-test literals, 0 of 6 real-prose
+# controls.
+_DOCS_TABLE_HDR_WELD_RE = re.compile(r"original\s*#\s*feature", re.I)
+
+
+def _is_docs_table_header_weld(text):
+    """True when a docs comparison table's header weld is stored."""
+    return bool(_DOCS_TABLE_HDR_WELD_RE.search(text or ""))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
     if len(t) < 25:
         return True
     if _looks_binary(t):
+        return True
+    # a docs comparison table's header weld (class 183, 16.10.26)
+    if _is_docs_table_header_weld(t):
         return True
     # an article's own byline + dateline header welded to its lede (class 142, 22.09.26)
     if _is_article_byline_chrome(t):
