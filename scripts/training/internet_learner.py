@@ -4824,6 +4824,24 @@ def _is_blog_header_readtime_weld(text):
     return bool(_BLOG_HEADER_READTIME_RE.search(text or ""))
 
 
+# class 181 (16.10.26): a news aggregator card's comment/share counter RUN
+# welded to the next card's headline.
+#
+#   Beloved frozen pizza brand Celeste is discontinued ... staple
+#   293 comment s share s Beginners are making costly mi...
+#
+# The widget emits its two labels with the plural split off ("N comment s share
+# s"); the run is page chrome and real prose never writes it. Measured 16.10.26:
+# 2 buffer hits and BOTH are aggregator-card chrome -> 0 of 2,573 gate-test
+# literals, 0 of 8,035 longterm episodes, 0 of 4 real-prose controls.
+_AGG_COUNTER_RUN_RE = re.compile(r'comment\s+s\s+share\s+s', re.I)
+
+
+def _is_aggregator_counter_run(text):
+    """True when an aggregator card's split comment/share counter run is welded in."""
+    return bool(_AGG_COUNTER_RUN_RE.search(text or ""))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -4838,6 +4856,10 @@ def _is_junk(text):
     # a blog header's dateline + reading-time label welded to the lede
     # (class 180, 16.10.26)
     if _is_blog_header_readtime_weld(t):
+        return True
+    # an aggregator card's split comment/share counter run (class 181,
+    # 16.10.26)
+    if _is_aggregator_counter_run(t):
         return True
     # an article's own byline + dateline header welded to its lede (class 142, 22.09.26)
     if _is_article_byline_chrome(t):

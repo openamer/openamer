@@ -7202,3 +7202,33 @@ def test_blog_header_readtime_weld_is_gated_on_both_paths():
         assert IL._is_blog_header_readtime_weld(ctrl) is False, ctrl
         assert IL._is_junk(ctrl) is False, ctrl
         assert buffer_store.is_junk(ctrl) is False, ctrl
+
+AGG_COUNTER_LEAKS = [
+    "Beloved frozen pizza brand Celeste is discontinued after nearly 60 years - leaving fans mourning the ultimate broke-food staple 293 comment s share s Beginners are making costly mi",
+    "Amazon Prime customers could get automatic refunds from a $2.5billion settlement - see if you qualify 26 comment s share s Texas good samaritan found $128,514 in cash",
+]
+
+AGG_COUNTER_CONTROLS = [
+    "There were 293 comments shared across the team during the review.",
+    "The thread drew 293 comments and 4 shares in one afternoon.",
+    "She wrote a comment, then a share, then a like on the post.",
+    "Readers left 88 comments under the article about the outage.",
+]
+
+
+def test_aggregator_counter_run_is_gated_on_both_paths():
+    """Class 181: an aggregator card's split comment/share counter run.
+
+    The discriminator is the widget's label run with the plural split off
+    ("N comment s share s"); real prose never writes it.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    for leak in AGG_COUNTER_LEAKS:
+        assert IL._is_aggregator_counter_run(leak) is True, leak
+        assert IL._is_junk(leak) is True, leak
+        assert buffer_store.is_junk(leak) is True, leak
+    for ctrl in AGG_COUNTER_CONTROLS:
+        assert IL._is_aggregator_counter_run(ctrl) is False, ctrl
+        assert IL._is_junk(ctrl) is False, ctrl
+        assert buffer_store.is_junk(ctrl) is False, ctrl
