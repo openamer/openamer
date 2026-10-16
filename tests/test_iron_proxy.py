@@ -26,6 +26,36 @@ from agent.proxy_sources import iron_proxy as ip
 
 
 # ---------------------------------------------------------------------------
+# Windows platform guards
+# ---------------------------------------------------------------------------
+# iron-proxy is a Linux/macOS-only managed binary — ``_platform_archive_name()``
+# raises on Windows ("does not ship native Windows binaries as of vX") — and the
+# hardening this module asserts leans on POSIX-only kernel surfaces: file mode
+# bits, ``os.fchmod``, SIGKILL and ``/proc``.  None of those exist on Windows, so
+# the affected tests are guarded rather than weakened.
+_no_windows_binary = pytest.mark.skipif(
+    os.name == "nt",
+    reason="iron-proxy ships no native Windows binary; install/start is Linux/macOS-only",
+)
+_windows_no_posix_modes = pytest.mark.skipif(
+    os.name == "nt",
+    reason="POSIX mode bits (0o600/0o700) are not enforced on Windows",
+)
+_windows_no_fchmod = pytest.mark.skipif(
+    os.name == "nt",
+    reason="os.fchmod does not exist on Windows",
+)
+_windows_no_procfs = pytest.mark.skipif(
+    os.name == "nt",
+    reason="/proc/<pid>/stat does not exist on Windows (_pid_proc_starttime is Linux-only)",
+)
+_windows_no_sigkill = pytest.mark.skipif(
+    os.name == "nt",
+    reason="Windows has no SIGKILL, so _KILL_SIGNAL falls back to SIGTERM and the two cannot be told apart",
+)
+
+
+# ---------------------------------------------------------------------------
 # Per-test isolation
 # ---------------------------------------------------------------------------
 
@@ -379,6 +409,7 @@ def test_load_mappings_handles_corrupt_json(openamer_home):
     assert ip.load_mappings() == []
 
 
+@_windows_no_posix_modes
 def test_write_proxy_config_serializes_yaml(openamer_home, tmp_path):
     ca_crt = tmp_path / "ca.crt"
     ca_key = tmp_path / "ca.key"
@@ -544,6 +575,7 @@ def _make_fake_tar(binary_name: str, payload: bytes = b"#!/bin/sh\necho ok\n") -
     return buf.getvalue()
 
 
+@_no_windows_binary
 def test_install_iron_proxy_verifies_checksum_and_extracts(openamer_home, monkeypatch):
     fake_payload = _make_fake_tar(ip._platform_binary_name())
     import hashlib
@@ -566,6 +598,7 @@ def test_install_iron_proxy_verifies_checksum_and_extracts(openamer_home, monkey
     assert os.access(target, os.X_OK)
 
 
+@_no_windows_binary
 def test_install_iron_proxy_rejects_bad_checksum(openamer_home, monkeypatch):
     fake_payload = _make_fake_tar(ip._platform_binary_name())
     asset_name = ip._platform_asset_name()
@@ -582,6 +615,7 @@ def test_install_iron_proxy_rejects_bad_checksum(openamer_home, monkeypatch):
         ip.install_iron_proxy()
 
 
+@_no_windows_binary
 def test_install_iron_proxy_rejects_missing_checksum_entry(openamer_home, monkeypatch):
     fake_payload = _make_fake_tar(ip._platform_binary_name())
 
@@ -650,6 +684,7 @@ def test_verify_checksums_signature_passes_on_good_signature(openamer_home, monk
     assert ip._verify_checksums_signature(tmp_path, cks) is True
 
 
+@_no_windows_binary
 def test_install_aborts_on_bad_release_signature(openamer_home, monkeypatch):
     """End-to-end: a tampered (bad-signature) release must abort install."""
     fake_payload = _make_fake_tar(ip._platform_binary_name())
@@ -763,6 +798,7 @@ def test_start_proxy_refuses_without_config(openamer_home, monkeypatch):
         ip.start_proxy()
 
 
+@_windows_no_fchmod
 def test_start_proxy_writes_pidfile_when_alive(openamer_home, monkeypatch):
     binary = ip._openamer_bin_dir() / ip._platform_binary_name()
     binary.parent.mkdir(parents=True, exist_ok=True)
@@ -795,6 +831,7 @@ def test_start_proxy_writes_pidfile_when_alive(openamer_home, monkeypatch):
     assert status.pid == 4242
 
 
+@_windows_no_fchmod
 def test_start_proxy_raises_when_immediate_exit(openamer_home, monkeypatch):
     binary = ip._openamer_bin_dir() / ip._platform_binary_name()
     binary.parent.mkdir(parents=True, exist_ok=True)
@@ -1034,6 +1071,7 @@ def test_subprocess_env_keeps_infrastructure_vars(openamer_home, monkeypatch):
 # ---------------------------------------------------------------------------
 
 
+@_windows_no_posix_modes
 def test_ca_key_created_with_0o600(openamer_home, monkeypatch):
     """The CA private key must NEVER exist on disk with default umask
     permissions, even transiently.  Fix: open with explicit mode=0o600
@@ -1069,6 +1107,7 @@ def test_ca_key_created_with_0o600(openamer_home, monkeypatch):
 # ---------------------------------------------------------------------------
 
 
+@_windows_no_fchmod
 def test_ensure_audit_log_creates_with_0o600(openamer_home, tmp_path):
     audit = tmp_path / "audit.log"
     ip.ensure_audit_log(audit)
@@ -1077,6 +1116,7 @@ def test_ensure_audit_log_creates_with_0o600(openamer_home, tmp_path):
     assert mode == 0o600
 
 
+@_windows_no_fchmod
 def test_ensure_audit_log_tightens_existing_perms(openamer_home, tmp_path):
     audit = tmp_path / "audit.log"
     audit.write_text("preexisting content\n")
@@ -1091,6 +1131,7 @@ def test_ensure_audit_log_tightens_existing_perms(openamer_home, tmp_path):
 # ---------------------------------------------------------------------------
 
 
+@_windows_no_posix_modes
 def test_proxy_state_dir_is_0o700(openamer_home):
     state = ip._proxy_state_dir()
     mode = state.stat().st_mode & 0o777
@@ -1539,6 +1580,7 @@ def test_build_proxy_config_enables_management_listener(tmp_path):
     assert mgmt["api_key_env"] == ip._MGMT_API_KEY_ENV
 
 
+@_windows_no_posix_modes
 def test_ensure_management_token_persists_and_is_stable(openamer_home):
     t1 = ip.ensure_management_token()
     t2 = ip.ensure_management_token()
@@ -1606,6 +1648,7 @@ def test_reload_proxy_posts_bearer_to_management_endpoint(openamer_home, monkeyp
     assert captured["auth"] == f"Bearer {token}"
 
 
+@_windows_no_fchmod
 def test_start_proxy_injects_management_key_env(openamer_home, monkeypatch):
     """When the generated config has a management listener, start_proxy
     must inject the bearer key env var — v0.39 refuses to start when
@@ -1650,6 +1693,7 @@ def test_start_proxy_injects_management_key_env(openamer_home, monkeypatch):
 # ---------------------------------------------------------------------------
 
 
+@_windows_no_procfs
 def test_pid_proc_starttime_parses_comm_with_parens(tmp_path, monkeypatch):
     """``/proc/<pid>/stat`` 'comm' field can contain spaces and parens
     (e.g. a process literally named ``weird) tail``, with the comm
@@ -1702,6 +1746,7 @@ def test_pid_proc_starttime_returns_none_on_missing_proc(monkeypatch):
 # ---------------------------------------------------------------------------
 
 
+@_windows_no_sigkill
 def test_stop_proxy_suppresses_sigkill_on_pid_recycle(openamer_home, monkeypatch):
     """When _pid_proc_starttime returns different values before and
     after the SIGTERM grace window, stop_proxy must NOT issue SIGKILL —

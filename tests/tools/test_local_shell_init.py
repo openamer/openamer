@@ -18,7 +18,19 @@ from tools.environments.local import (
 )
 
 
+# ``_resolve_shell_init_files()`` only auto-sources the login-shell rc list
+# (~/.profile, ~/.bash_profile, ~/.bashrc) on POSIX: that default branch is
+# guarded by ``not _IS_WINDOWS`` in the implementation, because bash rc files
+# are not what puts nvm / n / asdf / pyenv on PATH on Windows.  The branch has
+# no Windows counterpart, so the tests that pin its output cannot run there.
+_auto_source_posix_only = pytest.mark.skipif(
+    os.name == "nt",
+    reason="auto-sourcing login-shell rc files is POSIX-only (disabled on Windows)",
+)
+
+
 class TestResolveShellInitFiles:
+    @_auto_source_posix_only
     def test_auto_sources_bashrc_when_present(self, tmp_path, monkeypatch):
         bashrc = tmp_path / ".bashrc"
         bashrc.write_text('export MARKER=seen\n')
@@ -33,6 +45,7 @@ class TestResolveShellInitFiles:
 
         assert resolved == [str(bashrc)]
 
+    @_auto_source_posix_only
     def test_auto_sources_profile_when_present(self, tmp_path, monkeypatch):
         """~/.profile is where ``n`` / ``nvm`` installers typically write
         their PATH export on Debian/Ubuntu, and it has no interactivity
@@ -50,6 +63,7 @@ class TestResolveShellInitFiles:
 
         assert resolved == [str(profile)]
 
+    @_auto_source_posix_only
     def test_auto_sources_bash_profile_when_present(self, tmp_path, monkeypatch):
         bash_profile = tmp_path / ".bash_profile"
         bash_profile.write_text('export MARKER=bp\n')
@@ -63,6 +77,7 @@ class TestResolveShellInitFiles:
 
         assert resolved == [str(bash_profile)]
 
+    @_auto_source_posix_only
     def test_auto_sources_profile_before_bashrc(self, tmp_path, monkeypatch):
         """Both files present: profile runs first so PATH exports in
         profile take effect even if bashrc short-circuits on the
@@ -133,6 +148,11 @@ class TestResolveShellInitFiles:
         target.parent.mkdir()
         target.write_text('export A=1\n')
         monkeypatch.setenv("HOME", str(tmp_path))
+        # Windows expanduser("~") reads USERPROFILE, not HOME (verified), so
+        # setting HOME alone left "~" anchored to the REAL user home and this
+        # test asserted nothing there.  POSIX honours HOME, so both are set and
+        # the fake home applies on either platform.
+        monkeypatch.setenv("USERPROFILE", str(tmp_path))
         monkeypatch.setenv("CUSTOM_RC_DIR", str(tmp_path / "rc"))
 
         with patch(
@@ -147,8 +167,10 @@ class TestResolveShellInitFiles:
         ):
             resolved_var = _resolve_shell_init_files()
 
-        assert resolved_home == [str(target)]
-        assert resolved_var == [str(target)]
+        # expandvars() keeps the literal "/" from the config value on Windows
+        # ("C:\...\rc/custom.sh"), so compare separator-normalised paths.
+        assert [os.path.normpath(p) for p in resolved_home] == [str(target)]
+        assert [os.path.normpath(p) for p in resolved_var] == [str(target)]
 
     def test_missing_explicit_files_are_skipped_silently(self, tmp_path, monkeypatch):
         monkeypatch.setenv("HOME", str(tmp_path))

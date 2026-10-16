@@ -119,15 +119,34 @@ class TestDetectDangerousRm:
         assert key is not None
         assert "delete" in desc.lower()
 
-    def test_nonrecursive_verification_artifact_cleanup_is_not_dangerous(self):
-        with mock_patch("tempfile.gettempdir", return_value="/tmp"):
+    def test_nonrecursive_verification_artifact_cleanup_is_not_dangerous(self, tmp_path):
+        # _is_verification_artifact_cleanup() matches the operand with
+        # os.path.join(temp_dir, basename), so the command has to be built in
+        # the platform's own separator style.  A hardcoded "/tmp/<name>" operand
+        # can never satisfy that equality on Windows, where the join emits a
+        # backslash — the cleanup then falls through to the "rm ... /" root-path
+        # pattern and is reported as dangerous.  The invariant under test (a
+        # non-recursive delete of one verification artifact inside the temp dir
+        # is not dangerous) is identical on both platforms.
+        temp_dir = os.path.realpath(str(tmp_path))
+        with mock_patch("tempfile.gettempdir", return_value=temp_dir):
             for prefix in ("openamer-verify-", "openamer-ad-hoc-"):
-                assert detect_dangerous_command(f"rm -f /tmp/{prefix}example.py") == (
+                cleanup = os.path.join(temp_dir, f"{prefix}example.py")
+                assert detect_dangerous_command(f"rm -f {cleanup}") == (
                     False,
                     None,
                     None,
                 )
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "the non-canonical path is only reported because the POSIX-shaped "
+            "'rm ... /<absolute path>' root-path pattern fires; that pattern "
+            "cannot match a drive-letter path, so the contract is not "
+            "observable on Windows"
+        ),
+    )
     def test_symlinked_temp_dir_only_exempts_canonical_target(self, tmp_path):
         real_temp = tmp_path / "real-temp"
         real_temp.mkdir()
