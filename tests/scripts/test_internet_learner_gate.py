@@ -7135,3 +7135,38 @@ PRICE_TABLE_CONTROLS = [
     "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
 ]
 
+
+
+def test_github_file_viewer_toolbar_is_gated_on_both_paths():
+    """class 182: a GitHub FILE-VIEW page's toolbar + file-stat header.
+
+    Live 16.10.26: `cycle_c_github` stored the file-viewer chrome -- the
+    toolbar label run welded to GitHub's own `<N> lines (<M> loc)` header.
+    Class 178 keys the repo HEADER and class 36 the repo TAB chain; neither
+    matches the file-viewer page.
+    """
+    import buffer_store
+
+    leak = (
+        "Copy path Top File metadata and controls Preview Code Blame "
+        "247 lines (192 loc) \u00b7 8.07 KB Raw Copy raw file Download raw file "
+        "Outline Edit and raw actions Anus AI Agent Architectur"
+    )
+    assert IL._is_github_file_viewer_chrome(leak) is True, leak
+    assert IL._is_junk(leak) is True, leak
+    assert buffer_store._is_nav_chrome(leak) is True, leak
+
+    # the ANDed pair is required: the bare stat bar, a single label, or two
+    # labels with no `<N> lines (<M> loc)` header are all ordinary prose.
+    for c in (
+        "The file has 247 lines (192 loc) of code, which is manageable.",
+        "We compared 12 lines (3 loc) of diff between the two revisions.",
+        "A short file of 8 lines (5 loc) still needs a header comment.",
+        "Copy path to the clipboard, then copy raw file contents for review.",
+        "GitHub shows Copy path, Blame and Outline controls on the file page.",
+        "The repository preview shows the file metadata and controls.",
+        "Use git blame to find who last changed that line.",
+    ):
+        assert IL._is_github_file_viewer_chrome(c) is False, c
+        assert IL._is_junk(c) is False, c
+        assert buffer_store._is_nav_chrome(c) is False, c
