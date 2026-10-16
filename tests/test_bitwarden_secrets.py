@@ -1349,3 +1349,28 @@ def test_stale_fallback_skipped_when_cache_ttl_zero(monkeypatch, tmp_path):
             access_token="0.t", project_id="proj-1", binary=fake_binary,
             cache_ttl_seconds=0, home_path=home,
         )
+
+
+# ── archive member naming ────────────────────────────────────────────────
+# The upstream zip carries the binary under its POSIX name (``bws``) on every
+# platform, while Windows asks for ``bws.exe``. Exact leaf-name match first,
+# then a suffix-insensitive fallback; otherwise a Windows install finds nothing.
+def test_pick_zip_member_accepts_posix_name_for_windows_binary():
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as zf:
+        zf.writestr("bws", b"binary")
+    buf.seek(0)
+
+    with zipfile.ZipFile(buf) as zf:
+        assert bw._pick_zip_member(zf, "bws.exe") == "bws"
+
+
+def test_pick_zip_member_prefers_an_exact_match():
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as zf:
+        zf.writestr("bws", b"posix")
+        zf.writestr("bws.exe", b"windows")
+    buf.seek(0)
+
+    with zipfile.ZipFile(buf) as zf:
+        assert bw._pick_zip_member(zf, "bws.exe") == "bws.exe"

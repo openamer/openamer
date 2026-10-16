@@ -318,6 +318,15 @@ def _pick_zip_member(zf: zipfile.ZipFile, binary_name: str) -> str:
     """
     candidates = [n for n in zf.namelist() if n.split("/")[-1] == binary_name]
     if not candidates:
+        # Upstream ships the archive member under its POSIX name (``bws``) on
+        # every platform, while Windows asks for ``bws.exe``.  Without this
+        # fallback a Windows install could never find its own binary.
+        stem = os.path.splitext(binary_name)[0]
+        candidates = [
+            n for n in zf.namelist()
+            if os.path.splitext(n.split("/")[-1])[0] == stem
+        ]
+    if not candidates:
         raise RuntimeError(
             f"Could not find {binary_name} inside downloaded archive "
             f"(members: {zf.namelist()[:5]}...)"
