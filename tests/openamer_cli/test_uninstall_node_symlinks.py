@@ -14,6 +14,21 @@ import pytest
 import openamer_cli.uninstall as uninstall
 
 
+# The node/npm/npx links under test are a POSIX-installer artifact:
+# ``scripts/lib/node-bootstrap.sh`` symlinks the managed Node into ~/.local/bin
+# (or /usr/local/bin on root FHS installs, $PREFIX/bin on Termux).  Windows'
+# ``scripts/install.ps1`` never creates them — it installs into
+# $OPENAMER_HOME\bin — and creating symlinks on Windows additionally requires
+# Developer Mode, so a stock host cannot even build the fixture.
+_node_symlink_posix_only = pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "POSIX-installer node/npm/npx symlink cleanup; Windows installs never "
+        "create these links and symlink creation needs Developer Mode"
+    ),
+)
+
+
 @pytest.fixture
 def fake_home(tmp_path, monkeypatch):
     """Redirect Path.home() at the home both the installer-symlink target and
@@ -35,6 +50,7 @@ def _make_openamer_node(openamer_home: Path) -> Path:
     return node_bin
 
 
+@_node_symlink_posix_only
 def test_removes_symlinks_pointing_into_openamer_node(fake_home):
     openamer_home = fake_home / ".openamer"
     node_bin = _make_openamer_node(openamer_home)
@@ -51,6 +67,7 @@ def test_removes_symlinks_pointing_into_openamer_node(fake_home):
         assert not (local_bin / name).is_symlink()
 
 
+@_node_symlink_posix_only
 def test_leaves_unrelated_symlinks_untouched(fake_home):
     """A node symlink the user repointed at nvm must survive uninstall."""
     openamer_home = fake_home / ".openamer"
@@ -95,6 +112,7 @@ def test_handles_missing_local_bin(fake_home):
     assert uninstall.remove_node_symlinks(openamer_home) == []
 
 
+@_node_symlink_posix_only
 def test_removes_dangling_symlink_into_openamer_node(fake_home):
     """A link into the OpenAmer node dir is removed even if the target file is
     already gone (dangling) \u2014 the link still shadows PATH."""
@@ -113,6 +131,7 @@ def test_removes_dangling_symlink_into_openamer_node(fake_home):
     assert not (local_bin / "node").is_symlink()
 
 
+@_node_symlink_posix_only
 def test_only_some_links_present(fake_home):
     """Removes the OpenAmer links that exist; ignores the ones that don't."""
     openamer_home = fake_home / ".openamer"
@@ -132,6 +151,7 @@ def test_only_some_links_present(fake_home):
     assert not (local_bin / "npx").is_symlink()
 
 
+@_node_symlink_posix_only
 def test_removes_fhs_symlinks_in_usr_local_bin(fake_home, tmp_path, monkeypatch):
     """Root FHS installs place node symlinks in /usr/local/bin.
 

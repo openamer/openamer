@@ -506,6 +506,14 @@ class TestPostSetup:
         user_home = tmp_path / "user-home"
         user_home.mkdir()
         monkeypatch.setenv("HOME", str(user_home))
+        monkeypatch.setenv("HOME", str(user_home))
+        # The provider resolves its profile dir through Path.home(), which
+        # reads USERPROFILE on Windows, not HOME (verified).  Setting HOME
+        # alone left the profile env under the REAL user home, so the
+        # assertions below targeted a file that was never written.  POSIX
+        # honours HOME; both are set so the fake home applies on either
+        # platform.
+        monkeypatch.setenv("USERPROFILE", str(user_home))
 
         selections = iter([1, 0])  # local_embedded, openai
         monkeypatch.setattr("openamer_cli.memory_setup._curses_select", lambda *args, **kwargs: next(selections))
@@ -540,6 +548,14 @@ class TestPostSetup:
         user_home = tmp_path / "user-home"
         user_home.mkdir()
         monkeypatch.setenv("HOME", str(user_home))
+        monkeypatch.setenv("HOME", str(user_home))
+        # The provider resolves its profile dir through Path.home(), which
+        # reads USERPROFILE on Windows, not HOME (verified).  Setting HOME
+        # alone left the profile env under the REAL user home, so the
+        # assertions below targeted a file that was never written.  POSIX
+        # honours HOME; both are set so the fake home applies on either
+        # platform.
+        monkeypatch.setenv("USERPROFILE", str(user_home))
 
         selections = iter([1, 0])  # local_embedded, openai
         monkeypatch.setattr("openamer_cli.memory_setup._curses_select", lambda *args, **kwargs: next(selections))
@@ -563,6 +579,14 @@ class TestPostSetup:
         user_home = tmp_path / "user-home"
         user_home.mkdir()
         monkeypatch.setenv("HOME", str(user_home))
+        monkeypatch.setenv("HOME", str(user_home))
+        # The provider resolves its profile dir through Path.home(), which
+        # reads USERPROFILE on Windows, not HOME (verified).  Setting HOME
+        # alone left the profile env under the REAL user home, so the
+        # assertions below targeted a file that was never written.  POSIX
+        # honours HOME; both are set so the fake home applies on either
+        # platform.
+        monkeypatch.setenv("USERPROFILE", str(user_home))
 
         selections = iter([1, 0])  # local_embedded, openai
         monkeypatch.setattr("openamer_cli.memory_setup._curses_select", lambda *args, **kwargs: next(selections))
