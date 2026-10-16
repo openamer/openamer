@@ -56,7 +56,10 @@ def local_files_client(monkeypatch, tmp_path):
     home.mkdir()
     monkeypatch.delenv("OPENAMER_DASHBOARD_FILES_ROOT", raising=False)
     monkeypatch.delenv("OPENAMER_HOME", raising=False)
+    # Path.home() reads USERPROFILE on Windows and HOME on POSIX; the Files
+    # page defaults to Path.home(), so pin both.
     monkeypatch.setenv("HOME", str(home))
+    monkeypatch.setenv("USERPROFILE", str(home))
 
     client, prev_auth_required, prev_bound_host = _client_with_app_state()
     try:
@@ -198,7 +201,10 @@ def test_gated_local_mode_still_defaults_to_home(monkeypatch, tmp_path):
     home.mkdir()
     monkeypatch.delenv("OPENAMER_DASHBOARD_FILES_ROOT", raising=False)
     monkeypatch.delenv("OPENAMER_MANAGED", raising=False)
+    # Path.home() reads USERPROFILE on Windows and HOME on POSIX; the Files
+    # page defaults to Path.home(), so pin both.
     monkeypatch.setenv("HOME", str(home))
+    monkeypatch.setenv("USERPROFILE", str(home))
     monkeypatch.setenv("OPENAMER_HOME", str(home / ".openamer"))
 
     prev_auth_required = getattr(web_server.app.state, "auth_required", None)
@@ -314,9 +320,18 @@ def test_query_token_does_not_authenticate_other_endpoints(forced_files_client):
     assert leaked.status_code == 401
 
 
-def test_hosted_policy_locks_to_opt_data(monkeypatch):
+def test_hosted_policy_locks_to_opt_data(monkeypatch, tmp_path):
+    # The hosted managed root is the POSIX container path "/opt/data", which is
+    # drive-relative on Windows (Path("/opt/data").resolve() -> C:\opt\data)
+    # and therefore never equals the resolved OPENAMER_HOME there. Point the
+    # constant at a platform-native directory instead so the "install root IS
+    # the hosted root" branch is exercised on every platform; the assertions
+    # below are unchanged.
     monkeypatch.delenv("OPENAMER_DASHBOARD_FILES_ROOT", raising=False)
-    monkeypatch.setenv("OPENAMER_HOME", "/opt/data")
+    hosted_root = tmp_path / "opt-data"
+    hosted_root.mkdir()
+    monkeypatch.setattr(web_server, "_HOSTED_MANAGED_FILES_ROOT", hosted_root)
+    monkeypatch.setenv("OPENAMER_HOME", str(hosted_root))
     client, prev_auth_required, prev_bound_host = _client_with_app_state()
     try:
         request = SimpleNamespace(
@@ -329,7 +344,7 @@ def test_hosted_policy_locks_to_opt_data(monkeypatch):
         _restore_app_state(prev_auth_required, prev_bound_host)
         client.close()
 
-    assert str(policy.locked_root) == "/opt/data"
+    assert policy.locked_root == hosted_root.resolve()
     assert policy.can_change_path is False
 
 

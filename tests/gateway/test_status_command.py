@@ -694,6 +694,14 @@ async def test_profile_command_reports_source_stamped_profile(monkeypatch, tmp_p
     runner.config.multiplex_profiles = True
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
+    # display_openamer_home() prints "~/..." when the home sits under
+    # Path.home(). On Windows tmp_path itself lives under the real user
+    # profile, so pin Path.home() elsewhere or the assertion below would see a
+    # "~"-collapsed string instead of the profile's own home.
+    from pathlib import Path
+
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "unrelated-home")
+
     event = _make_event("/profile")
     event.source.profile = "milo"
 
@@ -725,6 +733,14 @@ async def test_profile_command_ignores_stamp_when_multiplexing_off(monkeypatch, 
     assert runner.config.multiplex_profiles is False
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
+    # display_openamer_home() prints "~/..." when the home sits under
+    # Path.home(). On Windows tmp_path itself lives under the real user
+    # profile, so pin Path.home() elsewhere or the assertion below would see a
+    # "~"-collapsed string instead of the profile's own home.
+    from pathlib import Path
+
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "unrelated-home")
+
     event = _make_event("/profile")
     event.source.profile = "milo"
 
@@ -751,6 +767,14 @@ async def test_profile_command_unstamped_source_unchanged(monkeypatch, tmp_path)
     )
     runner = _make_runner(session_entry)
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+
+    # display_openamer_home() prints "~/..." when the home sits under
+    # Path.home(). On Windows tmp_path itself lives under the real user
+    # profile, so pin Path.home() elsewhere or the assertion below would see a
+    # "~"-collapsed string instead of the profile's own home.
+    from pathlib import Path
+
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "unrelated-home")
 
     result = await runner._handle_profile_command(_make_event("/profile"))
 
