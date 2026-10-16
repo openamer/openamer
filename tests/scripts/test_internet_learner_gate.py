@@ -7135,3 +7135,35 @@ PRICE_TABLE_CONTROLS = [
     "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
 ]
 
+
+
+def test_docs_table_header_weld_is_gated_on_both_paths():
+    """class 183: a docs comparison table's header weld + first data-row cell.
+
+    Live 16.10.26: `cycle_d_docs` stored the table's header label run welded to
+    the first data row's prose cell. Class 73 correctly declines it (the cell has
+    a finite verb and lowercase prose).
+    """
+    import buffer_store
+
+    leak = (
+        "Original # Feature Original Transformers Transformers v2 Inference "
+        "Speed Standard PyTorch attention (slow for long contexts) "
+        "FlashAttention-2 integration: 2x faster than FlashAttention, 9x over "
+        "vanilla PyTorch; supports head dims up to 256, MQA/GQA."
+    )
+    assert IL._is_docs_table_header_weld(leak) is True, leak
+    assert IL._is_junk(leak) is True, leak
+    assert buffer_store._is_nav_chrome(leak) is True, leak
+
+    for c in (
+        "Transformer models come in many versions, and Transformers v2 improved speed.",
+        "The docs compare Feature sets across Transformers and Transformers v2 releases.",
+        "Inference Speed Standard: a table column in the comparison of attention kernels.",
+        "Original code used standard PyTorch attention; FlashAttention-2 made it 2x faster.",
+        "Supports head dims up to 256, plus MQA and GQA, over vanilla PyTorch.",
+    ):
+        assert IL._is_docs_table_header_weld(c) is False, c
+        assert IL._is_junk(c) is False, c
+        assert buffer_store._is_nav_chrome(c) is False, c
+
