@@ -1266,7 +1266,11 @@ class TestWebServerEndpoints:
 
     def test_put_honcho_first_save_merges_into_resolved_config(self, monkeypatch, tmp_path):
         # With no profile-local file, a save merges into the resolved global config.
+        # The global Honcho path is Path.home()/.honcho/config.json, so HOME alone
+        # is not enough on Windows, where Path.home() reads USERPROFILE — without
+        # both, the save lands in the developer's real ~/.honcho/config.json.
         monkeypatch.setenv("HOME", str(tmp_path))
+        monkeypatch.setenv("USERPROFILE", str(tmp_path))
         from openamer_constants import get_openamer_home
 
         global_path = tmp_path / ".honcho" / "config.json"

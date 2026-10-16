@@ -993,7 +993,10 @@ class TestMediaDeliveryPathValidation:
         ssh_dir.mkdir(parents=True)
         secret = ssh_dir / "id_rsa.txt"
         secret.write_bytes(b"-----BEGIN ...")  # mtime = now
+        # expanduser("~") reads HOME on POSIX but USERPROFILE on Windows, so pin
+        # both or "~/.ssh" would keep resolving to the host's real home.
         monkeypatch.setenv("HOME", str(fake_home))
+        monkeypatch.setenv("USERPROFILE", str(fake_home))
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(secret)) is None
 
@@ -1087,7 +1090,9 @@ class TestMediaDeliveryDefaultMode:
         ssh_dir.mkdir(parents=True)
         secret = ssh_dir / "id_rsa"
         secret.write_bytes(b"-----BEGIN ...")
+        # HOME alone does not move expanduser("~") on Windows (USERPROFILE does).
         monkeypatch.setenv("HOME", str(fake_home))
+        monkeypatch.setenv("USERPROFILE", str(fake_home))
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(secret)) is None
 
@@ -1355,7 +1360,10 @@ class TestMediaDeliveryDefaultMode:
         workdir.mkdir(parents=True)
         doc = workdir / "proposal.docx"
         doc.write_bytes(b"PK\x03\x04")
+        # The "$HOME is its own denied prefix" exception resolves the running
+        # home via expanduser("~") — USERPROFILE on Windows, HOME on POSIX.
         monkeypatch.setenv("HOME", str(fake_home))
+        monkeypatch.setenv("USERPROFILE", str(fake_home))
         # $HOME is itself on the denied-prefix list, mirroring /root.
         monkeypatch.setattr(
             "gateway.platforms.base._MEDIA_DELIVERY_DENIED_PREFIXES",
@@ -2002,8 +2010,8 @@ class TestMediaDeliveryDiagnosability:
     def test_canonical_cache_roots_present(self):
         from gateway.platforms.base import MEDIA_DELIVERY_SAFE_ROOTS
         roots = {str(r) for r in MEDIA_DELIVERY_SAFE_ROOTS}
-        assert any(r.endswith("cache/images") for r in roots)
-        assert any(r.endswith("cache/documents") for r in roots)
+        assert any(r.endswith(os.path.join("cache", "images")) for r in roots)
+        assert any(r.endswith(os.path.join("cache", "documents")) for r in roots)
         # Legacy layout still present.
         assert any(r.endswith("image_cache") for r in roots)
 

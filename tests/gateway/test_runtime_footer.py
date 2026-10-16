@@ -35,15 +35,22 @@ def test_model_short_drops_vendor_prefix(model, expected):
 
 
 def test_home_relative_cwd_collapses_home(tmp_path, monkeypatch):
+    # expanduser("~") reads HOME on POSIX but USERPROFILE on Windows, so pin both
+    # or the collapse target is the host's real home on Windows.
     monkeypatch.setenv("HOME", str(tmp_path))
+    monkeypatch.setenv("USERPROFILE", str(tmp_path))
     sub = tmp_path / "projects" / "openamer"
     sub.mkdir(parents=True)
     result = _home_relative_cwd(str(sub))
-    assert result == "~/projects/openamer"
+    # The collapsed form keeps the platform-native separator after "~".
+    assert result == "~" + os.sep + os.path.join("projects", "openamer")
 
 
 def test_home_relative_cwd_leaves_abs_path_alone(tmp_path, monkeypatch):
+    # USERPROFILE is the variable expanduser("~") reads on Windows, so the
+    # pinned home must be set there too for the path to be "outside" it.
     monkeypatch.setenv("HOME", str(tmp_path / "other"))
+    monkeypatch.setenv("USERPROFILE", str(tmp_path / "other"))
     result = _home_relative_cwd(str(tmp_path / "outside" / "dir"))
     assert result == str(tmp_path / "outside" / "dir")
 
@@ -58,6 +65,7 @@ def test_home_relative_cwd_empty_returns_empty():
 
 def test_format_footer_all_fields(monkeypatch, tmp_path):
     monkeypatch.setenv("HOME", str(tmp_path))
+    monkeypatch.setenv("USERPROFILE", str(tmp_path))
     monkeypatch.setenv("TERMINAL_CWD", str(tmp_path / "projects" / "openamer"))
     (tmp_path / "projects" / "openamer").mkdir(parents=True)
     out = format_runtime_footer(
@@ -67,21 +75,28 @@ def test_format_footer_all_fields(monkeypatch, tmp_path):
         cwd=None,  # falls back to TERMINAL_CWD env var
         fields=("model", "context_pct", "cwd"),
     )
-    assert out == "gpt-5.4 · 68% · ~/projects/openamer"
+    assert out == "gpt-5.4 · 68% · ~" + os.sep + os.path.join("projects", "openamer")
 
 
-def test_format_footer_skips_missing_context_length():
+def test_format_footer_skips_missing_context_length(tmp_path, monkeypatch):
+    # A POSIX literal like "/tmp/wd" is drive-relative on Windows, so build the
+    # cwd from tmp_path and pin the home outside it: the assertion below is
+    # still "the cwd field renders its absolute path".
+    monkeypatch.setenv("HOME", str(tmp_path / "home"))
+    monkeypatch.setenv("USERPROFILE", str(tmp_path / "home"))
+    wd = tmp_path / "wd"
+    wd.mkdir()
     out = format_runtime_footer(
         model="openai/gpt-5.4",
         context_tokens=500,
         context_length=None,
-        cwd="/tmp/wd",
+        cwd=str(wd),
         fields=("model", "context_pct", "cwd"),
     )
     # context_pct dropped silently; no "?%" artifact
     assert "%" not in out
     assert "gpt-5.4" in out
-    assert "/tmp/wd" in out
+    assert os.path.abspath(str(wd)) in out
 
 
 def test_format_footer_context_pct_clamped_to_100():
