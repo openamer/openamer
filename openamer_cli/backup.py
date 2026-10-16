@@ -282,9 +282,14 @@ def _safe_copy_db(
     The copy is bounded by *deadline_s* (``None`` disables the bound): see
     :data:`_SAFE_COPY_DEADLINE_S` for why an unbounded ``Connection.backup()``
     is a hang, not a slow copy.
+
+    On failure no destination is left behind: the partial file is removed
+    *after* the sqlite handles are closed (see the ``finally`` block),
+    because Windows refuses to unlink a file that still has an open handle.
     """
     conn = None
     backup_conn = None
+    failed = False
     started = time.monotonic()
     try:
         # ``timeout`` bounds how long sqlite waits on a locked file.
@@ -307,10 +312,7 @@ def _safe_copy_db(
         return True
     except Exception as exc:
         logger.warning("SQLite safe copy failed for %s: %s", src, exc)
-        try:
-            dst.unlink(missing_ok=True)
-        except OSError:
-            pass
+        failed = True
         return False
     finally:
         for connection in (backup_conn, conn):
@@ -319,6 +321,24 @@ def _safe_copy_db(
                     connection.close()
                 except Exception:
                     pass
+        if failed:
+            # Remove the partial destination only AFTER both sqlite handles
+            # are closed. On Windows an open handle makes unlink fail with
+            # ``[WinError 32]``; the previously swallowed OSError then left
+            # an invalid (empty) state.db behind that every caller read as
+            # a finished snapshot. POSIX allows unlinking an open file,
+            # which is why CI (Linux) never surfaced this.
+            try:
+                dst.unlink(missing_ok=True)
+            except OSError as cleanup_exc:
+                # Never silent: an artifact we could not remove is a file
+                # the next backup/restore step would mistake for a real
+                # snapshot.
+                logger.warning(
+                    "SQLite safe copy: could not remove partial copy %s: %s",
+                    dst,
+                    cleanup_exc,
+                )
 
 
 def is_zeroed_sqlite_file(
@@ -519,8 +539,13 @@ def copy_db_and_verify(src: Path, dst: Path) -> bool:
     if not integrity.get("valid"):
         try:
             dst.unlink(missing_ok=True)
-        except OSError:
-            pass
+        except OSError as cleanup_exc:
+            # Never silent: an unverified copy we could not remove is a
+            # file the next backup/restore step would mistake for a real
+            # snapshot.
+            logger.warning(
+                "Could not remove unverified copy %s: %s", dst, cleanup_exc
+            )
         logger.warning("Backup of %s failed integrity verification: %s", src, integrity.get("message"))
         return False
     return True
@@ -1583,18 +1608,28 @@ def _write_full_zip_backup(out_path: Path, openamer_root: Path) -> Optional[Path
                     continue
     except OSError as exc:
         logger.warning("Full-zip backup: zip write failed: %s", exc)
-        # Best-effort cleanup of partial file
+        # Best-effort cleanup of partial file — but log a failure to remove
+        # it: a leftover partial .zip reads as a finished backup to the
+        # next list/restore step.
         try:
             out_path.unlink(missing_ok=True)
-        except OSError:
-            pass
+        except OSError as cleanup_exc:
+            logger.warning(
+                "Full-zip backup: could not remove partial %s: %s",
+                out_path,
+                cleanup_exc,
+            )
         return None
 
     if sqlite_snapshot_failed:
         try:
             out_path.unlink(missing_ok=True)
-        except OSError:
-            pass
+        except OSError as cleanup_exc:
+            logger.warning(
+                "Full-zip backup: could not remove partial %s: %s",
+                out_path,
+                cleanup_exc,
+            )
         return None
 
     return out_path
