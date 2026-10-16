@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import logging
+import sys
 from pathlib import Path
 from typing import Any
 from urllib.parse import unquote, urlparse
@@ -71,7 +72,12 @@ _IMAGE_SUFFIX_MIME = {
 
 def _path_from_file_uri(uri: str) -> Path | None:
     """Local file URI/path from an ACP client -> readable Path (None for non-file URIs).
-    Windows drive forms (Zed via wsl.exe) become ``/mnt/<drive>/...``."""
+
+    A Windows drive form from the client is the local volume when this process
+    runs on native Windows, and the ``/mnt/<drive>`` mount when it runs on a
+    POSIX host (Zed via wsl.exe). Applying the WSL mount unconditionally made
+    every drive-form URI unreadable on Windows: there, ``Path("/mnt") / "c"`` is
+    not a mount but a rooted path that does not exist."""
     raw = (uri or "").strip()
     if not raw:
         return None
@@ -91,6 +97,8 @@ def _path_from_file_uri(uri: str) -> Path | None:
         drive, rest = path_text[0], path_text[2:]
     else:
         return Path(path_text)
+    if sys.platform == "win32":
+        return Path(f"{drive.upper()}:{rest}")
     return Path("/mnt") / drive.lower() / rest.lstrip("/\\").replace("\\", "/")
 
 
