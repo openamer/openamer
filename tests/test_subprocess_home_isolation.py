@@ -129,8 +129,10 @@ class TestGetSubprocessHome:
         assert home_a is not None
         assert home_b is not None
         assert home_a != home_b
-        assert home_a.endswith("alpha/home")
-        assert home_b.endswith("beta/home")
+        # Compare host-spelled paths: the product returns os.sep, so a
+        # forward-slash suffix literal only matched on a POSIX host.
+        assert Path(home_a) == base / "alpha" / "home"
+        assert Path(home_b) == base / "beta" / "home"
 
     def test_context_override_is_thread_local(self, tmp_path, monkeypatch):
         root = tmp_path / "root"

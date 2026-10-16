@@ -1,5 +1,6 @@
 """Gateway STT config tests — honor stt.enabled: false from config.yaml."""
 
+import os
 from pathlib import Path
 from unittest.mock import AsyncMock, patch
 
@@ -52,7 +53,10 @@ async def test_enrich_message_with_transcription_surfaces_path_when_stt_disabled
             ["/tmp/voice.ogg"],
         )
 
-    assert "/tmp/voice.ogg" in result
+    # The product surfaces os.path.abspath(path); on Windows that qualifies
+    # the POSIX literal with the current drive (C:	mpoice.ogg), so the
+    # expectation has to be built the same way.
+    assert os.path.abspath("/tmp/voice.ogg") in result
     assert "voice message" in result.lower()
     assert "(duration: 0:12)" in result
     assert "caption" in result
@@ -75,7 +79,7 @@ async def test_enrich_message_with_transcription_omits_duration_on_probe_failure
             ["/tmp/voice.ogg"],
         )
 
-    assert "/tmp/voice.ogg" in result
+    assert os.path.abspath("/tmp/voice.ogg") in result
     assert "duration" not in result.lower()
     assert transcripts == []
 

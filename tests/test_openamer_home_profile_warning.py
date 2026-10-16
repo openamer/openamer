@@ -20,10 +20,20 @@ import pytest
 
 @pytest.fixture
 def fresh_constants(monkeypatch, tmp_path):
-    """Import openamer_constants fresh and reset the one-shot warn flag."""
+    """Import openamer_constants fresh and reset the one-shot warn flag.
+
+    The platform is pinned to the POSIX branch. On a Windows host
+    ``_get_platform_default_openamer_home`` takes the win32 branch, which
+    prefers the real LOCALAPPDATA over the patched ``Path.home()``, so the
+    fallback resolved to the runner profile instead of the asserted
+    ``tmp_path``. Pinning the platform (and dropping LOCALAPPDATA) keeps
+    the same isolation the tests describe on every host.
+    """
     import importlib
     import openamer_constants
     importlib.reload(openamer_constants)
+    monkeypatch.setattr(openamer_constants.sys, "platform", "linux")
+    monkeypatch.delenv("LOCALAPPDATA", raising=False)
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
     monkeypatch.delenv("OPENAMER_HOME", raising=False)
     return openamer_constants

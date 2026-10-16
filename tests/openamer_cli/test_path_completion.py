@@ -126,7 +126,11 @@ class TestPathCompletions:
         assert metas[idx] == "dir"
 
     def test_home_expansion(self, tmp_path, monkeypatch):
+        # expanduser() reads USERPROFILE on Windows and HOME on POSIX, so
+        # HOME alone left the runner's real profile in place there and the
+        # tilde never reached the tmp_path.
         monkeypatch.setenv("HOME", str(tmp_path))
+        monkeypatch.setenv("USERPROFILE", str(tmp_path))
         (tmp_path / "testfile.md").touch()
 
         completions = list(SlashCommandCompleter._path_completions("~/test"))
