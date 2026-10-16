@@ -4778,6 +4778,49 @@ def _is_price_table_row(text):
         return False
     return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
 
+
+# class 175 (13.10.26): a repo README's own Quickstart/install instruction
+# stored as knowledge. Live: cycle_c_github stored
+#   "Demo Quickstart Make sure you have git, python-3.10/11, and poetry
+#    installed and OPENAI key setup (see below)."
+# A README setup section is page chrome, not an insight. Keyed on the
+# STRUCTURE, never the topic: a section LABEL ("Quickstart") welded to an
+# install/setup imperative, OR a prerequisite-install imperative welded into a
+# "(see below)" pointer. Each half alone sits one sentence away from real prose
+# ("The quickstart guide explains that you need an API key", "Ensure that all
+# dependencies are installed and the API key is exported"), so the conjunction
+# is required. Measured 13.10.26: the live leak is the ONLY buffer hit, 0 of
+# 7,965 longterm episodes, 0 of 1,573 gate-test literals, 0 FPs on a 13-sentence
+# genuine-prose battery.
+_README_QS_LABEL_RE = re.compile(r"\b(?:demo\s+)?quickstart\b", re.IGNORECASE)
+_README_INSTALL_IMP_RE = re.compile(
+    r"\b(?:make\s+sure|ensure|be\s+sure)\b[\s\S]{0,120}?"
+    r"\b(?:installed|set\s+up|configured|registered)\b",
+    re.IGNORECASE)
+_README_INSTALL_VERB_RE = re.compile(
+    r"\b(?:pip|poetry|npm|yarn|uv|conda)\s+install\b"
+    r"|\brun\s+`?[a-z0-9_.-]+\s+install\b",
+    re.IGNORECASE)
+_README_BELOW_PTR_RE = re.compile(r"\(\s*see\s+below\s*\)", re.IGNORECASE)
+
+
+def _is_readme_quickstart_chrome(text):
+    """True when `text` is a README Quickstart/install instruction (class 175).
+
+    See the marker block above for the measurement.
+    """
+    t = text or ""
+    m = _README_QS_LABEL_RE.search(t)
+    if m:
+        tail = t[m.end():m.end() + 90]
+        if (_README_INSTALL_IMP_RE.search(tail)
+                or _README_INSTALL_VERB_RE.search(tail)
+                or re.search(r"\binstalled\b", tail, re.IGNORECASE)):
+            return True
+    if _README_INSTALL_IMP_RE.search(t) and _README_BELOW_PTR_RE.search(t):
+        return True
+    return False
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -5064,6 +5107,9 @@ def _is_junk(text):
     # (live 17.09.26, class 43). Same rule as
     # buffer_store._is_metric_row_fragment.
     if _is_metric_row_fragment(t):
+        return True
+    # a README's Quickstart/install instruction, not knowledge (class 175, 13.10.26)
+    if _is_readme_quickstart_chrome(t):
         return True
     if _JUNK_RE.search(t):
         return True
