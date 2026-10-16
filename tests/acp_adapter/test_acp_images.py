@@ -1,4 +1,6 @@
 import base64
+import sys
+from pathlib import Path
 
 import pytest
 from acp.schema import (
@@ -10,6 +12,7 @@ from acp.schema import (
     TextResourceContents,
 )
 
+from acp_adapter.content import _path_from_file_uri
 from acp_adapter.server import OpenAmerACPAgent, _content_blocks_to_openai_user_content
 
 
@@ -38,7 +41,9 @@ def test_text_only_acp_blocks_stay_string_for_legacy_prompt_path():
 
 def test_acp_resource_link_file_is_inlined_as_text(tmp_path):
     attached = tmp_path / "notes.md"
-    attached.write_text("# Notes\n\nAttached file body", encoding="utf-8")
+    # newline="" so the fixture holds LF bytes on every platform: the default
+    # translates them to CRLF on Windows, so the inlined body would not match.
+    attached.write_text("# Notes\n\nAttached file body", encoding="utf-8", newline="")
 
     content = _content_blocks_to_openai_user_content([
         TextContentBlock(type="text", text="Please read this file"),
@@ -157,3 +162,17 @@ def test_acp_embedded_blob_image_is_inlined_as_image_url():
         "type": "image_url",
         "image_url": {"url": f"data:image/png;base64,{b64}"},
     }
+
+
+def test_file_uri_drive_form_is_local_on_native_windows(monkeypatch):
+    """On native Windows a client drive form is the local volume, not a mount."""
+    monkeypatch.setattr(sys, "platform", "win32")
+
+    assert _path_from_file_uri("file:///C:/Users/x/pic.jpg") == Path("C:/Users/x/pic.jpg")
+
+
+def test_file_uri_drive_form_maps_to_wsl_mount_on_posix(monkeypatch):
+    """On a POSIX host the same drive form is the /mnt/<drive> mount."""
+    monkeypatch.setattr(sys, "platform", "linux")
+
+    assert _path_from_file_uri("file:///C:/Users/x/pic.jpg") == Path("/mnt/c/Users/x/pic.jpg")
