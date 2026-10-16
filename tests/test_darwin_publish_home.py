@@ -65,9 +65,24 @@ def _install(root: Path, *, log: bool = True, markers: tuple[str, ...] = ()) -> 
     return root
 
 
+def _machine_home(monkeypatch, root: Path) -> Path:
+    """Shape ``root`` as a machine whose install lives under ``~/AppData/Local``.
+
+    When ``OPENAMER_HOME`` is unusable, ``darwin_publish`` falls back to the
+    install it finds through ``Path.home()``. A CI runner's home has no install,
+    so the two fallback tests below could only pass on a dev box that owns one.
+    Faking the home with a shaped install makes that fallback contract
+    observable on every platform instead of silently host-dependent.
+    """
+    monkeypatch.setenv("HOME", str(root))
+    monkeypatch.setenv("USERPROFILE", str(root))
+    return _install(root / "AppData" / "Local" / "openamer-laptop")
+
+
 def test_missing_scratch_home_does_not_break_the_daily_run(tmp_path, monkeypatch):
     """The exact live shape: a home that does NOT exist must not be adopted."""
     gone = tmp_path / "Temp" / "rt_test" / "home"          # never created
+    _machine_home(monkeypatch, tmp_path / "machine")       # the host's install
 
     mod = _load(monkeypatch, str(gone))
 
@@ -80,6 +95,7 @@ def test_existing_scratch_home_is_not_adopted(tmp_path, monkeypatch):
     """A dir that EXISTS but carries no install markers falls back."""
     scratch = tmp_path / "oa-home"
     (scratch / "skills").mkdir(parents=True)               # exists, not an install
+    _machine_home(monkeypatch, tmp_path / "machine")       # the host's install
 
     mod = _load(monkeypatch, str(scratch))
 
