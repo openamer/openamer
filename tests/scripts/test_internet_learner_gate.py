@@ -7135,3 +7135,43 @@ PRICE_TABLE_CONTROLS = [
     "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
 ]
 
+
+
+# The exact bytes an `active_learn.py` "Structural connection" cycle stored on
+# 16.10.26: this install's OWN tool-server health line, echoed back as the
+# answer to a world-knowledge question (class 177).
+OWN_TOOLSTATUS_LEAKS = [
+    "Tool-Server :8081 l\u00e4uft (9 tools, 17 swaps).",
+    "German: Tool-Server :8081 runs (9 tools, 17 swaps).",
+    "Let's parse. Situation 1: tool usage: Tool-Server :8081 l\u00e4uft "
+    "(9 tools, 17 swaps). F\u00fchre active_learn.py aus: x",
+]
+
+# Real prose that must STAY learnable. The first two carry the bare health pair
+# and the last three the bare port -- each half alone was measured and REJECTED
+# as a discriminator, so all of them must stay clean on both gates.
+OWN_TOOLSTATUS_CONTROLS = [
+    "The agent swapped 9 tools for 17 scripts and measured the effect.",
+    "We measured (9 tools, 17 swaps) patterns in the scheduler trace and reported them.",
+    "The local tool server listens on port 8081 and exposes 10 tools to the agent.",
+    "Configure the reverse proxy so that :8081 is forwarded to the inference backend.",
+    "Requests to 8081 were logged with 3 retries and 4 tools disabled during the run.",
+]
+
+
+def test_own_toolserver_status_is_gated_on_both_paths():
+    """Class 177: an own tool-server health line must not train (both gates).
+
+    The discriminator is the conjunction of the install's own port and the
+    parenthesised health pair; either half alone is ordinary prose.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    for leak in OWN_TOOLSTATUS_LEAKS:
+        assert IL._is_own_toolserver_status(leak) is True, leak
+        assert IL._is_junk(leak) is True, leak
+        assert buffer_store.is_junk(leak) is True, leak
+    for ctrl in OWN_TOOLSTATUS_CONTROLS:
+        assert IL._is_own_toolserver_status(ctrl) is False, ctrl
+        assert IL._is_junk(ctrl) is False, ctrl
+        assert buffer_store.is_junk(ctrl) is False, ctrl
