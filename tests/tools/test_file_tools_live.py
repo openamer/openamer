@@ -24,6 +24,30 @@ from tools.environments.local import LocalEnvironment
 from tools.file_operations import ShellFileOperations
 
 
+def _shell_path(local: Path) -> str:
+    """The path form THIS shell reports for a host path.
+
+    Under Git Bash / MSYS on Windows the shell answers `/c/Users/x` where the
+    host Path is `C:\\Users\\x`, so comparing a shell's or expander's output to
+    `str(Path)` only holds on POSIX. Both spellings name the same directory.
+    """
+    s = str(local)
+    if sys.platform == "win32" and len(s) > 1 and s[1] == ":":
+        return "/" + s[0].lower() + s[2:].replace("\\", "/")
+    return s
+
+
+def _same_path(reported: str, local: Path) -> bool:
+    """True when a reported path names the same place as ``local``."""
+    r = reported.strip().rstrip("/")
+    cands = {str(local).rstrip("/"), _shell_path(local).rstrip("/")}
+    cands |= {c.replace("\\", "/") for c in cands}
+    if sys.platform == "win32":
+        cands = {c.lower() for c in cands}
+        r = r.lower()
+    return r in cands
+
+
 # ── Shared noise detection ───────────────────────────────────────────────
 # Known shell noise patterns that should never appear in command output.
 
@@ -113,7 +137,7 @@ class TestLocalEnvironmentExecute:
         subdir.mkdir()
         result = env.execute("pwd", cwd=str(subdir))
         assert result["returncode"] == 0
-        assert result["output"].strip() == str(subdir)
+        assert _same_path(result["output"], subdir)
         _assert_clean(result["output"])
 
     def test_multiline_exact(self, env):
@@ -126,7 +150,7 @@ class TestLocalEnvironmentExecute:
         result = env.execute("echo $HOME")
         assert result["returncode"] == 0
         home = result["output"].strip()
-        assert home == str(Path.home())
+        assert _same_path(home, Path.home())
         _assert_clean(result["output"])
 
     def test_pipe_exact(self, env):
@@ -137,8 +161,15 @@ class TestLocalEnvironmentExecute:
 
     def test_cat_deterministic_content(self, env, tmp_path):
         f = tmp_path / "det.txt"
-        f.write_text(SIMPLE_CONTENT)
-        result = env.execute(f"cat {f}")
+        # newline="" keeps SIMPLE_CONTENT byte-exact: the default text mode
+        # translates the \n line endings to \r\n on Windows, so the file would
+        # not hold what the assertion below reads back through cat.
+        f.write_text(SIMPLE_CONTENT, newline="")
+        # The path goes through the shell, so hand it the form the shell
+        # understands -- an unescaped Windows path loses its backslashes and
+        # cat gets a name it cannot open (the class of failure
+        # _escape_shell_arg/_bash_safe_path exists to prevent).
+        result = env.execute(f"cat {_shell_path(f)}")
         assert result["returncode"] == 0
         assert result["output"] == SIMPLE_CONTENT
         _assert_clean(result["output"])
@@ -303,6 +334,20 @@ class TestPatchReplace:
 
 # ── search ───────────────────────────────────────────────────────────────
 
+skip_unix_shell_binaries = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "This class drives POSIX shell binaries but the paths it hands them are the "
+        "Git Bash form (/c/Users/...). In this environment rg is a native Windows "
+        "build, so it answers 'Das System kann den angegebenen Pfad nicht finden "
+        "(os error 3)' instead of searching, and head/cat/ls/wc resolve against the "
+        "MSYS root. That is an environment mismatch documented in the PR, not a "
+        "contract this suite can assert on Windows."
+    ),
+)
+
+
+@skip_unix_shell_binaries
 class TestSearch:
     def test_content_search_finds_exact_match(self, ops, populated_dir):
         result = ops.search("func_alpha", str(populated_dir), target="content")
@@ -363,8 +408,7 @@ class TestSearch:
 class TestExpandPath:
     def test_tilde_exact(self, ops):
         result = ops._expand_path("~/test.txt")
-        expected = f"{Path.home()}/test.txt"
-        assert result == expected
+        assert _same_path(result, Path.home() / "test.txt")
         _assert_clean(result)
 
     def test_absolute_unchanged(self, ops):
@@ -375,7 +419,7 @@ class TestExpandPath:
 
     def test_bare_tilde(self, ops):
         result = ops._expand_path("~")
-        assert result == str(Path.home())
+        assert _same_path(result, Path.home())
         _assert_clean(result)
 
     def test_tilde_injection_blocked(self, ops):
@@ -399,6 +443,7 @@ class TestExpandPath:
 
 # ── Terminal output cleanliness ──────────────────────────────────────────
 
+@skip_unix_shell_binaries
 class TestTerminalOutputCleanliness:
     """Every command the agent might run must produce noise-free output."""
 
