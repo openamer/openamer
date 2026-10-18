@@ -5,6 +5,7 @@ Pure display functions with no OpenAmerCLI state dependency.
 import json
 import logging
 import os
+import re
 import shutil
 import subprocess
 import threading
@@ -36,11 +37,30 @@ _DIM = "\033[2m"
 _RST = "\033[0m"
 
 
+_ANSI_SGR = re.compile(r"\033\[[0-9;]*m")
+
+
 def cprint(text: str):
-    """Print ANSI-colored text through prompt_toolkit's renderer."""
-    from prompt_toolkit import print_formatted_text as _pt_print
-    from prompt_toolkit.formatted_text import ANSI as _PT_ANSI
-    _pt_print(_PT_ANSI(text))
+    """Print ANSI-colored text through prompt_toolkit's renderer.
+
+    Falls back to a plain ``print`` (SGR codes stripped) when prompt_toolkit
+    cannot reach a terminal. On Windows its Win32 output backend raises
+    ``NoConsoleScreenBufferError`` as soon as stdout is not a console handle,
+    so a headless run -- gateway, cron job, a piped command, the test runner --
+    died on the first coloured line instead of printing it:
+
+      prompt_toolkit/output/win32.py:219 NoConsoleScreenBufferError:
+        No Windows console found. Are you running cmd.exe?
+
+    Any renderer failure degrades to the text; a colour helper must never be
+    able to take a session down.
+    """
+    try:
+        from prompt_toolkit import print_formatted_text as _pt_print
+        from prompt_toolkit.formatted_text import ANSI as _PT_ANSI
+        _pt_print(_PT_ANSI(text))
+    except Exception:                      # noqa: BLE001 - never fail on output
+        print(_ANSI_SGR.sub("", text))
 
 
 # =========================================================================
