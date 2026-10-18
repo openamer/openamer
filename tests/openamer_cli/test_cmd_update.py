@@ -5,6 +5,8 @@ import subprocess
 from types import SimpleNamespace
 from unittest.mock import patch
 
+import sys
+
 import pytest
 
 from openamer_cli.main import cmd_update, PROJECT_ROOT
@@ -447,6 +449,14 @@ class TestCmdUpdateBranchFallback:
         captured = capsys.readouterr()
         assert "Already up to date!" in captured.out
 
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "The expected npm invocations are keyed to the POSIX path /usr/bin/npm. "
+            "On Windows _resolve_node_runtime_npm() returns npm.cmd / None, so no "
+            "call ever matches and the assertion cannot express its intent."
+        ),
+    )
     @patch("shutil.which")
     @patch("subprocess.run")
     def test_update_refreshes_repo_and_tui_node_dependencies(
@@ -1089,6 +1099,15 @@ class TestNodeRuntimeNpmResolution:
 
         assert hm._is_windows_npm_path(path) is False
 
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "WSL-only contract: the PATH scan must accept a POSIX absolute path "
+            "(/root/.local/bin/npm). os.path.isabs() is False for those on a native "
+            "Windows host, so the resolver cannot return them here regardless of "
+            "the monkeypatched _is_windows()."
+        ),
+    )
     def test_resolve_rejects_windows_npm_and_rescans_path(self, monkeypatch):
         """On WSL/Linux, a Windows npm is refused and PATH is re-scanned
         (skipping /mnt mounts) for a Linux-native npm."""
