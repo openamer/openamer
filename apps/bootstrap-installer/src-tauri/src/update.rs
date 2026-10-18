@@ -231,14 +231,20 @@ async fn run_update(app: AppHandle) -> Result<()> {
     // time `openamer update` runs there is no legitimate openamer.exe to protect,
     // and the guard would only produce a false "OpenAmer is still running" stop.
     //
-    // NOTE: --force does NOT bypass the venv-python holder guard (that needs
-    // an explicit `--force-venv`, which we deliberately do not pass). Our lock
-    // probe only checks the openamer.exe shim and app.asar, so an external venv
-    // python holding a native .pyd (a user terminal, an unmanaged gateway)
-    // could still be alive here — mutating the venv under it would strand the
-    // install half-updated. If that guard fires, it exits 2 and the match arm
-    // below surfaces the correct "close all OpenAmer windows" message.
+    // --auto-kill clears the STANDALONE venv holders that our lock probe above
+    // cannot see. It only targets processes that are NOT descendants of the
+    // Desktop app, which is exactly the class that made the Desktop's Update
+    // button impossible to complete: the app exits to release the venv shim, its
+    // own backend goes with it, but a resident gateway / fixed-port serve /
+    // watcher keeps a venv python alive, the holder guard fires, and every
+    // hand-off aborts. Measured 2026-10-18 on the reporter's machine: three
+    // clicks, three aborted hand-offs, 5.3 GB of emergency state.db backups,
+    // version unchanged. Those daemons are restarted by their watchdogs, so
+    // killing them is safe by contract. Desktop-managed holders are left alone
+    // and still surface the "close all OpenAmer windows" message below --
+    // killing those is futile because the app respawns them.
     update_args.push("--force".into());
+    update_args.push("--auto-kill".into());
     update_args.push("--branch".into());
     update_args.push(update_branch);
 

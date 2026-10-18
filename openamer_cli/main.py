@@ -12085,7 +12085,21 @@ def _cmd_update_impl(args, gateway_mode: bool):
     if _is_windows() and not getattr(args, "force_venv", False):
         _venv_holders = _detect_venv_python_processes()
         if _venv_holders:
-            if getattr(args, "auto_kill", False):
+            # --force is what the Desktop bootstrap updater passes, and it only
+            # reaches this line after the app has exited to release the venv shim
+            # (``[updates] launched updater … exiting desktop to release venv
+            # shim``). Anything from the venv still alive at that point is a
+            # STANDALONE daemon -- gateway, fixed-port ``serve``, a watcher -- which
+            # ``_desktop_managed_pids`` already documents as safe to kill because
+            # its watchdog restarts it. Refusing them instead made the Desktop's
+            # Update button impossible to complete on any install with a resident
+            # supervisor: measured 2026-10-18, three clicks produced three aborted
+            # hand-offs, 5.3 GB of emergency state.db backups, and an unchanged
+            # version -- the user's own app could never update itself. So treat
+            # --force like --auto-kill here too. Desktop-managed holders still
+            # abort: the app respawns them, so killing them is futile and the user
+            # really does have to close it.
+            if getattr(args, "auto_kill", False) or getattr(args, "force", False):
                 # --auto-kill: terminate the standalone daemons (session_to_brain
                 # watchers, fixed-port gateway) but leave the Desktop app's own
                 # supervised backend alone — killing it is futile (the app
@@ -12093,7 +12107,6 @@ def _cmd_update_impl(args, gateway_mode: bool):
                 # through to the normal abort so the user closes the app.
                 _managed = _desktop_managed_pids()
                 _killable = [p for p, _, _ in _venv_holders if p not in _managed]
-                _survivors = [h for h in _venv_holders if h[0] in _managed]
                 if _killable:
                     print(
                         f"⟲ --auto-kill: terminating {len(_killable)} blocking "
@@ -12104,8 +12117,16 @@ def _cmd_update_impl(args, gateway_mode: bool):
                         print(f"    ✓ stopped PID {_pid}")
                     for _pid, _reason in _failed:
                         print(f"    ✗ could not stop PID {_pid}: {_reason}")
-                if _survivors:
-                    print(_format_venv_python_holders_message(_survivors))
+                # Re-measure instead of trusting the kill. A stop that did not
+                # actually land (stale PID, access denied, respawned by a
+                # watchdog) must NOT be read as "cleared": this guard exists so
+                # the dependency sync never rewrites .pyd files under a live
+                # interpreter, and assuming success would recreate exactly the
+                # half-updated venv it protects against. Anything still holding
+                # the venv -- managed, unkillable, or newly spawned -- aborts.
+                _remaining = _detect_venv_python_processes()
+                if _remaining:
+                    print(_format_venv_python_holders_message(_remaining))
                     _resume_windows_gateways_after_update(_windows_gateway_resume)
                     sys.exit(2)
             else:
