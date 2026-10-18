@@ -42,6 +42,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import threading
@@ -648,6 +649,19 @@ def _slice_files(
     return target
 
 
+_PATH_LIST_SEP = re.compile(r":(?![\\/])")
+
+
+def _split_path_list(raw: str) -> List[str]:
+    """Split a ':'-joined path list without sawing a Windows drive letter in half.
+
+    A bare ``raw.split(":")`` turns ``C:\\a`` into ``["C", "\\a"]``, and the runner
+    then hunts for a path named ``C`` inside the repo. Measured on Windows: the
+    subprocess died with ``FileNotFoundError: '...\\<repo>\\C'``, which is what
+    failed ``tests/test_run_tests_parallel.py``. Split only on a colon that does
+    not introduce a drive letter -- ``C:\\a:C:\\b`` still yields two roots.
+    """
+    return [p for p in _PATH_LIST_SEP.split(raw) if p.strip()]
 def main() -> int:
     # On Windows the default stdout/stderr codec is cp1252, which cannot
     # encode Unicode glyphs (e.g. ✓) emitted in per-file progress/failure
@@ -869,7 +883,7 @@ def main() -> int:
 
     # --files: explicit file list from the CI generate job — skip discovery.
     if args.files:
-        files = [repo_root / f for f in args.files.split(":") if f.strip()]
+        files = [repo_root / f for f in _split_path_list(args.files) if f.strip()]
         roots = []
     else:
         # Resolve discovery roots: positional path args override --paths if any
@@ -877,7 +891,7 @@ def main() -> int:
         if args.paths_positional:
             roots = [repo_root / p for p in args.paths_positional]
         else:
-            roots = [repo_root / p for p in args.paths.split(":") if p]
+            roots = [repo_root / p for p in _split_path_list(args.paths) if p]
 
         if args.include_integration:
             # Caller takes responsibility — typically used via explicit -k filter.
