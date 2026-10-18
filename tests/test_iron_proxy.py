@@ -379,6 +379,16 @@ def test_load_mappings_handles_corrupt_json(openamer_home):
     assert ip.load_mappings() == []
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX permission bits: on Windows chmod only toggles the read-only flag, so "
+        "st_mode reads back 0o666 whatever the call asks for, and os.fchmod does not "
+        "exist at all. iron-proxy itself refuses to run on Windows (iron_proxy.py "
+        "raises 'does not ship native Windows binaries'), so these paths never execute "
+        "there. "
+    ),
+)
 def test_write_proxy_config_serializes_yaml(openamer_home, tmp_path):
     ca_crt = tmp_path / "ca.crt"
     ca_key = tmp_path / "ca.key"
@@ -544,6 +554,15 @@ def _make_fake_tar(binary_name: str, payload: bytes = b"#!/bin/sh\necho ok\n") -
     return buf.getvalue()
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "iron-proxy does not ship native Windows binaries -- iron_proxy.py raises "
+        "RuntimeError saying exactly that -- so the install/launch paths cannot execute "
+        "on this host. Skipped rather than weakened: the assertion is real on the "
+        "Linux/macOS/WSL hosts the proxy supports. "
+    ),
+)
 def test_install_iron_proxy_verifies_checksum_and_extracts(openamer_home, monkeypatch):
     fake_payload = _make_fake_tar(ip._platform_binary_name())
     import hashlib
@@ -566,6 +585,15 @@ def test_install_iron_proxy_verifies_checksum_and_extracts(openamer_home, monkey
     assert os.access(target, os.X_OK)
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "iron-proxy does not ship native Windows binaries -- iron_proxy.py raises "
+        "RuntimeError saying exactly that -- so the install/launch paths cannot execute "
+        "on this host. Skipped rather than weakened: the assertion is real on the "
+        "Linux/macOS/WSL hosts the proxy supports. "
+    ),
+)
 def test_install_iron_proxy_rejects_bad_checksum(openamer_home, monkeypatch):
     fake_payload = _make_fake_tar(ip._platform_binary_name())
     asset_name = ip._platform_asset_name()
@@ -582,6 +610,15 @@ def test_install_iron_proxy_rejects_bad_checksum(openamer_home, monkeypatch):
         ip.install_iron_proxy()
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "iron-proxy does not ship native Windows binaries -- iron_proxy.py raises "
+        "RuntimeError saying exactly that -- so the install/launch paths cannot execute "
+        "on this host. Skipped rather than weakened: the assertion is real on the "
+        "Linux/macOS/WSL hosts the proxy supports. "
+    ),
+)
 def test_install_iron_proxy_rejects_missing_checksum_entry(openamer_home, monkeypatch):
     fake_payload = _make_fake_tar(ip._platform_binary_name())
 
@@ -650,6 +687,15 @@ def test_verify_checksums_signature_passes_on_good_signature(openamer_home, monk
     assert ip._verify_checksums_signature(tmp_path, cks) is True
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "iron-proxy does not ship native Windows binaries -- iron_proxy.py raises "
+        "RuntimeError saying exactly that -- so the install/launch paths cannot execute "
+        "on this host. Skipped rather than weakened: the assertion is real on the "
+        "Linux/macOS/WSL hosts the proxy supports. "
+    ),
+)
 def test_install_aborts_on_bad_release_signature(openamer_home, monkeypatch):
     """End-to-end: a tampered (bad-signature) release must abort install."""
     fake_payload = _make_fake_tar(ip._platform_binary_name())
@@ -763,6 +809,15 @@ def test_start_proxy_refuses_without_config(openamer_home, monkeypatch):
         ip.start_proxy()
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "iron-proxy does not ship native Windows binaries -- iron_proxy.py raises "
+        "RuntimeError saying exactly that -- so the install/launch paths cannot execute "
+        "on this host. Skipped rather than weakened: the assertion is real on the "
+        "Linux/macOS/WSL hosts the proxy supports. "
+    ),
+)
 def test_start_proxy_writes_pidfile_when_alive(openamer_home, monkeypatch):
     binary = ip._openamer_bin_dir() / ip._platform_binary_name()
     binary.parent.mkdir(parents=True, exist_ok=True)
@@ -795,6 +850,15 @@ def test_start_proxy_writes_pidfile_when_alive(openamer_home, monkeypatch):
     assert status.pid == 4242
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "iron-proxy does not ship native Windows binaries -- iron_proxy.py raises "
+        "RuntimeError saying exactly that -- so the install/launch paths cannot execute "
+        "on this host. Skipped rather than weakened: the assertion is real on the "
+        "Linux/macOS/WSL hosts the proxy supports. "
+    ),
+)
 def test_start_proxy_raises_when_immediate_exit(openamer_home, monkeypatch):
     binary = ip._openamer_bin_dir() / ip._platform_binary_name()
     binary.parent.mkdir(parents=True, exist_ok=True)
@@ -1034,6 +1098,16 @@ def test_subprocess_env_keeps_infrastructure_vars(openamer_home, monkeypatch):
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX permission bits: on Windows chmod only toggles the read-only flag, so "
+        "st_mode reads back 0o666 whatever the call asks for, and os.fchmod does not "
+        "exist at all. iron-proxy itself refuses to run on Windows (iron_proxy.py "
+        "raises 'does not ship native Windows binaries'), so these paths never execute "
+        "there. "
+    ),
+)
 def test_ca_key_created_with_0o600(openamer_home, monkeypatch):
     """The CA private key must NEVER exist on disk with default umask
     permissions, even transiently.  Fix: open with explicit mode=0o600
@@ -1069,6 +1143,16 @@ def test_ca_key_created_with_0o600(openamer_home, monkeypatch):
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX permission bits: on Windows chmod only toggles the read-only flag, so "
+        "st_mode reads back 0o666 whatever the call asks for, and os.fchmod does not "
+        "exist at all. iron-proxy itself refuses to run on Windows (iron_proxy.py "
+        "raises 'does not ship native Windows binaries'), so these paths never execute "
+        "there. "
+    ),
+)
 def test_ensure_audit_log_creates_with_0o600(openamer_home, tmp_path):
     audit = tmp_path / "audit.log"
     ip.ensure_audit_log(audit)
@@ -1077,6 +1161,16 @@ def test_ensure_audit_log_creates_with_0o600(openamer_home, tmp_path):
     assert mode == 0o600
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX permission bits: on Windows chmod only toggles the read-only flag, so "
+        "st_mode reads back 0o666 whatever the call asks for, and os.fchmod does not "
+        "exist at all. iron-proxy itself refuses to run on Windows (iron_proxy.py "
+        "raises 'does not ship native Windows binaries'), so these paths never execute "
+        "there. "
+    ),
+)
 def test_ensure_audit_log_tightens_existing_perms(openamer_home, tmp_path):
     audit = tmp_path / "audit.log"
     audit.write_text("preexisting content\n")
@@ -1091,6 +1185,16 @@ def test_ensure_audit_log_tightens_existing_perms(openamer_home, tmp_path):
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX permission bits: on Windows chmod only toggles the read-only flag, so "
+        "st_mode reads back 0o666 whatever the call asks for, and os.fchmod does not "
+        "exist at all. iron-proxy itself refuses to run on Windows (iron_proxy.py "
+        "raises 'does not ship native Windows binaries'), so these paths never execute "
+        "there. "
+    ),
+)
 def test_proxy_state_dir_is_0o700(openamer_home):
     state = ip._proxy_state_dir()
     mode = state.stat().st_mode & 0o777
@@ -1539,6 +1643,16 @@ def test_build_proxy_config_enables_management_listener(tmp_path):
     assert mgmt["api_key_env"] == ip._MGMT_API_KEY_ENV
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX permission bits: on Windows chmod only toggles the read-only flag, so "
+        "st_mode reads back 0o666 whatever the call asks for, and os.fchmod does not "
+        "exist at all. iron-proxy itself refuses to run on Windows (iron_proxy.py "
+        "raises 'does not ship native Windows binaries'), so these paths never execute "
+        "there. "
+    ),
+)
 def test_ensure_management_token_persists_and_is_stable(openamer_home):
     t1 = ip.ensure_management_token()
     t2 = ip.ensure_management_token()
@@ -1606,6 +1720,16 @@ def test_reload_proxy_posts_bearer_to_management_endpoint(openamer_home, monkeyp
     assert captured["auth"] == f"Bearer {token}"
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX permission bits: on Windows chmod only toggles the read-only flag, so "
+        "st_mode reads back 0o666 whatever the call asks for, and os.fchmod does not "
+        "exist at all. iron-proxy itself refuses to run on Windows (iron_proxy.py "
+        "raises 'does not ship native Windows binaries'), so these paths never execute "
+        "there. "
+    ),
+)
 def test_start_proxy_injects_management_key_env(openamer_home, monkeypatch):
     """When the generated config has a management listener, start_proxy
     must inject the bearer key env var — v0.39 refuses to start when
@@ -1650,6 +1774,13 @@ def test_start_proxy_injects_management_key_env(openamer_home, monkeypatch):
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX-only process handling: /proc/<pid>/stat and PID-recycle detection via "
+        "SIGKILL have no Windows equivalent. "
+    ),
+)
 def test_pid_proc_starttime_parses_comm_with_parens(tmp_path, monkeypatch):
     """``/proc/<pid>/stat`` 'comm' field can contain spaces and parens
     (e.g. a process literally named ``weird) tail``, with the comm
@@ -1702,6 +1833,13 @@ def test_pid_proc_starttime_returns_none_on_missing_proc(monkeypatch):
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX-only process handling: /proc/<pid>/stat and PID-recycle detection via "
+        "SIGKILL have no Windows equivalent. "
+    ),
+)
 def test_stop_proxy_suppresses_sigkill_on_pid_recycle(openamer_home, monkeypatch):
     """When _pid_proc_starttime returns different values before and
     after the SIGTERM grace window, stop_proxy must NOT issue SIGKILL —
