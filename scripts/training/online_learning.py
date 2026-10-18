@@ -19,7 +19,7 @@ CLI:
   python online_learning.py --stats
 """
 import os
-import json, os, sys, time, threading, subprocess, argparse, datetime, pathlib
+import json, sys, time, threading, subprocess, argparse, datetime, pathlib
 from pathlib import Path
 
 _HOME = pathlib.Path(os.environ.get(
@@ -48,7 +48,7 @@ def _brain_count():
 
 def _marker():
     try:
-        return int(MARKER.read_text(encoding="utf-8").strip())
+        return int(MARKER.read_text().strip())
     except Exception:
         return 0
 
@@ -85,7 +85,7 @@ def collect_new(max_new=50):
                     new += 1
                 lu = None
                 break
-    MARKER.write_text(str(min(total, last + max_new)), encoding="utf-8")
+    MARKER.write_text(str(min(total, last + max_new)))
     return new
 
 
@@ -97,9 +97,12 @@ def mini_step():
     # openamer-agent venv) shadows this venv's transformers/huggingface_hub and
     # breaks training with a bogus version-conflict ImportError. The child must
     # resolve against its OWN interpreter's site-packages.
+    # CRITICAL: Use venv python explicitly (not sys.executable) because the
+    # daemon runs as a twin-chain under uv python which lacks torch/transformers.
+    VENV_PYTHON = _HOME / "venv" / "Scripts" / "python.exe"
     env = dict(os.environ)
     env.pop("PYTHONPATH", None)
-    r = subprocess.run([sys.executable, str(MINI_STEP_SCRIPT)],
+    r = subprocess.run([str(VENV_PYTHON), str(MINI_STEP_SCRIPT)],
                        capture_output=True, text=True, timeout=600,
                        encoding="utf-8", errors="replace", env=env)
     try:
@@ -175,19 +178,56 @@ def loop():
             except Exception as me:
                 print(f"[online-learning] meta-learn skip: {me}", flush=True)
             # cross-domain transfer: skeletonize 1 episode per cycle (best-effort)
+            # ROOT CAUSE OF THE 38-DAY OUTAGE: analogy_engine.py calls the LLM provider
+            # via urllib with a 300s timeout. When the provider returned HTTP 402
+            # (Payment Required), the subprocess hung for the full 300s before failing.
+            # That hang blocked the daemon loop, which was eventually killed with
+            # exit code -1 by the system or a watchdog.
+            #
+            # FIX: run analogy_engine as a background process with a separate watchdog
+            # thread that kills the ENTIRE process tree (taskkill /F /T /PID) after 30s.
+            # On Windows, subprocess.run(timeout=) does NOT kill child processes, so a
+            # plain timeout leaves zombies that keep the daemon alive-but-stuck.
             try:
-                r = subprocess.run([sys.executable, str(T / "analogy_engine.py"), "extract-batch"],
-                    capture_output=True, text=True, timeout=600,
-                    encoding="utf-8", errors="replace")
-                print(f"[online-learning] analogy extraction: {r.stdout.strip()[-60:]}", flush=True)
+                proc = subprocess.Popen(
+                    [sys.executable, str(T / "analogy_engine.py"), "extract-batch"],
+                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                    text=True, encoding="utf-8", errors="replace",
+                    creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
+                watchdog_deadline = time.monotonic() + 30
+                while True:
+                    try:
+                        # communicate() reads BOTH stdout and stderr and closes the
+                        # pipes. The bug was: analogy_engine writes its 402 error to
+                        # stderr, so proc.stdout.read() blocked forever on EOF while
+                        # stderr stayed open. communicate() never blocks.
+                        out, err = proc.communicate(timeout=2)
+                        tail = (out or err or "").strip()[-60:]
+                        print(f"[online-learning] analogy extraction: {tail}", flush=True)
+                        break
+                    except subprocess.TimeoutExpired:
+                        if time.monotonic() >= watchdog_deadline:
+                            # Kill the entire process group so the hung model
+                            # interpreter and all its children die together
+                            try:
+                                subprocess.run(["taskkill", "/F", "/T", "/PID", str(proc.pid)],
+                                    capture_output=True, timeout=10)
+                            except Exception:
+                                pass
+                            try:
+                                proc.communicate(timeout=5)
+                            except Exception:
+                                pass
+                            print("[online-learning] analogy extraction: TIMEOUT (30s) - "
+                                  "Prozessgruppe getötet, Zyklus fortgesetzt", flush=True)
+                            break
             except Exception as e:
                 print(f"[online-learning] analogy skip: {e}", flush=True)
-            # world-model auto-feed: extract cause->effect from recent dreams
             try:
                 import world_model
-                dreams_file = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "dreams.json")
+                dreams_file = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer-laptop")), "dreams.json")
                 if os.path.exists(dreams_file):
-                    dreams = json.loads(Path(dreams_file).read_text(encoding="utf-8"))
+                    dreams = json.load(open(dreams_file, encoding="utf-8"))
                     known_causes = {e.get("cause", "")[:100] for e in world_model._load()}
                     added = 0
                     for dream in dreams:

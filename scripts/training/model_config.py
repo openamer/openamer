@@ -221,7 +221,12 @@ def chat_default(messages, max_tokens=400):
     headers.update(auth_headers())
     req = urllib.request.Request(
         url, data=json.dumps(body).encode(), headers=headers)
-    r = json.load(urllib.request.urlopen(req, timeout=300))
+    # 30s Timeout: the old 300s value meant that when the provider returned
+    # HTTP 402 (Payment Required), the analogy_engine subprocess hung for
+    # 5 minutes before failing. That hang propagated to the online-learning
+    # daemon, which was eventually killed with exit code -1. A 30s timeout
+    # keeps the cycle cadence intact and lets the watchdog restart cleanly.
+    r = json.load(urllib.request.urlopen(req, timeout=30))
     choice = r["choices"][0]
     msg = choice["message"]
     content = (msg.get("content") or "").strip()

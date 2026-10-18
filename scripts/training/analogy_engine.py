@@ -20,12 +20,12 @@ CLI:
   python analogy_engine.py stats
 """
 import os
-import json, sys, os, math, urllib.request, datetime, pathlib
+import json, sys, math, urllib.request, datetime, pathlib
 from pathlib import Path
 
-BASE = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
+BASE = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
 STRUCTS = os.path.join(BASE, "memory", "structures.jsonl")
-BRAIN = os.path.join(str(Path.home()), ".openamer", "a2a", "openamer-brain.jsonl")
+BRAIN = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer-laptop")), "a2a", "openamer-brain.jsonl")
 LIVE = "http://localhost:8081"
 OLLAMA_EMBED = "http://localhost:11434/api/embeddings"
 MAX_STRUCTURED = 500
@@ -46,7 +46,7 @@ SYSTEM_PROMPT = (
     "no names of specific technologies)."
 )
 
-def chat(messages, max_tokens=120):
+def chat(messages, max_tokens=200):
     # Follows the configured default model (config.yaml model.default).
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from model_config import chat_default
