@@ -6,9 +6,18 @@ Covers:
 - Argument parser registration
 """
 
+import sys
 import time
 from unittest.mock import MagicMock, patch
 
+import pytest
+
+# curses (and its _curses C extension) is Unix-only; skip the whole module on
+# Windows. _session_browse_picker pulls curses in at module scope, so even the
+# tests that exercise the no-curses FALLBACK cannot be collected here -- the
+# import fails before any test runs. Same guard as test_curses_arrow_keys.py.
+if sys.platform == "win32":
+    pytest.skip("curses is not available on Windows", allow_module_level=True)
 
 from openamer_cli.main import _session_browse_picker
 
