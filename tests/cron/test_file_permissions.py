@@ -2,12 +2,18 @@
 
 import os
 import stat
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 
+@unittest.skipIf(
+    sys.platform == "win32",
+    "POSIX-only: Windows ignores the mode bits chmod sets, so st_mode never "
+    "reads back as 0o600/0o700 -- the assertion can only ever fail there",
+)
 class TestCronFilePermissions(unittest.TestCase):
     """Verify cron files get secure permissions."""
 
@@ -74,6 +80,11 @@ class TestCronFilePermissions(unittest.TestCase):
             self.assertEqual(dir_mode, 0o700)
 
 
+@unittest.skipIf(
+    sys.platform == "win32",
+    "POSIX-only: Windows ignores the mode bits chmod sets, so st_mode never "
+    "reads back as 0o600/0o700 -- the assertion can only ever fail there",
+)
 class TestConfigFilePermissions(unittest.TestCase):
     """Verify config files get secure permissions."""
 
