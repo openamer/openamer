@@ -11,7 +11,8 @@
 #   * PYTHONUTF8=1 -- LANG/LC_ALL do NOT steer CPython's locale encoding on
 #     Windows (it reads the ANSI code page, e.g. cp1252), so without this a
 #     test that calls e.g. Path.read_text() on a UTF-8 fixture dies with
-#     UnicodeDecodeError. Measured: 16 of 18 failures in one file vanished.
+#     UnicodeDecodeError. Measured in tests/plugins/test_kanban_dashboard_
+#     plugin.py under this runner's own clean env: 16 failed -> 0 failed.
 #   * Env vars blanked (conftest.py also does this, but this
 #     is belt-and-suspenders for anyone running pytest outside our
 #     conftest path — e.g. on a single file)
