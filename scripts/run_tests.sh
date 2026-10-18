@@ -8,6 +8,10 @@
 #     subprocess. No xdist, no shared workers, no module-level leakage
 #     between files.
 #   * TZ=UTC, LANG=C.UTF-8, PYTHONHASHSEED=0 (deterministic)
+#   * PYTHONUTF8=1 -- LANG/LC_ALL do NOT steer CPython's locale encoding on
+#     Windows (it reads the ANSI code page, e.g. cp1252), so without this a
+#     test that calls e.g. Path.read_text() on a UTF-8 fixture dies with
+#     UnicodeDecodeError. Measured: 16 of 18 failures in one file vanished.
 #   * Env vars blanked (conftest.py also does this, but this
 #     is belt-and-suspenders for anyone running pytest outside our
 #     conftest path — e.g. on a single file)
@@ -120,7 +124,7 @@ fi
 # env -i: start with empty environment, opt-in only what we need.
 # No credential var can leak — you'd have to explicitly add it here.
 echo "▶ running per-file parallel test suite via run_tests_parallel.py"
-echo "  (TZ=UTC LANG=C.UTF-8 PYTHONHASHSEED=0; clean env)"
+echo "  (TZ=UTC LANG=C.UTF-8 PYTHONUTF8=1 PYTHONHASHSEED=0; clean env)"
 
 cd "$REPO_ROOT"
 
@@ -143,6 +147,7 @@ exec env -i \
   LANG=C.UTF-8 \
   LC_ALL=C.UTF-8 \
   PYTHONHASHSEED=0 \
+  PYTHONUTF8=1 \
   ${OPENAMER_RUN_SLOW_PET_TESTS:+OPENAMER_RUN_SLOW_PET_TESTS="$OPENAMER_RUN_SLOW_PET_TESTS"} \
   ${EXTRA_PYTHONPATH:+PYTHONPATH="$EXTRA_PYTHONPATH"} \
   ${EXTRA_PYTEST_PLUGINS:+PYTEST_PLUGINS="$EXTRA_PYTEST_PLUGINS"} \
