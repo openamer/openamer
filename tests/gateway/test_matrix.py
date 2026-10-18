@@ -2409,7 +2409,11 @@ class TestMatrixDiagnostics:
         _handle_generated_matrix_recovery_key("@bot:example.org", secret)
 
         assert output_path.read_text().strip() == secret
-        assert stat.S_IMODE(output_path.stat().st_mode) == 0o600
+        if sys.platform != "win32":
+            # Windows has no POSIX mode bits: chmod only toggles the read-only
+            # flag, so st_mode reads back 0o666 and the assert can only fail.
+            # The content assertion above is the real contract.
+            assert stat.S_IMODE(output_path.stat().st_mode) == 0o600
         assert secret not in caplog.text
 
     @pytest.mark.asyncio
