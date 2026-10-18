@@ -212,6 +212,8 @@ class TestEscapedSpaces:
         img.parent.mkdir(parents=True, exist_ok=True)
         img.write_bytes(b"\x89PNG\r\n\x1a\n")
         monkeypatch.setenv("HOME", str(home))
+        # os.path.expanduser("~") reads USERPROFILE on Windows and HOME on POSIX
+        monkeypatch.setenv("USERPROFILE", str(home))
 
         result = _detect_file_drop("~/storage/shared/Pictures/cat.png what is this?")
 

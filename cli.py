@@ -3235,6 +3235,11 @@ def _resolve_attachment_path(raw_path: str) -> Path | None:
                 expanded = unquote(parsed.path or "")
                 if parsed.netloc and os.name == "nt":
                     expanded = f"//{parsed.netloc}{expanded}"
+                elif os.name == "nt" and expanded[2:3] == ":" and expanded[0] == "/":
+                    # file:///C:/dir/x.png -> urlparse puts the drive inside the
+                    # path behind a leading slash. "/C:/dir" is not a Windows
+                    # path, so the drop was never recognized; strip the slash.
+                    expanded = expanded[1:]
         except Exception:
             expanded = token
     expanded = os.path.expandvars(os.path.expanduser(expanded))
