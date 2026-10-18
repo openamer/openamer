@@ -2,6 +2,7 @@ from openamer_state import AsyncSessionDB
 """Tests for gateway /status behavior and token persistence."""
 
 from datetime import datetime
+from pathlib import Path
 import time
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock
@@ -650,7 +651,6 @@ async def test_status_command_bypasses_active_session_guard():
 @pytest.mark.asyncio
 async def test_profile_command_reports_custom_root_profile(monkeypatch, tmp_path):
     """Gateway /profile detects custom-root profiles (not under ~/.openamer)."""
-    from pathlib import Path
 
     session_entry = SessionEntry(
         session_key=build_session_key(_make_source()),
@@ -681,6 +681,11 @@ async def test_profile_command_reports_source_stamped_profile(monkeypatch, tmp_p
     openamer_home = tmp_path / ".openamer"
     profile_home = openamer_home / "profiles" / "milo"
     profile_home.mkdir(parents=True)
+
+    # the gateway collapses Path.home() for display; pin it away from
+    # tmp_path so the assertion holds on every host (Path.home, not the
+    # HOME/USERPROFILE env vars, is what the code reads)
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "unrelated-home")
 
     session_entry = SessionEntry(
         session_key=build_session_key(_make_source()),
@@ -713,6 +718,11 @@ async def test_profile_command_ignores_stamp_when_multiplexing_off(monkeypatch, 
     profile_home = openamer_home / "profiles" / "milo"
     profile_home.mkdir(parents=True)
 
+    # the gateway collapses Path.home() for display; pin it away from
+    # tmp_path so the assertion holds on every host (Path.home, not the
+    # HOME/USERPROFILE env vars, is what the code reads)
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "unrelated-home")
+
     session_entry = SessionEntry(
         session_key=build_session_key(_make_source()),
         session_id="sess-1",
@@ -740,6 +750,11 @@ async def test_profile_command_unstamped_source_unchanged(monkeypatch, tmp_path)
     active profile and the default home."""
     openamer_home = tmp_path / ".openamer"
     openamer_home.mkdir()
+
+    # the gateway collapses Path.home() for display; pin it away from
+    # tmp_path so the assertion holds on every host (Path.home, not the
+    # HOME/USERPROFILE env vars, is what the code reads)
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "unrelated-home")
 
     session_entry = SessionEntry(
         session_key=build_session_key(_make_source()),
