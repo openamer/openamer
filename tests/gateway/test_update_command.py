@@ -5,6 +5,7 @@ the _send_update_notification startup hook (sends results after restart).
 """
 
 import json
+import sys
 from pathlib import Path
 from unittest.mock import patch, MagicMock, AsyncMock
 
@@ -239,6 +240,10 @@ class TestHandleUpdateCommand:
         assert data["message_id"] == "m-update-thread"
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason="POSIX-only: the update spawn uses setsid(1)+bash(1); Windows uses the launcher",
+    )
     async def test_spawns_setsid(self, tmp_path):
         """Uses setsid when available."""
         runner = _make_runner()
@@ -268,6 +273,10 @@ class TestHandleUpdateCommand:
         assert "Starting OpenAmer update" in result
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason="POSIX-only: this asserts the setsid(1)+bash(1) spawn path; Windows uses the launcher",
+    )
     async def test_fallback_when_no_setsid(self, tmp_path):
         """Falls back to start_new_session=True when setsid is not available."""
         runner = _make_runner()

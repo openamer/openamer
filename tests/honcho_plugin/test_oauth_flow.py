@@ -258,11 +258,17 @@ def test_config_path_rides_the_authorize_link(fake_as):
 
 
 def test_display_config_path_never_leaks_absolute_path():
+    import os
     from pathlib import Path
 
     # Under home → collapsed to ~/…; outside home → bare filename only.
     under_home = Path.home() / ".openamer" / "profiles" / "work" / "honcho.json"
-    assert oauth_flow._display_config_path(under_home) == "~/.openamer/profiles/work/honcho.json"
+    # _display_config_path keeps os.sep, so build the expectation per host
+    # the display path is "~/.openamer" + os.sep-joined remainder, so compare
+    # the normalised structure rather than one separator spelling
+    assert oauth_flow._display_config_path(under_home).replace("\\", "/") == (
+        "~/.openamer/profiles/work/honcho.json"
+    )
     assert oauth_flow._display_config_path("/var/folders/tmp/honcho.json") == "honcho.json"
 
 

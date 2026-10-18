@@ -13,6 +13,8 @@ import time
 import asyncio
 from unittest.mock import patch, MagicMock, AsyncMock
 
+import sys
+
 import pytest
 
 from gateway.config import Platform
@@ -210,6 +212,10 @@ class TestUpdateCommandGatewayFlag:
     """Verify the gateway spawns openamer update --gateway."""
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason="POSIX-only: asserts the bash command string; Windows spawns the launcher",
+    )
     async def test_spawns_with_gateway_flag(self, tmp_path):
         """The spawned update command includes --gateway and PYTHONUNBUFFERED."""
         runner = _make_runner()
@@ -250,6 +256,10 @@ class TestWatchUpdateProgress:
     """Tests for _watch_update_progress() streaming output."""
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason="POSIX-only: the streaming wrapper is a bash command string",
+    )
     async def test_streams_output_to_adapter(self, tmp_path):
         """New output is sent to the adapter periodically."""
         runner = _make_runner()
