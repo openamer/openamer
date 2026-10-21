@@ -22,6 +22,8 @@ from types import SimpleNamespace
 import pytest
 
 from openamer_cli import kanban_db as kb
+from openamer_cli import kanban_db_connect as _kbc
+
 from openamer_cli.kanban import run_slash
 
 
@@ -3731,7 +3733,11 @@ def test_gateway_dispatcher_disables_corrupt_board_without_traceback(
     def _connect(*args, **kwargs):
         calls["connect"] += 1
         if corrupt_exc == "guard":
-            raise _kb.KanbanDbCorruptError(
+            # The dispatcher checks the kanban_db_connect class
+            # (_kbc().KanbanDbCorruptError). kanban_db defines a
+            # same-named but unrelated class, so raising that one fell
+            # through to the generic error branch.
+            raise _kbc.KanbanDbCorruptError(
                 corrupt_db,
                 corrupt_db.with_suffix(".db.corrupt.test.bak"),
                 "sqlite refused to open file: database disk image is malformed",
@@ -3755,9 +3761,14 @@ def test_gateway_dispatcher_disables_corrupt_board_without_traceback(
     async def _sleep(_delay):
         return None
 
-    monkeypatch.setattr(_kb, "connect", _connect)
+    # The dispatcher connects through kanban_db_connect (see
+    # gateway.kanban_watchers_dispatcher._kbc()), not kanban_db.
+    monkeypatch.setattr(_kbc, "connect", _connect)
     monkeypatch.setattr("gateway.run.asyncio.to_thread", _to_thread)
-    monkeypatch.setattr("gateway.run.asyncio.sleep", _sleep)
+    # The watcher awaits asyncio.sleep(5) before its first tick and it
+    # lives in gateway.kanban_watchers -- patching gateway.run left the
+    # real 5s sleep in place, which always blew the 3s test budget.
+    monkeypatch.setattr("gateway.kanban_watchers.asyncio.sleep", _sleep)
 
     with caplog.at_level(logging.ERROR, logger="gateway.run"):
         asyncio.run(
@@ -3827,24 +3838,48 @@ def test_gateway_dispatcher_retries_corrupt_board_after_quarantine(
         caller = inspect.currentframe().f_back  # type: ignore[union-attr]
         code = caller.f_code if caller is not None else None
         filename = code.co_filename if code is not None else ""
+        # co_filename is an absolute native path: backslashes on Windows,
+        # forward slashes on POSIX. A literal "gateway/..." suffix only
+        # matches on POSIX, so the mock never applied on Windows and the
+        # simulated quarantine TTL never elapsed.
+        filename = filename.replace(chr(92), "/")
         # The kanban dispatcher/notifier watcher loops were extracted from
         # gateway/run.py into gateway/kanban_watchers.py (god-file Phase 3),
-        # so accept either filename for the time-travel mock.
-        if filename.endswith("gateway/run.py") or filename.endswith("gateway/kanban_watchers.py"):
+        # and the per-board dispatch work into
+        # gateway/kanban_watchers_dispatcher.py -- and that is where the
+        # quarantine clock is read, so the mock has to cover it too.
+        if (filename.endswith("gateway/run.py")
+                or filename.endswith("gateway/kanban_watchers.py")
+                or filename.endswith("gateway/kanban_watchers_dispatcher.py")):
             return next(time_values, 1301.0)
         return real_monotonic()
 
     monkeypatch.setattr("gateway.run.time.monotonic", _monotonic_for_gateway_dispatcher)
     monkeypatch.setattr("gateway.kanban_watchers.time.monotonic", _monotonic_for_gateway_dispatcher)
+    # _quarantine_lifted() lives in gateway.kanban_watchers_dispatcher and
+    # reads time.monotonic() from THAT module, so the time-travel mock
+    # has to be installed there for the 300s quarantine to elapse.
+    monkeypatch.setattr(
+        "gateway.kanban_watchers_dispatcher.time.monotonic",
+        _monotonic_for_gateway_dispatcher,
+    )
 
     calls = {"tick": 0}
 
     def _connect(*args, **kwargs):
         raise sqlite3.DatabaseError("file is not a database")
 
+
     async def _to_thread(fn, *args, **kwargs):
         result = fn(*args, **kwargs)
-        if getattr(fn, "__name__", "") == "_tick_once":
+        # The dispatcher offloads through
+        # _to_thread_process_service(func) ->
+        # asyncio.to_thread(_run_in_fresh_context, func), so the target
+        # is the first positional argument, not fn itself.
+        target = fn
+        if args:
+            target = args[0]
+        if getattr(target, "__name__", "") in ("_tick_once", "tick_once"):
             calls["tick"] += 1
             if calls["tick"] >= 3:
                 runner._running = False
@@ -3853,9 +3888,14 @@ def test_gateway_dispatcher_retries_corrupt_board_after_quarantine(
     async def _sleep(_delay):
         return None
 
-    monkeypatch.setattr(_kb, "connect", _connect)
+    # The dispatcher connects through kanban_db_connect (see
+    # gateway.kanban_watchers_dispatcher._kbc()), not kanban_db.
+    monkeypatch.setattr(_kbc, "connect", _connect)
     monkeypatch.setattr("gateway.run.asyncio.to_thread", _to_thread)
-    monkeypatch.setattr("gateway.run.asyncio.sleep", _sleep)
+    # The watcher awaits asyncio.sleep(5) before its first tick and it
+    # lives in gateway.kanban_watchers -- patching gateway.run left the
+    # real 5s sleep in place, which always blew the 3s test budget.
+    monkeypatch.setattr("gateway.kanban_watchers.asyncio.sleep", _sleep)
 
     with caplog.at_level(logging.INFO, logger="gateway.run"):
         asyncio.run(
