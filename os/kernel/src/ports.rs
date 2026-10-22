@@ -126,6 +126,94 @@ impl Write for DebugWriter {
     }
 }
 
+/// The first serial port, Com1.
+///
+/// The serial port is the console that survives everything: it needs
+/// no screen, no framebuffer and no memory mapped device, and it is
+/// what a machine without a display is talked to through.
+pub const SERIAL: u16 = 0x3F8;
+
+/// The serial port's data register: the byte goes out here.
+const SERIAL_DATA: u16 = SERIAL;
+/// The serial port's interrupt enable register.
+const SERIAL_INTERRUPT_ENABLE: u16 = SERIAL + 1;
+/// The serial port's divisor low byte: the baud rate.
+const SERIAL_DIVISOR_LOW: u16 = SERIAL;
+/// The serial port's divisor high byte.
+const SERIAL_DIVISOR_HIGH: u16 = SERIAL + 1;
+/// The serial port's line control register.
+const SERIAL_LINE_CONTROL: u16 = SERIAL + 3;
+/// The serial port's modem control register.
+const SERIAL_MODEM_CONTROL: u16 = SERIAL + 4;
+/// The serial port's line status register: the transmit buffer is
+/// empty when bit 5 is set.
+const SERIAL_LINE_STATUS: u16 = SERIAL + 5;
+
+/// Set the serial port up: 115200 baud, eight data bits, no parity,
+/// one stop bit, and the interrupts off.
+///
+/// # Safety
+/// Must be called before the serial port is used.
+pub unsafe fn serial_init() {
+    unsafe {
+        // The interrupts off: the kernel drives the port by polling
+        // it, and a serial interrupt would need an interrupt
+        // handler that the kernel does not have yet.
+        outb(SERIAL_INTERRUPT_ENABLE, 0x00);
+        // The divisor: 115200 baud from a 1.8432 MHz clock is a
+        // divisor of one.
+        outb(SERIAL_DIVISOR_LOW, 0x01);
+        outb(SERIAL_DIVISOR_HIGH, 0x00);
+        // Eight data bits, no parity, one stop bit.
+        outb(SERIAL_LINE_CONTROL, 0x03);
+        // The modem control: the port's output is enabled.
+        outb(SERIAL_MODEM_CONTROL, 0x0B);
+    }
+}
+
+/// Write a byte to the serial port.
+///
+/// The port has a one-byte transmit buffer, and the next byte may
+/// only be handed over once that one is gone. The line status says
+/// so: bit 5 is set when the buffer is empty.
+pub fn serial_write(byte: u8) {
+    unsafe {
+        while inb(SERIAL_LINE_STATUS) & 0x20 == 0 {
+            core::hint::spin_loop();
+        }
+        outb(SERIAL_DATA, byte);
+    }
+}
+
+/// Write formatted output to the serial port.
+pub fn serial_write_fmt(args: fmt::Arguments) {
+    use core::fmt::Write;
+
+    struct SerialWriter;
+
+    impl Write for SerialWriter {
+        fn write_str(&mut self, text: &str) -> fmt::Result {
+            for byte in text.bytes() {
+                serial_write(byte);
+
+                // The port's buffer is one byte, and a line break
+                // has to get through before the next byte does.
+                if byte == 0x0A {
+                    unsafe {
+                        while inb(SERIAL_LINE_STATUS) & 0x20 == 0 {
+                            core::hint::spin_loop();
+                        }
+                    }
+                }
+            }
+            Ok(())
+        }
+    }
+
+    let mut writer = SerialWriter;
+    let _ = writer.write_fmt(args);
+}
+
 /// Write formatted output to the debug console.
 pub fn debug_write_fmt(args: fmt::Arguments) {
     let mut writer = DebugWriter;
