@@ -99,11 +99,21 @@ pub fn init() {
         // zero, which is a safety net rather than a nicety.
         set_gate(0, 0, 0, 0, 0);
         // The kernel's code segment: ring 0, executable, readable.
-        set_gate(1, 0, 0xFFFFF, 0x9A, 0xC0);
+        //
+        // The flags carry three bits:
+        //
+        //   0x20  the long mode bit: the segment is a 64-bit one
+        //   0x40  the default operand size: 64 bits
+        //   0x80  the granularity: the limit is in pages, not bytes
+        //
+        // The long mode bit is the one that matters here: without
+        // it the code segment is a 32-bit one, and the 64-bit
+        // instructions in it raise a fault.
+        set_gate(1, 0, 0xFFFFF, 0x9A, 0xE0);
         // The kernel's data segment: ring 0, writable.
         set_gate(2, 0, 0xFFFFF, 0x92, 0xC0);
         // The user code segment: ring 3, executable, readable.
-        set_gate(3, 0, 0xFFFFF, 0xFA, 0xC0);
+        set_gate(3, 0, 0xFFFFF, 0xFA, 0xE0);
         // The user data segment: ring 3, writable.
         set_gate(4, 0, 0xFFFFF, 0xF2, 0xC0);
         // The TSS.
@@ -114,7 +124,29 @@ pub fn init() {
             base: core::ptr::addr_of!(GDT) as u64,
         };
 
-        asm!("lgdt [{}]", in(reg) &pointer, options(nostack, preserves_flags));
+        // The GDT pointer: the limit, and then the base.
+        //
+        // The limit is sixteen bits, and the base is sixty-four. The
+        // instruction takes the pointer's address, and the pointer
+        // has to be where the instruction can reach it -- in a
+        // register, and not on the stack: the stack is the kernel's,
+        // and the loader's stack is not this one any more.
+        //
+        // The layout is the one the instruction reads:
+        //
+        //   0x00  the limit, two bytes
+        //   0x02  the base, eight bytes
+        //
+        // The base is written as a 64-bit value, because the
+        // instruction reads eight bytes of it.
+        let limit = pointer.limit as u64;
+        let base = pointer.base;
+
+        asm!(
+            "lgdt [{pointer}]",
+            pointer = in(reg) &pointer,
+            options(preserves_flags),
+        );
         load_segments();
     }
 }
@@ -135,11 +167,26 @@ unsafe fn load_segments() {
     // register rather than a placeholder, because a `sym` operand
     // needs a path that does not exist for a label defined in
     // assembly.
+    //
+    // The return is the 64-bit one: `retfq`, and not `retf`. The
+    // 16-bit far return loads the instruction pointer with sixteen
+    // bits, and the kernel -- whose code is above 64 KiB -- jumped
+    // to zero.
+    //
+    // The segment register has to be pushed as a 64-bit value, too:
+    // the far return pops the offset first and the selector second.
+    //
+    // The order on the stack is the far return's: the instruction
+    // pointer first, the selector second. The far return pops the
+    // offset and then the selector.
+    //
+    // The selector is pushed as a 64-bit value, because the 64-bit
+    // far return pops eight bytes for each of them.
     asm!(
-        "push 0x08",
         "lea rax, [rip + openamer_segment_reload_target]",
         "push rax",
-        "retf",
+        "push 0x08",
+        "retfq",
         "mov ax, 0x10",
         "mov ds, ax",
         "mov es, ax",

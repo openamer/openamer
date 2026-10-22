@@ -18,6 +18,7 @@ use crate::vga::Color;
 /// protected mode and jumps to the kernel's 64-bit entry point. The
 /// values below are the ones the kernel needs to know where it is and
 /// what it was given.
+///
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct BootInfo {
@@ -33,12 +34,47 @@ pub struct BootInfo {
     pub boot_drive: u8,
 }
 
+/// The pixel framebuffer the loader mapped.
+///
+/// A machine with a graphics card has a pixel buffer and not the
+/// VGA's text memory: the console writes into this one.
+pub struct Framebuffer {
+    /// The pixels.
+    pub buffer: &'static mut [u8],
+    /// The width in pixels.
+    pub width: usize,
+    /// The height in pixels.
+    pub height: usize,
+    /// The number of bytes between the start of a line and the next.
+    pub stride: usize,
+    /// The number of bytes per pixel.
+    pub bytes_per_pixel: usize,
+    /// The pixel format.
+    pub format: crate::framebuffer::PixelFormat,
+}
+
 impl BootInfo {
+    /// The boot information the loader handed over.
+    ///
+    /// The loader knows the memory map and the framebuffer; the
+    /// kernel's own view of the machine is built from them.
+    pub fn from_loader(loader: &bootloader_api::BootInfo) -> Self {
+        // The usable memory: the region the loader reports as
+        // usable, from the first region that is not reserved.
+        let (memory_base, memory_limit) = usable_memory(loader);
+
+        BootInfo {
+            kernel_base: KERNEL_LOAD_ADDRESS,
+            kernel_size: 0,
+            memory_base,
+            memory_limit,
+            boot_drive: 0xFF,
+        }
+    }
+
     /// The boot information to use when the loader did not supply any.
     ///
-    /// A loader that speaks the Linux boot protocol hands the kernel
-    /// nothing; the kernel then has to work out what it can. The
-    /// memory region is the conventional one: everything above the
+    /// The memory region is the conventional one: everything above the
     /// first megabyte, which is where the kernel itself is loaded, up
     /// to the conventional 128 MiB.
     pub const fn defaults() -> Self {
@@ -50,6 +86,61 @@ impl BootInfo {
             boot_drive: 0xFF,
         }
     }
+}
+
+/// The framebuffer the loader mapped, if there is one.
+pub fn framebuffer_from_loader(
+    loader: &bootloader_api::BootInfo,
+) -> Option<Framebuffer> {
+    let framebuffer = loader.framebuffer.as_ref()?;
+
+    let info = framebuffer.info();
+
+    let format = match info.pixel_format {
+        bootloader_api::info::PixelFormat::Rgb => crate::framebuffer::PixelFormat::Rgb32,
+        bootloader_api::info::PixelFormat::Bgr => crate::framebuffer::PixelFormat::Bgr32,
+        _ => crate::framebuffer::PixelFormat::Bgr32,
+    };
+
+    Some(Framebuffer {
+        // The loader's buffer is mapped for as long as the machine
+        // runs, so it is 'static.
+        buffer: unsafe {
+            core::slice::from_raw_parts_mut(framebuffer.buffer().as_ptr() as *mut u8, info.byte_len)
+        },
+        width: info.width,
+        height: info.height,
+        stride: info.stride,
+        bytes_per_pixel: info.bytes_per_pixel,
+        format,
+    })
+}
+
+/// The usable memory, from the loader's memory map.
+///
+/// The map lists the regions in order, and the last one that is
+/// usable is the end of the memory. The first one that is usable is
+/// the start: the regions below it are the ones the firmware and
+/// the loader have reserved.
+fn usable_memory(loader: &bootloader_api::BootInfo) -> (u64, u64) {
+    let mut base = 0;
+    let mut limit = 0;
+
+    for region in loader.memory_regions.iter() {
+        if region.kind == bootloader_api::info::MemoryRegionKind::Usable {
+            if base == 0 {
+                base = region.start;
+            }
+            limit = region.end;
+        }
+    }
+
+    if base == 0 || limit <= base {
+        // Nothing usable: the conventional region.
+        return (KERNEL_LOAD_ADDRESS, 128 * 1024 * 1024);
+    }
+
+    (base, limit)
 }
 
 /// Where the kernel is loaded in physical memory.
@@ -101,9 +192,32 @@ pub unsafe fn allocate_stack(top: u64, size: u64) -> u64 {
 /// On real hardware the bootloader hands control here with interrupts
 /// off, in a flat 64-bit environment it set up itself. From this point
 /// the kernel owns the machine.
-pub extern "C" fn kmain(info: BootInfo, stack_top: u64) -> ! {
-    // The console first: from here on, anything that goes wrong has to
-    // be able to say so.
+pub extern "C" fn kmain(
+    info: BootInfo,
+    framebuffer: Option<Framebuffer>,
+    stack_top: u64,
+) -> ! {
+    // The serial port first: it is the console that survives
+    // everything, and it is what the output is read from.
+    unsafe { crate::ports::serial_init() };
+
+    // The framebuffer first: the console writes into it, and it has
+    // to be there before the first character.
+    if let Some(framebuffer) = framebuffer {
+        let mut console = crate::framebuffer::FrameBuffer::new(
+            framebuffer.buffer,
+            framebuffer.width,
+            framebuffer.height,
+            framebuffer.stride,
+            framebuffer.bytes_per_pixel,
+            framebuffer.format,
+        );
+        console.clear();
+        unsafe { crate::framebuffer::set(console) };
+    }
+
+    // The console: from here on, anything that goes wrong has to be
+    // able to say so.
     crate::vga::Console::clear();
     crate::klog!("OpenAmer OS -- native kernel");
     crate::klog!("");
