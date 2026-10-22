@@ -1,0 +1,11 @@
+[package]
+name = "openamer-bootloader"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "openamer-bootloader"
+path = "src/main.rs"
+
+[dependencies]
