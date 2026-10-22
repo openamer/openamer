@@ -20,6 +20,7 @@ macro_rules! klog {
     ($($arg:tt)*) => {{
         $crate::vga::print_fmt(format_args!($($arg)*));
         $crate::ports::debug_write_fmt(format_args!($($arg)*));
+        $crate::ports::serial_write_fmt(format_args!($($arg)*));
     }};
 }
 
@@ -33,6 +34,7 @@ macro_rules! kprint {
 
 pub mod boot;
 pub mod cpu;
+pub mod framebuffer;
 pub mod gdt;
 pub mod interrupts;
 pub mod memory;

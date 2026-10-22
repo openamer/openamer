@@ -1,24 +1,20 @@
 [workspace]
-members = ["kernel", "bootloader"]
-resolver = "2"
+resolver = "3"
+members = ["kernel", "os"]
+# Only the image builder is built by default. The kernel is built
+# for x86_64-unknown-none, by the artifact dependency -- a host
+# build would have no entry point, because the kernel has no host
+# entry point.
+default-members = ["os"]
 
 [workspace.package]
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.75"
 
-# The release profile for a freestanding binary.
-#
-# `panic = "abort"` because a kernel cannot unwind: there is no
-# unwinder, and a panic has to stop the machine rather than look for a
-# handler. `lto` is off because LLVM's bitcode loader fails on the
-# cross-crate objects of a `no_std` workspace, and the size difference
-# is irrelevant next to the fact that the kernel has to build at all.
+# The kernel cannot unwind: there is no unwinder, and the panic
+# handler ends the machine.
+[profile.dev]
+panic = "abort"
+
 [profile.release]
 panic = "abort"
-opt-level = "z"
-lto = false
-codegen-units = 1
-overflow-checks = false
-debug = false
-strip = true
