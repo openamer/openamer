@@ -1,8 +1,7 @@
 [package]
-name = "openamer-kernel"
+name = "kernel"
 version.workspace = true
 edition.workspace = true
-rust-version.workspace = true
 
 [lib]
 name = "openamer_kernel"
@@ -11,11 +10,15 @@ test = false
 bench = false
 
 [[bin]]
-name = "openamer-kernel"
+name = "kernel"
 path = "src/main.rs"
+test = false
+bench = false
+# The kernel is a freestanding binary. It has no entry point for a
+# host operating system, and it must not be built for one.
+required-features = []
 
 [dependencies]
-
-# The kernel is loaded at a fixed physical address by the bootloader,
-# so it must not be position independent. PIE would let the loader
-# choose the address, and there is no loader.
+# The boot loader's interface: the entry point macro, the boot
+# information, and the configuration.
+bootloader_api = "0.11"
