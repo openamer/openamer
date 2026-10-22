@@ -242,6 +242,11 @@ _PROVIDER_MODELS: dict[str, list[str]] = {
     # Native OpenAI Chat Completions (api.openai.com). Used by /model counts and
     # provider_model_ids fallback when /v1/models is unavailable.
     "openai": [
+        "gpt-6-astra",
+        "gpt-6.1-sol",
+        "gpt-6-sol",
+        "gpt-6-luna",
+        "gpt-5.6-sol",
         "gpt-5.4",
         "gpt-5.4-mini",
         "gpt-5-mini",
@@ -252,6 +257,10 @@ _PROVIDER_MODELS: dict[str, list[str]] = {
         "gpt-4o-mini",
     ],
     "openai-api": [
+        "gpt-6-astra",
+        "gpt-6.1-sol",
+        "gpt-6-sol",
+        "gpt-6-luna",
         "gpt-5.6-sol",
         "gpt-5.6-sol-pro",
         "gpt-5.6-terra",
@@ -2562,6 +2571,111 @@ def _merge_with_models_dev(provider: str, curated: list[str]) -> list[str]:
     return merged
 
 
+def _openai_model_version(model_id: str) -> Optional[tuple[int, int]]:
+    """Return the ``(major, minor)`` generation of a ``gpt-<n>[.<m>]`` id.
+
+    Returns ``None`` for ids that do not encode a numeric generation
+    (``o3``, ``chat-latest``, ``gpt-4o`` → the ``o`` suffix is not a
+    version).  Used to decide whether a live-catalog model is *newer*
+    than the curated snapshot.
+    """
+    mid = (model_id or "").strip().lower()
+    match = re.match(r"^gpt-(\d+)(?:\.(\d+))?(?![a-z0-9])", mid)
+    if not match:
+        return None
+    major = int(match.group(1))
+    minor = int(match.group(2) or 0)
+    return (major, minor)
+
+
+def _is_agentic_openai_model(model_id: str) -> bool:
+    """Return True for OpenAI chat/reasoning models usable as agent brains.
+
+    ``api.openai.com/v1/models`` returns one flat list mixing chat models
+    with embeddings, speech, image, audio, realtime, video and moderation
+    endpoints.  Only the chat/reasoning entries can drive an agent turn, so
+    the picker filters the live catalog down to those.
+
+    The rule is intentionally *exclusion*-based rather than an allowlist of
+    known model ids: a hardcoded allowlist silently hides every model
+    OpenAI ships after it was written (the whole GPT-6 family was invisible
+    to ``/model`` that way).  Excluding the known non-chat families keeps
+    newly released chat models visible by default.
+    """
+    mid = (model_id or "").strip().lower()
+    if not mid:
+        return False
+    # Non-chat families served by the same endpoint.
+    if any(mid.startswith(prefix) for prefix in (
+        "text-embedding-",
+        "whisper-",
+        "tts-",
+        "gpt-4o-mini-tts",
+        "gpt-4o-mini-transcribe",
+        "gpt-4o-transcribe",
+        "gpt-transcribe",
+        "gpt-audio",
+        "gpt-image",
+        "chatgpt-image",
+        "gpt-realtime",
+        "gpt-live-",
+        "omni-moderation",
+        "sora-",
+        "dall-e-",
+        "text-moderation",
+        "text-moderation-",
+    )):
+        return False
+    # Legacy completion-style endpoints are not chat models.
+    if mid in {"davinci-002", "babbage-002"}:
+        return False
+    # "*-instruct" variants are completion endpoints, not chat turns.
+    if mid.endswith("-instruct") or "-instruct-" in mid:
+        return False
+    return True
+
+
+def _split_openai_picker_models(
+    live: list[str],
+    curated: list[str],
+) -> list[str]:
+    """Merge the live OpenAI catalog with the curated snapshot for /model.
+
+    The curated list is the curated *ordering* and the set of models the
+    picker always shows.  The live catalog is the *source of truth* for what
+    the account can actually call.
+
+    A pure intersection (the previous behaviour) silently dropped every
+    model OpenAI released after the snapshot was written — the whole GPT-6
+    family was invisible to ``/model``.  A pure live dump floods the picker
+    with 70+ legacy chat ids (``gpt-3.5-turbo``, ``o1``, every dated
+    snapshot).
+
+    Resolution: show the curated models the account actually serves, then
+    append live models that are *at least as new* as the newest curated
+    entry — so a new generation (GPT-6, GPT-7, …) appears without a
+    OpenAmer release, while legacy generations stay out of the picker.
+    """
+    agentic = [m for m in live if _is_agentic_openai_model(m)]
+    agentic_lower = {m.lower() for m in agentic}
+    curated_present = [m for m in curated if m.lower() in agentic_lower]
+    present_lower = {m.lower() for m in curated_present}
+
+    # Newest generation the curated snapshot knows about.
+    versions = [v for v in (_openai_model_version(m) for m in curated) if v]
+    frontier = max(versions) if versions else None
+
+    merged = list(curated_present)
+    for m in agentic:
+        if m.lower() in present_lower:
+            continue
+        version = _openai_model_version(m)
+        if frontier is not None and version is not None and version >= frontier:
+            merged.append(m)
+            present_lower.add(m.lower())
+    return merged
+
+
 def provider_model_ids(provider: Optional[str], *, force_refresh: bool = False) -> list[str]:
     """Return the best known model catalog for a provider.
 
@@ -2690,15 +2804,24 @@ def provider_model_ids(provider: Optional[str], *, force_refresh: bool = False) 
                 live = fetch_api_models(api_key, base)
                 if live:
                     if is_default_openai:
-                        live_lower = {m.lower() for m in live}
+                        # The canonical api.openai.com /v1/models dump mixes
+                        # chat models with embeddings, whisper, tts, image,
+                        # audio, realtime and moderation entries — none of
+                        # which belong in the agent model picker.
+                        #
+                        # We do NOT intersect the live list with the curated
+                        # snapshot: that snapshot is a hardcoded catalog and
+                        # silently drops every model OpenAI released after it
+                        # was written (e.g. the whole GPT-6 family —
+                        # gpt-6-astra / gpt-6.1-sol / gpt-6-sol / gpt-6-luna
+                        # were invisible to /model). See
+                        # _split_openai_picker_models for the merge rule.
                         curated = list(_PROVIDER_MODELS.get(normalized, []))
-                        # Keep curated order; only surface curated models the
-                        # account actually has access to.
-                        filtered = [m for m in curated if m.lower() in live_lower]
-                        if filtered:
-                            return filtered
-                        # Account serves none of the curated models (rare —
-                        # e.g. org without GPT-5 access). Fall back to curated
+                        merged = _split_openai_picker_models(live, curated)
+                        if merged:
+                            return merged
+                        # Account serves none of the agentic models (rare —
+                        # e.g. org without GPT-5/6 access). Fall back to curated
                         # so the picker still offers sane defaults.
                         return curated or live
                     return live
