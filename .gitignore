@@ -97,6 +97,14 @@ apps/desktop/dist/
 *.bin
 *.abi
 
+# OpenAmer OS kernel build output. The sources (os/kernel/src,
+# os/kernel/include) are tracked; the compiled objects, the static
+# library and the test binary are not.
+os/kernel/build/
+*.obj
+*.lib
+*.exe
+
 # tsc-emitted artifacts (a stray `tsc -b` compiles into src/, and vite then
 # resolves the stale .js OVER the .tsx — never track these)
 apps/desktop/src/**/*.js
@@ -257,3 +265,6 @@ apps/vscode/*.vsix
 
 # scratch worktree copies (wt-*)
 /wt-*/
+
+# Rust build artifacts of the OpenAmer OS
+os/target/
