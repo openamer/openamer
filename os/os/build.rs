@@ -5,7 +5,8 @@ fn main() {
     // Cargo treats OUT_DIR as a build artefact and removes it when
     // the build script is re-run, and the image is meant to be looked
     // at and written to a drive.
-    let out_dir = PathBuf::from("target/images");
+    let out_dir = PathBuf::from(std::env::var_os("CARGO_MANIFEST_DIR").unwrap())
+        .join("target/images");
     std::fs::create_dir_all(&out_dir).expect("cannot create the image directory");
 
     // The kernel, built by the artifact dependency.
