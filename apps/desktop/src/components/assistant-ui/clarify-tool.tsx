@@ -110,7 +110,7 @@ function ClarifyLine({
   className,
   icon: Icon,
   ...props
-}: ComponentProps<'div'> & { icon: React.ComponentType<{className?: string; size?: string | number}> }) {
+}: ComponentProps<'div'> & { icon: React.ComponentType<{ className?: string; size?: string | number }> }) {
   return (
     <div className={cn('flex items-start gap-2', className)} {...props}>
       <div className="min-w-0 flex-1">{children}</div>

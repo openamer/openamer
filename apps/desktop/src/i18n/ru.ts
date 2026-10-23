@@ -258,7 +258,8 @@ export const ru = defineLocale({
       colorMode: 'Цветовой режим',
       colorModeDesc: 'Выберите фиксированный режим или позвольте OpenAmer следовать настройкам системы.',
       toolViewTitle: 'Отображение вызовов инструментов',
-      toolViewDesc: '«Продукт» скрывает необработанные данные инструментов; «Технический» показывает полный ввод/вывод.',
+      toolViewDesc:
+        '«Продукт» скрывает необработанные данные инструментов; «Технический» показывает полный ввод/вывод.',
       uiScaleTitle: 'Масштаб интерфейса',
       uiScaleDesc: (percent: number) =>
         `Масштабирует текст и элементы управления во всём приложении. Также работают Cmd/Ctrl с +, - и 0. Текущий: ${percent}%.`,
@@ -310,8 +311,7 @@ export const ru = defineLocale({
       lastChecked: age => `Последняя проверка ${age}`,
       justNowSuffix: ' · только что',
       automaticUpdates: 'Автоматические обновления',
-      automaticUpdatesDesc:
-        'OpenAmer автоматически проверяет обновления в фоне и уведомляет, когда одно готово.',
+      automaticUpdatesDesc: 'OpenAmer автоматически проверяет обновления в фоне и уведомляет, когда одно готово.',
       branchCommit: (branch, commit) => `Ветка ${branch} · Коммит ${commit}`,
       never: 'никогда',
       justNow: 'только что',

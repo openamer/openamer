@@ -59,17 +59,11 @@ test('an empty or relative breadcrumb is refused rather than resolved', () => {
 test('shipped layout derives the parent only with install evidence', () => {
   const root = '/opt/openamer-laptop/openamer-agent'
 
-  assert.equal(
-    homeFromShippedLayout(root, fakeFs({ directories: [P.join(root, '.git')] })),
-    '/opt/openamer-laptop'
-  )
+  assert.equal(homeFromShippedLayout(root, fakeFs({ directories: [P.join(root, '.git')] })), '/opt/openamer-laptop')
   // Same name, no .git: a dev checkout must not invent a home out of its name.
   assert.equal(homeFromShippedLayout(root, fakeFs()), null)
   // Install evidence, wrong basename: not the shipped layout.
-  assert.equal(
-    homeFromShippedLayout('/opt/work/openamer', fakeFs({ directories: ['/opt/work/openamer/.git'] })),
-    null
-  )
+  assert.equal(homeFromShippedLayout('/opt/work/openamer', fakeFs({ directories: ['/opt/work/openamer/.git'] })), null)
 })
 
 test('the breadcrumb outranks the shipped layout and every later rung', () => {
@@ -94,10 +88,11 @@ test('an install with no evidence resolves to null so the caller keeps its own o
 })
 
 test('candidate walk is bounded and dedupes overlapping seeds', () => {
-  const candidates = installHomeCandidatesFromPaths(
-    ['/a/b/c', '/a/b'],
-    { isDirectory: p => p === '/a/b/c', maxDepth: 2, pathModule: P }
-  )
+  const candidates = installHomeCandidatesFromPaths(['/a/b/c', '/a/b'], {
+    isDirectory: p => p === '/a/b/c',
+    maxDepth: 2,
+    pathModule: P
+  })
 
   assert.deepEqual(candidates, ['/a/b/c', '/a/b', '/a', '/'])
 })

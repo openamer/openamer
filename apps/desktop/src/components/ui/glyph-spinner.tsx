@@ -74,10 +74,7 @@ export function GlyphSpinner({
     return () => window.clearInterval(id)
   }, [spin, visible])
 
-  const cellClass = cn(
-    'inline-flex items-center justify-center font-mono leading-none tabular-nums',
-    className
-  )
+  const cellClass = cn('inline-flex items-center justify-center font-mono leading-none tabular-nums', className)
 
   if (decorative) {
     return (
