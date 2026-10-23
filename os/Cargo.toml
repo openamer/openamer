@@ -1,0 +1,20 @@
+[workspace]
+resolver = "3"
+members = ["kernel", "os"]
+# Only the image builder is built by default. The kernel is built
+# for x86_64-unknown-none, by the artifact dependency -- a host
+# build would have no entry point, because the kernel has no host
+# entry point.
+default-members = ["os"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+
+# The kernel cannot unwind: there is no unwinder, and the panic
+# handler ends the machine.
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"

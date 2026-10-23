@@ -1,0 +1,24 @@
+[package]
+name = "kernel"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+name = "openamer_kernel"
+path = "src/lib.rs"
+test = false
+bench = false
+
+[[bin]]
+name = "kernel"
+path = "src/main.rs"
+test = false
+bench = false
+# The kernel is a freestanding binary. It has no entry point for a
+# host operating system, and it must not be built for one.
+required-features = []
+
+[dependencies]
+# The boot loader's interface: the entry point macro, the boot
+# information, and the configuration.
+bootloader_api = "0.11"
