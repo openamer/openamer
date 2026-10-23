@@ -1,67 +1,53 @@
-# OpenAmer OS
+# OpenAmer OS: experimental x86-64 kernel
 
-The native operating system of the OpenAmer network.
+This is a freestanding Rust kernel, not a Linux distribution. It is an early
+boot prototype, **not a complete desktop OS and not yet a portable AI agent**.
+No Python runtime, agent userland, production wallet, network stack or hardware
+compatibility certification is provided by this image.
 
-This is not a Linux distribution with an OpenAmer theme, and it is not
-a wrapper around a host operating system. It is a kernel, a bootloader
-and a userland that the OpenAmer agent runs inside -- built from
-source, bootable on bare hardware, with its own drivers.
+## Build
 
-## What is here
-
-```
-os/
-  bootloader/      the 512-byte MBR boot sector and the stage-2 loader
-  kernel/          the kernel itself
-  userland/        the init process and the first programs
-  installer/       the installation program
-  drivers/         the driver set
-```
-
-The agent's own tree (`agent/`, `openamer_cli/`, `tools/`) stays where
-it is: the OS loads it. See `docs/INTEGRATION.md`.
-
-## The build
-
-The kernel is written in Rust (`no_std`) and the bootloader in
-assembly-free Rust too, so the whole thing builds on one machine with
-nothing but a Rust toolchain:
+Install Rust nightly (see `rust-toolchain.toml`) and the host linker, then run
+from this directory:
 
 ```sh
-cargo build --release --target x86_64-unknown-none
+cargo +nightly build --release
+cargo +nightly run --release -- paths
 ```
 
-The `x86_64-unknown-none` target is the freestanding x86_64 target: no
-operating system underneath, no libc, no runtime. The kernel is a
-static ELF binary that the bootloader loads and jumps into.
+The image builder uses rust-osdev `bootloader` 0.11. Images are written to
+`os/target/images/` relative to this workspace (the image-builder crate's own
+`target` directory). The printed paths are absolute and independent of the
+launcher's current directory. Rebuilding overwrites these derived images.
 
-## Why Rust for a kernel
+## Run safely
 
-Two reasons, both practical:
+Install QEMU and add it to PATH:
 
-  * **The freestanding toolchain is already here.** `rustup target add
-    x86_64-unknown-none` plus `rust-lld` produces a static ELF that a
-    bootloader can load. A C cross-compiler is a separate installation
-    with its own build of the world, and on this machine there is none.
-  * **The kernel is safety-critical in a way the userland is not.** A
-    kernel bug is not a stack trace, it is a machine that no longer
-    boots. Rust's ownership rules eliminate the class of bug where two
-    parts of the kernel write the same memory.
+```sh
+cargo +nightly run --release -- bios
+cargo +nightly run --release -- uefi
+python scripts/verify_boot.py os/target/images/bios.img
+```
 
-The first prototype of the kernel was written in C (`os/kernel/src`)
-and is kept as a reference for the memory manager, the scheduler and
-the interrupt handling: the logic in there is proven by 45 executed
-checks, and the Rust kernel reproduces that behaviour with the same
-test suite.
+UEFI launch downloads OVMF firmware through `ovmf-prebuilt`. The bounded BIOS
+smoke uses snapshot mode, checks for the kernel-ready marker and verifies that
+QEMU remains alive until the deadline. A timeout alone is not success. The
+normal launcher runs indefinitely; stop QEMU to end it.
 
-## The plan
+## Verified scope and known limitations
 
-DIR-04 ("finalize the native operating system, eliminate human
-abstraction layers") and DIR-13 ("operate directly on CPU patterns")
-are the directives this tree implements. They are not slogans: they
-say that the machine must be under the system's own control, and that
-the system should work on the CPU's own terms rather than through a
-borrowed abstraction.
+BIOS and UEFI QEMU runs reached `OpenAmer OS kernel is running.` after GDT,
+memory, interrupt-table and scheduler initialization. This does **not** prove
+scheduler fairness, interrupt safety, memory isolation or successful execution
+of user programs. The current diagnostics include incorrect kernel-size and
+CPU-brand output; warnings remain in the Rust build. The TSS/interrupt and
+memory subsystems require further review before real hardware use.
 
-Version 0.1 is the first thing that boots, starts the agent and speaks
-the user's language.
+The C prototype under `kernel/src/*.c` and its hosted tests are reference code;
+they do not constitute tests of the Rust implementation. No physical disks or
+USB devices were written during this verification.
+
+Images are x86-64 BIOS/UEFI artifacts, not ARM-compatible images. A distributable
+image bundle can be moved between computers, but booting on arbitrary physical
+hardware and running the full OpenAmer agent are not established.
