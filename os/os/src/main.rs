@@ -46,7 +46,7 @@ fn run(uefi: bool) {
     let mut command = Command::new(QEMU);
 
     // The serial line, so that the kernel's output is visible.
-    command.arg("-serial").arg("mon:stdio");
+    command.args(["-serial", "none", "-monitor", "none", "-debugcon", "stdio"]);
     // No video window: the serial line is the output.
     command.arg("-display").arg("none");
     // The guest can end QEMU: it writes to the debug exit port.
@@ -83,9 +83,9 @@ fn run(uefi: bool) {
         .expect("qemu-system-x86_64 not found -- is QEMU in the path?");
 
     // The debug exit port: 0x10 is success, 0x11 is failure.
-    match status.code().unwrap_or(2) {
-        0x10 => 0,
-        0x11 => 1,
+    std::process::exit(match status.code() {
+        Some(33) => 0, // QEMU encodes a guest write of 0x10 as (value << 1) | 1.
+        Some(35) => 1,
         _ => 2,
-    };
+    });
 }
