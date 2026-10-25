@@ -49,10 +49,11 @@ def test_failing_check_proposes_repair_not_retire() -> None:
 
 
 def test_unreachable_directive_is_retired_with_its_reason() -> None:
-    rows = [_row("DIR-14", NOT_IMPLEMENTED)]
-    (proposal,) = propose({"directives": 1, "rows": rows})
+    """Only when a caller explicitly declares it beyond code."""
+    rows = [_row("DIR-99", NOT_IMPLEMENTED)]
+    (proposal,) = propose({"directives": 1, "rows": rows}, not_code_reachable={"DIR-99": "needs a wet lab"})
     assert proposal.action == RETIRE
-    assert "hardware" in proposal.rationale.lower() or "substrate" in proposal.rationale.lower()
+    assert "wet lab" in proposal.rationale
 
 
 def test_reachable_gap_proposes_implementation() -> None:
@@ -72,14 +73,21 @@ def test_custom_reachability_map_overrides_the_default() -> None:
     assert proposal.action == RETIRE
 
 
-def test_default_unreachable_set_names_only_physical_limits() -> None:
-    """Guarding the taxonomy: these must stay the physically out-of-reach ones."""
-    assert set(NOT_CODE_REACHABLE) == {"DIR-10", "DIR-14", "DIR-15"}
+def test_no_directive_is_declared_beyond_code_by_default() -> None:
+    """All 24 now carry code; the three hardware-bound ones are GATED, not dead.
+
+    Retiring a GATED directive would delete the implementation that starts
+    working the moment the hardware exists, so the default map is empty and a
+    caller must argue for an exception explicitly.
+    """
+    assert NOT_CODE_REACHABLE == {}
 
 
 def test_summary_counts_add_up_on_the_live_audit() -> None:
+    """Every directive lands in exactly one bucket, and proposals cover the blocked ones."""
     result = audit()
     s = summary(result)
     assert s["directives"] == 24
-    assert s["enforced"] + s["partial"] + s["research"] + s["blocked"] >= s["directives"] - s["proposals"]
+    assert s["enforced"] + s["partial"] + s["research"] + s["gated"] + s["blocked"] == 24
+    assert s["blocked"] == 0  # every directive has code as of 2026-10-25
     assert sum(s["by_action"].values()) == s["proposals"]

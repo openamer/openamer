@@ -81,11 +81,24 @@ def test_enforced_claims_have_a_passing_check() -> None:
     assert all(r["checked"] is True for r in enforced), enforced
 
 
-def test_not_implemented_carries_no_evidence() -> None:
-    """An empty evidence list is the honest shape for a gap."""
+def test_no_directive_is_left_without_code() -> None:
+    """Measured 2026-10-25: every one of the 24 now carries an implementation.
+
+    The three hardware-bound ones are GATED (code complete for their half, acts
+    only with the hardware present), which is a different statement from "not
+    implemented" — and the registry must never blur the two.
+    """
     gaps = [r for r in audit()["rows"] if r["status"] == NOT_IMPLEMENTED]
-    assert gaps
-    assert all(r["evidence"] == [] for r in gaps)
+    assert gaps == []
+    assert audit()["counts"].get(NOT_IMPLEMENTED, 0) == 0
+
+
+def test_a_gap_would_still_carry_no_evidence() -> None:
+    """The shape rule survives the state change: a gap names no module."""
+    from agent.directive_engine import Implementation
+
+    gap = Implementation("DIR-99", NOT_IMPLEMENTED, [], "nothing here")
+    assert gap.evidence == []
 
 
 def test_every_non_gap_names_at_least_one_module() -> None:
@@ -126,12 +139,8 @@ def test_cli_table_runs(capsys) -> None:
     assert "DIR-01" in printed
 
 
-def test_gaps_view_lists_only_gaps(capsys) -> None:
+def test_gaps_view_is_empty_when_there_are_no_gaps(capsys) -> None:
+    """With every directive backed by code, the gaps view must show no rows."""
     main(["--gaps"])
     printed = capsys.readouterr().out
-    assert "NOT_IMPLEMENTED" in printed
-    # The header prints the counts (including ENFORCED=3), so assert on the
-    # rows: no directive line may carry a non-gap status in this view.
-    assert "  ENFORCED" not in printed
-    assert "  PARTIAL" not in printed
-    assert "  RESEARCH" not in printed
+    assert not any(line.startswith("DIR-") for line in printed.splitlines())
