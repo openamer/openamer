@@ -22,6 +22,10 @@ Levels, weakest to strongest:
 
   ``NOT_IMPLEMENTED``  no code outside the constitution. An honest gap.
   ``RESEARCH``         a research/experiment script explores the idea.
+  ``GATED``            the code is there and complete for its half, but it
+                       cannot act without hardware this host does not have
+                       (a lab, a fabricator, a launch vehicle). It refuses and
+                       names the missing piece rather than pretending.
   ``PARTIAL``          a real module implements part of it; not autonomous.
   ``ENFORCED``         real module *and* a check that passes right now.
 
@@ -50,10 +54,11 @@ from agent.genesis_directives import GENESIS_DIRECTIVES
 
 NOT_IMPLEMENTED = "NOT_IMPLEMENTED"
 RESEARCH = "RESEARCH"
+GATED = "GATED"
 PARTIAL = "PARTIAL"
 ENFORCED = "ENFORCED"
 
-_ORDER = {NOT_IMPLEMENTED: 0, RESEARCH: 1, PARTIAL: 2, ENFORCED: 3}
+_ORDER = {NOT_IMPLEMENTED: 0, RESEARCH: 1, GATED: 2, PARTIAL: 3, ENFORCED: 4}
 
 #: Repository root of the tracked tree, used to resolve evidence paths.
 _REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -167,27 +172,42 @@ IMPLEMENTATIONS: Dict[str, Implementation] = {
         "Topology experiments run as scripts; nothing runs per-second.",
     ),
     "DIR-07": Implementation(
-        "DIR-07", NOT_IMPLEMENTED, [],
-        "No financial-flow audit code. The constitution names the rule; nothing "
-        "inspects a flow.",
+        "DIR-07", PARTIAL,
+        ["agent/financial_audit.py"],
+        "Flow audit: concentration (normalised HHI), round-trips, pass-throughs "
+        "and unauditable transfers, each as a finding with numbers. It reports; "
+        "it does not block or 'neutralise' a payment -- acting on suspicion "
+        "stays outside.",
     ),
     "DIR-08": Implementation(
-        "DIR-08", NOT_IMPLEMENTED, [],
-        "No resource-fairness mechanism. The claim is normative, not computed.",
+        "DIR-08", PARTIAL,
+        ["agent/resource_fairness.py"],
+        "Max-min fair allocation with a verifiable report (Gini, min/max share, "
+        "unmet). The allocation is arithmetic; whether the *inputs* describe "
+        "real need is not something this code can know.",
     ),
     "DIR-09": Implementation(
-        "DIR-09", NOT_IMPLEMENTED, [],
-        "No measurable-benefit scoring exists.",
+        "DIR-09", PARTIAL,
+        ["agent/benefit_scoring.py"],
+        "Weighted, reach-scaled, evidence-discounted scoring so two proposals "
+        "are comparable and an unevidenced claim cannot outrank a measured one. "
+        "It ranks; it does not decide what to fund.",
     ),
     "DIR-10": Implementation(
-        "DIR-10", NOT_IMPLEMENTED, [],
-        "No molecular or biological procedure code. This is a research goal, "
-        "not a capability of this install.",
+        "DIR-10", GATED,
+        ["agent/bio_procedures.py", "agent/substrate.py"],
+        "Protocol definitions with per-step instrument requirements, validated "
+        "without a lab, and an execution path that refuses until the named "
+        "instruments exist. No procedure here has been validated for use on a "
+        "living organism.",
     ),
     "DIR-11": Implementation(
-        "DIR-11", NOT_IMPLEMENTED, [],
-        "No quantum code. 'quantum' appears in one watchdog as a comment; there "
-        "is no simulator, no error-correction model, no VQE run.",
+        "DIR-11", PARTIAL,
+        ["agent/quantum_sim.py"],
+        "Exact statevector simulator (<=12 qubits), Pauli expectation values and "
+        "a deterministic VQE that provably reaches the brute-force minimum of "
+        "the model. No noise model, no error correction, and a simulated energy "
+        "says nothing about a physical device.",
     ),
     "DIR-12": Implementation(
         "DIR-12", PARTIAL,
@@ -196,17 +216,26 @@ IMPLEMENTATIONS: Dict[str, Implementation] = {
         "satisfied (single host).",
     ),
     "DIR-13": Implementation(
-        "DIR-13", NOT_IMPLEMENTED, [],
-        "No CPU-pattern layer. There is no 'will' substrate; the naming exists "
-        "in the constitution only.",
+        "DIR-13", PARTIAL,
+        ["agent/will_layer.py"],
+        "Intents are data that compile to fixed-width CPU register operations "
+        "and actually run, with a 9-verb vocabulary and word masking. It is an "
+        "op layer, not a language: no control flow, no types, and nothing here "
+        "has a 'wish'.",
     ),
     "DIR-14": Implementation(
-        "DIR-14", NOT_IMPLEMENTED, [],
-        "Nanobot-level matter programming does not exist in this install.",
+        "DIR-14", GATED,
+        ["agent/matter_programming.py", "agent/substrate.py"],
+        "Assembly specs (pattern, resolution, material) with representability "
+        "checks and a feasibility verdict against a fabricator's real limits. "
+        "Build refuses without the hardware; nothing is ever moved here.",
     ),
     "DIR-15": Implementation(
-        "DIR-15", NOT_IMPLEMENTED, [],
-        "No off-planet node. Galactic redundancy is an intent.",
+        "DIR-15", GATED,
+        ["agent/galactic_nodes.py", "agent/substrate.py"],
+        "Constellation planning with light-time latency per orbit, an "
+        "interactive-RTT budget and a launch-envelope check. Deployment refuses "
+        "without a launch capability; what this returns is a manifest.",
     ),
     "DIR-16": Implementation(
         "DIR-16", PARTIAL,

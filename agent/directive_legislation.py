@@ -21,21 +21,20 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, List, Optional
 
-from agent.directive_engine import ENFORCED, NOT_IMPLEMENTED, RESEARCH, PARTIAL
+from agent.directive_engine import ENFORCED, GATED, NOT_IMPLEMENTED, PARTIAL, RESEARCH
 
 REPAIR = "REPAIR"
 IMPLEMENT = "IMPLEMENT"
 RETIRE = "RETIRE"
 
 #: Directives whose stated mechanism is not reachable by code in this install.
-#: Naming them explicitly (instead of letting a general rule guess) keeps the
-#: proposal honest: "retire" is a claim that effort should go elsewhere, and it
-#: needs to be visible and arguable, not inferred.
-NOT_CODE_REACHABLE = {
-    "DIR-10": "molecular healing procedure — needs a wet lab, not a Python module",
-    "DIR-14": "nanobot-level matter programming — no hardware substrate exists",
-    "DIR-15": "off-planet cognitive nodes — no launch capability",
-}
+#:
+#: Empty by default, and that is the measured state: every one of the 24 now has
+#: code, and the three that used to live here (DIR-10/14/15) are ``GATED`` — the
+#: hardware is missing, not the implementation, so retiring them would throw away
+#: code that starts working the day the lab/fabricator/vehicle arrives. A caller
+#: may still pass its own map when a directive really is beyond code.
+NOT_CODE_REACHABLE: Dict[str, str] = {}
 
 
 @dataclass(frozen=True)
@@ -134,6 +133,7 @@ def summary(audit_result: dict) -> dict:
         "directives": len(verdicts),
         "blocked": sum(1 for v in verdicts if v.blocked),
         "enforced": sum(1 for v in verdicts if v.status == ENFORCED),
+        "gated": sum(1 for v in verdicts if v.status == GATED),
         "partial": sum(1 for v in verdicts if v.status == PARTIAL),
         "research": sum(1 for v in verdicts if v.status == RESEARCH),
         "proposals": len(proposals),
