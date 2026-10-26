@@ -13,7 +13,13 @@ const _READY_RE = /^OPENAMER_(?:BACKEND|DASHBOARD)_READY port=(\d+)/m
 // 45s deadline kills a *healthy but still-starting* backend and respawns it,
 // piling up orphaned processes (issue #50209). A roomier default absorbs the
 // cold-start cost; a warm start still announces in well under a second.
-const DEFAULT_PORT_ANNOUNCE_TIMEOUT_MS = 90_000
+// 90 s was not enough: on a loaded Windows box with a 1.8 GB state.db the local
+// backend needs >100 s to bind and announce (measured 2026-10-25), so the app
+// reported "Timed out waiting for OpenAmer backend port announcement
+// (90000ms)" while the backend was in fact starting fine. A generous default
+// costs nothing: waitForDashboardPort already fails fast on the child's `exit`
+// and `error` events, so this ceiling only bounds a *healthy but slow* start.
+const DEFAULT_PORT_ANNOUNCE_TIMEOUT_MS = 300_000
 // Never trust a deadline tighter than the warm-start path needs; floor at 45s
 // (the historical default) so a malformed override can't reintroduce the loop.
 const MIN_PORT_ANNOUNCE_TIMEOUT_MS = 45_000
