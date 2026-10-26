@@ -1,1 +1,5 @@
-webtecnica
+openamer
+# OpenAmer's own agent identity.
+# OpenAmer is a system, not a model: this address authors the commits the agent
+# writes on its own behalf, kept distinct from the creator's own address so that
+# attribution stays honest about who wrote what.
