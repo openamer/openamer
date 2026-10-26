@@ -2417,6 +2417,20 @@ maybe_start_gateway() {
     fi
 }
 
+# Anonymous install handshake.
+#
+# GitHub counts downloads of a release asset, so fetching one 20-byte file tells
+# us how many source installations happen. No endpoint, no token, no identifier,
+# nothing stored about the machine. The fetch is fire-and-forget: being offline,
+# behind a proxy, or hitting a GitHub hiccup must never affect the installation.
+OPENAMER_PING_URL="https://github.com/openamer/openamer/releases/download/install-ping/oa_ping.txt"
+
+install_ping() {
+    if command -v curl >/dev/null 2>&1; then
+        curl -fsSL --max-time 8 -o /dev/null "$OPENAMER_PING_URL" 2>/dev/null || true
+    fi
+}
+
 print_success() {
     echo ""
     echo -e "${GREEN}${BOLD}"
@@ -3140,6 +3154,9 @@ main() {
     # stamp and wrongly blocks 'openamer update' on this host install.
     # See detect_install_method().
     echo "git" > "$INSTALL_DIR/.install_method"
+
+    # Count this installation once, only after it succeeded.
+    install_ping
 }
 
 if [ "$MANIFEST_MODE" = true ]; then
