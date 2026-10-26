@@ -23,6 +23,7 @@ jobs:
     timeout-minutes: 10
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
+      cache_run_id: ${{ steps.cache.outputs.run_id }}
     steps:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -153,6 +154,14 @@ jobs:
         # that did run passed (that slice's summary read 5623 passed, 0 failed).
         # tests/docker/ already raises the same cap to 600 s for the same reason
         # (.github/workflows/docker.yml). 900 s still bounds a genuinely hung file.
+        # 35-minute cap on the job itself. The runner sometimes shuts a slice down
+        # with SIGTERM mid-run (exit 143) with zero failing tests in the log, and
+        # without a job timeout that is indistinguishable from a real hang - both
+        # look like "the slice did not finish" and neither is attributable. With a
+        # cap in place a real stall fails with a message; a runner abort still does,
+        # but the difference is now visible in the log instead of being a silent
+        # "Process completed with exit code 143".
+        timeout-minutes: 35
         run: |
           source .venv/bin/activate
           scripts/run_tests.sh --files '${{ matrix.slice.files }}' --file-timeout 900
@@ -161,6 +170,24 @@ jobs:
           OPENROUTER_API_KEY: ""
           OPENAI_API_KEY: ""
           OPENAMER_API_KEY: ""
+
+      - name: Restore duration cache
+        # The LPT slice distribution reads test_durations.json to weight files by
+        # their measured runtime. Without it every slice falls back to a flat 2.0s
+        # per file and distributes willkuerlich: measured 2026-10-26, slice 6/12 got
+        # 280 files / 3,330 tests while slices 2-5 got 2-5 each. That slice then
+        # ran past the runner window with 1,392 tests green and 0 failed, so the
+        # required check failed on a slice that had nothing wrong with it.
+        # Restoring the cache before the run makes the distribution mean what it
+        # claims to mean.
+        uses: actions/download-artifact@v5
+        with:
+          name: test-durations-cache
+          path: .
+          repository: openamer/openamer
+          run-id: ${{ needs.generate.outputs.cache_run_id }}
+          if-no-artifact-found: ignore
+        continue-on-error: true
 
       - name: Upload per-slice durations
         # Advisory artifact (feeds slice balancing) — a transient artifact-
@@ -174,6 +201,29 @@ jobs:
 
   # Merge per-slice duration data into a single cache, so future runs
   # (including PRs) get balanced slicing.
+  save-durations-cache:
+    name: Save duration cache
+    needs: test
+    if: always() && needs.test.result == 'success' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Merge per-slice durations into one artifact
+        uses: actions/download-artifact@v5
+        with:
+          pattern: test-durations-slice-*
+          merge-multiple: true
+          path: .
+      - name: Upload merged durations as cache for the next run
+        id: cache
+        uses: actions/upload-artifact@v5
+        with:
+          name: test-durations-cache
+          path: test_durations.json
+          retention-days: 30
+      - name: Record run id for consumers
+        run: echo "run_id=${{ github.run_id }}" >> "$GITHUB_OUTPUT"
+        shell: bash
   save-durations:
     needs: test
     if: needs.test.result == 'success' && github.ref == 'refs/heads/main'
