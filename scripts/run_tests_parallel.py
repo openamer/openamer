@@ -44,6 +44,8 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
+import signal
 import subprocess
 import sys
 import threading
@@ -392,7 +394,7 @@ def _kill_tree(proc: "subprocess.Popen", pgid: int | None = None) -> None:
         pass
 
 
-def _run_one_file(
+def _run_one_file_inner(
     file: Path,
     pytest_args: List[str],
     repo_root: Path,
@@ -460,12 +462,98 @@ def _run_one_file(
     return file, rc, output, summary, subproc_wall
 
 
+def _run_one_file(
+    file: Path,
+    pytest_args: List[str],
+    repo_root: Path,
+    file_timeout: float,
+    retries: int = 0,
+) -> Tuple[Path, int, str, dict[str, int], float]:
+    """Announce the file, then run it (see ``_run_one_file_inner``).
+
+    The announcement is not decoration: the runner otherwise prints only
+    completed files, so a killed slice ends on the previous file's success line
+    and the file that was actually running is invisible. With this marker plus
+    the SIGTERM dump, a killed slice names its own culprit.
+    """
+    display = _format_file(file, repo_root)
+    _note_file_started(display)
+    try:
+        return _run_one_file_inner(file, pytest_args, repo_root, file_timeout, retries)
+    finally:
+        _note_file_finished(display)
+
+
 # Files that failed once and passed on retry, with both attempts' output.
 # Keeping the traceback is load-bearing: a self-healed flake without its
 # failing assertion is only a filename, which forces another expensive full
 # run to rediscover the race.
 _FLAKY_RESULTS: List[Tuple[Path, str]] = []
 _flaky_lock = threading.Lock()
+
+# Files currently inside a worker, as {display_path: monotonic start}.
+#
+# The runner prints a line only when a file *finishes*, so a killed run ends on
+# the previous file's success line and the file that was actually running is
+# invisible. On fix/ci-red-main-266 two slices were killed that way and the log
+# gave no way to name the culprit. A start marker plus the signal dump below
+# make every future kill self-explaining.
+_IN_FLIGHT: Dict[str, float] = {}
+_in_flight_lock = threading.Lock()
+
+
+def _worker_index() -> int:
+    """Index of the current ThreadPoolExecutor worker, or -1 outside the pool."""
+    match = re.search(r"_(\d+)$", threading.current_thread().name)
+    return int(match.group(1)) if match else -1
+
+
+def _note_file_started(display: str) -> None:
+    with _in_flight_lock:
+        _IN_FLIGHT[display] = time.monotonic()
+    print(f"▶ w{_worker_index()} {display}", flush=True)
+
+
+def _note_file_finished(display: str) -> None:
+    with _in_flight_lock:
+        _IN_FLIGHT.pop(display, None)
+
+
+def _format_in_flight(now: float | None = None) -> List[str]:
+    """One line per in-flight file, longest-running first."""
+    stamp = time.monotonic() if now is None else now
+    with _in_flight_lock:
+        items = sorted(_IN_FLIGHT.items(), key=lambda kv: kv[1])
+    return [f"  {path} — running {stamp - began:.0f}s" for path, began in items]
+
+
+def _install_kill_dump() -> None:
+    """On SIGTERM/SIGINT, name the files that were still running.
+
+    A CI runner being shut down sends SIGTERM; without this the process dies
+    silently and the last log line belongs to a file that *finished*.
+    """
+
+    def _dump(signum: int, _frame: object) -> None:
+        lines = _format_in_flight()
+        print(
+            f"\n=== ✗ signal {signum}: {len(lines)} file(s) were still running ===",
+            flush=True,
+        )
+        for line in lines:
+            print(line, flush=True)
+        print("  Look at these first — the run was killed while they were open.", flush=True)
+        signal.signal(signum, signal.SIG_DFL)
+        os.kill(os.getpid(), signum)
+
+    for name in ("SIGTERM", "SIGINT", "SIGHUP"):
+        sig = getattr(signal, name, None)
+        if sig is None:
+            continue
+        try:
+            signal.signal(sig, _dump)
+        except (ValueError, OSError):  # not the main thread, or unsupported
+            pass
 
 
 def _run_one_file_once(
@@ -835,6 +923,11 @@ def main() -> int:
             _stream.reconfigure(encoding="utf-8", errors="replace")
         except (AttributeError, ValueError):
             pass  # stream not reconfigurable (e.g. already text-wrapped)
+
+    # Name the in-flight files if the runner is killed mid-slice (SIGTERM from a
+    # shutting-down CI runner, SIGINT from a terminal). Without it the last log
+    # line belongs to a file that *finished*.
+    _install_kill_dump()
 
     parser = argparse.ArgumentParser(
         description=__doc__,
