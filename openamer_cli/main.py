@@ -430,6 +430,7 @@ from typing import Optional
 
 from openamer_cli.subcommands._shared import add_accept_hooks_flag as _add_accept_hooks_flag
 from openamer_cli.subcommands.cron import build_cron_parser
+from openamer_cli.subcommands.genesis import build_genesis_parser
 from openamer_cli.subcommands.gateway import build_gateway_parser
 from openamer_cli.subcommands.profile import build_profile_parser
 from openamer_cli.subcommands.model import build_model_parser
@@ -18399,6 +18400,11 @@ def main():
     # asi command — ASI Core (parser built in openamer_cli/subcommands/asi.py)
     # =========================================================================
     build_asi_parser(subparsers)
+
+    # =========================================================================
+    # genesis command — status of the 24 Genesis Directives
+    # =========================================================================
+    build_genesis_parser(subparsers)
 
     # =========================================================================
     # claw command  (parser built in openamer_cli/subcommands/claw.py)
