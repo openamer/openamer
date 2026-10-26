@@ -142,5 +142,52 @@ def test_publish_workflow_still_checks_out_the_default_branch_only() -> None:
     assert "head_sha" not in ref, "publisher must never check out the untrusted PR head"
 
 
+def _label_rerun_script() -> str:
+    jobs = _jobs(_load("label-rerun.yml"))
+    step = _steps(jobs["rerun-review-labels"])[0]
+    return str(step.get("run", ""))
+
+
+def _label_rerun_code() -> str:
+    """The script without comments — the docstrings above quote the old bug."""
+    return "\n".join(line for line in _label_rerun_script().splitlines() if not line.lstrip().startswith("#"))
+
+
+def test_label_rerun_parses_id_and_status_independently() -> None:
+    """`RUN_ID="${X%% *}"` followed by `STATUS="${X##* }"` reads the same variable twice.
+
+    The second expansion runs on the already-truncated value, so STATUS becomes
+    the run id: never "completed", so every run looked in progress and the job
+    sat in `gh run watch` for its whole timeout before rerunning a stale run.
+    """
+    script = _label_rerun_code()
+    assert "%% *}" not in script, (
+        "do not truncate the run entry and then split it again; parse the id and the "
+        "status as separate fields (cut -f1 / -f2) instead"
+    )
+    assert "##* }" not in script, "same bug, other expansion: STATUS re-reads the truncated variable"
+    assert "cut -f1" in script and "cut -f2" in script, "expected an explicit two-field split"
+
+
+def test_label_rerun_resolves_the_latest_run_again_after_waiting() -> None:
+    """Rerunning a stale run cancels the newer one — including its unfinished lanes.
+
+    The job can wait ~35 minutes for a run to complete. Anything pushed in that
+    window owns the `ci-<ref>` concurrency group; rerunning the old run then
+    cancels it, so the newest commit is never validated. The script must
+    re-resolve the latest run and bail out if it changed.
+    """
+    script = _label_rerun_code()
+    resolve_calls = script.count("latest_ci_run") + script.count("gh run list")
+    assert resolve_calls >= 2, (
+        "the run must be resolved twice: once on entry and once after the wait, to "
+        f"prove it is still the latest. Found {resolve_calls} resolution call(s)"
+    )
+    assert "CURRENT_ID" in script, "expected the run id to be re-resolved after the wait"
+    assert '"$CURRENT_ID" != "$RUN_ID"' in script, (
+        "expected an explicit 'a newer run appeared, leave it alone' guard"
+    )
+
+
 if __name__ == "__main__":  # pragma: no cover
     raise SystemExit(pytest.main([__file__, "-v"]))
