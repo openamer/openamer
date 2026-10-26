@@ -133,6 +133,27 @@ def test_e2e_evidence_publisher_degrades_without_a_session_token() -> None:
     )
 
 
+def test_the_gate_checks_out_the_script_it_runs() -> None:
+    """A step that runs a repo script needs the repo on disk.
+
+    The verdict rules moved out of an inline heredoc into
+    scripts/ci/evaluate_needs.py. The gate job has no checkout by default, so the
+    first run of that change died with
+    "python3: can't open file '.../scripts/ci/evaluate_needs.py'" -- a red gate
+    that had nothing to do with any test, and would have read as a test failure.
+    """
+    jobs = _jobs(_load("ci.yml"))
+    gate_steps = _steps(jobs["all-checks-pass"])
+    runs_repo_script = any(
+        "scripts/" in str(step.get("run", "")) for step in gate_steps
+    )
+    if not runs_repo_script:
+        pytest.skip("the gate no longer runs a repository script")
+    assert any(
+        "actions/checkout" in str(step.get("uses", "")) for step in gate_steps
+    ), "all-checks-pass runs a repo script but never checks the repo out"
+
+
 def test_publish_workflow_still_checks_out_the_default_branch_only() -> None:
     """The publisher treats the artifact as untrusted: it must never check out PR code."""
     jobs = _jobs(_load("publish-e2e-evidence.yml"))

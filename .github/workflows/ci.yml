@@ -287,6 +287,11 @@ jobs:
     outputs:
       needs-json: ${{ steps.evaluate.outputs.needs-json }}
     steps:
+      # The verdict rules live in scripts/ci/evaluate_needs.py, so the job needs the
+      # repository on disk — without this checkout python3 fails with
+      # "can't open file .../scripts/ci/evaluate_needs.py" and the gate reports a
+      # failure that has nothing to do with any test.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Evaluate job results
         id: evaluate
         env:
