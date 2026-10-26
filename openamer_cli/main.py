@@ -446,6 +446,8 @@ from openamer_cli.subcommands.hooks import build_hooks_parser
 from openamer_cli.subcommands.doctor import build_doctor_parser
 from openamer_cli.subcommands.security import build_security_parser
 from openamer_cli.subcommands.dump import build_dump_parser
+from openamer_cli.subcommands.apis import build_apis_parser
+from openamer_cli.subcommands.re import build_re_parser
 from openamer_cli.subcommands.identity import build_identity_parser
 from openamer_cli.subcommands.debug import build_debug_parser
 from openamer_cli.subcommands.backup import build_backup_parser
@@ -15339,7 +15341,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "send", "sessions", "setup",
         "skin", "skills", "slack", "status", "tools", "uninstall", "update",
         "version", "webhook", "whatsapp", "whatsapp-cloud", "chat", "secrets", "security",
-        "a2a", "asi", "system", "identity",
+        "a2a", "asi", "system", "identity", "apis", "re",
         # Registered subparsers that were never declared here. The gating test
         # (tests/openamer_cli/test_startup_plugin_gating.py) derives the live
         # set from the real parser and fails when one is missing, because an
@@ -16422,6 +16424,8 @@ def main():
     from openamer_cli.identity import cmd_identity
 
     build_identity_parser(subparsers, cmd_identity=cmd_identity)
+    build_re_parser(subparsers)
+    build_apis_parser(subparsers)
 
     # =========================================================================
     # debug command  (parser built in openamer_cli/subcommands/debug.py)
