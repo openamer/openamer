@@ -1,14 +1,14 @@
-[autopatch] validating population (2026-10-25T07:55:46) ...
-[autopatch] population: 1193 skills, avg 38.6
-[autopatch] 10 weak skills: auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), auto-structural-connection-between-tool(21), auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), auto-multidomain-learning-neural-duhagery(21), auto-multidomain-learning-openaiembeddings25-(21), auto-multidomain-learning-opensource-medical(21)
+[autopatch] validating population (2026-10-26T15:00:43) ...
+[autopatch] population: 1197 skills, avg 38.6
+[autopatch] 10 weak skills: auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), auto-structural-connection-between-tool(21), auto-competitor-intelligence-layerfs-a(21), auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), auto-multidomain-learning-philosophy-of(21), auto-multidomain-learning-python-legalaiautom(21)
 [autopatch] ✅ auto-internet-learning-metas-new: 21 → 31
 [autopatch] ✅ auto-internet-learning-openai-hacked: 21 → 31
 [autopatch] ✅ auto-latest-research-insight-cultural: 21 → 31
 [autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
+[autopatch] ✅ auto-competitor-intelligence-layerfs-a: 21 → 25
 [autopatch] ✅ auto-internet-learning-metas-new: 21 → 31
 [autopatch] ✅ auto-internet-learning-openai-hacked: 21 → 31
 [autopatch] ✅ auto-latest-research-insight-cultural: 21 → 31
-[autopatch] ✅ auto-multidomain-learning-neural-duhagery: 21 → 28
-[autopatch] ✅ auto-multidomain-learning-openaiembeddings25-: 21 → 28
-[autopatch] ✅ auto-multidomain-learning-opensource-medical: 21 → 28
+[autopatch] ✅ auto-multidomain-learning-philosophy-of: 21 → 28
+[autopatch] ✅ auto-multidomain-learning-python-legalaiautom: 21 → 28
 [autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md
