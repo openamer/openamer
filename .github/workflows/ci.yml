@@ -291,25 +291,12 @@ jobs:
         id: evaluate
         env:
           NEEDS: ${{ toJSON(needs) }}
-        run: |
-          echo "$NEEDS" | python3 -c "
-          import json, sys
-          needs = json.load(sys.stdin)
-          # Emit compact {job_name: result} for the comment assembler.
-          compact = {name: info['result'] for name, info in needs.items()}
-          print(f'needs-json={json.dumps(compact)}')
-          with open('$GITHUB_OUTPUT', 'a') as f:
-              f.write(f'needs-json={json.dumps(compact)}\n')
-          failed = [name for name, info in needs.items() if info['result'] == 'failure']
-          for name, info in sorted(needs.items()):
-              result = info['result']
-              icon = '✅' if result in ('success', 'skipped') else '❌'
-              print(f'{icon} {name}: {result}')
-          if failed:
-              print(f'::error::{len(failed)} job(s) failed: {\", \".join(failed)}')
-              sys.exit(1)
-          print('All checks passed (or were skipped)')
-          "
+        # The verdict rules live in scripts/ci/evaluate_needs.py so they can be
+        # tested directly (tests/ci/test_evaluate_needs.py). This step used to
+        # inline them and fail only on `result == 'failure'`, which made a run
+        # with a cancelled classifier and fourteen skipped lanes print
+        # "All required checks pass" — green over an empty run.
+        run: python3 scripts/ci/evaluate_needs.py
 
   # ─────────────────────────────────────────────────────────────────────
   # CI timing report: collect per-job/step durations from the GitHub API,
