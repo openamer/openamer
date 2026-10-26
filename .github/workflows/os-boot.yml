@@ -38,7 +38,7 @@ jobs:
       - name: Install the pinned Rust toolchain
         run: |
           rustup toolchain install nightly --profile minimal \
-            --component llvm-tools-preview,rustfmt,clippy \
+            --component llvm-tools-preview,rustfmt,clippy,rust-src \
             --target x86_64-unknown-none,x86_64-unknown-uefi
           rustup default nightly
           cargo --version
