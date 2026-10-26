@@ -63,18 +63,31 @@ def test_the_module_imports(store):
     assert mod.STORE
 
 
-def test_load_skips_records_without_text_and_embedding(store):
-    """A foreign/heartbeat line must never reach index/query/stats."""
+def test_load_keeps_text_without_embedding_but_skips_empty_lines(store):
+    """Text is what makes a line a memory; a missing vector is not a reason to drop it.
+
+    This test used to require that a record without an embedding be discarded.
+    That requirement was the bug: 996 of 8,095 real memories carried text but no
+    vector (written before the embedding pass existed, or by a writer that failed
+    to embed) and were invisible to index, query and stats. Only the keyword half
+    of the hybrid search could ever have found them, and the vector half silently
+    contributed nothing.
+
+    The contract now: a line with text is a memory. A line without text is not
+    (heartbeats, counters, and compressed markers are written that way). A memory
+    without a vector is still returned by ``_load``; ``query`` handles the missing
+    vector when it scores.
+    """
     mod, target = store
     _write(target, [
-        {"ts": "x", "kind": "compressed", "text": "no embedding here"},
+        {"ts": "x", "kind": "compressed", "text": "text but no vector"},
         {"ts": "x", "kind": "brain_user", "text": "real", "embedding": [0.1, 0.2]},
         {"ts": "x", "kind": "heartbeat"},
     ])
 
     loaded = mod._load()
 
-    assert [e["text"] for e in loaded] == ["real"]
+    assert [e["text"] for e in loaded] == ["text but no vector", "real"]
 
 
 def test_save_does_not_delete_records_load_skipped(store):
