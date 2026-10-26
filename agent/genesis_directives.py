@@ -337,6 +337,21 @@ def render_genesis_block(max_chars: int = 9000, enabled: bool = True) -> str:
     for d in GENESIS_DIRECTIVES:
         lines.append(f"- **{d.id} — {d.title}** ({d.scope}): {d.rule}")
 
+    # Static on purpose: this block is part of the cached prompt prefix, so it
+    # must not carry a live number that changes per turn. It points at the one
+    # authority that does hold current state.
+    lines.extend(
+        [
+            "",
+            "Status questions about a directive are answered by `openamer directive`,"
+            " which resolves each directive's evidence path and reports ENFORCED /"
+            " PARTIAL / GATED / RESEARCH / NOT_IMPLEMENTED. Never infer a directive's"
+            " state from memory, from prose, or from a file name that looks related:"
+            " a module name is not an implementation, and an absent file name is not"
+            " an absent capability.",
+        ]
+    )
+
     text = "\n".join(lines).strip()
     if len(text) > max_chars:
         text = text[:max_chars].rsplit("\n", 1)[0] + "\n..."
