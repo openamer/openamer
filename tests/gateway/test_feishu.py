@@ -198,13 +198,11 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
         from plugins.platforms.feishu.adapter import FeishuAdapter
 
         adapter = FeishuAdapter(PlatformConfig())
-        runner = AsyncMock()
-        site = AsyncMock()
-        web_module = SimpleNamespace(
-            Application=lambda **_kwargs: SimpleNamespace(router=SimpleNamespace(add_post=lambda *_args, **_kwargs: None)),
-            AppRunner=lambda _app: runner,
-            TCPSite=lambda _runner, host, port: SimpleNamespace(start=site.start, host=host, port=port),
-        )
+        # Webhook mode binds through the shared ingress helper (multiplexed
+        # listeners), not by constructing web.AppRunner/TCPSite itself. Patching
+        # the old trio left the real helper receiving a fake Application and
+        # failing with "first argument should be web.Application instance".
+        bind_listener = AsyncMock(return_value=SimpleNamespace(name="runner"))
 
         with (
             patch("plugins.platforms.feishu.adapter.FEISHU_AVAILABLE", True),
@@ -214,14 +212,14 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
             patch("plugins.platforms.feishu.adapter.release_scoped_lock"),
             patch.object(adapter, "_hydrate_bot_identity", new=AsyncMock()),
             patch.object(adapter, "_build_lark_client", return_value=SimpleNamespace()),
-            patch("plugins.platforms.feishu.adapter.web", web_module),
+            patch("gateway.platforms.shared_ingress.bind_listener", new=bind_listener),
         ):
             _mock_event_dispatcher_builder(mock_handler_class)
             connected = asyncio.run(adapter.connect())
 
         self.assertTrue(connected)
-        runner.setup.assert_awaited_once()
-        site.start.assert_awaited_once()
+        bind_listener.assert_awaited_once()
+        self.assertEqual(adapter._webhook_runner.name, "runner")
 
     @patch.dict(os.environ, {
         "FEISHU_APP_ID": "cli_app",
@@ -1549,7 +1547,9 @@ class TestAdapterBehavior(unittest.TestCase):
         text, msg_type, media_urls, media_types, _mentions = asyncio.run(adapter._extract_message_content(message))
 
         self.assertEqual(text, "")
-        self.assertEqual(msg_type.value, "audio")
+        # A Lark voice note is classified VOICE, not AUDIO, so the gateway
+        # auto-transcribes it (see _resolve_normalized_message_type, #28993).
+        self.assertEqual(msg_type.value, "voice")
         self.assertEqual(media_urls, ["/tmp/feishu-audio.ogg"])
         self.assertEqual(media_types, ["audio/ogg"])
 
@@ -2062,8 +2062,11 @@ class TestAdapterBehavior(unittest.TestCase):
                             side_effect=lambda **_kwargs: _FakeAsyncClient(),
                         ):
                             with patch(
-                                "plugins.platforms.feishu.adapter.cache_document_from_bytes",
-                                return_value="/tmp/cached-doc.bin",
+                                # The adapter caches through the *async* helper; the sync
+                                # name is not imported here, so patching it raised
+                                # AttributeError instead of exercising the read ordering.
+                                "plugins.platforms.feishu.adapter.cache_document_from_bytes_async",
+                                new=AsyncMock(return_value="/tmp/cached-doc.bin"),
                             ):
                                 return await adapter._download_remote_document(
                                     "https://example.com/doc.bin",
@@ -2143,9 +2146,11 @@ class TestAdapterBehavior(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_home:
             with patch.dict(os.environ, {"OPENAMER_HOME": temp_home}, clear=False):
                 first = FeishuAdapter(PlatformConfig())
-                self.assertFalse(first._is_duplicate("om_same"))
+                # _is_duplicate is a coroutine: it flushes the dedup state through the
+                # adapter's own executor, so it cannot be called synchronously.
+                self.assertFalse(asyncio.run(first._is_duplicate("om_same")))
                 second = FeishuAdapter(PlatformConfig())
-                self.assertTrue(second._is_duplicate("om_same"))
+                self.assertTrue(asyncio.run(second._is_duplicate("om_same")))
 
     @patch.dict(os.environ, {}, clear=True)
     def test_process_inbound_group_message_keeps_group_type_when_chat_lookup_falls_back(self):
@@ -3699,7 +3704,7 @@ class TestDedupTTL(unittest.TestCase):
         with patch.object(adapter, "_persist_seen_message_ids"):
             adapter._seen_message_ids = {"om_dup": time.time()}
             adapter._seen_message_order = ["om_dup"]
-            self.assertTrue(adapter._is_duplicate("om_dup"))
+            self.assertTrue(asyncio.run(adapter._is_duplicate("om_dup")))
 
     @patch.dict(os.environ, {}, clear=True)
     def test_expired_entry_is_not_considered_duplicate(self):
@@ -3712,7 +3717,7 @@ class TestDedupTTL(unittest.TestCase):
         adapter._seen_message_ids = {"om_old": stale_ts}
         adapter._seen_message_order = ["om_old"]
         with patch.object(adapter, "_persist_seen_message_ids"):
-            self.assertFalse(adapter._is_duplicate("om_old"))
+            self.assertFalse(asyncio.run(adapter._is_duplicate("om_old")))
 
     @patch.dict(os.environ, {}, clear=True)
     def test_load_tolerates_malformed_timestamp_values(self):
