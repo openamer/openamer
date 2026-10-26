@@ -8,3 +8,14 @@ web/package-lock.json linguist-generated=true
 Dockerfile  text eol=lf
 *.dockerfile text eol=lf
 docker/entrypoint.sh text eol=lf
+
+# s6-overlay service definitions are read byte-for-byte rather than run through
+# a shell: s6-rc-compile compares the entire contents of a `type` file against
+# the literals oneshot/longrun/bundle. A file whose content is "longrun" plus a
+# carriage return is not one of them, and the compiler aborts container init:
+#   s6-rc-compile: fatal: invalid /etc/s6-overlay/s6-rc.d/main-openamer/type
+# Every container in the image then hangs before it can run anything, which is
+# what turned the whole docker test lane red. `run`/`finish` need LF for the
+# shebang line to resolve. Pin the whole tree, not just *.sh, so the files
+# without an extension (type, run, finish) are covered too.
+docker/s6-rc.d/** text eol=lf

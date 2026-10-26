@@ -165,6 +165,13 @@ jobs:
       - name: Upload per-slice durations
         # Advisory artifact (feeds slice balancing) — a transient artifact-
         # service blip must not fail an otherwise-green test slice.
+        #
+        # It must ALSO run when the slice failed: a slice that ran out of time
+        # is the one whose measurements the balancer needs most, and skipping
+        # the upload on failure is how the LPT distribution stayed wrong run
+        # after run (the heavy file stayed under-estimated, landed in a bucket
+        # with a full load of small files, and blew the slice again).
+        if: always()
         continue-on-error: true
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -176,16 +183,26 @@ jobs:
   # (including PRs) get balanced slicing.
   save-durations:
     needs: test
-    if: needs.test.result == 'success' && github.ref == 'refs/heads/main'
+    # `always()`, not `result == 'success'`: the run that failed is precisely
+    # the one whose durations must reach the next run's balancer. Gated on
+    # success, a single bad slice froze the cache at whatever distribution was
+    # last measured green — so the mis-bucketing that caused the failure was
+    # replayed on every subsequent run. Slices that did finish still publish
+    # their durations; the merge below simply unions what arrived.
+    if: always() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Download all slice durations
+        # A failed/timed-out slice may have uploaded nothing; that must not
+        # turn into a hard error on an advisory merge.
+        continue-on-error: true
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           pattern: test-durations-slice-*
           path: durations
           merge-multiple: true
+
 
       - name: Merge into single durations file
         run: |
