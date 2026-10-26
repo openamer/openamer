@@ -205,9 +205,10 @@ jobs:
 
 
       - name: Merge into single durations file
+        id: merge
         run: |
           python3 -c "
-          import json, glob, os
+          import glob, json, os
           merged = {}
           for f in glob.glob('durations/*test_durations.json'):
             with open(f) as fh:
@@ -215,9 +216,18 @@ jobs:
           with open('test_durations.json', 'w') as fh:
             json.dump(merged, fh, indent=2, sort_keys=True)
           print(f'Merged {len(merged)} file durations')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+            out.write(f'count={len(merged)}\n')
           "
 
       - name: Save merged duration cache
+        # Never overwrite the cache with an empty table. With save-durations now
+        # running on failed runs too, a run where no slice published anything
+        # (all cancelled, or uploads lost) would otherwise save `{}` and wipe
+        # the last known-good durations. LPT would then have no data at all and
+        # fall back to discovery order, which piles the heavy files together —
+        # strictly worse than a stale cache.
+        if: steps.merge.outputs.count != '0'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: test_durations.json

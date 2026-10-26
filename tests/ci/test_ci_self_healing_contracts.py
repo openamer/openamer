@@ -100,6 +100,19 @@ def test_durations_are_uploaded_before_the_cache_is_merged() -> None:
     assert download.get("uses", "").startswith("actions/download-artifact"), download.get("uses")
 
 
+def test_an_empty_merge_never_overwrites_the_duration_cache() -> None:
+    """Learning from failures must not become 'replace data with nothing'."""
+    steps = _steps(_jobs(_load("tests.yml"))["save-durations"])
+    save = next(s for s in steps if str(s.get("uses", "")).startswith("actions/cache/save"))
+    condition = str(save.get("if", ""))
+    assert "count" in condition, (
+        "the cache save must be gated on the merged duration count: with the merge "
+        "running on failed runs, an all-cancelled run would save an empty table and "
+        f"wipe the last known-good distribution. Found if: {condition!r}"
+    )
+    assert "!= '0'" in condition or "!= \"0\"" in condition, condition
+
+
 def test_e2e_evidence_publisher_degrades_without_a_session_token() -> None:
     jobs = _jobs(_load("publish-e2e-evidence.yml"))
     job = jobs["publish"]
