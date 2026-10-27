@@ -14,17 +14,23 @@ import json
 from pathlib import Path
 import tempfile
 import threading
+import time
 import uuid
 from urllib.parse import parse_qs, urlencode, urlsplit
 
 MAX_CHECKS = 10
 MAX_BODY = 65536
+SOCKET_TIMEOUT = 3
+# Whole-run budget: a per-socket timeout alone does not bound a slow-drip server.
+RUN_DEADLINE_SECONDS = 60
 
 
 def validate_manifest(manifest):
     if not isinstance(manifest, dict):
         raise ValueError('Manifest must be an object')
     origin = manifest.get('origin', '')
+    if not isinstance(origin, str):
+        raise ValueError('Origin must be a string')
     parsed = urlsplit(origin)
     try:
         address = ipaddress.ip_address(parsed.hostname or '')
@@ -54,15 +60,26 @@ def validate_manifest(manifest):
                 value = check.get(key)
                 if not isinstance(value, str) or not 8 <= len(value) <= 1024:
                     raise ValueError(f'canary-read requires {key} (8..1024 characters)')
-            if check['marker'] in check['payload'] or check['marker'] in check['control']:
-                raise ValueError('Canary marker must not be present in the request inputs')
+            # The marker must not be derivable from ANY request input, otherwise a
+            # server that merely reflects the path or query would look like a
+            # disclosure (a false 'confirmed' with no file access at all).
+            for source, label in ((path, 'path'), (parameter, 'parameter'),
+                                  (check['control'], 'control'), (check['payload'], 'payload')):
+                if check['marker'] in source:
+                    raise ValueError(f'Canary marker must not be present in the {label}')
     return parsed
 
 
-def exchange(origin, path):
+def exchange(origin, path, deadline=None):
     """One direct connection, no proxy or redirect logic. Evidence excludes cookies."""
     parsed = urlsplit(origin)
-    connection = http.client.HTTPConnection(parsed.hostname, parsed.port, timeout=3)
+    timeout = SOCKET_TIMEOUT
+    if deadline is not None:
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError('Assessment deadline exceeded before request')
+        timeout = min(SOCKET_TIMEOUT, remaining)
+    connection = http.client.HTTPConnection(parsed.hostname, parsed.port, timeout=timeout)
     request = f'GET {path} HTTP/1.1\r\nHost: {parsed.netloc}\r\nConnection: close\r\n\r\n'
     try:
         connection.putrequest('GET', path, skip_host=True, skip_accept_encoding=True)
@@ -70,25 +87,56 @@ def exchange(origin, path):
         connection.putheader('Connection', 'close')
         connection.endheaders()
         response = connection.getresponse()
-        body = response.read(MAX_BODY + 1)
+        body, read_error = _read_body(response, deadline)
         headers = {key.lower(): value for key, value in response.getheaders()
                    if key.lower() in {'location', 'content-type', 'content-length'}}
         return {
             'request': request,
+            'request_is_reconstructed': True,
             'response': {'status': response.status, 'headers': headers,
                          'body': body[:MAX_BODY].decode('utf-8', errors='replace'),
                          'body_sha256': hashlib.sha256(body[:MAX_BODY]).hexdigest(),
-                         'truncated': len(body) > MAX_BODY},
+                         'truncated': len(body) > MAX_BODY or read_error is not None,
+                         'read_error': read_error},
         }
     finally:
         connection.close()
 
 
-def assess(manifest, *, authorized=False):
+def _read_body(response, deadline=None):
+    """Read the body under a hard wall-clock budget.
+
+    A per-socket timeout only bounds a single blocking read: a server that
+    trickles bytes can keep a plain ``read()`` alive indefinitely. Reading in
+    bounded chunks and re-checking the deadline bounds the whole exchange.
+    """
+    chunks = []
+    total = 0
+    error = None
+    while True:
+        if deadline is not None and time.monotonic() >= deadline:
+            error = 'deadline exceeded while reading body'
+            break
+        try:
+            chunk = response.read1(16384)
+        except (TimeoutError, OSError) as exc:
+            error = f'{type(exc).__name__}: {exc}'
+            break
+        if not chunk:
+            break
+        chunks.append(chunk)
+        total += len(chunk)
+        if total > MAX_BODY:
+            break
+    return b''.join(chunks)[:MAX_BODY + 1], error
+
+
+def assess(manifest, *, authorized=False, deadline_seconds=RUN_DEADLINE_SECONDS):
     if not authorized:
         raise ValueError('Explicit target authorization is required')
     validate_manifest(manifest)
     origin = manifest['origin']
+    deadline = time.monotonic() + deadline_seconds
     results = []
     for check in manifest['checks']:
         item = {'kind': check['kind'], 'path': check['path'], 'parameter': check['parameter'],
@@ -101,7 +149,7 @@ def assess(manifest, *, authorized=False):
         try:
             for value in (control, payload, payload):
                 path = check['path'] + '?' + urlencode({check['parameter']: value})
-                item['exchanges'].append(exchange(origin, path))
+                item['exchanges'].append(exchange(origin, path, deadline=deadline))
             baseline, first, repeat = [e['response'] for e in item['exchanges']]
             if any(r['truncated'] or r['status'] >= 500 for r in (baseline, first, repeat)):
                 item['reason'] = 'Truncated body or server error; no conclusion'
@@ -161,7 +209,12 @@ def run_lab(output):
         marker = 'SYNTHETIC-CANARY-' + uuid.uuid4().hex
         (root / 'canary.txt').write_text(marker, encoding='utf-8')
         for fixed in (False, True):
+            # The mode is bound per server (not read from a loop variable) so a
+            # request thread that outlives the server can never change meaning
+            # halfway through a response.
             class Handler(BaseHTTPRequestHandler):
+                is_fixed = fixed
+
                 def log_message(self, *args):
                     pass
 
@@ -170,7 +223,7 @@ def run_lab(output):
                     query = parse_qs(parsed.query)
                     if parsed.path == '/redirect':
                         dest = query.get('next', ['/'])[0]
-                        if fixed and (not dest.startswith('/') or dest.startswith('//')):
+                        if self.is_fixed and (not dest.startswith('/') or dest.startswith('//')):
                             self.send_error(400)
                             return
                         self.send_response(302)
@@ -179,7 +232,8 @@ def run_lab(output):
                     elif parsed.path == '/download':
                         candidate = (public / query.get('file', ['missing.txt'])[0]).resolve()
                         # Even the vulnerable fixture cannot access outside synthetic data.
-                        if not candidate.is_relative_to(root) or (fixed and not candidate.is_relative_to(public)):
+                        if (not candidate.is_relative_to(root)
+                                or (self.is_fixed and not candidate.is_relative_to(public))):
                             self.send_error(403)
                             return
                         if not candidate.is_file():
@@ -193,7 +247,13 @@ def run_lab(output):
                     else:
                         self.send_error(404)
 
-            server = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
+            class Server(ThreadingHTTPServer):
+                # Wait for in-flight request threads on close, so no thread can
+                # outlive the fixture and touch a deleted temporary directory.
+                daemon_threads = False
+                block_on_close = True
+
+            server = Server(('127.0.0.1', 0), Handler)
             thread = threading.Thread(target=server.serve_forever, daemon=True)
             thread.start()
             try:
