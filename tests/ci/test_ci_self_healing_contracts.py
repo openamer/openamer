@@ -154,6 +154,49 @@ def test_the_gate_checks_out_the_script_it_runs() -> None:
     ), "all-checks-pass runs a repo script but never checks the repo out"
 
 
+def test_docker_publish_does_not_fail_without_credentials() -> None:
+    """A lane that can never pass must say so, not fail cryptically.
+
+    Every docker.yml run on main failed with docker's
+    "##[error]Username and password required": this repository has no
+    DOCKERHUB_USERNAME / DOCKERHUB_TOKEN secret, so `docker login` cannot work and
+    the whole publish lane was permanently red for a configuration gap nobody could
+    see. The publish job now checks the credentials first, warns loudly, and skips
+    the push; the moment the secrets exist it publishes as before.
+    """
+    workflow = _load("docker.yml")
+    publish = _jobs(workflow)["publish"]
+    steps = _steps(publish)
+
+    assert publish.get("outputs", {}).get("credentials"), (
+        "publish must expose whether credentials were configured, so merge can skip"
+    )
+    check = next(
+        (s for s in steps if s.get("id") == "creds"), None
+    )
+    assert check is not None, "publish needs a credentials check step with id: creds"
+    check_run = str(check.get("run", ""))
+    assert "DOCKERHUB_USERNAME" in check_run and "GITHUB_OUTPUT" in check_run
+    assert "::warning" in check_run, "a skipped publish must announce why"
+
+    for name in ("Log in to Docker Hub",):
+        step = next((s for s in steps if s.get("name") == name), None)
+        assert step is not None, f"{name} disappeared from publish"
+        assert "steps.creds.outputs.configured" in str(step.get("if", "")), (
+            f"{name} must not run without credentials"
+        )
+    assert any(
+        "build-push-action" in str(s.get("uses", ""))
+        and "steps.creds.outputs.configured" in str(s.get("if", ""))
+        for s in steps
+    ), "the digest push must be gated on credentials too"
+
+    merge_if = str(_jobs(workflow)["merge"].get("if", ""))
+    assert "needs.publish.outputs.credentials" in merge_if, (
+        "merge would look for digests that were never pushed"
+    )
+
+
 def test_publish_workflow_still_checks_out_the_default_branch_only() -> None:
     """The publisher treats the artifact as untrusted: it must never check out PR code."""
     jobs = _jobs(_load("publish-e2e-evidence.yml"))
