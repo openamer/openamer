@@ -15330,7 +15330,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
     {
         "acp", "approvals", "auth", "backup", "bundles", "checkpoints", "claw", "completion",
         "computer-use",
-        "config", "console", "cron", "curator", "dashboard", "serve", "debug", "directive", "doctor",
+        "config", "console", "cron", "curator", "dashboard", "serve", "debug", "doctor",
         "dump", "egress", "fallback", "feedback", "gateway", "hooks", "import", "insights",
         "gui", "desktop", "hub", "kanban", "login", "logout", "logs", "lsp", "mcp", "memory", "migrate", "moa",
         "journey", "memory-graph", "learning",
@@ -15340,7 +15340,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "send", "sessions", "setup",
         "skin", "skills", "slack", "status", "tools", "uninstall", "update",
         "version", "webhook", "whatsapp", "whatsapp-cloud", "chat", "secrets", "security",
-        "a2a", "asi", "genesis", "system", "identity",
+        "a2a", "apis", "asi", "genesis", "re", "system", "identity",
         # Registered subparsers that were never declared here. The gating test
         # (tests/openamer_cli/test_startup_plugin_gating.py) derives the live
         # set from the real parser and fails when one is missing, because an
@@ -18417,9 +18417,11 @@ def main():
     build_version_parser(subparsers, cmd_version=cmd_version)
 
     build_a2a_parser(subparsers)
-    from openamer_cli.subcommands.directive import build_directive_parser
+    from openamer_cli.subcommands.apis import build_apis_parser
+    from openamer_cli.subcommands.re import build_re_parser
 
-    build_directive_parser(subparsers)
+    build_re_parser(subparsers)
+    build_apis_parser(subparsers)
     build_agent_parser(subparsers)
     build_marketplace_parser(subparsers)
     build_crew_parser(subparsers, cmd_crew=cmd_crew)
