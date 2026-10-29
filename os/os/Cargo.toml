@@ -1,0 +1,11 @@
+[package]
+name = "openamer-os"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+ovmf-prebuilt = "0.2.4"
+
+[build-dependencies]
+kernel = { path = "../kernel", artifact = "bin", target = "x86_64-unknown-none" }
+bootloader = { version = "0.11", features = ["bios", "uefi"] }
