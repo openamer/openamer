@@ -4670,7 +4670,14 @@ def cmd_doctor(args):
 
 def cmd_security(args):
     """Dispatch `openamer security <subcmd>`."""
-    sub = getattr(args, "security_command", None)
+    # The parser stores the subcommand under `security_cmd`; `security_command`
+    # is the legacy attribute some older paths still read. Accept both so the
+    # posture/check/audit/assess subcommands never fall through to the audit.
+    sub = getattr(args, "security_cmd", None) or getattr(args, "security_command", None)
+    if sub in ("check", "safe-mode", "posture", "assess", "lab"):
+        from openamer_cli.subcommands.security import _cmd_security
+
+        return _cmd_security(args)
     if sub in ("audit", None):
         from openamer_cli.security_audit import cmd_security_audit
 
