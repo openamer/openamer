@@ -48,10 +48,15 @@ def _home() -> Path:
 
 
 def _scripts_dir() -> Path:
-    for candidate in (_home() / "scripts", Path(__file__).resolve().parents[3] / "scripts"):
+    # re.py lives at <root>/openamer_cli/subcommands/re.py, so the repo's
+    # scripts/ is two levels up -- parents[3] is the directory ABOVE the
+    # checkout, which is why CI reported ModuleNotFoundError: No module named
+    # 'helix_scan' while a local install with %LOCALAPPDATA%\openamer-laptop    # scripts happened to work.
+    repo_scripts = Path(__file__).resolve().parents[2] / "scripts"
+    for candidate in (_home() / "scripts", repo_scripts):
         if (candidate / "helix_scan.py").is_file():
             return candidate
-    return _home() / "scripts"
+    return repo_scripts
 
 
 def _load_scanner():
