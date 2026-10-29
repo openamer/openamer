@@ -8,3 +8,19 @@ web/package-lock.json linguist-generated=true
 Dockerfile  text eol=lf
 *.dockerfile text eol=lf
 docker/entrypoint.sh text eol=lf
+
+# Everything under docker/ is consumed byte-for-byte inside the image, and both
+# of these break when a carriage return sneaks in:
+#
+#   s6-rc.d/<svc>/type   s6-rc-compile compares the whole file against the
+#                        literals oneshot/longrun/bundle. Content "longrun" plus
+#                        a CR is none of them, and it aborts init with
+#                        "s6-rc-compile: fatal: invalid .../main-openamer/type",
+#                        so every container hangs before it runs anything.
+#   cont-init.d/*        same class one stage later: the shebang line resolves
+#                        to an interpreter named "sh" plus a CR.
+#
+# Pin the whole directory rather than extensions: `type`, `run`, `finish` and
+# the cont-init hooks either have no extension or are not `*.sh`. docker/ holds
+# only text files today; a binary added later needs an explicit `-text`.
+docker/** text eol=lf

@@ -430,6 +430,7 @@ from typing import Optional
 
 from openamer_cli.subcommands._shared import add_accept_hooks_flag as _add_accept_hooks_flag
 from openamer_cli.subcommands.cron import build_cron_parser
+from openamer_cli.subcommands.genesis import build_genesis_parser
 from openamer_cli.subcommands.gateway import build_gateway_parser
 from openamer_cli.subcommands.profile import build_profile_parser
 from openamer_cli.subcommands.model import build_model_parser
@@ -446,8 +447,6 @@ from openamer_cli.subcommands.hooks import build_hooks_parser
 from openamer_cli.subcommands.doctor import build_doctor_parser
 from openamer_cli.subcommands.security import build_security_parser
 from openamer_cli.subcommands.dump import build_dump_parser
-from openamer_cli.subcommands.apis import build_apis_parser
-from openamer_cli.subcommands.re import build_re_parser
 from openamer_cli.subcommands.identity import build_identity_parser
 from openamer_cli.subcommands.debug import build_debug_parser
 from openamer_cli.subcommands.backup import build_backup_parser
@@ -15331,7 +15330,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
     {
         "acp", "approvals", "auth", "backup", "bundles", "checkpoints", "claw", "completion",
         "computer-use",
-        "config", "console", "cron", "curator", "dashboard", "serve", "debug", "doctor",
+        "config", "console", "cron", "curator", "dashboard", "serve", "debug", "directive", "doctor",
         "dump", "egress", "fallback", "feedback", "gateway", "hooks", "import", "insights",
         "gui", "desktop", "hub", "kanban", "login", "logout", "logs", "lsp", "mcp", "memory", "migrate", "moa",
         "journey", "memory-graph", "learning",
@@ -15341,7 +15340,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "send", "sessions", "setup",
         "skin", "skills", "slack", "status", "tools", "uninstall", "update",
         "version", "webhook", "whatsapp", "whatsapp-cloud", "chat", "secrets", "security",
-        "a2a", "asi", "system", "identity", "apis", "re",
+        "a2a", "asi", "genesis", "system", "identity",
         # Registered subparsers that were never declared here. The gating test
         # (tests/openamer_cli/test_startup_plugin_gating.py) derives the live
         # set from the real parser and fails when one is missing, because an
@@ -16424,8 +16423,6 @@ def main():
     from openamer_cli.identity import cmd_identity
 
     build_identity_parser(subparsers, cmd_identity=cmd_identity)
-    build_re_parser(subparsers)
-    build_apis_parser(subparsers)
 
     # =========================================================================
     # debug command  (parser built in openamer_cli/subcommands/debug.py)
@@ -18405,6 +18402,11 @@ def main():
     build_asi_parser(subparsers)
 
     # =========================================================================
+    # genesis command — status of the 24 Genesis Directives
+    # =========================================================================
+    build_genesis_parser(subparsers)
+
+    # =========================================================================
     # claw command  (parser built in openamer_cli/subcommands/claw.py)
     # =========================================================================
     build_claw_parser(subparsers, cmd_claw=cmd_claw)
@@ -18415,6 +18417,9 @@ def main():
     build_version_parser(subparsers, cmd_version=cmd_version)
 
     build_a2a_parser(subparsers)
+    from openamer_cli.subcommands.directive import build_directive_parser
+
+    build_directive_parser(subparsers)
     build_agent_parser(subparsers)
     build_marketplace_parser(subparsers)
     build_crew_parser(subparsers, cmd_crew=cmd_crew)
