@@ -186,7 +186,8 @@ def assess(manifest, *, authorized=False, deadline_seconds=RUN_DEADLINE_SECONDS)
                         'No finding is not a security certificate.',
                         'Local IPv4 HTTP staging only; no authenticated testing.',
                         'Evidence may contain application data. Keep reports private.',
-                        'Request/response evidence is application-level, not a packet capture.'],
+                        'Request/response evidence is application-level, not a packet capture.',
+                        'The recorded request text is reconstructed by the client, not captured.'],
     }
 
 
@@ -214,6 +215,10 @@ def run_lab(output):
             # halfway through a response.
             class Handler(BaseHTTPRequestHandler):
                 is_fixed = fixed
+                # A stuck client must not be able to hang server_close(): the
+                # fixture waits for its request threads (block_on_close), so
+                # each one needs its own socket timeout.
+                timeout = 5
 
                 def log_message(self, *args):
                     pass
