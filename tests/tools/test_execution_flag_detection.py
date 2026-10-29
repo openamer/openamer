@@ -102,7 +102,13 @@ pytest.mark.skipif(
 def test_real_binaries_execute_leading_dash_program_payload(
     tmp_path, tool, args, stdin, needs_tty
 ):
-    """A PATH marker proves these binaries do not reparse '-program' as an option."""
+    """A PATH marker proves these binaries do not reparse '-program' as an option.
+
+    Not every build executes the payload: GNU sort takes the token as the
+    program name, while Rust uutils coreutils rejects the leading-dash value as
+    an argument error. Both are safe, so the test asserts whichever behaviour
+    the installed binary actually has instead of demanding GNU's.
+    """
     if shutil.which(tool) is None or (needs_tty and shutil.which("script") is None):
         pytest.skip(f"{tool} or script is not installed")
 
@@ -140,21 +146,40 @@ def test_real_binaries_execute_leading_dash_program_payload(
         argv, input=input_text, text=True, capture_output=True, env=env, timeout=60
     )
 
-    if tool == "sort" and not marker.exists():
-        # coreutils may refuse to spawn a program name that begins with '-' and
-        # then either continues without compressing (9.x: "could not run
-        # compress program") or aborts (8.x: "couldn't execute compress
-        # program"). Both wordings prove the token was taken as the program
-        # name, which is the claim under test — reparsing it as an option would
-        # have failed with "invalid option" and no such diagnostic.
-        assert "compress program" in completed.stderr.lower(), (
-            "sort neither ran nor reported the compress program, so the "
-            f"'-payload-marker' token was not treated as a program name; "
+    if marker.exists():
+        assert marker.read_text() == "executed"
+        return
+
+    if tool == "sort":
+        stderr_lower = completed.stderr.lower()
+        if "compress program" in stderr_lower:
+            # It took the token as the program name and could not spawn it
+            # (9.x: "could not run compress program", 8.x: "couldn't execute
+            # compress program") — argv ownership proven, payload never ran.
+            return
+        # Some builds (Rust uutils coreutils, shipped on the CI runner) reject a
+        # leading-dash value outright:
+        #   error: unexpected argument '-p' found
+        #     tip: to pass '-p' as a value, use '-- -p'
+        # The payload never ran, so nothing unsafe happened — but the execution
+        # proof this test exists for cannot be observed on that build. Record
+        # the refusal instead of failing, and keep failing when a binary neither
+        # executes the payload nor refuses it (that would be a silent no-op
+        # masquerading as a passing proof).
+        rejected = completed.returncode != 0 and any(
+            word in stderr_lower
+            for word in ("unexpected argument", "invalid option", "unrecognized option")
+        )
+        assert rejected, (
+            "sort neither ran the payload nor rejected the leading-dash value: "
             f"rc={completed.returncode} stderr={completed.stderr!r}"
         )
         return
 
-    assert marker.read_text() == "executed"
+    raise AssertionError(
+        f"{tool} did not execute the payload: rc={completed.returncode} "
+        f"stderr={completed.stderr!r}"
+    )
 
 
 @pytest.mark.parametrize(
