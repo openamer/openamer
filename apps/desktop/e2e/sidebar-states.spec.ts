@@ -161,10 +161,16 @@ test.describe('sidebar states — subagent and background dot coexist', () => {
       { timeout: 90_000 },
     )
 
-    // After the turn + auto-dismiss, the background dot should be gone.
-    await page.waitForTimeout(8000)
-    const bgCount = await page.locator(`[aria-label="${BG_DOT_LABEL}"]`).count()
-    expect(bgCount, 'background dot should be gone after process exits').toBe(0)
+    // After the process exits and the dot auto-dismisses, it should be gone.
+    // Poll instead of a fixed 8s sleep: the mock's background command is a real
+    // sleep, so a wall-clock guess is either too short (dot still there) or too
+    // long (wasted time), and it silently assumed the process took exactly 5s.
+    await expect
+      .poll(
+        () => page.locator(`[aria-label="${BG_DOT_LABEL}"]`).count(),
+        { timeout: 60_000, message: 'background dot should be gone after process exits' },
+      )
+      .toBe(0)
   })
 })
 
@@ -190,7 +196,7 @@ test.describe('sidebar states — cross-session dot transition', () => {
   test('background dot transitions to finished when viewing another session', async () => {
     const page = fixture.page
 
-    // Start a turn with a long background process (sleep 5).
+    // Start a turn with a long background process (sleep 15).
     const composer = page.locator('[contenteditable="true"]').first()
     await composer.waitFor({ state: 'visible', timeout: 10_000 })
     await composer.click()
@@ -212,7 +218,7 @@ test.describe('sidebar states — cross-session dot transition', () => {
       { timeout: 90_000 },
     )
 
-    // The background dot should still be visible (sleep 5 hasn't finished yet,
+    // The background dot should still be visible (sleep 15 hasn't finished yet,
     // or auto-dismiss hasn't fired).
     const bgDuringTurn = await page.locator(`[aria-label="${BG_DOT_LABEL}"]`).count()
     expect(bgDuringTurn, 'background dot should still be visible after turn completes').toBeGreaterThan(0)
@@ -225,12 +231,12 @@ test.describe('sidebar states — cross-session dot transition', () => {
     await page.locator('button:has-text("New session")').first().click()
     await page.waitForTimeout(2000)
 
-    // Now wait for the background process to finish (sleep 5 + auto-dismiss).
+    // Now wait for the background process to finish (sleep 15 + auto-dismiss).
     // The session A dot should transition away from "background running".
     await expect
       .poll(
         () => page.locator(`[aria-label="${BG_DOT_LABEL}"]`).count(),
-        { timeout: 30_000, message: 'background dot should disappear after process finishes' },
+        { timeout: 60_000, message: 'background dot should disappear after process finishes' },
       )
       .toBe(0)
 
