@@ -38,6 +38,10 @@ import { isReauthRequiredError, waitForOpenAmerReady } from './backend-health'
 import { canImportOpenAmerCli, shouldTrustOpenAmerOverride, verifyOpenAmerCli } from './backend-probes'
 import { waitForDashboardPortAnnouncement } from './backend-ready'
 import { shouldLatchBackendStartFailure, shouldLatchRemoteReauthFailure } from './backend-start-failure'
+import {
+  decideBootstrapMarkerFallback,
+  mayTrustRuntimeWithoutMarker
+} from './bootstrap-marker-fallback'
 import { detectRemoteDisplay, isWindowsBinaryPathInWsl, isWslEnvironment } from './bootstrap-platform'
 import { runBootstrap } from './bootstrap-runner'
 import { applyConnectionChange, resolveTerminalConnection } from './connection-apply'
@@ -1083,6 +1087,11 @@ let remoteReauthFailure = null
 // Active first-launch install, so the renderer's Cancel button (and app quit)
 // can abort the in-flight install.sh/ps1 instead of leaving it running.
 let bootstrapAbortController = null
+// Set when the user explicitly triggers the "repair" flow. The repair path
+// deletes the bootstrap-complete marker on purpose to force the installer to
+// run again; without this flag the resolver would see "marker gone, but the
+// runtime imports fine" and skip the very reinstall the user asked for.
+let bootstrapRepairRequested = false
 let connectionConfigCache = null
 let connectionConfigCacheMtime = null
 const openamerLog = []
@@ -3474,17 +3483,12 @@ function isActiveRuntimeUsable() {
 function isBootstrapComplete() {
   const marker = readBootstrapMarker()
 
-  if (!marker || typeof marker !== 'object') {
-    return false
-  }
-
-  if (marker.schemaVersion !== BOOTSTRAP_MARKER_SCHEMA_VERSION) {
-    return false
-  }
-
-  if (typeof marker.pinnedCommit !== 'string' || marker.pinnedCommit.length < 7) {
-    return false
-  }
+  const markerValid =
+    Boolean(marker) &&
+    typeof marker === 'object' &&
+    marker.schemaVersion === BOOTSTRAP_MARKER_SCHEMA_VERSION &&
+    typeof marker.pinnedCommit === 'string' &&
+    marker.pinnedCommit.length >= 7
 
   // We DELIBERATELY do NOT verify that the checkout is currently at the
   // pinned commit -- users update via the in-app update path or `openamer
@@ -3493,7 +3497,36 @@ function isBootstrapComplete() {
   // a runnable venv: an interrupted or split-home install can leave the marker
   // + checkout without a venv, and trusting that spawns a dead backend
   // ("gateway offline") instead of re-running bootstrap to repair it.
-  return isActiveRuntimeUsable()
+  const runtimeUsable = isActiveRuntimeUsable()
+
+  // A missing marker must not condemn a working install. The marker is an
+  // ATTESTATION; the install itself is the source of truth. When the marker
+  // is gone but the runtime demonstrably works AND the user already
+  // confirmed a local install, the install is fine and re-running the
+  // installer would be the bug: measured on Windows 2026-10-25, a lost
+  // marker over a working venv sent the desktop into a five-restart
+  // recovery loop (installer -> failed update -> restart -> installer).
+  //
+  // Two cases must NOT be short-circuited:
+  //   - the user never confirmed a local install: that is first-run, and the
+  //     first-run setup UI has to be shown;
+  //   - the user explicitly asked for a repair: the repair flow deletes the
+  //     marker on purpose to force the installer to run again.
+  const decision = decideBootstrapMarkerFallback({
+    markerPresent: markerValid,
+    runtimeUsable,
+    localBootstrapConfirmed: getFirstRunSetupGate().isLocalBootstrapConfirmed(),
+    repairRequested: bootstrapRepairRequested
+  })
+
+  if (decision === 'runtime-usable') {
+    rememberLog(
+      '[bootstrap] bootstrap-complete marker missing, but the install is usable and was already confirmed; ' +
+        'trusting the install instead of re-running the installer'
+    )
+  }
+
+  return mayTrustRuntimeWithoutMarker(decision)
 }
 
 function writeBootstrapMarker(payload) {
@@ -3990,6 +4023,11 @@ async function ensureRuntime(backend) {
     }
 
     rememberLog('[bootstrap] bootstrap complete; marker written. Re-resolving backend.')
+
+    // The installer just ran and wrote a fresh marker. The repair request
+    // that triggered it is served -- clear it so the resolver goes back to
+    // trusting the marker.
+    bootstrapRepairRequested = false
 
     // Re-resolve now that the install exists. The new resolution lands in
     // step 3 (bootstrap-complete marker) and we recurse to wire venvPython.
@@ -9198,6 +9236,10 @@ ipcMain.handle('openamer:bootstrap:repair', async () => {
   bootstrapFailure = null
   backendStartFailure = null
   remoteReauthFailure = null
+  // The repair flow deleted the marker ON PURPOSE to force the installer to
+  // run again. Tell the resolver so it does not see "marker gone, runtime
+  // still fine" and skip the reinstall the user asked for.
+  bootstrapRepairRequested = true
   getFirstRunSetupGate().resetForRepair()
   resetOpenAmerConnection()
 
