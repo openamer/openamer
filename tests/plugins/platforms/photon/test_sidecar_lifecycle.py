@@ -8,6 +8,8 @@ spawning Node or binding ports.
 """
 from __future__ import annotations
 
+import sys
+
 import subprocess
 from typing import Any, Dict, List, Tuple
 
@@ -75,6 +77,14 @@ async def test_reap_noop_when_port_free(monkeypatch: pytest.MonkeyPatch) -> None
 
 
 @pytest.mark.asyncio
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "_reap_stale_sidecar returns early on win32 by design "
+        "(plugins/platforms/photon/adapter.py:875): lsof/ps-based orphan "
+        "reaping is a POSIX-only path, so no kill is issued there"
+    ),
+)
 async def test_reap_kills_verified_orphan(monkeypatch: pytest.MonkeyPatch) -> None:
     adapter = _make_adapter(monkeypatch)
     monkeypatch.setattr(photon_adapter.httpx, "AsyncClient", _ProbeClient)
@@ -90,6 +100,14 @@ async def test_reap_kills_verified_orphan(monkeypatch: pytest.MonkeyPatch) -> No
 
 
 @pytest.mark.asyncio
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "_reap_stale_sidecar returns early on win32 by design "
+        "(plugins/platforms/photon/adapter.py:875): lsof/ps-based orphan "
+        "reaping is a POSIX-only path, so no kill is issued there"
+    ),
+)
 async def test_reap_escalates_to_sigkill(monkeypatch: pytest.MonkeyPatch) -> None:
     adapter = _make_adapter(monkeypatch)
     monkeypatch.setattr(photon_adapter.httpx, "AsyncClient", _ProbeClient)
@@ -107,6 +125,14 @@ async def test_reap_escalates_to_sigkill(monkeypatch: pytest.MonkeyPatch) -> Non
 
 
 @pytest.mark.asyncio
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "_reap_stale_sidecar returns early on win32 by design "
+        "(plugins/platforms/photon/adapter.py:875): lsof/ps-based orphan "
+        "reaping is a POSIX-only path, so no kill is issued there"
+    ),
+)
 async def test_reap_raises_for_foreign_listener(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:

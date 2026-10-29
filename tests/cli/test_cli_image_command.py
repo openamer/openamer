@@ -74,6 +74,10 @@ class TestCollectQueryImages:
         home = tmp_path / "home"
         img = _make_image(home / "storage" / "shared" / "Pictures" / "cat.png")
         monkeypatch.setenv("HOME", str(home))
+        # $HOME alone is inert for the home lookup on Windows (USERPROFILE
+        # wins), so "~/..." resolved into the real profile and the fixture was
+        # invisible. Measured 2026-10-25.
+        monkeypatch.setenv("USERPROFILE", str(home))
 
         message, images = _collect_query_images("describe this", "~/storage/shared/Pictures/cat.png")
 
@@ -88,7 +92,8 @@ class TestTermuxImageHints:
 
         hint = _termux_example_image_path()
 
-        assert hint == "/sdcard/Pictures/cat.png"
+        # str(Path(...)) renders host separators; the hint is an Android path literal.
+        assert hint.replace("\\", "/") == "/sdcard/Pictures/cat.png"
 
 
 class TestImageBadgeFormatting:

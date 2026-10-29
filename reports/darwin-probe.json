@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-23T19:06:00.233937+00:00",
+  "updated": "2026-10-26T14:00:45.872328+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1193,
+  "total": 1197,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -1533,6 +1533,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-competitor-intelligence-layerfs-a": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-competitor-intelligence-stack-overflow": {
       "refs": 0,
       "ok": 0,
@@ -2253,6 +2259,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-r-n-740-zeilen": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-r-n-exit-0": {
       "refs": 0,
       "ok": 0,
@@ -2440,6 +2452,12 @@
       "missing": []
     },
     "darwin-harvested-tmp-deepseek-harness-agents-skills": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-gguf-info-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7076,6 +7094,12 @@
       "score": 1.0,
       "missing": []
     },
+    "spec-implementation-registry": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "testing-strategy": {
       "refs": 1,
       "ok": 1,
@@ -7083,8 +7107,8 @@
       "missing": []
     },
     "tokenomics-as-executable-arithmetic": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -7140,8 +7164,8 @@
       "missing": []
     },
     "windows-subprocess-robustness": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },

@@ -64,10 +64,13 @@ class TestDiscoverHomebrewNodeDirs:
         entries = ["node@20", "node@24", "openssl", "node", "python@3.12"]
 
         def mock_isdir(p):
-            if p == "/opt/homebrew/opt":
+            # The product joins these with os.path, so on Windows the probe arrives
+            # as "\\opt\\homebrew\\opt"; compare separator-neutral.
+            norm = str(p).replace("\\", "/")
+            if norm == "/opt/homebrew/opt":
                 return True
             # node@20/bin and node@24/bin exist
-            if p in {
+            if norm in {
                 "/opt/homebrew/opt/node@20/bin",
                 "/opt/homebrew/opt/node@24/bin",
             }:
@@ -78,9 +81,10 @@ class TestDiscoverHomebrewNodeDirs:
              patch("os.listdir", return_value=entries):
             result = _discover_homebrew_node_dirs()
 
+        normalised = [str(r).replace("\\", "/") for r in result]
         assert len(result) == 2
-        assert "/opt/homebrew/opt/node@20/bin" in result
-        assert "/opt/homebrew/opt/node@24/bin" in result
+        assert "/opt/homebrew/opt/node@20/bin" in normalised
+        assert "/opt/homebrew/opt/node@24/bin" in normalised
 
     def test_excludes_plain_node(self):
         """'node' (unversioned) should be excluded — covered by /opt/homebrew/bin."""

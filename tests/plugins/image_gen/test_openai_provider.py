@@ -10,6 +10,12 @@ import pytest
 
 import plugins.image_gen.openai as openai_plugin
 
+def _CACHE_PATH(name: str) -> Path:
+    """Host-absolute cache path; Path("/tmp/x") is drive-relative on Windows."""
+    import tempfile
+
+    return Path(tempfile.gettempdir()) / name
+
 
 # 1×1 transparent PNG — valid bytes for save_b64_image()
 _PNG_HEX = (
@@ -305,12 +311,12 @@ class TestGenerate:
 
         with _patched_openai(fake_client), patch(
             "plugins.image_gen.openai.save_url_image",
-            return_value=Path("/tmp/openai_gpt-image-2_20260524_000000_deadbeef.png"),
+            return_value=_CACHE_PATH("openai_gpt-image-2_20260524_000000_deadbeef.png"),
         ) as mock_save_url:
             result = provider.generate("a cat")
 
         assert result["success"] is True
-        assert result["image"].startswith("/")
+        assert Path(result["image"]).is_absolute()
         assert "example.com" not in result["image"]
         mock_save_url.assert_called_once()
 

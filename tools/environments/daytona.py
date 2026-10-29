@@ -5,6 +5,7 @@ Supports persistent sandboxes: when enabled, sandboxes are stopped on cleanup
 and resumed on next creation, preserving the filesystem across sessions.
 """
 
+import posixpath
 import logging
 import math
 import os
@@ -153,7 +154,9 @@ class DaytonaEnvironment(BaseEnvironment):
 
     def _daytona_upload(self, host_path: str, remote_path: str) -> None:
         """Upload a single file via Daytona SDK."""
-        parent = str(Path(remote_path).parent)
+        # remote_path is a POSIX path inside the sandbox; Path() would turn
+        # "/root/x" into "\\root\\x" on a Windows host and create the wrong dir.
+        parent = posixpath.dirname(remote_path)
         self._sandbox.process.exec(quoted_mkdir_command([parent]))
         self._sandbox.fs.upload_file(host_path, remote_path)
 

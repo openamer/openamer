@@ -185,7 +185,12 @@ class TestCreateProfile:
             for line in content.splitlines()
         )
         mode = stat.S_IMODE(env_path.stat().st_mode)
-        assert mode == 0o600
+        # NTFS has no POSIX mode bits, so 0600 cannot be expressed there; the
+        # portable part of the contract is that the file exists with content.
+        if os.name == "posix":
+            assert mode == 0o600
+        else:
+            assert env_path.exists()
 
     def test_seeded_env_does_not_clobber_cloned_env(self, profile_env):
         tmp_path = profile_env
@@ -525,7 +530,10 @@ class TestBackfillProfileEnvs:
         assert sorted(backfilled) == ["old1", "old2"]
         for p in (p1, p2):
             assert (p / ".env").read_text() == "OPENROUTER_API_KEY=root-key\n"
-            assert stat.S_IMODE((p / ".env").stat().st_mode) == 0o600
+            if os.name == "posix":
+                assert stat.S_IMODE((p / ".env").stat().st_mode) == 0o600
+            else:
+                assert (p / ".env").exists()
 
     def test_never_overwrites_existing_profile_env(self, profile_env):
         tmp_path = profile_env

@@ -137,7 +137,11 @@ class TestRealSubagentInterrupt(unittest.TestCase):
         agent_thread.start()
 
         # Wait for child to start run_conversation
-        started = child_started.wait(timeout=10)
+        # A Windows child pays for local-environment setup (git-bash discovery,
+        # PATH snapshot) before it reaches run_conversation; 10s was too tight
+        # there and produced "Child never started" for a healthy child
+        # (measured 2026-10-25). The wait stays bounded, the assertion unchanged.
+        started = child_started.wait(timeout=10 if os.name != "nt" else 45)
         if not started:
             agent_thread.join(timeout=1)
             if error_holder[0]:

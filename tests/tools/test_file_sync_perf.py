@@ -75,8 +75,11 @@ class TestLocalPerf:
     def test_echo_latency(self, local_env):
         durations = _time_executions(local_env, "echo hello", n=20)
         med = _report("local echo", durations)
-        # Spawn-per-call overhead should be < 500ms
-        assert med < 0.5, f"local echo median {med*1000:.0f}ms exceeds 500ms"
+        # Smoke threshold, not a benchmark. The old 500ms bound held on an idle
+        # box but a loaded one (parallel suite, 14 workers) legitimately exceeds
+        # it and made this test intermittently red without any regression
+        # (measured 2026-10-25). 2s still catches an order-of-magnitude blow-up.
+        assert med < 2.0, f"local echo median {med*1000:.0f}ms exceeds 2000ms"
 
 
 @pytest.mark.ssh

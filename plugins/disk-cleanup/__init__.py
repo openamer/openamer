@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import logging
 import re
+import os
 import shlex
 import threading
 from pathlib import Path
@@ -42,7 +43,12 @@ _lock = threading.Lock()
 
 # Tool-call result shapes we can parse
 _WRITE_FILE_PATH_KEY = "path"
-_TERMINAL_PATH_REGEX = re.compile(r"(?:^|\s)(/[^\s'\"`]+|\~/[^\s'\"`]+)")
+# POSIX paths (/tmp/x, ~/x) AND Windows drive paths (C:\\Users\\x). Without the
+# latter this plugin tracked nothing on Windows and therefore never cleaned
+# anything (measured 2026-10-25).
+_TERMINAL_PATH_REGEX = re.compile(
+    r"(?:^|\s)([A-Za-z]:\\[^\s'\"`]+|/[^\s'\"`]+|\~/[^\s'\"`]+)"
+)
 
 
 # ---------------------------------------------------------------------------
@@ -109,8 +115,12 @@ def _extract_paths_from_terminal(args: Dict[str, Any], result: str) -> Set[str]:
     if isinstance(cmd, str) and cmd:
         # Tokenise the command — catches `touch /tmp/openamer-x/test_foo.py`
         try:
-            for tok in shlex.split(cmd, posix=True):
-                if tok.startswith(("/", "~")):
+            # posix=True eats the backslashes of a Windows path, so tokenise
+            # without escape processing there (same defect as the /kanban
+            # tokeniser this session).
+            for tok in shlex.split(cmd, posix=(os.name != "nt")):
+                tok = tok.strip("'\"")
+                if tok.startswith(("/", "~")) or re.match(r"^[A-Za-z]:[\\/]", tok):
                     paths.add(tok)
         except ValueError:
             pass

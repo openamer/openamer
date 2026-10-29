@@ -122,6 +122,9 @@ def test_env_dist_tilde_expanded_for_web_server(main_mod, monkeypatch, tmp_path)
     dist.mkdir(parents=True)
     (dist / "index.html").write_text("<html></html>", encoding="utf-8")
     monkeypatch.setenv("HOME", str(home))
+    # os.path.expanduser("~") reads USERPROFILE on Windows; without it the tilde
+    # would expand to the real account home and the dist dir would not exist.
+    monkeypatch.setenv("USERPROFILE", str(home))
     monkeypatch.setenv("OPENAMER_WEB_DIST", "~/mydist")
 
     monkeypatch.setitem(

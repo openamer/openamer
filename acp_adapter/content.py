@@ -6,6 +6,7 @@ import base64
 import logging
 from pathlib import Path
 from typing import Any
+import os
 from urllib.parse import unquote, urlparse
 
 from acp.schema import (
@@ -91,6 +92,14 @@ def _path_from_file_uri(uri: str) -> Path | None:
         drive, rest = path_text[0], path_text[2:]
     else:
         return Path(path_text)
+    if os.name == "nt":
+        # Native Windows host: the drive path IS the real path. The /mnt/<drive>
+        # spelling only exists inside WSL, which is where a POSIX agent runs --
+        # so translating there is right, and translating here made every
+        # file:///C:/... resource unreadable ("\\mnt\\c\\Users\\...", WinError 3).
+        # Measured 2026-10-25: three ACP resource-inlining tests.
+        tail = rest.lstrip("/\\")
+        return Path(drive.upper() + ":/" + tail)
     return Path("/mnt") / drive.lower() / rest.lstrip("/\\").replace("\\", "/")
 
 

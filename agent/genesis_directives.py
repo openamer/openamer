@@ -334,10 +334,32 @@ def render_genesis_block(max_chars: int = 9000, enabled: bool = True) -> str:
         "conflict, the user's instruction wins.",
         "",
     ]
-    for d in GENESIS_DIRECTIVES:
-        lines.append(f"- **{d.id} — {d.title}** ({d.scope}): {d.rule}")
+    entries = [f"- **{d.id} — {d.title}** ({d.scope}): {d.rule}" for d in GENESIS_DIRECTIVES]
 
-    text = "\n".join(lines).strip()
-    if len(text) > max_chars:
-        text = text[:max_chars].rsplit("\n", 1)[0] + "\n..."
-    return text
+    text = "\n".join(lines + entries).strip()
+    if len(text) <= max_chars:
+        return text
+
+    # Over budget: drop whole directives from the tail and NAME them.
+    #
+    # The constitution is 24 rules; the block currently uses ~7.4k of the 9k
+    # budget. The old code cut the string at the limit, so one more rule would
+    # have silently removed the *last* directives -- DIR-22/23/24, the treasury,
+    # burn and client rules -- while the prompt still looked complete. A
+    # shortened constitution must never masquerade as the whole one.
+    kept: List[str] = []
+    for entry in entries:
+        if len("\n".join(lines + kept + [entry])) <= max_chars:
+            kept.append(entry)
+        else:
+            break
+    dropped = [d.id for d in GENESIS_DIRECTIVES[len(kept):]]
+    note = (
+        f"... {len(dropped)} directive(s) omitted for length: {', '.join(dropped)}"
+        " (raise max_chars to include them)"
+    )
+    text = "\n".join(lines + kept).strip()
+    budget = max_chars - len(note) - 1
+    if len(text) > budget:
+        text = text[: max(budget, 0)].rsplit("\n", 1)[0]
+    return text + "\n" + note

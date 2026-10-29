@@ -58,6 +58,10 @@ class TestFindDocker:
             result = docker_mod.find_docker()
         assert result == str(fake_binary)
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=("os.access(X_OK) is true for any existing file on Windows, so a not-executable override cannot be expressed here"),
+    )
     def test_env_var_override_ignored_if_not_executable(self, tmp_path):
         """Non-executable OPENAMER_DOCKER_BINARY falls through to normal discovery."""
         fake_binary = tmp_path / "podman"

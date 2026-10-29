@@ -33,6 +33,13 @@ from openamer_constants import (
 class TestGetDefaultOpenAmerRoot:
     """Tests for get_default_openamer_root() — Docker/custom deployment awareness."""
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "asserts the POSIX default (~/.openamer); the native Windows default "
+            "(%LOCALAPPDATA%\\openamer) is covered by the test directly below"
+        ),
+    )
     def test_no_openamer_home_returns_native(self, tmp_path, monkeypatch):
         """When OPENAMER_HOME is not set, returns ~/.openamer."""
         monkeypatch.delenv("OPENAMER_HOME", raising=False)
@@ -132,6 +139,10 @@ class TestGetProcessOpenAmerHome:
         monkeypatch.setenv("OPENAMER_HOME", str(home))
         assert get_process_openamer_home() == home
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason="asserts the POSIX default (~/.openamer); see the Windows default test above",
+    )
     def test_env_unset_returns_platform_default(self, tmp_path, monkeypatch):
         monkeypatch.delenv("OPENAMER_HOME", raising=False)
         monkeypatch.setattr(Path, "home", lambda: tmp_path)

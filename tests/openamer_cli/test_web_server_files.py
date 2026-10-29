@@ -1,3 +1,4 @@
+import os
 """Tests for the dashboard-managed file browser API."""
 
 from types import SimpleNamespace
@@ -57,6 +58,7 @@ def local_files_client(monkeypatch, tmp_path):
     monkeypatch.delenv("OPENAMER_DASHBOARD_FILES_ROOT", raising=False)
     monkeypatch.delenv("OPENAMER_HOME", raising=False)
     monkeypatch.setenv("HOME", str(home))
+    monkeypatch.setenv("USERPROFILE", str(home))  # $HOME alone is inert on Windows
 
     client, prev_auth_required, prev_bound_host = _client_with_app_state()
     try:
@@ -199,6 +201,7 @@ def test_gated_local_mode_still_defaults_to_home(monkeypatch, tmp_path):
     monkeypatch.delenv("OPENAMER_DASHBOARD_FILES_ROOT", raising=False)
     monkeypatch.delenv("OPENAMER_MANAGED", raising=False)
     monkeypatch.setenv("HOME", str(home))
+    monkeypatch.setenv("USERPROFILE", str(home))  # $HOME alone is inert on Windows
     monkeypatch.setenv("OPENAMER_HOME", str(home / ".openamer"))
 
     prev_auth_required = getattr(web_server.app.state, "auth_required", None)
@@ -314,6 +317,14 @@ def test_query_token_does_not_authenticate_other_endpoints(forced_files_client):
     assert leaked.status_code == 401
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "asserts the Docker/container layout (OPENAMER_HOME=/opt/data); that "
+        "path cannot exist on a native Windows host, where the policy correctly "
+        "declines to lock onto it"
+    ),
+)
 def test_hosted_policy_locks_to_opt_data(monkeypatch):
     monkeypatch.delenv("OPENAMER_DASHBOARD_FILES_ROOT", raising=False)
     monkeypatch.setenv("OPENAMER_HOME", "/opt/data")

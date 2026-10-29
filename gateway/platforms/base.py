@@ -39,6 +39,22 @@ _TELEGRAM_VOICE_EXTS = frozenset({'.ogg', '.opus'})
 _POST_DELIVERY_CALLBACK_TIMEOUT_SECONDS = 30.0
 
 
+def _file_uri(path) -> str:
+    """Absolute local path -> a resolvable ``file://`` URI.
+
+    ``f"file://{quote(p)}"`` produced ``file://C%3A%5CUsers%5C...`` on Windows:
+    the drive colon and every backslash were percent-encoded, so no consumer could
+    resolve it (measured 2026-10-25). ``Path.as_uri()`` emits ``file:///C:/...``
+    on Windows and ``file:///tmp/...`` on POSIX.
+    """
+    try:
+        return Path(path).as_uri()
+    except ValueError:  # relative path -- keep the old spelling
+        from urllib.parse import quote as _q
+
+        return "file://" + _q(str(path))
+
+
 def _platform_name(platform) -> str:
     """Normalize a Platform enum / raw string into a lowercase name."""
     value = getattr(platform, "value", platform)
@@ -4080,11 +4096,20 @@ class BasePlatformAdapter(ABC):
             path = _normalize_media_tag_path(match.group("path"))
             if path:
                 try:
-                    media.append((os.path.expanduser(path), has_voice_tag))
+                    expanded = os.path.expanduser(path)
                 except (OSError, RuntimeError, ValueError):
                     # Skip a crafted ~\x00 path rather than aborting extraction
                     # and dropping every other attachment in the response.
                     continue
+                if "\x00" in expanded:
+                    # On POSIX expanduser reaches the filesystem and raises
+                    # ValueError("embedded null byte"), so the guard above used
+                    # to catch it. ntpath.expanduser is pure string work and
+                    # never touches the filesystem, so on Windows the tag
+                    # survived with its null byte intact. Measured 2026-10-25:
+                    # test_extract_media_tolerates_crafted_null_path caught it.
+                    continue
+                media.append((expanded, has_voice_tag))
 
         seen_paths = {p for p, _ in media}
         for match in MEDIA_EXTENSIONLESS_TAG_RE.finditer(scan_content):
@@ -5623,7 +5648,7 @@ class BasePlatformAdapter(ABC):
 
                 if _image_paths:
                     try:
-                        _batch = [(f"file://{_quote(p)}", "") for p in _image_paths]
+                        _batch = [(_file_uri(p), "") for p in _image_paths]
                         await self.send_multiple_images(
                             chat_id=event.source.chat_id,
                             images=_batch,

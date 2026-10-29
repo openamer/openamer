@@ -1,9 +1,25 @@
 """Regression tests for OpenAmer' Spectrum mixed text+attachment workaround."""
 from __future__ import annotations
 
+import os
 import subprocess
 import textwrap
 from pathlib import Path
+
+
+def _patcher_arg() -> str:
+    """Node entry point, relative to the cwd the tests already set.
+
+    Node's ESM loader rejects a bare Windows drive path ("c:") as an unknown URL
+    scheme (ERR_UNSUPPORTED_ESM_URL_SCHEME, measured 2026-10-25), and a file://
+    URL passed as argv is resolved as a *relative module path* instead. A path
+    relative to cwd works for both module systems on every platform.
+    """
+    import os as _os
+
+    from pathlib import Path as _P
+
+    return _os.path.relpath(str(_PATCHER), str(_P.cwd()))
 
 
 _PATCHER = Path("plugins/platforms/photon/sidecar/patch-spectrum-mixed-attachments.mjs")
@@ -166,7 +182,7 @@ def test_spectrum_patch_rewrites_the_imessage_mapper(tmp_path: Path) -> None:
     chunk = _write_fixture(tmp_path)
 
     result = subprocess.run(
-        ["node", str(_PATCHER), str(tmp_path)],
+        ["node", _patcher_arg(), str(tmp_path)],
         cwd=Path.cwd(),
         text=True,
         capture_output=True,
@@ -188,7 +204,7 @@ def test_spectrum_patch_rewrites_the_imessage_mapper(tmp_path: Path) -> None:
 
     # Re-running is a no-op (idempotent self-heal on every sidecar start).
     again = subprocess.run(
-        ["node", str(_PATCHER), str(tmp_path)],
+        ["node", _patcher_arg(), str(tmp_path)],
         cwd=Path.cwd(),
         text=True,
         capture_output=True,
@@ -204,7 +220,7 @@ def test_spectrum_patch_preserves_text_at_runtime(tmp_path: Path) -> None:
     original shape (id/partIndex/parentId) so message identity is unchanged."""
     chunk = _write_fixture(tmp_path)
     patch = subprocess.run(
-        ["node", str(_PATCHER), str(tmp_path)],
+        ["node", _patcher_arg(), str(tmp_path)],
         cwd=Path.cwd(),
         text=True,
         capture_output=True,
@@ -212,9 +228,12 @@ def test_spectrum_patch_preserves_text_at_runtime(tmp_path: Path) -> None:
     )
     assert patch.returncode == 0, patch.stderr
 
+    # An ESM specifier must be a file:// URL on Windows; a bare "C:\\..." path is
+    # read as an unknown URL scheme (ERR_UNSUPPORTED_ESM_URL_SCHEME, 2026-10-25).
+    _spec = Path(chunk).resolve().as_uri() if os.name == "nt" else str(chunk)
     harness = textwrap.dedent(
         f"""
-        import {{ rebuildFromAppleMessage, toInboundMessages }} from {str(chunk)!r};
+        import {{ rebuildFromAppleMessage, toInboundMessages }} from {_spec!r};
         const assert = (c, m) => {{ if (!c) {{ console.error("FAIL: " + m); process.exit(1); }} }};
 
         // Mixed text + single attachment -> group [text@0, attachment@1].

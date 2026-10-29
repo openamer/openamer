@@ -10,13 +10,27 @@ of the backgrounded service (indefinitely for a uvicorn server).
 The fix switches ``_drain()`` to select()-based non-blocking reads and
 stops draining shortly after bash exits even if the pipe hasn't EOF'd.
 """
+import shlex
 import subprocess
+import sys
 import time
 
 import pytest
 
 from tools.environments.local import LocalEnvironment
 
+
+
+def _py(code: str, quote: str = '"') -> str:
+    """A shell-quoted invocation of *this* interpreter.
+
+    The tests spelled the interpreter as ``python3``. That resolves through PATH,
+    and on Windows PATH can offer the Microsoft-Store stub -- under the
+    hermetic runner env these five tests then failed on a command that never
+    ran. ``sys.executable`` is the interpreter the suite is already running
+    under, so the child is guaranteed to exist and to match.
+    """
+    return f"{shlex.quote(sys.executable)} -c {quote}{code}{quote}"
 
 def _pkill(pattern: str) -> None:
     subprocess.run(f"pkill -9 -f {pattern!r} 2>/dev/null", shell=True)
@@ -37,7 +51,7 @@ class TestBackgroundChildDoesNotHang:
     def test_plain_background_returns_promptly(self, local_env):
         """``cmd &`` with no output redirection must not hang on pipe inherit."""
         marker = "openamer_8340_plain_bg"
-        cmd = f'python3 -c "import time; time.sleep(60)" & echo {marker}'
+        cmd = f'{_py("import time; time.sleep(60)")} & echo {marker}'
         try:
             t0 = time.monotonic()
             result = local_env.execute(cmd, timeout=15)
@@ -55,7 +69,7 @@ class TestBackgroundChildDoesNotHang:
     def test_setsid_disown_pattern_returns_promptly(self, local_env):
         """The exact pattern from the issue: setsid ... & disown."""
         cmd = (
-            'setsid python3 -c "import time; time.sleep(60)" '
+            f'setsid {_py("import time; time.sleep(60)")} '
             '> /dev/null 2>&1 < /dev/null & disown; echo started'
         )
         try:
@@ -96,7 +110,7 @@ class TestBackgroundChildDoesNotHang:
     ):
         monkeypatch.setattr("tools.tool_output_limits.get_max_bytes", lambda: 10_000)
         command = (
-            "python3 -c \"import sys; "
+            f"{shlex.quote(sys.executable)} -c \"import sys; "
             "sys.stdout.write('HEAD-SENTINEL\\n' + 'x' * 2000000 + "
             "'\\nTAIL-SENTINEL')\""
         )
@@ -122,7 +136,7 @@ class TestBackgroundChildDoesNotHang:
         """
         # ~200 KB — four times the default 50 KB cap.
         command = (
-            "python3 -c \"import sys; "
+            f"{shlex.quote(sys.executable)} -c \"import sys; "
             "sys.stdout.write('START-MARK\\n' + ('y' * 200000) + '\\nEND-MARK')\""
         )
 
@@ -139,7 +153,7 @@ class TestBackgroundChildDoesNotHang:
     ):
         monkeypatch.setattr("tools.tool_output_limits.get_max_bytes", lambda: 5_000)
         command = (
-            "python3 -c \"import sys; "
+            f"{shlex.quote(sys.executable)} -c \"import sys; "
             "chunk = 'x' * 4096; "
             "exec('while True: sys.stdout.write(chunk); sys.stdout.flush()')\""
         )
@@ -183,7 +197,7 @@ class TestBackgroundChildDoesNotHang:
         # read boundaries, and most boundaries will land in the middle of the
         # 3-byte UTF-8 encoding of U+65E5.
         cmd = (
-            'python3 -c \'import sys; '
+            f'{shlex.quote(sys.executable)} -c \'import sys; '
             'sys.stdout.buffer.write(chr(0x65e5).encode("utf-8") * 10000); '
             'sys.stdout.buffer.write(b"\\n")\''
         )
@@ -204,7 +218,7 @@ class TestBackgroundChildDoesNotHang:
         """
         # Write a deliberate invalid UTF-8 lead byte sandwiched between valid ASCII
         cmd = (
-            'python3 -c \'import sys; '
+            f'{shlex.quote(sys.executable)} -c \'import sys; '
             'sys.stdout.buffer.write(b"before "); '
             'sys.stdout.buffer.write(b"\\xff\\xfe"); '
             'sys.stdout.buffer.write(b" after\\n")\''

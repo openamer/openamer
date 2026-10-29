@@ -1,3 +1,4 @@
+import os
 """Unit tests for the generic webhook platform adapter.
 
 Covers:
@@ -1657,6 +1658,15 @@ class TestDualStackBind:
             await adapter.disconnect()
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "relies on POSIX socket exclusivity: a specific ::1 listener must block "
+            "the wildcard dual-stack bind. Windows' socket layer permits that bind "
+            "(different SO_REUSEADDR/dual-stack semantics), so the rejection it "
+            "asserts cannot be reproduced here"
+        ),
+    )
     async def test_default_bind_rejects_existing_ipv6_listener(self):
         """A specific IPv6 listener must block the wildcard dual-stack bind."""
         blocker = await asyncio.start_server(

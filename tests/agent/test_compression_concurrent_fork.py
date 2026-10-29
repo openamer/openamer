@@ -31,6 +31,21 @@ from __future__ import annotations
 import inspect
 import os
 import threading
+
+# Wall-clock deadlines for cross-thread handshakes.
+#
+# These were 2-10 s, which is generous on an idle machine and not generous
+# enough here: the canonical runner starts cpu_count*2 pytest processes, so a
+# thread can wait seconds just to be scheduled and `wait(timeout=2)` expired
+# before the work it was waiting for had begun. Measured 2026-10-25: this file
+# is 48/48 green alone and lost exactly these two asserts inside a 323-file
+# run at 32 workers -- a scheduler artefact, not a fence defect.
+#
+# 60 s still fails fast against a real deadlock (the per-file cap is 600 s) and
+# no longer races the scheduler. Assertions stay on the OUTCOME; only the
+# patience changed.
+HANDSHAKE_TIMEOUT_S = 60
+
 import time
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -284,8 +299,8 @@ def test_concurrent_compression_does_not_fork_session(tmp_path: Path) -> None:
     t_b = threading.Thread(target=run, args=(agent_b,), name="review_fork")
     t_a.start()
     t_b.start()
-    t_a.join(timeout=10)
-    t_b.join(timeout=10)
+    t_a.join(timeout=HANDSHAKE_TIMEOUT_S)
+    t_b.join(timeout=HANDSHAKE_TIMEOUT_S)
 
     # The invariant Damien's incident is about: the parent must NEVER end up
     # with two (or more) children — that is the transcript fork. The lock
@@ -417,7 +432,7 @@ def test_cancelled_commit_fence_blocks_late_session_db_compaction(
 
     def _slow_summary(*_args, **_kwargs):
         summary_started.set()
-        assert release_summary.wait(timeout=5)
+        assert release_summary.wait(timeout=HANDSHAKE_TIMEOUT_S)
         return [
             {"role": "user", "content": "[CONTEXT COMPACTION] summary"},
             {"role": "user", "content": "tail"},
@@ -444,11 +459,11 @@ def test_cancelled_commit_fence_blocks_late_session_db_compaction(
 
     worker = threading.Thread(target=_run_compression, name="timed-out-hygiene")
     worker.start()
-    assert summary_started.wait(timeout=2)
+    assert summary_started.wait(timeout=HANDSHAKE_TIMEOUT_S)
 
     assert fence.cancel_before_commit() is True
     release_summary.set()
-    worker.join(timeout=5)
+    worker.join(timeout=HANDSHAKE_TIMEOUT_S)
 
     assert not worker.is_alive()
     assert errors == []
@@ -484,7 +499,7 @@ def test_fence_cancelled_compression_leaves_lock_reacquirable(tmp_path: Path) ->
 
     def _slow_summary(*_args, **_kwargs):
         summary_started.set()
-        assert release_summary.wait(timeout=5)
+        assert release_summary.wait(timeout=HANDSHAKE_TIMEOUT_S)
         return [
             {"role": "user", "content": "[CONTEXT COMPACTION] summary"},
             {"role": "user", "content": "tail"},
@@ -505,10 +520,10 @@ def test_fence_cancelled_compression_leaves_lock_reacquirable(tmp_path: Path) ->
 
     worker = threading.Thread(target=_run_compression, name="fenced-hygiene")
     worker.start()
-    assert summary_started.wait(timeout=2)
+    assert summary_started.wait(timeout=HANDSHAKE_TIMEOUT_S)
     assert fence.cancel_before_commit() is True
     release_summary.set()
-    worker.join(timeout=5)
+    worker.join(timeout=HANDSHAKE_TIMEOUT_S)
     assert not worker.is_alive()
 
     # Cancelled attempt: no mutation, and — the invariant under test — the
@@ -550,11 +565,11 @@ def test_commit_fence_waits_for_an_active_commit() -> None:
     waiter = threading.Thread(target=_cancel, name="hygiene-timeout-fence")
     waiter.start()
     try:
-        assert cancel_started.wait(timeout=2)
+        assert cancel_started.wait(timeout=HANDSHAKE_TIMEOUT_S)
         assert not cancel_finished.is_set()
     finally:
         fence.finish_commit()
-    waiter.join(timeout=2)
+    waiter.join(timeout=HANDSHAKE_TIMEOUT_S)
 
     assert not waiter.is_alive()
     assert result["cancelled"] is False
@@ -850,7 +865,7 @@ def test_lock_refresh_keeps_owner_live_past_initial_ttl(tmp_path: Path, monkeypa
 
     def _slow_compress(*_a, **_kw):
         compression_started.set()
-        assert release_compression.wait(timeout=10)
+        assert release_compression.wait(timeout=HANDSHAKE_TIMEOUT_S)
         return [
             {"role": "user", "content": "[CONTEXT COMPACTION] summary"},
             {"role": "user", "content": "tail"},
@@ -865,7 +880,7 @@ def test_lock_refresh_keeps_owner_live_past_initial_ttl(tmp_path: Path, monkeypa
     t_a = threading.Thread(target=run, args=(agent_a,), name="refresh_owner")
     t_a.start()
     try:
-        assert compression_started.wait(timeout=10), "compression never acquired its lock"
+        assert compression_started.wait(timeout=HANDSHAKE_TIMEOUT_S), "compression never acquired its lock"
         assert db.get_compression_lock_holder(parent_sid) is not None
         time.sleep(3.5)
         assert db.try_acquire_compression_lock(
@@ -873,7 +888,7 @@ def test_lock_refresh_keeps_owner_live_past_initial_ttl(tmp_path: Path, monkeypa
         ) is False, "live owner lease expired and was reclaimable before compression finished"
     finally:
         release_compression.set()
-        t_a.join(timeout=10)
+        t_a.join(timeout=HANDSHAKE_TIMEOUT_S)
 
     assert not t_a.is_alive()
     assert _count_children(db, parent_sid) == 1

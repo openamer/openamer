@@ -8,6 +8,23 @@ import socket
 import pytest
 
 
+@pytest.fixture(autouse=True)
+def _supply_af_unix(monkeypatch):
+    """Windows has no ``socket.AF_UNIX``, so the product's availability probe
+    short-circuits and every test here sees "not a systemd host".
+
+    That probe is correct -- but it is not what these tests are about: they
+    stub ``notify`` (or the sender) and assert the *send* / *watchdog* logic,
+    which is platform-independent. Supplying the sentinel lets the probe take
+    its real branch without opening a socket, so the coverage stays live on
+    this host instead of being gated away.
+    """
+    import socket as _socket
+
+    if not hasattr(_socket, "AF_UNIX"):
+        monkeypatch.setattr(_socket, "AF_UNIX", -1, raising=False)
+
+
 def test_notify_without_notify_socket_is_a_noop(monkeypatch):
     monkeypatch.delenv("NOTIFY_SOCKET", raising=False)
 
@@ -16,6 +33,9 @@ def test_notify_without_notify_socket_is_a_noop(monkeypatch):
     assert notify("READY=1") is False
 
 
+@pytest.mark.skipif(
+    not hasattr(socket, "AF_UNIX"), reason="Unix datagram sockets are unavailable"
+)
 def test_notify_sends_real_unix_datagram(tmp_path, monkeypatch):
     address = str(tmp_path / "notify.sock")
     receiver = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)

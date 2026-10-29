@@ -37,6 +37,22 @@ _GC_INTERVAL_SECONDS = 3600.0
 _HEALTH_WINDOW = 6
 
 
+def _file_uri(path) -> str:
+    """Absolute local path -> a resolvable ``file://`` URI.
+
+    ``f"file://{quote(p)}"`` produced ``file://C%3A%5CUsers%5C...`` on Windows:
+    the drive colon and every backslash were percent-encoded, so no consumer could
+    resolve it (measured 2026-10-25). ``Path.as_uri()`` emits ``file:///C:/...``
+    on Windows and ``file:///tmp/...`` on POSIX.
+    """
+    try:
+        return Path(path).as_uri()
+    except ValueError:  # relative path -- keep the old spelling
+        from urllib.parse import quote as _q
+
+        return "file://" + _q(str(path))
+
+
 class GatewayKanbanWatchersMixin:
     """Kanban watcher / notifier / dispatcher loops for GatewayRunner."""
 
@@ -202,7 +218,7 @@ class GatewayKanbanWatchersMixin:
         other_paths = [p for p in candidates if Path(p).suffix.lower() not in _IMAGE_EXTS]
         if image_paths:
             try:
-                batch = [(f"file://{_quote(p)}", "") for p in image_paths]
+                batch = [(_file_uri(p), "") for p in image_paths]
                 await adapter.send_multiple_images(chat_id=chat_id, images=batch, metadata=metadata)
             except Exception as exc:
                 logger.warning("kanban notifier: image batch upload failed: %s", exc)

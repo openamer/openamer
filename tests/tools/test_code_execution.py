@@ -1075,7 +1075,13 @@ class TestRpcTokenAuthorization(unittest.TestCase):
 
         # socketpair gives us a connected client end and a "server" end we
         # can hand to accept() by wrapping it in a tiny listener shim.
-        srv, cli = socket.socketpair(socket.AF_UNIX, socket.SOCK_STREAM)
+        # Do not pin the family: Windows has no AF_UNIX, but socketpair() there
+        # returns an emulated loopback pair that supports the same recv/send
+        # the loop uses. Asking for AF_UNIX explicitly raised AttributeError
+        # ("module 'socket' has no attribute 'AF_UNIX'", 4 tests) whereas the
+        # unqualified call is portable -- this is the product's own fallback
+        # shape, not a skip.
+        srv, cli = socket.socketpair()
 
         class _OneShotListener:
             """Minimal object exposing the .accept()/.settimeout() the loop uses."""

@@ -1,3 +1,4 @@
+import pytest
 """Tests for subprocess HOME handling in profile mode.
 
 OpenAmer state stays profile-scoped through OPENAMER_HOME. Host subprocesses should
@@ -21,6 +22,19 @@ import openamer_constants
 # ---------------------------------------------------------------------------
 # get_subprocess_home()
 # ---------------------------------------------------------------------------
+
+
+@pytest.fixture(autouse=True)
+def _no_inherited_real_home(monkeypatch):
+    """Drop the OPENAMER_REAL_HOME the host process exports.
+
+    get_real_home() puts OPENAMER_REAL_HOME first in candidate order, so an
+    inherited value beats any HOME a test sets -- which made these tests assert
+    against the developer's real account home (measured 2026-10-25: this shell
+    exports OPENAMER_REAL_HOME=C:\\Users\\damir). The same variable is dropped by
+    the file's other fixtures already.
+    """
+    monkeypatch.delenv("OPENAMER_REAL_HOME", raising=False)
 
 class TestGetSubprocessHome:
     """Unit tests for openamer_constants.get_subprocess_home()."""
@@ -129,8 +143,9 @@ class TestGetSubprocessHome:
         assert home_a is not None
         assert home_b is not None
         assert home_a != home_b
-        assert home_a.endswith("alpha/home")
-        assert home_b.endswith("beta/home")
+        # Host-rendered path: normalise the separator before comparing.
+        assert home_a.replace("\\", "/").endswith("alpha/home")
+        assert home_b.replace("\\", "/").endswith("beta/home")
 
     def test_context_override_is_thread_local(self, tmp_path, monkeypatch):
         root = tmp_path / "root"

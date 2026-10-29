@@ -302,7 +302,12 @@ class TestWecomCallbackPollLoop:
         )
         task = asyncio.create_task(adapter._poll_loop())
         await adapter._message_queue.put(event)
-        await asyncio.sleep(0.05)
+        # Wait for the dispatch, not for a duration: a fixed 0.05s is a bet that
+        # the poll loop gets scheduled in time, and under parallel-suite load it
+        # loses (measured 2026-10-25: this test was green alone, red in the suite).
+        _deadline = asyncio.get_running_loop().time() + 5.0
+        while not calls and asyncio.get_running_loop().time() < _deadline:
+            await asyncio.sleep(0.01)
         task.cancel()
         with pytest.raises(asyncio.CancelledError):
             await task

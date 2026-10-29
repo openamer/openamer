@@ -22,6 +22,32 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
+
+_POSIX_MODES = os.name == "posix"
+
+_NATIVE_BINARY_HOST = sys.platform.startswith("linux") or sys.platform == "darwin"
+
+_NO_NATIVE_BINARY_REASON = (
+    "iron-proxy ships no native Windows binary: the product raises "
+    "RuntimeError('iron-proxy does not ship native Windows binaries as of "
+    "v0.39.0') before any install logic runs, so there is nothing to assert"
+)
+
+
+def _assert_posix_mode(path, expected: int) -> None:
+    """Assert a file mode where mode bits mean something.
+
+    NTFS has no POSIX mode bits: chmod only toggles the read-only attribute and
+    st_mode reports 0o666/0o777 regardless, so a mode assertion there measures
+    the filesystem, not the product. The existence check still runs everywhere;
+    the exact bits only on POSIX.
+    """
+    assert path.exists(), f"{path} was not created"
+    if not _POSIX_MODES:
+        return
+    mode = path.stat().st_mode & 0o777
+    assert mode == expected, f"{path.name} has perms {oct(mode)}, expected {oct(expected)}"
+
 from agent.proxy_sources import iron_proxy as ip
 
 
@@ -396,12 +422,9 @@ def test_write_proxy_config_serializes_yaml(openamer_home, tmp_path):
     # 0o600, and (TOCTOU) must never be transiently world-readable
     # between the atomic replace and the chmod.  We chmod the temp file
     # before the replace, so the final file is 0o600 from first byte.
-    import os as _os
-    mode = _os.stat(out).st_mode & 0o777
-    assert mode == 0o600, f"proxy.yaml perms {oct(mode)}, expected 0o600"
+    _assert_posix_mode(out, 0o600)
     mappings_out = ip.write_mappings([_sample_mapping()])
-    mmode = _os.stat(mappings_out).st_mode & 0o777
-    assert mmode == 0o600, f"mappings.json perms {oct(mmode)}, expected 0o600"
+    _assert_posix_mode(mappings_out, 0o600)
 
 
 # ---------------------------------------------------------------------------
@@ -544,6 +567,7 @@ def _make_fake_tar(binary_name: str, payload: bytes = b"#!/bin/sh\necho ok\n") -
     return buf.getvalue()
 
 
+@pytest.mark.skipif(not _NATIVE_BINARY_HOST, reason=_NO_NATIVE_BINARY_REASON)
 def test_install_iron_proxy_verifies_checksum_and_extracts(openamer_home, monkeypatch):
     fake_payload = _make_fake_tar(ip._platform_binary_name())
     import hashlib
@@ -566,6 +590,7 @@ def test_install_iron_proxy_verifies_checksum_and_extracts(openamer_home, monkey
     assert os.access(target, os.X_OK)
 
 
+@pytest.mark.skipif(not _NATIVE_BINARY_HOST, reason=_NO_NATIVE_BINARY_REASON)
 def test_install_iron_proxy_rejects_bad_checksum(openamer_home, monkeypatch):
     fake_payload = _make_fake_tar(ip._platform_binary_name())
     asset_name = ip._platform_asset_name()
@@ -582,6 +607,7 @@ def test_install_iron_proxy_rejects_bad_checksum(openamer_home, monkeypatch):
         ip.install_iron_proxy()
 
 
+@pytest.mark.skipif(not _NATIVE_BINARY_HOST, reason=_NO_NATIVE_BINARY_REASON)
 def test_install_iron_proxy_rejects_missing_checksum_entry(openamer_home, monkeypatch):
     fake_payload = _make_fake_tar(ip._platform_binary_name())
 
@@ -650,6 +676,7 @@ def test_verify_checksums_signature_passes_on_good_signature(openamer_home, monk
     assert ip._verify_checksums_signature(tmp_path, cks) is True
 
 
+@pytest.mark.skipif(not _NATIVE_BINARY_HOST, reason=_NO_NATIVE_BINARY_REASON)
 def test_install_aborts_on_bad_release_signature(openamer_home, monkeypatch):
     """End-to-end: a tampered (bad-signature) release must abort install."""
     fake_payload = _make_fake_tar(ip._platform_binary_name())
@@ -1059,9 +1086,7 @@ def test_ca_key_created_with_0o600(openamer_home, monkeypatch):
     monkeypatch.setattr(ip.subprocess, "run", fake_run)
 
     ca_crt, ca_key = ip.ensure_ca_cert()
-    assert ca_key.exists()
-    mode = ca_key.stat().st_mode & 0o777
-    assert mode == 0o600, f"CA key has perms {oct(mode)}, expected 0o600"
+    _assert_posix_mode(ca_key, 0o600)
 
 
 # ---------------------------------------------------------------------------
@@ -1072,9 +1097,7 @@ def test_ca_key_created_with_0o600(openamer_home, monkeypatch):
 def test_ensure_audit_log_creates_with_0o600(openamer_home, tmp_path):
     audit = tmp_path / "audit.log"
     ip.ensure_audit_log(audit)
-    assert audit.exists()
-    mode = audit.stat().st_mode & 0o777
-    assert mode == 0o600
+    _assert_posix_mode(audit, 0o600)
 
 
 def test_ensure_audit_log_tightens_existing_perms(openamer_home, tmp_path):
@@ -1082,8 +1105,7 @@ def test_ensure_audit_log_tightens_existing_perms(openamer_home, tmp_path):
     audit.write_text("preexisting content\n")
     os.chmod(audit, 0o644)
     ip.ensure_audit_log(audit)
-    mode = audit.stat().st_mode & 0o777
-    assert mode == 0o600
+    _assert_posix_mode(audit, 0o600)
 
 
 # ---------------------------------------------------------------------------
@@ -1093,8 +1115,7 @@ def test_ensure_audit_log_tightens_existing_perms(openamer_home, tmp_path):
 
 def test_proxy_state_dir_is_0o700(openamer_home):
     state = ip._proxy_state_dir()
-    mode = state.stat().st_mode & 0o777
-    assert mode == 0o700
+    _assert_posix_mode(state, 0o700)
 
 
 def test_proxy_state_dir_ro_does_not_create(openamer_home):
@@ -1546,7 +1567,7 @@ def test_ensure_management_token_persists_and_is_stable(openamer_home):
     assert t1.startswith("openamer-mgmt-")
     p = ip._proxy_state_dir() / "management.token"
     assert p.exists()
-    assert (p.stat().st_mode & 0o777) == 0o600
+    _assert_posix_mode(p, 0o600)
 
 
 def test_ensure_management_token_force_rotates(openamer_home):
@@ -1679,7 +1700,11 @@ def test_pid_proc_starttime_parses_comm_with_parens(tmp_path, monkeypatch):
     real_read_text = Path.read_text
 
     def fake_read_text(self, *a, **k):
-        if str(self).startswith("/proc/12345/stat"):
+        # Normalise the separator: the product builds Path("/proc/<pid>/stat"),
+        # which stringifies with backslashes on Windows, so a POSIX-only
+        # startswith("/proc/...") never matched there and the parser was handed
+        # a real (nonexistent) path instead of the fixture.
+        if str(self).replace("\\", "/").startswith("/proc/12345/stat"):
             return fake_stat
         return real_read_text(self, *a, **k)
 
@@ -1746,7 +1771,14 @@ def test_stop_proxy_suppresses_sigkill_on_pid_recycle(openamer_home, monkeypatch
     sigterm_count = sum(1 for _, s in kills if s == ip.signal.SIGTERM)
     sigkill_count = sum(1 for _, s in kills if s == ip._KILL_SIGNAL)
     assert sigterm_count == 1
-    assert sigkill_count == 0, f"SIGKILL was issued despite pid recycle: {kills}"
+    if ip._KILL_SIGNAL == ip.signal.SIGTERM:
+        # Windows has no SIGKILL, so the product's _KILL_SIGNAL collapses to
+        # SIGTERM and these two counters cannot be told apart. The contract is
+        # still checkable and is what matters: exactly ONE kill was issued, so
+        # nothing escalated after the recycle was detected.
+        assert len(kills) == 1, f"escalated despite pid recycle: {kills}"
+    else:
+        assert sigkill_count == 0, f"SIGKILL was issued despite pid recycle: {kills}"
 
 
 # ---------------------------------------------------------------------------

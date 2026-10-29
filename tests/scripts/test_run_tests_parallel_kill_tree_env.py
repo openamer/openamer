@@ -118,6 +118,14 @@ def _time_taskkill(env: dict) -> float:
         _reap(proc)
 
 
+@pytest.mark.skipif(
+    not IS_WINDOWS,
+    reason=(
+        "asserts that _kill_tree invokes taskkill; that branch is guarded by "
+        "sys.platform == 'win32' (scripts/run_tests_parallel.py:355), so on "
+        "POSIX it never runs. The sibling test below already carries this gate"
+    ),
+)
 def test_kill_tree_passes_systemdrive_to_taskkill(monkeypatch):
     """_kill_tree must hand taskkill an env that contains SystemDrive.
 

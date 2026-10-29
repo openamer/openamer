@@ -790,6 +790,32 @@ def _maybe_warn_line_oriented_newline_pattern(result: SearchResult, pattern: str
     return result
 
 
+
+def _to_shell_path(raw: str) -> str:
+    """Windows path -> the form a POSIX shell (MSYS bash) understands.
+
+    The find-based fallback shells out. MSYS find cannot open "C:\\Users\\...",
+    so the search returned nothing at all on Windows (measured 2026-10-25).
+    """
+    if os.name != "nt":
+        return raw
+    m = re.match(r"^([A-Za-z]):[\\/]?(.*)$", raw)
+    if not m:
+        return raw.replace("\\", "/")
+    return "/" + m.group(1).lower() + "/" + m.group(2).replace("\\", "/")
+
+
+def _from_shell_path(raw: str) -> str:
+    """Inverse of :func:`_to_shell_path` -- "/c/Users/x" -> "C:/Users/x"."""
+    if os.name != "nt":
+        return raw
+    m = re.match(r"^/([A-Za-z])/(.*)$", raw)
+    if not m:
+        return raw
+    # Native Windows form: callers get "C:\\Users\\x", the same spelling the
+    # rest of the tool surface uses.
+    return m.group(1).upper() + ":\\" + m.group(2).replace("/", "\\")
+
 class ShellFileOperations(FileOperations):
     """
     File operations implemented via shell commands.
@@ -2152,7 +2178,8 @@ class ShellFileOperations(FileOperations):
         if not has_hidden_path_ancestor:
             pagination_expr = f" | tail -n +{offset + 1} | head -n {limit}"
 
-        cmd = f"find {self._escape_shell_arg(path)}{hidden_filter_expr} -type f -name {self._escape_shell_arg(search_pattern)} " \
+        shell_path = _to_shell_path(str(path))
+        cmd = f"find {self._escape_shell_arg(shell_path)}{hidden_filter_expr} -type f -name {self._escape_shell_arg(search_pattern)} " \
               f"-printf '%T@ %p\\n' 2>/dev/null | sort -rn{pagination_expr}"
 
         result = self._exec(cmd, timeout=60)
@@ -2160,7 +2187,7 @@ class ShellFileOperations(FileOperations):
 
         if not stdout.strip() and not limit_reason:
             # Try without -printf (BSD find compatibility -- macOS)
-            cmd_simple = f"find {self._escape_shell_arg(path)}{hidden_filter_expr} -type f -name {self._escape_shell_arg(search_pattern)} " \
+            cmd_simple = f"find {self._escape_shell_arg(shell_path)}{hidden_filter_expr} -type f -name {self._escape_shell_arg(search_pattern)} " \
                         f"2>/dev/null | sort -rn{pagination_expr}"
             result = self._exec(cmd_simple, timeout=60)
             stdout, limit_reason = _search_stdout_and_limit(result)
@@ -2171,9 +2198,9 @@ class ShellFileOperations(FileOperations):
                 continue
             parts = line.split(' ', 1)
             if len(parts) == 2 and parts[0].replace('.', '').isdigit():
-                files.append(parts[1])
+                files.append(_from_shell_path(parts[1]))
             else:
-                files.append(line)
+                files.append(_from_shell_path(line))
 
         # For explicit hidden roots, find's path-based filtering excludes every
         # file under the hidden path. Apply descendant filtering after command

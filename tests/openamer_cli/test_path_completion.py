@@ -127,6 +127,7 @@ class TestPathCompletions:
 
     def test_home_expansion(self, tmp_path, monkeypatch):
         monkeypatch.setenv("HOME", str(tmp_path))
+        monkeypatch.setenv("USERPROFILE", str(tmp_path))  # "~" resolves via this on Windows
         (tmp_path / "testfile.md").touch()
 
         completions = list(SlashCommandCompleter._path_completions("~/test"))
@@ -198,6 +199,10 @@ class TestIntegration:
         event = MagicMock()
         assert list(completer.get_completions(doc, event)) == []
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason="asserts that /etc/hosts exists; there is no /etc on Windows",
+    )
     def test_absolute_path_triggers_completion(self, completer):
         doc = Document("check /etc/hos", cursor_position=14)
         event = MagicMock()

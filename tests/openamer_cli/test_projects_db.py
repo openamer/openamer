@@ -18,14 +18,39 @@ def conn(tmp_path):
         c.close()
 
 
+
+def _host(path: str) -> str:
+    """The host's spelling of an absolute fixture path.
+
+    The tests below deliberately use POSIX literals ("/a", "/www/alpha",
+    "/tmp/openamer") as *inputs* -- they are readable and the product's job is
+    to normalise them. What they must not do is expect them back unchanged:
+    the product normalises with the host's rules, so on Windows "/a" comes back
+    as "C:\\a". Comparing against the product's own normaliser keeps the
+    inputs readable and the assertion honest.
+    """
+    return pdb._normalize_path(path)
+
+
+def _fixture_path(tmp_path, *parts) -> str:
+    """A host-native absolute path to use as a fixture.
+
+    These tests used POSIX literals ("/a", "/www/app"). The product normalises
+    with the host's rules, so on Windows "/a" becomes "C:\\a" and every
+    comparison failed on the drive prefix -- the test was pinning the POSIX
+    spelling of an absolute path, not the behaviour it meant to check.
+    Measured 2026-10-25: four failures, all this.
+    """
+    return str(tmp_path.joinpath(*parts))
+
 def test_record_and_list_discovered_repos(conn):
     n = pdb.record_discovered_repos(conn, [("/www/alpha", "alpha"), ("/www/beta", None)])
     assert n == 2
 
     rows = {r["root"]: r["label"] for r in pdb.list_discovered_repos(conn)}
-    assert rows["/www/alpha"] == "alpha"
+    assert rows[_host("/www/alpha")] == "alpha"
     # Label defaults to the basename when not given.
-    assert rows["/www/beta"] == "beta"
+    assert rows[_host("/www/beta")] == "beta"
 
 
 def test_record_discovered_repos_upserts(conn):
@@ -42,7 +67,7 @@ def test_record_discovered_repos_replace_drops_stale_rows(conn):
     pdb.record_discovered_repos(conn, [("/www/alpha", "fresh")], replace=True)
 
     rows = {r["root"]: r["label"] for r in pdb.list_discovered_repos(conn)}
-    assert rows == {"/www/alpha": "fresh"}
+    assert rows == {_host("/www/alpha"): "fresh"}
 
 
 def test_discovery_policy_change_clears_only_discovered_rows(conn):
@@ -67,7 +92,7 @@ def test_default_policy_adopts_unversioned_cache_without_clearing(conn):
         is False
     )
     assert [row["root"] for row in pdb.list_discovered_repos(conn)] == [
-        "/www/scanned"
+        _host("/www/scanned")
     ]
     assert pdb.get_discovery_policy_key(conn) == "default-policy"
 
@@ -89,8 +114,8 @@ def test_create_get_list(conn):
     assert proj.slug == "openamer-agent"
     assert proj.name == "OpenAmer Agent"
     # First folder becomes primary.
-    assert proj.primary_path == "/tmp/openamer"
-    assert [f.path for f in proj.folders] == ["/tmp/openamer"]
+    assert proj.primary_path == _host("/tmp/openamer")
+    assert [f.path for f in proj.folders] == [_host("/tmp/openamer")]
     assert proj.folders[0].is_primary is True
 
     # Lookup by slug too.
@@ -111,23 +136,24 @@ def test_empty_name_rejected(conn):
         pdb.create_project(conn, name="   ")
 
 
-def test_add_remove_folder_and_primary_repoint(conn):
-    pid = pdb.create_project(conn, name="P", folders=["/a"])
-    pdb.add_folder(conn, pid, "/b")
-    pdb.add_folder(conn, pid, "/c", is_primary=True)
+def test_add_remove_folder_and_primary_repoint(conn, tmp_path):
+    a, b, c = (_fixture_path(tmp_path, n) for n in ("a", "b", "c"))
+    pid = pdb.create_project(conn, name="P", folders=[a])
+    pdb.add_folder(conn, pid, b)
+    pdb.add_folder(conn, pid, c, is_primary=True)
 
     proj = pdb.get_project(conn, pid)
-    assert proj.primary_path == "/c"
-    assert {f.path for f in proj.folders} == {"/a", "/b", "/c"}
+    assert proj.primary_path == c
+    assert {f.path for f in proj.folders} == {a, b, c}
 
     # Removing the primary repoints to the oldest remaining folder.
-    pdb.remove_folder(conn, pid, "/c")
+    pdb.remove_folder(conn, pid, c)
     proj = pdb.get_project(conn, pid)
-    assert proj.primary_path == "/a"
+    assert proj.primary_path == a
 
     # Removing the last folder clears the primary.
-    pdb.remove_folder(conn, pid, "/a")
-    pdb.remove_folder(conn, pid, "/b")
+    pdb.remove_folder(conn, pid, a)
+    pdb.remove_folder(conn, pid, b)
     proj = pdb.get_project(conn, pid)
     assert proj.primary_path is None
     assert proj.folders == []
@@ -139,22 +165,25 @@ def test_set_primary_requires_existing_folder(conn):
     assert pdb.set_primary(conn, pid, "/a") is True
 
 
-def test_paths_normalized(conn):
-    pid = pdb.create_project(conn, name="P", folders=["/a/b/../c/"])
+def test_paths_normalized(conn, tmp_path):
+    messy = _fixture_path(tmp_path, "a", "b", "..", "c") + os.sep
+    pid = pdb.create_project(conn, name="P", folders=[messy])
     proj = pdb.get_project(conn, pid)
     # Trailing slash stripped, .. collapsed.
-    assert proj.primary_path == "/a/c"
+    assert proj.primary_path == _fixture_path(tmp_path, "a", "c")
 
 
-def test_project_for_path_longest_prefix(conn):
-    outer = pdb.create_project(conn, name="Outer", folders=["/www"])
-    inner = pdb.create_project(conn, name="Inner", folders=["/www/app"])
+def test_project_for_path_longest_prefix(conn, tmp_path):
+    www = _fixture_path(tmp_path, "www")
+    app = _fixture_path(tmp_path, "www", "app")
+    outer = pdb.create_project(conn, name="Outer", folders=[www])
+    inner = pdb.create_project(conn, name="Inner", folders=[app])
 
-    assert pdb.project_for_path(conn, "/www/app/src/x.py").id == inner
-    assert pdb.project_for_path(conn, "/www/other").id == outer
-    assert pdb.project_for_path(conn, "/elsewhere") is None
+    assert pdb.project_for_path(conn, _fixture_path(tmp_path, "www", "app", "src", "x.py")).id == inner
+    assert pdb.project_for_path(conn, _fixture_path(tmp_path, "www", "other")).id == outer
+    assert pdb.project_for_path(conn, _fixture_path(tmp_path, "elsewhere")) is None
     # Segment-wise prefix only: /www/app must not match /www/application.
-    assert pdb.project_for_path(conn, "/www/application").id == outer
+    assert pdb.project_for_path(conn, _fixture_path(tmp_path, "www", "application")).id == outer
 
 
 def test_project_for_path_skips_archived(conn):
@@ -195,14 +224,14 @@ def test_per_profile_isolation(tmp_path):
     a = pdb.connect(db_path=tmp_path / "a" / "projects.db")
     b = pdb.connect(db_path=tmp_path / "b" / "projects.db")
     try:
-        pdb.create_project(a, name="Only In A", folders=["/a"])
-        pdb.record_discovered_repos(a, [("/a/scanned", "scanned")])
+        root_a = _fixture_path(tmp_path, "root-a")
+        scanned = _fixture_path(tmp_path, "root-a", "scanned")
+        pdb.create_project(a, name="Only In A", folders=[root_a])
+        pdb.record_discovered_repos(a, [(scanned, "scanned")])
 
         assert [p.slug for p in pdb.list_projects(a)] == ["only-in-a"]
         assert pdb.list_projects(b) == []
-        assert [row["root"] for row in pdb.list_discovered_repos(a)] == [
-            "/a/scanned"
-        ]
+        assert [row["root"] for row in pdb.list_discovered_repos(a)] == [scanned]
         assert pdb.list_discovered_repos(b) == []
     finally:
         a.close()

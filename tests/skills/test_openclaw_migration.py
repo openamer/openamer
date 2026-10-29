@@ -16,6 +16,17 @@ SCRIPT_PATH = (
 )
 
 
+
+def _posix(p) -> str:
+    """Compare paths in one spelling.
+
+    These assertions end with hard-coded "/" segments (".../demo-skill",
+    "archive/cron-store"). str(Path) renders "\\" on Windows, so the suffix
+    never matched there even though the product was right. Normalise both sides
+    instead of pinning the separator.
+    """
+    return str(p).replace("\\", "/")
+
 def load_module():
     spec = importlib.util.spec_from_file_location("openclaw_to_openamer", SCRIPT_PATH)
     module = importlib.util.module_from_spec(spec)
@@ -443,7 +454,7 @@ def test_migrator_can_rename_conflicting_imported_skill(tmp_path: Path):
     assert renamed_skill.exists()
     assert existing_skill.joinpath("SKILL.md").read_text(encoding="utf-8").endswith("existing\n")
     imported_items = [item for item in report["items"] if item["kind"] == "skill" and item["status"] == "migrated"]
-    assert any(item["details"].get("renamed_from", "").endswith("/demo-skill") for item in imported_items)
+    assert any(_posix(item["details"].get("renamed_from", "")).endswith("/demo-skill") for item in imported_items)
 
 
 def test_migrator_can_overwrite_conflicting_imported_skill_with_backup(tmp_path: Path):
@@ -816,7 +827,7 @@ def test_cron_store_is_archived_without_config_cron_section(tmp_path: Path):
 
     cron_items = [item for item in report["items"] if item["kind"] == "cron-jobs"]
     archived_store = next(
-        (item for item in cron_items if item["destination"] and item["destination"].endswith("archive/cron-store")),
+        (item for item in cron_items if item["destination"] and _posix(item["destination"]).endswith("archive/cron-store")),
         None,
     )
     assert archived_store is not None

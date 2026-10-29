@@ -4,6 +4,7 @@ Based on PR #1085 by ismoilh (salvaged).
 """
 
 import os
+import sys
 from pathlib import Path
 
 import pytest
@@ -330,9 +331,14 @@ class TestAtomicWrite:
         os.chmod(target, 0o640)
         res = ops.write_file(str(target), "new")
         assert res.error is None, res.error
-        assert (os.stat(target).st_mode & 0o777) == 0o640
+        if sys.platform != "win32":  # NTFS has no POSIX mode bits
+            assert (os.stat(target).st_mode & 0o777) == 0o640
 
     def test_failed_write_leaves_original_intact(self, ops, tmp_path: Path):
+        if sys.platform == "win32":
+            pytest.skip(
+                "the failure precondition is POSIX-only: chmod(dir, 0o500) cannot deny entry creation on NTFS (it only toggles the read-only attribute), so the write succeeds and never reaches the pre-rename failure path"
+            )
         # A read-only parent directory means the temp file can't be created,
         # so the write fails BEFORE any rename. The original must survive
         # byte-for-byte and no temp file may be left behind.
@@ -370,7 +376,8 @@ class TestAtomicWrite:
         res = ops.patch_replace(str(target), "b = 2", "b = 22")
         assert res.success, res.error
         assert target.read_text() == "a = 1\nb = 22\nc = 3\n"
-        assert (os.stat(target).st_mode & 0o777) == 0o600
+        if sys.platform != "win32":  # NTFS has no POSIX mode bits
+            assert (os.stat(target).st_mode & 0o777) == 0o600
 
 
 class TestBomHandling:

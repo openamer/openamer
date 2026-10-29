@@ -120,14 +120,27 @@ class TestDetectDangerousRm:
         assert "delete" in desc.lower()
 
     def test_nonrecursive_verification_artifact_cleanup_is_not_dangerous(self):
-        with mock_patch("tempfile.gettempdir", return_value="/tmp"):
+        # "/tmp" is a POSIX literal: Path("/tmp/x") is drive-relative on Windows
+        # ("\tmp\x"), which the detector correctly classifies as a root path.
+        # Use the host's own temp dir so the exemption is exercised for real.
+        import tempfile as _tempfile
+
+        host_tmp = _tempfile.gettempdir().replace("\\", "/")
+        with mock_patch("tempfile.gettempdir", return_value=host_tmp):
             for prefix in ("openamer-verify-", "openamer-ad-hoc-"):
-                assert detect_dangerous_command(f"rm -f /tmp/{prefix}example.py") == (
+                assert detect_dangerous_command(f"rm -f {host_tmp}/{prefix}example.py") == (
                     False,
                     None,
                     None,
                 )
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "needs a real directory symlink; creating one on Windows requires "
+            "SeCreateSymbolicLinkPrivilege, which the test user does not have"
+        ),
+    )
     def test_symlinked_temp_dir_only_exempts_canonical_target(self, tmp_path):
         real_temp = tmp_path / "real-temp"
         real_temp.mkdir()

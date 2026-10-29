@@ -100,6 +100,7 @@ class TestFlushAfterCompression:
                 f"Compression persistence bug: messages not written to SQLite."
             )
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_flush_with_stale_history_loses_messages(self):
         """Stale conversation_history no longer causes data loss."""
         from openamer_state import SessionDB
@@ -129,6 +130,7 @@ class TestFlushAfterCompression:
             assert len(rows) == 2
             assert [row["content"] for row in rows] == ["summary", "continuing..."]
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_in_place_compression_rebaseline_prevents_duplicate_compacted_rows(self):
         """In-place compaction already persisted the compacted transcript.
 
@@ -191,6 +193,7 @@ class TestFlushAfterCompression:
                 "final answer",
             ]
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_abort_after_in_place_compaction_preserves_flush_baseline(self):
         """An aborted retry must survive flush, restart, and resume."""
         from agent.conversation_compression import (
@@ -442,6 +445,17 @@ class TestGatewayHistoryOffsetAfterSplit:
 class TestStoredPromptCwdDrift:
     """Verify that stored system prompts are rejected when cwd changed."""
 
+    # A matching-cwd test needs a path the product can reproduce EXACTLY. The
+    # product compares the stored line against ``str(resolve_agent_cwd())``,
+    # i.e. ``str(Path(os.getcwd()))``, and on Windows that normalises a POSIX
+    # literal: measured 2026-10-25, ``os.getcwd() -> "/project/current"`` while
+    # ``str(Path.cwd()) -> "\\project\\current"`` (drive-relative). A POSIX
+    # fixture can therefore never match on this host and the test failed on
+    # Windows only -- a host-spelling artefact, not a cache-invariant defect.
+    # Derive the fixture from a native absolute path instead, so both sides go
+    # through the same normalisation and the assertion stays exact.
+    _CWD = str(Path(tempfile.gettempdir()).resolve() / "project" / "current")
+
     def _make_agent(self, model="test/model", provider="openrouter"):
         class _Agent:
             pass
@@ -490,7 +504,7 @@ class TestStoredPromptCwdDrift:
         from agent.conversation_loop import _stored_prompt_matches_runtime
 
         agent = self._make_agent()
-        current_cwd = "/project/current"
+        current_cwd = self._CWD
         stored_prompt = (
             self._host_block(current_cwd)
             + "Model: test/model\n"
@@ -518,7 +532,7 @@ class TestStoredPromptCwdDrift:
         from agent.conversation_loop import _stored_prompt_matches_runtime
 
         agent = self._make_agent()
-        current_cwd = "/project/current"
+        current_cwd = self._CWD
         stored_prompt = (
             self._host_block(current_cwd)
             + "\n# AGENTS.md\n\n"
@@ -661,3 +675,5 @@ class TestStoredPromptCwdDrift:
             assert "Platform: cli" in parts["volatile"], (
                 "Built prompt missing 'Platform: cli' — drift detection cannot read it"
             )
+
+            db.close()  # Windows: unlink fails while the handle is open

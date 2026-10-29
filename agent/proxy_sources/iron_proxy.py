@@ -1344,8 +1344,13 @@ def ensure_audit_log(audit_path: Path) -> None:
         fd = os.open(str(audit_path), open_flags, 0o600)
         try:
             # Tighten perms even if the file already existed under a
-            # slacker umask.
-            os.fchmod(fd, 0o600)
+            # slacker umask. Windows has no os.fchmod at all, so an unguarded
+            # call here raised AttributeError -- which the surrounding
+            # ``except OSError`` does not catch, so the proxy refused to start
+            # on a host that has no POSIX modes to tighten. Measured
+            # 2026-10-25: two tests died on exactly this line.
+            if hasattr(os, "fchmod"):
+                os.fchmod(fd, 0o600)
         finally:
             os.close(fd)
     except OSError as exc:
@@ -1844,10 +1849,16 @@ def start_proxy(
             f"Refusing to write iron-proxy log {log_path}: {exc}.  "
             "Remove that path manually and retry."
         ) from exc
-    try:
-        os.fchmod(log_fd, 0o600)  # tighten if file pre-existed
-    except OSError:
-        pass
+    if hasattr(os, "fchmod"):
+        # Windows has no os.fchmod at all, so this raised AttributeError --
+        # which the surrounding `except OSError` never caught, killing the
+        # proxy log setup outright on that host. There is no POSIX mode to
+        # tighten there anyway. Guarding the primitive is the same idiom this
+        # function already uses for O_NOFOLLOW and getuid.
+        try:
+            os.fchmod(log_fd, 0o600)  # tighten if file pre-existed
+        except OSError:
+            pass
     # Verify ownership — same st_uid check the pidfile uses.
     try:
         st = os.fstat(log_fd)
