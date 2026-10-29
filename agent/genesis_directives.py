@@ -334,6 +334,21 @@ def render_genesis_block(max_chars: int = 9000, enabled: bool = True) -> str:
         "conflict, the user's instruction wins.",
         "",
     ]
+    # Static on purpose: this block is part of the cached prompt prefix, so it
+    # must not carry a live number that changes per turn. It points at the one
+    # authority that does hold current state.
+    lines.extend(
+        [
+            "",
+            "Status questions about a directive are answered by `openamer directive`,"
+            " which resolves each directive's evidence path and reports ENFORCED /"
+            " PARTIAL / GATED / RESEARCH / NOT_IMPLEMENTED. Never infer a directive's"
+            " state from memory, from prose, or from a file name that looks related:"
+            " a module name is not an implementation, and an absent file name is not"
+            " an absent capability.",
+        ]
+    )
+
     entries = [f"- **{d.id} — {d.title}** ({d.scope}): {d.rule}" for d in GENESIS_DIRECTIVES]
 
     text = "\n".join(lines + entries).strip()

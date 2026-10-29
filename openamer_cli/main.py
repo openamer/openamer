@@ -15330,7 +15330,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
     {
         "acp", "approvals", "auth", "backup", "bundles", "checkpoints", "claw", "completion",
         "computer-use",
-        "config", "console", "cron", "curator", "dashboard", "serve", "debug", "doctor",
+        "config", "console", "cron", "curator", "dashboard", "serve", "debug", "directive", "doctor",
         "dump", "egress", "fallback", "feedback", "gateway", "hooks", "import", "insights",
         "gui", "desktop", "hub", "kanban", "login", "logout", "logs", "lsp", "mcp", "memory", "migrate", "moa",
         "journey", "memory-graph", "learning",
@@ -18417,6 +18417,9 @@ def main():
     build_version_parser(subparsers, cmd_version=cmd_version)
 
     build_a2a_parser(subparsers)
+    from openamer_cli.subcommands.directive import build_directive_parser
+
+    build_directive_parser(subparsers)
     build_agent_parser(subparsers)
     build_marketplace_parser(subparsers)
     build_crew_parser(subparsers, cmd_crew=cmd_crew)
