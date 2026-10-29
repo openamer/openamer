@@ -15328,6 +15328,7 @@ def _build_provider_choices() -> list[str]:
 # to parse.
 _BUILTIN_SUBCOMMANDS = frozenset(
     {
+        "re",
         "acp", "approvals", "auth", "backup", "bundles", "checkpoints", "claw", "completion",
         "computer-use",
         "config", "console", "cron", "curator", "dashboard", "serve", "debug", "doctor",
@@ -18417,6 +18418,9 @@ def main():
     build_version_parser(subparsers, cmd_version=cmd_version)
 
     build_a2a_parser(subparsers)
+    from openamer_cli.subcommands.re import build_re_parser
+
+    build_re_parser(subparsers)
     build_agent_parser(subparsers)
     build_marketplace_parser(subparsers)
     build_crew_parser(subparsers, cmd_crew=cmd_crew)
