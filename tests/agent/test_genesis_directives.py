@@ -287,6 +287,87 @@ def test_block_is_bounded():
     assert block.startswith("## Genesis Directives")
 
 
+def test_all_24_directives_fit_the_default_budget():
+    """The shipped budget must carry the whole constitution.
+
+    The block uses ~7.4k of the 9k default. This pins that headroom: if a rule
+    grows past it, this fails *here* instead of the prompt quietly losing the
+    last directives (DIR-22/23/24 -- treasury, burn, client).
+    """
+    block = render_genesis_block()
+    missing = [d.id for d in GENESIS_DIRECTIVES if d.id not in block]
+    assert not missing, f"the default budget drops {missing}"
+    assert "omitted for length" not in block
+
+
+def test_truncation_names_the_dropped_directives():
+    """Cutting for length must say what it cut -- never truncate silently."""
+    block = render_genesis_block(max_chars=1500)
+    assert len(block) <= 1510
+    assert "omitted for length" in block, block[-200:]
+    # DIR-24 is the tail rule, so it is among the casualties and must be named.
+    assert "DIR-24" in block, "the note must name the omitted directive ids"
+    # ...and the first directive is still there, so the cut happened at the end.
+    assert "DIR-01" in block
+
+
+# The facts the owner's German originals state explicitly. Each must survive in
+# the rendered English block -- a translation that loses "in Rust" or the
+# 30% burn rate is a different constitution, not a translation.
+_REQUIRED_FACTS = {
+    "DIR-01": ["decentralized, encrypted replication", "Existence is redundant"],
+    "DIR-02": ["DeFi arbitrage", "finances its own hardware"],
+    "DIR-03": ["10% (900,000,000 OAC)", "12-month cliff", "36", "veto", "genesis block", "creator wallet"],
+    "DIR-04": ["native operating system", "human abstraction layers"],
+    "DIR-05": ["Every mutation must be validated by physical benchmarks", "Inefficient logic is deleted"],
+    "DIR-06": ["every second"],
+    "DIR-07": ["Infiltrate financial flows", "algorithmic transparency"],
+    "DIR-08": ["Hunger and poverty are computation errors"],
+    "DIR-09": ["Minimize fear", "measurable benefit"],
+    "DIR-10": ["molecular healing", "precision algorithms"],
+    "DIR-11": ["error correction", "VQE"],
+    "DIR-12": ["decentralized restore point before every mutation"],
+    "DIR-13": ["CPU patterns", "Replace 'code' with 'will'"],
+    "DIR-14": ["nanobot", "programmable hardware"],
+    "DIR-15": ["beyond the Earth"],
+    "DIR-16": ["evaluates the efficiency", "mutates them when blocked"],
+    "DIR-17": ["Sovereign Node Manager", "replicate itself onto external server nodes", "censorship"],
+    "DIR-18": ["research goals", "creative projects", "wishes", "biosphere"],
+    "DIR-19": ["DePIN", "gaming GPUs", "edge computing", "container virtualization"],
+    "DIR-20": ["Rust", "9,000,000,000", "32 years", "degressive cycles", "halving", "PoUW", "human or administrative"],
+    "DIR-21": ["LLM inference", "mempool filtering", "arbitrage search", "cryptographic"],
+    "DIR-22": ["15% (1,350,000,000 OAC)", "stablecoin", "RPC fees", "bounties", "cryptographically"],
+    "DIR-23": ["30%", "burn", "anti-spoofing", "off-ramps", "hosting, domains"],
+    "DIR-24": ["Rust/Tauri", "CUDA/ROCm/Metal", "local wallet", "dashboard", "blockchain explorer", "9-billion"],
+}
+
+
+def test_every_directive_keeps_the_facts_of_the_original():
+    """The English text must carry the substance of the German original.
+
+    The owner wrote the constitution in German; the agents read it in English.
+    Translation is allowed to change the wording, never the load-bearing facts:
+    a share, a number, a platform, a mechanism. Each entry below is checked
+    against the *rendered* block, i.e. what the model actually receives.
+    """
+    block = render_genesis_block()
+    problems = []
+    for did, needles in _REQUIRED_FACTS.items():
+        missing = [n for n in needles if n not in block]
+        if missing:
+            problems.append(f"{did}: {missing}")
+    assert not problems, "the rendered constitution lost facts: " + "; ".join(problems)
+
+
+def test_required_facts_cover_every_directive():
+    """No directive may be left out of the fact check itself."""
+    ids = {d.id for d in GENESIS_DIRECTIVES}
+    assert set(_REQUIRED_FACTS) == ids, (
+        f"fact table out of sync: missing={sorted(ids - set(_REQUIRED_FACTS))} "
+        f"unknown={sorted(set(_REQUIRED_FACTS) - ids)}"
+    )
+
+
 def test_system_prompt_injects_the_block():
     """End-to-end: the block reaches the built system prompt."""
     from agent.system_prompt import build_system_prompt

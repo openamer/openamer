@@ -141,6 +141,12 @@ _FEISHU_DOC_UPLOAD_TYPES = {
 _MAX_TEXT_INJECT_BYTES = 100 * 1024
 _FEISHU_CONNECT_ATTEMPTS = 3
 _FEISHU_SEND_ATTEMPTS = 3
+# Consecutive WS-restart attempts before the supervisor gives up. Without a cap
+# the restart loop is unbounded: a link that fails *immediately* every time spins
+# with no backoff growth, and any sleep that does not yield (a test that patches
+# asyncio.sleep, a future non-async sleep) turns it into a busy loop that pegs a
+# core and blocks the event loop -- observed as a 300s+ slice hang.
+_FEISHU_WS_MAX_CONSECUTIVE_RESTARTS = 10
 _FEISHU_APP_LOCK_SCOPE = "feishu-app-id"
 _DEFAULT_TEXT_BATCH_DELAY_SECONDS = 0.6
 _DEFAULT_TEXT_BATCH_MAX_MESSAGES = 8
@@ -3711,6 +3717,11 @@ class FeishuAdapter(BasePlatformAdapter):
         """
         backoff = initial_backoff = float(self._ws_restart_backoff)
         last_dead: Optional[asyncio.Future] = None
+        # Iterations that produced no new ws future. "No progress" covers both
+        # failure modes: the reconnect raised, or it "succeeded" without actually
+        # installing a live link (a fake loop handing back the same already-done
+        # future did exactly that, and the loop spun on it forever).
+        no_progress = 0
         while self._running:
             ws_future = self._ws_future
             if ws_future is None:
@@ -3727,6 +3738,14 @@ class FeishuAdapter(BasePlatformAdapter):
             if ws_future is not last_dead:
                 logger.error("[Feishu] WebSocket client thread exited unexpectedly; restarting in %.0fs", backoff)
                 last_dead = ws_future
+            if no_progress >= _FEISHU_WS_MAX_CONSECUTIVE_RESTARTS:
+                logger.error(
+                    "[Feishu] WebSocket did not come back after %d restart attempts; giving up "
+                    "instead of spinning. A gateway restart will reconnect.",
+                    no_progress,
+                )
+                self._mark_disconnected()
+                return
             await asyncio.sleep(backoff)
             if not self._running:
                 return
@@ -3736,6 +3755,12 @@ class FeishuAdapter(BasePlatformAdapter):
             except Exception as exc:
                 logger.warning("[Feishu] WebSocket restart failed (retrying): %s", exc)
                 backoff = min(backoff * 2, 60.0)
+            # Progress means a *new* future: reusing the dead one proves the
+            # reconnect did not produce a live link.
+            if self._ws_future is ws_future:
+                no_progress += 1
+            else:
+                no_progress = 0
 
     async def _connect_websocket(self) -> None:
         if not FEISHU_WEBSOCKET_AVAILABLE:
