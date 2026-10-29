@@ -15,6 +15,7 @@ import os
 import shutil
 import subprocess
 import time
+import uuid
 from collections.abc import Iterator
 
 import pytest
@@ -72,9 +73,21 @@ def built_image() -> str:
 
 @pytest.fixture
 def container_name(request) -> Iterator[str]:
-    """Generate a unique container name and ensure cleanup on test exit."""
+    """Generate a unique container name and ensure cleanup on test exit.
+
+    The name is unique per process, not just per test node. A file that fails is
+    retried by ``scripts/run_tests.sh``, and the retry can overlap the previous
+    attempt long enough that its container still holds the derived name — docker
+    then refuses with
+
+        Conflict. The container name "/openamer-test-…" is already in use
+
+    which is exactly the ``exit 125`` every docker file was failing with. The
+    readable part stays so a leftover container is still recognisable in
+    ``docker ps``.
+    """
     safe = request.node.name.replace("[", "_").replace("]", "_")
-    name = f"openamer-test-{safe}"
+    name = f"openamer-test-{safe}-{os.getpid()}-{uuid.uuid4().hex[:6]}"
     yield name
     subprocess.run(
         ["docker", "rm", "-f", name],
@@ -189,14 +202,47 @@ def start_container(
 
     Returns the container name. Raises on ``docker run`` failure or if
     the container never finishes cont-init within 30s.
+
+    A bare ``check=True`` used to hide docker's own diagnostic behind
+    ``CalledProcessError`` — a daemon saying "no space left on device" and a
+    name conflict were indistinguishable from a broken image, and the log only
+    ever showed ``exit status 125``. The stderr is now part of the failure, and
+    a leftover container under the same name (which is what a retried or
+    interrupted run leaves behind) is cleared and retried once instead of
+    failing the file.
     """
+    _remove_container(name)
     args = ["docker", "run", "-d", "--name", name]
     for e in env:
         args.extend(["-e", e])
     args.extend([image, *cmd.split()])
-    subprocess.run(args, check=True, capture_output=True, timeout=timeout)
+    for attempt in (1, 2):
+        result = subprocess.run(
+            args, capture_output=True, text=True, timeout=timeout,
+        )
+        if result.returncode == 0:
+            break
+        detail = (result.stderr or result.stdout or "").strip()
+        if attempt == 1 and result.returncode == 125 and "lready in use" in detail:
+            _remove_container(name)
+            continue
+        raise RuntimeError(
+            f"docker run failed (exit {result.returncode}) for container "
+            f"{name!r} from image {image!r}: {detail[-2000:] or '<no output>'}"
+        )
     wait_for_container_ready(name)
     return name
+
+
+def _remove_container(name: str) -> None:
+    """Force-remove a container if it exists; never raises."""
+    try:
+        subprocess.run(
+            ["docker", "rm", "-f", name],
+            capture_output=True, text=True, timeout=30,
+        )
+    except (subprocess.TimeoutExpired, OSError):
+        pass
 
 
 def restart_container(container: str, timeout: int = 180) -> None:
