@@ -515,6 +515,9 @@ openamer update                  Update OpenAmer
 openamer doctor                  Diagnose issues
 openamer system                  Show system info
 openamer security check          Check security posture
+openamer security audit          Scan deps for known CVEs (OSV.dev)
+openamer security assess <m>     Authorized local HTTP checks, evidence to a file
+openamer security lab --output <d>  Prove the checks against vulnerable + fixed fixtures
 openamer sessions                Manage session history
 openamer logs                    View agent logs
 openamer skills                  Browse, search, manage skills
@@ -604,6 +607,35 @@ openamer super milestones         Next planned improvements
 ```
 
 For the full command lists, see the [CLI guide](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/cli) and the [Messaging Gateway guide](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging).
+
+### Local HTTP assessment (opt-in, bounded)
+
+`openamer security assess` checks your **own** local staging app and writes the raw
+evidence to a file. It only talks to an exact `http://127.x.x.x:port` origin — no DNS,
+no crawling, no authenticated testing, no redirect following, and it never fixes anything.
+
+```json
+{
+  "origin": "http://127.0.0.1:8080",
+  "checks": [
+    {"kind": "redirect", "path": "/login", "parameter": "next"},
+    {"kind": "canary-read", "path": "/download", "parameter": "file",
+     "control": "missing.txt", "payload": "../canary.txt",
+     "marker": "SYNTHETIC-CANARY-7f3a91"}
+  ]
+}
+```
+
+```bash
+openamer security assess manifest.json --authorized --output finding.json
+openamer security lab --output ./lab-evidence   # proves the checks on fixtures
+```
+
+Each check is sent **three times** — a benign control, then the payload twice. A check is
+`confirmed` only when the control discriminates and the effect repeats; a single hit is
+`not_reproduced`, and truncation, a 5xx, a broken control or a timeout is `inconclusive`.
+That is why absence of findings is not a security certificate, and why
+`independently_verified` is always `false`.
 
 ---
 
