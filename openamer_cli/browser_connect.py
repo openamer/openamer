@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import os
 import platform
+import posixpath
 import shlex
 import shutil
 import subprocess
@@ -95,7 +96,15 @@ def get_chrome_debug_candidates(system: str) -> list[str]:
         for _, group in install_groups:
             for base in filter(None, bases):
                 for parts in group:
-                    add(os.path.join(base, *parts))
+                    # A "/mnt/c/..." base is a WSL path: os.path.join turns it into
+                    # "\\mnt\\c\\..." on a Windows host, so the WSL fallback could
+                    # never be found there (measured 2026-10-25).
+                    joined = (
+                        posixpath.join(base, *parts)
+                        if base.startswith("/")
+                        else os.path.join(base, *parts)
+                    )
+                    add(joined)
 
     if system == "Darwin":
         for app in _DARWIN_APPS:

@@ -94,7 +94,13 @@ def test_platform_asset_name(system, machine, libc_text, expected):
 def _make_fake_zip(binary_bytes: bytes) -> bytes:
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w") as zf:
-        zf.writestr("bws", binary_bytes)
+        # The upstream Windows asset really does ship ``bws.exe``, and the
+        # product resolves the member name via _platform_binary_name(). Writing
+        # a hardcoded ``bws`` made this fixture assert a Linux-only archive
+        # shape: measured 2026-10-25 the installer died with
+        # "Could not find bws.exe inside downloaded archive (members: ['bws'])"
+        # -- the test was wrong, not the installer.
+        zf.writestr(bw._platform_binary_name(), binary_bytes)
     return buf.getvalue()
 
 
@@ -694,8 +700,12 @@ def test_disk_cache_written_after_first_fetch(monkeypatch, tmp_path):
     cache_path = bw._disk_cache_path(home)
     assert cache_path.exists()
     # Mode must be 0600 — disk cache contains plaintext secret values
-    mode = os.stat(cache_path).st_mode & 0o777
-    assert mode == 0o600, f"expected 0o600, got 0o{mode:o}"
+    # NTFS has no POSIX mode bits (S_IMODE reports 0o666 for any path), so the
+    # mode half of this check is POSIX-only. The load-bearing half -- that the
+    # cache exists and carries no plaintext token -- stays asserted everywhere.
+    if sys.platform != "win32":
+        mode = os.stat(cache_path).st_mode & 0o777
+        assert mode == 0o600, f"expected 0o600, got 0o{mode:o}"
 
     # File contents: key (fingerprint not raw token), secrets dict, fetched_at
     payload_disk = json.loads(cache_path.read_text())
@@ -906,8 +916,9 @@ def test_encrypted_cache_writes_without_plaintext(monkeypatch, tmp_path):
     assert not bw._disk_cache_path(home).exists()
     cache_path = bw._encrypted_disk_cache_path(home)
     assert cache_path.exists()
-    mode = stat.S_IMODE(os.stat(cache_path).st_mode)
-    assert mode == 0o600, f"expected 0o600, got 0o{mode:o}"
+    if sys.platform != "win32":  # NTFS has no POSIX mode bits
+        mode = stat.S_IMODE(os.stat(cache_path).st_mode)
+        assert mode == 0o600, f"expected 0o600, got 0o{mode:o}"
     text = cache_path.read_text()
     assert "secret-value" not in text
     assert "0.t" not in text

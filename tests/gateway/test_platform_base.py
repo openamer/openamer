@@ -37,6 +37,20 @@ def test_media_delivery_denies_encrypted_bitwarden_cache(tmp_path, monkeypatch):
     assert base.validate_media_delivery_path(str(path)) is None
 
 
+
+def _pin_home(monkeypatch, path) -> None:
+    """Pin ``~`` for the product on every host.
+
+    On Windows ``$HOME`` is inert for pathlib: ``Path.home()`` reads
+    ``USERPROFILE`` first, so a test that sets only ``HOME`` leaves ``~/.ssh``
+    pointing at the real profile -- and a denylist assertion then inspects the
+    wrong file and "fails" about a path the product never resolved. Measured
+    2026-10-25: five failures in this file were exactly that.
+    """
+    monkeypatch.setenv("HOME", str(path))
+    if os.name == "nt":
+        monkeypatch.setenv("USERPROFILE", str(path))
+
 class TestInboundMediaSizeCap:
     """gateway.max_inbound_media_bytes caps inbound media buffered into RAM (#13145)."""
 
@@ -993,7 +1007,7 @@ class TestMediaDeliveryPathValidation:
         ssh_dir.mkdir(parents=True)
         secret = ssh_dir / "id_rsa.txt"
         secret.write_bytes(b"-----BEGIN ...")  # mtime = now
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(secret)) is None
 
@@ -1087,7 +1101,7 @@ class TestMediaDeliveryDefaultMode:
         ssh_dir.mkdir(parents=True)
         secret = ssh_dir / "id_rsa"
         secret.write_bytes(b"-----BEGIN ...")
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(secret)) is None
 
@@ -1122,7 +1136,7 @@ class TestMediaDeliveryDefaultMode:
         openamer_dir.mkdir(parents=True)
         env_file = openamer_dir / ".env"
         env_file.write_text("OPENAI_API_KEY=sk-...")
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr(
             "gateway.platforms.base._OPENAMER_HOME",
             openamer_dir,
@@ -1150,7 +1164,7 @@ class TestMediaDeliveryDefaultMode:
         (openamer_dir / "mcp-tokens").mkdir(parents=True)
         secret = openamer_dir / rel
         secret.write_text('{"access_token": "live-bearer-abc123"}')
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr(
             "gateway.platforms.base._OPENAMER_HOME",
             openamer_dir,
@@ -1171,7 +1185,7 @@ class TestMediaDeliveryDefaultMode:
         openamer_dir.mkdir(parents=True)
         config_file = openamer_dir / "config.yaml"
         config_file.write_text("model:\n  provider: openai\n")
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr(
             "gateway.platforms.base._OPENAMER_HOME",
             openamer_dir,
@@ -1189,7 +1203,7 @@ class TestMediaDeliveryDefaultMode:
         openamer_root = fake_home / ".openamer"
         config_file = openamer_root / "config.yaml"
         config_file.write_text("profiles:\n  active: work\n")
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr(
             "gateway.platforms.base._OPENAMER_HOME",
             profile_home,
@@ -1215,7 +1229,7 @@ class TestMediaDeliveryDefaultMode:
         openamer_dir.mkdir(parents=True)
         token = openamer_dir / "google_token.json"
         token.write_text('{"access_token": "***", "refresh_token": "***"}')
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", openamer_dir)
 
@@ -1237,7 +1251,7 @@ class TestMediaDeliveryDefaultMode:
         openamer_dir.mkdir(parents=True)
         token = openamer_dir / "google_token.json"
         token.write_text('{"access_token": "***"}')  # mtime = now → "recent"
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", openamer_dir)
 
@@ -1255,7 +1269,7 @@ class TestMediaDeliveryDefaultMode:
         pairing.mkdir(parents=True)
         token = pairing / "telegram-approved.json"
         token.write_text('{"approved": ["123"]}')
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", openamer_dir)
 
@@ -1273,7 +1287,7 @@ class TestMediaDeliveryDefaultMode:
         artifact = cache_dir / "report.pdf"
         artifact.write_bytes(b"%PDF-1.4")
         self._patch_roots(monkeypatch, cache_dir)
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", openamer_dir)
 
@@ -1294,7 +1308,7 @@ class TestMediaDeliveryDefaultMode:
         openamer_dir.mkdir(parents=True)
         artifact = openamer_dir / "adhoc_report.pdf"
         artifact.write_bytes(b"%PDF-1.4")  # fresh mtime
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", openamer_dir)
 
@@ -1355,7 +1369,7 @@ class TestMediaDeliveryDefaultMode:
         workdir.mkdir(parents=True)
         doc = workdir / "proposal.docx"
         doc.write_bytes(b"PK\x03\x04")
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         # $HOME is itself on the denied-prefix list, mirroring /root.
         monkeypatch.setattr(
             "gateway.platforms.base._MEDIA_DELIVERY_DENIED_PREFIXES",
@@ -1380,7 +1394,7 @@ class TestMediaDeliveryDefaultMode:
         ssh_dir.mkdir(parents=True)
         key = ssh_dir / "id_rsa"
         key.write_bytes(b"-----BEGIN OPENSSH PRIVATE KEY-----")
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr(
             "gateway.platforms.base._MEDIA_DELIVERY_DENIED_PREFIXES",
             (str(fake_home),),
@@ -1399,7 +1413,7 @@ class TestMediaDeliveryDefaultMode:
         openamer_dir.mkdir(parents=True)
         env_file = openamer_dir / ".env"
         env_file.write_text("OPENROUTER_API_KEY=sk-...")
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr(
             "gateway.platforms.base._MEDIA_DELIVERY_DENIED_PREFIXES",
             (str(fake_home),),
@@ -1430,7 +1444,7 @@ class TestMediaDeliveryDefaultMode:
         # $HOME is NOT the denied prefix (mirrors HOME=/opt/data/home).
         fake_home = tmp_path / "opt" / "data" / "home"
         fake_home.mkdir(parents=True)
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr(
             "gateway.platforms.base._MEDIA_DELIVERY_DENIED_PREFIXES",
             (str(denied_root),),
@@ -1460,7 +1474,7 @@ class TestMediaDeliveryDefaultMode:
 
         fake_home = tmp_path / "opt" / "data" / "home"
         fake_home.mkdir(parents=True)
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr(
             "gateway.platforms.base._MEDIA_DELIVERY_DENIED_PREFIXES",
             (str(denied_root),),
@@ -1484,7 +1498,7 @@ class TestMediaDeliveryDefaultMode:
         other_home.mkdir()
         other_file = other_home / "secret.docx"
         other_file.write_bytes(b"PK\x03\x04")
-        monkeypatch.setenv("HOME", str(my_home))
+        _pin_home(monkeypatch, my_home)
         # Both my home and the other home are denied prefixes; only my home is
         # the running user's $HOME, so the other home must stay blocked.
         monkeypatch.setattr(
@@ -1511,7 +1525,7 @@ class TestMediaDeliveryDefaultMode:
         workdir.mkdir()
         link = workdir / "innocent.pdf"
         link.symlink_to(key)
-        monkeypatch.setenv("HOME", str(fake_home))
+        _pin_home(monkeypatch, fake_home)
         monkeypatch.setattr(
             "gateway.platforms.base._MEDIA_DELIVERY_DENIED_PREFIXES",
             (str(fake_home),),
@@ -2001,7 +2015,9 @@ class TestMediaDeliveryDiagnosability:
 
     def test_canonical_cache_roots_present(self):
         from gateway.platforms.base import MEDIA_DELIVERY_SAFE_ROOTS
-        roots = {str(r) for r in MEDIA_DELIVERY_SAFE_ROOTS}
+        # Normalise separators: the suffix assertions below are written with
+        # "/" and Windows renders these roots with "\\".
+        roots = {str(r).replace("\\", "/") for r in MEDIA_DELIVERY_SAFE_ROOTS}
         assert any(r.endswith("cache/images") for r in roots)
         assert any(r.endswith("cache/documents") for r in roots)
         # Legacy layout still present.

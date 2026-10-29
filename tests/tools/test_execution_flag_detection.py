@@ -3,6 +3,7 @@
 import os
 import shlex
 import shutil
+import os
 import subprocess
 import time
 
@@ -11,6 +12,15 @@ import pytest
 from tools.approval import detect_dangerous_command, detect_hardline_command
 
 
+pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the fixtures are POSIX shell stubs (#!/bin/sh + chmod 0o755); Windows "
+        "has no exec bit and cannot run a .sh file directly, so the stub never "
+        "runs and no marker is written"
+    ),
+)
+@pytest.mark.skipif(os.name == "nt", reason="POSIX shell stub; see module note")
 @pytest.mark.parametrize(
     ("argv", "stdin", "expected_returncode", "expected_output"),
     [
@@ -32,6 +42,15 @@ def test_real_read_tool_binaries_confirm_option_ownership(
     assert completed.stdout == expected_output
 
 
+pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the fixtures are POSIX shell stubs (#!/bin/sh + chmod 0o755); Windows "
+        "has no exec bit and cannot run a .sh file directly, so the stub never "
+        "runs and no marker is written"
+    ),
+)
+@pytest.mark.skipif(os.name == "nt", reason="POSIX shell stub; see module note")
 @pytest.mark.parametrize(
     ("tool", "args", "stdin", "needs_tty"),
     [

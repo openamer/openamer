@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-10-20T20:42:40",
+  "timestamp": "2026-10-26T15:00:43",
   "mode": "apply",
-  "population": 1185,
-  "avg_score": 38.5,
+  "population": 1197,
+  "avg_score": 38.6,
   "kept": [
     {
       "skill": "auto-internet-learning-metas-new",
@@ -33,6 +33,17 @@
       "fixes": []
     },
     {
+      "skill": "auto-competitor-intelligence-layerfs-a",
+      "before": 21,
+      "after": 25,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
       "skill": "auto-internet-learning-metas-new",
       "before": 21,
       "after": 31,
@@ -54,10 +65,10 @@
       "fixes": []
     },
     {
-      "skill": "auto-latest-research-insight-hybrid",
+      "skill": "auto-multidomain-learning-philosophy-of",
       "before": 21,
-      "after": 25,
-      "delta": 4,
+      "after": 28,
+      "delta": 7,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
         "✅ platforms Feld hinzugefügt",
@@ -65,18 +76,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-training",
-      "before": 21,
-      "after": 25,
-      "delta": 4,
-      "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt",
-        "✅ version Feld hinzugefügt"
-      ]
-    },
-    {
-      "skill": "auto-latest-research-insight-understanding",
+      "skill": "auto-multidomain-learning-python-legalaiautom",
       "before": 21,
       "after": 28,
       "delta": 7,

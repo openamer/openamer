@@ -280,8 +280,15 @@ class TestBoardCRUD:
         # downstream readers hit `no such table: task_events`.
         kb.create_board("recycle")
         # First connect populates _INITIALIZED_PATHS for this DB.
-        with kb.connect(board="recycle") as conn:
+        # sqlite3's context manager commits but does NOT close, so on Windows
+        # the handle kept the rename below from succeeding (WinError 5/32:
+        # a directory containing an open DB file cannot be moved). Close it
+        # explicitly -- the intent here is to release the DB.
+        conn = kb.connect(board="recycle")
+        try:
             kb.create_task(conn, title="t1", assignee="dev")
+        finally:
+            conn.close()
         db_path = kb.board_dir("recycle") / "kanban.db"
         assert str(db_path.resolve()) in kb._INITIALIZED_PATHS
 

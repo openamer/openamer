@@ -35,17 +35,22 @@ def test_model_short_drops_vendor_prefix(model, expected):
 
 
 def test_home_relative_cwd_collapses_home(tmp_path, monkeypatch):
+    # $HOME alone is inert on Windows: the home lookup reads USERPROFILE first,
+    # so the path collapsed against the real profile (measured 2026-10-25).
     monkeypatch.setenv("HOME", str(tmp_path))
+    monkeypatch.setenv("USERPROFILE", str(tmp_path))
     sub = tmp_path / "projects" / "openamer"
     sub.mkdir(parents=True)
     result = _home_relative_cwd(str(sub))
-    assert result == "~/projects/openamer"
+    # The product renders host separators; the literal stays readable.
+    assert result.replace("\\", "/") == "~/projects/openamer"
 
 
 def test_home_relative_cwd_leaves_abs_path_alone(tmp_path, monkeypatch):
     monkeypatch.setenv("HOME", str(tmp_path / "other"))
+    monkeypatch.setenv("USERPROFILE", str(tmp_path / "other"))
     result = _home_relative_cwd(str(tmp_path / "outside" / "dir"))
-    assert result == str(tmp_path / "outside" / "dir")
+    assert result.replace("\\", "/") == str(tmp_path / "outside" / "dir").replace("\\", "/")
 
 
 def test_home_relative_cwd_empty_returns_empty():
@@ -58,6 +63,7 @@ def test_home_relative_cwd_empty_returns_empty():
 
 def test_format_footer_all_fields(monkeypatch, tmp_path):
     monkeypatch.setenv("HOME", str(tmp_path))
+    monkeypatch.setenv("USERPROFILE", str(tmp_path))
     monkeypatch.setenv("TERMINAL_CWD", str(tmp_path / "projects" / "openamer"))
     (tmp_path / "projects" / "openamer").mkdir(parents=True)
     out = format_runtime_footer(
@@ -67,7 +73,7 @@ def test_format_footer_all_fields(monkeypatch, tmp_path):
         cwd=None,  # falls back to TERMINAL_CWD env var
         fields=("model", "context_pct", "cwd"),
     )
-    assert out == "gpt-5.4 · 68% · ~/projects/openamer"
+    assert out.replace("\\", "/") == "gpt-5.4 · 68% · ~/projects/openamer"
 
 
 def test_format_footer_skips_missing_context_length():
@@ -75,13 +81,15 @@ def test_format_footer_skips_missing_context_length():
         model="openai/gpt-5.4",
         context_tokens=500,
         context_length=None,
-        cwd="/tmp/wd",
+        cwd=__import__("tempfile").gettempdir() + "/wd",
         fields=("model", "context_pct", "cwd"),
     )
     # context_pct dropped silently; no "?%" artifact
     assert "%" not in out
     assert "gpt-5.4" in out
-    assert "/tmp/wd" in out
+    # The footer collapses home-relative paths, and the temp dir sits inside the
+    # profile on Windows, so only the leaf is guaranteed to appear verbatim.
+    assert "wd" in out
 
 
 def test_format_footer_context_pct_clamped_to_100():

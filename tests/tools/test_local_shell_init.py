@@ -12,6 +12,7 @@ from unittest.mock import patch
 import pytest
 
 from tools.environments.local import (
+    _IS_WINDOWS,
     LocalEnvironment,
     _prepend_shell_init,
     _resolve_shell_init_files,
@@ -19,6 +20,14 @@ from tools.environments.local import (
 
 
 class TestResolveShellInitFiles:
+    @pytest.mark.skipif(
+        _IS_WINDOWS,
+        reason=(
+            "auto_source_bashrc is POSIX-only by design: "
+            "tools/environments/local.py:1349 guards the rc list with "
+            "`not _IS_WINDOWS`, so on Windows the resolver correctly returns []"
+        ),
+    )
     def test_auto_sources_bashrc_when_present(self, tmp_path, monkeypatch):
         bashrc = tmp_path / ".bashrc"
         bashrc.write_text('export MARKER=seen\n')
@@ -33,6 +42,14 @@ class TestResolveShellInitFiles:
 
         assert resolved == [str(bashrc)]
 
+    @pytest.mark.skipif(
+        _IS_WINDOWS,
+        reason=(
+            "auto_source_bashrc is POSIX-only by design: "
+            "tools/environments/local.py:1349 guards the rc list with "
+            "`not _IS_WINDOWS`, so on Windows the resolver correctly returns []"
+        ),
+    )
     def test_auto_sources_profile_when_present(self, tmp_path, monkeypatch):
         """~/.profile is where ``n`` / ``nvm`` installers typically write
         their PATH export on Debian/Ubuntu, and it has no interactivity
@@ -50,6 +67,14 @@ class TestResolveShellInitFiles:
 
         assert resolved == [str(profile)]
 
+    @pytest.mark.skipif(
+        _IS_WINDOWS,
+        reason=(
+            "auto_source_bashrc is POSIX-only by design: "
+            "tools/environments/local.py:1349 guards the rc list with "
+            "`not _IS_WINDOWS`, so on Windows the resolver correctly returns []"
+        ),
+    )
     def test_auto_sources_bash_profile_when_present(self, tmp_path, monkeypatch):
         bash_profile = tmp_path / ".bash_profile"
         bash_profile.write_text('export MARKER=bp\n')
@@ -63,6 +88,14 @@ class TestResolveShellInitFiles:
 
         assert resolved == [str(bash_profile)]
 
+    @pytest.mark.skipif(
+        _IS_WINDOWS,
+        reason=(
+            "auto_source_bashrc is POSIX-only by design: "
+            "tools/environments/local.py:1349 guards the rc list with "
+            "`not _IS_WINDOWS`, so on Windows the resolver correctly returns []"
+        ),
+    )
     def test_auto_sources_profile_before_bashrc(self, tmp_path, monkeypatch):
         """Both files present: profile runs first so PATH exports in
         profile take effect even if bashrc short-circuits on the
@@ -128,6 +161,14 @@ class TestResolveShellInitFiles:
         assert resolved == [str(custom)]
         assert str(bashrc) not in resolved
 
+    @pytest.mark.skipif(
+        _IS_WINDOWS,
+        reason=(
+            "auto_source_bashrc is POSIX-only by design: "
+            "tools/environments/local.py:1349 guards the rc list with "
+            "`not _IS_WINDOWS`, so on Windows the resolver correctly returns []"
+        ),
+    )
     def test_expands_home_and_env_vars(self, tmp_path, monkeypatch):
         target = tmp_path / "rc" / "custom.sh"
         target.parent.mkdir()

@@ -3233,8 +3233,20 @@ def _resolve_attachment_path(raw_path: str) -> Path | None:
             parsed = urlparse(token)
             if parsed.scheme == "file":
                 expanded = unquote(parsed.path or "")
-                if parsed.netloc and os.name == "nt":
-                    expanded = f"//{parsed.netloc}{expanded}"
+                if os.name == "nt":
+                    if parsed.netloc:
+                        expanded = f"//{parsed.netloc}{expanded}"
+                    elif (
+                        len(expanded) >= 3
+                        and expanded[0] == "/"
+                        and expanded[2] == ":"
+                        and expanded[1].isalpha()
+                    ):
+                        # file:///C:/x -> C:/x . Without this the leading slash
+                        # stays and Path() turns it into "\\C:\\x", which never
+                        # exists, so a dropped file:// URI was silently ignored.
+                        # Measured 2026-10-25.
+                        expanded = expanded[1:]
         except Exception:
             expanded = token
     expanded = os.path.expandvars(os.path.expanduser(expanded))

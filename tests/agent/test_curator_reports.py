@@ -113,7 +113,7 @@ def test_run_json_has_expected_shape(curator_env):
             ],
         ),
     )
-    payload = json.loads((run_dir / "run.json").read_text())
+    payload = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
 
     # top-level shape
     for k in (
@@ -171,7 +171,7 @@ def test_report_md_is_human_readable(curator_env):
             ],
         ),
     )
-    md = (run_dir / "REPORT.md").read_text()
+    md = (run_dir / "REPORT.md").read_text(encoding="utf-8")
 
     # Structural checks
     assert "# Curator run" in md
@@ -236,9 +236,9 @@ def test_report_captures_llm_error_and_continues(curator_env):
             summary="error",
         ),
     )
-    md = (run_dir / "REPORT.md").read_text()
+    md = (run_dir / "REPORT.md").read_text(encoding="utf-8")
     assert "HTTP 400" in md
-    payload = json.loads((run_dir / "run.json").read_text())
+    payload = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
     assert payload["llm_error"] == "HTTP 400: No models provided"
 
 
@@ -261,11 +261,11 @@ def test_state_transitions_captured_in_report(curator_env):
         after_report=after,
         llm_meta=_make_llm_meta(),
     )
-    payload = json.loads((run_dir / "run.json").read_text())
+    payload = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
     assert payload["state_transitions"] == [
         {"name": "getting-old", "from": "active", "to": "stale"}
     ]
-    md = (run_dir / "REPORT.md").read_text()
+    md = (run_dir / "REPORT.md").read_text(encoding="utf-8")
     assert "State transitions" in md
     assert "getting-old" in md
     assert "active → stale" in md
@@ -351,7 +351,7 @@ def test_curator_rewrites_cron_skills_when_skill_consolidated(curator_env_with_c
     assert loaded["skill"] == "foo-umbrella"
 
     # Rewrite is recorded in run.json
-    payload = json.loads((run_dir / "run.json").read_text())
+    payload = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
     assert payload["cron_rewrites"]["jobs_updated"] == 1
     assert payload["counts"]["cron_jobs_rewritten"] == 1
     rewrites = payload["cron_rewrites"]["rewrites"]
@@ -361,11 +361,11 @@ def test_curator_rewrites_cron_skills_when_skill_consolidated(curator_env_with_c
     # Separate cron_rewrites.json is written for convenience
     cron_file = run_dir / "cron_rewrites.json"
     assert cron_file.exists()
-    detail = json.loads(cron_file.read_text())
+    detail = json.loads(cron_file.read_text(encoding="utf-8"))
     assert detail["jobs_updated"] == 1
 
     # Markdown surfaces the change
-    md = (run_dir / "REPORT.md").read_text()
+    md = (run_dir / "REPORT.md").read_text(encoding="utf-8")
     assert "Cron job skill references rewritten" in md
     assert "foo-watcher" in md
     assert "foo-umbrella" in md
@@ -400,7 +400,7 @@ def test_curator_drops_pruned_skill_from_cron_job(curator_env_with_cron):
     loaded = jobs.get_job(job["id"])
     assert loaded["skills"] == ["keep"]
 
-    payload = json.loads((run_dir / "run.json").read_text())
+    payload = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
     assert payload["cron_rewrites"]["jobs_updated"] == 1
     rewrites = payload["cron_rewrites"]["rewrites"]
     assert rewrites[0]["dropped"] == ["stale-one"]
@@ -427,9 +427,9 @@ def test_curator_report_has_no_cron_section_when_nothing_changes(curator_env_wit
 
     # No rewrites → no separate file, no section in md
     assert not (run_dir / "cron_rewrites.json").exists()
-    md = (run_dir / "REPORT.md").read_text()
+    md = (run_dir / "REPORT.md").read_text(encoding="utf-8")
     assert "Cron job skill references rewritten" not in md
 
-    payload = json.loads((run_dir / "run.json").read_text())
+    payload = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
     assert payload["cron_rewrites"]["jobs_updated"] == 0
     assert payload["counts"]["cron_jobs_rewritten"] == 0

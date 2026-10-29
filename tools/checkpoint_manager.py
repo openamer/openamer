@@ -61,6 +61,30 @@ from openamer_constants import get_openamer_home
 from openamer_cli._subprocess_compat import windows_hide_flags
 from typing import Dict, List, Optional, Set, Tuple
 
+
+def _rmtree(path) -> None:
+    """shutil.rmtree that also works on read-only trees.
+
+    Git marks object files read-only, and Windows refuses to delete a read-only
+    file -- so a plain rmtree raises PermissionError and every "clear
+    checkpoints" call silently deleted nothing (measured 2026-10-25:
+    clear_all() returned deleted=False on a populated store). Clear the bit and
+    retry the failing entry.
+    """
+    import stat as _stat
+
+    def _on_error(func, target, _exc_info):
+        try:
+            os.chmod(target, _stat.S_IWRITE)
+            func(target)
+        except OSError:
+            pass
+
+    try:
+        shutil.rmtree(path, onexc=_on_error)  # Python 3.12+
+    except TypeError:
+        shutil.rmtree(path, onerror=_on_error)  # Python 3.11
+
 from utils import env_int
 
 logger = logging.getLogger(__name__)
@@ -1520,7 +1544,7 @@ def prune_checkpoints(
                 continue
             try:
                 size = _dir_size_bytes(child)
-                shutil.rmtree(child)
+                _rmtree(child)
                 result["bytes_freed"] += size
                 result["deleted_stale"] += 1
             except OSError as exc:
@@ -1566,7 +1590,7 @@ def prune_checkpoints(
             continue
         try:
             size = _dir_size_bytes(child)
-            shutil.rmtree(child)
+            _rmtree(child)
             result["bytes_freed"] += size
             if reason == "orphan":
                 result["deleted_orphan"] += 1
@@ -1887,7 +1911,7 @@ def clear_all(checkpoint_base: Optional[Path] = None) -> Dict[str, int]:
         return out
     size = _dir_size_bytes(base)
     try:
-        shutil.rmtree(base)
+        _rmtree(base)
         out["bytes_freed"] = size
         out["deleted"] = True
     except OSError as exc:
@@ -1909,7 +1933,7 @@ def clear_legacy(checkpoint_base: Optional[Path] = None) -> Dict[str, int]:
             continue
         try:
             size = _dir_size_bytes(child)
-            shutil.rmtree(child)
+            _rmtree(child)
             out["bytes_freed"] += size
             out["deleted"] += 1
         except OSError as exc:

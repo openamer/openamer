@@ -67,7 +67,16 @@ def main() -> int:
         print(proc.stderr, file=sys.stderr)
         return 1
 
-    out = json.loads(proc.stdout)
+    # solc writes non-JSON diagnostics to stdout before the document -- on Linux
+    # with no SMT solver it prints ">>> Cannot retry compilation with SMT ..."
+    # first, which made json.loads fail on a perfectly good compile (CI, measured
+    # 2026-10-25). Skip to the first brace.
+    raw = proc.stdout or ""
+    brace = raw.find("{")
+    if brace < 0:
+        print(f"compiler produced no JSON (stdout={raw[:200]!r})", file=sys.stderr)
+        return 1
+    out = json.loads(raw[brace:])
     errors = [e for e in out.get("errors", []) if e.get("severity") == "error"]
     warnings = [
         e for e in out.get("errors", []) if e.get("severity") == "warning"

@@ -3145,7 +3145,22 @@ def run_slash(rest: str) -> str:
     import io
     import contextlib
 
-    tokens = shlex.split(rest) if rest and rest.strip() else []
+    if not (rest and rest.strip()):
+        tokens = []
+    elif os.name == "nt":
+        # POSIX shlex treats "\" as an escape, so a Windows path argument
+        # ("C:\Users\damir\f.txt") loses every separator and the command
+        # reports "no such file: C:Usersdamirf.txt" (measured 2026-10-25 via
+        # /kanban attach). Split without escape processing, then strip one layer
+        # of surrounding quotes so quoted arguments still work.
+        _lex = shlex.shlex(rest, posix=False)
+        _lex.whitespace_split = True
+        tokens = [
+            t[1:-1] if len(t) >= 2 and t[0] == t[-1] and t[0] in "\"'" else t
+            for t in _lex
+        ]
+    else:
+        tokens = shlex.split(rest)
 
     # Bare ``/kanban`` or ``/kanban help`` / ``--help`` / ``-h`` / ``?``:
     # show the curated short-help block instead of dumping argparse's full

@@ -33,7 +33,11 @@ def test_dashboard_oauth_write_uses_owner_only_permissions(oauth_file):
 
     assert oauth_file.exists()
     mode = oauth_file.stat().st_mode & 0o777
-    assert mode == 0o600
+    # NTFS reports 0666 for any user-owned file: the 0600 contract is POSIX-only.
+    if os.name == "posix":
+        assert mode == 0o600
+    else:
+        assert oauth_file.is_file()
 
 
 def test_dashboard_oauth_write_is_atomic_and_cleans_temp_on_failure(oauth_file, monkeypatch):

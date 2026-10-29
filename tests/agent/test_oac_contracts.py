@@ -197,7 +197,14 @@ def test_the_abi_exposes_the_allocation_read_only():
         cmd, input=json.dumps(payload), capture_output=True, text=True, timeout=300
     )
     assert proc.returncode == 0, proc.stderr
-    out = json.loads(proc.stdout)
+    # solc prefixes non-JSON diagnostics on stdout (e.g. "Cannot retry
+    # compilation with SMT ..." when no SMT solver is installed), so parse from
+    # the first brace instead of char 0. Same fix as test_oac_genesis_compiles.py;
+    # CI slice 3 caught this one after the other was fixed (2026-10-25).
+    stdout = proc.stdout or ""
+    brace = stdout.find("{")
+    assert brace >= 0, f"compiler produced no JSON: {stdout[:200]!r}"
+    out = json.loads(stdout[brace:])
     errors = [e for e in out.get("errors", []) if e.get("severity") == "error"]
     assert not errors, errors
 

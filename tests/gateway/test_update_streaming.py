@@ -210,6 +210,16 @@ class TestUpdateCommandGatewayFlag:
     """Verify the gateway spawns openamer update --gateway."""
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "asserts the POSIX bash wrapper for the update command (setsid + bash -c "
+            "with PYTHONUNBUFFERED and rc=$?). On Windows the gateway spawns a "
+            "Python watcher through sys.executable instead (gateway/run.py:7125), "
+            "so there is no shell string to inspect -- same reason "
+            "test_update_command.py is gated"
+        ),
+    )
     async def test_spawns_with_gateway_flag(self, tmp_path):
         """The spawned update command includes --gateway and PYTHONUNBUFFERED."""
         runner = _make_runner()

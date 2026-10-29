@@ -99,6 +99,12 @@ def _pulse_socket_reachable() -> bool:
     import socket
     import stat
 
+    # Windows has no AF_UNIX, so the connect() below raised AttributeError
+    # instead of reporting "no sound server". PulseAudio/PipeWire are POSIX
+    # daemons -- on a host without unix sockets the answer is simply False.
+    if not hasattr(socket, "AF_UNIX"):
+        return False
+
     candidates: List[str] = []
 
     pulse_server = os.environ.get('PULSE_SERVER', '')

@@ -15,6 +15,10 @@ in ``command_link_dir`` and the venv entry point is left intact.
 
 from __future__ import annotations
 
+import os
+
+import pytest
+
 import re
 import stat
 import subprocess
@@ -57,6 +61,14 @@ def test_setup_path_shim_block_removes_old_link_before_writing() -> None:
     )
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "exercises scripts/install.sh, which exits 1 on Cygwin/MSYS/MinGW and "
+        "points at install.ps1 instead (scripts/install.sh:540-545). The symlink "
+        "behaviour it checks is POSIX install machinery"
+    ),
+)
 def test_re_running_setup_path_block_preserves_pip_entry_point(tmp_path: Path) -> None:
     """Behavioral repro: simulate prior-install symlink + new-install heredoc.
 

@@ -35,7 +35,8 @@ class TestExpandTilde:
         """When get_subprocess_home returns a value, ~/path uses it."""
         with patch("openamer_constants.get_subprocess_home", return_value="/opt/data/profiles/coder/home"):
             result = ft._expand_tilde("~/scratch/file.txt")
-        assert result == "/opt/data/profiles/coder/home/scratch/file.txt"
+        # _expand_tilde renders host separators; the fixture states the POSIX form.
+        assert result.replace("\\", "/") == "/opt/data/profiles/coder/home/scratch/file.txt"
 
     def test_bare_tilde_expands_to_profile_home(self):
         """Bare ~ expands to the profile home."""
@@ -83,6 +84,7 @@ class TestResolvePathUsesProfileHome:
         process_home.mkdir()
 
         monkeypatch.setenv("HOME", str(process_home))
+        monkeypatch.setenv("USERPROFILE", str(process_home))  # home lookup reads this on Windows
         monkeypatch.setattr(terminal_tool, "_session_cwd", {})
 
         with patch("openamer_constants.get_subprocess_home", return_value=str(profile_home)):
@@ -99,6 +101,7 @@ class TestResolvePathUsesProfileHome:
         process_home.mkdir()
 
         monkeypatch.setenv("HOME", str(process_home))
+        monkeypatch.setenv("USERPROFILE", str(process_home))  # home lookup reads this on Windows
         monkeypatch.setattr(terminal_tool, "_session_cwd", {})
 
         with patch("openamer_constants.get_subprocess_home", return_value=str(profile_home)):

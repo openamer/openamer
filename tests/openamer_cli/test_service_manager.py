@@ -7,6 +7,7 @@ implementation in this same file once that phase ships.
 """
 from __future__ import annotations
 
+import os
 import sys
 
 import pytest
@@ -45,6 +46,25 @@ def _assert_executable(path) -> None:
 # validate_profile_name
 # ---------------------------------------------------------------------------
 
+
+
+_POSIX_MODES = os.name == "posix"
+
+
+def _assert_mode(path, expected: int) -> None:
+    """Assert a mode where mode bits exist.
+
+    NTFS has none: chmod only toggles the read-only attribute and st_mode reports
+    0o666/0o777 regardless, so a mode assertion there measures the filesystem.
+    The existence check stays everywhere; the exact bits only on POSIX.
+    """
+    assert path.exists(), f"{path} was not created"
+    if not _POSIX_MODES:
+        return
+    import stat as _stat
+
+    mode = _stat.S_IMODE(path.stat().st_mode)
+    assert mode == expected, f"{path.name} has mode {oct(mode)}, expected {oct(expected)}"
 
 def test_validate_profile_name_accepts_valid_names() -> None:
     # Smoke: known-good names should not raise.
@@ -137,6 +157,14 @@ def _patch_s6_paths(
     monkeypatch.setattr(_Path, "is_dir", fake_is_dir)
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "needs POSIX FIFOs (os.mkfifo) and /proc-style process metadata; "
+        "neither exists on Windows, where OpenAmer uses the Windows service "
+        "manager. The other s6 tests here run fine on Windows."
+    ),
+)
 def test_s6_running_true_when_comm_and_basedir_match(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -455,6 +483,14 @@ def test_s6_manager_kind_and_supports_registration() -> None:
 # tests/docker/test_s6_profile_gateway_integration.py.
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "needs POSIX FIFOs (os.mkfifo) and /proc-style process metadata; "
+        "neither exists on Windows, where OpenAmer uses the Windows service "
+        "manager. The other s6 tests here run fine on Windows."
+    ),
+)
 def test_seed_supervise_skeleton_creates_expected_layout(tmp_path) -> None:
     """Verifies the dirs + FIFO + modes the helper lays down."""
     import stat
@@ -469,19 +505,17 @@ def test_seed_supervise_skeleton_creates_expected_layout(tmp_path) -> None:
     # Top-level event/ — s6-svlisten1 event subscription dir.
     event = svc_dir / "event"
     assert event.is_dir(), "missing top-level event/"
-    assert stat.S_IMODE(event.stat().st_mode) == 0o3730, (
-        f"event/ mode = {oct(event.stat().st_mode)}, want 03730"
-    )
+    _assert_mode(event, 0o3730)
 
     # supervise/ dir.
     supervise = svc_dir / "supervise"
     assert supervise.is_dir(), "missing supervise/"
-    assert stat.S_IMODE(supervise.stat().st_mode) == 0o755
+    _assert_mode(supervise, 0o755)
 
     # supervise/event/.
     supervise_event = supervise / "event"
     assert supervise_event.is_dir(), "missing supervise/event/"
-    assert stat.S_IMODE(supervise_event.stat().st_mode) == 0o3730
+    _assert_mode(supervise_event, 0o3730)
 
     # supervise/control FIFO.
     control = supervise / "control"
@@ -489,9 +523,17 @@ def test_seed_supervise_skeleton_creates_expected_layout(tmp_path) -> None:
     assert stat.S_ISFIFO(control.stat().st_mode), (
         "supervise/control must be a FIFO"
     )
-    assert stat.S_IMODE(control.stat().st_mode) == 0o660
+    _assert_mode(control, 0o660)
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "needs POSIX FIFOs (os.mkfifo) and /proc-style process metadata; "
+        "neither exists on Windows, where OpenAmer uses the Windows service "
+        "manager. The other s6 tests here run fine on Windows."
+    ),
+)
 def test_seed_supervise_skeleton_handles_log_subservice(tmp_path) -> None:
     """When a log/ subdir exists, its supervise tree also gets seeded.
 
@@ -516,7 +558,7 @@ def test_seed_supervise_skeleton_handles_log_subservice(tmp_path) -> None:
     log_control = log_supervise / "control"
 
     assert log_event.is_dir()
-    assert stat.S_IMODE(log_event.stat().st_mode) == 0o3730
+    _assert_mode(log_event, 0o3730)
     assert log_supervise.is_dir()
     assert log_supervise_event.is_dir()
     assert log_control.exists() and stat.S_ISFIFO(log_control.stat().st_mode)
@@ -640,7 +682,10 @@ def test_s6_register_staging_dir_is_dotfile_hidden_from_svscan(
 
     assert seen, "_seed_supervise_skeleton was never called during register"
     staging = seen[0]
-    staging_name = staging.rsplit("/", 1)[-1]
+    # Path(...).name, not rsplit("/"): on Windows the path separator is "\\",
+    # so rsplit("/") returned the whole path and the dotfile check failed on the
+    # drive prefix. Measured 2026-10-25.
+    staging_name = os.path.basename(staging)
     assert staging_name.startswith("."), (
         f"staging dir must be a dotfile so s6-svscan skips it mid-build; "
         f"got {staging_name!r}"

@@ -85,11 +85,13 @@ class TestResolveClientCert:
         from tools.mcp_tool import _resolve_client_cert
 
         monkeypatch.setenv("HOME", str(tmp_path))
+        monkeypatch.setenv("USERPROFILE", str(tmp_path))  # home lookup reads this on Windows
         pem = tmp_path / "client.pem"
         pem.write_text("dummy")
 
         result = _resolve_client_cert("srv", {"client_cert": "~/client.pem"})
-        assert result == str(pem)
+        # ~ is joined onto the home; the join can mix separators on Windows.
+        assert result.replace("\\", "/") == str(pem).replace("\\", "/")
 
     def test_missing_file_raises(self, tmp_path):
         from tools.mcp_tool import _resolve_client_cert

@@ -17,6 +17,16 @@ import tools.skills_tool as st
 
 
 @pytest.fixture(autouse=True)
+def _fresh_skill_cache():
+    """The product's skills cache is keyed by variant, not by path, so entries
+    leak between tests (and between files in one session). Clear it around every
+    test here."""
+    st._SKILLS_CACHE.clear()
+    yield
+    st._SKILLS_CACHE.clear()
+
+
+@pytest.fixture(autouse=True)
 def _fresh_cache(monkeypatch, tmp_path):
     """Isolate every test: clear the module cache and point the scan at
     an empty external-dirs list + a tmp skills root."""
@@ -70,7 +80,16 @@ def test_nested_category_skill_add_invalidates(tmp_path):
     root_stat = root.stat()
     _write_skill(tmp_path, "cat-a", "skill-two")
     import os
+
     os.utime(root, (root_stat.st_atime, root_stat.st_mtime))
+    # NTFS stamps directory mtimes with coarse granularity, so a write inside the
+    # same tick leaves the category signature unchanged and the cache legitimately
+    # holds. Move the category mtime forward explicitly: the assertion is about
+    # "child signature moved -> invalidate", not about filesystem tick speed.
+    # Measured 2026-10-25 (failed only on Windows).
+    cat_dir = root / "cat-a"
+    cat_stat = cat_dir.stat()
+    os.utime(cat_dir, (cat_stat.st_atime, cat_stat.st_mtime + 2))
 
     names = sorted(s["name"] for s in st._find_all_skills())
     assert names == ["skill-one", "skill-two"], (
@@ -95,6 +114,16 @@ def test_ttl_expiry_forces_rescan(tmp_path, monkeypatch):
     """In-place SKILL.md edits are invisible to any directory signature;
     the TTL bounds that staleness."""
     skill_dir = _write_skill(tmp_path, "cat-a", "skill-one", "old description")
+    # Pin every directory mtime to a constant so the cache signature is identical
+    # before and after the in-place edit. NTFS rounds timestamps, so a
+    # stat-then-restore round trip can drift and turn this into a flaky test
+    # (observed 2026-10-25).
+    import os as _os
+
+    _FROZEN = 1_000_000_000
+    _root = tmp_path / "skills"
+    for _p in (_root, _root / "cat-a", skill_dir):
+        _os.utime(_p, (_FROZEN, _FROZEN))
     first = st._find_all_skills()
     assert first[0]["description"] == "old description"
 
@@ -107,8 +136,8 @@ def test_ttl_expiry_forces_rescan(tmp_path, monkeypatch):
         "---\nname: skill-one\ndescription: new description\n---\n# skill-one\n",
         encoding="utf-8",
     )
-    for p, s in stats.items():
-        os.utime(p, (s.st_atime, s.st_mtime))
+    for p, _s in stats.items():
+        os.utime(p, (_FROZEN, _FROZEN))
 
     # Within TTL: stale (documented trade-off).
     assert st._find_all_skills()[0]["description"] == "old description"

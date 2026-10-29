@@ -1,3 +1,4 @@
+import sys
 """Tests for /update gateway slash command.
 
 Tests both the _handle_update_command handler (spawns update process) and
@@ -239,6 +240,14 @@ class TestHandleUpdateCommand:
         assert data["message_id"] == "m-update-thread"
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "asserts the POSIX spawn chain (setsid + bash -lc). On Windows the "
+            "gateway spawns a Python watcher through sys.executable instead, "
+            "which is why argv[0] is python.exe here -- measured, not assumed"
+        ),
+    )
     async def test_spawns_setsid(self, tmp_path):
         """Uses setsid when available."""
         runner = _make_runner()
@@ -268,6 +277,14 @@ class TestHandleUpdateCommand:
         assert "Starting OpenAmer update" in result
 
     @pytest.mark.asyncio
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "asserts the POSIX spawn chain (setsid + bash -lc). On Windows the "
+            "gateway spawns a Python watcher through sys.executable instead, "
+            "which is why argv[0] is python.exe here -- measured, not assumed"
+        ),
+    )
     async def test_fallback_when_no_setsid(self, tmp_path):
         """Falls back to start_new_session=True when setsid is not available."""
         runner = _make_runner()

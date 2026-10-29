@@ -289,9 +289,13 @@ class TestProbeBot:
 
         assert result is None
 
-    @patch("plugins.platforms.feishu.adapter.FEISHU_AVAILABLE", False)
+    # probe_bot() asks _load_lark_oapi(), not FEISHU_AVAILABLE -- the flag moved to
+    # a loader, so patching it no longer reached the call site and the SDK path
+    # ran regardless (visible only where lark_oapi is installed: .venv yes,
+    # venv no, which is why it looked like a flake; measured 2026-10-25).
+    @patch("plugins.platforms.feishu.adapter._load_lark_oapi", return_value=None)
     @patch("plugins.platforms.feishu.adapter.urlopen")
-    def test_http_fallback_when_sdk_unavailable(self, mock_urlopen_fn):
+    def test_http_fallback_when_sdk_unavailable(self, mock_urlopen_fn, mock_load):
         """Without lark_oapi, probe falls back to raw HTTP."""
         from plugins.platforms.feishu.adapter import probe_bot
 
@@ -303,9 +307,13 @@ class TestProbeBot:
         assert result is not None
         assert result["bot_name"] == "HttpBot"
 
-    @patch("plugins.platforms.feishu.adapter.FEISHU_AVAILABLE", False)
+    # probe_bot() asks _load_lark_oapi(), not FEISHU_AVAILABLE -- the flag moved to
+    # a loader, so patching it no longer reached the call site and the SDK path
+    # ran regardless (visible only where lark_oapi is installed: .venv yes,
+    # venv no, which is why it looked like a flake; measured 2026-10-25).
+    @patch("plugins.platforms.feishu.adapter._load_lark_oapi", return_value=None)
     @patch("plugins.platforms.feishu.adapter.urlopen")
-    def test_http_fallback_returns_none_on_network_error(self, mock_urlopen_fn):
+    def test_http_fallback_returns_none_on_network_error(self, mock_urlopen_fn, mock_load):
         from plugins.platforms.feishu.adapter import probe_bot
         from urllib.error import URLError
 

@@ -1,4 +1,5 @@
 import json
+import sys
 import os
 from pathlib import Path
 from unittest.mock import MagicMock
@@ -171,12 +172,18 @@ def test_large_process_output_is_bounded_before_sudo_and_plugin_hooks(
     )
     monkeypatch.setattr("openamer_cli.plugins.invoke_hook", _hook_spy)
 
-    env = LocalEnvironment(cwd=str(tmp_path), timeout=10)
+    # 60s, not 10s: pushing 2 MB through pipes on a loaded box took longer than the
+    # old budget and the tool returned a timeout result instead of the sentinels
+    # (measured 2026-10-25: green alone, red in the suite). This test is about
+    # bounding the output, not about the child's speed.
+    env = LocalEnvironment(cwd=str(tmp_path), timeout=60)
     monkeypatch.setitem(terminal_tool_module._active_environments, "default", env)
     monkeypatch.setitem(terminal_tool_module._last_activity, "default", 0.0)
     try:
+        # sys.executable, not "python3": on Windows python3 is the Microsoft Store
+        # stub when no real interpreter is named that way.
         command = (
-            "python3 -c \"import sys; "
+            f'"{sys.executable}" -c "import sys; '
             "sys.stdout.write('HEAD-SENTINEL\\n' + 'x' * 2000000 + "
             "'\\nTAIL-SENTINEL')\""
         )

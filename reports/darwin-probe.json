@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-21T18:50:23.663891+00:00",
+  "updated": "2026-10-26T14:00:45.872328+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1187,
+  "total": 1197,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -1533,6 +1533,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-competitor-intelligence-layerfs-a": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-competitor-intelligence-stack-overflow": {
       "refs": 0,
       "ok": 0,
@@ -1612,8 +1618,8 @@
       "missing": []
     },
     "autonomous-execution-discipline": {
-      "refs": 4,
-      "ok": 4,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -1780,8 +1786,8 @@
       "missing": []
     },
     "autonomous-learning-architecture": {
-      "refs": 5,
-      "ok": 5,
+      "refs": 4,
+      "ok": 4,
       "score": 1.0,
       "missing": []
     },
@@ -2253,6 +2259,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-r-n-740-zeilen": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-r-n-exit-0": {
       "refs": 0,
       "ok": 0,
@@ -2440,6 +2452,12 @@
       "missing": []
     },
     "darwin-harvested-tmp-deepseek-harness-agents-skills": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-gguf-info-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2703,6 +2721,12 @@
       "score": 1.0,
       "missing": []
     },
+    "ci-test-hang-triage": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "cpanel-deploy-via-session": {
       "refs": 0,
       "ok": 0,
@@ -2821,6 +2845,12 @@
       "missing": []
     },
     "live-site-audit": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "llm-subscription-provider-integration": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -6257,6 +6287,12 @@
         "linear_mcp.py"
       ]
     },
+    "mcp-server-triage": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "gif-search": {
       "refs": 0,
       "ok": 0,
@@ -6659,6 +6695,18 @@
       "score": 1.0,
       "missing": []
     },
+    "bare-metal-boot-bringup": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "bare-metal-os-kernel-development": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "best-in-world-workflow": {
       "refs": 2,
       "ok": 2,
@@ -6678,8 +6726,8 @@
       "missing": []
     },
     "clean-code-edits": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
@@ -7046,9 +7094,21 @@
       "score": 1.0,
       "missing": []
     },
+    "spec-implementation-registry": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "testing-strategy": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "tokenomics-as-executable-arithmetic": {
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },

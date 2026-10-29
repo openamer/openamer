@@ -3459,7 +3459,18 @@ async def get_system_stats():
             version=_platform.version(),
             platform_label=_platform.platform(),
         ),
-        "arch": _platform.machine(),
+        # platform.machine() is "" when the environment carries no
+        # PROCESSOR_ARCHITECTURE (platform caches uname() on first call, so setting
+        # the variable later does not help). A scrubbed environment is normal for
+        # services and for the test runner's env -i, and the dashboard then showed
+        # an empty architecture. Fall back to the variable, then to a marker.
+        "arch": (
+            _platform.machine()
+            or os.environ.get("PROCESSOR_ARCHITECTURE")
+            or os.environ.get("PROCESSOR_ARCHITEW6432")
+            or (os.environ.get("HOSTTYPE") if os.environ.get("HOSTTYPE") else "")
+            or "unknown"
+        ),
         "hostname": _platform.node(),
         "python_version": _platform.python_version(),
         "python_impl": _platform.python_implementation(),

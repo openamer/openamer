@@ -24,6 +24,17 @@ import tools.file_tools as ft
 import tools.terminal_tool as terminal_tool
 
 
+def _as_quoted(path) -> str:
+    """The way the warning renders a path.
+
+    tools/file_tools.py:432 formats it with ``!r``, which escapes backslashes on
+    Windows and leaves POSIX paths untouched. Asserting ``str(path) in message``
+    therefore failed on Windows for correct output. The quotes are stripped
+    because these assertions match a *prefix* of the path.
+    """
+    return repr(str(path))[1:-1]  # escaped, but without the surrounding quotes: these assertions match a prefix
+
+
 @pytest.fixture
 def _isolated_cwd(tmp_path, monkeypatch):
     """Two checkouts: workspace (intended) + decoy (process cwd)."""
@@ -100,6 +111,15 @@ def test_absolute_input_path_ignores_base(_isolated_cwd, monkeypatch):
     assert resolved == Path(abs_target).resolve()
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "emulates a container path namespace: the fixture presents a POSIX "
+        "path as the cwd inside a host workspace. On Windows host paths are "
+        "Windows paths, so the two namespaces collapse and the case cannot be "
+        "expressed"
+    ),
+)
 def test_container_absolute_input_path_does_not_follow_host_symlink(tmp_path, monkeypatch):
     """Docker paths are sandbox-local and must not be host-dereferenced.
 
@@ -129,6 +149,15 @@ def test_container_path_normalization_uses_posix_path_syntax():
     assert str(resolved) == "/workspace/projects/bar"
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "emulates a container path namespace: the fixture presents a POSIX "
+        "path as the cwd inside a host workspace. On Windows host paths are "
+        "Windows paths, so the two namespaces collapse and the case cannot be "
+        "expressed"
+    ),
+)
 def test_container_relative_path_keeps_container_cwd_symlink(tmp_path, monkeypatch):
     """Relative Docker paths should stay under the container cwd textually."""
     host_project = tmp_path / "host-project"
@@ -194,8 +223,8 @@ def test_warning_fires_when_relative_path_escapes_workspace(_isolated_cwd, monke
 
     assert warn is not None
     assert "OUTSIDE the active workspace" in warn
-    assert str(decoy) in warn
-    assert str(workspace) in warn
+    assert _as_quoted(decoy) in warn
+    assert _as_quoted(workspace) in warn
 
 
 def test_no_warning_when_relative_path_inside_workspace(_isolated_cwd, monkeypatch):
@@ -328,7 +357,7 @@ def test_warning_fires_from_terminal_cwd_when_registry_empty(_isolated_cwd, monk
 
     assert warn is not None
     assert "OUTSIDE the active workspace" in warn
-    assert str(workspace) in warn
+    assert _as_quoted(workspace) in warn
 
 
 def test_live_cwd_still_wins_over_absolute_terminal_cwd(_isolated_cwd, monkeypatch):

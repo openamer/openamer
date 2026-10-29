@@ -12,11 +12,25 @@ freshness check is a no-op and the OOM rebuild always runs.
 """
 
 import os
+import sys
 import time
 from pathlib import Path
 from unittest.mock import patch
 
 import pytest
+
+
+def _is_npm_command(cmd) -> bool:
+    """True when ``cmd`` invokes npm, whatever the host calls it.
+
+    POSIX CI resolves ``/usr/bin/npm``; Windows resolves ``npm.cmd`` under
+    Program Files. Asserting the absolute spelling tests the host, not the code
+    -- measured 2026-10-25: three failures were only ever that comparison.
+    """
+    if not cmd:
+        return False
+    return Path(cmd[0]).name.lower() in {"npm", "npm.cmd", "npm.exe", "npm.bat"}
+
 
 from openamer_cli.main import (
     _web_ui_build_needed,
@@ -256,7 +270,7 @@ class TestBuildWebUISkipsWhenFresh:
         mock_cp = __import__("subprocess").CompletedProcess([], 0, stdout="", stderr="")
         with patch("openamer_cli.main.subprocess.run", return_value=mock_cp) as mock_run:
             _run_npm_install_deterministic(
-                "/usr/bin/npm",
+                "/usr/bin/npm",  # input, not an assertion: any npm path is fine
                 web_dir,
                 env={"PYTHON": "/nix/store/python"},
             )
@@ -351,7 +365,8 @@ class TestBuildWebUISkipsWhenFresh:
         assert result is True
         args, kwargs = mock_run.call_args
         assert "--workspace" not in args[0]
-        assert args[0] == ["/usr/bin/npm", "ci", "--include=dev", "--silent"]
+        assert _is_npm_command(args[0])
+        assert args[0][1:] == ["ci", "--include=dev", "--silent"]
         assert kwargs["cwd"] == web_dir
 
     def test_web_build_uses_idle_timeout_helper(self, tmp_path):
@@ -375,7 +390,8 @@ class TestBuildWebUISkipsWhenFresh:
         mock_idle.assert_called_once()
         args, kwargs = mock_idle.call_args
         # Positional: [npm, "run", "build"]; cwd passed as kwarg.
-        assert args[0] == ["/usr/bin/npm", "run", "build"]
+        assert _is_npm_command(args[0])
+        assert args[0][1:] == ["run", "build"]
         assert kwargs["cwd"] == web_dir
 
     def test_termux_web_install_is_workspace_scoped(self, tmp_path, monkeypatch):
@@ -392,8 +408,8 @@ class TestBuildWebUISkipsWhenFresh:
 
         assert result is True
         args, kwargs = mock_run.call_args
-        assert args[0] == [
-            "/usr/bin/npm",
+        assert _is_npm_command(args[0])
+        assert args[0][1:] == [
             "ci",
             "--include=dev",
             "--workspace",
@@ -420,7 +436,8 @@ class TestBuildWebUISkipsWhenFresh:
 
         assert result is True
         args, kwargs = mock_run.call_args
-        assert args[0] == ["/usr/bin/npm", "ci", "--include=dev", "--workspace", "web", "--silent"]
+        assert _is_npm_command(args[0])
+        assert args[0][1:] == ["ci", "--include=dev", "--workspace", "web", "--silent"]
         assert kwargs["cwd"] == tmp_path
 
 
@@ -498,6 +515,14 @@ class TestBuildWebUIFlock:
     that queued behind a successful build skips the rebuild.
     """
 
+    @pytest.mark.skipif(
+        not sys.platform.startswith("linux") and sys.platform != "darwin",
+        reason=(
+            "needs fcntl.flock to hold the build lock as a contender; the "
+            "product itself falls back to an unserialized build when fcntl is "
+            "absent (openamer_cli/main.py:5322, ImportError branch)"
+        ),
+    )
     def test_contended_lock_with_dist_serves_stale_without_building(self, tmp_path):
         import fcntl
         from openamer_cli.main import _build_web_ui as build
@@ -517,6 +542,13 @@ class TestBuildWebUIFlock:
         assert result is True
         mock_do.assert_not_called()  # served existing dist, no second build
 
+    @pytest.mark.skipif(
+        not sys.platform.startswith("linux") and sys.platform != "darwin",
+        reason=(
+            "asserts the build lock file is created; the product returns before "
+            "touching the lock when fcntl is missing (openamer_cli/main.py:5322)"
+        ),
+    )
     def test_uncontended_lock_builds_and_creates_lock_file(self, tmp_path):
         from openamer_cli.main import _build_web_ui as build
 
@@ -528,6 +560,14 @@ class TestBuildWebUIFlock:
         mock_do.assert_called_once()
         assert (tmp_path / ".web_ui_build.lock").exists()
 
+    @pytest.mark.skipif(
+        not sys.platform.startswith("linux") and sys.platform != "darwin",
+        reason=(
+            "needs fcntl.flock to hold the build lock as a contender; the "
+            "product itself falls back to an unserialized build when fcntl is "
+            "absent (openamer_cli/main.py:5322, ImportError branch)"
+        ),
+    )
     def test_contended_lock_without_dist_waits_then_skips_fresh_build(self, tmp_path):
         """First-ever build race: the waiter blocks, and once it acquires the
         lock the callee's own staleness check (running under the lock) sees

@@ -69,7 +69,7 @@ jobs:
       # contract. solc is pinned so the verdict does not depend on
       # whatever version happens to be installed.
       - name: Set up Node
-        uses: actions/setup-node@2028fbc5c25fe9cf00f0b8a3fb9c9c3b0d4a2b1e9 # v4.1.0
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "22"
 
@@ -165,6 +165,13 @@ jobs:
       - name: Upload per-slice durations
         # Advisory artifact (feeds slice balancing) — a transient artifact-
         # service blip must not fail an otherwise-green test slice.
+        #
+        # It must ALSO run when the slice failed: a slice that ran out of time
+        # is the one whose measurements the balancer needs most, and skipping
+        # the upload on failure is how the LPT distribution stayed wrong run
+        # after run (the heavy file stayed under-estimated, landed in a bucket
+        # with a full load of small files, and blew the slice again).
+        if: always()
         continue-on-error: true
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -176,21 +183,32 @@ jobs:
   # (including PRs) get balanced slicing.
   save-durations:
     needs: test
-    if: needs.test.result == 'success' && github.ref == 'refs/heads/main'
+    # `always()`, not `result == 'success'`: the run that failed is precisely
+    # the one whose durations must reach the next run's balancer. Gated on
+    # success, a single bad slice froze the cache at whatever distribution was
+    # last measured green — so the mis-bucketing that caused the failure was
+    # replayed on every subsequent run. Slices that did finish still publish
+    # their durations; the merge below simply unions what arrived.
+    if: always() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Download all slice durations
+        # A failed/timed-out slice may have uploaded nothing; that must not
+        # turn into a hard error on an advisory merge.
+        continue-on-error: true
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           pattern: test-durations-slice-*
           path: durations
           merge-multiple: true
 
+
       - name: Merge into single durations file
+        id: merge
         run: |
           python3 -c "
-          import json, glob, os
+          import glob, json, os
           merged = {}
           for f in glob.glob('durations/*test_durations.json'):
             with open(f) as fh:
@@ -198,9 +216,18 @@ jobs:
           with open('test_durations.json', 'w') as fh:
             json.dump(merged, fh, indent=2, sort_keys=True)
           print(f'Merged {len(merged)} file durations')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+            out.write(f'count={len(merged)}\n')
           "
 
       - name: Save merged duration cache
+        # Never overwrite the cache with an empty table. With save-durations now
+        # running on failed runs too, a run where no slice published anything
+        # (all cancelled, or uploads lost) would otherwise save `{}` and wipe
+        # the last known-good durations. LPT would then have no data at all and
+        # fall back to discovery order, which piles the heavy files together —
+        # strictly worse than a stale cache.
+        if: steps.merge.outputs.count != '0'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: test_durations.json

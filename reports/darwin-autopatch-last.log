@@ -1,19 +1,14 @@
-[autopatch] validating population (2026-10-21T20:50:09) ...
-[autopatch] population: 1187 skills, avg 38.5
-[autopatch] 10 weak skills: auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), auto-structural-connection-between-tool(21), auto-competitor-intelligence-stack-overflow(21), auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), auto-multidomain-learning-business-automation(21), auto-multidomain-learning-climate-science(21)
+[autopatch] validating population (2026-10-26T15:00:43) ...
+[autopatch] population: 1197 skills, avg 38.6
+[autopatch] 10 weak skills: auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), auto-structural-connection-between-tool(21), auto-competitor-intelligence-layerfs-a(21), auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), auto-multidomain-learning-philosophy-of(21), auto-multidomain-learning-python-legalaiautom(21)
 [autopatch] ✅ auto-internet-learning-metas-new: 21 → 31
 [autopatch] ✅ auto-internet-learning-openai-hacked: 21 → 31
 [autopatch] ✅ auto-latest-research-insight-cultural: 21 → 31
 [autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
-[autopatch] ✅ auto-competitor-intelligence-stack-overflow: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-layerfs-a: 21 → 25
 [autopatch] ✅ auto-internet-learning-metas-new: 21 → 31
-Traceback (most recent call last):
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 189, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 141, in main
-    after = run_validator_json()
-            ^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 58, in run_validator_json
-    raise RuntimeError(f"validator produced no JSON (exit {r.returncode}): {out[:300]}")
-RuntimeError: validator produced no JSON (exit 3221225786): 
+[autopatch] ✅ auto-internet-learning-openai-hacked: 21 → 31
+[autopatch] ✅ auto-latest-research-insight-cultural: 21 → 31
+[autopatch] ✅ auto-multidomain-learning-philosophy-of: 21 → 28
+[autopatch] ✅ auto-multidomain-learning-python-legalaiautom: 21 → 28
+[autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md

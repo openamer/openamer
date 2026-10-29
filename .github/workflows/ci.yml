@@ -69,17 +69,21 @@ jobs:
     needs: detect
     if: needs.detect.outputs.python == 'true'
     uses: ./.github/workflows/tests.yml
-    # The timeout has to live on the CALLING job, not inside the called
-    # workflow. A `timeout-minutes` on a job of a reusable workflow is not
-    # enforced while the caller has no limit of its own -- the run then
-    # falls back to the 6-hour default. Measured: the "Run tests slice 4/8"
-    # job carries `timeout-minutes: 30` inside tests.yml, yet it kept
-    # running for 2h10m instead of being killed at 30 minutes, and the run
-    # only stopped when the whole workflow hit its own ceiling. Setting the
-    # limit here actually bounds the test lane.
-    timeout-minutes: 45
+    # No `timeout-minutes` on this job. A job that calls a reusable workflow
+    # accepts only name, uses, with, secrets, needs, if, permissions,
+    # concurrency and strategy. Any other key makes the whole file invalid,
+    # and GitHub reports that as a startup failure with zero jobs -- not as a
+    # schema error on the offending line -- so the trigger looks dead rather
+    # than wrong. The test lane stays bounded on the `test` job inside
+    # tests.yml.
+    # 12 slices, not 8. Measured 2026-10-26: with 8 slices the largest one carries
+    # ~6,000 tests and is still running at the 10-minute mark, where the runner
+    # shuts it down with exit code 143 - 6,116 tests green, 0 failed, no verdict.
+    # That killed every PR's required check and every push to main since 23.10.,
+    # because the failing slice is the same one every time and it never finishes.
+    # Smaller slices finish inside the window instead of being cut off by it.
     with:
-      slice_count: 8
+      slice_count: 12
 
   lint:
     name: Python lints
@@ -283,29 +287,21 @@ jobs:
     outputs:
       needs-json: ${{ steps.evaluate.outputs.needs-json }}
     steps:
+      # The verdict rules live in scripts/ci/evaluate_needs.py, so the job needs the
+      # repository on disk — without this checkout python3 fails with
+      # "can't open file .../scripts/ci/evaluate_needs.py" and the gate reports a
+      # failure that has nothing to do with any test.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Evaluate job results
         id: evaluate
         env:
           NEEDS: ${{ toJSON(needs) }}
-        run: |
-          echo "$NEEDS" | python3 -c "
-          import json, sys
-          needs = json.load(sys.stdin)
-          # Emit compact {job_name: result} for the comment assembler.
-          compact = {name: info['result'] for name, info in needs.items()}
-          print(f'needs-json={json.dumps(compact)}')
-          with open('$GITHUB_OUTPUT', 'a') as f:
-              f.write(f'needs-json={json.dumps(compact)}\n')
-          failed = [name for name, info in needs.items() if info['result'] == 'failure']
-          for name, info in sorted(needs.items()):
-              result = info['result']
-              icon = '✅' if result in ('success', 'skipped') else '❌'
-              print(f'{icon} {name}: {result}')
-          if failed:
-              print(f'::error::{len(failed)} job(s) failed: {\", \".join(failed)}')
-              sys.exit(1)
-          print('All checks passed (or were skipped)')
-          "
+        # The verdict rules live in scripts/ci/evaluate_needs.py so they can be
+        # tested directly (tests/ci/test_evaluate_needs.py). This step used to
+        # inline them and fail only on `result == 'failure'`, which made a run
+        # with a cancelled classifier and fourteen skipped lanes print
+        # "All required checks pass" — green over an empty run.
+        run: python3 scripts/ci/evaluate_needs.py
 
   # ─────────────────────────────────────────────────────────────────────
   # CI timing report: collect per-job/step durations from the GitHub API,

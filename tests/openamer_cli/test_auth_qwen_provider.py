@@ -1,3 +1,4 @@
+import os
 """Tests for Qwen OAuth provider authentication (openamer_cli/auth.py).
 
 Covers: _qwen_cli_auth_path, _read_qwen_cli_tokens, _save_qwen_cli_tokens,
@@ -136,6 +137,13 @@ def test_save_qwen_cli_tokens_creates_parent(qwen_env):
     assert saved_path.parent.exists()
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "asserts POSIX permission bits (group/other write) on the saved token file. "
+        "NTFS reports 0666 for every user-owned file and has no such bits"
+    ),
+)
 def test_save_qwen_cli_tokens_permissions(qwen_env):
     tokens = _make_qwen_tokens()
     saved_path = _save_qwen_cli_tokens(tokens)

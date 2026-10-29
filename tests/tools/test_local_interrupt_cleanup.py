@@ -65,6 +65,14 @@ def _wait_for_pgid_exit(pgid: int, timeout: float = 60.0) -> bool:
     return not _pgid_still_alive(pgid)
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "process groups are POSIX-only: os.getpgid/os.killpg do not exist on "
+        "Windows and the product takes its own containment branch there "
+        "(tools/environments/local.py:1543 _contain_windows_process)"
+    ),
+)
 def test_kill_process_uses_cached_pgid_if_wrapper_already_exited(monkeypatch):
     """If the shell wrapper exits before cleanup, still kill its process group.
 
@@ -89,8 +97,11 @@ def test_kill_process_uses_cached_pgid_if_wrapper_already_exited(monkeypatch):
         if sig == 0:
             raise ProcessLookupError
 
-    monkeypatch.setattr(os, "getpgid", fake_getpgid)
-    monkeypatch.setattr(os, "killpg", fake_killpg)
+    # os.getpgid / os.killpg do not exist on Windows at all, so monkeypatch's
+    # default raising=True fails before the test body runs. raising=False sets
+    # them where they are missing and restores the original value afterwards.
+    monkeypatch.setattr(os, "getpgid", fake_getpgid, raising=False)
+    monkeypatch.setattr(os, "killpg", fake_killpg, raising=False)
 
     env._kill_process(proc)
 
@@ -123,6 +134,14 @@ def test_kill_process_uses_windows_tree_kill(monkeypatch):
     assert killed == []
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "process groups are POSIX-only: os.getpgid/os.killpg do not exist on "
+        "Windows and the product takes its own containment branch there "
+        "(tools/environments/local.py:1543 _contain_windows_process)"
+    ),
+)
 def test_wait_for_process_kills_subprocess_on_keyboardinterrupt():
     """When KeyboardInterrupt arrives mid-poll, the subprocess group must be
     killed before the exception is re-raised."""
@@ -181,7 +200,7 @@ def test_wait_for_process_kills_subprocess_on_keyboardinterrupt():
         assert target_pid is not None, (
             "test setup: couldn't find 'sleep 30' subprocess after 5 s"
         )
-        pgid = os.getpgid(target_pid)
+        pgid = os.getpgid(target_pid)  # POSIX-only; this test is gated below
         assert _pgid_still_alive(pgid), "sanity: subprocess should be alive"
 
         # Now inject a KeyboardInterrupt into the worker thread the same

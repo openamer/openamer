@@ -83,6 +83,14 @@ def _assert_conflict_was_recovered(repo: Path, output: str) -> None:
     shutil.which("git") is None or shutil.which("bash") is None,
     reason="needs git and bash",
 )
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "drives scripts/install.sh, which refuses to run on Windows by design: "
+        "the CYGWIN/MINGW/MSYS branch exits 1 and points at install.ps1 "
+        "(scripts/install.sh:540-545), so the autostash logic is never reached"
+    ),
+)
 def test_install_sh_repository_stage_recovers_from_autostash_conflict(
     tmp_path: Path,
 ) -> None:
@@ -140,6 +148,14 @@ def test_install_ps1_repository_stage_recovers_from_autostash_conflict(
 @pytest.mark.skipif(
     shutil.which("git") is None or shutil.which("bash") is None,
     reason="needs git and bash",
+)
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "drives scripts/install.sh, which refuses to run on Windows by design: "
+        "the CYGWIN/MINGW/MSYS branch exits 1 and points at install.ps1 "
+        "(scripts/install.sh:540-545), so the autostash logic is never reached"
+    ),
 )
 def test_install_sh_repository_stage_clean_apply_drops_stash(
     tmp_path: Path,

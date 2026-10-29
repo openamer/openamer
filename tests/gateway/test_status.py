@@ -540,14 +540,19 @@ class TestGatewayRuntimeStatus:
             "argv": ["openamer", "gateway", "run"],
             "start_time": 1000,
         }
-        coder_home = Path("/opt/data/profiles/coder")
+        # A POSIX literal compares badly on Windows: Path("/opt/...") renders
+        # with backslashes while the cmdline string keeps forward slashes.
+        # Build both sides from one host path.
+        import tempfile
+
+        coder_home = Path(tempfile.gettempdir()) / "profiles" / "coder"
 
         monkeypatch.setattr(status, "_pid_exists", lambda pid: True)
         monkeypatch.setattr(status, "_get_process_start_time", lambda pid: 1000)
         for cmdline in (
             "openamer -p coder gateway run --replace",
             "/opt/openamer/.venv/bin/openamer --profile coder gateway run --replace",
-            "openamer_home=/opt/data/profiles/coder openamer gateway run --replace",
+            f"openamer_home={coder_home} openamer gateway run --replace",
         ):
             monkeypatch.setattr(status, "_read_process_cmdline", lambda pid, c=cmdline: c)
             assert (

@@ -749,6 +749,10 @@ class TestAddRotatingHandler:
                 h.close()
 
     def test_managed_mode_initial_open_sets_group_writable(self, tmp_path):
+        if sys.platform == "win32":
+            pytest.skip(
+                "NTFS has no POSIX mode bits: stat.S_IMODE() reports 0o666 for any path and os.chmod() cannot grant group-write, so the asserted mechanism is absent"
+            )
         log_path = tmp_path / "managed-open.log"
         logger = logging.getLogger("_test_rotating_managed_open")
         formatter = logging.Formatter("%(message)s")
@@ -773,6 +777,10 @@ class TestAddRotatingHandler:
                 h.close()
 
     def test_managed_mode_rollover_sets_group_writable(self, tmp_path):
+        if sys.platform == "win32":
+            pytest.skip(
+                "NTFS has no POSIX mode bits: stat.S_IMODE() reports 0o666 for any path and os.chmod() cannot grant group-write, so the asserted mechanism is absent"
+            )
         log_path = tmp_path / "managed-rollover.log"
         logger = logging.getLogger("_test_rotating_managed_rollover")
         formatter = logging.Formatter("%(message)s")

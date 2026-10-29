@@ -21,6 +21,10 @@ cleanly on missing-arch assets, and the upgrade path uses
 
 from __future__ import annotations
 
+import sys
+
+import pytest
+
 from unittest.mock import patch
 
 
@@ -213,6 +217,12 @@ class TestStaleInstallLockClear:
         import os
         os.environ.pop("CUA_DRIVER_RS_HOME", None)
 
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "_clear_stale_cua_install_lock returns immediately on win32 by design (tools_config.py:985); no lock is ever cleared there"
+        ),
+    )
     def test_dead_holder_lock_is_cleared(self, tmp_path):
         from openamer_cli import tools_config
 
@@ -237,6 +247,12 @@ class TestStaleInstallLockClear:
         tools_config._clear_stale_cua_install_lock()
         assert lock.exists()
 
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "_clear_stale_cua_install_lock returns immediately on win32 by design (tools_config.py:985); no lock is ever cleared there"
+        ),
+    )
     def test_pidless_old_lock_is_cleared(self, tmp_path):
         import os
         import time
@@ -260,6 +276,12 @@ class TestInstallerTimeoutKillsProcessGroup:
     """On timeout the whole installer process group must be killed, so the
     `curl | bash` grandchildren can't survive holding the install lock."""
 
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "kills the installer process group via os.getpgid/os.killpg, which do not exist on Windows and cannot be injected into the frozen os module"
+        ),
+    )
     def test_timeout_kills_process_group_and_returns_false(self, tmp_path):
         import os
         import signal
@@ -285,8 +307,8 @@ class TestInstallerTimeoutKillsProcessGroup:
         with patch("platform.system", return_value="Linux"), \
              patch("subprocess.run", return_value=MagicMock(returncode=0, stderr="")), \
              patch("subprocess.Popen", return_value=fake_proc), \
-             patch.object(tools_config.os, "getpgid", return_value=99999), \
-             patch.object(tools_config.os, "killpg", side_effect=fake_killpg), \
+             patch.object(tools_config.os, "getpgid", create=True, return_value=99999), \
+             patch.object(tools_config.os, "killpg", create=True, side_effect=fake_killpg), \
              patch.object(tools_config, "_clear_stale_cua_install_lock"), \
              patch.object(tools_config, "_print_warning"), \
              patch.object(tools_config, "_print_info"):

@@ -1,3 +1,6 @@
+import os
+
+import pytest
 import queue
 import threading
 import time
@@ -36,6 +39,14 @@ def _make_cli_stub(with_app=False):
     return cli
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "prompt_toolkit needs a real Windows console; with TERM=xterm-256color "
+        "set it raises NoConsoleScreenBufferError, and a headless test run has "
+        "no console to attach a masked prompt to"
+    ),
+)
 def test_secret_capture_callback_can_be_completed_from_cli_state_machine():
     cli = _make_cli_stub(with_app=True)
     results = []
@@ -83,6 +94,14 @@ def test_cancel_secret_capture_marks_setup_skipped():
     assert cli._secret_deadline == 0
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "prompt_toolkit needs a real Windows console; with TERM=xterm-256color "
+        "set it raises NoConsoleScreenBufferError, and a headless test run has "
+        "no console to attach a masked prompt to"
+    ),
+)
 def test_secret_capture_uses_masked_prompt_without_tui():
     cli = _make_cli_stub()
 
@@ -101,6 +120,14 @@ def test_secret_capture_uses_masked_prompt_without_tui():
     assert result["skipped"] is False
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "prompt_toolkit needs a real Windows console; with TERM=xterm-256color "
+        "set it raises NoConsoleScreenBufferError, and a headless test run has "
+        "no console to attach a masked prompt to"
+    ),
+)
 def test_secret_capture_timeout_clears_hidden_input_buffer():
     cli = _make_cli_stub(with_app=True)
     cleared = {"value": False}

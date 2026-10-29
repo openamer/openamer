@@ -1,3 +1,4 @@
+import os
 """Tests for openamer_cli.relaunch — unified self-relaunch utility."""
 
 import sys
@@ -139,6 +140,14 @@ class TestBuildRelaunchArgv:
 
 
 class TestRelaunch:
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "asserts os.execvp. Windows has no exec semantics: the product "
+            "spawns the child with subprocess.run and exits instead, documented "
+            "in openamer_cli/relaunch.py:168-185"
+        ),
+    )
     def test_calls_execvp(self, monkeypatch):
         calls = []
 

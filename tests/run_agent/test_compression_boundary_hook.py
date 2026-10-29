@@ -98,6 +98,7 @@ class TestCompressionBoundaryHook:
                 f"Expected old_session_id={original_sid!r}, got {call.kwargs!r}"
             assert len(comp_calls) == 1
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_automatic_notification_follows_core_persistence(self):
         from openamer_state import SessionDB
 
@@ -138,6 +139,7 @@ class TestCompressionBoundaryHook:
 
             assert events == ["persist", "compression"]
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_failure_before_persistence_does_not_notify(self):
         from openamer_state import SessionDB
 
@@ -157,6 +159,7 @@ class TestCompressionBoundaryHook:
 
             compressor.on_session_start.assert_not_called()
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_failure_during_persistence_does_not_notify(self):
         from openamer_state import SessionDB
 
@@ -192,6 +195,7 @@ class TestCompressionBoundaryHook:
             ]
             assert boundary_calls == []
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_no_progress_does_not_notify(self):
         from openamer_state import SessionDB
 
@@ -213,6 +217,7 @@ class TestCompressionBoundaryHook:
             assert returned is messages
             compressor.on_session_start.assert_not_called()
 
+            db.close()  # Windows: unlink fails while the handle is open
     @pytest.mark.parametrize("committed", [True, False])
     def test_deferred_notification_finishes_exactly_once(self, committed):
         from openamer_state import SessionDB
@@ -252,6 +257,7 @@ class TestCompressionBoundaryHook:
             ) is False
             assert events == (["notify"] if committed else [])
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_no_hook_when_no_session_db(self):
         """Without session_db, session_id does not rotate and the hook is not fired."""
         from run_agent import AIAgent
@@ -323,6 +329,7 @@ class TestCompressionBoundaryHook:
             assert agent.session_id != original_sid
 
 
+            db.close()  # Windows: unlink fails while the handle is open
 class TestSessionCompressEvent:
     """The session:compress event_callback fires after a compression split."""
 
@@ -382,6 +389,7 @@ class TestSessionCompressEvent:
             assert ctx["old_session_id"] == original_sid
             assert ctx["compression_count"] == 1
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_no_callback_is_safe(self):
         """Compression must work when no event_callback is wired."""
         from openamer_state import SessionDB
@@ -395,6 +403,7 @@ class TestSessionCompressEvent:
             )
             assert compressed
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_callback_exception_does_not_break_compression(self):
         from openamer_state import SessionDB
 
@@ -412,3 +421,5 @@ class TestSessionCompressEvent:
             )
             assert compressed
             assert agent.session_id != original_sid
+
+            db.close()  # Windows: unlink fails while the handle is open
