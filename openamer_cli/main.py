@@ -430,6 +430,7 @@ from typing import Optional
 
 from openamer_cli.subcommands._shared import add_accept_hooks_flag as _add_accept_hooks_flag
 from openamer_cli.subcommands.cron import build_cron_parser
+from openamer_cli.subcommands.genesis import build_genesis_parser
 from openamer_cli.subcommands.gateway import build_gateway_parser
 from openamer_cli.subcommands.profile import build_profile_parser
 from openamer_cli.subcommands.model import build_model_parser
@@ -15340,7 +15341,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "send", "sessions", "setup",
         "skin", "skills", "slack", "status", "tools", "uninstall", "update",
         "version", "webhook", "whatsapp", "whatsapp-cloud", "chat", "secrets", "security",
-        "a2a", "asi", "system", "identity",
+        "a2a", "asi", "genesis", "system", "identity",
         # Registered subparsers that were never declared here. The gating test
         # (tests/openamer_cli/test_startup_plugin_gating.py) derives the live
         # set from the real parser and fails when one is missing, because an
@@ -18400,6 +18401,11 @@ def main():
     # asi command — ASI Core (parser built in openamer_cli/subcommands/asi.py)
     # =========================================================================
     build_asi_parser(subparsers)
+
+    # =========================================================================
+    # genesis command — status of the 24 Genesis Directives
+    # =========================================================================
+    build_genesis_parser(subparsers)
 
     # =========================================================================
     # claw command  (parser built in openamer_cli/subcommands/claw.py)
