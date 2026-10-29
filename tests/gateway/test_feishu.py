@@ -198,13 +198,11 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
         from plugins.platforms.feishu.adapter import FeishuAdapter
 
         adapter = FeishuAdapter(PlatformConfig())
-        runner = AsyncMock()
-        site = AsyncMock()
-        web_module = SimpleNamespace(
-            Application=lambda **_kwargs: SimpleNamespace(router=SimpleNamespace(add_post=lambda *_args, **_kwargs: None)),
-            AppRunner=lambda _app: runner,
-            TCPSite=lambda _runner, host, port: SimpleNamespace(start=site.start, host=host, port=port),
-        )
+        # Webhook mode binds through the shared ingress helper (multiplexed
+        # listeners), not by constructing web.AppRunner/TCPSite itself. Patching
+        # the old trio left the real helper receiving a fake Application and
+        # failing with "first argument should be web.Application instance".
+        bind_listener = AsyncMock(return_value=SimpleNamespace(name="runner"))
 
         with (
             patch("plugins.platforms.feishu.adapter.FEISHU_AVAILABLE", True),
@@ -214,14 +212,14 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
             patch("plugins.platforms.feishu.adapter.release_scoped_lock"),
             patch.object(adapter, "_hydrate_bot_identity", new=AsyncMock()),
             patch.object(adapter, "_build_lark_client", return_value=SimpleNamespace()),
-            patch("plugins.platforms.feishu.adapter.web", web_module),
+            patch("gateway.platforms.shared_ingress.bind_listener", new=bind_listener),
         ):
             _mock_event_dispatcher_builder(mock_handler_class)
             connected = asyncio.run(adapter.connect())
 
         self.assertTrue(connected)
-        runner.setup.assert_awaited_once()
-        site.start.assert_awaited_once()
+        bind_listener.assert_awaited_once()
+        self.assertEqual(adapter._webhook_runner.name, "runner")
 
     @patch.dict(os.environ, {
         "FEISHU_APP_ID": "cli_app",
@@ -383,6 +381,16 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
         ws_client = SimpleNamespace()
         sleeps = []
 
+        async def _record_sleep(delay):
+            """Record the delay and return at once.
+
+            An *async* fake on purpose: the previous version patched the process-wide
+            ``asyncio.sleep`` with a plain function, so every ``await asyncio.sleep(...)``
+            in the adapter raised (or returned a non-awaitable), and the WS supervisor
+            spun in a tight loop that pegged a core and hung the file for minutes.
+            """
+            sleeps.append(delay)
+
         with (
             patch("plugins.platforms.feishu.adapter.FEISHU_AVAILABLE", True),
             patch("plugins.platforms.feishu.adapter.FEISHU_WEBSOCKET_AVAILABLE", True),
@@ -392,8 +400,11 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
             patch("plugins.platforms.feishu.adapter.acquire_scoped_lock", return_value=(True, None)),
             patch("plugins.platforms.feishu.adapter.release_scoped_lock"),
             patch.object(adapter, "_hydrate_bot_identity", new=AsyncMock()),
-            patch("plugins.platforms.feishu.adapter.asyncio.sleep", side_effect=lambda delay: sleeps.append(delay)),
+            patch("plugins.platforms.feishu.adapter.asyncio.sleep", new=_record_sleep),
             patch.object(adapter, "_build_lark_client", return_value=SimpleNamespace()),
+            # This test is about connect()'s retry, not about the supervisor. Starting
+            # it here made the assertions depend on a task this test never awaits.
+            patch.object(adapter, "_supervise_websocket_thread", new=AsyncMock()),
         ):
             _mock_event_dispatcher_builder(mock_handler_class)
 
@@ -424,6 +435,52 @@ class TestFeishuAdapterMessaging(unittest.TestCase):
         self.assertTrue(connected)
         self.assertEqual(sleeps, [1])
         self.assertEqual(fake_loop.calls, 2)
+
+    def test_supervisor_gives_up_instead_of_spinning(self):
+        """A reconnect that never installs a live link must not loop forever.
+
+        Regression: the WS supervisor had no bound on restart attempts and no
+        guarantee that the loop yielded. A reconnect that "succeeded" without
+        installing a new ``_ws_future`` -- exactly what a fake loop returning the
+        same already-done future does -- spun in a tight loop. In CI that pinned a
+        core inside ``tests/gateway/test_feishu.py`` and the file sat in flight for
+        minutes until the runner was killed (exit 143, ✗ 0).
+        """
+        from gateway.config import PlatformConfig
+        from plugins.platforms.feishu.adapter import (
+            _FEISHU_WS_MAX_CONSECUTIVE_RESTARTS,
+            FeishuAdapter,
+        )
+
+        adapter = FeishuAdapter(PlatformConfig())
+        attempts = []
+
+        async def _scenario():
+            adapter._running = True
+            adapter._ws_client = SimpleNamespace()
+            dead_future = asyncio.get_running_loop().create_future()
+            dead_future.set_result(None)
+            adapter._ws_future = dead_future
+
+            async def _fake_sleep(_delay):
+                return None
+
+            async def _reconnect_without_progress():
+                attempts.append(1)  # deliberately leaves _ws_future alone
+
+            with (
+                patch("plugins.platforms.feishu.adapter.asyncio.sleep", new=_fake_sleep),
+                patch.object(adapter, "_connect_websocket", new=_reconnect_without_progress),
+                patch.object(adapter, "_mark_disconnected") as mark,
+            ):
+                # Without the bound this call never returns; the timeout is the test.
+                await asyncio.wait_for(adapter._supervise_websocket_thread(), timeout=10)
+            return mark
+
+        mark = asyncio.run(_scenario())
+
+        self.assertEqual(len(attempts), _FEISHU_WS_MAX_CONSECUTIVE_RESTARTS)
+        self.assertTrue(mark.called, "giving up must mark the adapter disconnected")
 
     @patch.dict(os.environ, {
         "FEISHU_APP_ID": "cli_app",
@@ -1490,7 +1547,9 @@ class TestAdapterBehavior(unittest.TestCase):
         text, msg_type, media_urls, media_types, _mentions = asyncio.run(adapter._extract_message_content(message))
 
         self.assertEqual(text, "")
-        self.assertEqual(msg_type.value, "audio")
+        # A Lark voice note is classified VOICE, not AUDIO, so the gateway
+        # auto-transcribes it (see _resolve_normalized_message_type, #28993).
+        self.assertEqual(msg_type.value, "voice")
         self.assertEqual(media_urls, ["/tmp/feishu-audio.ogg"])
         self.assertEqual(media_types, ["audio/ogg"])
 
@@ -2003,8 +2062,11 @@ class TestAdapterBehavior(unittest.TestCase):
                             side_effect=lambda **_kwargs: _FakeAsyncClient(),
                         ):
                             with patch(
-                                "plugins.platforms.feishu.adapter.cache_document_from_bytes",
-                                return_value="/tmp/cached-doc.bin",
+                                # The adapter caches through the *async* helper; the sync
+                                # name is not imported here, so patching it raised
+                                # AttributeError instead of exercising the read ordering.
+                                "plugins.platforms.feishu.adapter.cache_document_from_bytes_async",
+                                new=AsyncMock(return_value="/tmp/cached-doc.bin"),
                             ):
                                 return await adapter._download_remote_document(
                                     "https://example.com/doc.bin",
@@ -2084,9 +2146,11 @@ class TestAdapterBehavior(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_home:
             with patch.dict(os.environ, {"OPENAMER_HOME": temp_home}, clear=False):
                 first = FeishuAdapter(PlatformConfig())
-                self.assertFalse(first._is_duplicate("om_same"))
+                # _is_duplicate is a coroutine: it flushes the dedup state through the
+                # adapter's own executor, so it cannot be called synchronously.
+                self.assertFalse(asyncio.run(first._is_duplicate("om_same")))
                 second = FeishuAdapter(PlatformConfig())
-                self.assertTrue(second._is_duplicate("om_same"))
+                self.assertTrue(asyncio.run(second._is_duplicate("om_same")))
 
     @patch.dict(os.environ, {}, clear=True)
     def test_process_inbound_group_message_keeps_group_type_when_chat_lookup_falls_back(self):
@@ -3640,7 +3704,7 @@ class TestDedupTTL(unittest.TestCase):
         with patch.object(adapter, "_persist_seen_message_ids"):
             adapter._seen_message_ids = {"om_dup": time.time()}
             adapter._seen_message_order = ["om_dup"]
-            self.assertTrue(adapter._is_duplicate("om_dup"))
+            self.assertTrue(asyncio.run(adapter._is_duplicate("om_dup")))
 
     @patch.dict(os.environ, {}, clear=True)
     def test_expired_entry_is_not_considered_duplicate(self):
@@ -3653,7 +3717,7 @@ class TestDedupTTL(unittest.TestCase):
         adapter._seen_message_ids = {"om_old": stale_ts}
         adapter._seen_message_order = ["om_old"]
         with patch.object(adapter, "_persist_seen_message_ids"):
-            self.assertFalse(adapter._is_duplicate("om_old"))
+            self.assertFalse(asyncio.run(adapter._is_duplicate("om_old")))
 
     @patch.dict(os.environ, {}, clear=True)
     def test_load_tolerates_malformed_timestamp_values(self):
