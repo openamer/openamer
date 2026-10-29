@@ -45,7 +45,13 @@ def test_compute_host_line_json_seed_turn_interrupt():
     try:
         hello = _read_json_line(out)
         assert hello["type"] == "hello"
-        assert hello["host_pid"] == proc.pid
+        # venv/Scripts/python.exe on Windows is a launcher shim: Popen.pid is the
+        # shim, while the interpreter that reports host_pid is its child, so the
+        # numbers differ by design (measured 2026-10-25). Elsewhere they match.
+        if os.name != "nt":
+            assert hello["host_pid"] == proc.pid
+        else:
+            assert isinstance(hello["host_pid"], int) and hello["host_pid"] > 0
 
         proc.stdin.write(json.dumps({"type": "session.seed", "sid": "s1", "request_id": "seed"}) + "\n")
         proc.stdin.flush()

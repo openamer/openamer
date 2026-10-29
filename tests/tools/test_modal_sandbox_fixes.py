@@ -41,8 +41,11 @@ class TestToolResolution:
             quiet_mode=True,
         )
         names = {t["function"]["name"] for t in tools}
-        expected = {"terminal", "process", "read_file", "write_file", "search_files", "patch"}
-        assert expected == names, f"Expected {expected}, got {names}"
+        # The toolset must CONTAIN these; asserting exact equality made the test
+        # fail every time a tool was added to the registry (focus_pane,
+        # open_preview, read_terminal, close_terminal ...). Measured 2026-10-25.
+        required = {"terminal", "process", "read_file", "write_file", "search_files", "patch"}
+        assert required <= names, f"Expected at least {required}, got {names}"
 
     def test_terminal_tool_present(self):
         """The terminal tool must be present (not silently dropped)."""
@@ -84,6 +87,14 @@ class TestCwdHandling:
         assert config["host_cwd"] is None
         assert config["docker_mount_cwd_to_workspace"] is False
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "asserts Modal/container mappings (/workspace, /home/user/project) "
+            "from a POSIX TERMINAL_CWD. On Windows that value is normalised to a "
+            "drive path first, so the container namespace cannot be expressed"
+        ),
+    )
     def test_users_path_maps_to_workspace_for_docker_when_enabled(self, monkeypatch):
         """Docker should map the host cwd into /workspace only when explicitly enabled."""
         monkeypatch.setenv("TERMINAL_ENV", "docker")
@@ -112,6 +123,14 @@ class TestCwdHandling:
             f"Backend {backend}: expected /root default, got {config['cwd']}"
         )
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "asserts Modal/container mappings (/workspace, /home/user/project) "
+            "from a POSIX TERMINAL_CWD. On Windows that value is normalised to a "
+            "drive path first, so the container namespace cannot be expressed"
+        ),
+    )
     def test_docker_default_cwd_maps_current_directory_when_enabled(self, monkeypatch):
         """Docker should use /workspace when cwd mounting is explicitly enabled."""
         monkeypatch.setattr("tools.terminal_tool.os.getcwd", lambda: "/home/user/project")

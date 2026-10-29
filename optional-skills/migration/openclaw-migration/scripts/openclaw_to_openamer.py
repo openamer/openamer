@@ -396,8 +396,20 @@ def save_env_file(path: Path, data: Dict[str, str]) -> None:
 def backup_existing(path: Path, backup_root: Path) -> Optional[Path]:
     if not path.exists():
         return None
-    rel = Path(*path.parts[1:]) if path.is_absolute() and len(path.parts) > 1 else path
-    dest = backup_root / rel
+    # One bounded directory entry, not a rebuilt absolute tree.
+    #
+    # The previous spelling was ``Path(*path.parts[1:])``: on POSIX that strips
+    # the leading "/", but on Windows ``parts[1:]`` strips only the drive
+    # ("C:\\"), so the whole absolute path became a nested tree under
+    # backups/. A temp path appears twice in it and pushes past the 260
+    # character MAX_PATH, so shutil.copytree dies with WinError 206. Measured
+    # 2026-10-25: five tests in this suite died that way, and a real user with a
+    # deep OPENAMER_HOME would hit the same crash.
+    #
+    # A short digest is unique and short on every platform; the basename stays
+    # so the backups directory is still readable by a human.
+    digest = hashlib.sha256(str(path).encode("utf-8")).hexdigest()[:12]
+    dest = backup_root / f"{path.name}-{digest}"
     ensure_parent(dest)
     if path.is_dir():
         shutil.copytree(path, dest, dirs_exist_ok=True)

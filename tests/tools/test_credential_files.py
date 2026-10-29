@@ -190,7 +190,9 @@ class TestIterSkillsFiles:
         with patch.dict(os.environ, {"OPENAMER_HOME": str(openamer_home)}):
             files = iter_skills_files()
 
-        paths = {f["container_path"] for f in files}
+        # container_path is rendered with host separators; the assertion below
+        # states the container spelling, so normalise.
+        paths = {f["container_path"].replace("\\", "/") for f in files}
         assert "/root/.openamer/skills/cat/myskill/SKILL.md" in paths
         assert "/root/.openamer/skills/cat/myskill/scripts/run.sh" in paths
         # Symlink should be excluded
@@ -521,7 +523,9 @@ class TestIterCacheFiles:
 
         entries = iter_cache_files()
         assert len(entries) == 1
-        assert entries[0]["container_path"] == "/root/.openamer/cache/screenshots/session_abc/screen1.png"
+        assert entries[0]["container_path"].replace("\\", "/") == (
+            "/root/.openamer/cache/screenshots/session_abc/screen1.png"
+        )
 
     def test_empty_cache(self, tmp_path, monkeypatch):
         """No cache dirs → empty list."""

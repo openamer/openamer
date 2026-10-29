@@ -128,6 +128,30 @@ def _sha256_file(path: str) -> str:
 
 _SYNC_BACK_MAX_RETRIES = 3
 _SYNC_BACK_BACKOFF = (2, 4, 8)  # seconds between retries
+
+class _ClosedTempTar:
+    """A temporary .tar that is CLOSED on disk, so it can be re-opened.
+
+    ``tempfile.NamedTemporaryFile`` keeps its handle open; ``tarfile.open()`` then
+    opens the same path a second time. POSIX tolerates that, Windows raises
+    Permission denied (Errno 13) on every attempt -- so sync_back never ran there
+    (measured 2026-10-25). mkstemp + close gives the same "temp file with a name"
+    contract without the open handle, and the file is removed on exit.
+    """
+
+    def __init__(self, suffix: str = ".tar") -> None:
+        fd, self.name = tempfile.mkstemp(suffix=suffix)
+        os.close(fd)
+
+    def __enter__(self) -> "_ClosedTempTar":
+        return self
+
+    def __exit__(self, *_exc) -> None:
+        try:
+            os.unlink(self.name)
+        except OSError:
+            pass
+
 _SYNC_BACK_MAX_BYTES = 2 * 1024 * 1024 * 1024  # 2 GiB — refuse to extract larger tars
 
 
@@ -350,7 +374,7 @@ class FileSyncManager:
         except Exception:
             file_mapping = []
 
-        with tempfile.NamedTemporaryFile(suffix=".tar") as tf:
+        with _ClosedTempTar() as tf:
             self._bulk_download_fn(Path(tf.name))
 
             # Defensive size cap: a misbehaving sandbox could produce an
@@ -378,7 +402,12 @@ class FileSyncManager:
                     for fname in filenames:
                         staged_file = os.path.join(dirpath, fname)
                         rel = os.path.relpath(staged_file, staging)
-                        remote_path = "/" + rel
+                        # Remote paths are POSIX. os.path.relpath returns
+                        # backslashes on Windows, so "/" + rel yielded
+                        # "/root\\.openamer\\skills\\x" and nothing matched the
+                        # cached mapping -- sync-back pulled back zero files and
+                        # reported "no remote changes detected" (2026-10-25).
+                        remote_path = "/" + rel.replace(os.sep, "/")
 
                         pushed_hash = self._pushed_hashes.get(remote_path)
 

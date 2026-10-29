@@ -39,6 +39,10 @@ class TestClassicCliOutputSelection:
         assert out is not None
         assert out.enable_cpr is False
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason="needs termios (a POSIX-only module) to drive the terminal CPR probe",
+    )
     def test_application_receives_cpr_not_supported_without_ssh(self, monkeypatch):
         """Classic-CLI Application construction must get CPR-disabled output."""
         from prompt_toolkit.application import Application

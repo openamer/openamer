@@ -140,7 +140,8 @@ class TestRichSentStorePathResolution:
 
         b_seen = _under_override(prof_b, lambda: rss._store_path())
         assert b_seen.startswith(str(prof_b))
-        assert b_seen.endswith("state/rich_sent_index.json")
+        # _store_path() renders a host path; the literal states the POSIX spelling.
+        assert b_seen.replace("\\", "/").endswith("state/rich_sent_index.json")
 
 
 # ---------------------------------------------------------------------------

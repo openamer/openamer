@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+
 import io
 import json
 from contextlib import redirect_stdout
@@ -80,6 +82,10 @@ class TestHooksList:
 
 
 class TestHooksTest:
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=("the hook is a POSIX shell script; it is not runnable here, so the payload file it should write never appears"),
+    )
     def test_synthetic_payload_matches_production_shape(self, tmp_path):
         """`openamer hooks test` must feed the script stdin in the same
         shape invoke_hook() would at runtime.  Prior to this fix,
@@ -185,6 +191,10 @@ class TestHooksRevoke:
 
 
 class TestHooksDoctor:
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=("needs chmod to clear an exec bit; NTFS has no such bit, so the product reports a different, correct issue instead"),
+    )
     def test_flags_missing_exec_bit(self, tmp_path):
         script = tmp_path / "hook.sh"
         script.write_text("#!/usr/bin/env bash\nprintf '{}\\n'\n")

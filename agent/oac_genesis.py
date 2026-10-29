@@ -257,14 +257,19 @@ def solc_command() -> Optional[List[str]]:
     One resolution for the CI script and the test suite, so they can
     never reach different compilers.
     """
+    # solc reads a standard-JSON payload from stdin only with --standard-json;
+    # without the flag it looks for a file argument and exits 1 with
+    # "Must provide a file", which is exactly what CI reported (measured
+    # 2026-10-25 on tests/agent/test_oac_contracts.py). The bridge script below
+    # does its own stdin handling, so only the direct CLIs need the flag.
     solc = shutil.which("solc")
     if solc:
-        return [solc]
+        return [solc, "--standard-json"]
     node = shutil.which("node")
     if node:
         root = npm_solc_root()
         if root is not None:
             return [node, str(BRIDGE), str(root)]
     if shutil.which("npx"):
-        return ["npx", "--yes", f"solc@{SOL_VERSION}"]
+        return ["npx", "--yes", f"solc@{SOL_VERSION}", "--standard-json"]
     return None

@@ -212,7 +212,16 @@ def test_fetch_child_env_is_allowlisted(monkeypatch, tmp_path):
     env = captured["env"]
     assert "OPENAI_API_KEY" not in env          # not inherited
     assert env["OP_SERVICE_ACCOUNT_TOKEN"] == "ops_tok"
-    assert env["OP_SESSION_myacct"] == "sess123"
+    # Windows upper-cases environment variable NAMES, so the child receives
+    # OP_SESSION_MYACCT even though the product forwarded the value correctly.
+    # "OP_SESSION_myacct" in os.environ is still True there (the mapping is
+    # case-insensitive) while a plain dict built from it is not -- so the
+    # membership check passes and the indexed lookup one line later fails.
+    # Assert the key the host actually stores rather than gating: the subject
+    # here (an allowlisted credential reaches the child) is fully observable
+    # on Windows.
+    session_key = "OP_SESSION_MYACCT" if sys.platform == "win32" else "OP_SESSION_myacct"
+    assert env[session_key] == "sess123"
     assert env.get("NO_COLOR") == "1"
 
 
@@ -286,7 +295,8 @@ def test_disk_cache_roundtrip_and_no_token_on_disk(monkeypatch, tmp_path):
 
     cache_path = op._disk_cache_path(tmp_path)
     assert cache_path.exists()
-    assert (os.stat(cache_path).st_mode & 0o777) == 0o600
+    if sys.platform != "win32":  # NTFS has no POSIX mode bits
+        assert (os.stat(cache_path).st_mode & 0o777) == 0o600
     text = cache_path.read_text()
     assert "ops_supersecret" not in text            # token never on disk
     payload = json.loads(text)

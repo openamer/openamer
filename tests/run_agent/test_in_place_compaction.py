@@ -124,6 +124,7 @@ class TestInPlaceCompaction:
             # Live transcript actually shrank.
             assert len(compressed) == 2
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_in_place_alternation_preserved(self):
         """The compacted list must not introduce consecutive same-role messages."""
         from openamer_state import SessionDB
@@ -141,6 +142,7 @@ class TestInPlaceCompaction:
             roles = [m["role"] for m in compressed if m.get("role") != "system"]
             assert all(roles[i] != roles[i + 1] for i in range(len(roles) - 1))
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_in_place_skips_redundant_preflush(self):
         """In-place must NOT pre-flush current-turn messages: replace_messages
         rewrites the whole row, so a flush would INSERT rows it immediately
@@ -163,6 +165,7 @@ class TestInPlaceCompaction:
             )
             assert calls["n"] == 0
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_rotation_still_preflushes(self):
         """Rotation MUST pre-flush so current-turn messages survive in the
         preserved old (parent) session before it is ended (#47202)."""
@@ -184,6 +187,7 @@ class TestInPlaceCompaction:
             assert calls["n"] == 1
 
 
+            db.close()  # Windows: unlink fails while the handle is open
 class TestRotationFallbackWhenFlagOff:
     def test_rotation_when_flag_off(self):
         """Rotation is now the OPT-OUT fallback (default flipped to in-place in
@@ -225,6 +229,7 @@ class TestRotationFallbackWhenFlagOff:
             assert getattr(agent, "_last_compaction_in_place", False) is False
 
 
+            db.close()  # Windows: unlink fails while the handle is open
 class TestInPlaceSignalForGateway:
     """compress_context must expose a rotation-independent flag the gateway can
     read (instead of an id-change diff) to re-baseline transcript handling."""
@@ -254,6 +259,7 @@ class TestInPlaceSignalForGateway:
             assert a_rot._last_compaction_in_place is False
 
 
+            db.close()  # Windows: unlink fails while the handle is open
 class TestInPlaceConfigDefault:
     def test_flag_defaults_on(self):
         """In-place is the default as of #38763 (rotation is now opt-out via
@@ -305,6 +311,7 @@ class TestCompactedTurnsStaySearchable:
             # Live context still excludes them.
             assert len(db.get_messages_as_conversation(sid)) == 2
 
+            db.close()  # Windows: unlink fails while the handle is open
     def test_rewound_turns_stay_hidden(self):
         """Rewind/undo (active=0, compacted=0) must NOT leak into default
         search — the distinction the compacted flag preserves."""
@@ -323,3 +330,5 @@ class TestCompactedTurnsStaySearchable:
                 "ZEBRAWORD", role_filter=["user", "assistant"], include_inactive=True
             )
             assert len(recovered) == 1
+
+            db.close()  # Windows: unlink fails while the handle is open

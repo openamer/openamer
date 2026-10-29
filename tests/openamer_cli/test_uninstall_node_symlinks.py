@@ -35,6 +35,22 @@ def _make_openamer_node(openamer_home: Path) -> Path:
     return node_bin
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the fixtures create real symlinks, which on Windows requires "
+        "SeCreateSymbolicLinkPrivilege (admin or Developer Mode); without it "
+        "Path.symlink_to raises and the product correctly finds nothing to remove"
+    ),
+)
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the fixtures create real symlinks, which on Windows requires "
+        "SeCreateSymbolicLinkPrivilege (admin or Developer Mode); without it "
+        "Path.symlink_to raises and the product correctly finds nothing to remove"
+    ),
+)
 def test_removes_symlinks_pointing_into_openamer_node(fake_home):
     openamer_home = fake_home / ".openamer"
     node_bin = _make_openamer_node(openamer_home)
@@ -51,6 +67,14 @@ def test_removes_symlinks_pointing_into_openamer_node(fake_home):
         assert not (local_bin / name).is_symlink()
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the fixtures create real symlinks, which on Windows requires "
+        "SeCreateSymbolicLinkPrivilege (admin or Developer Mode); without it "
+        "Path.symlink_to raises and the product correctly finds nothing to remove"
+    ),
+)
 def test_leaves_unrelated_symlinks_untouched(fake_home):
     """A node symlink the user repointed at nvm must survive uninstall."""
     openamer_home = fake_home / ".openamer"
@@ -70,6 +94,14 @@ def test_leaves_unrelated_symlinks_untouched(fake_home):
     assert (local_bin / "node").resolve() == (nvm_bin / "node").resolve()
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the fixtures create real symlinks, which on Windows requires "
+        "SeCreateSymbolicLinkPrivilege (admin or Developer Mode); without it "
+        "Path.symlink_to raises and the product correctly finds nothing to remove"
+    ),
+)
 def test_leaves_real_binaries_untouched(fake_home):
     """A real (non-symlink) binary in ~/.local/bin is never deleted."""
     openamer_home = fake_home / ".openamer"
@@ -87,6 +119,14 @@ def test_leaves_real_binaries_untouched(fake_home):
     assert not real_node.is_symlink()
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the fixtures create real symlinks, which on Windows requires "
+        "SeCreateSymbolicLinkPrivilege (admin or Developer Mode); without it "
+        "Path.symlink_to raises and the product correctly finds nothing to remove"
+    ),
+)
 def test_handles_missing_local_bin(fake_home):
     """No symlinks present -> no-op, no error."""
     openamer_home = fake_home / ".openamer"
@@ -95,6 +135,14 @@ def test_handles_missing_local_bin(fake_home):
     assert uninstall.remove_node_symlinks(openamer_home) == []
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the fixtures create real symlinks, which on Windows requires "
+        "SeCreateSymbolicLinkPrivilege (admin or Developer Mode); without it "
+        "Path.symlink_to raises and the product correctly finds nothing to remove"
+    ),
+)
 def test_removes_dangling_symlink_into_openamer_node(fake_home):
     """A link into the OpenAmer node dir is removed even if the target file is
     already gone (dangling) \u2014 the link still shadows PATH."""
@@ -113,6 +161,14 @@ def test_removes_dangling_symlink_into_openamer_node(fake_home):
     assert not (local_bin / "node").is_symlink()
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the fixtures create real symlinks, which on Windows requires "
+        "SeCreateSymbolicLinkPrivilege (admin or Developer Mode); without it "
+        "Path.symlink_to raises and the product correctly finds nothing to remove"
+    ),
+)
 def test_only_some_links_present(fake_home):
     """Removes the OpenAmer links that exist; ignores the ones that don't."""
     openamer_home = fake_home / ".openamer"
@@ -132,6 +188,14 @@ def test_only_some_links_present(fake_home):
     assert not (local_bin / "npx").is_symlink()
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the fixtures create real symlinks, which on Windows requires "
+        "SeCreateSymbolicLinkPrivilege (admin or Developer Mode); without it "
+        "Path.symlink_to raises and the product correctly finds nothing to remove"
+    ),
+)
 def test_removes_fhs_symlinks_in_usr_local_bin(fake_home, tmp_path, monkeypatch):
     """Root FHS installs place node symlinks in /usr/local/bin.
 

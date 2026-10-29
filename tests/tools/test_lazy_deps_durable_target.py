@@ -127,6 +127,14 @@ class TestAbiStamp:
         assert not (target / "stalepkg").exists()
         assert (target / ld._TARGET_STAMP_NAME).read_text().strip() == ld._python_abi_tag()
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=(
+            "relies on chmod(0o500) making a directory non-writable. NTFS has no "
+            "mode bits; os.chmod only toggles the read-only attribute and does not "
+            "stop a child from being created, so the error path cannot be reached"
+        ),
+    )
     def test_readonly_target_reports_error(self, tmp_path):
         # A path under a non-writable parent should surface a clean error,
         # not raise.

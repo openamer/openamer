@@ -9,6 +9,13 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
+def _CACHE_PATH(name: str) -> Path:
+    """A host-absolute cache path. Path("/tmp/x") is drive-relative on Windows, so
+    the fixture must not use a POSIX literal."""
+    import tempfile
+
+    return Path(tempfile.gettempdir()) / name
+
 
 # ---------------------------------------------------------------------------
 # Fixtures
@@ -177,13 +184,13 @@ class TestGenerate:
         with patch("plugins.image_gen.xai.requests.post", return_value=mock_resp), \
              patch(
                  "plugins.image_gen.xai.save_url_image",
-                 return_value=Path("/tmp/xai_grok-imagine-image_20260524_000000_deadbeef.jpg"),
+                 return_value=_CACHE_PATH("xai_grok-imagine-image_20260524_000000_deadbeef.jpg"),
              ) as mock_save_url:
             provider = XAIImageGenProvider()
             result = provider.generate(prompt="A cat playing piano")
 
         assert result["success"] is True
-        assert result["image"].startswith("/"), (
+        assert Path(result["image"]).is_absolute(), (
             f"URL response must be cached to an absolute path, got {result['image']!r}"
         )
         assert "imgen.x.ai" not in result["image"], (

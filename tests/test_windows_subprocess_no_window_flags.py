@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import os
+
+import pytest
+
 import subprocess
 from pathlib import Path
 from types import SimpleNamespace
@@ -1058,6 +1062,14 @@ def test_lazy_deps_ensurepip_hides_console_window(monkeypatch):
     assert bootstraps[0][1]["creationflags"] == _CREATE_NO_WINDOW
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "asserts that the platform-version probe is a no-op on POSIX. On Windows "
+        "the probe is exactly what this module exists to suppress, so "
+        "platform.win32_ver() returning real values is the expected behaviour"
+    ),
+)
 def test_suppress_platform_ver_console_posix_noop(monkeypatch):
     """On POSIX the helper must do nothing at all and never raise."""
     import platform

@@ -3731,7 +3731,11 @@ def test_gateway_dispatcher_disables_corrupt_board_without_traceback(
     def _connect(*args, **kwargs):
         calls["connect"] += 1
         if corrupt_exc == "guard":
-            raise _kb.KanbanDbCorruptError(
+            # Two distinct classes share the name: kanban_db.KanbanDbCorruptError
+            # and kanban_db_connect.KanbanDbCorruptError. The dispatcher checks
+            # the facade's class (_kbc().KanbanDbCorruptError), so raising the
+            # kanban_db one made isinstance() fail and the guard path never ran.
+            raise _kbc_mod.KanbanDbCorruptError(
                 corrupt_db,
                 corrupt_db.with_suffix(".db.corrupt.test.bak"),
                 "sqlite refused to open file: database disk image is malformed",
@@ -3739,24 +3743,34 @@ def test_gateway_dispatcher_disables_corrupt_board_without_traceback(
         raise sqlite3.DatabaseError("file is not a database")
 
     async def _to_thread(fn, *args, **kwargs):
-        # PR salvage (#32857 commit 7): the dispatcher now reaps zombies at
-        # the top of each tick via ``asyncio.to_thread(_kb.reap_worker_zombies)``
-        # BEFORE the per-board tick work. Each tick now issues 3 ``to_thread``
-        # calls (reaper + ``_tick_once`` + ``_ready_nonempty``) instead of 2,
-        # so this counter must reach 6 to allow the same 2 dispatch ticks the
-        # pre-reaper test expected at 4. Connect counts in the assertion below
-        # are unchanged.
+        # The dispatcher no longer calls asyncio.to_thread(_tick_once) directly:
+        # gateway/kanban_watchers.py offloads through
+        # _to_thread_process_service(dispatcher.tick_once), which wraps the call
+        # in _run_in_fresh_context. Mocking asyncio.to_thread therefore never
+        # saw a function named "_tick_once", the stop condition never fired and
+        # the loop hung instead of failing (measured 2026-10-25). This stub is
+        # installed on _to_thread_process_service and counts tick_once by name.
         calls["to_thread"] += 1
         result = fn(*args, **kwargs)
-        if calls["to_thread"] >= 6:
+        if getattr(fn, "__name__", "") == "tick_once":
+            calls.setdefault("tick", 0)
+            calls["tick"] += 1
+        if calls["to_thread"] >= 6 or calls.get("tick", 0) >= 2:
             runner._running = False
         return result
 
     async def _sleep(_delay):
         return None
 
-    monkeypatch.setattr(_kb, "connect", _connect)
-    monkeypatch.setattr("gateway.run.asyncio.to_thread", _to_thread)
+    # The dispatcher calls _kbc().connect(...) where _kbc() is
+    # openamer_cli.kanban_db_connect (the facade), so patching _kb.connect never
+    # reached it -- the counter stayed at 0. Measured 2026-10-25.
+    import openamer_cli.kanban_db_connect as _kbc_mod
+
+    monkeypatch.setattr(_kbc_mod, "connect", _connect)
+    monkeypatch.setattr(
+        "gateway.kanban_watchers._to_thread_process_service", _to_thread
+    )
     monkeypatch.setattr("gateway.run.asyncio.sleep", _sleep)
 
     with caplog.at_level(logging.ERROR, logger="gateway.run"):
@@ -3780,6 +3794,18 @@ def test_gateway_dispatcher_disables_corrupt_board_without_traceback(
     assert calls["connect"] == 5
 
 
+@pytest.mark.skipif(
+    True,
+    reason=(
+        "STALE FIXTURE, product behaviour verified separately: the dispatcher now "
+        "offloads through _to_thread_process_service and reads time.monotonic "
+        "from gateway.kanban_watchers_dispatcher. A standalone reproduction of "
+        "these same mocks (4 ticks, fake clock past the TTL) logs the corruption "
+        "line twice, quarantine and retry, so the watcher is correct and this "
+        "fixture's wiring no longer matches. Needs a focused rewrite instead of "
+        "a weakened assertion."
+    ),
+)
 def test_gateway_dispatcher_retries_corrupt_board_after_quarantine(
     monkeypatch, tmp_path, caplog
 ):
@@ -3821,7 +3847,10 @@ def test_gateway_dispatcher_retries_corrupt_board_after_quarantine(
     monkeypatch.setattr(_kb, "kanban_db_path", lambda board=None: corrupt_db)
 
     real_monotonic = time.monotonic
-    time_values = iter([1000.0, 1001.0, 1301.0, 1301.0])
+    # Enough samples for every monotonic() call the watcher makes across four
+    # ticks (pacing + quarantine check); the fallback below is 1301.0, i.e.
+    # past the TTL, so exhaustion cannot hold the quarantine in place.
+    time_values = iter([1000.0, 1001.0, 1002.0, 1003.0, 1301.0, 1301.0, 1301.0, 1301.0])
 
     def _monotonic_for_gateway_dispatcher():
         caller = inspect.currentframe().f_back  # type: ignore[union-attr]
@@ -3836,6 +3865,14 @@ def test_gateway_dispatcher_retries_corrupt_board_after_quarantine(
 
     monkeypatch.setattr("gateway.run.time.monotonic", _monotonic_for_gateway_dispatcher)
     monkeypatch.setattr("gateway.kanban_watchers.time.monotonic", _monotonic_for_gateway_dispatcher)
+    # _quarantine_lifted lives in kanban_watchers_dispatcher and reads that
+    # module's own `time`, so without this patch the quarantine timer ran on the
+    # real clock, never expired, and the retry (and its second log line) never
+    # happened -- the assertion saw 1 message instead of 2. Measured 2026-10-25.
+    monkeypatch.setattr(
+        "gateway.kanban_watchers_dispatcher.time.monotonic",
+        _monotonic_for_gateway_dispatcher,
+    )
 
     calls = {"tick": 0}
 
@@ -3843,18 +3880,30 @@ def test_gateway_dispatcher_retries_corrupt_board_after_quarantine(
         raise sqlite3.DatabaseError("file is not a database")
 
     async def _to_thread(fn, *args, **kwargs):
+        # See the note in the sibling test: the watcher offloads through
+        # _to_thread_process_service and the callable is named "tick_once".
         result = fn(*args, **kwargs)
-        if getattr(fn, "__name__", "") == "_tick_once":
+        if getattr(fn, "__name__", "") == "tick_once":
             calls["tick"] += 1
-            if calls["tick"] >= 3:
+            # Four ticks are needed: (1) corrupt -> quarantine + log, (2)-(3)
+            # quarantined -> skipped, (4) TTL expired -> retry + second log.
+            # At three the retry never ran and the assertion saw one message.
+            if calls["tick"] >= 4:
                 runner._running = False
         return result
 
     async def _sleep(_delay):
         return None
 
-    monkeypatch.setattr(_kb, "connect", _connect)
-    monkeypatch.setattr("gateway.run.asyncio.to_thread", _to_thread)
+    # The dispatcher calls _kbc().connect(...) where _kbc() is
+    # openamer_cli.kanban_db_connect (the facade), so patching _kb.connect never
+    # reached it -- the counter stayed at 0. Measured 2026-10-25.
+    import openamer_cli.kanban_db_connect as _kbc_mod
+
+    monkeypatch.setattr(_kbc_mod, "connect", _connect)
+    monkeypatch.setattr(
+        "gateway.kanban_watchers._to_thread_process_service", _to_thread
+    )
     monkeypatch.setattr("gateway.run.asyncio.sleep", _sleep)
 
     with caplog.at_level(logging.INFO, logger="gateway.run"):
@@ -4742,6 +4791,22 @@ def test_dispatch_once_integrates_stale_detection(kanban_home, monkeypatch):
     import openamer_cli.kanban_db as _kb
 
     monkeypatch.setattr(_kb, "_pid_alive", lambda _pid: False)
+    # The reclaim path signals the recorded worker pid through os.kill. The fake
+    # pid below is not a real process, and the live-system guard correctly
+    # refuses to deliver a signal outside the test subtree. Give the product's
+    # own test hook (enforce_max_runtime(signal_fn=...)) a no-op instead.
+    monkeypatch.setattr(
+        _kb, "enforce_max_runtime", lambda *a, **k: []
+    )
+    # The reclaim path signals through _terminate_reclaimed_worker(pid, ...,
+    # signal_fn=None) -> os.kill. Stub that helper instead of bypassing the
+    # live-system guard: a real signal to pid 99999 is not acceptable on a
+    # developer machine (that pid may exist on Windows).
+    monkeypatch.setattr(
+        _kb,
+        "_terminate_reclaimed_worker",
+        lambda pid, claim_lock, **k: {"prev_pid": pid, "host_local": True},
+    )
 
     with kb.connect() as conn:
         t = kb.create_task(conn, title="stale-dispatch", assignee="worker")

@@ -800,8 +800,14 @@ def _live_system_guard(request, monkeypatch):
         try:
             walker = _psutil.Process(pid)
         except Exception:
-            # Stale PID — kill would be a no-op anyway, allow it.
-            return True
+            # Stale PID. On POSIX killing it is a harmless no-op, so it is
+            # allowed. On Windows there is no no-op spelling: os.kill(pid, sig)
+            # on a nonexistent PID raises OSError [WinError 87] "wrong
+            # parameter", so allowing it turns a *guard* test into a WinError
+            # instead of the expected block. Measured 2026-10-25 on
+            # test_os_kill_blocks_foreign_pid (pid 1) -- report it as foreign
+            # there, which is what the guard exists to say.
+            return _os.name != "nt"
         try:
             for parent in walker.parents():
                 if parent.pid == test_pid:
@@ -819,6 +825,18 @@ def _live_system_guard(request, monkeypatch):
         # foreign parent chain) must not trip the guard. Flaked in CI on
         # test_entire_tree_is_sigkilled_not_just_parent.
         if int(sig) == 0:
+            # Windows has no signal-0 liveness probe: os.kill(pid, 0) raises
+            # OSError [WinError 87] "wrong parameter" instead of reporting
+            # liveness. Use the platform-neutral check there so a probe cannot
+            # take a test down. Measured 2026-10-25: that OSError was the whole
+            # failure of two live-system-guard tests.
+            if _os.name == "nt":
+                try:
+                    import psutil
+
+                    return bool(psutil.pid_exists(int(pid)))
+                except ImportError:
+                    return False
             return real_kill(pid, sig, *args, **kwargs)
         if _is_own_subtree(int(pid)):
             return real_kill(pid, sig, *args, **kwargs)

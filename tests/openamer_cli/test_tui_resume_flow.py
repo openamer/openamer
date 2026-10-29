@@ -1077,7 +1077,7 @@ def test_oneshot_subprocess_exits_without_teardown_abort():
     )
 
     assert result.returncode == 0
-    assert result.stdout == b"ok\n"
+    assert result.stdout.replace(b"\r\n", b"\n") == b"ok\n"
     # Don't demand byte-empty stderr — an import-time warning from the heavy
     # CLI import chain shouldn't fail this. What matters is no crash traceback.
     assert b"Traceback" not in result.stderr
@@ -1106,7 +1106,7 @@ def test_exit_after_oneshot_bypasses_late_atexit_abort():
     )
 
     assert result.returncode == 0
-    assert result.stdout == b"done\n"
+    assert result.stdout.replace(b"\r\n", b"\n") == b"done\n"
 
 
 def test_run_and_exit_oneshot_passes_through_nonzero_return(monkeypatch, main_mod):
@@ -1163,7 +1163,7 @@ def test_main_oneshot_path_bypasses_late_atexit_abort():
     )
 
     assert result.returncode == 0
-    assert result.stdout == b"ok\n"
+    assert result.stdout.replace(b"\r\n", b"\n") == b"ok\n"
     assert b"Traceback" not in result.stderr
 
 

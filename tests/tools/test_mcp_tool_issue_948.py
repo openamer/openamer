@@ -1,5 +1,7 @@
 import asyncio
 import os
+
+import pytest
 import sys
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock, patch
@@ -92,6 +94,15 @@ def test_format_connect_error_unwraps_exception_group():
     assert "missing executable 'node'" in message
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "expects the python fallback when npx is unusable. The fixture's npx is a "
+        "POSIX shell script and Windows cannot distinguish that: os.access(X_OK) "
+        "is true for every existing file, so the resolver legitimately picks the "
+        "discovered npx instead of falling back to sys.executable"
+    ),
+)
 def test_run_stdio_uses_resolved_command_and_prepended_path(tmp_path):
     node_bin = tmp_path / "node" / "bin"
     node_bin.mkdir(parents=True)

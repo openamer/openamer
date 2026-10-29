@@ -1,6 +1,7 @@
 """Tests for Matrix platform adapter (mautrix-python backend)."""
 import asyncio
 import re
+import os
 import stat
 import sys
 import time
@@ -2409,7 +2410,12 @@ class TestMatrixDiagnostics:
         _handle_generated_matrix_recovery_key("@bot:example.org", secret)
 
         assert output_path.read_text().strip() == secret
-        assert stat.S_IMODE(output_path.stat().st_mode) == 0o600
+        # NTFS reads back 0666 for any user-owned file; assert the POSIX contract
+        # where it exists.
+        if os.name == "posix":
+            assert stat.S_IMODE(output_path.stat().st_mode) == 0o600
+        else:
+            assert output_path.is_file()
         assert secret not in caplog.text
 
     @pytest.mark.asyncio

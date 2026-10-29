@@ -1,6 +1,7 @@
 """Tests for openamer_cli configuration management."""
 
 import os
+import shutil
 from pathlib import Path
 from unittest.mock import patch
 
@@ -31,12 +32,54 @@ from openamer_cli.config import (
 )
 
 
+def _bump_mtime(path: Path, seconds: float = 2.0) -> None:
+    """Move a file's mtime forward so an mtime-keyed cache sees the edit.
+
+    These tests used ``time.sleep(0.05)`` before rewriting a config file to bust
+    the loader's mtime cache. NTFS timestamps are coarse enough that two writes
+    can land in one tick, and under load the sleep can also be too short -- the
+    cache then keeps serving the old file and the test flakes (measured
+    2026-10-25). Bumping the mtime is deterministic and needs no sleep.
+    """
+    st = path.stat()
+    os.utime(path, (st.st_atime, st.st_mtime + seconds))
+
+
+def _posix_shell_roundtrip_available() -> bool:
+    """Whether ``env sh -c`` actually runs here.
+
+    A which("sh") lookup is not enough, and neither is a plain ``env sh`` probe:
+    on Windows the MSYS sh is on PATH, so ``env sh -c`` works -- but the tests
+    below use ``env -i sh``, which clears the environment including PATH, and
+    then env.exe cannot resolve sh ("env: 'sh': No such file or directory").
+    Measured 2026-10-25. Probe the exact invocation the tests use.
+    """
+    if not (shutil.which("sh") and shutil.which("env")):
+        return False
+    try:
+        import subprocess
+
+        proc = subprocess.run(
+            ["env", "-i", "sh", "-c", "printf ok"], capture_output=True, text=True, timeout=10
+        )
+        return proc.returncode == 0 and proc.stdout == "ok"
+    except Exception:
+        return False
+
+
 class TestGetOpenAmerHome:
     def test_default_path(self):
         with patch.dict(os.environ, {}, clear=False):
             os.environ.pop("OPENAMER_HOME", None)
             home = get_openamer_home()
-            assert home == Path.home() / ".openamer"
+            # Windows keeps app data under %LOCALAPPDATA% and the product reads
+            # that variable directly; asserting "~/.openamer" pinned the POSIX
+            # layout and failed on a correct result. Measured 2026-10-25.
+            if os.name == "nt":
+                expected = Path(os.environ["LOCALAPPDATA"]) / "openamer"
+            else:
+                expected = Path.home() / ".openamer"
+            assert home == expected
 
     def test_env_override(self):
         with patch.dict(os.environ, {"OPENAMER_HOME": "/custom/path"}):
@@ -197,8 +240,8 @@ class TestLoadConfigParseFailure:
             capsys.readouterr()  # discard first warning
 
             # Edit the file (still broken, but different content) — mtime changes
-            time.sleep(0.05)
             (tmp_path / "config.yaml").write_text("\tstill broken differently:\n")
+            _bump_mtime(tmp_path / "config.yaml")
             load_config()
             after_edit = capsys.readouterr().err
             assert "openamer config:" in after_edit, "edited file should re-warn"
@@ -295,8 +338,8 @@ class TestLoadConfigParseFailure:
             capsys.readouterr()
 
             # Corrupt the file (mtime must change to bust the cache)
-            time.sleep(0.05)
             cfg.write_text("approvals:\n  deny: [unclosed\n  :::bad {{{\n")
+            _bump_mtime(cfg)
 
             after = load_config()
             # Last-known-good retained — NOT defaults
@@ -317,12 +360,12 @@ class TestLoadConfigParseFailure:
             cfg.write_text("model:\n  default: test/first\n")
             assert load_config()["model"]["default"] == "test/first"
 
-            time.sleep(0.05)
             cfg.write_text("\tbroken:\n")
+            _bump_mtime(cfg)
             assert load_config()["model"]["default"] == "test/first"
 
-            time.sleep(0.05)
             cfg.write_text("model:\n  default: test/second\n")
+            _bump_mtime(cfg, seconds=4.0)
             assert load_config()["model"]["default"] == "test/second"
 
     def test_fresh_process_still_falls_back_to_defaults(self, tmp_path):
@@ -608,6 +651,13 @@ class TestSaveEnvValueSecure:
             assert parsed["ANTHROPIC_TOKEN"] == token
             assert load_env()["ANTHROPIC_TOKEN"] == token
 
+    @pytest.mark.skipif(
+        not _posix_shell_roundtrip_available(),
+        reason=(
+            "round-trips the value through `env sh -c`; on this host that "
+            "invocation does not actually run (smoke-tested in the helper)"
+        ),
+    )
     def test_save_env_value_quotes_values_with_internal_spaces(self, tmp_path):
         """Internal spaces must be quoted so shell-sourcing does not word-split.
 
@@ -648,6 +698,13 @@ class TestSaveEnvValueSecure:
             assert r.stderr == ""
             assert r.stdout == path
 
+    @pytest.mark.skipif(
+        not _posix_shell_roundtrip_available(),
+        reason=(
+            "round-trips the value through `env sh -c`; on this host that "
+            "invocation does not actually run (smoke-tested in the helper)"
+        ),
+    )
     def test_save_env_value_quotes_values_with_tabs(self, tmp_path):
         """Tabs trigger quoting; round-trip via dotenv and shell source."""
         import subprocess

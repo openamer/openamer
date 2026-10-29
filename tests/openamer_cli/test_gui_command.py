@@ -77,7 +77,11 @@ def test_gui_installs_packages_and_launches_desktop_app(tmp_path, monkeypatch):
     assert mock_install.call_args.kwargs["capture_output"] is False
     install_env = mock_install.call_args.kwargs["env"]
     assert install_env is not None and "PATH" in install_env
-    assert mock_run.call_args_list[0].args[0] == ["/usr/bin/npm", "run", "pack"]
+    build_cmd = mock_run.call_args_list[0].args[0]
+    # The resolved npm path is host-shaped (npm.cmd under Program Files on
+    # Windows), so assert which binary ran and every argument exactly.
+    assert Path(build_cmd[0]).name.lower() in {"npm", "npm.cmd", "npm.exe", "npm.bat"}
+    assert build_cmd[1:] == ["run", "pack"]
     assert mock_run.call_args_list[0].kwargs["cwd"] == desktop_dir
     assert mock_run.call_args_list[1].args[0] == [str(packaged_exe)]
     assert mock_run.call_args_list[1].kwargs["cwd"] == desktop_dir
@@ -159,7 +163,11 @@ def test_gui_exits_when_npm_missing(tmp_path, monkeypatch, capsys):
     root = _make_desktop_tree(tmp_path)
     monkeypatch.setattr(cli_main, "PROJECT_ROOT", root)
 
-    with patch("openamer_cli.main.shutil.which", return_value=None), \
+    # Patch the resolver itself, not shutil.which: _resolve_node_runtime_npm()
+    # resolves through openamer_constants.find_node_executable(), so on a host
+    # that HAS node the mock never took effect and cmd_gui ran a real install
+    # (exit code -218 / 4294963238 instead of 1). Measured 2026-10-25.
+    with patch("openamer_cli.main._resolve_node_runtime_npm", return_value=None), \
          pytest.raises(SystemExit) as exc:
         cli_main.cmd_gui(_ns())
 
@@ -321,9 +329,14 @@ def test_gui_source_mode_uses_renderer_build_and_electron(tmp_path, monkeypatch)
         cli_main.cmd_gui(_ns(source=True))
 
     assert exc.value.code == 0
-    assert mock_run.call_args_list[0].args[0] == ["/usr/bin/npm", "run", "build"]
+    build_cmd = mock_run.call_args_list[0].args[0]
+    # Host-shaped npm path (npm.cmd on Windows); assert the binary kind + args.
+    assert Path(build_cmd[0]).name.lower() in {"npm", "npm.cmd", "npm.exe", "npm.bat"}
+    assert build_cmd[1:] == ["run", "build"]
     assert mock_run.call_args_list[0].kwargs["cwd"] == desktop_dir
-    assert mock_run.call_args_list[1].args[0] == ["/usr/bin/npm", "exec", "--", "electron", "."]
+    exec_cmd = mock_run.call_args_list[1].args[0]
+    assert Path(exec_cmd[0]).name.lower() in {"npm", "npm.cmd", "npm.exe", "npm.bat"}
+    assert exec_cmd[1:] == ["exec", "--", "electron", "."]
     assert mock_run.call_args_list[1].kwargs["cwd"] == desktop_dir
 
 
@@ -351,7 +364,10 @@ def test_desktop_build_stamp_skips_build_when_up_to_date(tmp_path, monkeypatch):
 
     launch_ok = subprocess.CompletedProcess([], 0)
 
-    with patch("openamer_cli.main._desktop_build_needed", return_value=False), \
+    # The resolver probes node through subprocess.run, which this test patches
+    # wholesale -- so it must be pinned explicitly or it reports "npm not found".
+    with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
+         patch("openamer_cli.main._desktop_build_needed", return_value=False), \
          patch("openamer_cli.main._run_npm_install_deterministic") as mock_install, \
          patch("openamer_cli.main.subprocess.run", return_value=launch_ok) as mock_run, \
          patch("openamer_cli.main._desktop_macos_relaunchable_fixup"), \
@@ -594,7 +610,11 @@ def test_gui_retries_pack_once_after_purging_build_cache(tmp_path, monkeypatch):
     mock_purge.assert_called_once()
     # pack(fail) → repair succeeds → pack(ok) → launch = 3 subprocess.run calls
     assert mock_run.call_count == 3
-    assert mock_run.call_args_list[0].args[0] == ["/usr/bin/npm", "run", "pack"]
+    build_cmd = mock_run.call_args_list[0].args[0]
+    # The resolved npm path is host-shaped (npm.cmd under Program Files on
+    # Windows), so assert which binary ran and every argument exactly.
+    assert Path(build_cmd[0]).name.lower() in {"npm", "npm.cmd", "npm.exe", "npm.bat"}
+    assert build_cmd[1:] == ["run", "pack"]
     assert mock_run.call_args_list[1].args[0] == ["/usr/bin/npm", "run", "pack"]
     assert mock_run.call_args_list[2].args[0] == [str(packaged_exe)]
 

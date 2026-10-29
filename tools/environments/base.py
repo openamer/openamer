@@ -838,18 +838,70 @@ class BaseEnvironment(ABC):
             if not isinstance(fd, int) or fd < 0:
                 _drain_iterable(stream)
                 return
-            # select.select does NOT work on pipe fds on Windows (only sockets).
-            # Use blocking os.read in a daemon thread instead — safe because
-            # EOF arrives promptly when bash exits.
+            # select.select does NOT work on pipe fds on Windows (only sockets),
+            # but a *blocking* os.read is not the answer either: when the command
+            # backgrounds a child (``cmd &``), that grandchild inherits the write
+            # end and the pipe only EOFs when the *grandchild* exits -- so the
+            # drain thread blocked for the full lifetime of the background job.
+            # Measured 2026-10-25: terminal_tool hung 60.5s on a 60s background
+            # sleep even though bash had exited immediately.
+            #
+            # PeekNamedPipe is the non-blocking primitive Windows does have: it
+            # reports how many bytes are readable without waiting, so the same
+            # "stop shortly after the child exits, even without EOF" rule as the
+            # POSIX branch below can be applied.
             if os.name == "nt":
+                import ctypes
+                import msvcrt
+
+                idle_after_exit = 0
                 try:
+                    handle = msvcrt.get_osfhandle(fd)
+                    kernel32 = ctypes.windll.kernel32
                     while True:
-                        chunk = os.read(fd, 4096)
-                        if not chunk:
-                            break
-                        output.append(decoder.decode(chunk))
-                except (ValueError, OSError):
-                    pass
+                        available = ctypes.c_ulong(0)
+                        ok = kernel32.PeekNamedPipe(
+                            ctypes.c_void_p(handle),
+                            None,
+                            0,
+                            None,
+                            ctypes.byref(available),
+                            None,
+                        )
+                        if not ok:
+                            break  # pipe is gone
+                        if available.value:
+                            chunk = os.read(fd, min(4096, int(available.value)))
+                            if not chunk:
+                                break
+                            output.append(decoder.decode(chunk))
+                            idle_after_exit = 0
+                            continue
+                        if proc.poll() is not None:
+                            # bash is gone and nothing is readable right now.
+                            # Wait for the pipe to stay quiet for ~1.5s, then
+                            # stop instead of waiting for a grandchild's EOF.
+                            #
+                            # 300ms was the first draft and was too tight: under
+                            # cpu_count*2 pytest workers a writer can be
+                            # descheduled for longer than that, so the drain
+                            # returned early and truncated output (5 failures in
+                            # one batch, 0 in isolation). The pipe is only
+                            # declared finished after sustained quiet.
+                            idle_after_exit += 1
+                            if idle_after_exit >= 15:
+                                break
+                        time.sleep(0.1)
+                except (ValueError, OSError, AttributeError):
+                    # Fall back to a plain blocking drain for exotic streams.
+                    try:
+                        while True:
+                            chunk = os.read(fd, 4096)
+                            if not chunk:
+                                break
+                            output.append(decoder.decode(chunk))
+                    except (ValueError, OSError):
+                        pass
                 finally:
                     try:
                         tail = decoder.decode(b"", final=True)

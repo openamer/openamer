@@ -1,3 +1,5 @@
+import pytest
+import sys
 """Tests for file permissions hardening on sensitive files."""
 
 import os
@@ -24,6 +26,10 @@ class TestCronFilePermissions(unittest.TestCase):
     @patch("cron.jobs.OUTPUT_DIR")
     @patch("cron.jobs.JOBS_FILE")
     def test_ensure_dirs_sets_0700(self, mock_jobs_file, mock_output, mock_cron):
+        if sys.platform == "win32":
+            pytest.skip(
+                "NTFS has no POSIX mode bits: stat.S_IMODE() reports 0o777 for any path and os.chmod() cannot express 0o700/0o600, so the asserted mechanism does not exist on this host"
+            )
         mock_cron.__class__ = Path
         # Use real paths
         cron_dir = Path(self.tmpdir) / "cron"
@@ -43,6 +49,10 @@ class TestCronFilePermissions(unittest.TestCase):
     @patch("cron.jobs.OUTPUT_DIR")
     @patch("cron.jobs.JOBS_FILE")
     def test_save_jobs_sets_0600(self, mock_jobs_file, mock_output, mock_cron):
+        if sys.platform == "win32":
+            pytest.skip(
+                "NTFS has no POSIX mode bits: stat.S_IMODE() reports 0o777 for any path and os.chmod() cannot express 0o700/0o600, so the asserted mechanism does not exist on this host"
+            )
         cron_dir = Path(self.tmpdir) / "cron"
         output_dir = cron_dir / "output"
         jobs_file = cron_dir / "jobs.json"
@@ -57,6 +67,10 @@ class TestCronFilePermissions(unittest.TestCase):
             self.assertEqual(file_mode, 0o600)
 
     def test_save_job_output_sets_0600(self):
+        if sys.platform == "win32":
+            pytest.skip(
+                "NTFS has no POSIX mode bits: stat.S_IMODE() reports 0o777 for any path and os.chmod() cannot express 0o700/0o600, so the asserted mechanism does not exist on this host"
+            )
         output_dir = Path(self.tmpdir) / "output"
         with patch("cron.jobs.OUTPUT_DIR", output_dir), \
              patch("cron.jobs.CRON_DIR", Path(self.tmpdir)), \
@@ -85,6 +99,10 @@ class TestConfigFilePermissions(unittest.TestCase):
         shutil.rmtree(self.tmpdir, ignore_errors=True)
 
     def test_save_config_sets_0600(self):
+        if sys.platform == "win32":
+            pytest.skip(
+                "NTFS has no POSIX mode bits: stat.S_IMODE() reports 0o777 for any path and os.chmod() cannot express 0o700/0o600, so the asserted mechanism does not exist on this host"
+            )
         config_path = Path(self.tmpdir) / "config.yaml"
         with patch("openamer_cli.config.get_config_path", return_value=config_path), \
              patch("openamer_cli.config.ensure_openamer_home"):
@@ -95,6 +113,10 @@ class TestConfigFilePermissions(unittest.TestCase):
             self.assertEqual(file_mode, 0o600)
 
     def test_save_env_value_sets_0600(self):
+        if sys.platform == "win32":
+            pytest.skip(
+                "NTFS has no POSIX mode bits: stat.S_IMODE() reports 0o777 for any path and os.chmod() cannot express 0o700/0o600, so the asserted mechanism does not exist on this host"
+            )
         env_path = Path(self.tmpdir) / ".env"
         with patch("openamer_cli.config.get_env_path", return_value=env_path), \
              patch("openamer_cli.config.ensure_openamer_home"):
@@ -105,6 +127,10 @@ class TestConfigFilePermissions(unittest.TestCase):
             self.assertEqual(file_mode, 0o600)
 
     def test_ensure_openamer_home_sets_0700(self):
+        if sys.platform == "win32":
+            pytest.skip(
+                "NTFS has no POSIX mode bits: stat.S_IMODE() reports 0o777 for any path and os.chmod() cannot express 0o700/0o600, so the asserted mechanism does not exist on this host"
+            )
         home = Path(self.tmpdir) / ".openamer"
         with patch("openamer_cli.config.get_openamer_home", return_value=home):
             from openamer_cli.config import ensure_openamer_home

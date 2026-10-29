@@ -19,6 +19,10 @@ from tools.environments.local import _find_bash, _find_shell
 class TestFindShellPrefersUserShell:
     """_find_shell should prefer $SHELL over bash on POSIX."""
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=("the class docstring scopes this to POSIX: on Windows _find_shell prefers the resolved bash, and chmod cannot mark a file executable"),
+    )
     def test_returns_shell_env_when_set_and_exists(self, tmp_path):
         """When $SHELL points to an existing allowlisted executable, _find_shell returns it."""
         fake_zsh = tmp_path / "zsh"
@@ -54,6 +58,10 @@ class TestFindShellPrefersUserShell:
         with patch.dict(os.environ, {"SHELL": str(fake)}):
             assert _find_shell() == _find_bash()
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason=("POSIX $SHELL allowlist; Windows resolves the shell from PATH instead"),
+    )
     def test_honours_allowlisted_bash_and_dash(self, tmp_path):
         """Every allowlisted POSIX-sh-family shell is honoured."""
         for name in ("bash", "dash", "sh", "ksh"):

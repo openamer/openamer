@@ -451,6 +451,8 @@ class TestPostSetup:
         user_home = tmp_path / "user-home"
         user_home.mkdir()
         monkeypatch.setenv("HOME", str(user_home))
+        # The home lookup reads USERPROFILE on Windows; $HOME alone is inert.
+        monkeypatch.setenv("USERPROFILE", str(user_home))
         monkeypatch.setattr("plugins.memory.hindsight.get_openamer_home", lambda: openamer_home)
 
         save_config = MagicMock()
@@ -478,6 +480,8 @@ class TestPostSetup:
         user_home = tmp_path / "user-home"
         user_home.mkdir()
         monkeypatch.setenv("HOME", str(user_home))
+        # The home lookup reads USERPROFILE on Windows; $HOME alone is inert.
+        monkeypatch.setenv("USERPROFILE", str(user_home))
         monkeypatch.setattr("plugins.memory.hindsight.get_openamer_home", lambda: openamer_home)
 
         selections = iter([1, _CANCELLED])  # local_embedded, then cancel LLM picker
@@ -506,6 +510,8 @@ class TestPostSetup:
         user_home = tmp_path / "user-home"
         user_home.mkdir()
         monkeypatch.setenv("HOME", str(user_home))
+        # The home lookup reads USERPROFILE on Windows; $HOME alone is inert.
+        monkeypatch.setenv("USERPROFILE", str(user_home))
 
         selections = iter([1, 0])  # local_embedded, openai
         monkeypatch.setattr("openamer_cli.memory_setup._curses_select", lambda *args, **kwargs: next(selections))
@@ -540,6 +546,8 @@ class TestPostSetup:
         user_home = tmp_path / "user-home"
         user_home.mkdir()
         monkeypatch.setenv("HOME", str(user_home))
+        # The home lookup reads USERPROFILE on Windows; $HOME alone is inert.
+        monkeypatch.setenv("USERPROFILE", str(user_home))
 
         selections = iter([1, 0])  # local_embedded, openai
         monkeypatch.setattr("openamer_cli.memory_setup._curses_select", lambda *args, **kwargs: next(selections))
@@ -563,6 +571,8 @@ class TestPostSetup:
         user_home = tmp_path / "user-home"
         user_home.mkdir()
         monkeypatch.setenv("HOME", str(user_home))
+        # The home lookup reads USERPROFILE on Windows; $HOME alone is inert.
+        monkeypatch.setenv("USERPROFILE", str(user_home))
 
         selections = iter([1, 0])  # local_embedded, openai
         monkeypatch.setattr("openamer_cli.memory_setup._curses_select", lambda *args, **kwargs: next(selections))
@@ -590,6 +600,8 @@ class TestPostSetup:
         user_home = tmp_path / "user-home"
         user_home.mkdir()
         monkeypatch.setenv("HOME", str(user_home))
+        # The home lookup reads USERPROFILE on Windows; $HOME alone is inert.
+        monkeypatch.setenv("USERPROFILE", str(user_home))
         monkeypatch.setattr("plugins.memory.hindsight.get_openamer_home", lambda: openamer_home)
 
         existing_config = {

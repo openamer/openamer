@@ -514,6 +514,13 @@ def copy_db_and_verify(src: Path, dst: Path) -> bool:
     the whole file.
     """
     if not _safe_copy_db(src, dst):
+        # The copy can die half-way (e.g. "file is not a database"), leaving a
+        # partial or zeroed destination behind. A later restore would happily read
+        # it, so remove it -- the same cleanup the integrity branch below does.
+        try:
+            dst.unlink(missing_ok=True)
+        except OSError:
+            pass
         return False
     integrity = verify_sqlite_integrity(dst, run_pragma=True)
     if not integrity.get("valid"):

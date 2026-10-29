@@ -81,6 +81,31 @@ def _symlink_file_or_skip(link: Path, target: Path) -> None:
 # _should_exclude tests
 # ---------------------------------------------------------------------------
 
+
+_POSIX_MODES = os.name == "posix"
+
+
+def _assert_mode(path, expected: int) -> None:
+    """Assert a mode where mode bits exist.
+
+    NTFS has none: chmod only toggles the read-only attribute and st_mode reports
+    0o666/0o777 regardless, so a mode assertion there measures the filesystem.
+    The existence check stays everywhere; the exact bits only on POSIX.
+    """
+    assert path.exists(), f"{path} was not created"
+    if not _POSIX_MODES:
+        return
+    import stat as _stat
+
+    mode = _stat.S_IMODE(path.stat().st_mode)
+    assert mode == expected, f"{path.name} has mode {oct(mode)}, expected {oct(expected)}"
+
+
+#: create_wrapper_script() writes a POSIX shell script, and on Windows a ``.bat``
+#: file instead (openamer_cli/profiles.py:442). The tests asserted the bare name,
+#: so they looked for a file the product never claimed to create there.
+_WRAPPER_SUFFIX = ".bat" if os.name == "nt" else ""
+
 class TestShouldExclude:
     def test_excludes_openamer_agent(self):
         from openamer_cli.backup import _should_exclude
@@ -866,8 +891,7 @@ class TestImport:
         run_import(args)
 
         for rel in (".env", "auth.json", "state.db", "profiles/coder/.env"):
-            mode = (openamer_home / rel).stat().st_mode & 0o777
-            assert mode == 0o600, f"{rel} restored with mode {oct(mode)}, expected 0o600"
+            _assert_mode(openamer_home / rel, 0o600)
 
 
 # ---------------------------------------------------------------------------
@@ -1322,11 +1346,11 @@ class TestProfileRestoration:
         assert (openamer_home / "profiles" / "researcher" / "config.yaml").exists()
 
         # Wrapper scripts should be created
-        assert (wrapper_dir / "coder").exists()
-        assert (wrapper_dir / "researcher").exists()
+        assert (wrapper_dir / f"coder{_WRAPPER_SUFFIX}").exists()
+        assert (wrapper_dir / f"researcher{_WRAPPER_SUFFIX}").exists()
 
         # Wrappers should contain the right content
-        coder_wrapper = (wrapper_dir / "coder").read_text()
+        coder_wrapper = (wrapper_dir / f"coder{_WRAPPER_SUFFIX}").read_text(encoding="utf-8", errors="replace")
         assert "openamer -p coder" in coder_wrapper
 
     def test_import_skips_profile_dirs_without_config(self, tmp_path, monkeypatch):
@@ -1352,7 +1376,8 @@ class TestProfileRestoration:
         run_import(args)
 
         # Only valid profile should get a wrapper
-        assert (wrapper_dir / "valid").exists()
+        assert (wrapper_dir / f"valid{_WRAPPER_SUFFIX}").exists()
+        assert not (wrapper_dir / f"empty{_WRAPPER_SUFFIX}").exists()
         assert not (wrapper_dir / "empty").exists()
 
     def test_import_without_profiles_module(self, tmp_path, monkeypatch):
@@ -2104,7 +2129,7 @@ class TestQuickSnapshotProjectsKanban:
         monkeypatch.setattr(bk, "_safe_copy_db", _spy)
         snap_id = create_quick_snapshot(openamer_home=openamer_home)
         # The board db was copied via _safe_copy_db (not raw copy).
-        assert any(s.endswith("boards/work/kanban.db") for s in called["db"]), called["db"]
+        assert any(s.replace("\\", "/").endswith("boards/work/kanban.db") for s in called["db"]), called["db"]
         copy = openamer_home / "state-snapshots" / snap_id / "kanban" / "boards" / "work" / "kanban.db"
         rows = sqlite3.connect(str(copy)).execute("SELECT * FROM tasks").fetchall()
         assert rows == [("w1", "ship")]
@@ -2825,7 +2850,7 @@ class TestMemoryProviderExternalPaths:
         assert restored.exists()
         assert restored.read_text() == '{"peer":"bob"}'
         # Credential-shaped file tightened.
-        assert (restored.stat().st_mode & 0o777) == 0o600
+        _assert_mode(restored, 0o600)
         # External state did NOT leak into OPENAMER_HOME.
         assert not (openamer_home / "_external").exists()
 

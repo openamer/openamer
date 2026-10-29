@@ -6,11 +6,23 @@ Covers:
 - Argument parser registration
 """
 
+import sys
 import time
 from unittest.mock import MagicMock, patch
 
+import pytest
 
 from openamer_cli.main import _session_browse_picker
+
+# Windows Python ships no `_curses` (ModuleNotFoundError), and the product
+# itself wraps `import curses` in a try/except with an input()-based fallback
+# (openamer_cli/main.py:1125) — so the curses picker genuinely does not exist
+# on this host. That is rung 3: the asserted mechanism is absent, not the test
+# being wrong. The fallback path is covered separately above, so nothing is
+# retired by this gate.
+_no_curses = pytest.mark.skipif(
+    sys.platform == "win32", reason="curses is POSIX-only; product falls back to input()"
+)
 
 
 # ─── Sample session data ──────────────────────────────────────────────────────
@@ -242,6 +254,7 @@ class TestSessionBrowsePicker:
 
 # ─── Curses-based picker (mocked curses) ────────────────────────────────────
 
+@_no_curses
 class TestCursesBrowse:
     """Tests for the curses-based interactive picker via simulated key sequences."""
 

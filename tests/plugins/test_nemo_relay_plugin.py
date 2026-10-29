@@ -497,6 +497,9 @@ def test_nemo_relay_plugin_can_initialize_plugins_toml(tmp_path, monkeypatch):
     plugins_toml = tmp_path / "plugins.toml"
     atof_dir = tmp_path / "exports" / "events"
     atif_dir = tmp_path / "exports" / "trajectories"
+    # Windows paths inside a TOML basic string must not carry raw backslashes:
+    # "\U" / "\e" are escape sequences there, so the document fails to parse and
+    # the plugin never initialises. Forward slashes are valid on Windows.
     plugins_toml.write_text(
         f"""
 version = 1
@@ -507,11 +510,11 @@ enabled = true
 
 [components.config.atof]
 enabled = true
-output_directory = "{atof_dir}"
+output_directory = "{str(atof_dir).replace(chr(92), '/')}"
 
 [components.config.atif]
 enabled = true
-output_directory = "{atif_dir}"
+output_directory = "{str(atif_dir).replace(chr(92), '/')}"
 """,
         encoding="utf-8",
     )

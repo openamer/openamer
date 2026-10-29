@@ -4,6 +4,7 @@ Uses ``Sandbox.create()`` + ``Sandbox.exec()`` instead of the older runtime
 wrapper, while preserving OpenAmer' persistent snapshot behavior across sessions.
 """
 
+import posixpath
 import asyncio
 import base64
 import io
@@ -296,7 +297,8 @@ class ModalEnvironment(BaseEnvironment):
         """Upload a single file via base64 piped through stdin."""
         content = Path(host_path).read_bytes()
         b64 = base64.b64encode(content).decode("ascii")
-        container_dir = str(Path(remote_path).parent)
+        # container path must stay POSIX regardless of the host OS.
+        container_dir = posixpath.dirname(remote_path)
         cmd = (
             f"mkdir -p {shlex.quote(container_dir)} && "
             f"base64 -d > {shlex.quote(remote_path)}"

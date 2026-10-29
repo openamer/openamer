@@ -7,6 +7,8 @@ No live network calls — urllib is mocked throughout.
 """
 from __future__ import annotations
 
+import os
+
 import importlib.util
 import io
 import json
@@ -180,8 +182,13 @@ def test_refresh_fixed_write_persists_atomically(tmp_path):
     assert on_disk["scope"] == "read write"
     assert on_disk["expires_at"] > 0
     assert not (tokens_dir / "stripe.json.tmp").exists()  # atomic replace, no leftover
-    mode = (tokens_dir / "stripe.json").stat().st_mode & 0o777
-    assert mode == 0o600
+    # NTFS cannot express 0600: the mode bits read back as 0666 for any file the
+    # user owns. Assert the POSIX contract where it exists, and existence here.
+    token_path = tokens_dir / "stripe.json"
+    if os.name == "posix":
+        assert (token_path.stat().st_mode & 0o777) == 0o600
+    else:
+        assert token_path.is_file()
 
 
 def test_session_revoked_branch(tmp_path):

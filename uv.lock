@@ -2960,7 +2960,7 @@ wheels = [
 
 [[package]]
 name = "openamer-agent"
-version = "2026.10.25"
+version = "2026.10.29"
 source = { editable = "." }
 dependencies = [
     { name = "certifi" },
@@ -3036,6 +3036,7 @@ daytona = [
 ]
 dev = [
     { name = "debugpy" },
+    { name = "defusedxml" },
     { name = "mcp" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
@@ -3207,6 +3208,7 @@ requires-dist = [
     { name = "datasets", marker = "extra == 'train'" },
     { name = "daytona", marker = "extra == 'daytona'", specifier = "==0.155.0" },
     { name = "debugpy", marker = "extra == 'dev'", specifier = "==1.8.20" },
+    { name = "defusedxml", marker = "extra == 'dev'", specifier = "==0.7.1" },
     { name = "defusedxml", marker = "extra == 'wecom'", specifier = "==0.7.1" },
     { name = "dingtalk-stream", marker = "extra == 'dingtalk'", specifier = "==0.24.3" },
     { name = "discord-py", extras = ["voice"], marker = "extra == 'messaging'", specifier = "==2.7.1" },

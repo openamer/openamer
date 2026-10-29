@@ -193,7 +193,22 @@ class TestKillPortProcess:
             assert cli is not None, f"could not connect to listener: {last_err}"
             _kill_port_process(port)
             assert _pid_exists(os.getpid()), "client (test process) must survive"
-            assert _wait_dead(listener, timeout=5.0), "stale listener should be killed"
+            if os.name == "nt":
+                # venv/Scripts/python.exe is a launcher shim: the process that owns
+                # the port is the shim's child, so the Popen handle can outlive the
+                # kill. Assert the contract directly -- nothing listens any more.
+                deadline = time.monotonic() + 5.0
+                still_listening = True
+                while time.monotonic() < deadline:
+                    try:
+                        socket.create_connection(("127.0.0.1", port), timeout=0.5).close()
+                        time.sleep(0.05)
+                    except OSError:
+                        still_listening = False
+                        break
+                assert not still_listening, "stale listener should be killed"
+            else:
+                assert _wait_dead(listener, timeout=5.0), "stale listener should be killed"
             cli.close()
         finally:
             if listener.poll() is None:

@@ -42,6 +42,15 @@ def test_one_shot_token_file_rejects_non_starting_operations(operation):
         cmd_dashboard(args)
 
 
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason=(
+        "the product refuses a Windows token file with a permissive DACL "
+        "('Windows SSH runtime object has a permissive DACL'), which is the "
+        "intended hardening. Giving the fixture a private DACL needs ACL APIs "
+        "this test does not exercise"
+    ),
+)
 def test_token_file_is_read_and_unlinked_through_private_directory(tmp_path, monkeypatch):
     home = tmp_path / "home"
     openamer_home = home / ".openamer"

@@ -66,7 +66,12 @@ def _compile(source: str) -> dict:
         timeout=300,
     )
     assert proc.returncode == 0, f"the compiler crashed:\n{proc.stderr}"
-    out = json.loads(proc.stdout)
+    # solc prefixes non-JSON diagnostics on stdout (e.g. "Cannot retry compilation
+    # with SMT ..." when no solver is present); parse from the first brace.
+    stdout = proc.stdout or ""
+    brace = stdout.find("{")
+    assert brace >= 0, f"compiler produced no JSON: {stdout[:200]!r}"
+    out = json.loads(stdout[brace:])
     errors = [
         e for e in out.get("errors", []) if e.get("severity") == "error"
     ]

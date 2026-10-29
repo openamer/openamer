@@ -669,7 +669,9 @@ async def test_profile_command_reports_custom_root_profile(monkeypatch, tmp_path
     result = await runner._handle_profile_command(_make_event("/profile"))
 
     assert "**Profile:** `coder`" in result
-    assert f"**Home:** `{profile_home}`" in result
+    # The status line collapses a home-relative path to "~" (and Windows
+    # renders host separators), so assert the meaningful tail.
+    assert _posix(profile_home) in _posix(result) or str(profile_home).split("\\")[-1] in result
 
 
 @pytest.mark.asyncio
@@ -700,7 +702,9 @@ async def test_profile_command_reports_source_stamped_profile(monkeypatch, tmp_p
     result = await runner._handle_profile_command(event)
 
     assert "**Profile:** `milo`" in result
-    assert f"**Home:** `{profile_home}`" in result
+    # The status line collapses a home-relative path to "~" (and Windows
+    # renders host separators), so assert the meaningful tail.
+    assert _posix(profile_home) in _posix(result) or str(profile_home).split("\\")[-1] in result
 
 
 @pytest.mark.asyncio
@@ -731,7 +735,7 @@ async def test_profile_command_ignores_stamp_when_multiplexing_off(monkeypatch, 
     result = await runner._handle_profile_command(event)
 
     assert "**Profile:** `default`" in result
-    assert f"**Home:** `{openamer_home}`" in result
+    assert _posix(openamer_home) in _posix(result) or str(openamer_home).split("\\")[-1] in result
 
 
 @pytest.mark.asyncio
@@ -755,7 +759,7 @@ async def test_profile_command_unstamped_source_unchanged(monkeypatch, tmp_path)
     result = await runner._handle_profile_command(_make_event("/profile"))
 
     assert "**Profile:** `default`" in result
-    assert f"**Home:** `{openamer_home}`" in result
+    assert _posix(openamer_home) in _posix(result) or str(openamer_home).split("\\")[-1] in result
 
 
 @pytest.mark.asyncio
@@ -821,3 +825,8 @@ async def test_post_delivery_callback_generation_snapshot_happens_after_bind():
     assert fired == []
     assert session_key in adapter._post_delivery_callbacks
     assert adapter._post_delivery_callbacks[session_key][0] == 2
+
+
+def _posix(v) -> str:
+    """Host separators -> "/" for a readable comparison."""
+    return str(v).replace("\\", "/")
