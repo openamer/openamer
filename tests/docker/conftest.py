@@ -15,6 +15,7 @@ import os
 import shutil
 import subprocess
 import time
+import uuid
 from collections.abc import Iterator
 
 import pytest
@@ -72,9 +73,21 @@ def built_image() -> str:
 
 @pytest.fixture
 def container_name(request) -> Iterator[str]:
-    """Generate a unique container name and ensure cleanup on test exit."""
+    """Generate a unique container name and ensure cleanup on test exit.
+
+    The name is unique per process, not just per test node. A file that fails is
+    retried by ``scripts/run_tests.sh``, and the retry can overlap the previous
+    attempt long enough that its container still holds the derived name — docker
+    then refuses with
+
+        Conflict. The container name "/openamer-test-…" is already in use
+
+    which is exactly the ``exit 125`` every docker file was failing with. The
+    readable part stays so a leftover container is still recognisable in
+    ``docker ps``.
+    """
     safe = request.node.name.replace("[", "_").replace("]", "_")
-    name = f"openamer-test-{safe}"
+    name = f"openamer-test-{safe}-{os.getpid()}-{uuid.uuid4().hex[:6]}"
     yield name
     subprocess.run(
         ["docker", "rm", "-f", name],
