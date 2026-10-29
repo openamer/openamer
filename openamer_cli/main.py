@@ -10549,7 +10549,38 @@ def _resolve_update_branch(args) -> str:
     if explicit:
         return explicit
 
-    return _current_git_branch() or "main"
+    current = _current_git_branch()
+    if not current or current == "main":
+        return "main"
+    if _remote_branch_exists(current):
+        return current
+    # A local-only branch (a scratch checkout, a rebase in progress, a branch the
+    # user deleted on the remote) has no origin/<branch> to update from. Without
+    # this check the updater ran `git rev-list HEAD..origin/<branch>` against a
+    # ref that does not exist and reported a failed update instead of updating
+    # main, which is the behaviour the update tests pin.
+    logging.getLogger(__name__).info(
+        "Branch %s does not exist on origin; updating main instead", current
+    )
+    return "main"
+
+
+def _remote_branch_exists(branch: str) -> bool:
+    """True when ``origin/<branch>`` resolves locally (i.e. exists on origin)."""
+    try:
+        import subprocess
+
+        out = subprocess.run(
+            ["git", "rev-parse", "--verify", f"origin/{branch}"],
+            cwd=str(PROJECT_ROOT),
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        return out.returncode == 0
+    except Exception as exc:  # defensive: never break an update over this
+        logging.getLogger(__name__).debug("Could not check origin/%s: %s", branch, exc)
+        return False
 
 
 def _current_git_branch() -> Optional[str]:
