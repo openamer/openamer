@@ -272,7 +272,8 @@ export const hr = defineLocale({
       embedsAsk: 'Pitaj',
       embedsAlways: 'Uvijek',
       embedsOff: 'Isključeno',
-      embedsReset: (count: number) => `Vrati ${count} dopušten${count === 1 ? 'u' : 'e'} uslug${count === 1 ? 'u' : 'a'}`,
+      embedsReset: (count: number) =>
+        `Vrati ${count} dopušten${count === 1 ? 'u' : 'e'} uslug${count === 1 ? 'u' : 'a'}`,
       product: 'Proizvod',
       productDesc: 'Prijateljski prikaz aktivnosti alata sa sažetim sažecima.',
       technical: 'Tehnički',
@@ -306,12 +307,12 @@ export const hr = defineLocale({
       cantUpdate: 'Ova se verzija ne može ažurirati iz same aplikacije.',
       cantReach: 'Nismo uspjeli doći do poslužitelja za ažuriranja.',
       tapCheck: 'Dodirnite „Provjeri sada” za traženje ažuriranja.',
-      updateReady: count => `Novo ažuriranje je spremno (${count} uključen${count === 1 ? 'a' : 'e'} promjen${count === 1 ? 'a' : 'e'}).`,
+      updateReady: count =>
+        `Novo ažuriranje je spremno (${count} uključen${count === 1 ? 'a' : 'e'} promjen${count === 1 ? 'a' : 'e'}).`,
       lastChecked: age => `Zadnja provjera ${age}`,
       justNowSuffix: ' · upravo sada',
       automaticUpdates: 'Automatska ažuriranja',
-      automaticUpdatesDesc:
-        'OpenAmer automatski traži ažuriranja u pozadini i obavještava kada su spremna.',
+      automaticUpdatesDesc: 'OpenAmer automatski traži ažuriranja u pozadini i obavještava kada su spremna.',
       branchCommit: (branch, commit) => `Grana ${branch} · Commit ${commit}`,
       never: 'nikada',
       justNow: 'upravo sada',

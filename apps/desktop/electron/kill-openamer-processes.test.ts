@@ -13,7 +13,10 @@ test('killOtherOpenAmerProcesses is a no-op off Windows', () => {
 
   const result = killOtherOpenAmerProcesses('C:\\root', {
     isWindows: false,
-    listOpenAmerProcesses: () => [{ pid: 1, parentPid: 0 }, { pid: 2, parentPid: 0 }],
+    listOpenAmerProcesses: () => [
+      { pid: 1, parentPid: 0 },
+      { pid: 2, parentPid: 0 }
+    ],
     killProcessTree: (pid: number) => killed.push(pid)
   })
 

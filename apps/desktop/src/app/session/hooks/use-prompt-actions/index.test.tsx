@@ -193,11 +193,7 @@ function Harness({
       submitText: (...args: Parameters<typeof actions.submitText>) =>
         act(async () => actions.submitText(...args)) as Promise<boolean>
     })
-  }, [
-    actions,
-    activeSessionIdRef,
-    onReady
-  ])
+  }, [actions, activeSessionIdRef, onReady])
 
   return null
 }

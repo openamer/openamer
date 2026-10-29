@@ -310,8 +310,7 @@ export const et = defineLocale({
       lastChecked: age => `Viimati kontrollitud ${age}`,
       justNowSuffix: ' · kohe praegu',
       automaticUpdates: 'Automaatsed värskendused',
-      automaticUpdatesDesc:
-        'OpenAmer kontrollib taustal automaatselt värskendusi ja hoiatab, kui üks on valmis.',
+      automaticUpdatesDesc: 'OpenAmer kontrollib taustal automaatselt värskendusi ja hoiatab, kui üks on valmis.',
       branchCommit: (branch, commit) => `Haru ${branch} · Commit ${commit}`,
       never: 'mitte kunagi',
       justNow: 'kohe praegu',

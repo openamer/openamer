@@ -310,8 +310,7 @@ export const sl = defineLocale({
       lastChecked: age => `Zadnjič preverjeno ${age}`,
       justNowSuffix: ' · pravkar',
       automaticUpdates: 'Samodejne posodobitve',
-      automaticUpdatesDesc:
-        'OpenAmer samodejno preverja posodobitve v ozadju in vas obvesti, ko je ena pripravljena.',
+      automaticUpdatesDesc: 'OpenAmer samodejno preverja posodobitve v ozadju in vas obvesti, ko je ena pripravljena.',
       branchCommit: (branch, commit) => `Veja ${branch} · Zapis ${commit}`,
       never: 'nikoli',
       justNow: 'pravkar',

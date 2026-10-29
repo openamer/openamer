@@ -54,10 +54,7 @@ export interface KillOpenAmerProcessesDeps {
  * `wmic`); the root is passed via an environment variable to avoid PowerShell
  * quoting/escaping hazards with backslash paths.
  */
-export function listOpenAmerProcessesViaPowerShell(
-  installRoot: string,
-  _selfPid: number
-): OpenAmerProcessInfo[] {
+export function listOpenAmerProcessesViaPowerShell(installRoot: string, _selfPid: number): OpenAmerProcessInfo[] {
   const script = [
     '$root = $env:OPENAMER_KILL_ROOT',
     'Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -and $_.CommandLine.Contains($root) } | ForEach-Object { "{0}:{1}" -f $_.ProcessId, $_.ParentProcessId }'
@@ -66,18 +63,14 @@ export function listOpenAmerProcessesViaPowerShell(
   let out = ''
 
   try {
-    out = execFileSync(
-      'powershell',
-      ['-NoProfile', '-NonInteractive', '-Command', script],
-      {
-        env: {
-          ...process.env,
-          OPENAMER_KILL_ROOT: installRoot
-        },
-        encoding: 'utf8',
-        windowsHide: true
-      }
-    )
+    out = execFileSync('powershell', ['-NoProfile', '-NonInteractive', '-Command', script], {
+      env: {
+        ...process.env,
+        OPENAMER_KILL_ROOT: installRoot
+      },
+      encoding: 'utf8',
+      windowsHide: true
+    })
   } catch {
     // PowerShell unavailable or the query failed — return empty and let the
     // caller's shim-unlock wait be the real gate.

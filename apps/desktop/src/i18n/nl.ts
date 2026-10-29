@@ -93,11 +93,13 @@ export const nl = defineLocale({
       gatewaySettings: 'Gateway-instellingen',
       back: 'Terug',
       openLogs: 'Logboeken openen',
-      repairHint: 'Herstellen draait het installatieprogramma opnieuw en kan op een nieuwe machine enkele minuten duren.',
+      repairHint:
+        'Herstellen draait het installatieprogramma opnieuw en kan op een nieuwe machine enkele minuten duren.',
       remoteSignInHint: signInLabel =>
         `Meldt de opgeslagen externe browsersessie af en opent daarna ${signInLabel}. Gebruik "Lokale gateway gebruiken" om terug te schakelen naar de meegeleverde backend.`,
       signOutAndSignIn: 'Afmelden & aanmelden',
-      remoteFailureHint: 'Controleer de URL en aanmelding in de gateway-instellingen, of schakel over naar de lokale gateway.',
+      remoteFailureHint:
+        'Controleer de URL en aanmelding in de gateway-instellingen, of schakel over naar de lokale gateway.',
       hideRecentLogs: 'Recente logboeken verbergen',
       showRecentLogs: 'Recente logboeken tonen',
       signedInTitle: 'Aangemeld',

@@ -59,7 +59,10 @@ export function useOpenAmerConfig({ activeSessionIdRef }: OpenAmerConfigOptions)
       const selectionGeneration = getComposerSelectionGeneration()
 
       try {
-        const [config, defaults] = await Promise.all([getOpenAmerConfig(), getOpenAmerConfigDefaults().catch(() => ({}))])
+        const [config, defaults] = await Promise.all([
+          getOpenAmerConfig(),
+          getOpenAmerConfigDefaults().catch(() => ({}))
+        ])
 
         if (profileRefreshEpochRef.current !== profileRefreshEpoch) {
           return

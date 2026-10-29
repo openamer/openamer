@@ -653,7 +653,8 @@ export const ar = defineLocale({
       profileConnection: profile =>
         `الاتصال المستخدم فقط عندما يكون "${profile}" هو الملف الشخصي النشط. اختر "استخدام البوابة الافتراضية" لإزالة التجاوز الخاص به.`,
       envOverrideTitle: 'متغيرات البيئة تتحكم في جلسة سطح المكتب هذه.',
-      envOverrideDesc: 'أزل OPENAMER_DESKTOP_REMOTE_URL و OPENAMER_DESKTOP_REMOTE_TOKEN لاستخدام الإعداد المحفوظ أدناه.',
+      envOverrideDesc:
+        'أزل OPENAMER_DESKTOP_REMOTE_URL و OPENAMER_DESKTOP_REMOTE_TOKEN لاستخدام الإعداد المحفوظ أدناه.',
       localTitle: 'بوابة محلية',
       localDesc: 'تشغيل خلفية OpenAmer خاصة على localhost. هذا هو الافتراضي ويعمل دون اتصال.',
       inheritTitle: 'استخدام البوابة الافتراضية',
@@ -1838,7 +1839,8 @@ export const ar = defineLocale({
       noReturn: 'لم تعد الواجهة الخلفية إلى الاتصال. قد لا يكون التحديث قد اكتمل — تحقق من مضيف الواجهة الخلفية.'
     },
     appErrors: {
-      updateLocked: 'تم إحباط التحديث: هناك نافذة OpenAmer أخرى أو محطة تشغّل openamer تمسك بهذا التثبيت. أغلقه ثم أعد المحاولة.',
+      updateLocked:
+        'تم إحباط التحديث: هناك نافذة OpenAmer أخرى أو محطة تشغّل openamer تمسك بهذا التثبيت. أغلقه ثم أعد المحاولة.',
       updateFailed: 'لم يكتمل التحديث. لا تقلق — لم نفقد شيئًا. يمكنك المحاولة مرة أخرى الآن.'
     }
   },
@@ -1944,7 +1946,8 @@ export const ar = defineLocale({
     copyAuthCode: 'انسخ رمز التفويض وألصقه أدناه.',
     pasteAuthCode: 'ألصق رمز التفويض',
     reopenAuthPage: 'إعادة فتح صفحة التفويض',
-    autoBrowser: provider => `فتحنا ${provider} في المتصفح. صرّح لـ OpenAmer هناك وسيتم الاتصال تلقائياً دون نسخ أو لصق.`,
+    autoBrowser: provider =>
+      `فتحنا ${provider} في المتصفح. صرّح لـ OpenAmer هناك وسيتم الاتصال تلقائياً دون نسخ أو لصق.`,
     reopenSignInPage: 'إعادة فتح صفحة تسجيل الدخول',
     waitingAuthorize: 'بانتظار التفويض...',
     externalPending: provider =>
