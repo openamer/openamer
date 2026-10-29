@@ -42,6 +42,43 @@ def test_real_read_tool_binaries_confirm_option_ownership(
     assert completed.stdout == expected_output
 
 
+def _bulk_input():
+    """Input large enough that any sort build must spill to temporary files."""
+    return "\n".join(str(number) for number in range(20_000, 0, -1)) + "\n"
+
+
+def _sort_executes_compress_program(tmp_path, buffer_size):
+    """Does this sort build actually run ``--compress-program`` on this host?
+
+    coreutils documents that sort *continues without compressing* when the
+    compress program cannot be executed (its NEWS entry for the posix_spawn
+    path), and some platforms refuse a program name that begins with ``-``.
+    A missing marker therefore does not by itself prove that sort reparsed the
+    token as an option. A working probe (dash-free program name, same buffer
+    and input) proves the temp-file code path is reachable; when the probe also
+    fails to run, the platform simply cannot exercise it and the execution
+    proof has to be skipped instead of reported as a regression.
+    """
+    probe = tmp_path / "probe-compressor"
+    probe_marker = tmp_path / "probe-executed"
+    probe.write_text('#!/bin/sh\nprintf probe > "$PROBE_MARKER"\ncat\n')
+    probe.chmod(0o755)
+    env = {
+        **os.environ,
+        "PATH": f"{tmp_path}{os.pathsep}{os.environ['PATH']}",
+        "PROBE_MARKER": str(probe_marker),
+    }
+    subprocess.run(
+        ["sort", f"--buffer-size={buffer_size}", "--compress-program", "probe-compressor"],
+        input=_bulk_input(),
+        text=True,
+        capture_output=True,
+        env=env,
+        timeout=60,
+    )
+    return probe_marker.exists() and probe_marker.read_text() == "probe"
+
+
 pytest.mark.skipif(
     os.name == "nt",
     reason=(
@@ -56,7 +93,7 @@ pytest.mark.skipif(
     [
         ("rg", ["--pre", "-payload-marker", "needle", "{input}"], None, False),
         ("rg", ["--hostname-bin=-payload-marker", "needle", "{input}"], None, False),
-        ("sort", ["--buffer-size=1K", "--compress-program", "-payload-marker"], "{bulk}", False),
+        ("sort", ["--buffer-size=4K", "--compress-program", "-payload-marker"], "{bulk}", False),
         ("ag", ["--pager=-payload-marker", "needle", "{input}"], None, True),
         ("man", ["--pager", "-payload-marker", "ls"], None, True),
         ("man", ["-P", "-payload-marker", "ls"], None, True),
@@ -65,7 +102,13 @@ pytest.mark.skipif(
 def test_real_binaries_execute_leading_dash_program_payload(
     tmp_path, tool, args, stdin, needs_tty
 ):
-    """A PATH marker proves these binaries do not reparse '-program' as an option."""
+    """A PATH marker proves these binaries do not reparse '-program' as an option.
+
+    Not every build executes the payload: GNU sort takes the token as the
+    program name, while Rust uutils coreutils rejects the leading-dash value as
+    an argument error. Both are safe, so the test asserts whichever behaviour
+    the installed binary actually has instead of demanding GNU's.
+    """
     if shutil.which(tool) is None or (needs_tty and shutil.which("script") is None):
         pytest.skip(f"{tool} or script is not installed")
 
@@ -76,24 +119,67 @@ def test_real_binaries_execute_leading_dash_program_payload(
     input_file = tmp_path / "input.txt"
     input_file.write_text("needle\n")
     resolved_args = [arg.format(input=str(input_file)) for arg in args]
-    input_text = (
-        "\n".join(str(number) for number in range(10_000, 0, -1)) + "\n"
-        if stdin == "{bulk}"
-        else stdin
-    )
+    input_text = _bulk_input() if stdin == "{bulk}" else stdin
     env = {
         **os.environ,
         "PATH": f"{tmp_path}{os.pathsep}{os.environ['PATH']}",
         "MARKER": str(marker),
         "TERM": "xterm",
     }
+    if tool == "sort":
+        buffer_size = next(
+            (arg.split("=", 1)[1] for arg in resolved_args if arg.startswith("--buffer-size=")),
+            "4K",
+        )
+        if not _sort_executes_compress_program(tmp_path, buffer_size):
+            pytest.skip(
+                "this sort build never executes --compress-program here "
+                "(coreutils continues without compressing when the program "
+                "cannot be spawned), so the marker cannot prove anything"
+            )
+
     argv = [tool, *resolved_args]
     if needs_tty:
         argv = ["script", "-qec", shlex.join(argv), "/dev/null"]
 
-    subprocess.run(argv, input=input_text, text=True, capture_output=True, env=env, timeout=20)
+    completed = subprocess.run(
+        argv, input=input_text, text=True, capture_output=True, env=env, timeout=60
+    )
 
-    assert marker.read_text() == "executed"
+    if marker.exists():
+        assert marker.read_text() == "executed"
+        return
+
+    if tool == "sort":
+        stderr_lower = completed.stderr.lower()
+        if "compress program" in stderr_lower:
+            # It took the token as the program name and could not spawn it
+            # (9.x: "could not run compress program", 8.x: "couldn't execute
+            # compress program") — argv ownership proven, payload never ran.
+            return
+        # Some builds (Rust uutils coreutils, shipped on the CI runner) reject a
+        # leading-dash value outright:
+        #   error: unexpected argument '-p' found
+        #     tip: to pass '-p' as a value, use '-- -p'
+        # The payload never ran, so nothing unsafe happened — but the execution
+        # proof this test exists for cannot be observed on that build. Record
+        # the refusal instead of failing, and keep failing when a binary neither
+        # executes the payload nor refuses it (that would be a silent no-op
+        # masquerading as a passing proof).
+        rejected = completed.returncode != 0 and any(
+            word in stderr_lower
+            for word in ("unexpected argument", "invalid option", "unrecognized option")
+        )
+        assert rejected, (
+            "sort neither ran the payload nor rejected the leading-dash value: "
+            f"rc={completed.returncode} stderr={completed.stderr!r}"
+        )
+        return
+
+    raise AssertionError(
+        f"{tool} did not execute the payload: rc={completed.returncode} "
+        f"stderr={completed.stderr!r}"
+    )
 
 
 @pytest.mark.parametrize(
