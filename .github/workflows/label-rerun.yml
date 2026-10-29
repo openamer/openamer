@@ -37,24 +37,35 @@ jobs:
         run: |
           set -uo pipefail
 
-          # Find the latest CI run for this PR's head SHA.
-          RUN_ID=$(gh run list \
-            --repo "$REPO" \
-            --commit "$HEAD_SHA" \
-            --workflow ci.yml \
-            --limit 1 \
-            --json databaseId,status \
-            --jq '.[0] | "\(.databaseId) \(.status)"' 2>/dev/null || true)
+          # Latest CI run for this PR's head SHA, as "<id>\t<status>".
+          #
+          # The two fields are separated by a TAB and split with `cut`, because
+          # the previous version did this:
+          #     RUN_ID="${RUN_ID%% *}"      # id only
+          #     STATUS="${RUN_ID##* }"      # ...computed from the already
+          #                                 # truncated variable, so STATUS was
+          #                                 # the run id itself
+          # STATUS could therefore never be "completed": every run looked
+          # in-progress, the job sat in `gh run watch` for its full 35-minute
+          # timeout, and then reran whatever stale run it had picked up.
+          latest_ci_run() {
+            gh run list \
+              --repo "$REPO" \
+              --commit "$HEAD_SHA" \
+              --workflow ci.yml \
+              --limit 1 \
+              --json databaseId,status \
+              --jq '.[0] | "\(.databaseId)\t\(.status)"' 2>/dev/null || true
+          }
 
-          if [ -z "$RUN_ID" ]; then
+          ENTRY=$(latest_ci_run)
+          if [ -z "$ENTRY" ]; then
             echo "No CI run found for this PR — nothing to rerun."
             exit 0
           fi
 
-          # Split "RUN_ID STATUS" into two vars.
-          RUN_ID="${RUN_ID%% *}"
-          STATUS="${RUN_ID##* }"
-
+          RUN_ID=$(printf '%s' "$ENTRY" | cut -f1)
+          STATUS=$(printf '%s' "$ENTRY" | cut -f2)
           echo "Latest CI run: $RUN_ID (status: $STATUS)"
 
           # If the run is still in progress, wait for it to finish.
@@ -67,13 +78,29 @@ jobs:
             # which is expected (the label gate fails). Don't let that kill
             # the workflow — we WANT to rerun failed jobs.
             timeout 2100 gh run watch "$RUN_ID" --repo "$REPO" --interval 15 || true
+          fi
 
-            # Verify it's actually completed now.
-            STATUS=$(gh run view "$RUN_ID" --repo "$REPO" --json status --jq '.status' 2>/dev/null || echo "unknown")
-            if [ "$STATUS" != "completed" ]; then
-              echo "Run is still $STATUS after wait — giving up."
-              exit 0
-            fi
+          # Re-resolve after the wait. A newer push (or a newer event) creates a
+          # new CI run that owns the `ci-<ref>` concurrency group and cancels
+          # whatever was in flight. Rerunning the run we picked up 35 minutes
+          # ago would then CANCEL that newer run — which is exactly how this
+          # workflow kept killing the validation of the newest commit, and with
+          # it every lane that newer run had not started yet. Only the run that
+          # is still the latest may be rerun.
+          ENTRY=$(latest_ci_run)
+          if [ -z "$ENTRY" ]; then
+            echo "CI run $RUN_ID is gone; nothing to rerun."
+            exit 0
+          fi
+          CURRENT_ID=$(printf '%s' "$ENTRY" | cut -f1)
+          CURRENT_STATUS=$(printf '%s' "$ENTRY" | cut -f2)
+          if [ "$CURRENT_ID" != "$RUN_ID" ]; then
+            echo "A newer CI run ($CURRENT_ID, $CURRENT_STATUS) now owns this commit; leaving it alone."
+            exit 0
+          fi
+          if [ "$CURRENT_STATUS" != "completed" ]; then
+            echo "Run $RUN_ID is $CURRENT_STATUS after the wait — giving up."
+            exit 0
           fi
 
           echo "Run completed. Rerunning all failed jobs..."
