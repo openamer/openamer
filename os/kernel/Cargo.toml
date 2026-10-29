@@ -1,0 +1,21 @@
+[package]
+name = "openamer-kernel"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "openamer_kernel"
+path = "src/lib.rs"
+test = false
+bench = false
+
+[[bin]]
+name = "openamer-kernel"
+path = "src/main.rs"
+
+[dependencies]
+
+# The kernel is loaded at a fixed physical address by the bootloader,
+# so it must not be position independent. PIE would let the loader
+# choose the address, and there is no loader.
