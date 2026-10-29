@@ -10565,13 +10565,25 @@ def _resolve_update_branch(args) -> str:
     return "main"
 
 
+def _update_git_cmd() -> list[str]:
+    """`git`, with the Windows atomic-append workaround every update call carries.
+
+    tests/openamer_cli/test_update_autostash.py asserts that *every* git call the
+    updater makes is prefixed on win32, so new call sites build their command
+    here instead of shelling out to a bare `git`.
+    """
+    if sys.platform == "win32":
+        return ["git", "-c", "windows.appendAtomically=false"]
+    return ["git"]
+
+
 def _remote_branch_exists(branch: str) -> bool:
     """True when ``origin/<branch>`` resolves locally (i.e. exists on origin)."""
     try:
         import subprocess
 
         out = subprocess.run(
-            ["git", "rev-parse", "--verify", f"origin/{branch}"],
+            _update_git_cmd() + ["rev-parse", "--verify", f"origin/{branch}"],
             cwd=str(PROJECT_ROOT),
             capture_output=True,
             text=True,
@@ -10589,7 +10601,7 @@ def _current_git_branch() -> Optional[str]:
         import subprocess
 
         out = subprocess.run(
-            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            _update_git_cmd() + ["rev-parse", "--abbrev-ref", "HEAD"],
             cwd=str(PROJECT_ROOT),
             capture_output=True,
             text=True,
