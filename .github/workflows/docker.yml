@@ -111,7 +111,23 @@ jobs:
           OPENAI_API_KEY: ""
           OPENAMER_API_KEY: ""
         run: |
-          scripts/run_tests.sh tests/docker/ --file-timeout 600
+          # Preflight: name what the runner actually has before eight containers
+          # start at once. When the daemon stops answering, `docker rm -f` and
+          # `docker run` both time out — a full disk is the usual reason and this
+          # line is what proves or rules it out.
+          df -h / /var/lib/docker 2>/dev/null || df -h /
+          docker system df || true
+          # Two workers, not the default fan-out: every docker test file starts
+          # its own container from a multi-GB image (Playwright + Chromium +
+          # Python). On the amd64 runner the daemon became unresponsive under
+          # eight at once — `docker rm -f` timed out after 10s and `docker run`
+          # after 30s, while the same suite passed on arm64. The suite is
+          # IO-bound, so a narrower fan-out costs a few minutes and stops the
+          # tests from starving their own daemon.
+          scripts/run_tests.sh tests/docker/ --file-timeout 600 -j 2
+          echo "--- after the docker suite ---"
+          df -h / /var/lib/docker 2>/dev/null || df -h /
+          docker system df || true
 
   # ---------------------------------------------------------------------------
   # Rebuild and push each architecture only after the unprivileged build/test
