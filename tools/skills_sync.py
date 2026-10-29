@@ -402,7 +402,41 @@ def restore_official_optional_skill(name: str, *, restore: bool = False) -> dict
     }
 
 
-def _find_installed_skill_dir_by_name(skill_dir_name: str) -> Optional[Path]:
+def _installed_skill_dirs_by_name() -> Dict[str, List[Path]]:
+    """Index the installed skills tree by directory name in ONE walk.
+
+    ``_backfill_optional_provenance`` resolves one directory name per optional
+    skill, and an unbounded ``SKILLS_DIR.rglob("SKILL.md")`` per name is a full
+    tree walk each time -- O(optional skills x tree). On a large library (1.2k
+    skill directories, 116 optional skills) that is ~80 s of synchronous work
+    on the startup path, which pushes the desktop's 90 s backend-ready window
+    over the edge and makes the GUI report a dead backend. Walk once, then
+    look names up.
+    """
+    index: Dict[str, List[Path]] = {}
+    if not SKILLS_DIR.exists():
+        return index
+    try:
+        skills_root = SKILLS_DIR.resolve()
+    except OSError:
+        skills_root = SKILLS_DIR
+    for skill_md in SKILLS_DIR.rglob("SKILL.md"):
+        if is_excluded_skill_path(skill_md):
+            continue
+        candidate = skill_md.parent
+        # Never reach outside the skills tree (symlinked/external dirs).
+        try:
+            candidate.resolve().relative_to(skills_root)
+        except (OSError, ValueError):
+            continue
+        index.setdefault(candidate.name, []).append(candidate)
+    return index
+
+
+def _find_installed_skill_dir_by_name(
+    skill_dir_name: str,
+    index: Optional[Dict[str, List[Path]]] = None,
+) -> Optional[Path]:
     """Locate an installed skill directory by its directory name.
 
     Used only as a fallback when the repo-derived install path doesn't exist in
@@ -414,19 +448,9 @@ def _find_installed_skill_dir_by_name(skill_dir_name: str) -> Optional[Path]:
     """
     if not skill_dir_name or not SKILLS_DIR.exists():
         return None
-    matches: List[Path] = []
-    for skill_md in SKILLS_DIR.rglob("SKILL.md"):
-        if is_excluded_skill_path(skill_md):
-            continue
-        candidate = skill_md.parent
-        if candidate.name != skill_dir_name:
-            continue
-        # Never reach outside the skills tree (symlinked/external dirs).
-        try:
-            candidate.resolve().relative_to(SKILLS_DIR.resolve())
-        except (OSError, ValueError):
-            continue
-        matches.append(candidate)
+    if index is None:
+        index = _installed_skill_dirs_by_name()
+    matches = index.get(skill_dir_name, [])
     if len(matches) != 1:
         return None
     return matches[0]
@@ -459,6 +483,8 @@ def _backfill_optional_provenance(quiet: bool = False) -> List[str]:
 
     backfilled: List[str] = []
     changed = False
+    # Built on the first fallback lookup, then reused for every remaining name.
+    installed_index: Optional[Dict[str, List[Path]]] = None
     for skill_md in sorted(optional_dir.rglob("SKILL.md")):
         if is_excluded_skill_path(skill_md):
             continue
@@ -478,7 +504,9 @@ def _backfill_optional_provenance(quiet: bool = False) -> List[str]:
             # silently skips them forever. Fall back to a unique
             # same-directory-name match anywhere in the tree, then still
             # require a byte-identical hash below before claiming provenance.
-            dest = _find_installed_skill_dir_by_name(src.name)
+            if installed_index is None:
+                installed_index = _installed_skill_dirs_by_name()
+            dest = _find_installed_skill_dir_by_name(src.name, index=installed_index)
             if dest is None:
                 continue
             try:

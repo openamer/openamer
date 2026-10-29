@@ -34,7 +34,13 @@
 
 import { execFileSync } from 'node:child_process'
 
-const PROBE_TIMEOUT_MS = 5000
+// 5s was too tight: a cold interpreter + antivirus scanning a freshly written
+// venv routinely needs >5s for `import yaml; import dotenv; import
+// openamer_cli.config` (measured 1.1s warm, but a boot-time first import on a
+// loaded machine blew past 5s on 2026-10-25). The probe is a false-negative
+// generator: when it times out the desktop concludes "broken venv" and forces a
+// bootstrap/update it does not need. 20s costs nothing on the happy path.
+const PROBE_TIMEOUT_MS = 20000
 
 /**
  * Return the Python snippet used to verify OpenAmer can import far enough to

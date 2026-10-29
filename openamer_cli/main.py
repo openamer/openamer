@@ -2427,22 +2427,96 @@ def _pin_kanban_board_env() -> None:
         pass
 
 
-def _sync_bundled_skills_quietly() -> None:
+def _skills_sync_fingerprint() -> str:
+    """Cheap invalidation key for the startup bundled-skills sync.
+
+    Stat-only: the checkout revision plus a count/newest-mtime scan of the
+    bundled and optional skill trees. No file contents are read, so this costs
+    ~0.1 s where a real sync reads ~1.3k SKILL.md files (minutes on a machine
+    whose on-access scanner inspects every cold open).
+    """
+    from openamer_constants import get_bundled_skills_dir, get_optional_skills_dir
+
+    parts = [_read_git_revision_fingerprint(PROJECT_ROOT) or "nogit"]
+    for label, root in (
+        ("bundled", get_bundled_skills_dir()),
+        ("optional", get_optional_skills_dir()),
+    ):
+        count = 0
+        newest = 0
+        try:
+            for dirpath, _dirnames, filenames in os.walk(root):
+                if "SKILL.md" in filenames:
+                    count += 1
+                    try:
+                        newest = max(newest, int(os.path.getmtime(os.path.join(dirpath, "SKILL.md"))))
+                    except OSError:
+                        pass
+        except OSError:
+            pass
+        parts.append(f"{label}:{count}:{newest}")
+    return hashlib.sha256("|".join(parts).encode("utf-8", "replace")).hexdigest()[:32]
+
+
+def _skills_sync_stamp_path() -> Path:
+    return get_openamer_home() / "skills" / ".bundled_sync_stamp"
+
+
+def _sync_bundled_skills_quietly(wait_seconds: float = 8.0) -> None:
     """Seed ``~/.openamer/skills/`` with the bundled skill library on first launch.
 
     Called from any CLI entrypoint that the user might use as their first
     interaction with OpenAmer — chat, dashboard (the desktop GUI's backend),
-    and gateway. The skills_sync module is manifest-based and idempotent:
-    skipped skills cost ~milliseconds, so calling this repeatedly is fine.
+    and gateway.
+
+    Two guards exist because this call sits on the startup path that the desktop
+    app gates with a hard backend-ready timeout (90 s):
+
+    * A stamp keyed on the checkout revision + bundled/optional tree shape. An
+      unchanged install skips the sync entirely — the expensive part of a sync
+      is reading every installed and bundled SKILL.md to compare contents, which
+      on a library of >1.2k skills takes >90 s when the file system cold-reads
+      each one (observed: 100 s cold, 17 s warm on the same tree). Skipping was
+      what the Termux-only gate already did; it is now platform-independent so a
+      desktop backend stops timing out.
+    * The sync itself runs on a daemon thread that we wait on for at most
+      ``wait_seconds``. A genuine post-update sync (checkout changed) can still
+      be slow; it must not delay the port announcement past the desktop's
+      window, and it finishes in the background instead.
 
     Failures are swallowed because skills are an enhancement, not a hard
-    dependency. OpenAmer still functions without them; the user just sees an
-    empty skills library.
+    dependency. OpenAmer still functions without them.
     """
     try:
-        from tools.skills_sync import sync_skills
+        fingerprint = _skills_sync_fingerprint()
+        stamp = _skills_sync_stamp_path()
+        if os.environ.get("OPENAMER_FORCE_SKILLS_SYNC") != "1":
+            try:
+                if stamp.read_text(encoding="utf-8").strip() == fingerprint:
+                    logger.debug("bundled skills sync: unchanged (%s) — skipped", fingerprint)
+                    return
+            except OSError:
+                pass
 
-        sync_skills(quiet=True)
+        def _run() -> None:
+            try:
+                from tools.skills_sync import sync_skills
+
+                sync_skills(quiet=True)
+                stamp.parent.mkdir(parents=True, exist_ok=True)
+                stamp.write_text(fingerprint + "\n", encoding="utf-8")
+            except Exception:
+                logger.debug("bundled skills sync failed", exc_info=True)
+
+        worker = threading.Thread(target=_run, name="bundled-skills-sync", daemon=True)
+        worker.start()
+        if wait_seconds and wait_seconds > 0:
+            worker.join(wait_seconds)
+            if worker.is_alive():
+                logger.info(
+                    "bundled skills sync still running after %.1fs — continuing startup",
+                    wait_seconds,
+                )
     except Exception:
         pass
 
@@ -10460,12 +10534,85 @@ def _finalize_update_output(state):
 def _resolve_update_branch(args) -> str:
     """Normalize ``args.branch`` into a non-empty branch name.
 
-    Centralizes the "default to main, accept --branch override, treat empty
-    or whitespace-only values as the default" parsing so every consumer of
-    ``--branch`` (check path, git-update path, ZIP-fallback path) agrees on
-    the same answer.
+    Centralizes the "default to the checked-out branch, accept --branch
+    override, treat empty or whitespace-only values as the default" parsing so
+    every consumer of ``--branch`` (check path, git-update path, ZIP-fallback
+    path) agrees on the same answer.
+
+    Defaulting to ``main`` broke every install that tracks a release branch:
+    the updater switched the checkout to ``main`` (or died with "Branch 'main'
+    is already used by worktree at ...") and the user was told the update
+    failed while the version never moved. Updating the branch you are actually
+    on is the only default that cannot silently target the wrong code.
     """
-    return (getattr(args, "branch", None) or "main").strip() or "main"
+    explicit = (getattr(args, "branch", None) or "").strip()
+    if explicit:
+        return explicit
+
+    current = _current_git_branch()
+    if not current or current == "main":
+        return "main"
+    if _remote_branch_exists(current):
+        return current
+    # A local-only branch (a scratch checkout, a rebase in progress, a branch the
+    # user deleted on the remote) has no origin/<branch> to update from. Without
+    # this check the updater ran `git rev-list HEAD..origin/<branch>` against a
+    # ref that does not exist and reported a failed update instead of updating
+    # main, which is the behaviour the update tests pin.
+    logging.getLogger(__name__).info(
+        "Branch %s does not exist on origin; updating main instead", current
+    )
+    return "main"
+
+
+def _update_git_cmd() -> list[str]:
+    """`git`, with the Windows atomic-append workaround every update call carries.
+
+    tests/openamer_cli/test_update_autostash.py asserts that *every* git call the
+    updater makes is prefixed on win32, so new call sites build their command
+    here instead of shelling out to a bare `git`.
+    """
+    if sys.platform == "win32":
+        return ["git", "-c", "windows.appendAtomically=false"]
+    return ["git"]
+
+
+def _remote_branch_exists(branch: str) -> bool:
+    """True when ``origin/<branch>`` resolves locally (i.e. exists on origin)."""
+    try:
+        import subprocess
+
+        out = subprocess.run(
+            _update_git_cmd() + ["rev-parse", "--verify", f"origin/{branch}"],
+            cwd=str(PROJECT_ROOT),
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        return out.returncode == 0
+    except Exception as exc:  # defensive: never break an update over this
+        logging.getLogger(__name__).debug("Could not check origin/%s: %s", branch, exc)
+        return False
+
+
+def _current_git_branch() -> Optional[str]:
+    """Return the branch checked out in PROJECT_ROOT, or None (detached/missing)."""
+    try:
+        import subprocess
+
+        out = subprocess.run(
+            _update_git_cmd() + ["rev-parse", "--abbrev-ref", "HEAD"],
+            cwd=str(PROJECT_ROOT),
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        name = (out.stdout or "").strip()
+        if out.returncode == 0 and name and name != "HEAD":
+            return name
+    except Exception as exc:  # defensive: never break an update over this
+        logging.getLogger(__name__).debug("Could not resolve current git branch: %s", exc)
+    return None
 
 
 def _cmd_update_check(branch: str = "main", *, branch_explicit: bool = False):
