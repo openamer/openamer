@@ -23648,11 +23648,26 @@ def _start_gateway_housekeeping(stop_event: threading.Event, adapters=None, loop
     PASTE_SWEEP_EVERY = 60   # ticks — once per hour
     CURATOR_EVERY = 60       # ticks — poll hourly (inner gate handles the real cadence)
     AUTO_ARCHIVE_EVERY = 60  # ticks — poll hourly (state_meta gate owns the real cadence)
+    GENESIS_EVERY = 10       # ticks — re-measure the 24 Genesis Directives
 
     logger.info("Gateway housekeeping started (interval=%ds)", interval)
     tick_count = 0
     while not stop_event.is_set():
         tick_count += 1
+
+        # Genesis runtime: the 24 directives are measured by the system itself,
+        # inside this loop, on their own cadence (the runtime owns the interval
+        # and skips when the last measurement is fresh, so the first tick after
+        # boot measures and the rest is a cheap age check). Self-scheduling in
+        # the core — no cron entry, no helper script. A failing probe is logged
+        # and never blocks the gateway.
+        if tick_count == 1 or tick_count % GENESIS_EVERY == 0:
+            try:
+                from agent.genesis_runtime import tick_if_due
+
+                tick_if_due()
+            except Exception as _genesis_err:  # noqa: BLE001 - never fatal
+                logger.debug("Genesis tick error: %s", _genesis_err)
 
         if tick_count % CHANNEL_DIR_EVERY == 0 and adapters:
             try:
