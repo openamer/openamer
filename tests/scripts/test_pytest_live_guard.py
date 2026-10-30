@@ -60,6 +60,13 @@ def test_daemon_launches_are_refused(argv):
         ["sh", "/tmp/pytest-of-runner/pytest-1/test_x0/fake-wrapper", "gateway", "run"],
         # A python script that merely has a daemon-ish name elsewhere on disk.
         ["python", "/tmp/pytest-of-runner/x/tool_server.py"],
+        # Regression (CI, Docker image build): an OpenAmer entry point with NO
+        # sub-command — `target` is empty, not None, and indexing it crashed
+        # inside Popen instead of answering "not a daemon".
+        ["openamer"],
+        ["openamer.exe"],
+        [sys.executable, "-m", "openamer_cli.main"],
+        ["C:/x/openamer-agent/venv/Scripts/openamer.exe"],
     ],
 )
 def test_read_only_and_foreign_commands_pass(argv):

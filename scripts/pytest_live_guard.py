@@ -109,7 +109,12 @@ def is_openamer_daemon_launch(cmd) -> bool:
         return True
 
     target = _openamer_target(tokens)
-    if target is None:
+    # Empty means the OpenAmer entry point was the last token (`openamer`,
+    # `python -m openamer_cli.main`) — no sub-command, so no daemon. Indexing
+    # target[0] without this check crashed inside Popen instead of returning a
+    # verdict (measured in CI: tests/docker/test_config_migration.py and
+    # test_container_restart.py both ERRORed with IndexError).
+    if not target:
         return False
 
     # ``openamer … gateway run|start|stop|restart`` (the ``--replace`` launcher
