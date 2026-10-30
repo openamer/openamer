@@ -395,6 +395,143 @@ def push(envelope: bytes, peer_url: str, *, timeout: float = 30.0) -> dict:
         raise ReplicationError(f"push to {peer_url} failed: {exc}") from exc
 
 
+# ── the peer side: accept and store ───────────────────────────────────────────
+
+#: A peer refuses anything larger than this without reading it into memory.
+MAX_ENVELOPE_BYTES = 512 * 1024 * 1024
+
+
+def received_dir() -> Path:
+    return replication_dir() / "received"
+
+
+def accept(envelope: bytes, store_dir: Optional[Path] = None, *, keep: int = 5) -> dict:
+    """Validate structure and store an envelope. The peer CANNOT read it.
+
+    Only the header is inspected: format, nonce, ciphertext hex, manifest list.
+    That is deliberate — a peer needs no key to hold a replica, which is what
+    makes the copy useful in a failure domain the sender does not control.
+    """
+    if len(envelope) > MAX_ENVELOPE_BYTES:
+        raise ReplicationError(f"envelope exceeds {MAX_ENVELOPE_BYTES} bytes")
+    try:
+        payload = json.loads(envelope.decode("utf-8"))
+    except Exception as exc:
+        raise IntegrityError(f"not a replication envelope: {exc}") from exc
+
+    header = payload.get("header") if isinstance(payload, dict) else None
+    if not isinstance(header, dict) or header.get("format") != FORMAT_VERSION:
+        raise ReplicationError(f"unsupported envelope header: {header!r}")
+    if not isinstance(payload.get("manifest"), list):
+        raise IntegrityError("envelope carries no manifest")
+    try:
+        bytes.fromhex(header["nonce"])
+        bytes.fromhex(payload["ciphertext"])
+    except Exception as exc:
+        raise IntegrityError(f"malformed nonce/ciphertext: {exc}") from exc
+
+    store = Path(store_dir or received_dir())
+    store.mkdir(parents=True, exist_ok=True)
+    digest = hashlib.sha256(envelope).hexdigest()
+    name = f"replica-{time.strftime('%Y%m%dT%H%M%S', time.localtime())}-{digest[:12]}.json"
+    path = store / name
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_bytes(envelope)
+    os.replace(tmp, path)
+
+    files = sorted(store.glob("replica-*.json"), key=lambda p: p.name, reverse=True)
+    pruned = 0
+    for old in files[max(keep, 1) :]:
+        try:
+            old.unlink()
+            pruned += 1
+        except OSError:
+            pass
+
+    return {
+        "stored": str(path),
+        "bytes": len(envelope),
+        "entries": len(payload["manifest"]),
+        "manifest_sha256": header.get("manifest_sha256"),
+        "sha256": digest,
+        "pruned": pruned,
+    }
+
+
+def make_server(host: str, port: int, store_dir: Optional[Path] = None, keep: int = 5):
+    """Build the peer HTTP server (so tests can run it on port 0)."""
+    import http.server
+
+    store = Path(store_dir or received_dir())
+
+    class Handler(http.server.BaseHTTPRequestHandler):
+        protocol_version = "HTTP/1.1"
+
+        def _json(self, code: int, body: dict) -> None:
+            blob = json.dumps(body).encode("utf-8")
+            self.send_response(code)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(blob)))
+            self.end_headers()
+            self.wfile.write(blob)
+
+        def do_POST(self):  # noqa: N802 - http.server API
+            if self.path.rstrip("/") != "/replication/accept":
+                self._json(404, {"error": "unknown endpoint"})
+                return
+            length = int(self.headers.get("Content-Length") or 0)
+            if length <= 0:
+                self._json(400, {"error": "empty body"})
+                return
+            if length > MAX_ENVELOPE_BYTES:
+                self._json(413, {"error": "envelope too large"})
+                return
+            body = self.rfile.read(length)
+            try:
+                report = accept(body, store, keep=keep)
+            except (ReplicationError, IntegrityError) as exc:
+                self._json(400, {"error": str(exc)})
+                return
+            self._json(200, report)
+
+        def do_GET(self):  # noqa: N802 - http.server API
+            if self.path.rstrip("/") != "/replication/status":
+                self._json(404, {"error": "unknown endpoint"})
+                return
+            stored = sorted(store.glob("replica-*.json")) if store.is_dir() else []
+            self._json(
+                200,
+                {
+                    "role": "openamer-replication-peer",
+                    "replicas": len(stored),
+                    "newest": stored[-1].name if stored else None,
+                    "keep": keep,
+                },
+            )
+
+        def log_message(self, *args):  # keep a peer quiet unless debugging
+            return
+
+    return http.server.ThreadingHTTPServer((host, port), Handler)
+
+
+def serve(host: str = "127.0.0.1", port: int = 8765, *, keep: int = 5) -> int:
+    """Run the peer endpoint until interrupted. Returns a process exit code."""
+    server = make_server(host, port, keep=keep)
+    print(
+        f"replication peer listening on http://{host}:{server.server_port}"
+        f"  (POST /replication/accept, keep={keep}, store={received_dir()})",
+        flush=True,
+    )
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print("\nstopped")
+    finally:
+        server.server_close()
+    return 0
+
+
 # ── self-test, status ─────────────────────────────────────────────────────────
 
 DEFAULT_SOURCES = ("memory", "skills", "cron/jobs.json", "config.yaml")

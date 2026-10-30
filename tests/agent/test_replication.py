@@ -215,3 +215,80 @@ def test_deterministic_bundle_same_tree_same_digest(temp_home):
 
     assert entries_first == entries_second
     assert first == second, "same input must seal to the same bytes (mtime is zeroed)"
+
+
+def test_accept_stores_an_envelope_the_peer_cannot_read(temp_home):
+    key = rep.load_or_create_key()
+    bundle, entries = rep.build_bundle([temp_home / "memory"], base=temp_home)
+    envelope = rep.seal(bundle, entries, key)
+
+    report = rep.accept(envelope, temp_home / "peer")
+
+    assert report["entries"] == len(entries)
+    stored = Path(report["stored"])
+    assert stored.read_bytes() == envelope
+    # A peer without the key cannot restore — that is the point of holding it.
+    with pytest.raises(rep.IntegrityError):
+        rep.open_sealed(stored.read_bytes(), b"\x02" * rep.KEY_BYTES)
+
+
+def test_accept_refuses_non_envelopes(temp_home):
+    with pytest.raises(rep.IntegrityError):
+        rep.accept(b"not json at all", temp_home / "peer")
+    with pytest.raises(rep.ReplicationError):
+        rep.accept(json.dumps({"header": {"format": 99}}).encode("utf-8"), temp_home / "peer")
+
+
+def test_accept_keeps_only_the_newest_n(temp_home):
+    key = rep.load_or_create_key()
+    for index in range(4):
+        (temp_home / "memory" / f"f{index}.txt").write_text(str(index), encoding="utf-8")
+        bundle, entries = rep.build_bundle([temp_home / "memory"], base=temp_home)
+        rep.accept(rep.seal(bundle, entries, key), temp_home / "peer", keep=2)
+
+    stored = sorted((temp_home / "peer").glob("replica-*.json"))
+    assert len(stored) == 2, f"keep=2 but found {len(stored)}"
+    assert not list((temp_home / "peer").glob("*.tmp"))
+
+
+def test_peer_server_accepts_a_real_push_and_the_sender_can_restore_it(temp_home):
+    """The whole DIR-01 path: seal → HTTP → peer stores → sender restores."""
+    peer_store = temp_home / "peer-store"
+    server = rep.make_server("127.0.0.1", 0, peer_store, keep=3)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        key = rep.load_or_create_key()
+        bundle, entries = rep.build_bundle([temp_home / "memory"], base=temp_home)
+        envelope = rep.seal(bundle, entries, key)
+
+        pushed = rep.push(envelope, f"http://127.0.0.1:{server.server_port}")
+        assert pushed["status"] == 200
+
+        stored = sorted(peer_store.glob("replica-*.json"))
+        assert len(stored) == 1, "the peer did not store the envelope"
+
+        target = temp_home / "drill"
+        result = rep.restore(stored[0].read_bytes(), key, target)
+        assert result["restored"] == len(entries)
+        assert (target / "memory" / "self_model" / "identity.md").read_text(encoding="utf-8") == "# me\n"
+    finally:
+        server.shutdown()
+        server.server_close()
+
+
+def test_peer_status_endpoint_reports_what_it_holds(temp_home):
+    import urllib.request
+
+    server = rep.make_server("127.0.0.1", 0, temp_home / "peer-store", keep=2)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        url = f"http://127.0.0.1:{server.server_port}/replication/status"
+        with urllib.request.urlopen(url, timeout=10) as response:
+            payload = json.loads(response.read())
+        assert payload["role"] == "openamer-replication-peer"
+        assert payload["replicas"] == 0
+    finally:
+        server.shutdown()
+        server.server_close()
