@@ -206,6 +206,22 @@ def test_tick_proves_the_replication_artifact_each_time(temp_home, monkeypatch):
     assert calls, "every tick must re-prove that a sealed snapshot still restores"
 
 
+def test_measure_stays_cheap():
+    """A tick may not spend seconds walking trees.
+
+    Regression: two probes used ``rglob`` over the whole home and the whole repo,
+    which made ``measure()`` take **15.4 s** (measured 2026-10-30) — on the first
+    gateway housekeeping pass, i.e. during app boot. The bound is generous on
+    purpose (slow CI disks); it only catches a return to recursive walking.
+    """
+    rt.measure()  # warm the import/module caches
+    started = time.monotonic()
+    rt.measure()
+    elapsed = time.monotonic() - started
+
+    assert elapsed < 6.0, f"measure() took {elapsed:.1f}s — a probe is walking a tree recursively"
+
+
 def test_state_written_atomically_leaves_no_tmp_file(temp_home):
     rt.tick(now=1000.0)
     leftovers = list(Path(temp_home).glob("**/*.tmp"))

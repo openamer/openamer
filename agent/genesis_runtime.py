@@ -337,13 +337,25 @@ def _probe_creator_allocation() -> Probe:
 
 
 def _probe_kernel() -> Probe:
-    images = _count_files(REPO_ROOT, "*.iso") + _count_files(REPO_ROOT, "*.efi")
-    kernel_sources = _count_files(_repo_file("native"), "kernel*")
-    boot_asm = _count_files(REPO_ROOT, "boot*.asm") + _count_files(REPO_ROOT, "boot*.s")
+    # Non-recursive on purpose: a kernel lives in a handful of known directories,
+    # and rglob over the repo (10k files) costs seconds — measured 2026-10-30,
+    # `measure()` took 15.4 s and the biggest slice was walking trees like this
+    # one. A probe runs on every tick, so it must stay O(directory entries).
+    names: List[str] = []
+    for folder in (_repo_file("os"), _repo_file("native"), _repo_file("boot"), REPO_ROOT):
+        if folder.is_dir():
+            names.extend(entry.name for entry in folder.iterdir() if entry.is_file())
+    images = [n for n in names if n.lower().endswith((".iso", ".efi", ".img"))]
+    kernel_sources = [n for n in names if n.lower().startswith(("kernel", "vmlinuz"))]
+    boot_asm = [n for n in names if n.lower().startswith("boot") and n.lower().endswith((".asm", ".s"))]
     values = {"bootable_image": images, "native_kernel_files": kernel_sources, "boot_source": boot_asm}
     if images or (kernel_sources and boot_asm):
         return Probe(SATISFIED, "kernel sources + boot path present", values)
-    return Probe(BLOCKED, "no bootable image, no kernel/bootloader source", values)
+    return Probe(
+        BLOCKED,
+        f"no bootable image; kernel_sources={len(kernel_sources)} boot_sources={len(boot_asm)}",
+        values,
+    )
 
 
 def _probe_benchmarks() -> Probe:
@@ -428,8 +440,13 @@ def _probe_quantum() -> Probe:
 def _probe_checkpoints() -> Probe:
     module = _first_importable(["openamer_cli.checkpoints"])
     home = _home()
-    created = _count_files(home / "checkpoints", "*") + _count_files(home / "memory" / "checkpoints", "*")
-    backups = _count_files(home, "state.db.pre-update-emergency-*.bak", limit=50)
+    # One level down, never recursive: `rglob` over a home with a 270 MB memory
+    # dir and a 145 MB brain log cost 6.5 s per call (measured 2026-10-30).
+    created = 0
+    for folder in (home / "checkpoints", home / "memory" / "checkpoints"):
+        if folder.is_dir():
+            created += sum(1 for _entry in folder.iterdir())
+    backups = sum(1 for _entry in home.glob("state.db.pre-update-emergency-*.bak"))
     values = {"module": module, "checkpoints_on_disk": created, "pre_update_backups": backups}
     if module and (created or backups):
         return Probe(SATISFIED, f"{module}, checkpoints={created}, backups={backups}", values)
