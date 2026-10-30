@@ -34,9 +34,58 @@ def _load():
     return replication
 
 
+def _load_network():
+    repo = _repo_root()
+    if str(repo) not in sys.path:
+        sys.path.insert(0, str(repo))
+    from agent import replication_network
+
+    return replication_network
+
+
+def _render_network(state: dict) -> str:
+    lines = [
+        "replication network (DIR-01, internet)",
+        f"  enabled        {'yes' if state['enabled'] else 'NO (opt-in: OPENAMER_REPLICATION_NETWORK=1)'}",
+        f"  node id        {state.get('node_id') or '-'}",
+        f"  directory      {state.get('directory') or '- (set replication.directory_url)'}",
+        f"  last sync      "
+        + (
+            f"{'OK' if state['last_sync_ok'] else 'FAILED'} · {state['last_sync_peers']} peer(s) · "
+            f"{state['last_sync_age_s']}s ago"
+            if state.get("last_sync_age_s") is not None
+            else "never"
+        ),
+    ]
+    return "\n".join(lines)
+
+
 def _cmd_replication(args) -> int:
     rep = _load()
     action = getattr(args, "action", None) or "status"
+
+    if action in ("network-status", "join", "sync"):
+        network = _load_network()
+
+        if action == "network-status":
+            state = network.network_status()
+            print(json.dumps(state, indent=2) if getattr(args, "json", False) else _render_network(state))
+            return 0 if (state["enabled"] and state["last_sync_ok"]) else 2
+
+        if action == "join":
+            # Opt-in: publishing a node address to a directory is a decision.
+            import os as _os
+
+            _os.environ["OPENAMER_REPLICATION_NETWORK"] = "1"
+            if getattr(args, "directory", None):
+                _os.environ["OPENAMER_REPLICATION_DIRECTORY"] = args.directory
+            report = network.announce_and_sync(args.url, directory=getattr(args, "directory", None))
+            print(json.dumps(report, indent=2))
+            return 0 if report.get("ok") else 1
+
+        report = network.announce_and_sync(args.url, directory=getattr(args, "directory", None) or None)
+        print(json.dumps(report, indent=2))
+        return 0 if report.get("ok") else 1
 
     if action == "status":
         state = rep.status()
@@ -143,5 +192,22 @@ def build_replication_parser(subparsers) -> None:
     serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=8765)
     serve.add_argument("--keep", type=int, default=5, help="wie viele Envelopes aufbewahrt werden")
+
+    net_status = sub.add_parser(
+        "network-status",
+        help="Internet-Replikation: aktiviert? Knoten-ID, Verzeichnis, letzter Sync",
+    )
+    net_status.add_argument("--json", action="store_true")
+
+    join = sub.add_parser(
+        "join",
+        help="Netzwerk beitreten: Knoten veroeffentlichen und an alle Peers versiegelt senden",
+    )
+    join.add_argument("url", help="oeffentlich erreichbare URL dieses Knotens, z.B. https://host:8765")
+    join.add_argument("--directory", default=None, help="Verzeichnis-URL (sonst aus der Config)")
+
+    sync = sub.add_parser("sync", help="erneut veroeffentlichen und an alle gefundenen Peers senden")
+    sync.add_argument("url")
+    sync.add_argument("--directory", default=None)
 
     p.set_defaults(func=_cmd_replication)
