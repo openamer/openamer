@@ -8284,12 +8284,15 @@ def _lazy_refresh_marker_path() -> Path:
     return PROJECT_ROOT / ".lazy-refresh-incomplete"
 
 
-def _write_marker_file(path: Path, *, label: str) -> None:
+def _write_marker_file(
+    path: Path, *, label: str, extra: dict[str, str] | None = None
+) -> None:
     """Drop an update-recovery breadcrumb. Never raises."""
     try:
-        path.write_text(
-            f"started={_time.time()}\npid={os.getpid()}\n", encoding="utf-8"
-        )
+        body = f"started={_time.time()}\npid={os.getpid()}\n"
+        for key, value in (extra or {}).items():
+            body += f"{key}={value}\n"
+        path.write_text(body, encoding="utf-8", newline="\n")
     except OSError as exc:
         logger.debug("Could not write %s marker: %s", label, exc)
 
@@ -8305,8 +8308,95 @@ def _clear_marker_file(path: Path, *, label: str) -> None:
 
 
 def _write_update_incomplete_marker() -> None:
-    """Drop the interrupted core-install breadcrumb. Never raises."""
-    _write_marker_file(_update_marker_path(), label="update-incomplete")
+    """Drop the interrupted core-install breadcrumb. Never raises.
+
+    Carries the dependency-spec fingerprint of the moment the install was
+    about to touch the venv, so a later recovery can PROVE whether anything
+    was actually pending (see ``_interrupted_install_has_nothing_to_do``).
+    """
+    _write_marker_file(
+        _update_marker_path(),
+        label="update-incomplete",
+        extra={"deps": _dependency_spec_fingerprint() or ""},
+    )
+
+
+# The files that define WHICH packages an install needs. A change to any of
+# them can require a reinstall; a change to everything else cannot.
+_DEPENDENCY_SPEC_FILES = ("pyproject.toml", "uv.lock")
+
+
+def _dependency_spec_fingerprint(root: Path | None = None) -> str | None:
+    """Hash the dependency SPEC (``pyproject.toml`` + ``uv.lock``), not the code.
+
+    This is the measurement that separates "the code moved" from "the
+    dependency set moved". A release that only bumps versions, fixes bugs or
+    touches the desktop has a byte-identical spec, so ``openamer update``
+    provably has no install to do — and every venv write it would otherwise
+    perform (marker, ``.[all]`` reinstall, half-installed venv on a killed
+    process, quarantine fight with a running ``openamer.exe``) can be skipped.
+
+    Returns ``None`` when neither file exists (PyPI/Docker install) so callers
+    can tell "unchanged" from "unknown" and stay on the conservative path.
+    """
+    base = root if root is not None else PROJECT_ROOT
+    digest = hashlib.sha256()
+    found = False
+    for name in _DEPENDENCY_SPEC_FILES:
+        try:
+            data = (base / name).read_bytes()
+        except OSError:
+            continue
+        found = True
+        digest.update(name.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(data)
+        digest.update(b"\0")
+    return digest.hexdigest() if found else None
+
+
+def _read_marker_deps_fingerprint(path: Path) -> str | None:
+    """Read the ``deps=`` fingerprint out of a breadcrumb. None when absent.
+
+    Markers written by older versions have no ``deps`` line at all; they must
+    keep the legacy behaviour (full reinstall), never be treated as "proven
+    nothing to do".
+    """
+    try:
+        body = path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return None
+    for line in body.splitlines():
+        key, sep, value = line.partition("=")
+        if sep and key.strip() == "deps" and value.strip():
+            return value.strip()
+    return None
+
+
+def _dependency_install_is_skippable(
+    pre_fingerprint: str | None,
+    post_fingerprint: str | None,
+) -> bool:
+    """True when an update provably has no dependency work to do.
+
+    Needs BOTH halves, because either one alone is a trap:
+
+    - spec unchanged + broken venv → still a repair to run, and
+    - healthy venv + changed spec  → still an install to run.
+    """
+    if not pre_fingerprint or not post_fingerprint:
+        return False
+    if pre_fingerprint != post_fingerprint:
+        return False
+    try:
+        healthy, detail = _venv_core_imports_healthy()
+    except Exception as exc:  # noqa: BLE001 — a probe failure is "unknown", not "skip"
+        logger.debug("Venv health probe failed during update: %s", exc)
+        return False
+    if not healthy:
+        logger.debug("Dependency install not skippable — venv unhealthy: %s", detail)
+        return False
+    return True
 
 
 def _clear_update_incomplete_marker() -> None:
@@ -8448,6 +8538,49 @@ def _recover_lazy_refresh_marker_locked() -> None:
         )
 
 
+def _interrupted_install_has_nothing_to_do() -> bool:
+    """Prove a pending ``.update-incomplete`` has no dependency work, then clear it.
+
+    The marker records the dependency-spec fingerprint captured the instant
+    ``openamer update`` was about to touch the venv. If that spec is still
+    byte-identical AND the venv's core imports are clean, then nothing was
+    pending and nothing is broken: the only correct action is to drop the
+    breadcrumb, with zero writes to the venv.
+
+    This is also the only path that can finish while ``openamer.exe`` is
+    running. The full-reinstall recovery has to quarantine that executable,
+    which the app itself holds open on Windows — so "reinstall for nothing"
+    can never complete and the marker blocks every launch instead (measured
+    2026-10-30: an update whose spec delta was version literals only left the
+    marker set for an hour, printed the interruption warning on every boot and
+    made ``openamer --version`` report no version at all).
+
+    Returns True when the marker was cleared here (caller must stop).
+    Legacy markers without a ``deps`` line never take this path.
+    """
+    marker_deps = _read_marker_deps_fingerprint(_update_marker_path())
+    if not marker_deps:
+        return False
+    if marker_deps != _dependency_spec_fingerprint():
+        return False
+
+    install_prefix, install_env = _default_venv_install_target()
+    try:
+        status = _repair_venv_via_import_probes(install_prefix, env=install_env)
+    except Exception as exc:  # noqa: BLE001 — recovery must never raise
+        logger.debug("Install-recovery import probe failed: %s", exc)
+        return False
+    if status not in ("healthy", "repaired"):
+        return False
+
+    _clear_update_incomplete_marker()
+    print(
+        "✓ The interrupted `openamer update` had no dependency changes pending "
+        "(dependency spec unchanged, venv imports clean) — nothing to finish."
+    )
+    return True
+
+
 def _recover_core_update_marker_locked() -> None:
     """Heal ``.update-incomplete`` via full ``.[all]`` reinstall only.
 
@@ -8455,6 +8588,9 @@ def _recover_core_update_marker_locked() -> None:
     interrupted core install finished — a missing dep outside that probe set
     would otherwise look healthy and clear the breadcrumb too early.
     """
+    if _interrupted_install_has_nothing_to_do():
+        return
+
     print(
         "⚠ A previous `openamer update` was interrupted mid-install — "
         "finishing dependency installation now..."
@@ -12431,6 +12567,11 @@ def _cmd_update_impl(args, gateway_mode: bool):
 
         print("→ Pulling updates...")
         update_succeeded = False
+        # Fingerprint the dependency SPEC (pyproject.toml + uv.lock) before the
+        # pull. Most releases move code without moving a single requirement —
+        # for those the update has provably no install to do and must not
+        # touch the venv at all (see ``_dependency_install_is_skippable``).
+        pre_pull_deps = _dependency_spec_fingerprint()
         # Capture the pre-pull SHA so we can auto-roll-back if the new code
         # has a syntax error in a critical-path file (PR #28452 incident:
         # orphan merge-conflict markers in openamer_cli/config.py bricked
@@ -12554,13 +12695,29 @@ def _cmd_update_impl(args, gateway_mode: bool):
         # breaks on this machine, keep base deps and reinstall the remaining extras
         # individually so update does not silently strip working capabilities.
         #
+        # SKIP the whole venv-touching block when the dependency spec did not
+        # move and the venv still imports clean. That is the common case (a
+        # release that only changes code) and skipping it is what makes the
+        # update safe to run with the app open: no breadcrumb, no reinstall, no
+        # half-installed venv if the process is killed, and no fighting the
+        # running ``openamer.exe`` for the shim.
+        #
         # Drop the core-install breadcrumb BEFORE touching the venv. If the
         # install is killed mid-flight (Ctrl-C, terminal close, WSL OOM), the
         # marker survives and the next ``openamer`` launch finishes the install
         # via ``_recover_from_interrupted_install``. Cleared after the core
         # ``.[all]`` install completes — lazy refresh uses a separate marker.
-        _write_update_incomplete_marker()
-        print("→ Updating Python dependencies...")
+        skip_dep_install = _dependency_install_is_skippable(
+            pre_pull_deps, _dependency_spec_fingerprint()
+        )
+        if skip_dep_install:
+            print(
+                "  ✓ Dependency spec unchanged and venv imports clean — "
+                "skipping the reinstall"
+            )
+        else:
+            _write_update_incomplete_marker()
+            print("→ Updating Python dependencies...")
         from openamer_cli.managed_uv import ensure_uv, update_managed_uv
 
         # Keep managed uv current — runs `uv self update` if we already have one.
@@ -12573,45 +12730,51 @@ def _cmd_update_impl(args, gateway_mode: bool):
             uv_bin = _ensure_uv_for_termux(pip_cmd)
         install_group = "all"
 
-        if uv_bin:
+        uv_env = None
+        if not skip_dep_install:
+            if uv_bin:
+                uv_env = {**os.environ, "VIRTUAL_ENV": str(_project_venv_dir())}
+                if _is_termux_env(uv_env):
+                    uv_env.pop("PYTHONPATH", None)
+                    uv_env.pop("PYTHONHOME", None)
+                    install_group = "termux-all"
+                    print("  → Termux detected: using uv + curated termux-all optional profile...")
+                if _is_termux_env(uv_env) and _is_android_python():
+                    print("  → Termux/Android detected: prebuilding psutil with Linux source path compatibility...")
+                    _install_psutil_android_compat([uv_bin, "pip"], env=uv_env)
+                _install_python_dependencies_with_optional_fallback(
+                    [uv_bin, "pip"], env=uv_env, group=install_group
+                )
+            else:
+                # Use sys.executable to explicitly call the venv's pip module,
+                # avoiding PEP 668 'externally-managed-environment' errors on Debian/Ubuntu.
+                # Some environments lose pip inside the venv; bootstrap it back with
+                # ensurepip before trying the editable install.
+                pip_cmd = [sys.executable, "-m", "pip"]
+                try:
+                    subprocess.run(
+                        pip_cmd + ["--version"],
+                        cwd=PROJECT_ROOT,
+                        check=True,
+                        capture_output=True,
+                    )
+                except subprocess.CalledProcessError:
+                    subprocess.run(
+                        [sys.executable, "-m", "ensurepip", "--upgrade", "--default-pip"],
+                        cwd=PROJECT_ROOT,
+                        check=True,
+                    )
+                if _is_termux_env():
+                    install_group = "termux-all"
+                    print("  → Termux detected: using curated termux-all optional profile...")
+                if _is_termux_env() and _is_android_python():
+                    print("  → Termux/Android detected: prebuilding psutil with Linux source path compatibility...")
+                    _install_psutil_android_compat(pip_cmd)
+                _install_python_dependencies_with_optional_fallback(pip_cmd, group=install_group)
+        elif uv_bin:
             uv_env = {**os.environ, "VIRTUAL_ENV": str(_project_venv_dir())}
             if _is_termux_env(uv_env):
-                uv_env.pop("PYTHONPATH", None)
-                uv_env.pop("PYTHONHOME", None)
                 install_group = "termux-all"
-                print("  → Termux detected: using uv + curated termux-all optional profile...")
-            if _is_termux_env(uv_env) and _is_android_python():
-                print("  → Termux/Android detected: prebuilding psutil with Linux source path compatibility...")
-                _install_psutil_android_compat([uv_bin, "pip"], env=uv_env)
-            _install_python_dependencies_with_optional_fallback(
-                [uv_bin, "pip"], env=uv_env, group=install_group
-            )
-        else:
-            # Use sys.executable to explicitly call the venv's pip module,
-            # avoiding PEP 668 'externally-managed-environment' errors on Debian/Ubuntu.
-            # Some environments lose pip inside the venv; bootstrap it back with
-            # ensurepip before trying the editable install.
-            pip_cmd = [sys.executable, "-m", "pip"]
-            try:
-                subprocess.run(
-                    pip_cmd + ["--version"],
-                    cwd=PROJECT_ROOT,
-                    check=True,
-                    capture_output=True,
-                )
-            except subprocess.CalledProcessError:
-                subprocess.run(
-                    [sys.executable, "-m", "ensurepip", "--upgrade", "--default-pip"],
-                    cwd=PROJECT_ROOT,
-                    check=True,
-                )
-            if _is_termux_env():
-                install_group = "termux-all"
-                print("  → Termux detected: using curated termux-all optional profile...")
-            if _is_termux_env() and _is_android_python():
-                print("  → Termux/Android detected: prebuilding psutil with Linux source path compatibility...")
-                _install_psutil_android_compat(pip_cmd)
-            _install_python_dependencies_with_optional_fallback(pip_cmd, group=install_group)
 
         install_prefix = [uv_bin, "pip"] if uv_bin else pip_cmd
         lazy_env = uv_env if uv_bin else None
@@ -12624,19 +12787,27 @@ def _cmd_update_impl(args, gateway_mode: bool):
 
         # Upgrade pip before lazy refreshes — stale pip can fail source builds
         # and leave partially-written packages (#57828).
-        _write_lazy_refresh_incomplete_marker()
-        _upgrade_pip_before_lazy_refresh(install_prefix, env=lazy_env)
-
-        # Lazy refresh can corrupt the venv when a backend install fails.
-        # Clear the lazy marker only when refresh/repair is confirmed healthy.
-        lazy_ok = _refresh_active_lazy_features(install_prefix, env=lazy_env)
-        if lazy_ok:
-            _clear_lazy_refresh_incomplete_marker()
+        #
+        # Skipped with the reinstall: the lazy-backend set is part of the
+        # dependency spec, so an unchanged spec means the already-installed
+        # packages are the ones this code expects. Touching the venv here would
+        # reintroduce exactly the writes the skip exists to avoid.
+        if skip_dep_install:
+            print("  ✓ Skipping lazy-backend refresh (no dependency changes)")
         else:
-            print(
-                "  ⚠ Lazy-refresh recovery incomplete — run `openamer` again "
-                "to finish import-based venv repair."
-            )
+            _write_lazy_refresh_incomplete_marker()
+            _upgrade_pip_before_lazy_refresh(install_prefix, env=lazy_env)
+
+            # Lazy refresh can corrupt the venv when a backend install fails.
+            # Clear the lazy marker only when refresh/repair is confirmed healthy.
+            lazy_ok = _refresh_active_lazy_features(install_prefix, env=lazy_env)
+            if lazy_ok:
+                _clear_lazy_refresh_incomplete_marker()
+            else:
+                print(
+                    "  ⚠ Lazy-refresh recovery incomplete — run `openamer` again "
+                    "to finish import-based venv repair."
+                )
 
         node_failures = _update_node_dependencies()
         _build_web_ui(PROJECT_ROOT / "web")

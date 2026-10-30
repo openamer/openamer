@@ -184,6 +184,13 @@ def test_recovery_self_lock_does_not_clear_core_marker_via_import_probes(
     seen = {"install": False}
     _stub_install_env(monkeypatch, m, seen)
 
+    # The marker records the dependency spec it was about to install. Move the
+    # spec afterwards so this stays the #58004 case: healthy import probes ALONE
+    # must never clear the core marker — only probes + an unchanged spec can.
+    (tmp_path / "pyproject.toml").write_text(
+        "[project]\nname='x'\nversion='moved'\n", encoding="utf-8"
+    )
+
     m._recover_from_interrupted_install()
 
     assert seen["install"] is True, "core marker still requires full reinstall"
@@ -316,6 +323,12 @@ def test_lazy_and_core_markers_recover_independently(tmp_path, monkeypatch):
 
     seen = {"install": False}
     _stub_install_env(monkeypatch, m, seen)
+
+    # Move the dependency spec: this test is about the core marker driving a
+    # real reinstall, which only applies when the spec actually changed.
+    (tmp_path / "pyproject.toml").write_text(
+        "[project]\nname='x'\nversion='moved'\n", encoding="utf-8"
+    )
 
     m._recover_from_interrupted_install()
 
