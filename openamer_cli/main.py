@@ -15341,7 +15341,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "send", "sessions", "setup",
         "skin", "skills", "slack", "status", "tools", "uninstall", "update",
         "version", "webhook", "whatsapp", "whatsapp-cloud", "chat", "secrets", "security",
-        "a2a", "asi", "genesis", "system", "identity",
+        "a2a", "asi", "genesis", "replication", "system", "identity",
         # Registered subparsers that were never declared here. The gating test
         # (tests/openamer_cli/test_startup_plugin_gating.py) derives the live
         # set from the real parser and fails when one is missing, because an
