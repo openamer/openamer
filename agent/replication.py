@@ -590,7 +590,14 @@ def selftest(
     }
     try:
         replication_dir().mkdir(parents=True, exist_ok=True)
-        state_path().write_text(json.dumps(result, indent=2), encoding="utf-8")
+        # Merge, do not overwrite: the last push result must survive a selftest
+        # (dropping it would silently downgrade DIR-01 on the next tick).
+        try:
+            current = json.loads(state_path().read_text(encoding="utf-8"))
+        except Exception:
+            current = {}
+        current.update(result)
+        state_path().write_text(json.dumps(current, indent=2), encoding="utf-8")
     except OSError:
         pass
     return result
@@ -604,6 +611,7 @@ def status() -> dict:
     except Exception:
         last = {}
     peers = load_peers()
+    pushed = last.get("last_push") if isinstance(last.get("last_push"), dict) else {}
     return {
         "module": True,
         "key_present": key_path().exists(),
@@ -616,4 +624,72 @@ def status() -> dict:
         ),
         "last_selftest_bytes": last.get("bytes", 0),
         "last_selftest_skipped": last.get("skipped_files", 0),
+        "last_push_ok": bool(pushed.get("ok")),
+        "last_push_peers": len(pushed.get("results") or []),
+        "last_push_age_s": (
+            round(time.time() - float(pushed["at"])) if isinstance(pushed.get("at"), (int, float)) else None
+        ),
     }
+
+
+def push_to_peers(*, profile: str = "fast", timeout: float = 15.0) -> dict:
+    """Seal a snapshot and deliver it to every registered peer.
+
+    "A peer is registered" is not "a replica exists" — this is the step that
+    turns the first into the second, and its per-peer result is what the genesis
+    probe reads before it dares to call DIR-01 satisfied.
+    """
+    peers = load_peers()
+    if not peers:
+        report = {"ok": False, "at": time.time(), "peers": 0, "reason": "no peers registered", "results": []}
+        _record_push(report)
+        return report
+
+    home = _home()
+    wanted = FAST_SOURCES if profile == "fast" else DEFAULT_SOURCES
+    sources = [home / part for part in wanted if (home / part).exists()]
+    if not sources:
+        report = {"ok": False, "at": time.time(), "peers": len(peers), "reason": "no sources", "results": []}
+        _record_push(report)
+        return report
+
+    key = load_or_create_key()
+    skipped: List[dict] = []
+    bundle, entries = build_bundle(sources, base=home, skipped_out=skipped)
+    envelope = seal(bundle, entries, key)
+
+    results = []
+    for peer in peers:
+        try:
+            pushed = push(envelope, peer["url"], timeout=timeout)
+            results.append({"peer": peer["url"], "ok": pushed["status"] == 200, "status": pushed["status"]})
+        except ReplicationError as exc:
+            results.append({"peer": peer["url"], "ok": False, "error": str(exc)[:200]})
+
+    report = {
+        "ok": bool(results) and all(item["ok"] for item in results),
+        "at": time.time(),
+        "peers": len(peers),
+        "profile": profile,
+        "files": len(entries),
+        "envelope_bytes": len(envelope),
+        "results": results,
+    }
+    _record_push(report)
+    return report
+
+
+def _record_push(report: dict) -> None:
+    """Attach the push result to state.json without losing the selftest record."""
+    try:
+        current = json.loads(state_path().read_text(encoding="utf-8"))
+    except Exception:
+        current = {}
+    current["last_push"] = report
+    try:
+        replication_dir().mkdir(parents=True, exist_ok=True)
+        tmp = state_path().with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(current, indent=2), encoding="utf-8")
+        os.replace(tmp, state_path())
+    except OSError:
+        pass

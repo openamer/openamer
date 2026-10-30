@@ -252,11 +252,20 @@ def _probe_replication() -> Probe:
         return Probe(UNKNOWN, f"replication status unavailable: {type(exc).__name__}")
 
     values = {"module": module, "peers": state["peers"], **{k: v for k, v in state.items() if k != "peers"}}
-    if state["last_selftest_ok"] and state["peers"]:
+    # A registered peer is not a replica. DIR-01 only counts as satisfied when a
+    # push actually landed on every registered peer — measured, not declared.
+    if state["last_selftest_ok"] and state["peers"] and state.get("last_push_ok"):
         return Probe(
             SATISFIED,
-            f"sealed snapshot verified ({state['last_selftest_files']} files), "
-            f"{state['peers']} peer(s)",
+            f"sealed snapshot verified ({state['last_selftest_files']} files) and pushed to "
+            f"{state['last_push_peers']} peer(s) {state.get('last_push_age_s')}s ago",
+            values,
+        )
+    if state["peers"] and not state.get("last_push_ok"):
+        return Probe(
+            PARTIAL,
+            f"{state['peers']} peer(s) registered but no successful push"
+            + (f" ({state['last_push_age_s']}s ago)" if state.get("last_push_age_s") is not None else ""),
             values,
         )
     if state["last_selftest_ok"]:
@@ -914,8 +923,12 @@ def tick(now: Optional[float] = None) -> dict:
         from agent import replication
 
         replication.selftest()
+        # Once a peer exists the tick also *delivers* — otherwise "replication"
+        # would only ever prove the artifact on the machine that wrote it.
+        if replication.load_peers():
+            replication.push_to_peers(profile="fast", timeout=15.0)
     except Exception as exc:  # noqa: BLE001 - the probe reports what it can see
-        logger.debug("Replication selftest skipped: %s", exc)
+        logger.debug("Replication step skipped: %s", exc)
 
     rows = measure()
     payload = {
