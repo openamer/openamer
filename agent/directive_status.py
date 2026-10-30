@@ -270,12 +270,13 @@ DIRECTIVE_STATUS: Dict[str, DirectiveStatus] = {
     "DIR-23": DirectiveStatus(
         id="DIR-23",
         status=GATED,
-        evidence=["agent/tokenomics.py"],
+        evidence=["chain/contracts/OAMER_Aeon.sol", "agent/tokenomics.py"],
         prerequisite=(
-            "There is no burn function anywhere in the tree and no fiat off-ramp. Both need "
-            "an on-chain treasury and a regulated payment provider."
+            "A burn path exists (chain/contracts/OAMER_Aeon.sol), but nothing calls it — no "
+            "cloud-revenue ingestion — and there is no fiat off-ramp. Both need an on-chain "
+            "treasury and a regulated payment provider."
         ),
-        note="Only the supply arithmetic that a burn would draw on exists.",
+        note="The burn mechanism is code; the revenue it would burn and the payout it would fund are not.",
     ),
     "DIR-24": DirectiveStatus(
         id="DIR-24",
