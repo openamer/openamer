@@ -420,13 +420,21 @@ def accept(envelope: bytes, store_dir: Optional[Path] = None, *, keep: int = 5) 
         raise IntegrityError(f"not a replication envelope: {exc}") from exc
 
     header = payload.get("header") if isinstance(payload, dict) else None
-    if not isinstance(header, dict) or header.get("format") != FORMAT_VERSION:
+    if not isinstance(header, dict) or header.get("format") not in (FORMAT_VERSION, 2):
         raise ReplicationError(f"unsupported envelope header: {header!r}")
     if not isinstance(payload.get("manifest"), list):
         raise IntegrityError("envelope carries no manifest")
     try:
-        bytes.fromhex(header["nonce"])
-        bytes.fromhex(payload["ciphertext"])
+        if header["format"] == FORMAT_VERSION:
+            bytes.fromhex(header["nonce"])
+            bytes.fromhex(payload["ciphertext"])
+        else:
+            # v2 (per-recipient sealing): base64 nonce and ciphertext, and the
+            # peer still needs no key — it stores what it cannot read.
+            import base64 as _b64
+
+            _b64.b64decode(header["content_nonce"], validate=True)
+            _b64.b64decode(payload["ciphertext"], validate=True)
     except Exception as exc:
         raise IntegrityError(f"malformed nonce/ciphertext: {exc}") from exc
 
