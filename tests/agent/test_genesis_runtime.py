@@ -193,6 +193,19 @@ def test_cli_gates_lists_only_closed_ones(temp_home, capsys):
     assert "then :" in out
 
 
+def test_tick_proves_the_replication_artifact_each_time(temp_home, monkeypatch):
+    calls = []
+
+    def fake_selftest(*args, **kwargs):
+        calls.append(kwargs)
+        return {"ok": True, "files": 1, "bytes": 1}
+
+    monkeypatch.setattr("agent.replication.selftest", fake_selftest)
+    rt.tick(now=1000.0)
+
+    assert calls, "every tick must re-prove that a sealed snapshot still restores"
+
+
 def test_state_written_atomically_leaves_no_tmp_file(temp_home):
     rt.tick(now=1000.0)
     leftovers = list(Path(temp_home).glob("**/*.tmp"))

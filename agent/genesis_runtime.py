@@ -33,11 +33,14 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import logging
 import os
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable, Dict, List, Optional
+
+logger = logging.getLogger(__name__)
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -230,13 +233,40 @@ def _probe_replication() -> Probe:
     elif isinstance(payload, list):
         peers = len(payload)
     module = _first_importable(["agent.replication", "openamer_cli.replication"])
-    if module:
-        return Probe(SATISFIED, f"replication module {module}, peers={peers}", {"peers": peers})
-    return Probe(
-        BLOCKED,
-        f"no replication module; registered peers={peers} (need >=1 remote node)",
-        {"peers": peers, "module": None},
-    )
+    if not module:
+        return Probe(
+            BLOCKED,
+            f"no replication module; registered peers={peers} (need >=1 remote node)",
+            {"peers": peers, "module": None},
+        )
+
+    # The module exists — ask it what it has actually proven. DIR-01 has two
+    # halves and only the artifact half can be shown on a single machine: a
+    # sealed snapshot that restores byte-identically. The peer half stays a
+    # measured 0 until a node registers.
+    try:
+        from agent import replication
+
+        state = replication.status()
+    except Exception as exc:  # noqa: BLE001 - a probe failure is unknown
+        return Probe(UNKNOWN, f"replication status unavailable: {type(exc).__name__}")
+
+    values = {"module": module, "peers": state["peers"], **{k: v for k, v in state.items() if k != "peers"}}
+    if state["last_selftest_ok"] and state["peers"]:
+        return Probe(
+            SATISFIED,
+            f"sealed snapshot verified ({state['last_selftest_files']} files), "
+            f"{state['peers']} peer(s)",
+            values,
+        )
+    if state["last_selftest_ok"]:
+        return Probe(
+            PARTIAL,
+            f"{module}: sealed snapshot verified ({state['last_selftest_files']} files, "
+            f"{state['last_selftest_bytes']} B, {state['last_selftest_age_s']}s ago); peers=0",
+            values,
+        )
+    return Probe(PARTIAL, f"{module} present; no verified snapshot yet; peers={state['peers']}", values)
 
 
 def _treasury_config() -> Dict[str, object]:
@@ -876,6 +906,17 @@ def read_state() -> Optional[dict]:
 def tick(now: Optional[float] = None) -> dict:
     """Measure, persist atomically, log status changes, touch the heartbeat."""
     stamp = time.time() if now is None else now
+
+    # DIR-01's artifact half is not a static fact — it must keep working. Seal and
+    # restore a fast snapshot (measured: 0.135 s, ~1.5 MB) before measuring, so the
+    # replication probe reports a *fresh* verification instead of last week's.
+    try:
+        from agent import replication
+
+        replication.selftest()
+    except Exception as exc:  # noqa: BLE001 - the probe reports what it can see
+        logger.debug("Replication selftest skipped: %s", exc)
+
     rows = measure()
     payload = {
         "measured_at": stamp,
