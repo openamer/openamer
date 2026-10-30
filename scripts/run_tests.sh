@@ -94,10 +94,25 @@ fi
 
 
 # ── Live-gateway plugin (computed before we drop env) ───────────────────────
+# The guard must ship with the CHECKOUT, not with one developer's home dir:
+# without it the update tests launch real `gateway run --replace` processes,
+# which stop the gateway running on the machine and outlive the test. Prefer the
+# in-repo copy; keep $HOME/.openamer as an override for older checkouts, and
+# never fall through silently (measured 2026-10-30: 7+ orphaned gateways and a
+# dead live gateway from one run).
 EXTRA_PYTHONPATH=""
 EXTRA_PYTEST_PLUGINS=""
-if [ -f "$HOME/.openamer/pytest_live_guard.py" ]; then
-  EXTRA_PYTHONPATH="$HOME/.openamer"
+LIVE_GUARD_DIR=""
+if [ -f "$REPO_ROOT/scripts/pytest_live_guard.py" ]; then
+  LIVE_GUARD_DIR="$REPO_ROOT/scripts"
+elif [ -f "$HOME/.openamer/pytest_live_guard.py" ]; then
+  LIVE_GUARD_DIR="$HOME/.openamer"
+else
+  echo "warning: pytest_live_guard.py not found (repo or \$HOME/.openamer) —" >&2
+  echo "         tests are NOT hermetic and may start/stop a real OpenAmer gateway." >&2
+fi
+if [ -n "$LIVE_GUARD_DIR" ]; then
+  EXTRA_PYTHONPATH="$LIVE_GUARD_DIR"
   EXTRA_PYTEST_PLUGINS="pytest_live_guard"
 fi
 
