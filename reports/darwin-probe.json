@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-26T14:00:45.872328+00:00",
+  "updated": "2026-10-31T17:20:21.317088+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1197,
+  "total": 1229,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -1714,8 +1714,8 @@
       "missing": []
     },
     "openamer-update-recovery": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -1726,6 +1726,12 @@
       "missing": []
     },
     "opencode": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "peer-state-replication": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1953,6 +1959,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-agent-batch-runner-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-agent-conversation-compression-manua": {
       "refs": 0,
       "ok": 0,
@@ -2019,7 +2031,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-conftest-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-consulting-html-http-200-bytes": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-count-tools-tmp-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2079,6 +2103,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-disk-cleanup-tracked-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-git-cherry-pick-head": {
       "refs": 0,
       "ok": 0,
@@ -2127,7 +2157,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-laptop-config-yaml": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-laptop-predictive-health": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-laptop-tmp-tree-ps1": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2163,7 +2205,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-memory-world-model-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-n-bash-ngit-worktree-add-f": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-n-behind-head-origin-main-fatal-cann": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2176,6 +2230,24 @@
       "missing": []
     },
     "darwin-harvested-n-head-n-meta-http-equiv": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-n-n-command-timed-out-after-180s": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-n-nfor-small-subcommands-1-4-simple-": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-n-origin-main-fatal-cannot-change-to": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2211,6 +2283,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-o2-no-such-file-or-directory-npresen": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-oder-einfache-quotes-mit-escaping-nu": {
       "refs": 0,
       "ok": 0,
@@ -2241,6 +2319,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-pending-sessions-owned-sid-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-permissionerror-before-bash-starts": {
       "refs": 0,
       "ok": 0,
@@ -2253,7 +2337,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-pytest-live-guard-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-python-exe-no-such-file-or-directory": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-r-n-1-failed": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2266,6 +2362,12 @@
       "missing": []
     },
     "darwin-harvested-r-n-exit-0": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-r-n2-failed": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2337,13 +2439,31 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-reports-trend-scout-latest-md": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-research-group-state": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-scripts": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-scripts-autonomous-loop-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-benchmark-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2356,6 +2476,12 @@
       "missing": []
     },
     "darwin-harvested-scripts-cron-tokenharbor-watchdog-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-cron-tt-bounty-watch-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2433,7 +2559,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-scripts-tool-server-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-sessions-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-target-images": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2446,6 +2584,12 @@
       "missing": []
     },
     "darwin-harvested-tmp-art2-html-no-such-file-or-direct": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-count-tools-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2494,6 +2638,12 @@
       "missing": []
     },
     "darwin-harvested-tmp-om-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-or-key-txt": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2625,6 +2775,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-update-incomplete-lock": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-usersdamiropenamer-reposcriptsgithub": {
       "refs": 0,
       "ok": 0,
@@ -2650,6 +2806,12 @@
       "missing": []
     },
     "darwin-harvested-workflows-publish-vscode-yml": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-wt-darwin-fix": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2710,8 +2872,8 @@
       "missing": []
     },
     "bounded-test-verification": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -4202,11 +4364,9 @@
     },
     "huggingface-local-models": {
       "refs": 1,
-      "ok": 0,
-      "score": 0.0,
-      "missing": [
-        "convert_hf_to_gguf.py"
-      ]
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
     },
     "huggingface-lora-space-builder": {
       "refs": 0,
@@ -6391,6 +6551,24 @@
       "score": 1.0,
       "missing": []
     },
+    "encrypted-state-replication": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "lan-device-discovery": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "lan-device-identification": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "mcp-sse-bridge": {
       "refs": 1,
       "ok": 1,
@@ -6406,6 +6584,12 @@
     "openamer-plugin-development": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-reverse-engineer": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -6588,8 +6772,8 @@
       "missing": []
     },
     "deterministic-policy-gates": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -6838,9 +7022,9 @@
       "missing": []
     },
     "failure-attribution": {
-      "refs": 4,
-      "ok": 2,
-      "score": 0.5,
+      "refs": 5,
+      "ok": 3,
+      "score": 0.6,
       "missing": [
         "wrapper.py",
         "scripts/add_provider.py"
@@ -6897,6 +7081,12 @@
       "missing": []
     },
     "hosted-payments": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "hybrid-retrieval-fusion": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7289,14 +7479,14 @@
       "missing": []
     },
     "memory-store-upkeep": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
     "model-benchmarker": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -7439,8 +7629,8 @@
       "missing": []
     },
     "training-pipeline": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
