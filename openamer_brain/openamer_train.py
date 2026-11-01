@@ -19,7 +19,6 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import os
 import shutil
@@ -33,8 +32,18 @@ from torch.utils.data import Dataset, DataLoader
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:  # imported as openamer_brain.openamer_train
     from .openamer_prototype import OpenAmerConfig, OpenAmerNet  # noqa: E402
+    from .corpus import (  # noqa: E402
+        DEFAULT_MAX_MSG_CHARS,
+        curate_message_stream,
+        default_sources,
+    )
 except ImportError:  # executed as a script
     from openamer_prototype import OpenAmerConfig, OpenAmerNet  # noqa: E402
+    from corpus import (  # noqa: E402
+        DEFAULT_MAX_MSG_CHARS,
+        curate_message_stream,
+        default_sources,
+    )
 
 THREADS = os.cpu_count() or 4
 torch.set_num_threads(THREADS)
@@ -44,12 +53,6 @@ DATA_DIR = Path(os.environ.get("OPENAMER_BRAIN_DATA") or (Path.home() / ".openam
 CHECKPOINT_DIR = HOME / "checkpoints"
 LOG_PATH = CHECKPOINT_DIR / "train_log.jsonl"
 
-SOURCES = [
-    HOME / "a2a" / "openamer-brain.jsonl",
-    HOME / "scripts" / "training" / "sft_openamer.jsonl",
-    HOME / "scripts" / "training" / "online_buffer.jsonl",
-]
-
 BOOTSTRAP = (
     "OpenAmer ASI Core: 5 native tools, 10 subsystem heartbeat. "
     "Self-improving AI agent for Windows. Runs local, CPU-only, 0 EUR per day. "
@@ -57,91 +60,24 @@ BOOTSTRAP = (
 ) * 100
 
 
-def _render_record(obj) -> str:
-    """Turn one JSONL record into plain training text."""
-    if not isinstance(obj, dict):
-        return ""
-    if "messages" in obj and isinstance(obj["messages"], list):
-        parts = []
-        for m in obj["messages"]:
-            if not isinstance(m, dict):
-                continue
-            role = m.get("role", "user")
-            content = m.get("content") or ""
-            if isinstance(content, list):  # multimodal / content blocks
-                content = " ".join(
-                    str(c.get("text", "")) for c in content if isinstance(c, dict)
-                )
-            calls = m.get("tool_calls")
-            if calls:
-                content = f"{content} {json.dumps(calls, ensure_ascii=False)}".strip()
-            if content:
-                parts.append(f"<|{role}|> {content}")
-        return "\n".join(parts)
-    for key in ("text", "content", "prompt", "output", "answer"):
-        val = obj.get(key)
-        if isinstance(val, str) and val.strip():
-            return val
-    # online_buffer.jsonl shape: {"u": question, "a": answer}
-    u, a = obj.get("u"), obj.get("a")
-    if isinstance(u, str) and isinstance(a, str) and (u.strip() or a.strip()):
-        return f"<|user|> {u.strip()}\n<|assistant|> {a.strip()}"
-    if isinstance(u, str) and u.strip():
-        return u
-    if isinstance(a, str) and a.strip():
-        return a
-    return ""
-
-
-def collect_text(data_dir: Path, sources: list[Path]) -> tuple[str, dict]:
-    chunks: list[str] = []
-    stats: dict[str, dict] = {}
-
-    files = list(sources)
-    if data_dir.exists():
-        files += [Path(p) for p in sorted(
-            glob.glob(str(data_dir / "*.txt"))
-            + glob.glob(str(data_dir / "*.jsonl"))
-            + glob.glob(str(data_dir / "*.md"))
-        )]
-
-    for fpath in files:
-        if not fpath.exists() or not fpath.is_file():
-            continue
-        recs = kept = 0
-        buf: list[str] = []
-        try:
-            with open(fpath, "r", encoding="utf-8", errors="ignore") as f:
-                if fpath.suffix == ".jsonl":
-                    for line in f:
-                        line = line.strip()
-                        if not line:
-                            continue
-                        recs += 1
-                        try:
-                            txt = _render_record(json.loads(line))
-                        except Exception:
-                            txt = line  # keep raw line rather than drop data
-                        if txt.strip():
-                            buf.append(txt)
-                            kept += 1
-                else:
-                    raw = f.read()
-                    recs = kept = 1
-                    buf.append(raw)
-        except OSError as exc:
-            stats[str(fpath)] = {"error": str(exc)}
-            continue
-        joined = "\n".join(buf)
-        chunks.append(joined)
-        stats[str(fpath)] = {"records": recs, "kept": kept, "chars": len(joined)}
-
-    text = "\n\n".join(chunks)
+def collect_text(data_dir: Path, sources: list[Path], *,
+                 max_msg_chars: int = DEFAULT_MAX_MSG_CHARS,
+                 drop_roles: tuple[str, ...] = (),
+                 keep_roles: tuple[str, ...] | None = None,
+                 dedupe: bool = True) -> tuple[str, dict]:
+    """Build the training text through the curation pipeline in corpus.py."""
+    text, stats = curate_message_stream(
+        sources,
+        max_msg_chars=max_msg_chars,
+        drop_roles=drop_roles,
+        keep_roles=keep_roles,
+        dedupe=dedupe,
+    )
     if not text.strip():
         print(f"[!] No corpus found in {data_dir} or the known brain sources. Using bootstrap patterns.")
         text = BOOTSTRAP
-        stats["__bootstrap__"] = {"records": 0, "chars": len(text)}
-    return text, stats
+        return text, {"__bootstrap__": {"chars": len(text)}}
+    return text, stats.as_dict()
 
 
 class OpenAmerTextDataset(Dataset):
@@ -200,6 +136,16 @@ def main() -> int:
     ap.add_argument("--d-model", type=int, default=256)
     ap.add_argument("--n-layers", type=int, default=6)
     ap.add_argument("--ckpt-every", type=int, default=50)
+    ap.add_argument("--max-msg-chars", type=int, default=DEFAULT_MAX_MSG_CHARS,
+                    help="cap each message (head+tail kept); default %(default)s")
+    ap.add_argument("--drop-role", action="append", default=[],
+                    choices=["tool", "assistant", "user", "system"],
+                    help="drop messages with this role (repeatable)")
+    ap.add_argument("--keep-role", action="append", default=[],
+                    choices=["tool", "assistant", "user", "system"],
+                    help="keep only these roles (repeatable)")
+    ap.add_argument("--no-dedupe", action="store_true",
+                    help="keep duplicate messages (default: dedupe)")
     ap.add_argument("--threads", type=int, default=0,
                     help="torch CPU threads (0 = auto: min(8, cores))")
     args = ap.parse_args()
@@ -214,9 +160,15 @@ def main() -> int:
     CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
     print(f"[*] OpenAMER CPU Trainer — threads: {THREADS} — home: {HOME}")
 
-    text, stats = collect_text(DATA_DIR, SOURCES)
-    for src, st in stats.items():
-        print(f"    {src}: {st}")
+    text, stats = collect_text(
+        DATA_DIR,
+        default_sources(HOME, DATA_DIR),
+        max_msg_chars=args.max_msg_chars,
+        drop_roles=tuple(args.drop_role),
+        keep_roles=tuple(args.keep_role) if args.keep_role else None,
+        dedupe=not args.no_dedupe,
+    )
+    print(f"    curation: {stats}")
 
     tokens = torch.tensor(list(text.encode("utf-8")), dtype=torch.long)
     print(f"[*] Corpus: {len(tokens):,} byte tokens ({len(text):,} chars)")

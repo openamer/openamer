@@ -44,6 +44,46 @@ fix — a left-aligned FIR kernel evaluated per position — brought untrained
 loss to 5.591. `test_causality.py` check [2] asserts that perturbing token `t`
 never changes logits before `t`.
 
+## Corpus curation (`corpus.py`)
+
+The raw brain log is not a usable training corpus. Measured on this machine
+(145 MB, 7,672 records, 60,345 messages):
+
+| Property | Value |
+|---|---|
+| Duplicate messages | **59.7 %** — each trajectory re-writes the whole history |
+| Role `tool` | 42 % of messages |
+| Huge messages | 7.4 % of messages hold **81 %** of all characters (95.8 M of 117.7 M) |
+
+Training on the raw log taught the model `ls` output (`"1446 Aug 20 19
+topents/skill-scheck-loch"` was literally a generated sample). `corpus.py`
+curates before training and reports what each stage removed:
+
+| Variant | Tokens | Kept |
+|---|---|---|
+| raw, no filtering | 136.7 M | 100 % |
+| dedupe only | 50.7 M | 36.9 % |
+| dedupe + drop `tool` + 1200 cap | 14.3 M | 10.2 % |
+| **dedupe + all roles + 800 cap (default)** | **20.5 M** | 14.7 % |
+
+The single most valuable number here: the *unique* dialogue in the brain log is
+**20.5 M tokens — 15 % of what the model used to see.** Before curation it was
+mostly re-reading the same trajectories.
+
+Flags: `--max-msg-chars`, `--drop-role`, `--keep-role`, `--no-dedupe`.
+Over-long messages keep head **and** tail (tool output carries its meaning at
+both ends).
+
+## Comparing two checkpoints honestly
+
+`score_checkpoints.py` evaluates any checkpoints against one identical held-out
+slice of the curated corpus — training logs from different corpora are not
+comparable:
+
+```bash
+python score_checkpoints.py ../../checkpoints/ckpt_a.pt ../../checkpoints/ckpt_b.pt
+```
+
 ## Measured on this laptop (16-core, CPU only)
 
 | Metric | Value |
