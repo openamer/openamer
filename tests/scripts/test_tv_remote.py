@@ -58,6 +58,8 @@ class FakeDevice:
             if self.keys_work:
                 self.level += {"VolumeUp": 1, "VolumeDown": -1}.get(payload["key"], 0)
             return 200, "Ok"
+        if path == "/6/system/softwareversion":
+            return 200, {"softwareversion": "mt5886:TPM186E_018.005.058.001"}
         return 200, "Ok"
 
 
@@ -155,6 +157,25 @@ def test_activity_reports_405_as_failure(tv, capsys):
     tv._request = dev
     assert tv.main(["activity", "tv"]) == 1
     assert "405" in capsys.readouterr().out
+
+
+def test_info_reports_the_installed_firmware(tv, capsys):
+    """The TV answers /6/system/softwareversion; info must surface it."""
+    dev = FakeDevice()
+    tv._request = dev
+    # /6/system must answer a dict, otherwise cmd_info bails out early
+    base = dev.__call__
+
+    def with_system(host, path, payload=None, timeout=6.0):
+        if path == "/6/system":
+            return 200, {"name": "58PUS6203/12", "nettvversion": "4.6.0.1",
+                         "featuring": {"systemfeatures": {"pairing_type": "none"}}}
+        return base(host, path, payload, timeout)
+
+    tv._request = with_system
+    assert tv.main(["info"]) == 0
+    out = capsys.readouterr().out
+    assert "firmware  mt5886:TPM186E_018.005.058.001" in out
 
 
 def test_parser_exposes_every_documented_subcommand(tv):

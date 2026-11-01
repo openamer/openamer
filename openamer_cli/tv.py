@@ -216,10 +216,13 @@ def cmd_info(args) -> int:
         return 1
     _, power = _request(h, "/6/powerstate")
     _, vol = _request(h, "/6/audio/volume")
+    _, sw = _request(h, "/6/system/softwareversion")
     feats = system.get("featuring", {})
     print(f"host      {h}")
     print(f"model     {system.get('name')}")
     print(f"netTV     {system.get('nettvversion')}   os={feats.get('systemfeatures', {}).get('os_type')}")
+    if isinstance(sw, dict) and sw.get("softwareversion"):
+        print(f"firmware  {sw['softwareversion']}")
     print(f"pairing   {feats.get('systemfeatures', {}).get('pairing_type')}")
     print(f"power     {power.get('powerstate') if isinstance(power, dict) else power}")
     if isinstance(vol, dict):
