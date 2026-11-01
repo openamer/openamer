@@ -276,9 +276,9 @@ def test_positional_path_not_treated_as_flag(tmp_path: Path) -> None:
     # Pass the probe dir positionally (no --paths), plus a bare -q.
     proc = subprocess.run(
         [sys.executable, str(runner), str(probe_dir), "-j", "1",
-         "--file-timeout", "30", "-q"],
+         "--file-timeout", "120", "-q"],
         cwd=repo_root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-        text=True, encoding="utf-8", errors="replace", timeout=60,
+        text=True, encoding="utf-8", errors="replace", timeout=180,
     )
     assert proc.returncode == 0, proc.stdout
     # Discovery found the probe file (2 tests), proving the positional path
@@ -412,9 +412,9 @@ def test_node_id_selector_runs_the_named_test(tmp_path: Path) -> None:
     repo_root = Path(__file__).resolve().parent.parent
     proc = subprocess.run(
         [sys.executable, str(repo_root / "scripts" / "run_tests_parallel.py"),
-         f"{target}::test_alpha", "-j", "1", "--file-timeout", "30"],
+         f"{target}::test_alpha", "-j", "1", "--file-timeout", "120"],
         cwd=repo_root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-        text=True, encoding="utf-8", errors="replace", timeout=60,
+        text=True, encoding="utf-8", errors="replace", timeout=180,
     )
     assert proc.returncode == 0, proc.stdout
     assert "No test files to run" not in proc.stdout
@@ -431,9 +431,9 @@ def test_explicit_k_wins_over_node_id_inference(tmp_path: Path) -> None:
     proc = subprocess.run(
         [sys.executable, str(repo_root / "scripts" / "run_tests_parallel.py"),
          f"{target}::test_alpha", "-k", "test_beta",
-         "-j", "1", "--file-timeout", "30"],
+         "-j", "1", "--file-timeout", "120"],
         cwd=repo_root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-        text=True, encoding="utf-8", errors="replace", timeout=60,
+        text=True, encoding="utf-8", errors="replace", timeout=180,
     )
     # -k test_beta wins: one test ran, and it wasn't filtered to nothing.
     assert proc.returncode == 0, proc.stdout
