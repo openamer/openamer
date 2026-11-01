@@ -247,7 +247,7 @@ def test_brain_insights_with_data(capsys, home_dir, brain_path, memory_path):
 # ── Parser builder ─────────────────────────────────────────────────────────
 
 def test_build_brain_parser_creates_subcommands():
-    """build_brain_parser() should register stats, status, graph, insights."""
+    """build_brain_parser() should register all brain subcommands."""
     import argparse
     parser = argparse.ArgumentParser(prog="openamer")
     sub = parser.add_subparsers()
@@ -255,10 +255,53 @@ def test_build_brain_parser_creates_subcommands():
     brain_cli.build_brain_parser(sub)
 
     # Try parsing each subcommand
-    for cmd in ("stats", "status", "graph", "insights"):
+    for cmd in ("stats", "status", "graph", "insights", "model", "train"):
         args = parser.parse_args(["brain", cmd])
         assert args.brain_subcommand == cmd
         assert hasattr(args, "func"), f"{cmd} should set func"
+
+    args = parser.parse_args(["brain", "say", "hello"])
+    assert args.brain_subcommand == "say"
+    assert hasattr(args, "func")
+
+
+def test_brain_subcommands_carry_their_arguments():
+    """train takes --steps/--resume, say takes a prompt and --tokens."""
+    import argparse
+    parser = argparse.ArgumentParser(prog="openamer")
+    sub = parser.add_subparsers()
+    brain_cli.build_brain_parser(sub)
+
+    args = parser.parse_args(["brain", "train", "--steps", "250", "--resume"])
+    assert args.steps == 250
+    assert args.resume is True
+
+    args = parser.parse_args(["brain", "say", "hello", "world", "--tokens", "12"])
+    assert args.prompt == ["hello", "world"]
+    assert args.tokens == 12
+
+
+def test_brain_is_a_registered_top_level_command():
+    """`openamer brain ...` must actually be wired into main.py.
+
+    Regression: build_brain_parser() existed but was never called by main.py,
+    so every `openamer brain` command was dead for users. main() builds the
+    parser inline, so assert on the call rather than on a hook.
+    """
+    import ast
+    import pathlib
+    from openamer_cli import main as cli_main
+
+    src = pathlib.Path(cli_main.__file__).read_text(encoding="utf-8")
+    tree = ast.parse(src)
+    called = any(
+        isinstance(node, ast.Call) and getattr(node.func, "id", None) == "build_brain_parser"
+        for node in ast.walk(tree)
+    )
+    assert called, (
+        "main.py never calls build_brain_parser() — `openamer brain` would be "
+        "unreachable for users"
+    )
 
 
 def test_build_brain_parser_print_help_on_no_subcommand(capsys):

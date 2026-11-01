@@ -13,6 +13,7 @@ from __future__ import annotations
 import json
 import os
 import subprocess
+import sys
 import time
 from collections import Counter, defaultdict
 from datetime import date, datetime, timezone, timedelta
@@ -392,6 +393,114 @@ def brain_insights() -> int:
     return 0
 
 
+# ── CPU brain (optional — needs torch) ─────────────────────────────────────
+
+_TORCH_HINT = (
+    "  torch is not installed; the local CPU brain needs it:\n"
+    "    pip install torch --index-url https://download.pytorch.org/whl/cpu"
+)
+
+
+def _load_brain_module(name: str):
+    """Import ``openamer_brain.<name>``, or print an honest hint and return None."""
+    try:
+        import torch  # noqa: F401
+    except ImportError:
+        print("✗ CPU brain unavailable.")
+        print(_TORCH_HINT)
+        return None
+    import importlib
+
+    root = Path(__file__).resolve().parent.parent
+    if str(root) not in sys.path:
+        sys.path.insert(0, str(root))
+    try:
+        return importlib.import_module(f"openamer_brain.{name}")
+    except Exception as exc:  # broken install, missing checkpoint dir, ...
+        print(f"✗ CPU brain failed to load: {exc}")
+        return None
+
+
+def brain_model() -> int:
+    """Show the local CPU brain: checkpoint, parameters, device, load time."""
+    mod = _load_brain_module("openamer_unified")
+    if mod is None:
+        return 1
+    svc = mod.OpenAmerBrainService()
+    hb = svc.heartbeat_tick()
+    ckpt = Path(hb["checkpoint"])
+    print("Local CPU brain")
+    print(f"  status      : {hb['status']}")
+    print(f"  device      : {hb['device']}  ({hb['threads']} threads)")
+    print(f"  parameters  : {hb['params']:,} ({hb['params']/1e6:.2f}M)")
+    print(f"  checkpoint  : {ckpt}")
+    if ckpt.exists():
+        size_mb = ckpt.stat().st_size / 1e6
+        print(f"  checkpoint  : {size_mb:.2f} MB, loaded in {hb['load_ms']:.0f} ms")
+        try:
+            import torch
+
+            blob = torch.load(ckpt, map_location="cpu", weights_only=True)
+            print(f"  trained     : step {blob.get('step')}, loss {blob.get('loss'):.4f}")
+        except Exception:
+            pass
+    else:
+        print("  checkpoint  : none yet — run `openamer brain train`")
+    return 0
+
+
+def brain_say(prompt: str, max_tokens: int = 50) -> int:
+    """One thought from the local CPU brain, fully offline."""
+    mod = _load_brain_module("openamer_unified")
+    if mod is None:
+        return 1
+    svc = mod.OpenAmerBrainService()
+    if not svc.loaded:
+        print("✗ No trained checkpoint yet — run `openamer brain train` first.")
+        return 1
+    t0 = time.time()
+    text = svc.think(prompt, max_tokens=max_tokens)
+    dt = (time.time() - t0) * 1000
+    printable = "".join(ch if ch.isprintable() or ch == "\n" else "·" for ch in text)
+    print(printable)
+    print(f"\n({max_tokens / max(dt/1000, 1e-9):.1f} tok/s, {dt:.0f} ms, CPU, offline)")
+    return 0
+
+
+def brain_train(steps: int, resume: bool) -> int:
+    """Train the local CPU brain on the collected corpus (streams progress)."""
+    root = Path(__file__).resolve().parent.parent
+    script = root / "openamer_brain" / "openamer_train.py"
+    if not script.exists():
+        print(f"✗ Trainer not found at {script}")
+        return 1
+    try:
+        import torch  # noqa: F401
+    except ImportError:
+        print("✗ CPU brain unavailable.")
+        print(_TORCH_HINT)
+        return 1
+    cmd = [sys.executable, "-u", str(script), "--steps", str(steps)]
+    if resume:
+        cmd.append("--resume")
+    # Read the child's stream ourselves instead of relying on handle
+    # inheritance — under git-bash/MSYS the inherited stdout is dropped, so a
+    # plain subprocess.call() trains silently.
+    proc = subprocess.Popen(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        bufsize=1,
+    )
+    assert proc.stdout is not None
+    for line in proc.stdout:
+        print(line, end="", flush=True)
+    return proc.wait()
+
+
 # ── Parser builder ─────────────────────────────────────────────────────────
 
 def build_brain_parser(subparsers) -> None:
@@ -418,5 +527,18 @@ def build_brain_parser(subparsers) -> None:
 
     i = sub.add_parser("insights", help="Show what the brain has learned — top skills, trends")
     i.set_defaults(func=lambda a: brain_insights())
+
+    m = sub.add_parser("model", help="Show the local CPU brain (checkpoint, params, device)")
+    m.set_defaults(func=lambda a: brain_model())
+
+    t = sub.add_parser("train", help="Train the local CPU brain on the collected corpus")
+    t.add_argument("--steps", type=int, default=500, help="training steps (default 500)")
+    t.add_argument("--resume", action="store_true", help="continue from the latest checkpoint")
+    t.set_defaults(func=lambda a: brain_train(a.steps, a.resume))
+
+    sy = sub.add_parser("say", help="One offline thought from the local CPU brain")
+    sy.add_argument("prompt", nargs="+", help="prompt text")
+    sy.add_argument("--tokens", type=int, default=50, help="max new tokens (default 50)")
+    sy.set_defaults(func=lambda a: brain_say(" ".join(a.prompt), a.tokens))
 
     p.set_defaults(func=lambda a: p.print_help())
