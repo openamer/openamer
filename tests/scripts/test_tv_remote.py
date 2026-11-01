@@ -18,7 +18,7 @@ from pathlib import Path
 
 import pytest
 
-SCRIPT = Path(__file__).resolve().parents[2] / "scripts" / "tv_remote.py"
+SCRIPT = Path(__file__).resolve().parents[2] / "openamer_cli" / "tv.py"
 
 
 def _load():
@@ -160,3 +160,25 @@ def test_activity_reports_405_as_failure(tv, capsys):
 def test_parser_exposes_every_documented_subcommand(tv):
     for name in ("discover", "info", "key", "volume", "mute", "open", "activity", "power"):
         assert name in tv.build_parser()._subparsers._group_actions[0].choices
+
+
+def test_script_is_a_shim_over_the_shared_command_surface(tv):
+    """``openamer tv`` attaches the same sub-actions to a plain ``tv`` parser.
+
+    This is what ``openamer_cli/subcommands/tv.py`` does, so the test pins the
+    wiring without importing the (heavy) ``openamer_cli`` package.
+    """
+    import argparse
+
+    root = argparse.ArgumentParser()
+    subs = root.add_subparsers(dest="command")
+    tv_parser = subs.add_parser("tv")
+    tv_parser.add_argument("--host", default=None)
+    tv.add_tv_subcommands(tv_parser)
+
+    args = root.parse_args(["tv", "info"])
+    assert args.command == "tv" and args.cmd == "info"
+    assert callable(args.func)
+
+    args = root.parse_args(["tv", "--host", "10.0.0.5", "key", "home"])
+    assert args.host == "10.0.0.5" and args.key == "home"
