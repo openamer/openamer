@@ -1,0 +1,375 @@
+#!/usr/bin/env python3
+"""Philips TV remote control over the local network.
+
+Two independent transports on the same TV:
+
+  1. JointSpace REST API (port 1925) -- remote keys, volume, apps, text entry,
+     opening a URL in the TV browser, power state.
+  2. UPnP MediaRenderer / DLNA (SSDP + port 2870) -- push photos, audio and
+     video from this machine to the TV.
+
+No pairing is required on models that advertise ``"pairing_type": "none"``
+(e.g. Philips 58PUS6203/12, NetTV 4.6.0.1 / JointSpace 6.1.0).
+
+Usage
+-----
+    python scripts/tv_remote.py discover
+    python scripts/tv_remote.py info
+    python scripts/tv_remote.py key VolumeUp
+    python scripts/tv_remote.py volume 20
+    python scripts/tv_remote.py mute
+    python scripts/tv_remote.py open https://example.com
+    python scripts/tv_remote.py app com.netflix.ninja
+    python scripts/tv_remote.py power on|off|status
+
+The host is cached in ``<OPENAMER_HOME>/tv.json`` after a successful discover,
+so later calls do not have to scan the network again.
+
+Security note: JointSpace has no authentication on these models. Anyone on the
+LAN can control the TV. That is the TV's design, not a choice made here.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import socket
+import sys
+import time
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+DEFAULT_API_PORT = 1925
+SSDP_ADDR = ("239.255.255.250", 1900)
+_STATE = Path(os.environ.get("OPENAMER_HOME", Path.home() / ".openamer")) / "tv.json"
+
+# Keys accepted by POST /6/input/key. Names are Philips' own.
+KEYS = {
+    "power": "Standby", "home": "Home", "back": "Back", "exit": "Exit",
+    "up": "CursorUp", "down": "CursorDown", "left": "CursorLeft", "right": "CursorRight",
+    "ok": "Confirm", "play": "Play", "pause": "Pause", "stop": "Stop",
+    "next": "Next", "prev": "Previous", "rewind": "Rewind", "forward": "Forward",
+    "info": "Info", "options": "Options", "source": "Source",
+    "volup": "VolumeUp", "voldown": "VolumeDown", "mute": "Mute",
+    "chup": "ChannelStepUp", "chdown": "ChannelStepDown",
+    "red": "Red", "green": "Green", "yellow": "Yellow", "blue": "Blue",
+}
+
+
+# --------------------------------------------------------------------------- http
+
+def _request(host: str, path: str, payload: dict | None = None, timeout: float = 6.0):
+    """Call the JointSpace API. Returns (status, parsed-or-raw-body)."""
+    url = f"http://{host}:{DEFAULT_API_PORT}{path}"
+    data = json.dumps(payload).encode() if payload is not None else None
+    req = urllib.request.Request(
+        url, data=data,
+        headers={"Content-Type": "application/json"} if data else {},
+        method="POST" if data else "GET",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            body = r.read().decode("utf-8", "replace")
+            status = r.status
+    except urllib.error.HTTPError as e:
+        return e.code, e.read().decode("utf-8", "replace")
+    except (urllib.error.URLError, socket.timeout, OSError) as e:
+        return 0, f"unreachable: {e}"
+    try:
+        return status, json.loads(body)
+    except json.JSONDecodeError:
+        return status, body.strip()
+
+
+# ------------------------------------------------------------------------- discovery
+
+def _ssdp_locations(wait: float = 4.0) -> list[str]:
+    """Collect LOCATION URLs from SSDP responders."""
+    msg = (
+        "M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\n"
+        'MAN: "ssdp:discover"\r\nMX: 2\r\nST: ssdp:all\r\n\r\n'
+    ).encode()
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.settimeout(1.0)
+    locs: list[str] = []
+    try:
+        s.sendto(msg, SSDP_ADDR)
+    except OSError:
+        return locs
+    deadline = time.time() + wait
+    while time.time() < deadline:
+        try:
+            data, _ = s.recvfrom(2048)
+        except socket.timeout:
+            continue
+        except OSError:
+            break
+        m = re.search(r"(?im)^LOCATION:\s*(\S+)", data.decode("utf-8", "ignore"))
+        if m and m.group(1) not in locs:
+            locs.append(m.group(1).strip())
+    s.close()
+    return locs
+
+
+def _port_open(host: str, port: int, timeout: float = 0.6) -> bool:
+    s = socket.socket()
+    s.settimeout(timeout)
+    try:
+        return s.connect_ex((host, port)) == 0
+    except OSError:
+        return False
+    finally:
+        s.close()
+
+
+def _is_philips(host: str) -> dict | None:
+    if not _port_open(host, DEFAULT_API_PORT):
+        return None
+    status, body = _request(host, "/6/system", timeout=4)
+    if status != 200 or not isinstance(body, dict):
+        return None
+    return {
+        "host": host,
+        "name": body.get("name", "?"),
+        "api": body.get("api_version", {}),
+        "nettv": body.get("nettvversion", "?"),
+        "pairing": body.get("featuring", {}).get("systemfeatures", {}).get("pairing_type", "?"),
+    }
+
+
+def discover(write_cache: bool = True) -> list[dict]:
+    """Find Philips TVs via SSDP, then confirm the JointSpace API answers."""
+    hosts: list[str] = []
+    for loc in _ssdp_locations():
+        m = re.match(r"https?://([^:/]+)", loc)
+        if m and m.group(1) not in hosts:
+            hosts.append(m.group(1))
+
+    # Fallback: touch port 1925 across the /24 that this machine lives in.
+    if not hosts:
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            local = s.getsockname()[0]
+            s.close()
+            prefix = local.rsplit(".", 1)[0]
+        except OSError:
+            prefix = "192.168.1"
+        import concurrent.futures
+        cands = [f"{prefix}.{i}" for i in range(1, 255)]
+        with concurrent.futures.ThreadPoolExecutor(max_workers=80) as ex:
+            for ip, ok in zip(cands, ex.map(lambda h: _port_open(h, DEFAULT_API_PORT, 0.35), cands)):
+                if ok:
+                    hosts.append(ip)
+
+    found = [r for r in (_is_philips(h) for h in hosts) if r]
+    if found and write_cache:
+        try:
+            _STATE.parent.mkdir(parents=True, exist_ok=True)
+            _STATE.write_text(json.dumps(found, indent=2), encoding="utf-8")
+        except OSError:
+            pass
+    return found
+
+
+def resolve_host(explicit: str | None = None) -> str:
+    """Explicit flag -> cached state -> fresh discovery."""
+    if explicit:
+        return explicit
+    if _STATE.exists():
+        try:
+            cached = json.loads(_STATE.read_text(encoding="utf-8"))
+            if cached and _port_open(cached[0]["host"], DEFAULT_API_PORT):
+                return cached[0]["host"]
+        except (OSError, ValueError, KeyError, IndexError):
+            pass
+    found = discover()
+    if not found:
+        raise SystemExit("No Philips TV found. Same network? TV on? Try: discover")
+    return found[0]["host"]
+
+
+# ------------------------------------------------------------------------- actions
+
+def cmd_discover(args) -> int:
+    found = discover()
+    if not found:
+        print("No Philips TV with JointSpace on 1925 found.")
+        return 1
+    for f in found:
+        api = f["api"]
+        print(f"{f['host']:<15} {f['name']:<18} NetTV {f['nettv']:<10} "
+              f"API {api.get('Major')}.{api.get('Minor')}.{api.get('Patch')}  pairing={f['pairing']}")
+    print(f"\ncached in {_STATE}")
+    return 0
+
+
+def cmd_info(args) -> int:
+    h = resolve_host(args.host)
+    status, system = _request(h, "/6/system")
+    if status != 200:
+        print(f"TV unreachable at {h} (status {status}): {system}")
+        return 1
+    _, power = _request(h, "/6/powerstate")
+    _, vol = _request(h, "/6/audio/volume")
+    feats = system.get("featuring", {})
+    print(f"host      {h}")
+    print(f"model     {system.get('name')}")
+    print(f"netTV     {system.get('nettvversion')}   os={feats.get('systemfeatures', {}).get('os_type')}")
+    print(f"pairing   {feats.get('systemfeatures', {}).get('pairing_type')}")
+    print(f"power     {power.get('powerstate') if isinstance(power, dict) else power}")
+    if isinstance(vol, dict):
+        print(f"volume    {vol.get('current')}/{vol.get('max')}  muted={vol.get('muted')}")
+    print(f"keys      {','.join(feats.get('jsonfeatures', {}).get('inputkey', [])) or 'unknown'}")
+    print(f"content   {','.join(feats.get('systemfeatures', {}).get('content', [])) or 'unknown'}")
+    return 0
+
+
+def cmd_key(args) -> int:
+    h = resolve_host(args.host)
+    raw = args.key
+    key = KEYS.get(raw.lower(), raw)
+    status, body = _request(h, "/6/input/key", {"key": key})
+    ok = status == 200
+    print(f"{'OK' if ok else 'FAIL'}  key={key} (http {status})")
+    return 0 if ok else 1
+
+
+def cmd_volume(args) -> int:
+    """Read or set volume.
+
+    Measured on 58PUS6203/12 (NetTV 4.6, JointSpace 6.1): ``POST /6/audio/volume``
+    answers HTTP 200 but does NOT change the level -- the API acknowledges the
+    write and ignores it. Only the VolumeUp/VolumeDown keys actually move it,
+    so a set is done as a key delta from the current value.
+    """
+    h = resolve_host(args.host)
+    status, cur = _request(h, "/6/audio/volume")
+    if args.level is None:
+        print(cur)
+        return 0
+    if not isinstance(cur, dict):
+        print(f"cannot read volume: {cur}")
+        return 1
+    target = int(args.level)
+    target = max(cur.get("min", 0), min(cur.get("max", 60), target))
+    delta = target - cur.get("current", 0)
+    key = "VolumeUp" if delta > 0 else "VolumeDown"
+    for _ in range(abs(delta)):
+        _request(h, "/6/input/key", {"key": key})
+        time.sleep(0.25)
+    # The TV applies keys with a visible lag (measured >1s, ~2s on this model),
+    # so poll for the target instead of sleeping a fixed amount.
+    now = cur.get("current")
+    for _ in range(14):
+        time.sleep(0.5)
+        _, after = _request(h, "/6/audio/volume")
+        if isinstance(after, dict):
+            now = after.get("current")
+            if now == target:
+                break
+    ok = now == target
+    print(f"volume {cur.get('current')} -> {now} (target {target}, {abs(delta)}x {key}) "
+          f"{'OK' if ok else 'MISMATCH'}")
+    return 0 if ok else 1
+
+
+def cmd_mute(args) -> int:
+    """Toggle mute with the Mute key (the JSON write is ignored, as with volume)."""
+    h = resolve_host(args.host)
+    _, vol = _request(h, "/6/audio/volume")
+    want_muted = not args.off
+    already = isinstance(vol, dict) and bool(vol.get("muted")) == want_muted
+    if not already:
+        _request(h, "/6/input/key", {"key": "Mute"})
+        time.sleep(1.0)
+        _, vol = _request(h, "/6/audio/volume")
+    muted = vol.get("muted") if isinstance(vol, dict) else "?"
+    ok = muted == want_muted
+    print(f"muted={muted} (want {want_muted}) {'OK' if ok else 'MISMATCH'}")
+    return 0 if ok else 1
+
+
+def cmd_open(args) -> int:
+    """Open a URL in the TV's built-in browser (a cast for web content)."""
+    h = resolve_host(args.host)
+    payload = {"intent": {
+        "component": {"package": "org.chromium.browser",
+                      "class": "org.chromium.chrome.browser.ChromeTabbedActivity"},
+        "action": "android.intent.action.VIEW",
+        "uri": args.url,
+    }}
+    status, body = _request(h, "/6/activities/launch", payload)
+    print(f"open {args.url} -> http {status}")
+    return 0 if status == 200 else 1
+
+
+def cmd_app(args) -> int:
+    """Launch an installed app by package name."""
+    h = resolve_host(args.host)
+    payload = {"intent": {"component": {"package": args.package}}}
+    status, body = _request(h, "/6/activities/launch", payload)
+    print(f"launch {args.package} -> http {status}")
+    return 0 if status == 200 else 1
+
+
+def cmd_power(args) -> int:
+    h = resolve_host(args.host)
+    if args.state == "status":
+        status, body = _request(h, "/6/powerstate")
+        print(body)
+        return 0
+    key = "Standby" if args.state == "off" else "PowerOn"
+    status, body = _request(h, "/6/input/key", {"key": key})
+    print(f"power {args.state} -> http {status}")
+    return 0 if status == 200 else 1
+
+
+# ----------------------------------------------------------------------------- cli
+
+def build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(description="Control a Philips TV on the local network.")
+    p.add_argument("--host", help="TV IP (default: cached / auto-discover)")
+    sub = p.add_subparsers(dest="cmd", required=True)
+
+    sub.add_parser("discover", help="Find TVs via SSDP").set_defaults(func=cmd_discover)
+    sub.add_parser("info", help="Model, power, volume, capabilities").set_defaults(func=cmd_info)
+
+    k = sub.add_parser("key", help=f"Send a remote key ({', '.join(sorted(KEYS))})")
+    k.add_argument("key")
+    k.set_defaults(func=cmd_key)
+
+    v = sub.add_parser("volume", help="Read or set volume")
+    v.add_argument("level", nargs="?", type=int)
+    v.set_defaults(func=cmd_volume)
+
+    m = sub.add_parser("mute", help="Mute (or --off to unmute)")
+    m.add_argument("--off", action="store_true")
+    m.set_defaults(func=cmd_mute)
+
+    o = sub.add_parser("open", help="Open a URL in the TV browser")
+    o.add_argument("url")
+    o.set_defaults(func=cmd_open)
+
+    a = sub.add_parser("app", help="Launch an app by package name")
+    a.add_argument("package")
+    a.set_defaults(func=cmd_app)
+
+    pw = sub.add_parser("power", help="on | off | status")
+    pw.add_argument("state", choices=["on", "off", "status"])
+    pw.set_defaults(func=cmd_power)
+
+    return p
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    return args.func(args)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
