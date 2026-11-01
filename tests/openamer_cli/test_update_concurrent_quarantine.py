@@ -79,7 +79,15 @@ def _state_our_install_gateways(monkeypatch, pids):
 
     roots = cli_main._update_install_roots()
     our_exe = os.path.join(roots[0], "venv", "Scripts", "python.exe")
-    our_home = os.environ.get("OPENAMER_HOME")
+    # The verdict must match what the code under test resolves. It does NOT read
+    # os.environ["OPENAMER_HOME"]: _ours_install_home takes the install
+    # breadcrumb first, then the shipped layout, and only then the env. Using
+    # the raw env here made the stub claim a home the code never computes —
+    # under the test runner OPENAMER_HOME points at a temp dir, so every stub
+    # PID looked FOREIGN and the pause returned None. Ask the same function.
+    our_home = cli_main._ours_install_home(roots)
+    if not our_home:
+        our_home = os.environ.get("OPENAMER_HOME")
     stub_pids = {int(p) for p in pids}
 
     class _OurProc:

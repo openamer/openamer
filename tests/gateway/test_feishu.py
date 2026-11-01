@@ -21,6 +21,22 @@ try:
 except ImportError:
     _HAS_LARK_OAPI = False
 
+# Import the adapter HERE, at module-import time.
+#
+# aiohttp builds a default SSL context the first time it is imported, and on
+# Windows that needs SYSTEMROOT / SSL_CERT_* to find the certificate store.
+# Several tests in this module run inside `@patch.dict(os.environ, {}, clear=True)`
+# and import the adapter from within the test body — so on a cold start the
+# import happened with the environment emptied and died with
+# `ssl.SSLError: [SSL] unknown error`. It only passed when another test had
+# already pulled aiohttp into sys.modules, which made the whole file
+# order-dependent (measured 2026-11-01: 5 failures in one run, 0 in another
+# with the same code). Importing here removes the dependence on ordering.
+try:
+    import plugins.platforms.feishu.adapter  # noqa: F401  (see note above)
+except Exception:  # pragma: no cover - optional dependency
+    pass
+
 
 class _FakeRequestContent:
     def __init__(self, body: bytes):

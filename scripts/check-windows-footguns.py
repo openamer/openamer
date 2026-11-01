@@ -619,13 +619,14 @@ def scan_file(path: Path, footguns: list[Footgun]) -> list[tuple[int, str, Footg
     except OSError:
         return []
     matches: list[tuple[int, str, Footgun]] = []
+    lines = text.splitlines()
 
     # Track whether we're inside a triple-quoted string (docstring/raw block).
     # Simple state machine — handles both ''' and """, toggled by the FIRST
     # triple-quote we see; we don't try to handle nested or f-string cases.
     in_triple: str | None = None  # None, "'''", or '"""'
 
-    for i, line in enumerate(text.splitlines(), start=1):
+    for i, line in enumerate(lines, start=1):
         # Update triple-quote state based on this line's occurrences.
         code_for_scan = line
         if in_triple:
@@ -680,7 +681,25 @@ def scan_file(path: Path, footguns: list[Footgun]) -> list[tuple[int, str, Footg
                 continue
             if fg.post_filter is not None:
                 try:
-                    if not fg.post_filter(match, line):
+                    # A call can continue on the following lines, and the
+                    # kwarg a filter looks for often sits there — e.g.
+                    #     subprocess.run(cmd, text=True,
+                    #                    encoding="utf-8")
+                    # The scanner is line-based, so join until the brackets
+                    # balance and let the filter judge the whole call. Without
+                    # this a correct multi-line call was reported as a
+                    # violation (measured 2026-11-01 on
+                    # scripts/training/rsi_nightly.py, which passes encoding=
+                    # on line 2 of the call).
+                    logical = code
+                    depth = code.count("(") - code.count(")")
+                    j = i
+                    while depth > 0 and j < len(lines) and j - i < 8:
+                        nxt = lines[j]
+                        logical += " " + nxt
+                        depth += nxt.count("(") - nxt.count(")")
+                        j += 1
+                    if not fg.post_filter(match, logical):
                         continue
                 except (IndexError, AttributeError):
                     # Post-filter assumed a named group that isn't there — skip.

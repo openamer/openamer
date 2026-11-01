@@ -1166,6 +1166,14 @@ def check_feishu_requirements() -> bool:
 
 def _tenant_get_request(uri: str, *, queries: Optional[List[tuple[str, str]]] = None) -> Any:
     """Raw ``BaseRequest`` GET with the tenant access token (bot/v3 endpoints have no typed SDK request)."""
+    if BaseRequest is None or HttpMethod is None:
+        # The SDK names are bound lazily — lark_oapi is slow to import, so
+        # _load_lark_oapi() normally runs on connect. A caller that reaches the
+        # raw GET first (a startup sweep resolving bot names, or a test) used to
+        # die on "'NoneType' object has no attribute 'builder'". Load on demand.
+        if not _load_lark_oapi() or BaseRequest is None or HttpMethod is None:
+            raise RuntimeError(
+                "lark_oapi is not installed or incomplete; cannot build a raw Feishu request")
     builder = BaseRequest.builder().http_method(HttpMethod.GET).uri(uri)
     if queries is not None:
         builder = builder.queries(queries)

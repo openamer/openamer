@@ -10143,8 +10143,12 @@ class SessionDB:
         with self._lock:
             try:
                 rows = self._conn.execute(
+                    # rowid breaks the tie: two bindings created inside the same
+                    # second share updated_at, and without it SQLite is free to
+                    # return either order (measured 2026-11-01: the same test
+                    # produced ['111','222'] and ['222','111'] on different runs).
                     "SELECT * FROM telegram_dm_topic_bindings "
-                    "WHERE chat_id = ? ORDER BY updated_at DESC",
+                    "WHERE chat_id = ? ORDER BY updated_at DESC, rowid DESC",
                     (str(chat_id),),
                 ).fetchall()
             except sqlite3.OperationalError:
