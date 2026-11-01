@@ -43,6 +43,10 @@ import urllib.request
 from pathlib import Path
 
 DEFAULT_API_PORT = 1925
+# The OpenAmer Browser: a TV-first web app with an address bar. It understands
+# ?u=<encoded url> and navigates there itself, which is how OpenAmer drives the
+# TV browser with a single API call.
+BROWSER_APP = "https://openamer.com/browser.html"
 # The DIAL launch endpoint (POST /apps/<name>) answers on 56789; the DIAL
 # device description (dd.xml) is served on 56790. Both are tried.
 DIAL_PORTS = (56789, 56790)
@@ -372,6 +376,31 @@ def _dial_launch(host: str, app: str) -> tuple[int, int | None]:
     return last, None
 
 
+def cmd_browse(args) -> int:
+    """Open the OpenAmer Browser on the TV, optionally with a page already loaded.
+
+    The browser page accepts ``?u=<encoded url>`` and navigates there itself, so
+    one API call both starts the shell and loads the destination. Only http(s)
+    is accepted; a bare host becomes https.
+    """
+    h = resolve_host(args.host)
+    target = BROWSER_APP
+    if args.url:
+        url = args.url.strip()
+        if not re.match(r"^https?://", url, re.IGNORECASE):
+            url = "https://" + url
+        target = f"{BROWSER_APP}?u={urllib.parse.quote(url, safe='')}"
+    status, _ = _request(
+        h, "/6/activities/browser",
+        {"intent": {"action": "android.intent.action.VIEW", "uri": target}},
+    )
+    ok = status == 200
+    print(f"browser -> {target}  (http {status})")
+    if not ok:
+        print("  (die browser-Activity antwortet nicht mit 200 — siehe MISMATCH-Hinweis)")
+    return 0 if ok else 1
+
+
 def cmd_app(args) -> int:
     """Start an installed app (DIAL). 201 = started, 404 = not installed."""
     h = resolve_host(args.host)
@@ -445,6 +474,10 @@ def add_tv_subcommands(p: argparse.ArgumentParser) -> None:
     o = sub.add_parser("open", help="Open a URL in the TV browser")
     o.add_argument("url")
     o.set_defaults(func=cmd_open)
+
+    br = sub.add_parser("browse", help="Open the OpenAmer Browser on the TV")
+    br.add_argument("url", nargs="?", help="page to load immediately")
+    br.set_defaults(func=cmd_browse)
 
     a = sub.add_parser("activity", help="Start a TV activity (only tv|browser exist)")
     a.add_argument("name", choices=["tv", "browser"])
