@@ -142,6 +142,33 @@ def _owner_stamp() -> tuple[int, Optional[int]]:
         return pid, None
 
 
+def _pid_exists(pid: int) -> bool:
+    """Platform-neutral liveness probe.
+
+    ``os.kill(pid, 0)`` is a POSIX idiom. On Windows it raises WinError 87
+    ("wrong parameter") instead of answering the question, and any wrapper that
+    swallows that error — the test suite's live-system guard does, deliberately —
+    makes a DEAD pid look alive. That is not a test artefact: it means the startup
+    sweep never claims an orphaned obligation and the user's unanswered message is
+    never redelivered. psutil answers it on both platforms.
+    """
+    try:
+        import psutil
+
+        return bool(psutil.pid_exists(int(pid)))
+    except ImportError:
+        pass
+    try:
+        os.kill(pid, 0)  # windows-footgun: ok — guarded fallback only when psutil is absent
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    except OSError:
+        return False
+    return True
+
+
 def _owner_alive(pid: Any, started_at: Any) -> bool:
     """True when the recorded owning process still exists (pid + start time)."""
     if not pid:
@@ -157,17 +184,7 @@ def _owner_alive(pid: Any, started_at: Any) -> bool:
     except Exception:
         current_start = None
     if current_start is None:
-        # No such process (or unreadable) — treat unreadable-but-extant
-        # processes as alive only if the pid exists.
-        try:
-            os.kill(pid, 0)  # windows-footgun: ok — EPERM counts as alive below
-        except ProcessLookupError:
-            return False
-        except PermissionError:
-            return True
-        except OSError:
-            return False
-        return True
+        return _pid_exists(pid)
     if started_at is None:
         return True
     try:

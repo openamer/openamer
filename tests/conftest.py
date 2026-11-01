@@ -21,6 +21,7 @@ test runner at ``scripts/run_tests.sh``.
 
 import asyncio
 import os
+import pathlib as _pathlib
 import sqlite3
 import tempfile
 import warnings
@@ -203,6 +204,17 @@ _OPENAMER_BEHAVIORAL_VARS = frozenset({
     "OPENAMER_EXEC_ASK",
     "OPENAMER_HOME_MODE",
     "OPENAMER_AGENT_USE_LEGACY_SESSION_KEYS",
+    # Routing switch, not a secret: `mount_spa` takes a different branch when this
+    # is "1". Inherited from a gateway/cron parent it silently turns the SPA off and
+    # four web-server tests assert against the headless JSON 404 instead of index.html.
+    # Measured 2026-10-31: 5 failing -> 1 with only this variable cleared.
+    "OPENAMER_SERVE_HEADLESS",
+    # Same class: the desktop app spawns its backend with these set, and a suite
+    # started from that shell then exercises the DESKTOP branch instead of the one
+    # under test (`cmd_dashboard` skips the machine-routing block when
+    # OPENAMER_DESKTOP=1, and serves the packaged app.asar dist via WEB_DIST).
+    "OPENAMER_DESKTOP",
+    "OPENAMER_WEB_DIST",
     # Kanban path/board pins must never leak from a developer shell or
     # dispatched worker into tests; otherwise tests can write fake tasks to
     # the real ~/.openamer/kanban.db instead of the per-test OPENAMER_HOME.
@@ -379,6 +391,42 @@ def _hermetic_environment(tmp_path, monkeypatch):
     (fake_openamer_home / "memories").mkdir()
     (fake_openamer_home / "skills").mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(fake_openamer_home))
+
+    # 3b. Make ``HOME`` mean home on Windows too.
+    #
+    # ``pathlib.Path.home()`` reads USERPROFILE there and ignores HOME, so every
+    # test that redirects HOME (101 call sites measured 2026-10-31) silently kept
+    # writing to the real user profile: a Honcho save landed in
+    # C:\Users\<user>\.honcho\config.json instead of the test's tmp dir, and the
+    # assertion then compared two different files. Only active when HOME is set to
+    # something other than the platform home, so unredirected tests are unaffected.
+    _real_home = _pathlib.Path.home()
+    _real_expanduser = os.path.expanduser
+
+    def _home_and_expanduser_guards() -> None:
+        def _redirected() -> str | None:
+            value = os.environ.get("HOME")
+            if value and _pathlib.Path(value) != _real_home:
+                return value
+            return None
+
+        def _home(cls=_pathlib.Path):            # noqa: ANN001 - classmethod shim
+            override = _redirected()
+            return _pathlib.Path(override) if override else _real_home
+
+        def _expanduser(path):
+            if isinstance(path, bytes):
+                return _real_expanduser(path)
+            override = _redirected()
+            if override and (path == "~" or path.startswith("~/") or path.startswith("~\\")):
+                rest = path[2:].lstrip("/\\") if len(path) > 1 else ""
+                return str(_pathlib.Path(override) / rest) if rest else override
+            return _real_expanduser(path)
+
+        monkeypatch.setattr(_pathlib.Path, "home", classmethod(_home))
+        monkeypatch.setattr(os.path, "expanduser", _expanduser)
+
+    _home_and_expanduser_guards()
 
     # 4. Deterministic locale / timezone / hashseed. CI runs in UTC with
     #    C.UTF-8 locale; local dev often doesn't. Pin everything.

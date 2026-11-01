@@ -7,6 +7,7 @@ launching profile preselected. `--isolated` opts out.
 """
 import sys
 import types
+from pathlib import Path
 import pytest
 
 
@@ -14,6 +15,21 @@ import pytest
 def main_mod():
     import openamer_cli.main as main_mod
     return main_mod
+
+
+def _free_port() -> int:
+    """A port nothing listens on.
+
+    The production path probes the real socket as well as the mocked helper, so a
+    developer running `openamer dashboard` on the default 9119 made the re-exec
+    tests attach instead of re-exec (measured 2026-10-31: len(execs) == 0). The
+    subject here is the routing decision, not the default port constant.
+    """
+    import socket
+
+    with socket.socket() as sock:
+        sock.bind(("127.0.0.1", 0))
+        return sock.getsockname()[1]
 
 
 def _args(**kw):
@@ -68,7 +84,14 @@ class TestUnifiedDashboardRouting:
             execs.append((exe, argv, env))
             raise SystemExit(0)  # execvpe never returns
 
+        def fake_popen(argv, env=None, **_kw):
+            # Windows deliberately re-execs through Popen (execvpe crashes under
+            # 3.14 there), so the launch has to be captured on both paths.
+            execs.append((sys.executable, argv, env))
+            return types.SimpleNamespace(wait=lambda: 0)
+
         monkeypatch.setattr(main_mod.os, "execvpe", fake_exec)
+        monkeypatch.setattr(main_mod.subprocess, "Popen", fake_popen)
 
         with pytest.raises(SystemExit):
             main_mod.cmd_dashboard(_args())
@@ -109,7 +132,12 @@ class TestUnifiedDashboardRouting:
             execs.append((exe, argv, env))
             raise SystemExit(0)
 
+        def fake_popen(argv, env=None, **_kw):
+            execs.append((sys.executable, argv, env))
+            return types.SimpleNamespace(wait=lambda: 0)
+
         monkeypatch.setattr(main_mod.os, "execvpe", fake_exec)
+        monkeypatch.setattr(main_mod.subprocess, "Popen", fake_popen)
 
         with pytest.raises(SystemExit):
             main_mod.cmd_dashboard(_args())
@@ -119,7 +147,10 @@ class TestUnifiedDashboardRouting:
         # get_default_openamer_root() strips the trailing profiles/<name>, so the
         # child binds /opt/data — where the real default/oracle/saga profiles
         # and the .install_method stamp actually live.
-        assert env.get("OPENAMER_HOME") == "/opt/data"
+        # Path equality, not spelling: on Windows str(Path("/opt/data")) is
+        # "\opt\data", so a raw string compare measures the host's path flavour
+        # instead of the pinning that is under test.
+        assert Path(env.get("OPENAMER_HOME", "")) == Path("/opt/data")
 
     def test_desktop_profile_backend_skips_machine_dashboard_reroute(self, main_mod, monkeypatch):
         """A desktop-spawned named-profile backend (OPENAMER_DESKTOP=1) must NOT

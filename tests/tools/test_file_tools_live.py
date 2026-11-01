@@ -24,6 +24,30 @@ from tools.environments.local import LocalEnvironment
 from tools.file_operations import ShellFileOperations
 
 
+def _sh(path) -> str:
+    """Path as the SHELL needs it: Git Bash wants /c/Users/x, not C:\\Users\\x.
+
+    Interpolating a native Windows path into a bash command lets bash eat the
+    backslashes (``cat: 'C:Usersdamir...': No such file or directory``) — the
+    test was measuring its own quoting, not the tool.
+    """
+    from tools.environments.local import _bash_safe_path
+
+    return _bash_safe_path(str(path))
+
+
+def _win(path_text: str) -> str:
+    """Normalize a shell-reported path (``/c/Users/x``) for comparison.
+
+    ``pwd`` and ``echo $HOME`` print MSYS form inside Git Bash on Windows. Both
+    spellings name the same directory; comparing the raw strings compares two
+    shells' conventions, not the behaviour under test.
+    """
+    from tools.environments.local import _msys_to_windows_path
+
+    return os.path.normcase(os.path.abspath(_msys_to_windows_path(str(path_text).strip())))
+
+
 # ── Shared noise detection ───────────────────────────────────────────────
 # Known shell noise patterns that should never appear in command output.
 
@@ -113,7 +137,7 @@ class TestLocalEnvironmentExecute:
         subdir.mkdir()
         result = env.execute("pwd", cwd=str(subdir))
         assert result["returncode"] == 0
-        assert result["output"].strip() == str(subdir)
+        assert _win(result["output"]) == _win(subdir)
         _assert_clean(result["output"])
 
     def test_multiline_exact(self, env):
@@ -125,8 +149,7 @@ class TestLocalEnvironmentExecute:
     def test_env_var_home(self, env):
         result = env.execute("echo $HOME")
         assert result["returncode"] == 0
-        home = result["output"].strip()
-        assert home == str(Path.home())
+        assert _win(result["output"]) == _win(Path.home())
         _assert_clean(result["output"])
 
     def test_pipe_exact(self, env):
@@ -137,8 +160,8 @@ class TestLocalEnvironmentExecute:
 
     def test_cat_deterministic_content(self, env, tmp_path):
         f = tmp_path / "det.txt"
-        f.write_text(SIMPLE_CONTENT)
-        result = env.execute(f"cat {f}")
+        f.write_text(SIMPLE_CONTENT, newline="\n")
+        result = env.execute(f"cat {_sh(f)}")
         assert result["returncode"] == 0
         assert result["output"] == SIMPLE_CONTENT
         _assert_clean(result["output"])
@@ -175,7 +198,7 @@ class TestHasCommand:
 class TestReadFile:
     def test_exact_content(self, ops, tmp_path):
         f = tmp_path / "exact.txt"
-        f.write_text(SIMPLE_CONTENT)
+        f.write_text(SIMPLE_CONTENT, newline="\n")
         result = ops.read_file(str(f))
         assert result.error is None
         # Content has line numbers prepended, check the actual text is there
@@ -210,7 +233,7 @@ class TestReadFile:
 
     def test_pagination_exact_window(self, ops, tmp_path):
         f = tmp_path / "numbered.txt"
-        f.write_text(NUMBERED_CONTENT)
+        f.write_text(NUMBERED_CONTENT, newline="\n")
         result = ops.read_file(str(f), offset=10, limit=5)
         assert result.error is None
         assert "LINE_0010" in result.content
@@ -409,15 +432,15 @@ class TestTerminalOutputCleanliness:
 
     def test_cat(self, env, tmp_path):
         f = tmp_path / "cat_test.txt"
-        f.write_text("CAT_CONTENT_EXACT\n")
-        result = env.execute(f"cat {f}")
+        f.write_text("CAT_CONTENT_EXACT\n", newline="\n")
+        result = env.execute(f"cat {_sh(f)}")
         assert result["output"] == "CAT_CONTENT_EXACT\n"
         _assert_clean(result["output"])
 
     def test_ls(self, env, tmp_path):
         (tmp_path / "file_a.txt").write_text("")
         (tmp_path / "file_b.txt").write_text("")
-        result = env.execute(f"ls {tmp_path}")
+        result = env.execute(f"ls {_sh(tmp_path)}")
         _assert_clean(result["output"])
         assert "file_a.txt" in result["output"]
         assert "file_b.txt" in result["output"]
@@ -425,21 +448,21 @@ class TestTerminalOutputCleanliness:
     def test_wc(self, env, tmp_path):
         f = tmp_path / "wc_test.txt"
         f.write_text("one\ntwo\nthree\n")
-        result = env.execute(f"wc -l < {f}")
+        result = env.execute(f"wc -l < {_sh(f)}")
         assert result["output"].strip() == "3"
         _assert_clean(result["output"])
 
     def test_head(self, env, tmp_path):
         f = tmp_path / "head_test.txt"
-        f.write_text(NUMBERED_CONTENT)
-        result = env.execute(f"head -n 3 {f}")
+        f.write_text(NUMBERED_CONTENT, newline="\n")
+        result = env.execute(f"head -n 3 {_sh(f)}")
         expected = "LINE_0001\nLINE_0002\nLINE_0003\n"
         assert result["output"] == expected
         _assert_clean(result["output"])
 
     def test_env_var_expansion(self, env):
         result = env.execute("echo $HOME")
-        assert result["output"].strip() == str(Path.home())
+        assert _win(result["output"]) == _win(Path.home())
         _assert_clean(result["output"])
 
     def test_command_substitution(self, env):

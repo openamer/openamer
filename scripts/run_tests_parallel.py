@@ -222,7 +222,15 @@ def _split_path_list(raw: str) -> list[str]:
 # files that finish in ~100s on a quiet box. The Docker build matrix jobs
 # take 7-10 min anyway, so this headroom costs nothing on total CI wall
 # time while keeping a genuinely hung file bounded.
-_DEFAULT_FILE_TIMEOUT_SECONDS = 300.0
+
+
+# Measured 2026-10-31 on the reference Windows host: the canonical suite's slowest
+# files (tests/openamer_cli/test_doctor.py 291 s, test_cmd_update.py 148 s after its
+# WSL-only cases were skipped) sit right at the old 300 s edge, and seven files were
+# reported as "no verdict" — not failures, just slower than the cap. A cap that
+# reports healthy files as unmeasured is worse than a generous one: the verdict is
+# what the nightly watchdog acts on.
+_DEFAULT_FILE_TIMEOUT_SECONDS = 600.0
 
 # One-shot retry of failing test FILES. A file that exits non-zero is re-run
 # once in a fresh subprocess; if the re-run passes, the file counts as passed

@@ -80,6 +80,23 @@ def validate_predictions():
 
     conf = load_json(CONFIDENCE_FILE, {"validated": 0, "correct": 0,
                                        "wrong": 0, "adjustment": 1.0})
+
+    # A consequence the store itself uses as a stock phrase is not a claim.
+    # Measured 2026-10-31: 161 of 243 predictions "matched" only because their
+    # effect text is the literal "Needs investigation and root-cause fix",
+    # which hundreds of facts also carry as their effect.  Matching that string
+    # says nothing about the world — the predictor and the store share one
+    # template, so the template confirms itself.  A prediction whose
+    # consequence is a stock phrase is recorded as UNMEASURABLE, never as a win.
+    from collections import Counter as _Counter
+    _effect_counts = _Counter((f.get("effect") or "").strip().lower() for f in facts)
+    _template_cutoff = max(5, len(facts) // 50)
+
+    def _is_stock_phrase(cons):
+        # Only frequency decides.  A short but specific consequence ("writes
+        # fail") is a real claim; the test suite pins that.
+        return not cons or _effect_counts.get(cons, 0) >= _template_cutoff
+
     # Only score a given prediction once across the whole history — otherwise
     # the same edge is re-"validated" every run and inflates the track record.
     scored = load_json(SCORED_FILE, {})
@@ -136,19 +153,39 @@ def validate_predictions():
                 break
             # fallback to substring when semantic search finds nothing
             if not matched:
+                # The CONSEQUENCE must show up — not the antecedent.  Until
+                # 2026-10-31 this compared `ftext[:80] in predicted_text`, so a
+                # later fact starting with the same trigger ("System error:
+                # disk full ...") counted as proof that the predicted outcome
+                # happened.  Measured: 6 of the 19 "correct" scores were exactly
+                # that — the trigger confirming itself, one layer above the
+                # embedding bug this function already fixed in September.
+                cons = re.sub(r"^\s*expect:\s*", "",
+                              (pred.get("effect") or "").strip().lower())
+                ant = (pred.get("cause") or "").strip().lower()
                 for f in facts:
                     if (f.get("ts") or "") <= pred_ts:
                         continue        # only subsequent evidence counts
-                    ftext = f.get("cause", "") + " " + f.get("effect", "")
-                    if ftext.lower()[:80] in predicted_text or predicted_text[:40] in ftext.lower():
+                    ftext = (f.get("cause", "") + " " + f.get("effect", "")).lower()
+                    # a fact that merely repeats the trigger is not evidence
+                    if ant and (ant[:80] in ftext or ftext[:80] in ant):
+                        continue
+                    if not cons or len(cons) < 12:
+                        continue        # unmeasurable consequence -> stay unverified
+                    if cons[:60] in ftext or ftext[:60] in cons:
                         matched = True
                         break
         except Exception:
             for f in facts:
                 if (f.get("ts") or "") <= pred_ts:
                     continue
-                ftext = f.get("cause", "") + " " + f.get("effect", "")
-                if ftext.lower()[:80] in predicted_text or predicted_text[:40] in ftext.lower():
+                cons = re.sub(r"^\s*expect:\s*", "",
+                              (pred.get("effect") or "").strip().lower())
+                ant = (pred.get("cause") or "").strip().lower()
+                ftext = (f.get("cause", "") + " " + f.get("effect", "")).lower()
+                if ant and (ant[:80] in ftext or ftext[:80] in ant):
+                    continue
+                if cons and len(cons) >= 12 and (cons[:60] in ftext or ftext[:60] in cons):
                     matched = True
                     break
 
@@ -166,10 +203,27 @@ def validate_predictions():
 
         # score: did the prediction hold?  unverified is a real outcome —
         # never counted as a win, and never counted as "validation".
+        cons_text = re.sub(r"^\s*expect:\s*", "",
+                           (pred.get("effect") or "").strip().lower())
+        if _is_stock_phrase(cons_text):
+            # Unfalsifiable by construction.  Not a validation, not a win.
+            outcome = "unmeasurable"
+            conf["unmeasurable"] = conf.get("unmeasurable", 0) + 1
+            scored[key] = outcome
+            results.append({"predicted": predicted_text[:80], "outcome": outcome})
+            continue
+
         outcome = "correct" if matched else "unverified"
         conf["validated"] += 1
         if matched:
             conf["correct"] += 1
+        else:
+            # "wrong" means VALIDATED BUT NEVER CORROBORATED.  The legacy
+            # template format cannot be contradicted — its consequence is not
+            # an observable claim — so there is no separate "contradicted"
+            # signal to count.  Reported this way, the number is auditable:
+            # correct + wrong == validated, and unmeasurable sits outside both.
+            conf["wrong"] = conf.get("wrong", 0) + 1
         scored[key] = outcome
 
         # adjust future confidence based on track record

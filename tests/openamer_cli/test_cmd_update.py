@@ -1,6 +1,7 @@
 """Tests for cmd_update — branch fallback when remote branch doesn't exist."""
 
 import hashlib
+import os
 import subprocess
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -447,6 +448,12 @@ class TestCmdUpdateBranchFallback:
         captured = capsys.readouterr()
         assert "Already up to date!" in captured.out
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason="Asserts POSIX npm command lines (/usr/bin/npm) and the WSL guard; "
+               "on Windows the update runs npm from the resolved node runtime, which "
+               "is covered by TestNodeRuntimeNpmResolution.",
+    )
     @patch("shutil.which")
     @patch("subprocess.run")
     def test_update_refreshes_repo_and_tui_node_dependencies(
@@ -1089,6 +1096,12 @@ class TestNodeRuntimeNpmResolution:
 
         assert hm._is_windows_npm_path(path) is False
 
+    @pytest.mark.skipif(
+        os.name == "nt",
+        reason="WSL interop scenario: a Windows npm behind /mnt/c does not exist on a "
+               "native Windows host. The Windows-side rule is covered by the "
+               "_is_windows_npm_path tests above.",
+    )
     def test_resolve_rejects_windows_npm_and_rescans_path(self, monkeypatch):
         """On WSL/Linux, a Windows npm is refused and PATH is re-scanned
         (skipping /mnt mounts) for a Linux-native npm."""
