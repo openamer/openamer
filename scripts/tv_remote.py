@@ -295,26 +295,34 @@ def cmd_mute(args) -> int:
 
 
 def cmd_open(args) -> int:
-    """Open a URL in the TV's built-in browser (a cast for web content)."""
+    """Open a URL in the TV's built-in browser.
+
+    The endpoint is ``POST /6/activities/<activity>``, NOT ``.../launch``.
+    Measured on 58PUS6203/12: ``/6/activities/launch`` answers 405 Method Not
+    Allowed for every method, while ``/6/activities/browser`` answers 200.
+    """
     h = resolve_host(args.host)
-    payload = {"intent": {
-        "component": {"package": "org.chromium.browser",
-                      "class": "org.chromium.chrome.browser.ChromeTabbedActivity"},
-        "action": "android.intent.action.VIEW",
-        "uri": args.url,
-    }}
-    status, body = _request(h, "/6/activities/launch", payload)
-    print(f"open {args.url} -> http {status}")
-    return 0 if status == 200 else 1
+    payload = {"intent": {"action": "android.intent.action.VIEW", "uri": args.url}}
+    status, body = _request(h, "/6/activities/browser", payload)
+    ok = status == 200
+    print(f"open {args.url} -> http {status}{'' if ok else ' (expected 200)'}")
+    return 0 if ok else 1
 
 
-def cmd_app(args) -> int:
-    """Launch an installed app by package name."""
+def cmd_activity(args) -> int:
+    """Start one of the activities the TV actually advertises.
+
+    Measured set on this model: ``tv`` and ``browser`` answer 200; any other
+    name answers 405, i.e. the TV publishes no app launcher and no app
+    inventory over JointSpace at all.
+    """
     h = resolve_host(args.host)
-    payload = {"intent": {"component": {"package": args.package}}}
-    status, body = _request(h, "/6/activities/launch", payload)
-    print(f"launch {args.package} -> http {status}")
-    return 0 if status == 200 else 1
+    status, body = _request(h, f"/6/activities/{args.name}",
+                            {"intent": {"action": "android.intent.action.MAIN"}})
+    ok = status == 200
+    print(f"activity {args.name} -> http {status}"
+          f"{'' if ok else ' (only tv|browser answer 200 on this model)'}")
+    return 0 if ok else 1
 
 
 def cmd_power(args) -> int:
@@ -355,9 +363,9 @@ def build_parser() -> argparse.ArgumentParser:
     o.add_argument("url")
     o.set_defaults(func=cmd_open)
 
-    a = sub.add_parser("app", help="Launch an app by package name")
-    a.add_argument("package")
-    a.set_defaults(func=cmd_app)
+    a = sub.add_parser("activity", help="Start a TV activity (only tv|browser exist)")
+    a.add_argument("name", choices=["tv", "browser"])
+    a.set_defaults(func=cmd_activity)
 
     pw = sub.add_parser("power", help="on | off | status")
     pw.add_argument("state", choices=["on", "off", "status"])

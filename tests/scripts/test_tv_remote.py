@@ -44,9 +44,12 @@ class FakeDevice:
         self.level = level
         self.keys_work = keys_work
         self.calls: list[tuple[str, dict | None]] = []
+        self.status_override: dict[str, int] = {}
 
     def __call__(self, host, path, payload=None, timeout=6.0):
         self.calls.append((path, payload))
+        if path in self.status_override:
+            return self.status_override[path], "override"
         if path == "/6/audio/volume" and payload is None:
             return 200, {"current": self.level, "min": 0, "max": 60, "muted": False}
         if path == "/6/audio/volume":
@@ -135,6 +138,25 @@ def test_stale_cache_falls_back_to_discovery(monkeypatch, tmp_path):
     assert mod.resolve_host() == "10.0.0.77"
 
 
+def test_open_posts_to_the_activity_route_not_launch(tv, capsys):
+    """Measured: /6/activities/launch answers 405; only /6/activities/<name> works."""
+    dev = FakeDevice()
+    tv._request = dev
+    assert tv.main(["open", "https://example.com"]) == 0
+    path, body = dev.calls[-1]
+    assert path == "/6/activities/browser"
+    assert body["intent"]["uri"] == "https://example.com"
+
+
+def test_activity_reports_405_as_failure(tv, capsys):
+    """The TV answers 405 for any activity it does not advertise."""
+    dev = FakeDevice()
+    dev.status_override = {"/6/activities/tv": 405}
+    tv._request = dev
+    assert tv.main(["activity", "tv"]) == 1
+    assert "405" in capsys.readouterr().out
+
+
 def test_parser_exposes_every_documented_subcommand(tv):
-    for name in ("discover", "info", "key", "volume", "mute", "open", "app", "power"):
+    for name in ("discover", "info", "key", "volume", "mute", "open", "activity", "power"):
         assert name in tv.build_parser()._subparsers._group_actions[0].choices
