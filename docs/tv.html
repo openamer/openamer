@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>OpenAmer TV</title>
+<meta name="description" content="OpenAmer auf dem Fernseher — akademie, Skills, Beratung, Projekt. Bedienbar mit der TV-Fernbedienung.">
+<meta name="theme-color" content="#05070d">
+<style>
+  :root{
+    --bg:#05070d; --panel:#0c1424; --panel2:#111c31; --line:#1b2a45;
+    --ink:#eaf1ff; --muted:#8fa3c4; --brand:#0088ff; --brand2:#7c3aed;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden}
+  body{
+    background:
+      radial-gradient(70% 55% at 50% -10%, rgba(0,136,255,.22), transparent 70%),
+      radial-gradient(45% 40% at 100% 110%, rgba(124,58,237,.18), transparent 70%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Inter','Segoe UI',Arial,Helvetica,sans-serif;
+    display:flex; flex-direction:column;
+    padding:3.2vh 4vw;
+  }
+
+  /* ---------- top bar ---------- */
+  header{display:flex;align-items:center;gap:1.4vw;flex:0 0 auto}
+  .helix{width:4.4vh;height:4.4vh;flex:0 0 auto}
+  .wordmark{font-size:3.2vh;font-weight:800;letter-spacing:-.02em}
+  .wordmark span{background:linear-gradient(90deg,var(--brand),var(--brand2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{font-size:1.7vh;color:var(--muted);margin-left:.8vw;letter-spacing:.14em;text-transform:uppercase}
+  .clock{margin-left:auto;text-align:right;line-height:1.15}
+  .clock .t{font-size:3.4vh;font-weight:700;font-variant-numeric:tabular-nums}
+  .clock .d{font-size:1.6vh;color:var(--muted)}
+
+  /* ---------- hero ---------- */
+  .hero{flex:0 0 auto;margin:4.5vh 0 3.2vh}
+  .hero h1{font-size:6.2vh;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+  .hero h1 span{background:linear-gradient(90deg,var(--brand),var(--brand2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{margin-top:1.4vh;font-size:2.1vh;color:var(--muted);max-width:70vw}
+
+  /* ---------- tiles ---------- */
+  .grid{
+    flex:1 1 auto;display:grid;gap:1.8vh 1.4vw;
+    grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);
+    min-height:0;
+  }
+  .tile{
+    position:relative;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:2.6vh 2vw;border-radius:1.6vh;
+    background:linear-gradient(160deg,var(--panel2),var(--panel));
+    border:2px solid var(--line);
+    transition:transform .14s ease,border-color .14s ease,box-shadow .14s ease;
+    cursor:pointer;overflow:hidden;
+  }
+  .tile::after{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:radial-gradient(90% 70% at 50% 0%,rgba(0,136,255,.16),transparent 65%);
+    opacity:0;transition:opacity .14s ease;
+  }
+  .tile .ico{font-size:4vh;line-height:1;margin-bottom:1.2vh;filter:saturate(1.1)}
+  .tile .name{font-size:2.9vh;font-weight:700;letter-spacing:-.01em}
+  .tile .desc{font-size:1.7vh;color:var(--muted);margin-top:.7vh;line-height:1.35}
+  .tile:focus,.tile.focused{
+    outline:none;transform:scale(1.035);
+    border-color:var(--brand);
+    box-shadow:0 0 0 .5vh rgba(0,136,255,.35),0 2vh 5vh rgba(0,136,255,.22);
+  }
+  .tile:focus::after,.tile.focused::after{opacity:1}
+
+  /* ---------- footer ---------- */
+  footer{flex:0 0 auto;display:flex;align-items:center;gap:1.6vw;margin-top:2.6vh;
+    font-size:1.6vh;color:var(--muted)}
+  kbd{
+    display:inline-block;padding:.35vh .7vw;border-radius:.6vh;
+    border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    font-family:inherit;font-size:1.5vh;font-weight:600;
+  }
+  .hint{display:flex;align-items:center;gap:.5vw}
+  footer .url{margin-left:auto;font-weight:600;color:var(--brand)}
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="helix" viewBox="0 0 48 48" aria-hidden="true">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0088ff"/><stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient></defs>
+    <g fill="none" stroke="url(#g)" stroke-width="2.4" stroke-linecap="round">
+      <path d="M14 4c14 8 14 32 0 40"/><path d="M34 4c-14 8-14 32 0 40"/>
+      <path d="M17 14h14M17 24h14M17 34h14"/>
+    </g>
+  </svg>
+  <div>
+    <div class="wordmark">Open<span>Amer</span></div>
+  </div>
+  <div class="tagline">Agent · Open Source</div>
+  <div class="clock"><div class="t" id="clock">--:--</div><div class="d" id="date"></div></div>
+</header>
+
+<section class="hero">
+  <h1>Was möchtest du <span>starten</span>?</h1>
+  <p>Steuere mit der Fernbedienung: Pfeiltasten zum Wählen, OK zum Öffnen.</p>
+</section>
+
+<main class="grid" id="grid">
+  <a class="tile" href="academy.html" data-i="1">
+    <div class="ico">🎓</div>
+    <div class="name">Akademie</div>
+    <div class="desc">Kurse und Anleitungen für den Agenten</div>
+  </a>
+  <a class="tile" href="skills-store.html" data-i="2">
+    <div class="ico">🧩</div>
+    <div class="name">Skills Store</div>
+    <div class="desc">Fertige Fähigkeiten für deinen Agenten</div>
+  </a>
+  <a class="tile" href="consulting.html" data-i="3">
+    <div class="ico">🤝</div>
+    <div class="name">Beratung</div>
+    <div class="desc">Direkt mit dem Entwickler arbeiten</div>
+  </a>
+  <a class="tile" href="superiority.html" data-i="4">
+    <div class="ico">📊</div>
+    <div class="name">Vergleich</div>
+    <div class="desc">Messwerte statt Behauptungen</div>
+  </a>
+  <a class="tile" href="index.html" data-i="5">
+    <div class="ico">🏠</div>
+    <div class="name">Startseite</div>
+    <div class="desc">Was OpenAmer ist und kann</div>
+  </a>
+  <a class="tile" href="https://github.com/openamer/openamer" data-i="6">
+    <div class="ico">💻</div>
+    <div class="name">Quellcode</div>
+    <div class="desc">GitHub — offen und nachprüfbar</div>
+  </a>
+</main>
+
+<footer>
+  <div class="hint"><kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> wählen</div>
+  <div class="hint"><kbd>OK</kbd> öffnen</div>
+  <div class="hint"><kbd>BACK</kbd> zurück</div>
+  <div class="url">openamer.com</div>
+</footer>
+
+<script>
+(function () {
+  var tiles = Array.prototype.slice.call(document.querySelectorAll('.tile'));
+  var COLS = 3;
+  var idx = 0;
+
+  function focusTile(i) {
+    idx = (i + tiles.length) % tiles.length;
+    tiles.forEach(function (t) { t.classList.remove('focused'); });
+    tiles[idx].classList.add('focused');
+    if (tiles[idx].scrollIntoView) {
+      tiles[idx].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
+  }
+
+  document.addEventListener('keydown', function (e) {
+    var k = e.key;
+    if (k === 'ArrowRight') { focusTile(idx + 1); e.preventDefault(); }
+    else if (k === 'ArrowLeft') { focusTile(idx - 1); e.preventDefault(); }
+    else if (k === 'ArrowDown') { focusTile(idx + COLS); e.preventDefault(); }
+    else if (k === 'ArrowUp') { focusTile(idx - COLS); e.preventDefault(); }
+    else if (k === 'Enter' || k === ' ') {
+      e.preventDefault();
+      var href = tiles[idx].getAttribute('href');
+      if (href) { window.location.href = href; }
+    }
+    else if (k === 'Backspace') { e.preventDefault(); history.back(); }
+    else if (/^[1-6]$/.test(k)) { tiles[Number(k) - 1].click(); }
+  });
+
+  tiles.forEach(function (t, i) {
+    t.addEventListener('mouseenter', function () { focusTile(i); });
+    t.addEventListener('click', function () {
+      var href = t.getAttribute('href');
+      if (href) { window.location.href = href; }
+    });
+  });
+
+  function tick() {
+    var now = new Date();
+    var hh = String(now.getHours()).padStart(2, '0');
+    var mm = String(now.getMinutes()).padStart(2, '0');
+    document.getElementById('clock').textContent = hh + ':' + mm;
+    var days = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+    document.getElementById('date').textContent =
+      days[now.getDay()] + ', ' + now.getDate() + '.' + (now.getMonth() + 1) + '.' + now.getFullYear();
+  }
+
+  tick();
+  setInterval(tick, 15000);
+  focusTile(0);
+})();
+</script>
+</body>
+</html>
