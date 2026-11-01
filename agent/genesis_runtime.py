@@ -31,6 +31,7 @@ tick by itself.
 
 from __future__ import annotations
 
+import fnmatch
 import importlib.util
 import json
 import logging
@@ -43,6 +44,14 @@ from typing import Callable, Dict, List, Optional
 logger = logging.getLogger(__name__)
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+
+# Generated or vendored bulk that no probe asks about. Pruned by `_count_files`.
+_SKIP_DIRS = frozenset({
+    ".git", ".hg", ".svn", "node_modules", "__pycache__", ".pytest_cache",
+    ".venv", "venv", ".mypy_cache", ".ruff_cache", "dist", "build",
+    "models", "memory", "sessions", "cache", "backups", "state-snapshots",
+    "chrome-profile", "chrome-agent-profile", "chrome-profile-2", "tmp",
+})
 
 SATISFIED = "satisfied"
 PARTIAL = "partial"
@@ -115,13 +124,25 @@ def _first_importable(candidates: List[str]) -> Optional[str]:
 
 
 def _count_files(root: Path, pattern: str, limit: int = 5000) -> int:
+    """Count files matching ``pattern`` under ``root``, never entering bulk dirs.
+
+    Same one-level-down discipline as ``_probe_checkpoints``: the answer these
+    probes want is "how many source files exist", so descending into generated
+    trees only costs time. ``rglob`` over ``REPO_ROOT`` reached ``.git``,
+    ``node_modules``, the venv and the 270 MB memory tree and pushed
+    ``measure()`` to 7-30 s per call -- on the gateway's own boot tick
+    (measured 2026-11-01).
+    """
     if not root.is_dir():
         return 0
     count = 0
-    for _ in root.rglob(pattern):
-        count += 1
-        if count >= limit:
-            break
+    for _dirpath, dirnames, filenames in os.walk(root, topdown=True):
+        dirnames[:] = [d for d in dirnames if d not in _SKIP_DIRS]
+        for name in filenames:
+            if fnmatch.fnmatch(name, pattern):
+                count += 1
+                if count >= limit:
+                    return count
     return count
 
 
