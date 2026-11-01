@@ -24,6 +24,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 DEFAULT_MAX_MSG_CHARS = 1200
+DEFAULT_MAX_DEEP_CHARS = 8000  # full-read records: a page, not a chat turn
 DEFAULT_MIN_MSG_CHARS = 1  # keep "Ja." — only drop messages that are empty after strip
 
 
@@ -109,6 +110,7 @@ def curate_message_stream(
     drop_roles: tuple[str, ...] = ("tool",),
     dedupe: bool = True,
     keep_roles: tuple[str, ...] | None = None,
+    max_deep_chars: int = DEFAULT_MAX_DEEP_CHARS,
 ) -> tuple[str, CurationStats]:
     """Build training text from the raw brain sources.
 
@@ -145,11 +147,42 @@ def curate_message_stream(
                 stats.records_read += 1
                 msgs = obj.get("messages") if isinstance(obj, dict) else None
                 if not msgs:
-                    # {"u","a"} / {"text"} shaped records: single block
-                    for key in ("u", "a", "text", "content", "prompt"):
-                        val = obj.get(key) if isinstance(obj, dict) else None
+                    # {"u","a"} / {"text"} shaped records. A deep-read record is
+                    # a whole page, so it gets its own (larger) cap — otherwise
+                    # the curation that protects chat turns from tool dumps would
+                    # cut a 42k-char article back to 800 chars.
+                    is_deep = bool(obj.get("deep")) if isinstance(obj, dict) else False
+                    cap = max_deep_chars if is_deep else max_msg_chars
+                    u = obj.get("u") if isinstance(obj, dict) else None
+                    a = obj.get("a") if isinstance(obj, dict) else None
+                    if isinstance(u, str) and isinstance(a, str) and (u.strip() or a.strip()):
+                        pair = f"<|user|> {u.strip()}\n<|assistant|> {a.strip()}"
+                        stats.messages_seen += 1
+                        stats.chars_seen += len(pair)
+                        key = _dedupe_key("deep" if is_deep else "pair", pair)
+                        if dedupe and key in seen:
+                            stats.dropped_duplicate += 1
+                            stats.chars_dropped_duplicate += len(pair)
+                        elif len(pair.strip()) < min_msg_chars:
+                            stats.dropped_empty += 1
+                        else:
+                            if dedupe:
+                                seen.add(key)
+                            text, cut = _truncate(pair, cap)
+                            if cut:
+                                stats.truncated += 1
+                                stats.chars_truncated += max(0, len(pair) - len(text))
+                            out.append(text)
+                            stats.messages_kept += 1
+                            stats.chars_kept += len(text)
+                            stats.by_role["deep" if is_deep else "pair"] = (
+                                stats.by_role.get("deep" if is_deep else "pair", 0) + 1
+                            )
+                        continue
+                    for key_name in ("text", "content", "prompt"):
+                        val = obj.get(key_name) if isinstance(obj, dict) else None
                         if isinstance(val, str) and val.strip():
-                            text, _ = _truncate(val.strip(), max_msg_chars)
+                            text, _ = _truncate(val.strip(), cap)
                             stats.messages_seen += 1
                             stats.chars_seen += len(val)
                             stats.chars_truncated += max(0, len(val) - len(text))
@@ -201,6 +234,7 @@ def default_sources(home: Path, data_dir: Path | None = None) -> list[Path]:
     """The corpus locations the trainer reads, in priority order."""
     srcs = [
         home / "a2a" / "openamer-brain.jsonl",
+        home / "scripts" / "training" / "online_buffer_deep.jsonl",
         home / "scripts" / "training" / "sft_openamer.jsonl",
         home / "scripts" / "training" / "online_buffer.jsonl",
     ]

@@ -501,6 +501,39 @@ def brain_train(steps: int, resume: bool) -> int:
     return proc.wait()
 
 
+def brain_read(url: str, as_json: bool = False, save: bool = False,
+               show_text: bool = False) -> int:
+    """Read one source completely: full text, structure, checks, code tests."""
+    import json as _json
+
+    try:
+        from openamer_cli.deep_read import read_url, summarize, to_training_record
+    except ImportError as exc:
+        print(f"✗ deep reader unavailable: {exc}")
+        return 1
+
+    result = read_url(url)
+    if as_json:
+        print(_json.dumps(result.as_dict(), indent=2, ensure_ascii=False))
+    else:
+        print(summarize(result))
+        if result.title:
+            print(f"\nTitle      : {result.title}")
+        if show_text or result.verdict != "ok":
+            print("\n--- full text ---")
+            print(result.text)
+
+    if save:
+        store = _home() / "a2a" / "openamer-brain.jsonl"
+        store.parent.mkdir(parents=True, exist_ok=True)
+        rec = to_training_record(result)
+        with open(store, "a", encoding="utf-8", newline="\n") as f:
+            f.write(_json.dumps(rec, ensure_ascii=False) + "\n")
+        print(f"\n[stored] {len(rec['a']):,} chars -> {store}")
+
+    return 0 if result.verdict in ("ok", "thin") else 1
+
+
 # ── Parser builder ─────────────────────────────────────────────────────────
 
 def build_brain_parser(subparsers) -> None:
@@ -540,5 +573,12 @@ def build_brain_parser(subparsers) -> None:
     sy.add_argument("prompt", nargs="+", help="prompt text")
     sy.add_argument("--tokens", type=int, default=50, help="max new tokens (default 50)")
     sy.set_defaults(func=lambda a: brain_say(" ".join(a.prompt), a.tokens))
+
+    rd = sub.add_parser("read", help="Read a source completely (full text, checks, code tests)")
+    rd.add_argument("url", help="http(s) URL, including PDFs")
+    rd.add_argument("--json", action="store_true", dest="as_json", help="machine-readable output")
+    rd.add_argument("--save", action="store_true", help="store the full text in the brain corpus")
+    rd.add_argument("--show-text", action="store_true", help="print the full extracted text")
+    rd.set_defaults(func=lambda a: brain_read(a.url, a.as_json, a.save, a.show_text))
 
     p.set_defaults(func=lambda a: p.print_help())

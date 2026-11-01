@@ -5427,15 +5427,181 @@ def _decode_bing_url(redirect):
         return ""
 
 
-def _fetch_page(url, max_chars=6000):
-    """Fetch and strip a real web page to plain text (deep reading, not titles)."""
+def _fetch_page(url, max_chars=0):
+    """Fetch and FULLY read a real web page (deep reading, not titles).
+
+    Previously this stripped tags with a regex and cut at 6000 chars, which is
+    where insights like "Unsere Werbepartner Einkaufen Ferienwohnungen" came
+    from: page chrome that survived the strip. Now it uses the deep reader
+    (boilerplate removal, main-content isolation, structure, PDF support) and
+    only falls back to the old stripper if that import is unavailable.
+
+    max_chars=0 means "no cap" — the whole page, not a 6 KB window.
+    """
+    try:
+        from openamer_cli.deep_read import read_url
+
+        result = read_url(url)
+        if result.verdict in ("ok", "thin", "paywall") and result.text:
+            text = result.text
+            return text[:max_chars] if max_chars else text
+    except Exception:
+        pass  # fall through to the legacy stripper
     try:
         req = urllib.request.Request(url, headers={
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
         html = urllib.request.urlopen(req, timeout=20).read().decode("utf-8", "replace")
-        return _strip_html(html)[:max_chars]
+        text = _strip_html(html)
+        return text[:max_chars] if max_chars else text
     except Exception:
         return ""
+
+
+def _read_page_deep(url):
+    """Return the full ReadResult for a URL (metadata, checks, code tests)."""
+    try:
+        from openamer_cli.deep_read import read_url
+
+        return read_url(url)
+    except Exception:
+        return None
+
+
+# Full-content learning records live apart from online_buffer.jsonl on purpose:
+# the insight path deliberately caps at 300 chars (`_clean_insight(insight, 300)`)
+# and its junk gates are tuned for one-sentence snippets. A whole page must not
+# be judged — or truncated — by that machinery.
+DEEP_BUFFER = os.path.join(T, "online_buffer_deep.jsonl")
+
+# Hard-news / crime / trauma copy is not agent knowledge. The deep reader's SERP
+# occasionally returns a breaking-news story for an unrelated query, and a full
+# 40 KB article is far worse to ingest than a snippet.
+#
+# NOTE (2026-11-01): a newer runtime copy of this file carried a richer
+# `_is_trauma_news` plus 12 sibling gates; that copy was overwritten by an
+# older repo copy during a sync. This is a conservative re-implementation from
+# the patterns recovered out of the compiled bytecode: a news-desk name alone
+# never rejects a page (Reuters writes about GPUs too), it must come with
+# violence vocabulary, and the explicit violence phrases reject on their own.
+_TRAUMA_DESK_RE = re.compile(
+    r"\b(bs news|breaking news|the associated press|reuters|ap news)\b", re.IGNORECASE)
+_TRAUMA_HEADLINE_RE = re.compile(
+    r"\b\w+\s+(news|24/7)\b.{0,40}"
+    r"(shooter|shooting|killed|dead|stabbed|hostage|bomb|murder|attack)", re.IGNORECASE)
+_TRAUMA_EXPLICIT_RE = re.compile(
+    r"\b(school shooter|mass shooting|gunman|casualties|wounded|"
+    r"police said.{0,20}(shot|fired|rounds))\b", re.IGNORECASE)
+
+
+def _is_trauma_news(text):
+    """True when a candidate is hard-news / crime / trauma copy.
+
+    Keyed on the news-desk headline shape, never a bare keyword: prose that
+    merely mentions a shooting is untouched.
+    """
+    if not text:
+        return False
+    t = text[:4000]
+    if _TRAUMA_EXPLICIT_RE.search(t):
+        return True
+    if _TRAUMA_HEADLINE_RE.search(t):
+        return True
+    return bool(_TRAUMA_DESK_RE.search(t) and
+                re.search(r"\b(killed|dead|shooting|shooter|attack|hostage|"
+                          r"bomb|murder|wounded|casualties)\b", t, re.IGNORECASE))
+
+
+def _store_full_record(rec, path=None):
+    """Append one full-content learning record, unfiltered by the snippet gates."""
+    target = path or DEEP_BUFFER
+    try:
+        with open(target, "a", encoding="utf-8", newline="\n") as f:
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+        return True
+    except Exception:
+        return False
+
+
+_AGENT_TERMS = re.compile(
+    r"\b(model|models|agent|agents|llms?|language models?|tokens?|training|inference|"
+    r"latency|throughput|benchmarks?|datasets?|embeddings?|attention|transformers?|"
+    r"fine-?tun\w*|quantiz\w*|distill\w*|prompts?|context window|weights?|layers?|"
+    r"gpus?|cpus?|optimizers?|gradients?|loss|accuracy|architecture|framework|"
+    r"api|sdk|python|javascript|typescript|rust|golang|docker|kubernetes|"
+    r"pipeline|retrieval|rag|reasoning|evaluation|scaling|sparse|moe|"
+    r"state space|mamba|rlhf|lora|peft|vllm|pytorch|tensorflow|cuda|git|"
+    r"function|class|module|package|repository|compiler|debug\w*|refactor\w*|"
+    r"modell\w*|inferenz|trainings?\w*|agenten\w*|sprachmodell\w*|schnittstelle\w*)\b",
+    re.IGNORECASE,
+)
+
+
+def _technical_signal_count(text: str) -> int:
+    """How many distinct agent/engineering terms a page carries.
+
+    A general-news portal can clear every structural gate (long text, headings,
+    no paywall) and still be worthless for an agent brain — measured
+    2026-11-01: a t-online news page landed in the deep buffer for an asyncio
+    query. Requiring several DISTINCT technical terms keeps docs, papers and
+    repos and rejects news/magazines.
+    """
+    return len({m.group(0).lower() for m in _AGENT_TERMS.finditer(text[:20000])})
+
+
+def deep_learn_full(query, k=2, max_chars=200_000, min_chars=800, write=True, urls=None,
+                    min_tech_terms=3):
+    """Read the top sources COMPLETELY and keep the whole content.
+
+    This is the difference between visiting a page and reading it. The insight
+    path stores one ~250-char sentence per cycle; this stores the entire text
+    plus metadata, structure, quantitative claims and code-syntax results, so
+    later training and reasoning has the content instead of a tail of it.
+
+    Pass ``urls=[...]`` to skip search entirely — useful when the search
+    engines are rate-limiting or when a specific source should be read.
+
+    Returns the list of records it built (also written to DEEP_BUFFER).
+    """
+    if urls is None:
+        urls = _search_urls(query, k=k) or []
+    records = []
+    for url in urls:
+        result = _read_page_deep(url)
+        if result is None or not result.text:
+            continue
+        if result.verdict not in ("ok", "thin"):
+            continue  # paywall / error / thin: not worth a record
+        text = result.text[:max_chars]
+        if len(text) < min_chars:
+            continue
+        if _is_trauma_news(f"{result.title} {text[:2000]}"):
+            continue  # hard news is not agent knowledge — never stored
+        tech = _technical_signal_count(f"{result.title} {text}")
+        if tech < min_tech_terms:
+            continue  # news/magazine page, not agent knowledge
+        rec = {
+            "u": f"Read and analyse: {result.title or url}",
+            "a": text,
+            "source": result.final_url or url,
+            "title": result.title,
+            "byline": result.byline,
+            "published": result.published,
+            "chars": len(text),
+            "html_text_chars": result.html_text_chars,
+            "pdf_chars": result.pdf_chars,
+            "headings": [h[1] for h in result.headings][:60],
+            "code_blocks": len(result.code_blocks),
+            "code_ok": f"{sum(1 for c in result.code_checks if c.ok)}/{len(result.code_checks)}",
+            "claims": result.numbers[:12],
+            "verdict": result.verdict,
+            "engine": "deep-read",
+            "deep": True,
+            "query": query,
+        }
+        records.append(rec)
+        if write:
+            _store_full_record(rec)
+    return records
 
 
 # A candidate sentence must carry technical signal, otherwise the extractor is
@@ -5795,14 +5961,105 @@ def _http_search_urls(q, k=3):
     return out[:k]
 
 
+def _search_urls_html(query, k=3):
+    """Deterministic HTTP search — no browser, no DOM guessing.
+
+    DuckDuckGo's HTML endpoint returns real result links wrapped in
+    `//duckduckgo.com/l/?uddg=<urlencoded target>`. Measured 2026-11-01: the
+    asyncio query returned docs.python.org/asyncio-task.html, superfastpython
+    and geeksforgeeks — the correct pages. The old CDP-Bing path returned
+    German care-insurance pages for the same query, which is why cycles
+    "learned" unrelated content.
+    """
+    import urllib.parse
+
+    import requests
+    from lxml import html as lxml_html
+
+    ua = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+          "(KHTML, like Gecko) Chrome/125.0 Safari/537.36")
+    out: list[str] = []
+
+    def _unwrap(href: str) -> str:
+        if not href:
+            return ""
+        if href.startswith("//"):
+            href = "https:" + href
+        if "uddg=" in href:
+            raw = urllib.parse.urlparse(href).query
+            target = urllib.parse.parse_qs(raw).get("uddg", [""])[0]
+            return urllib.parse.unquote(target) if target else ""
+        return href
+
+    # 1) DuckDuckGo HTML
+    try:
+        resp = requests.get("https://html.duckduckgo.com/html/",
+                            params={"q": query}, timeout=20,
+                            headers={"User-Agent": ua, "Accept-Language": "en,de;q=0.8"})
+        doc = lxml_html.fromstring(resp.content)
+        for anchor in doc.xpath('//a[contains(@class,"result__a")]'):
+            url = _unwrap(anchor.get("href") or "")
+            if url.startswith("http") and "duckduckgo.com" not in urllib.parse.urlparse(url).netloc:
+                if url not in out:
+                    out.append(url)
+            if len(out) >= k:
+                return out
+    except Exception:
+        pass
+
+    # 2) Bing HTML, following its ck/a redirect once to learn the target.
+    # Without a cookie/session Bing mixes portal links (msn.com/de-de) into
+    # b_algo, so every candidate must also mention a query term — otherwise a
+    # "search" silently returns the portal instead of an answer.
+    if len(out) < k:
+        terms = [t for t in re.split(r"\W+", query.lower()) if len(t) > 3]
+        blocked_hosts = ("bing.com", "microsoft.com", "msn.com", "go.microsoft.com",
+                         "duckduckgo.com")
+        try:
+            resp = requests.get("https://www.bing.com/search", params={"q": query},
+                                timeout=20, headers={"User-Agent": ua,
+                                                     "Accept-Language": "en,de;q=0.8"})
+            doc = lxml_html.fromstring(resp.content)
+            for anchor in doc.xpath('//li[contains(@class,"b_algo")]//h2/a')[: k * 3]:
+                href = anchor.get("href") or ""
+                if not href.startswith("http"):
+                    continue
+                if "bing.com/ck/a" in href:
+                    try:
+                        href = requests.get(href, timeout=10, headers={"User-Agent": ua},
+                                            allow_redirects=True).url
+                    except Exception:
+                        continue
+                host = urllib.parse.urlparse(href).netloc
+                if not host or any(b in host for b in blocked_hosts):
+                    continue
+                label = (anchor.text_content() + " " + href).lower()
+                if terms and not any(t in label for t in terms):
+                    continue  # portal link, not an answer to this query
+                if href not in out:
+                    out.append(href)
+                if len(out) >= k:
+                    break
+        except Exception:
+            pass
+    return out
+
+
 def _search_urls(query, k=3):
     """Return real result URLs for a query.
 
-    PRIMARY: via the CDP browser (:9222, real Chrome session) — Bing serves
-    anonymous crawlers regional garbage (Chinese CSDN for a LoRA query),
-    while the browser session gets relevant results.
-    FALLBACK: direct HTTP with ck/a redirect decode.
+    PRIMARY (2026-11-01): deterministic HTTP search (_search_urls_html). It is
+    testable, needs no browser session and returns the page that answers the
+    query.
+    FALLBACK: the old CDP browser path (Bing in a real Chrome session).
     """
+    urls = _search_urls_html(query, k=k)
+    if urls:
+        return urls
+    return _search_urls_browser(query, k=k)
+
+
+def _search_urls_browser(query, k=3):
     try:
         import html as _html
         q = urllib.parse.quote(query)
@@ -5890,6 +6147,24 @@ def deep_learn(query, k=2):
             texts.append(t)
     if not texts:
         return ""
+    # The insight below is ONE sentence (~250 chars). The page itself is thrown
+    # away. Keep the full content of the richest source so later training and
+    # reasoning has the text instead of a tail of it — measured 2026-11-01: the
+    # buffer held a median of 154 chars per "learning".
+    try:
+        best_i = max(range(len(texts)), key=lambda i: len(texts[i]))
+        if len(texts[best_i]) >= 800:
+            _store_full_record({
+                "u": f"Read and analyse: {query}",
+                "a": texts[best_i],
+                "source": urls[best_i] if len(urls) == len(texts) else "",
+                "chars": len(texts[best_i]),
+                "query": query,
+                "engine": "deep-learn-fulltext",
+                "deep": True,
+            })
+    except Exception:
+        pass
     combined = " ".join(_fair_share_window(texts, 4000))[:4000]
     # PRIMARY: deterministic extraction — first meaningful sentence of the page.
     # Reliable, no model dependency. The 2B model (Qwen3.5 thinking family)
