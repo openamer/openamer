@@ -1,21 +1,21 @@
 # Darwin Engine Report
-_2026-11-01T10:46:19.494598+00:00 — evolutionary skill ecosystem_
+_2026-11-01T16:55:56.410951+00:00 — evolutionary skill ecosystem_
 
-**Population:** 1233 Skills | **Offspring:** 5 | **Competitions:** 33
+**Population:** 1239 Skills | **Offspring:** 5 | **Competitions:** 33
 
 ## Top 10 (fittest skills)
 
 | Skill | Fitness | Usage | Age (days) | Mutationen W/L |
 |---|---|---|---|---|
-| autonomous-learning-architecture | 2744.0 | 646 | 0 | 1158/234 |
-| darwin-cron-guard | 2640.0 | 280 | 0 | 1186/26 |
-| darwin-harvested-training-internet-learn-log-jsonl | 2621.0 | 274 | 0 | 1177/21 |
-| asi-capability-summary | 1075.77 | 1064 | 37 | 0/0 |
+| autonomous-learning-architecture | 2778.0 | 646 | 0 | 1187/258 |
+| darwin-cron-guard | 2698.0 | 280 | 0 | 1215/26 |
+| darwin-harvested-training-internet-learn-log-jsonl | 2679.0 | 274 | 0 | 1206/21 |
+| asi-capability-summary | 1075.73 | 1064 | 38 | 0/0 |
 | a2a-brain-meshlearn-verify | 1068.33 | 1056 | 20 | 0/0 |
-| auto-env-checker | 508.77 | 555 | 37 | 15/88 |
+| auto-env-checker | 508.73 | 555 | 38 | 15/88 |
 | learning-loop | 460.63 | 450 | 71 | 0/0 |
-| cdp-social-posting | 390.4 | 375 | 18 | 0/0 |
-| mini-openamer | 169.43 | 157 | 17 | 0/0 |
+| cdp-social-posting | 390.37 | 375 | 19 | 0/0 |
+| mini-openamer | 169.4 | 157 | 18 | 0/0 |
 | train-from-usage | 158.63 | 150 | 41 | 0/4 |
 
 ## Bottom 5 (selection candidates)
@@ -24,7 +24,7 @@ _2026-11-01T10:46:19.494598+00:00 — evolutionary skill ecosystem_
 - **tao-train-optical-inspection** (Fitness 7.27, 22 days old)
 - **web-artifacts-builder** (Fitness 7.27, 22 days old)
 - **xlsx** (Fitness 7.27, 22 days old)
-- **cron-autotest-run-cron-entry** (Fitness 6.63, 41 days old)
+- **cron-autotest-run-cron-entry** (Fitness 6.6, 42 days old)
 
 ## New mutations
 
@@ -40,21 +40,21 @@ _2026-11-01T10:46:19.494598+00:00 — evolutionary skill ecosystem_
 - ⏳ `a2a-brain-meshlearn-verify__mutbroaden_trigger` (1068.33) vs `a2a-brain-meshlearn-verify` (1068.33)
 - ⏳ `a2a-brain-meshlearn-verify__muttighten_trigger` (1068.33) vs `a2a-brain-meshlearn-verify` (1068.33)
 - ⏳ `asi-capability-summary+asi-identity` (0) vs `None` (0)
-- ⏳ `asi-capability-summary__mutbroaden_trigger` (1075.77) vs `asi-capability-summary` (1075.77)
-- ⏳ `asi-capability-summary__muttighten_trigger` (1075.77) vs `asi-capability-summary` (1075.77)
+- ⏳ `asi-capability-summary__mutbroaden_trigger` (1075.73) vs `asi-capability-summary` (1075.73)
+- ⏳ `asi-capability-summary__muttighten_trigger` (1075.73) vs `asi-capability-summary` (1075.73)
 - ⏳ `asi-identity+auto-env-checker` (0) vs `None` (0)
 - ⏳ `auto-env-checker+autonomous-learning-architecture` (0) vs `None` (0)
 - ⏳ `auto-env-checker+cdp-social-posting` (0) vs `None` (0)
-- ⏳ `auto-env-checker__mutbroaden_trigger` (508.77) vs `auto-env-checker` (508.77)
-- ⏳ `auto-env-checker__muttighten_trigger` (508.77) vs `auto-env-checker` (508.77)
-- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (2744.0) vs `autonomous-learning-architecture` (2744.0)
-- ⏳ `autonomous-learning-architecture__muttighten_trigger` (2744.0) vs `autonomous-learning-architecture` (2744.0)
-- ⏳ `cdp-social-posting__mutbroaden_trigger` (390.4) vs `cdp-social-posting` (390.4)
-- ⏳ `cdp-social-posting__muttighten_trigger` (390.4) vs `cdp-social-posting` (390.4)
-- ⏳ `darwin-cron-guard__mutbroaden_trigger` (2640.0) vs `darwin-cron-guard` (2640.0)
-- ⏳ `darwin-cron-guard__muttighten_trigger` (2640.0) vs `darwin-cron-guard` (2640.0)
-- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger` (2621.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (2621.0)
-- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__muttighten_trigger` (2621.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (2621.0)
+- ⏳ `auto-env-checker__mutbroaden_trigger` (508.73) vs `auto-env-checker` (508.73)
+- ⏳ `auto-env-checker__muttighten_trigger` (508.73) vs `auto-env-checker` (508.73)
+- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (2778.0) vs `autonomous-learning-architecture` (2778.0)
+- ⏳ `autonomous-learning-architecture__muttighten_trigger` (2778.0) vs `autonomous-learning-architecture` (2778.0)
+- ⏳ `cdp-social-posting__mutbroaden_trigger` (390.37) vs `cdp-social-posting` (390.37)
+- ⏳ `cdp-social-posting__muttighten_trigger` (390.37) vs `cdp-social-posting` (390.37)
+- ⏳ `darwin-cron-guard__mutbroaden_trigger` (2698.0) vs `darwin-cron-guard` (2698.0)
+- ⏳ `darwin-cron-guard__muttighten_trigger` (2698.0) vs `darwin-cron-guard` (2698.0)
+- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger` (2679.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (2679.0)
+- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__muttighten_trigger` (2679.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (2679.0)
 - ⏳ `discord-server-management__mutadd_verification_step` (32.5) vs `discord-server-management` (32.5)
 - ⏳ `discord-server-management__mutbroaden_trigger` (32.5) vs `discord-server-management` (32.5)
 - ⏳ `discord-server-management__muttighten_trigger` (32.5) vs `discord-server-management` (32.5)
