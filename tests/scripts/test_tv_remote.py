@@ -198,8 +198,35 @@ def test_apps_lists_only_the_installed_ones(tv, capsys, monkeypatch):
     assert "Spotify" not in out
 
 
+def test_browse_wraps_the_target_in_the_browser_app(tv):
+    """'browse <host>' must hand the URL to the shell as an encoded ?u= value."""
+    dev = FakeDevice()
+    tv._request = dev
+    assert tv.main(["browse", "github.com"]) == 0
+    path, body = dev.calls[-1]
+    assert path == "/6/activities/browser"
+    uri = body["intent"]["uri"]
+    assert uri.startswith(tv.BROWSER_APP + "?u=")
+    assert "https%3A%2F%2Fgithub.com" in uri, uri
+
+
+def test_browse_without_url_opens_the_shell_only(tv):
+    dev = FakeDevice()
+    tv._request = dev
+    assert tv.main(["browse"]) == 0
+    assert dev.calls[-1][1]["intent"]["uri"] == tv.BROWSER_APP
+
+
+def test_browse_keeps_an_explicit_scheme(tv):
+    dev = FakeDevice()
+    tv._request = dev
+    tv.main(["browse", "http://example.com/x"])
+    uri = dev.calls[-1][1]["intent"]["uri"]
+    assert "http%3A%2F%2Fexample.com%2Fx" in uri, uri
+
+
 def test_parser_exposes_every_documented_subcommand(tv):
-    for name in ("discover", "info", "key", "volume", "mute", "open",
+    for name in ("discover", "info", "key", "volume", "mute", "open", "browse",
                  "activity", "app", "apps", "power"):
         assert name in tv.build_parser()._subparsers._group_actions[0].choices
 
