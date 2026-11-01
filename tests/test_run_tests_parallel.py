@@ -216,12 +216,19 @@ def _run_runner(probe_dir: Path, *extra: str) -> subprocess.CompletedProcess:
     runner = repo_root / "scripts" / "run_tests_parallel.py"
     return subprocess.run(
         [sys.executable, str(runner), "--paths", str(probe_dir),
-         "-j", "1", "--file-timeout", "30", *extra],
+         # The probe test finishes in well under a second; this only has to be
+         # larger than a cold runner startup. 30 s was tight enough that a full
+         # suite run (14 workers + dozens of child pytest processes) starved the
+         # startup and three flag tests reported "30s exceeded, SIGKILL'd"
+         # instead of testing flag passing (measured 2026-11-01: green alone,
+         # red inside the full suite). The dedicated timeout-semantics test
+         # below keeps its own tight budget.
+         "-j", "1", "--file-timeout", "120", *extra],
         cwd=repo_root,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True, encoding="utf-8", errors="replace",
-        timeout=60,
+        timeout=180,
     )
 
 
