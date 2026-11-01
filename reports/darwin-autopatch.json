@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-10-30T18:15:21",
+  "timestamp": "2026-10-31T18:20:07",
   "mode": "apply",
-  "population": 1223,
-  "avg_score": 38.6,
+  "population": 1229,
+  "avg_score": 38.7,
   "kept": [
     {
       "skill": "auto-internet-learning-metas-new",
@@ -54,7 +54,7 @@
       "fixes": []
     },
     {
-      "skill": "auto-best-practice-from-official",
+      "skill": "auto-competitor-intelligence-contractmd-the",
       "before": 25,
       "after": 28,
       "delta": 3,
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-autogpt-improvem",
+      "skill": "auto-competitor-intelligence-crush-glamourous",
       "before": 25,
       "after": 28,
       "delta": 3,
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-claudepowered-ai",
+      "skill": "auto-competitor-intelligence-devin-ai",
       "before": 25,
       "after": 28,
       "delta": 3,
