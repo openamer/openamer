@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
-from lxml import html as lxml_html
+import pytest
+
+pytest.importorskip("lxml", reason="deep reader needs the optional [read] extra")
+
+from lxml import html as lxml_html  # noqa: E402
 
 from openamer_cli.deep_read import (
     MIN_USEFUL_CHARS,

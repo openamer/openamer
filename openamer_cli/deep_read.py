@@ -32,6 +32,7 @@ from typing import Iterable
 from urllib.parse import urljoin, urlparse
 
 MIN_USEFUL_CHARS = 800
+INSTALL_HINT = "pip install -e .[read]   (or: pip install lxml pypdf)"
 BOILERPLATE_TAGS = (
     "script", "style", "noscript", "nav", "header", "footer", "aside",
     "form", "iframe", "svg", "button", "select", "template",
@@ -422,13 +423,40 @@ def read_pdf(source: bytes | str, max_pages: int = 80) -> tuple[str, int, str]:
         return "", 0, f"pdf read failed: {exc}"
 
 
+def available() -> tuple[bool, str]:
+    """Whether the reader can run, plus what is missing if it cannot.
+
+    lxml is an optional extra (`.[read]`), so the reader must degrade with an
+    explicit install line instead of an ImportError traceback.
+    """
+    missing = []
+    for mod in ("lxml", "requests"):
+        try:
+            __import__(mod)
+        except ImportError:
+            missing.append(mod)
+    if missing:
+        return False, f"missing {', '.join(missing)} — {INSTALL_HINT}"
+    try:
+        __import__("pypdf")
+    except ImportError:
+        pass  # PDF support only; HTML reading still works
+    return True, ""
+
+
 def read_url(url: str, timeout: float = 20.0, max_bytes: int = 4_000_000,
              user_agent: str | None = None, follow_pdf: bool = True) -> ReadResult:
     """Fetch and fully read one source."""
     import requests
-    from lxml import html as lxml_html
 
     result = ReadResult(url=url)
+    try:
+        from lxml import html as lxml_html
+    except ImportError:
+        result.error = INSTALL_HINT
+        result.verdict = "error"
+        return result
+
     ua = user_agent or (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/125.0 Safari/537.36 OpenAmerReader/1.0"

@@ -507,9 +507,14 @@ def brain_read(url: str, as_json: bool = False, save: bool = False,
     import json as _json
 
     try:
-        from openamer_cli.deep_read import read_url, summarize, to_training_record
+        from openamer_cli.deep_read import available, read_url, summarize, to_training_record
     except ImportError as exc:
         print(f"✗ deep reader unavailable: {exc}")
+        return 1
+
+    ok, why = available()
+    if not ok:
+        print(f"✗ deep reader unavailable: {why}")
         return 1
 
     result = read_url(url)
