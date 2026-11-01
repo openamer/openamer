@@ -43,6 +43,14 @@ import urllib.request
 from pathlib import Path
 
 DEFAULT_API_PORT = 1925
+# The DIAL launch endpoint (POST /apps/<name>) answers on 56789; the DIAL
+# device description (dd.xml) is served on 56790. Both are tried.
+DIAL_PORTS = (56789, 56790)
+# Probed by launch: 201 means installed, 404 means not installed. Measured on
+# 58PUS6203/12: Netflix and YouTube answer 201, every other name 404.
+DIAL_CANDIDATES = ("Netflix", "YouTube", "Amazon", "PrimeVideo", "Spotify",
+                   "Deezer", "RakutenTV", "GooglePlay", "Browser", "Chrome",
+                   "DisneyPlus", "AppleTV", "Plex", "Kodi", "VLC")
 SSDP_ADDR = ("239.255.255.250", 1900)
 _STATE = Path(os.environ.get("OPENAMER_HOME", Path.home() / ".openamer")) / "tv.json"
 
@@ -328,6 +336,75 @@ def cmd_activity(args) -> int:
     return 0 if ok else 1
 
 
+def _dial_launch(host: str, app: str) -> tuple[int, int | None]:
+    """Start an installed app through the DIAL server.
+
+    DIAL launch is a **POST** to ``/apps/<name>``; a GET only queries state and
+    404s here. Measured on 58PUS6203/12:
+
+        POST :56789/apps/Netflix               -> 201
+        POST :56789/apps/YouTube               -> 201
+        POST :56789/apps/Amazon|Spotify|zzz    -> 404
+
+    A 404 for an invented name proves the 201s are a real inventory signal, not
+    a rubber stamp. The launch endpoint lives on 56789 while the DIAL device
+    description (``dd.xml``) is served on 56790, so both are tried.
+    """
+    body = (b'<?xml version="1.0"?><launch>'
+            b'<param name="pairingCode" value=""/></launch>')
+    last = 0
+    for port in DIAL_PORTS:
+        try:
+            req = urllib.request.Request(
+                f"http://{host}:{port}/apps/{app}", data=body, method="POST",
+                headers={"Content-Type": "text/plain; charset=UTF-8"},
+            )
+            with urllib.request.urlopen(req, timeout=6) as r:
+                status = r.status
+        except urllib.error.HTTPError as e:
+            status = e.code
+        except (urllib.error.URLError, socket.timeout, OSError):
+            status = 0
+        if status == 201:
+            return 201, port
+        if status and not last:
+            last = status
+    return last, None
+
+
+def cmd_app(args) -> int:
+    """Start an installed app (DIAL). 201 = started, 404 = not installed."""
+    h = resolve_host(args.host)
+    status, port = _dial_launch(h, args.name)
+    if status == 201:
+        print(f"{args.name}: gestartet (DIAL :{port}, 201)")
+        return 0
+    if status == 404:
+        print(f"{args.name}: nicht installiert (404) — auf diesem Gerät "
+              f"konnten nur Netflix und YouTube gestartet werden")
+        return 1
+    print(f"{args.name}: keine Antwort von der DIAL-Schnittstelle (status {status})")
+    return 1
+
+
+def cmd_apps(args) -> int:
+    """Probe which apps are installed, by DIAL launch (201 = installed)."""
+    h = resolve_host(args.host)
+    found = []
+    for app in DIAL_CANDIDATES:
+        status, port = _dial_launch(h, app)
+        if status == 201:
+            found.append((app, port))
+    if not found:
+        print("keine der geprüften Apps ist installiert")
+        return 1
+    print("installiert und startbar:")
+    for app, port in found:
+        print(f"  {app:<16} DIAL :{port}")
+    print(f"\ngeprüft: {len(DIAL_CANDIDATES)} Namen, {len(found)} Treffer")
+    return 0
+
+
 def cmd_power(args) -> int:
     h = resolve_host(args.host)
     if args.state == "status":
@@ -372,6 +449,12 @@ def add_tv_subcommands(p: argparse.ArgumentParser) -> None:
     a = sub.add_parser("activity", help="Start a TV activity (only tv|browser exist)")
     a.add_argument("name", choices=["tv", "browser"])
     a.set_defaults(func=cmd_activity)
+
+    ap = sub.add_parser("app", help="Start an installed app (Netflix, YouTube)")
+    ap.add_argument("name")
+    ap.set_defaults(func=cmd_app)
+
+    sub.add_parser("apps", help="Probe which apps are installed").set_defaults(func=cmd_apps)
 
     pw = sub.add_parser("power", help="on | off | status")
     pw.add_argument("state", choices=["on", "off", "status"])

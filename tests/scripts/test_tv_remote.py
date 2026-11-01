@@ -178,8 +178,29 @@ def test_info_reports_the_installed_firmware(tv, capsys):
     assert "firmware  mt5886:TPM186E_018.005.058.001" in out
 
 
+def test_app_reports_started_vs_not_installed(tv, capsys, monkeypatch):
+    """DIAL answers 201 for installed apps and 404 for everything else."""
+    monkeypatch.setattr(tv, "_dial_launch",
+                        lambda h, a: (201, 56789) if a == "YouTube" else (404, None))
+    assert tv.main(["app", "YouTube"]) == 0
+    assert "gestartet" in capsys.readouterr().out
+    assert tv.main(["app", "Spotify"]) == 1
+    assert "nicht installiert" in capsys.readouterr().out
+
+
+def test_apps_lists_only_the_installed_ones(tv, capsys, monkeypatch):
+    installed = {"Netflix", "YouTube"}
+    monkeypatch.setattr(tv, "_dial_launch",
+                        lambda h, a: (201, 56789) if a in installed else (404, None))
+    assert tv.main(["apps"]) == 0
+    out = capsys.readouterr().out
+    assert "Netflix" in out and "YouTube" in out
+    assert "Spotify" not in out
+
+
 def test_parser_exposes_every_documented_subcommand(tv):
-    for name in ("discover", "info", "key", "volume", "mute", "open", "activity", "power"):
+    for name in ("discover", "info", "key", "volume", "mute", "open",
+                 "activity", "app", "apps", "power"):
         assert name in tv.build_parser()._subparsers._group_actions[0].choices
 
 
