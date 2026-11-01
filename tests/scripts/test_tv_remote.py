@@ -45,6 +45,8 @@ class FakeDevice:
         self.keys_work = keys_work
         self.calls: list[tuple[str, dict | None]] = []
         self.status_override: dict[str, int] = {}
+        self.screenstate = "On"
+        self.screen_writes_land = True
 
     def __call__(self, host, path, payload=None, timeout=6.0):
         self.calls.append((path, payload))
@@ -57,6 +59,13 @@ class FakeDevice:
         if path == "/6/input/key":
             if self.keys_work:
                 self.level += {"VolumeUp": 1, "VolumeDown": -1}.get(payload["key"], 0)
+            return 200, "Ok"
+        if path == "/6/screenstate":
+            if payload is None:
+                return 200, {"screenstate": self.screenstate}
+            # models the real device: acknowledges, may or may not apply
+            if self.screen_writes_land:
+                self.screenstate = payload["screenstate"]
             return 200, "Ok"
         if path == "/6/system/softwareversion":
             return 200, {"softwareversion": "mt5886:TPM186E_018.005.058.001"}
@@ -227,8 +236,50 @@ def test_browse_keeps_an_explicit_scheme(tv):
 
 def test_parser_exposes_every_documented_subcommand(tv):
     for name in ("discover", "info", "key", "volume", "mute", "open", "browse",
-                 "activity", "app", "apps", "power"):
+                 "activity", "app", "apps", "power", "screen", "context"):
         assert name in tv.build_parser()._subparsers._group_actions[0].choices
+
+
+def test_screen_status_reads_the_panel_state(tv, capsys):
+    dev = FakeDevice()
+    dev.screenstate = "Off"
+    tv._request = dev
+    assert tv.main(["screen"]) == 0
+    assert '"screenstate": "Off"' in capsys.readouterr().out
+
+
+def test_screen_off_writes_and_verifies(tv, capsys):
+    dev = FakeDevice()
+    tv._request = dev
+    assert tv.main(["screen", "off"]) == 0
+    out = capsys.readouterr().out
+    assert "screenstate=Off" in out and "OK" in out
+    assert dev.screenstate == "Off"
+
+
+def test_screen_reports_mismatch_when_the_write_is_ignored(tv, capsys):
+    """A 200 is not proof: this API acknowledges writes it never applies."""
+    dev = FakeDevice()
+    dev.screen_writes_land = False
+    tv._request = dev
+    assert tv.main(["screen", "off"]) == 1
+    out = capsys.readouterr().out
+    assert "MISMATCH" in out and "screenstate=On" in out
+
+
+def test_context_flags_the_missing_screen_readback(tv, capsys):
+    """Measured: every field is NA on this model, so it is not a UI readback."""
+    dev = FakeDevice()
+
+    def request(host, path, payload=None, timeout=6.0):
+        if path == "/6/context":
+            return 200, {"level1": "NA", "level2": "NA", "level3": "NA",
+                         "data": "NA", "Recording": "Off"}
+        return dev(host, path, payload, timeout)
+
+    tv._request = request
+    assert tv.main(["context"]) == 0
+    assert "does not report the screen" in capsys.readouterr().out
 
 
 def test_script_is_a_shim_over_the_shared_command_surface(tv):

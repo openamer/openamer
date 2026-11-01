@@ -21,6 +21,8 @@ Usage
     python scripts/tv_remote.py open https://example.com
     python scripts/tv_remote.py app com.netflix.ninja
     python scripts/tv_remote.py power on|off|status
+    python scripts/tv_remote.py screen on|off|status
+    python scripts/tv_remote.py context
 
 The host is cached in ``<OPENAMER_HOME>/tv.json`` after a successful discover,
 so later calls do not have to scan the network again.
@@ -446,6 +448,56 @@ def cmd_power(args) -> int:
     return 0 if status == 200 else 1
 
 
+def cmd_screen(args) -> int:
+    """Read or set the panel state.
+
+    ``GET /6/screenstate`` answers ``{"screenstate": "On"}``. Turning the panel
+    off is **not** standby: audio and playback keep running, only the picture
+    goes dark. The write is verified by reading the state back — a ``200`` from
+    this API has proven meaningless often enough (see ``cmd_volume``).
+    """
+    h = resolve_host(args.host)
+    if args.state == "status":
+        status, body = _request(h, "/6/screenstate")
+        if status != 200:
+            print(f"screenstatus -> http {status} (not published by this model)")
+            return 1
+        print(json.dumps(body, ensure_ascii=False) if isinstance(body, dict) else body)
+        return 0
+    want = "On" if args.state == "on" else "Off"
+    status, _ = _request(h, "/6/screenstate", {"screenstate": want})
+    _, after = _request(h, "/6/screenstate")
+    got = after.get("screenstate") if isinstance(after, dict) else "?"
+    ok = status == 200 and got == want
+    print(f"screen {args.state} -> http {status}, screenstate={got} "
+          f"{'OK' if ok else 'MISMATCH'}")
+    return 0 if ok else 1
+
+
+def cmd_context(args) -> int:
+    """Read ``/6/context`` — the only endpoint that could report what is shown.
+
+    Measured on 58PUS6203/12: it answers, but every field stays ``"NA"`` even
+    with Netflix in the foreground. So this is **not** a screen readback on
+    this model; it is exposed here so the next model can be checked in one
+    command instead of a code change.
+    """
+    h = resolve_host(args.host)
+    status, body = _request(h, "/6/context")
+    if status != 200:
+        print(f"context -> http {status}")
+        return 1
+    if not isinstance(body, dict):
+        print(body)
+        return 0
+    print(json.dumps(body, ensure_ascii=False))
+    blind = all(str(v).strip().upper() == "NA"
+                for k, v in body.items() if k.lower() != "recording")
+    if blind:
+        print("  (every field NA: this model does not report the screen)")
+    return 0
+
+
 # ----------------------------------------------------------------------------- cli
 
 def add_tv_subcommands(p: argparse.ArgumentParser) -> None:
@@ -492,6 +544,13 @@ def add_tv_subcommands(p: argparse.ArgumentParser) -> None:
     pw = sub.add_parser("power", help="on | off | status")
     pw.add_argument("state", choices=["on", "off", "status"])
     pw.set_defaults(func=cmd_power)
+
+    sc = sub.add_parser("screen", help="on | off | status — panel only, playback keeps running")
+    sc.add_argument("state", nargs="?", choices=["on", "off", "status"], default="status")
+    sc.set_defaults(func=cmd_screen)
+
+    sub.add_parser("context", help="What the TV reports as its current context").set_defaults(
+        func=cmd_context)
 
 
 def build_parser() -> argparse.ArgumentParser:
