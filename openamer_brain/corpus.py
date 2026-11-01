@@ -234,6 +234,7 @@ def default_sources(home: Path, data_dir: Path | None = None) -> list[Path]:
     """The corpus locations the trainer reads, in priority order."""
     srcs = [
         home / "a2a" / "openamer-brain.jsonl",
+        home / "scripts" / "training" / "session_dialogues.jsonl",
         home / "scripts" / "training" / "online_buffer_deep.jsonl",
         home / "scripts" / "training" / "sft_openamer.jsonl",
         home / "scripts" / "training" / "online_buffer.jsonl",
