@@ -5548,6 +5548,16 @@ def _technical_signal_count(text: str) -> int:
     return len({m.group(0).lower() for m in _AGENT_TERMS.finditer(text[:20000])})
 
 
+# Single source of truth: the gates live in the deep reader so the harvest
+# cycle, the CLI and this learner all judge a page the same way. The local
+# definitions above stay as a fallback for a broken/absent openamer_cli.
+try:  # pragma: no cover - exercised by the reader's own tests
+    from openamer_cli.deep_read import is_trauma_news as _is_trauma_news
+    from openamer_cli.deep_read import technical_signal_count as _technical_signal_count
+except Exception:
+    pass
+
+
 def deep_learn_full(query, k=2, max_chars=200_000, min_chars=800, write=True, urls=None,
                     min_tech_terms=3):
     """Read the top sources COMPLETELY and keep the whole content.

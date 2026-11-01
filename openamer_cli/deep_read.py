@@ -33,6 +33,53 @@ from urllib.parse import urljoin, urlparse
 
 MIN_USEFUL_CHARS = 800
 INSTALL_HINT = "pip install -e .[read]   (or: pip install lxml pypdf)"
+
+# ── What counts as agent knowledge ────────────────────────────────────────
+# A page can clear every structural check and still be worthless: a news
+# portal has long text, headings and no paywall. Measured 2026-11-01 — a
+# t-online news page landed in the learning buffer for an asyncio query.
+AGENT_TERMS = re.compile(
+    r"\b(model|models|agent|agents|llms?|language models?|tokens?|training|inference|"
+    r"latency|throughput|benchmarks?|datasets?|embeddings?|attention|transformers?|"
+    r"fine-?tun\w*|quantiz\w*|distill\w*|prompts?|context window|weights?|layers?|"
+    r"gpus?|cpus?|optimizers?|gradients?|loss|accuracy|architecture|framework|"
+    r"api|sdk|python|javascript|typescript|rust|golang|docker|kubernetes|"
+    r"pipeline|retrieval|rag|reasoning|evaluation|scaling|sparse|moe|"
+    r"state space|mamba|rlhf|lora|peft|vllm|pytorch|tensorflow|cuda|git|"
+    r"function|class|module|package|repository|compiler|debug\w*|refactor\w*|"
+    r"modell\w*|inferenz|trainings?\w*|agenten\w*|sprachmodell\w*|schnittstelle\w*)\b",
+    re.IGNORECASE,
+)
+_TRAUMA_DESK_RE = re.compile(
+    r"\b(bs news|breaking news|the associated press|reuters|ap news)\b", re.IGNORECASE)
+_TRAUMA_HEADLINE_RE = re.compile(
+    r"\b\w+\s+(news|24/7)\b.{0,40}"
+    r"(shooter|shooting|killed|dead|stabbed|hostage|bomb|murder|attack)", re.IGNORECASE)
+_TRAUMA_EXPLICIT_RE = re.compile(
+    r"\b(school shooter|mass shooting|gunman|casualties|wounded|"
+    r"police said.{0,20}(shot|fired|rounds))\b", re.IGNORECASE)
+
+
+def technical_signal_count(text: str) -> int:
+    """How many DISTINCT agent/engineering terms a text carries."""
+    return len({m.group(0).lower() for m in AGENT_TERMS.finditer((text or "")[:20000])})
+
+
+def is_trauma_news(text: str) -> bool:
+    """True when a candidate is hard-news / crime / trauma copy.
+
+    Keyed on the news-desk headline shape, never a bare keyword: prose that
+    merely mentions a shooting is untouched, and a desk name alone (Reuters
+    writes about GPUs too) needs violence vocabulary beside it.
+    """
+    t = (text or "")[:4000]
+    if not t:
+        return False
+    if _TRAUMA_EXPLICIT_RE.search(t) or _TRAUMA_HEADLINE_RE.search(t):
+        return True
+    return bool(_TRAUMA_DESK_RE.search(t) and
+                re.search(r"\b(killed|dead|shooting|shooter|attack|hostage|"
+                          r"bomb|murder|wounded|casualties)\b", t, re.IGNORECASE))
 BOILERPLATE_TAGS = (
     "script", "style", "noscript", "nav", "header", "footer", "aside",
     "form", "iframe", "svg", "button", "select", "template",

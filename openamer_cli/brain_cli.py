@@ -539,6 +539,37 @@ def brain_read(url: str, as_json: bool = False, save: bool = False,
     return 0 if result.verdict in ("ok", "thin") else 1
 
 
+def brain_harvest(topic_count: int = 0, per_topic: int = 2, as_json: bool = False) -> int:
+    """Harvest whole documents (arXiv papers, GitHub READMEs) into the corpus.
+
+    Uses the APIs directly instead of a search engine — no rate-limit games,
+    no 'domain > path' guessing.
+    """
+    import json as _json
+
+    try:
+        from openamer_cli.deep_read import available
+
+        ok, why = available()
+        if not ok:
+            print(f"✗ deep reader unavailable: {why}")
+            return 1
+        from openamer_brain.harvest import DEFAULT_TOPICS, harvest, summarize
+    except ImportError as exc:
+        print(f"✗ harvest unavailable: {exc}")
+        return 1
+
+    topics = list(DEFAULT_TOPICS)[:topic_count] if topic_count else None
+    records = harvest(topics=topics, per_topic=per_topic, write=True)
+    if as_json:
+        meta = [{k: v for k, v in r.items() if k not in ("a", "headings", "claims")}
+                for r in records]
+        print(_json.dumps(meta, indent=2, ensure_ascii=False))
+    else:
+        print(summarize(records))
+    return 0 if records else 1
+
+
 # ── Parser builder ─────────────────────────────────────────────────────────
 
 def build_brain_parser(subparsers) -> None:
@@ -585,5 +616,14 @@ def build_brain_parser(subparsers) -> None:
     rd.add_argument("--save", action="store_true", help="store the full text in the brain corpus")
     rd.add_argument("--show-text", action="store_true", help="print the full extracted text")
     rd.set_defaults(func=lambda a: brain_read(a.url, a.as_json, a.save, a.show_text))
+
+    hv = sub.add_parser("harvest", help="Harvest whole documents (arXiv papers, GitHub READMEs)")
+    hv.add_argument("--topics", type=int, default=0,
+                    help="use only the first N default topics (0 = all)")
+    hv.add_argument("--per-topic", type=int, default=2,
+                    help="documents per topic per source (default 2)")
+    hv.add_argument("--json", action="store_true", dest="as_json",
+                    help="machine-readable output (metadata only)")
+    hv.set_defaults(func=lambda a: brain_harvest(a.topics, a.per_topic, a.as_json))
 
     p.set_defaults(func=lambda a: p.print_help())

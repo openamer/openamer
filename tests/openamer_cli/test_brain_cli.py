@@ -255,7 +255,7 @@ def test_build_brain_parser_creates_subcommands():
     brain_cli.build_brain_parser(sub)
 
     # Try parsing each subcommand
-    for cmd in ("stats", "status", "graph", "insights", "model", "train"):
+    for cmd in ("stats", "status", "graph", "insights", "model", "train", "harvest"):
         args = parser.parse_args(["brain", cmd])
         assert args.brain_subcommand == cmd
         assert hasattr(args, "func"), f"{cmd} should set func"
