@@ -98,7 +98,7 @@ export function mergeManifest(
   for (const info of manifestStages) {
     const known = previous.stages[info.name]
 
-    stages[info.name] = { info, state: known ? known.state : null }
+    stages[info.name] = known ? { ...known, info } : { info, state: null }
     stageOrder.push(info.name)
   }
 

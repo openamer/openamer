@@ -209,10 +209,11 @@ export async function initialize(): Promise<void> {
           protocolVersion: payload.protocolVersion,
           stages: merged.stages,
           stageOrder: merged.stageOrder,
-          currentStage: null,
-          installRoot: null,
-          error: null,
-          logs: []
+          currentStage: cur.currentStage && merged.stages[cur.currentStage]?.state === 'running'
+            ? cur.currentStage : null,
+          installRoot: cur.installRoot,
+          error: cur.error,
+          logs: cur.logs
         })
         $route.set('progress')
 

@@ -59,6 +59,24 @@ test('a re-emitted manifest keeps the state of stages that already ran', () => {
   expect(countDone(remerged.stageOrder, remerged.stages).done).toBe(1)
 })
 
+test('a duplicate manifest preserves timing and diagnostic metadata', () => {
+  const first = mergeManifest({ stageOrder: [], stages: {} }, MANIFEST)
+
+  const record = {
+    ...first.stages.update,
+    state: 'running' as const,
+    startedAt: 1234,
+    durationMs: 50,
+    error: 'diagnostic'
+  }
+
+  first.stages.update = record
+
+  const second = mergeManifest(first, MANIFEST)
+
+  expect(second.stages.update).toEqual(record)
+})
+
 test('a manifest with a new stage adds it without disturbing the known ones', () => {
   const first = mergeManifest({ stageOrder: [], stages: {} }, MANIFEST)
 
