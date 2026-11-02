@@ -30,8 +30,8 @@ import {
 } from 'electron'
 import nodePty from 'node-pty'
 
-import { stopBackendChild as stopBackendChildImpl } from './backend-child'
 import { appIconPaths, windowsAppDetails } from './app-identity'
+import { stopBackendChild as stopBackendChildImpl } from './backend-child'
 import { dashboardFallbackArgs, sourceDeclaresServe } from './backend-command'
 import { createBackendConnectionState } from './backend-connection-state'
 import { buildDesktopBackendEnv, normalizeOpenAmerHomeRoot } from './backend-env'
