@@ -104,7 +104,7 @@ class _OpenAIProxy:
 
 OpenAI = _OpenAIProxy()  # module-level name, resolves lazily on call/isinstance
 
-from agent.credential_pool import load_pool
+from agent.credential_pool import STATUS_EXHAUSTED, load_pool
 from agent.model_metadata import MINIMUM_CONTEXT_LENGTH, get_model_context_length
 from openamer_cli.config import get_openamer_home
 from openamer_constants import OPENROUTER_BASE_URL
@@ -1962,6 +1962,76 @@ def _resolve_xai_oauth_for_aux() -> Optional[Tuple[str, str]]:
     return api_key, base_url
 
 
+def _codex_pool_exhaustion() -> Optional[Dict[str, Any]]:
+    """Describe an exhausted Codex credential, if the pool holds one.
+
+    The pool marks a credential ``exhausted`` (e.g. HTTP 429 usage limit) and
+    then refuses to select it, so ``_select_pool_entry`` returns ``None`` even
+    though a valid OAuth token is still stored.  Callers used to report that
+    as "no Codex OAuth token found", which points the user at a re-login that
+    cannot help: the token is fine, the account's quota window is not.
+
+    Returns a dict with the failure detail (``reason``, ``code``,
+    ``reset_at``) or ``None`` when the pool holds no exhausted entry.
+    """
+    try:
+        pool = load_pool("openai-codex")
+    except Exception as exc:
+        logger.debug("Auxiliary client: could not load Codex pool: %s", exc)
+        return None
+    try:
+        entries = list(pool.entries())
+    except Exception as exc:
+        logger.debug("Auxiliary client: could not read Codex pool entries: %s", exc)
+        return None
+
+    for entry in entries:
+        if str(getattr(entry, "last_status", "") or "") != STATUS_EXHAUSTED:
+            continue
+        reset_at = getattr(entry, "last_error_reset_at", None)
+        return {
+            "reason": str(getattr(entry, "last_error_reason", "") or "") or "quota exhausted",
+            "code": getattr(entry, "last_error_code", None),
+            "reset_at": reset_at,
+            "message": str(getattr(entry, "last_error_message", "") or "") or "",
+        }
+    return None
+
+
+def _log_codex_token_unavailable() -> None:
+    """Log why no Codex client could be built — exhausted quota vs. no token.
+
+    The old wording ("no Codex OAuth token found (run: openamer model)")
+    was wrong for the common case: the OAuth token is present and valid, but
+    the account's usage-limit window is spent, so the pool refuses to select
+    it.  Telling the user to re-login cannot fix that and sends them down
+    the wrong path.
+    """
+    exhaustion = _codex_pool_exhaustion()
+    if exhaustion is not None:
+        reset_at = exhaustion.get("reset_at")
+        when = ""
+        if reset_at:
+            try:
+                when = " (resets at %s)" % time.strftime(
+                    "%Y-%m-%d %H:%M:%S", time.localtime(float(reset_at))
+                )
+            except Exception:
+                when = ""
+        logger.warning(
+            "resolve_provider_client: openai-codex credential is exhausted "
+            "(%s%s) — the OAuth token is valid; retry after the quota window "
+            "or use a fallback provider",
+            exhaustion.get("reason") or "quota exhausted",
+            when,
+        )
+        return
+    logger.warning(
+        "resolve_provider_client: openai-codex requested but no Codex OAuth "
+        "token found (run: openamer model)"
+    )
+
+
 def _read_codex_access_token() -> Optional[str]:
     """Read a valid, non-expired Codex OAuth access token from OpenAmer auth store.
 
@@ -1976,6 +2046,28 @@ def _read_codex_access_token() -> Optional[str]:
         token = _pool_runtime_api_key(entry)
         if token:
             return token
+
+    # The pool refused to select an entry. Before reporting "no token", check
+    # whether the pool merely holds an exhausted credential: the token is
+    # still valid, only the account quota window is spent.  The singleton
+    # fallback below is a separate store that ``manual:device_code`` entries
+    # intentionally do not mirror, so for those it always comes up empty.
+    exhaustion = _codex_pool_exhaustion()
+    if exhaustion is not None:
+        logger.info(
+            "Codex credential is present but exhausted (%s); using the stored token "
+            "and letting the request surface the quota error.",
+            exhaustion.get("reason"),
+        )
+        try:
+            from openamer_cli.auth import _read_codex_tokens
+            data = _read_codex_tokens()
+            tokens = data.get("tokens", {})
+            access_token = tokens.get("access_token")
+            if isinstance(access_token, str) and access_token.strip():
+                return access_token.strip()
+        except Exception as exc:
+            logger.debug("Could not read Codex auth for auxiliary client: %s", exc)
 
     try:
         from openamer_cli.auth import _read_codex_tokens
@@ -5063,8 +5155,7 @@ def resolve_provider_client(
             # access to responses.stream() (e.g., the main agent loop).
             codex_token = _read_codex_access_token()
             if not codex_token:
-                logger.warning("resolve_provider_client: openai-codex requested "
-                               "but no Codex OAuth token found (run: openamer model)")
+                _log_codex_token_unavailable()
                 return None, None
             final_model = _normalize_resolved_model(model, provider)
             raw_client = _create_openai_client(
@@ -5076,8 +5167,7 @@ def resolve_provider_client(
         # Standard path: wrap in CodexAuxiliaryClient adapter
         client, default = _build_codex_client(model)
         if client is None:
-            logger.warning("resolve_provider_client: openai-codex requested "
-                           "but no Codex OAuth token found (run: openamer model)")
+            _log_codex_token_unavailable()
             return None, None
         final_model = _normalize_resolved_model(model or default, provider)
         return (_to_async_client(client, final_model, is_vision=is_vision) if async_mode
