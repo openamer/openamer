@@ -878,13 +878,24 @@ def _live_system_guard(request, monkeypatch):
             # liveness. Use the platform-neutral check there so a probe cannot
             # take a test down. Measured 2026-10-25: that OSError was the whole
             # failure of two live-system-guard tests.
+            #
+            # The check must reproduce the NATIVE semantics, not just avoid the
+            # crash: a missing PID raises, a live one returns. Returning a bool
+            # instead silently changed the behaviour under test — liveness
+            # probes that catch OSError (gateway.delivery_ledger._owner_alive)
+            # saw no exception at all, so every dead owner read as ALIVE and
+            # sweep_recoverable() claimed nothing (measured 2026-11-01: 14
+            # delivery-ledger tests red for exactly this reason).
             if _os.name == "nt":
                 try:
                     import psutil
 
-                    return bool(psutil.pid_exists(int(pid)))
+                    exists = bool(psutil.pid_exists(int(pid)))
                 except ImportError:
-                    return False
+                    exists = False
+                if not exists:
+                    raise ProcessLookupError(int(pid))
+                return None
             return real_kill(pid, sig, *args, **kwargs)
         if _is_own_subtree(int(pid)):
             return real_kill(pid, sig, *args, **kwargs)
