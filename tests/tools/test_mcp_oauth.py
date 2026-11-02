@@ -5,6 +5,7 @@ import os
 import stat
 import sys
 from io import BytesIO
+from types import SimpleNamespace
 from unittest.mock import patch, MagicMock
 
 import pytest
@@ -240,16 +241,22 @@ class TestUtilities:
         monkeypatch.delenv("SSH_TTY", raising=False)
         monkeypatch.delenv("DISPLAY", raising=False)
         monkeypatch.delenv("WAYLAND_DISPLAY", raising=False)
-        # Mock os.name and uname for non-macOS, non-Windows
-        monkeypatch.setattr(os, "name", "posix")
-        monkeypatch.setattr(os, "uname", lambda: type("", (), {"sysname": "Linux"})())
+        # Replace only the consumer's os reference. Changing process-global
+        # os.name breaks pathlib/pytest reporting on Windows before a verdict.
+        monkeypatch.setattr("tools.mcp_oauth.os", SimpleNamespace(
+            name="posix", environ=os.environ,
+            uname=lambda: SimpleNamespace(sysname="Linux"),
+        ))
         assert _can_open_browser() is False
 
     def test_can_open_browser_true_with_display(self, monkeypatch):
         monkeypatch.delenv("SSH_CLIENT", raising=False)
         monkeypatch.delenv("SSH_TTY", raising=False)
         monkeypatch.setenv("DISPLAY", ":0")
-        monkeypatch.setattr(os, "name", "posix")
+        monkeypatch.setattr("tools.mcp_oauth.os", SimpleNamespace(
+            name="posix", environ=os.environ,
+            uname=lambda: SimpleNamespace(sysname="Linux"),
+        ))
         assert _can_open_browser() is True
 
 

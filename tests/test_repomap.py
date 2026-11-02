@@ -1,6 +1,6 @@
 """Tests for ``openamer_cli/repomap.py``.
 
-Tests are designed to run against the OpenAmer repo itself (no fixtures required).
+Tests use a small real git repository, not the ever-growing project checkout.
 """
 
 from __future__ import annotations
@@ -35,9 +35,28 @@ from openamer_cli.repomap import (
 
 
 @pytest.fixture(scope="module")
-def repo_root() -> Path:
-    """Return the OpenAmer repo root."""
-    return _REPO_ROOT
+def repo_root(tmp_path_factory) -> Path:
+    """Real git discovery and parsing without repeatedly scanning 10k live files.
+
+    Scanning the developer checkout made cost depend on repository growth and
+    skipped map assertions in worktrees, whose .git is a file, not a directory.
+    Keep Python/TypeScript, siblings and a tracked excluded dependency here so
+    the same contracts run in CI, regular checkouts and isolated worktrees.
+    """
+    root = tmp_path_factory.mktemp("repomap-repo")
+    sources = {
+        "src/config.py": "import os\nclass Config:\n    def setup(self): pass\n",
+        "src/helpers.py": "def helper(): pass\n",
+        "web/client.ts": "interface Client {}\nfunction connect() {}\n",
+        "node_modules/dep.js": "function excluded() {}\n",
+    }
+    for relative, content in sources.items():
+        path = root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding="utf-8")
+    for args in (["git", "init", "--quiet"], ["git", "add", "."]):
+        subprocess.run(args, cwd=root, capture_output=True, check=True, timeout=30)
+    return root
 
 
 @pytest.fixture(scope="module")
@@ -48,11 +67,7 @@ def repomap(repo_root: Path) -> RepoMap:
 
 @pytest.fixture(scope="module")
 def repo_map_dict(repo_root: Path) -> dict:
-    """A built repo map dict for the OpenAmer repo."""
-    # Skip if we're in a CI-ish environment without git
-    git_dir = repo_root / ".git"
-    if not git_dir.is_dir():
-        pytest.skip("Not a git repository")
+    """A built map of the small real repository (also in git worktrees)."""
     return build_repo_map(str(repo_root))
 
 
@@ -320,9 +335,9 @@ class TestRankFiles:
 
     def test_rank_relevant_appears_first(self, repo_map_dict: dict):
         result = rank_files_by_relevance("config setup", repo_map_dict)
-        # Check config files appear somewhere
+        # The fixture contains a tracked config.py with Config/setup identifiers.
         config_matches = [f for f, _ in result if "config" in f.lower()]
-        assert len(config_matches) > 0 or True  # might not have config hits
+        assert config_matches
 
     def test_rank_empty_query_returns_empty(self, repo_map_dict: dict):
         result = rank_files_by_relevance("", repo_map_dict)

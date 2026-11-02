@@ -409,6 +409,7 @@ def _setup_update_mocks(monkeypatch, tmp_path):
     monkeypatch.setattr(openamer_main, "PROJECT_ROOT", tmp_path)
     monkeypatch.setattr(openamer_main, "_stash_local_changes_if_needed", lambda *a, **kw: None)
     monkeypatch.setattr(openamer_main, "_restore_stashed_changes", lambda *a, **kw: True)
+    monkeypatch.setattr(openamer_main, "_create_rescue_branch", lambda *a, **kw: "main-rescue-test")
     monkeypatch.setattr(openamer_config, "get_missing_env_vars", lambda required_only=True: [])
     monkeypatch.setattr(openamer_config, "get_missing_config_fields", lambda: [])
     monkeypatch.setattr(openamer_config, "check_config_version", lambda: (5, 5))
@@ -605,6 +606,25 @@ def test_cmd_update_falls_back_to_reset_when_ff_only_fails(monkeypatch, tmp_path
 
     out = capsys.readouterr().out
     assert "Fast-forward not possible" in out
+
+
+def test_cmd_update_does_not_reset_when_rescue_branch_fails(monkeypatch, tmp_path, capsys):
+    """A failed rescue must leave committed work and the autostash intact."""
+    _setup_update_mocks(monkeypatch, tmp_path)
+    monkeypatch.setattr("shutil.which", lambda name: "/usr/bin/uv" if name == "uv" else None)
+    monkeypatch.setattr(openamer_main, "_create_rescue_branch", lambda *a, **kw: None)
+    monkeypatch.setattr(openamer_main, "_stash_local_changes_if_needed", lambda *a, **kw: "saved-stash")
+    restored = []
+    monkeypatch.setattr(openamer_main, "_restore_stashed_changes", lambda *a, **kw: restored.append(True))
+    side_effect, recorded = _make_update_side_effect(ff_only_fails=True)
+    monkeypatch.setattr(openamer_main.subprocess, "run", side_effect)
+
+    with pytest.raises(SystemExit, match="1"):
+        openamer_main.cmd_update(SimpleNamespace())
+
+    assert not [c for c in recorded if "reset" in c and "--hard" in c]
+    assert not restored
+    assert "saved-stash" in capsys.readouterr().out
 
 
 def test_cmd_update_no_reset_when_ff_only_succeeds(monkeypatch, tmp_path):

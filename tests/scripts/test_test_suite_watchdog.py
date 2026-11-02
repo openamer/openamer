@@ -97,10 +97,12 @@ def test_venv_python_falls_back_to_the_platform_spelling(wd, tmp_path):
     assert not found.exists()
 
 
-def test_module_python_constant_points_at_a_real_interpreter(wd):
-    """The import-time constant must resolve, or main() alerts on every run."""
-    assert wd.PYTHON.exists(), f"watchdog venv python not resolved: {wd.PYTHON}"
-    assert wd.RUNNER.exists(), f"watchdog runner not resolved: {wd.RUNNER}"
+def test_module_python_honors_explicit_interpreter(monkeypatch):
+    """An isolated worktree deliberately has no local venv."""
+    monkeypatch.setenv("OPENAMER_PYTHON", sys.executable)
+    mod = _load()
+    assert mod.PYTHON == Path(sys.executable)
+    assert mod.RUNNER.exists()
 
 
 # --- property 1: the summary parser -----------------------------------------
@@ -150,7 +152,7 @@ class _Proc:
         self.stdout, self.stderr, self.returncode = stdout, "", returncode
 
 
-def _run_main(wd, monkeypatch, tmp_path, stdout, *, prior=None):
+def _run_main(wd, monkeypatch, tmp_path, stdout, *, prior=None, returncode=0):
     """Drive main() with a scripted runner output and a temp state file."""
     state = tmp_path / "state.json"
     log = tmp_path / "wd.log"
@@ -158,7 +160,8 @@ def _run_main(wd, monkeypatch, tmp_path, stdout, *, prior=None):
         state.write_text(json.dumps(prior), encoding="utf-8")
     monkeypatch.setenv("TEST_WATCHDOG_STATE", str(state))
     monkeypatch.setenv("TEST_WATCHDOG_LOG", str(log))
-    monkeypatch.setattr(wd.subprocess, "run", lambda *a, **k: _Proc(stdout, 0))
+    monkeypatch.setattr(wd, "PYTHON", Path(sys.executable))
+    monkeypatch.setattr(wd, "_run_suite", lambda *a, **k: _Proc(stdout, returncode))
     return wd.main(), state, log
 
 
@@ -206,6 +209,86 @@ def test_missing_summary_is_an_alert_not_a_pass(wd, monkeypatch, tmp_path, capsy
     assert rc == 1
     assert "could not read a summary" in out
     assert "NO SUMMARY" in log.read_text(encoding="utf-8")
+
+
+def test_zero_failures_with_nonzero_runner_exit_is_not_green(wd, monkeypatch, tmp_path, capsys):
+    rc, state, log = _run_main(wd, monkeypatch, tmp_path, LIVE_GREEN, returncode=1)
+    assert rc == 1
+    assert "GREEN" not in log.read_text(encoding="utf-8")
+    assert json.loads(state.read_text(encoding="utf-8"))["returncode"] == 1
+    assert "exit=1" in capsys.readouterr().out
+
+
+def test_no_verdict_is_not_green_even_with_zero_failures(wd, monkeypatch, tmp_path, capsys):
+    output = LIVE_GREEN + "\n=== 1 files where no tests ran (collection/import error, timeout before collection, etc.) ===\n  tests/tools/test_mcp_oauth.py\n"
+    rc, state, log = _run_main(wd, monkeypatch, tmp_path, output)
+    assert rc == 1
+    assert "GREEN" not in log.read_text(encoding="utf-8")
+    assert json.loads(state.read_text(encoding="utf-8"))["no_verdict_files"] == ["tests/tools/test_mcp_oauth.py"]
+    assert "NO verdict" in capsys.readouterr().out
+
+
+def test_zero_collected_is_not_green(wd, monkeypatch, tmp_path):
+    output = "=== Summary: 1 files, 0 tests passed, 0 failed (100% complete) in 1s ===\n=== ✗ NO TESTS RAN — 0 collected across 1 file. This is NOT a pass. ==="
+    rc, _state, log = _run_main(wd, monkeypatch, tmp_path, output, returncode=1)
+    assert rc == 1
+    assert "GREEN" not in log.read_text(encoding="utf-8")
+
+
+def test_failure_attribution_accepts_posix_paths(wd):
+    assert wd._summarize_failures("✗ tests/tools/test_mcp_stability.py (19✓ 1✗, 2s)") == ["tests/tools/test_mcp_stability.py  (1 failing)"]
+
+
+def test_red_retains_full_runner_output(wd, monkeypatch, tmp_path):
+    rc, state, _log = _run_main(wd, monkeypatch, tmp_path, LIVE_RED)
+    assert rc == 1
+    data = json.loads(state.read_text(encoding="utf-8"))
+    assert Path(data["output_path"]).read_text(encoding="utf-8") == LIVE_RED
+    assert data["failing_files"] == {r"tests\acp\test_session.py": 20, r"tests\baz\test_qux.py": 2}
+
+
+def test_timeout_replaces_stale_state_and_retains_partial_output(wd, monkeypatch, tmp_path, capsys):
+    import subprocess
+
+    state = tmp_path / "state.json"
+    state.write_text(json.dumps({"status": "green", "passed": 999}), encoding="utf-8")
+    monkeypatch.setenv("TEST_WATCHDOG_STATE", str(state))
+    monkeypatch.setenv("TEST_WATCHDOG_LOG", str(tmp_path / "wd.log"))
+    monkeypatch.setattr(wd, "PYTHON", Path(sys.executable))
+
+    def timeout(command, env, output_path):
+        output_path.write_text("▶ w0 tests/hanging.py\n", encoding="utf-8")
+        raise subprocess.TimeoutExpired(command, wd.TIMEOUT_S)
+
+    monkeypatch.setattr(wd, "_run_suite", timeout)
+    assert wd.main() == 1
+    data = json.loads(state.read_text(encoding="utf-8"))
+    assert data["status"] == "timeout"
+    assert data["passed"] is None
+    assert data["returncode"] == 124
+    assert "tests/hanging.py" in Path(data["output_path"]).read_text(encoding="utf-8")
+    assert "tests/hanging.py" in capsys.readouterr().out
+
+
+def test_run_suite_streams_output_and_reaps_descendants_on_timeout(wd, monkeypatch, tmp_path):
+    import psutil
+    import subprocess
+
+    handoff = tmp_path / "child.pid"
+    child = "import os,time; from pathlib import Path; Path(" + repr(str(handoff)) + ").write_text(str(os.getpid())); time.sleep(120)"
+    parent = "import subprocess,sys,time; subprocess.Popen([sys.executable, '-c', " + repr(child) + "], start_new_session=True); print('runner started', flush=True); time.sleep(120)"
+    monkeypatch.setattr(wd, "TIMEOUT_S", 8)
+    output = tmp_path / "runner.log"
+    with pytest.raises(subprocess.TimeoutExpired):
+        wd._run_suite([sys.executable, "-c", parent], dict(os.environ), output)
+    assert "runner started" in output.read_text(encoding="utf-8")
+    assert handoff.exists(), "child did not start; this did not exercise descendant cleanup"
+    pid = int(handoff.read_text())
+    try:
+        child_process = psutil.Process(pid)
+    except psutil.NoSuchProcess:
+        return
+    assert child_process.status() == psutil.STATUS_ZOMBIE, f"orphan still running: {pid}"
 
 
 # --- the cron contract ------------------------------------------------------
