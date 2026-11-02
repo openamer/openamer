@@ -3,7 +3,13 @@ Cost Dashboard — track, report, and budget LLM inference costs.
 
 Provides the :class:`CostTracker` class (in-memory and optionally
 persisted via the :class:`CostStore` SQLite backend) and a set of
-reporting functions for the ``openamer cost`` CLI.
+reporting functions for the ``openamer cost`` CLI. By default the CLI reads
+canonical session/model usage from the active profile's state.db, read-only.
+Explicit CostStore callers (or OPENAMER_COST_DB) keep their legacy call ledger.
+
+The default period groups by session start, as Insights does; it is not an
+invoice. Missing prices are counted explicitly. Subscription fees, included
+credits and historical peak/off-peak discounts are not reconciled here.
 
 Design principles:
 
@@ -22,8 +28,9 @@ import sqlite3
 import sys
 import time
 from collections import defaultdict
+from contextlib import closing
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from pathlib import Path
 from typing import Any
@@ -54,6 +61,8 @@ class CostRecord:
     tokens_out: int
     cost: Decimal | str
     session_id: str
+    api_calls: int = 1
+    cost_status: str = "estimated"
 
     def __post_init__(self) -> None:
         """Normalise cost to Decimal."""
@@ -122,7 +131,7 @@ class CostStore:
 
     def _ensure_schema(self) -> None:
         os.makedirs(os.path.dirname(self._path), exist_ok=True)
-        with sqlite3.connect(self._path) as conn:
+        with closing(sqlite3.connect(self._path)) as conn, conn:
             conn.execute(
                 """
                 CREATE TABLE IF NOT EXISTS cost_records (
@@ -146,7 +155,7 @@ class CostStore:
 
     def insert(self, record: CostRecord) -> int:
         """Insert a record and return its row id."""
-        with sqlite3.connect(self._path) as conn:
+        with closing(sqlite3.connect(self._path)) as conn, conn:
             cur = conn.execute(
                 """
                 INSERT INTO cost_records
@@ -171,6 +180,7 @@ class CostStore:
         session_id: str | None = None,
         model: str | None = None,
         provider: str | None = None,
+        since: datetime | None = None,
     ) -> list[CostRecord]:
         """Query records matching optional filters.
 
@@ -188,9 +198,7 @@ class CostStore:
         # the last N days.
         import datetime as dt_module
 
-        cutoff = (
-            datetime.now(timezone.utc) - dt_module.timedelta(days=days)
-        ).isoformat()
+        cutoff = (since or (datetime.now(timezone.utc) - dt_module.timedelta(days=days))).isoformat()
 
         clauses: list[str] = ["timestamp >= ?"]
         params: list[Any] = [cutoff]
@@ -212,7 +220,7 @@ class CostStore:
             + " ORDER BY timestamp DESC"
         )
 
-        with sqlite3.connect(self._path) as conn:
+        with closing(sqlite3.connect(self._path)) as conn, conn:
             rows = conn.execute(sql, params).fetchall()
 
         return [
@@ -240,13 +248,56 @@ class CostStore:
     def delete_older_than(self, days: int) -> int:
         """Delete records older than *days*. Returns count of deleted rows."""
         cutoff = (
-            datetime.now(timezone.utc) - datetime.timedelta(days=days)
+            datetime.now(timezone.utc) - timedelta(days=days)
         ).isoformat()
-        with sqlite3.connect(self._path) as conn:
+        with closing(sqlite3.connect(self._path)) as conn, conn:
             cur = conn.execute(
                 "DELETE FROM cost_records WHERE timestamp < ?", (cutoff,)
             )
             return cur.rowcount
+
+
+class SessionCostStore:
+    """Read-only adapter over the canonical, profile-scoped session database.
+
+    No shadow accounting writes, migrations or schema initialization occur here.
+    Reconciliation and repricing are shared with Insights, including aux usage.
+    Explicit CostStore users and OPENAMER_COST_DB keep their legacy behavior.
+    """
+
+    def query(self, days=30, session_id=None, model=None, provider=None, since=None):
+        from types import SimpleNamespace
+        from agent.insights import InsightsEngine
+        from openamer_cli.config import get_openamer_home
+
+        path = get_openamer_home() / "state.db"
+        if not path.exists():
+            return []
+        cutoff = (since or (datetime.now(timezone.utc) - timedelta(days=days))).timestamp()
+        with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as conn:
+            conn.row_factory = sqlite3.Row
+            conn.execute("PRAGMA query_only=ON")
+            conn.execute("BEGIN")  # Both SELECTs see one consistent WAL snapshot.
+            rows = InsightsEngine(SimpleNamespace(_conn=conn)).get_cost_usage(cutoff)
+        records = []
+        for row in rows:
+            if session_id and row["session_id"] != session_id:
+                continue
+            if model and row["model"] != model:
+                continue
+            if provider and row.get("billing_provider") != provider:
+                continue
+            records.append(CostRecord(
+                timestamp=datetime.fromtimestamp(row["started_at"], timezone.utc).isoformat(),
+                model=row["model"], provider=row.get("billing_provider") or "unknown",
+                tokens_in=sum(int(row.get(k) or 0) for k in (
+                    "input_tokens", "cache_read_tokens", "cache_write_tokens")),
+                tokens_out=int(row.get("output_tokens") or 0),
+                cost=row["estimated_cost_usd"], session_id=row["session_id"],
+                api_calls=int(row.get("api_call_count") or 0),
+                cost_status=row["cost_status"],
+            ))
+        return records
 
 
 # =============================================================================
@@ -267,7 +318,7 @@ class CostTracker:
         report = tracker.get_cost_stats(days=30)
     """
 
-    def __init__(self, store: CostStore | None = None) -> None:
+    def __init__(self, store: CostStore | SessionCostStore | None = None) -> None:
         self._store = store or CostStore()
         self._records: list[CostRecord] = []
 
@@ -328,7 +379,7 @@ class CostTracker:
 
         total_cost = sum((r.cost_usd for r in records), Decimal("0"))
         total_tokens = sum(r.total_tokens for r in records)
-        total_calls = len(records)
+        total_calls = sum(r.api_calls for r in records)
 
         by_model: dict[str, Decimal] = defaultdict(Decimal)
         by_provider: dict[str, Decimal] = defaultdict(Decimal)
@@ -349,6 +400,12 @@ class CostTracker:
             "total_cost": str(total_cost),
             "total_tokens": total_tokens,
             "total_calls": total_calls,
+            "data_source": "session_db" if isinstance(self._store, SessionCostStore) else "cost_store",
+            "cost_kind": "estimate_not_invoice",
+            "period_basis": "session_start" if isinstance(self._store, SessionCostStore) else "record_timestamp",
+            "unknown_cost_records": sum(r.cost_status == "unknown" for r in records),
+            "unknown_cost_calls": sum(r.api_calls for r in records if r.cost_status == "unknown"),
+            "included_calls": sum(r.api_calls for r in records if r.cost_status == "included"),
             "by_model": _sorted(by_model),
             "by_provider": _sorted(by_provider),
             "by_session": _sorted(by_session),
@@ -384,9 +441,7 @@ class CostTracker:
         # Calculate spend for current calendar month
         now = datetime.now(timezone.utc)
         first_of_month = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-        # Approximate by using a day-count-based query
-        days_into_month = now.day
-        spent = self._store.total_cost(days=days_into_month)
+        spent = sum((r.cost_usd for r in self._store.query(since=first_of_month)), Decimal(0))
 
         remaining = monthly_budget - spent
         if monthly_budget > 0:
@@ -417,7 +472,10 @@ class CostTracker:
         print(f"  OpenAmer Cost Report (last {days} days)")
         print("=" * 60)
         print()
-        print(f"  Total cost:        ${stats['total_cost']}")
+        print(f"  Estimated cost:    ${stats['total_cost']}")
+        print("  Usage estimate, not an invoice; subscription fees/credits and off-peak discounts are not reconciled.")
+        print(f"  Unknown pricing:   {stats['unknown_cost_records']} usage records ({stats['unknown_cost_calls']} calls)")
+        print(f"  Included calls:    {stats['included_calls']} (subscription route)")
         print(f"  Total tokens:      {stats['total_tokens']:,}")
         print(f"  Total API calls:   {stats['total_calls']}")
         print(f"  Avg cost/call:     ${stats['avg_cost_per_call']}")
@@ -453,9 +511,13 @@ _default_tracker: CostTracker | None = None
 
 def _get_tracker() -> CostTracker:
     global _default_tracker
-    if _default_tracker is None:
-        _default_tracker = CostTracker()
-    return _default_tracker
+    if os.environ.get("OPENAMER_COST_DB"):
+        if _default_tracker is None:
+            _default_tracker = CostTracker()
+        return _default_tracker
+    # Resolve the active home at query time: a profile switch must not retain
+    # another profile's tracker/database in a process-global singleton.
+    return CostTracker(store=SessionCostStore())
 
 
 def get_cost_stats(days: int = 30) -> dict[str, Any]:
