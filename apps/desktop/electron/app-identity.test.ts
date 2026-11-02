@@ -75,4 +75,16 @@ test('every shipped icon derives from the canonical DNA master', () => {
   const icns = readFileSync(path.join(desktopRoot, 'assets/icon.icns'))
   assert.equal(icns.subarray(0, 4).toString(), 'icns', '.icns must be an Apple icon container, not a renamed PNG')
   assert.equal(icns.readUInt32BE(4), icns.length)
+
+  // The taskbar renderer did not draw PNG-compressed ICO entries on this install
+  // and fell back to a blank document tile, so every entry must be a classic
+  // BITMAPINFOHEADER payload.
+  const ico = readFileSync(path.join(desktopRoot, 'assets/icon.ico'))
+  const count = ico.readUInt16LE(4)
+  assert.ok(count >= 6, `expected at least 6 sizes, got ${count}`)
+
+  for (let index = 0; index < count; index += 1) {
+    const offset = ico.readUInt32LE(6 + index * 16 + 12)
+    assert.equal(ico.readUInt32LE(offset), 40, `ICO entry ${index} must use a BMP payload, not PNG`)
+  }
 })
