@@ -25,6 +25,7 @@ import datetime
 import io
 import json
 import logging
+import os
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -80,7 +81,12 @@ class Cognition:
     """The integrated cycle. One `cycle()` call uses >=3 building blocks."""
 
     def __init__(self, home: Optional[str] = None):
-        self.home = Path(home) if home else OPENAMER_HOME
+        # Resolve the home at construction time, not at import time: the
+        # active profile can change between import and use (context
+        # override), and the training loader resolves the CURRENT profile.
+        # An import-time constant would put the state file in one profile
+        # while the world-model store lands in another.
+        self.home = Path(home) if home else get_openamer_home()
         self.state_file = self.home / "memory" / "asi_cognition.json"
 
     # -- state ---------------------------------------------------------------
