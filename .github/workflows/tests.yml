@@ -212,7 +212,33 @@ jobs:
           merged = {}
           for f in glob.glob('durations/*test_durations.json'):
             with open(f) as fh:
-              merged.update(json.load(fh))
+              raw = fh.read()
+            # actions/download-artifact with merge-multiple=true CONCATENATES
+            # same-named artifacts into one file, so the content is a
+            # sequence of JSON objects, not a single one. json.load() on
+            # that raises 'Extra data'. Decode every object in the stream
+            # instead. (Measured 2026-11-02: two slice artifacts merged
+            # into '{...}\n{...}' and save-durations failed the run.)
+            decoder = json.JSONDecoder()
+            index = 0
+            length = len(raw)
+            while index < length:
+                while index < length and raw[index].isspace():
+                    index += 1
+                if index >= length:
+                    break
+                try:
+                    obj, index = decoder.raw_decode(raw, index)
+                except json.JSONDecodeError:
+                    # A truncated or corrupt artifact must not take the whole
+                    # run down: skip to the next plausible object start.
+                    nxt = raw.find('{', index + 1)
+                    if nxt < 0:
+                        break
+                    index = nxt
+                    continue
+                if isinstance(obj, dict):
+                    merged.update(obj)
           with open('test_durations.json', 'w') as fh:
             json.dump(merged, fh, indent=2, sort_keys=True)
           print(f'Merged {len(merged)} file durations')
