@@ -12687,6 +12687,9 @@ def _cmd_update_impl(args, gateway_mode: bool):
                 rescue_branch = _create_rescue_branch(
                     git_cmd, PROJECT_ROOT, pre_pull_sha
                 )
+                if not rescue_branch:
+                    print("Failed to preserve local commits; update aborted before reset.")
+                    sys.exit(1)
                 reset_result = subprocess.run(
                     git_cmd + ["reset", "--hard", f"origin/{branch}"],
                     cwd=PROJECT_ROOT,
