@@ -29,6 +29,7 @@ from tools.environments.local import (
     _git_bash_bin_dirs,
     _make_run_env,
     _msys_to_windows_path,
+    _native_safe_path,
     _prepend_git_bash_dirs,
     _quote_bash_path,
     _resolve_safe_cwd,
@@ -519,3 +520,35 @@ class TestWrapCommandWindowsNativeCwd:
         script = captured["script"]
         assert "/c/Users/Alexander/AppData/Local/Temp/openamer-snap-deadbeef.sh" in script
         assert r"C:\Users\Alexander\AppData" not in script
+
+
+# ── _native_safe_path: the OTHER direction ────────────────────────────────
+# `_bash_safe_path` rewrites C:\x -> /c/x because bash builtins need that form.
+# A NATIVE Windows executable needs the opposite: ripgrep is built for
+# x86_64-pc-windows-msvc and answers `/c/...` with
+#   rg: /c/...: IO error for operation on /c/...: (os error 2/3)
+# Measured 2026-11-01 on this box, same directory, same rg build:
+#   C:/Users/x -> rc=0 | C:\Users\x -> rc=0 | /c/Users/x -> rc=2
+# The search tools therefore pass native args to rg and bash args to cat/ls.
+
+
+def test_native_safe_path_keeps_drive_forward_slashes():
+    with patch.object(local_mod, "_IS_WINDOWS", True):
+        assert _native_safe_path(r"C:\Users\damir\x") == "C:/Users/damir/x"
+
+
+def test_native_safe_path_reverses_the_bash_form():
+    """The exact value `_bash_safe_path` produces must come back native."""
+    with patch.object(local_mod, "_IS_WINDOWS", True):
+        bash_form = _bash_safe_path(r"C:\Users\damir\Documents")
+        assert bash_form == "/c/Users/damir/Documents"
+        assert _native_safe_path(bash_form) == "C:/Users/damir/Documents"
+
+
+def test_native_safe_path_drive_root_and_noop_cases():
+    with patch.object(local_mod, "_IS_WINDOWS", True):
+        assert _native_safe_path("/c/") == "C:/"
+        assert _native_safe_path("") == ""
+        assert _native_safe_path("relative/x") == "relative/x"
+    with patch.object(local_mod, "_IS_WINDOWS", False):
+        assert _native_safe_path("/c/Users/x") == "/c/Users/x"

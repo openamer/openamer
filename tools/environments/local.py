@@ -136,6 +136,35 @@ def _quote_bash_path(path: str) -> str:
     return shlex.quote(_bash_safe_path(path))
 
 
+def _native_safe_path(path: str) -> str:
+    """Return *path* in the form a NATIVE Windows tool accepts.
+
+    ``_bash_safe_path`` rewrites ``C:\\Users\\x`` to ``/c/Users/x`` because bash
+    builtins (``cat``/``ls``/``head``) need that form.  A native Windows binary
+    does NOT: ripgrep here is ``x86_64-pc-windows-msvc`` and answers a ``/c/...``
+    argument with ``IO error for operation on /c/... (os error 2/3)``.
+
+    Measured 2026-11-01 against the same directory, same rg build:
+
+        C:/Users/damir/AppData/Local/Temp/tmp0v2ssz_c   rc=0
+        C:\\Users\\damir\\AppData\\Local\\Temp\\tmp0v2ssz_c  rc=0
+        /c/Users/damir/AppData/Local/Temp/tmp0v2ssz_c  rc=2  (IO error)
+
+    So: shell builtins get ``_bash_safe_path``, native executables get this.
+    Forward slashes keep the value safe to quote for bash and are accepted by
+    every Windows API.  No-op off Windows and for non-drive paths.
+    """
+    if not _IS_WINDOWS or not path:
+        return path
+    p = path.replace("\\", "/")
+    m = re.match(r"^/([a-zA-Z])(?:/(.*))?$", p)
+    if m:
+        drive = m.group(1).upper()
+        tail = m.group(2) or ""
+        return f"{drive}:/{tail}" if tail else f"{drive}:/"
+    return p
+
+
 def _cwd_usable(path: str) -> bool:
     """True when *path* is a directory this process can actually chdir into.
 
