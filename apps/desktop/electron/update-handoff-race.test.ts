@@ -278,6 +278,40 @@ test('recovery spawn failure releases its gate instead of stranding reconnects',
   assert.equal(context.isQuittingForHandoff, false)
 })
 
+test('a superseded pool start does not delete the replacement backend entry', async () => {
+  // Reproduces the reviewed failure mode: an old pool start waits for the
+  // update gate, the teardown drops its entry, a replacement is registered,
+  // and the old start then fails. The replacement must stay managed.
+  const backendPool = new Map<string, unknown>()
+
+  const { fn } = mainFunction('ensureBackend', {
+    primaryProfileKey: () => 'primary',
+    backendPool,
+    POOL_MAX_BACKENDS: 4,
+    evictLruPoolBackends: () => {},
+    startPoolIdleReaper: () => {},
+    spawnPoolBackend: async (key: string, entry: unknown) => {
+      const current = backendPool.get(key)
+      if (current !== entry) {
+        throw new Error('OpenAmer profile backend start was superseded by teardown.')
+      }
+      return 'connection'
+    }
+  })
+
+  const first = fn('alpha')
+  const firstEntry = backendPool.get('alpha')
+
+  // Teardown replaces the entry with a newer backend for the same profile.
+  backendPool.delete('alpha')
+  const replacement = { process: null, port: 1, token: null, connectionPromise: null, lastActiveAt: Date.now() }
+  backendPool.set('alpha', replacement)
+
+  await assert.rejects(first)
+  assert.equal(backendPool.get('alpha'), replacement, 'the replacement entry must survive the stale failure')
+  assert.notEqual(backendPool.get('alpha'), firstEntry)
+})
+
 test('a prepared attempt invalidated by update teardown is rejected before spawning', () => {
   const state = createBackendConnectionState<object, string>()
   const prepared = state.startAttempt()

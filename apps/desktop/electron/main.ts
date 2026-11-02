@@ -7787,7 +7787,11 @@ async function ensureBackend(profile) {
 
   const entry = { process: null, port: null, token: null, connectionPromise: null, lastActiveAt: Date.now() }
   entry.connectionPromise = spawnPoolBackend(key, entry).catch(error => {
-    backendPool.delete(key)
+    // Only drop our own entry: a teardown may already have replaced it with a
+    // newer backend for this profile, and that replacement must stay managed.
+    if (backendPool.get(key) === entry) {
+      backendPool.delete(key)
+    }
     throw error
   })
   backendPool.set(key, entry)
