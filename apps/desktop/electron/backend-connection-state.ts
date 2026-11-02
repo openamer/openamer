@@ -18,6 +18,10 @@ export function createBackendConnectionState<TProcess, TConnection>() {
       return { generation, promise: null }
     },
 
+    isCurrentAttempt(attempt: BackendConnectionAttempt<TConnection>): boolean {
+      return attempt.generation === generation
+    },
+
     setPromise(attempt: BackendConnectionAttempt<TConnection>, nextPromise: Promise<TConnection>): boolean {
       if (attempt.generation !== generation) {
         return false

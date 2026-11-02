@@ -168,7 +168,7 @@ import {
 import { installStdioGuards } from './stdio-guard'
 import { nativeOverlayWidth as computeNativeOverlayWidth, macTitleBarOverlayHeight } from './titlebar-overlay-width'
 import { resolveBehindCount, shouldCountCommits } from './update-count'
-import { readLiveUpdateMarker, writeUpdateMarker } from './update-marker'
+import { readLiveUpdateMarker, waitForUpdateRelease, writeUpdateMarker } from './update-marker'
 import { runRebuildWithRetry } from './update-rebuild'
 import {
   buildRelaunchScript,
@@ -494,12 +494,7 @@ function installCheckoutCandidates() {
   // checkout in dev. installHomeCandidatesFromPaths walks each one's ancestors,
   // which is how a packaged build finds `<home>/openamer-agent` above itself.
   return installHomeCandidatesFromPaths(
-    [
-      process.env.OPENAMER_DESKTOP_OPENAMER_ROOT,
-      process.execPath,
-      APP_ROOT,
-      SOURCE_REPO_ROOT
-    ],
+    [process.env.OPENAMER_DESKTOP_OPENAMER_ROOT, process.execPath, APP_ROOT, SOURCE_REPO_ROOT],
     { isDirectory: directoryExists }
   )
 }
@@ -1707,9 +1702,9 @@ function directoryExists(filePath) {
 // own relaunch hits our single-instance lock and quits). Marker parsing +
 // staleness self-heal live in update-marker.ts (unit-tested).
 
-// How long we'll park the launch waiting for a live update to finish before
-// giving up and starting the backend anyway (belt-and-suspenders alongside the
-// marker's own age ceiling; covers a stuck-but-alive updater).
+// How long we'll park startup before reporting a still-running update.
+// A timeout must never permit a backend to re-lock an environment being updated.
+// The marker's independent age ceiling still prunes abandoned updates.
 const UPDATE_WAIT_TIMEOUT_MS = 20 * 60 * 1000
 const UPDATE_WAIT_POLL_MS = 1000
 // How long the desktop lingers on the "updating, don't reopen" overlay after
@@ -1725,32 +1720,21 @@ const UPDATE_HANDOFF_DWELL_MS = 2500
 // Emits a boot-progress phase so the renderer shows "Update in progress…"
 // rather than a frozen splash. Returns true if it parked at all.
 async function waitForUpdateToFinish() {
-  let marker = readLiveUpdateMarker(OPENAMER_HOME)
-
-  if (!marker) {
-    return false
-  }
-
-  rememberLog(`[updates] update in progress (pid=${marker.pid}); deferring backend start until it finishes`)
-  const deadline = Date.now() + UPDATE_WAIT_TIMEOUT_MS
-
-  while (marker && Date.now() < deadline) {
-    await advanceBootProgress(
-      'backend.update-wait',
-      'An update is finishing — OpenAmer will start automatically when it completes…',
-      12
-    )
-    await new Promise(r => setTimeout(r, UPDATE_WAIT_POLL_MS))
-    marker = readLiveUpdateMarker(OPENAMER_HOME)
-  }
-
-  if (marker) {
-    rememberLog('[updates] update still in progress after wait timeout; starting backend anyway')
-  } else {
-    rememberLog('[updates] update finished; proceeding with backend start')
-  }
-
-  return true
+  return waitForUpdateRelease({
+    // The updater PID marker does not exist until AFTER our teardown finishes.
+    // Renderer reconnects must also wait during that earlier in-process phase.
+    isBlocked: () =>
+      (IS_WINDOWS && (updateInFlight || bootstrapRecoveryInFlight || isQuittingForHandoff)) ||
+      Boolean(readLiveUpdateMarker(OPENAMER_HOME)),
+    pollMs: UPDATE_WAIT_POLL_MS,
+    timeoutMs: UPDATE_WAIT_TIMEOUT_MS,
+    onWait: () =>
+      advanceBootProgress(
+        'backend.update-wait',
+        'An update is finishing — OpenAmer will start automatically when it completes…',
+        12
+      )
+  })
 }
 
 function unpackedPathFor(filePath) {
@@ -2524,6 +2508,7 @@ async function readCommitLog(cwd, branch) {
 }
 
 let updateInFlight = false
+let bootstrapRecoveryInFlight = false
 
 // Set to true when the desktop is about to quit so a detached swap/install/
 // uninstall script can take over. On macOS, app.quit() closes windows but
@@ -2676,9 +2661,10 @@ async function releaseBackendLock(updateRoot, tag) {
     return { unlocked: true }
   }
 
-  // Collect every backend PID the desktop owns: primary window backend + pool.
+  // Invalidate before killing: an expected teardown exit must not trigger a
+  // reconnect or latch a boot failure, and pending starts must lose ownership.
   const pids = []
-  const openamerProcess = backendConnectionState.getProcess()
+  const openamerProcess = backendConnectionState.invalidate()
 
   if (openamerProcess && Number.isInteger(openamerProcess.pid)) {
     pids.push(openamerProcess.pid)
@@ -2935,42 +2921,54 @@ async function handOffWindowsBootstrapRecovery(reason) {
   // --repair (full venv recreate) and drove reinstall loops. The venv interpreter
   // and the bootstrap-complete marker are present earlier and are better signals.
   const haveRealInstall =
-    fileExists(venvPython) || fileExists(venvOpenAmer) || fileExists(path.join(updateRoot, '.openamer-bootstrap-complete'))
+    fileExists(venvPython) ||
+    fileExists(venvOpenAmer) ||
+    fileExists(path.join(updateRoot, '.openamer-bootstrap-complete'))
 
   const updaterArgs = chooseUpdaterArgs(haveRealInstall, branch)
 
-  await releaseBackendLockForUpdate(updateRoot)
+  bootstrapRecoveryInFlight = true
 
-  const child = spawnUpdaterProcess(updater, updaterArgs, {
-    cwd: OPENAMER_HOME,
-    env: {
-      ...process.env,
-      OPENAMER_HOME,
-      PATH: pathWithOpenAmerManagedNode(venvBin)
-    },
-    detached: true,
-    stdio: 'ignore'
-  })
+  try {
+    const lock = await releaseBackendLockForUpdate(updateRoot)
 
-  // Same marker pre-write as applyUpdates — see comment there. The recovery
-  // hand-off has the same window where the renderer can respawn a backend
-  // before the updater writes its own marker.
-  if (Number.isInteger(child.pid)) {
-    writeUpdateMarker(OPENAMER_HOME, child.pid)
+    if (!lock.unlocked) {
+      throw new Error('OpenAmer recovery could not release the running installation. Close other OpenAmer processes and retry.')
+    }
+
+    const child = spawnUpdaterProcess(updater, updaterArgs, {
+      cwd: OPENAMER_HOME,
+      env: {
+        ...process.env,
+        OPENAMER_HOME,
+        PATH: pathWithOpenAmerManagedNode(venvBin)
+      },
+      detached: true,
+      stdio: 'ignore'
+    })
+
+    // Same marker pre-write as applyUpdates — see comment there. The recovery
+    // hand-off has the same window where the renderer can respawn a backend
+    // before the updater writes its own marker.
+    if (Number.isInteger(child.pid)) {
+      writeUpdateMarker(OPENAMER_HOME, child.pid)
+    }
+
+    rememberLog(
+      `[bootstrap] handed off ${reason} recovery to updater: ${updater} ${updaterArgs.join(' ')}; exiting desktop to release app.asar`
+    )
+    // Same dwell as the in-app update hand-off (#50419): give the updater's
+    // window time to appear before we vanish, so the recovery doesn't look like
+    // a crash and provoke a mid-recovery relaunch.
+    isQuittingForHandoff = true
+    setTimeout(() => {
+      app.quit()
+    }, UPDATE_HANDOFF_DWELL_MS)
+
+    return true
+  } finally {
+    bootstrapRecoveryInFlight = false
   }
-
-  rememberLog(
-    `[bootstrap] handed off ${reason} recovery to updater: ${updater} ${updaterArgs.join(' ')}; exiting desktop to release app.asar`
-  )
-  // Same dwell as the in-app update hand-off (#50419): give the updater's
-  // window time to appear before we vanish, so the recovery doesn't look like
-  // a crash and provoke a mid-recovery relaunch.
-  isQuittingForHandoff = true
-  setTimeout(() => {
-    app.quit()
-  }, UPDATE_HANDOFF_DWELL_MS)
-
-  return true
 }
 
 // Resolve the openamer CLI to drive an in-app update: prefer the venv shim in
@@ -3731,7 +3729,8 @@ function createActiveBackend(backendArgs) {
 function resolveOpenAmerBackend(backendArgs) {
   // 1. Explicit override -- OPENAMER_DESKTOP_OPENAMER_ROOT points at a developer
   //    checkout. Honour it as-is (no bootstrap; the user is driving).
-  const overrideRoot = process.env.OPENAMER_DESKTOP_OPENAMER_ROOT && path.resolve(process.env.OPENAMER_DESKTOP_OPENAMER_ROOT)
+  const overrideRoot =
+    process.env.OPENAMER_DESKTOP_OPENAMER_ROOT && path.resolve(process.env.OPENAMER_DESKTOP_OPENAMER_ROOT)
 
   if (overrideRoot && isOpenAmerSourceRoot(overrideRoot)) {
     const backend = createPythonBackend(overrideRoot, `OpenAmer source at ${overrideRoot}`, backendArgs)
@@ -3813,7 +3812,10 @@ function resolveOpenAmerBackend(backendArgs) {
       // the Nix wrapper), not a discovered PATH candidate. It must not fall
       // through to the install-script bootstrap if the optional probe times
       // out under load; the pinned backend is the only valid runtime there.
-      if (shouldTrustOpenAmerOverride(openamerOverride) || verifyOpenAmerCli(openamerCommand, { shell: shellForProbe })) {
+      if (
+        shouldTrustOpenAmerOverride(openamerOverride) ||
+        verifyOpenAmerCli(openamerCommand, { shell: shellForProbe })
+      ) {
         return (
           unwrapWindowsVenvOpenAmerCommand(openamerCommand, backendArgs) || {
             label: `existing OpenAmer CLI at ${openamerCommand}`,
@@ -6246,7 +6248,8 @@ async function freshGatewayWsUrl(profile) {
 const DEFAULT_openamer_PORTAL_URL = 'https://portal.openamer.com'
 
 function resolvePortalBaseUrl() {
-  const raw = process.env.OPENAMER_PORTAL_BASE_URL || process.env.OPENAMER_PORTAL_BASE_URL || DEFAULT_openamer_PORTAL_URL
+  const raw =
+    process.env.OPENAMER_PORTAL_BASE_URL || process.env.OPENAMER_PORTAL_BASE_URL || DEFAULT_openamer_PORTAL_URL
 
   return String(raw).trim().replace(/\/+$/, '')
 }
@@ -6417,7 +6420,9 @@ async function discoverCloudAgents(org?: string) {
     // A 401 means the portal session lapsed between the liveness check and the
     // call — surface it as a re-login, not a generic failure.
     if (error && error.statusCode === 401) {
-      const err = new Error('Your OpenAmer Cloud session has expired. Open Settings → Gateway and sign in again.') as any
+      const err = new Error(
+        'Your OpenAmer Cloud session has expired. Open Settings → Gateway and sign in again.'
+      ) as any
       err.needsCloudLogin = true
       err.cause = error
       throw err
@@ -7894,12 +7899,19 @@ async function spawnPoolBackend(profile, entry) {
   // step 3 in openamer_cli/main.py), so the child re-homes to this profile.
   // --port 0: the OS assigns an ephemeral port; the child announces it on stdout.
   const backendArgs = ['--profile', profile, 'serve', '--host', '127.0.0.1', '--port', '0']
+  await waitForUpdateToFinish()
   const backend = await ensureRuntime(resolveOpenAmerBackend(backendArgs))
   // Route old runtimes (no `serve`) through the legacy `dashboard --no-open`.
   backend.args = getBackendArgsForRuntime(backend)
   const openamerCwd = resolveOpenAmerCwd()
   const webDist = resolveWebDist()
   const readyFile = backend.readyFile ? makeDashboardReadyFile() : null
+
+  await waitForUpdateToFinish()
+
+  if (backendPool.get(profile) !== entry) {
+    throw new Error('OpenAmer profile backend start was superseded by teardown.')
+  }
 
   rememberLog(`Starting OpenAmer backend for profile "${profile}" via ${backend.label}`)
 
@@ -8057,23 +8069,29 @@ async function prepareProfileDeleteRequest(request) {
 }
 
 function _spawnSessionToBrain(baseUrl: string): void {
-  const openamerHome = process.env.OPENAMER_HOME || '';
+  const openamerHome = process.env.OPENAMER_HOME || ''
 
-  if (!openamerHome) { return; }
-  const venvPy = path.join(openamerHome, 'openamer-agent', 'venv', 'Scripts', 'python.exe');
+  if (!openamerHome) {
+    return
+  }
+  const venvPy = path.join(openamerHome, 'openamer-agent', 'venv', 'Scripts', 'python.exe')
 
-  if (!fs.existsSync(venvPy)) { return; }
-  const scriptPath = path.join(openamerHome, 'openamer-agent', 'scripts', 'session_to_brain.py');
+  if (!fs.existsSync(venvPy)) {
+    return
+  }
+  const scriptPath = path.join(openamerHome, 'openamer-agent', 'scripts', 'session_to_brain.py')
 
-  if (!fs.existsSync(scriptPath)) { return; }
+  if (!fs.existsSync(scriptPath)) {
+    return
+  }
 
   const proc = spawn(venvPy, [scriptPath, '--watch'], {
     stdio: 'ignore',
     detached: true,
-    windowsHide: true,
-  });
+    windowsHide: true
+  })
 
-  proc.unref();
+  proc.unref()
 }
 
 async function startOpenAmer() {
@@ -8198,6 +8216,14 @@ async function startOpenAmer() {
     const readyFile = backend.readyFile ? makeDashboardReadyFile() : null
 
     await advanceBootProgress('backend.spawn', `Starting OpenAmer backend via ${backend.label}`, 84)
+    // Runtime resolution above is asynchronous; an update may have begun since
+    // the first gate. Recheck at the actual spawn boundary with no await gap.
+    await waitForUpdateToFinish()
+
+    if (!backendConnectionState.isCurrentAttempt(connectionAttempt)) {
+      throw new Error('OpenAmer backend start was superseded by a newer connection attempt.')
+    }
+
     rememberLog(`Starting OpenAmer backend via ${backend.label}`)
 
     const openamerProcess = spawn(
@@ -8317,7 +8343,6 @@ async function startOpenAmer() {
     await Promise.race([waitForOpenAmer(baseUrl, token), backendStartFailed])
     backendReady = true
     backendStartFailure = null
-
 
     // Start the session-to-brain daemon (non-fatal).
     _spawnSessionToBrain(baseUrl)
@@ -9818,7 +9843,10 @@ ipcMain.handle('openamer:notify', (_event, payload) => {
     const action = actions[index]
 
     if (action?.id) {
-      mainWindow.webContents.send('openamer:notification-action', { sessionId: payload?.sessionId, actionId: action.id })
+      mainWindow.webContents.send('openamer:notification-action', {
+        sessionId: payload?.sessionId,
+        actionId: action.id
+      })
     }
   })
   notification.show()
@@ -10420,7 +10448,9 @@ ipcMain.handle('openamer:git:branchSwitch', async (_event, repoPath, branch) =>
 
 ipcMain.handle('openamer:git:branchList', async (_event, repoPath) => listBranches(repoPath, resolveGitBinary()))
 
-ipcMain.handle('openamer:git:baseBranchList', async (_event, repoPath) => listBaseBranches(repoPath, resolveGitBinary()))
+ipcMain.handle('openamer:git:baseBranchList', async (_event, repoPath) =>
+  listBaseBranches(repoPath, resolveGitBinary())
+)
 
 // Compact repo status (branch, ahead/behind, change counts + files) for the
 // composer coding rail. Returns null on a non-repo / remote backend so the rail
@@ -10785,11 +10815,10 @@ async function runDesktopUninstall(mode) {
   // Python with PYTHONPATH=<agentRoot> so `import openamer_cli` resolves from
   // source while the venv is torn down. gui-only doesn't touch the venv, so the
 
-
-// ── Session-to-brain daemon ─────────────────────────────────────────────────
-// Spawns the Python daemon that polls the state DB every 60s and exports
-// closed sessions as training trajectories. Non-fatal: if the script is
-// missing or fails, the app works fine.
+  // ── Session-to-brain daemon ─────────────────────────────────────────────────
+  // Spawns the Python daemon that polls the state DB every 60s and exports
+  // closed sessions as training trajectories. Non-fatal: if the script is
+  // missing or fails, the app works fine.
 
   // venv python is fine there. If no system Python exists (the Windows edge
   // case), fall back to the venv python — gui-only is unaffected; lite/full may
@@ -10894,7 +10923,9 @@ ipcMain.handle('openamer:uninstall:run', async (_event, payload) => {
 ipcMain.handle('openamer:vscode-theme:fetch', async (_event, id) => fetchMarketplaceThemes(String(id || '')))
 
 // Search the Marketplace for color-theme extensions (empty query = top installs).
-ipcMain.handle('openamer:vscode-theme:search', async (_event, query) => searchMarketplaceThemes(String(query || ''), 20))
+ipcMain.handle('openamer:vscode-theme:search', async (_event, query) =>
+  searchMarketplaceThemes(String(query || ''), 20)
+)
 
 // ---------------------------------------------------------------------------
 // openamer:// deep links (e.g. openamer://blueprint/morning-brief?time=08:00).

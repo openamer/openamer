@@ -136,3 +136,34 @@ export function writeUpdateMarker(openamerHome, pid, { now = Date.now } = {}) {
     // updater will write its own when it reaches run_update.
   }
 }
+
+/** Wait for both in-process teardown and the detached updater to release startup.
+ * A missing on-disk marker is not permission to respawn during local teardown.
+ * Never fall through on timeout: that would re-lock the environment mid-update.
+ */
+export async function waitForUpdateRelease({
+  isBlocked,
+  onWait,
+  pollMs = 1000,
+  timeoutMs = UPDATE_MARKER_MAX_AGE_MS
+}: {
+  isBlocked: () => boolean
+  onWait?: () => void | Promise<void>
+  pollMs?: number
+  timeoutMs?: number
+}): Promise<boolean> {
+  const deadline = Date.now() + timeoutMs
+  let waited = false
+
+  while (isBlocked()) {
+    if (Date.now() >= deadline) {
+      throw new Error('OpenAmer update is still in progress; backend startup remains paused.')
+    }
+
+    waited = true
+    await onWait?.()
+    await new Promise(resolve => setTimeout(resolve, pollMs))
+  }
+
+  return waited
+}
