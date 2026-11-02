@@ -402,7 +402,39 @@ def restore_official_optional_skill(name: str, *, restore: bool = False) -> dict
     }
 
 
-def _find_installed_skill_dir_by_name(skill_dir_name: str) -> Optional[Path]:
+def _index_installed_skill_dirs() -> Dict[str, List[Path]]:
+    """Index installed skill directories by name with ONE tree walk.
+
+    Measured 2026-11-02: the provenance backfill looked up 116 missing optional
+    skills through a per-name helper that re-walked the whole active tree each
+    time — 30,901 rglob calls, 60,580 stat calls and 14.2 s of a 20 s desktop
+    backend boot. One walk per pass keeps the exact same semantics (exclusions,
+    symlink containment, ambiguity rule); the index is rebuilt for every pass so
+    a newly installed skill is always visible.
+    """
+    index: Dict[str, List[Path]] = {}
+    if not SKILLS_DIR.exists():
+        return index
+    try:
+        root = SKILLS_DIR.resolve()
+    except OSError:
+        root = SKILLS_DIR
+    for skill_md in SKILLS_DIR.rglob("SKILL.md"):
+        if is_excluded_skill_path(skill_md):
+            continue
+        candidate = skill_md.parent
+        # Never reach outside the skills tree (symlinked/external dirs).
+        try:
+            candidate.resolve().relative_to(root)
+        except (OSError, ValueError):
+            continue
+        index.setdefault(candidate.name, []).append(candidate)
+    return index
+
+
+def _find_installed_skill_dir_by_name(
+    skill_dir_name: str, index: Optional[Dict[str, List[Path]]] = None
+) -> Optional[Path]:
     """Locate an installed skill directory by its directory name.
 
     Used only as a fallback when the repo-derived install path doesn't exist in
@@ -411,22 +443,15 @@ def _find_installed_skill_dir_by_name(skill_dir_name: str) -> Optional[Path]:
     skills sharing a directory name give us no basis to pick one, and guessing
     would write provenance onto the wrong skill. The caller still verifies a
     byte-identical content hash before recording anything.
+
+    ``index`` lets a caller that performs many lookups share one tree walk; when
+    omitted the index is built on demand, so single-call behaviour is unchanged.
     """
-    if not skill_dir_name or not SKILLS_DIR.exists():
+    if not skill_dir_name:
         return None
-    matches: List[Path] = []
-    for skill_md in SKILLS_DIR.rglob("SKILL.md"):
-        if is_excluded_skill_path(skill_md):
-            continue
-        candidate = skill_md.parent
-        if candidate.name != skill_dir_name:
-            continue
-        # Never reach outside the skills tree (symlinked/external dirs).
-        try:
-            candidate.resolve().relative_to(SKILLS_DIR.resolve())
-        except (OSError, ValueError):
-            continue
-        matches.append(candidate)
+    if index is None:
+        index = _index_installed_skill_dirs()
+    matches = index.get(skill_dir_name) or []
     if len(matches) != 1:
         return None
     return matches[0]
@@ -459,6 +484,9 @@ def _backfill_optional_provenance(quiet: bool = False) -> List[str]:
 
     backfilled: List[str] = []
     changed = False
+    # Built lazily on the first relocated-skill miss: a tree with every skill at
+    # its expected path never pays for a scan at all.
+    installed_index: Optional[Dict[str, List[Path]]] = None
     for skill_md in sorted(optional_dir.rglob("SKILL.md")):
         if is_excluded_skill_path(skill_md):
             continue
@@ -478,7 +506,9 @@ def _backfill_optional_provenance(quiet: bool = False) -> List[str]:
             # silently skips them forever. Fall back to a unique
             # same-directory-name match anywhere in the tree, then still
             # require a byte-identical hash below before claiming provenance.
-            dest = _find_installed_skill_dir_by_name(src.name)
+            if installed_index is None:
+                installed_index = _index_installed_skill_dirs()
+            dest = _find_installed_skill_dir_by_name(src.name, index=installed_index)
             if dest is None:
                 continue
             try:
