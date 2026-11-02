@@ -880,7 +880,6 @@ _OLLAMA_CLOUD_PRICING_SNAPSHOT: Dict[str, tuple[str, str, Optional[str]]] = {
     # model: (input, output, cached_input)
     "deepseek-v4.1-flash": ("0.30", "1.20", "0.006"),
     "deepseek-v4-pro": ("1.32", "3.96", "0.044"),
-    "deepseek-v4-flash": ("0.30", "1.20", "0.006"),  # retired alias of v4.1-flash
     "gemma4": ("0.14", "0.40", "0.05"),
     "glm-5.3": ("1.40", "4.40", "0.26"),
     "glm-5.3-flash": ("0.15", "0.50", "0.03"),
@@ -1176,15 +1175,22 @@ def _ollama_cloud_pricing_entry(route: BillingRoute) -> Optional[PricingEntry]:
 
     for candidate in candidates:
         entry = models.get(candidate)
-        if not entry:
+        if not isinstance(entry, dict):
             continue
         cost = entry.get("cost") or {}
+        if not isinstance(cost, dict):
+            continue
         prompt = _to_decimal(cost.get("input"))
         completion = _to_decimal(cost.get("output"))
+        if any(value is not None and (not value.is_finite() or value < 0)
+               for value in (prompt, completion)):
+            continue
         if prompt is None and completion is None:
             continue
         cache_value = cost.get("cache_read", cost.get("cached_input"))
         cache_read = _to_decimal(cache_value)
+        if cache_read is not None and (not cache_read.is_finite() or cache_read < 0):
+            continue
         return PricingEntry(
             input_cost_per_million=prompt,
             output_cost_per_million=completion,

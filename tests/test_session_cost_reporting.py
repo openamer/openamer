@@ -168,7 +168,7 @@ def test_cost_read_surfaces_broken_database_not_fake_zero(tmp_path, monkeypatch)
 
 def test_invalid_route_schema_is_not_silently_ignored(db):
     record(db)
-    db._conn.execute("ALTER TABLE session_model_usage RENAME COLUMN task TO broken_task")
+    db._conn.execute("ALTER TABLE session_model_usage RENAME COLUMN billing_provider TO broken_provider")
     db._conn.commit()
     import sqlite3
     with pytest.raises(sqlite3.OperationalError):
@@ -184,3 +184,29 @@ def test_new_session_between_insights_queries_does_not_crash(db, monkeypatch):
     rows = engine.get_cost_usage(0, sessions=sessions)
     assert {r["session_id"] for r in rows} == {"cloud"}
 
+
+def test_repricing_does_not_double_count_existing_session_estimate(db):
+    record(db)
+    # Legacy route row has unknown zero, but gateway absolute summary already
+    # carries a positive historical estimate for these same tokens.
+    db.update_token_counts("cloud", input_tokens=1_000_000, output_tokens=1_000_000,
+                           estimated_cost_usd=3, cost_status="estimated",
+                           api_call_count=2, absolute=True)
+    assert Decimal(dashboard.get_cost_stats()["total_cost"]) == Decimal("3")
+
+
+def test_pre_aux_task_schema_keeps_route_attribution(db):
+    record(db, estimated_cost_usd=2, cost_status="estimated")
+    # Old session_model_usage schema has route attribution, but no task column.
+    columns = [r[1] for r in db._conn.execute("PRAGMA table_info(session_model_usage)")
+               if r[1] != "task"]
+    db._conn.execute("CREATE TABLE old_usage AS SELECT " + ",".join(columns)
+                     + " FROM session_model_usage")
+    db._conn.execute("DROP TABLE session_model_usage")
+    db._conn.execute("ALTER TABLE old_usage RENAME TO session_model_usage")
+    # Session's current model differs; report must retain the real usage route.
+    db.update_session_model("cloud", "current-model")
+    db._conn.commit()
+    stats = dashboard.get_cost_stats()
+    assert stats["by_model"][0]["key"] == "deepseek-v4.1-flash"
+    assert Decimal(stats["total_cost"]) == Decimal("2")

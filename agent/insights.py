@@ -532,6 +532,12 @@ class InsightsEngine:
                 cursor = self._conn.execute(self._GET_MODEL_USAGE_ALL, (cutoff,))
             return [dict(row) for row in cursor.fetchall()]
         except sqlite3.OperationalError as exc:
+            if "no such column: u.task" in str(exc):
+                # Read pre-auxiliary schemas without migrating a read-only DB.
+                query = self._GET_MODEL_USAGE_WITH_SOURCE if source else self._GET_MODEL_USAGE_ALL
+                query = query.replace("u.task", "'' AS task")
+                params = (cutoff, source) if source else (cutoff,)
+                return [dict(row) for row in self._conn.execute(query, params).fetchall()]
             if "no such table: session_model_usage" not in str(exc):
                 raise
             return []
@@ -557,21 +563,7 @@ class InsightsEngine:
             "cache_write_tokens", "reasoning_tokens", "api_call_count",
             "estimated_cost_usd", "actual_cost_usd",
         )
-        for row in rows:
-            if not row.get("task"):
-                for key in counter_keys:
-                    totals[row["session_id"]][key] += Decimal(str(row.get(key) or 0))
-            row["started_at"] = sessions_by_id[row["session_id"]]["started_at"]
-        for session in sessions:
-            residual = dict(session)
-            residual["session_id"] = session["id"]
-            for key in counter_keys:
-                value = max(Decimal(0), Decimal(str(session.get(key) or 0))
-                            - totals[session["id"]][key])
-                residual[key] = value if key.endswith("_usd") else int(value)
-            if any(residual[key] for key in counter_keys):
-                rows.append(residual)
-        for row in rows:
+        def price(row):
             stored = row.get("estimated_cost_usd")
             status = row.get("cost_status")
             if status == "included":
@@ -594,6 +586,23 @@ class InsightsEngine:
                 )
                 row["estimated_cost_usd"] = result.amount_usd or Decimal(0)
                 row["cost_status"] = result.status
+
+        for row in rows:
+            price(row)  # Reconcile monetary residuals against these same priced rows.
+            if not row.get("task"):
+                for key in counter_keys:
+                    totals[row["session_id"]][key] += Decimal(str(row.get(key) or 0))
+            row["started_at"] = sessions_by_id[row["session_id"]]["started_at"]
+        for session in sessions:
+            residual = dict(session)
+            residual["session_id"] = session["id"]
+            for key in counter_keys:
+                value = max(Decimal(0), Decimal(str(session.get(key) or 0))
+                            - totals[session["id"]][key])
+                residual[key] = value if key.endswith("_usd") else int(value)
+            if any(residual[key] for key in counter_keys):
+                price(residual)
+                rows.append(residual)
         return rows
 
     def _compute_model_breakdown(

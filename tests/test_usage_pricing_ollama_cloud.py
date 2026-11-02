@@ -256,3 +256,17 @@ def test_size_tags_remain_part_of_model_id(model):
     assert entry is not None
     assert entry.input_cost_per_million > 0
 
+
+@pytest.mark.parametrize("value", ["invalid", {"cost": []},
+    {"cost": {"input": "NaN", "output": 1}},
+    {"cost": {"input": -1, "output": 1}},
+    {"cost": {"input": 1, "output": 1, "cache_read": "Infinity"}},
+])
+def test_malformed_catalog_falls_back_to_official_snapshot(monkeypatch, value):
+    monkeypatch.setattr("agent.models_dev.fetch_models_dev", lambda: {
+        "ollama-cloud": {"models": {"deepseek-v4.1-flash": value}}})
+    entry = get_pricing_entry("deepseek-v4.1-flash", provider="ollama-cloud")
+    assert entry is not None
+    assert entry.source == "official_docs_snapshot"
+    assert entry.input_cost_per_million == Decimal("0.30")
+
