@@ -11,25 +11,21 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from openamer_constants import get_openamer_home
+from tools.asi._training import load_training_module
+
 logger = logging.getLogger(__name__)
 
-OPENAMER_HOME = Path(
-    __import__("os").environ.get(
-        "OPENAMER_HOME",
-        str(Path.home() / "AppData/Local/openamer-laptop"),
-    )
-)
+OPENAMER_HOME = get_openamer_home()
 SELF_MODEL_DIR = OPENAMER_HOME / "memory" / "self_model"
 SCRIPTS_TRAINING = OPENAMER_HOME / "scripts" / "training"
 
 # Import the script's functions directly
-sys.path.insert(0, str(SCRIPTS_TRAINING))
 
 # These functions are imported from self_model.py
 def _import_self_model():
     """Lazy import to avoid circular deps at module level."""
-    import importlib
-    mod = importlib.import_module("self_model")
+    mod = load_training_module("self_model")
     return mod
 
 

@@ -25,33 +25,22 @@ import datetime
 import io
 import json
 import logging
-import os
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+if not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from openamer_constants import get_openamer_home
+
 logger = logging.getLogger(__name__)
 
-OPENAMER_HOME = Path(
-    os.environ.get(
-        "OPENAMER_HOME",
-        str(Path.home() / "AppData/Local/openamer-laptop"),
-    )
-)
+OPENAMER_HOME = get_openamer_home()
 SCRIPTS_TRAINING = OPENAMER_HOME / "scripts" / "training"
 MEMORY_DIR = OPENAMER_HOME / "memory"
 STATE_FILE = MEMORY_DIR / "asi_cognition.json"
 
-if str(SCRIPTS_TRAINING) not in sys.path:
-    sys.path.insert(0, str(SCRIPTS_TRAINING))
-
-# Running this file directly puts tools/asi/ on sys.path[0]. That would shadow
-# scripts/training/<name>.py with the sibling wrapper of the same name, and the
-# wrapper's importlib.import_module("<name>") then re-imports ITSELF ->
-# RecursionError. Drop the script directory so the real module always wins.
-_here = str(Path(__file__).resolve().parent)
-while _here in sys.path:
-    sys.path.remove(_here)
 
 
 def _load_blocks():
@@ -124,7 +113,12 @@ class Cognition:
         An edge is always its own nearest neighbour (cosine 1.0), so a cycle
         that cannot exclude it confirms itself and learns nothing.
         """
-        import world_model as _wm  # real module: edge_key lives there
+        # The real training module: edge_key/embed live there, not in the
+        # public wrapper. Resolve it through the profile-scoped resolver so a
+        # fresh installation works without a runtime copy of the tree.
+        from tools.asi._training import load_training_module
+
+        _wm = load_training_module("world_model")
         path = self.home / "memory" / "world_model.jsonl"
         out: List[Dict[str, Any]] = []
         if not path.exists():
@@ -148,7 +142,9 @@ class Cognition:
         """
         if not a or not b:
             return None
-        import world_model as _wm
+        from tools.asi._training import load_training_module
+
+        _wm = load_training_module("world_model")
         va = _wm.embed(a)
         vb = _wm.embed(b)
         if va is None or vb is None:

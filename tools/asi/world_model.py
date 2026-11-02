@@ -11,21 +11,17 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from openamer_constants import get_openamer_home
+from tools.asi._training import load_training_module
+
 logger = logging.getLogger(__name__)
 
-OPENAMER_HOME = Path(
-    __import__("os").environ.get(
-        "OPENAMER_HOME",
-        str(Path.home() / "AppData/Local/openamer-laptop"),
-    )
-)
+OPENAMER_HOME = get_openamer_home()
 SCRIPTS_TRAINING = OPENAMER_HOME / "scripts" / "training"
-sys.path.insert(0, str(SCRIPTS_TRAINING))
 
 
 def _import_world_model():
-    import importlib
-    return importlib.import_module("world_model")
+    return load_training_module("world_model")
 
 
 def recall(query: str, k: int = 5, kind: Optional[str] = None,

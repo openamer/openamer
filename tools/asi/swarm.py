@@ -9,30 +9,26 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from openamer_constants import get_openamer_home
+from tools.asi._training import load_script_module, load_training_module
+
 logger = logging.getLogger(__name__)
 
-OPENAMER_HOME = Path(
-    __import__("os").environ.get(
-        "OPENAMER_HOME",
-        str(Path.home() / "AppData/Local/openamer-laptop"),
-    )
-)
+OPENAMER_HOME = get_openamer_home()
 TRAINING_DIR = OPENAMER_HOME / "scripts" / "training"
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"
 REPO_SCRIPTS = OPENAMER_HOME.parent / "openamer-repo" / "scripts"
-for p in [str(TRAINING_DIR), str(SCRIPTS_DIR), str(REPO_SCRIPTS)]:
+for p in [str(SCRIPTS_DIR), str(REPO_SCRIPTS)]:
     if p not in sys.path:
         sys.path.insert(0, p)
 
 
 def _import_swarm():
-    import importlib
-    return importlib.import_module("swarm_intelligence")
+    return load_training_module("swarm_intelligence")
 
 
 def _import_autonomous():
-    import importlib
-    return importlib.import_module("autonomous_loop")
+    return load_script_module("autonomous_loop")
 
 
 def route(task: str) -> Dict[str, Any]:

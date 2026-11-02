@@ -9,14 +9,12 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from openamer_constants import get_openamer_home
+from tools.asi._training import load_script_module
+
 logger = logging.getLogger(__name__)
 
-OPENAMER_HOME = Path(
-    __import__("os").environ.get(
-        "OPENAMER_HOME",
-        str(Path.home() / "AppData/Local/openamer-laptop"),
-    )
-)
+OPENAMER_HOME = get_openamer_home()
 REPO_DIR = OPENAMER_HOME.parent / "openamer-repo"
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"
 TRAINING_DIR = OPENAMER_HOME / "scripts" / "training"
@@ -44,13 +42,11 @@ for p in [str(SCRIPTS_DIR), str(AGENT_SCRIPTS_DIR), str(REPO_DIR / "scripts"),
 
 
 def _import_darwin():
-    import importlib
-    return importlib.import_module("darwin_engine")
+    return load_script_module("darwin_engine")
 
 
 def _import_publish():
-    import importlib
-    return importlib.import_module("darwin_publish")
+    return load_script_module("darwin_publish")
 
 
 def autopilot() -> Dict[str, Any]:
@@ -118,9 +114,8 @@ def grid_sync() -> Dict[str, Any]:
     """Run Darwin Grid sync.
 
     Direct import from darwin_grid_github.publish() — no subprocess."""
-    import importlib
     try:
-        mod = importlib.import_module("darwin_grid_github")
+        mod = load_script_module("darwin_grid_github")
         if hasattr(mod, "publish"):
             mod.publish("asi-heartbeat")
             return {"success": True}
