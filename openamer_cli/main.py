@@ -15625,6 +15625,10 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         # ``brain`` is a built-in subcommand tree (openamer_cli/brain_cli.py),
         # so plugin discovery can be skipped when the user targets it.
         "brain",
+        # ``supervisor`` is a built-in subcommand tree
+        # (openamer_cli/supervisor.py), so plugin discovery can be skipped when
+        # the user targets it.
+        "supervisor",
         # Help-ish invocations — plugin commands not being listed in
         # top-level --help is an acceptable trade-off for skipping an
         # expensive eager import of every bundled plugin module.
@@ -16617,6 +16621,9 @@ def main():
     # =========================================================================
     from openamer_cli.send_cmd import register_send_subparser
     register_send_subparser(subparsers)
+
+    from openamer_cli.supervisor import register_cli as register_supervisor_cli
+    register_supervisor_cli(subparsers)
 
     # =========================================================================
     # login command  (parser built in openamer_cli/subcommands/login.py)
