@@ -4872,6 +4872,89 @@ def _capture_head_sha(git_cmd, cwd) -> str | None:
         return None
 
 
+def _create_rescue_branch(git_cmd, cwd, sha: str | None = None) -> str | None:
+    """Snapshot the current HEAD on a rescue branch before a destructive reset.
+
+    ``openamer update`` stashes *uncommitted* changes and then, when the
+    history has diverged, runs ``git reset --hard origin/<branch>``. The
+    stash protects the working tree, but **committed** local work that is not
+    on the remote is destroyed by that reset with no trace: the commits lose
+    their branch, ``git reflog`` is the only place they still live, and the
+    user is told "nothing is lost".
+
+    Measured 2026-11-02: an in-app update on a laptop whose ``main`` carried
+    three local commits (a TV fix plus a test-fix) ended with the install at
+    ``origin/main`` and every one of those commits unreachable from a branch.
+    The autostash could not save them — they were commits, not changes.
+
+    The fix is to keep the old tip reachable: create ``<branch>-rescue-<ts>``
+    pointing at the pre-reset HEAD before the reset runs. Cheap, local, and
+    reversible by the user with ``git merge``/``git cherry-pick``.
+
+    Returns the created branch name, or None when nothing was created.
+    """
+    if not sha:
+        sha = _capture_head_sha(git_cmd, cwd)
+    if not sha:
+        return None
+
+    # Never create a rescue branch for a HEAD that equals the remote target —
+    # there is nothing to rescue, and the branch would be noise.
+    from datetime import datetime, timezone
+
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+    base = "main"
+    try:
+        result = subprocess.run(
+            git_cmd + ["rev-parse", "--abbrev-ref", "HEAD"],
+            cwd=cwd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            base = result.stdout.strip()
+    except (subprocess.CalledProcessError, OSError):
+        pass
+    safe_base = re.sub(r"[^A-Za-z0-9._/-]", "-", base).strip("-/") or "HEAD"
+    # The name must be unique even when two rescues happen within the same
+    # second AND target the same SHA — otherwise the second `git branch` would
+    # fail with "already exists" and the rescue would silently do nothing.
+    # A short random suffix guarantees uniqueness; the SHA stays in the name
+    # so a human can tell what the branch rescues.
+    for attempt in range(5):
+        suffix = f"{sha[:7]}-{os.getpid()}-{attempt}"
+        branch = f"{safe_base}-rescue-{timestamp}-{suffix}"
+        try:
+            exists = subprocess.run(
+                git_cmd + ["rev-parse", "--verify", "--quiet", branch],
+                cwd=cwd,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+            )
+        except (subprocess.CalledProcessError, OSError):
+            break
+        if exists.returncode != 0:
+            break
+
+    try:
+        created = subprocess.run(
+            git_cmd + ["branch", branch, sha],
+            cwd=cwd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+    except (subprocess.CalledProcessError, OSError):
+        return None
+    if created.returncode != 0:
+        return None
+    return branch
+
 def _validate_critical_files_syntax(root) -> tuple[bool, str | None, str | None]:
     """Compile each file in ``_UPDATE_CRITICAL_FILES`` to catch SyntaxErrors.
 
@@ -12597,12 +12680,27 @@ def _cmd_update_impl(args, gateway_mode: bool):
                 print(
                     "  ⚠ Fast-forward not possible (history diverged), resetting to match remote..."
                 )
+                # The stash only holds UNCOMMITTED changes. Committed local
+                # work that is not on the remote dies with this reset, so
+                # snapshot the pre-reset HEAD on a rescue branch first and
+                # tell the user where it is.
+                rescue_branch = _create_rescue_branch(
+                    git_cmd, PROJECT_ROOT, pre_pull_sha
+                )
+                if not rescue_branch:
+                    print("Failed to preserve local commits; update aborted before reset.")
+                    sys.exit(1)
                 reset_result = subprocess.run(
                     git_cmd + ["reset", "--hard", f"origin/{branch}"],
                     cwd=PROJECT_ROOT,
                     capture_output=True,
                     text=True, encoding="utf-8", errors="replace",
                 )
+                if rescue_branch:
+                    print(
+                        f"  ✓ Your previous commits are safe on branch "
+                        f"'{rescue_branch}' (git merge {rescue_branch})"
+                    )
                 if reset_result.returncode != 0:
                     print(f"✗ Failed to reset to origin/{branch}.")
                     if reset_result.stderr.strip():
