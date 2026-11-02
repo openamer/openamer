@@ -495,6 +495,7 @@ from openamer_cli.subcommands.claw import build_claw_parser
 from openamer_cli.subcommands.lint_fix import build_lint_fix_parser
 from openamer_cli.subcommands.code_review_bot import build_review_pr_parser
 from openamer_cli.subcommands.cost import build_cost_parser
+from openamer_cli.brain_cli import build_brain_parser
 
 
 def _require_tty(command_name: str) -> None:
@@ -15520,6 +15521,9 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "agent", "cost", "crew", "cross-session", "initiative", "lint-fix",
         "marketplace", "observe", "plugin", "repomap", "review-pr", "sandbox",
         "super", "swarm", "tracing", "tree", "voice", "web-agent", "workflow",
+        # ``brain`` is a built-in subcommand tree (openamer_cli/brain_cli.py),
+        # so plugin discovery can be skipped when the user targets it.
+        "brain",
         # Help-ish invocations — plugin commands not being listed in
         # top-level --help is an acceptable trade-off for skipping an
         # expensive eager import of every bundled plugin module.
@@ -16852,6 +16856,11 @@ def main():
     # memory command  (parser built in openamer_cli/subcommands/memory.py)
     # =========================================================================
     build_memory_parser(subparsers, cmd_memory=cmd_memory)
+
+    # =========================================================================
+    # brain command  (parser built in openamer_cli/brain_cli.py)
+    # =========================================================================
+    build_brain_parser(subparsers)
 
     # =========================================================================
     # tools command  (parser built in openamer_cli/subcommands/tools.py)
