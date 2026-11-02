@@ -9474,7 +9474,10 @@ def _detect_broken_lazy_refresh_imports(
     )
     try:
         result = subprocess.run(
-            [str(venv_python), "-c", check_script],
+            # Inspect only the target environment. PYTHONPATH, user-site and
+            # the working directory can otherwise supply foreign packages and
+            # make an incomplete install look healthy.
+            [str(venv_python), "-I", "-c", check_script],
             capture_output=True,
             text=True, encoding="utf-8", errors="replace",
             check=False,
