@@ -138,6 +138,14 @@ def _load_module(name: str, home: Path, prefer: str | None):
         scoped_os.__dict__.update(os.__dict__)
         scoped_os.environ = dict(os.environ, OPENAMER_HOME=str(home))
 
+        # os.getenv reads the REAL process environment through its own
+        # global reference, so copying the function unchanged would leak the
+        # process home into the script. Bind it to the scoped view instead.
+        def scoped_getenv(key, default=None):
+            return scoped_os.environ.get(key, default)
+
+        scoped_os.getenv = scoped_getenv
+
         def scoped_import(target, globals=None, locals=None, fromlist=(), level=0):
             if level == 0 and target == "os":
                 return scoped_os

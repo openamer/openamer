@@ -354,7 +354,10 @@ class Subsystem:
 class Heartbeat:
     """Zentraler ASI-Herzschlag — tickt alle N Minuten, prüft alle Subsysteme."""
 
-    STATE_FILE = MEMORY_DIR / "asi_heartbeat.json"
+    # Resolved per instance: the active profile can differ from the profile
+    # that was active at import time, and the state file must belong to the
+    # profile this heartbeat actually serves.
+    STATE_FILE = get_openamer_home() / "memory" / "asi_heartbeat.json"
     TICK_TIMEOUT = 60.0   # seconds a single subsystem may block; override in tests
 
     def __init__(self):

@@ -326,6 +326,13 @@ class Supervisor:
                     stdin=subprocess.DEVNULL,
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL,
+                    # The child must see the profile this supervisor serves.
+                    # Without an explicit environment it inherits the
+                    # supervisor's process environment, which can point at a
+                    # DIFFERENT profile (a context override, or a supervisor
+                    # constructed for another home) -- the started service
+                    # would then read and write the wrong profile's data.
+                    env={**os.environ, "OPENAMER_HOME": str(self.home)},
                     start_new_session=os.name != "nt",
                     creationflags=subprocess.CREATE_NEW_PROCESS_GROUP
                     if os.name == "nt"
