@@ -15521,6 +15521,9 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "agent", "cost", "crew", "cross-session", "initiative", "lint-fix",
         "marketplace", "observe", "plugin", "repomap", "review-pr", "sandbox",
         "super", "swarm", "tracing", "tree", "voice", "web-agent", "workflow",
+        # ``brain`` is a built-in subcommand tree (openamer_cli/brain_cli.py),
+        # so plugin discovery can be skipped when the user targets it.
+        "brain",
         # Help-ish invocations — plugin commands not being listed in
         # top-level --help is an acceptable trade-off for skipping an
         # expensive eager import of every bundled plugin module.
