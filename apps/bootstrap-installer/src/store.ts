@@ -2,6 +2,15 @@ import { invoke } from '@tauri-apps/api/core'
 import { listen, type UnlistenFn } from '@tauri-apps/api/event'
 import { atom, computed } from 'nanostores'
 
+import {
+  countDone,
+  mergeManifest,
+  shouldResetBeforeStart,
+  type StageInfo,
+  type StageRecord,
+  type StageState
+} from './update-progress-state'
+
 /*
  * Bootstrap state store — single source of truth for installer screens.
  *
@@ -18,25 +27,10 @@ import { atom, computed } from 'nanostores'
 // Types — mirror src-tauri/src/events.rs
 // ---------------------------------------------------------------------------
 
-export interface StageInfo {
-  name: string
-  title: string
-  category: string
-  needs_user_input: boolean
-}
-
-export type StageState = 'running' | 'succeeded' | 'skipped' | 'failed'
-
-export interface StageRecord {
-  info: StageInfo
-  state: StageState | null
-  durationMs?: number
-  /** Wall-clock time the stage entered `running`, stamped client-side so the UI
-   * can tick a live elapsed timer for long steps. Preserved across repeated
-   * running events. */
-  startedAt?: number
-  error?: string
-}
+// StageInfo / StageState / StageRecord live in ./update-progress-state so the
+// pure progress rules and the store share ONE definition (a duplicate type
+// drifted once already: the module's StageInfo lacked `category`).
+export type { StageInfo, StageRecord, StageState }
 
 export interface BootstrapStateModel {
   status: 'idle' | 'running' | 'completed' | 'failed'
@@ -77,20 +71,9 @@ export const $bootstrap = atom<BootstrapStateModel>(INITIAL)
 export const $logPath = atom<string | null>(null)
 export const $openamerHome = atom<string | null>(null)
 
-export const $progress = computed($bootstrap, (b) => {
-  const total = b.stageOrder.length
-
-  if (total === 0) {return { done: 0, total: 0, fraction: 0 }}
-  let done = 0
-
-  for (const name of b.stageOrder) {
-    const s = b.stages[name]?.state
-
-    if (s === 'succeeded' || s === 'skipped' || s === 'failed') {done += 1}
-  }
-
-  return { done, total, fraction: done / total }
-})
+export const $progress = computed($bootstrap, (b) =>
+  countDone(b.stageOrder, b.stages)
+)
 
 /** Apply a stage transition: stamp `startedAt` on the running edge, track the
  * active stage. Shared by the live Rust handler and the fake-boot preview so the
@@ -208,20 +191,24 @@ export async function initialize(): Promise<void> {
 
     switch (payload.type) {
       case 'manifest': {
-        const stages: Record<string, StageRecord> = {}
-        const order: string[] = []
-
-        for (const s of payload.stages) {
-          stages[s.name] = { info: s, state: null }
-          order.push(s.name)
-        }
+        // A manifest can arrive more than once: Rust re-emits it when a
+        // duplicate `start_update` call finds an update already running.
+        // Rebuilding the stage map with `state: null` for every stage threw
+        // away the progress that had already been reported, which is what made
+        // the dialog read "0 of 3 steps complete" for the whole run
+        // (measured 2026-11-02). Merge instead: a stage we already know keeps
+        // its state, only a genuinely new stage starts out unknown.
+        const merged = mergeManifest(
+          { stageOrder: cur.stageOrder, stages: cur.stages },
+          payload.stages
+        )
 
         $bootstrap.set({
           ...cur,
           status: 'running',
           protocolVersion: payload.protocolVersion,
-          stages,
-          stageOrder: order,
+          stages: merged.stages,
+          stageOrder: merged.stageOrder,
           currentStage: null,
           installRoot: null,
           error: null,
@@ -332,7 +319,16 @@ export async function startUpdate(): Promise<void> {
   // Update is driven by the desktop handing off (OpenAmer-Setup.exe --update);
   // there's no welcome click. Reset + jump straight to progress, then let the
   // Rust side stream the synthetic update manifest.
-  $bootstrap.set(INITIAL)
+  //
+  // The reset is conditional: Rust auto-starts the update from `.setup()`, so
+  // by the time the WebView mounts, the update is ALREADY running and its
+  // stage events have arrived. Resetting unconditionally wiped that progress
+  // and made the dialog read "0 of 3 steps complete" for the whole run
+  // (measured 2026-11-02).
+  if (shouldResetBeforeStart($bootstrap.get().status)) {
+    $bootstrap.set(INITIAL)
+  }
+
   $route.set('progress')
   await invoke('start_update')
 }
