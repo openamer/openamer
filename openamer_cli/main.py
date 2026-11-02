@@ -15625,6 +15625,10 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         # ``brain`` is a built-in subcommand tree (openamer_cli/brain_cli.py),
         # so plugin discovery can be skipped when the user targets it.
         "brain",
+        # ``supervisor`` is a built-in subcommand tree
+        # (openamer_cli/supervisor.py), so plugin discovery can be skipped when
+        # the user targets it.
+        "supervisor",
         # Help-ish invocations — plugin commands not being listed in
         # top-level --help is an acceptable trade-off for skipping an
         # expensive eager import of every bundled plugin module.
