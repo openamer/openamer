@@ -21,6 +21,7 @@ import sqlite3
 import time
 from collections import Counter, defaultdict
 from datetime import datetime
+from decimal import Decimal
 from typing import Any, Dict, List, Optional
 
 from agent.usage_pricing import (
@@ -499,7 +500,7 @@ class InsightsEngine:
         " u.api_call_count, u.input_tokens, u.output_tokens,"
         " u.cache_read_tokens, u.cache_write_tokens, u.reasoning_tokens,"
         " u.estimated_cost_usd, u.actual_cost_usd, u.cost_status,"
-        " u.cost_source, u.billing_mode"
+        " u.cost_source, u.billing_mode, u.task"
         " FROM session_model_usage u"
         " JOIN sessions s ON s.id = u.session_id"
         " WHERE s.started_at >= ? AND s.source = ?"
@@ -509,7 +510,7 @@ class InsightsEngine:
         " u.api_call_count, u.input_tokens, u.output_tokens,"
         " u.cache_read_tokens, u.cache_write_tokens, u.reasoning_tokens,"
         " u.estimated_cost_usd, u.actual_cost_usd, u.cost_status,"
-        " u.cost_source, u.billing_mode"
+        " u.cost_source, u.billing_mode, u.task"
         " FROM session_model_usage u"
         " JOIN sessions s ON s.id = u.session_id"
         " WHERE s.started_at >= ?"
@@ -530,8 +531,79 @@ class InsightsEngine:
             else:
                 cursor = self._conn.execute(self._GET_MODEL_USAGE_ALL, (cutoff,))
             return [dict(row) for row in cursor.fetchall()]
-        except sqlite3.OperationalError:
+        except sqlite3.OperationalError as exc:
+            if "no such column: u.task" in str(exc):
+                # Read pre-auxiliary schemas without migrating a read-only DB.
+                query = self._GET_MODEL_USAGE_WITH_SOURCE if source else self._GET_MODEL_USAGE_ALL
+                query = query.replace("u.task", "'' AS task")
+                params = (cutoff, source) if source else (cutoff,)
+                return [dict(row) for row in self._conn.execute(query, params).fetchall()]
+            if "no such table: session_model_usage" not in str(exc):
+                raise
             return []
+
+    def get_cost_usage(self, cutoff: float, source: str = None, *, sessions=None) -> List[Dict]:
+        """Return reconciled usage buckets for both Insights and the cost CLI.
+
+        The window is by session start, matching Insights. Session aggregates
+        contain main-loop usage only: auxiliary rows must never offset a legacy
+        main-loop residual. Stored positive estimates are historical evidence;
+        unknown zero placeholders can be priced now without rewriting history.
+        """
+        if sessions is None:
+            sessions = self._get_sessions(cutoff, source)
+        sessions_by_id = {s["id"]: s for s in sessions}
+        totals = defaultdict(lambda: defaultdict(Decimal))
+        # Another process can create a session between the two SELECTs when
+        # Insights is not inside a read transaction. Only reconcile our cohort.
+        rows = [row for row in self._get_model_usage(cutoff, source)
+                if row["session_id"] in sessions_by_id]
+        counter_keys = (
+            "input_tokens", "output_tokens", "cache_read_tokens",
+            "cache_write_tokens", "reasoning_tokens", "api_call_count",
+            "estimated_cost_usd", "actual_cost_usd",
+        )
+        def price(row):
+            stored = row.get("estimated_cost_usd")
+            status = row.get("cost_status")
+            if status == "included":
+                row["estimated_cost_usd"] = Decimal(0)
+            elif stored is not None and (
+                Decimal(str(stored)) > 0 or status not in (None, "", "unknown")
+            ):
+                row["estimated_cost_usd"] = Decimal(str(stored))
+                row["cost_status"] = status or "estimated"
+            else:
+                result = estimate_usage_cost(
+                    row.get("model") or "",
+                    CanonicalUsage(request_count=int(row.get("api_call_count") or 0),
+                                   **{key: int(row.get(key) or 0) for key in (
+                        "input_tokens", "output_tokens", "cache_read_tokens",
+                        "cache_write_tokens", "reasoning_tokens",
+                    )}),
+                    provider=row.get("billing_provider") or None,
+                    base_url=row.get("billing_base_url"),
+                )
+                row["estimated_cost_usd"] = result.amount_usd or Decimal(0)
+                row["cost_status"] = result.status
+
+        for row in rows:
+            price(row)  # Reconcile monetary residuals against these same priced rows.
+            if not row.get("task"):
+                for key in counter_keys:
+                    totals[row["session_id"]][key] += Decimal(str(row.get(key) or 0))
+            row["started_at"] = sessions_by_id[row["session_id"]]["started_at"]
+        for session in sessions:
+            residual = dict(session)
+            residual["session_id"] = session["id"]
+            for key in counter_keys:
+                value = max(Decimal(0), Decimal(str(session.get(key) or 0))
+                            - totals[session["id"]][key])
+                residual[key] = value if key.endswith("_usd") else int(value)
+            if any(residual[key] for key in counter_keys):
+                price(residual)
+                rows.append(residual)
+        return rows
 
     def _compute_model_breakdown(
         self, sessions: List[Dict], cutoff: float, source: str = None
@@ -587,76 +659,16 @@ class InsightsEngine:
                 d.setdefault("has_pricing", False)
             return display_model
 
-        usage_rows = self._get_model_usage(cutoff, source)
-        usage_totals = defaultdict(lambda: {
-            "input_tokens": 0, "output_tokens": 0, "cache_read_tokens": 0,
-            "cache_write_tokens": 0, "reasoning_tokens": 0,
-            "api_call_count": 0, "estimated_cost_usd": 0.0,
-            "actual_cost_usd": 0.0,
-        })
-        for r in usage_rows:
-            totals: Dict[str, Any] = usage_totals[r["session_id"]]
-            for key in (
-                "input_tokens", "output_tokens", "cache_read_tokens",
-                "cache_write_tokens", "reasoning_tokens", "api_call_count",
-            ):
-                totals[key] += r[key] or 0
-            totals["estimated_cost_usd"] += r["estimated_cost_usd"] or 0.0
-            totals["actual_cost_usd"] += r["actual_cost_usd"] or 0.0
-            d = _accumulate(
-                r["model"], r["billing_provider"], r.get("billing_base_url"),
-                r["session_id"], r["input_tokens"] or 0, r["output_tokens"] or 0,
-                r["cache_read_tokens"] or 0, r["cache_write_tokens"] or 0,
-                r["reasoning_tokens"] or 0,
-                stored_cost=(
-                    r["estimated_cost_usd"]
-                    if r.get("cost_status") or r.get("cost_source")
-                    else None
-                ),
-                actual_cost=r["actual_cost_usd"],
-                cost_status=r.get("cost_status"),
+        for row in self.get_cost_usage(cutoff, source, sessions=sessions):
+            display = _accumulate(
+                row["model"], row.get("billing_provider"), row.get("billing_base_url"),
+                row["session_id"], row.get("input_tokens") or 0,
+                row.get("output_tokens") or 0, row.get("cache_read_tokens") or 0,
+                row.get("cache_write_tokens") or 0, row.get("reasoning_tokens") or 0,
+                stored_cost=row["estimated_cost_usd"],
+                actual_cost=row.get("actual_cost_usd"), cost_status=row["cost_status"],
             )
-            model_data[d]["api_calls"] += r["api_call_count"] or 0
-
-        # Reconcile against the aggregate row. This covers legacy sessions,
-        # interrupted migrations, and absolute cumulative updates without
-        # double-counting already-attributed route deltas.
-        for s in sessions:
-            totals = usage_totals[s["id"]]
-            inp = max(0, (s.get("input_tokens") or 0) - totals["input_tokens"])
-            out = max(0, (s.get("output_tokens") or 0) - totals["output_tokens"])
-            cache_read = max(
-                0, (s.get("cache_read_tokens") or 0) - totals["cache_read_tokens"]
-            )
-            cache_write = max(
-                0, (s.get("cache_write_tokens") or 0) - totals["cache_write_tokens"]
-            )
-            residual_cost = max(
-                0.0, float(s.get("estimated_cost_usd") or 0.0)
-                - totals["estimated_cost_usd"],
-            )
-            residual_actual = max(
-                0.0, float(s.get("actual_cost_usd") or 0.0)
-                - totals["actual_cost_usd"],
-            )
-            residual_calls = max(
-                0, (s.get("api_call_count") or 0) - totals["api_call_count"]
-            )
-            if not (
-                inp or out or cache_read or cache_write or residual_cost
-                or residual_actual or residual_calls
-            ):
-                continue
-            d = _accumulate(
-                s.get("model"), s.get("billing_provider"),
-                s.get("billing_base_url"), s["id"],
-                inp, out, cache_read, cache_write, 0,
-                stored_cost=residual_cost,
-                actual_cost=residual_actual,
-                cost_status=s.get("cost_status"),
-            )
-            residual_bucket: Dict[str, Any] = model_data[d]
-            residual_bucket["api_calls"] += residual_calls
+            model_data[display]["api_calls"] += row.get("api_call_count") or 0
 
         # Tool calls are attributed by the session's recorded model.
         for s in sessions:

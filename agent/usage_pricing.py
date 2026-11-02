@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import re
+import time
+from functools import lru_cache
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from decimal import Decimal
@@ -869,6 +871,48 @@ _OFFICIAL_DOCS_PRICING: Dict[tuple[str, str], PricingEntry] = {
     ),
 }
 
+# Ollama Cloud price table — offline fallback for when the models.dev catalog
+# cannot be reached.  Snapshot of https://ollama.com/pricing, retrieved
+# 2026-11-02.  Rates are USD per million tokens; off-peak pricing applies
+# outside 12:00-18:00 UTC on weekdays and all day on weekends, so the peak
+# rate is what is recorded here (the conservative upper bound).
+_OLLAMA_CLOUD_PRICING_SNAPSHOT: Dict[str, tuple[str, str, Optional[str]]] = {
+    # model: (input, output, cached_input)
+    "deepseek-v4.1-flash": ("0.30", "1.20", "0.006"),
+    "deepseek-v4-pro": ("1.32", "3.96", "0.044"),
+    "gemma4": ("0.14", "0.40", "0.05"),
+    "glm-5.3": ("1.40", "4.40", "0.26"),
+    "glm-5.3-flash": ("0.15", "0.50", "0.03"),
+    "glm-5.2": ("1.40", "4.40", "0.26"),
+    "gpt-oss:120b": ("0.15", "0.60", "0.014"),
+    "gpt-oss:20b": ("0.07", "0.30", "0.035"),
+    "kimi-k3": ("3.00", "15.00", "0.30"),
+    "kimi-k2.7-code": ("0.95", "4.00", "0.19"),
+    "kimi-k2.6": ("0.95", "4.00", "0.16"),
+    "mimo-v2.6-flash": ("0.14", "0.28", "0.0028"),
+    "mimo-v2.6-pro": ("0.435", "0.87", "0.0036"),
+    "minimax-m3.1-flash": ("0.15", "0.60", "0.015"),
+    "minimax-m3": ("0.60", "2.40", "0.12"),
+    "minimax-m2.7": ("0.30", "1.20", "0.06"),
+    "mistral-large-4": ("0.70", "2.10", "0.07"),
+    "mistral-large-3": ("0.50", "1.50", None),
+    "muse-spark-open": ("1.25", "4.25", "0.15"),
+    "nemotron-3-nano": ("0.06", "0.24", None),
+    "nemotron-3-super": ("0.015", "0.60", "0.015"),
+    "nemotron-3-ultra": ("0.10", "3.00", "0.10"),
+}
+
+for _oc_model, (_oc_in, _oc_out, _oc_cache) in _OLLAMA_CLOUD_PRICING_SNAPSHOT.items():
+    _OFFICIAL_DOCS_PRICING[("ollama-cloud", _oc_model)] = PricingEntry(
+        input_cost_per_million=Decimal(_oc_in),
+        output_cost_per_million=Decimal(_oc_out),
+        cache_read_cost_per_million=Decimal(_oc_cache) if _oc_cache else None,
+        source="official_docs_snapshot",
+        source_url="https://ollama.com/pricing",
+        pricing_version="ollama-cloud-pricing-2026-11",
+    )
+del _oc_model, _oc_in, _oc_out, _oc_cache
+
 # GPT-5.6 "-pro" high-effort variants bill at the same per-token rates as
 # their base tiers (more tokens per task, not a higher rate). Alias them
 # onto the base entries so the snapshot stays single-source.
@@ -934,6 +978,18 @@ def resolve_billing_route(
         # Fireworks model ids look like accounts/fireworks/models/<name>;
         # rsplit("/", 1)[-1] yields just <name> which is what the dict keys on.
         return BillingRoute(provider="fireworks", model=model.rsplit("/", 1)[-1], base_url=base_url or "", billing_mode="official_docs_snapshot")
+    # Ollama Cloud publishes per-token rates; cloud routes must not fall
+    # through to unknown. Local Ollama is not a metered cloud route.
+    if (
+        provider_name in {"ollama-cloud", "custom:ollama-cloud"}
+        or base_url_host_matches(base_url or "", "ollama.com")
+    ):
+        return BillingRoute(
+            provider="ollama-cloud",
+            model=model.split("/")[-1] if model else "",
+            base_url=base_url or "",
+            billing_mode="provider_models_api",
+        )
     if provider_name in {"custom", "local"} or (base and "localhost" in base):
         return BillingRoute(provider=provider_name or "custom", model=model, base_url=base_url or "", billing_mode="unknown")
     return BillingRoute(provider=provider_name or "unknown", model=model.split("/")[-1] if model else "", base_url=base_url or "", billing_mode="unknown")
@@ -1018,6 +1074,12 @@ def _lookup_official_docs_pricing(route: BillingRoute) -> Optional[PricingEntry]
             entry = _OFFICIAL_DOCS_PRICING.get((route.provider, normalized))
             if entry:
                 return entry
+    # Ollama Cloud model ids carry a date tag ("deepseek-v4.1-flash:1017").
+    # The snapshot keys the bare model name.
+    if route.provider == "ollama-cloud" and ":" in model:
+        entry = _OFFICIAL_DOCS_PRICING.get((route.provider, model.split(":", 1)[0]))
+        if entry:
+            return entry
     return None
 
 
@@ -1074,6 +1136,74 @@ def _pricing_entry_from_metadata(
     )
 
 
+@lru_cache(maxsize=1)
+def _ollama_cloud_catalog(refresh_bucket: int) -> Dict[str, Any]:
+    """Reuse the shared catalog, including a bounded negative cache when offline.
+
+    A report prices many rows; an unavailable catalog must not trigger a new
+    15-second network attempt for every usage bucket. Public rates are safe to
+    share across profiles. The bucket expires failures after five minutes.
+    """
+    from agent.models_dev import fetch_models_dev
+
+    try:
+        registry = fetch_models_dev()
+        provider_entry = registry.get("ollama-cloud") or {}
+        models = provider_entry.get("models") or {}
+        return models if isinstance(models, dict) else {}
+    except (OSError, ValueError, TypeError, AttributeError):
+        return {}
+
+
+def _ollama_cloud_pricing_entry(route: BillingRoute) -> Optional[PricingEntry]:
+    """Resolve Ollama Cloud rates from the models.dev catalog.
+
+    Ollama Cloud publishes a per-model price table (input / cached input /
+    output per million tokens) and models.dev mirrors it under the provider id
+    ``ollama-cloud``.  The catalog is live data, so it is the primary source;
+    the static snapshot in ``_OFFICIAL_DOCS_PRICING`` is the offline fallback
+    for when the network is unavailable.
+
+    Model ids carry a date tag (``deepseek-v4.1-flash:1017``); the catalog
+    lists both the tagged and the bare form, so both are tried.
+    """
+    models = _ollama_cloud_catalog(int(time.monotonic() // 300))
+
+    candidates = [route.model, route.model + ":cloud", route.model + "-cloud"]
+    if ":" in route.model:
+        candidates.append(route.model.rsplit(":", 1)[0])
+
+    for candidate in candidates:
+        entry = models.get(candidate)
+        if not isinstance(entry, dict):
+            continue
+        cost = entry.get("cost") or {}
+        if not isinstance(cost, dict):
+            continue
+        prompt = _to_decimal(cost.get("input"))
+        completion = _to_decimal(cost.get("output"))
+        if any(value is not None and (not value.is_finite() or value < 0)
+               for value in (prompt, completion)):
+            continue
+        if prompt is None and completion is None:
+            continue
+        cache_value = cost.get("cache_read", cost.get("cached_input"))
+        cache_read = _to_decimal(cache_value)
+        if cache_read is not None and (not cache_read.is_finite() or cache_read < 0):
+            continue
+        return PricingEntry(
+            input_cost_per_million=prompt,
+            output_cost_per_million=completion,
+            cache_read_cost_per_million=cache_read,
+            cache_write_cost_per_million=None,
+            source="provider_models_api",
+            source_url="https://models.dev/api.json",
+            pricing_version="models-dev-ollama-cloud",
+            fetched_at=_UTC_NOW(),
+        )
+    return None
+
+
 def get_pricing_entry(
     model_name: str,
     provider: Optional[str] = None,
@@ -1092,6 +1222,12 @@ def get_pricing_entry(
         )
     if route.provider == "openrouter":
         return _openrouter_pricing_entry(route)
+    if route.provider == "ollama-cloud":
+        entry = _ollama_cloud_pricing_entry(route)
+        if entry:
+            return entry
+        # Offline fallback: the static snapshot of the published table.
+        return _lookup_official_docs_pricing(route)
     if route.base_url:
         entry = _pricing_entry_from_metadata(
             fetch_endpoint_model_metadata(route.base_url, api_key=api_key or ""),
