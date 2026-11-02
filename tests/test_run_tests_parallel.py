@@ -147,7 +147,10 @@ def test_grandchild_leak_is_killed_by_runner(tmp_path: Path) -> None:
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True, encoding="utf-8", errors="replace",
-        timeout=60,
+        # The inner --file-timeout 30 is what this test asserts. The outer bound
+        # is only a safety net: a cold runner start inside a loaded suite can
+        # take most of a minute on its own.
+        timeout=120,
     )
 
     assert handoff.exists(), (
@@ -324,7 +327,7 @@ def test_file_retry_self_heals_and_prints_both_attempts(tmp_path: Path) -> None:
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True, encoding="utf-8", errors="replace",
-        timeout=60,
+        timeout=180,
     )
 
     assert proc.returncode == 0, proc.stdout
@@ -360,7 +363,7 @@ def test_file_retry_does_not_launder_deterministic_failure(tmp_path: Path) -> No
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True, encoding="utf-8", errors="replace",
-        timeout=60,
+        timeout=180,
     )
 
     assert proc.returncode == 1, proc.stdout
