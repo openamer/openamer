@@ -148,6 +148,11 @@ def test_runtime_status_running_pid_validates_live_gateway_record(monkeypatch):
     monkeypatch.setattr(status_mod, "_pid_exists", lambda pid: pid == 12345)
     monkeypatch.setattr(status_mod, "_get_process_start_time", lambda pid: None)
     monkeypatch.setattr(status_mod, "_looks_like_gateway_process", lambda pid: False)
+    # The live command line of PID 12345 belongs to whatever process currently
+    # owns that PID on this host (measured: ollama.exe). Reading it made the
+    # record look foreign and the function returned None. The record's own
+    # argv is what this fallback is supposed to validate.
+    monkeypatch.setattr(status_mod, "_read_process_cmdline", lambda pid: None)
 
     assert status_mod.get_runtime_status_running_pid(runtime) == 12345
 
