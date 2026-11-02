@@ -49,17 +49,37 @@ _RESPAWN_WINDOW_SECS = 300.0
 _SHUTDOWN_TIMEOUT_SECS = 10.0
 
 
+_APPEND_LOCK = threading.Lock()
+
+
 def append_log_record(path: str | Path, record: str) -> None:
-    """Append one log record using O_APPEND and exactly one os.write call."""
+    """Append one log record atomically, in a single os.write call.
+
+    POSIX makes this safe on its own: ``O_APPEND`` performs the seek+write in
+    the kernel, so concurrent writers never interleave or overwrite.
+
+    Windows does NOT. The MSVCRT implements ``_O_APPEND`` as ``lseek(SEEK_END)``
+    followed by ``write`` on a per-fd basis, and each ``os.open`` creates its
+    own fd — so two threads can read the same end offset and the second write
+    lands on top of the first. Measured 2026-11-01: 32 threads x 1 record left
+    28 lines in the file (4 records lost, no error raised), which is exactly the
+    ``test_append_log_record_single_write_lines`` failure.
+
+    A process-global lock closes the in-process race. Cross-process appends
+    stay best-effort on Windows (the same caveat the CRT has), which is
+    acceptable for a supervisor log: a lost tail line is recoverable, a
+    corrupted one is not, and every record here is a single short write.
+    """
     p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)
     text = record if record.endswith("\n") else f"{record}\n"
     data = text.encode("utf-8", errors="replace")
-    fd = os.open(str(p), os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
-    try:
-        os.write(fd, data)
-    finally:
-        os.close(fd)
+    with _APPEND_LOCK:
+        fd = os.open(str(p), os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
+        try:
+            os.write(fd, data)
+        finally:
+            os.close(fd)
 
 
 def _repo_root() -> Path:
