@@ -16618,6 +16618,9 @@ def main():
     from openamer_cli.send_cmd import register_send_subparser
     register_send_subparser(subparsers)
 
+    from openamer_cli.supervisor import register_cli as register_supervisor_cli
+    register_supervisor_cli(subparsers)
+
     # =========================================================================
     # login command  (parser built in openamer_cli/subcommands/login.py)
     # =========================================================================
