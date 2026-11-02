@@ -19,6 +19,9 @@ import hashlib
 import json
 import math
 import os
+import time
+import threading
+import uuid
 import sys
 import urllib.request
 from pathlib import Path
@@ -101,10 +104,40 @@ def _save(episodes):
                     continue
                 if not (isinstance(rec, dict) and "text" in rec and "embedding" in rec):
                     kept_lines.append(json.dumps(rec, ensure_ascii=False) + "\n")
-    with open(STORE, "w", encoding="utf-8") as f:
-        f.writelines(kept_lines)
-        for e in episodes:
-            f.write(json.dumps(e, ensure_ascii=False) + "\n")
+    # Write to a sibling file and swap it in. Truncating the real store first
+    # means every concurrent reader sees a half-written memory, and a crash
+    # between the truncate and the last line destroys the whole store. Measured
+    # 2026-10-26: a query run against a saving store saw 5,110 of 8,095 episodes.
+    # The staging name is unique per writer AND per call: two writers sharing
+    # one ".new" file made os.replace raise PermissionError (WinError 5) on
+    # Windows, and two threads in one process raced on the same name and lost
+    # the file with FileNotFoundError. Left the cron job failing with
+    # "Zugriff verweigert".
+    staging = f"{STORE}.{os.getpid()}.{threading.get_ident()}.{uuid.uuid4().hex[:8]}.new"
+    try:
+        with open(staging, "w", encoding="utf-8") as handle:
+            handle.writelines(kept_lines)
+            for episode in episodes:
+                handle.write(json.dumps(episode, ensure_ascii=False) + "\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        # os.replace can still lose the race on Windows when another writer or
+        # reader holds the target open (WinError 5 / 13). Retry briefly instead
+        # of failing the whole run.
+        for attempt in range(12):
+            try:
+                os.replace(staging, STORE)
+                break
+            except PermissionError:
+                if attempt == 11:
+                    raise
+                time.sleep(0.25 * (attempt + 1))
+    finally:
+        if os.path.exists(staging):
+            try:
+                os.unlink(staging)
+            except OSError:
+                pass
 
 def _cos(a, b):
     dot = sum(x * y for x, y in zip(a, b))
