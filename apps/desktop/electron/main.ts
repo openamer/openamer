@@ -31,6 +31,7 @@ import {
 import nodePty from 'node-pty'
 
 import { stopBackendChild as stopBackendChildImpl } from './backend-child'
+import { appIconPaths, windowsAppDetails } from './app-identity'
 import { dashboardFallbackArgs, sourceDeclaresServe } from './backend-command'
 import { createBackendConnectionState } from './backend-connection-state'
 import { buildDesktopBackendEnv, normalizeOpenAmerHomeRoot } from './backend-env'
@@ -670,11 +671,12 @@ const WINDOW_BUTTON_POSITION = {
 // (pure + unit-testable); computeNativeOverlayWidth() applies it per platform.
 // It's only the pre-layout fallback — the renderer measures the exact overlay
 // width live via the Window Controls Overlay API.
-const APP_ICON_PATHS = [
-  path.join(APP_ROOT, 'public', 'apple-touch-icon.png'),
-  path.join(APP_ROOT, 'dist', 'apple-touch-icon.png'),
-  path.join(unpackedPathFor(APP_ROOT), 'dist', 'apple-touch-icon.png')
-]
+const APP_ICON_PATHS = appIconPaths({
+  appRoot: APP_ROOT,
+  platform: process.platform,
+  resourcesPath: process.resourcesPath,
+  unpackedRoot: unpackedPathFor(APP_ROOT)
+})
 
 let rendererTitleBarTheme = null
 const terminalSessions = new Map()
@@ -5059,6 +5061,31 @@ function getAppIconPath() {
   return APP_ICON_PATHS.find(fileExists)
 }
 
+// The taskbar button is resolved from the AppUserModelID, NOT from the
+// BrowserWindow icon. This install launches through a wscript.exe shortcut with
+// no Start Menu shortcut carrying `com.openamer.openamer`, so Windows has no
+// icon registered for that ID and painted a blank document tile instead of the
+// OpenAmer mark. Declaring the relaunch icon on the window itself gives the
+// shell an icon to fall back on. Windows-only; a no-op elsewhere.
+function applyShellIdentity(win) {
+  if (!IS_WINDOWS || !win || win.isDestroyed()) {
+    return
+  }
+
+  try {
+    win.setAppDetails(
+      windowsAppDetails({
+        appRoot: APP_ROOT,
+        execPath: process.execPath,
+        iconPath: getAppIconPath(),
+        isPackaged: IS_PACKAGED
+      })
+    )
+  } catch (error) {
+    rememberLog(`[shell] setAppDetails failed: ${error?.message || error}`)
+  }
+}
+
 function sendOpenUpdatesRequested() {
   if (!mainWindow || mainWindow.isDestroyed()) {
     return
@@ -8578,6 +8605,7 @@ function createInstanceWindow() {
   })
 
   instanceWindows.add(win)
+  applyShellIdentity(win)
 
   if (IS_MAC) {
     win.setWindowButtonPosition?.(WINDOW_BUTTON_POSITION)
@@ -8781,6 +8809,8 @@ function createWindow() {
     // windows, stalling the live answer until refocus. See session-windows.ts.
     webPreferences: chatWindowWebPreferences(PRELOAD_PATH)
   })
+
+  applyShellIdentity(mainWindow)
 
   if (IS_MAC) {
     mainWindow.setWindowButtonPosition?.(WINDOW_BUTTON_POSITION)
