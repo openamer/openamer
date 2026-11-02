@@ -31,25 +31,16 @@ from tools.asi import (
     improvement as asi_improvement,
 )
 from tools.registry import registry
+from openamer_constants import get_openamer_home
+from tools.asi._training import load_training_module, training_script
 
 logger = logging.getLogger(__name__)
 
 # ── Paths ──────────────────────────────────────────────────────────────────
-OPENAMER_HOME = Path(
-    __import__("os").environ.get(
-        "OPENAMER_HOME",
-        str(Path.home() / "AppData/Local/openamer-laptop"),
-    )
-)
+OPENAMER_HOME = get_openamer_home()
 MEMORY_DIR = OPENAMER_HOME / "memory"
 SELF_MODEL_DIR = MEMORY_DIR / "self_model"
 SCRIPTS_TRAINING = OPENAMER_HOME / "scripts" / "training"
-
-# Also ensure scripts/training/ is on sys.path for direct imports
-_scripts_path = str(SCRIPTS_TRAINING)
-if _scripts_path not in sys.path:
-    sys.path.insert(0, _scripts_path)
-
 
 # ── ASI Core ────────────────────────────────────────────────────────────────
 
@@ -245,8 +236,7 @@ class ASICore:
     def _run_imported(self, module_name: str, func_name: str, **kwargs) -> Dict[str, Any]:
         """Import a training module and call a function on it directly."""
         try:
-            import importlib
-            mod = importlib.import_module(module_name)
+            mod = load_training_module(module_name)
             func = getattr(mod, func_name, None)
             if func is None:
                 # Try calling via CLI-style if __name__ guard exists
@@ -266,7 +256,10 @@ class ASICore:
         side effects at module level). Most capabilities use _run_imported.
         """
         import subprocess
-        script_path = SCRIPTS_TRAINING / script_name
+        try:
+            script_path = training_script(Path(script_name).stem)
+        except (ValueError, ModuleNotFoundError) as exc:
+            return {"success": False, "error": str(exc)}
         if not script_path.exists():
             return {"success": False, "error": f"Script not found: {script_name}"}
 
@@ -276,7 +269,9 @@ class ASICore:
 
         try:
             result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8",
-                                     errors="replace", timeout=120, stdin=subprocess.DEVNULL)
+                                     errors="replace", timeout=120, stdin=subprocess.DEVNULL,
+                                     env={**__import__("os").environ,
+                                          "OPENAMER_HOME": str(get_openamer_home())})
             return {
                 "success": result.returncode == 0,
                 "stdout": result.stdout[-2000:] if result.stdout else "",

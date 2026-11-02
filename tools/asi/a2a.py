@@ -9,22 +9,19 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from openamer_constants import get_openamer_home
+from tools.asi._training import load_script_module
+
 logger = logging.getLogger(__name__)
 
-OPENAMER_HOME = Path(
-    __import__("os").environ.get(
-        "OPENAMER_HOME",
-        str(Path.home() / "AppData/Local/openamer-laptop"),
-    )
-)
+OPENAMER_HOME = get_openamer_home()
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
 
 def _import_a2a():
-    import importlib
-    return importlib.import_module("a2a_worker")
+    return load_script_module("a2a_worker")
 
 
 def run(repo_path: Optional[str] = None, no_push: bool = False) -> Dict[str, Any]:

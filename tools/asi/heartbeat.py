@@ -18,29 +18,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
+from openamer_constants import get_openamer_home
+
 logger = logging.getLogger(__name__)
 
 # ── Paths ──────────────────────────────────────────────────────────────────
-OPENAMER_HOME = Path(
-    os.environ.get(
-        "OPENAMER_HOME",
-        str(Path.home() / "AppData/Local/openamer-laptop"),
-    )
-)
+OPENAMER_HOME = get_openamer_home()
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"
 SCRIPTS_TRAINING = OPENAMER_HOME / "scripts" / "training"
 MEMORY_DIR = OPENAMER_HOME / "memory"
 CRON_DIR = OPENAMER_HOME / "cron"
-
-# Script path for cron scripts (in scripts/)  
-_scripts_path = str(SCRIPTS_DIR)
-if _scripts_path not in sys.path:
-    sys.path.insert(0, _scripts_path)
-
-_training_path = str(SCRIPTS_TRAINING)
-if _training_path not in sys.path:
-    sys.path.insert(0, _training_path)
-
 
 JOBS_FILE = CRON_DIR / "jobs.json"
 
