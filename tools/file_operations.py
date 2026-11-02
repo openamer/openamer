@@ -954,15 +954,24 @@ class ShellFileOperations(FileOperations):
         This must be done BEFORE shell escaping, since ~ doesn't expand
         inside single quotes.
         """
+        from tools.environments.local import _msys_to_windows_path
+
         if not path:
             return path
-        
+
         # Handle ~ and ~user
         if path.startswith('~'):
             # Get home directory via the terminal environment
             result = self._exec("echo $HOME")
             if result.exit_code == 0 and result.stdout.strip():
                 home = result.stdout.strip()
+                # Bash prints $HOME in MSYS form (/c/Users/x). The expanded
+                # path is handed to native Windows tools (rg, and every
+                # file-operation that shells out to an .exe), and a
+                # windows-msvc binary rejects the /c/... form with
+                # "IO error ... (os error 2)". Translate back to the native
+                # form before it leaves this method.
+                home = _msys_to_windows_path(home)
                 if path == '~':
                     return home
                 elif path.startswith('~/'):
@@ -978,7 +987,7 @@ class ShellFileOperations(FileOperations):
                     # injection via path suffixes like "~user/$(malicious)".
                     expand_result = self._exec(f"echo ~{username}")
                     if expand_result.exit_code == 0 and expand_result.stdout.strip():
-                        user_home = expand_result.stdout.strip()
+                        user_home = _msys_to_windows_path(expand_result.stdout.strip())
                         suffix = path[1 + len(username):]  # e.g. "/rest/of/path"
                         return user_home + suffix
         
@@ -999,6 +1008,19 @@ class ShellFileOperations(FileOperations):
 
         arg = _bash_safe_path(arg)
         # Use single quotes and escape any single quotes in the string
+        return "'" + arg.replace("'", "'\"'\"'") + "'"
+
+    def _escape_native_arg(self, arg: str) -> str:
+        """Quote an argument that is passed to a NATIVE Windows executable.
+
+        Same escaping as :meth:`_escape_shell_arg`, but the path stays in the
+        ``C:/...`` form.  ``_bash_safe_path`` produces ``/c/...`` which bash
+        builtins understand and a windows-msvc binary (ripgrep) rejects with
+        ``IO error ... (os error 2)`` — see ``_native_safe_path``.
+        """
+        from tools.environments.local import _native_safe_path
+
+        arg = _native_safe_path(arg)
         return "'" + arg.replace("'", "'\"'\"'") + "'"
 
     def _atomic_write(self, path: str, content: str) -> "ExecuteResult":
@@ -2245,7 +2267,7 @@ class ShellFileOperations(FileOperations):
         # Try mtime-sorted first (rg 13+); fall back to unsorted if not supported.
         cmd_sorted = (
             f"rg --files --sortr=modified -g {self._escape_shell_arg(glob_pattern)} "
-            f"{self._escape_shell_arg(path)} 2>/dev/null "
+            f"{self._escape_native_arg(path)} 2>/dev/null "
             f"| head -n {fetch_limit}"
         )
         result = self._exec(cmd_sorted, timeout=60)
@@ -2256,7 +2278,7 @@ class ShellFileOperations(FileOperations):
             # --sortr may have failed on older rg; retry without it.
             cmd_plain = (
                 f"rg --files -g {self._escape_shell_arg(glob_pattern)} "
-                f"{self._escape_shell_arg(path)} 2>/dev/null "
+                f"{self._escape_native_arg(path)} 2>/dev/null "
                 f"| head -n {fetch_limit}"
             )
             result = self._exec(cmd_plain, timeout=60)
@@ -2310,9 +2332,10 @@ class ShellFileOperations(FileOperations):
         elif output_mode == "count":
             cmd_parts.append("-c")  # Count per file
         
-        # Add pattern and path
+        # Add pattern and path. The PATH is a native argument: rg is a
+        # windows-msvc binary and rejects the /c/... form bash builtins need.
         cmd_parts.append(self._escape_shell_arg(pattern))
-        cmd_parts.append(self._escape_shell_arg(path))
+        cmd_parts.append(self._escape_native_arg(path))
         
         # Fetch extra rows so we can report the true total before slicing.
         # For context mode, rg emits separator lines ("--") between groups,

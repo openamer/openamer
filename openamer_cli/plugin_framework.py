@@ -690,7 +690,8 @@ class PluginHost:
             # Create minimal manifest
             manifest = dest_dir / "plugin.yaml"
             manifest.write_text(
-                f"name: {plugin_name}\nversion: 0.1.0\ndescription: Installed from {source_path.name}\n"
+                f"name: {plugin_name}\nversion: 0.1.0\ndescription: Installed from {source_path.name}\n",
+                encoding="utf-8",
             )
             self.load_plugin(dest_dir)
             return plugin_name

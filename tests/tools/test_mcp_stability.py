@@ -138,8 +138,14 @@ class TestStdioPidTracking:
             _orphan_stdio_pids.add(fake_pid)
             _orphan_stdio_pid_servers[fake_pid] = "orphan"
 
-        # Should not raise (ProcessLookupError is caught)
-        _kill_orphaned_mcp_children()
+        # Mock the signal delivery: the point of this test is the dead-PID
+        # handling, not the kill. An unmocked os.kill on a foreign PID is
+        # exactly what the conftest live-system guard blocks (and on Windows
+        # raises WinError 87 instead of ProcessLookupError).
+        with patch("tools.mcp_tool.os.kill") as mock_kill, patch("tools.mcp_tool.time.sleep"):
+            mock_kill.side_effect = ProcessLookupError(fake_pid)
+            # Should not raise (ProcessLookupError is caught)
+            _kill_orphaned_mcp_children()
 
         with _lock:
             assert fake_pid not in _orphan_stdio_pids

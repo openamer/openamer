@@ -382,11 +382,56 @@ def _run_agent(
                 if detected:
                     effective_provider, effective_model = detected
 
-    runtime = resolve_runtime_provider(
-        requested=effective_provider,
-        target_model=effective_model or None,
-        explicit_base_url=explicit_base_url_from_alias,
-    )
+    try:
+        runtime = resolve_runtime_provider(
+            requested=effective_provider,
+            target_model=effective_model or None,
+            explicit_base_url=explicit_base_url_from_alias,
+        )
+    except Exception as primary_exc:
+        # The primary provider can be unusable BEFORE the agent even exists:
+        # an OAuth provider whose quota is exhausted raises AuthError from
+        # resolve_runtime_provider(). The agent's own fallback chain cannot
+        # help there — it is built during AIAgent construction, which this
+        # exception preempts. Without this, a rate-limited primary made every
+        # one-shot run fail even though a working fallback chain was
+        # configured (measured: "Codex provider quota exhausted (429)").
+        #
+        # Resolve the first usable fallback entry instead, mirroring the
+        # gateway's _try_resolve_fallback_provider() path.
+        from openamer_cli.auth import AuthError
+
+        if not isinstance(primary_exc, AuthError):
+            raise
+        _fb_cfg = get_fallback_chain(cfg)
+        _fb_runtime = None
+        _fb_entry = None
+        for _entry in _fb_cfg:
+            try:
+                from openamer_cli.fallback_config import resolve_entry_api_key
+
+                _fb_runtime = resolve_runtime_provider(
+                    requested=_entry.get("provider"),
+                    explicit_base_url=_entry.get("base_url"),
+                    explicit_api_key=resolve_entry_api_key(_entry),
+                )
+                _fb_entry = _entry
+                break
+            except Exception as fb_exc:
+                _fb_runtime = None
+                logging.debug(
+                    "Fallback entry %s failed to resolve: %s", _entry.get("provider"), fb_exc
+                )
+        if _fb_runtime is None or _fb_entry is None:
+            raise
+        logging.info(
+            "Primary provider unavailable (%s); using fallback %s (%s)",
+            primary_exc,
+            _fb_entry.get("model"),
+            _fb_entry.get("provider"),
+        )
+        runtime = _fb_runtime
+        effective_model = _fb_entry.get("model") or effective_model
 
     # Pull in explicit toolsets when provided; otherwise use whatever the user
     # has enabled for "cli". sorted() gives stable ordering for config-derived

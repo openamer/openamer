@@ -30,6 +30,7 @@ import {
 } from 'electron'
 import nodePty from 'node-pty'
 
+import { appIconPaths, windowsAppDetails } from './app-identity'
 import { stopBackendChild as stopBackendChildImpl } from './backend-child'
 import { dashboardFallbackArgs, sourceDeclaresServe } from './backend-command'
 import { createBackendConnectionState } from './backend-connection-state'
@@ -168,7 +169,7 @@ import {
 import { installStdioGuards } from './stdio-guard'
 import { nativeOverlayWidth as computeNativeOverlayWidth, macTitleBarOverlayHeight } from './titlebar-overlay-width'
 import { resolveBehindCount, shouldCountCommits } from './update-count'
-import { readLiveUpdateMarker, writeUpdateMarker } from './update-marker'
+import { readLiveUpdateMarker, waitForUpdateRelease, writeUpdateMarker } from './update-marker'
 import { runRebuildWithRetry } from './update-rebuild'
 import {
   buildRelaunchScript,
@@ -670,11 +671,12 @@ const WINDOW_BUTTON_POSITION = {
 // (pure + unit-testable); computeNativeOverlayWidth() applies it per platform.
 // It's only the pre-layout fallback — the renderer measures the exact overlay
 // width live via the Window Controls Overlay API.
-const APP_ICON_PATHS = [
-  path.join(APP_ROOT, 'public', 'apple-touch-icon.png'),
-  path.join(APP_ROOT, 'dist', 'apple-touch-icon.png'),
-  path.join(unpackedPathFor(APP_ROOT), 'dist', 'apple-touch-icon.png')
-]
+const APP_ICON_PATHS = appIconPaths({
+  appRoot: APP_ROOT,
+  platform: process.platform,
+  resourcesPath: process.resourcesPath,
+  unpackedRoot: unpackedPathFor(APP_ROOT)
+})
 
 let rendererTitleBarTheme = null
 const terminalSessions = new Map()
@@ -1707,9 +1709,9 @@ function directoryExists(filePath) {
 // own relaunch hits our single-instance lock and quits). Marker parsing +
 // staleness self-heal live in update-marker.ts (unit-tested).
 
-// How long we'll park the launch waiting for a live update to finish before
-// giving up and starting the backend anyway (belt-and-suspenders alongside the
-// marker's own age ceiling; covers a stuck-but-alive updater).
+// How long we'll park startup before reporting a still-running update.
+// A timeout must never permit a backend to re-lock an environment being updated.
+// The marker's independent age ceiling still prunes abandoned updates.
 const UPDATE_WAIT_TIMEOUT_MS = 20 * 60 * 1000
 const UPDATE_WAIT_POLL_MS = 1000
 // How long the desktop lingers on the "updating, don't reopen" overlay after
@@ -1725,32 +1727,21 @@ const UPDATE_HANDOFF_DWELL_MS = 2500
 // Emits a boot-progress phase so the renderer shows "Update in progress…"
 // rather than a frozen splash. Returns true if it parked at all.
 async function waitForUpdateToFinish() {
-  let marker = readLiveUpdateMarker(OPENAMER_HOME)
-
-  if (!marker) {
-    return false
-  }
-
-  rememberLog(`[updates] update in progress (pid=${marker.pid}); deferring backend start until it finishes`)
-  const deadline = Date.now() + UPDATE_WAIT_TIMEOUT_MS
-
-  while (marker && Date.now() < deadline) {
-    await advanceBootProgress(
-      'backend.update-wait',
-      'An update is finishing — OpenAmer will start automatically when it completes…',
-      12
-    )
-    await new Promise(r => setTimeout(r, UPDATE_WAIT_POLL_MS))
-    marker = readLiveUpdateMarker(OPENAMER_HOME)
-  }
-
-  if (marker) {
-    rememberLog('[updates] update still in progress after wait timeout; starting backend anyway')
-  } else {
-    rememberLog('[updates] update finished; proceeding with backend start')
-  }
-
-  return true
+  return waitForUpdateRelease({
+    // The updater PID marker does not exist until AFTER our teardown finishes.
+    // Renderer reconnects must also wait during that earlier in-process phase.
+    isBlocked: () =>
+      (IS_WINDOWS && (updateInFlight || bootstrapRecoveryInFlight || isQuittingForHandoff)) ||
+      Boolean(readLiveUpdateMarker(OPENAMER_HOME)),
+    pollMs: UPDATE_WAIT_POLL_MS,
+    timeoutMs: UPDATE_WAIT_TIMEOUT_MS,
+    onWait: () =>
+      advanceBootProgress(
+        'backend.update-wait',
+        'An update is finishing — OpenAmer will start automatically when it completes…',
+        12
+      )
+  })
 }
 
 function unpackedPathFor(filePath) {
@@ -2524,6 +2515,7 @@ async function readCommitLog(cwd, branch) {
 }
 
 let updateInFlight = false
+let bootstrapRecoveryInFlight = false
 
 // Set to true when the desktop is about to quit so a detached swap/install/
 // uninstall script can take over. On macOS, app.quit() closes windows but
@@ -2676,9 +2668,10 @@ async function releaseBackendLock(updateRoot, tag) {
     return { unlocked: true }
   }
 
-  // Collect every backend PID the desktop owns: primary window backend + pool.
+  // Invalidate before killing: an expected teardown exit must not trigger a
+  // reconnect or latch a boot failure, and pending starts must lose ownership.
   const pids = []
-  const openamerProcess = backendConnectionState.getProcess()
+  const openamerProcess = backendConnectionState.invalidate()
 
   if (openamerProcess && Number.isInteger(openamerProcess.pid)) {
     pids.push(openamerProcess.pid)
@@ -2939,38 +2932,48 @@ async function handOffWindowsBootstrapRecovery(reason) {
 
   const updaterArgs = chooseUpdaterArgs(haveRealInstall, branch)
 
-  await releaseBackendLockForUpdate(updateRoot)
+  bootstrapRecoveryInFlight = true
 
-  const child = spawnUpdaterProcess(updater, updaterArgs, {
-    cwd: OPENAMER_HOME,
-    env: {
-      ...process.env,
-      OPENAMER_HOME,
-      PATH: pathWithOpenAmerManagedNode(venvBin)
-    },
-    detached: true,
-    stdio: 'ignore'
-  })
+  try {
+    const lock = await releaseBackendLockForUpdate(updateRoot)
 
-  // Same marker pre-write as applyUpdates — see comment there. The recovery
-  // hand-off has the same window where the renderer can respawn a backend
-  // before the updater writes its own marker.
-  if (Number.isInteger(child.pid)) {
-    writeUpdateMarker(OPENAMER_HOME, child.pid)
+    if (!lock.unlocked) {
+      throw new Error('OpenAmer recovery could not release the running installation. Close other OpenAmer processes and retry.')
+    }
+
+    const child = spawnUpdaterProcess(updater, updaterArgs, {
+      cwd: OPENAMER_HOME,
+      env: {
+        ...process.env,
+        OPENAMER_HOME,
+        PATH: pathWithOpenAmerManagedNode(venvBin)
+      },
+      detached: true,
+      stdio: 'ignore'
+    })
+
+    // Same marker pre-write as applyUpdates — see comment there. The recovery
+    // hand-off has the same window where the renderer can respawn a backend
+    // before the updater writes its own marker.
+    if (Number.isInteger(child.pid)) {
+      writeUpdateMarker(OPENAMER_HOME, child.pid)
+    }
+
+    rememberLog(
+      `[bootstrap] handed off ${reason} recovery to updater: ${updater} ${updaterArgs.join(' ')}; exiting desktop to release app.asar`
+    )
+    // Same dwell as the in-app update hand-off (#50419): give the updater's
+    // window time to appear before we vanish, so the recovery doesn't look like
+    // a crash and provoke a mid-recovery relaunch.
+    isQuittingForHandoff = true
+    setTimeout(() => {
+      app.quit()
+    }, UPDATE_HANDOFF_DWELL_MS)
+
+    return true
+  } finally {
+    bootstrapRecoveryInFlight = false
   }
-
-  rememberLog(
-    `[bootstrap] handed off ${reason} recovery to updater: ${updater} ${updaterArgs.join(' ')}; exiting desktop to release app.asar`
-  )
-  // Same dwell as the in-app update hand-off (#50419): give the updater's
-  // window time to appear before we vanish, so the recovery doesn't look like
-  // a crash and provoke a mid-recovery relaunch.
-  isQuittingForHandoff = true
-  setTimeout(() => {
-    app.quit()
-  }, UPDATE_HANDOFF_DWELL_MS)
-
-  return true
 }
 
 // Resolve the openamer CLI to drive an in-app update: prefer the venv shim in
@@ -5056,6 +5059,31 @@ function registerPowerResumeListeners() {
 
 function getAppIconPath() {
   return APP_ICON_PATHS.find(fileExists)
+}
+
+// The taskbar button is resolved from the AppUserModelID, NOT from the
+// BrowserWindow icon. This install launches through a wscript.exe shortcut with
+// no Start Menu shortcut carrying `com.openamer.openamer`, so Windows has no
+// icon registered for that ID and painted a blank document tile instead of the
+// OpenAmer mark. Declaring the relaunch icon on the window itself gives the
+// shell an icon to fall back on. Windows-only; a no-op elsewhere.
+function applyShellIdentity(win) {
+  if (!IS_WINDOWS || !win || win.isDestroyed()) {
+    return
+  }
+
+  try {
+    win.setAppDetails(
+      windowsAppDetails({
+        appRoot: APP_ROOT,
+        execPath: process.execPath,
+        iconPath: getAppIconPath(),
+        isPackaged: IS_PACKAGED
+      })
+    )
+  } catch (error) {
+    rememberLog(`[shell] setAppDetails failed: ${error?.message || error}`)
+  }
 }
 
 function sendOpenUpdatesRequested() {
@@ -7786,7 +7814,11 @@ async function ensureBackend(profile) {
 
   const entry = { process: null, port: null, token: null, connectionPromise: null, lastActiveAt: Date.now() }
   entry.connectionPromise = spawnPoolBackend(key, entry).catch(error => {
-    backendPool.delete(key)
+    // Only drop our own entry: a teardown may already have replaced it with a
+    // newer backend for this profile, and that replacement must stay managed.
+    if (backendPool.get(key) === entry) {
+      backendPool.delete(key)
+    }
     throw error
   })
   backendPool.set(key, entry)
@@ -7894,12 +7926,19 @@ async function spawnPoolBackend(profile, entry) {
   // step 3 in openamer_cli/main.py), so the child re-homes to this profile.
   // --port 0: the OS assigns an ephemeral port; the child announces it on stdout.
   const backendArgs = ['--profile', profile, 'serve', '--host', '127.0.0.1', '--port', '0']
+  await waitForUpdateToFinish()
   const backend = await ensureRuntime(resolveOpenAmerBackend(backendArgs))
   // Route old runtimes (no `serve`) through the legacy `dashboard --no-open`.
   backend.args = getBackendArgsForRuntime(backend)
   const openamerCwd = resolveOpenAmerCwd()
   const webDist = resolveWebDist()
   const readyFile = backend.readyFile ? makeDashboardReadyFile() : null
+
+  await waitForUpdateToFinish()
+
+  if (backendPool.get(profile) !== entry) {
+    throw new Error('OpenAmer profile backend start was superseded by teardown.')
+  }
 
   rememberLog(`Starting OpenAmer backend for profile "${profile}" via ${backend.label}`)
 
@@ -8198,6 +8237,14 @@ async function startOpenAmer() {
     const readyFile = backend.readyFile ? makeDashboardReadyFile() : null
 
     await advanceBootProgress('backend.spawn', `Starting OpenAmer backend via ${backend.label}`, 84)
+    // Runtime resolution above is asynchronous; an update may have begun since
+    // the first gate. Recheck at the actual spawn boundary with no await gap.
+    await waitForUpdateToFinish()
+
+    if (!backendConnectionState.isCurrentAttempt(connectionAttempt)) {
+      throw new Error('OpenAmer backend start was superseded by a newer connection attempt.')
+    }
+
     rememberLog(`Starting OpenAmer backend via ${backend.label}`)
 
     const openamerProcess = spawn(
@@ -8558,6 +8605,7 @@ function createInstanceWindow() {
   })
 
   instanceWindows.add(win)
+  applyShellIdentity(win)
 
   if (IS_MAC) {
     win.setWindowButtonPosition?.(WINDOW_BUTTON_POSITION)
@@ -8761,6 +8809,8 @@ function createWindow() {
     // windows, stalling the live answer until refocus. See session-windows.ts.
     webPreferences: chatWindowWebPreferences(PRELOAD_PATH)
   })
+
+  applyShellIdentity(mainWindow)
 
   if (IS_MAC) {
     mainWindow.setWindowButtonPosition?.(WINDOW_BUTTON_POSITION)

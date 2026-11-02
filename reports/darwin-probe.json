@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-31T17:20:21.317088+00:00",
+  "updated": "2026-11-01T17:21:10.303588+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1229,
+  "total": 1240,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -2109,6 +2109,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-gateway-delivery-ledger-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-git-cherry-pick-head": {
       "refs": 0,
       "ok": 0,
@@ -3101,6 +3107,12 @@
     "traffic-cop": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "windows-elevation-handoff": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -6477,6 +6489,12 @@
       "score": 1.0,
       "missing": []
     },
+    "capability-benchmark": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "evaluating-llms-harness": {
       "refs": 0,
       "ok": 0,
@@ -6506,6 +6524,16 @@
       "ok": 0,
       "score": 1.0,
       "missing": []
+    },
+    "local-cpu-brain": {
+      "refs": 3,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "openamer_train.py",
+        "check_brain.py",
+        "brain_scan.py"
+      ]
     },
     "local-model-sizing": {
       "refs": 0,
@@ -6733,6 +6761,12 @@
       "score": 1.0,
       "missing": []
     },
+    "firmware-artifact-triage": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "rsi-phase2-learned-proposals": {
       "refs": 0,
       "ok": 0,
@@ -6774,6 +6808,18 @@
     "deterministic-policy-gates": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "firmware-image-analysis": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "firmware-image-triage": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -6843,9 +6889,27 @@
       "score": 1.0,
       "missing": []
     },
+    "device-control-without-feedback": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "lan-appliance-api-control": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "openhue": {
       "refs": 0,
       "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "philips-tv-control": {
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -7523,6 +7587,12 @@
     "resource-monitor": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "rsi-cycle-live": {
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
