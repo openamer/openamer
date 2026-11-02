@@ -85,7 +85,7 @@ def _venv_python(repo: Path) -> Path:
     return repo / ".venv" / sub
 
 
-PYTHON = _venv_python(REPO)
+PYTHON = Path(os.environ.get("OPENAMER_PYTHON") or _venv_python(REPO))
 RUNNER = REPO / "scripts" / "run_tests.sh"
 
 
@@ -142,10 +142,10 @@ SUMMARY_RE = re.compile(
 )
 # The runner marks a failing file as "✗ tests\path\file.py"; the same glyph also
 # appears as the running counter ("✗ 2]"), so match the path explicitly.
-FAILING_FILE_RE = re.compile(r"✗\s+(tests\\[^\s(]+\.py)")
+FAILING_FILE_RE = re.compile(r"✗\s+(tests[\\/][^\s(]+\.py)")
 # The last progress line of a red run; its trailing "✗ N" is the failure count
 # that belongs to the file named earlier in that same line.
-FAILED_FILE_LINE_RE = re.compile(r"✗\s+(tests\\[^\s(]+\.py)\s+\((\d+)✓\s+(\d+)✗")
+FAILED_FILE_LINE_RE = re.compile(r"✗\s+(tests[\\/][^\s(]+\.py)\s+\((\d+)✓\s+(\d+)✗")
 
 
 def _log(log_path: Path, line: str) -> None:
@@ -179,6 +179,49 @@ def _summarize_failures(out: str) -> list[str]:
     return [f"{path}  ({n} failing)" for path, n in ranked]
 
 
+def _no_verdict_files(out: str) -> list[str]:
+    match = re.search(r"^=== \d+ files? where no tests ran[^\n]*===", out, re.MULTILINE)
+    if match is None:
+        return []
+    body = out[match.end():].split("\n===", 1)[0]
+    return [line.strip().split()[0] for line in body.splitlines()
+            if line.strip().split() and line.strip().split()[0].endswith(".py")]
+
+
+def _run_suite(command: list[str], env: dict, output_path: Path):
+    """Stream diagnostics to disk; on timeout kill only this run's process tree.
+
+    Killing only bash (subprocess.run's default timeout handling) leaves pytest
+    workers alive. They can keep consuming resources into the next nightly run.
+    The runner starts new sessions per file, so killing one POSIX group is not
+    enough either: snapshot descendants while the parent still exists.
+    """
+    import psutil
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8") as output:
+        proc = subprocess.Popen(command, cwd=str(REPO), env=env, stdout=output,
+                                stderr=subprocess.STDOUT, start_new_session=True)
+        try:
+            proc.wait(timeout=TIMEOUT_S)
+        except BaseException:
+            try:
+                children = psutil.Process(proc.pid).children(recursive=True)
+            except psutil.NoSuchProcess:
+                children = []
+            for child in reversed(children):
+                try:
+                    child.kill()
+                except psutil.NoSuchProcess:
+                    pass
+            proc.kill()
+            proc.wait(timeout=10)
+            psutil.wait_procs(children, timeout=10)
+            raise
+    return subprocess.CompletedProcess(command, proc.returncode,
+                                       output_path.read_text(encoding="utf-8"), "")
+
+
 def main() -> int:
     state_path = _env_override("STATE", STATE)
     log_path = _env_override("LOG", LOG)
@@ -193,52 +236,57 @@ def main() -> int:
     env = dict(os.environ)
     env["OPENAMER_PYTHON"] = str(PYTHON)
     started = time.time()
+    output_path = state_path.with_suffix(".runner.log")
+    timed_out = False
     try:
-        proc = subprocess.run(
-            [BASH, str(RUNNER), target, "-q"],
-            cwd=str(REPO),
-            env=env,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=TIMEOUT_S,
-        )
+        proc = _run_suite([BASH, str(RUNNER), target, "-q"], env, output_path)
     except subprocess.TimeoutExpired:
-        _log(log_path, f"TIMEOUT after {TIMEOUT_S}s (target={target})")
-        print(f"TEST-WATCHDOG: suite did not finish within {TIMEOUT_S}s")
-        return 1
+        timed_out = True
+        proc = subprocess.CompletedProcess([], 124, output_path.read_text(encoding="utf-8"), "")
 
     elapsed = int(time.time() - started)
     out = (proc.stdout or "") + (proc.stderr or "")
-
+    # Also supports injected runners in tests; the real runner streams here.
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(out, encoding="utf-8")
     m = SUMMARY_RE.search(out)
-    if m is None:
-        _log(log_path, f"NO SUMMARY rc={proc.returncode} in {elapsed}s")
-        print("TEST-WATCHDOG: could not read a summary from the runner output")
-        print(f"  exit={proc.returncode}  elapsed={elapsed}s")
-        print("--- last 25 lines ---")
-        print("\n".join(out.strip().splitlines()[-25:]))
-        return 1
-
-    n_files, n_passed, n_failed = (int(g) for g in m.groups())
+    no_verdict = _no_verdict_files(out)
+    counts = {path: int(failed) for path, _passed, failed in FAILED_FILE_LINE_RE.findall(out)}
     prev = _load_state(state_path)
+    n_files, n_passed, n_failed = (int(g) for g in m.groups()) if m else (None, None, None)
+    status = ("timeout" if timed_out else "incomplete" if m is None or no_verdict
+              or "NO TESTS RAN" in out else "green" if n_failed == 0
+              and proc.returncode == 0 else "red")
     state_path.parent.mkdir(parents=True, exist_ok=True)
     state_path.write_text(
-        json.dumps(
-            {
-                "ts": datetime.now().isoformat(timespec="seconds"),
-                "target": target,
-                "files": n_files,
-                "passed": n_passed,
-                "failed": n_failed,
-                "elapsed_s": elapsed,
-            },
-            indent=1,
-        ),
-        encoding="utf-8",
+        json.dumps({
+            "ts": datetime.now().astimezone().isoformat(timespec="seconds"),
+            "target": target, "files": n_files, "passed": n_passed,
+            "failed": n_failed, "elapsed_s": elapsed, "status": status,
+            "returncode": proc.returncode, "no_verdict_files": no_verdict,
+            "failing_files": counts, "output_path": str(output_path),
+        }, indent=1), encoding="utf-8",
     )
+    if timed_out:
+        _log(log_path, f"TIMEOUT after {TIMEOUT_S}s (target={target})")
+        print(f"TEST-WATCHDOG: suite did not finish within {TIMEOUT_S}s")
+    elif m is None:
+        _log(log_path, f"NO SUMMARY rc={proc.returncode} in {elapsed}s")
+        print("TEST-WATCHDOG: could not read a summary from the runner output")
+    elif status == "incomplete" or (n_failed == 0 and proc.returncode != 0):
+        _log(log_path, f"INCOMPLETE exit={proc.returncode} no_verdict={len(no_verdict)} in {elapsed}s")
+        print(f"TEST-WATCHDOG: incomplete run; {len(no_verdict)} file(s) produced NO verdict")
+        for path in no_verdict:
+            print(f"  {path}")
+    else:
+        return _report_result(n_files, n_passed, n_failed, elapsed, prev, log_path, out, target)
+    print(f"  exit={proc.returncode}  elapsed={elapsed}s  output={output_path}")
+    print("--- last 25 lines ---")
+    print("\n".join(out.strip().splitlines()[-25:]))
+    return 1
 
+
+def _report_result(n_files, n_passed, n_failed, elapsed, prev, log_path, out, target):
     if n_failed == 0:
         _log(log_path, f"GREEN {n_passed} passed / {n_files} files in {elapsed}s")
         prev_failed = prev.get("failed")
