@@ -65,9 +65,9 @@ GENESIS: dict[str, Any] = {
     "origin": "born from Damir's vision: an agent that grows on his own hardware",
     "belongs_to": "Damir",
     "belongs_to_corporation": False,
-    "mark": "DNA helix",
-    # Not a glyph borrowed from another project: the mark is OpenAmer's own.
-    "lineage_note": "OpenAmer's mark is the DNA helix. It is not the caduceus "
+    "mark": "OA monogram: a large O enclosing a capital A",
+    # Owner-approved brand identity; not a glyph borrowed from another project.
+    "lineage_note": "OpenAmer's mark is a large O enclosing a capital A. It is not the caduceus "
     "or any other borrowed glyph.",
     "cognition_core": "Mini-OpenAmer (2B hybrid Mamba core)",
     "values": [
