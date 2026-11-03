@@ -2040,6 +2040,46 @@ def _create_cdp_session(task_id: str, cdp_url: str) -> Dict[str, str]:
     }
 
 
+def _close_discarded_session(
+    task_id: str, discarded: Dict[str, Any], winner: Dict[str, Any]
+) -> None:
+    """Stop a cloud session that lost the concurrent-creation race.
+
+    ``_get_session_info`` calls the provider outside ``_cleanup_lock`` because
+    session creation is a network round-trip, so two threads asking for the
+    same task can both open a browser. The loser's session is never tracked
+    and therefore never closed by ``cleanup_browser`` — it kept running (and
+    billing) until the provider's own timeout. Close it best-effort instead.
+    """
+    discarded_id = (discarded or {}).get("bb_session_id")
+    if not discarded_id:
+        return  # local sidecar / CDP override: nothing billable to stop
+    if discarded_id == (winner or {}).get("bb_session_id"):
+        return
+    provider = _get_cloud_provider()
+    if provider is None:
+        return
+    try:
+        closed = provider.close_session(str(discarded_id))
+    except Exception as e:  # pragma: no cover - defensive
+        logger.warning(
+            "Could not close redundant cloud browser session %s for task %s: %s",
+            discarded_id, task_id, e,
+        )
+        return
+    if closed:
+        logger.info(
+            "Closed redundant cloud browser session %s for task %s (kept %s)",
+            discarded_id, task_id, (winner or {}).get("bb_session_id"),
+        )
+    else:
+        logger.warning(
+            "Redundant cloud browser session %s for task %s could not be "
+            "confirmed stopped; it will expire on its own timeout",
+            discarded_id, task_id,
+        )
+
+
 def _get_session_info(task_id: Optional[str] = None) -> Dict[str, Any]:
     """
     Get or create session info for the given session key.
@@ -2123,14 +2163,21 @@ def _get_session_info(task_id: Optional[str] = None) -> Dict[str, Any]:
 
     with _cleanup_lock:
         # Double-check: another thread may have created a session while we
-        # were doing the network call. Use the existing one to avoid leaking
-        # orphan cloud sessions.
-        if task_id in _active_sessions:
-            return _active_sessions[task_id]
-        session_info = dict(session_info)
-        session_info.setdefault("session_key", task_id)
-        session_info.setdefault("owner_task_id", _bare_task_id_for_session_key(task_id))
-        _active_sessions[task_id] = session_info
+        # were doing the network call. Keep the existing one — but close the
+        # cloud session we just created first. Dropping it on the floor left
+        # an orphan browser running (and billing) until its own timeout.
+        winner = _active_sessions.get(task_id)
+        if winner is None:
+            session_info = dict(session_info)
+            session_info.setdefault("session_key", task_id)
+            session_info.setdefault("owner_task_id", _bare_task_id_for_session_key(task_id))
+            _active_sessions[task_id] = session_info
+            winner = session_info
+
+    if winner is not session_info:
+        _close_discarded_session(task_id, session_info, winner)
+        return winner
+    session_info = winner
 
     # Lazy-start the CDP supervisor now that the session exists (if the
     # backend surfaces a CDP URL via override or session_info["cdp_url"]).

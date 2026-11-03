@@ -363,6 +363,50 @@ Then launch the OpenAmer CLI and run `/browser connect`.
 
 When connected via CDP, all browser tools (`browser_navigate`, `browser_click`, etc.) operate on your live browser instance instead of spinning up a cloud session.
 
+#### One browser, many tasks (no per-task launch)
+
+There is no separate "batching" mode, because the CDP override already does the
+job: while `BROWSER_CDP_URL` or `browser.cdp_url` is set, **every** task key
+attaches to that one endpoint instead of launching a browser or opening a cloud
+session. Each task key gets its own `agent-browser` session (its own tab), so
+parallel subagents share one Chromium process without fighting over a single
+tab:
+
+```yaml
+# config.yaml — persistent: reuse this browser for every task
+browser:
+  cdp_url: "ws://127.0.0.1:9222/devtools/browser/<uuid>"
+```
+
+```bash
+# or per-process, e.g. right after /browser connect
+export BROWSER_CDP_URL="ws://127.0.0.1:9222/devtools/browser/<uuid>"
+```
+
+OpenAmer does not coordinate tab focus between clients sharing a browser (same
+caveat as Camofox below): if an external app is also driving that Chrome,
+sequence ownership at the application layer. The hermetic smoke for this wiring
+— two tasks, one endpoint, zero cloud sessions — is
+`tests/tools/test_browser_existing_session_sharing.py`.
+
+#### Playwright MCP / existing tabs: what works today
+
+- **Attaching to an existing browser**: supported through the CDP override above.
+  Nothing is installed and no launch flags change.
+- **Playwright MCP**: not shipped in the MCP catalog (`optional-mcps/` carries
+  Blender, Linear, n8n and Unreal Engine only), and it is a third-party product,
+  so it belongs in a standalone plugin/MCP install rather than this tree. You can
+  still register it yourself with `openamer mcp add`, passing its own
+  `--cdp-endpoint <same endpoint>` argument through the normal `args`/`env` fields
+  of a user-authored `mcp_servers.<name>` entry. That path is outside the browser
+  tool stack — OpenAmer does not manage its lifecycle, and its tools appear as
+  MCP tools, not as `browser_*`.
+- **Browser extensions**: out of scope. OpenAmer drives browsers over CDP only;
+  no extension is installed or required.
+
+For the WSL2 + Windows Chrome case, `chrome-devtools-mcp` remains the documented
+route — see the next section.
+
 ### WSL2 + Windows Chrome: prefer MCP over `/browser connect`
 
 If OpenAmer runs inside WSL2 but the Chrome window you want to control runs on the Windows host, `/browser connect` is often not the best path.

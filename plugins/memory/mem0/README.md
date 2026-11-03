@@ -147,6 +147,24 @@ openamer memory setup mem0 --mode oss --oss-llm-key sk-... --dry-run
 | `mem0_update` | Update a memory's text by ID |
 | `mem0_delete` | Delete a memory by ID |
 
+## Failure handling
+
+- **4xx never opens the circuit breaker.** The self-hosted Mem0 server reports
+  client errors as 4xx (`_client_error`: bad id → 404, validation → 400) and
+  reserves 5xx for upstream outages. A 4xx means the request itself was bad, so
+  it is returned to the model as an error and the breaker stays closed —
+  otherwise five mistyped memory ids took memory offline for the whole
+  2-minute cooldown.
+- **5xx, 408, 429, connection errors and timeouts count as provider failures.**
+  Five in a row open the breaker.
+- **Recall is single-flight.** At most one background search runs per provider
+  instance; if the backend is stalled, that turn simply skips injected context
+  and `mem0_search` remains the backstop. This keeps a hung server from
+  accumulating one thread + connection per turn.
+
+Contract tests for all three behaviors run against a real loopback HTTP
+fixture of the self-hosted server: `tests/plugins/memory/test_mem0_selfhosted_loopback.py`.
+
 ## Troubleshooting
 
 ### "Mem0 temporarily unavailable"

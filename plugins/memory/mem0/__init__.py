@@ -60,14 +60,50 @@ _CLIENT_ERROR_TYPES = ("MemoryNotFoundError", "ValidationError")
 # through instead of silently overriding them with the placeholder.
 _DEFAULT_USER_ID = "openamer-user"
 
+# Statuses that are provider-side conditions even though they live in the 4xx
+# range: a throttled or server-side-timed-out backend is a provider failure, so
+# it must still feed the circuit breaker.
+_PROVIDER_SIDE_4XX = (408, 429)
+
+
+def _http_status(exc: Exception) -> int | None:
+    """Return the HTTP status carried by an httpx / requests / OpenAPI error.
+
+    ``httpx.HTTPStatusError`` and ``requests.HTTPError`` expose
+    ``response.status_code``; the mem0 Platform SDK's generated
+    ``ApiException`` exposes ``status``.
+    """
+    for attr in ("status_code", "status", "http_status"):
+        value = getattr(exc, attr, None)
+        if isinstance(value, int):
+            return value
+    response = getattr(exc, "response", None)
+    status = getattr(response, "status_code", None)
+    return status if isinstance(status, int) else None
+
 
 def _is_client_error(exc: Exception) -> bool:
-    """True for user-caused errors (bad ID, not found) that should NOT trip circuit breaker."""
+    """True for user-caused errors (bad ID, not found) that should NOT trip circuit breaker.
+
+    Classification is structural where a status code exists. The self-hosted
+    Mem0 server maps validation / not-found failures to 4xx (``_client_error``)
+    and reserves 5xx for upstream outages (``upstream_error``), so a 4xx means
+    the request itself was bad: retrying it unchanged cannot succeed, and
+    opening the global breaker for it darkened every memory call (including
+    valid ones) for the whole cooldown after five bad ids.
+
+    Only when no status code is attached (the Platform SDK raises its own
+    exception types) do we fall back to the legacy name/string heuristics.
+    """
+    status = _http_status(exc)
+    if status is not None:
+        return 400 <= status < 500 and status not in _PROVIDER_SIDE_4XX
+
     etype = type(exc).__name__
     if etype in _CLIENT_ERROR_TYPES:
         return True
     err_str = str(exc).lower()
-    return "404" in err_str or "not found" in err_str or "valid uuid" in err_str
+    return "not found" in err_str or "valid uuid" in err_str
 
 
 # ---------------------------------------------------------------------------
@@ -427,11 +463,17 @@ class Mem0MemoryProvider(MemoryProvider):
             return
         backend = self._backend
         with self._prefetch_lock:
-            if self._prefetch_query == query:
-                if self._prefetch_done:
-                    return
-                if self._prefetch_thread and self._prefetch_thread.is_alive():
-                    return
+            if self._prefetch_query == query and self._prefetch_done:
+                return
+            # Single-flight: at most one recall request in flight per provider
+            # instance. A stalled backend holds its socket for the full client
+            # timeout (30s), and every new wording used to start another
+            # thread, so one hung server accumulated one thread + connection
+            # per turn. Skipping injection is fine — mem0_search is the
+            # backstop — and shutdown no longer waits on a pile of stuck
+            # recalls.
+            if self._prefetch_thread is not None and self._prefetch_thread.is_alive():
+                return
             self._prefetch_query = query
             self._prefetch_result = ""
             self._prefetch_done = False
