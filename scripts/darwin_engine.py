@@ -1529,7 +1529,8 @@ def record_history(fitness: dict) -> int:
     entry = {"when": _now(), "skills": {n: s["fitness"] for n, s in fitness.items()}}
     with open(HISTORY_FILE, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-    return sum(1 for _ in open(HISTORY_FILE, encoding="utf-8"))
+    with open(HISTORY_FILE, encoding="utf-8") as f:
+        return sum(1 for _ in f)
 
 
 def fitness_trend() -> dict:
@@ -1537,8 +1538,11 @@ def fitness_trend() -> dict:
     trend: 'rising' | 'falling' | 'flat' (needs >= 2 snapshots)."""
     if not HISTORY_FILE.exists():
         return {"snapshots": 0}
-    entries = [json.loads(l) for l in
-               open(HISTORY_FILE, encoding="utf-8") if l.strip()]
+    entries = []
+    with open(HISTORY_FILE, encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                entries.append(json.loads(line))
     # An empty-skill snapshot is not a population measurement -- it is a
     # mis-resolved OPENAMER_HOME (see _resolve_home). fitness_trend compares
     # first vs last, so a single phantom snapshot makes the whole ecosystem

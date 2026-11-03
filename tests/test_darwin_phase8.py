@@ -49,8 +49,10 @@ def test_history_appends_snapshots(fake_world):
     n1 = darwin.record_history(fit)
     n2 = darwin.record_history({**fit, "a": {"fitness": 7}})
     assert n1 == 1 and n2 == 2
-    lines = [json.loads(l) for l in
-             open(darwin.HISTORY_FILE, encoding="utf-8")]
+    lines = []
+    with open(darwin.HISTORY_FILE, encoding="utf-8") as handle:
+        for line in handle:
+            lines.append(json.loads(line))
     assert lines[1]["skills"]["a"] == 7
 
 
