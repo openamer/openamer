@@ -7872,6 +7872,12 @@ def _stash_apply_failed_only_on_existing_untracked(stderr: str) -> bool:
     though nothing was lost.  Any other error line (e.g. ``would be
     overwritten by merge`` / ``Aborting``) means the tracked apply itself
     failed and this returns False.
+
+    NOTE: "already exists" alone does not prove the content is intact - the
+    file in the tree may differ from the stashed one (e.g. the upstream pull
+    added the same path with different content).  Callers must additionally
+    verify with :func:`_untracked_stash_files_differ` before claiming that
+    nothing was lost.
     """
     lines = [ln.strip() for ln in (stderr or "").splitlines() if ln.strip()]
     if not lines:
@@ -7887,6 +7893,79 @@ def _stash_apply_failed_only_on_existing_untracked(stderr: str) -> bool:
         else:
             return False
     return saw_untracked_error
+
+
+def _untracked_stash_files_differ(
+    git_cmd: list[str], cwd: Path, stash_ref: str
+) -> list[str]:
+    """List untracked files the stash holds whose working-tree copy differs.
+
+    ``git stash apply`` refuses to overwrite an existing untracked path and
+    reports ``already exists, no checkout`` / ``could not restore untracked
+    files from stash``.  When the stashed blob and the file on disk are
+    byte-identical, nothing is lost.  When they differ, the stashed content is
+    ONLY in the stash - and the update path drops the stash afterwards, which
+    would destroy it.
+
+    Returns the differing paths (repo-relative, forward slashes).  An empty
+    list means every blocked file is identical to its stashed version.
+    """
+    try:
+        listing = subprocess.run(
+            git_cmd + ["ls-tree", "-r", "--name-only", f"{stash_ref}^3"],
+            cwd=cwd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+    except (subprocess.CalledProcessError, OSError):
+        return []
+    if listing.returncode != 0:
+        return []
+    differing: list[str] = []
+    for rel in (listing.stdout or "").splitlines():
+        rel = rel.strip()
+        if not rel:
+            continue
+        path = cwd / rel
+        try:
+            stashed = subprocess.run(
+                git_cmd + ["show", f"{stash_ref}^3:{rel}"],
+                cwd=cwd,
+                capture_output=True,
+            )
+        except (subprocess.CalledProcessError, OSError):
+            continue
+        if stashed.returncode != 0:
+            continue
+        if not path.is_file():
+            # The file is gone from the tree entirely - the stashed copy is
+            # the only surviving version, so it must be reported as differing.
+            differing.append(rel)
+            continue
+        try:
+            on_disk = path.read_bytes()
+        except OSError:
+            differing.append(rel)
+            continue
+        if on_disk != stashed.stdout:
+            differing.append(rel)
+    return differing
+
+
+def _keep_stash_for_recovery(git_cmd: list[str], cwd: Path, stash_ref: str) -> None:
+    """Keep the stash entry alive and tell the user how to recover from it.
+
+    Used when the stash holds content that exists nowhere else (an untracked
+    file whose working-tree copy differs). Dropping the stash here would
+    destroy the only surviving version of that content, so the entry stays in
+    ``refs/stash`` and the update continues.
+    """
+    print("\nYour stashed changes are preserved - the stash entry was kept.")
+    print(f"  Stash ref: {stash_ref}")
+    print(f"  Recover with: git stash apply {stash_ref}")
+    print("  Remove it after you have recovered the files: git stash drop")
 
 
 def _restore_stashed_changes(
@@ -7943,6 +8022,19 @@ def _restore_stashed_changes(
             "  ⚠ Some stashed untracked files already exist in the working "
             "tree and were kept as-is."
         )
+        # "already exists" does NOT prove the content matches: the upstream
+        # pull may have added the same path with different bytes. In that case
+        # the stashed version exists nowhere else and the stash must survive.
+        differing = _untracked_stash_files_differ(git_cmd, cwd, stash_ref)
+        if differing:
+            print(
+                "  ⚠ Their content differs from the stashed copy - the stashed "
+                "version is kept in the stash."
+            )
+            for f in differing:
+                print(f"    • {f}")
+            _keep_stash_for_recovery(git_cmd, cwd, stash_ref)
+            return False
     elif restore.returncode != 0 or has_conflicts:
         print("✗ Update pulled new code, but restoring local changes hit conflicts.")
         if restore.stdout.strip():
