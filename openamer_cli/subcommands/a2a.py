@@ -102,6 +102,79 @@ def _cmd_serve(args) -> int:
     return serve_cmd(args)
 
 
+def _default_a2a_task_handler(request, peer) -> dict:
+    """Answer an inbound task with the local ASI core (same path as scripts/a2a_server.py)."""
+    try:
+        from tools.asi_core import get_asi_core
+    except Exception as e:  # noqa: BLE001 - report, never crash the node
+        return {"error": f"no task handler available: {e}"}
+    question = ""
+    if isinstance(getattr(request, "payload", None), dict):
+        question = str(request.payload.get("question") or "")
+    try:
+        result = get_asi_core().think(question)
+    except Exception as e:  # noqa: BLE001
+        return {"error": f"task handler failed: {e}"}
+    if isinstance(result, dict):
+        return {"answer": str(result.get("answer") or result)[:4000]}
+    return {"answer": str(result)[:4000]}
+
+
+def _cmd_node(args) -> int:
+    """Run an A2A node: custom signed routes plus standard A2A v1.0 endpoints.
+
+    The standard surface is enabled only when a bearer token is configured
+    (``A2A_BEARER_TOKEN`` in the profile ``.env``, or ``--token``).
+    """
+    from openamer_cli.a2a import standard as standard_mod
+    from openamer_cli.a2a.transport import A2ANodeServer
+
+    token = (getattr(args, "token", "") or "").strip()
+    if not token:
+        try:
+            from openamer_cli.env_loader import load_openamer_dotenv
+            load_openamer_dotenv()
+        except Exception:  # noqa: BLE001 - optional helper
+            pass
+        token = (os.getenv("A2A_BEARER_TOKEN") or "").strip()
+    if not token:
+        print("A2A standard surface requires a bearer token.")
+        print("  Set A2A_BEARER_TOKEN in the profile .env, or pass --token.")
+        print("  Refusing to serve an unauthenticated standard endpoint.")
+        return 2
+
+    capabilities = tuple(
+        c.strip() for c in (getattr(args, "capabilities", "") or "task.ask").split(",")
+        if c.strip()
+    )
+    config = standard_mod.StandardA2AConfig(
+        bearer_token=token,
+        public_url=(getattr(args, "public_url", "") or "").strip(),
+        agent_name=getattr(args, "name", "OpenAmer") or "OpenAmer",
+        rpc_path=getattr(args, "rpc_path", "/a2a") or "/a2a",
+        capabilities=capabilities,
+    )
+    service = standard_mod.StandardA2AService(
+        config, on_task=_default_a2a_task_handler,
+    )
+    node = A2ANodeServer(
+        host=getattr(args, "host", "127.0.0.1"),
+        port=int(getattr(args, "port", 0) or 0),
+        server_name=config.agent_name,
+        on_task=_default_a2a_task_handler,
+        standard=service,
+    )
+    print(f"[a2a node] custom routes : /card, /message")
+    print(f"[a2a node] standard routes: /.well-known/agent-card.json, POST {config.rpc_path}")
+    print(f"[a2a node] capabilities  : {', '.join(capabilities)}")
+    try:
+        node.serve_forever()
+    except KeyboardInterrupt:
+        node.shutdown()
+        return 0
+    return 0
+
+
 def _cmd_discover(args) -> int:
     """Search the public ARD registry for agents/skills/MCP resources."""
     from openamer_cli.a2a import ard_client
@@ -676,6 +749,19 @@ def build_a2a_parser(subparsers) -> None:
     sv.add_argument("--catalog", default=None,
                     help="path to ai-catalog.json (default: repo docs/)")
     sv.set_defaults(func=_cmd_serve)
+
+    nd = sub.add_parser("node", help="Run an A2A node (signed routes + standard A2A v1.0)")
+    nd_sub = nd.add_subparsers(dest="node_cmd")
+    nds = nd_sub.add_parser("serve", help="Serve /card, /message and the standard A2A v1.0 endpoints")
+    nds.add_argument("--host", default="127.0.0.1")
+    nds.add_argument("--port", type=int, default=0, help="0 picks a free port")
+    nds.add_argument("--token", default="", help="bearer token (default: A2A_BEARER_TOKEN from .env)")
+    nds.add_argument("--public-url", default="", help="public base URL advertised on the Agent Card")
+    nds.add_argument("--name", default="OpenAmer", help="agent name on the Agent Card")
+    nds.add_argument("--rpc-path", default="/a2a", help="JSON-RPC path (default: /a2a)")
+    nds.add_argument("--capabilities", default="task.ask",
+                     help="comma-separated capabilities granted to the bearer token")
+    nds.set_defaults(func=_cmd_node)
 
     di = sub.add_parser("discover", help="Search the public ARD registry for agents/skills/MCP resources")
     di.add_argument("query", nargs="?", help="natural-language query")

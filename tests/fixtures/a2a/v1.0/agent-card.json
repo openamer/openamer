@@ -1,0 +1,39 @@
+{
+  "name": "OpenAmer Test Node",
+  "description": "OpenAmer agent reachable over the standard A2A protocol.",
+  "supportedInterfaces": [
+    {
+      "url": "<BASE_URL>/a2a",
+      "protocolBinding": "JSONRPC",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "provider": {
+    "organization": "OpenAmer",
+    "url": "<BASE_URL>"
+  },
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extendedAgentCard": false
+  },
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain"],
+  "skills": [
+    {
+      "id": "task.ask",
+      "name": "task.ask",
+      "description": "OpenAmer capability 'task.ask'",
+      "tags": ["task.ask"]
+    }
+  ],
+  "securitySchemes": {
+    "bearer": {
+      "httpBearerSecurityScheme": {
+        "scheme": "Bearer"
+      }
+    }
+  },
+  "security": [{"bearer": []}]
+}

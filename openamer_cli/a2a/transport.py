@@ -22,9 +22,22 @@ import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Callable, Optional
 from urllib import request, error
+from urllib.parse import urlsplit
 
 from openamer_cli.a2a.core import IdentityStore, Envelope, public_key_from_hex
 from openamer_cli.a2a.trust import TrustStore
+from openamer_cli.a2a.standard import (
+    StandardA2AConfig,
+    StandardA2AService,
+    build_agent_card,
+)
+
+#: Standard A2A discovery paths (A2A v1.0 §8.2 + the pre-1.0 alias).
+STANDARD_CARD_PATHS = frozenset({
+    "/.well-known/agent-card.json",
+    "/.well-known/agent.json",
+})
+
 
 
 class A2AHandler(BaseHTTPRequestHandler):
@@ -36,30 +49,83 @@ class A2AHandler(BaseHTTPRequestHandler):
     # on_task is stored WITHOUT being a class attribute bound to `self`, because
     # `self.on_task(...)` would bind the handler instance as the first arg.
     # We keep it in a module-level dict and call it plainly below.
-    _shared_state: dict = {"on_task": None}
+    _shared_state: dict = {"on_task": None, "standard": None}
 
     # ---- helpers ----------------------------------------------------------
 
-    def _json(self, code: int, data: dict) -> None:
+    def _json(self, code: int, data: dict, extra_headers: Optional[dict] = None) -> None:
         body = json.dumps(data).encode("utf-8")
         self.send_response(code)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
+        for key, value in (extra_headers or {}).items():
+            self.send_header(key, value)
         self.end_headers()
         self.wfile.write(body)
 
     def log_message(self, fmt, *args):  # quieter
         return
 
+    # ---- standard A2A (A2A v1.0 JSON-RPC binding) --------------------------
+
+    def _standard(self) -> Optional["StandardA2AService"]:
+        service = A2AHandler._shared_state.get("standard")
+        if service is None or not getattr(service.config, "enabled", False):
+            return None
+        return service
+
+    def _request_base_url(self) -> str:
+        """Advertised base URL: explicit config wins, else the request Host."""
+        service = self._standard()
+        if service is None:
+            return ""
+        if service.config.public_url:
+            return service.config.public_url.rstrip("/")
+        host = (self.headers.get("Host", "") or "").split(",")[0].strip()
+        if not host:
+            return ""
+        scheme = (self.headers.get("X-Forwarded-Proto", "") or "http").split(",")[0].strip()
+        return f"{scheme}://{host}"
+
+    def _handle_standard_card(self) -> None:
+        service = self._standard()
+        if service is None:
+            return self._json(404, {"error": "standard A2A is not enabled"})
+        self._json(200, build_agent_card(service.config,
+                                        base_url=self._request_base_url()))
+
+    def _handle_standard_rpc(self) -> None:
+        service = self._standard()
+        if service is None:
+            return self._json(404, {"error": "standard A2A is not enabled"})
+        try:
+            length = int(self.headers.get("Content-Length", 0) or 0)
+        except (TypeError, ValueError):
+            length = 0
+        raw = self.rfile.read(length) if length > 0 else b""
+        status, payload, extra = service.handle(
+            raw, self.headers, base_url=self._request_base_url(),
+        )
+        self._json(status, payload, extra_headers=extra)
+
     # ---- routes -----------------------------------------------------------
 
     def do_GET(self):
-        if self.path.rstrip("/").endswith("/card"):
+        path = urlsplit(self.path).path.rstrip("/") or "/"
+        if path in STANDARD_CARD_PATHS:
+            return self._handle_standard_card()
+        if path.endswith("/card"):
             return self._handle_card()
         self._json(404, {"error": "not found"})
 
     def do_POST(self):
-        if self.path.rstrip("/").endswith("/message"):
+        path = urlsplit(self.path).path.rstrip("/") or "/"
+        service = self._standard()
+        if service is not None:
+            rpc_path = service.config.rpc_path.rstrip("/") or "/"
+            if path in (rpc_path, "/"):
+                return self._handle_standard_rpc()
+        if path.endswith("/message"):
             return self._handle_message()
         self._json(404, {"error": "not found"})
 
@@ -131,24 +197,55 @@ class A2ANodeServer:
                  trust: Optional[TrustStore] = None,
                  identity: Optional[IdentityStore] = None,
                  server_name: str = "OpenAmer",
-                 on_task: Optional[Callable] = None):
+                 on_task: Optional[Callable] = None,
+                 standard: Optional[StandardA2AService] = None):
         self.trust = trust or TrustStore()
         self.identity = identity or IdentityStore()
         self.server_name = server_name
+        self.standard = standard
         A2AHandler.trust = self.trust
         A2AHandler.identity = self.identity
         A2AHandler._shared_state["on_task"] = on_task
+        A2AHandler._shared_state["standard"] = standard
         A2AHandler.server_name = server_name
         self._httpd = ThreadingHTTPServer((host, port), A2AHandler)
         self.port = self._httpd.server_address[1]
+        # Fill in a loopback public URL for the Agent Card when the caller did
+        # not supply one, so discovery advertises the address clients can use.
+        if standard is not None and not standard.config.public_url:
+            bound_host = self._httpd.server_address[0]
+            if bound_host in ("0.0.0.0", "::", ""):
+                bound_host = "127.0.0.1"
+            standard.config = _with_public_url(
+                standard.config, f"http://{bound_host}:{self.port}",
+            )
 
     def serve_forever(self) -> None:
         print(f"A2A node listening on http://127.0.0.1:{self.port}/card")
         print(f"  identity : {self.identity.ensure_identity().fingerprint}@openamer")
+        if self.standard is not None and self.standard.config.enabled:
+            base = self.standard.config.public_url or f"http://127.0.0.1:{self.port}"
+            print(f"  standard : {base}/.well-known/agent-card.json (A2A v1.0)")
+            print(f"             POST {base}{self.standard.config.rpc_path}")
         self._httpd.serve_forever()
 
     def shutdown(self) -> None:
         self._httpd.shutdown()
+
+
+def _with_public_url(config: StandardA2AConfig, public_url: str) -> StandardA2AConfig:
+    """Return a copy of *config* with ``public_url`` set."""
+    return StandardA2AConfig(
+        bearer_token=config.bearer_token,
+        public_url=public_url,
+        agent_name=config.agent_name,
+        description=config.description,
+        provider_organization=config.provider_organization,
+        provider_url=config.provider_url,
+        agent_version=config.agent_version,
+        rpc_path=config.rpc_path,
+        capabilities=config.capabilities,
+    )
 
 
 # --- client ---------------------------------------------------------------
