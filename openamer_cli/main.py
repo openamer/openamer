@@ -8399,9 +8399,9 @@ def _clear_marker_file(path: Path, *, label: str) -> None:
 def _write_update_incomplete_marker() -> None:
     """Drop the interrupted core-install breadcrumb. Never raises.
 
-    Carries the dependency-spec fingerprint of the moment the install was
-    about to touch the venv, so a later recovery can PROVE whether anything
-    was actually pending (see ``_interrupted_install_has_nothing_to_do``).
+    Carries the target dependency-spec fingerprint for diagnostics. It is not
+    evidence that those dependencies were installed: this marker is written
+    before installation and survives failures before the first venv write.
     """
     _write_marker_file(
         _update_marker_path(),
@@ -8473,6 +8473,8 @@ def _dependency_install_is_skippable(
     - spec unchanged + broken venv → still a repair to run, and
     - healthy venv + changed spec  → still an install to run.
     """
+    if _update_marker_path().exists():
+        return False
     if not pre_fingerprint or not post_fingerprint:
         return False
     if pre_fingerprint != post_fingerprint:
@@ -8627,49 +8629,6 @@ def _recover_lazy_refresh_marker_locked() -> None:
         )
 
 
-def _interrupted_install_has_nothing_to_do() -> bool:
-    """Prove a pending ``.update-incomplete`` has no dependency work, then clear it.
-
-    The marker records the dependency-spec fingerprint captured the instant
-    ``openamer update`` was about to touch the venv. If that spec is still
-    byte-identical AND the venv's core imports are clean, then nothing was
-    pending and nothing is broken: the only correct action is to drop the
-    breadcrumb, with zero writes to the venv.
-
-    This is also the only path that can finish while ``openamer.exe`` is
-    running. The full-reinstall recovery has to quarantine that executable,
-    which the app itself holds open on Windows — so "reinstall for nothing"
-    can never complete and the marker blocks every launch instead (measured
-    2026-10-30: an update whose spec delta was version literals only left the
-    marker set for an hour, printed the interruption warning on every boot and
-    made ``openamer --version`` report no version at all).
-
-    Returns True when the marker was cleared here (caller must stop).
-    Legacy markers without a ``deps`` line never take this path.
-    """
-    marker_deps = _read_marker_deps_fingerprint(_update_marker_path())
-    if not marker_deps:
-        return False
-    if marker_deps != _dependency_spec_fingerprint():
-        return False
-
-    install_prefix, install_env = _default_venv_install_target()
-    try:
-        status = _repair_venv_via_import_probes(install_prefix, env=install_env)
-    except Exception as exc:  # noqa: BLE001 — recovery must never raise
-        logger.debug("Install-recovery import probe failed: %s", exc)
-        return False
-    if status not in ("healthy", "repaired"):
-        return False
-
-    _clear_update_incomplete_marker()
-    print(
-        "✓ The interrupted `openamer update` had no dependency changes pending "
-        "(dependency spec unchanged, venv imports clean) — nothing to finish."
-    )
-    return True
-
-
 def _recover_core_update_marker_locked() -> None:
     """Heal ``.update-incomplete`` via full ``.[all]`` reinstall only.
 
@@ -8677,9 +8636,6 @@ def _recover_core_update_marker_locked() -> None:
     interrupted core install finished — a missing dep outside that probe set
     would otherwise look healthy and clear the breadcrumb too early.
     """
-    if _interrupted_install_has_nothing_to_do():
-        return
-
     print(
         "⚠ A previous `openamer update` was interrupted mid-install — "
         "finishing dependency installation now..."
@@ -12590,8 +12546,8 @@ def _cmd_update_impl(args, gateway_mode: bool):
             # otherwise "Already up to date!" gaslights the user while their
             # install stays bricked.
             healthy, detail = _venv_core_imports_healthy()
-            if not healthy:
-                print("⚠ Checkout is current, but the venv is unhealthy:")
+            if not healthy or _update_marker_path().exists():
+                print("⚠ Checkout is current, but dependency installation is incomplete or unhealthy:")
                 print(f"  {detail}")
                 print("→ Repairing Python dependencies...")
                 _write_update_incomplete_marker()
