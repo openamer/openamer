@@ -7,9 +7,9 @@
     {
       "id": "compute-backoff-callers",
       "query": "compute_backoff",
-      "gold_files": ["app/retry.py", "app/transport.py", "tests/test_retry.py"],
+      "gold_files": ["app/retry.py", "app/transport.py", "tests/retry_spec.py"],
       "gold_symbols": [["app/retry.py", "compute_backoff"]],
-      "rationale": "Definition plus both call sites. transport.py and test_retry.py import RetryPolicy and call policy.compute_backoff, so the symbol never appears in their import lines."
+      "rationale": "Definition plus both call sites. transport.py and tests/retry_spec.py import RetryPolicy and call policy.compute_backoff, so the symbol never appears in their import lines. The spec file is deliberately not named test_*.py so the host repo's pytest run does not collect it."
     },
     {
       "id": "create-client-helpers",
