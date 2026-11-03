@@ -5415,11 +5415,17 @@ def _build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
         return _do_build_web_ui(web_dir, fatal=fatal)
     project_root = web_dir.parent.parent if web_dir.parent.name == "apps" else web_dir.parent
     dist_index = project_root / "openamer_cli" / "web_dist" / "index.html"
+    # The lock handle must stay open for as long as the flock is held — the
+    # lock is tied to the open file descriptor, so closing it earlier would
+    # release the lock and let a second builder in.  The ``with`` block closes
+    # it exactly when the build is done, which is also when the lock is
+    # released.  (Ruff's SIM115 cannot see that the descriptor is used for
+    # flock, so it flags this as a leak; it is not one.)
     try:
         lock_file = open(project_root / ".web_ui_build.lock", "a", encoding="utf-8")
     except OSError:
         return _do_build_web_ui(web_dir, fatal=fatal)
-    try:
+    with lock_file:
         try:
             fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
         except OSError:
@@ -5430,8 +5436,6 @@ def _build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
             # No dist at all (first-ever build): wait for the builder.
             fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
         return _do_build_web_ui(web_dir, fatal=fatal)
-    finally:
-        lock_file.close()
 
 
 def _do_build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
@@ -10646,6 +10650,10 @@ def _install_hangup_protection(gateway_mode: bool = False):
         logs_dir = _get_openamer_home() / "logs"
         logs_dir.mkdir(parents=True, exist_ok=True)
         log_path = logs_dir / "update.log"
+        # The handle is intentionally long-lived: it is handed to the
+        # ``_UpdateOutputStream`` mirrors installed on sys.stdout/sys.stderr
+        # and stays open until ``_finalize_update_output`` closes it.  It is
+        # therefore NOT a leak — closing it here would break the mirroring.
         log_file = open(log_path, "a", buffering=1, encoding="utf-8")
 
         import datetime as _dt
