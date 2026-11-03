@@ -253,10 +253,13 @@ class TestCompareRuns:
         def ident(p: str) -> str:
             return "ok"
 
-        run1 = run_benchmark("a", [TestCase("t1", "q1")], "m1", ident)
+        run1 = run_benchmark("a", [TestCase("t1", "q1", expected="ok")], "m1", ident)
         run2 = run_benchmark(
             "b",
-            [TestCase("t1", "q1"), TestCase("t2", "q2")],
+            [
+                TestCase("t1", "q1", expected="ok"),
+                TestCase("t2", "q2", expected="ok"),
+            ],
             "m2",
             ident,
         )

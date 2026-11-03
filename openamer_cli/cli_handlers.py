@@ -16,9 +16,11 @@ Import and wire them into ``main.py:main()``::
 
 from __future__ import annotations
 
+import json
+import logging
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 from openamer_cli.evaluation import (
     BenchmarkRun,
@@ -90,23 +92,104 @@ def cmd_plugins_framework(args: Any) -> None:
 # ── Evaluation CLI ────────────────────────────────────────────────────────────
 
 
-def _make_model_fn(model_name: str = "") -> Optional:
-    """Attempt to create a model function from available providers.
+def _make_model_fn(
+    model_name: str = "",
+    *,
+    max_tokens: int = 1024,
+    timeout: float = 120.0,
+) -> Optional[Callable[[str], str]]:
+    """Build a prompt function backed by OpenAmer's production LLM path.
 
-    Returns None if no model can be reached (the suite will fail gracefully).
+    Uses :func:`agent.auxiliary_client.call_llm` with the ``evaluation``
+    auxiliary task, so provider/model resolution is the same chain every other
+    auxiliary surface uses: ``auxiliary.evaluation`` config → the user's main
+    provider + model → auto-detect. There is no bespoke "simple_send_prompt"
+    shim; a run either reaches a real configured provider or every case is
+    recorded as an ``error``.
+
+    Returns None only when the LLM client stack cannot be imported (broken
+    install), so the caller can exit with a clear message instead of a
+    traceback.
     """
     try:
-        # Try the OpenAmer model infrastructure
-        from openamer_cli.models import simple_send_prompt
-        def model_fn(prompt: str) -> str:
-            return simple_send_prompt(prompt, model=model_name or None)
-        return model_fn
-    except ImportError:
+        from agent.auxiliary_client import call_llm, extract_content_or_reasoning
+    except Exception as exc:  # pragma: no cover - broken install only
+        logging.getLogger(__name__).debug(
+            "eval model fn unavailable (auxiliary client import failed): %s", exc
+        )
         return None
 
+    def model_fn(prompt: str) -> str:
+        response = call_llm(
+            task="evaluation",
+            model=model_name or None,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.0,
+            max_tokens=max_tokens,
+            timeout=timeout,
+        )
+        text = (extract_content_or_reasoning(response) or "").strip()
+        if not text:
+            # An empty reply is not an answer; surface it as a per-case error
+            # instead of letting an observation-shaped case look successful.
+            raise RuntimeError("model returned an empty response")
+        return text
 
-def cmd_eval(args: Any) -> None:
-    """Handle ``openamer eval run|compare|leaderboard``."""
+    return model_fn
+
+
+def _print_eval_run(run: BenchmarkRun) -> None:
+    """Print a run summary, making provenance and unscored cases explicit."""
+    if run.is_baseline:
+        print(
+            "\nBASELINE RUN — replays gold/reference outputs through the "
+            "evaluators.\nThis is a harness sanity check, NOT a model or agent "
+            "score.\n"
+        )
+    print(f"\nBenchmark: {run.name}")
+    print(f"Model:     {run.model or '(none)'}")
+    print(f"Date:      {run.date}")
+    print(f"Provenance:{' ' + run.provenance}")
+    print(f"Total:     {run.total}")
+    print(f"Scored:    {run.scored}")
+    print(f"Passed:    {run.passed}")
+    print(f"Pass rate: {run.pass_rate:.1f}% (of scored cases)")
+    print(f"Avg latency: {run.avg_latency:.1f}ms")
+    if run.unscored:
+        print(
+            f"Unscored:  {run.unscored} (observation-only cases — excluded "
+            "from the pass rate)"
+        )
+    if run.errors:
+        print(f"Errors:    {run.errors} (harness/model failures — counted as failures)")
+    if run.not_run:
+        print(f"Not run:   {run.not_run}")
+
+
+def _eval_run_summary(run: BenchmarkRun, path: Path) -> None:
+    _print_eval_run(run)
+    print(f"Saved to:  {path}")
+
+    if run.results:
+        print("\nResults:")
+        for r in run.results:
+            marker = {
+                "pass": "PASS",
+                "fail": "FAIL",
+                "error": "ERROR",
+                "not_run": "SKIP",
+                "unscored": "OBSERVE",
+            }.get(r.status, r.status.upper())
+            print(f"  [{marker}] {r.test_name} ({r.latency_ms:.0f}ms) — {r.reason}")
+
+
+def cmd_eval(args: Any) -> Optional[int]:
+    """Handle ``openamer eval run|compare|leaderboard``.
+
+    Returns an exit code: 0 on success, 1 when a run produced no scored cases
+    or contained harness/model errors (a broken harness must not exit green),
+    2 for usage/availability problems.
+    """
     action = getattr(args, "eval_action", None)
 
     if action == "run":
@@ -114,33 +197,63 @@ def cmd_eval(args: Any) -> None:
         suite_path = Path(suite_ref)
 
         if suite_path.is_file():
-            suite = BenchmarkSuite.from_file(suite_path)
+            try:
+                suite = BenchmarkSuite.from_file(suite_path)
+            except (ValueError, KeyError, json.JSONDecodeError) as exc:
+                print(f"Error: cannot load suite {suite_path}: {exc}", file=sys.stderr)
+                return 2
         else:
             suite = BenchmarkSuite(name=suite_ref)
 
         if not suite.test_cases:
             print(f"Suite '{suite.name}' has no test cases.")
             print("To define cases, create a JSON/YAML file or add cases programmatically.")
-            sys.exit(1)
+            return 1
 
-        model_fn = _make_model_fn(model_name=getattr(args, "model", ""))
-        run = suite.run(model=getattr(args, "model", suite_ref), model_fn=model_fn)
+        provenance = (getattr(args, "baseline", None) or "agent").strip().lower()
+        if provenance == "gold":
+            # Offline harness check: no provider, no model call.
+            run = suite.run_gold_baseline()
+        else:
+            model_fn = _make_model_fn(
+                model_name=getattr(args, "model", ""),
+                max_tokens=int(getattr(args, "max_tokens", 1024) or 1024),
+            )
+            if model_fn is None:
+                print(
+                    "Error: the OpenAmer LLM client stack is unavailable, so no "
+                    "model can be reached. Run `openamer doctor` or "
+                    "`openamer eval run <suite> --baseline gold` for an offline "
+                    "harness check.",
+                    file=sys.stderr,
+                )
+                return 2
+            run = suite.run(
+                # Record the requested model, or say plainly that the configured
+                # default was used — never the suite path, which is not a model.
+                model=getattr(args, "model", "") or "(configured default)",
+                model_fn=model_fn,
+            )
+
         path = run.save()
+        _eval_run_summary(run, path)
 
-        print(f"\nBenchmark: {run.name}")
-        print(f"Model:     {run.model or '(none)'}")
-        print(f"Date:      {run.date}")
-        print(f"Total:     {run.total}")
-        print(f"Passed:    {run.passed}")
-        print(f"Pass rate: {run.pass_rate:.1f}%")
-        print(f"Avg latency: {run.avg_latency:.1f}ms")
-        print(f"Saved to:  {path}")
-
-        if run.results:
-            print("\nResults:")
-            for r in run.results:
-                status = "PASS" if r.passed else "FAIL"
-                print(f"  [{status}] {r.test_name} ({r.latency_ms:.0f}ms) — {r.reason}")
+        if run.scored == 0:
+            print(
+                "\nError: no scored cases — every case was observation-only or "
+                "skipped, so this run measures nothing.",
+                file=sys.stderr,
+            )
+            return 1
+        if run.errors:
+            print(
+                f"\nError: {run.errors} case(s) could not be scored (model "
+                "call/evaluator failure). Fix the errors above before treating "
+                "this run as a measurement.",
+                file=sys.stderr,
+            )
+            return 1
+        return 0
 
     elif action == "compare":
         run1_path = Path(args.run1)
@@ -148,20 +261,27 @@ def cmd_eval(args: Any) -> None:
 
         if not run1_path.is_file():
             print(f"Error: run file not found: {run1_path}", file=sys.stderr)
-            sys.exit(1)
+            return 2
         if not run2_path.is_file():
             print(f"Error: run file not found: {run2_path}", file=sys.stderr)
-            sys.exit(1)
+            return 2
 
         run1 = BenchmarkRun.load(run1_path)
         run2 = BenchmarkRun.load(run2_path)
         comparison = compare_runs(run1, run2)
 
         print("\nComparison:")
-        print(f"  Run 1: {comparison['run1']['name']} ({comparison['run1']['model']}) "
-              f"— {comparison['run1']['pass_rate']:.1f}% pass @ {comparison['run1']['avg_latency_ms']:.1f}ms")
-        print(f"  Run 2: {comparison['run2']['name']} ({comparison['run2']['model']}) "
-              f"— {comparison['run2']['pass_rate']:.1f}% pass @ {comparison['run2']['avg_latency_ms']:.1f}ms")
+        for label, key in (("Run 1", "run1"), ("Run 2", "run2")):
+            info = comparison[key]
+            print(
+                f"  {label}: {info['name']} ({info['model']}, "
+                f"{info['provenance']}) — {info['pass_rate']:.1f}% pass over "
+                f"{info['scored']} scored @ {info['avg_latency_ms']:.1f}ms"
+            )
+            if info.get("unscored"):
+                print(f"          {info['unscored']} unscored case(s) excluded")
+            if info.get("errors"):
+                print(f"          {info['errors']} error(s) counted as failures")
         print(f"  Pass rate diff: {comparison['pass_rate_diff']:+.1f}%")
         print(f"  Latency diff:   {comparison['latency_diff_ms']:+.1f}ms")
 
@@ -173,14 +293,20 @@ def cmd_eval(args: Any) -> None:
             print(f"\n  Improvements ({len(comparison['improvements'])}):")
             for r in comparison["improvements"]:
                 print(f"    ✓ {r['test_name']}: {r['detail']}")
+        if comparison.get("incomparable"):
+            print(f"\n  Not comparable ({len(comparison['incomparable'])}):")
+            for r in comparison["incomparable"]:
+                print(f"    ~ {r['test_name']}: {r['detail']}")
+        return 0
 
     elif action == "leaderboard":
         print(print_leaderboard())
+        return 0
 
     else:
         print(f"Unknown eval action: {action}", file=sys.stderr)
         print("Usage: openamer eval run|compare|leaderboard", file=sys.stderr)
-        sys.exit(1)
+        return 2
 
 
 # ── RAG Pipeline CLI ──────────────────────────────────────────────────────────
