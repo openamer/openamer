@@ -30,7 +30,24 @@ def build_eval_parser(subparsers, *, cmd_eval: Callable) -> None:
         "--model",
         "-m",
         default="",
-        help="Model identifier to record in the run",
+        help="Model identifier to record in the run (and to request from the provider)",
+    )
+    run_parser.add_argument(
+        "--baseline",
+        choices=("agent", "gold"),
+        default="agent",
+        help=(
+            "Run provenance. 'agent' (default) measures a real model/agent "
+            "through the configured provider. 'gold' replays each case's "
+            "gold_output/expected through the evaluators as an offline harness "
+            "check — never a model score, never ranked on the leaderboard."
+        ),
+    )
+    run_parser.add_argument(
+        "--max-tokens",
+        type=int,
+        default=1024,
+        help="Max output tokens per model call (default: 1024)",
     )
 
     # eval compare
