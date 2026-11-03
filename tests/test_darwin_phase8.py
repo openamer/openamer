@@ -32,6 +32,13 @@ def fake_world(tmp_path, monkeypatch):
     monkeypatch.setattr(darwin, "REPORT_FILE", home / "reports" / "darwin-report.md")
     monkeypatch.setattr(darwin, "PROBE_FILE", home / "reports" / "darwin-probe.json")
     monkeypatch.setattr(darwin, "TUNING_FILE", home / "darwin" / "tuning.json")
+    monkeypatch.setattr(darwin, "OP_STATS_FILE", home / "darwin" / "op-stats.json")
+    monkeypatch.setattr(darwin, "ROLLBACK_LOG", home / "darwin" / "rollback-log.json")
+    monkeypatch.setattr(darwin, "SYNTHESIS_LOG", home / "darwin" / "synthesis-log.json")
+    monkeypatch.setattr(darwin, "HARVESTED_FILE", home / "darwin" / "harvested-blueprints.json")
+    monkeypatch.setattr(darwin, "PREDATION_LOG", home / "darwin" / "predation-log.json")
+    monkeypatch.setattr(darwin, "TRIAL_STATE_FILE", home / "darwin" / "trial-state.json")
+    monkeypatch.setattr(darwin, "CRON_JOBS_FILE", home / "cron" / "jobs.json")
     return home
 
 
@@ -85,25 +92,36 @@ def test_arena_needs_two_installed(fake_world):
     assert darwin.species_arena() == []
 
 
-def test_arena_fights_and_records_genome(fake_world):
+@pytest.mark.parametrize("older_species, expected_winner", [
+    ("species-broken", "child"),
+    ("species-healthy", "parent"),
+])
+def test_arena_fights_and_records_genome(fake_world, older_species, expected_winner):
     _make_species(fake_world, "species-healthy", body="echo ok")
     _make_species(fake_world, "species-broken", body="exit 4")
+    # Distinct last-fight timestamps force both orientations independently of glob order.
+    for name in ("species-healthy", "species-broken"):
+        meta_path = fake_world / "darwin" / "species" / f"{name}.json"
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        meta["last_fight"] = "2000-01-01" if name == older_species else "2001-01-01"
+        meta_path.write_text(json.dumps(meta), encoding="utf-8")
     fights = darwin.species_arena(min_interval_minutes=0)
     assert len(fights) == 1
     f = fights[0]
     assert f["status"] == "fought"
-    # arena pairs oldest-fight-first = alphabetical here: broken is 'a',
-    # healthy is 'b'. Healthy (exit 0) must beat broken (exit 4).
+    # The oldest fighter is parent (a); healthy must win in either slot.
+    assert f["a"] == older_species
     assert {f["a"], f["b"]} == {"species-broken", "species-healthy"}
     exits = {f["a"]: f["a_exit"], f["b"]: f["b_exit"]}
     assert exits["species-broken"] == 4
     assert exits["species-healthy"] == 0
-    assert f["winner"] == "child"  # healthy (b) wins
-    # genome updated: one species has a win, the other a loss
+    assert f["winner"] == expected_winner
+    # Credit the healthy species, not merely an arbitrary winner.
     pop = json.loads(darwin.POPULATION_FILE.read_text(encoding="utf-8"))
-    total_wins = sum(g.get("wins", 0) for g in pop.values())
-    total_losses = sum(g.get("losses", 0) for g in pop.values())
-    assert total_wins == 1 and total_losses == 1
+    assert pop == {
+        "species-healthy": {"wins": 1, "losses": 0},
+        "species-broken": {"wins": 0, "losses": 1},
+    }
 
 
 def test_arena_rate_limit(fake_world):
