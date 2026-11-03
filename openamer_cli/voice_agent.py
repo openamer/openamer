@@ -96,14 +96,19 @@ class VoiceAgent:
         # Fallback: use system TTS
         try:
             import subprocess
-            tmp = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
-            result = subprocess.run(
-                ["python", "-m", "edge_tts", "--voice", voice or "de-DE-KatjaNeural",
-                 "--text", text, "--write-media", tmp.name],
-                capture_output=True, text=True, timeout=30,
-            )
+            # ``delete=False``: the file must survive on disk for the
+            # edge_tts subprocess to write into and for the caller to play.
+            # The handle itself is closed by the ``with`` block as soon as the
+            # subprocess finished — without leaking it.
+            with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+                out_path = tmp.name
+                result = subprocess.run(
+                    ["python", "-m", "edge_tts", "--voice", voice or "de-DE-KatjaNeural",
+                     "--text", text, "--write-media", out_path],
+                    capture_output=True, text=True, timeout=30,
+                )
             if result.returncode == 0:
-                return tmp.name
+                return out_path
         except Exception:
             pass
 
@@ -137,15 +142,21 @@ def cmd_voice(args) -> None:
         while True:
             recording = sd.rec(int(samplerate * duration), samplerate=samplerate, channels=1)
             sd.wait()
-            tmp = tempfile.NamedTemporaryFile(suffix=".wav", delete=False)
-            sf.write(tmp.name, recording, samplerate)
+            # ``delete=False``: the file has to exist on disk for soundfile to
+            # write into it and for the transcriber to read it.  The handle is
+            # closed by the ``with`` block before the file is unlinked — on
+            # Windows an open file cannot be unlinked, and leaving the handle
+            # open would leak it.
+            with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
+                wav_path = tmp.name
+                sf.write(wav_path, recording, samplerate)
 
-            text = agent.transcribe_audio(tmp.name)
-            if text.strip():
-                print(f"  You: {text}")
-                session.messages.append({"role": "user", "content": text})
+                text = agent.transcribe_audio(wav_path)
+                if text.strip():
+                    print(f"  You: {text}")
+                    session.messages.append({"role": "user", "content": text})
 
-            os.unlink(tmp.name)
+            os.unlink(wav_path)
 
     except KeyboardInterrupt:
         print("\nVoice session ended.")

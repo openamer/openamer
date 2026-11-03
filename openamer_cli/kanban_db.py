@@ -9350,29 +9350,30 @@ def _default_spawn(
     _rotate_worker_log(log_path, rotate_bytes, backup_count)
 
     # Use 'a' so a re-run on unblock appends rather than overwrites.
-    log_f = open(log_path, "ab")
-    try:
-        proc = subprocess.Popen(  # noqa: S603 -- argv is a fixed list built above
-            cmd,
-            cwd=workspace if os.path.isdir(workspace) else None,
-            stdin=subprocess.DEVNULL,
-            stdout=log_f,
-            stderr=subprocess.STDOUT,
-            env=env,
-            start_new_session=True,
-            creationflags=subprocess.CREATE_NO_WINDOW if _IS_WINDOWS else 0,
-        )
-    except FileNotFoundError:
-        log_f.close()
-        raise RuntimeError(
-            "`openamer` executable not found on PATH. "
-            "Install OpenAmer Agent or activate its venv before running the kanban dispatcher."
-        )
-    # NOTE: we intentionally do NOT close log_f here — we want Popen's
-    # child process to keep writing after this function returns.  The
-    # handle is kept alive by the child's inheritance.  The parent's
-    # reference goes out of scope and is GC'd, but the OS-level FD stays
-    # open in the child until the child exits.
+    # The handle is handed to the child as its stdout/stderr.  Popen dup'd the
+    # fd into the child, so the parent's own copy is closed as soon as Popen
+    # returned — the child keeps writing through its own inherited fd.  We
+    # deliberately do NOT close it before Popen: the child would then have no
+    # fd to write to.
+    with open(log_path, "ab") as log_f:
+        try:
+            proc = subprocess.Popen(  # noqa: S603 -- argv is a fixed list built above
+                cmd,
+                cwd=workspace if os.path.isdir(workspace) else None,
+                stdin=subprocess.DEVNULL,
+                stdout=log_f,
+                stderr=subprocess.STDOUT,
+                env=env,
+                start_new_session=True,
+                creationflags=subprocess.CREATE_NO_WINDOW if _IS_WINDOWS else 0,
+            )
+        except FileNotFoundError:
+            raise RuntimeError(
+                "`openamer` executable not found on PATH. "
+                "Install OpenAmer Agent or activate its venv before running the kanban dispatcher."
+            )
+    # The child's own inherited fd stays open in the child until the child
+    # exits; the parent's copy is closed by the ``with`` block above.
     return proc.pid
 
 

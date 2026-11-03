@@ -3896,12 +3896,10 @@ def _spawn_detached_gateway() -> bool:
     out_path = log_dir / "gateway.log"
     err_path = log_dir / "gateway.error.log"
     try:
-        out = open(out_path, "ab")
-        err = open(err_path, "ab")
-    except OSError:
-        return False
-    try:
-        with out, err:
+        # Both handles are opened inside one ``with`` statement so that a
+        # failure while opening the second one still closes the first (a
+        # plain pair of ``open()`` calls leaked it).
+        with open(out_path, "ab") as out, open(err_path, "ab") as err:
             subprocess.Popen(
                 _gateway_run_command(),
                 stdin=subprocess.DEVNULL,

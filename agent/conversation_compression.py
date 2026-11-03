@@ -2641,12 +2641,17 @@ def try_shrink_image_parts_in_messages(
                 "image/png": ".png", "image/gif": ".gif", "image/webp": ".webp",
                 "image/jpeg": ".jpg", "image/jpg": ".jpg", "image/bmp": ".bmp",
             }.get(mime, ".jpg")
+            # ``delete=False``: the shrunk image is written to disk and read
+            # back by the resizer.  The ``with`` block closes the handle
+            # (the file itself is removed in the ``finally`` below) and also
+            # closes it when ``tmp.write`` raises — the old explicit
+            # ``tmp.close()`` skipped that and leaked the handle.
             tmp = tempfile.NamedTemporaryFile(
                 prefix="openamer_shrink_", suffix=suffix, delete=False,
             )
             try:
-                tmp.write(raw)
-                tmp.close()
+                with tmp:
+                    tmp.write(raw)
                 resized = _resize_image_for_vision(
                     Path(tmp.name),
                     mime_type=mime,

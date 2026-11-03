@@ -234,12 +234,13 @@ def run_oneshot(
     # We'll print the final response to the real stdout at the end.
     real_stdout = sys.stdout
     real_stderr = sys.stderr
-    devnull = open(os.devnull, "w", encoding="utf-8")
-
     response: Optional[str] = None
     result: dict = {}
     failure: BaseException | None = None
-    try:
+    # The devnull handle is closed by the ``with`` block as soon as the agent
+    # call returns — no leak, and the same lifetime as before (the handle
+    # lived exactly as long as the redirected call tree).
+    with open(os.devnull, "w", encoding="utf-8") as devnull:
         with redirect_stdout(devnull), redirect_stderr(devnull):
             try:
                 response, result = _run_agent(
@@ -258,11 +259,6 @@ def run_oneshot(
                 # cron / SSH / subprocess context is the worst failure mode.
                 # See #30623.
                 failure = exc
-    finally:
-        try:
-            devnull.close()
-        except Exception:
-            pass
 
     if failure is not None:
         # Re-raise control-flow exceptions so the parent handles them as usual

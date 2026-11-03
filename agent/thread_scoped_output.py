@@ -130,18 +130,19 @@ def thread_scoped_silence() -> Iterator[None]:
     thread's body instead of ``contextlib.redirect_stdout(devnull)`` when the
     process is multi-threaded and another thread must keep its console output.
     """
-    sink = open(os.devnull, "w", encoding="utf-8")
     ident = threading.get_ident()
-    out_proxy = _ensure_installed("stdout", sink)
-    err_proxy = _ensure_installed("stderr", sink)
-    out_proxy.silence(ident)
-    err_proxy.silence(ident)
-    try:
-        yield
-    finally:
-        out_proxy.unsilence(ident)
-        err_proxy.unsilence(ident)
+    # The routing proxy keeps a reference to ``sink`` for as long as it stays
+    # installed as ``sys.stdout``/``sys.stderr`` (it is never uninstalled), so
+    # the sink must stay open for the whole body of this context manager.
+    # The ``with`` block closes it as soon as the body is done — right after
+    # the proxy has been unsilenced for this thread.
+    with open(os.devnull, "w", encoding="utf-8") as sink:
+        out_proxy = _ensure_installed("stdout", sink)
+        err_proxy = _ensure_installed("stderr", sink)
+        out_proxy.silence(ident)
+        err_proxy.silence(ident)
         try:
-            sink.close()
-        except Exception:
-            pass
+            yield
+        finally:
+            out_proxy.unsilence(ident)
+            err_proxy.unsilence(ident)
