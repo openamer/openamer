@@ -2153,6 +2153,8 @@ def plugins_command(args) -> None:
         cmd_list(args)
     elif action == "search":
         cmd_search(args)
+    elif action == "package":
+        cmd_package(args)
     elif action is None:
         cmd_toggle()
     else:
@@ -2160,3 +2162,109 @@ def plugins_command(args) -> None:
 
         Console().print(f"[red]Unknown plugins action: {action}[/red]")
         sys.exit(1)
+
+
+def cmd_package(args) -> None:
+    """Handle ``openamer plugins package <verb>`` — portable, inert packages."""
+    from openamer_cli import agent_plugins
+
+    verb = getattr(args, "package_action", None)
+    if verb is None:
+        _package_list(json_output=False)
+        return
+    if verb == "install":
+        _package_install(Path(args.identifier), force=bool(getattr(args, "force", False)))
+    elif verb in {"list", "ls"}:
+        _package_list(json_output=bool(getattr(args, "json", False)))
+    elif verb == "show":
+        _package_show(args.name, json_output=bool(getattr(args, "json", False)))
+    elif verb == "enable":
+        if not agent_plugins.set_enabled(args.name, True):
+            print(f"No portable package named '{args.name}'.")
+            sys.exit(1)
+        print(f"Enabled MCP declarations for '{args.name}'.")
+        print("They reach the MCP client at the next session start; package code is still never imported.")
+    elif verb == "disable":
+        if not agent_plugins.set_enabled(args.name, False):
+            print(f"No portable package named '{args.name}'.")
+            sys.exit(1)
+        print(f"Disabled MCP declarations for '{args.name}' (package stays installed).")
+    elif verb in {"remove", "rm"}:
+        if not agent_plugins.remove_package(args.name):
+            print(f"No portable package named '{args.name}'.")
+            sys.exit(1)
+        print(f"Removed portable package '{args.name}'.")
+    else:
+        print(f"Unknown plugins package action: {verb}")
+        sys.exit(1)
+
+
+def _package_install(source: Path, *, force: bool) -> None:
+    from openamer_cli import agent_plugins
+
+    if not source.is_dir():
+        print(f"Not a package directory: {source}")
+        sys.exit(1)
+    try:
+        record = agent_plugins.install_package(source, force=force)
+    except agent_plugins.AgentPluginError as exc:
+        print(f"Refused: {exc}")
+        sys.exit(1)
+    print(f"Installed portable package '{record['name']}' v{record['version']} (inert)")
+    print(f"  path        : {record['path']}")
+    print(f"  skills      : {', '.join(record['skills']) or '(none)'}")
+    print(f"  MCP servers : {', '.join(record['mcp_servers']) or '(none)'}")
+    for diagnostic in record.get("diagnostics") or []:
+        print(f"  diagnostic  : {diagnostic}")
+    print("Nothing was imported or started. Package code is never executed.")
+    if record["mcp_servers"]:
+        print(f"Enable its MCP declarations with: openamer plugins package enable {record['name']}")
+
+
+def _package_list(*, json_output: bool) -> None:
+    from openamer_cli import agent_plugins
+
+    records = agent_plugins.list_packages()
+    if json_output:
+        print(json.dumps(records, indent=2))
+        return
+    if not records:
+        print("No portable packages installed.")
+        print(f"Install one with: openamer plugins package install <directory>")
+        return
+    print(f"Portable packages ({len(records)}):")
+    for record in records:
+        state = "enabled" if record.get("enabled") else "inert"
+        print(f"  {record['name']:<32} v{record.get('version', ''):<10} {state}")
+        print(f"    skills: {', '.join(record.get('skills') or []) or '(none)'}"
+              f"  mcp: {', '.join(record.get('mcp_servers') or []) or '(none)'}")
+
+
+def _package_show(name: str, *, json_output: bool) -> None:
+    from openamer_cli import agent_plugins
+
+    record = agent_plugins.get_package(name)
+    if record is None:
+        print(f"No portable package named '{name}'.")
+        sys.exit(1)
+    try:
+        package = agent_plugins.load_agent_plugin(Path(record["path"]))
+    except agent_plugins.AgentPluginError as exc:
+        print(f"Package '{name}' is not loadable: {exc}")
+        sys.exit(1)
+    payload = dict(record)
+    payload.update(package.to_dict())
+    if json_output:
+        print(json.dumps(payload, indent=2))
+        return
+    print(f"{package.name} v{package.version}  ({'enabled' if record.get('enabled') else 'inert'})")
+    if package.description:
+        print(f"  {package.description}")
+    print(f"  path        : {package.root}")
+    print(f"  skills      : {', '.join(s.name for s in package.skills) or '(none)'}")
+    for skill in package.skills:
+        print(f"    - {skill.name}: {skill.description}")
+    print(f"  MCP servers : {', '.join(sorted(package.mcp_servers)) or '(none)'}")
+    for diagnostic in package.diagnostics:
+        print(f"  diagnostic  : {diagnostic.scope}: {diagnostic.message}")
+    print("Declarations only: package Python is never imported and no MCP server is started.")

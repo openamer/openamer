@@ -1999,6 +1999,21 @@ class PluginManager:
             )
         return result
 
+    def get_portable_mcp_servers(self) -> Dict[str, dict]:
+        """MCP declarations from *enabled* portable packages, namespaced.
+
+        Portable packages are installed inert: nothing is returned until the
+        operator runs ``openamer plugins package enable <name>``. Never raises
+        — a broken package must not break MCP config loading.
+        """
+        try:
+            from openamer_cli.agent_plugins import portable_mcp_servers
+
+            return portable_mcp_servers()
+        except Exception:  # noqa: BLE001 - optional feature, fail open to "no servers"
+            logger.debug("Portable plugin MCP discovery failed", exc_info=True)
+            return {}
+
     # -----------------------------------------------------------------------
     # Plugin skill lookups
     # -----------------------------------------------------------------------
