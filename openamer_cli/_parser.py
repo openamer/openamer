@@ -153,6 +153,21 @@ def build_top_level_parser():
         default=None,
         help="Comma-separated toolsets to enable for this invocation. Applies to -z/--oneshot and --tui.",
     )
+    _inherited_flag(
+        parser,
+        "--reasoning",
+        "--reasoning-effort",
+        dest="reasoning_effort",
+        metavar="LEVEL",
+        default=None,
+        help=(
+            "Reasoning depth for this invocation: minimal, low, medium, high, "
+            "xhigh, max, ultra (or 'none' to disable thinking). Overrides "
+            "agent.reasoning_effort and any per-model agent.reasoning_overrides "
+            "entry. The Kanban dispatcher passes this for a task's "
+            "reasoning_effort column."
+        ),
+    )
     parser.add_argument(
         "--resume",
         "-r",
@@ -298,6 +313,15 @@ def build_top_level_parser():
         "-t", "--toolsets",
         default=argparse.SUPPRESS,
         help="Comma-separated toolsets to enable",
+    )
+    _inherited_flag(
+        chat_parser,
+        "--reasoning",
+        "--reasoning-effort",
+        dest="reasoning_effort",
+        metavar="LEVEL",
+        default=argparse.SUPPRESS,
+        help="Reasoning depth for this invocation (minimal…ultra, or 'none')",
     )
     _inherited_flag(
         chat_parser,

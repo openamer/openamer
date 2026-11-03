@@ -1166,6 +1166,16 @@ class Task:
     # exact GitHub PR URL); validated by kanban_pr_acceptance.validate_contract.
     # Appended AFTER the existing fields so positional construction stays valid.
     completion_contract: Optional[str] = None
+    # Per-task reasoning depth for the dispatched worker, mirroring the
+    # ``reasoning_effort`` column. ``None`` (the common case) = the worker
+    # profile's own ``agent.reasoning_effort``. Also appended last so positional
+    # construction stays valid. NOTE: the column predates this field, so rows
+    # written before it existed simply read back as ``None`` — but *every*
+    # dispatcher spawn used to crash on this attribute before it was mapped
+    # here (``'Task' object has no attribute 'reasoning_effort'``), because
+    # ``_worker_argv`` reads it unconditionally. A column on the table is not
+    # part of the dispatcher contract until ``from_row`` materialises it.
+    reasoning_effort: Optional[str] = None
 
     @classmethod
     def from_row(cls, row: sqlite3.Row) -> "Task":
@@ -1258,6 +1268,11 @@ class Task:
             completion_contract=(
                 row["completion_contract"]
                 if "completion_contract" in keys and row["completion_contract"]
+                else None
+            ),
+            reasoning_effort=(
+                row["reasoning_effort"]
+                if "reasoning_effort" in keys and row["reasoning_effort"]
                 else None
             ),
         )
@@ -2623,6 +2638,24 @@ def _migrate_add_optional_columns(conn: sqlite3.Connection) -> None:
             conn, "tasks", "provider_override", "provider_override TEXT"
         )
 
+    if "reasoning_effort" not in cols:
+        # Per-task reasoning depth, forwarded to the worker as
+        # ``--reasoning <level>``. NULL = the worker profile's configured
+        # ``agent.reasoning_effort`` (the behaviour every existing row had).
+        #
+        # This column lives in the ADDITIVE migration list, not in the base
+        # ``CREATE TABLE`` — same as ``skills``/``max_retries``/
+        # ``model_override`` above — because fresh DBs run this migration
+        # immediately after the schema is created. It has to be added HERE as
+        # well as in ``kanban_db_connect``: the two modules each carry a live
+        # copy of this migration (see the ``_migrate_add_optional_columns``
+        # duplication note in the split), and when only the split's copy
+        # gained the column, every dispatcher spawn crashed on
+        # ``task.reasoning_effort`` against a DB that never had it.
+        _add_column_if_missing(
+            conn, "tasks", "reasoning_effort", "reasoning_effort TEXT"
+        )
+
     if "goal_mode" not in cols:
         # Ralph-style goal loop toggle for the dispatched worker. 0 (the
         # default) = classic single-shot worker, preserving the behaviour
@@ -3152,6 +3185,7 @@ def create_task(
     max_retries: Optional[int] = None,
     model_override: Optional[str] = None,
     provider_override: Optional[str] = None,
+    reasoning_effort: Optional[str] = None,
     goal_mode: bool = False,
     goal_max_turns: Optional[int] = None,
     initial_status: str = "running",
@@ -3190,6 +3224,11 @@ def create_task(
     config — passed to the worker as ``-m <model> [--provider <name>]``.
     ``provider_override`` requires ``model_override``.
 
+    ``reasoning_effort`` pins the worker's reasoning depth for this card,
+    forwarded as ``--reasoning <level>``; validated here so a typo can't
+    produce an argv the worker CLI rejects at spawn time. ``None`` = the
+    worker profile's ``agent.reasoning_effort``.
+
     ``project_source_task_id`` is an internal cross-profile fallback for a
     worker-created child. When the active profile cannot resolve ``project_id``
     in its own projects.db, a matching canonical project-linked task in this
@@ -3200,6 +3239,19 @@ def create_task(
     provider_override = (provider_override or "").strip() or None
     if provider_override and not model_override:
         raise ValueError("provider_override requires a model_override")
+    reasoning_effort = (reasoning_effort or "").strip() or None
+    if reasoning_effort is not None:
+        # Reject unknown levels at write time: the dispatcher forwards this
+        # verbatim as `--reasoning <level>`, so garbage here would only surface
+        # as a worker spawn failure on every attempt of this card.
+        from openamer_constants import VALID_REASONING_EFFORTS, parse_reasoning_effort
+
+        if parse_reasoning_effort(reasoning_effort) is None:
+            raise ValueError(
+                f"reasoning_effort must be one of "
+                f"{['none', *VALID_REASONING_EFFORTS]}, got {reasoning_effort!r}"
+            )
+        reasoning_effort = reasoning_effort.lower()
     from openamer_cli.kanban_pr_acceptance import validate_contract
 
     completion_contract = validate_contract(completion_contract)
@@ -3458,8 +3510,9 @@ def create_task(
                         branch_name, project_id, tenant, idempotency_key,
                         max_runtime_seconds,
                         skills, max_retries, model_override, provider_override,
+                        reasoning_effort,
                         goal_mode, goal_max_turns, session_id, completion_contract
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         task_id,
@@ -3481,6 +3534,7 @@ def create_task(
                         int(max_retries) if max_retries is not None else None,
                         model_override,
                         provider_override,
+                        reasoning_effort,
                         1 if goal_mode else 0,
                         int(goal_max_turns) if goal_max_turns is not None else None,
                         session_id,
@@ -6576,14 +6630,30 @@ def delete_task(conn: sqlite3.Connection, task_id: str) -> bool:
 # Workspace resolution
 # ---------------------------------------------------------------------------
 
-def _git_toplevel(path: Path) -> Optional[Path]:
-    """Return the git toplevel containing ``path``, or ``None`` if not in a repo."""
+def _git_out(path: Path, *args: str, timeout: int = 30) -> Optional[str]:
+    """Run ``git -C <path> <args>`` and return stripped stdout, else ``None``.
+
+    This is the ONE origin-resident git probe behind every workspace-resolution
+    helper. ``openamer_cli.kanban_db_workspace`` — the extracted module that the
+    dispatcher actually spawns through — reaches it late-bound as
+    ``_kb._git_out`` (its import-cycle breaker), so both the helpers below and
+    the extracted ones share a single implementation. That is deliberate:
+    before this helper existed, the split module called a ``_git_out`` that was
+    never hoisted out of the extraction, so every worktree dispatch died with
+    ``workspace: module 'openamer_cli.kanban_db' has no attribute '_git_out'``
+    while the duplicated copies *here* kept the unit tests green.
+
+    ``None`` covers all three "no answer" cases: git is not installed, the
+    command failed (``path`` is not inside a repo), or the output is empty
+    (``rev-parse`` on a bare/unborn repo, ``branch --show-current`` on a
+    detached HEAD). Callers treat "not a repo" and "no branch" the same way.
+    """
     try:
         result = subprocess.run(
-            ["git", "-C", str(path), "rev-parse", "--show-toplevel"],
+            ["git", "-C", str(path), *args],
             capture_output=True,
             text=True, encoding='utf-8', errors='replace',
-            timeout=30,
+            timeout=timeout,
             check=False,
         )
     except Exception:
@@ -6591,7 +6661,13 @@ def _git_toplevel(path: Path) -> Optional[Path]:
     if result.returncode != 0:
         return None
     out = (result.stdout or "").strip()
-    if not out:
+    return out or None
+
+
+def _git_toplevel(path: Path) -> Optional[Path]:
+    """Return the git toplevel containing ``path``, or ``None`` if not in a repo."""
+    out = _git_out(path, "rev-parse", "--show-toplevel")
+    if out is None:
         return None
     try:
         return Path(out).expanduser().resolve()
@@ -6600,72 +6676,23 @@ def _git_toplevel(path: Path) -> Optional[Path]:
 
 
 def _git_branch_exists(repo_root: Path, branch_name: str) -> bool:
-    try:
-        result = subprocess.run(
-            ["git", "-C", str(repo_root), "show-ref", "--verify", f"refs/heads/{branch_name}"],
-            capture_output=True,
-            text=True, encoding='utf-8', errors='replace',
-            timeout=30,
-            check=False,
-        )
-    except Exception:
-        return False
-    return result.returncode == 0
+    return _git_out(
+        repo_root, "show-ref", "--verify", f"refs/heads/{branch_name}"
+    ) is not None
 
 
 def _git_common_dir(path: Path) -> Optional[Path]:
-    try:
-        result = subprocess.run(
-            ["git", "-C", str(path), "rev-parse", "--path-format=absolute", "--git-common-dir"],
-            capture_output=True,
-            text=True, encoding='utf-8', errors='replace',
-            timeout=30,
-            check=False,
-        )
-    except Exception:
-        return None
-    if result.returncode != 0:
-        return None
-    out = (result.stdout or "").strip()
-    if not out:
-        return None
-    return Path(out).expanduser().resolve(strict=False)
+    out = _git_out(path, "rev-parse", "--path-format=absolute", "--git-common-dir")
+    return Path(out).expanduser().resolve(strict=False) if out else None
 
 
 def _git_dir(path: Path) -> Optional[Path]:
-    try:
-        result = subprocess.run(
-            ["git", "-C", str(path), "rev-parse", "--path-format=absolute", "--git-dir"],
-            capture_output=True,
-            text=True, encoding='utf-8', errors='replace',
-            timeout=30,
-            check=False,
-        )
-    except Exception:
-        return None
-    if result.returncode != 0:
-        return None
-    out = (result.stdout or "").strip()
-    if not out:
-        return None
-    return Path(out).expanduser().resolve(strict=False)
+    out = _git_out(path, "rev-parse", "--path-format=absolute", "--git-dir")
+    return Path(out).expanduser().resolve(strict=False) if out else None
 
 
 def _git_current_branch(path: Path) -> Optional[str]:
-    try:
-        result = subprocess.run(
-            ["git", "-C", str(path), "branch", "--show-current"],
-            capture_output=True,
-            text=True, encoding='utf-8', errors='replace',
-            timeout=30,
-            check=False,
-        )
-    except Exception:
-        return None
-    if result.returncode != 0:
-        return None
-    branch = (result.stdout or "").strip()
-    return branch or None
+    return _git_out(path, "branch", "--show-current")
 
 
 def _is_linked_worktree_checkout(path: Path) -> bool:
