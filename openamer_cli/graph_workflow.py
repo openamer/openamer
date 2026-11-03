@@ -8,7 +8,6 @@ ASCII visualization.
 from __future__ import annotations
 
 import json
-import os
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed, TimeoutError
 from dataclasses import dataclass, field, asdict
@@ -115,6 +114,7 @@ class GraphWorkflowEngine:
         self,
         workflow: WorkflowGraph,
         initial_input: Optional[Any] = None,
+        journal: Optional[Any] = None,
     ) -> dict[str, Any]:
         """Execute the workflow DAG and return results.
 
@@ -123,12 +123,22 @@ class GraphWorkflowEngine:
         only the matching outgoing edge; ``parallel`` nodes run all
         reachable branches concurrently; ``output`` nodes collect results.
 
+        Pass a :class:`openamer_cli.durable_execution.DurableRun` as
+        ``journal`` to make the traversal crash-safe: each ``task`` /
+        ``condition`` node becomes a persisted step whose result is reused
+        after a restart instead of being executed again.  A node declares a
+        non-repeatable side effect with ``config["durable_effect"] =
+        "external"``; if the process dies while such a step is in flight the
+        run refuses to replay it and raises
+        :class:`~openamer_cli.durable_execution.AmbiguousExternalEffect`.
+
         Returns a dict with keys:
           - ``success`` (bool)
           - ``results`` (list of output node results)
           - ``state`` (final workflow state)
           - ``node_outputs`` (dict mapping node id → output)
           - ``execution_path`` (list of node ids in visit order)
+          - ``durable`` (only with a journal: run id, path, executed/reused steps)
         """
         if not workflow.entry_node_id:
             raise ValueError("Workflow has no entry_node_id set")
@@ -146,6 +156,15 @@ class GraphWorkflowEngine:
             raise ValueError(
                 f"entry_node_id '{workflow.entry_node_id}' not found in nodes"
             )
+
+        if journal is not None:
+            parallel_nodes = [n.id for n in workflow.nodes.values() if n.type == "parallel"]
+            if parallel_nodes:
+                raise ValueError(
+                    "durable execution does not support `parallel` nodes yet "
+                    f"(found: {', '.join(sorted(parallel_nodes))}); run this "
+                    "workflow without --durable"
+                )
 
         # Copy state so we don't mutate the original
         state = dict(workflow.state)
@@ -181,7 +200,9 @@ class GraphWorkflowEngine:
                 if nid in skipped_nodes:
                     node_outputs[nid] = {"_skipped": True}
                     continue
-                output = self._execute_task(node, state)
+                output = self._run_journaled(
+                    journal, node, lambda: self._execute_task(node, state)
+                )
                 node_outputs[nid] = output
                 state[nid] = output
 
@@ -189,7 +210,15 @@ class GraphWorkflowEngine:
                 if nid in skipped_nodes:
                     node_outputs[nid] = {"_skipped": True}
                     continue
-                outcome = self._evaluate_condition(node, state)
+                payload = self._run_journaled(
+                    journal,
+                    node,
+                    lambda: {"_condition_result": self._evaluate_condition(node, state)},
+                )
+                if isinstance(payload, dict) and "_condition_result" in payload:
+                    outcome = bool(payload["_condition_result"])
+                else:
+                    outcome = bool(payload)
                 node_outputs[nid] = {"_condition_result": outcome}
                 state[nid] = {"_condition_result": outcome}
                 # If condition is False, skip all downstream nodes
@@ -216,13 +245,21 @@ class GraphWorkflowEngine:
                 node_outputs[nid] = output
                 results.append(output)
 
-        return {
+        outcome_dict: dict[str, Any] = {
             "success": True,
             "results": results,
             "state": state,
             "node_outputs": node_outputs,
             "execution_path": execution_path,
         }
+        if journal is not None:
+            outcome_dict["durable"] = {
+                "run_id": journal.run_id,
+                "path": str(journal.journal_path),
+                "executed_steps": list(journal.executed_steps),
+                "reused_steps": list(journal.reused_steps),
+            }
+        return outcome_dict
 
     # ---------------------------------------------------------------
     # Visualization
@@ -332,6 +369,36 @@ class GraphWorkflowEngine:
     def _execute_task(self, node: WorkflowNode, state: dict[str, Any]) -> Any:
         """Execute a task node by calling the executor."""
         return self._task_executor(node.id, node.config, state)
+
+    @staticmethod
+    def _node_effect(node: WorkflowNode) -> Any:
+        """Return the declared ``durable_effect`` of a node.
+
+        Unknown labels are treated as ``external`` — a typo must not turn an
+        unsafe-to-replay effect into an automatically repeated one.
+        """
+        from openamer_cli.durable_execution import EffectClass
+
+        raw = None
+        if isinstance(node.config, dict):
+            raw = node.config.get("durable_effect")
+        if raw is None:
+            return EffectClass.NONE
+        try:
+            return EffectClass(raw)
+        except ValueError:
+            return EffectClass.EXTERNAL
+
+    def _run_journaled(
+        self,
+        journal: Optional[Any],
+        node: WorkflowNode,
+        fn: Callable[[], Any],
+    ) -> Any:
+        """Run one node through the durable journal, or plainly without one."""
+        if journal is None:
+            return fn()
+        return journal.run_step(node.id, fn, effect=self._node_effect(node))
 
     def _evaluate_condition(self, node: WorkflowNode, state: dict[str, Any]) -> bool:
         """Evaluate a condition node."""
@@ -493,11 +560,9 @@ class WorkflowStore:
 
     def __init__(self, store_dir: Optional[str] = None):
         if store_dir is None:
-            store_dir = os.path.join(
-                os.path.expanduser("~"),
-                ".openamer",
-                "workflows",
-            )
+            from openamer_constants import get_openamer_home
+
+            store_dir = str(Path(get_openamer_home()) / "workflows")
         self._store_dir = Path(store_dir)
         self._store_dir.mkdir(parents=True, exist_ok=True)
 
@@ -565,7 +630,11 @@ class WorkflowStore:
             "saved_at": datetime.now(timezone.utc).isoformat(),
             "node_count": len(workflow.nodes),
         }
-        path.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
+        # Atomic: a crash while saving must not leave a half-written workflow
+        # definition that later blocks a durable resume.
+        from openamer_cli.durable_execution import atomic_write_json
+
+        atomic_write_json(path, data)
         return str(path)
 
     def load(self, name: str) -> WorkflowGraph:
