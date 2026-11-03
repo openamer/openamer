@@ -49,5 +49,7 @@ for (const name of config.bundle.icon) {
     assert.deepEqual(bytes, read('../desktop/assets/icon.icns'))
   }
 }
-assert.deepEqual(read('../../website/static/img/favicon.svg'), read('../../docs/assets/openamer-logo.svg'))
+// Git may check these text assets out with different platform line endings.
+const readSvg = (name) => read(name).toString('utf8').replace(/\r\n/g, '\n')
+assert.equal(readSvg('../../website/static/img/favicon.svg'), readSvg('../../docs/assets/openamer-logo.svg'))
 console.log('PASS: shared canonical O/A monogram; PNG dimensions; seven BMP ICO sizes; ICNS container and desktop/setup/web/website parity')
