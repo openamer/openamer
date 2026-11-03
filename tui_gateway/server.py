@@ -2658,6 +2658,7 @@ def _block(event: str, sid: str, payload: dict, timeout: float | None = 300) -> 
         "sudo.request",
         "clarify.request",
         "terminal.read.request",
+        "preview.act.request",
     }:
         _emit(
             f"{event.removesuffix('.request')}.expire",
@@ -11205,12 +11206,20 @@ _desktop_ui_wired = False
 
 
 def _wire_desktop_ui() -> None:
-    """Bridge desktop-only tools (open_preview, focus_pane) to renderer events.
+    """Bridge desktop-only tools (open_preview, focus_pane, drive_preview) to the renderer.
 
     Idempotent. The tool hands back the turn's ``OPENAMER_UI_SESSION_ID`` as
     ``sid`` so the event routes to the window that asked (``_emit`` /
     ``write_json`` is ``_stdout_lock``-guarded, so calling it from the tool's
-    thread is safe)."""
+    thread is safe).
+
+    ``drive_preview`` needs an answer, so the same wiring also installs a
+    blocking requester over ``_block`` — the bridge ``clarify`` and
+    ``read_terminal`` already use. The request is addressed to the owning window
+    only; ``preview.act.respond`` refuses an answer that arrives stamped with a
+    different session id. With no window id there is nobody to ask, so it
+    returns immediately instead of burning the timeout.
+    """
     global _desktop_ui_wired
     if _desktop_ui_wired:
         return
@@ -11220,6 +11229,13 @@ def _wire_desktop_ui() -> None:
         return
 
     desktop_ui.set_emitter(lambda sid, event, payload: _emit(event, sid, payload))
+
+    def _ask(sid: str, event: str, payload: dict, timeout: float) -> str:
+        if not sid:
+            return ""
+        return _block(event, sid, dict(payload), timeout=timeout)
+
+    desktop_ui.set_requester(_ask)
     _desktop_ui_wired = True
 
 
@@ -12702,7 +12718,7 @@ def _(rid, params: dict) -> dict:
 # ── Methods: respond ─────────────────────────────────────────────────
 
 
-def _respond(rid, params, key, *, allow_expired=False):
+def _respond(rid, params, key, *, allow_expired=False, expect_sid=""):
     r = params.get("request_id", "")
     with _prompt_lock:
         entry = _pending.get(r)
@@ -12710,7 +12726,15 @@ def _respond(rid, params, key, *, allow_expired=False):
             if allow_expired and r:
                 return _ok(rid, {"status": "expired"})
             return _err(rid, 4009, f"no pending {key} request")
-        _, ev = entry
+        owner_sid, ev = entry
+        # Ownership closure: a request belongs to the window it was addressed
+        # to. An answer stamped with a different session — or with none, which
+        # proves nothing — is refused even when it knows the request id, so a
+        # background window cannot complete another session's blocking round
+        # trip. The pending entry survives the refusal: the real owner may still
+        # answer.
+        if expect_sid and owner_sid and str(params.get(expect_sid, "")) != owner_sid:
+            return _err(rid, 4033, "cross-session answer refused: request belongs to another session")
         _answers[r] = params.get(key, "")
         ev.set()
     return _ok(rid, {"status": "ok"})
@@ -12732,6 +12756,23 @@ def _(rid, params: dict) -> dict:
     # timeout, so a slow renderer losing the race is the common case — a late
     # response must not error after the tool already returned empty.
     return _respond(rid, params, "text", allow_expired=True)
+
+
+@method("preview.act.respond")
+def _(rid, params: dict) -> dict:
+    # `result` is a JSON string produced by the renderer's preview-act bridge:
+    # an element inventory, an action's readback, or {"status": "denied"/
+    # "stale-ref", "message": ...} when it refused. The `session_id` the renderer
+    # stamps on its answer must match the request's owning window — that is the
+    # server half of the session-ownership closure; the renderer's own
+    # active-session check (see preview-act-bridge.ts) is the other half.
+    return _respond(
+        rid,
+        params,
+        "result",
+        allow_expired=True,
+        expect_sid="session_id",
+    )
 
 
 @method("sudo.respond")

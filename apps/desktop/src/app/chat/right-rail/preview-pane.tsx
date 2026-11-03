@@ -11,7 +11,9 @@ import { rafCoalesce } from '@/lib/raf-coalesce'
 import { cn } from '@/lib/utils'
 import { notify, notifyError } from '@/store/notifications'
 import { $previewServerRestart, failPreviewServerRestart, type PreviewTarget } from '@/store/preview'
+import { $activeSessionId } from '@/store/session'
 
+import { registerPreviewActHost } from './preview-act-bridge'
 import {
   clampConsoleHeight,
   compactUrl,
@@ -25,6 +27,7 @@ import { LocalFilePreview, PreviewEmptyState } from './preview-file'
 
 type PreviewWebview = HTMLElement & {
   closeDevTools?: () => void
+  executeJavaScript?: (code: string) => Promise<unknown>
   getURL?: () => string
   isDevToolsOpened?: () => boolean
   openDevTools?: () => void
@@ -146,6 +149,7 @@ export function PreviewPane({
   const [loading, setLoading] = useState(true)
   const [loadError, setLoadError] = useState<PreviewLoadErrorState | null>(null)
   const [localReloadKey, setLocalReloadKey] = useState(0)
+  const activeSessionId = useStore($activeSessionId)
   const isWebPreview = target.kind === 'url' || (target.previewKind === 'html' && target.renderMode !== 'source')
   const currentLabel = compactUrl(currentUrl)
 
@@ -611,6 +615,26 @@ export function PreviewPane({
       webview.remove()
     }
   }, [appendConsoleEntry, consoleState, copy, isWebPreview, target.url])
+
+  // The `drive_preview` bridge needs the live guest page: `executeJavaScript` is
+  // the only channel into it, and it must be the webview THIS pane mounted — not
+  // whichever preview another conversation has open. Registering per resolved
+  // session id (rather than reading the store inside the bridge) keeps the check
+  // honest: a pane whose conversation is not the focused one reports a different
+  // id, and the bridge refuses instead of driving the user's pane from a
+  // background turn.
+  useEffect(() => {
+    const webview = webviewRef.current
+
+    if (!isWebPreview || !webview?.executeJavaScript) {
+      return
+    }
+
+    return registerPreviewActHost({
+      executeJavaScript: code => webview.executeJavaScript!(code),
+      sessionId: (activeSessionId || '').trim()
+    })
+  }, [activeSessionId, isWebPreview, reloadRequest, target.url])
 
   return (
     <aside className="relative flex h-full w-full min-w-0 flex-col overflow-hidden bg-transparent text-muted-foreground">

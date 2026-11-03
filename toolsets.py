@@ -34,9 +34,10 @@ _OPENAMER_CORE_TOOLS = [
     # Terminal + process management
     "terminal", "process",
     # Desktop GUI affordances: read the embedded terminal pane, close an agent's
-    # read-only terminal tab, open a URL/file in the preview pane, and focus a
-    # pane (all gated on OPENAMER_DESKTOP via check_fn — hidden outside the GUI).
-    "read_terminal", "close_terminal", "open_preview", "focus_pane",
+    # read-only terminal tab, open a URL/file in the preview pane, drive the page
+    # already shown there, and focus a pane (all gated on OPENAMER_DESKTOP via
+    # check_fn — hidden outside the GUI).
+    "read_terminal", "close_terminal", "open_preview", "drive_preview", "focus_pane",
     # File manipulation
     "read_file", "write_file", "patch", "search_files",
     # Vision + image generation
