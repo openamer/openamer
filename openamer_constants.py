@@ -1166,13 +1166,21 @@ def resolve_per_model_reasoning_effort(model: str, overrides: dict | None) -> di
     return None
 
 
-def resolve_reasoning_config(cfg: dict | None, model: str = "") -> dict | None:
+def resolve_reasoning_config(
+    cfg: dict | None, model: str = "", override: object = None,
+) -> dict | None:
     """Resolve the effective reasoning config for *model* from a config dict.
 
     Single chokepoint for reasoning-effort resolution, shared by every
     surface (CLI startup, messaging gateway, Desktop/TUI, cron, ``/model``
     switch, fallback activation). Priority:
 
+    0. ``override`` — a per-invocation value (``openamer --reasoning LEVEL``,
+       which the Kanban dispatcher passes for a task's ``reasoning_effort``).
+       Most specific signal for this process, so it wins over all persisted
+       config. ``None`` (the default, and every pre-existing caller) means
+       "no override"; an *unrecognized* value is also ignored here — the CLI
+       layer rejects it with a readable error before we get this far.
     1. Per-model override from ``agent.reasoning_overrides``
        (spelling-tolerant — see :func:`resolve_per_model_reasoning_effort`)
     2. Global ``agent.reasoning_effort`` — the raw value is passed through
@@ -1194,6 +1202,10 @@ def resolve_reasoning_config(cfg: dict | None, model: str = "") -> dict | None:
         (caller uses the provider default).
     """
     cfg = cfg if isinstance(cfg, dict) else {}
+    if override is not None and str(override).strip():
+        parsed_override = parse_reasoning_effort(override)
+        if parsed_override is not None:
+            return parsed_override
     agent_cfg = cfg.get("agent")
     if not isinstance(agent_cfg, dict):
         agent_cfg = {}
