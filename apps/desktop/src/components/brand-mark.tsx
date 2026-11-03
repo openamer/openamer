@@ -2,8 +2,8 @@ import { cn } from '@/lib/utils'
 
 const assetPath = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 
-// Brand badge: the OpenAmer eye mark (openamer.png — same art as the taskbar
-// icon), identical in light/dark. Fills the tile (softly rounded); size via
+// Brand badge: the OpenAmer O/A monogram (openamer.png — same SVG master as
+// the taskbar icon), identical in light/dark. Fills the tile; size via
 // className (default size-14).
 export function BrandMark({ className, ...props }: React.ComponentProps<'span'>) {
   return (
