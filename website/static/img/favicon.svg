@@ -1,5 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <rect width="100" height="100" rx="20" fill="#0a0e14"/>
-  <circle cx="50" cy="50" r="38" fill="none" stroke="#22d3ee" stroke-width="5"/>
-  <circle cx="50" cy="50" r="9" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">OpenAmer — O enclosing A</title>
+  <desc id="desc">A bold cyan circular O surrounds a geometric A on a midnight tile.</desc>
+  <defs>
+    <linearGradient id="midnight" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#12283c"/>
+      <stop offset="1" stop-color="#060e1c"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#75f5ff"/>
+      <stop offset="0.5" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="108" fill="url(#midnight)"/>
+  <circle cx="256" cy="256" r="190" fill="none" stroke="url(#signal)" stroke-width="44"/>
+  <path fill="url(#signal)" fill-rule="evenodd" d="M158 350 235 142H277L354 350H308L293 307H219L204 350ZM232 269H280L256 199Z"/>
 </svg>

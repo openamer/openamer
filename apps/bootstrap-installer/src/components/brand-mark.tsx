@@ -2,7 +2,7 @@ import { cn } from '../lib/utils'
 
 const assetPath = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 
-// Canonical OpenAmer DNA mark, shared by setup and update screens.
+// Canonical OpenAmer O/A monogram, shared by setup and update screens.
 // Keep public/openamer-logo.png in sync with docs/assets/openamer-logo.png.
 export function BrandMark({ className, ...props }: React.ComponentProps<'span'>) {
   return (
