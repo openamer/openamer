@@ -86,6 +86,15 @@ def test_skippable_requires_both_halves(tmp_path, monkeypatch):
     assert m._dependency_install_is_skippable("abc", None) is False
 
 
+def test_pending_install_is_not_skippable_with_matching_spec(tmp_path, monkeypatch):
+    monkeypatch.setattr(m, "PROJECT_ROOT", tmp_path)
+    monkeypatch.setattr(m, "_venv_core_imports_healthy", lambda: (True, ""))
+    _write_spec(tmp_path)
+    m._write_update_incomplete_marker()
+    fingerprint = m._dependency_spec_fingerprint()
+    assert m._dependency_install_is_skippable(fingerprint, fingerprint) is False
+
+
 def _spy_install(monkeypatch):
     seen = {"install": False}
 
@@ -106,10 +115,10 @@ def _stub_reinstall_environment(monkeypatch):
     monkeypatch.setattr("openamer_cli.managed_uv.ensure_uv", lambda: None)
 
 
-def test_recovery_clears_marker_without_install_when_nothing_pending(tmp_path, monkeypatch):
+def test_recovery_reinstalls_matching_target_spec_even_when_imports_work(tmp_path, monkeypatch):
     monkeypatch.setattr(m, "PROJECT_ROOT", tmp_path)
     _write_spec(tmp_path, lock="lock-v1\n")
-    # Marker written exactly as the interrupted update wrote it.
+    # The marker records the target spec, not the last successfully installed spec.
     m._write_update_incomplete_marker()
 
     seen = _spy_install(monkeypatch)
@@ -118,7 +127,7 @@ def test_recovery_clears_marker_without_install_when_nothing_pending(tmp_path, m
 
     m._recover_from_interrupted_install()
 
-    assert seen["install"] is False, "nothing was pending — the venv must not be touched"
+    assert seen["install"] is True, "the marker records the target spec, not a completed install"
     assert not m._update_marker_path().exists(), "marker must be cleared, not left blocking"
 
 
