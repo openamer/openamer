@@ -488,23 +488,24 @@ def _rank_reference_graph(
 
     Returns ``(ranked_files, entries)``. ``entries`` are pre-formatted,
     highest-ranked first, and each is either a definition, a "references ..."
-    line for a call site, or a bare path for a file pulled in by the graph.
+    line for a call site, or a bare path for a file that only defines.
 
     Scoring is query-anchored: only identifiers the query actually names (after
     snake/camel splitting) contribute, so a file that merely defines a lot of
-    referenced helpers cannot outrank the module the query is about.
+    referenced helpers cannot outrank the module the query is about. Files the
+    ranking has no direct evidence for are left out entirely rather than pulled
+    in as a discounted second hop — measured on the v1 fixtures, that hop bought
+    one extra gold file but cost a third of the precision budget (see the PR
+    description), and a repo map is supposed to spend its tokens on evidence.
     """
     defines: dict[str, set[str]] = defaultdict(set)
     references: dict[str, list[str]] = defaultdict(list)
     defs_by_file: dict[str, list[dict[str, Any]]] = {}
-    refs_by_file: dict[str, set[str]] = {}
     lines: dict[tuple[str, str], int] = {}
 
     for file_path in file_paths:
         table = symbols.get(file_path, {"defs": [], "refs": [], "imports": []})
         defs_by_file[file_path] = table.get("defs", [])
-        ref_set = set(table.get("refs", []))
-        refs_by_file[file_path] = ref_set
         for definition in table.get("defs", []):
             name = str(definition.get("name", ""))
             if not name:
@@ -592,18 +593,6 @@ def _rank_reference_graph(
 
     if not score_by_file:
         return [], []
-
-    top_score = max(score_by_file.values())
-    # Second hop: a module the best match depends on is usually needed next
-    # (e.g. the transport that wraps a client factory). Only files with no
-    # direct evidence take it, at a discount, so it cannot displace a real hit.
-    seeds = [f for f, score in score_by_file.items() if score >= 0.5 * top_score][:3]
-    for seed in seeds:
-        for ident in refs_by_file.get(seed, set()):
-            for definer in defines.get(ident, ()):
-                if definer == seed or definer in score_by_file:
-                    continue
-                score_by_file[definer] = 0.4 * score_by_file[seed]
 
     ranked = sorted(score_by_file.items(), key=lambda item: (-item[1], item[0]))
 

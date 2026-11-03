@@ -112,8 +112,11 @@ class TestRetrieval:
         keyword = _mean_file_recall("keyword", graph_map, fixture_data)
         assert graph >= keyword, f"graph={graph:.4f} keyword={keyword:.4f}"
 
-    def test_graph_recall_covers_all_gold_files(self, graph_map, fixture_data):
-        assert _mean_file_recall("graph", graph_map, fixture_data) >= 0.99
+    def test_graph_recall_beats_keyword_materially(self, graph_map, fixture_data):
+        graph = _mean_file_recall("graph", graph_map, fixture_data)
+        keyword = _mean_file_recall("keyword", graph_map, fixture_data)
+        assert graph >= keyword + 0.05, f"graph={graph:.4f} keyword={keyword:.4f}"
+        assert graph >= 0.9
 
     def test_budget_is_never_exceeded(self, graph_map, fixture_data):
         repo_map, built = graph_map
