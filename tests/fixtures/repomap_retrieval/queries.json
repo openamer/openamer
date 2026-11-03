@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "description": "Symbol/reference retrieval fixtures for openamer_cli.repomap. Gold files are the files that define or call the queried symbol; prose-only documents are intentionally out of scope for a symbol map. Queries 1-2 are the discriminating cases (the caller does not import or name the symbol lexically, it calls it through an attribute or a wrapper); queries 3-6 are controls where keyword matching already succeeds.",
+  "token_budget": 120,
+  "corpus": "corpus",
+  "queries": [
+    {
+      "id": "compute-backoff-callers",
+      "query": "compute_backoff",
+      "gold_files": ["app/retry.py", "app/transport.py", "tests/test_retry.py"],
+      "gold_symbols": [["app/retry.py", "compute_backoff"]],
+      "rationale": "Definition plus both call sites. transport.py and test_retry.py import RetryPolicy and call policy.compute_backoff, so the symbol never appears in their import lines."
+    },
+    {
+      "id": "create-client-helpers",
+      "query": "createClient",
+      "gold_files": ["web/client.ts", "web/api.ts"],
+      "gold_symbols": [["web/client.ts", "createClient"]],
+      "rationale": "Definition plus the sibling module it wraps (client.ts calls fetchWithRetry from api.ts)."
+    },
+    {
+      "id": "cache-store-users",
+      "query": "CacheStore",
+      "gold_files": ["app/cache.py", "app/transport.py"],
+      "gold_symbols": [["app/cache.py", "CacheStore"]],
+      "rationale": "Control: the caller imports CacheStore by name, so keyword matching finds both."
+    },
+    {
+      "id": "record-span-callers",
+      "query": "record_span",
+      "gold_files": ["app/telemetry.py", "app/cli.py"],
+      "gold_symbols": [["app/telemetry.py", "record_span"]],
+      "rationale": "Control: the caller imports record_span by name."
+    },
+    {
+      "id": "deploy-script",
+      "query": "deploy rollout staging",
+      "gold_files": ["scripts/deploy.sh"],
+      "gold_symbols": [["scripts/deploy.sh", "deploy"]],
+      "rationale": "Control: plain keyword/path match."
+    },
+    {
+      "id": "parse-args",
+      "query": "parse arguments argparse",
+      "gold_files": ["app/cli.py"],
+      "gold_symbols": [["app/cli.py", "parse_args"]],
+      "rationale": "Control: single-file query, no cross-file references."
+    }
+  ]
+}
