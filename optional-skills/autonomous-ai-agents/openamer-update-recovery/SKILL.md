@@ -27,6 +27,13 @@ marker lifecycle and walks through a clean reinstall.
   interrupted mid-install — finishing dependency installation now...` and then
   `✗ Could not auto-recover the interrupted install.`
 - `openamer --version` shows "Up to date" but the recovery warning still fires.
+- A launch prints `⚠ Automatic dependency repair already failed 3 times — not
+  retrying` — the bounded launch-time repair gave up (usually an unreachable
+  package index) and now wants an explicit repair.
+- `openamer` itself crashes on import (`ModuleNotFoundError` / `ImportError`
+  from `openamer_cli.env_loader`, `openamer_cli.config`, `dotenv`, `yaml`).
+  Start with `openamer doctor --runtime` — that path is stdlib-only and still
+  runs when the rest of the CLI cannot be imported.
 
 ## Prerequisites
 
@@ -79,9 +86,11 @@ A failed update writes a breadcrumb file at the **install directory root**
 (the directory that contains `openamer_cli/`), NOT under `$OPENAMER_HOME`.
 On every launch, `openamer_cli/main.py::_recover_from_interrupted_install()`
 sees the marker and tries to finish the install. If that recovery itself
-fails, it **leaves the marker in place**, so the next launch tries again —
-forever. The fix is to make the install actually succeed, THEN delete the
-marker.
+fails, it **leaves the marker in place**, so the next launch tries again — the
+stdlib-only early pass stops after 3 failed attempts and points at
+`openamer doctor --runtime --fix`, but the marker (and so the warning) stays
+until an install actually succeeds. The fix is to make the install actually
+succeed, THEN delete the marker.
 
 Key facts (from `openamer_cli/main.py` and `_early_recovery.py`):
 
@@ -93,6 +102,26 @@ Key facts (from `openamer_cli/main.py` and `_early_recovery.py`):
   broken after 1 hour (3600s).
 - The marker is intentionally NOT cleared by the stdlib-only early-recovery
   pass — only the full recovery in `main.py` clears it, and only on success.
+- The launch-time repair records `attempts=N` in the marker and stops after 3
+  failed attempts, so an offline machine cannot reinstall on every launch
+  forever. `openamer doctor --runtime --fix` ignores that limit.
+
+### Diagnose before you reinstall (works when the CLI is unimportable)
+
+```bash
+openamer doctor --runtime          # interpreter, profile, uv.lock provenance, import probes
+openamer doctor --runtime --fix    # force-reinstall the broken core packages into that interpreter
+# equivalent, without the launcher entry point:
+python -m openamer_cli._early_recovery --fix
+```
+
+`--runtime` is stdlib-only and is dispatched *before* `openamer_cli.main`
+imports third-party packages, so it still works in the failure state that makes
+every other subcommand crash. It never touches another profile or venv: the
+repair targets the interpreter that produced the diagnosis, and it prints that
+path (`repair into …`) plus the `uv.lock` / `pyproject.toml` it read. Read the
+probe table before reinstalling the world — a `BROKEN` row names the exact
+package and the exact import error.
 
 ### Recovery steps
 
