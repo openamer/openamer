@@ -1,5 +1,9 @@
 .DS_Store
 
+# ZIP updater swap trees may contain locked build outputs. Never autostash them.
+*.openamer-update-old/
+*.openamer-update-staging/
+
 # Skill patch backups written by skill_manage/patch runs.
 *.bak
 
