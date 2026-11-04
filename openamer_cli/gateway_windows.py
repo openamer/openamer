@@ -40,6 +40,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from openamer_cli._subprocess_compat import (
+    spawn_detached,
     windows_detach_flags,
     windows_detach_flags_without_breakaway,
     windows_hide_flags,
@@ -921,7 +922,7 @@ def _spawn_detached(script_path: Path | None = None) -> int:
 
     try:
         with open(stray_log, "ab", buffering=0) as log_fh:
-            proc = subprocess.Popen(
+            proc = spawn_detached(
                 argv,
                 cwd=working_dir,
                 env=env,
@@ -939,7 +940,7 @@ def _spawn_detached(script_path: Path | None = None) -> int:
         # its own.
         flags_no_breakaway = windows_detach_flags_without_breakaway()
         with open(stray_log, "ab", buffering=0) as log_fh:
-            proc = subprocess.Popen(
+            proc = spawn_detached(
                 argv,
                 cwd=working_dir,
                 env=env,

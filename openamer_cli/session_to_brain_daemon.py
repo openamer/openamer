@@ -149,7 +149,8 @@ def spawn() -> None:
             return
 
         python = sys.executable
-        proc = subprocess.Popen(
+        from openamer_cli._subprocess_compat import spawn_detached
+        proc = spawn_detached(
             [python, str(script), "--watch"],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,

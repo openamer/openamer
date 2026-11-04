@@ -9357,7 +9357,8 @@ def _default_spawn(
     # fd to write to.
     with open(log_path, "ab") as log_f:
         try:
-            proc = subprocess.Popen(  # noqa: S603 -- argv is a fixed list built above
+            from openamer_cli._subprocess_compat import spawn_detached
+            proc = spawn_detached(  # noqa: S603 -- argv is a fixed list built above
                 cmd,
                 cwd=workspace if os.path.isdir(workspace) else None,
                 stdin=subprocess.DEVNULL,
