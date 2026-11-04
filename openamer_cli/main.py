@@ -2695,6 +2695,10 @@ def cmd_chat(args):
         "ignore_rules": getattr(args, "ignore_rules", False) or getattr(args, "safe_mode", False),
         "ignore_user_config": getattr(args, "ignore_user_config", False) or getattr(args, "safe_mode", False),
         "compact": getattr(args, "compact", False),
+        # Per-invocation reasoning depth (`openamer --reasoning LEVEL`). The Kanban
+        # dispatcher forwards a task's `reasoning_effort` this way; without it the
+        # worker cannot honour a per-task override at all.
+        "reasoning_effort": getattr(args, "reasoning_effort", None),
     }
     # Filter out None values
     kwargs = {k: v for k, v in kwargs.items() if v is not None}
@@ -5411,11 +5415,17 @@ def _build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
         return _do_build_web_ui(web_dir, fatal=fatal)
     project_root = web_dir.parent.parent if web_dir.parent.name == "apps" else web_dir.parent
     dist_index = project_root / "openamer_cli" / "web_dist" / "index.html"
+    # The lock handle must stay open for as long as the flock is held — the
+    # lock is tied to the open file descriptor, so closing it earlier would
+    # release the lock and let a second builder in.  The ``with`` block closes
+    # it exactly when the build is done, which is also when the lock is
+    # released.  (Ruff's SIM115 cannot see that the descriptor is used for
+    # flock, so it flags this as a leak; it is not one.)
     try:
         lock_file = open(project_root / ".web_ui_build.lock", "a", encoding="utf-8")
     except OSError:
         return _do_build_web_ui(web_dir, fatal=fatal)
-    try:
+    with lock_file:
         try:
             fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
         except OSError:
@@ -5426,8 +5436,6 @@ def _build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
             # No dist at all (first-ever build): wait for the builder.
             fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
         return _do_build_web_ui(web_dir, fatal=fatal)
-    finally:
-        lock_file.close()
 
 
 def _do_build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
@@ -7868,6 +7876,12 @@ def _stash_apply_failed_only_on_existing_untracked(stderr: str) -> bool:
     though nothing was lost.  Any other error line (e.g. ``would be
     overwritten by merge`` / ``Aborting``) means the tracked apply itself
     failed and this returns False.
+
+    NOTE: "already exists" alone does not prove the content is intact - the
+    file in the tree may differ from the stashed one (e.g. the upstream pull
+    added the same path with different content).  Callers must additionally
+    verify with :func:`_untracked_stash_files_differ` before claiming that
+    nothing was lost.
     """
     lines = [ln.strip() for ln in (stderr or "").splitlines() if ln.strip()]
     if not lines:
@@ -7883,6 +7897,79 @@ def _stash_apply_failed_only_on_existing_untracked(stderr: str) -> bool:
         else:
             return False
     return saw_untracked_error
+
+
+def _untracked_stash_files_differ(
+    git_cmd: list[str], cwd: Path, stash_ref: str
+) -> list[str]:
+    """List untracked files the stash holds whose working-tree copy differs.
+
+    ``git stash apply`` refuses to overwrite an existing untracked path and
+    reports ``already exists, no checkout`` / ``could not restore untracked
+    files from stash``.  When the stashed blob and the file on disk are
+    byte-identical, nothing is lost.  When they differ, the stashed content is
+    ONLY in the stash - and the update path drops the stash afterwards, which
+    would destroy it.
+
+    Returns the differing paths (repo-relative, forward slashes).  An empty
+    list means every blocked file is identical to its stashed version.
+    """
+    try:
+        listing = subprocess.run(
+            git_cmd + ["ls-tree", "-r", "--name-only", f"{stash_ref}^3"],
+            cwd=cwd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+    except (subprocess.CalledProcessError, OSError):
+        return []
+    if listing.returncode != 0:
+        return []
+    differing: list[str] = []
+    for rel in (listing.stdout or "").splitlines():
+        rel = rel.strip()
+        if not rel:
+            continue
+        path = cwd / rel
+        try:
+            stashed = subprocess.run(
+                git_cmd + ["show", f"{stash_ref}^3:{rel}"],
+                cwd=cwd,
+                capture_output=True,
+            )
+        except (subprocess.CalledProcessError, OSError):
+            continue
+        if stashed.returncode != 0:
+            continue
+        if not path.is_file():
+            # The file is gone from the tree entirely - the stashed copy is
+            # the only surviving version, so it must be reported as differing.
+            differing.append(rel)
+            continue
+        try:
+            on_disk = path.read_bytes()
+        except OSError:
+            differing.append(rel)
+            continue
+        if on_disk != stashed.stdout:
+            differing.append(rel)
+    return differing
+
+
+def _keep_stash_for_recovery(git_cmd: list[str], cwd: Path, stash_ref: str) -> None:
+    """Keep the stash entry alive and tell the user how to recover from it.
+
+    Used when the stash holds content that exists nowhere else (an untracked
+    file whose working-tree copy differs). Dropping the stash here would
+    destroy the only surviving version of that content, so the entry stays in
+    ``refs/stash`` and the update continues.
+    """
+    print("\nYour stashed changes are preserved - the stash entry was kept.")
+    print(f"  Stash ref: {stash_ref}")
+    print(f"  Recover with: git stash apply {stash_ref}")
+    print("  Remove it after you have recovered the files: git stash drop")
 
 
 def _restore_stashed_changes(
@@ -7939,6 +8026,19 @@ def _restore_stashed_changes(
             "  ⚠ Some stashed untracked files already exist in the working "
             "tree and were kept as-is."
         )
+        # "already exists" does NOT prove the content matches: the upstream
+        # pull may have added the same path with different bytes. In that case
+        # the stashed version exists nowhere else and the stash must survive.
+        differing = _untracked_stash_files_differ(git_cmd, cwd, stash_ref)
+        if differing:
+            print(
+                "  ⚠ Their content differs from the stashed copy - the stashed "
+                "version is kept in the stash."
+            )
+            for f in differing:
+                print(f"    • {f}")
+            _keep_stash_for_recovery(git_cmd, cwd, stash_ref)
+            return False
     elif restore.returncode != 0 or has_conflicts:
         print("✗ Update pulled new code, but restoring local changes hit conflicts.")
         if restore.stdout.strip():
@@ -8395,9 +8495,9 @@ def _clear_marker_file(path: Path, *, label: str) -> None:
 def _write_update_incomplete_marker() -> None:
     """Drop the interrupted core-install breadcrumb. Never raises.
 
-    Carries the dependency-spec fingerprint of the moment the install was
-    about to touch the venv, so a later recovery can PROVE whether anything
-    was actually pending (see ``_interrupted_install_has_nothing_to_do``).
+    Carries the target dependency-spec fingerprint for diagnostics. It is not
+    evidence that those dependencies were installed: this marker is written
+    before installation and survives failures before the first venv write.
     """
     _write_marker_file(
         _update_marker_path(),
@@ -8469,6 +8569,8 @@ def _dependency_install_is_skippable(
     - spec unchanged + broken venv → still a repair to run, and
     - healthy venv + changed spec  → still an install to run.
     """
+    if _update_marker_path().exists():
+        return False
     if not pre_fingerprint or not post_fingerprint:
         return False
     if pre_fingerprint != post_fingerprint:
@@ -8623,49 +8725,6 @@ def _recover_lazy_refresh_marker_locked() -> None:
         )
 
 
-def _interrupted_install_has_nothing_to_do() -> bool:
-    """Prove a pending ``.update-incomplete`` has no dependency work, then clear it.
-
-    The marker records the dependency-spec fingerprint captured the instant
-    ``openamer update`` was about to touch the venv. If that spec is still
-    byte-identical AND the venv's core imports are clean, then nothing was
-    pending and nothing is broken: the only correct action is to drop the
-    breadcrumb, with zero writes to the venv.
-
-    This is also the only path that can finish while ``openamer.exe`` is
-    running. The full-reinstall recovery has to quarantine that executable,
-    which the app itself holds open on Windows — so "reinstall for nothing"
-    can never complete and the marker blocks every launch instead (measured
-    2026-10-30: an update whose spec delta was version literals only left the
-    marker set for an hour, printed the interruption warning on every boot and
-    made ``openamer --version`` report no version at all).
-
-    Returns True when the marker was cleared here (caller must stop).
-    Legacy markers without a ``deps`` line never take this path.
-    """
-    marker_deps = _read_marker_deps_fingerprint(_update_marker_path())
-    if not marker_deps:
-        return False
-    if marker_deps != _dependency_spec_fingerprint():
-        return False
-
-    install_prefix, install_env = _default_venv_install_target()
-    try:
-        status = _repair_venv_via_import_probes(install_prefix, env=install_env)
-    except Exception as exc:  # noqa: BLE001 — recovery must never raise
-        logger.debug("Install-recovery import probe failed: %s", exc)
-        return False
-    if status not in ("healthy", "repaired"):
-        return False
-
-    _clear_update_incomplete_marker()
-    print(
-        "✓ The interrupted `openamer update` had no dependency changes pending "
-        "(dependency spec unchanged, venv imports clean) — nothing to finish."
-    )
-    return True
-
-
 def _recover_core_update_marker_locked() -> None:
     """Heal ``.update-incomplete`` via full ``.[all]`` reinstall only.
 
@@ -8673,9 +8732,6 @@ def _recover_core_update_marker_locked() -> None:
     interrupted core install finished — a missing dep outside that probe set
     would otherwise look healthy and clear the breadcrumb too early.
     """
-    if _interrupted_install_has_nothing_to_do():
-        return
-
     print(
         "⚠ A previous `openamer update` was interrupted mid-install — "
         "finishing dependency installation now..."
@@ -10594,6 +10650,10 @@ def _install_hangup_protection(gateway_mode: bool = False):
         logs_dir = _get_openamer_home() / "logs"
         logs_dir.mkdir(parents=True, exist_ok=True)
         log_path = logs_dir / "update.log"
+        # The handle is intentionally long-lived: it is handed to the
+        # ``_UpdateOutputStream`` mirrors installed on sys.stdout/sys.stderr
+        # and stays open until ``_finalize_update_output`` closes it.  It is
+        # therefore NOT a leak — closing it here would break the mirroring.
         log_file = open(log_path, "a", buffering=1, encoding="utf-8")
 
         import datetime as _dt
@@ -12586,8 +12646,8 @@ def _cmd_update_impl(args, gateway_mode: bool):
             # otherwise "Already up to date!" gaslights the user while their
             # install stays bricked.
             healthy, detail = _venv_core_imports_healthy()
-            if not healthy:
-                print("⚠ Checkout is current, but the venv is unhealthy:")
+            if not healthy or _update_marker_path().exists():
+                print("⚠ Checkout is current, but dependency installation is incomplete or unhealthy:")
                 print(f"  {detail}")
                 print("→ Repairing Python dependencies...")
                 _write_update_incomplete_marker()

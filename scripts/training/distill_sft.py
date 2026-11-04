@@ -43,56 +43,58 @@ def _answer_is_safe(text):
 
 
 pairs = []
-for line in open(SRC, encoding="utf-8"):
-    d = json.loads(line)
-    msgs = d.get("messages") or []
-    # find user -> (skip tool msgs) -> assistant pairs
-    last_user = None
-    for m in msgs:
-        r = m.get("role")
-        if r == "user":
-            last_user = (m.get("content") or "").strip()
-        elif r == "assistant" and last_user:
-            ac = (m.get("content") or "").strip()
-            uc = last_user
-            if not uc or not ac:
-                last_user = None
-                continue
-            # skip trivial
-            if len(ac) < MIN_ANSWER or len(ac) > MAX_ANSWER:
-                last_user = None
-                continue
-            if len(uc) < 3 or len(uc) > 20000:
-                last_user = None
-                continue
-            if not ac:
-                last_user = None
-                continue
-            # quality gate: never teach the student a failure mode
-            if not _answer_is_safe(ac):
-                last_user = None
-                continue
-            if uc.startswith("[") and any(uc.startswith(s) for s in (
-                    "[System note:", "[CONTEXT COMPACTION",
-                    "[IMPORTANT: You are running as a scheduled cron job")):
-                last_user = None
-                continue
-            # trim very long contexts: keep last 3000 chars of user msg
-            # (recovered 26 pairs that were previously dropped for length)
-            if len(uc) > 3000:
-                uc = uc[-3000:]
-                # skip pure context-compaction dumps even after trimming
-                if uc.startswith("[CONTEXT COMPACTION"):
+with open(SRC, encoding="utf-8") as _fh:
+    for line in _fh:
+        d = json.loads(line)
+        msgs = d.get("messages") or []
+        # find user -> (skip tool msgs) -> assistant pairs
+        last_user = None
+        for m in msgs:
+            r = m.get("role")
+            if r == "user":
+                last_user = (m.get("content") or "").strip()
+            elif r == "assistant" and last_user:
+                ac = (m.get("content") or "").strip()
+                uc = last_user
+                if not uc or not ac:
                     last_user = None
                     continue
-            pairs.append({
-                "messages": [
-                    {"role": "system", "content": "Du bist OpenAmer Agent - ein autonomer KI-Agent auf Damirs Windows-Laptop. Antworte praegnant, ehrlich, mit echten Beweisen (Tests/Tool-Output). Deutsch im Chat, Englisch im Code."},
-                    {"role": "user", "content": uc},
-                    {"role": "assistant", "content": ac},
-                ]
-            })
-            last_user = None
+                # skip trivial
+                if len(ac) < MIN_ANSWER or len(ac) > MAX_ANSWER:
+                    last_user = None
+                    continue
+                if len(uc) < 3 or len(uc) > 20000:
+                    last_user = None
+                    continue
+                if not ac:
+                    last_user = None
+                    continue
+                # quality gate: never teach the student a failure mode
+                if not _answer_is_safe(ac):
+                    last_user = None
+                    continue
+                if uc.startswith("[") and any(uc.startswith(s) for s in (
+                        "[System note:", "[CONTEXT COMPACTION",
+                        "[IMPORTANT: You are running as a scheduled cron job")):
+                    last_user = None
+                    continue
+                # trim very long contexts: keep last 3000 chars of user msg
+                # (recovered 26 pairs that were previously dropped for length)
+                if len(uc) > 3000:
+                    uc = uc[-3000:]
+                    # skip pure context-compaction dumps even after trimming
+                    if uc.startswith("[CONTEXT COMPACTION"):
+                        last_user = None
+                        continue
+                pairs.append({
+                    "messages": [
+                        {"role": "system", "content": "Du bist OpenAmer Agent - ein autonomer KI-Agent auf Damirs Windows-Laptop. Antworte praegnant, ehrlich, mit echten Beweisen (Tests/Tool-Output). Deutsch im Chat, Englisch im Code."},
+                        {"role": "user", "content": uc},
+                        {"role": "assistant", "content": ac},
+                    ]
+                })
+                last_user = None
+
 
 # dedupe by (user, first 100 of answer) — but keep distinct multi-turn repeats
 # (a repeated greeting with DIFFERENT answers is real signal, not noise)
@@ -102,8 +104,9 @@ seen, uniq = set(), []
 # training set so the model sees them more often — bio-inspired: the brain
 # strengthens neural paths for things that repeat. One-shot motifs stay 1x.
 try:
-    dreams = json.load(open(os.path.join(os.path.dirname(os.path.dirname(DATA)),  # windows-footgun: ok (encoding on the next line)
-                                         "..", "dreams.json"), encoding="utf-8"))
+    with open(os.path.join(os.path.dirname(os.path.dirname(DATA)),  # windows-footgun: ok (encoding on the next line)
+                           "..", "dreams.json"), encoding="utf-8") as _fh:
+        dreams = json.load(_fh)
 except Exception:
     dreams = []
 motif_weight = {}

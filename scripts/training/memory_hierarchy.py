@@ -43,26 +43,27 @@ def build_hierarchy():
     tiers = {"permanent": [], "archive": [], "ephemeral": []}
     total = 0
 
-    for line in open(EPISODES, encoding="utf-8"):
-        try:
-            d = json.loads(line)
-            total += 1
-            text = d.get("text", d.get("content", str(d)))[:200]
-            h = hashlib.md5(text.encode()).hexdigest()[:12]
-            u = useful.get(h, {})
-            retrievals = u.get("retrievals", 0)
-            fixes = u.get("led_to_fix", 0)
+    with open(EPISODES, encoding="utf-8") as _fh:
+        for line in _fh:
+            try:
+                d = json.loads(line)
+                total += 1
+                text = d.get("text", d.get("content", str(d)))[:200]
+                h = hashlib.md5(text.encode()).hexdigest()[:12]
+                u = useful.get(h, {})
+                retrievals = u.get("retrievals", 0)
+                fixes = u.get("led_to_fix", 0)
 
-            # classify by usefulness
-            if fixes > 0 or retrievals >= 3:
-                tiers["permanent"].append({"hash": h, "preview": text[:80],
-                                           "usefulness": fixes / max(retrievals, 1)})
-            elif retrievals >= 1:
-                tiers["archive"].append({"hash": h, "preview": text[:60]})
-            else:
-                tiers["ephemeral"].append({"hash": h})
-        except Exception:
-            continue
+                # classify by usefulness
+                if fixes > 0 or retrievals >= 3:
+                    tiers["permanent"].append({"hash": h, "preview": text[:80],
+                                               "usefulness": fixes / max(retrievals, 1)})
+                elif retrievals >= 1:
+                    tiers["archive"].append({"hash": h, "preview": text[:60]})
+                else:
+                    tiers["ephemeral"].append({"hash": h})
+            except Exception:
+                continue
 
     hierarchy = {
         "ts": datetime.datetime.now().isoformat(),

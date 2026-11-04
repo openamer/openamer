@@ -77,7 +77,8 @@ def _rotate(queries):
         # (day + n) % 8 probes a new angle each invocation.
         n = 0
         if os.path.exists(ROT):
-            n = int(open(ROT, encoding="utf-8").read().strip() or 0)
+            with open(ROT, encoding="utf-8") as _fh:
+                n = int(_fh.read().strip() or 0)
         a = angles[(day + n) % len(angles)]
     except Exception:
         a = ""
@@ -92,7 +93,8 @@ _SEEN_Q = os.path.join(T, ".il_seen_queries")
 def _recent_queries(n=60):
     """Last N queries this learner already issued (novelty ledger)."""
     try:
-        lines = [l.strip() for l in open(_SEEN_Q, encoding="utf-8") if l.strip()]
+        with open(_SEEN_Q, encoding="utf-8") as _fh1:
+            lines = [l.strip() for l in _fh1 if l.strip()]
         return lines[-n:]
     except FileNotFoundError:
         return []
@@ -101,7 +103,8 @@ def _recent_queries(n=60):
 def _remember_query(q):
     """Append one query to the novelty ledger, trimmed to the last 800."""
     try:
-        lines = [l.strip() for l in open(_SEEN_Q, encoding="utf-8") if l.strip()]
+        with open(_SEEN_Q, encoding="utf-8") as _fh2:
+            lines = [l.strip() for l in _fh2 if l.strip()]
     except FileNotFoundError:
         lines = []
     lines.append(q.replace("\n", " ").strip())
@@ -7311,7 +7314,8 @@ CYCLES = [cycle_a_technews, cycle_b_papers, cycle_c_github,
 def next_cycle():
     n = 0
     if os.path.exists(ROT):
-        n = int(open(ROT, encoding="utf-8").read().strip() or 0)
+        with open(ROT, encoding="utf-8") as _fh3:
+            n = int(_fh3.read().strip() or 0)
     c = CYCLES[n % len(CYCLES)]
     with open(ROT, "w", encoding="utf-8") as f:
         f.write(str(n + 1))

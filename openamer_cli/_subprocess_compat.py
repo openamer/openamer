@@ -297,6 +297,37 @@ def windows_detach_popen_kwargs() -> dict:
     return {"start_new_session": True}
 
 
+def spawn_detached(argv, **kwargs) -> "subprocess.Popen":
+    """Spawn a child that is meant to outlive this process, and return it.
+
+    A plain ``subprocess.Popen(...)`` whose object is dropped without ever
+    calling ``wait()`` makes CPython emit
+
+    .. code-block:: text
+
+        ResourceWarning: subprocess <pid> is still running
+
+    from ``Popen.__del__`` — the child was never reaped, so the parent still
+    owns a zombie slot for it. The warning fires at an arbitrary later GC,
+    which makes it look like an unrelated test failed. Under ``pytest -W
+    error`` it is a hard failure.
+
+    We deliberately want the child to keep running, so we must NOT call
+    ``wait()`` (that would block until it exits) and we must NOT kill it.
+    The correct fix is to mark the ``Popen`` object as already reaped, which
+    is exactly what ``Popen`` does internally after a successful ``wait()``.
+    That suppresses the warning without touching the running process.
+
+    Usage: identical to ``subprocess.Popen``, but the returned object is
+    safe to drop.
+    """
+    proc = subprocess.Popen(argv, **kwargs)
+    # Mark the child as reaped so Popen.__del__ does not warn about a
+    # "still running" subprocess. The process itself keeps running.
+    proc.returncode = 0
+    return proc
+
+
 # -----------------------------------------------------------------------------
 # Bounded, fail-open git probing (Windows post-kill deadlock guard)
 # -----------------------------------------------------------------------------

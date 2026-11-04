@@ -20,7 +20,8 @@ bstore = importlib.util.module_from_spec(bspec)
 sys.modules["bs"] = bstore
 bspec.loader.exec_module(bstore)
 
-rows = [json.loads(l) for l in open(T + "/buffer_junk.jsonl", encoding="utf-8") if l.strip()]
+with open(T + "/buffer_junk.jsonl", encoding="utf-8") as _fh:
+    rows = [json.loads(l) for l in _fh if l.strip()]
 recent = [r for r in rows[-40:] if r["reason"] == "junk"]
 print(f"recent junk rows: {len(recent)}\n")
 
@@ -38,5 +39,6 @@ for r in recent:
     print()
 
 print("=== buffer size ===")
-n = sum(1 for l in open(T + "/online_buffer.jsonl", encoding="utf-8") if l.strip())
+with open(T + "/online_buffer.jsonl", encoding="utf-8") as _fh:
+    n = sum(1 for l in _fh if l.strip())
 print("online_buffer rows:", n)

@@ -1,3 +1,5 @@
+import os
+import subprocess
 import sys
 from pathlib import Path
 from subprocess import CalledProcessError
@@ -1180,6 +1182,10 @@ def test_restore_treats_existing_untracked_only_failure_as_restored(
             )
         if cmd[1:3] == ["diff", "--name-only"]:
             return SimpleNamespace(stdout="", stderr="", returncode=0)
+        if cmd[1:3] == ["ls-tree", "-r"]:
+            # The stash holds no untracked file whose content differs from the
+            # working tree - nothing is lost, so the stash may be dropped.
+            return SimpleNamespace(stdout="", stderr="", returncode=0)
         if cmd[1:3] == ["stash", "list"]:
             return SimpleNamespace(stdout="stash@{0} abc123\n", stderr="", returncode=0)
         if cmd[1:3] == ["stash", "drop"]:
@@ -1276,3 +1282,5 @@ def test_git_calls_prefix_the_windows_atomic_append_workaround(
             "-c",
             "windows.appendAtomically=false",
         ], call
+
+

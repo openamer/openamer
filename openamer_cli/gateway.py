@@ -804,6 +804,7 @@ def _spawn_gateway_restart_watcher(old_pid: int, run_argv: list[str]) -> bool:
         import sys
         import time
         from openamer_cli._subprocess_compat import (
+            spawn_detached,
             windows_detach_flags,
             windows_detach_flags_without_breakaway,
         )
@@ -843,7 +844,7 @@ def _spawn_gateway_restart_watcher(old_pid: int, run_argv: list[str]) -> bool:
         if sys.platform == "win32":
             try:
                 _popen_kwargs["creationflags"] = windows_detach_flags()
-                subprocess.Popen(cmd, **_popen_kwargs)
+                spawn_detached(cmd, **_popen_kwargs)
             except OSError:
                 # CREATE_BREAKAWAY_FROM_JOB can be rejected with
                 # ERROR_ACCESS_DENIED when the parent's job object refuses
@@ -851,10 +852,10 @@ def _spawn_gateway_restart_watcher(old_pid: int, run_argv: list[str]) -> bool:
                 # alone are enough in most setups. Mirrors the canonical
                 # fallback in gateway_windows._spawn_detached.
                 _popen_kwargs["creationflags"] = windows_detach_flags_without_breakaway()
-                subprocess.Popen(cmd, **_popen_kwargs)
+                spawn_detached(cmd, **_popen_kwargs)
         else:
             _popen_kwargs["start_new_session"] = True
-            subprocess.Popen(cmd, **_popen_kwargs)
+            spawn_detached(cmd, **_popen_kwargs)
         """
     ).strip().format(
         respawn_cwd_literal=respawn_cwd_literal,
@@ -872,7 +873,7 @@ def _spawn_gateway_restart_watcher(old_pid: int, run_argv: list[str]) -> bool:
     # Same platform-aware detach for the watcher process itself — so
     # closing the user's terminal doesn't kill the watcher.
     try:
-        subprocess.Popen(
+        spawn_detached(
             watcher_argv,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
@@ -890,7 +891,7 @@ def _spawn_gateway_restart_watcher(old_pid: int, run_argv: list[str]) -> bool:
                 if sys.platform == "win32"
                 else {"start_new_session": True}
             )
-            subprocess.Popen(
+            spawn_detached(
                 watcher_argv,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
@@ -3889,20 +3890,21 @@ def _spawn_detached_gateway() -> bool:
     gateway logs and the PID is tracked via the gateway.pid file that
     `run_gateway` writes, so stop/status/restart keep working.
     """
-    from openamer_cli._subprocess_compat import windows_detach_popen_kwargs
+    from openamer_cli._subprocess_compat import (
+    spawn_detached,
+    windows_detach_popen_kwargs,
+)
 
     log_dir = get_openamer_home() / "logs"
     log_dir.mkdir(parents=True, exist_ok=True)
     out_path = log_dir / "gateway.log"
     err_path = log_dir / "gateway.error.log"
     try:
-        out = open(out_path, "ab")
-        err = open(err_path, "ab")
-    except OSError:
-        return False
-    try:
-        with out, err:
-            subprocess.Popen(
+        # Both handles are opened inside one ``with`` statement so that a
+        # failure while opening the second one still closes the first (a
+        # plain pair of ``open()`` calls leaked it).
+        with open(out_path, "ab") as out, open(err_path, "ab") as err:
+            spawn_detached(
                 _gateway_run_command(),
                 stdin=subprocess.DEVNULL,
                 stdout=out,
@@ -4170,7 +4172,7 @@ def refresh_launchd_plist_if_needed() -> bool:
             # `launchctl submit` creates a wholly independent transient launchd
             # job that launchd manages separately from the gateway, so bootout
             # of the gateway job cannot reach the helper.
-            subprocess.Popen(
+            spawn_detached(
                 [
                     "launchctl", "submit",
                     "-l", submit_label,

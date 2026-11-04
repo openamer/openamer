@@ -12,11 +12,12 @@ from pathlib import Path
 def _load_env():
     env_path = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), ".env")
     if os.path.exists(env_path):
-        for line in open(env_path, encoding="utf-8", errors="replace"):
-            line = line.strip()
-            if line.startswith("OPENROUTER_API_KEY=") and len(line.split("=", 1)[1]) > 10:
-                os.environ.setdefault("OPENROUTER_API_KEY", line.split("=", 1)[1])
-                break
+        with open(env_path, encoding="utf-8", errors="replace") as _fh:
+            for line in _fh:
+                line = line.strip()
+                if line.startswith("OPENROUTER_API_KEY=") and len(line.split("=", 1)[1]) > 10:
+                    os.environ.setdefault("OPENROUTER_API_KEY", line.split("=", 1)[1])
+                    break
 _load_env()
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"

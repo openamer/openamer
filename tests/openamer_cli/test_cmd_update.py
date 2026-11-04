@@ -381,6 +381,29 @@ class TestCmdUpdateBranchFallback:
 
     @patch("shutil.which", return_value=None)
     @patch("subprocess.run")
+    def test_zero_commits_finishes_pending_dependencies(
+        self, mock_run, _mock_which, mock_args, tmp_path, monkeypatch, capsys
+    ):
+        from openamer_cli import main as hm
+
+        monkeypatch.setattr(hm, "PROJECT_ROOT", tmp_path)
+        (tmp_path / ".git").mkdir()
+        marker = tmp_path / ".update-incomplete"
+        marker.write_text("started=1\npid=1\ndeps=target-spec\n")
+        mock_run.side_effect = _make_run_side_effect(commit_count="0")
+        monkeypatch.setattr(hm, "_venv_core_imports_healthy", lambda: (True, ""))
+        monkeypatch.setattr(hm, "_run_pre_update_backup", lambda *_: None)
+        monkeypatch.setattr(hm, "_pause_windows_gateways_for_update", lambda: None)
+        monkeypatch.setattr(hm, "_resume_windows_gateways_after_update", lambda *_: None)
+        monkeypatch.setattr(hm, "_invalidate_update_cache", lambda: None)
+        with patch.object(hm, "_install_python_dependencies_with_optional_fallback") as install:
+            hm._cmd_update_impl(mock_args, gateway_mode=False)
+        install.assert_called_once()
+        assert not marker.exists()
+        assert "Already up to date!" not in capsys.readouterr().out
+
+    @patch("shutil.which", return_value=None)
+    @patch("subprocess.run")
     def test_zero_commit_runtime_repair_requires_process_restart(
         self, mock_run, _mock_which, mock_args, capsys, tmp_path
     ):

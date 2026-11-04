@@ -62,9 +62,10 @@ def _load():
     if not os.path.exists(STRUCTS):
         return []
     out = []
-    for l in open(STRUCTS, encoding="utf-8"):
-        try: out.append(json.loads(l))
-        except: continue
+    with open(STRUCTS, encoding="utf-8") as _fh:
+        for l in _fh:
+            try: out.append(json.loads(l))
+            except: continue
     return out
 
 def _save(items):
@@ -93,29 +94,30 @@ def extract_batch(limit=20):
     items = _load()
     done = {e["episode"][:200] for e in items}
     added = 0
-    for line in open(BRAIN, encoding="utf-8"):
-        if added >= limit:
-            break
-        try:
-            d = json.loads(line)
-        except json.JSONDecodeError:
-            continue
-        lu = None
-        for m in d.get("messages", []):
-            r = m.get("role")
-            if r == "user":
-                lu = (m.get("content") or "").strip()
-            elif r == "assistant" and lu:
-                ac = (m.get("content") or "").strip()
-                text = f"User: {lu[:600]}\nAssistant: {ac[:400]}"
-                if (30 <= len(ac) <= 2000 and 3 <= len(lu) <= 2000 and ac
-                        and not lu.startswith("[")
-                        and text[:200] not in done):
-                    res = extract(text, source="brain")
-                    if "skeleton" in res:
-                        added += 1
-                lu = None
+    with open(BRAIN, encoding="utf-8") as _fh1:
+        for line in _fh1:
+            if added >= limit:
                 break
+            try:
+                d = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            lu = None
+            for m in d.get("messages", []):
+                r = m.get("role")
+                if r == "user":
+                    lu = (m.get("content") or "").strip()
+                elif r == "assistant" and lu:
+                    ac = (m.get("content") or "").strip()
+                    text = f"User: {lu[:600]}\nAssistant: {ac[:400]}"
+                    if (30 <= len(ac) <= 2000 and 3 <= len(lu) <= 2000 and ac
+                            and not lu.startswith("[")
+                            and text[:200] not in done):
+                        res = extract(text, source="brain")
+                        if "skeleton" in res:
+                            added += 1
+                    lu = None
+                    break
     return {"added": added, "total": len(_load())}
 
 def find(problem, k=3):

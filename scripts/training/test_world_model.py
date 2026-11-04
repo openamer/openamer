@@ -144,14 +144,16 @@ def test_migrate_rewrites_store():
 def _remove_edge(cause):
     """Remove one edge by exact cause (test cleanup — guarded, never truncates)."""
     try:
-        lines = open(wm.WM, encoding="utf-8").readlines()
+        with open(wm.WM, encoding="utf-8") as _fh:
+            lines = _fh.readlines()
         kept = [l for l in lines if l.strip()
                 and json.loads(l).get("cause") != cause]
         if len(kept) == len(lines):
             return  # nothing to remove
         if not kept:
             return  # never write an empty store
-        open(wm.WM, "w", encoding="utf-8").writelines(kept)
+        with open(wm.WM, "w", encoding="utf-8") as _fh1:
+            _fh1.writelines(kept)
     except Exception:
         pass
 
@@ -247,7 +249,8 @@ def test_atomic_write_never_truncates_on_swap_failure():
                             'embedding': [0.0] * wm.DIM, 'embed_ok': True})]
         with wm._store_lock():
             assert wm._atomic_write(good) is True
-        before = open(wm.WM, "rb").read()
+        with open(wm.WM, "rb") as _fh2:
+            before = _fh2.read()
         assert before, 'seed store must not be empty'
 
         def always_denied(src, dst):
@@ -259,9 +262,10 @@ def test_atomic_write_never_truncates_on_swap_failure():
         os.replace = old_replace
 
         assert ok is False, 'a failed swap must report failure, not pretend success'
-        assert open(wm.WM, "rb").read() == before, (
-            'failed swap TRUNCATED the store — the removed fallback is back'
-        )
+        with open(wm.WM, "rb") as _fh3:
+            assert _fh3.read() == before, (
+                'failed swap TRUNCATED the store — the removed fallback is back'
+            )
         assert len(wm._load()) == 1
     finally:
         os.replace = old_replace
@@ -328,10 +332,12 @@ def _cleanup_test_edges():
         "disk full causes write failures",
         "RAM exhaustion kills the server process",
     }
-    lines = open(wm.WM, encoding="utf-8").readlines()
+    with open(wm.WM, encoding="utf-8") as _fh4:
+        lines = _fh4.readlines()
     kept = [l for l in lines
             if json.loads(l).get("cause") not in test_causes]
-    open(wm.WM, "w", encoding="utf-8").writelines(kept)
+    with open(wm.WM, "w", encoding="utf-8") as _fh5:
+        _fh5.writelines(kept)
 
 
 if __name__ == "__main__":

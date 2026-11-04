@@ -4091,6 +4091,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         plan_mode: bool = False,
         pass_session_id: bool = False,
         ignore_rules: bool = False,
+        reasoning_effort: str = None,
     ):
         """
         Initialize the OpenAmer CLI.
@@ -4324,8 +4325,16 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         # Reasoning config (OpenRouter reasoning effort level)
         # Per-model override > global reasoning_effort — resolved through the
         # shared chokepoint in openamer_constants (Closes #21256).
+        # `--reasoning LEVEL` (passed as `reasoning_effort`) is a per-invocation
+        # override and therefore beats both: the Kanban dispatcher uses it to
+        # forward a task's `reasoning_effort` column to the worker.
         from openamer_constants import resolve_reasoning_config
-        self.reasoning_config = resolve_reasoning_config(CLI_CONFIG, self.model)
+        self.reasoning_effort_override = None
+        if reasoning_effort is not None:
+            self.reasoning_effort_override = str(reasoning_effort).strip() or None
+        self.reasoning_config = resolve_reasoning_config(
+            CLI_CONFIG, self.model, override=self.reasoning_effort_override
+        )
         self.service_tier = _parse_service_tier_config(
             CLI_CONFIG["agent"].get("service_tier", "")
         )
@@ -16319,6 +16328,7 @@ def main(
     pass_session_id: bool = False,
     ignore_user_config: bool = False,
     ignore_rules: bool = False,
+    reasoning_effort: str = None,
 ):
     """
     OpenAmer Agent CLI - Interactive AI Assistant
@@ -16455,6 +16465,7 @@ def main(
         plan_mode=plan_mode,
         pass_session_id=pass_session_id,
         ignore_rules=ignore_rules,
+        reasoning_effort=reasoning_effort,
     )
 
     if parsed_skills:

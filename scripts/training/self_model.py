@@ -179,7 +179,8 @@ def self_model_cycle():
 
     prior = ""
     if os.path.exists(IDENTITY):
-        prior_identity = open(IDENTITY, encoding="utf-8").read()
+        with open(IDENTITY, encoding="utf-8") as _fh1:
+            prior_identity = _fh1.read()
         import hashlib
         prior_hash = hashlib.md5(prior_identity.encode()).hexdigest()[:8]
     else:

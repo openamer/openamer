@@ -682,9 +682,8 @@ async fn run_streamed(
     envs: &[(String, OsString)],
     stage: Option<&str>,
 ) -> Result<CmdResult> {
-    let mut cmd = Command::new(program);
-    cmd.args(args)
-        .current_dir(cwd)
+    let mut cmd = cli_command(program, args);
+    cmd.current_dir(cwd)
         .stdin(Stdio::null())
         .stdout(Stdio::piped())
         .stderr(Stdio::piped());
@@ -758,9 +757,27 @@ fn venv_openamer(install_root: &Path) -> PathBuf {
     }
 }
 
-/// Resolve the openamer CLI to drive. Prefer the venv shim in the install we
-/// just updated; fall back to `openamer` on PATH.
+/// Build both update and rebuild invocations without holding the launcher that
+/// the dependency installer must replace on Windows.
+fn cli_command(program: &Path, args: &[String]) -> Command {
+    let mut cmd = Command::new(program);
+    if cfg!(target_os = "windows") {
+        cmd.args(["-m", "openamer_cli.main"]);
+    }
+    cmd.args(args);
+    cmd
+}
+
+/// On Windows use the install's interpreter, never openamer.exe: there is no
+/// reason to keep the replaceable entry-point launcher alive during reinstall.
+/// External locks still fail safely through the CLI's existing quarantine guard.
+/// Do not fall back to a different install on PATH when this venv is damaged.
+/// Other platforms retain the existing shim/PATH resolution.
 fn resolve_openamer(install_root: &Path) -> Option<PathBuf> {
+    if cfg!(target_os = "windows") {
+        let python = venv_bin_dir(install_root).join("python.exe");
+        return python.is_file().then_some(python);
+    }
     let shim = venv_openamer(install_root);
     if shim.exists() {
         return Some(shim);
@@ -1114,6 +1131,53 @@ mod tests {
         let shim = venv_openamer(root);
         assert!(shim.starts_with(root));
         assert!(shim.to_string_lossy().contains("venv"));
+    }
+
+    #[cfg(target_os = "windows")]
+    #[test]
+    fn updater_resolves_python_not_the_launcher_it_must_replace() {
+        let root = unique_tmp_dir("updater-self-lock");
+        let bin = venv_bin_dir(&root);
+        std::fs::create_dir_all(&bin).unwrap();
+        std::fs::write(bin.join("python.exe"), b"").unwrap();
+        std::fs::write(venv_openamer(&root), b"").unwrap();
+        assert_eq!(resolve_openamer(&root), Some(bin.join("python.exe")));
+        std::fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn cli_command_preserves_update_and_rebuild_arguments() {
+        let program = Path::new("/install with spaces/python.exe");
+        for args in [
+            vec![
+                "update".into(),
+                "--yes".into(),
+                "--branch".into(),
+                "main".into(),
+            ],
+            vec!["desktop".into(), "--build-only".into()],
+        ] {
+            let cmd = cli_command(program, &args);
+            let cmd = cmd.as_std();
+            assert_eq!(cmd.get_program(), program);
+            let actual: Vec<_> = cmd.get_args().map(|s| s.to_str().unwrap()).collect();
+            let mut expected = Vec::new();
+            if cfg!(target_os = "windows") {
+                expected.extend(["-m", "openamer_cli.main"]);
+            }
+            expected.extend(args.iter().map(String::as_str));
+            assert_eq!(actual, expected);
+        }
+    }
+
+    #[cfg(target_os = "windows")]
+    #[test]
+    fn missing_install_python_does_not_fall_back_to_a_launcher() {
+        let root = unique_tmp_dir("updater-missing-python");
+        std::fs::create_dir_all(venv_bin_dir(&root)).unwrap();
+        std::fs::write(venv_openamer(&root), b"").unwrap();
+        assert_eq!(resolve_openamer(&root), None);
+        std::fs::remove_dir_all(root).unwrap();
     }
 
     #[test]

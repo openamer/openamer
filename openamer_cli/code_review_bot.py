@@ -284,10 +284,14 @@ def _github_api_get(url: str, token: str) -> Any:
 
 def _github_api_post(url: str, token: str, data: dict) -> Any:
     """Perform a POST request to the GitHub API using curl."""
+    # ``delete=False``: curl reads the file from disk after this function
+    # returns.  The ``with`` block closes the handle (the file itself stays on
+    # disk) — and it also closes it when ``json.dump`` raises, which the old
+    # explicit ``tmp.close()`` skipped.
     tmp = tempfile.NamedTemporaryFile(encoding="utf-8", mode="w", suffix=".json", delete=False)
     try:
-        json.dump(data, tmp)
-        tmp.close()
+        with tmp:
+            json.dump(data, tmp)
         result = subprocess.run(
             [
                 "curl", "-s", "-X", "POST",

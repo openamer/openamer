@@ -63,7 +63,8 @@ class TestCompetitorScan(unittest.TestCase):
                 self.cs.SEEN = real
 
     def test_no_fake_data(self):
-        src = open(os.path.join(T, "competitor_scan.py"), encoding="utf-8").read()
+        with open(os.path.join(T, "competitor_scan.py"), encoding="utf-8") as _fh:
+            src = _fh.read()
         self.assertNotIn("MOCK", src.upper().replace("MOCK_DATA", ""))
         # real API endpoint
         self.assertIn("hn.algolia.com", src)
@@ -73,7 +74,8 @@ class TestWorldExplore(unittest.TestCase):
     """world_explore must read REAL scheduler status, not text-mining."""
 
     def test_uses_jobs_json_not_output_mining(self):
-        src = open(os.path.join(T, "active_learn.py"), encoding="utf-8").read()
+        with open(os.path.join(T, "active_learn.py"), encoding="utf-8") as _fh1:
+            src = _fh1.read()
         # the text-mining path must be gone
         self.assertNotIn('content.splitlines()', src.split("def world_explore")[1].split("def ")[0],
                          "world_explore must not mine report text lines")

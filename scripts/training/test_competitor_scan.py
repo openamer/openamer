@@ -171,7 +171,8 @@ def test_mark_seen_is_idempotent(tmp_path):
         cs._mark_seen({"a", "b"})
         cs._mark_seen({"a", "b"})
         cs._mark_seen({"b", "c"}, seen=cs._seen_ids())
-        lines = [ln.strip() for ln in open(cs.SEEN, encoding="utf-8") if ln.strip()]
+        with open(cs.SEEN, encoding="utf-8") as _fh:
+            lines = [ln.strip() for ln in _fh if ln.strip()]
     finally:
         cs.SEEN = real
     assert lines == ["a", "b", "c"], f"expected deduped ordered ids, got {lines}"

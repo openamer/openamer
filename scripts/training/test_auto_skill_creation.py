@@ -180,7 +180,8 @@ def test_chrome_does_not_reach_the_written_skill():
     entry = asc.create_skill_from_insight("Latest research insight: HN item",
                                          HN_CHROME, "internet-learner")
     assert entry is not None, "genuine insight must still produce a skill"
-    md = open(os.path.join(skills, entry["name"], "SKILL.md"), encoding="utf-8").read()
+    with open(os.path.join(skills, entry["name"], "SKILL.md"), encoding="utf-8") as _fh:
+        md = _fh.read()
     assert "submit login" not in md, md
     assert "points by" not in md, md
     assert "co-evolve" in md, md

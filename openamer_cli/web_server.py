@@ -3868,38 +3868,42 @@ def _spawn_openamer_action(subcommand: List[str], name: str) -> subprocess.Popen
     log_file_name = _ACTION_LOG_FILES[name]
     _ACTION_LOG_DIR.mkdir(parents=True, exist_ok=True)
     log_path = _ACTION_LOG_DIR / log_file_name
-    log_file = open(log_path, "ab", buffering=0)
-    log_file.write(
-        f"\n=== {name} started {time.strftime('%Y-%m-%d %H:%M:%S')} ===\n".encode()
-    )
+    # The handle is handed to the child process as its stdout/stderr.  It must
+    # stay open until Popen duplicated it (Popen dups the fd into the child),
+    # and the parent's own copy is closed right afterwards — see below.  On the
+    # failure path (Popen raises) the handle is closed explicitly so we don't
+    # leak one fd per failed spawn.
+    with open(log_path, "ab", buffering=0) as log_file:
+        log_file.write(
+            f"\n=== {name} started {time.strftime('%Y-%m-%d %H:%M:%S')} ===\n".encode()
+        )
 
-    cmd = [_dashboard_spawn_executable(), "-m", "openamer_cli.main", *subcommand]
+        cmd = [_dashboard_spawn_executable(), "-m", "openamer_cli.main", *subcommand]
 
-    # The dashboard runs *inside* the gateway process, so os.environ carries
-    # _OPENAMER_GATEWAY=1. Inheriting it makes a spawned `openamer gateway restart`
-    # trip the in-process restart-loop guard and exit 1 — silently failing the
-    # dashboard's auto-restart paths. The gateway's own restart watcher already
-    # drops it (gateway/run.py); mirror that here (#52470).
-    action_env = {**os.environ, "OPENAMER_NONINTERACTIVE": "1"}
-    action_env.pop("_OPENAMER_GATEWAY", None)
+        # The dashboard runs *inside* the gateway process, so os.environ carries
+        # _OPENAMER_GATEWAY=1. Inheriting it makes a spawned `openamer gateway restart`
+        # trip the in-process restart-loop guard and exit 1 — silently failing the
+        # dashboard's auto-restart paths. The gateway's own restart watcher already
+        # drops it (gateway/run.py); mirror that here (#52470).
+        action_env = {**os.environ, "OPENAMER_NONINTERACTIVE": "1"}
+        action_env.pop("_OPENAMER_GATEWAY", None)
 
-    popen_kwargs: Dict[str, Any] = {
-        "cwd": str(PROJECT_ROOT),
-        "stdin": subprocess.DEVNULL,
-        "stdout": log_file,
-        "stderr": subprocess.STDOUT,
-        "env": action_env,
-    }
-    if sys.platform == "win32":
-        popen_kwargs["creationflags"] = windows_detach_flags()
-    else:
-        popen_kwargs["start_new_session"] = True
+        popen_kwargs: Dict[str, Any] = {
+            "cwd": str(PROJECT_ROOT),
+            "stdin": subprocess.DEVNULL,
+            "stdout": log_file,
+            "stderr": subprocess.STDOUT,
+            "env": action_env,
+        }
+        if sys.platform == "win32":
+            popen_kwargs["creationflags"] = windows_detach_flags()
+        else:
+            popen_kwargs["start_new_session"] = True
 
-    proc = subprocess.Popen(cmd, **popen_kwargs)
-    # The child inherits its own duplicated fd for stdout/stderr, so the
-    # parent's handle can be released immediately — otherwise we leak one
-    # fd per spawned action.
-    log_file.close()
+        # The child inherits its own duplicated fd for stdout/stderr, so the
+        # parent's handle is released as soon as the ``with`` block ends —
+        # otherwise we leak one fd per spawned action.
+        proc = subprocess.Popen(cmd, **popen_kwargs)
     _ACTION_RESULTS.pop(name, None)
     _ACTION_COMMANDS[name] = tuple(subcommand)
     _ACTION_PROCS[name] = proc
