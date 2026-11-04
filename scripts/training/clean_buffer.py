@@ -48,7 +48,8 @@ ARCHIVE = T / "buffer_junk_archive.jsonl"
 
 
 def main():
-    rows = [json.loads(l) for l in open(BUF, encoding="utf-8") if l.strip()]
+    with open(BUF, encoding="utf-8") as _fh:
+        rows = [json.loads(l) for l in _fh if l.strip()]
     keep, drop = [], []
     seen = set()
     for r in rows:

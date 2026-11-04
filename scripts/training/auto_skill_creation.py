@@ -315,7 +315,8 @@ def auto_create_from_buffer():
     kta_log = kta_path
     created = []
     if os.path.exists(kta_path):
-        lines = open(kta_log, encoding="utf-8").readlines()[-10:]
+        with open(kta_log, encoding="utf-8") as _fh:
+            lines = _fh.readlines()[-10:]
         for line in lines:
             try:
                 d = json.loads(line)
@@ -336,7 +337,8 @@ def auto_create_from_buffer():
     # also check internet-learned insights from buffer
     buf_path = os.path.join(T, "online_buffer.jsonl")
     if os.path.exists(buf_path):
-        lines = open(buf_path, encoding="utf-8").readlines()[-30:]
+        with open(buf_path, encoding="utf-8") as _fh1:
+            lines = _fh1.readlines()[-30:]
         for line in lines:
             try:
                 d = json.loads(line)

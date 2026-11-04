@@ -458,7 +458,8 @@ class H(BaseHTTPRequestHandler):
         # lazy adapter swap: check for pending swap request
         flag = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".swap_request")
         if os.path.exists(flag):
-            new_adapter = open(flag, encoding="utf-8").read().strip()
+            with open(flag, encoding="utf-8") as _fh:
+                new_adapter = _fh.read().strip()
             os.remove(flag)
             try:
                 with lock:

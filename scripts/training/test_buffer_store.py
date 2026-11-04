@@ -63,7 +63,8 @@ def test_append_creates_and_counts():
     n = bs.append("q1", "a1", buffer=buf)
     assert n == 1, n
     assert bs.count(buf) == 1
-    rec = json.loads(open(buf, encoding="utf-8").readline())
+    with open(buf, encoding="utf-8") as _fh:
+        rec = json.loads(_fh.readline())
     assert rec["u"] == "q1" and rec["a"] == "a1"
 
 
@@ -73,7 +74,8 @@ def test_cap_enforced_on_every_append():
     for i in range(311):
         bs.append(f"q{i}", f"a{i}", buffer=buf)
     assert bs.count(buf) == 300, bs.count(buf)
-    lines = open(buf, encoding="utf-8").readlines()
+    with open(buf, encoding="utf-8") as _fh1:
+        lines = _fh1.readlines()
     # FIFO: oldest evicted, newest kept
     assert json.loads(lines[0])["u"] == "q11"
     assert json.loads(lines[-1])["u"] == "q310"
@@ -84,7 +86,8 @@ def test_custom_cap_honoured():
     for i in range(12):
         bs.append(f"q{i}", f"a{i}", buffer=buf, max_buf=5)
     assert bs.count(buf) == 5
-    assert json.loads(open(buf, encoding="utf-8").readline())["u"] == "q7"
+    with open(buf, encoding="utf-8") as _fh2:
+        assert json.loads(_fh2.readline())["u"] == "q7"
 
 
 def test_enforce_cap_is_idempotent():
@@ -192,7 +195,8 @@ def test_truncation_limits():
     # (repeated template -> glued motif / header-repeat / low unique-ratio)
     # and the truncation branch would then be unreachable.
     bs.append(_TRUNC_U, _TRUNC_PROSE, buffer=buf)
-    rec = json.loads(open(buf, encoding="utf-8").readline())
+    with open(buf, encoding="utf-8") as _fh3:
+        rec = json.loads(_fh3.readline())
     assert len(rec["u"]) == 3000
     assert len(rec["a"]) == 4000
 
@@ -200,7 +204,8 @@ def test_truncation_limits():
 def test_none_values_are_tolerated():
     buf = _tmp_buf()
     bs.append(None, None, buffer=buf)
-    rec = json.loads(open(buf, encoding="utf-8").readline())
+    with open(buf, encoding="utf-8") as _fh4:
+        rec = json.loads(_fh4.readline())
     assert rec["u"] == "" and rec["a"] == ""
 
 
@@ -241,7 +246,8 @@ def test_append_refuses_junk_and_logs_it():
         n = bs.append("q", "Self\n\nSelf\n\nSelf\n\nSelf\n\nSelf\n\nSelf", buffer=buf)
         assert n == 1, "junk must not be appended"
         assert bs.count(buf) == 1
-        assert json.loads(open(junk_log, encoding="utf-8").readline())["reason"] == "junk"
+        with open(junk_log, encoding="utf-8") as _fh5:
+            assert json.loads(_fh5.readline())["reason"] == "junk"
     finally:
         bs.JUNK_LOG = orig
 

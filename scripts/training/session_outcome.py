@@ -157,12 +157,13 @@ def _violation_patterns():
         return {}
     kinds = Counter()
     try:
-        for line in open(VIOLATIONS, encoding="utf-8"):
-            try:
-                d = json.loads(line)
-                kinds[d.get("reason", "?")[:60]] += 1
-            except Exception:
-                continue
+        with open(VIOLATIONS, encoding="utf-8") as _fh:
+            for line in _fh:
+                try:
+                    d = json.loads(line)
+                    kinds[d.get("reason", "?")[:60]] += 1
+                except Exception:
+                    continue
     except Exception:
         pass
     return kinds
@@ -217,11 +218,12 @@ def _already_reported(report):
         return False
     try:
         last = None
-        for line in open(OUT_LOG, encoding="utf-8"):
-            try:
-                last = json.loads(line)
-            except Exception:
-                continue
+        with open(OUT_LOG, encoding="utf-8") as _fh1:
+            for line in _fh1:
+                try:
+                    last = json.loads(line)
+                except Exception:
+                    continue
         if last and last.get("patterns") == report["patterns"] \
                 and last.get("failed_jobs") == report["failed_jobs"]:
             return True

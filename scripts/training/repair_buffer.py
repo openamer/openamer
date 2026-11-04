@@ -54,7 +54,8 @@ def _parse(raw):
 
 def main():
     fix = "--fix" in sys.argv
-    raw = open(BUF, "rb").read().decode("utf-8")
+    with open(BUF, "rb") as _fh:
+        raw = _fh.read().decode("utf-8")
     glued = scan(raw)
     blanks = scan_blanks(raw)
     records, bad = _parse(raw)
@@ -84,9 +85,11 @@ def main():
               f"(backup={bak})")
         return 3
 
-    open(BUF, "wb").write(("\r\n".join(lines) + "\r\n").encode("utf-8"))
+    with open(BUF, "wb") as _fh1:
+        _fh1.write(("\r\n".join(lines) + "\r\n").encode("utf-8"))
 
-    raw2 = open(BUF, "rb").read().decode("utf-8")
+    with open(BUF, "rb") as _fh2:
+        raw2 = _fh2.read().decode("utf-8")
     records2, bad2 = _parse(raw2)
     blanks2 = len(scan_blanks(raw2))
     print(f"backup={bak}")

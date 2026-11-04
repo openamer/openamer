@@ -59,32 +59,33 @@ def collect_new(max_new=50):
     if total <= last:
         return 0
     new = 0
-    for i, line in enumerate(open(BRAIN, encoding="utf-8")):
-        if i < last:
-            continue
-        if new >= max_new:
-            break
-        try:
-            d = json.loads(line)
-        except json.JSONDecodeError:
-            continue
-        # extract one (user, assistant) pair per record (first clean pair)
-        lu = None
-        for m in d.get("messages", []):
-            r = m.get("role")
-            if r == "user":
-                lu = (m.get("content") or "").strip()
-            elif r == "assistant" and lu:
-                ac = (m.get("content") or "").strip()
-                ok = (30 <= len(ac) <= 4000 and 3 <= len(lu) <= 4000
-                      and not lu.startswith("[IMPORTANT:")
-                      and not lu.startswith("[System note:"))
-                if ok:
-                    # write through the store: cap enforced on EVERY append
-                    buffer_store.append(lu, ac, buffer=str(BUFFER))
-                    new += 1
-                lu = None
+    with open(BRAIN, encoding="utf-8") as _fh:
+        for i, line in enumerate(_fh):
+            if i < last:
+                continue
+            if new >= max_new:
                 break
+            try:
+                d = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            # extract one (user, assistant) pair per record (first clean pair)
+            lu = None
+            for m in d.get("messages", []):
+                r = m.get("role")
+                if r == "user":
+                    lu = (m.get("content") or "").strip()
+                elif r == "assistant" and lu:
+                    ac = (m.get("content") or "").strip()
+                    ok = (30 <= len(ac) <= 4000 and 3 <= len(lu) <= 4000
+                          and not lu.startswith("[IMPORTANT:")
+                          and not lu.startswith("[System note:"))
+                    if ok:
+                        # write through the store: cap enforced on EVERY append
+                        buffer_store.append(lu, ac, buffer=str(BUFFER))
+                        new += 1
+                    lu = None
+                    break
     MARKER.write_text(str(min(total, last + max_new)), encoding="utf-8")
     return new
 
@@ -143,7 +144,8 @@ def loop():
                               flush=True)
                     if n_before >= 4:
                         import random as _r
-                        buf_lines = open(BUFFER, encoding="utf-8").readlines()
+                        with open(BUFFER, encoding="utf-8") as _fh1:
+                            buf_lines = _fh1.readlines()
                         # Replay re-injects OLD rows, so it bypasses the
                         # first-write gate: a row that predates the current
                         # junk rules would come back forever. Filter on the way
@@ -216,7 +218,12 @@ def loop():
         time.sleep(CYCLE_SECONDS)
 
 def stats():
-    buf = sum(1 for _ in open(BUFFER, encoding="utf-8")) if BUFFER.exists() else 0
+    # The file is only opened when it exists - a ``with`` block cannot be
+    # used inside a conditional expression without making the open eager.
+    buf = 0
+    if BUFFER.exists():
+        with open(BUFFER, encoding="utf-8") as _fh:
+            buf = sum(1 for _ in _fh)
     return {"buffer_examples": buf, "brain_records": _brain_count(),
             "marker": _marker(), "pending": max(0, _brain_count() - _marker())}
 

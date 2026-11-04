@@ -122,7 +122,8 @@ def resolve_conflict(claim_a, claim_b, evidence_a, evidence_b):
     # count supporting evidence in world model
     if not os.path.exists(SHARED_WM):
         return {"winner": "undetermined", "reason": "no shared knowledge"}
-    lines = open(SHARED_WM, encoding="utf-8").readlines()
+    with open(SHARED_WM, encoding="utf-8") as _fh:
+        lines = _fh.readlines()
     support_a = sum(1 for l in lines if claim_a[:40].lower() in l.lower())
     support_b = sum(1 for l in lines if claim_b[:40].lower() in l.lower())
 
@@ -147,7 +148,8 @@ def update_swarm_identity(agents=None):
     # laptop stats
     wm_path = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "world_model.jsonl")
     if os.path.exists(wm_path):
-        total_events = sum(1 for _ in open(wm_path, encoding="utf-8"))
+        with open(wm_path, encoding="utf-8") as _fh1:
+            total_events = sum(1 for _ in _fh1)
 
     # Measured, not recited: the collective numbers come from the stores on
     # this node. The doc used to state those counts as prose, which drifts
@@ -157,7 +159,8 @@ def update_swarm_identity(agents=None):
         str(Path.home() / "AppData" / "Local" / "openamer"))
     episodes_path = os.path.join(home, "memory", "longterm_episodes.jsonl")
     if os.path.exists(episodes_path):
-        total_memory = sum(1 for _ in open(episodes_path, encoding="utf-8"))
+        with open(episodes_path, encoding="utf-8") as _fh2:
+            total_memory = sum(1 for _ in _fh2)
     lineage = load_json(os.path.join(home, "darwin", "lineage.json"), {})
     total_evolution = (len(lineage.get("events", [])) if isinstance(lineage, dict)
                        else len(lineage))

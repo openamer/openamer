@@ -51,7 +51,8 @@ def main():
             return  # silent: too soon
 
     # count new brain records since marker
-    brain_ct = sum(1 for _ in open(BRAIN, encoding="utf-8"))
+    with open(BRAIN, encoding="utf-8") as _fh:
+        brain_ct = sum(1 for _ in _fh)
     last_ct = 0
     state = T / ".brain_count"
     if state.exists():
@@ -77,7 +78,8 @@ def main():
     print(f"RETRAIN: {new} new brain records ({brain_ct} total)")
     out = sh([PY, str(T / "distill_sft.py")], timeout=600)
     print(out.strip())
-    pairs = sum(1 for _ in open(T / "sft_openamer.jsonl", encoding="utf-8"))
+    with open(T / "sft_openamer.jsonl", encoding="utf-8") as _fh1:
+        pairs = sum(1 for _ in _fh1)
     if pairs < 20:
         print(f"ABORT: only {pairs} distilled pairs")
         sys.exit(1)

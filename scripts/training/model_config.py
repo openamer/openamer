@@ -39,7 +39,8 @@ def _load_model_cfg():
         import yaml
         if not _CONFIG.exists():
             return {}
-        cfg = yaml.safe_load(open(_CONFIG, encoding="utf-8"))
+        with open(_CONFIG, encoding="utf-8") as _fh:
+            cfg = yaml.safe_load(_fh)
         if not isinstance(cfg, dict):
             return {}
         m = cfg.get("model") or {}

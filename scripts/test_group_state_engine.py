@@ -63,7 +63,8 @@ def load_tool_fn():
     server = os.path.join(here, "training", "tool_server.py")
     if not os.path.exists(server):
         return None
-    src = open(server, encoding="utf-8").read()
+    with open(server, encoding="utf-8") as _fh:
+        src = _fh.read()
     m = re.search(r"(_GROUP_CACHE = \{.*?\n\n\ndef t_group_state\(params\):.*?\n"
                   r"(?=\nEXECUTORS))", src, re.S)
     if not m:
@@ -102,7 +103,8 @@ def main():
     check("saved artifact carries the format tag",
           json.loads(Path(tmp).read_text(encoding="utf-8"))["format"] == FORMAT, FORMAT)
     bad_fmt = os.path.join(tempfile.gettempdir(), "_gs_bad_format.json")
-    json.dump({"format": "not-this-format"}, open(bad_fmt, "w", encoding="utf-8"))
+    with open(bad_fmt, "w", encoding="utf-8") as _fh1:
+        json.dump({"format": "not-this-format"}, _fh1)
     try:
         load(bad_fmt)
         check("load rejects an unknown format", False)

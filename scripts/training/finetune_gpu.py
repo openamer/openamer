@@ -37,7 +37,8 @@ model.print_trainable_parameters()
 
 class SFT(Dataset):
     def __init__(self):
-        self.rows = [json.loads(l) for l in open(DATA, encoding="utf-8")]
+        with open(DATA, encoding="utf-8") as _fh:
+            self.rows = [json.loads(l) for l in _fh]
     def __len__(self): return len(self.rows)
     def __getitem__(self, i):
         m = self.rows[i]["messages"]
