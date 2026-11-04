@@ -1,8 +1,15 @@
 """Updater scratch trees must stay outside the autostash (real git)."""
+import re
 import subprocess
 from pathlib import Path
 
 from openamer_cli.main import _stash_local_changes_if_needed
+
+
+def test_updater_scratch_trees_are_gitignored():
+    gitignore = (Path(__file__).parents[2] / ".gitignore").read_text(encoding="utf-8")
+    assert re.search(r"^\*\.openamer-update-old/$", gitignore, re.M)
+    assert re.search(r"^\*\.openamer-update-staging/$", gitignore, re.M)
 
 
 def test_update_scratch_trees_are_not_stashed(tmp_path):
