@@ -14,7 +14,9 @@ These tests pin the evaluation reliability guarantees:
 """
 
 import json
+import time as _time
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -520,3 +522,82 @@ class TestRunSerialization:
         assert comparison["improvements"] == []
         assert [entry["test_name"] for entry in comparison["incomparable"]] == ["obs"]
         assert comparison["run1"]["unscored"] == 1
+
+
+class TestRunFileNaming:
+    """Saved runs must never overwrite each other, and baselines say so on disk.
+
+    Regression for a real defect: ``eval run`` followed immediately by
+    ``eval run --baseline gold`` on the same suite saves both runs inside the
+    same clock second. The old name was ``<suite>_<epoch_seconds>.json``, so the
+    second save silently replaced the first — an agent record could erase a
+    gold-baseline record (or vice versa), which is precisely the provenance
+    conflation this module exists to prevent.
+    """
+
+    @staticmethod
+    def _freeze_clock(monkeypatch, runs_dir, epoch: int = 1_800_000_000):
+        monkeypatch.setattr(ev, "BENCHMARK_RUNS_DIR", runs_dir)
+        # Freeze only ``time.time`` (used for filenames); keep ``perf_counter``
+        # real so latency measurement inside the suite runner still works.
+        monkeypatch.setattr(
+            ev,
+            "time",
+            SimpleNamespace(time=lambda: float(epoch), perf_counter=_time.perf_counter),
+        )
+
+    @staticmethod
+    def _suite(name: str = "same-suite") -> BenchmarkSuite:
+        return BenchmarkSuite(
+            name=name,
+            test_cases=[TestCase(name="capital", input="Capital of France?", expected="Paris")],
+        )
+
+    def test_gold_and_agent_run_of_same_suite_in_same_second_both_survive(
+        self, tmp_path, monkeypatch
+    ):
+        self._freeze_clock(monkeypatch, tmp_path)
+        suite = self._suite()
+
+        gold_path = suite.run_gold_baseline().save()
+        agent_path = suite.run(model="real-model", model_fn=lambda _p: "Paris").save()
+
+        assert gold_path != agent_path
+        # ``tmp_path`` also holds the autouse fixture's fake OPENAMER_HOME dir,
+        # so compare only the saved run files.
+        assert sorted(p.name for p in tmp_path.glob("*.json")) == sorted(
+            [gold_path.name, agent_path.name]
+        )
+        assert "gold-baseline" in gold_path.name
+        assert "gold-baseline" not in agent_path.name
+        assert BenchmarkRun.load(gold_path).provenance == PROVENANCE_GOLD_BASELINE
+        assert BenchmarkRun.load(agent_path).provenance == PROVENANCE_AGENT
+
+        # The baseline record is auditable and still never ranked as a model run.
+        ranked = get_leaderboard()
+        assert [entry["model"] for entry in ranked] == ["real-model"]
+        everything = get_leaderboard(include_baselines=True)
+        assert {entry["provenance"] for entry in everything} == {
+            PROVENANCE_AGENT,
+            PROVENANCE_GOLD_BASELINE,
+        }
+
+    def test_repeated_runs_of_one_suite_get_unique_names(self, tmp_path, monkeypatch):
+        self._freeze_clock(monkeypatch, tmp_path)
+        suite = self._suite()
+        paths = [suite.run(model="m", model_fn=lambda _p: "Paris").save() for _ in range(3)]
+
+        assert len(set(paths)) == 3
+        assert len(list(tmp_path.glob("*.json"))) == 3
+        assert paths[0].name.endswith(".json")
+        assert "-2.json" in paths[1].name
+        assert "-3.json" in paths[2].name
+
+    def test_explicit_path_is_still_honoured(self, tmp_path, monkeypatch):
+        self._freeze_clock(monkeypatch, tmp_path / "unused")
+        target = tmp_path / "explicit" / "run.json"
+
+        saved = self._suite().run_gold_baseline().save(target)
+
+        assert saved == target
+        assert target.is_file()
