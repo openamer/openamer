@@ -665,12 +665,31 @@ class BenchmarkRun:
         )
 
     def save(self, path: Optional[Path] = None) -> Path:
-        """Persist this run as JSON to disk."""
+        """Persist this run as JSON to disk.
+
+        With no explicit ``path`` the run lands in the benchmark runs directory
+        as ``<suite>_<epoch_seconds>[-gold-baseline][-N].json``:
+
+        - baseline runs carry a ``gold-baseline`` marker, so a reference-output
+          harness check is identifiable from the filename alone;
+        - the name is made unique, so two runs of the *same* suite saved within
+          the same second (e.g. ``eval run`` followed immediately by
+          ``eval run --baseline gold``) cannot overwrite each other. Silently
+          clobbering a gold-baseline record with an agent record would destroy
+          exactly the provenance distinction this module exists to preserve.
+        """
         if path is None:
             runs_dir = benchmark_runs_dir()
             runs_dir.mkdir(parents=True, exist_ok=True)
             safe_name = self.name.replace(" ", "_").replace("/", "_")
-            path = runs_dir / f"{safe_name}_{int(time.time())}.json"
+            stem = f"{safe_name}_{int(time.time())}"
+            if self.is_baseline:
+                stem = f"{stem}_{PROVENANCE_GOLD_BASELINE.replace('_', '-')}"
+            path = runs_dir / f"{stem}.json"
+            suffix = 2
+            while path.exists():
+                path = runs_dir / f"{stem}-{suffix}.json"
+                suffix += 1
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, "w", encoding="utf-8") as f:
