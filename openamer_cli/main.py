@@ -9886,6 +9886,14 @@ def _install_python_dependencies_with_optional_fallback(
     try:
         _install(["install", "-e", f".[{group}]"])
         _verify_console_scripts_installed(install_cmd_prefix, env=env)
+        # The SUCCESS path must verify core dependencies too. It used to
+        # return right here, so the only path that verified core deps was
+        # the extras-fallback path below — i.e. the failing one. The normal
+        # update, the one that actually succeeds, never checked whether the
+        # base deps landed. A partial install therefore passed the update as
+        # healthy and only surfaced hours later as a ModuleNotFoundError in
+        # a downstream subprocess.
+        _verify_core_dependencies_installed(install_cmd_prefix, env=env, group=group)
         return
     except subprocess.CalledProcessError:
         print(
@@ -10122,11 +10130,35 @@ def _verify_core_dependencies_installed(
             )
         except Exception as e:
             logger.debug("dep verification: subprocess failed: %s", e)
-            return []
+            return None
+        # A probe that exits non-zero never produced a trustworthy answer:
+        # the interpreter crashed, the venv is broken, or the base
+        # interpreter is missing. Its stdout is empty, so parsing it would
+        # read as "nothing missing" and hand the update a clean bill of
+        # health on an unusable venv. Report it as UNKNOWN (None) instead
+        # of silently continuing.
+        if result.returncode != 0:
+            logger.debug(
+                "dep verification: probe exited %s: %s",
+                result.returncode,
+                (result.stderr or "").strip()[:200],
+            )
+            return None
         return [line.strip() for line in result.stdout.splitlines() if line.strip()]
 
     missing = _missing_deps()
-    if not missing:
+    if missing is None:
+        # UNKNOWN: the probe could not answer. The venv may be fine (a
+        # transient spawn failure) or broken (a fatal interpreter error).
+        # We cannot distinguish that from here, so we attempt the repair
+        # once — an extra --reinstall is cheap compared to shipping a venv
+        # that cannot import.
+        print(
+            "  ⚠ Core dependencies could not be verified (the verification probe "
+            "failed to run). Attempting a repair install..."
+        )
+        missing = []
+    elif not missing:
         return
 
     print(
@@ -10156,6 +10188,15 @@ def _verify_core_dependencies_installed(
         return
 
     still_missing = _missing_deps()
+    if still_missing is None:
+        # The repair ran but the probe still cannot answer. We cannot claim
+        # health, and we cannot name the missing packages either.
+        print(
+            "  ⚠ Core dependencies still could not be verified after the repair "
+            "install. Run `openamer update --force` after closing other openamer "
+            "processes."
+        )
+        return
     if not still_missing:
         print("  ✓ All declared core dependencies now installed")
         return
@@ -10190,7 +10231,12 @@ def _verify_core_dependencies_installed(
         return
 
     final_missing = _missing_deps()
-    if final_missing:
+    if final_missing is None:
+        print(
+            "  ⚠ Core dependencies still could not be verified. Run "
+            "`openamer update --force` after closing other openamer processes."
+        )
+    elif final_missing:
         print(
             f"  ⚠ Still missing after repair: {', '.join(final_missing)}. "
             "Run `openamer update --force` after closing other openamer processes."
