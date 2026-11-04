@@ -199,6 +199,16 @@ async fn run_update(app: AppHandle) -> Result<()> {
     let started = Instant::now();
     emit_stage(&app, "handoff", StageState::Running, None, None);
     wait_for_install_locks_free(&install_root, &app, "handoff").await;
+    // The desktop's own backend runs from the venv interpreter
+    // (`venv\Scripts\python.exe -m openamer_cli.main ... serve`). The
+    // Electron supervisor can respawn it within ~1s of the hand-off, so the
+    // install-lock probe above (which only sees the openamer.exe shim and
+    // app.asar) can report "free" while the venv is still held. `openamer
+    // update` then refuses to touch the venv and exits 2 — the update aborts.
+    // Wait for those venv-interpreter processes to disappear and force-kill
+    // the survivors (scoped to THIS install's venv) before we start the
+    // update.
+    wait_for_venv_holders_free(&install_root, &app, "handoff").await;
     emit_stage(
         &app,
         "handoff",
@@ -643,6 +653,322 @@ fn force_kill_other_openamer() {
             .stderr(std::process::Stdio::null())
             .status();
     }
+}
+
+// ---------------------------------------------------------------------------
+// Venv-interpreter holders
+// ---------------------------------------------------------------------------
+//
+// The desktop's own backend runs as a child of the venv interpreter:
+//   venv\Scripts\python.exe -m openamer_cli.main --profile default serve
+// The Electron supervisor can respawn that child within ~1s of the hand-off,
+// and `openamer update` then refuses to touch the venv:
+//
+//   ✗ Other OpenAmer processes are running from this install's venv:
+//     PID 1234 python.exe ... -m openamer_cli.main --profile default serve
+//
+// → exit 2 → the update aborts before it changes anything.
+//
+// The install-lock probe above cannot see this: the venv *python* holds
+// native extension files (.pyd) inside the venv, not the openamer.exe shim or
+// the packaged app.asar. So the handoff must additionally wait for processes
+// running from the install's venv interpreter, and force-kill them when they
+// are still there at the deadline.
+//
+// The kill is scoped strictly to executables under THIS install's venv
+// interpreter directory (`<install>/venv/Scripts`). It never touches other
+// installs, other pythons, or the machine at large.
+
+/// How long the handoff waits for venv-interpreter processes to disappear on
+/// their own before it force-kills them.
+const VENV_HOLDER_WAIT: Duration = Duration::from_secs(15);
+/// Poll interval for the venv-holder wait.
+const VENV_HOLDER_POLL: Duration = Duration::from_millis(400);
+/// Grace period after a force-kill before the holders are re-probed.
+const VENV_HOLDER_KILL_GRACE: Duration = Duration::from_millis(400);
+/// How many force-kill rounds we allow (a supervisor may respawn the child).
+const VENV_HOLDER_KILL_ROUNDS: usize = 2;
+
+/// A process running from this install's venv interpreter.
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct VenvHolder {
+    pid: u32,
+    exe: String,
+}
+
+/// What the venv-holder wait did.
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub(crate) struct VenvHolderOutcome {
+    /// PIDs that were force-killed.
+    killed: Vec<u32>,
+    /// PIDs still alive when we stopped waiting.
+    remaining: Vec<u32>,
+}
+
+/// Wait for processes running from this install's venv interpreter to go away,
+/// then force-kill the survivors (scoped to that venv only) so `openamer
+/// update` cannot be aborted by the desktop's own backend.
+pub(crate) async fn wait_for_venv_holders_free(
+    install_root: &Path,
+    app: &AppHandle,
+    stage: &str,
+) -> VenvHolderOutcome {
+    let scripts_dir = venv_bin_dir(install_root);
+    let outcome = wait_for_venv_holders_free_with(
+        || venv_holders(&scripts_dir),
+        |holders| force_kill_venv_holders(holders),
+        VENV_HOLDER_WAIT,
+        VENV_HOLDER_POLL,
+    )
+    .await;
+
+    if !outcome.killed.is_empty() {
+        emit_log(
+            app,
+            Some(stage),
+            LogStream::Stdout,
+            &format!(
+                "[handoff] force-killed {} process(es) still running from this install's venv: {:?}",
+                outcome.killed.len(),
+                outcome.killed
+            ),
+        );
+    }
+    if !outcome.remaining.is_empty() {
+        emit_log(
+            app,
+            Some(stage),
+            LogStream::Stderr,
+            &format!(
+                "[handoff] venv processes still alive after force-kill: {:?}",
+                outcome.remaining
+            ),
+        );
+    }
+    outcome
+}
+
+/// The wait itself, with the probe and the kill injected so the sequencing is
+/// unit-testable without touching real processes.
+async fn wait_for_venv_holders_free_with<P, K>(
+    mut probe: P,
+    mut kill: K,
+    timeout: Duration,
+    poll: Duration,
+) -> VenvHolderOutcome
+where
+    P: FnMut() -> Vec<VenvHolder>,
+    K: FnMut(&[VenvHolder]),
+{
+    let deadline = Instant::now() + timeout;
+    loop {
+        let holders = probe();
+        if holders.is_empty() {
+            return VenvHolderOutcome::default();
+        }
+        if Instant::now() >= deadline {
+            // Deadline reached: the holders are not going away on their own
+            // (a dying desktop backend whose supervisor keeps respawning it,
+            // or an orphaned venv python that keeps serving). Kill them —
+            // scoped to this install's venv — and give the OS a beat.
+            let mut killed: Vec<u32> = Vec::new();
+            let mut remaining: Vec<u32> = holders.iter().map(|h| h.pid).collect();
+            for _ in 0..VENV_HOLDER_KILL_ROUNDS {
+                let current = probe();
+                if current.is_empty() {
+                    remaining.clear();
+                    break;
+                }
+                kill(&current);
+                killed.extend(current.iter().map(|h| h.pid));
+                tokio::time::sleep(VENV_HOLDER_KILL_GRACE).await;
+                remaining = probe().into_iter().map(|h| h.pid).collect();
+                if remaining.is_empty() {
+                    break;
+                }
+            }
+            let mut unique_killed: Vec<u32> = Vec::new();
+            for pid in killed {
+                if !unique_killed.contains(&pid) {
+                    unique_killed.push(pid);
+                }
+            }
+            return VenvHolderOutcome {
+                killed: unique_killed,
+                remaining,
+            };
+        }
+        tokio::time::sleep(poll).await;
+    }
+}
+
+/// Every process whose executable lives under `scripts_dir` (this install's
+/// venv interpreter directory), except ourselves.
+fn venv_holders(scripts_dir: &Path) -> Vec<VenvHolder> {
+    select_venv_holders(&list_process_executables(), scripts_dir, std::process::id())
+}
+
+/// Pure selection: keep the entries whose executable is under `scripts_dir`.
+fn select_venv_holders(
+    entries: &[(u32, String)],
+    scripts_dir: &Path,
+    self_pid: u32,
+) -> Vec<VenvHolder> {
+    entries
+        .iter()
+        .filter(|(pid, _)| *pid != self_pid)
+        .filter(|(_, exe)| exe_is_under_dir(exe, scripts_dir))
+        .map(|(pid, exe)| VenvHolder {
+            pid: *pid,
+            exe: exe.clone(),
+        })
+        .collect()
+}
+
+/// Whether an executable path lives under `dir` (and is not `dir` itself).
+///
+/// On Windows the comparison is case-insensitive (the filesystem is), and it
+/// is component-wise so `…\venv\Scripts2\python.exe` does NOT count as being
+/// under `…\venv\Scripts`.
+fn exe_is_under_dir(exe: &str, dir: &Path) -> bool {
+    let dir_norm = normalized_for_compare(dir);
+    let exe_norm = normalized_for_compare(Path::new(exe));
+    if exe_norm.len() <= dir_norm.len() || !exe_norm.starts_with(&dir_norm) {
+        return false;
+    }
+    // Component-wise: the next character must be a separator, so
+    // `…\venv\Scripts2\python.exe` is NOT under `…\venv\Scripts`.
+    exe_norm[dir_norm.len()..].starts_with('\\')
+}
+
+/// Normalize a path for prefix comparison (case-folded on Windows).
+fn normalized_for_compare(path: &Path) -> String {
+    let raw = path.to_string_lossy().replace('/', "\\");
+    let raw = raw.trim_end_matches('\\').to_string();
+    if cfg!(target_os = "windows") {
+        raw.to_lowercase()
+    } else {
+        raw
+    }
+}
+
+/// Force-kill the given venv-interpreter processes (and their children).
+fn force_kill_venv_holders(holders: &[VenvHolder]) {
+    for holder in holders {
+        if holder.pid == std::process::id() {
+            continue;
+        }
+        kill_process_tree(holder.pid);
+    }
+}
+
+#[cfg(target_os = "windows")]
+fn kill_process_tree(pid: u32) {
+    // /T kills the children too (a backend that spawned helpers), /F forces.
+    let _ = std::process::Command::new("taskkill")
+        .args(["/F", "/T", "/PID", &pid.to_string()])
+        .stdout(std::process::Stdio::null())
+        .stderr(std::process::Stdio::null())
+        .status();
+}
+
+#[cfg(not(target_os = "windows"))]
+fn kill_process_tree(pid: u32) {
+    let _ = std::process::Command::new("kill")
+        .args(["-9", &pid.to_string()])
+        .stdout(std::process::Stdio::null())
+        .stderr(std::process::Stdio::null())
+        .status();
+}
+
+/// List `(pid, executable path)` for every process we are allowed to see.
+#[cfg(target_os = "windows")]
+fn list_process_executables() -> Vec<(u32, String)> {
+    use windows_sys::Win32::Foundation::{CloseHandle, INVALID_HANDLE_VALUE};
+    use windows_sys::Win32::System::Diagnostics::ToolHelp::{
+        CreateToolhelp32Snapshot, Process32FirstW, Process32NextW, PROCESSENTRY32W,
+        TH32CS_SNAPPROCESS,
+    };
+
+    unsafe {
+        let snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+        if snapshot == INVALID_HANDLE_VALUE {
+            return Vec::new();
+        }
+        let mut out: Vec<(u32, String)> = Vec::new();
+        let mut entry: PROCESSENTRY32W = std::mem::zeroed();
+        entry.dwSize = std::mem::size_of::<PROCESSENTRY32W>() as u32;
+        if Process32FirstW(snapshot, &mut entry) != 0 {
+            loop {
+                if let Some(exe) = process_exe_path(entry.th32ProcessID) {
+                    out.push((entry.th32ProcessID, exe));
+                }
+                if Process32NextW(snapshot, &mut entry) == 0 {
+                    break;
+                }
+            }
+        }
+        CloseHandle(snapshot);
+        out
+    }
+}
+
+/// Full image path of a process, or None when we may not ask (protected
+/// processes, races, or a process that exited between snapshot and query).
+#[cfg(target_os = "windows")]
+fn process_exe_path(pid: u32) -> Option<String> {
+    use windows_sys::Win32::Foundation::CloseHandle;
+    use windows_sys::Win32::System::Threading::{
+        OpenProcess, QueryFullProcessImageNameW, PROCESS_NAME_WIN32,
+        PROCESS_QUERY_LIMITED_INFORMATION,
+    };
+
+    unsafe {
+        let handle = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, 0, pid);
+        if handle.is_null() {
+            return None;
+        }
+        let mut buffer = vec![0u16; 32768];
+        let mut len = buffer.len() as u32;
+        let ok = QueryFullProcessImageNameW(
+            handle,
+            PROCESS_NAME_WIN32,
+            buffer.as_mut_ptr(),
+            &mut len,
+        );
+        CloseHandle(handle);
+        if ok == 0 {
+            return None;
+        }
+        Some(String::from_utf16_lossy(&buffer[..len as usize]))
+    }
+}
+
+/// Linux exposes the image path as a symlink; other POSIX systems do not, so
+/// the probe degrades to "no holders" there (the venv interpreter on macOS
+/// resolves outside the venv anyway, so the guard never fires).
+#[cfg(target_os = "linux")]
+fn list_process_executables() -> Vec<(u32, String)> {
+    let mut out = Vec::new();
+    let Ok(entries) = std::fs::read_dir("/proc") else {
+        return out;
+    };
+    for entry in entries.flatten() {
+        let name = entry.file_name();
+        let Some(pid) = name.to_str().and_then(|s| s.parse::<u32>().ok()) else {
+            continue;
+        };
+        let link = entry.path().join("exe");
+        if let Ok(target) = std::fs::read_link(&link) {
+            out.push((pid, target.to_string_lossy().into_owned()));
+        }
+    }
+    out
+}
+
+#[cfg(not(any(target_os = "windows", target_os = "linux")))]
+fn list_process_executables() -> Vec<(u32, String)> {
+    Vec::new()
 }
 
 /// Best-effort lock probe: try to open the file for read+write. On Windows an
@@ -1333,6 +1659,264 @@ mod tests {
         assert_eq!(
             target_app_from_args(["--target-app", "/tmp/not-an-app"]),
             None
+        );
+    }
+
+    // ---- venv-interpreter holder guard -----------------------------------
+    //
+    // The updater used to probe only the venv openamer.exe shim and the
+    // packaged app.asar. The desktop's own backend
+    // (`venv\Scripts\python.exe -m openamer_cli.main ... serve`) holds the
+    // venv's native extensions, so `openamer update` aborted with exit 2
+    // ("Other OpenAmer processes are running from this install's venv").
+    // These tests pin the new behaviour: the handoff must detect holders
+    // running from the install's venv interpreter, wait for them, and kill
+    // the survivors — and ONLY those.
+
+    #[test]
+    fn venv_holder_selection_covers_the_interpreter_not_just_the_shim() {
+        let root = Path::new("/x/openamer-agent");
+        let scripts = venv_bin_dir(root);
+        let python = scripts.join("python.exe");
+        let shim = venv_openamer(root);
+
+        let entries = vec![
+            (10u32, python.to_string_lossy().into_owned()),
+            (11u32, shim.to_string_lossy().into_owned()),
+            (12u32, "/x/other-install/venv/Scripts/python.exe".to_string()),
+            (13u32, "/usr/bin/python3".to_string()),
+            (14u32, "/x/openamer-agent/venv/Lib/site-packages/x.dll".to_string()),
+        ];
+
+        let holders = select_venv_holders(&entries, &scripts, 999);
+        let pids: Vec<u32> = holders.iter().map(|h| h.pid).collect();
+
+        assert!(
+            pids.contains(&10),
+            "the venv interpreter itself must be detected as a holder"
+        );
+        assert!(
+            pids.contains(&11),
+            "the venv shim stays in scope too"
+        );
+        assert!(
+            !pids.contains(&12),
+            "another install's venv must never be touched"
+        );
+        assert!(
+            !pids.contains(&13),
+            "an unrelated python must never be touched"
+        );
+        assert!(
+            !pids.contains(&14),
+            "a file inside the venv that is not the interpreter dir is out of scope"
+        );
+    }
+
+    #[test]
+    fn venv_holder_selection_never_selects_our_own_process() {
+        let root = Path::new("/x/openamer-agent");
+        let scripts = venv_bin_dir(root);
+        let entries = vec![(4242u32, scripts.join("python.exe").to_string_lossy().into_owned())];
+
+        let holders = select_venv_holders(&entries, &scripts, 4242);
+        assert!(
+            holders.is_empty(),
+            "the updater must not select (and kill) its own process"
+        );
+    }
+
+    #[test]
+    fn venv_holder_scope_is_component_wise_and_case_insensitive_on_windows() {
+        let dir = Path::new("/x/openamer-agent/venv/Scripts");
+        assert!(exe_is_under_dir("/x/openamer-agent/venv/Scripts/python.exe", dir));
+        assert!(!exe_is_under_dir("/x/openamer-agent/venv/Scripts2/python.exe", dir));
+        assert!(!exe_is_under_dir("/x/openamer-agent/venv/Scripts", dir));
+        assert!(!exe_is_under_dir("/x/openamer-agent/venv/bin/python", dir));
+
+        if cfg!(target_os = "windows") {
+            assert!(
+                exe_is_under_dir(r"C:\Install\venv\Scripts\PYTHON.EXE", Path::new(r"c:\install\venv\scripts")),
+                "Windows paths compare case-insensitively"
+            );
+        }
+    }
+
+    #[tokio::test]
+    async fn venv_holder_wait_returns_immediately_when_nothing_holds_the_venv() {
+        let mut probes = 0usize;
+        let mut killed: Vec<u32> = Vec::new();
+        let outcome = wait_for_venv_holders_free_with(
+            || {
+                probes += 1;
+                Vec::new()
+            },
+            |holders| killed.extend(holders.iter().map(|h| h.pid)),
+            Duration::from_secs(5),
+            Duration::from_millis(10),
+        )
+        .await;
+
+        assert_eq!(probes, 1, "a free venv must be detected on the first probe");
+        assert!(outcome.killed.is_empty());
+        assert!(outcome.remaining.is_empty());
+        assert!(killed.is_empty(), "nothing must be killed when nothing holds the venv");
+    }
+
+    #[tokio::test]
+    async fn venv_holder_wait_kills_the_backend_that_refuses_to_die() {
+        // Simulates the desktop supervisor respawning its backend: the holder
+        // stays alive until it is killed.
+        let alive = std::sync::Arc::new(std::sync::atomic::AtomicBool::new(true));
+        let alive_probe = alive.clone();
+        let mut killed: Vec<u32> = Vec::new();
+
+        let outcome = wait_for_venv_holders_free_with(
+            || {
+                if alive_probe.load(std::sync::atomic::Ordering::SeqCst) {
+                    vec![VenvHolder {
+                        pid: 4711,
+                        exe: "/x/openamer-agent/venv/Scripts/python.exe".to_string(),
+                    }]
+                } else {
+                    Vec::new()
+                }
+            },
+            |holders| {
+                killed.extend(holders.iter().map(|h| h.pid));
+                alive.store(false, std::sync::atomic::Ordering::SeqCst);
+            },
+            Duration::from_millis(120),
+            Duration::from_millis(20),
+        )
+        .await;
+
+        assert!(
+            killed.contains(&4711),
+            "the venv holder must be force-killed at the deadline, not merely reported"
+        );
+        assert_eq!(outcome.killed, vec![4711]);
+        assert!(
+            outcome.remaining.is_empty(),
+            "no holder may remain once the kill landed"
+        );
+    }
+
+    #[tokio::test]
+    async fn venv_holder_wait_kills_again_when_a_supervisor_respawns_the_backend() {
+        // Models the real failure: the Electron supervisor respawns its
+        // backend within ~1s, so killing the first one is not enough — the
+        // respawned backend must be killed too, or `openamer update` still
+        // aborts with exit 2.
+        let alive = std::sync::Arc::new(std::sync::Mutex::new(vec![100u32]));
+        let alive_probe = alive.clone();
+        let respawns = std::sync::Arc::new(std::sync::Mutex::new(0usize));
+
+        let mut killed: Vec<u32> = Vec::new();
+        let outcome = wait_for_venv_holders_free_with(
+            || {
+                let pids = alive_probe.lock().unwrap().clone();
+                pids
+                    .into_iter()
+                    .map(|pid| VenvHolder {
+                        pid,
+                        exe: "/x/openamer-agent/venv/Scripts/python.exe".to_string(),
+                    })
+                    .collect()
+            },
+            |holders| {
+                let mut alive = alive.lock().unwrap();
+                for holder in holders {
+                    killed.push(holder.pid);
+                    alive.retain(|pid| *pid != holder.pid);
+                    // The supervisor brings the backend back exactly once
+                    // (the desktop is quitting, so it cannot respawn forever).
+                    let mut respawns = respawns.lock().unwrap();
+                    if *respawns < 1 {
+                        *respawns += 1;
+                        let respawned = holder.pid + 100;
+                        alive.push(respawned);
+                    }
+                }
+            },
+            Duration::from_millis(50),
+            Duration::from_millis(10),
+        )
+        .await;
+
+        assert!(
+            killed.contains(&100) && killed.contains(&200),
+            "both the original and the respawned backend must be killed, got {killed:?}"
+        );
+        assert!(
+            outcome.remaining.is_empty(),
+            "a respawned holder must not survive the handoff"
+        );
+    }
+
+    #[tokio::test]
+    async fn venv_holder_wait_reports_holders_that_survive_the_kill() {
+        let mut killed: Vec<u32> = Vec::new();
+        let outcome = wait_for_venv_holders_free_with(
+            || {
+                vec![VenvHolder {
+                    pid: 900,
+                    exe: "/x/openamer-agent/venv/Scripts/python.exe".to_string(),
+                }]
+            },
+            |holders| killed.extend(holders.iter().map(|h| h.pid)),
+            Duration::from_millis(50),
+            Duration::from_millis(10),
+        )
+        .await;
+
+        assert_eq!(killed, vec![900, 900], "the kill is retried once");
+        assert_eq!(
+            outcome.remaining,
+            vec![900],
+            "a holder that survives the kill must be reported, not silently ignored"
+        );
+    }
+
+    #[test]
+    fn handoff_waits_for_venv_holders_before_running_the_update() {
+        // The handoff stage must run the venv-holder wait BEFORE the update
+        // command is spawned. Pin the ordering in the source so a future
+        // refactor cannot move the wait after `openamer update` again.
+        let src = include_str!("update.rs");
+        let wait_pos = src
+            .find("wait_for_venv_holders_free(&install_root, &app, \"handoff\")")
+            .expect("the handoff must wait for venv holders");
+        let update_pos = src
+            .find("let mut update = run_streamed(")
+            .expect("the update command must still be spawned");
+        assert!(
+            wait_pos < update_pos,
+            "the venv-holder wait must happen before `openamer update` starts"
+        );
+    }
+
+    #[cfg(target_os = "windows")]
+    #[test]
+    fn process_exe_path_resolves_our_own_interpreter() {
+        // Proves the Win32 probe actually works (a broken probe would make the
+        // guard a no-op and silently reintroduce the exit-2 abort).
+        let exe = process_exe_path(std::process::id()).expect("own exe path must resolve");
+        assert!(
+            exe.to_lowercase().ends_with(".exe"),
+            "unexpected exe path: {exe}"
+        );
+    }
+
+    #[cfg(target_os = "windows")]
+    #[test]
+    fn venv_holders_probe_finds_nothing_outside_the_install_venv() {
+        // The live machine may have venv pythons running, but never under this
+        // (nonexistent) install root — the probe must report zero holders.
+        let root = Path::new("/nonexistent/openamer-agent-venv-holder-probe");
+        assert!(
+            venv_holders(&venv_bin_dir(root)).is_empty(),
+            "a bogus install root must never match a live process"
         );
     }
 
