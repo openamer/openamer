@@ -33,13 +33,14 @@ def _glued_buf():
 def _parse(buf):
     """Records that a loader would actually recover (bad lines dropped)."""
     out = []
-    for line in open(buf, encoding="utf-8"):
-        if not line.strip():
-            continue
-        try:
-            out.append(json.loads(line))
-        except Exception:
-            pass
+    with open(buf, encoding="utf-8") as _fh:
+        for line in _fh:
+            if not line.strip():
+                continue
+            try:
+                out.append(json.loads(line))
+            except Exception:
+                pass
     return out
 
 
@@ -49,7 +50,8 @@ def test_glued_records_lose_both_before_repair():
 
 
 def test_scan_flags_the_glued_line():
-    raw = open(_glued_buf(), "rb").read().decode("utf-8")  # windows-footgun: ok (encoding on the next line)
+    with open(_glued_buf(), "rb") as _fh1:
+        raw = _fh1.read().decode("utf-8")  # windows-footgun: ok (encoding on the next line)
     assert rb.scan(raw) == [0]
 
 
@@ -59,7 +61,8 @@ def test_scan_is_clean_on_wellformed_buffer():
     with open(buf, "wb") as f:
         for i in range(3):
             f.write((json.dumps({"u": f"q{i}", "a": "x"}) + "\r\n").encode("utf-8"))
-    assert rb.scan(open(buf, "rb").read().decode("utf-8")) == []
+    with open(buf, "rb") as _fh2:
+        assert rb.scan(_fh2.read().decode("utf-8")) == []
 
 
 def test_fix_recovers_both_records_and_backs_up():
@@ -78,9 +81,11 @@ def test_fix_is_idempotent():
     sys.argv = ["repair_buffer.py", "--fix"]
     rb.BUF = buf
     rb.main()
-    before = open(buf, "rb").read()
+    with open(buf, "rb") as _fh3:
+        before = _fh3.read()
     assert rb.main() == 0  # nothing to repair -> clean exit
-    assert open(buf, "rb").read() == before
+    with open(buf, "rb") as _fh4:
+        assert _fh4.read() == before
 
 def _blankbuf():
     """The 21.09.26 symptom: a blank separator between every record."""
@@ -97,7 +102,8 @@ def _blankbuf():
 
 def test_scan_blanks_flags_separator_lines():
     buf = _blankbuf()
-    raw = open(buf, "rb").read().decode("utf-8")
+    with open(buf, "rb") as _fh5:
+        raw = _fh5.read().decode("utf-8")
     assert rb.scan(raw) == []          # no glue
     assert rb.scan_blanks(raw) == [1, 3, 5]
 
@@ -105,7 +111,8 @@ def test_scan_blanks_flags_separator_lines():
 def test_blank_lines_are_not_counted_as_records():
     """The bug's root: a naive every-physical-line loader sees blanks as data."""
     buf = _blankbuf()
-    raw = open(buf, "rb").read().decode("utf-8")
+    with open(buf, "rb") as _fh6:
+        raw = _fh6.read().decode("utf-8")
     records, bad = rb._parse(raw)
     assert [r["u"] for r in records] == ["q0", "q1", "q2"]
     assert bad == 0
@@ -116,7 +123,8 @@ def test_fix_removes_blank_separators_and_keeps_records():
     sys.argv = ["repair_buffer.py", "--fix"]
     rb.BUF = buf
     assert rb.main() == 0
-    raw2 = open(buf, "rb").read().decode("utf-8")
+    with open(buf, "rb") as _fh7:
+        raw2 = _fh7.read().decode("utf-8")
     assert rb.scan_blanks(raw2) == []
     assert [r["u"] for r in _parse(buf)] == ["q0", "q1", "q2"]
     d = os.path.dirname(buf)
@@ -129,11 +137,13 @@ def test_fix_refuses_to_write_when_nothing_parses():
     buf = os.path.join(d, "online_buffer.jsonl")
     with open(buf, "wb") as f:
         f.write(b"not json at all" + bytes((13, 10, 13, 10)))
-    before = open(buf, "rb").read()
+    with open(buf, "rb") as _fh8:
+        before = _fh8.read()
     sys.argv = ["repair_buffer.py", "--fix"]
     rb.BUF = buf
     assert rb.main() == 3
-    assert open(buf, "rb").read() == before
+    with open(buf, "rb") as _fh9:
+        assert _fh9.read() == before
 
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]

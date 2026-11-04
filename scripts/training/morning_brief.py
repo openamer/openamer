@@ -43,8 +43,9 @@ def _world_model():
 
 def _night_insights(n=3):
     try:
-        lines = open(os.path.join(_HOME, "scripts", "training", "internet_learn_log.jsonl"),  # windows-footgun: ok (encoding on the next line)
-                     encoding="utf-8").readlines()[-n:]
+        with open(os.path.join(_HOME, "scripts", "training", "internet_learn_log.jsonl"),  # windows-footgun: ok (encoding on the next line)
+                     encoding="utf-8") as _fh:
+            lines = _fh.readlines()[-n:]
         out = []
         for l in reversed(lines):  # newest first
             try:
@@ -64,7 +65,8 @@ def _diary_today():
         day = datetime.date.today().isoformat()
         p = os.path.join(_HOME, "memory", "diary", f"{day}.md")
         if os.path.exists(p):
-            body = open(p, encoding="utf-8").read()
+            with open(p, encoding="utf-8") as _fh1:
+                body = _fh1.read()
             # first prose line after the title
             for line in body.splitlines()[1:]:
                 if line.strip() and not line.startswith("#") and not line.startswith("*"):
@@ -79,9 +81,10 @@ def _diary_yesterday():
         y = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
         p = os.path.join(_HOME, "memory", "diary", f"{y}.md")
         if os.path.exists(p):
-            for line in open(p, encoding="utf-8").read().splitlines()[1:]:
-                if line.strip() and not line.startswith(("#", "*", "---")):
-                    return line.strip()[:150]
+            with open(p, encoding="utf-8") as _fh2:
+                for line in _fh2.read().splitlines()[1:]:
+                    if line.strip() and not line.startswith(("#", "*", "---")):
+                        return line.strip()[:150]
     except Exception:
         pass
     return None

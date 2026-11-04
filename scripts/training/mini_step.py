@@ -55,7 +55,8 @@ def main():
     if not BUFFER.exists():
         print(json.dumps({"skipped": "empty buffer"})); return
 
-    lines = open(BUFFER, encoding="utf-8").readlines()
+    with open(BUFFER, encoding="utf-8") as _fh:
+        lines = _fh.readlines()
     batch = [json.loads(l) for l in lines[-2:]]   # newest 2 examples
     if not batch:
         print(json.dumps({"skipped": "no examples"})); return

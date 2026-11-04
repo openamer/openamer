@@ -8,8 +8,8 @@ T = os.path.join(
     os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")),
     "scripts", "training")
 
-rows = [json.loads(l) for l in open(
-    os.path.join(T, "internet_learn_log.jsonl"), encoding="utf-8") if l.strip()]
+with open(os.path.join(T, "internet_learn_log.jsonl"), encoding="utf-8") as _fh:
+    rows = [json.loads(l) for l in _fh if l.strip()]
 
 print("total logged cycles:", len(rows))
 

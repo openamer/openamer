@@ -183,9 +183,10 @@ def _llm_reflection(day: str, rows) -> str | None:
 
 def _openrouter_key():
     try:
-        for line in open(os.path.join(_HOME, ".env"), encoding="utf-8"):
-            if line.startswith("OPENROUTER_API_KEY"):
-                return line.split("=", 1)[1].strip().strip('"')
+        with open(os.path.join(_HOME, ".env"), encoding="utf-8") as _fh:
+            for line in _fh:
+                if line.startswith("OPENROUTER_API_KEY"):
+                    return line.split("=", 1)[1].strip().strip('"')
     except Exception:
         pass
     return ""

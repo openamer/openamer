@@ -253,6 +253,10 @@ def _watch_singleton_lock():
     except Exception:
         lock_path = home / "session_to_brain.watch.lock"
     try:
+        # The lock is tied to the open file descriptor: msvcrt.locking /
+        # fcntl.flock operate on the fd, so the handle has to stay open for
+        # the lifetime of the lock. The caller closes it. Ruff's SIM115
+        # cannot see that the descriptor carries the lock.
         fh = open(lock_path, "a+", encoding="utf-8")
         if _os.name == "nt":
             import msvcrt

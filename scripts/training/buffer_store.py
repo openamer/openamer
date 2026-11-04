@@ -5132,16 +5132,17 @@ def _is_duplicate(rec, buf):
     over-weights that one example. Added 11.09.26 (vLLM doc seen 3x live)."""
     try:
         target = (rec.get("u", ""), rec.get("a", ""))
-        for line in open(buf, encoding="utf-8"):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                d = json.loads(line)
-            except Exception:
-                continue
-            if (d.get("u", ""), d.get("a", "")) == target:
-                return True
+        with open(buf, encoding="utf-8") as _fh:
+            for line in _fh:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    d = json.loads(line)
+                except Exception:
+                    continue
+                if (d.get("u", ""), d.get("a", "")) == target:
+                    return True
     except FileNotFoundError:
         return False
     return False
@@ -5187,7 +5188,8 @@ def enforce_cap(buffer=None, max_buf=None):
     buf = Path(buffer or DEFAULT_BUFFER)
     cap = int(max_buf or MAX_BUF)
     try:
-        lines = open(buf, encoding="utf-8").readlines()
+        with open(buf, encoding="utf-8") as _fh1:
+            lines = _fh1.readlines()
         if len(lines) > cap:
             tmp = buf.with_suffix(buf.suffix + ".tmp")
             with open(tmp, "w", encoding="utf-8") as f:

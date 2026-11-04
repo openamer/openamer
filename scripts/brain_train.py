@@ -92,7 +92,8 @@ def cmd_dataset(args) -> int:
             f.write(json.dumps({"messages": r.get("messages", [])}, ensure_ascii=False) + "\n")
     print(f"✓ Dataset written: {TRAIN_JSONL} ({len(rows)} samples)")
     # validate parse
-    n = sum(1 for _ in open(TRAIN_JSONL, encoding="utf-8"))
+    with open(TRAIN_JSONL, encoding="utf-8") as _fh:
+        n = sum(1 for _ in _fh)
     print(f"  valid JSONL lines: {n}")
     return 0
 
@@ -114,7 +115,8 @@ def cmd_train(args) -> int:
 
 def _train_smoke():
     print("  [smoke] loading first 4 samples")
-    rows = [json.loads(l) for l in open(TRAIN_JSONL, encoding="utf-8")][:4]
+    with open(TRAIN_JSONL, encoding="utf-8") as _fh1:
+        rows = [json.loads(l) for l in _fh1][:4]
     print(f"  [smoke] shape ok — {len(rows)} samples, roles: "
           + ", ".join(sorted({m.get("role","?") for r in rows for m in r["messages"]})))
     # No real model on CPU; we just confirm the pipeline + data shape are correct.

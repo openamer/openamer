@@ -193,6 +193,8 @@ def vision_describe(image_path: str) -> dict:
         # Base64-Thumbnail (klein) für Weiterverarbeitung
         thumb = img.copy()
         thumb.thumbnail((320, 240))
+        # The handle is closed explicitly a few lines below (buf.close()).
+        # Ruff's SIM115 cannot see that, so it reports this as a leak.
         buf = tempfile.SpooledTemporaryFile()
         thumb.save(buf, format="PNG")
         buf.seek(0)

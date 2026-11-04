@@ -328,7 +328,8 @@ def get_next_action():
     """Round-robin through actions."""
     n = 0
     if os.path.exists(ROTATION_FILE):
-        n = int(open(ROTATION_FILE, encoding="utf-8").read().strip() or 0)
+        with open(ROTATION_FILE, encoding="utf-8") as _fh:
+            n = int(_fh.read().strip() or 0)
     action = ACTIONS[n % len(ACTIONS)]
     with open(ROTATION_FILE, "w", encoding="utf-8") as f:
         f.write(str(n + 1))

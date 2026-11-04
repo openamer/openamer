@@ -33,13 +33,14 @@ def _py_files():
 def test_no_hardcoded_paths():
     offenders = []
     for path in _py_files():
-        for i, line in enumerate(open(path, encoding="utf-8"), 1):
-            if HARDCODED.search(line):
-                # allow the OPENAMER_HOME fallback default (it's a portable
-                # default, not a hardcoded machine path)
-                if "OPENAMER_HOME" in line or "pathlib.Path.home()" in line:
-                    continue
-                offenders.append(f"{os.path.basename(path)}:{i}: {line.strip()[:80]}")
+        with open(path, encoding="utf-8") as _fh:
+            for i, line in enumerate(_fh, 1):
+                if HARDCODED.search(line):
+                    # allow the OPENAMER_HOME fallback default (it's a portable
+                    # default, not a hardcoded machine path)
+                    if "OPENAMER_HOME" in line or "pathlib.Path.home()" in line:
+                        continue
+                    offenders.append(f"{os.path.basename(path)}:{i}: {line.strip()[:80]}")
     assert not offenders, (
         "hardcoded user paths leaked into repo training scripts:\n"
         + "\n".join(offenders)

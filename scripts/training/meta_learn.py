@@ -217,9 +217,10 @@ if __name__ == "__main__":
             "error_patterns": s["error_patterns"],
         }, indent=1))
     elif len(sys.argv) > 1 and sys.argv[1] == "lessons":
-        for line in open(LESSONS, encoding="utf-8"):
-            d = json.loads(line)
-            print(f"  {d['ts'][:16]}: {d['lesson']}")
+        with open(LESSONS, encoding="utf-8") as _fh:
+            for line in _fh:
+                d = json.loads(line)
+                print(f"  {d['ts'][:16]}: {d['lesson']}")
     else:
         # demo run
         print("=== META-LEARNING DEMO ===")

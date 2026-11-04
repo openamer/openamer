@@ -57,7 +57,8 @@ def validate_predictions():
     """
     if not os.path.exists(WM):
         return {"error": "no world model"}
-    lines = open(WM, encoding="utf-8").readlines()
+    with open(WM, encoding="utf-8") as _fh:
+        lines = _fh.readlines()
 
     predictions = []
     facts = []
@@ -192,14 +193,15 @@ def validate_predictions():
         # also check learning buffer for related events
         buf_path = os.path.join(T, "online_buffer.jsonl")
         if os.path.exists(buf_path) and not matched:
-            for line in open(buf_path, encoding="utf-8").readlines()[-50:]:
-                try:
-                    d = json.loads(line)
-                except Exception:
-                    continue
-                if predicted_text[:30] in d.get("a", "").lower():
-                    matched = True
-                    break
+            with open(buf_path, encoding="utf-8") as _fh1:
+                for line in _fh1.readlines()[-50:]:
+                    try:
+                        d = json.loads(line)
+                    except Exception:
+                        continue
+                    if predicted_text[:30] in d.get("a", "").lower():
+                        matched = True
+                        break
 
         # score: did the prediction hold?  unverified is a real outcome —
         # never counted as a win, and never counted as "validation".

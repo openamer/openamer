@@ -31,8 +31,9 @@ def build_weekly() -> str:
     # fitness delta over the week from history
     deltas = []
     if darwin.HISTORY_FILE.exists():
-        entries = [json.loads(l) for l in
-                   open(darwin.HISTORY_FILE, encoding="utf-8") if l.strip()]
+        with open(darwin.HISTORY_FILE, encoding="utf-8") as _fh:
+            entries = [json.loads(l) for l in
+                       _fh if l.strip()]
         week = [e for e in entries
                 if datetime.fromisoformat(e["when"]) >= week_ago]
         if len(week) >= 2:

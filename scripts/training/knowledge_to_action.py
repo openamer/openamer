@@ -148,7 +148,12 @@ def experiment_predict_world():
 def experiment_tune_buffer():
     """Insight from self-improvement: buffer cap tuning. Measure + enforce cap."""
     buf_file = os.path.join(T, "online_buffer.jsonl")
-    n = sum(1 for _ in open(buf_file, encoding="utf-8")) if os.path.exists(buf_file) else 0
+    # The file is only opened when it exists - a ``with`` block cannot be
+    # used inside a conditional expression without making the open eager.
+    n = 0
+    if os.path.exists(buf_file):
+        with open(buf_file, encoding="utf-8") as _fh:
+            n = sum(1 for _ in _fh)
     # Cap is enforced on EVERY append via buffer_store (single source of truth).
     try:
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -194,17 +199,18 @@ def experiment_competitor_gap():
     competitors = []
     buf_file = os.path.join(T, "online_buffer.jsonl")
     if os.path.exists(buf_file):
-        for line in open(buf_file, encoding="utf-8"):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                d = json.loads(line)
-            except Exception:
-                continue
-            text = (d.get("u", "") + " " + d.get("a", "")).lower()
-            if any(k in text for k in signal_keys):
-                competitors.append(d)
+        with open(buf_file, encoding="utf-8") as _fh:
+            for line in _fh:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    d = json.loads(line)
+                except Exception:
+                    continue
+                text = (d.get("u", "") + " " + d.get("a", "")).lower()
+                if any(k in text for k in signal_keys):
+                    competitors.append(d)
     if not competitors:
         return {"action": "competitor gap analysis",
                 "result": "no competitor data yet", "measurable": False}
@@ -389,7 +395,8 @@ def experiment_competitor_gap():
     stats = {"lines": 0, "tool_funcs": 0, "has_tools_pkg": False}
     ts_path = os.path.join(T, "tool_server.py")
     if os.path.exists(ts_path):
-        src = open(ts_path, encoding="utf-8", errors="replace").read()
+        with open(ts_path, encoding="utf-8", errors="replace") as _fh1:
+            src = _fh1.read()
         stats["lines"] = src.count("\n") + 1
         stats["tool_funcs"] = len(re.findall(r"^def t_\w+\(", src, re.M))
         stats["has_tools_pkg"] = os.path.isdir(os.path.join(T, "tools"))
@@ -741,7 +748,8 @@ def kta_cycle():
     rot_file = os.path.join(T, ".kta_rotation")
     n = 0
     if os.path.exists(rot_file):
-        n = int(open(rot_file, encoding="utf-8").read().strip() or 0)
+        with open(rot_file, encoding="utf-8") as _fh2:
+            n = int(_fh2.read().strip() or 0)
     with open(rot_file, "w", encoding="utf-8") as f:
         f.write(str(n + 1))
     # topic hit on the QUESTION wins; the round-robin still

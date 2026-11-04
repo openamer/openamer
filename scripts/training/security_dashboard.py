@@ -24,11 +24,12 @@ PORT = int(os.environ.get("SECURITY_DASH_PORT", "8897"))
 def load_jsonl(path):
     rows = []
     if path.exists():
-        for line in open(path, encoding="utf-8"):
-            try:
-                rows.append(json.loads(line))
-            except Exception:
-                continue
+        with open(path, encoding="utf-8") as _fh:
+            for line in _fh:
+                try:
+                    rows.append(json.loads(line))
+                except Exception:
+                    continue
     return rows
 
 

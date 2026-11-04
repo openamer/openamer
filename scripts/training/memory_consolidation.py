@@ -92,11 +92,12 @@ def _load(path):
     if not os.path.exists(path):
         return []
     out = []
-    for line in open(path, encoding="utf-8"):
-        try:
-            out.append(json.loads(line))
-        except json.JSONDecodeError:
-            continue
+    with open(path, encoding="utf-8") as _fh:
+        for line in _fh:
+            try:
+                out.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
     return out
 
 
