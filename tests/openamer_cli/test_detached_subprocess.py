@@ -49,9 +49,7 @@ def test_spawn_detached_does_not_warn_about_a_running_child():
 
         gc.collect()
 
-    resource_warnings = [
-        w for w in caught if issubclass(w.category, ResourceWarning)
-    ]
+    resource_warnings = [w for w in caught if issubclass(w.category, ResourceWarning)]
     assert not resource_warnings, (
         "detached child leaked a zombie slot: "
         f"{[str(w.message) for w in resource_warnings]}"
