@@ -12257,6 +12257,39 @@ def cmd_update(args):
         _finalize_update_output(_update_io_state)
 
 
+# Windows' taskkill words its "no such process" failure differently per
+# locale. These are the observed variants; the exit code (128) is the
+# locale-independent signal, the wording is the fallback for builds that
+# report a different code.
+_TASKKILL_MISSING_PROCESS_MARKERS = (
+    "wurde nicht gefunden",
+    "nicht gefunden",
+    "not found",
+    "no such process",
+)
+
+
+def _taskkill_reports_missing_process(returncode: int, reason: str) -> bool:
+    """True when a failed ``taskkill`` means "the PID does not exist".
+
+    Windows' taskkill exits 128 with a localized "process not found"
+    message for a PID that is already gone. The message text varies by
+    locale, so both the wording and the exit code are checked:
+
+    - exit code 128 is taskkill's documented "no such process" code
+    - the message mentions the process not being found, in the common
+      German and English wordings
+
+    A failure like "Access is denied" (exit 1) is a REAL failure — the
+    process is alive and could not be killed — and must keep being
+    reported.
+    """
+    if returncode == 128:
+        return True
+    lowered = reason.lower()
+    return any(marker in lowered for marker in _TASKKILL_MISSING_PROCESS_MARKERS)
+
+
 def _auto_kill_blocking_processes(pids: list[int]) -> tuple[list[int], list[tuple[int, str]]]:
     """Terminate the background processes that block ``openamer update``.
 
@@ -12269,6 +12302,15 @@ def _auto_kill_blocking_processes(pids: list[int]) -> tuple[list[int], list[tupl
     Windows: ``taskkill /PID <pid> /F`` (no clean SIGTERM for console apps).
     Returns ``(killed, failed)`` where ``failed`` is ``(pid, reason)`` pairs.
     Never raises.
+
+    A PID that no longer exists is NOT a failure. The holder detection and
+    the kill are not atomic: a process can exit in between (measured on a
+    live Windows install, 2026-11-04: 9 of 12 PIDs were already gone when
+    taskkill ran). Windows reports that as exit code 128 with a "process not
+    found" message, which used to be filed as a failure — the user then read
+    nine red "could not stop" lines for processes that had long exited, and
+    the successful cleanup looked like a broken updater. The goal ("that
+    process must not be running") is already satisfied in that case.
     """
     killed: list[int] = []
     failed: list[tuple[int, str]] = []
@@ -12282,8 +12324,13 @@ def _auto_kill_blocking_processes(pids: list[int]) -> tuple[list[int], list[tupl
             )
             if result.returncode == 0:
                 killed.append(pid)
-            else:
-                failed.append((pid, (result.stderr or result.stdout or "").strip()))
+                continue
+            reason = (result.stderr or result.stdout or "").strip()
+            if _taskkill_reports_missing_process(result.returncode, reason):
+                # Already gone — the process we wanted to stop is not running.
+                # Not a failure; the desired end state is reached.
+                continue
+            failed.append((pid, reason))
         except (FileNotFoundError, subprocess.TimeoutExpired, OSError) as e:
             failed.append((pid, str(e)))
     return killed, failed

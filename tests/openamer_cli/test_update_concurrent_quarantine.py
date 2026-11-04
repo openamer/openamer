@@ -509,18 +509,27 @@ def test_auto_kill_terminates_all_pids(_winp, monkeypatch):
 
 @patch.object(cli_main, "_is_windows", return_value=True)
 def test_auto_kill_reports_failures(_winp, monkeypatch):
-    """A non-zero taskkill return code is surfaced as a failure, not swallowed."""
+    """A non-zero taskkill return code is surfaced as a failure, not swallowed.
+
+    The failure here is "access denied" — the process is ALIVE and could not
+    be killed, so it genuinely blocks the update. (A PID that no longer
+    exists is NOT a failure; see test_update_autokill_dead_pids.py.)
+    """
 
     def fake_run(cmd, **kwargs):
         if cmd[2] == "222":
-            return SimpleNamespace(returncode=1, stdout="", stderr="not found")
+            return SimpleNamespace(
+                returncode=1, stdout="", stderr="FEHLER: Zugriff verweigert (Access is denied)."
+            )
         return SimpleNamespace(returncode=0, stdout="", stderr="")
 
     monkeypatch.setattr(cli_main.subprocess, "run", fake_run)
     killed, failed = cli_main._auto_kill_blocking_processes([111, 222])
 
     assert killed == [111]
-    assert failed == [(222, "not found")]
+    assert len(failed) == 1
+    assert failed[0][0] == 222
+    assert "denied" in failed[0][1].lower()
 
 
 @patch.object(cli_main, "_is_windows", return_value=True)
