@@ -50,8 +50,8 @@ def test_glued_records_lose_both_before_repair():
 
 
 def test_scan_flags_the_glued_line():
-    with open(_glued_buf(), "rb") as _fh1:
-        raw = _fh1.read().decode("utf-8")  # windows-footgun: ok (encoding on the next line)
+    with open(_glued_buf(), "rb") as _fh1:  # windows-footgun: ok (binary mode; the decode below names the encoding)
+        raw = _fh1.read().decode("utf-8")
     assert rb.scan(raw) == [0]
 
 
