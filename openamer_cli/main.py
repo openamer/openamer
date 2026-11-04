@@ -7388,6 +7388,35 @@ def _kill_stale_dashboard_processes(
 _warn_stale_dashboard_processes = _kill_stale_dashboard_processes
 
 
+def _zip_fallback_eligible(error: subprocess.CalledProcessError) -> bool:
+    """Only source-update transport/I/O failures justify replacing source files."""
+    argv = error.cmd
+    if not isinstance(argv, (list, tuple)) or not argv:
+        return False
+    if Path(str(argv[0]).replace("\\", "/")).name.lower() not in {"git", "git.exe"}:
+        return False
+    tokens = iter(argv[1:])
+    command = None
+    for token in tokens:
+        if token == "-c":
+            next(tokens, None)
+        elif not str(token).startswith("-"):
+            command = token
+            break
+    if command not in {"fetch", "pull", "checkout", "merge", "reset"}:
+        return False
+    diagnostic = " ".join(
+        value.decode("utf-8", "replace") if isinstance(value, bytes) else str(value or "")
+        for value in (error.stderr, error.output)
+    ).lower()
+    return any(message in diagnostic for message in (
+        "could not resolve host", "failed to connect", "could not resolve proxy",
+        "connection reset", "connection timed out", "rpc failed",
+        "invalid argument", "input/output error", "unable to create file",
+        "unable to unlink", "permission denied", "access is denied",
+    ))
+
+
 def _atomic_replace_dir(src: str, dst: str) -> None:
     """Replace directory *dst* with *src* without leaving *dst* half-deleted.
 
@@ -7403,10 +7432,15 @@ def _atomic_replace_dir(src: str, dst: str) -> None:
     """
     staging = f"{dst}.openamer-update-staging"
     backup = f"{dst}.openamer-update-old"
-    # Clear any leftovers from a previously-interrupted update.
+    # An interrupted swap may have moved dst aside without installing staging.
+    # Restore the only live copy BEFORE cleanup or another fallible copy.
+    if os.path.exists(backup) and not os.path.exists(dst):
+        os.rename(backup, dst)
+    # Do not reuse a partially removed/locked sibling. In particular, never
+    # move the live tree onto an old backup that Windows could not remove.
     for leftover in (staging, backup):
         if os.path.exists(leftover):
-            shutil.rmtree(leftover, ignore_errors=True)
+            shutil.rmtree(leftover)
 
     # 1. Stage the new copy. If this fails, dst is untouched.
     shutil.copytree(src, staging)
@@ -14202,7 +14236,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
             sys.exit(1)
 
     except subprocess.CalledProcessError as e:
-        if sys.platform == "win32":
+        if sys.platform == "win32" and _zip_fallback_eligible(e):
             print(f"⚠ Git update failed: {e}")
             print("→ Falling back to ZIP download...")
             print()
