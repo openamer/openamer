@@ -9167,6 +9167,11 @@ def _quarantine_running_openamer_exe(
     attempts = max(1, min(max_attempts, len(backoff_ms)))
 
     for shim in _openamer_exe_shims(scripts_dir):
+        # Keep interpreters in the holder-detection inventory, but never move
+        # them: uv inspects VIRTUAL_ENV/Scripts/python.exe before installing,
+        # and pip may execute it too. Neither installer replaces interpreters.
+        if shim.name.lower() in {"python.exe", "pythonw.exe"}:
+            continue
         if not shim.exists():
             continue
         target = shim.with_suffix(shim.suffix + f".old.{stamp}")
