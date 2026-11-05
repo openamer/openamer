@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-01T17:21:10.303588+00:00",
+  "updated": "2026-11-04T20:39:45.012655+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1240,
+  "total": 1246,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -2823,6 +2823,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-wt-sim115-scripts": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-z-b-torch-import-optional-machen-try": {
       "refs": 0,
       "ok": 0,
@@ -2878,14 +2884,20 @@
       "missing": []
     },
     "bounded-test-verification": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
     "browser-console-transport": {
       "refs": 0,
       "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ci-flake-monotonic-uptime": {
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -3192,8 +3204,8 @@
       "missing": []
     },
     "github-pr-workflow": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -3203,9 +3215,15 @@
       "score": 1.0,
       "missing": []
     },
+    "green-merge-gate": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "pr-branch-assembly": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -6896,8 +6914,8 @@
       "missing": []
     },
     "lan-appliance-api-control": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -6908,8 +6926,8 @@
       "missing": []
     },
     "philips-tv-control": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -6928,6 +6946,12 @@
     "api-drift-recovery": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "ast-guided-lint-refactoring": {
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -7054,6 +7078,12 @@
       "missing": []
     },
     "dogfood": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "electron-e2e-ci-triage": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7239,8 +7269,8 @@
       "missing": []
     },
     "parallel-feature-development": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -7307,8 +7337,8 @@
       "missing": []
     },
     "self-modify": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -7379,6 +7409,12 @@
       "missing": []
     },
     "unquoted-path-in-shell-command": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "upstream-capability-distribution": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7474,10 +7510,12 @@
       "missing": []
     },
     "cron-job-management": {
-      "refs": 1,
+      "refs": 2,
       "ok": 1,
-      "score": 1.0,
-      "missing": []
+      "score": 0.5,
+      "missing": [
+        "launcher.py"
+      ]
     },
     "cron-job-repair": {
       "refs": 8,

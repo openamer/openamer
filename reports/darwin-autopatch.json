@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-10-31T18:20:07",
+  "timestamp": "2026-11-04T21:39:41",
   "mode": "apply",
-  "population": 1229,
-  "avg_score": 38.7,
+  "population": 1246,
+  "avg_score": 39.0,
   "kept": [
     {
       "skill": "auto-internet-learning-metas-new",
@@ -54,33 +54,30 @@
       "fixes": []
     },
     {
-      "skill": "auto-competitor-intelligence-contractmd-the",
+      "skill": "auto-competitor-intelligence-opencode-open",
       "before": 25,
-      "after": 28,
-      "delta": 3,
+      "after": 31,
+      "delta": 6,
       "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
+        "✅ metadata.openamer Block hinzugefügt"
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-crush-glamourous",
+      "skill": "auto-competitor-intelligence-openhands-agent",
       "before": 25,
-      "after": 28,
-      "delta": 3,
+      "after": 31,
+      "delta": 6,
       "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
+        "✅ metadata.openamer Block hinzugefügt"
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-devin-ai",
+      "skill": "auto-competitor-intelligence-pythonopenaichat",
       "before": 25,
-      "after": 28,
-      "delta": 3,
+      "after": 31,
+      "delta": 6,
       "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt"
+        "✅ metadata.openamer Block hinzugefügt"
       ]
     }
   ],
