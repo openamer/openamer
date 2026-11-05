@@ -27,17 +27,17 @@ def test_openai_codex_unknown_but_plausible_model_is_accepted_with_warning():
     """
     with patch(
         "openamer_cli.models.provider_model_ids",
-        return_value=["gpt-5.5", "gpt-5.4", "gpt-5.3-codex"],
+        return_value=["gpt-6.1-sol", "gpt-6-sol", "gpt-6-astra"],
     ):
-        result = validate_requested_model("gpt-5.3-codex-spark", "openai-codex")
+        result = validate_requested_model("gpt-6.1-terra", "openai-codex")
 
     assert result["accepted"] is True
     assert result["persist"] is True
     assert result["recognized"] is False
-    assert "gpt-5.3-codex-spark" in result["message"]
+    assert "gpt-6.1-terra" in result["message"]
     assert "OpenAI Codex model listing" in result["message"]
     assert "Similar models" in result["message"]
-    assert "gpt-5.3-codex" in result["message"]
+    assert "gpt-6.1-sol" in result["message"]
 
 
 def test_switch_model_allows_openai_codex_model_missing_from_listing():
@@ -46,19 +46,19 @@ def test_switch_model_allows_openai_codex_model_missing_from_listing():
     """
     with patch(
         "openamer_cli.models.provider_model_ids",
-        return_value=["gpt-5.5", "gpt-5.4", "gpt-5.3-codex"],
+        return_value=["gpt-6.1-sol", "gpt-6-sol", "gpt-6-astra"],
     ):
         result = switch_model(
-            "gpt-5.3-codex-spark",
+            "gpt-6.1-terra",
             current_provider="openai-codex",
-            current_model="gpt-5.4",
+            current_model="gpt-6-sol",
             current_base_url="",
             current_api_key="",
             user_providers=None,
         )
 
     assert result.success is True
-    assert result.new_model == "gpt-5.3-codex-spark"
+    assert result.new_model == "gpt-6.1-terra"
     assert result.target_provider == "openai-codex"
     assert result.warning_message
     assert "OpenAI Codex model listing" in result.warning_message
