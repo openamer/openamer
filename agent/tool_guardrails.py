@@ -55,6 +55,8 @@ MUTATING_TOOL_NAMES = frozenset(
         "send_message",
         "cronjob",
         "delegate_task",
+        # A workflow fans out to subagents, which can write on our behalf.
+        "workflow",
         "process",
     }
 )

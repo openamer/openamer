@@ -123,8 +123,15 @@ def check(task_id: str, resolved: str) -> Optional[str]:
 
     # A file that changed since the read is a different case: the agent
     # did observe it, but what it saw is no longer on disk.
+    #
+    # Only the *changed* case blocks. A partial read (offset/limit
+    # pagination) is a hint, not a blocker: it would make every targeted
+    # edit of a large file impossible, because reading the whole file to
+    # satisfy the policy is exactly the cost the policy is meant to
+    # avoid. Upstream's policy decider has the same shape — it refuses
+    # unobserved and stale writes, not windowed ones.
     stale = file_state.check_stale(task_id, resolved)
-    if stale:
+    if stale and "was last read with offset/limit pagination" not in stale:
         return (
             f"Read-before-write policy: {resolved} changed since you read "
             f"it. {stale} Re-read the file and apply your change to the "

@@ -284,7 +284,9 @@ class TestResolveToolsetIncludeRegistry:
     def test_get_toolset_include_registry_false_is_static(self):
         ts = get_toolset("delegation", include_registry=False)
         assert ts is not None
-        assert ts["tools"] == ["delegate_task"]
+        # The delegation toolset carries the fixed-batch delegation tool and
+        # the workflow tool, which adds control flow on top of it.
+        assert ts["tools"] == ["delegate_task", "workflow"]
 
     def test_static_view_threads_through_includes(self):
         # 'debugging' has direct tools [terminal, process] and includes [web, file]
