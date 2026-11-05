@@ -7,16 +7,16 @@ from openamer_cli.codex_models import DEFAULT_CODEX_MODELS, get_codex_model_ids
 def test_get_codex_model_ids_prioritizes_default_and_cache(tmp_path, monkeypatch):
     codex_home = tmp_path / "codex-home"
     codex_home.mkdir(parents=True, exist_ok=True)
-    (codex_home / "config.toml").write_text('model = "gpt-5.2-codex"\n')
+    (codex_home / "config.toml").write_text('model = "gpt-6.1-sol"\n')
     (codex_home / "models_cache.json").write_text(
         json.dumps(
             {
                 "models": [
-                    {"slug": "gpt-5.3-codex", "priority": 20, "supported_in_api": True},
-                    {"slug": "gpt-5.3-codex-spark", "priority": 6, "supported_in_api": False},
-                    {"slug": "gpt-5.1-codex", "priority": 5, "supported_in_api": True},
-                    {"slug": "gpt-5.4", "priority": 1, "supported_in_api": True},
-                    {"slug": "gpt-5-hidden-codex", "priority": 2, "visibility": "hidden"},
+                    {"slug": "gpt-6.1-terra", "priority": 20, "supported_in_api": True},
+                    {"slug": "gpt-6-astra", "priority": 6, "supported_in_api": False},
+                    {"slug": "gpt-6-sol", "priority": 5, "supported_in_api": True},
+                    {"slug": "gpt-5.6-sol", "priority": 1, "supported_in_api": True},
+                    {"slug": "gpt-6-hidden-codex", "priority": 2, "visibility": "hidden"},
                 ]
             }
         )
@@ -25,16 +25,15 @@ def test_get_codex_model_ids_prioritizes_default_and_cache(tmp_path, monkeypatch
 
     models = get_codex_model_ids()
 
-    assert models[0] == "gpt-5.2-codex"
-    assert "gpt-5.1-codex" in models
-    assert "gpt-5.3-codex" in models
-    # Codex CLI marks Spark unsupported in the public API, but the Codex
-    # backend still accepts it via the OAuth-backed CLI/OpenAmer route.
-    assert "gpt-5.3-codex-spark" in models
+    assert models[0] == "gpt-6.1-sol"
+    assert "gpt-6-sol" in models
+    assert "gpt-6.1-terra" in models
+    # Codex CLI marks some models unsupported in the public API, but the Codex
+    # backend still accepts them via the OAuth-backed CLI/OpenAmer route.
+    assert "gpt-6-astra" in models
     # Non-codex-suffixed models are included when the cache says they're available
-    assert "gpt-5.4" in models
-    assert "gpt-5.4-mini" in models
-    assert "gpt-5-hidden-codex" not in models
+    assert "gpt-5.6-sol" in models
+    assert "gpt-6-hidden-codex" not in models
 
 
 def test_setup_wizard_codex_import_resolves():
@@ -53,28 +52,28 @@ def test_get_codex_model_ids_falls_back_to_curated_defaults(tmp_path, monkeypatc
     models = get_codex_model_ids()
 
     assert models[: len(DEFAULT_CODEX_MODELS)] == DEFAULT_CODEX_MODELS
-    assert "gpt-5.4" in models
-    assert "gpt-5.3-codex-spark" in models
+    assert "gpt-6.1-sol" in models
+    assert "gpt-6-astra" in models
 
 
 def test_get_codex_model_ids_adds_forward_compat_models_from_templates(monkeypatch):
     monkeypatch.setattr(
         "openamer_cli.codex_models._fetch_models_from_api",
-        lambda access_token: ["gpt-5.3-codex"],
+        lambda access_token: ["gpt-6.1-sol"],
     )
 
     models = get_codex_model_ids(access_token="codex-access-token")
 
-    # When live discovery only returns gpt-5.3-codex, forward-compat synthesis
-    # should surface gpt-5.5, gpt-5.4, gpt-5.4-mini, and gpt-5.3-codex-spark
-    # (each is templated off gpt-5.3-codex).
-    assert models == [
-        "gpt-5.3-codex",
-        "gpt-5.5",
-        "gpt-5.4-mini",
-        "gpt-5.4",
-        "gpt-5.3-codex-spark",
-    ]
+    # Live discovery returns gpt-6.1-sol; forward-compat synthesis surfaces the
+    # other live slugs templated off it.
+    assert models[0] == "gpt-6.1-sol"
+    assert "gpt-6-astra" in models
+    assert "gpt-6-luna" in models
+    assert "gpt-5.6-sol" in models
+    # A retired slug must never be synthesized back into the list.
+    assert "gpt-5.5" not in models
+    assert "gpt-5.4" not in models
+    assert "gpt-5.3-codex-spark" not in models
 
 
 def test_fetch_from_api_keeps_supported_in_api_false_models(monkeypatch):
@@ -188,6 +187,127 @@ def test_fetch_from_api_omits_account_id_header_when_jwt_unparseable(monkeypatch
     assert "ChatGPT-Account-Id" not in captured["headers"]
     assert captured["headers"]["Authorization"] == "Bearer not-a-jwt"
     assert models == []
+
+
+def test_fetch_from_api_requests_unencoded_body(monkeypatch):
+    """The Codex ``/models`` endpoint answers with brotli, and httpx's
+    BrotliDecoder (brotlicffi) raises ``DecodingError: decoder process called
+    with data when 'can_accept_more_data()' is False`` on that payload. The
+    decode error aborts the request, ``_fetch_models_from_api`` swallows it,
+    and the picker silently degrades to the curated fallback list — so the
+    live catalog (gpt-6.1-sol & co.) never reaches the user.
+
+    Asking for an unencoded body sidesteps the decompressor entirely. The
+    catalog is a few kilobytes; the trade is worth the correctness.
+    """
+    import sys
+    from openamer_cli import codex_models
+
+    captured = {}
+
+    class _FakeResp:
+        status_code = 200
+
+        def json(self):
+            return {"models": [{"slug": "gpt-6.1-sol", "priority": 1}]}
+
+    class _FakeHttpx:
+        @staticmethod
+        def get(url, headers=None, timeout=None):
+            captured["headers"] = dict(headers or {})
+            return _FakeResp()
+
+    monkeypatch.setitem(sys.modules, "httpx", _FakeHttpx)
+
+    models = codex_models._fetch_models_from_api(access_token="tok")
+
+    assert captured["headers"].get("Accept-Encoding") == "identity"
+    assert models[0] == "gpt-6.1-sol"
+
+
+def test_fetch_from_api_survives_brotli_decode_error(monkeypatch):
+    """A transport-level decode failure must not masquerade as "no models".
+
+    The old code returned ``[]`` for every exception, which is
+    indistinguishable from "the account has no models" and hid the real
+    cause behind a stale fallback catalog. The probe now reports the failure
+    while still degrading to ``[]`` so the caller keeps working.
+    """
+    import sys
+    from openamer_cli import codex_models
+
+    class _FakeResp:
+        status_code = 200
+
+        def json(self):
+            raise httpx.DecodingError(
+                "brotli: decoder process called with data when "
+                "'can_accept_more_data()' is False"
+            )
+
+    import httpx
+
+    class _FakeHttpx:
+        @staticmethod
+        def get(url, headers=None, timeout=None):
+            return _FakeResp()
+
+    monkeypatch.setitem(sys.modules, "httpx", _FakeHttpx)
+
+    models = codex_models._fetch_models_from_api(access_token="tok")
+
+    assert models == []
+
+
+def test_default_codex_models_contain_no_retired_slugs():
+    """The GPT-5.x Codex line answers HTTP 400 ``model_not_found`` on the
+    ChatGPT Codex backend (verified live 2026-11-05). A retired slug in the
+    fallback list is worse than no entry: the picker offers it, the request
+    fails with HTTP 400, and the turn breaks instead of falling through to a
+    fallback provider (which a quota HTTP 429 would have done).
+    """
+    from openamer_cli.codex_models import DEFAULT_CODEX_MODELS
+
+    retired = {
+        "gpt-5.5",
+        "gpt-5.5-pro",
+        "gpt-5.4",
+        "gpt-5.4-mini",
+        "gpt-5.3-codex",
+        "gpt-5.3-codex-spark",
+    }
+    assert retired.isdisjoint(DEFAULT_CODEX_MODELS)
+    assert "gpt-6.1-sol" in DEFAULT_CODEX_MODELS
+
+
+def test_forward_compat_templates_use_live_slugs_only():
+    """Forward-compat synthesis must not resurrect a retired slug.
+
+    A synthetic model is only offered to the user, but selecting it sends an
+    unknown slug to the backend (HTTP 400). Templates therefore reference
+    live models exclusively.
+    """
+    from openamer_cli.codex_models import (
+        DEFAULT_CODEX_MODELS,
+        _FORWARD_COMPAT_TEMPLATE_MODELS,
+    )
+
+    retired = {
+        "gpt-5.5",
+        "gpt-5.5-pro",
+        "gpt-5.4",
+        "gpt-5.4-mini",
+        "gpt-5.3-codex",
+        "gpt-5.3-codex-spark",
+    }
+    live = set(DEFAULT_CODEX_MODELS)
+    for synthetic, templates in _FORWARD_COMPAT_TEMPLATE_MODELS:
+        assert templates, f"{synthetic} has no template"
+        assert not retired.intersection(templates), (
+            f"{synthetic} is templated off retired slugs"
+        )
+        # Every template model must itself be a slug the backend knows.
+        assert set(templates) <= live, f"{synthetic} templates off unknown slugs"
 
 
 def test_model_command_uses_runtime_access_token_for_codex_list(monkeypatch):
