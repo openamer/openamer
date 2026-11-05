@@ -107,7 +107,6 @@ def test_from_mapping_defaults():
     cfg = read_before_write.ReadBeforeWriteConfig.from_mapping(None)
     assert cfg.enabled is False
     assert cfg.allow_create is True
-    assert cfg.enforce_existing is True
 
 
 def test_from_mapping_reads_values():

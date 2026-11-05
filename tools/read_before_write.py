@@ -14,8 +14,6 @@ This module turns that detection into an enforced policy:
   * ``read_before_write.allow_create`` — permit creating a file that was
     never read (upstream: "reading a missing path authorizes guarded
     creation").
-  * ``read_before_write.enforce_existing`` — when True, only files that
-    already existed at read time are covered by the read requirement.
 
 The policy is deliberately conservative: it only blocks when it can
 prove the agent never observed the current content. When it cannot decide
@@ -38,7 +36,6 @@ class ReadBeforeWriteConfig:
 
     enabled: bool = False
     allow_create: bool = True
-    enforce_existing: bool = True
 
     @classmethod
     def from_mapping(cls, data) -> "ReadBeforeWriteConfig":
@@ -54,13 +51,11 @@ class ReadBeforeWriteConfig:
         return cls(
             enabled=_bool(data.get("enabled"), False),
             allow_create=_bool(data.get("allow_create"), True),
-            enforce_existing=_bool(data.get("enforce_existing"), True),
         )
 
 
 _LOCK = threading.Lock()
 _CONFIG = ReadBeforeWriteConfig()
-_OVERRIDE: Optional[ReadBeforeWriteConfig] = None
 
 
 def _disabled_by_env() -> bool:
@@ -69,28 +64,21 @@ def _disabled_by_env() -> bool:
 
 def configure(cfg: ReadBeforeWriteConfig) -> None:
     """Install the effective policy configuration."""
-    global _CONFIG, _OVERRIDE
+    global _CONFIG
     with _LOCK:
         _CONFIG = cfg
-        _OVERRIDE = cfg
 
 
 def reset() -> None:
     """Restore the default (disabled) policy. Used by tests."""
-    global _CONFIG, _OVERRIDE
+    global _CONFIG
     with _LOCK:
         _CONFIG = ReadBeforeWriteConfig()
-        _OVERRIDE = None
 
 
 def current_config() -> ReadBeforeWriteConfig:
     with _LOCK:
-        return _OVERRIDE if _OVERRIDE is not None else _CONFIG
-
-
-def from_mapping(data) -> ReadBeforeWriteConfig:
-    """Build a config from the ``read_before_write`` config.yaml section."""
-    return ReadBeforeWriteConfig.from_mapping(data)
+        return _CONFIG
 
 
 def check(task_id: str, resolved: str) -> Optional[str]:
@@ -146,6 +134,5 @@ __all__ = [
     "check",
     "configure",
     "current_config",
-    "from_mapping",
     "reset",
 ]

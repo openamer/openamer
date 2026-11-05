@@ -244,7 +244,7 @@ def check_workflow_requirements() -> bool:
 
 registry.register(
     name="workflow",
-    toolset="delegation",
+    toolset="workflow",
     schema=WORKFLOW_SCHEMA,
     handler=lambda args, **kw: workflow_tool(
         meta=args.get("meta"),

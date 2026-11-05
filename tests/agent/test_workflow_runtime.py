@@ -176,7 +176,10 @@ def test_workflow_tool_is_registered():
     import tools.workflow_tool  # noqa: F401
 
     assert registry.get_entry("workflow") is not None
-    assert registry.get_toolset_for_tool("workflow") == "delegation"
+    # The workflow tool has its OWN toolset so it can be gated
+    # independently of delegate_task (an orchestrator may delegate again,
+    # but must never get the workflow tool).
+    assert registry.get_toolset_for_tool("workflow") == "workflow"
 
 
 def test_workflow_schema_is_wellformed():

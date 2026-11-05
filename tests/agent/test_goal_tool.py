@@ -17,15 +17,21 @@ import pytest
 
 
 @pytest.fixture
-def agent(tmp_path, monkeypatch):
-    """A fake agent bound to an isolated OPENAMER_HOME."""
+def agent(tmp_path, monkeypatch, request):
+    """A fake agent bound to an isolated session.
+
+    The goal state lives in the session DB, so each test needs its own
+    session id — otherwise one test's goal leaks into the next.
+    """
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "home"))
+    session_id = f"goal-test-{request.node.name}"
 
     class _Agent:
-        session_id = "goal-test-session"
         _goal_manager = None
 
-    return _Agent()
+    agent = _Agent()
+    agent.session_id = session_id
+    return agent
 
 
 def _call(agent, **kwargs):

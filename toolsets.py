@@ -260,7 +260,20 @@ TOOLSETS = {
     
     "delegation": {
         "description": "Spawn subagents with isolated context for complex subtasks",
-        "tools": ["delegate_task", "workflow"],
+        "tools": ["delegate_task"],
+        "includes": []
+    },
+
+    # The workflow tool fans out to subagents from a model-written script.
+    # It lives in its OWN toolset (not in "delegation") so the two can be
+    # gated independently: an orchestrator may delegate again, but must
+    # never get the workflow tool -- that would re-open recursive fan-out.
+    "workflow": {
+        "description": (
+            "Run a model-written orchestration script that fans work out to "
+            "subagents, for tasks that need control flow across rounds."
+        ),
+        "tools": ["workflow"],
         "includes": []
     },
 
