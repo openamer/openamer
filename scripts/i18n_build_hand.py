@@ -267,7 +267,8 @@ def main() -> int:
         codes = sorted(p.stem for p in (REPO / "apps" / "desktop" / "src" / "i18n").glob("*.ts"))
         locales = [c for c in codes if c not in {"en", "catalog", "types", "index",
                                                  "define-locale", "plugin-i18n",
-                                                 "runtime", "languages"}]
+                                                 "runtime", "languages"}
+                   and not c.endswith(".test")]
 
     env = load_env()
     print(f"building the hand table for {len(locales)} locales")
