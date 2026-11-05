@@ -1438,13 +1438,11 @@ DEFAULT_CONFIG = {
     # fs-observation-policy: when enabled, a mutation of an existing file
     # is refused unless the agent read that file first (and the file has
     # not changed since). Off by default — behaviour-preserving.
-    #   - enabled:          enforce the policy (default false)
-    #   - allow_create:     permit creating a file that was never read
-    #   - enforce_existing: only guard files that already existed
+    #   - enabled:       enforce the policy (default false)
+    #   - allow_create:  permit creating a file that was never read
     "read_before_write": {
         "enabled": False,
         "allow_create": True,
-        "enforce_existing": True,
     },
 
     # Advisory reminder for identical repeated tool calls. Adapted from

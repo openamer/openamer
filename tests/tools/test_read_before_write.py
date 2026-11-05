@@ -89,11 +89,24 @@ def test_file_changed_after_read_is_refused(tmp_path):
     assert "changed" in err
 
 
+def test_partial_read_does_not_block(tmp_path):
+    """A windowed read is a hint, not a blocker.
+
+    Blocking on a partial read would make every targeted edit of a large
+    file impossible -- reading the whole file to satisfy the policy is
+    exactly the cost the policy is meant to avoid.
+    """
+    target = tmp_path / "big.py"
+    target.write_text("x" * 100, encoding="utf-8")
+    file_state.record_read("t1", str(target), partial=True)
+    _enable()
+    assert read_before_write.check("t1", str(target)) is None
+
+
 def test_from_mapping_defaults():
     cfg = read_before_write.ReadBeforeWriteConfig.from_mapping(None)
     assert cfg.enabled is False
     assert cfg.allow_create is True
-    assert cfg.enforce_existing is True
 
 
 def test_from_mapping_reads_values():

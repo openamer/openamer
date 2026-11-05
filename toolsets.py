@@ -54,7 +54,7 @@ _OPENAMER_CORE_TOOLS = [
     # Text-to-speech
     "text_to_speech",
     # Planning & memory
-    "todo", "memory",
+    "todo", "memory", "goal",
     # NOTE: the desktop Project tools (project_list/create/switch) are
     # deliberately NOT here. They only make sense where a GUI can follow the
     # move, so they live in the `project` toolset and are enabled solely by the
@@ -65,7 +65,7 @@ _OPENAMER_CORE_TOOLS = [
     # Clarifying questions
     "clarify",
     # Code execution + delegation
-    "execute_code", "code_kernel", "delegate_task",
+    "execute_code", "code_kernel", "delegate_task", "workflow",
     # Cronjob management
     "cronjob",
     # Home Assistant smart home control (gated on HASS_TOKEN via check_fn)
@@ -211,7 +211,17 @@ TOOLSETS = {
         "tools": ["todo"],
         "includes": []
     },
-    
+
+    "goal": {
+        "description": (
+            "Durable session goal — read it, steer it, report it done or "
+            "blocked. The goal is what the auto-continuation loop works "
+            "toward."
+        ),
+        "tools": ["goal"],
+        "includes": []
+    },
+
     "memory": {
         "description": "Persistent memory across sessions (personal notes + user profile)",
         "tools": ["memory"],
@@ -251,6 +261,19 @@ TOOLSETS = {
     "delegation": {
         "description": "Spawn subagents with isolated context for complex subtasks",
         "tools": ["delegate_task"],
+        "includes": []
+    },
+
+    # The workflow tool fans out to subagents from a model-written script.
+    # It lives in its OWN toolset (not in "delegation") so the two can be
+    # gated independently: an orchestrator may delegate again, but must
+    # never get the workflow tool -- that would re-open recursive fan-out.
+    "workflow": {
+        "description": (
+            "Run a model-written orchestration script that fans work out to "
+            "subagents, for tasks that need control flow across rounds."
+        ),
+        "tools": ["workflow"],
         "includes": []
     },
 

@@ -457,6 +457,23 @@ def build_tool_preview(tool_name: str, args: dict, max_len: int | None = None) -
         preview = _oneline(str(goal))
         return _truncate_preview(preview, max_len) if preview else None
 
+    if tool_name == "workflow":
+        meta = args.get("meta")
+        name = ""
+        if isinstance(meta, dict):
+            name = str(meta.get("name") or "")
+        if not name:
+            return None
+        preview = _oneline(name)
+        return _truncate_preview(preview, max_len) if preview else None
+
+    if tool_name == "goal":
+        action = args.get("action") or ""
+        if not action:
+            return None
+        preview = _oneline(str(action))
+        return _truncate_preview(preview, max_len) if preview else None
+
     if tool_name == "process":
         action = args.get("action", "")
         sid = args.get("session_id", "")
@@ -603,6 +620,8 @@ _TOOL_VERBS: dict[str, str] = {
     "skills_list": "Listing skills",
     "skill_manage": "Updating skill",
     "delegate_task": "Delegating",
+    "workflow": "Running workflow",
+    "goal": "Managing goal",
     "cronjob": "Scheduling",
     "clarify": "Asking",
     "memory": "Updating memory",
@@ -1499,6 +1518,16 @@ def _get_cute_tool_message(
             count_label = task_count or len(tasks)
             return _wrap(f"┊ 🔀 delegate  {count_label}x: {_trunc(detail, 35)}  {dur}")
         return _wrap(f"┊ 🔀 delegate  {_trunc(args.get('goal', ''), 35)}  {dur}")
+
+    if tool_name == "workflow":
+        meta = args.get("meta")
+        name = ""
+        if isinstance(meta, dict):
+            name = str(meta.get("name") or "")
+        return _wrap(f"┊ 🧩 workflow  {_trunc(name, 35)}  {dur}")
+
+    if tool_name == "goal":
+        return _wrap(f"┊ 🎯 goal      {_trunc(args.get('action', ''), 35)}  {dur}")
 
     preview = build_tool_preview(tool_name, args) or ""
     return _wrap(f"┊ ⚡ {tool_name[:9]:9} {_trunc(preview, 35)}  {dur}")

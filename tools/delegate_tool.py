@@ -46,6 +46,7 @@ from utils import base_url_hostname, is_truthy_value
 DELEGATE_BLOCKED_TOOLS = frozenset(
     [
         "delegate_task",  # no recursive delegation
+        "workflow",  # a workflow fans out to subagents — same recursion risk
         "clarify",  # no user interaction
         "memory",  # no writes to shared MEMORY.md
         "send_message",  # no cross-platform side effects
@@ -773,7 +774,9 @@ def _strip_blocked_tools(toolsets: List[str]) -> List[str]:
     """
     # Composite toolsets that should never pass through to children, even
     # though their individual tools aren't all in DELEGATE_BLOCKED_TOOLS.
-    _COMPOSITE_BLOCKED_TOOLSETS = frozenset({"delegation"})
+    # "delegation" holds delegate_task; "workflow" holds the workflow tool.
+    # Both fan out to subagents, so neither may reach a child.
+    _COMPOSITE_BLOCKED_TOOLSETS = frozenset({"delegation", "workflow"})
     blocked_toolset_names = {
         name
         for name, defn in TOOLSETS.items()
@@ -796,6 +799,7 @@ def _blocked_toolsets_for_role(role: str) -> List[str]:
     """
     blocked_names = set(DELEGATE_BLOCKED_TOOLS)
     if role == "orchestrator":
+        # An orchestrator may delegate again (that is its whole purpose).
         blocked_names.discard("delegate_task")
     return sorted(
         name

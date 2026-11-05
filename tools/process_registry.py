@@ -2469,6 +2469,68 @@ def _redact_process_result(result: dict) -> dict:
     return result
 
 
+def _current_session_key() -> str:
+    """Return the gateway session key of the caller, or "" when absent."""
+    try:
+        from tools.approval import get_current_session_key
+
+        return get_current_session_key(default="") or ""
+    except Exception:
+        return ""
+
+
+def _check_process_owner(task_id: Optional[str], session_id: str) -> Optional[str]:
+    """Return a refusal message when the caller does not own the process.
+
+    A process is owned by the task that spawned it, or — when it was
+    spawned by a gateway session — by that session. The caller may act on
+    a process it owns, and on a process that has no owner recorded at
+    all (a process recovered after a crash, where the original task is
+    gone). Everything else is refused.
+    """
+    session = process_registry.get(session_id)
+    if session is None:
+        # Unknown id: let the action itself report "not_found" so the
+        # model gets the action's error shape, not an authorization one.
+        return None
+
+    owner_task = (session.task_id or "").strip()
+    owner_session = (session.session_key or "").strip()
+
+    if not owner_task and not owner_session:
+        # Orphaned process (crash recovery) — nobody owns it, so the
+        # fence cannot refuse on behalf of anyone.
+        return None
+
+    if owner_task:
+        if not task_id:
+            # The caller carries no task identity (an RPC or CLI path
+            # that never set one). Without an identity to compare
+            # against, the fence cannot prove a violation — refusing
+            # here would break every such caller for no safety gain.
+            return None
+        if owner_task == str(task_id):
+            return None
+    elif not owner_session:
+        return None
+
+    caller_session = _current_session_key()
+    if owner_session and caller_session and owner_session == caller_session:
+        return None
+
+    # Refuse, but say whose it is so the model can act correctly.
+    detail = []
+    if owner_task:
+        detail.append(f"task {owner_task!r}")
+    if owner_session:
+        detail.append(f"session {owner_session!r}")
+    return (
+        f"Process {session_id} belongs to {' and '.join(detail) or 'another owner'} "
+        "and cannot be accessed from this task. Start your own background "
+        "process instead."
+    )
+
+
 def _handle_process(args, **kw):
     task_id = kw.get("task_id")
     action = args.get("action", "")
@@ -2491,6 +2553,18 @@ def _handle_process(args, **kw):
     elif action in {"poll", "log", "wait", "kill", "write", "submit", "close"}:
         if not session_id:
             return tool_error(f"session_id is required for {action}")
+
+        # ── Owner fence ──────────────────────────────────────────────
+        # A process belongs to the task/session that spawned it. Without
+        # this check any agent can kill or write into another agent's
+        # background process just by guessing its id — the ids are
+        # predictable ("proc_xxxxxxxxxxxx"). Upstream deepseek-harness
+        # states the same principle: "Ids are predictable, so
+        # authorization — not secrecy — is the boundary".
+        _owner_error = _check_process_owner(task_id, session_id)
+        if _owner_error:
+            return tool_error(_owner_error)
+
         if action == "poll":
             return json.dumps(_redact_process_result(process_registry.poll(session_id)), ensure_ascii=False)
         elif action == "log":

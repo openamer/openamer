@@ -52,6 +52,9 @@ MUTATING_TOOLS: frozenset[str] = frozenset(
         # Scheduling and delegation (a subagent can write on our behalf)
         "cronjob",
         "delegate_task",
+        # A workflow script fans out to subagents, which can write on our
+        # behalf exactly like delegate_task can — so it is gated the same way.
+        "workflow",
         # Browser: navigation is read-only, but forms/keys are not, and the
         # distinction is not per-call decidable — so the whole tool is gated.
         "browser_click",
