@@ -128,3 +128,35 @@ def test_workflow_tool_reports_syntax_error_as_error(_stub_children):
     )
     payload = json.loads(out)
     assert payload.get("error")
+
+class TestWorkflowIsAnAgentLevelTool:
+    """workflow must be dispatched by the agent, not by the registry.
+
+    A registry dispatch passes ``task_id``/``session_id``/``user_task`` but
+    NOT ``parent_agent``. The workflow tool needs the agent to start real
+    subagents, so it has to travel the agent-level path (like
+    ``delegate_task``). When it went through the registry it failed with
+    "workflow requires a parent agent context" in the real agent while the
+    fake-agent unit tests stayed green.
+    """
+
+    def test_workflow_is_in_the_agent_level_tool_set(self):
+        from agent.agent_runtime_helpers import AGENT_RUNTIME_POST_HOOK_TOOL_NAMES
+
+        assert "workflow" in AGENT_RUNTIME_POST_HOOK_TOOL_NAMES
+
+    def test_agent_runtime_helpers_dispatch_branch_exists(self):
+        import inspect
+
+        from agent import agent_runtime_helpers
+
+        source = inspect.getsource(agent_runtime_helpers)
+        assert 'function_name == "workflow"' in source
+
+    def test_parallel_executor_has_a_workflow_branch(self):
+        import inspect
+
+        from agent import tool_executor
+
+        source = inspect.getsource(tool_executor)
+        assert 'function_name == "workflow"' in source
