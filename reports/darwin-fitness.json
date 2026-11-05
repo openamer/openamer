@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05T11:07:29.074719+00:00",
+  "updated": "2026-11-05T14:05:35.973902+00:00",
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "fitness": 11.93,
@@ -690,10 +690,10 @@
       "mutations_lost": 0
     },
     "auto-internet-learning-we-sold": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -714,10 +714,10 @@
       "mutations_lost": 0
     },
     "auto-latest-research-insight-adversarial": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -730,10 +730,10 @@
       "mutations_lost": 0
     },
     "auto-latest-research-insight-ai-20261010093035": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -746,18 +746,18 @@
       "mutations_lost": 0
     },
     "auto-latest-research-insight-bitnet": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "auto-latest-research-insight-bitnet-20261010093037": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -770,18 +770,18 @@
       "mutations_lost": 0
     },
     "auto-latest-research-insight-deepseek": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "auto-latest-research-insight-deepseekr1": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -794,26 +794,26 @@
       "mutations_lost": 0
     },
     "auto-latest-research-insight-hardware": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "auto-latest-research-insight-ladder": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "auto-latest-research-insight-largescale": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -834,10 +834,10 @@
       "mutations_lost": 0
     },
     "auto-latest-research-insight-megatrain": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -850,26 +850,26 @@
       "mutations_lost": 0
     },
     "auto-latest-research-insight-qlora": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "auto-latest-research-insight-recursively": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "auto-latest-research-insight-serving": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -1162,12 +1162,12 @@
       "mutations_lost": 8
     },
     "darwin-harvested-cron-jobs-json": {
-      "fitness": 46.23,
+      "fitness": 45.23,
       "usage": 0,
       "health": 1,
       "age_days": 23,
       "mutations_won": 31,
-      "mutations_lost": 28
+      "mutations_lost": 29
     },
     "darwin-harvested-darwin": {
       "fitness": 9.23,
@@ -1410,12 +1410,12 @@
       "mutations_lost": 3
     },
     "darwin-harvested-pr47-body-json": {
-      "fitness": 24.23,
+      "fitness": 23.23,
       "usage": 0,
       "health": 1,
       "age_days": 23,
       "mutations_won": 9,
-      "mutations_lost": 6
+      "mutations_lost": 7
     },
     "darwin-harvested-profiles-default": {
       "fitness": 14.23,
@@ -1538,11 +1538,11 @@
       "mutations_lost": 3
     },
     "darwin-harvested-skills-autonomou": {
-      "fitness": 55.23,
+      "fitness": 57.23,
       "usage": 0,
       "health": 1,
       "age_days": 23,
-      "mutations_won": 33,
+      "mutations_won": 34,
       "mutations_lost": 23
     },
     "darwin-harvested-temp-fl-probe": {
@@ -2266,10 +2266,10 @@
       "mutations_lost": 0
     },
     "openamer-finetune-plan": {
-      "fitness": 10.47,
+      "fitness": 10.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -2410,12 +2410,12 @@
       "mutations_lost": 0
     },
     "autonomous-learning-architecture": {
-      "fitness": 2958.0,
+      "fitness": 2964.0,
       "usage": 606,
       "health": 1,
       "age_days": 0,
-      "mutations_won": 1318,
-      "mutations_lost": 300
+      "mutations_won": 1324,
+      "mutations_lost": 306
     },
     "capabilities-registry": {
       "fitness": 13.27,
@@ -2434,10 +2434,10 @@
       "mutations_lost": 0
     },
     "architecture-diagram": {
-      "fitness": 10.47,
+      "fitness": 10.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -2450,18 +2450,18 @@
       "mutations_lost": 0
     },
     "ascii-video": {
-      "fitness": 11.47,
+      "fitness": 11.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "baoyu-infographic": {
-      "fitness": 11.47,
+      "fitness": 11.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -2474,50 +2474,50 @@
       "mutations_lost": 0
     },
     "comfyui": {
-      "fitness": 13.47,
+      "fitness": 13.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "design-md": {
-      "fitness": 10.47,
+      "fitness": 10.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "excalidraw": {
-      "fitness": 13.47,
+      "fitness": 13.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "humanizer": {
-      "fitness": 10.47,
+      "fitness": 10.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "manim-video": {
-      "fitness": 13.47,
+      "fitness": 13.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "p5js": {
-      "fitness": 13.47,
+      "fitness": 13.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -2530,10 +2530,10 @@
       "mutations_lost": 0
     },
     "pretext": {
-      "fitness": 11.47,
+      "fitness": 11.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -2562,10 +2562,10 @@
       "mutations_lost": 0
     },
     "touchdesigner-mcp": {
-      "fitness": 13.47,
+      "fitness": 13.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -2586,11 +2586,11 @@
       "mutations_lost": 0
     },
     "darwin-cron-guard": {
-      "fitness": 2955.0,
+      "fitness": 2967.0,
       "usage": 279,
       "health": 1,
       "age_days": 0,
-      "mutations_won": 1345,
+      "mutations_won": 1351,
       "mutations_lost": 28
     },
     "darwin-engine": {
@@ -2970,10 +2970,10 @@
       "mutations_lost": 9
     },
     "darwin-harvested-memory-world-model-py": {
-      "fitness": 17.7,
+      "fitness": 17.67,
       "usage": 0,
       "health": 1,
-      "age_days": 9,
+      "age_days": 10,
       "mutations_won": 3,
       "mutations_lost": 1
     },
@@ -3290,10 +3290,10 @@
       "mutations_lost": 3
     },
     "darwin-harvested-research-group-state": {
-      "fitness": 22.3,
+      "fitness": 22.27,
       "usage": 0,
       "health": 1,
-      "age_days": 21,
+      "age_days": 22,
       "mutations_won": 6,
       "mutations_lost": 2
     },
@@ -3314,10 +3314,10 @@
       "mutations_lost": 3
     },
     "darwin-harvested-scripts-benchmark-py": {
-      "fitness": 14.7,
+      "fitness": 14.67,
       "usage": 0,
       "health": 1,
-      "age_days": 9,
+      "age_days": 10,
       "mutations_won": 2,
       "mutations_lost": 2
     },
@@ -3370,10 +3370,10 @@
       "mutations_lost": 8
     },
     "darwin-harvested-scripts-python-exe-for-the-websocket": {
-      "fitness": 22.3,
+      "fitness": 22.27,
       "usage": 0,
       "health": 1,
-      "age_days": 21,
+      "age_days": 22,
       "mutations_won": 6,
       "mutations_lost": 2
     },
@@ -3490,11 +3490,11 @@
       "mutations_lost": 3
     },
     "darwin-harvested-tmp-deepseek-harness-agents-skills": {
-      "fitness": 62.23,
+      "fitness": 64.23,
       "usage": 5,
       "health": 1,
       "age_days": 23,
-      "mutations_won": 34,
+      "mutations_won": 35,
       "mutations_lost": 23
     },
     "darwin-harvested-tmp-gguf-info-py": {
@@ -3634,11 +3634,11 @@
       "mutations_lost": 2
     },
     "darwin-harvested-training-auto-skills-json": {
-      "fitness": 43.23,
+      "fitness": 45.23,
       "usage": 4,
       "health": 1,
       "age_days": 23,
-      "mutations_won": 18,
+      "mutations_won": 19,
       "mutations_lost": 9
     },
     "darwin-harvested-training-buffer-store-py": {
@@ -3650,11 +3650,11 @@
       "mutations_lost": 3
     },
     "darwin-harvested-training-internet-learn-log-jsonl": {
-      "fitness": 2938.0,
+      "fitness": 2950.0,
       "usage": 273,
       "health": 1,
       "age_days": 0,
-      "mutations_won": 1336,
+      "mutations_won": 1342,
       "mutations_lost": 21
     },
     "darwin-harvested-training-internet-learner-py": {
@@ -3785,6 +3785,14 @@
       "mutations_won": 1,
       "mutations_lost": 3
     },
+    "darwin-harvested-wt-maincheck": {
+      "fitness": 12.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 1
+    },
     "darwin-harvested-wt-sim115-scripts": {
       "fitness": 11.97,
       "usage": 0,
@@ -3906,10 +3914,10 @@
       "mutations_lost": 0
     },
     "cron-autotest-run-cron-entry": {
-      "fitness": 6.5,
+      "fitness": 6.47,
       "usage": 0,
       "health": 1,
-      "age_days": 45,
+      "age_days": 46,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -3970,10 +3978,10 @@
       "mutations_lost": 0
     },
     "domain-to-github-pages": {
-      "fitness": 12.2,
+      "fitness": 12.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4170,10 +4178,10 @@
       "mutations_lost": 0
     },
     "token-harbor-free-route": {
-      "fitness": 11.2,
+      "fitness": 11.17,
       "usage": 0,
       "health": 1,
-      "age_days": 54,
+      "age_days": 55,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4226,10 +4234,10 @@
       "mutations_lost": 0
     },
     "himalaya": {
-      "fitness": 11.47,
+      "fitness": 11.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4258,10 +4266,10 @@
       "mutations_lost": 0
     },
     "github-feature-update-post": {
-      "fitness": 15.27,
+      "fitness": 15.23,
       "usage": 0,
       "health": 1,
-      "age_days": 22,
+      "age_days": 23,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4282,10 +4290,10 @@
       "mutations_lost": 0
     },
     "github-issues": {
-      "fitness": 10.47,
+      "fitness": 10.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4314,10 +4322,10 @@
       "mutations_lost": 0
     },
     "pr-branch-assembly": {
-      "fitness": 13.97,
+      "fitness": 14.0,
       "usage": 0,
       "health": 1,
-      "age_days": 1,
+      "age_days": 0,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4362,10 +4370,10 @@
       "mutations_lost": 0
     },
     "alpha": {
-      "fitness": 9.17,
+      "fitness": 9.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 3
     },
@@ -4490,10 +4498,10 @@
       "mutations_lost": 0
     },
     "claude-api": {
-      "fitness": 13.27,
+      "fitness": 13.23,
       "usage": 0,
       "health": 1,
-      "age_days": 22,
+      "age_days": 23,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4706,10 +4714,10 @@
       "mutations_lost": 0
     },
     "design-review": {
-      "fitness": 13.27,
+      "fitness": 13.23,
       "usage": 0,
       "health": 1,
-      "age_days": 22,
+      "age_days": 23,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4842,18 +4850,18 @@
       "mutations_lost": 0
     },
     "doca-argus": {
-      "fitness": 12.17,
+      "fitness": 12.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "doca-bare-metal-deployment": {
-      "fitness": 12.17,
+      "fitness": 12.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4874,34 +4882,34 @@
       "mutations_lost": 0
     },
     "doca-bf3-deployment": {
-      "fitness": 12.17,
+      "fitness": 12.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "doca-bf4-deployment": {
-      "fitness": 12.17,
+      "fitness": 12.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "doca-caps": {
-      "fitness": 12.17,
+      "fitness": 12.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "doca-collectx-deployment": {
-      "fitness": 12.17,
+      "fitness": 12.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4914,10 +4922,10 @@
       "mutations_lost": 0
     },
     "doca-comm-channel-admin": {
-      "fitness": 12.17,
+      "fitness": 12.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -4938,18 +4946,18 @@
       "mutations_lost": 0
     },
     "doca-container-deployment": {
-      "fitness": 12.17,
+      "fitness": 12.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "doca-debug": {
-      "fitness": 12.17,
+      "fitness": 12.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -6298,10 +6306,10 @@
       "mutations_lost": 0
     },
     "jetson-video-benchmark": {
-      "fitness": 12.17,
+      "fitness": 12.13,
       "usage": 0,
       "health": 1,
-      "age_days": 25,
+      "age_days": 26,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -8418,10 +8426,10 @@
       "mutations_lost": 0
     },
     "linear-mcp-cli": {
-      "fitness": 9.27,
+      "fitness": 9.23,
       "usage": 0,
       "health": 1,
-      "age_days": 22,
+      "age_days": 23,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -8474,50 +8482,50 @@
       "mutations_lost": 0
     },
     "evaluating-llms-harness": {
-      "fitness": 11.47,
+      "fitness": 11.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "weights-and-biases": {
-      "fitness": 11.47,
+      "fitness": 11.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "huggingface-hub": {
-      "fitness": 10.47,
+      "fitness": 10.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "llama-cpp": {
-      "fitness": 11.47,
+      "fitness": 11.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "serving-llms-vllm": {
-      "fitness": 11.47,
+      "fitness": 11.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "local-cpu-brain": {
-      "fitness": 7.9,
+      "fitness": 7.87,
       "usage": 0,
       "health": 1,
-      "age_days": 3,
+      "age_days": 4,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -8658,10 +8666,10 @@
       "mutations_lost": 0
     },
     "google-workspace": {
-      "fitness": 13.47,
+      "fitness": 13.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -8682,18 +8690,18 @@
       "mutations_lost": 0
     },
     "notion": {
-      "fitness": 11.47,
+      "fitness": 11.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "ocr-and-documents": {
-      "fitness": 12.47,
+      "fitness": 12.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -8706,10 +8714,10 @@
       "mutations_lost": 0
     },
     "powerpoint": {
-      "fitness": 12.47,
+      "fitness": 12.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -8786,18 +8794,18 @@
       "mutations_lost": 0
     },
     "polymarket": {
-      "fitness": 13.47,
+      "fitness": 13.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "research-paper-writing": {
-      "fitness": 8.27,
+      "fitness": 8.23,
       "usage": 0,
       "health": 1,
-      "age_days": 22,
+      "age_days": 23,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -8858,10 +8866,10 @@
       "mutations_lost": 0
     },
     "bug-bounty-ops": {
-      "fitness": 14.36,
+      "fitness": 14.33,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -8993,6 +9001,14 @@
       "mutations_won": 0,
       "mutations_lost": 0
     },
+    "dlna-screen-casting": {
+      "fitness": 13.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
     "lan-appliance-api-control": {
       "fitness": 15.9,
       "usage": 0,
@@ -9114,10 +9130,10 @@
       "mutations_lost": 0
     },
     "cli-command-extension": {
-      "fitness": 13.93,
+      "fitness": 14.0,
       "usage": 0,
       "health": 1,
-      "age_days": 2,
+      "age_days": 0,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -9186,10 +9202,10 @@
       "mutations_lost": 0
     },
     "desktop-i18n-locale": {
-      "fitness": 12.03,
+      "fitness": 12.0,
       "usage": 0,
       "health": 1,
-      "age_days": 59,
+      "age_days": 60,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -9210,18 +9226,18 @@
       "mutations_lost": 0
     },
     "dogfood": {
-      "fitness": 11.47,
+      "fitness": 11.43,
       "usage": 0,
       "health": 1,
-      "age_days": 76,
+      "age_days": 77,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "electron-e2e-ci-triage": {
-      "fitness": 13.97,
+      "fitness": 14.0,
       "usage": 0,
       "health": 1,
-      "age_days": 1,
+      "age_days": 0,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -9362,10 +9378,10 @@
       "mutations_lost": 0
     },
     "kta-lexicon-gap-repair": {
-      "fitness": 11.6,
+      "fitness": 11.57,
       "usage": 0,
       "health": 1,
-      "age_days": 42,
+      "age_days": 43,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -9410,10 +9426,10 @@
       "mutations_lost": 0
     },
     "openamer-desktop-build": {
-      "fitness": 12.93,
+      "fitness": 12.9,
       "usage": 0,
       "health": 1,
-      "age_days": 2,
+      "age_days": 3,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -9618,18 +9634,18 @@
       "mutations_lost": 0
     },
     "tool-repair-workflow": {
-      "fitness": 13.2,
+      "fitness": 13.17,
       "usage": 0,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "training-scripts-hygiene": {
-      "fitness": 15.9,
+      "fitness": 15.87,
       "usage": 0,
       "health": 1,
-      "age_days": 3,
+      "age_days": 4,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -9770,10 +9786,10 @@
       "mutations_lost": 0
     },
     "cron-job-repair": {
-      "fitness": 14.62,
+      "fitness": 14.75,
       "usage": 0,
       "health": 1,
-      "age_days": 4,
+      "age_days": 0,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -9834,10 +9850,10 @@
       "mutations_lost": 0
     },
     "local-llm-fallback-benchmarking": {
-      "fitness": 15.43,
+      "fitness": 15.4,
       "usage": 0,
       "health": 1,
-      "age_days": 17,
+      "age_days": 18,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -10018,10 +10034,10 @@
       "mutations_lost": 0
     },
     "web-platform-servers": {
-      "fitness": 13.9,
+      "fitness": 14.0,
       "usage": 0,
       "health": 1,
-      "age_days": 3,
+      "age_days": 0,
       "mutations_won": 0,
       "mutations_lost": 0
     },
