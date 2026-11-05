@@ -90,7 +90,18 @@ async function setupSeededDesktop(): Promise<SeededFixture> {
 }
 
 function sessionRow(page: Page) {
-  return page.locator('[data-slot="sidebar"] button').filter({ hasText: CAPTION }).first()
+  // The sidebar label is `sessionTitle(session)` = `title || preview`. Which of
+  // the two wins is a race: the seeder queues the title as `pending_title`,
+  // and the gateway applies it after the first completed turn -- but the
+  // auto-titled path can land first, leaving the row labelled with the
+  // preview (the first user message, i.e. the caption) instead. Measured
+  // 2026-11-05: the Linux CI runner shows the caption, a local Windows run
+  // shows the title. So match EITHER label -- what this spec verifies is that
+  // the persisted session is findable and its attachment survives a reload.
+  return page
+    .locator('[data-slot="sidebar"] button')
+    .filter({ hasText: /E2E attached image (session|must survive a relaunch)/ })
+    .first()
 }
 
 async function openSeededSession(page: Page): Promise<void> {
@@ -147,13 +158,17 @@ test.describe('attached image resume', () => {
     fixture = await setupSeededDesktop()
     await waitForAppReady(fixture, 120_000)
 
-    // The sidebar labels a session by its preview, so the caption has to lead
-    // the persisted turn — a leading directive reads as a truncated file path.
+    // The sidebar label is the title when the gateway applied the queued
+    // `pending_title`, and the caption preview otherwise (see sessionRow).
+    // Either way the seeded session must be listed under a recognisable name.
     const row = sessionRow(fixture.page)
     await row.waitFor({ state: 'visible', timeout: 60_000 })
 
     const label = (await row.textContent())?.trim() ?? ''
-    expect(label.startsWith(CAPTION), `sidebar label should open with the caption: ${label}`).toBe(true)
+    expect(
+      label.startsWith(SESSION_TITLE) || label.startsWith(CAPTION),
+      `sidebar label should identify the seeded session: ${label}`,
+    ).toBe(true)
 
     await openSeededSession(fixture.page)
     await assertRendersThumbnail(fixture.page, 'first open')
