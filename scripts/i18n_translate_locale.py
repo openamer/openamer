@@ -473,6 +473,8 @@ def load_leaves(locale: str) -> list[dict]:
     r = subprocess.run(
         ["node", str(REPO / "scripts" / "i18n_extract_locale.mjs"), str(src), str(out_file)],
         capture_output=True, text=True, cwd=str(REPO),
+        encoding='utf-8',
+        errors='replace',
     )
     if r.returncode != 0:
         raise SystemExit(f"extract failed for {locale}: {r.stderr[-500:]}")

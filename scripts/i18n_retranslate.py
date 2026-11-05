@@ -57,6 +57,8 @@ def one(locale: str, workers: int, en: dict[str, str]) -> tuple[str, int, int]:
         [sys.executable, str(SCRIPTS / "i18n_translate_locale.py"), locale,
          "--workers", str(workers), "--batch-size", "20"],
         capture_output=True, text=True, cwd=str(REPO),
+        encoding='utf-8',
+        errors='replace',
     )
     return locale, coverage(locale, en), r.returncode
 

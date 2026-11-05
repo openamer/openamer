@@ -63,7 +63,8 @@ def table_of(locale: str) -> dict[str, str]:
 
 
 def run(cmd: list[str]) -> subprocess.CompletedProcess:
-    return subprocess.run(cmd, capture_output=True, text=True, cwd=str(REPO))
+    return subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8',
+                   errors='replace', cwd=str(REPO))
 
 
 def translate_leftovers(locale: str) -> int:

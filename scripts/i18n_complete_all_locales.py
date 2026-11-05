@@ -47,7 +47,8 @@ def locale_codes() -> list[str]:
 
 
 def run(cmd: list[str], **kw) -> subprocess.CompletedProcess:
-    return subprocess.run(cmd, capture_output=True, text=True, cwd=str(REPO), **kw)
+    return subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8',
+                   errors='replace', cwd=str(REPO), **kw)
 
 
 def translate(locale: str, workers: int) -> tuple[str, bool, str]:

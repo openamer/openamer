@@ -46,6 +46,8 @@ def extract(locale: str) -> dict:
     r = subprocess.run(
         ["node", str(SCRIPTS / "i18n_extract_locale.mjs"), str(I18N / f"{locale}.ts"), str(out)],
         capture_output=True, text=True, cwd=str(REPO),
+        encoding='utf-8',
+        errors='replace',
     )
     if r.returncode != 0:
         raise SystemExit(f"extract failed for {locale}: {r.stderr[-400:]}")
@@ -56,6 +58,8 @@ def parse_errors(locale: str) -> list[str]:
     r = subprocess.run(
         ["node", str(SCRIPTS / "_dbg_diag.mjs"), str(I18N / f"{locale}.ts")],
         capture_output=True, text=True, cwd=str(REPO),
+        encoding='utf-8',
+        errors='replace',
     )
     out = []
     for line in r.stdout.splitlines():

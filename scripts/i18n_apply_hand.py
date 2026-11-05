@@ -88,6 +88,8 @@ def main() -> int:
             ["node", str(SCRIPTS / "i18n_write_locale.mjs"),
              str(I18N / f"{locale}.ts"), str(table_path)],
             capture_output=True, text=True, cwd=str(REPO),
+            encoding='utf-8',
+            errors='replace',
         )
         if r.returncode != 0:
             print(f"  {locale}: WRITE FAILED {r.stderr[-300:]}")

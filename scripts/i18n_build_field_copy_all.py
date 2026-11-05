@@ -20,6 +20,8 @@ def one(locale: str) -> tuple[str, bool, str]:
     r = subprocess.run(
         [sys.executable, str(SCRIPT), locale],
         capture_output=True, text=True, cwd=str(REPO),
+        encoding='utf-8',
+        errors='replace',
     )
     ok = (OUT_DIR / f"{locale}.ts").exists()
     msg = (r.stdout or "")[-160:] + (r.stderr or "")[-160:]

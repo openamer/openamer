@@ -93,6 +93,8 @@ def leaves_of(locale: str) -> dict:
         ["node", str(REPO / "scripts" / "i18n_extract_locale.mjs"),
          str(I18N / f"{locale}.ts"), str(out)],
         capture_output=True, text=True, cwd=str(REPO),
+        encoding='utf-8',
+        errors='replace',
     )
     if r.returncode != 0:
         raise SystemExit(f"extract failed for {locale}: {r.stderr[-300:]}")
