@@ -454,6 +454,39 @@ def _trajectory_normalize_msg(msg: Dict[str, Any]) -> Dict[str, Any]:
     return msg
 
 
+def append_repeat_tool_reminder(
+    agent,
+    tool_name: str,
+    args,
+    content: Any,
+) -> Any:
+    """Append an advisory repeat-tool reminder to a tool result.
+
+    Adapted from deepseek-ai/deepseek-harness ``repeat-tool-reminder``.
+    The reminder is purely advisory: the tool result itself is unchanged,
+    so a legitimate repeated call is never blocked or delayed — the model
+    just gets a nudge to analyze the previous result.
+
+    Returns the (possibly) extended content.
+    """
+    controller = getattr(agent, "_repeat_tool_reminder", None)
+    if controller is None:
+        return content
+    try:
+        reminder = controller.record_call(tool_name, args)
+    except Exception as exc:  # pragma: no cover - defensive
+        logging.debug("Repeat-tool reminder failed for %s: %s", tool_name, exc)
+        return content
+    if reminder is None:
+        return content
+    notice = f"\n\n[Repeat-tool reminder] {reminder.message}"
+    if isinstance(content, str):
+        return content + notice
+    if isinstance(content, list):
+        return content + [{"type": "text", "text": notice}]
+    return content
+
+
 def make_tool_result_message(
     name: str,
     content: Any,

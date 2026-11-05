@@ -47,6 +47,10 @@ from agent.tool_guardrails import (
     ToolCallGuardrailController,
     ToolGuardrailDecision,
 )
+from agent.repeat_tool_reminder import (
+    RepeatToolReminderConfig,
+    RepeatToolReminderController,
+)
 from openamer_cli.config import cfg_get
 from openamer_cli.route_identity import normalize_route_base_url
 from openamer_cli.timeouts import get_provider_request_timeout
@@ -758,6 +762,10 @@ def init_agent(
     agent._executing_tools = False
     agent._tool_guardrails = ToolCallGuardrailController()
     agent._tool_guardrail_halt_decision: ToolGuardrailDecision | None = None
+    # Advisory reminder for identical repeated tool calls. Adapted from
+    # deepseek-harness repeat-tool-reminder: counts identical calls
+    # regardless of outcome, so a successful polling loop is caught too.
+    agent._repeat_tool_reminder = RepeatToolReminderController()
 
     # Interrupt mechanism for breaking out of tool loops
     agent._interrupt_requested = False
@@ -1608,6 +1616,34 @@ def init_agent(
         )
     except Exception as _tlg_err:
         _ra().logger.warning("Tool loop guardrail config ignored: %s", _tlg_err)
+
+    # Read-before-write policy (adapted from deepseek-harness
+    # fs-observation-policy). The policy lives in a module-level registry
+    # because the file tools are module-level functions, not agent
+    # instances — so the effective policy is process-wide.
+    try:
+        from tools import read_before_write as _rbw
+
+        _rbw.configure(
+            _rbw.ReadBeforeWriteConfig.from_mapping(
+                _agent_cfg.get("read_before_write", {})
+            )
+        )
+    except Exception as _rbw_err:
+        _ra().logger.warning("Read-before-write config ignored: %s", _rbw_err)
+
+    # Advisory repeat-tool reminder (adapted from deepseek-harness
+    # repeat-tool-reminder). Counts identical tool calls regardless of
+    # outcome — the existing guardrails only see failures.
+    try:
+        agent._repeat_tool_reminder = RepeatToolReminderController(
+            RepeatToolReminderConfig.from_mapping(
+                _agent_cfg.get("repeat_tool_reminder", {})
+            )
+        )
+    except Exception as _rtr_err:
+        _ra().logger.warning("Repeat-tool reminder config ignored: %s", _rtr_err)
+
     # Cache only the derived auxiliary compression context override that is
     # needed later by the startup feasibility check.  Avoid exposing a
     # broad pseudo-public config object on the agent instance.

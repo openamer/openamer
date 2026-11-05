@@ -18,6 +18,7 @@ from tools.file_operations import (
     normalize_search_pagination,
 )
 from tools import file_state
+from tools import read_before_write
 from agent.redact import redact_sensitive_text
 
 logger = logging.getLogger(__name__)
@@ -1632,6 +1633,12 @@ def write_file_tool(path: str, content: str, task_id: str = "default",
             # Workspace-divergence warning: relative path resolving outside the
             # terminal's cwd (the worktree-cwd bug). Lowest priority of the three.
             cwd_warning = _path_resolution_warning(path, Path(_resolved), task_id)
+            # Read-before-write policy (adapted from deepseek-harness
+            # fs-observation-policy). Off by default; when enabled it
+            # REFUSES the write instead of merely warning about it.
+            policy_error = read_before_write.check(task_id, _resolved)
+            if policy_error:
+                return tool_error(policy_error)
             file_ops = _get_file_ops(task_id)
             result = file_ops.write_file(_resolved, content)
             result_dict = result.to_dict()
@@ -1766,6 +1773,16 @@ def patch_tool(mode: str = "replace", path: str = None, old_string: str = None,
                     stale_warnings.append(_sw)
 
             file_ops = _get_file_ops(task_id)
+
+            # Read-before-write policy (adapted from deepseek-harness
+            # fs-observation-policy). Applied to every path the patch
+            # touches; the first refusal aborts the whole patch.
+            for _p, _r in _path_to_resolved.items():
+                if not _r:
+                    continue
+                _policy_error = read_before_write.check(task_id, _r)
+                if _policy_error:
+                    return tool_error(_policy_error)
 
             if mode == "replace":
                 if not path:

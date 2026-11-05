@@ -459,6 +459,11 @@ def build_turn_context(
     agent._unicode_sanitization_passes = 0
     agent._tool_guardrails.reset_for_turn()
     agent._tool_guardrail_halt_decision = None
+    # A new turn is a fresh instruction: the repeat-tool reminder counts
+    # must not carry over (upstream: "a new user message clears the count").
+    _rtr = getattr(agent, "_repeat_tool_reminder", None)
+    if _rtr is not None:
+        _rtr.reset_for_turn()
     _reset_consol = getattr(agent._memory_store, "reset_consolidation_failures", None)
     if callable(_reset_consol):
         _reset_consol()

@@ -1434,6 +1434,31 @@ DEFAULT_CONFIG = {
         "max_line_length": 2000,
     },
 
+    # Read-before-write policy. Adapted from deepseek-harness
+    # fs-observation-policy: when enabled, a mutation of an existing file
+    # is refused unless the agent read that file first (and the file has
+    # not changed since). Off by default — behaviour-preserving.
+    #   - enabled:          enforce the policy (default false)
+    #   - allow_create:     permit creating a file that was never read
+    #   - enforce_existing: only guard files that already existed
+    "read_before_write": {
+        "enabled": False,
+        "allow_create": True,
+        "enforce_existing": True,
+    },
+
+    # Advisory reminder for identical repeated tool calls. Adapted from
+    # deepseek-harness repeat-tool-reminder: counts identical calls
+    # regardless of outcome, so a successful polling loop is caught too.
+    # Purely advisory — it never blocks a legitimate repeated call.
+    "repeat_tool_reminder": {
+        "enabled": True,
+        "thresholds": [3, 5, 8],
+        "include": [],
+        "exclude": ["todo_write"],
+        "arguments_preview_chars": 500,
+    },
+
     # Tool loop guardrails nudge models when they repeat failed or
     # non-progressing tool calls. Soft warnings are always-on by default;
     # hard stops are opt-in so interactive CLI/TUI sessions keep flowing.
