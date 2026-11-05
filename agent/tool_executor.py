@@ -38,6 +38,7 @@ from agent.tool_dispatch_helpers import (
     _multimodal_text_summary,
     _append_subdir_hint_to_multimodal,
     _plan_tool_batch_segments,
+    append_repeat_tool_reminder,
     make_tool_result_message,
 )
 from tools.terminal_tool import (
@@ -1023,6 +1024,9 @@ def execute_tool_calls_concurrent(agent, assistant_message, messages: list, effe
         # image tool result never poisons canonical session history.
         # String results pass through unchanged.
         _tool_content = agent._tool_result_content_for_active_model(name, function_result)
+        _tool_content = append_repeat_tool_reminder(
+            agent, name, function_args, _tool_content
+        )
         tool_message = make_tool_result_message(
             name,
             _tool_content,
@@ -1724,6 +1728,9 @@ def execute_tool_calls_sequential(agent, assistant_message, messages: list, effe
         # Unwrap _multimodal dicts to an OpenAI-style content list
         # (see parallel path for rationale). String results pass through.
         _tool_content = agent._tool_result_content_for_active_model(function_name, function_result)
+        _tool_content = append_repeat_tool_reminder(
+            agent, function_name, function_args, _tool_content
+        )
         tool_message = make_tool_result_message(function_name, _tool_content, tool_call.id)
         messages.append(tool_message)
         risk_metadata = tool_message.get("_tool_output_risk")
