@@ -1,7 +1,10 @@
-import { defineFieldCopy } from '@/app/settings/field-copy'
+import { FIELD_DESCRIPTIONS, FIELD_LABELS } from './field-copy/zh-hant'
 
 import { defineLocale } from './define-locale'
 
+// zh-hant — generated from en.ts by scripts/i18n_write_locale.mjs.
+// Every section of en.ts is present. Strings not yet translated keep their
+// English text so the file stays type-correct and the UI never breaks.
 export const zhHant = defineLocale({
   common: {
     apply: '套用',
@@ -42,9 +45,8 @@ export const zhHant = defineLocale({
     update: '更新',
     tryHint: term => `試試「${term}」`,
     on: '開啟',
-    off: '關閉'
+    off: '關閉',
   },
-
   fileMenu: {
     revealFinder: '在 Finder 中顯示',
     revealExplorer: '在檔案總管中顯示',
@@ -58,9 +60,8 @@ export const zhHant = defineLocale({
     renameLabel: '新名稱',
     deleteTitle: name => `刪除 ${name}？`,
     deleteBody: '將移至垃圾桶，你可以從那裡還原。',
-    pathCopied: '已複製路徑'
+    pathCopied: '已複製路徑',
   },
-
   boot: {
     ready: 'OpenAmer Desktop 已就緒',
     desktopBootFailedWithMessage: message => `桌面啟動失敗：${message}`,
@@ -69,7 +70,7 @@ export const zhHant = defineLocale({
       loadingSettings: '正在載入 OpenAmer 設定',
       loadingSessions: '正在載入最近工作階段',
       startingDesktopConnection: '正在啟動桌面連線',
-      startingOpenAmerDesktop: '正在啟動 OpenAmer Desktop…'
+      startingOpenAmerDesktop: '正在啟動 OpenAmer Desktop…',
     },
     errors: {
       backgroundExited: 'OpenAmer 背景程序已結束。',
@@ -78,11 +79,11 @@ export const zhHant = defineLocale({
       desktopBootFailed: '桌面啟動失敗',
       gatewayConnectionLost: '與閘道的連線已中斷',
       gatewaySignInRequired: '需要閘道登入',
-      ipcBridgeUnavailable: '桌面 IPC 橋接器不可用。'
+      ipcBridgeUnavailable: '桌面 IPC 橋接器不可用。',
     },
     failure: {
-      title: 'OpenAmer 無法啟動',
-      description: '背景閘道未啟動。請嘗試下面的復原步驟。這裡的操作不會刪除您的聊天或設定。',
+      title: "OpenAmer 無法啟動",
+      description: "背景閘道未啟動。請嘗試下面的復原步驟。這裡的操作不會刪除您的聊天或設定。",
       remoteTitle: '需要重新登入遠端閘道',
       remoteDescription: '您的遠端閘道工作階段已過期。請重新登入以重新連線。這裡的操作不會刪除您的聊天或設定。',
       retry: '重試',
@@ -92,8 +93,7 @@ export const zhHant = defineLocale({
       back: '返回',
       openLogs: '開啟記錄',
       repairHint: '修復會重新執行安裝程式，在新機器上可能需要幾分鐘。',
-      remoteSignInHint: signInLabel =>
-        `先登出已儲存的遠端瀏覽器工作階段，然後開啟${signInLabel}。使用本機閘道可切換至內建後端。`,
+      remoteSignInHint: signInLabel => `先登出已儲存的遠端瀏覽器工作階段，然後開啟${signInLabel}。使用本機閘道可切換至內建後端。`,
       signOutAndSignIn: '登出並重新登入',
       remoteFailureHint: '在「閘道設定」中檢查閘道 URL 與登入，或切換至本機閘道。',
       hideRecentLogs: '隱藏最近記錄',
@@ -105,15 +105,14 @@ export const zhHant = defineLocale({
       signInFailed: '登入失敗',
       signInToRemoteGateway: '登入遠端閘道',
       signInWithProvider: provider => `使用 ${provider} 登入`,
-      identityProvider: '您的身分提供方'
-    }
+      identityProvider: '您的身分提供方',
+    },
   },
-
   notifications: {
     region: '通知',
     hide: '隱藏',
     show: '顯示',
-    more: count => `另外 ${count} 則通知`,
+    more: count => `${count} 則更多 ${count === 1 ? 'notification' : 'notifications'}`,
     clearAll: '全部清除',
     dismiss: '關閉通知',
     details: '詳細資訊',
@@ -124,8 +123,8 @@ export const zhHant = defineLocale({
     installMethodUnsupportedTitle: '不受支援的安裝方式',
     updateOpenAmer: '更新 OpenAmer',
     updateReadyTitle: '有可用更新',
-    updateReadyMessage: count => `有 ${count} 項新變更可用。`,
-    seeWhatsNew: '查看新增內容',
+    updateReadyMessage: count => `${count} 項新變更${count === 1 ? '' : 's'} 可供使用。`,
+    seeWhatsNew: "查看新增內容",
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT 需要 ELEVENLABS_API_KEY。',
       elevenLabsRejectedKey: 'ElevenLabs 拒絕了該 API 金鑰 (401)。',
@@ -134,7 +133,7 @@ export const zhHant = defineLocale({
       microphonePermission: '麥克風權限已被拒絕。',
       openaiRejectedApiKey: 'OpenAI 拒絕了該 API 金鑰。',
       openaiRejectedApiKeyWithStatus: status => `OpenAI 拒絕了該 API 金鑰 (${status} invalid_api_key)。`,
-      openaiTtsNeedsKey: 'OpenAI TTS 需要 VOICE_TOOLS_OPENAI_KEY 或 OPENAI_API_KEY。'
+      openaiTtsNeedsKey: 'OpenAI TTS 需要 VOICE_TOOLS_OPENAI_KEY 或 OPENAI_API_KEY。',
     },
     voice: {
       configureSpeechToText: '設定語音轉文字後即可使用語音模式。',
@@ -153,7 +152,7 @@ export const zhHant = defineLocale({
       transcriptionFailed: '語音轉寫失敗',
       transcriptionUnavailable: '語音轉寫暫不可用。',
       tryRecordingAgain: '請再錄製一次。',
-      unavailable: '語音不可用'
+      unavailable: '語音不可用',
     },
     native: {
       approvalTitle: '需要核准',
@@ -166,23 +165,20 @@ export const zhHant = defineLocale({
       turnErrorTitle: '本輪失敗',
       backgroundDoneTitle: '背景工作已完成',
       backgroundFailedTitle: '背景工作失敗',
-      creditsTitle: '額度'
-    }
+      creditsTitle: '額度',
+    },
   },
-
   remoteDisplayBanner: {
-    message: reason => `軟體繪圖已啟用 — 偵測到遠端顯示（${reason}）。為防止畫面閃爍，已停用 GPU 加速。`
+    message: reason => `軟體繪圖已啟用 — 偵測到遠端顯示（${reason}）。為防止畫面閃爍，已停用 GPU 加速。`,
   },
-
   billingBlock: {
     titleOpenamer: 'OpenAmer 額度已用盡',
     titleProvider: provider => `額度已用盡 — ${provider}`,
     fallbackMessage: '您的帳戶額度已用盡。請儲值以繼續使用。',
     openBilling: '開啟帳單',
     addCredits: '新增額度',
-    dismiss: '忽略'
+    dismiss: '忽略',
   },
-
   titlebar: {
     hideSidebar: '隱藏側邊欄',
     showSidebar: '顯示側邊欄',
@@ -195,9 +191,108 @@ export const zhHant = defineLocale({
     muteHaptics: '靜音觸感回饋',
     unmuteHaptics: '開啟觸感回饋',
     openSettings: '開啟設定',
-    openStarmap: '開啟記憶圖譜'
+    openStarmap: '開啟記憶圖譜',
+    openKeybinds: '鍵盤快速鍵',
+    layoutEditor: '版面配置編輯器',
+    layoutEditorTitle: '版面配置編輯器 — ⌘ 點擊可重設版面配置',
   },
-
+  keybinds: {
+    title: '鍵盤快速鍵',
+    subtitle: open => `按一下快速鍵即可重新綁定 · ${open} 會重新開啟此面板。`,
+    search: '搜尋快速鍵…',
+    rebind: '重新綁定',
+    reset: '重設為預設值',
+    resetAll: '全部重設',
+    pressKey: '按下按鍵…',
+    set: '設定',
+    conflictWith: label => `同時綁定至「${label}」`,
+    categories: {
+      composer: '撰寫器',
+      profiles: '設定檔',
+      session: '工作階段',
+      navigation: '導覽',
+      view: '檢視',
+    },
+    actions: {
+      'keybinds.openPanel': '開啟鍵盤快速鍵',
+      'nav.commandPalette': '開啟命令面板',
+      'nav.commandCenter': '開啟命令中心',
+      'nav.settings': '開啟設定',
+      'nav.profiles': '開啟設定檔',
+      'nav.skills': '開啟技能',
+      'nav.messaging': '開啟訊息',
+      'nav.artifacts': '開啟成品',
+      'nav.cron': '開啟排程工作',
+      'nav.agents': '開啟代理程式',
+      'session.new': '新增工作階段',
+      'session.newTab': '新增工作階段分頁',
+      'session.newWindow': '新增視窗',
+      'session.next': '下一個工作階段',
+      'session.prev': '上一個工作階段',
+      'session.slot.1': '切換至最近的工作階段 1',
+      'session.slot.2': '切換至最近的工作階段 2',
+      'session.slot.3': '切換至最近的工作階段 3',
+      'session.slot.4': '切換至最近的工作階段 4',
+      'session.slot.5': '切換至最近的工作階段 5',
+      'session.slot.6': '切換至最近的工作階段 6',
+      'session.slot.7': '切換至最近的工作階段 7',
+      'session.slot.8': '切換至最近的工作階段 8',
+      'session.slot.9': '切換至最近的工作階段 9',
+      'session.focusSearch': '搜尋工作階段',
+      'session.togglePin': '釘選 / 取消釘選目前工作階段',
+      'workspace.newWorktree': '新增工作樹',
+      'composer.focus': '聚焦輸入區',
+      'composer.modelPicker': '開啟模型選擇器',
+      'composer.voice': '開始 / 停止語音對話',
+      'view.toggleSidebar': '切換工作階段側邊欄',
+      'view.toggleRightSidebar': '切換檔案瀏覽器',
+      'view.toggleReview': '切換檢閱窗格',
+      'view.showFiles': '顯示檔案瀏覽器',
+      'view.showTerminal': '切換終端機',
+      'view.newTerminal': '新增終端機',
+      'view.nextTerminal': '下一個終端機',
+      'view.prevTerminal': '上一個終端機',
+      'view.closeTerminal': '關閉終端機',
+      'view.terminalSelection': '將終端機選取內容傳送至輸入區',
+      'view.closeTab': '關閉標籤頁',
+      'view.reopenTab': '重新開啟已關閉的標籤頁',
+      'view.flipPanes': '交換側邊欄位置',
+      'appearance.toggleMode': '切換淺色 / 深色',
+      'profile.default': '切換至預設設定檔',
+      'profile.switch.1': '切換至設定檔 1',
+      'profile.switch.2': '切換至設定檔 2',
+      'profile.switch.3': '切換至設定檔 3',
+      'profile.switch.4': '切換至設定檔 4',
+      'profile.switch.5': '切換至設定檔 5',
+      'profile.switch.6': '切換至設定檔 6',
+      'profile.switch.7': '切換至設定檔 7',
+      'profile.switch.8': '切換至設定檔 8',
+      'profile.switch.9': '切換至設定檔 9',
+      'profile.switch.10': '切換至設定檔 10',
+      'profile.switch.11': '切換至設定檔 11',
+      'profile.switch.12': '切換至設定檔 12',
+      'profile.switch.13': '切換至設定檔 13',
+      'profile.switch.14': '切換至設定檔 14',
+      'profile.switch.15': '切換至設定檔 15',
+      'profile.switch.16': '切換至設定檔 16',
+      'profile.switch.17': '切換至設定檔 17',
+      'profile.switch.18': '切換至設定檔 18',
+      'profile.next': '下一個設定檔',
+      'profile.prev': '上一個設定檔',
+      'profile.toggleAll': '切換所有設定檔檢視',
+      'profile.create': '建立設定檔',
+      'composer.send': '傳送訊息',
+      'composer.newline': '插入換行',
+      'composer.steer': '引導執行中的回合',
+      'composer.queue': '將訊息排入佇列',
+      'composer.sendQueued': '傳送下一個已排隊回合',
+      'composer.mention': '參照檔案、資料夾、URL',
+      'composer.slash': '斜線命令面板',
+      'composer.help': '快速說明',
+      'composer.history': '切換彈出視窗 / 歷史記錄',
+      'composer.cancel': '關閉彈出視窗 · 取消執行',
+    },
+  },
   language: {
     label: '語言',
     description: '選擇桌面介面的語言。',
@@ -205,9 +300,8 @@ export const zhHant = defineLocale({
     saveError: '語言更新失敗',
     switchTo: '切換語言',
     searchPlaceholder: '搜尋語言…',
-    noResults: '找不到語言'
+    noResults: '找不到語言',
   },
-
   settings: {
     closeSettings: '關閉設定',
     exportConfig: '匯出設定',
@@ -230,7 +324,25 @@ export const zhHant = defineLocale({
       archivedChats: '已封存聊天',
       about: '關於',
       billing: '帳單',
-      notifications: '通知'
+      notifications: '通知',
+      plugins: '外掛',
+    },
+    plugins: {
+      title: '桌面插件',
+      blurb: '載入至此應用程式的 UI 擴充功能 — 包含在建置版本中，或放入 desktop-plugins 資料夾（包括 OpenAmer 寫入的插件）。停用將立即卸載插件，且在重新啟動後依然有效。',
+      count: n => `已安裝 ${n} 個`,
+      openFolder: '開啟插件資料夾',
+      rescan: '重新掃描',
+      reveal: '在檔案管理員中顯示',
+      enable: '啟用',
+      disable: '停用',
+      failed: '失敗',
+      empty: '尚未安裝任何桌面插件。',
+      kinds: {
+        bundled: '內建',
+        disk: '磁碟',
+        runtime: '執行時',
+      },
     },
     notifications: {
       title: '通知',
@@ -241,28 +353,28 @@ export const zhHant = defineLocale({
       kinds: {
         approval: {
           label: '需要核准',
-          description: '有指令正在等待你核准或拒絕。'
+          description: '有指令正在等待你核准或拒絕。',
         },
         input: {
           label: '需要輸入',
-          description: 'OpenAmer 提出了問題，或需要密碼或密鑰。'
+          description: 'OpenAmer 提出了問題，或需要密碼或密鑰。',
         },
         turnDone: {
           label: '回覆就緒',
-          description: 'OpenAmer 在背景時完成了一輪對話。'
+          description: 'OpenAmer 在背景時完成了一輪對話。',
         },
         turnError: {
           label: '本輪失敗',
-          description: '本輪以錯誤結束。'
+          description: '本輪以錯誤結束。',
         },
         backgroundDone: {
           label: '背景工作完成',
-          description: '背景終端機指令已完成。'
+          description: '背景終端機指令已完成。',
         },
         credits: {
           label: '額度提醒',
-          description: '額度存取被暫停或恢復。'
-        }
+          description: '額度存取被暫停或恢復。',
+        },
       },
       test: '傳送測試通知',
       testTitle: 'OpenAmer',
@@ -271,7 +383,7 @@ export const zhHant = defineLocale({
       testUnsupported: '此系統不支援原生通知。',
       completionSoundTitle: '完成提示音',
       completionSoundDesc: '代理回合結束時播放。可在此選擇預設並預覽。',
-      completionSoundPreview: '預覽'
+      completionSoundPreview: '預覽',
     },
     sections: {
       model: '模型',
@@ -281,7 +393,7 @@ export const zhHant = defineLocale({
       safety: '安全性',
       memory: '記憶與上下文',
       voice: '語音',
-      advanced: '進階'
+      advanced: '進階',
     },
     searchPlaceholder: {
       about: '關於 OpenAmer Desktop',
@@ -289,12 +401,21 @@ export const zhHant = defineLocale({
       gateway: '閘道連線…',
       keys: '搜尋 API 金鑰…',
       mcp: '搜尋 MCP 伺服器…',
-      sessions: '搜尋已封存工作階段…'
+      sessions: '搜尋已封存工作階段…',
     },
     modeOptions: {
-      light: { label: '明亮', description: '明亮的桌面介面' },
-      dark: { label: '深色', description: '降低眩光的工作區' },
-      system: { label: '跟隨系統', description: '跟隨作業系統外觀' }
+      light: {
+        label: '明亮',
+        description: '明亮的桌面介面',
+      },
+      dark: {
+        label: '深色',
+        description: '降低眩光的工作區',
+      },
+      system: {
+        label: '跟隨系統',
+        description: '跟隨作業系統外觀',
+      },
     },
     appearance: {
       title: '外觀',
@@ -304,19 +425,17 @@ export const zhHant = defineLocale({
       toolViewTitle: '工具呼叫顯示',
       toolViewDesc: '產品模式會隱藏原始工具 payload；技術模式會顯示完整輸入/輸出。',
       uiScaleTitle: '介面縮放',
-      uiScaleDesc: (percent: number) =>
-        `縮放整個應用程式的文字與介面。也可使用 Cmd/Ctrl 加 +、- 或 0 調整。目前：${percent}%`,
+      uiScaleDesc: (percent: number) => `縮放整個應用程式的文字與介面。也可使用 Cmd/Ctrl 加 +、- 或 0 調整。目前：${percent}%`,
       translucencyTitle: '視窗透明',
       translucencyDesc: '讓整個視窗透出桌面。僅支援 macOS 與 Windows。',
       backdropTitle: '聊天背景',
       backdropDesc: '對話後方那張淡淡的雕像圖片。',
       embedsTitle: '內嵌預覽',
-      embedsDesc:
-        '豐富預覽會從第三方網站（YouTube、X 等）載入。詢問會在你允許前顯示佔位符；一律會自動載入；關閉則保留純連結。',
+      embedsDesc: '豐富預覽會從第三方網站（YouTube、X 等）載入。詢問會在你允許前顯示佔位符；一律會自動載入；關閉則保留純連結。',
       embedsAsk: '詢問',
       embedsAlways: '一律',
       embedsOff: '關閉',
-      embedsReset: (count: number) => `重設 ${count} 個已允許的服務`,
+      embedsReset: (count: number) => `重設 ${count} 允許 ${count === 1 ? 'service' : 'services'}`,
       product: '產品',
       productDesc: '易讀的工具活動與精簡摘要。',
       technical: '技術',
@@ -326,7 +445,7 @@ export const zhHant = defineLocale({
       themeProfileNote: profile => `已為「${profile}」設定檔儲存——每個設定檔保留各自的主題。`,
       installTitle: '從 VS Code 安裝',
       installDesc: '貼上 Marketplace 擴充功能 ID（例如 dracula-theme.theme-dracula），將其配色主題轉換為桌面調色盤。',
-      installPlaceholder: 'publisher.extension',
+      installPlaceholder: '發佈者.擴充功能',
       installButton: '安裝',
       installing: '安裝中…',
       installError: '無法安裝該主題。',
@@ -335,28 +454,27 @@ export const zhHant = defineLocale({
       importedBadge: '已匯入',
       pet: {
         title: '寵物',
-        intro:
-          '領養一隻懸浮在應用上的 petdex 動畫寵物，它會根據 OpenAmer 的狀態做出反應——工具執行時奔跑、成功時歡呼、出錯時沮喪。',
+        intro: '領養一隻懸浮在應用上的 petdex 動畫寵物，它會根據 OpenAmer 的狀態做出反應——工具執行時奔跑、成功時歡呼、出錯時沮喪。',
         restartHint: '寵物功能需要重新啟動——目前執行的應用在此功能加入前啟動。請結束並重新開啟 OpenAmer，然後回到此處。',
+        on: '開啟',
+        off: '關閉',
         scaleTitle: '大小',
         scaleDesc: '調整懸浮寵物的大小，所有介面即時生效。',
         roamTitle: '漫遊',
         roamDesc: '閒置時讓寵物自己在視窗內四處走動。',
-        on: '開啟',
-        off: '關閉',
         chooseTitle: '選擇寵物',
         chooseDesc: '選擇後會自動安裝（如需）並設為目前寵物。',
         searchPlaceholder: '搜尋寵物…',
-        unreachable: '無法連線至 petdex 畫廊。請檢查網路連線並重新開啟此頁面。',
+        unreachable: "無法連線至 petdex 畫廊。請檢查網路連線並重新開啟此頁面。",
         noMatch: query => `沒有符合「${query}」的寵物。`,
         installedTag: '已安裝',
         generatedTag: '生成',
-        countCapped: (cap, total) => `顯示 ${total} 個中的 ${cap} 個——輸入關鍵字以縮小範圍。`,
-        count: n => `${n} 個寵物。`,
+        countCapped: (cap, total) => `顯示 ${cap} / ${total} — 輸入以縮小範圍。`,
+        count: n => `${n} 個 寵物 ${n === 1 ? '' : 's'}。`,
         uninstall: name => `解除安裝 ${name}`,
         delete: name => `刪除 ${name}`,
         deleteTitle: name => `刪除 ${name}？`,
-        deleteBody: '此操作會永久刪除寵物，且無法重新安裝。',
+        deleteBody: "此操作會永久刪除寵物，且無法重新安裝。",
         deleteConfirm: '刪除',
         rename: name => `重新命名 ${name}`,
         renameTitle: '重新命名寵物',
@@ -369,248 +487,27 @@ export const zhHant = defineLocale({
         exportFailed: slug => `無法匯出 ${slug}`,
         noneAvailable: '目前沒有可開啟的寵物。',
         turnOnFailed: '無法開啟寵物。',
-        turnOffFailed: '無法關閉寵物。'
-      }
+        turnOffFailed: '無法關閉寵物。',
+      },
     },
-    fieldLabels: defineFieldCopy({
-      model: '預設模型',
-      modelContextLength: '上下文視窗',
-      fallbackProviders: '備用模型',
-      toolsets: '已啟用工具集',
-      timezone: '時區',
-      display: {
-        personality: '人格',
-        showReasoning: '推理區塊'
-      },
-      desktop: {
-        repoScanEnabled: '自動探索程式碼儲存庫',
-        repoScanRoots: '程式碼儲存庫掃描根目錄',
-        repoScanExcludePaths: '排除的程式碼儲存庫路徑'
-      },
-      agent: {
-        maxTurns: '最大代理步數',
-        imageInputMode: '圖片附件',
-        apiMaxRetries: 'API 重試次數',
-        serviceTier: '服務層級',
-        toolUseEnforcement: '工具使用強制'
-      },
-      terminal: {
-        cwd: '工作目錄',
-        backend: '執行後端',
-        timeout: '指令逾時',
-        persistentShell: '持久化 Shell',
-        envPassthrough: '環境變數傳遞',
-        dockerImage: 'Docker 映像',
-        singularityImage: 'Singularity 映像',
-        modalImage: 'Modal 映像',
-        daytonaImage: 'Daytona 映像'
-      },
-      fileReadMaxChars: '檔案讀取上限',
-      toolOutput: {
-        maxBytes: '終端機輸出上限',
-        maxLines: '檔案頁面上限',
-        maxLineLength: '行長上限'
-      },
-      codeExecution: {
-        mode: '程式碼執行模式'
-      },
-      approvals: {
-        mode: '批准模式',
-        timeout: '批准逾時',
-        mcpReloadConfirm: '確認 MCP 重新載入'
-      },
-      commandAllowlist: '指令允許清單',
-      security: {
-        redactSecrets: '遮蔽密鑰',
-        allowPrivateUrls: '允許私有 URL'
-      },
-      browser: {
-        allowPrivateUrls: '瀏覽器私有 URL',
-        autoLocalForPrivateUrls: '私有 URL 使用本機瀏覽器'
-      },
-      checkpoints: {
-        enabled: '檔案檢查點',
-        maxSnapshots: '檢查點上限'
-      },
-      voice: {
-        recordKey: '語音快捷鍵',
-        maxRecordingSeconds: '最長錄音時間',
-        autoTts: '朗讀回覆'
-      },
-      stt: {
-        enabled: '語音轉文字',
-        provider: '語音轉文字提供方',
-        local: {
-          model: '本機轉寫模型',
-          language: '轉寫語言'
-        },
-        openai: {
-          model: 'OpenAI STT 模型'
-        },
-        groq: {
-          model: 'Groq STT 模型'
-        },
-        mistral: {
-          model: 'Mistral STT 模型'
-        },
-        elevenlabs: {
-          modelId: 'ElevenLabs STT 模型',
-          languageCode: 'ElevenLabs 語言',
-          tagAudioEvents: '標記音訊事件',
-          diarize: '說話者分離'
-        }
-      },
-      tts: {
-        provider: '文字轉語音提供方',
-        edge: {
-          voice: 'Edge 語音'
-        },
-        openai: {
-          model: 'OpenAI TTS 模型',
-          voice: 'OpenAI 語音'
-        },
-        elevenlabs: {
-          voiceId: 'ElevenLabs 語音',
-          modelId: 'ElevenLabs 模型'
-        },
-        xai: {
-          voiceId: 'xAI (Grok) 語音',
-          language: 'xAI 語言',
-          speed: '播放速度',
-          autoSpeechTags: '自動語音標籤',
-          optimizeStreamingLatency: '串流延遲最佳化',
-          sampleRate: '取樣率',
-          bitRate: '位元率'
-        },
-        minimax: {
-          model: 'MiniMax TTS 模型',
-          voiceId: 'MiniMax 語音'
-        },
-        mistral: {
-          model: 'Mistral TTS 模型',
-          voiceId: 'Mistral 語音'
-        },
-        gemini: {
-          model: 'Gemini TTS 模型',
-          voice: 'Gemini 語音'
-        },
-        neutts: {
-          model: 'NeuTTS 模型',
-          device: 'NeuTTS 裝置'
-        },
-        kittentts: {
-          model: 'KittenTTS 模型',
-          voice: 'KittenTTS 語音'
-        },
-        piper: {
-          voice: 'Piper 語音'
-        }
-      },
-      memory: {
-        memoryEnabled: '持久記憶',
-        userProfileEnabled: '使用者設定檔',
-        memoryCharLimit: '記憶預算',
-        userCharLimit: '設定檔預算',
-        provider: '記憶提供方'
-      },
-      context: {
-        engine: '上下文引擎'
-      },
-      compression: {
-        enabled: '自動壓縮',
-        threshold: '壓縮閾值',
-        targetRatio: '壓縮目標',
-        protectLastN: '保護最近訊息'
-      },
-      delegation: {
-        model: '子代理模型',
-        provider: '子代理提供方',
-        maxIterations: '子代理輪次上限',
-        maxConcurrentChildren: '平行子代理',
-        childTimeoutSeconds: '子代理逾時',
-        reasoningEffort: '子代理推理強度'
-      },
-      updates: {
-        nonInteractiveLocalChanges: '應用程式內更新的本機變更'
-      }
-    }),
-    fieldDescriptions: defineFieldCopy({
-      model: '除非你在輸入框選擇其他模型，否則新聊天會使用此模型。',
-      modelContextLength: '保留 0 會使用所選模型偵測到的上下文視窗。',
-      fallbackProviders: '預設模型失敗時要嘗試的備用 provider:model 項目。',
-      display: {
-        personality: '新工作階段的預設助手風格。',
-        showReasoning: '後端提供推理內容時顯示該區塊。'
-      },
-      desktop: {
-        repoScanEnabled: '掃描本機資料夾，並在「專案」中顯示 Git 程式碼儲存庫。',
-        repoScanRoots: '要掃描的資料夾。留空時掃描主目錄。',
-        repoScanExcludePaths: '探索程式碼儲存庫時略過這些資料夾及其子目錄。'
-      },
-      timezone: 'OpenAmer 需要本機時間上下文時使用。留空則使用系統時區。',
-      agent: {
-        imageInputMode: '控制圖片附件如何傳送給模型。',
-        maxTurns: 'OpenAmer 停止一次執行前的工具呼叫輪次上限。'
-      },
-      terminal: {
-        cwd: '工具與終端機操作的預設專案資料夾。',
-        persistentShell: '後端支援時，在指令之間保留 Shell 狀態。',
-        envPassthrough: '傳入工具執行的環境變數。'
-      },
-      codeExecution: {
-        mode: '程式碼執行被限制在目前專案中的嚴格程度。'
-      },
-      fileReadMaxChars: 'OpenAmer 單次檔案讀取可讀取的最大字元數。',
-      approvals: {
-        mode: 'OpenAmer 如何處理需要明確批准的指令。',
-        timeout: '批准提示逾時前等待的時間。'
-      },
-      security: {
-        redactSecrets: '盡可能從模型可見內容中隱藏偵測到的密鑰。'
-      },
-      checkpoints: {
-        enabled: '在檔案編輯前建立可回復的快照。'
-      },
-      memory: {
-        memoryEnabled: '儲存有助於未來工作階段的持久記憶。',
-        userProfileEnabled: '維護一份精簡的使用者偏好設定檔。'
-      },
-      context: {
-        engine: '長對話接近上下文上限時的管理策略。'
-      },
-      compression: {
-        enabled: '對話變大時摘要較早的上下文。'
-      },
-      voice: {
-        autoTts: '自動朗讀助手回覆。'
-      },
-      stt: {
-        enabled: '啟用本機或提供方支援的語音轉寫。',
-        elevenlabs: {
-          languageCode: '可選的 ISO-639-3 語言代碼。留空讓 ElevenLabs 自動偵測。'
-        }
-      },
-      updates: {
-        nonInteractiveLocalChanges:
-          'OpenAmer 從應用程式內更新自身時，保留本機原始碼變更（stash）或丟棄（discard）。終端機更新一律會詢問。'
-      }
-    }),
+    fieldLabels: FIELD_LABELS,
+    fieldDescriptions: FIELD_DESCRIPTIONS,
     about: {
-      heading: 'OpenAmer Desktop',
+      heading: 'OpenAmer 桌面版',
       version: value => `版本 ${value}`,
       versionUnavailable: '版本不可用',
       updates: '更新',
       checkNow: '立即檢查',
       checking: '檢查中…',
-      seeWhatsNew: '查看新增內容',
+      seeWhatsNew: "查看新增內容",
       updateNow: '立即更新',
       releaseNotes: '發行說明',
-      onLatest: '你已是最新版本。',
+      onLatest: "你已是最新版本。",
       installing: '正在安裝更新。',
-      cantUpdate: '此版本無法從應用程式內自行更新。',
-      cantReach: '無法連線到更新伺服器。',
+      cantUpdate: "此版本無法從應用程式內自行更新。",
+      cantReach: "無法連線到更新伺服器。",
       tapCheck: '點選「立即檢查」以尋找更新。',
-      updateReady: count => `新更新已就緒（包含 ${count} 項變更）。`,
+      updateReady: count => `新更新已就緒（包含 ${count} 項變更 ${count === 1 ? '' : 's'}）。`,
       lastChecked: age => `上次檢查：${age}`,
       justNowSuffix: ' · 剛剛',
       automaticUpdates: '自動更新',
@@ -620,7 +517,7 @@ export const zhHant = defineLocale({
       justNow: '剛剛',
       minAgo: count => `${count} 分鐘前`,
       hoursAgo: count => `${count} 小時前`,
-      daysAgo: count => `${count} 天前`
+      daysAgo: count => `${count} 天前`,
     },
     config: {
       none: '無',
@@ -636,7 +533,7 @@ export const zhHant = defineLocale({
       imported: '設定已匯入',
       invalidJson: '設定 JSON 無效',
       keepAwakeTitle: '保持電腦喚醒',
-      keepAwakeDesc: '阻止本機睡眠，讓長時間或整夜執行持續進行。螢幕仍可變暗。'
+      keepAwakeDesc: '阻止本機睡眠，讓長時間或整夜執行持續進行。螢幕仍可變暗。',
     },
     credentials: {
       pasteKey: '貼上金鑰',
@@ -646,7 +543,7 @@ export const zhHant = defineLocale({
       couldNotSave: '無法儲存憑證。',
       remove: '移除',
       getKey: '取得金鑰',
-      saving: '儲存中'
+      saving: '儲存中',
     },
     envActions: {
       actionsFor: label => `${label} 的動作`,
@@ -657,7 +554,7 @@ export const zhHant = defineLocale({
       revealValue: '顯示值',
       replace: '取代',
       set: '設定',
-      clear: '清除'
+      clear: '清除',
     },
     gateway: {
       loading: '正在載入閘道設定...',
@@ -665,21 +562,52 @@ export const zhHant = defineLocale({
       unavailableDesc: '桌面 IPC 橋接器未公開閘道設定。',
       title: '閘道連線',
       envOverride: '環境變數覆寫',
-      intro:
-        'OpenAmer Desktop 預設會啟動自己的本機閘道。如果您希望此應用程式控制另一台機器或可信代理後面已執行的 OpenAmer 後端，請使用遠端閘道。在下方按設定檔指定各自的遠端主機。',
+      intro: 'OpenAmer Desktop 預設會啟動自己的本機閘道。如果您希望此應用程式控制另一台機器或可信代理後面已執行的 OpenAmer 後端，請使用遠端閘道。在下方按設定檔指定各自的遠端主機。',
       appliesTo: '套用至',
       allProfiles: '全部設定檔',
       defaultConnection: '預設連線適用於所有沒有自訂覆寫的設定檔。',
       profileConnection: profile => `僅當「${profile}」為作用中設定檔時使用此連線。選擇「使用預設閘道」可移除其覆寫。`,
       envOverrideTitle: '環境變數正在控制此桌面工作階段。',
       envOverrideDesc: '取消設定 OPENAMER_DESKTOP_REMOTE_URL 和 OPENAMER_DESKTOP_REMOTE_TOKEN 後才會使用下方儲存的設定。',
+      modeTitle: '連線模式',
       localTitle: '本機閘道',
       localDesc: '在 localhost 啟動私有 OpenAmer 後端。這是預設方式，可離線使用。',
       inheritTitle: '使用預設閘道',
-      inheritDesc: '移除此設定檔的自訂覆寫並使用預設連線。',
+      inheritDesc: "移除此設定檔的自訂覆寫並使用預設連線。",
       remoteTitle: '遠端閘道',
-      remoteDesc:
-        '將此桌面殼層連線至遠端 OpenAmer 後端。託管閘道使用 OAuth 或帳號密碼；自託管閘道也可使用工作階段 Token。',
+      remoteDesc: '將此桌面殼層連線至遠端 OpenAmer 後端。託管閘道使用 OAuth 或帳號密碼；自託管閘道也可使用工作階段 Token。',
+      remoteAuthHint: '託管閘道使用 OAuth 或使用者名稱與密碼；自託管閘道可能使用工作階段權杖。',
+      cloudTitle: 'OpenAmer 雲端',
+      cloudDesc: '登入一次 OpenAmer Cloud 並從您的帳戶中選擇代理程式 — 無需貼上 URL。',
+      cloudSignInTitle: 'OpenAmer 雲端',
+      cloudSignIn: '登入 OpenAmer 雲端',
+      cloudSignedIn: '已登入 OpenAmer Cloud',
+      cloudNeedsSignIn: '登入 OpenAmer Cloud 以探索你帳戶中的代理程式。',
+      cloudSignedInDesc: '你已登入。請在下方選擇代理程式；工作階段會自動重新整理。',
+      cloudAgentsTitle: '你的代理程式',
+      cloudOrgPickerTitle: '選擇組織',
+      cloudOrgSelect: '選取',
+      cloudOrgChange: '變更組織',
+      cloudOrgRole: role => `角色：${role}`,
+      cloudLoadingAgents: '正在載入你的代理程式…',
+      cloudNoAgents: {
+        before: '此帳戶找不到代理程式。請在 ',
+        linkText: 'OpenAmer 入口網站',
+        after: ' 建立一個，然後重新整理。',
+      },
+      cloudRefresh: '重新整理',
+      cloudConnect: '連線',
+      cloudConnecting: '正在連線…',
+      cloudDiscoverFailed: '無法載入你的 OpenAmer Cloud 代理程式',
+      cloudConnectFailed: '無法連線至該代理程式',
+      cloudSignInFailed: 'OpenAmer Cloud 登入失敗',
+      cloudSignedOutTitle: '已登出 OpenAmer Cloud',
+      cloudSignedOutMessage: '已清除 OpenAmer Cloud 工作階段。',
+      cloudConnectedTitle: '已連線',
+      cloudConnectedPill: '已連線',
+      cloudConnectedTo: name => `已連線至${name}。`,
+      cloudAgentProvisioning: '佈建中…',
+      cloudStatusLabel: status => `狀態：${status}`,
       remoteUrlTitle: '遠端 URL',
       remoteUrlDesc: '遠端儀表板後端的基礎 URL。支援路徑前綴，例如 /openamer。',
       probing: '正在檢查此閘道的驗證方式…',
@@ -725,8 +653,7 @@ export const zhHant = defineLocale({
       applyFailed: '無法套用閘道設定',
       saveFailed: '無法儲存閘道設定',
       sshTitle: '透過 SSH 連線',
-      sshDesc:
-        'OpenAmer 會透過 SSH 在遠端啟動並以通道連線到本應用程式——無需自行啟動或公開任何服務。前提：已具備到該主機的金鑰 SSH 存取。',
+      sshDesc: 'OpenAmer 會透過 SSH 在遠端啟動並以通道連線到本應用程式——無需自行啟動或公開任何服務。前提：已具備到該主機的金鑰 SSH 存取。',
       sshTrustHint: '首次提供的主機金鑰會被信任並固定；後續變更將被拒絕。',
       sshHostTitle: '主機',
       sshHostDesc: 'user@host，或 ~/.ssh/config 中的 Host 別名。',
@@ -750,20 +677,18 @@ export const zhHant = defineLocale({
       sshReachable: (host, platform) => `可連線：${host}（${platform}）——已找到 OpenAmer`,
       sshIncompleteHost: '連線前請輸入 SSH 主機。',
       sshErrUnreachable: '無法透過 SSH 連線到該主機。請檢查主機、連接埠和網路。',
-      sshErrAuth:
-        'SSH 驗證失敗。請將金鑰載入 ssh-agent（ssh-add），或在 ~/.ssh/config 中設定 IdentityFile——OpenAmer 以非互動方式執行 ssh。',
+      sshErrAuth: 'SSH 驗證失敗。請將金鑰載入 ssh-agent（ssh-add），或在 ~/.ssh/config 中設定 IdentityFile——OpenAmer 以非互動方式執行 ssh。',
       sshErrHostKey: '自上次連線以來主機金鑰已變更。請確認這是預期的，然後執行 ssh-keygen -R <host> 並重新連線。',
-      sshErrNotInstalled:
-        '遠端主機上未安裝 OpenAmer。請在遠端安裝（curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh）或設定 OpenAmer 路徑。',
+      sshErrNotInstalled: '遠端主機上未安裝 OpenAmer。請在遠端安裝（curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh）或設定 OpenAmer 路徑。',
       sshErrPlatform: '不支援的遠端平台。OpenAmer Desktop 的 SSH 模式支援 Linux、macOS 和 Windows 遠端主機。',
       sshErrTimeout: 'SSH 連線逾時。主機可能無法存取或處於睡眠狀態。',
       sshErrUpdateRequired: '使用 Desktop SSH 連線前，請更新遠端主機上的 OpenAmer。',
-      sshErrUnknown: 'SSH 連線失敗。'
+      sshErrUnknown: 'SSH 連線失敗。',
     },
     keys: {
       loading: '正在載入 API 金鑰和憑證...',
       failedLoad: 'API 金鑰載入失敗',
-      empty: '此類別尚未有任何設定。'
+      empty: '此類別尚未有任何設定。',
     },
     mcp: {
       loading: '正在載入 MCP 伺服器...',
@@ -792,8 +717,30 @@ export const zhHant = defineLocale({
       serverJson: '伺服器 JSON',
       remove: '移除',
       saveServer: '儲存伺服器',
-      capabilitySummary: (tools, prompts, resources) =>
-        `已啟用 ${[`${tools} 個工具`, ...(prompts ? [`${prompts} 個提示`] : []), ...(resources ? [`${resources} 個資源`] : [])].join('、')}`,
+      test: '測試連線',
+      testing: '測試中...',
+      testOk: count => `已連線 — ${count} 個工具${count === 1 ? '' : 's'} 可用`,
+      testFailed: '連線失敗',
+      enableServer: name => `啟用 ${name}`,
+      disableServer: name => `停用 ${name}`,
+      serverEnabled: name => `已啟用 ${name} — 適用於新工作階段。`,
+      serverDisabled: name => `已停用 ${name} — 適用於新工作階段。`,
+      toggleFailed: name => `切換 ${name} 失敗`,
+      tabServers: '伺服器',
+      tabCatalog: '目錄',
+      catalogLoading: '正在載入 MCP 目錄...',
+      catalogLoadFailed: 'MCP 目錄載入失敗',
+      catalogEmpty: '沒有可用的目錄項目。',
+      catalogInstalled: '已安裝',
+      catalogEnabled: '已啟用',
+      catalogNeedsInstall: '需要建置',
+      catalogInstall: '安裝',
+      catalogInstalling: '安裝中...',
+      catalogInstallStarted: name => `正在安裝 ${name}...，完成後會套用於新工作階段。`,
+      catalogInstallFailed: name => `安裝 ${name} 失敗`,
+      catalogEnvPrompt: name => `${name} 需要認證資訊`,
+      catalogEnvRequired: '安裝前請填寫必要值。',
+      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} 已啟用`,
       statusConnecting: '連線中…',
       statusNeedsAuth: '需要驗證',
       statusError: '錯誤',
@@ -806,7 +753,7 @@ export const zhHant = defineLocale({
       unsavedConnect: '未儲存 — 儲存 mcp.json 以連線。',
       enableTool: tool => `啟用 ${tool}`,
       disableTool: tool => `停用 ${tool}`,
-      noOutput: '尚無輸出。'
+      noOutput: '尚無輸出。',
     },
     model: {
       loading: '正在載入模型設定...',
@@ -814,6 +761,10 @@ export const zhHant = defineLocale({
       provider: '提供方',
       model: '模型',
       applying: '套用中...',
+      defaultsLabel: '預設值',
+      reasoning: '推理',
+      reasoningOff: '關閉',
+      defaultsFailed: '無法儲存模型預設值',
       auxiliaryTitle: '輔助模型',
       resetAllToMain: '全部重設為主要模型',
       auxiliaryDesc: '輔助任務預設使用主要模型。您可以為任何任務指定專用模型。',
@@ -821,16 +772,43 @@ export const zhHant = defineLocale({
       change: '變更',
       autoUseMain: '自動 · 使用主要模型',
       providerDefault: '(提供方預設)',
+      fallbackAdd: '新增備援',
+      fallbackEmpty: '沒有備援模型 — 除非預設模型失敗，否則會使用預設模型。',
+      notInCatalog: "未列於此提供者的模型清單中 — 呼叫可能會退回備援。",
       tasks: {
-        vision: { label: '視覺', hint: '圖片分析' },
-        web_extract: { label: '網頁擷取', hint: '頁面摘要' },
-        compression: { label: '壓縮', hint: '上下文壓縮' },
-        skills_hub: { label: '技能中心', hint: '技能搜尋' },
-        approval: { label: '核准', hint: '智慧自動核准' },
-        mcp: { label: 'MCP', hint: 'MCP 工具路由' },
-        title_generation: { label: '標題生成', hint: '工作階段標題' },
-        curator: { label: '策展器', hint: '技能使用審查' }
-      }
+        vision: {
+          label: '視覺',
+          hint: '圖片分析',
+        },
+        web_extract: {
+          label: '網頁擷取',
+          hint: '頁面摘要',
+        },
+        compression: {
+          label: '壓縮',
+          hint: '上下文壓縮',
+        },
+        skills_hub: {
+          label: '技能中心',
+          hint: '技能搜尋',
+        },
+        approval: {
+          label: '核准',
+          hint: '智慧自動核准',
+        },
+        mcp: {
+          label: 'MCP',
+          hint: 'MCP 工具路由',
+        },
+        title_generation: {
+          label: '標題生成',
+          hint: '工作階段標題',
+        },
+        curator: {
+          label: '策展器',
+          hint: '技能使用審查',
+        },
+      },
     },
     providers: {
       connectAccount: '連結帳號',
@@ -840,8 +818,13 @@ export const zhHant = defineLocale({
       collapse: '收合',
       connectAnother: '連結其他提供方',
       otherProviders: '其他提供方',
+      disconnect: '中斷連線',
+      disconnectInTerminal: '中斷連線（在終端機執行移除指令）',
       removeConfirm: provider => `移除 ${provider}？`,
+      removeExternalGeneric: provider => `${provider} 由其專屬 CLI 管理 — 請在那裡移除。`,
       removeKeyManaged: provider => `${provider} 由 API 金鑰設定。請從 API Keys 中移除。`,
+      removeTerminalConfirm: (provider, command) => `中斷 ${provider} 連線？這會在終端機執行「${command}」以清除認證。`,
+      removeTerminalRunning: provider => `正在終端機執行 ${provider} 中斷連線…`,
       removedTitle: '帳號已移除',
       removedMessage: provider => `${provider} 已移除。`,
       failedRemove: provider => `無法移除 ${provider}`,
@@ -850,9 +833,9 @@ export const zhHant = defineLocale({
       noKeysMatch: '沒有符合的提供方。',
       localEndpoint: {
         title: '本地 / 自訂端點',
-        description: '將 OpenAmer 指向任意 OpenAI 相容端點（Zyphra、vLLM、llama.cpp、Ollama 等）。'
+        description: '將 OpenAmer 指向任意 OpenAI 相容端點（Zyphra、vLLM、llama.cpp、Ollama 等）。',
       },
-      loading: '正在載入提供方...'
+      loading: '正在載入提供方...',
     },
     sessions: {
       loading: '正在載入已封存工作階段…',
@@ -862,12 +845,11 @@ export const zhHant = defineLocale({
       emptyArchivedDesc: '封存一個聊天後會顯示在這裡。',
       unarchive: '取消封存',
       deletePermanently: '永久刪除',
-      messages: count => `${count} 則訊息`,
+      messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       restored: '已還原',
       deleteConfirm: title => `永久刪除「${title}」？此操作無法復原。`,
       autoArchiveTitle: '自動封存閒置對話',
-      autoArchiveDesc:
-        '自動封存你一段時間未使用的對話。已釘選的對話永遠不會被封存，也不會刪除任何內容——封存的對話會移到這裡。',
+      autoArchiveDesc: "自動封存你一段時間未使用的對話。已釘選的對話永遠不會被封存，也不會刪除任何內容——封存的對話會移到這裡。",
       autoArchiveDaysLabel: '封存前',
       autoArchiveDaysUnit: '天無活動',
       autoArchiveFailed: '無法更新自動封存設定',
@@ -883,7 +865,7 @@ export const zhHant = defineLocale({
       unarchiveFailed: '取消封存失敗',
       deleteFailed: '刪除失敗',
       updateDirFailed: '無法更新預設目錄',
-      clearDirFailed: '無法清除預設目錄'
+      clearDirFailed: '無法清除預設目錄',
     },
     toolsets: {
       loadingConfig: '正在載入設定',
@@ -933,9 +915,17 @@ export const zhHant = defineLocale({
       webUseForExtract: '用於擷取',
       webUsedForSearch: '搜尋後端',
       webUsedForExtract: '擷取後端',
-      webCapabilitySelectedMessage: (provider, capability) =>
-        `${provider} 現在負責網頁${capability === 'search' ? '搜尋' : '擷取'}。`,
+      webCapabilitySelectedMessage: (provider, capability) => `${provider} 現在會處理網頁 ${capability}。`,
       failedSelectCapability: provider => `無法設定 ${provider}`,
+      loadingModels: '正在載入模型目錄…',
+      modelSectionTitle: '模型',
+      modelCount: count => `${count} 模型${count === 1 ? '' : 's'}`,
+      modelInUse: '使用中',
+      modelDefault: '預設',
+      modelInactiveHint: '請先選取此後端，才能變更其模型。',
+      modelSelectedTitle: '已選取模型',
+      modelSelectedMessage: model => `${model} 會套用至新工作階段。`,
+      failedSelectModel: model => `選取 ${model} 失敗`,
       terminalBackend: {
         sectionTitle: '執行後端',
         loading: '正在檢查執行後端…',
@@ -947,15 +937,15 @@ export const zhHant = defineLocale({
         selectedTitle: '已選擇後端',
         selectedMessage: backend => `終端命令現在透過 ${backend} 執行。將套用於新工作階段。`,
         failedSelect: backend => `選擇 ${backend} 失敗`,
-        needsSetupHint: '現在即可選擇此後端——但在完成設定前命令將會失敗。'
-      }
-    }
+        needsSetupHint: '現在即可選擇此後端——但在完成設定前命令將會失敗。',
+      },
+    },
   },
-
   skills: {
     tabSkills: '技能',
     tabToolsets: '工具集',
     tabMcp: 'MCP',
+    tabHub: '瀏覽中樞',
     all: '全部',
     searchSkills: '搜尋技能...',
     searchToolsets: '搜尋工具集...',
@@ -989,13 +979,13 @@ export const zhHant = defineLocale({
     enableAll: '全部啟用',
     disableAll: '全部停用',
     disableUnused: '停用未使用',
-    bulkUpdated: count => `已為新工作階段更新 ${count} 項。`,
+    bulkUpdated: count => `已為新工作階段更新 ${count} ${count === 1 ? 'item' : 'items'}。`,
     bulkNoChange: '沒有需要變更的內容。',
     usageCount: count => `已使用 ${count} 次`,
     provenance: {
       agent: '已學習',
       bundled: '內建',
-      hub: '技能中心'
+      hub: '技能中心',
     },
     emptyNoneFound: noun => `找不到${noun}`,
     emptyNothingMatches: query => `沒有符合「${query}」的內容。`,
@@ -1005,12 +995,58 @@ export const zhHant = defineLocale({
     edit: '編輯',
     archive: '封存',
     skillArchivedTitle: '技能已封存',
-    skillArchivedMessage: '可透過 openamer curator restore 還原。'
+    skillArchivedMessage: '可透過 openamer curator restore 還原。',
+    hub: {
+      searchPlaceholder: '搜尋技能中樞',
+      search: '搜尋',
+      searching: '搜尋中…',
+      connectingHubs: '正在連線至技能中心...',
+      connectedHubs: '已連線的中心：',
+      featured: '精選技能',
+      landingHint: '搜尋中心以瀏覽來自官方索引、GitHub 與社群來源的可安裝技能。',
+      noResults: '中心內找不到符合的技能。',
+      resultCount: (count, ms) => `${count} 個結果${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      timedOut: sources => `逾時：${sources}`,
+      installed: '已安裝',
+      install: '安裝',
+      installing: '正在安裝...',
+      uninstall: '解除安裝',
+      uninstalling: '正在解除安裝...',
+      updateAll: '更新已安裝',
+      updating: '正在更新...',
+      preview: '預覽',
+      scan: '掃描',
+      scanning: '正在掃描...',
+      close: '關閉',
+      files: '檔案',
+      noReadme: '此技能沒有 SKILL.md 預覽。',
+      trust: {
+        builtin: '內建',
+        trusted: '受信任',
+        community: '社群',
+      },
+      verdictSafe: '安全',
+      verdictCaution: '注意',
+      verdictDangerous: '危險',
+      policyAllow: '允許安裝',
+      policyAsk: '安裝前請檢閱',
+      policyBlock: '安裝已遭原則封鎖',
+      findings: count => `${count} 項發現${count === 1 ? '' : 's'}`,
+      noFindings: '沒有安全發現。',
+      installStarted: name => `正在安裝 ${name}...`,
+      uninstallStarted: name => `正在解除安裝 ${name}...`,
+      updateStarted: '正在更新已安裝的技能...',
+      actionFailed: '技能操作失敗',
+      actionLog: '操作記錄',
+      loadFailed: '技能中心載入失敗',
+      previewFailed: '技能預覽失敗',
+      scanFailed: '安全掃描失敗',
+      searchFailed: '中心搜尋失敗',
+    },
   },
-
   starmap: {
     title: '記憶圖譜',
-    subtitle: (nodes, clusters) => `${clusters} 個類別中的 ${nodes} 個技能`,
+    subtitle: (nodes, clusters) => `${nodes} 項技能，涵蓋 ${clusters} 個類別`,
     close: '關閉記憶圖譜',
     refresh: '重新整理',
     memory: '記憶',
@@ -1021,7 +1057,19 @@ export const zhHant = defineLocale({
     loadFailed: '無法載入記憶圖譜',
     loading: '載入中…',
     emptyTitle: '尚無學習內容',
-    emptyDesc: '當 OpenAmer 為你的工作建立技能與記憶時，會顯示在這裡。'
+    emptyDesc: '當 OpenAmer 為你的工作建立技能與記憶時，會顯示在這裡。',
+    share: '分享地圖',
+    shareHint: '複製代碼以分享此地圖，或貼上代碼以載入。僅包含版面配置，不含你的記憶或技能文字。',
+    shareTitle: '匯入 / 匯出地圖',
+    sharePlaceholder: '貼上地圖代碼…',
+    copy: '複製地圖代碼',
+    copied: '已複製！',
+    importMap: '匯入地圖',
+    importBtn: '載入',
+    importEmpty: '貼上地圖代碼即可載入。',
+    importSuccess: nodes => `已載入地圖，內含 ${nodes} 個${nodes === 1 ? 'node' : 'nodes'}。`,
+    importedBadge: '匯入的地圖',
+    resetToMine: '返回我的地圖',
   },
   agents: {
     close: '關閉代理',
@@ -1038,7 +1086,7 @@ export const zhHant = defineLocale({
     delegation: index => `派發 ${index}`,
     workers: count => `${count} 個工作單元`,
     workersActive: count => `${count} 個活躍`,
-    agentsCount: count => `${count} 個代理`,
+    agentsCount: count => `${count} ${count === 1 ? 'agent' : 'agents'}`,
     activeCount: count => `${count} 個活躍`,
     failedCount: count => `${count} 個失敗`,
     toolsCount: count => `${count} 個工具`,
@@ -1049,11 +1097,10 @@ export const zhHant = defineLocale({
     ageMinutes: minutes => `${minutes} 分鐘前`,
     ageHours: hours => `${hours} 小時前`,
     ageDays: days => `${days} 天前`,
-    durationSeconds: seconds => `${seconds} 秒`,
-    durationMinutes: (minutes, seconds) => `${minutes} 分 ${seconds} 秒`,
-    tokens: value => `${value} 詞元`
+    durationSeconds: seconds => `${seconds}秒`,
+    durationMinutes: (minutes, seconds) => `${minutes}分 ${seconds}秒`,
+    tokens: value => `${value} 詞元`,
   },
-
   commandCenter: {
     close: '關閉命令中心',
     paletteTitle: '命令面板',
@@ -1062,6 +1109,7 @@ export const zhHant = defineLocale({
     goTo: '前往',
     goToSession: '前往工作階段',
     branches: '分支',
+    commands: '指令',
     startInBranch: branch => `在 ${branch} 中開始新對話`,
     commandCenter: '命令中心',
     appearance: '外觀',
@@ -1081,7 +1129,7 @@ export const zhHant = defineLocale({
       generatedTag: '生成',
       adoptFailed: '無法領養該寵物。',
       toggleFailed: '無法切換寵物顯示。',
-      noneAvailable: '尚無可用寵物——請在下方選擇一個安裝。'
+      noneAvailable: '尚無可用寵物——請在下方選擇一個安裝。',
     },
     generatePet: {
       title: '生成寵物',
@@ -1110,7 +1158,7 @@ export const zhHant = defineLocale({
       referenceImageTooLarge: '參考圖片過大。請使用小於 16 MB 的圖片。',
       referenceImageInvalid: '無法讀取該參考圖片。請嘗試 PNG、JPG、WebP 或 GIF。',
       adopt: '領養',
-      startOver: '重新開始'
+      startOver: '重新開始',
     },
     installTheme: {
       title: '安裝主題…',
@@ -1122,28 +1170,58 @@ export const zhHant = defineLocale({
       install: '安裝',
       installing: '安裝中...',
       installed: '已安裝',
-      installs: count => `${count} 次安裝`
+      installs: count => `${count} 次安裝`,
     },
     settingsFields: '設定欄位',
     mcpServers: 'MCP 伺服器',
     archivedChats: '已封存聊天',
-    sections: { sessions: '工作階段', system: '系統', usage: '使用量' },
+    sections: {
+      maintenance: '維護',
+      sessions: '工作階段',
+      system: '系統',
+      usage: '使用量',
+    },
     sectionDescriptions: {
+      maintenance: '診斷、備份、策展工具與記憶資料',
       sessions: '搜尋和管理工作階段',
       system: '狀態、記錄和系統動作',
-      usage: '一段時間內的詞元、費用和技能活動'
+      usage: '一段時間內的詞元、費用和技能活動',
     },
     nav: {
-      newChat: { title: '新工作階段', detail: '開始新的工作階段' },
-      settings: { title: '設定', detail: '設定 OpenAmer 桌面端' },
-      skills: { title: '技能與工具', detail: '啟用技能、工具集和提供方' },
-      messaging: { title: '訊息平台', detail: '設定 Telegram、Slack、Discord 等' },
-      artifacts: { title: '成品', detail: '瀏覽產生的輸出' }
+      newChat: {
+        title: '新工作階段',
+        detail: '開始新的工作階段',
+      },
+      settings: {
+        title: '設定',
+        detail: '設定 OpenAmer 桌面端',
+      },
+      skills: {
+        title: '技能與工具',
+        detail: '啟用技能、工具集和提供方',
+      },
+      messaging: {
+        title: '訊息平台',
+        detail: '設定 Telegram、Slack、Discord 等',
+      },
+      artifacts: {
+        title: '成品',
+        detail: '瀏覽產生的輸出',
+      },
     },
     sectionEntries: {
-      sessions: { title: '工作階段面板', detail: '搜尋、釘選和管理工作階段' },
-      system: { title: '系統面板', detail: '閘道狀態、記錄、重新啟動/更新' },
-      usage: { title: '使用量面板', detail: '詞元、費用和技能活動' }
+      sessions: {
+        title: '工作階段面板',
+        detail: '搜尋、釘選和管理工作階段',
+      },
+      system: {
+        title: '系統面板',
+        detail: '閘道狀態、記錄、重新啟動/更新',
+      },
+      usage: {
+        title: '使用量面板',
+        detail: '詞元、費用和技能活動',
+      },
     },
     providerNavigate: '導覽',
     providerSessions: '工作階段',
@@ -1185,9 +1263,55 @@ export const zhHant = defineLocale({
     noModelUsage: '暫無模型使用量。',
     topSkills: '常用技能',
     noSkillActivity: '暫無技能活動。',
-    actions: count => `${count} 次動作`
+    actions: count => `${count} 個動作`,
+    logFile: '日誌檔',
+    logLevel: '等級',
+    logSearchPlaceholder: '篩選日誌行…',
+    maintenance: {
+      runOps: '診斷',
+      doctor: '執行診斷',
+      doctorDesc: '檢查安裝、設定與供應商狀態',
+      securityAudit: '安全性稽核',
+      securityAuditDesc: '掃描設定與技能中的高風險設定',
+      backup: '建立備份',
+      backupDesc: '壓縮設定、記憶、技能與工作階段',
+      debugShare: '偵錯分享',
+      debugShareDesc: '上傳已遮蔽的報告與日誌，取得可分享連結（6 小時後自動刪除）',
+      debugShareRunning: '正在上傳偵錯報告...',
+      debugShareLinks: '分享連結',
+      debugShareFailed: '偵錯分享失敗',
+      copyLink: '複製連結',
+      linkCopied: '已複製連結',
+      curator: '技能策展器',
+      curatorDesc: '背景審查並封存由代理建立且已過時的技能',
+      curatorPaused: '已暫停',
+      curatorActive: '啟用中',
+      curatorDisabled: '已停用',
+      curatorLastRun: when => `上次執行 ${when}`,
+      curatorNeverRan: '從未執行',
+      pause: '暫停',
+      resume: '繼續',
+      runNow: '立即執行',
+      memoryData: '記憶資料',
+      memoryDataDesc: '注入每個工作階段的內建記憶檔案',
+      memoryProvider: name => `作用中的提供者：${name}`,
+      builtinMemory: '內建',
+      memoryFile: '代理記憶（MEMORY.md）',
+      userFile: '使用者設定檔（USER.md）',
+      bytes: size => size,
+      empty: '空白',
+      resetMemory: '重設記憶',
+      resetUser: '重設設定檔',
+      resetAll: '重設兩者',
+      resetConfirm: target => `刪除 ${target}？此操作無法復原。`,
+      resetDone: files => `已刪除 ${files}。`,
+      resetFailed: '記憶重設失敗',
+      actionStarted: name => `${name} 已啟動 — 正在追蹤日誌...`,
+      actionFailed: name => `${name} 啟動失敗`,
+      running: '執行中...',
+      viewLog: '動作日誌',
+    },
   },
-
   messaging: {
     search: '搜尋訊息平台…',
     loading: '正在載入訊息平台…',
@@ -1201,7 +1325,7 @@ export const zhHant = defineLocale({
       not_configured: '需要設定',
       pending_restart: '需要重新啟動',
       retrying: '重試中',
-      startup_failed: '啟動失敗'
+      startup_failed: '啟動失敗',
     },
     unknown: '未知',
     hintPendingRestart: '在狀態列重新啟動閘道以套用此變更。',
@@ -1240,83 +1364,197 @@ export const zhHant = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot Token',
         help: '用 @BotFather 建立機器人，然後貼上它給您的 Token。',
-        placeholder: '貼上 Telegram bot Token'
+        placeholder: '貼上 Telegram bot Token',
       },
       TELEGRAM_ALLOWED_USERS: {
         label: '允許的 Telegram 使用者 ID',
-        help: '建議設定。來自 @userinfobot 的逗號分隔數字 ID。不設定則任何人都能私訊您的機器人。'
+        help: '建議設定。來自 @userinfobot 的逗號分隔數字 ID。不設定則任何人都能私訊您的機器人。',
       },
-      TELEGRAM_PROXY: { label: '代理 URL', help: '僅在 Telegram 被封鎖的網路中需要。' },
+      TELEGRAM_PROXY: {
+        label: '代理 URL',
+        help: '僅在 Telegram 被封鎖的網路中需要。',
+      },
       DISCORD_BOT_TOKEN: {
         label: 'Bot Token',
-        help: '在 Discord 開發者入口網站建立應用程式，新增機器人，然後貼上其 Token。'
+        help: '在 Discord 開發者入口網站建立應用程式，新增機器人，然後貼上其 Token。',
       },
-      DISCORD_ALLOWED_USERS: { label: '允許的 Discord 使用者 ID', help: '建議設定。逗號分隔的 Discord 使用者 ID。' },
-      DISCORD_REPLY_TO_MODE: { label: '回覆方式', help: 'first、all 或 off。' },
+      DISCORD_ALLOWED_USERS: {
+        label: '允許的 Discord 使用者 ID',
+        help: '建議設定。逗號分隔的 Discord 使用者 ID。',
+      },
+      DISCORD_REPLY_TO_MODE: {
+        label: '回覆方式',
+        help: 'first、all 或 off。',
+      },
       DISCORD_ALLOW_ALL_USERS: {
         label: '允許所有 Discord 使用者',
-        help: '僅供開發使用。為 true 時，任何人都可以私訊機器人，不需要允許清單。'
+        help: '僅供開發使用。為 true 時，任何人都可以私訊機器人，不需要允許清單。',
       },
       DISCORD_HOME_CHANNEL: {
         label: '主頻道 ID',
-        help: '機器人主動傳送訊息的頻道（cron 輸出、提醒等）。'
+        help: '機器人主動傳送訊息的頻道（cron 輸出、提醒等）。',
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: '主頻道名稱',
-        help: '記錄和狀態輸出中顯示的主頻道名稱。'
+        help: '記錄和狀態輸出中顯示的主頻道名稱。',
       },
-      BLUEBUBBLES_ALLOW_ALL_USERS: { label: '允許所有 iMessage 使用者', help: '為 true 時略過 BlueBubbles 允許清單。' },
-      MATTERMOST_ALLOW_ALL_USERS: { label: '允許所有 Mattermost 使用者' },
-      MATTERMOST_HOME_CHANNEL: { label: '主頻道' },
-      QQ_ALLOW_ALL_USERS: { label: '允許所有 QQ 使用者' },
-      QQBOT_HOME_CHANNEL: { label: 'QQ 主頻道', help: 'cron 傳遞的預設頻道或群組。' },
-      QQBOT_HOME_CHANNEL_NAME: { label: 'QQ 主頻道名稱' },
+      BLUEBUBBLES_ALLOW_ALL_USERS: {
+        label: '允許所有 iMessage 使用者',
+        help: '為 true 時略過 BlueBubbles 允許清單。',
+      },
+      MATTERMOST_ALLOW_ALL_USERS: {
+        label: '允許所有 Mattermost 使用者',
+      },
+      MATTERMOST_HOME_CHANNEL: {
+        label: '主頻道',
+      },
+      QQ_ALLOW_ALL_USERS: {
+        label: '允許所有 QQ 使用者',
+      },
+      QQBOT_HOME_CHANNEL: {
+        label: 'QQ 主頻道',
+        help: 'cron 傳遞的預設頻道或群組。',
+      },
+      QQBOT_HOME_CHANNEL_NAME: {
+        label: 'QQ 主頻道名稱',
+      },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot Token',
         help: '安裝 Slack 應用程式後，在 OAuth & Permissions 中找到 bot Token。',
-        placeholder: '貼上 Slack bot Token'
+        placeholder: '貼上 Slack bot Token',
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app Token',
         help: 'Socket Mode 需要 app 層級 Token。',
-        placeholder: '貼上 Slack app Token'
+        placeholder: '貼上 Slack app Token',
       },
-      SLACK_ALLOWED_USERS: { label: '允許的 Slack 使用者 ID', help: '建議設定。逗號分隔的 Slack 使用者 ID。' },
-      MATTERMOST_URL: { label: '伺服器 URL', placeholder: 'https://mattermost.example.com' },
-      MATTERMOST_TOKEN: { label: 'Bot Token' },
-      MATTERMOST_ALLOWED_USERS: { label: '允許的使用者 ID', help: '建議設定。逗號分隔的 Mattermost 使用者 ID。' },
-      MATRIX_HOMESERVER: { label: 'Homeserver URL', placeholder: 'https://matrix.org' },
-      MATRIX_ACCESS_TOKEN: { label: '存取 Token' },
-      MATRIX_USER_ID: { label: 'Bot 使用者 ID', placeholder: '@openamer:example.org' },
+      SLACK_ALLOWED_USERS: {
+        label: '允許的 Slack 使用者 ID',
+        help: '建議設定。逗號分隔的 Slack 使用者 ID。',
+      },
+      MATTERMOST_URL: {
+        label: '伺服器 URL',
+        placeholder: 'https://mattermost.example.com',
+      },
+      MATTERMOST_TOKEN: {
+        label: 'Bot Token',
+      },
+      MATTERMOST_ALLOWED_USERS: {
+        label: '允許的使用者 ID',
+        help: '建議設定。逗號分隔的 Mattermost 使用者 ID。',
+      },
+      MATRIX_HOMESERVER: {
+        label: '家伺服器 URL',
+        placeholder: 'https://matrix.org',
+      },
+      MATRIX_ACCESS_TOKEN: {
+        label: '存取 Token',
+      },
+      MATRIX_USER_ID: {
+        label: 'Bot 使用者 ID',
+        placeholder: '@openamer:example.org',
+      },
       MATRIX_ALLOWED_USERS: {
         label: '允許的 Matrix 使用者 ID',
-        help: '建議設定。@user:server 格式的逗號分隔使用者 ID。'
+        help: '建議設定。@user:server 格式的逗號分隔使用者 ID。',
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal 橋接 URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: '執行中的 signal-cli REST 橋接的 URL。'
+        help: '執行中的 signal-cli REST 橋接的 URL。',
       },
-      SIGNAL_ACCOUNT: { label: '電話號碼', help: '在 signal-cli 橋接中註冊的號碼。' },
-      SIGNAL_ALLOWED_USERS: { label: '允許的 Signal 使用者', help: '建議設定。逗號分隔的 Signal 識別碼。' },
+      SIGNAL_ACCOUNT: {
+        label: '電話號碼',
+        help: '在 signal-cli 橋接中註冊的號碼。',
+      },
+      SIGNAL_ALLOWED_USERS: {
+        label: '允許的 Signal 使用者',
+        help: '建議設定。逗號分隔的 Signal 識別碼。',
+      },
       WHATSAPP_ENABLED: {
         label: '啟用 WhatsApp 橋接',
-        help: '由下方切換開關自動設定。除非確知需要，否則請勿變更。'
+        help: '由下方切換開關自動設定。除非確知需要，否則請勿變更。',
       },
-      WHATSAPP_MODE: { label: '橋接模式' },
+      WHATSAPP_MODE: {
+        label: '橋接模式',
+      },
       WHATSAPP_ALLOWED_USERS: {
         label: '允許的 WhatsApp 使用者',
-        help: '建議設定。逗號分隔的電話號碼或 WhatsApp ID。'
-      }
+        help: '建議設定。逗號分隔的電話號碼或 WhatsApp ID。',
+      },
     },
-    platformIntro: {}
+    platformIntro: {
+    },
   },
-
+  webhooks: {
+    search: '搜尋 Webhook...',
+    loading: '正在載入 Webhook...',
+    loadFailed: 'Webhook 載入失敗',
+    subscriptions: (count: number) => `訂閱 (${count})`,
+    hint: '接收器執行後，訂閱變更會熱重載。已停用的訂閱會拒絕傳入事件。',
+    empty: '尚無 Webhook 訂閱。',
+    disabledTitle: 'Webhook 接收器已停用',
+    disabledBody: 'Webhook 是獨立的閘道平台。在此啟用以接收傳入的 HTTP 事件；只有當訂閱要傳送到 Telegram、Discord、Slack 或其他頻道時，才需要聊天頻道。',
+    enable: '啟用 Webhook',
+    enabling: '正在啟用...',
+    enabled: (name: string) => `已啟用："${name}"`,
+    disabled: (name: string) => `已停用："${name}"`,
+    enableRow: '啟用',
+    disableRow: '停用',
+    delete: '刪除',
+    deleting: '正在刪除...',
+    deleted: 'Webhook 已刪除',
+    deleteTitle: '刪除 Webhook',
+    deleteDescPrefix: '這將永久移除 ',
+    deleteDescSuffix: '此操作無法復原。',
+    deleteFailed: (name: string) => `刪除「${name}」失敗`,
+    toggleFailed: (name: string) => `更新「${name}」失敗`,
+    newSubscription: '新增訂閱',
+    restarting: '閘道重新啟動中...',
+    restartNeeded: '已啟用 Webhook，但閘道仍須重新啟動，接收器才能上線。',
+    restartGateway: '重新啟動閘道',
+    restartingGateway: '重新啟動中...',
+    restartFailed: (detail: string) => `閘道重新啟動失敗${detail}`,
+    enabledRestarting: '已啟用 Webhook；閘道重新啟動中...',
+    all: '（全部）',
+    deliverOnly: '僅傳遞',
+    createdTitle: '訂閱已建立',
+    createdSecretHint: '立即複製密鑰——只會顯示一次。',
+    webhookUrl: 'Webhook URL',
+    secretOnce: '密鑰（僅顯示一次）',
+    done: '完成',
+    fieldName: '名稱',
+    fieldNamePlaceholder: '例如 github-push',
+    fieldDescription: '描述',
+    fieldDescriptionPlaceholder: '此 Webhook 的功能（選填）',
+    fieldEvents: '事件',
+    fieldEventsPlaceholder: '以逗號分隔，留空表示全部',
+    fieldSkills: '技能',
+    fieldSkillsPlaceholder: '以逗號分隔技能名稱（選填）',
+    fieldDeliver: '傳送至',
+    fieldDeliverOnly: '僅傳送酬載',
+    fieldPrompt: '提示詞',
+    fieldPromptPlaceholder: '此 Webhook 觸發時給代理的指示（選填）',
+    nameRequired: '名稱必填',
+    create: '建立',
+    creating: '建立中...',
+    created: '已建立',
+    createFailed: (detail: string) => `建立失敗：${detail}`,
+    copy: '複製',
+    deliverOptions: {
+      log: '日誌',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
+      email: '電子郵件',
+      github_comment: 'GitHub 留言',
+    },
+  },
   profiles: {
     close: '關閉設定檔',
     nameHint: '小寫字母、數字、連字號和底線。必須以字母或數字開頭。',
     title: '設定檔',
-    count: count => `${count} 個設定檔`,
+    count: count => `${count} ${count === 1 ? 'profile' : 'profiles'}`,
     search: '搜尋設定檔…',
     loading: '正在載入設定檔…',
     newProfile: '新增設定檔',
@@ -1334,8 +1572,8 @@ export const zhHant = defineLocale({
     refresh: '重新整理設定檔',
     refreshing: '正在重新整理設定檔',
     default: '預設',
-    skills: count => `${count} 個技能`,
-    env: 'env',
+    skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
+    env: '環境',
     defaultBadge: '預設',
     rename: '重新命名',
     renameMenu: '重新命名…',
@@ -1347,7 +1585,8 @@ export const zhHant = defineLocale({
     notSet: '未設定',
     soulDesc: '內建於此設定檔的系統提示詞與角色指令。',
     soulOptional: '選填',
-    soulPlaceholder: mode => `此設定檔的系統提示詞 / 角色說明。\n留空則保留${mode}預設值。`,
+    soulPlaceholder: mode => `此設定檔的系統提示詞 / 角色說明。
+留空則保留${mode}預設值。`,
     soulPlaceholderCloned: '複製的',
     soulPlaceholderEmpty: '空的',
     unsavedChanges: '有未儲存的變更',
@@ -1387,13 +1626,12 @@ export const zhHant = defineLocale({
     failedLoadSoul: '載入 SOUL.md 失敗',
     failedSaveSoul: '儲存 SOUL.md 失敗',
     failedCreate: '建立設定檔失敗',
-    failedRename: '重新命名設定檔失敗'
+    failedRename: '重新命名設定檔失敗',
   },
-
   cron: {
     close: '關閉排程',
     title: '排程工作',
-    count: count => `${count} 個工作`,
+    count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     search: '搜尋排程工作…',
     loading: '正在載入排程工作…',
     states: {
@@ -1403,14 +1641,14 @@ export const zhHant = defineLocale({
       paused: '已暫停',
       disabled: '已停用',
       error: '錯誤',
-      completed: '已完成'
+      completed: '已完成',
     },
     deliveryLabels: {
       local: '此桌面',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: '電子郵件'
+      email: '電子郵件',
     },
     scheduleLabels: {
       daily: '每天',
@@ -1419,7 +1657,7 @@ export const zhHant = defineLocale({
       monthly: '每月',
       hourly: '每小時',
       'every-15-minutes': '每 15 分鐘',
-      custom: '自訂'
+      custom: '自訂',
     },
     scheduleHints: {
       daily: '每天上午 9:00',
@@ -1428,7 +1666,7 @@ export const zhHant = defineLocale({
       monthly: '每月第一天上午 9:00',
       hourly: '每個整點',
       'every-15-minutes': '每 15 分鐘',
-      custom: 'Cron 語法或自然語言'
+      custom: 'Cron 語法或自然語言',
     },
     days: {
       '0': '週日',
@@ -1438,7 +1676,7 @@ export const zhHant = defineLocale({
       '4': '週四',
       '5': '週五',
       '6': '週六',
-      '7': '週日'
+      '7': '週日',
     },
     dayFallback: value => `第 ${value} 天`,
     everyDayAt: time => `每天 ${time}`,
@@ -1507,7 +1745,7 @@ export const zhHant = defineLocale({
     createAction: '建立排程工作',
     tabs: {
       jobs: '工作',
-      blueprints: '藍圖'
+      blueprints: '藍圖',
     },
     blueprints: {
       tab: '藍圖',
@@ -1521,10 +1759,9 @@ export const zhHant = defineLocale({
       loading: '正在載入藍圖...',
       failedLoad: '載入藍圖失敗',
       emptyTitle: '沒有可用的藍圖',
-      emptyDesc: '此後端上沒有可用的自動化藍圖。'
-    }
+      emptyDesc: '此後端上沒有可用的自動化藍圖。',
+    },
   },
-
   artifacts: {
     search: '搜尋成品…',
     refresh: '重新整理成品',
@@ -1557,15 +1794,14 @@ export const zhHant = defineLocale({
     kindLink: '連結',
     chat: '聊天',
     copyUrl: '複製 URL',
-    copyPath: '複製路徑'
+    copyPath: '複製路徑',
   },
-
   sidebar: {
     nav: {
       'new-session': '新工作階段',
       skills: '技能與工具',
       messaging: '訊息平台',
-      artifacts: '成品'
+      artifacts: '成品',
     },
     searchAria: '搜尋工作階段',
     searchPlaceholder: '搜尋工作階段…',
@@ -1597,7 +1833,7 @@ export const zhHant = defineLocale({
       namePlaceholder: '例如 Skunkworks',
       foldersLabel: '資料夾',
       ideaLabel: '想法',
-      ideaPlaceholder: '這個專案是關於什麼的？（儲存到 IDEA.md）',
+      ideaPlaceholder: "這個專案是關於什麼的？（儲存到 IDEA.md）",
       ideaGenerate: '產生想法',
       ideaGenerating: '產生中…',
       ideaShuffle: '隨機範本',
@@ -1623,7 +1859,7 @@ export const zhHant = defineLocale({
       newWorktreeTitle: '新增工作樹',
       newWorktreeDesc: '為這個工作樹命名分支。',
       branchPlaceholder: '例如 my-feature',
-      branchOff: () => ({ after: ' 分支', before: '從 ' }),
+      branchOff: () => ({ after: '', before: 'branch off ' }),
       baseBranchPlaceholder: '搜尋分支…',
       baseBranchNone: '未找到分支',
       startWorkFailed: '無法建立工作樹',
@@ -1639,14 +1875,16 @@ export const zhHant = defineLocale({
       noBranches: '找不到分支',
       removeWorktree: '移除工作樹',
       removeWorktreeFailed: '無法移除工作樹（有未提交的變更？）',
-      removeWorktreeConfirm:
-        '從 git 中移除（刪除工作樹目錄，但保留分支），或僅從側邊欄隱藏該軌道並將工作樹保留在磁碟上。',
+      removeWorktreeConfirm: '從 git 中移除（刪除工作樹目錄，但保留分支），或僅從側邊欄隱藏該軌道並將工作樹保留在磁碟上。',
       removeWorktreeDirty: '此工作樹有未提交的變更。強制移除（捨棄這些變更），或僅隱藏軌道並保留在磁碟上。',
       forceRemove: '強制移除',
-      enter: label => `開啟 ${label}`
+      enter: label => `開啟 ${label}`,
+      reorder: label => `重新排序 ${label}`,
+      toggle: label => `切換 ${label} 個工作階段`,
+      back: '所有專案',
     },
     newSessionIn: label => `在 ${label} 中新建工作階段`,
-    showMoreIn: (count, label) => `在 ${label} 中再顯示 ${count} 個`,
+    showMoreIn: (count, label) => `Show ${count} more in ${label}`,
     loading: '載入中…',
     loadMore: '載入更多',
     loadCount: step => `再載入 ${step} 個`,
@@ -1659,6 +1897,9 @@ export const zhHant = defineLocale({
       rename: '重新命名',
       archive: '封存',
       newWindow: '新視窗',
+      hideTabBar: '隱藏分頁列',
+      openInNewTab: '在新分頁中開啟',
+      openInSplit: '在分割畫面中開啟',
       copyIdFailed: '無法複製工作階段 ID',
       actionsFor: title => `${title} 的動作`,
       sessionActions: '工作階段動作',
@@ -1678,17 +1919,16 @@ export const zhHant = defineLocale({
       ageNow: '剛才',
       ageDay: '天',
       ageHour: '時',
-      ageMin: '分'
+      ageMin: '分',
     },
     dateDivider: {
       today: '今天稍早',
       yesterday: '昨天',
       thisWeek: '本週',
       lastWeek: '上週',
-      thisMonth: '本月'
-    }
+      thisMonth: '本月',
+    },
   },
-
   composer: {
     message: '訊息',
     wakingProfile: profile => `正在喚醒 ${profile}…`,
@@ -1698,23 +1938,24 @@ export const zhHant = defineLocale({
     newSessionPlaceholders: [
       '我們要建立什麼？',
       '給 OpenAmer 一個任務',
-      '您在想什麼？',
+      "您在想什麼？",
       '描述您需要什麼',
       '我們該處理什麼？',
       '盡管問',
-      '從一個目標開始'
+      '從一個目標開始',
     ],
     followUpPlaceholders: [
       '傳送後續訊息',
       '補充更多脈絡',
       '細化此請求',
-      '下一步是什麼？',
+      "下一步是什麼？",
       '繼續推進',
       '再深入一點',
-      '調整或繼續'
+      '調整或繼續',
     ],
     startVoice: '開始語音對話',
     queueMessage: '排隊訊息',
+    steer: '引導目前執行',
     stop: '停止',
     send: '傳送',
     speaking: '說話中',
@@ -1746,7 +1987,7 @@ export const zhHant = defineLocale({
       '/resume': '繼續之前的工作階段',
       '/details': '控制對話記錄的詳細程度',
       '/copy': '複製所選內容或最後一條助手訊息',
-      '/quit': '結束 openamer'
+      '/quit': '結束 openamer',
     },
     hotkeyDescs: {
       'composer.mention': '參照檔案、資料夾、URL、git',
@@ -1756,7 +1997,7 @@ export const zhHant = defineLocale({
       'composer.sendQueued': '傳送下一個排隊的回合',
       'keybinds.openPanel': '所有鍵盤快捷鍵',
       'composer.cancel': '關閉彈出視窗 · 取消執行',
-      'composer.history': '循環彈出視窗 / 歷史記錄'
+      'composer.history': '循環彈出視窗 / 歷史記錄',
     },
     attachUrlTitle: '附加 URL',
     attachUrlDesc: 'OpenAmer 將擷取該頁面並作為此回合的脈絡。',
@@ -1767,7 +2008,7 @@ export const zhHant = defineLocale({
     queuedPaused: count => `${count} 個排隊中 — 已暫停`,
     attachmentOnly: '僅附件回合',
     emptyTurn: '空回合',
-    attachments: count => `${count} 個附件`,
+    attachments: count => `${count} 個附件${count === 1 ? '' : 's'}`,
     editingInComposer: '在輸入框中編輯',
     editingQueuedInComposer: '在輸入框中編輯排隊回合',
     queueEdit: '編輯',
@@ -1807,25 +2048,24 @@ export const zhHant = defineLocale({
       codeReview: {
         label: '程式碼審查',
         description: '審查目前的變更是否有回歸、遺漏的邊緣情況和缺少的測試。',
-        text: '請審查這部分是否有錯誤、回歸和缺少的測試。'
+        text: '請審查這部分是否有錯誤、回歸和缺少的測試。',
       },
       implementationPlan: {
         label: '實作計劃',
         description: '在動程式碼之前先勾勒方案，讓 diff 保持聚焦。',
-        text: '請在修改程式碼前制定一個簡潔的實作計劃。'
+        text: '請在修改程式碼前制定一個簡潔的實作計劃。',
       },
       explainThis: {
         label: '解釋這段',
         description: '說明所選程式碼的運作方式，並連結到關鍵檔案。',
-        text: '請解釋這是如何運作的，並告訴我關鍵檔案在哪裡。'
-      }
-    }
+        text: '請解釋這是如何運作的，並告訴我關鍵檔案在哪裡。',
+      },
+    },
   },
-
   statusStack: {
     agents: '代理',
     background: count => `${count} 個背景任務`,
-    subagents: count => `${count} 個子代理`,
+    subagents: count => `${count} 子代理${count === 1 ? '' : 's'}`,
     todos: (done, total) => `任務 ${done}/${total}`,
     running: '執行中',
     stop: '停止',
@@ -1873,10 +2113,9 @@ export const zhHant = defineLocale({
       branchOffFrom: base => `從 ${base} 建立新分支`,
       switchTo: branch => `切換到 ${branch}`,
       switchFailed: branch => `無法切換到 ${branch}`,
-      worktrees: '工作樹'
-    }
+      worktrees: '工作樹',
+    },
   },
-
   updates: {
     stages: {
       idle: '準備中…',
@@ -1890,7 +2129,7 @@ export const zhHant = defineLocale({
       done: '更新完成',
       manual: '從終端機更新',
       guiSkew: '請更新桌面應用程式',
-      error: '更新已暫停'
+      error: '更新已暫停',
     },
     checking: '正在檢查更新…',
     checkFailedTitle: '無法檢查更新',
@@ -1908,18 +2147,16 @@ export const zhHant = defineLocale({
     availableBodyNoChangelog: '已有新版本可用。此安裝方式無法顯示更新日誌。',
     updateNow: '立即更新',
     maybeLater: '稍後再說',
-    moreChanges: count => `另有 ${count} 項變更。`,
+    moreChanges: count => `包含 + ${count} 個更多變更${count === 1 ? '' : 's'}。`,
     manualTitle: '從終端機更新',
     manualBody: '您是從命令列安裝的 OpenAmer，因此更新也需要在那裡執行。請將此指令貼到終端機：',
     manualPickedUp: '下次啟動 OpenAmer 時會使用新版本。',
     guiSkewTitle: '請更新桌面應用程式',
-    guiSkewBody:
-      '後端已更新，但此桌面應用程式套件未變更。請更新或重新安裝 OpenAmer 桌面應用程式（你的 AppImage / .deb / .rpm）以保持一致。',
+    guiSkewBody: '後端已更新，但此桌面應用程式套件未變更。請更新或重新安裝 OpenAmer 桌面應用程式（你的 AppImage / .deb / .rpm）以保持一致。',
     copy: '複製',
     copied: '已複製',
     done: '完成',
-    applyingBody:
-      'OpenAmer 更新程式會在自己的視窗中接管，並在完成後自動重新開啟 OpenAmer。更新期間請勿自行重新開啟 OpenAmer。',
+    applyingBody: 'OpenAmer 更新程式會在自己的視窗中接管，並在完成後自動重新開啟 OpenAmer。更新期間請勿自行重新開啟 OpenAmer。',
     applyingBodyBackend: '遠端後端正在套用更新並將重新啟動。恢復後 OpenAmer 會自動重新連線。',
     applyingClose: '此視窗會在更新期間關閉，隨後 OpenAmer 會自動重新開啟。',
     errorTitle: '更新未完成',
@@ -1931,25 +2168,23 @@ export const zhHant = defineLocale({
       restarting: '後端正在重新啟動以載入更新…',
       notAvailable: '此後端無法更新。',
       failed: '後端更新失敗。',
-      noReturn: '後端未恢復連線。更新可能未完成——請檢查後端主機。'
+      noReturn: '後端未恢復連線。更新可能未完成——請檢查後端主機。',
     },
     appErrors: {
       updateLocked: '更新已中止：另一個 OpenAmer 視窗或正在執行 openamer 的終端正佔用此安裝。請關閉它並重試。',
-      updateFailed: '更新未完成。別擔心——沒有任何內容遺失。你現在可以重試。'
-    }
+      updateFailed: '更新未完成。別擔心——沒有任何內容遺失。你現在可以重試。',
+    },
   },
-
   install: {
     stageStates: {
       pending: '等待中',
       running: '安裝中',
       succeeded: '完成',
       skipped: '已略過',
-      failed: '失敗'
+      failed: '失敗',
     },
     oneTimeTitle: 'OpenAmer 需要一次性安裝',
-    unsupportedDesc: platform =>
-      `${platform} 暫不支援自動首次啟動安裝。請開啟終端機並執行下面的指令，然後重新啟動此應用程式。之後啟動會略過此步驟。`,
+    unsupportedDesc: platform => `${platform} 暫不支援自動首次啟動安裝。請開啟終端機並執行下面的指令，然後重新啟動此應用程式。之後啟動會略過此步驟。`,
     installCommand: '安裝指令',
     copyCommand: '複製指令',
     viewDocs: '檢視安裝文件',
@@ -1991,8 +2226,7 @@ export const zhHant = defineLocale({
     failedTitle: '安裝失敗',
     settingUpTitle: '正在設定 OpenAmer Agent',
     finishingTitle: '正在收尾',
-    failedDesc:
-      '某個安裝步驟失敗。在 Windows 上，如果另一個 OpenAmer CLI 或桌面執行個體正在執行，可能會出現這種情況。請停止正在執行的 OpenAmer 執行個體後重試。可查看下方的詳細資訊或 desktop 記錄中的完整記錄。',
+    failedDesc: '某個安裝步驟失敗。在 Windows 上，如果另一個 OpenAmer CLI 或桌面執行個體正在執行，可能會出現這種情況。請停止正在執行的 OpenAmer 執行個體後重試。可查看下方的詳細資訊或 desktop 記錄中的完整記錄。',
     activeDesc: '這是一次性設定。OpenAmer 安裝程式正在下載相依套件並設定您的電腦。之後啟動會略過此步驟。',
     progress: (completed, total) => `${completed}/${total} 個步驟已完成`,
     currentStage: stage => ` -- 目前：${stage}`,
@@ -2000,18 +2234,17 @@ export const zhHant = defineLocale({
     error: '錯誤',
     hideOutput: '隱藏安裝程式輸出',
     showOutput: '顯示安裝程式輸出',
-    lines: count => `${count} 行`,
+    lines: count => `${count} 行${count === 1 ? '' : 's'}`,
     noOutput: '暫無輸出。',
     cancelling: '取消中...',
     cancelInstall: '取消安裝',
     transcriptSaved: '完整記錄已儲存至',
     copiedOutput: '已複製！',
     copyOutput: '複製輸出',
-    reloadRetry: '重新載入並重試'
+    reloadRetry: '重新載入並重試',
   },
-
   onboarding: {
-    headerTitle: '開始設定 OpenAmer Agent',
+    headerTitle: "開始設定 OpenAmer Agent",
     headerDesc: '連線模型提供方即可開始聊天。大多數選項只需一次點擊。',
     preparingInstall: 'OpenAmer 正在完成安裝。首次執行通常不到一分鐘。',
     starting: '正在啟動 OpenAmer…',
@@ -2019,34 +2252,50 @@ export const zhHant = defineLocale({
     collapse: '收合',
     otherProviders: '其他提供方',
     haveApiKey: '我有 API 金鑰',
-    chooseLater: '稍後再選擇提供方',
+    chooseLater: "稍後再選擇提供方",
     recommended: '建議',
     connected: '已連線',
     featuredPitch: '一個訂閱，300+ 前沿模型 — 執行 OpenAmer 的建議方式',
     fireworksPitch: '直接模型 API — Fireworks 託管的前沿模型',
     openRouterPitch: '一個金鑰，數百個模型 — 穩定的預設選擇',
     apiKeyOptions: {
-      fireworks: { short: '直接模型 API', description: '直接存取 Fireworks AI 託管的模型。' },
-      openrouter: { short: '一個金鑰，多個模型', description: '用一個金鑰存取數百個模型。適合新安裝的預設選擇。' },
-      openai: { short: 'GPT 等級模型', description: '直接存取 OpenAI 模型。' },
-      gemini: { short: 'Gemini 模型', description: '直接存取 Google Gemini 模型。' },
-      xai: { short: 'Grok 模型', description: '直接存取 xAI Grok 模型。' },
+      fireworks: {
+        short: '直接模型 API',
+        description: '直接存取 Fireworks AI 託管的模型。',
+      },
+      openrouter: {
+        short: '一個金鑰，多個模型',
+        description: '用一個金鑰存取數百個模型。適合新安裝的預設選擇。',
+      },
+      openai: {
+        short: 'GPT 等級模型',
+        description: '直接存取 OpenAI 模型。',
+      },
+      gemini: {
+        short: 'Gemini 模型',
+        description: '直接存取 Google Gemini 模型。',
+      },
+      xai: {
+        short: 'Grok 模型',
+        description: '直接存取 xAI Grok 模型。',
+      },
       local: {
         short: '自託管',
-        description: '將 OpenAmer 指向本機或自託管的 OpenAI 相容端點（vLLM、llama.cpp、Ollama 等）。'
-      }
+        description: '將 OpenAmer 指向本機或自託管的 OpenAI 相容端點（vLLM、llama.cpp、Ollama 等）。',
+      },
     },
     backToSignIn: '返回登入',
     getKey: '取得金鑰',
     replaceCurrent: '取代目前值',
     pasteApiKey: '貼上 API 金鑰',
+    localApiKeyPlaceholder: 'API 金鑰 (選填 — 僅在端點需要時提供)',
     couldNotSave: '無法儲存憑證。',
     connecting: '連線中',
     update: '更新',
     flowSubtitles: {
       pkce: '開啟瀏覽器登入，然後回到這裡繼續',
       device_code: '在瀏覽器中開啟驗證頁面 — OpenAmer 會自動連線',
-      external: '先在終端機登入一次，然後回來繼續聊天'
+      external: '先在終端機登入一次，然後回來繼續聊天',
     },
     startingSignIn: provider => `正在為 ${provider} 啟動登入...`,
     verifyingCode: provider => `正在透過 ${provider} 驗證您的代碼...`,
@@ -2064,20 +2313,19 @@ export const zhHant = defineLocale({
     reopenSignInPage: '重新開啟登入頁面',
     waitingAuthorize: '等待您授權...',
     externalPending: provider => `${provider} 透過自己的 CLI 登入。請在終端機執行此指令，然後回來選擇「我已登入」：`,
-    signedIn: '我已登入',
+    signedIn: "我已登入",
     deviceCodeOpened: provider => `已在瀏覽器中開啟 ${provider}。請在那裡輸入此代碼：`,
     reopenVerification: '重新開啟驗證頁面',
     copy: '複製',
     defaultModel: '預設模型',
     freeTier: '免費層',
-    pro: 'Pro',
+    pro: '專業版',
     free: '免費',
     price: (input, output) => `${input} 輸入 / ${output} 輸出 每 Mtok`,
     change: '變更',
     startChatting: '開始',
-    docs: provider => `${provider} 文件`
+    docs: provider => `${provider} 文件`,
   },
-
   modelPicker: {
     title: '切換模型',
     current: '目前：',
@@ -2087,21 +2335,19 @@ export const zhHant = defineLocale({
     addProvider: '新增提供方',
     loadFailed: '無法載入模型',
     noAuthenticatedProviders: '沒有已驗證的提供方。',
-    pro: 'Pro',
+    pro: '專業版',
     proNeedsSubscription: 'Pro 模型需要付費 OpenAmer 訂閱。',
     free: '免費',
     freeTier: '免費層',
     priceTitle: '每百萬 Token 的輸入/輸出價格',
-    wasPrice: '原價'
+    wasPrice: '原價',
   },
-
   modelVisibility: {
     title: '模型',
     search: '搜尋模型',
     noAuthenticatedProviders: '沒有已驗證的提供方。',
-    addProvider: '新增提供方…'
+    addProvider: '新增提供方…',
   },
-
   shell: {
     windowControls: '視窗控制項',
     paneControls: '窗格控制項',
@@ -2111,7 +2357,7 @@ export const zhHant = defineLocale({
       noModels: '找不到模型',
       editModels: '編輯模型…',
       refreshModels: '重新整理模型',
-      fast: '快速'
+      fast: '快速',
     },
     modelOptions: {
       noOptions: '此模型沒有可用選項',
@@ -2127,7 +2373,7 @@ export const zhHant = defineLocale({
       max: '最高',
       ultra: '超高',
       updateFailed: '模型選項更新失敗',
-      fastFailed: '快速模式更新失敗'
+      fastFailed: '快速模式更新失敗',
     },
     gatewayMenu: {
       gateway: '閘道',
@@ -2142,7 +2388,7 @@ export const zhHant = defineLocale({
       connection: label => `連線：${label}`,
       recentActivity: '最近活動',
       viewAllLogs: '查看全部記錄 →',
-      messagingPlatforms: '訊息平台'
+      messagingPlatforms: '訊息平台',
     },
     approvalMode: {
       title: '核准模式',
@@ -2152,15 +2398,15 @@ export const zhHant = defineLocale({
       smart: '智慧',
       smartDescription: '自動評估操作，並在需要時詢問',
       off: '關閉',
-      offDescription: '不顯示核准提示，直接執行'
+      offDescription: '不顯示核准提示，直接執行',
     },
     statusbar: {
       unknown: '未知',
       restart: '重新啟動',
       update: '更新',
       updateInProgress: '更新中',
-      commitsBehind: (count, branch) => `落後 ${branch} ${count} 個提交`,
-      desktopVersion: version => `OpenAmer Desktop v${version}`,
+      commitsBehind: (count, branch) => `落後 ${count} 個提交${count === 1 ? '' : 's'} 於 ${branch}`,
+      desktopVersion: version => `OpenAmer 桌面版 v${version}`,
       backendVersion: version => `後端 v${version}`,
       clientLabel: version => `用戶端 v${version}`,
       connectionSsh: host => `SSH: ${host}`,
@@ -2187,11 +2433,13 @@ export const zhHant = defineLocale({
       agents: '代理',
       closeAgents: '關閉代理',
       openAgents: '開啟代理',
-      subagents: count => `${count} 個子代理`,
+      subagents: count => `${count} 子代理${count === 1 ? '' : 's'}`,
       failed: count => `${count} 個失敗`,
       running: count => `${count} 個執行中`,
       cron: '排程',
       openCron: '開啟排程工作',
+      webhooks: 'Webhooks',
+      openWebhooks: '開啟 webhooks',
       starmap: '記憶圖譜',
       openStarmap: '開啟記憶圖譜',
       turnRunning: '執行中',
@@ -2206,13 +2454,13 @@ export const zhHant = defineLocale({
           skills: '技能',
           subagent_definitions: '子代理定義',
           system_prompt: '系統提示詞',
-          tool_definitions: '工具定義'
+          tool_definitions: '工具定義',
         },
         empty: '尚無上下文資料',
         loading: '正在載入明細…',
         percentFull: percent => `已用 ${percent}%`,
         title: '上下文使用量',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`
+        tokenSummary: (used, max) => `${used} / ${max} Token`,
       },
       openContextUsage: '開啟上下文使用量明細',
       session: '工作階段',
@@ -2225,10 +2473,9 @@ export const zhHant = defineLocale({
       openModelPicker: '開啟模型選擇器',
       modelPinned: '已由你固定；新對話將使用此模型而非「設定」中的預設模型',
       modelTitle: (provider, model) => `模型 · ${provider}：${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`
-    }
+      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+    },
   },
-
   rightSidebar: {
     aria: '右側邊欄',
     panelsAria: '右側邊欄面板',
@@ -2263,9 +2510,8 @@ export const zhHant = defineLocale({
     terminalNew: '新增終端機',
     terminalCloseOthers: '關閉其他',
     terminalCloseAll: '全部關閉',
-    addToChat: '新增至聊天'
+    addToChat: '新增至聊天',
   },
-
   preview: {
     tab: '預覽',
     closeTab: label => `關閉 ${label}`,
@@ -2292,7 +2538,7 @@ export const zhHant = defineLocale({
     previewAnyway: '仍然預覽',
     truncated: '顯示前 512 KB。',
     noInlineTitle: '沒有行內預覽',
-    noInlineBody: mimeType => `${mimeType || '此檔案類型'} 仍可作為脈絡附件。`,
+    noInlineBody: mimeType => `${mimeType || 'This file type'} 仍可作為上下文附加。`,
     edit: '編輯',
     editing: '編輯中',
     unsavedChanges: '未儲存的變更',
@@ -2319,7 +2565,7 @@ export const zhHant = defineLocale({
       empty: '暫無主控台訊息。',
       promptHeader: '預覽主控台：',
       sentTitle: '已傳送至聊天',
-      sentMessage: count => `已將 ${count} 條記錄新增至輸入框`
+      sentMessage: count => `已將 ${count} 日誌條目${count === 1 ? 'y' : 'ies'} 新增至撰寫器`,
     },
     web: {
       appFailedToBoot: '預覽應用程式啟動失敗',
@@ -2337,7 +2583,7 @@ export const zhHant = defineLocale({
       showConsole: '顯示預覽主控台',
       hideDevTools: '隱藏預覽 DevTools',
       openDevTools: '開啟預覽 DevTools',
-      finishedRestarting: message => `OpenAmer 已完成預覽伺服器重新啟動${message ? `：${message}` : ''}`,
+      finishedRestarting: message => `OpenAmer 已完成重新啟動預覽伺服器${message ? `: ${message}` : ''}`,
       failedRestarting: message => `伺服器重新啟動失敗：${message}`,
       unknownError: '未知錯誤',
       restartedTitle: '預覽伺服器已重新啟動',
@@ -2349,20 +2595,21 @@ export const zhHant = defineLocale({
       fileChanged: url => `檔案已變更，正在重新載入預覽：${url}`,
       filesChanged: (count, url) => `${count} 個檔案變更，正在重新載入預覽：${url}`,
       watchFailed: message => `無法監看預覽檔案：${message}`,
-      moduleMimeDescription:
-        '模組指令碼使用了錯誤的 MIME 類型。這通常表示靜態檔案伺服器正在服務 Vite/React 應用程式，而不是專案開發伺服器。',
+      moduleMimeDescription: '模組指令碼使用了錯誤的 MIME 類型。這通常表示靜態檔案伺服器正在服務 Vite/React 應用程式，而不是專案開發伺服器。',
       loadFailedConsole: (code, message) => `載入失敗${code ? ` (${code})` : ''}：${message}`,
       unreachableDescription: '無法連線至預覽頁面。',
       openTarget: url => `開啟 ${url}`,
-      fallbackTitle: '預覽'
-    }
+      fallbackTitle: '預覽',
+    },
   },
-
   zones: {
     showHeader: '顯示標題列',
     hideHeader: '隱藏標題列',
     minimize: '最小化',
     restore: '還原',
+    closeRunningTitle: '關閉執行中的分頁？',
+    closeRunningBody: '此聊天仍在執行中（或等待你的輸入）。關閉分頁會將其隱藏——工作階段會保留進度，可從側邊欄重新開啟。',
+    closeRunningConfirm: '關閉分頁',
     closeOthers: '關閉其他',
     closeToRight: '關閉右側',
     closeAll: '全部關閉',
@@ -2398,16 +2645,16 @@ export const zhHant = defineLocale({
     layoutNamePlaceholder: fallback => `版面名稱（${fallback}）`,
     saveApply: '儲存並套用',
     notExpressible: '此排列互相咬合（風車形）——暫時無法表示為巢狀分割',
-    zoneCount: count => `${count} 個區域`
+    zoneCount: count => `${count} 個區域`,
   },
-
   assistant: {
     thread: {
       loadingSession: '正在載入工作階段',
       showEarlier: '顯示較早的訊息',
       loadingResponse: 'OpenAmer 正在載入回覆',
-      resumeWhenBackgroundDone: count =>
-        count === 1 ? '背景工作完成後將自動繼續' : `${count} 個背景工作完成後將自動繼續`,
+      resumeWhenBackgroundDone: count => count === 1
+          ? 'Will resume when the background task finishes'
+          : `Will resume when ${count} background tasks finish`,
       thinking: '思考中',
       today: time => `今天，${time}`,
       yesterday: time => `昨天，${time}`,
@@ -2421,6 +2668,8 @@ export const zhHant = defineLocale({
       stopReading: '停止朗讀',
       readAloud: '朗讀',
       editMessage: '編輯訊息',
+      expandMessage: '展開訊息',
+      scrollToBottom: '捲動至底部',
       stop: '停止',
       restorePrevious: '還原至上一個檢查點',
       restoreCheckpoint: '還原檢查點',
@@ -2431,7 +2680,7 @@ export const zhHant = defineLocale({
       restoreNext: '還原至下一個檢查點',
       goForward: '前進',
       sendEdited: '傳送編輯後的訊息',
-      attachingFile: '正在附加…'
+      attachingFile: '正在附加…',
     },
     approval: {
       gatewayDisconnected: 'OpenAmer 閘道未連線',
@@ -2444,9 +2693,8 @@ export const zhHant = defineLocale({
       jumpToApproval: '需要核准',
       reject: '拒絕',
       alwaysTitle: '一律允許此指令？',
-      alwaysDescription: pattern =>
-        `這會將「${pattern}」模式加入永久允許清單（~/.openamer/config.yaml）。OpenAmer 對類似指令將不再詢問，包括目前工作階段和未來工作階段。`,
-      alwaysAllow: '一律允許'
+      alwaysDescription: pattern => `這會將「${pattern}」模式加入永久允許清單（~/.openamer/config.yaml）。OpenAmer 對類似指令將不再詢問，包括目前工作階段和未來工作階段。`,
+      alwaysAllow: '一律允許',
     },
     clarify: {
       notReady: '澄清請求尚未就緒',
@@ -2460,7 +2708,7 @@ export const zhHant = defineLocale({
       continueLabel: '繼續',
       lateAnswer: (question, choice) => `關於「${question}」 — 我的回答: ${choice}`,
       lateAnswerTip: '將此回答起草為後續訊息',
-      lateAnswerHint: '此問題已不再等待回答。選擇一個選項會將其起草為後續訊息。'
+      lateAnswerHint: '此問題已不再等待回答。選擇一個選項會將其起草為後續訊息。',
     },
     tool: {
       code: '程式碼',
@@ -2496,51 +2744,134 @@ export const zhHant = defineLocale({
         ran: '已執行',
         running: '正在執行',
         ranCode: '已執行程式碼',
-        runningCode: '正在撰寫腳本'
+        runningCode: '正在撰寫腳本',
       },
       prefixes: {
         browser: '瀏覽器',
-        web: '網頁'
+        web: '網頁',
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
-        actionQuoted: (action, value) => `${action}「${value}」`,
+        actionQuoted: (action, value) => `${action} “${value}”`,
         actionTarget: (action, target) => `${action} ${target}`,
-        prefixedDone: (prefix, action) => `${prefix}${action}`,
-        runningPrefixedTool: (prefix, action) => `正在執行${prefix}${action}`,
-        runningTool: action => `正在執行 ${action}`
+        prefixedDone: (prefix, action) => `${prefix} ${action}`,
+        runningPrefixedTool: (prefix, action) => `執行中 ${prefix.toLowerCase()} ${action.toLowerCase()}`,
+        runningTool: action => `執行中 ${action.toLowerCase()}`,
       },
       titles: {
-        browser_click: { done: '已點擊頁面元素', pending: '正在點擊頁面元素', pendingAction: '正在點擊' },
-        browser_fill: { done: '已填寫表單欄位', pending: '正在填寫表單欄位', pendingAction: '正在填寫' },
-        browser_navigate: { done: '已開啟頁面', pending: '正在開啟頁面', pendingAction: '正在開啟' },
-        browser_snapshot: { done: '已擷取頁面快照', pending: '正在擷取頁面快照', pendingAction: '正在擷取' },
-        browser_take_screenshot: { done: '已擷取截圖', pending: '正在擷取截圖', pendingAction: '正在擷取' },
-        browser_type: { done: '已在頁面輸入', pending: '正在頁面輸入', pendingAction: '正在輸入' },
-        clarify: { done: '已提問', pending: '正在提問', pendingAction: '正在提問' },
-        cronjob: { done: 'Cron 工作', pending: '正在安排 Cron 工作', pendingAction: '正在安排' },
-        edit_file: { done: '已編輯檔案', pending: '正在編輯檔案', pendingAction: '正在編輯' },
-        execute_code: { done: '已執行程式碼', pending: '正在撰寫腳本', pendingAction: '正在撰寫腳本' },
-        image_generate: { done: '已生成圖片', pending: '正在生成圖片', pendingAction: '正在生成' },
-        list_files: { done: '已列出檔案', pending: '正在列出檔案', pendingAction: '正在列出' },
-        patch: { done: '已修補檔案', pending: '正在修補檔案', pendingAction: '正在修補' },
-        read_file: { done: '已讀取檔案', pending: '正在讀取檔案', pendingAction: '正在讀取' },
-        search_files: { done: '已搜尋檔案', pending: '正在搜尋檔案', pendingAction: '正在搜尋' },
+        browser_click: {
+          done: '已點擊頁面元素',
+          pending: '正在點擊頁面元素',
+          pendingAction: '正在點擊',
+        },
+        browser_fill: {
+          done: '已填寫表單欄位',
+          pending: '正在填寫表單欄位',
+          pendingAction: '正在填寫',
+        },
+        browser_navigate: {
+          done: '已開啟頁面',
+          pending: '正在開啟頁面',
+          pendingAction: '正在開啟',
+        },
+        browser_snapshot: {
+          done: '已擷取頁面快照',
+          pending: '正在擷取頁面快照',
+          pendingAction: '正在擷取',
+        },
+        browser_take_screenshot: {
+          done: '已擷取截圖',
+          pending: '正在擷取截圖',
+          pendingAction: '正在擷取',
+        },
+        browser_type: {
+          done: '已在頁面輸入',
+          pending: '正在頁面輸入',
+          pendingAction: '正在輸入',
+        },
+        clarify: {
+          done: '已提問',
+          pending: '正在提問',
+          pendingAction: '正在提問',
+        },
+        cronjob: {
+          done: 'Cron 工作',
+          pending: '正在安排 Cron 工作',
+          pendingAction: '正在安排',
+        },
+        edit_file: {
+          done: '已編輯檔案',
+          pending: '正在編輯檔案',
+          pendingAction: '正在編輯',
+        },
+        execute_code: {
+          done: '已執行程式碼',
+          pending: '正在撰寫腳本',
+          pendingAction: '正在撰寫腳本',
+        },
+        image_generate: {
+          done: '已生成圖片',
+          pending: '正在生成圖片',
+          pendingAction: '正在生成',
+        },
+        list_files: {
+          done: '已列出檔案',
+          pending: '正在列出檔案',
+          pendingAction: '正在列出',
+        },
+        patch: {
+          done: '已修補檔案',
+          pending: '正在修補檔案',
+          pendingAction: '正在修補',
+        },
+        read_file: {
+          done: '已讀取檔案',
+          pending: '正在讀取檔案',
+          pendingAction: '正在讀取',
+        },
+        search_files: {
+          done: '已搜尋檔案',
+          pending: '正在搜尋檔案',
+          pendingAction: '正在搜尋',
+        },
         session_search_recall: {
           done: '已搜尋工作階段歷史',
           pending: '正在搜尋工作階段歷史',
-          pendingAction: '正在搜尋'
+          pendingAction: '正在搜尋',
         },
-        terminal: { done: '已執行指令', pending: '正在執行指令', pendingAction: '正在執行' },
-        todo: { done: '已更新待辦', pending: '正在更新待辦', pendingAction: '正在更新' },
-        vision_analyze: { done: '已分析圖片', pending: '正在分析圖片', pendingAction: '正在分析' },
-        web_extract: { done: '已讀取網頁', pending: '正在讀取網頁', pendingAction: '正在讀取' },
-        web_search: { done: '已搜尋網頁', pending: '正在搜尋網頁', pendingAction: '正在搜尋' },
-        write_file: { done: '已編輯檔案', pending: '正在編輯檔案', pendingAction: '正在編輯' }
-      }
-    }
+        terminal: {
+          done: '已執行指令',
+          pending: '正在執行指令',
+          pendingAction: '正在執行',
+        },
+        todo: {
+          done: '已更新待辦',
+          pending: '正在更新待辦',
+          pendingAction: '正在更新',
+        },
+        vision_analyze: {
+          done: '已分析圖片',
+          pending: '正在分析圖片',
+          pendingAction: '正在分析',
+        },
+        web_extract: {
+          done: '已讀取網頁',
+          pending: '正在讀取網頁',
+          pendingAction: '正在讀取',
+        },
+        web_search: {
+          done: '已搜尋網頁',
+          pending: '正在搜尋網頁',
+          pendingAction: '正在搜尋',
+        },
+        write_file: {
+          done: '已編輯檔案',
+          pending: '正在編輯檔案',
+          pendingAction: '正在編輯',
+        },
+      },
+    },
   },
-
   prompts: {
     gatewayDisconnected: 'OpenAmer 閘道未連線',
     sudoSendFailed: '無法傳送 sudo 密碼',
@@ -2550,9 +2881,8 @@ export const zhHant = defineLocale({
     sudoPlaceholder: 'sudo 密碼',
     secretTitle: '需要密鑰',
     secretDesc: 'OpenAmer 需要一個憑證才能繼續。',
-    secretPlaceholder: '密鑰值'
+    secretPlaceholder: '密鑰值',
   },
-
   desktop: {
     audioReadFailed: '無法讀取錄製的音訊',
     sessionUnavailable: '工作階段不可用',
@@ -2565,7 +2895,7 @@ export const zhHant = defineLocale({
     warningLine: message => `警告：${message}`,
     yoloArmed: '此聊天已啟用 YOLO',
     yoloOff: 'YOLO 已關閉',
-    yoloSystem: active => `此工作階段 YOLO ${active ? '已開啟' : '已關閉'}`,
+    yoloSystem: active => `YOLO ${active ? 'on' : 'off'} 用於此工作階段`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: '無法切換 YOLO',
     profileStatus: current => `設定檔：${current}。使用 /profile <name> 或「新工作階段」選擇器在其他設定檔中開始聊天。`,
@@ -2578,7 +2908,7 @@ export const zhHant = defineLocale({
     regenerateFailed: '重新生成失敗',
     editFailed: '編輯失敗',
     resumeFailed: '繼續失敗',
-    resumeStrandedTitle: '無法載入此工作階段',
+    resumeStrandedTitle: "無法載入此工作階段",
     resumeStrandedBody: '與此工作階段的連線失敗，自動重試已停止。請確認閘道正在執行，然後重試。',
     resumeRetry: '重試',
     nothingToBranch: '沒有可分支的內容',
@@ -2619,33 +2949,31 @@ export const zhHant = defineLocale({
       success: platform => `已移交到 ${platform}。隨時可在此處恢復。`,
       systemNote: platform => `↻ 已移交到 ${platform} — 隨時可在此處恢復。`,
       failed: error => `移交失敗：${error}`,
-      timedOut: '等待閘道逾時。`openamer gateway` 是否正在執行？'
-    }
+      timedOut: '等待閘道逾時。`openamer gateway` 是否正在執行？',
+    },
   },
-
   errors: {
     genericFailure: '發生錯誤',
     boundaryTitle: '介面出現問題',
     boundaryDesc: '此檢視遇到意外錯誤。您的聊天和設定是安全的。',
     reloadWindow: '重新載入視窗',
-    openLogs: '開啟記錄'
+    openLogs: '開啟記錄',
   },
-
   ui: {
     search: {
-      clear: '清除搜尋'
+      clear: '清除搜尋',
     },
     pagination: {
       label: '分頁',
       previous: '上一頁',
       previousAria: '前往上一頁',
       next: '下一頁',
-      nextAria: '前往下一頁'
+      nextAria: '前往下一頁',
     },
     sidebar: {
       title: '側邊欄',
       description: '顯示行動裝置側邊欄。',
-      toggle: '切換側邊欄'
-    }
-  }
+      toggle: '切換側邊欄',
+    },
+  },
 })

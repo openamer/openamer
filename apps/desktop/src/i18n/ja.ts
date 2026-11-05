@@ -1,7 +1,10 @@
-import { defineFieldCopy } from '@/app/settings/field-copy'
+import { FIELD_DESCRIPTIONS, FIELD_LABELS } from './field-copy/ja'
 
 import { defineLocale } from './define-locale'
 
+// ja — generated from en.ts by scripts/i18n_write_locale.mjs.
+// Every section of en.ts is present. Strings not yet translated keep their
+// English text so the file stays type-correct and the UI never breaks.
 export const ja = defineLocale({
   common: {
     apply: '適用',
@@ -42,9 +45,8 @@ export const ja = defineLocale({
     update: '更新',
     tryHint: term => `「${term}」を試す`,
     on: 'オン',
-    off: 'オフ'
+    off: 'オフ',
   },
-
   fileMenu: {
     revealFinder: 'Finder で表示',
     revealExplorer: 'エクスプローラーで表示',
@@ -58,9 +60,8 @@ export const ja = defineLocale({
     renameLabel: '新しい名前',
     deleteTitle: name => `${name} を削除しますか？`,
     deleteBody: 'ゴミ箱に移動します。そこから復元できます。',
-    pathCopied: 'パスをコピーしました'
+    pathCopied: 'パスをコピーしました',
   },
-
   boot: {
     ready: 'OpenAmer Desktop の準備ができました',
     desktopBootFailedWithMessage: message => `デスクトップの起動に失敗しました: ${message}`,
@@ -69,7 +70,7 @@ export const ja = defineLocale({
       loadingSettings: 'OpenAmer の設定を読み込み中',
       loadingSessions: '最近のセッションを読み込み中',
       startingDesktopConnection: 'デスクトップ接続を開始中',
-      startingOpenAmerDesktop: 'OpenAmer Desktop を起動中…'
+      startingOpenAmerDesktop: 'OpenAmer Desktop を起動中…',
     },
     errors: {
       backgroundExited: 'OpenAmer バックグラウンドプロセスが終了しました。',
@@ -78,15 +79,13 @@ export const ja = defineLocale({
       desktopBootFailed: 'デスクトップの起動に失敗しました',
       gatewayConnectionLost: 'ゲートウェイへの接続が切断されました',
       gatewaySignInRequired: 'ゲートウェイへのサインインが必要です',
-      ipcBridgeUnavailable: 'デスクトップ IPC ブリッジが利用できません。'
+      ipcBridgeUnavailable: 'デスクトップ IPC ブリッジが利用できません。',
     },
     failure: {
-      title: 'OpenAmer を起動できませんでした',
-      description:
-        'バックグラウンドゲートウェイが起動しませんでした。以下の回復手順をお試しください。チャットや設定は削除されません。',
+      title: "OpenAmer を起動できませんでした",
+      description: "バックグラウンドゲートウェイが起動しませんでした。以下の回復手順をお試しください。チャットや設定は削除されません。",
       remoteTitle: 'リモートゲートウェイへのサインインが必要です',
-      remoteDescription:
-        'リモートゲートウェイのセッションが期限切れです。再接続するにはもう一度サインインしてください。チャットや設定は削除されません。',
+      remoteDescription: 'リモートゲートウェイのセッションが期限切れです。再接続するにはもう一度サインインしてください。チャットや設定は削除されません。',
       retry: '再試行',
       repairInstall: 'インストールを修復',
       useLocalGateway: 'ローカルゲートウェイを使用',
@@ -94,11 +93,9 @@ export const ja = defineLocale({
       back: '戻る',
       openLogs: 'ログを開く',
       repairHint: '修復はインストーラーを再実行します。新しいマシンでは数分かかる場合があります。',
-      remoteSignInHint: signInLabel =>
-        `保存済みのリモートブラウザセッションからサインアウトし、${signInLabel}を開きます。代わりにバンドルされたバックエンドに切り替えるには「ローカルゲートウェイを使用」を選択してください。`,
+      remoteSignInHint: signInLabel => `保存済みのリモートブラウザセッションからサインアウトし、${signInLabel}を開きます。代わりにバンドルされたバックエンドに切り替えるには「ローカルゲートウェイを使用」を選択してください。`,
       signOutAndSignIn: 'サインアウトして再サインイン',
-      remoteFailureHint:
-        '「ゲートウェイ設定」でゲートウェイの URL とサインインを確認するか、ローカルゲートウェイに切り替えてください。',
+      remoteFailureHint: '「ゲートウェイ設定」でゲートウェイの URL とサインインを確認するか、ローカルゲートウェイに切り替えてください。',
       hideRecentLogs: '最近のログを非表示',
       showRecentLogs: '最近のログを表示',
       signedInTitle: 'サインインしました',
@@ -108,38 +105,35 @@ export const ja = defineLocale({
       signInFailed: 'サインインに失敗しました',
       signInToRemoteGateway: 'リモートゲートウェイにサインイン',
       signInWithProvider: provider => `${provider} でサインイン`,
-      identityProvider: 'ID プロバイダー'
-    }
+      identityProvider: 'ID プロバイダー',
+    },
   },
-
   notifications: {
     region: '通知',
     hide: '非表示',
     show: '表示',
-    more: count => `他 ${count} 件の通知`,
+    more: count => `${count} 件の ${count === 1 ? '通知' : '通知'}`,
     clearAll: 'すべてクリア',
     dismiss: '通知を閉じる',
     details: '詳細',
     copyDetail: '詳細をコピー',
     copyDetailFailed: '通知の詳細をコピーできませんでした',
     backendOutOfDateTitle: 'バックエンドが古いです',
-    backendOutOfDateMessage:
-      'OpenAmer バックエンドがこのデスクトップビルドより古く、正常に動作しない場合があります。更新して揃えてください。',
+    backendOutOfDateMessage: 'OpenAmer バックエンドがこのデスクトップビルドより古く、正常に動作しない場合があります。更新して揃えてください。',
     installMethodUnsupportedTitle: 'サポート対象外のインストール方法',
     updateOpenAmer: 'OpenAmer を更新',
     updateReadyTitle: '更新の準備ができました',
-    updateReadyMessage: count => `${count} 件の新しい変更が利用可能です。`,
-    seeWhatsNew: '新機能を見る',
+    updateReadyMessage: count => `${count} 件の新しい変更${count === 1 ? '' : 's'} が利用可能です。`,
+    seeWhatsNew: "新機能を見る",
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT には ELEVENLABS_API_KEY が必要です。',
       elevenLabsRejectedKey: 'ElevenLabs が API キーを拒否しました (401)。',
       gatewayAuthFailed: 'ゲートウェイ認証に失敗しました — API_SERVER_KEY を確認してください。',
-      methodNotAllowed:
-        'デスクトップバックエンドがそのリクエストを拒否しました (405 Method Not Allowed)。OpenAmer Desktop を再起動してください。',
+      methodNotAllowed: 'デスクトップバックエンドがそのリクエストを拒否しました (405 Method Not Allowed)。OpenAmer Desktop を再起動してください。',
       microphonePermission: 'マイクのアクセス許可が拒否されました。',
       openaiRejectedApiKey: 'OpenAI が API キーを拒否しました。',
       openaiRejectedApiKeyWithStatus: status => `OpenAI が API キーを拒否しました (${status} invalid_api_key)。`,
-      openaiTtsNeedsKey: 'OpenAI TTS には VOICE_TOOLS_OPENAI_KEY または OPENAI_API_KEY が必要です。'
+      openaiTtsNeedsKey: 'OpenAI TTS には VOICE_TOOLS_OPENAI_KEY または OPENAI_API_KEY が必要です。',
     },
     voice: {
       configureSpeechToText: '音声モードを使用するには音声認識を設定してください。',
@@ -158,7 +152,7 @@ export const ja = defineLocale({
       transcriptionFailed: '音声文字起こしに失敗しました',
       transcriptionUnavailable: '音声文字起こしはまだ利用できません。',
       tryRecordingAgain: 'もう一度録音してください。',
-      unavailable: '音声は利用できません'
+      unavailable: '音声は利用できません',
     },
     native: {
       approvalTitle: '承認が必要です',
@@ -171,24 +165,20 @@ export const ja = defineLocale({
       turnErrorTitle: 'ターンが失敗しました',
       backgroundDoneTitle: 'バックグラウンドタスクが完了しました',
       backgroundFailedTitle: 'バックグラウンドタスクが失敗しました',
-      creditsTitle: 'クレジット'
-    }
+      creditsTitle: 'クレジット',
+    },
   },
-
   remoteDisplayBanner: {
-    message: reason =>
-      `ソフトウェアレンダリングが有効です — リモートディスプレイを検出しました（${reason}）。ちらつきを防ぐため GPU アクセラレーションは無効化されています。`
+    message: reason => `ソフトウェアレンダリングが有効です — リモートディスプレイを検出しました（${reason}）。ちらつきを防ぐため GPU アクセラレーションは無効化されています。`,
   },
-
   billingBlock: {
     titleOpenamer: 'OpenAmer クレジットが不足しています',
     titleProvider: provider => `クレジット不足 — ${provider}`,
     fallbackMessage: 'アカウントのクレジットが不足しています。続行するにはクレジットを追加してください。',
     openBilling: '請求を開く',
     addCredits: 'クレジットを追加',
-    dismiss: '閉じる'
+    dismiss: '閉じる',
   },
-
   titlebar: {
     hideSidebar: 'サイドバーを非表示',
     showSidebar: 'サイドバーを表示',
@@ -201,9 +191,108 @@ export const ja = defineLocale({
     muteHaptics: '触覚フィードバックをオフ',
     unmuteHaptics: '触覚フィードバックをオン',
     openSettings: '設定を開く',
-    openStarmap: 'メモリグラフを開く'
+    openStarmap: 'メモリグラフを開く',
+    openKeybinds: 'キーボードショートカット',
+    layoutEditor: 'レイアウトエディター',
+    layoutEditorTitle: 'レイアウトエディター — ⌘クリックでレイアウトをリセット',
   },
-
+  keybinds: {
+    title: 'キーボードショートカット',
+    subtitle: open => `ショートカットをクリックして再割り当て · ${open} でこのパネルを再度開きます。`,
+    search: 'ショートカットを検索…',
+    rebind: '再割り当て',
+    reset: '既定に戻す',
+    resetAll: 'すべてリセット',
+    pressKey: 'キーを押してください…',
+    set: '設定済み',
+    conflictWith: label => `「${label}」にも割り当て済み`,
+    categories: {
+      composer: 'コンポーザー',
+      profiles: 'プロファイル',
+      session: 'セッション',
+      navigation: 'ナビゲーション',
+      view: '表示',
+    },
+    actions: {
+      'keybinds.openPanel': 'キーボードショートカットを開く',
+      'nav.commandPalette': 'コマンドパレットを開く',
+      'nav.commandCenter': 'コマンドセンターを開く',
+      'nav.settings': '設定を開く',
+      'nav.profiles': 'プロファイルを開く',
+      'nav.skills': 'スキルを開く',
+      'nav.messaging': 'メッセージングを開く',
+      'nav.artifacts': 'アーティファクトを開く',
+      'nav.cron': 'スケジュールされたジョブを開く',
+      'nav.agents': 'エージェントを開く',
+      'session.new': '新しいセッション',
+      'session.newTab': '新しいセッションタブ',
+      'session.newWindow': '新しいウィンドウ',
+      'session.next': '次のセッション',
+      'session.prev': '前のセッション',
+      'session.slot.1': '最近のセッション1に切り替え',
+      'session.slot.2': '最近のセッション2に切り替え',
+      'session.slot.3': '最近のセッション3に切り替え',
+      'session.slot.4': '最近のセッション4に切り替え',
+      'session.slot.5': '最近のセッション5に切り替え',
+      'session.slot.6': '最近のセッション6に切り替え',
+      'session.slot.7': '最近のセッション7に切り替え',
+      'session.slot.8': '最近のセッション8に切り替え',
+      'session.slot.9': '最近のセッション9に切り替え',
+      'session.focusSearch': 'セッションを検索',
+      'session.togglePin': '現在のセッションをピン留め / 解除',
+      'workspace.newWorktree': '新しいワークツリー',
+      'composer.focus': 'コンポーザーにフォーカス',
+      'composer.modelPicker': 'モデル選択を開く',
+      'composer.voice': '音声会話を開始 / 停止',
+      'view.toggleSidebar': 'セッションサイドバーを切り替え',
+      'view.toggleRightSidebar': 'ファイルブラウザを切り替え',
+      'view.toggleReview': 'レビューペインを切り替え',
+      'view.showFiles': 'ファイルブラウザを表示',
+      'view.showTerminal': 'ターミナルを切り替え',
+      'view.newTerminal': '新しいターミナル',
+      'view.nextTerminal': '次のターミナル',
+      'view.prevTerminal': '前のターミナル',
+      'view.closeTerminal': 'ターミナルを閉じる',
+      'view.terminalSelection': 'ターミナルの選択範囲をコンポーザーに送信',
+      'view.closeTab': 'タブを閉じる',
+      'view.reopenTab': '閉じたタブを再度開く',
+      'view.flipPanes': 'サイドバーの左右を入れ替え',
+      'appearance.toggleMode': 'ライト / ダークを切り替え',
+      'profile.default': '既定のプロファイルに切り替え',
+      'profile.switch.1': 'プロファイル 1 に切り替え',
+      'profile.switch.2': 'プロファイル 2 に切り替え',
+      'profile.switch.3': 'プロファイル 3 に切り替え',
+      'profile.switch.4': 'プロファイル 4 に切り替え',
+      'profile.switch.5': 'プロファイル 5 に切り替え',
+      'profile.switch.6': 'プロファイル 6 に切り替え',
+      'profile.switch.7': 'プロファイル 7 に切り替え',
+      'profile.switch.8': 'プロファイル 8 に切り替え',
+      'profile.switch.9': 'プロファイル 9 に切り替え',
+      'profile.switch.10': 'プロファイル 10 に切り替え',
+      'profile.switch.11': 'プロファイル 11 に切り替え',
+      'profile.switch.12': 'プロファイル12に切り替え',
+      'profile.switch.13': 'プロファイル13に切り替え',
+      'profile.switch.14': 'プロファイル14に切り替え',
+      'profile.switch.15': 'プロファイル15に切り替え',
+      'profile.switch.16': 'プロファイル16に切り替え',
+      'profile.switch.17': 'プロファイル17に切り替え',
+      'profile.switch.18': 'プロファイル18に切り替え',
+      'profile.next': '次のプロファイル',
+      'profile.prev': '前のプロファイル',
+      'profile.toggleAll': '全プロファイル表示を切り替え',
+      'profile.create': 'プロファイルを作成',
+      'composer.send': 'メッセージを送信',
+      'composer.newline': '改行を挿入',
+      'composer.steer': '実行中のターンを誘導',
+      'composer.queue': 'メッセージをキューに追加',
+      'composer.sendQueued': 'キューの次のターンを送信',
+      'composer.mention': 'ファイル、フォルダー、URLを参照',
+      'composer.slash': 'スラッシュコマンドパレット',
+      'composer.help': 'クイックヘルプ',
+      'composer.history': 'ポップオーバー / 履歴を循環',
+      'composer.cancel': 'ポップオーバーを閉じる · 実行をキャンセル',
+    },
+  },
   language: {
     label: '言語',
     description: 'デスクトップインターフェイスの言語を選択します。',
@@ -211,9 +300,8 @@ export const ja = defineLocale({
     saveError: '言語の更新に失敗しました',
     switchTo: '言語を切り替え',
     searchPlaceholder: '言語を検索…',
-    noResults: '言語が見つかりません'
+    noResults: '言語が見つかりません',
   },
-
   settings: {
     closeSettings: '設定を閉じる',
     exportConfig: '設定を書き出す',
@@ -236,7 +324,25 @@ export const ja = defineLocale({
       archivedChats: 'アーカイブ済みチャット',
       about: '情報',
       billing: '請求',
-      notifications: '通知'
+      notifications: '通知',
+      plugins: 'プラグイン',
+    },
+    plugins: {
+      title: 'デスクトッププラグイン',
+      blurb: 'このアプリに読み込まれるUI拡張 — ビルドに同梱、またはdesktop-pluginsフォルダーに配置（OpenAmerが書き込むものも含む）。無効化するとプラグインは即時にアンロードされ、再起動後も維持されます。',
+      count: n => `${n} 件インストール済み`,
+      openFolder: 'プラグインフォルダを開く',
+      rescan: '再スキャン',
+      reveal: 'ファイルマネージャーで表示',
+      enable: '有効にする',
+      disable: '無効にする',
+      failed: '失敗',
+      empty: 'デスクトッププラグインはまだインストールされていません。',
+      kinds: {
+        bundled: '同梱',
+        disk: 'ディスク上',
+        runtime: 'ランタイム',
+      },
     },
     notifications: {
       title: '通知',
@@ -247,38 +353,37 @@ export const ja = defineLocale({
       kinds: {
         approval: {
           label: '承認が必要',
-          description: 'コマンドが承認または拒否を待っています。'
+          description: 'コマンドが承認または拒否を待っています。',
         },
         input: {
           label: '入力が必要',
-          description: 'OpenAmer が質問したか、パスワードやシークレットを必要としています。'
+          description: 'OpenAmer が質問したか、パスワードやシークレットを必要としています。',
         },
         turnDone: {
           label: '応答完了',
-          description: 'OpenAmer がバックグラウンドのときにターンが完了しました。'
+          description: 'OpenAmer がバックグラウンドのときにターンが完了しました。',
         },
         turnError: {
           label: 'ターン失敗',
-          description: 'ターンがエラーで終了しました。'
+          description: 'ターンがエラーで終了しました。',
         },
         backgroundDone: {
           label: 'バックグラウンドタスク完了',
-          description: 'バックグラウンドのターミナルコマンドが完了しました。'
+          description: 'バックグラウンドのターミナルコマンドが完了しました。',
         },
         credits: {
           label: 'クレジット通知',
-          description: 'クレジットの利用が停止または復旧しました。'
-        }
+          description: 'クレジットの利用が停止または復旧しました。',
+        },
       },
       test: 'テスト通知を送信',
       testTitle: 'OpenAmer',
       testBody: '通知は正常に動作しています。',
-      testSent:
-        'テストを送信しました。表示されない場合は、OS の通知許可と集中モード／おやすみモードを確認してください。',
+      testSent: 'テストを送信しました。表示されない場合は、OS の通知許可と集中モード／おやすみモードを確認してください。',
       testUnsupported: 'このシステムはネイティブ通知に対応していません。',
       completionSoundTitle: '完了サウンド',
       completionSoundDesc: 'エージェントのターン終了時に再生されます。プリセットを選んでここで試聴できます。',
-      completionSoundPreview: '試聴'
+      completionSoundPreview: '試聴',
     },
     sections: {
       model: 'モデル',
@@ -288,7 +393,7 @@ export const ja = defineLocale({
       safety: '安全性',
       memory: 'メモリとコンテキスト',
       voice: '音声',
-      advanced: '詳細'
+      advanced: '詳細',
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop について',
@@ -296,47 +401,51 @@ export const ja = defineLocale({
       gateway: 'ゲートウェイ接続…',
       keys: 'API キーを検索…',
       mcp: 'MCP サーバーを検索…',
-      sessions: 'アーカイブ済みセッションを検索…'
+      sessions: 'アーカイブ済みセッションを検索…',
     },
     modeOptions: {
-      light: { label: 'ライト', description: '明るいデスクトップ表示' },
-      dark: { label: 'ダーク', description: 'まぶしさを抑えたワークスペース' },
-      system: { label: 'システム', description: 'OS の外観に合わせる' }
+      light: {
+        label: 'ライト',
+        description: '明るいデスクトップ表示',
+      },
+      dark: {
+        label: 'ダーク',
+        description: 'まぶしさを抑えたワークスペース',
+      },
+      system: {
+        label: 'システム',
+        description: 'OS の外観に合わせる',
+      },
     },
     appearance: {
       title: '外観',
-      intro:
-        'デスクトップ専用の表示設定です。モードは明るさ、テーマはアクセントカラーとチャット面のスタイルを制御します。',
+      intro: 'デスクトップ専用の表示設定です。モードは明るさ、テーマはアクセントカラーとチャット面のスタイルを制御します。',
       colorMode: 'カラーモード',
       colorModeDesc: '固定モードを選ぶか、OpenAmer をシステム設定に合わせます。',
       toolViewTitle: 'ツール呼び出しの表示',
       toolViewDesc: 'プロダクト表示は生のツールペイロードを隠し、テクニカル表示は入出力をすべて表示します。',
       uiScaleTitle: 'UI スケール',
-      uiScaleDesc: (percent: number) =>
-        `アプリ全体の文字と UI を拡大縮小します。Cmd/Ctrl と +、-、0 でも変更できます。現在: ${percent}%`,
+      uiScaleDesc: (percent: number) => `アプリ全体の文字と UI を拡大縮小します。Cmd/Ctrl と +、-、0 でも変更できます。現在: ${percent}%`,
       translucencyTitle: 'ウィンドウの透過',
       translucencyDesc: 'ウィンドウ全体を透過させてデスクトップを表示します。macOS と Windows のみ。',
       backdropTitle: 'チャット背景',
       backdropDesc: '会話の背後に表示される淡い彫像の画像。',
       embedsTitle: 'インライン埋め込み',
-      embedsDesc:
-        'リッチプレビューは第三者サイト（YouTube、X など）から読み込まれます。確認は許可するまでプレースホルダーを表示し、常には自動で読み込み、オフはリンクのままにします。',
+      embedsDesc: 'リッチプレビューは第三者サイト（YouTube、X など）から読み込まれます。確認は許可するまでプレースホルダーを表示し、常には自動で読み込み、オフはリンクのままにします。',
       embedsAsk: '確認',
       embedsAlways: '常に',
       embedsOff: 'オフ',
-      embedsReset: (count: number) => `許可した${count}件のサービスをリセット`,
+      embedsReset: (count: number) => `リセット ${count} 許可 ${count === 1 ? 'サービス' : 'サービス'}`,
       product: 'プロダクト',
       productDesc: '読みやすいツール活動と簡潔な要約を表示します。',
       technical: 'テクニカル',
       technicalDesc: '生のツール引数、結果、低レベルの詳細を含めます。',
       themeTitle: 'テーマ',
       themeDesc: 'デスクトップ専用のパレットです。選択したモードの上に適用されます。',
-      themeProfileNote: profile =>
-        `「${profile}」プロファイルに保存されます。プロファイルごとに個別のテーマを保持します。`,
+      themeProfileNote: profile => `「${profile}」プロファイルに保存されます。プロファイルごとに個別のテーマを保持します。`,
       installTitle: 'VS Code から導入',
-      installDesc:
-        'Marketplace の拡張機能 ID（例: dracula-theme.theme-dracula）を貼り付けると、その配色テーマをデスクトップ用パレットに変換します。',
-      installPlaceholder: 'publisher.extension',
+      installDesc: 'Marketplace の拡張機能 ID（例: dracula-theme.theme-dracula）を貼り付けると、その配色テーマをデスクトップ用パレットに変換します。',
+      installPlaceholder: '発行者.拡張機能',
       installButton: 'インストール',
       installing: 'インストール中…',
       installError: 'そのテーマをインストールできませんでした。',
@@ -345,29 +454,27 @@ export const ja = defineLocale({
       importedBadge: 'インポート済み',
       pet: {
         title: 'ペット',
-        intro:
-          'アプリ上に浮かぶ petdex のアニメーションマスコットを採用しましょう。ツール実行中は走り、成功すると喜び、エラーでしょんぼりと、OpenAmer の状態に反応します。',
-        restartHint:
-          'ペット機能には再起動が必要です。この機能が追加される前に起動したアプリが動作中です。OpenAmer を終了して再度開き、このページに戻ってください。',
+        intro: 'アプリ上に浮かぶ petdex のアニメーションマスコットを採用しましょう。ツール実行中は走り、成功すると喜び、エラーでしょんぼりと、OpenAmer の状態に反応します。',
+        restartHint: 'ペット機能には再起動が必要です。この機能が追加される前に起動したアプリが動作中です。OpenAmer を終了して再度開き、このページに戻ってください。',
+        on: 'オン',
+        off: 'オフ',
         scaleTitle: 'サイズ',
         scaleDesc: '浮遊マスコットの大きさを変更します。すべての画面に即時反映されます。',
         roamTitle: '散歩',
         roamDesc: 'アイドル中にペットがウィンドウ内を自由に歩き回ります。',
-        on: 'オン',
-        off: 'オフ',
         chooseTitle: 'ペットを選ぶ',
         chooseDesc: '選ぶと（必要に応じて）インストールされ、アクティブになります。',
         searchPlaceholder: 'ペットを検索…',
-        unreachable: 'petdex ギャラリーに接続できませんでした。接続を確認してこのページを開き直してください。',
+        unreachable: "petdex ギャラリーに接続できませんでした。接続を確認してこのページを開き直してください。",
         noMatch: query => `「${query}」に一致するペットがありません。`,
         installedTag: 'インストール済み',
         generatedTag: '生成',
-        countCapped: (cap, total) => `${total} 件中 ${cap} 件を表示中——入力して絞り込めます。`,
-        count: n => `${n} 件のペット。`,
+        countCapped: (cap, total) => `${cap} / ${total} 件を表示中 — 入力して絞り込みます。`,
+        count: n => `${n} ペット${n === 1 ? '' : 's'}。`,
         uninstall: name => `${name} をアンインストール`,
         delete: name => `${name} を削除`,
         deleteTitle: name => `${name} を削除しますか？`,
-        deleteBody: 'ペットを完全に削除します。再インストールはできません。',
+        deleteBody: "ペットを完全に削除します。再インストールはできません。",
         deleteConfirm: '削除',
         rename: name => `${name} の名前を変更`,
         renameTitle: 'ペットの名前を変更',
@@ -380,249 +487,27 @@ export const ja = defineLocale({
         exportFailed: slug => `${slug} をエクスポートできませんでした`,
         noneAvailable: 'オンにできるペットがありません。',
         turnOnFailed: 'ペットをオンにできませんでした。',
-        turnOffFailed: 'ペットをオフにできませんでした。'
-      }
+        turnOffFailed: 'ペットをオフにできませんでした。',
+      },
     },
-    fieldLabels: defineFieldCopy({
-      model: 'デフォルトモデル',
-      modelContextLength: 'コンテキストウィンドウ',
-      fallbackProviders: 'フォールバックモデル',
-      toolsets: '有効なツールセット',
-      timezone: 'タイムゾーン',
-      display: {
-        personality: '人格',
-        showReasoning: '推論ブロック'
-      },
-      desktop: {
-        repoScanEnabled: 'リポジトリの自動検出',
-        repoScanRoots: 'リポジトリの検索ルート',
-        repoScanExcludePaths: '除外するリポジトリパス'
-      },
-      agent: {
-        maxTurns: '最大エージェントステップ',
-        imageInputMode: '画像添付',
-        apiMaxRetries: 'API 再試行回数',
-        serviceTier: 'サービス階層',
-        toolUseEnforcement: 'ツール使用の強制'
-      },
-      terminal: {
-        cwd: '作業ディレクトリ',
-        backend: '実行バックエンド',
-        timeout: 'コマンドタイムアウト',
-        persistentShell: '永続シェル',
-        envPassthrough: '環境変数の引き継ぎ',
-        dockerImage: 'Docker イメージ',
-        singularityImage: 'Singularity イメージ',
-        modalImage: 'Modal イメージ',
-        daytonaImage: 'Daytona イメージ'
-      },
-      fileReadMaxChars: 'ファイル読み取り上限',
-      toolOutput: {
-        maxBytes: 'ターミナル出力上限',
-        maxLines: 'ファイルページ上限',
-        maxLineLength: '行長上限'
-      },
-      codeExecution: {
-        mode: 'コード実行モード'
-      },
-      approvals: {
-        mode: '承認モード',
-        timeout: '承認タイムアウト',
-        mcpReloadConfirm: 'MCP 再読み込みの確認'
-      },
-      commandAllowlist: 'コマンド許可リスト',
-      security: {
-        redactSecrets: 'シークレットを伏せる',
-        allowPrivateUrls: 'プライベート URL を許可'
-      },
-      browser: {
-        allowPrivateUrls: 'ブラウザーのプライベート URL',
-        autoLocalForPrivateUrls: 'プライベート URL にはローカルブラウザーを使用'
-      },
-      checkpoints: {
-        enabled: 'ファイルチェックポイント',
-        maxSnapshots: 'チェックポイント上限'
-      },
-      voice: {
-        recordKey: '音声ショートカット',
-        maxRecordingSeconds: '最大録音時間',
-        autoTts: '応答を読み上げる'
-      },
-      stt: {
-        enabled: '音声認識',
-        provider: '音声認識プロバイダー',
-        local: {
-          model: 'ローカル文字起こしモデル',
-          language: '文字起こし言語'
-        },
-        openai: {
-          model: 'OpenAI STT モデル'
-        },
-        groq: {
-          model: 'Groq STT モデル'
-        },
-        mistral: {
-          model: 'Mistral STT モデル'
-        },
-        elevenlabs: {
-          modelId: 'ElevenLabs STT モデル',
-          languageCode: 'ElevenLabs 言語',
-          tagAudioEvents: '音声イベントをタグ付け',
-          diarize: '話者分離'
-        }
-      },
-      tts: {
-        provider: '音声合成プロバイダー',
-        edge: {
-          voice: 'Edge 音声'
-        },
-        openai: {
-          model: 'OpenAI TTS モデル',
-          voice: 'OpenAI 音声'
-        },
-        elevenlabs: {
-          voiceId: 'ElevenLabs 音声',
-          modelId: 'ElevenLabs モデル'
-        },
-        xai: {
-          voiceId: 'xAI (Grok) 音声',
-          language: 'xAI 言語',
-          speed: '再生速度',
-          autoSpeechTags: '自動音声タグ',
-          optimizeStreamingLatency: 'ストリーミング遅延最適化',
-          sampleRate: 'サンプルレート',
-          bitRate: 'ビットレート'
-        },
-        minimax: {
-          model: 'MiniMax TTS モデル',
-          voiceId: 'MiniMax 音声'
-        },
-        mistral: {
-          model: 'Mistral TTS モデル',
-          voiceId: 'Mistral 音声'
-        },
-        gemini: {
-          model: 'Gemini TTS モデル',
-          voice: 'Gemini 音声'
-        },
-        neutts: {
-          model: 'NeuTTS モデル',
-          device: 'NeuTTS デバイス'
-        },
-        kittentts: {
-          model: 'KittenTTS モデル',
-          voice: 'KittenTTS 音声'
-        },
-        piper: {
-          voice: 'Piper 音声'
-        }
-      },
-      memory: {
-        memoryEnabled: '永続メモリ',
-        userProfileEnabled: 'ユーザープロファイル',
-        memoryCharLimit: 'メモリ予算',
-        userCharLimit: 'プロファイル予算',
-        provider: 'メモリプロバイダー'
-      },
-      context: {
-        engine: 'コンテキストエンジン'
-      },
-      compression: {
-        enabled: '自動圧縮',
-        threshold: '圧縮しきい値',
-        targetRatio: '圧縮目標',
-        protectLastN: '保護する直近メッセージ'
-      },
-      delegation: {
-        model: 'サブエージェントモデル',
-        provider: 'サブエージェントプロバイダー',
-        maxIterations: 'サブエージェントターン上限',
-        maxConcurrentChildren: '並列サブエージェント',
-        childTimeoutSeconds: 'サブエージェントタイムアウト',
-        reasoningEffort: 'サブエージェント推論強度'
-      },
-      updates: {
-        nonInteractiveLocalChanges: 'アプリ内更新時のローカル変更'
-      }
-    }),
-    fieldDescriptions: defineFieldCopy({
-      model: 'コンポーザーで別のモデルを選ばない限り、新しいチャットで使用されます。',
-      modelContextLength: '0 のままにすると、選択したモデルから検出されたコンテキストウィンドウを使用します。',
-      fallbackProviders: 'デフォルトモデルが失敗したときに試す provider:model 形式のバックアップです。',
-      display: {
-        personality: '新しいセッションのデフォルトのアシスタントスタイルです。',
-        showReasoning: 'バックエンドが推論内容を提供したときに表示します。'
-      },
-      desktop: {
-        repoScanEnabled: 'ローカルフォルダを検索して Git リポジトリをプロジェクトに表示します。',
-        repoScanRoots: '検索するフォルダです。空の場合はホームディレクトリを検索します。',
-        repoScanExcludePaths: 'リポジトリ検出時に除外するフォルダとその配下です。'
-      },
-      timezone:
-        'OpenAmer がローカル時刻のコンテキストを必要とするときに使用します。空欄ならシステムのタイムゾーンを使います。',
-      agent: {
-        imageInputMode: '画像添付をモデルへ送る方法を制御します。',
-        maxTurns: 'OpenAmer が 1 回の実行を停止するまでのツール呼び出しターン上限です。'
-      },
-      terminal: {
-        cwd: 'ツールとターミナル作業のデフォルトプロジェクトフォルダーです。',
-        persistentShell: 'バックエンドが対応している場合、コマンド間でシェル状態を保持します。',
-        envPassthrough: 'ツール実行へ渡す環境変数です。'
-      },
-      codeExecution: {
-        mode: 'コード実行を現在のプロジェクトにどれだけ厳密に制限するかを設定します。'
-      },
-      fileReadMaxChars: 'OpenAmer が 1 回のファイル読み取りで取得できる最大文字数です。',
-      approvals: {
-        mode: '明示的な承認が必要なコマンドを OpenAmer がどう扱うかを設定します。',
-        timeout: '承認プロンプトがタイムアウトするまで待つ時間です。'
-      },
-      security: {
-        redactSecrets: '検出したシークレットを、可能な限りモデルから見える内容から隠します。'
-      },
-      checkpoints: {
-        enabled: 'ファイル編集前にロールバック用スナップショットを作成します。'
-      },
-      memory: {
-        memoryEnabled: '将来のセッションに役立つ永続メモリを保存します。',
-        userProfileEnabled: 'ユーザーの好みをまとめた簡潔なプロファイルを維持します。'
-      },
-      context: {
-        engine: '長い会話がコンテキスト上限に近づいたときの管理戦略です。'
-      },
-      compression: {
-        enabled: '会話が大きくなったとき、古いコンテキストを要約します。'
-      },
-      voice: {
-        autoTts: 'アシスタントの応答を自動で読み上げます。'
-      },
-      stt: {
-        enabled: 'ローカルまたはプロバイダーによる音声文字起こしを有効にします。',
-        elevenlabs: {
-          languageCode: '任意の ISO-639-3 言語コードです。空欄なら ElevenLabs が自動検出します。'
-        }
-      },
-      updates: {
-        nonInteractiveLocalChanges:
-          'アプリから OpenAmer 自身を更新するとき、ローカルのソース変更を保持するか破棄するかを選びます。ターミナル更新では常に確認されます。'
-      }
-    }),
+    fieldLabels: FIELD_LABELS,
+    fieldDescriptions: FIELD_DESCRIPTIONS,
     about: {
-      heading: 'OpenAmer Desktop',
+      heading: 'OpenAmer デスクトップ',
       version: value => `バージョン ${value}`,
       versionUnavailable: 'バージョンを取得できません',
       updates: '更新',
       checkNow: '今すぐ確認',
       checking: '確認中…',
-      seeWhatsNew: '新機能を見る',
+      seeWhatsNew: "新機能を見る",
       updateNow: '今すぐ更新',
       releaseNotes: 'リリースノート',
-      onLatest: '最新バージョンです。',
+      onLatest: "最新バージョンです。",
       installing: '更新をインストール中です。',
-      cantUpdate: 'このビルドはアプリ内から更新できません。',
-      cantReach: '更新サーバーに接続できませんでした。',
+      cantUpdate: "このビルドはアプリ内から更新できません。",
+      cantReach: "更新サーバーに接続できませんでした。",
       tapCheck: '更新を探すには「今すぐ確認」を押してください。',
-      updateReady: count => `新しい更新の準備ができました (${count} 件の変更を含みます)。`,
+      updateReady: count => `新しいアップデートの準備ができました（${count} 件の変更${count === 1 ? '' : 's'} を含む）。`,
       lastChecked: age => `前回確認: ${age}`,
       justNowSuffix: ' · たった今',
       automaticUpdates: '自動更新',
@@ -632,7 +517,7 @@ export const ja = defineLocale({
       justNow: 'たった今',
       minAgo: count => `${count} 分前`,
       hoursAgo: count => `${count} 時間前`,
-      daysAgo: count => `${count} 日前`
+      daysAgo: count => `${count} 日前`,
     },
     config: {
       none: 'なし',
@@ -648,7 +533,7 @@ export const ja = defineLocale({
       imported: '設定をインポートしました',
       invalidJson: '設定 JSON が無効です',
       keepAwakeTitle: 'コンピューターをスリープさせない',
-      keepAwakeDesc: '本体のスリープを防ぎ、長時間や夜通しの実行を継続します。画面は暗転できます。'
+      keepAwakeDesc: '本体のスリープを防ぎ、長時間や夜通しの実行を継続します。画面は暗転できます。',
     },
     credentials: {
       pasteKey: 'キーを貼り付け',
@@ -658,7 +543,7 @@ export const ja = defineLocale({
       couldNotSave: '認証情報を保存できませんでした。',
       remove: '削除',
       getKey: 'キーを取得',
-      saving: '保存中'
+      saving: '保存中',
     },
     envActions: {
       actionsFor: label => `${label} のアクション`,
@@ -669,7 +554,7 @@ export const ja = defineLocale({
       revealValue: '値を表示',
       replace: '置き換え',
       set: '設定',
-      clear: 'クリア'
+      clear: 'クリア',
     },
     gateway: {
       loading: 'ゲートウェイ設定を読み込み中...',
@@ -677,27 +562,54 @@ export const ja = defineLocale({
       unavailableDesc: 'デスクトップ IPC ブリッジはゲートウェイ設定を公開していません。',
       title: 'ゲートウェイ接続',
       envOverride: 'env オーバーライド',
-      intro:
-        'OpenAmer Desktop はデフォルトで独自のローカルゲートウェイを起動します。別のマシンや信頼できるプロキシの背後で既に動作している OpenAmer バックエンドをこのアプリで制御する場合は、リモートゲートウェイを使用してください。以下でプロファイルを選択して、それぞれのリモートホストを設定します。',
+      intro: 'OpenAmer Desktop はデフォルトで独自のローカルゲートウェイを起動します。別のマシンや信頼できるプロキシの背後で既に動作している OpenAmer バックエンドをこのアプリで制御する場合は、リモートゲートウェイを使用してください。以下でプロファイルを選択して、それぞれのリモートホストを設定します。',
       appliesTo: '適用対象',
       allProfiles: 'すべてのプロファイル',
       defaultConnection: '独自のオーバーライドがないすべてのプロファイルのデフォルト接続。',
-      profileConnection: profile =>
-        `"${profile}" がアクティブプロファイルのときのみ使用される接続。「デフォルトゲートウェイを使用」を選ぶとオーバーライドが削除されます。`,
+      profileConnection: profile => `"${profile}" がアクティブプロファイルのときのみ使用される接続。「デフォルトゲートウェイを使用」を選ぶとオーバーライドが削除されます。`,
       envOverrideTitle: '環境変数がこのデスクトップセッションを制御しています。',
-      envOverrideDesc:
-        '保存された設定を使用するには OPENAMER_DESKTOP_REMOTE_URL と OPENAMER_DESKTOP_REMOTE_TOKEN の設定を解除してください。',
+      envOverrideDesc: '保存された設定を使用するには OPENAMER_DESKTOP_REMOTE_URL と OPENAMER_DESKTOP_REMOTE_TOKEN の設定を解除してください。',
+      modeTitle: '接続モード',
       localTitle: 'ローカルゲートウェイ',
-      localDesc:
-        'ローカルホストでプライベートな OpenAmer バックエンドを起動します。これがデフォルトで、オフラインでも動作します。',
+      localDesc: 'ローカルホストでプライベートな OpenAmer バックエンドを起動します。これがデフォルトで、オフラインでも動作します。',
       inheritTitle: 'デフォルトゲートウェイを使用',
-      inheritDesc: 'このプロファイルのオーバーライドを削除し、デフォルト接続を使用します。',
+      inheritDesc: "このプロファイルのオーバーライドを削除し、デフォルト接続を使用します。",
       remoteTitle: 'リモートゲートウェイ',
-      remoteDesc:
-        'このデスクトップシェルをリモートの OpenAmer バックエンドに接続します。ホスト型ゲートウェイは OAuth またはユーザー名とパスワードを使用します。自己ホスト型はセッショントークンを使用する場合があります。',
+      remoteDesc: 'このデスクトップシェルをリモートの OpenAmer バックエンドに接続します。ホスト型ゲートウェイは OAuth またはユーザー名とパスワードを使用します。自己ホスト型はセッショントークンを使用する場合があります。',
+      remoteAuthHint: 'ホスト型ゲートウェイは OAuth またはユーザー名とパスワードを使用します。セルフホスト型ではセッショントークンを使用する場合があります。',
+      cloudTitle: 'OpenAmer Cloud',
+      cloudDesc: 'OpenAmer Cloud に一度サインインすると、アカウントのエージェントから選択できます。URL の貼り付けは不要です。',
+      cloudSignInTitle: 'OpenAmer Cloud',
+      cloudSignIn: 'OpenAmer Cloud にサインイン',
+      cloudSignedIn: 'OpenAmer Cloud にサインイン済み',
+      cloudNeedsSignIn: 'アカウント内のエージェントを見つけるには、OpenAmer Cloud にサインインしてください。',
+      cloudSignedInDesc: 'サインイン済みです。下からエージェントを選択してください。セッションは自動的に更新されます。',
+      cloudAgentsTitle: 'あなたのエージェント',
+      cloudOrgPickerTitle: '組織を選択',
+      cloudOrgSelect: '選択',
+      cloudOrgChange: '組織を変更',
+      cloudOrgRole: role => `ロール: ${role}`,
+      cloudLoadingAgents: 'エージェントを読み込み中…',
+      cloudNoAgents: {
+        before: 'このアカウント에 エージェントが見つかりません。作成するには ',
+        linkText: 'OpenAmer ポータル',
+        after: 'で作成し、更新してください。',
+      },
+      cloudRefresh: '更新',
+      cloudConnect: '接続',
+      cloudConnecting: '接続中…',
+      cloudDiscoverFailed: 'OpenAmer Cloud のエージェントを読み込めませんでした',
+      cloudConnectFailed: 'そのエージェントに接続できませんでした',
+      cloudSignInFailed: 'OpenAmer Cloud へのサインインに失敗しました',
+      cloudSignedOutTitle: 'OpenAmer Cloud からサインアウトしました',
+      cloudSignedOutMessage: 'OpenAmer Cloud のセッションをクリアしました。',
+      cloudConnectedTitle: '接続済み',
+      cloudConnectedPill: '接続済み',
+      cloudConnectedTo: name => `${name} に接続しました。`,
+      cloudAgentProvisioning: 'プロビジョニング中…',
+      cloudStatusLabel: status => `ステータス: ${status}`,
       remoteUrlTitle: 'リモート URL',
-      remoteUrlDesc:
-        'リモートダッシュボードバックエンドのベース URL。/openamer などのパスプレフィックスもサポートしています。',
+      remoteUrlDesc: 'リモートダッシュボードバックエンドのベース URL。/openamer などのパスプレフィックスもサポートしています。',
       probing: 'このゲートウェイの認証方法を確認中…',
       probeError: 'このゲートウェイにまだ到達できません。URL を確認してください。応答後に認証方法が表示されます。',
       signedIn: 'サインイン済み',
@@ -705,17 +617,12 @@ export const ja = defineLocale({
       signOut: 'サインアウト',
       signInWith: provider => `${provider} でサインイン`,
       authTitle: '認証',
-      authSignedInPassword:
-        'このゲートウェイはユーザー名とパスワードを使用します。サインイン済みです。セッションは自動的に更新されます。',
-      authSignedInOauth:
-        'このゲートウェイは OAuth を使用します。サインイン済みです。セッションは自動的に更新されます。',
-      authNeedsPassword:
-        'このゲートウェイはユーザー名とパスワードを使用します。このデスクトップアプリを承認するにはサインインしてください。',
-      authNeedsOauth: provider =>
-        `このゲートウェイは OAuth を使用します。このデスクトップアプリを承認するには ${provider} でサインインしてください。`,
+      authSignedInPassword: 'このゲートウェイはユーザー名とパスワードを使用します。サインイン済みです。セッションは自動的に更新されます。',
+      authSignedInOauth: 'このゲートウェイは OAuth を使用します。サインイン済みです。セッションは自動的に更新されます。',
+      authNeedsPassword: 'このゲートウェイはユーザー名とパスワードを使用します。このデスクトップアプリを承認するにはサインインしてください。',
+      authNeedsOauth: provider => `このゲートウェイは OAuth を使用します。このデスクトップアプリを承認するには ${provider} でサインインしてください。`,
       tokenTitle: 'セッショントークン',
-      tokenDesc:
-        'REST および WebSocket アクセスに使用するダッシュボードセッショントークン。保存済みトークンを維持するには空欄にしてください。',
+      tokenDesc: 'REST および WebSocket アクセスに使用するダッシュボードセッショントークン。保存済みトークンを維持するには空欄にしてください。',
       existingToken: value => `既存のトークン ${value}`,
       savedToken: '保存済み',
       pasteSessionToken: 'セッショントークンを貼り付け',
@@ -746,8 +653,7 @@ export const ja = defineLocale({
       applyFailed: 'ゲートウェイ設定を適用できませんでした',
       saveFailed: 'ゲートウェイ設定を保存できませんでした',
       sshTitle: 'SSH で接続',
-      sshDesc:
-        'OpenAmer は SSH 経由でリモート上に起動され、このアプリにトンネルされます。リモート側で何かを起動・公開する必要はありません。ホストへの鍵ベースの SSH アクセスが前提です。',
+      sshDesc: 'OpenAmer は SSH 経由でリモート上に起動され、このアプリにトンネルされます。リモート側で何かを起動・公開する必要はありません。ホストへの鍵ベースの SSH アクセスが前提です。',
       sshTrustHint: '初回に提示されたホスト鍵を信頼して固定し、以後の変更は拒否します。',
       sshHostTitle: 'ホスト',
       sshHostDesc: 'user@host、または ~/.ssh/config の Host エイリアス。',
@@ -771,22 +677,18 @@ export const ja = defineLocale({
       sshReachable: (host, platform) => `接続可能: ${host}（${platform}）— OpenAmer を検出`,
       sshIncompleteHost: '接続する前に SSH ホストを入力してください。',
       sshErrUnreachable: 'SSH でそのホストに到達できませんでした。ホスト、ポート、ネットワークを確認してください。',
-      sshErrAuth:
-        'SSH 認証に失敗しました。鍵を ssh-agent に読み込む（ssh-add）か、~/.ssh/config に IdentityFile を設定してください。OpenAmer は非対話的に ssh を実行します。',
-      sshErrHostKey:
-        '前回の接続以降、ホスト鍵が変更されています。想定どおりか確認し、ssh-keygen -R <host> を実行してから再接続してください。',
-      sshErrNotInstalled:
-        'リモートホストに OpenAmer がインストールされていません。リモートでインストールする（curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh）か、OpenAmer パスを設定してください。',
-      sshErrPlatform:
-        'サポートされていないリモートプラットフォームです。OpenAmer Desktop の SSH モードは Linux、macOS、Windows のリモートホストに対応しています。',
+      sshErrAuth: 'SSH 認証に失敗しました。鍵を ssh-agent に読み込む（ssh-add）か、~/.ssh/config に IdentityFile を設定してください。OpenAmer は非対話的に ssh を実行します。',
+      sshErrHostKey: '前回の接続以降、ホスト鍵が変更されています。想定どおりか確認し、ssh-keygen -R <host> を実行してから再接続してください。',
+      sshErrNotInstalled: 'リモートホストに OpenAmer がインストールされていません。リモートでインストールする（curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh）か、OpenAmer パスを設定してください。',
+      sshErrPlatform: 'サポートされていないリモートプラットフォームです。OpenAmer Desktop の SSH モードは Linux、macOS、Windows のリモートホストに対応しています。',
       sshErrTimeout: 'SSH 接続がタイムアウトしました。ホストが到達不能、またはスリープ中の可能性があります。',
       sshErrUpdateRequired: 'Desktop SSH で接続する前に、リモートホストの OpenAmer を更新してください。',
-      sshErrUnknown: 'SSH 接続に失敗しました。'
+      sshErrUnknown: 'SSH 接続に失敗しました。',
     },
     keys: {
       loading: 'API キーと認証情報を読み込み中...',
       failedLoad: 'API キーの読み込みに失敗しました',
-      empty: 'このカテゴリーにはまだ設定がありません。'
+      empty: 'このカテゴリーにはまだ設定がありません。',
     },
     mcp: {
       loading: 'MCP サーバーを読み込み中...',
@@ -815,8 +717,30 @@ export const ja = defineLocale({
       serverJson: 'サーバー JSON',
       remove: '削除',
       saveServer: 'サーバーを保存',
-      capabilitySummary: (tools, prompts, resources) =>
-        `${[`ツール ${tools} 個`, ...(prompts ? [`プロンプト ${prompts} 個`] : []), ...(resources ? [`リソース ${resources} 個`] : [])].join('、')} を有効化`,
+      test: '接続をテスト',
+      testing: 'テスト中...',
+      testOk: count => `接続済み — ${count} 個のツール${count === 1 ? '' : 's'} が利用可能`,
+      testFailed: '接続に失敗しました',
+      enableServer: name => `${name} を有効化`,
+      disableServer: name => `${name} を無効化`,
+      serverEnabled: name => `${name} を有効にしました — 新しいセッションに適用されます。`,
+      serverDisabled: name => `${name} を無効にしました — 新しいセッションに適用されます。`,
+      toggleFailed: name => `${name} の切り替えに失敗しました`,
+      tabServers: 'サーバー',
+      tabCatalog: 'カタログ',
+      catalogLoading: 'MCPカタログを読み込み中...',
+      catalogLoadFailed: 'MCPカタログの読み込みに失敗しました',
+      catalogEmpty: '利用可能なカタログエントリがありません。',
+      catalogInstalled: 'インストール済み',
+      catalogEnabled: '有効',
+      catalogNeedsInstall: 'ビルドが必要',
+      catalogInstall: 'インストール',
+      catalogInstalling: 'インストール中...',
+      catalogInstallStarted: name => `${name}をインストール中... 完了後、新しいセッションに適用されます。`,
+      catalogInstallFailed: name => `${name}のインストールに失敗しました`,
+      catalogEnvPrompt: name => `${name}には認証情報が必要です`,
+      catalogEnvRequired: 'インストール前に必須項目を入力してください。',
+      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')}を有効にしました`,
       statusConnecting: '接続中…',
       statusNeedsAuth: '認証が必要です',
       statusError: 'エラー',
@@ -829,45 +753,78 @@ export const ja = defineLocale({
       unsavedConnect: '未保存 — 接続するには mcp.json を保存してください。',
       enableTool: tool => `${tool} を有効化`,
       disableTool: tool => `${tool} を無効化`,
-      noOutput: 'まだ出力がありません。'
+      noOutput: 'まだ出力がありません。',
     },
     model: {
       loading: 'モデル設定を読み込み中...',
-      appliesDesc:
-        '新しいセッションに適用されます。コンポーザーのモデルピッカーを使ってアクティブなチャットをホットスワップできます。',
+      appliesDesc: '新しいセッションに適用されます。コンポーザーのモデルピッカーを使ってアクティブなチャットをホットスワップできます。',
       provider: 'プロバイダー',
       model: 'モデル',
       applying: '適用中...',
+      defaultsLabel: 'デフォルト',
+      reasoning: '推論',
+      reasoningOff: 'オフ',
+      defaultsFailed: 'モデルのデフォルトを保存できませんでした',
       auxiliaryTitle: '補助モデル',
       resetAllToMain: 'すべてメインにリセット',
-      auxiliaryDesc:
-        'ヘルパータスクはデフォルトでメインモデルで実行されます。タスクに専用モデルを割り当てることでオーバーライドできます。',
+      auxiliaryDesc: 'ヘルパータスクはデフォルトでメインモデルで実行されます。タスクに専用モデルを割り当てることでオーバーライドできます。',
       setToMain: 'メインに設定',
       change: '変更',
       autoUseMain: '自動 · メインモデルを使用',
       providerDefault: '(プロバイダーのデフォルト)',
+      fallbackAdd: 'フォールバックを追加',
+      fallbackEmpty: 'フォールバックモデルなし — 失敗しない限りデフォルトモデルが使用されます。',
+      notInCatalog: "このプロバイダーのモデルリストにありません — 呼び出しはバックアップにフォールバックする場合があります。",
       tasks: {
-        vision: { label: 'ビジョン', hint: '画像分析' },
-        web_extract: { label: 'ウェブ抽出', hint: 'ページの要約' },
-        compression: { label: '圧縮', hint: 'コンテキストの圧縮' },
-        skills_hub: { label: 'スキルハブ', hint: 'スキル検索' },
-        approval: { label: '承認', hint: 'スマート自動承認' },
-        mcp: { label: 'MCP', hint: 'MCP ツールルーティング' },
-        title_generation: { label: 'タイトル生成', hint: 'セッションタイトル' },
-        curator: { label: 'キュレーター', hint: 'スキル使用レビュー' }
-      }
+        vision: {
+          label: 'ビジョン',
+          hint: '画像分析',
+        },
+        web_extract: {
+          label: 'ウェブ抽出',
+          hint: 'ページの要約',
+        },
+        compression: {
+          label: '圧縮',
+          hint: 'コンテキストの圧縮',
+        },
+        skills_hub: {
+          label: 'スキルハブ',
+          hint: 'スキル検索',
+        },
+        approval: {
+          label: '承認',
+          hint: 'スマート自動承認',
+        },
+        mcp: {
+          label: 'MCP',
+          hint: 'MCP ツールルーティング',
+        },
+        title_generation: {
+          label: 'タイトル生成',
+          hint: 'セッションタイトル',
+        },
+        curator: {
+          label: 'キュレーター',
+          hint: 'スキル使用レビュー',
+        },
+      },
     },
     providers: {
       connectAccount: 'アカウントを接続',
       haveApiKey: 'API キーをお持ちですか？',
-      intro:
-        'サブスクリプションでサインインします。API キーのコピーは不要です。OpenAmer がアプリ内でブラウザーサインインを代行します。',
+      intro: 'サブスクリプションでサインインします。API キーのコピーは不要です。OpenAmer がアプリ内でブラウザーサインインを代行します。',
       connected: '接続済み',
       collapse: '折りたたむ',
       connectAnother: '別のプロバイダーを接続',
       otherProviders: 'その他のプロバイダー',
+      disconnect: '切断',
+      disconnectInTerminal: '切断（ターミナルで削除コマンドを実行）',
       removeConfirm: provider => `${provider} を削除しますか？`,
+      removeExternalGeneric: provider => `${provider} は独自の CLI で管理されています — そこで削除してください。`,
       removeKeyManaged: provider => `${provider} は API キーで設定されています。API Keys から削除してください。`,
+      removeTerminalConfirm: (provider, command) => `${provider} を切断しますか？ターミナルで "${command}" を実行して認証情報を消去します。`,
+      removeTerminalRunning: provider => `ターミナルで ${provider} の切断を実行中…`,
       removedTitle: 'アカウントを削除しました',
       removedMessage: provider => `${provider} を削除しました。`,
       failedRemove: provider => `${provider} を削除できませんでした`,
@@ -876,31 +833,28 @@ export const ja = defineLocale({
       noKeysMatch: '一致するプロバイダーがありません。',
       localEndpoint: {
         title: 'ローカル / カスタムエンドポイント',
-        description: 'OpenAI 互換のエンドポイント（Zyphra、vLLM、llama.cpp、Ollama など）を指定します。'
+        description: 'OpenAI 互換のエンドポイント（Zyphra、vLLM、llama.cpp、Ollama など）を指定します。',
       },
-      loading: 'プロバイダーを読み込み中...'
+      loading: 'プロバイダーを読み込み中...',
     },
     sessions: {
       loading: 'アーカイブ済みセッションを読み込み中…',
       archivedTitle: 'アーカイブ済みセッション',
-      archivedIntro:
-        'アーカイブ済みチャットはサイドバーでは非表示になりますが、すべてのメッセージは保持されます。サイドバーのチャットを Ctrl/⌘ クリックするとアーカイブできます。',
+      archivedIntro: 'アーカイブ済みチャットはサイドバーでは非表示になりますが、すべてのメッセージは保持されます。サイドバーのチャットを Ctrl/⌘ クリックするとアーカイブできます。',
       emptyArchivedTitle: 'アーカイブがありません',
       emptyArchivedDesc: 'チャットをアーカイブするとここに表示されます。',
       unarchive: 'アーカイブを解除',
       deletePermanently: '完全に削除',
-      messages: count => `${count} 件のメッセージ`,
+      messages: count => `${count} ${count === 1 ? 'メッセージ' : 'メッセージ'}`,
       restored: '復元しました',
       deleteConfirm: title => `"${title}" を完全に削除しますか？この操作は元に戻せません。`,
       autoArchiveTitle: '古いチャットを自動アーカイブ',
-      autoArchiveDesc:
-        'しばらく操作していないチャットを自動的にアーカイブします。ピン留めしたチャットはアーカイブされず、削除もされません。アーカイブされたチャットはここに移動します。',
+      autoArchiveDesc: "しばらく操作していないチャットを自動的にアーカイブします。ピン留めしたチャットはアーカイブされず、削除もされません。アーカイブされたチャットはここに移動します。",
       autoArchiveDaysLabel: 'アーカイブまでの日数',
       autoArchiveDaysUnit: '日間操作なし',
       autoArchiveFailed: '自動アーカイブを更新できませんでした',
       defaultDirTitle: 'デフォルトのプロジェクトディレクトリ',
-      defaultDirDesc:
-        '別のフォルダーを選択しない限り、新しいセッションはこのフォルダーで開始します。未設定の場合はホームディレクトリが使用されます。',
+      defaultDirDesc: '別のフォルダーを選択しない限り、新しいセッションはこのフォルダーで開始します。未設定の場合はホームディレクトリが使用されます。',
       defaultDirUpdated: 'デフォルトのプロジェクトディレクトリを更新しました',
       defaultsTo: label => `デフォルト: ${label}。`,
       change: '変更',
@@ -911,7 +865,7 @@ export const ja = defineLocale({
       unarchiveFailed: 'アーカイブ解除に失敗しました',
       deleteFailed: '削除に失敗しました',
       updateDirFailed: 'デフォルトディレクトリを更新できませんでした',
-      clearDirFailed: 'デフォルトディレクトリをクリアできませんでした'
+      clearDirFailed: 'デフォルトディレクトリをクリアできませんでした',
     },
     toolsets: {
       loadingConfig: '設定を読み込み中',
@@ -929,23 +883,20 @@ export const ja = defineLocale({
       selectedMessage: provider => `${provider} が有効になりました。`,
       failedSelect: provider => `${provider} の選択に失敗しました`,
       failedLoad: 'ツール設定の読み込みに失敗しました',
-      noProviderOptions:
-        'このツールセットにはプロバイダーのオプションがありません。有効にすれば現在の設定で動作します。',
+      noProviderOptions: 'このツールセットにはプロバイダーのオプションがありません。有効にすれば現在の設定で動作します。',
       noProviders: '現在このツールセットに利用可能なプロバイダーがありません。',
       ready: '準備完了',
       needsSignIn: 'サインインが必要',
       needsSetup: 'セットアップが必要',
       openamerIncluded: 'OpenAmer サブスクリプションに含まれています。有効にするには OpenAmer Portal にサインインしてください。',
       openamerAuthNeededTitle: 'OpenAmer Portal にサインイン',
-      openamerAuthNeededMessage: provider =>
-        `${provider} は保存されましたが、OpenAmer Portal にサインインするまで有効になりません。`,
+      openamerAuthNeededMessage: provider => `${provider} は保存されましたが、OpenAmer Portal にサインインするまで有効になりません。`,
       openamerAuthSignIn: 'サインイン',
       openamerAuthDoneTitle: 'OpenAmer Portal に接続しました',
       openamerAuthDoneMessage: 'サブスクリプションのバックエンドが有効になりました。',
       openamerAuthFailed: 'OpenAmer Portal のサインインが完了しませんでした',
       noApiKeyRequired: 'API キーは不要です。',
-      postSetupHint: step =>
-        `このバックエンドは一度だけインストールが必要です (${step})。このマシン上で実行され、数分かかる場合があります。`,
+      postSetupHint: step => `このバックエンドは一度だけインストールが必要です (${step})。このマシン上で実行され、数分かかる場合があります。`,
       postSetupInstalledHint: 'インストール済みです。問題がある場合のみセットアップを再実行してください。',
       postSetupRun: 'セットアップを実行',
       postSetupRerun: 'セットアップを再実行',
@@ -964,9 +915,17 @@ export const ja = defineLocale({
       webUseForExtract: '抽出に使用',
       webUsedForSearch: '検索バックエンド',
       webUsedForExtract: '抽出バックエンド',
-      webCapabilitySelectedMessage: (provider, capability) =>
-        `${provider} がウェブ${capability === 'search' ? '検索' : '抽出'}を担当します。`,
+      webCapabilitySelectedMessage: (provider, capability) => `${provider} が Web ${capability} を処理するようになりました。`,
       failedSelectCapability: provider => `${provider} の設定に失敗しました`,
+      loadingModels: 'モデルカタログを読み込み中...',
+      modelSectionTitle: 'モデル',
+      modelCount: count => `${count} モデル${count === 1 ? '' : 's'}`,
+      modelInUse: '使用中',
+      modelDefault: 'デフォルト',
+      modelInactiveHint: 'モデルを変更するには、先にこのバックエンドを選択してください。',
+      modelSelectedTitle: 'モデルを選択しました',
+      modelSelectedMessage: model => `${model} は新しいセッションに適用されます。`,
+      failedSelectModel: model => `${model} の選択に失敗しました`,
       terminalBackend: {
         sectionTitle: '実行バックエンド',
         loading: '実行バックエンドを確認中…',
@@ -978,15 +937,15 @@ export const ja = defineLocale({
         selectedTitle: 'バックエンドを選択しました',
         selectedMessage: backend => `ターミナルコマンドは ${backend} で実行されます。新しいセッションに適用されます。`,
         failedSelect: backend => `${backend} の選択に失敗しました`,
-        needsSetupHint: 'このバックエンドは今すぐ選択できますが、セットアップが完了するまでコマンドは失敗します。'
-      }
-    }
+        needsSetupHint: 'このバックエンドは今すぐ選択できますが、セットアップが完了するまでコマンドは失敗します。',
+      },
+    },
   },
-
   skills: {
     tabSkills: 'スキル',
     tabToolsets: 'ツールセット',
     tabMcp: 'MCP',
+    tabHub: 'Hub を閲覧',
     all: 'すべて',
     searchSkills: 'スキルを検索...',
     searchToolsets: 'ツールセットを検索...',
@@ -1000,8 +959,7 @@ export const ja = defineLocale({
     noDescription: '説明はありません。',
     configured: '設定済み',
     needsKeys: 'キーが必要',
-    visionModelHint:
-      'ビジョンは補助モデル設定を使用します。画像対応モデルはそこで選択され、ここでプロバイダーごとに選ぶものではありません。',
+    visionModelHint: 'ビジョンは補助モデル設定を使用します。画像対応モデルはそこで選択され、ここでプロバイダーごとに選ぶものではありません。',
     visionModelLink: '設定 → モデル でビジョンモデルを選択',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} ツールセットが有効`,
     configureToolset: label => `${label} を設定`,
@@ -1021,13 +979,13 @@ export const ja = defineLocale({
     enableAll: 'すべて有効化',
     disableAll: 'すべて無効化',
     disableUnused: '未使用を無効化',
-    bulkUpdated: count => `${count} 件を新しいセッション向けに更新しました。`,
+    bulkUpdated: count => `新しいセッション用に ${count} ${count === 1 ? 'アイテム' : 'アイテム'} を更新しました。`,
     bulkNoChange: '変更するものはありません。',
     usageCount: count => `${count} 回使用`,
     provenance: {
       agent: '学習済み',
       bundled: '組み込み',
-      hub: 'ハブ'
+      hub: 'ハブ',
     },
     emptyNoneFound: noun => `${noun} が見つかりません`,
     emptyNothingMatches: query => `「${query}」に一致するものはありません。`,
@@ -1037,12 +995,58 @@ export const ja = defineLocale({
     edit: '編集',
     archive: 'アーカイブ',
     skillArchivedTitle: 'スキルをアーカイブしました',
-    skillArchivedMessage: 'openamer curator restore で復元できます。'
+    skillArchivedMessage: 'openamer curator restore で復元できます。',
+    hub: {
+      searchPlaceholder: 'スキルハブを検索',
+      search: '検索',
+      searching: '検索中...',
+      connectingHubs: 'スキルハブに接続中...',
+      connectedHubs: '接続済みハブ:',
+      featured: 'おすすめスキル',
+      landingHint: 'ハブを検索して、公式インデックス、GitHub、コミュニティのソースからインストール可能なスキルを閲覧します。',
+      noResults: 'ハブに一致するスキルが見つかりません。',
+      resultCount: (count, ms) => `${count} 件の結果${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      timedOut: sources => `タイムアウト: ${sources}`,
+      installed: 'インストール済み',
+      install: 'インストール',
+      installing: 'インストール中...',
+      uninstall: 'アンインストール',
+      uninstalling: 'アンインストール中...',
+      updateAll: 'インストール済みを更新',
+      updating: '更新中...',
+      preview: 'プレビュー',
+      scan: 'スキャン',
+      scanning: 'スキャン中...',
+      close: '閉じる',
+      files: 'ファイル',
+      noReadme: 'このスキルには SKILL.md のプレビューがありません。',
+      trust: {
+        builtin: '組み込み',
+        trusted: '信頼済み',
+        community: 'コミュニティ',
+      },
+      verdictSafe: '安全',
+      verdictCaution: '注意',
+      verdictDangerous: '危険',
+      policyAllow: 'インストール可',
+      policyAsk: 'インストール前に確認',
+      policyBlock: 'ポリシーによりインストール不可',
+      findings: count => `${count} 件の指摘${count === 1 ? '' : 's'}`,
+      noFindings: 'セキュリティ問題なし。',
+      installStarted: name => `インストール中 ${name}...`,
+      uninstallStarted: name => `アンインストール中 ${name}...`,
+      updateStarted: 'インストール済みスキルを更新中...',
+      actionFailed: 'スキル操作に失敗',
+      actionLog: '操作ログ',
+      loadFailed: 'スキルハブの読み込みに失敗',
+      previewFailed: 'スキルプレビューに失敗',
+      scanFailed: 'セキュリティスキャンに失敗',
+      searchFailed: 'ハブ検索に失敗',
+    },
   },
-
   starmap: {
     title: 'メモリグラフ',
-    subtitle: (nodes, clusters) => `${clusters} カテゴリの ${nodes} スキル`,
+    subtitle: (nodes, clusters) => `${nodes} スキル（${clusters} カテゴリ）`,
     close: 'メモリグラフを閉じる',
     refresh: '更新',
     memory: 'メモリ',
@@ -1053,7 +1057,19 @@ export const ja = defineLocale({
     loadFailed: 'メモリグラフを読み込めませんでした',
     loading: '読み込み中…',
     emptyTitle: 'まだ学習はありません',
-    emptyDesc: 'OpenAmer がスキルやメモリを蓄積すると、ここに表示されます。'
+    emptyDesc: 'OpenAmer がスキルやメモリを蓄積すると、ここに表示されます。',
+    share: '共有マップ',
+    shareHint: 'このマップを共有するコードをコピー、またはコードを貼り付けて読み込みます。レイアウトのみで、メモリやスキルのテキストは含まれません。',
+    shareTitle: 'マップのインポート / エクスポート',
+    sharePlaceholder: 'マップコードを貼り付け…',
+    copy: 'マップコードをコピー',
+    copied: 'コピーしました！',
+    importMap: 'マップをインポート',
+    importBtn: '読み込む',
+    importEmpty: 'マップコードを貼り付けて読み込みます。',
+    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'ノード' : 'ノード'} を含むマップを読み込みました。`,
+    importedBadge: 'インポートしたマップ',
+    resetToMine: '自分のマップに戻る',
   },
   agents: {
     close: 'エージェントを閉じる',
@@ -1070,7 +1086,7 @@ export const ja = defineLocale({
     delegation: index => `委任 ${index}`,
     workers: count => `${count} ワーカー`,
     workersActive: count => `${count} アクティブ`,
-    agentsCount: count => `${count} エージェント`,
+    agentsCount: count => `${count} ${count === 1 ? 'エージェント' : 'エージェント'}`,
     activeCount: count => `${count} アクティブ`,
     failedCount: count => `${count} 失敗`,
     toolsCount: count => `${count} ツール`,
@@ -1083,9 +1099,8 @@ export const ja = defineLocale({
     ageDays: days => `${days}日前`,
     durationSeconds: seconds => `${seconds}秒`,
     durationMinutes: (minutes, seconds) => `${minutes}分 ${seconds}秒`,
-    tokens: value => `${value} トーク`
+    tokens: value => `${value} トーク`,
   },
-
   commandCenter: {
     close: 'コマンドセンターを閉じる',
     paletteTitle: 'コマンドパレット',
@@ -1094,6 +1109,7 @@ export const ja = defineLocale({
     goTo: '移動',
     goToSession: 'セッションへ移動',
     branches: 'ブランチ',
+    commands: 'コマンド',
     startInBranch: branch => `${branch} で新しい会話`,
     commandCenter: 'コマンドセンター',
     appearance: '外観',
@@ -1113,7 +1129,7 @@ export const ja = defineLocale({
       generatedTag: '生成',
       adoptFailed: 'ペットを採用できませんでした。',
       toggleFailed: 'ペットを切り替えできませんでした。',
-      noneAvailable: '利用可能なペットがありません。'
+      noneAvailable: '利用可能なペットがありません。',
     },
     generatePet: {
       title: 'ペットを生成',
@@ -1142,7 +1158,7 @@ export const ja = defineLocale({
       referenceImageTooLarge: '参照画像が大きすぎます。16 MB 未満の画像を使ってください。',
       referenceImageInvalid: '参照画像を読み込めませんでした。PNG/JPG/WebP/GIF を試してください。',
       adopt: '迎え入れる',
-      startOver: 'やり直す'
+      startOver: 'やり直す',
     },
     installTheme: {
       title: 'テーマをインストール…',
@@ -1154,28 +1170,58 @@ export const ja = defineLocale({
       install: 'インストール',
       installing: 'インストール中...',
       installed: 'インストール済み',
-      installs: count => `${count} 回インストール`
+      installs: count => `${count} 回インストール`,
     },
     settingsFields: '設定フィールド',
     mcpServers: 'MCP サーバー',
     archivedChats: 'アーカイブ済みチャット',
-    sections: { sessions: 'セッション', system: 'システム', usage: '使用状況' },
+    sections: {
+      maintenance: 'メンテナンス',
+      sessions: 'セッション',
+      system: 'システム',
+      usage: '使用状況',
+    },
     sectionDescriptions: {
+      maintenance: '診断、バックアップ、キュレーター、メモリデータ',
       sessions: 'セッションの検索と管理',
       system: 'ステータス、ログ、システムアクション',
-      usage: 'トークン、コスト、スキルの活動履歴'
+      usage: 'トークン、コスト、スキルの活動履歴',
     },
     nav: {
-      newChat: { title: '新しいセッション', detail: '新しいセッションを開始' },
-      settings: { title: '設定', detail: 'OpenAmer デスクトップを設定' },
-      skills: { title: 'スキルとツール', detail: 'スキル、ツールセット、プロバイダーを有効化' },
-      messaging: { title: 'メッセージング', detail: 'Telegram、Slack、Discord などを設定' },
-      artifacts: { title: 'アーティファクト', detail: '生成された出力を閲覧' }
+      newChat: {
+        title: '新しいセッション',
+        detail: '新しいセッションを開始',
+      },
+      settings: {
+        title: '設定',
+        detail: 'OpenAmer デスクトップを設定',
+      },
+      skills: {
+        title: 'スキルとツール',
+        detail: 'スキル、ツールセット、プロバイダーを有効化',
+      },
+      messaging: {
+        title: 'メッセージング',
+        detail: 'Telegram、Slack、Discord などを設定',
+      },
+      artifacts: {
+        title: 'アーティファクト',
+        detail: '生成された出力を閲覧',
+      },
     },
     sectionEntries: {
-      sessions: { title: 'セッションパネル', detail: 'セッションの検索、ピン留め、管理' },
-      system: { title: 'システムパネル', detail: 'ゲートウェイのステータス、ログ、再起動/更新' },
-      usage: { title: '使用状況パネル', detail: 'トークン、コスト、スキルの活動' }
+      sessions: {
+        title: 'セッションパネル',
+        detail: 'セッションの検索、ピン留め、管理',
+      },
+      system: {
+        title: 'システムパネル',
+        detail: 'ゲートウェイのステータス、ログ、再起動/更新',
+      },
+      usage: {
+        title: '使用状況パネル',
+        detail: 'トークン、コスト、スキルの活動',
+      },
     },
     providerNavigate: 'ナビゲート',
     providerSessions: 'セッション',
@@ -1217,9 +1263,55 @@ export const ja = defineLocale({
     noModelUsage: 'モデルの使用履歴はまだありません。',
     topSkills: 'よく使うスキル',
     noSkillActivity: 'スキルのアクティビティはまだありません。',
-    actions: count => `${count} アクション`
+    actions: count => `${count} アクション`,
+    logFile: 'ログファイル',
+    logLevel: 'レベル',
+    logSearchPlaceholder: 'ログ行を絞り込む...',
+    maintenance: {
+      runOps: '診断',
+      doctor: 'ドクターを実行',
+      doctorDesc: 'インストール、設定、プロバイダーをヘルスチェック',
+      securityAudit: 'セキュリティ監査',
+      securityAuditDesc: '設定とスキルの危険な設定をスキャン',
+      backup: 'バックアップを作成',
+      backupDesc: '設定、メモリ、スキル、セッションをZIP化',
+      debugShare: 'デバッグ共有',
+      debugShareDesc: '秘匿化したレポートとログをアップロードし、共有リンクを取得（6時間で自動削除）',
+      debugShareRunning: 'デバッグレポートをアップロード中...',
+      debugShareLinks: '共有リンク',
+      debugShareFailed: 'デバッグ共有に失敗',
+      copyLink: 'リンクをコピー',
+      linkCopied: 'リンクをコピーしました',
+      curator: 'スキルキュレーター',
+      curatorDesc: 'エージェントが作成した古いスキルをアーカイブするバックグラウンドレビュー',
+      curatorPaused: '一時停止中',
+      curatorActive: '有効',
+      curatorDisabled: '無効',
+      curatorLastRun: when => `最終実行 ${when}`,
+      curatorNeverRan: '未実行',
+      pause: '一時停止',
+      resume: '再開',
+      runNow: '今すぐ実行',
+      memoryData: 'メモリデータ',
+      memoryDataDesc: 'すべてのセッションに注入される組み込みメモリファイル',
+      memoryProvider: name => `アクティブなプロバイダー: ${name}`,
+      builtinMemory: '組み込み',
+      memoryFile: 'エージェントメモリ (MEMORY.md)',
+      userFile: 'ユーザープロフィール (USER.md)',
+      bytes: size => size,
+      empty: '空',
+      resetMemory: 'メモリをリセット',
+      resetUser: 'プロフィールをリセット',
+      resetAll: '両方をリセット',
+      resetConfirm: target => `${target}を削除しますか？この操作は元に戻せません。`,
+      resetDone: files => `${files}を削除しました。`,
+      resetFailed: 'メモリのリセットに失敗しました',
+      actionStarted: name => `${name}を開始しました — ログを追跡中...`,
+      actionFailed: name => `${name}の開始に失敗しました`,
+      running: '実行中...',
+      viewLog: 'アクションログ',
+    },
   },
-
   messaging: {
     search: 'メッセージングを検索...',
     loading: 'メッセージングプラットフォームを読み込み中...',
@@ -1233,7 +1325,7 @@ export const ja = defineLocale({
       not_configured: '設定が必要',
       pending_restart: '再起動が必要',
       retrying: '再試行中',
-      startup_failed: '起動失敗'
+      startup_failed: '起動失敗',
     },
     unknown: '不明',
     hintPendingRestart: 'この変更を適用するにはステータスバーからゲートウェイを再起動してください。',
@@ -1246,8 +1338,7 @@ export const ja = defineLocale({
     required: '必須',
     recommended: '推奨',
     advanced: count => `詳細設定 (${count})`,
-    noTokenNeeded:
-      'このプラットフォームはここでトークンが必要ありません。上のセットアップガイドを使用してから、以下で有効にしてください。',
+    noTokenNeeded: 'このプラットフォームはここでトークンが必要ありません。上のセットアップガイドを使用してから、以下で有効にしてください。',
     enabled: '有効',
     disabled: '無効',
     unsavedChanges: '未保存の変更',
@@ -1273,98 +1364,197 @@ export const ja = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'ボットトークン',
         help: '@BotFather でボットを作成し、表示されたトークンを貼り付けてください。',
-        placeholder: 'Telegram ボットトークンを貼り付け'
+        placeholder: 'Telegram ボットトークンを貼り付け',
       },
       TELEGRAM_ALLOWED_USERS: {
         label: '許可する Telegram ユーザー ID',
-        help: '推奨。@userinfobot の数値 ID をカンマ区切りで。設定しないと誰でもボットに DM できます。'
+        help: '推奨。@userinfobot の数値 ID をカンマ区切りで。設定しないと誰でもボットに DM できます。',
       },
-      TELEGRAM_PROXY: { label: 'プロキシ URL', help: 'Telegram がブロックされているネットワークでのみ必要です。' },
+      TELEGRAM_PROXY: {
+        label: 'プロキシ URL',
+        help: 'Telegram がブロックされているネットワークでのみ必要です。',
+      },
       DISCORD_BOT_TOKEN: {
         label: 'ボットトークン',
-        help: 'Discord Developer Portal でアプリケーションを作成し、ボットを追加してからトークンを貼り付けてください。'
+        help: 'Discord Developer Portal でアプリケーションを作成し、ボットを追加してからトークンを貼り付けてください。',
       },
       DISCORD_ALLOWED_USERS: {
         label: '許可する Discord ユーザー ID',
-        help: '推奨。カンマ区切りの Discord ユーザー ID。'
+        help: '推奨。カンマ区切りの Discord ユーザー ID。',
       },
-      DISCORD_REPLY_TO_MODE: { label: '返信スタイル', help: 'first、all、または off。' },
+      DISCORD_REPLY_TO_MODE: {
+        label: '返信スタイル',
+        help: 'first、all、または off。',
+      },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'すべての Discord ユーザーを許可',
-        help: '開発用のみ。true にすると、許可リストなしで誰でもボットに DM できます。'
+        help: '開発用のみ。true にすると、許可リストなしで誰でもボットに DM できます。',
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ホームチャンネル ID',
-        help: 'ボットがプロアクティブなメッセージを送信するチャンネル（Cron 出力、リマインダー）。'
+        help: 'ボットがプロアクティブなメッセージを送信するチャンネル（Cron 出力、リマインダー）。',
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'ホームチャンネル名',
-        help: 'ログやステータス出力でのホームチャンネルの表示名。'
+        help: 'ログやステータス出力でのホームチャンネルの表示名。',
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'すべての iMessage ユーザーを許可',
-        help: 'true にすると BlueBubbles の許可リストをスキップします。'
+        help: 'true にすると BlueBubbles の許可リストをスキップします。',
       },
-      MATTERMOST_ALLOW_ALL_USERS: { label: 'すべての Mattermost ユーザーを許可' },
-      MATTERMOST_HOME_CHANNEL: { label: 'ホームチャンネル' },
-      QQ_ALLOW_ALL_USERS: { label: 'すべての QQ ユーザーを許可' },
-      QQBOT_HOME_CHANNEL: { label: 'QQ ホームチャンネル', help: 'Cron 配信のデフォルトチャンネルまたはグループ。' },
-      QQBOT_HOME_CHANNEL_NAME: { label: 'QQ ホームチャンネル名' },
+      MATTERMOST_ALLOW_ALL_USERS: {
+        label: 'すべての Mattermost ユーザーを許可',
+      },
+      MATTERMOST_HOME_CHANNEL: {
+        label: 'ホームチャンネル',
+      },
+      QQ_ALLOW_ALL_USERS: {
+        label: 'すべての QQ ユーザーを許可',
+      },
+      QQBOT_HOME_CHANNEL: {
+        label: 'QQ ホームチャンネル',
+        help: 'Cron 配信のデフォルトチャンネルまたはグループ。',
+      },
+      QQBOT_HOME_CHANNEL_NAME: {
+        label: 'QQ ホームチャンネル名',
+      },
       SLACK_BOT_TOKEN: {
         label: 'Slack ボットトークン',
         help: 'Slack アプリをインストール後、OAuth & Permissions のボットトークンを使用してください。',
-        placeholder: 'Slack ボットトークンを貼り付け'
+        placeholder: 'Slack ボットトークンを貼り付け',
       },
       SLACK_APP_TOKEN: {
         label: 'Slack アプリトークン',
         help: 'Socket Mode に必要なアプリレベルのトークンを使用してください。',
-        placeholder: 'Slack アプリトークンを貼り付け'
+        placeholder: 'Slack アプリトークンを貼り付け',
       },
       SLACK_ALLOWED_USERS: {
         label: '許可する Slack ユーザー ID',
-        help: '推奨。カンマ区切りの Slack ユーザー ID。'
+        help: '推奨。カンマ区切りの Slack ユーザー ID。',
       },
-      MATTERMOST_URL: { label: 'サーバー URL', placeholder: 'https://mattermost.example.com' },
-      MATTERMOST_TOKEN: { label: 'ボットトークン' },
+      MATTERMOST_URL: {
+        label: 'サーバー URL',
+        placeholder: 'https://mattermost.example.com',
+      },
+      MATTERMOST_TOKEN: {
+        label: 'ボットトークン',
+      },
       MATTERMOST_ALLOWED_USERS: {
         label: '許可するユーザー ID',
-        help: '推奨。カンマ区切りの Mattermost ユーザー ID。'
+        help: '推奨。カンマ区切りの Mattermost ユーザー ID。',
       },
-      MATRIX_HOMESERVER: { label: 'ホームサーバー URL', placeholder: 'https://matrix.org' },
-      MATRIX_ACCESS_TOKEN: { label: 'アクセストークン' },
-      MATRIX_USER_ID: { label: 'ボットユーザー ID', placeholder: '@openamer:example.org' },
+      MATRIX_HOMESERVER: {
+        label: 'ホームサーバー URL',
+        placeholder: 'https://matrix.org',
+      },
+      MATRIX_ACCESS_TOKEN: {
+        label: 'アクセストークン',
+      },
+      MATRIX_USER_ID: {
+        label: 'ボットユーザー ID',
+        placeholder: '@openamer:example.org',
+      },
       MATRIX_ALLOWED_USERS: {
         label: '許可する Matrix ユーザー ID',
-        help: '推奨。@user:server 形式のカンマ区切りユーザー ID。'
+        help: '推奨。@user:server 形式のカンマ区切りユーザー ID。',
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal ブリッジ URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: '実行中の signal-cli REST ブリッジの URL。'
+        help: '実行中の signal-cli REST ブリッジの URL。',
       },
-      SIGNAL_ACCOUNT: { label: '電話番号', help: 'signal-cli ブリッジに登録した番号。' },
+      SIGNAL_ACCOUNT: {
+        label: '電話番号',
+        help: 'signal-cli ブリッジに登録した番号。',
+      },
       SIGNAL_ALLOWED_USERS: {
         label: '許可する Signal ユーザー',
-        help: '推奨。カンマ区切りの Signal 識別子。'
+        help: '推奨。カンマ区切りの Signal 識別子。',
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp ブリッジを有効にする',
-        help: '以下のトグルで自動的に設定されます。必要な場合を除いてそのままにしてください。'
+        help: '以下のトグルで自動的に設定されます。必要な場合を除いてそのままにしてください。',
       },
-      WHATSAPP_MODE: { label: 'ブリッジモード' },
+      WHATSAPP_MODE: {
+        label: 'ブリッジモード',
+      },
       WHATSAPP_ALLOWED_USERS: {
         label: '許可する WhatsApp ユーザー',
-        help: '推奨。カンマ区切りの電話番号または WhatsApp ID。'
-      }
+        help: '推奨。カンマ区切りの電話番号または WhatsApp ID。',
+      },
     },
-    platformIntro: {}
+    platformIntro: {
+    },
   },
-
+  webhooks: {
+    search: 'Webhookを検索...',
+    loading: 'Webhookを読み込み中...',
+    loadFailed: 'Webhookの読み込みに失敗しました',
+    subscriptions: (count: number) => `サブスクリプション (${count})`,
+    hint: 'レシーバーの稼働中は、サブスクリプションの変更がホットリロードされます。無効なサブスクリプションは受信イベントを拒否します。',
+    empty: 'Webhookサブスクリプションはまだありません。',
+    disabledTitle: 'Webhookレシーバーは無効です',
+    disabledBody: 'Webhookは独立したゲートウェイプラットフォームです。受信HTTPイベントを受け付けるには、ここで有効にします。チャットチャネルは、サブスクリプションがTelegram、Discord、Slack、または別のチャネルに配信する場合にのみ必要です。',
+    enable: 'Webhookを有効にする',
+    enabling: '有効化中...',
+    enabled: (name: string) => `有効: "${name}"`,
+    disabled: (name: string) => `無効: "${name}"`,
+    enableRow: '有効にする',
+    disableRow: '無効にする',
+    delete: '削除',
+    deleting: '削除中...',
+    deleted: 'Webhookを削除しました',
+    deleteTitle: 'ウェブフックを削除',
+    deleteDescPrefix: '以下を完全に削除します: ',
+    deleteDescSuffix: '。この操作は元に戻せません。',
+    deleteFailed: (name: string) => `「${name}」の削除に失敗しました`,
+    toggleFailed: (name: string) => `「${name}」の更新に失敗しました`,
+    newSubscription: '新規サブスクリプション',
+    restarting: 'ゲートウェイを再起動中...',
+    restartNeeded: 'ウェブフックは有効ですが、レシーバーをオンラインにするにはゲートウェイの再起動が必要です。',
+    restartGateway: 'ゲートウェイを再起動',
+    restartingGateway: '再起動中...',
+    restartFailed: (detail: string) => `ゲートウェイの再起動に失敗しました${detail}`,
+    enabledRestarting: 'ウェブフック有効。ゲートウェイを再起動中...',
+    all: '（すべて）',
+    deliverOnly: '配信のみ',
+    createdTitle: 'サブスクリプションを作成しました',
+    createdSecretHint: 'シークレットは一度しか表示されません。今すぐコピーしてください。',
+    webhookUrl: 'ウェブフックURL',
+    secretOnce: 'シークレット（一度のみ表示）',
+    done: '完了',
+    fieldName: '名前',
+    fieldNamePlaceholder: '例: github-push',
+    fieldDescription: '説明',
+    fieldDescriptionPlaceholder: 'このWebhookの動作（任意）',
+    fieldEvents: 'イベント',
+    fieldEventsPlaceholder: 'カンマ区切り、空欄で全て',
+    fieldSkills: 'スキル',
+    fieldSkillsPlaceholder: 'カンマ区切りのスキル名（任意）',
+    fieldDeliver: '配信先',
+    fieldDeliverOnly: 'ペイロードのみ配信',
+    fieldPrompt: 'プロンプト',
+    fieldPromptPlaceholder: 'このWebhook発火時のエージェントへの指示（任意）',
+    nameRequired: '名前は必須',
+    create: '作成',
+    creating: '作成中...',
+    created: '作成済み',
+    createFailed: (detail: string) => `作成に失敗しました: ${detail}`,
+    copy: 'コピー',
+    deliverOptions: {
+      log: 'ログ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
+      email: 'メール',
+      github_comment: 'GitHubコメント',
+    },
+  },
   profiles: {
     close: 'プロファイルを閉じる',
     nameHint: '小文字、数字、ハイフン、アンダースコア。文字または数字で始める必要があります。',
     title: 'プロファイル',
-    count: count => `${count} プロファイル`,
+    count: count => `${count} ${count === 1 ? 'プロファイル' : 'プロファイル'}`,
     search: 'プロファイルを検索...',
     loading: 'プロファイルを読み込み中...',
     newProfile: '新しいプロファイル',
@@ -1382,8 +1572,8 @@ export const ja = defineLocale({
     refresh: 'プロファイルを更新',
     refreshing: 'プロファイルを更新中',
     default: 'デフォルト',
-    skills: count => `${count} スキル`,
-    env: 'env',
+    skills: count => `${count} ${count === 1 ? 'スキル' : 'スキル'}`,
+    env: '環境変数',
     defaultBadge: 'デフォルト',
     rename: '名前を変更',
     renameMenu: '名前を変更…',
@@ -1395,8 +1585,8 @@ export const ja = defineLocale({
     notSet: '未設定',
     soulDesc: 'このプロファイルに組み込まれたシステムプロンプトとペルソナの指示。',
     soulOptional: '省略可能',
-    soulPlaceholder: mode =>
-      `このプロファイルのシステムプロンプト / ペルソナ。\n空欄のままにすると ${mode} のデフォルトを使用します。`,
+    soulPlaceholder: mode => `このプロファイルのシステムプロンプト / ペルソナ。
+空欄のままにすると ${mode} のデフォルトを使用します。`,
     soulPlaceholderCloned: 'クローン済み',
     soulPlaceholderEmpty: '空',
     unsavedChanges: '未保存の変更',
@@ -1436,13 +1626,12 @@ export const ja = defineLocale({
     failedLoadSoul: 'SOUL.md の読み込みに失敗しました',
     failedSaveSoul: 'SOUL.md の保存に失敗しました',
     failedCreate: 'プロファイルの作成に失敗しました',
-    failedRename: 'プロファイルの名前変更に失敗しました'
+    failedRename: 'プロファイルの名前変更に失敗しました',
   },
-
   cron: {
     close: 'Cron を閉じる',
     title: 'スケジュール済みジョブ',
-    count: count => `${count} 件のジョブ`,
+    count: count => `${count} ${count === 1 ? 'ジョブ' : 'ジョブ'}`,
     search: 'Cron ジョブを検索...',
     loading: 'Cron ジョブを読み込み中...',
     states: {
@@ -1452,14 +1641,14 @@ export const ja = defineLocale({
       paused: '一時停止中',
       disabled: '無効',
       error: 'エラー',
-      completed: '完了'
+      completed: '完了',
     },
     deliveryLabels: {
       local: 'このデスクトップ',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'メール'
+      email: 'メール',
     },
     scheduleLabels: {
       daily: '毎日',
@@ -1468,7 +1657,7 @@ export const ja = defineLocale({
       monthly: '毎月',
       hourly: '毎時',
       'every-15-minutes': '15 分ごと',
-      custom: 'カスタム'
+      custom: 'カスタム',
     },
     scheduleHints: {
       daily: '毎日午前 9:00',
@@ -1477,7 +1666,7 @@ export const ja = defineLocale({
       monthly: '毎月 1 日午前 9:00',
       hourly: '毎時 0 分',
       'every-15-minutes': '15 分ごと',
-      custom: 'Cron 構文または自然言語'
+      custom: 'Cron 構文または自然言語',
     },
     days: {
       '0': '日曜日',
@@ -1487,7 +1676,7 @@ export const ja = defineLocale({
       '4': '木曜日',
       '5': '金曜日',
       '6': '土曜日',
-      '7': '日曜日'
+      '7': '日曜日',
     },
     dayFallback: value => `${value}日`,
     everyDayAt: time => `毎日 ${time} に`,
@@ -1497,8 +1686,7 @@ export const ja = defineLocale({
     topOfHour: '毎時 0 分',
     everyHourAt: minute => `毎時 :${minute} に`,
     newCron: '新しい Cron',
-    emptyDescNew:
-      'Cron 式でプロンプトを実行するスケジュールを設定します。OpenAmer が実行して、選択した宛先に結果を送信します。',
+    emptyDescNew: 'Cron 式でプロンプトを実行するスケジュールを設定します。OpenAmer が実行して、選択した宛先に結果を送信します。',
     emptyDescSearch: '検索キーワードを広げてください。',
     emptyTitleNew: 'スケジュールされたジョブがまだありません',
     emptyTitleSearch: '一致なし',
@@ -1535,8 +1723,7 @@ export const ja = defineLocale({
     editTitle: 'Cron ジョブを編集',
     createTitle: '新しい Cron ジョブ',
     editDesc: 'スケジュール、プロンプト、または配信先を更新します。変更は次回の実行時に適用されます。',
-    createDesc:
-      'プロンプトを自動実行するスケジュールを設定します。Cron 構文または「15 分ごと」などのフレーズを使用します。',
+    createDesc: 'プロンプトを自動実行するスケジュールを設定します。Cron 構文または「15 分ごと」などのフレーズを使用します。',
     nameLabel: '名前',
     namePlaceholder: '例: 日次サマリー',
     promptLabel: 'プロンプト',
@@ -1558,7 +1745,7 @@ export const ja = defineLocale({
     createAction: 'Cron を作成',
     tabs: {
       jobs: 'ジョブ',
-      blueprints: 'ブレーンプリント'
+      blueprints: 'ブレーンプリント',
     },
     blueprints: {
       tab: 'ブレーンプリント',
@@ -1572,10 +1759,9 @@ export const ja = defineLocale({
       loading: 'ブレーンプリントを読み込み中...',
       failedLoad: 'ブレーンプリントの読み込みに失敗しました',
       emptyTitle: '利用できるブレーンプリントはありません',
-      emptyDesc: 'このバックエンドで利用できる自動化ブレーンプリントはありません。'
-    }
+      emptyDesc: 'このバックエンドで利用できる自動化ブレーンプリントはありません。',
+    },
   },
-
   artifacts: {
     search: 'アーティファクトを検索...',
     refresh: 'アーティファクトを更新',
@@ -1594,7 +1780,7 @@ export const ja = defineLocale({
     itemsFile: 'ファイル',
     itemsGeneric: '項目',
     zero: '0',
-    rangeOf: (start, end, total) => `${total} 件中 ${start}-${end}`,
+    rangeOf: (start, end, total) => `${start}-${end}（${total}件中）`,
     goToPage: (itemLabel, page) => `${itemLabel} ページ ${page} に移動`,
     colTitleLink: 'リンクタイトル',
     colTitleFile: '名前',
@@ -1608,15 +1794,14 @@ export const ja = defineLocale({
     kindLink: 'リンク',
     chat: 'チャット',
     copyUrl: 'URL をコピー',
-    copyPath: 'パスをコピー'
+    copyPath: 'パスをコピー',
   },
-
   sidebar: {
     nav: {
       'new-session': '新しいセッション',
       skills: 'スキルとツール',
       messaging: 'メッセージング',
-      artifacts: 'アーティファクト'
+      artifacts: 'アーティファクト',
     },
     searchAria: 'セッションを検索',
     searchPlaceholder: 'セッションを検索…',
@@ -1648,7 +1833,7 @@ export const ja = defineLocale({
       namePlaceholder: '例: Skunkworks',
       foldersLabel: 'フォルダ',
       ideaLabel: 'アイデア',
-      ideaPlaceholder: 'このプロジェクトは何ですか？（IDEA.md に保存）',
+      ideaPlaceholder: "このプロジェクトは何ですか？（IDEA.md に保存）",
       ideaGenerate: 'アイデアを生成',
       ideaGenerating: '生成中…',
       ideaShuffle: 'テンプレートをシャッフル',
@@ -1668,15 +1853,13 @@ export const ja = defineLocale({
       copyPath: 'パスをコピー',
       removeFromSidebar: 'サイドバーから削除',
       createFailed: 'プロジェクトを作成できませんでした',
-      staleBackend:
-        'プロジェクトを作成するには OpenAmer バックエンドを更新してください。バックエンドがこのデスクトップアプリより古いです（設定 → 更新 → バックエンド）。',
-      deleteConfirm:
-        'OpenAmer から保存済みプロジェクトを削除します。ファイル・git リポジトリ・ワークツリーはそのまま残ります。',
+      staleBackend: 'プロジェクトを作成するには OpenAmer バックエンドを更新してください。バックエンドがこのデスクトップアプリより古いです（設定 → 更新 → バックエンド）。',
+      deleteConfirm: 'OpenAmer から保存済みプロジェクトを削除します。ファイル・git リポジトリ・ワークツリーはそのまま残ります。',
       startWork: '新しいワークツリー',
       newWorktreeTitle: '新しいワークツリー',
       newWorktreeDesc: 'このワークツリーのブランチ名を入力してください。',
       branchPlaceholder: '例: my-feature',
-      branchOff: () => ({ after: ' から分岐', before: '' }),
+      branchOff: () => ({ after: '', before: 'branch off ' }),
       baseBranchPlaceholder: 'ブランチを検索…',
       baseBranchNone: 'ブランチが見つかりません',
       startWorkFailed: 'ワークツリーを作成できませんでした',
@@ -1692,15 +1875,16 @@ export const ja = defineLocale({
       noBranches: 'ブランチが見つかりません',
       removeWorktree: 'ワークツリーを削除',
       removeWorktreeFailed: 'ワークツリーを削除できませんでした（コミットされていない変更？）',
-      removeWorktreeConfirm:
-        'git から削除（ワークツリーのディレクトリを削除しますが、ブランチは残ります）するか、サイドバーからレーンを隠してワークツリーをディスク上に残します。',
-      removeWorktreeDirty:
-        'このワークツリーにはコミットされていない変更があります。強制削除（変更を破棄）するか、レーンを隠してディスク上に残します。',
+      removeWorktreeConfirm: 'git から削除（ワークツリーのディレクトリを削除しますが、ブランチは残ります）するか、サイドバーからレーンを隠してワークツリーをディスク上に残します。',
+      removeWorktreeDirty: 'このワークツリーにはコミットされていない変更があります。強制削除（変更を破棄）するか、レーンを隠してディスク上に残します。',
       forceRemove: '強制削除',
-      enter: label => `${label} を開く`
+      enter: label => `${label} を開く`,
+      reorder: label => `${label}を並べ替え`,
+      toggle: label => `${label}セッションを切り替え`,
+      back: 'すべてのプロジェクト',
     },
     newSessionIn: label => `${label} で新しいセッション`,
-    showMoreIn: (count, label) => `${label} でさらに ${count} 件を表示`,
+    showMoreIn: (count, label) => `Show ${count} more in ${label}`,
     loading: '読み込み中…',
     loadMore: 'さらに読み込む',
     loadCount: step => `さらに ${step} 件を読み込む`,
@@ -1713,6 +1897,9 @@ export const ja = defineLocale({
       rename: '名前を変更',
       archive: 'アーカイブ',
       newWindow: '新しいウィンドウ',
+      hideTabBar: 'タブバーを非表示',
+      openInNewTab: '新しいタブで開く',
+      openInSplit: '分割で開く',
       copyIdFailed: 'セッション ID をコピーできませんでした',
       actionsFor: title => `${title} のアクション`,
       sessionActions: 'セッションアクション',
@@ -1732,17 +1919,16 @@ export const ja = defineLocale({
       ageNow: 'たった今',
       ageDay: '日',
       ageHour: '時間',
-      ageMin: '分'
+      ageMin: '分',
     },
     dateDivider: {
       today: '今日の早い時間',
       yesterday: '昨日',
       thisWeek: '今週',
       lastWeek: '先週',
-      thisMonth: '今月'
-    }
+      thisMonth: '今月',
+    },
   },
-
   composer: {
     message: 'メッセージ',
     wakingProfile: profile => `${profile} を起動中…`,
@@ -1752,23 +1938,24 @@ export const ja = defineLocale({
     newSessionPlaceholders: [
       '何を作りますか？',
       'OpenAmer にタスクを与える',
-      '何か考えていることはありますか？',
+      "何か考えていることはありますか？",
       '必要なことを説明してください',
       '何に取り組みますか？',
       '何でも聞いてください',
-      '目標から始める'
+      '目標から始める',
     ],
     followUpPlaceholders: [
       'フォローアップを送信',
       'さらにコンテキストを追加',
       'リクエストを改善',
-      '次は何ですか？',
+      "次は何ですか？",
       '続けましょう',
       'さらに進める',
-      '調整または続行'
+      '調整または続行',
     ],
     startVoice: '音声会話を開始',
     queueMessage: 'メッセージをキューに入れる',
+    steer: '現在の実行を操作',
     stop: '停止',
     send: '送信',
     speaking: '話しています',
@@ -1800,7 +1987,7 @@ export const ja = defineLocale({
       '/resume': '以前のセッションを再開',
       '/details': 'トランスクリプトの詳細レベルを制御',
       '/copy': '選択または最後のアシスタントメッセージをコピー',
-      '/quit': 'openamer を終了'
+      '/quit': 'openamer を終了',
     },
     hotkeyDescs: {
       'composer.mention': 'ファイル、フォルダー、URL、Git を参照',
@@ -1810,7 +1997,7 @@ export const ja = defineLocale({
       'composer.sendQueued': '次のキュー済みターンを送信',
       'keybinds.openPanel': 'すべてのキーボードショートカット',
       'composer.cancel': 'ポップオーバーを閉じる · 実行をキャンセル',
-      'composer.history': 'ポップオーバー / 履歴を切り替え'
+      'composer.history': 'ポップオーバー / 履歴を切り替え',
     },
     attachUrlTitle: 'URL を添付',
     attachUrlDesc: 'OpenAmer がページを取得し、このターンのコンテキストとして含めます。',
@@ -1821,7 +2008,7 @@ export const ja = defineLocale({
     queuedPaused: count => `${count} 件キュー済み — 一時停止中`,
     attachmentOnly: '添付のみのターン',
     emptyTurn: '空のターン',
-    attachments: count => `${count} 件の添付`,
+    attachments: count => `${count} 件の添付ファイル${count === 1 ? '' : 's'}`,
     editingInComposer: 'コンポーザーで編集中',
     editingQueuedInComposer: 'コンポーザーでキュー済みターンを編集中',
     queueEdit: '編集',
@@ -1831,8 +2018,7 @@ export const ja = defineLocale({
     queueResume: '再開',
     queueResumeTip: '停止により一時停止中 — キュー済みターンの送信を再開します',
     queueStuckTitle: 'キュー内のメッセージを送信できません',
-    queueStuckBody:
-      'キューに入れたターンの送信が繰り返し失敗しました。まだキューに残っています。もう一度送信してください。',
+    queueStuckBody: 'キューに入れたターンの送信が繰り返し失敗しました。まだキューに残っています。もう一度送信してください。',
     previewUnavailable: 'プレビューは利用できません',
     previewLabel: label => `${label} のプレビュー`,
     couldNotPreview: label => `${label} をプレビューできませんでした`,
@@ -1862,25 +2048,24 @@ export const ja = defineLocale({
       codeReview: {
         label: 'コードレビュー',
         description: '回帰、エッジケースの欠落、テストの欠如を確認します。',
-        text: 'バグ、回帰、テストの欠如を確認してください。'
+        text: 'バグ、回帰、テストの欠如を確認してください。',
       },
       implementationPlan: {
         label: '実装計画',
         description: 'コードに手をつける前にアプローチを概説して、差分を集中させます。',
-        text: 'コードを変更する前に簡潔な実装計画を立ててください。'
+        text: 'コードを変更する前に簡潔な実装計画を立ててください。',
       },
       explainThis: {
         label: 'これを説明する',
         description: '選択したコードがどのように機能するかを説明し、主要なファイルにリンクします。',
-        text: 'これがどのように機能するか説明し、主要なファイルを教えてください。'
-      }
-    }
+        text: 'これがどのように機能するか説明し、主要なファイルを教えてください。',
+      },
+    },
   },
-
   statusStack: {
     agents: 'エージェント',
     background: count => `バックグラウンド ${count} 件`,
-    subagents: count => `サブエージェント ${count} 件`,
+    subagents: count => `${count} サブエージェント${count === 1 ? '' : 's'}`,
     todos: (done, total) => `タスク ${done}/${total}`,
     running: '実行中',
     stop: '停止',
@@ -1923,16 +2108,14 @@ export const ja = defineLocale({
       openPr: 'PR を開く',
       ghMissing: 'PR を開くには GitHub CLI (gh) をインストールしてサインインしてください',
       agentShip: 'OpenAmer にコミットと PR を任せる',
-      agentShipPrompt:
-        '現在の変更を確認し、分かりやすい Conventional Commits 形式でコミットし、ブランチをプッシュして、プルリクエストを作成してください。',
+      agentShipPrompt: '現在の変更を確認し、分かりやすい Conventional Commits 形式でコミットし、ブランチをプッシュして、プルリクエストを作成してください。',
       newBranch: '新しいブランチ',
       branchOffFrom: base => `${base} から新しいブランチ`,
       switchTo: branch => `${branch} に切り替え`,
       switchFailed: branch => `${branch} に切り替えできませんでした`,
-      worktrees: 'ワークツリー'
-    }
+      worktrees: 'ワークツリー',
+    },
   },
-
   updates: {
     stages: {
       idle: '準備中…',
@@ -1946,7 +2129,7 @@ export const ja = defineLocale({
       done: '更新が完了しました',
       manual: 'ターミナルから更新',
       guiSkew: 'デスクトップアプリを更新してください',
-      error: '更新が一時停止中'
+      error: '更新が一時停止中',
     },
     checking: '更新を確認中…',
     checkFailedTitle: '更新を確認できませんでした',
@@ -1961,23 +2144,19 @@ export const ja = defineLocale({
     availableBody: '新しいバージョンの OpenAmer をインストールする準備ができています。',
     availableTitleBackend: 'バックエンドの更新があります',
     availableBodyBackend: '接続中の OpenAmer バックエンドの新しいバージョンをインストールできます。',
-    availableBodyNoChangelog:
-      '新しいバージョンを利用できます。このインストール形式ではリリースノートは表示できません。',
+    availableBodyNoChangelog: '新しいバージョンを利用できます。このインストール形式ではリリースノートは表示できません。',
     updateNow: '今すぐ更新',
     maybeLater: '後で',
-    moreChanges: count => `さらに ${count} 件の変更が含まれています。`,
+    moreChanges: count => `+ ${count} 件の変更${count === 1 ? '' : 's'} を含む。`,
     manualTitle: 'ターミナルから更新',
-    manualBody:
-      'OpenAmer をコマンドラインからインストールしたため、更新もそこで実行されます。これをターミナルに貼り付けてください:',
+    manualBody: 'OpenAmer をコマンドラインからインストールしたため、更新もそこで実行されます。これをターミナルに貼り付けてください:',
     manualPickedUp: 'OpenAmer は次回起動時に新しいバージョンを読み込みます。',
     guiSkewTitle: 'デスクトップアプリを更新してください',
-    guiSkewBody:
-      'バックエンドは更新されましたが、このデスクトップアプリのパッケージは変更されていません。一致させるために OpenAmer デスクトップアプリ（AppImage / .deb / .rpm）を更新または再インストールしてください。',
+    guiSkewBody: 'バックエンドは更新されましたが、このデスクトップアプリのパッケージは変更されていません。一致させるために OpenAmer デスクトップアプリ（AppImage / .deb / .rpm）を更新または再インストールしてください。',
     copy: 'コピー',
     copied: 'コピーしました',
     done: '完了',
-    applyingBody:
-      'OpenAmer アップデーターが独自のウィンドウで引き継ぎ、完了後に自動的に OpenAmer を再度開きます。更新中はご自分で OpenAmer を開き直さないでください。',
+    applyingBody: 'OpenAmer アップデーターが独自のウィンドウで引き継ぎ、完了後に自動的に OpenAmer を再度開きます。更新中はご自分で OpenAmer を開き直さないでください。',
     applyingBodyBackend: 'リモートバックエンドが更新を適用して再起動します。復帰すると OpenAmer が自動的に再接続します。',
     applyingClose: 'このウィンドウは更新中に閉じ、その後 OpenAmer が自動的に再度開きます。',
     errorTitle: '更新が完了しませんでした',
@@ -1989,45 +2168,38 @@ export const ja = defineLocale({
       restarting: 'バックエンドが更新を読み込むため再起動しています…',
       notAvailable: 'このバックエンドでは更新を利用できません。',
       failed: 'バックエンドの更新に失敗しました。',
-      noReturn:
-        'バックエンドがオンラインに戻りませんでした。更新が完了していない可能性があります。バックエンドホストを確認してください。'
+      noReturn: 'バックエンドがオンラインに戻りませんでした。更新が完了していない可能性があります。バックエンドホストを確認してください。',
     },
     appErrors: {
       updateLocked: '更新が中止されました: 別の OpenAmer ウィンドウまたは openamer を実行中のターミナルがこのインストールを保持しています。閉じて再試行してください。',
-      updateFailed: '更新が完了しませんでした。心配はいりません — 何も失われていません。今すぐ再試行できます。'
-    }
+      updateFailed: '更新が完了しませんでした。心配はいりません — 何も失われていません。今すぐ再試行できます。',
+    },
   },
-
   install: {
     stageStates: {
       pending: '待機中',
       running: 'インストール中',
       succeeded: '完了',
       skipped: 'スキップ',
-      failed: '失敗'
+      failed: '失敗',
     },
     oneTimeTitle: 'OpenAmer には一度限りのインストールが必要です',
-    unsupportedDesc: platform =>
-      `${platform} では自動の初回インストールはまだ利用できません。ターミナルを開いて以下のコマンドを実行し、このアプリを再起動してください。以降の起動ではこの手順はスキップされます。`,
+    unsupportedDesc: platform => `${platform} では自動の初回インストールはまだ利用できません。ターミナルを開いて以下のコマンドを実行し、このアプリを再起動してください。以降の起動ではこの手順はスキップされます。`,
     installCommand: 'インストールコマンド',
     copyCommand: 'コマンドをコピー',
     viewDocs: 'インストールドキュメントを見る',
     installTo: 'インストール先',
     retryAfterRun: '実行しました — 再試行',
     setupChoiceTitle: 'OpenAmer Desktop をセットアップ',
-    setupChoiceDesc:
-      'すでに実行している OpenAmer ゲートウェイに接続するか、このコンピューターに OpenAmer をローカルインストールします。',
+    setupChoiceDesc: 'すでに実行している OpenAmer ゲートウェイに接続するか、このコンピューターに OpenAmer をローカルインストールします。',
     connectExistingTitle: '既存の OpenAmer に接続',
     connectExistingShort: '既存環境に接続',
-    connectExistingDesc:
-      'セッショントークンまたはブラウザーサインインでリモートバックエンドを使用します。ローカルインストールは開始されません。',
+    connectExistingDesc: 'セッショントークンまたはブラウザーサインインでリモートバックエンドを使用します。ローカルインストールは開始されません。',
     installLocalTitle: 'OpenAmer をローカルにインストール',
     installLocalDesc: 'OpenAmer をダウンロードし、Python 環境を作成して、このコンピューターでバックエンドを実行します。',
-    localStartUnavailable:
-      'ローカルインストールを開始できません。OpenAmer Desktop を再起動して、もう一度お試しください。',
+    localStartUnavailable: 'ローカルインストールを開始できません。OpenAmer Desktop を再起動して、もう一度お試しください。',
     remoteSetupTitle: '既存の OpenAmer に接続',
-    remoteSetupDesc:
-      'ゲートウェイ URL を入力してください。OpenAmer Desktop がトークンとブラウザーサインインのどちらが必要かを検出します。',
+    remoteSetupDesc: 'ゲートウェイ URL を入力してください。OpenAmer Desktop がトークンとブラウザーサインインのどちらが必要かを検出します。',
     remoteUrlTitle: 'ゲートウェイ URL',
     remoteUrlDesc: 'OpenAmer ゲートウェイのベース URL を使用します。リモートの場合は https:// を含めてください。',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2054,28 +2226,25 @@ export const ja = defineLocale({
     failedTitle: 'インストールに失敗しました',
     settingUpTitle: 'OpenAmer Agent を設定中',
     finishingTitle: '仕上げ中',
-    failedDesc:
-      'インストール手順のいずれかが失敗しました。Windows では、別の OpenAmer CLI またはデスクトップインスタンスが実行中の場合に発生することがあります。実行中の OpenAmer インスタンスをすべて停止してから再試行してください。詳細は以下またはデスクトップログで確認できます。',
-    activeDesc:
-      'これは一回限りのセットアップです。OpenAmer インストーラーが依存関係をダウンロードしてマシンを設定しています。以降の起動ではこの手順はスキップされます。',
-    progress: (completed, total) => `${total} ステップ中 ${completed} 完了`,
+    failedDesc: 'インストール手順のいずれかが失敗しました。Windows では、別の OpenAmer CLI またはデスクトップインスタンスが実行中の場合に発生することがあります。実行中の OpenAmer インスタンスをすべて停止してから再試行してください。詳細は以下またはデスクトップログで確認できます。',
+    activeDesc: 'これは一回限りのセットアップです。OpenAmer インストーラーが依存関係をダウンロードしてマシンを設定しています。以降の起動ではこの手順はスキップされます。',
+    progress: (completed, total) => `${completed} / ${total} ステップ完了`,
     currentStage: stage => ` — 現在: ${stage}`,
     fetchingManifest: 'インストーラーマニフェストを取得中...',
     error: 'エラー',
     hideOutput: 'インストーラーの出力を非表示',
     showOutput: 'インストーラーの出力を表示',
-    lines: count => `${count} 行`,
+    lines: count => `${count} 行${count === 1 ? '' : 's'}`,
     noOutput: 'まだ出力がありません。',
     cancelling: 'キャンセル中...',
     cancelInstall: 'インストールをキャンセル',
     transcriptSaved: 'フルトランスクリプトを保存しました:',
     copiedOutput: 'コピーしました！',
     copyOutput: '出力をコピー',
-    reloadRetry: '再読み込みして再試行'
+    reloadRetry: '再読み込みして再試行',
   },
-
   onboarding: {
-    headerTitle: 'OpenAmer Agent のセットアップをしましょう',
+    headerTitle: "OpenAmer Agent のセットアップをしましょう",
     headerDesc: 'チャットを始めるにはモデルプロバイダーを接続してください。ほとんどのオプションはワンクリックです。',
     preparingInstall: 'OpenAmer はインストールを完了中です。初回実行では通常 1 分以内に完了します。',
     starting: 'OpenAmer を起動中…',
@@ -2083,7 +2252,7 @@ export const ja = defineLocale({
     collapse: '折りたたむ',
     otherProviders: 'その他のプロバイダー',
     haveApiKey: 'API キーをお持ちです',
-    chooseLater: '後でプロバイダーを選択します',
+    chooseLater: "後でプロバイダーを選択します",
     recommended: '推奨',
     connected: '接続済み',
     featuredPitch: '1 つのサブスクリプションで 300 以上の最先端モデル — OpenAmer を実行するための推奨方法',
@@ -2092,32 +2261,41 @@ export const ja = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'モデル API に直接接続',
-        description: 'Fireworks AI がホストするモデルに直接アクセスします。'
+        description: 'Fireworks AI がホストするモデルに直接アクセスします。',
       },
       openrouter: {
         short: '1 つのキーで多くのモデル',
-        description: '1 つのキーで数百のモデルをホスト。新規インストールのデフォルトとして最適。'
+        description: '1 つのキーで数百のモデルをホスト。新規インストールのデフォルトとして最適。',
       },
-      openai: { short: 'GPT クラスのモデル', description: 'OpenAI モデルへの直接アクセス。' },
-      gemini: { short: 'Gemini モデル', description: 'Google Gemini モデルへの直接アクセス。' },
-      xai: { short: 'Grok モデル', description: 'xAI Grok モデルへの直接アクセス。' },
+      openai: {
+        short: 'GPT クラスのモデル',
+        description: 'OpenAI モデルへの直接アクセス。',
+      },
+      gemini: {
+        short: 'Gemini モデル',
+        description: 'Google Gemini モデルへの直接アクセス。',
+      },
+      xai: {
+        short: 'Grok モデル',
+        description: 'xAI Grok モデルへの直接アクセス。',
+      },
       local: {
         short: 'セルフホスト',
-        description:
-          'ローカルまたはセルフホストの OpenAI 互換エンドポイント（vLLM、llama.cpp、Ollama など）に OpenAmer を接続。'
-      }
+        description: 'ローカルまたはセルフホストの OpenAI 互換エンドポイント（vLLM、llama.cpp、Ollama など）に OpenAmer を接続。',
+      },
     },
     backToSignIn: 'サインインに戻る',
     getKey: 'キーを取得',
     replaceCurrent: '現在の値を置き換え',
     pasteApiKey: 'API キーを貼り付け',
+    localApiKeyPlaceholder: 'APIキー（任意 — エンドポイントで必要な場合のみ）',
     couldNotSave: '認証情報を保存できませんでした。',
     connecting: '接続中',
     update: '更新',
     flowSubtitles: {
       pkce: 'ブラウザーを開いてサインインし、ここに戻ります',
       device_code: 'ブラウザーで確認ページを開きます — OpenAmer が自動接続します',
-      external: 'ターミナルで一度サインインして、チャットに戻ります'
+      external: 'ターミナルで一度サインインして、チャットに戻ります',
     },
     startingSignIn: provider => `${provider} のサインインを開始中...`,
     verifyingCode: provider => `${provider} でコードを確認中...`,
@@ -2131,26 +2309,23 @@ export const ja = defineLocale({
     copyAuthCode: '認証コードをコピーして以下に貼り付けてください。',
     pasteAuthCode: '認証コードを貼り付け',
     reopenAuthPage: '認証ページを再度開く',
-    autoBrowser: provider =>
-      `${provider} をブラウザーで開きました。OpenAmer をそこで承認すれば自動接続されます。コピーや貼り付けは不要です。`,
+    autoBrowser: provider => `${provider} をブラウザーで開きました。OpenAmer をそこで承認すれば自動接続されます。コピーや貼り付けは不要です。`,
     reopenSignInPage: 'サインインページを再度開く',
     waitingAuthorize: '承認を待っています...',
-    externalPending: provider =>
-      `${provider} は独自の CLI からサインインします。ターミナルでこのコマンドを実行してから、戻って「サインインしました」を選択してください:`,
-    signedIn: 'サインインしました',
+    externalPending: provider => `${provider} は独自の CLI からサインインします。ターミナルでこのコマンドを実行してから、戻って「サインインしました」を選択してください:`,
+    signedIn: "サインインしました",
     deviceCodeOpened: provider => `${provider} をブラウザーで開きました。そこにこのコードを入力してください:`,
     reopenVerification: '確認ページを再度開く',
     copy: 'コピー',
     defaultModel: 'デフォルトモデル',
     freeTier: '無料プラン',
-    pro: 'Pro',
+    pro: 'プロ',
     free: '無料',
     price: (input, output) => `${input} 入力 / ${output} 出力 per Mtok`,
     change: '変更',
     startChatting: '始める',
-    docs: provider => `${provider} ドキュメント`
+    docs: provider => `${provider} ドキュメント`,
   },
-
   modelPicker: {
     title: 'モデルを切り替え',
     current: '現在:',
@@ -2160,21 +2335,19 @@ export const ja = defineLocale({
     addProvider: 'プロバイダーを追加',
     loadFailed: 'モデルを読み込めませんでした',
     noAuthenticatedProviders: '認証済みプロバイダーがありません。',
-    pro: 'Pro',
+    pro: 'プロ',
     proNeedsSubscription: 'Pro モデルには有料の OpenAmer サブスクリプションが必要です。',
     free: '無料',
     freeTier: '無料プラン',
     priceTitle: '100 万トークンあたりの入力/出力価格',
-    wasPrice: '旧価格'
+    wasPrice: '旧価格',
   },
-
   modelVisibility: {
     title: 'モデル',
     search: 'モデルを検索',
     noAuthenticatedProviders: '認証済みプロバイダーがありません。',
-    addProvider: 'プロバイダーを追加…'
+    addProvider: 'プロバイダーを追加…',
   },
-
   shell: {
     windowControls: 'ウィンドウコントロール',
     paneControls: 'ペインコントロール',
@@ -2184,7 +2357,7 @@ export const ja = defineLocale({
       noModels: 'モデルが見つかりません',
       editModels: 'モデルを編集…',
       refreshModels: 'モデルを更新',
-      fast: '高速'
+      fast: '高速',
     },
     modelOptions: {
       noOptions: 'このモデルにはオプションがありません',
@@ -2200,7 +2373,7 @@ export const ja = defineLocale({
       max: '最大',
       ultra: 'ウルトラ',
       updateFailed: 'モデルオプションの更新に失敗しました',
-      fastFailed: '高速モードの更新に失敗しました'
+      fastFailed: '高速モードの更新に失敗しました',
     },
     gatewayMenu: {
       gateway: 'ゲートウェイ',
@@ -2215,7 +2388,7 @@ export const ja = defineLocale({
       connection: label => `接続: ${label}`,
       recentActivity: '最近のアクティビティ',
       viewAllLogs: 'すべてのログを見る →',
-      messagingPlatforms: 'メッセージングプラットフォーム'
+      messagingPlatforms: 'メッセージングプラットフォーム',
     },
     approvalMode: {
       title: '承認モード',
@@ -2225,14 +2398,14 @@ export const ja = defineLocale({
       smart: 'スマート',
       smartDescription: '必要な場合にのみ確認します',
       off: 'オフ',
-      offDescription: '承認プロンプトなしで実行します'
+      offDescription: '承認プロンプトなしで実行します',
     },
     statusbar: {
       unknown: '不明',
       restart: '再起動',
       update: '更新',
       updateInProgress: '更新中',
-      commitsBehind: (count, branch) => `${branch} より ${count} コミット遅れています`,
+      commitsBehind: (count, branch) => `${count} コミット${count === 1 ? '' : 's'} が ${branch} より遅れています`,
       desktopVersion: version => `OpenAmer Desktop v${version}`,
       backendVersion: version => `バックエンド v${version}`,
       clientLabel: version => `クライアント v${version}`,
@@ -2260,11 +2433,13 @@ export const ja = defineLocale({
       agents: 'エージェント',
       closeAgents: 'エージェントを閉じる',
       openAgents: 'エージェントを開く',
-      subagents: count => `${count} サブエージェント`,
+      subagents: count => `${count} サブエージェント${count === 1 ? '' : 's'}`,
       failed: count => `${count} 失敗`,
       running: count => `${count} 実行中`,
       cron: 'Cron',
       openCron: 'Cron ジョブを開く',
+      webhooks: 'ウェブフック',
+      openWebhooks: 'ウェブフックを開く',
       starmap: 'メモリグラフ',
       openStarmap: 'メモリグラフを開く',
       turnRunning: '実行中',
@@ -2279,13 +2454,13 @@ export const ja = defineLocale({
           skills: 'スキル',
           subagent_definitions: 'サブエージェント定義',
           system_prompt: 'システムプロンプト',
-          tool_definitions: 'ツール定義'
+          tool_definitions: 'ツール定義',
         },
         empty: 'コンテキストデータはまだありません',
         loading: '内訳を読み込み中…',
         percentFull: percent => `${percent}% 使用中`,
         title: 'コンテキスト使用状況',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`
+        tokenSummary: (used, max) => `${used} / ${max} トークン`,
       },
       openContextUsage: 'コンテキスト使用状況の内訳を開く',
       session: 'セッション',
@@ -2298,10 +2473,9 @@ export const ja = defineLocale({
       openModelPicker: 'モデルピッカーを開く',
       modelPinned: '手動で固定中 — 新しいチャットは設定のデフォルトではなくこのモデルを使用します',
       modelTitle: (provider, model) => `モデル · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`
-    }
+      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+    },
   },
-
   rightSidebar: {
     aria: '右サイドバー',
     panelsAria: '右サイドバーパネル',
@@ -2336,9 +2510,8 @@ export const ja = defineLocale({
     terminalNew: '新しいターミナル',
     terminalCloseOthers: '他を閉じる',
     terminalCloseAll: 'すべて閉じる',
-    addToChat: 'チャットに追加'
+    addToChat: 'チャットに追加',
   },
-
   preview: {
     tab: 'プレビュー',
     closeTab: label => `${label} を閉じる`,
@@ -2365,14 +2538,13 @@ export const ja = defineLocale({
     previewAnyway: 'とにかくプレビュー',
     truncated: '最初の 512 KB を表示しています。',
     noInlineTitle: 'インラインプレビューなし',
-    noInlineBody: mimeType => `${mimeType || 'このファイルタイプ'} はコンテキストとして添付できます。`,
+    noInlineBody: mimeType => `${mimeType || 'This file type'} は引き続きコンテキストとして添付できます。`,
     edit: '編集',
     editing: '編集中',
     unsavedChanges: '未保存の変更',
     saveFailed: message => `保存できませんでした：${message}`,
     diskChangedTitle: 'ファイルがディスク上で変更されました',
-    diskChangedBody:
-      'このファイルは開いてから変更されています。あなたの版で上書きするか、編集を破棄して再読み込みしますか？',
+    diskChangedBody: 'このファイルは開いてから変更されています。あなたの版で上書きするか、編集を破棄して再読み込みしますか？',
     overwrite: '上書き',
     discardReload: '破棄して再読み込み',
     console: {
@@ -2393,7 +2565,7 @@ export const ja = defineLocale({
       empty: 'コンソールメッセージはまだありません。',
       promptHeader: 'プレビューコンソール:',
       sentTitle: 'チャットに送信しました',
-      sentMessage: count => `${count} 件のログエントリーがコンポーザーに追加されました`
+      sentMessage: count => `${count} 件のログエントリ${count === 1 ? 'y' : 'ies'} をコンポーザーに追加しました`,
     },
     web: {
       appFailedToBoot: 'プレビューアプリの起動に失敗しました',
@@ -2411,34 +2583,33 @@ export const ja = defineLocale({
       showConsole: 'プレビューコンソールを表示',
       hideDevTools: 'プレビュー DevTools を非表示',
       openDevTools: 'プレビュー DevTools を開く',
-      finishedRestarting: message =>
-        `OpenAmer がプレビューサーバーの再起動を完了しました${message ? `: ${message}` : ''}`,
+      finishedRestarting: message => `OpenAmer がプレビューサーバーの再起動を完了しました${message ? `: ${message}` : ''}`,
       failedRestarting: message => `サーバーの再起動に失敗しました: ${message}`,
       unknownError: '不明なエラー',
       restartedTitle: 'プレビューサーバーが再起動しました',
       reloadingNow: 'プレビューを再読み込み中です。',
       restartFailedTitle: 'プレビューの再起動に失敗しました',
       restartFailedMessage: 'OpenAmer がサーバーを再起動できませんでした。',
-      stillWorking:
-        'OpenAmer はまだ作業中ですが、再起動の結果がまだ届いていません。サーバーコマンドがフォアグラウンドで実行されている可能性があります。',
+      stillWorking: 'OpenAmer はまだ作業中ですが、再起動の結果がまだ届いていません。サーバーコマンドがフォアグラウンドで実行されている可能性があります。',
       workspaceReloading: 'ワークスペースが変更され、プレビューを再読み込み中',
       fileChanged: url => `ファイルが変更され、プレビューを再読み込み中: ${url}`,
       filesChanged: (count, url) => `${count} 件のファイルが変更され、プレビューを再読み込み中: ${url}`,
       watchFailed: message => `プレビューファイルを監視できませんでした: ${message}`,
-      moduleMimeDescription:
-        'モジュールスクリプトが間違った MIME タイプで提供されています。通常、静的ファイルサーバーがプロジェクトの開発サーバーの代わりに Vite/React アプリを提供していることを意味します。',
+      moduleMimeDescription: 'モジュールスクリプトが間違った MIME タイプで提供されています。通常、静的ファイルサーバーがプロジェクトの開発サーバーの代わりに Vite/React アプリを提供していることを意味します。',
       loadFailedConsole: (code, message) => `読み込みに失敗しました${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'プレビューページに到達できませんでした。',
       openTarget: url => `${url} を開く`,
-      fallbackTitle: 'プレビュー'
-    }
+      fallbackTitle: 'プレビュー',
+    },
   },
-
   zones: {
     showHeader: 'ヘッダーを表示',
     hideHeader: 'ヘッダーを隠す',
     minimize: '最小化',
     restore: '復元',
+    closeRunningTitle: '実行中のタブを閉じますか？',
+    closeRunningBody: 'このチャットはまだ実行中です（または入力待ちです）。タブを閉じると非表示になります — セッションの進行状況は保持され、サイドバーから再度開けます。',
+    closeRunningConfirm: 'タブを閉じる',
     closeOthers: '他を閉じる',
     closeToRight: '右側を閉じる',
     closeAll: 'すべて閉じる',
@@ -2474,18 +2645,16 @@ export const ja = defineLocale({
     layoutNamePlaceholder: fallback => `レイアウト名（${fallback}）`,
     saveApply: '保存して適用',
     notExpressible: 'この配置は互いに噛み合っています（風車型）— 入れ子の分割では表現できません',
-    zoneCount: count => `${count} ゾーン`
+    zoneCount: count => `${count} ゾーン`,
   },
-
   assistant: {
     thread: {
       loadingSession: 'セッションを読み込み中',
       showEarlier: '以前のメッセージを表示',
       loadingResponse: 'OpenAmer が応答を読み込み中',
-      resumeWhenBackgroundDone: count =>
-        count === 1
-          ? 'バックグラウンドタスクの完了後に再開します'
-          : `${count} 件のバックグラウンドタスクの完了後に再開します`,
+      resumeWhenBackgroundDone: count => count === 1
+          ? 'Will resume when the background task finishes'
+          : `Will resume when ${count} background tasks finish`,
       thinking: '考え中',
       today: time => `今日 ${time}`,
       yesterday: time => `昨日 ${time}`,
@@ -2499,6 +2668,8 @@ export const ja = defineLocale({
       stopReading: '読み上げを停止',
       readAloud: '読み上げ',
       editMessage: 'メッセージを編集',
+      expandMessage: 'メッセージを展開',
+      scrollToBottom: '最下部へスクロール',
       stop: '停止',
       restorePrevious: '前のチェックポイントに戻す',
       restoreCheckpoint: 'チェックポイントを復元',
@@ -2509,7 +2680,7 @@ export const ja = defineLocale({
       restoreNext: '次のチェックポイントに戻す',
       goForward: '進む',
       sendEdited: '編集済みメッセージを送信',
-      attachingFile: '添付中…'
+      attachingFile: '添付中…',
     },
     approval: {
       gatewayDisconnected: 'OpenAmer ゲートウェイが接続されていません',
@@ -2522,9 +2693,8 @@ export const ja = defineLocale({
       jumpToApproval: '承認が必要',
       reject: '拒否',
       alwaysTitle: 'このコマンドを常に許可しますか？',
-      alwaysDescription: pattern =>
-        `これにより "${pattern}" パターンが永続的な許可リスト (~/.openamer/config.yaml) に追加されます。OpenAmer はこのセッションや将来のセッションで、このようなコマンドについて再度尋ねません。`,
-      alwaysAllow: '常に許可'
+      alwaysDescription: pattern => `これにより "${pattern}" パターンが永続的な許可リスト (~/.openamer/config.yaml) に追加されます。OpenAmer はこのセッションや将来のセッションで、このようなコマンドについて再度尋ねません。`,
+      alwaysAllow: '常に許可',
     },
     clarify: {
       notReady: '明確化リクエストはまだ準備できていません',
@@ -2538,7 +2708,7 @@ export const ja = defineLocale({
       continueLabel: '続行',
       lateAnswer: (question, choice) => `「${question}」について — 私の回答: ${choice}`,
       lateAnswerTip: 'この回答をフォローアップメッセージとして下書きします',
-      lateAnswerHint: 'この質問はもう回答を待っていません。選択肢を選ぶとフォローアップメッセージとして下書きされます。'
+      lateAnswerHint: 'この質問はもう回答を待っていません。選択肢を選ぶとフォローアップメッセージとして下書きされます。',
     },
     tool: {
       code: 'コード',
@@ -2574,88 +2744,145 @@ export const ja = defineLocale({
         ran: '実行完了',
         running: '実行中',
         ranCode: 'コード実行完了',
-        runningCode: 'スクリプト作成中'
+        runningCode: 'スクリプト作成中',
       },
       prefixes: {
         browser: 'ブラウザー',
-        web: 'Web'
+        web: 'ウェブ',
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
-        actionQuoted: (action, value) => `「${value}」を${action}`,
-        actionTarget: (action, target) => `${target} を${action}`,
+        actionQuoted: (action, value) => `${action}「${value}」`,
+        actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
-        runningPrefixedTool: (prefix, action) => `${prefix} ${action}を実行中`,
-        runningTool: action => `${action}を実行中`
+        runningPrefixedTool: (prefix, action) => `実行中 ${prefix.toLowerCase()} ${action.toLowerCase()}`,
+        runningTool: action => `実行中 ${action.toLowerCase()}`,
       },
       titles: {
         browser_click: {
           done: 'ページ要素をクリックしました',
           pending: 'ページ要素をクリック中',
-          pendingAction: 'クリック中'
+          pendingAction: 'クリック中',
         },
-        browser_fill: { done: 'フォーム欄に入力しました', pending: 'フォーム欄に入力中', pendingAction: '入力中' },
-        browser_navigate: { done: 'ページを開きました', pending: 'ページをオープン中', pendingAction: 'オープン中' },
+        browser_fill: {
+          done: 'フォーム欄に入力しました',
+          pending: 'フォーム欄に入力中',
+          pendingAction: '入力中',
+        },
+        browser_navigate: {
+          done: 'ページを開きました',
+          pending: 'ページをオープン中',
+          pendingAction: 'オープン中',
+        },
         browser_snapshot: {
           done: 'ページスナップショットを取得しました',
           pending: 'ページスナップショットを取得中',
-          pendingAction: '取得中'
+          pendingAction: '取得中',
         },
         browser_take_screenshot: {
           done: 'スクリーンショットを取得しました',
           pending: 'スクリーンショットを取得中',
-          pendingAction: '取得中'
+          pendingAction: '取得中',
         },
-        browser_type: { done: 'ページに入力しました', pending: 'ページに入力中', pendingAction: '入力中' },
-        clarify: { done: '質問しました', pending: '質問中', pendingAction: '質問中' },
-        cronjob: { done: 'Cron ジョブ', pending: 'Cron ジョブをスケジュール中', pendingAction: 'スケジュール中' },
-        edit_file: { done: 'ファイルを編集しました', pending: 'ファイルを編集中', pendingAction: '編集中' },
-        execute_code: { done: 'コードを実行しました', pending: 'スクリプト作成中', pendingAction: 'スクリプト作成中' },
-        image_generate: { done: '画像を生成しました', pending: '画像を生成中', pendingAction: '生成中' },
+        browser_type: {
+          done: 'ページに入力しました',
+          pending: 'ページに入力中',
+          pendingAction: '入力中',
+        },
+        clarify: {
+          done: '質問しました',
+          pending: '質問中',
+          pendingAction: '質問中',
+        },
+        cronjob: {
+          done: 'Cron ジョブ',
+          pending: 'Cron ジョブをスケジュール中',
+          pendingAction: 'スケジュール中',
+        },
+        edit_file: {
+          done: 'ファイルを編集しました',
+          pending: 'ファイルを編集中',
+          pendingAction: '編集中',
+        },
+        execute_code: {
+          done: 'コードを実行しました',
+          pending: 'スクリプト作成中',
+          pendingAction: 'スクリプト作成中',
+        },
+        image_generate: {
+          done: '画像を生成しました',
+          pending: '画像を生成中',
+          pendingAction: '生成中',
+        },
         list_files: {
           done: 'ファイルを一覧表示しました',
           pending: 'ファイルを一覧表示中',
-          pendingAction: '一覧表示中'
+          pendingAction: '一覧表示中',
         },
         patch: {
           done: 'ファイルにパッチを適用しました',
           pending: 'ファイルにパッチ適用中',
-          pendingAction: 'パッチ適用中'
+          pendingAction: 'パッチ適用中',
         },
-        read_file: { done: 'ファイルを読み取りました', pending: 'ファイルを読み取り中', pendingAction: '読み取り中' },
-        search_files: { done: 'ファイルを検索しました', pending: 'ファイルを検索中', pendingAction: '検索中' },
+        read_file: {
+          done: 'ファイルを読み取りました',
+          pending: 'ファイルを読み取り中',
+          pendingAction: '読み取り中',
+        },
+        search_files: {
+          done: 'ファイルを検索しました',
+          pending: 'ファイルを検索中',
+          pendingAction: '検索中',
+        },
         session_search_recall: {
           done: 'セッション履歴を検索しました',
           pending: 'セッション履歴を検索中',
-          pendingAction: '検索中'
+          pendingAction: '検索中',
         },
-        terminal: { done: 'コマンドを実行しました', pending: 'コマンドを実行中', pendingAction: '実行中' },
-        todo: { done: 'Todo を更新しました', pending: 'Todo を更新中', pendingAction: '更新中' },
-        vision_analyze: { done: '画像を分析しました', pending: '画像を分析中', pendingAction: '分析中' },
+        terminal: {
+          done: 'コマンドを実行しました',
+          pending: 'コマンドを実行中',
+          pendingAction: '実行中',
+        },
+        todo: {
+          done: 'Todo を更新しました',
+          pending: 'Todo を更新中',
+          pendingAction: '更新中',
+        },
+        vision_analyze: {
+          done: '画像を分析しました',
+          pending: '画像を分析中',
+          pendingAction: '分析中',
+        },
         web_extract: {
           done: 'Web ページを読み取りました',
           pending: 'Web ページを読み取り中',
-          pendingAction: '読み取り中'
+          pendingAction: '読み取り中',
         },
-        web_search: { done: 'Web を検索しました', pending: 'Web を検索中', pendingAction: '検索中' },
-        write_file: { done: 'ファイルを編集しました', pending: 'ファイルを編集中', pendingAction: '編集中' }
-      }
-    }
+        web_search: {
+          done: 'Web を検索しました',
+          pending: 'Web を検索中',
+          pendingAction: '検索中',
+        },
+        write_file: {
+          done: 'ファイルを編集しました',
+          pending: 'ファイルを編集中',
+          pendingAction: '編集中',
+        },
+      },
+    },
   },
-
   prompts: {
     gatewayDisconnected: 'OpenAmer ゲートウェイが接続されていません',
     sudoSendFailed: 'sudo パスワードを送信できませんでした',
     secretSendFailed: 'シークレットを送信できませんでした',
     sudoTitle: '管理者パスワード',
-    sudoDesc:
-      'OpenAmer は特権コマンドを実行するために sudo パスワードが必要です。ローカルエージェントにのみ送信されます。',
+    sudoDesc: 'OpenAmer は特権コマンドを実行するために sudo パスワードが必要です。ローカルエージェントにのみ送信されます。',
     sudoPlaceholder: 'sudo パスワード',
     secretTitle: 'シークレットが必要です',
     secretDesc: 'OpenAmer は続行するための認証情報が必要です。',
-    secretPlaceholder: 'シークレット値'
+    secretPlaceholder: 'シークレット値',
   },
-
   desktop: {
     audioReadFailed: '録音した音声を読み取れませんでした',
     sessionUnavailable: 'セッションが利用できません',
@@ -2668,11 +2895,10 @@ export const ja = defineLocale({
     warningLine: message => `警告: ${message}`,
     yoloArmed: 'このチャットでは YOLO が有効になっています',
     yoloOff: 'YOLO オフ',
-    yoloSystem: active => `このセッションの YOLO ${active ? 'オン' : 'オフ'}`,
+    yoloSystem: active => `このセッションで YOLO ${active ? 'オン' : 'オフ'}`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'YOLO を切り替えられませんでした',
-    profileStatus: current =>
-      `プロファイル: ${current}。/profile <name> または「新しいセッション」ピッカーを使って別のプロファイルでチャットを始めてください。`,
+    profileStatus: current => `プロファイル: ${current}。/profile <name> または「新しいセッション」ピッカーを使って別のプロファイルでチャットを始めてください。`,
     unknownProfile: '不明なプロファイル',
     noProfileNamed: (target, available) => `"${target}" という名前のプロファイルはありません。利用可能: ${available}`,
     newChatsProfile: name => `新しいチャットはプロファイル ${name} を使用します。`,
@@ -2682,9 +2908,8 @@ export const ja = defineLocale({
     regenerateFailed: '再生成に失敗しました',
     editFailed: '編集に失敗しました',
     resumeFailed: '再開に失敗しました',
-    resumeStrandedTitle: 'このセッションを読み込めませんでした',
-    resumeStrandedBody:
-      'このセッションへの接続に失敗し、自動再試行も停止しました。ゲートウェイが実行中か確認してから、もう一度お試しください。',
+    resumeStrandedTitle: "このセッションを読み込めませんでした",
+    resumeStrandedBody: 'このセッションへの接続に失敗し、自動再試行も停止しました。ゲートウェイが実行中か確認してから、もう一度お試しください。',
     resumeRetry: '再試行',
     nothingToBranch: 'ブランチするものがありません',
     branchNeedsChat: 'ブランチする前にチャットを開始または再開してください。',
@@ -2698,8 +2923,7 @@ export const ja = defineLocale({
     archiveFailed: 'アーカイブに失敗しました',
     cwdChangeFailed: '作業ディレクトリの変更に失敗しました',
     cwdStagedTitle: '作業ディレクトリがステージングされました',
-    cwdStagedMessage:
-      'このアクティブなセッションへの cwd の変更を適用するにはデスクトップバックエンドを再起動してください。',
+    cwdStagedMessage: 'このアクティブなセッションへの cwd の変更を適用するにはデスクトップバックエンドを再起動してください。',
     modelSwitchFailed: 'モデルの切り替えに失敗しました',
     sessionExported: 'セッションをエクスポートしました',
     sessionExportFailed: 'セッションをエクスポートできませんでした',
@@ -2725,33 +2949,31 @@ export const ja = defineLocale({
       success: platform => `${platform} に引き継ぎました。いつでもここで再開できます。`,
       systemNote: platform => `↻ ${platform} に引き継ぎました — いつでもここで再開できます。`,
       failed: error => `引き継ぎに失敗しました: ${error}`,
-      timedOut: 'ゲートウェイの待機がタイムアウトしました。`openamer gateway` は起動していますか？'
-    }
+      timedOut: 'ゲートウェイの待機がタイムアウトしました。`openamer gateway` は起動していますか？',
+    },
   },
-
   errors: {
     genericFailure: '問題が発生しました',
     boundaryTitle: 'インターフェイスで問題が発生しました',
     boundaryDesc: 'ビューで予期しないエラーが発生しました。チャットと設定は安全です。',
     reloadWindow: 'ウィンドウを再読み込み',
-    openLogs: 'ログを開く'
+    openLogs: 'ログを開く',
   },
-
   ui: {
     search: {
-      clear: '検索をクリア'
+      clear: '検索をクリア',
     },
     pagination: {
       label: 'ページング',
       previous: '前へ',
       previousAria: '前のページへ',
       next: '次へ',
-      nextAria: '次のページへ'
+      nextAria: '次のページへ',
     },
     sidebar: {
       title: 'サイドバー',
       description: 'モバイルサイドバーを表示します。',
-      toggle: 'サイドバーを切り替え'
-    }
-  }
+      toggle: 'サイドバーを切り替え',
+    },
+  },
 })

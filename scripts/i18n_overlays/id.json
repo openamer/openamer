@@ -1,0 +1,15 @@
+{
+  "settings.about.version": "Versi ${value}",
+  "agents.durationSeconds": "${seconds} dtk",
+  "agents.durationMinutes": "${minutes} mnt ${seconds} dtk",
+  "commandCenter.actions": "${count} aksi",
+  "shell.statusbar.desktopVersion": "OpenAmer Desktop v${version}",
+  "shell.statusbar.clientLabel": "klien v${version}",
+  "shell.statusbar.providerModelTitle": "${provider} · ${model}",
+  "zones.zoneTag": "zona ${index}",
+  "zones.zoneCount": "${count} zona",
+  "assistant.tool.titleTemplates.actionCommand": "${action} ${command}",
+  "assistant.tool.titleTemplates.actionQuoted": "${action} “${value}”",
+  "assistant.tool.titleTemplates.actionTarget": "${action} ${target}",
+  "assistant.tool.titleTemplates.prefixedDone": "${prefix} ${action}"
+}

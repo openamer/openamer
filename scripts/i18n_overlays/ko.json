@@ -1,0 +1,15 @@
+{
+  "settings.about.version": "버전 ${value}",
+  "agents.durationSeconds": "${seconds}초",
+  "agents.durationMinutes": "${minutes}분 ${seconds}초",
+  "commandCenter.actions": "${count}개 작업",
+  "shell.statusbar.desktopVersion": "OpenAmer 데스크톱 v${version}",
+  "shell.statusbar.clientLabel": "클라이언트 v${version}",
+  "shell.statusbar.providerModelTitle": "${provider} · ${model}",
+  "zones.zoneTag": "영역 ${index}",
+  "zones.zoneCount": "${count}개 영역",
+  "assistant.tool.titleTemplates.actionCommand": "${action} ${command}",
+  "assistant.tool.titleTemplates.actionQuoted": "${action} “${value}”",
+  "assistant.tool.titleTemplates.actionTarget": "${action} ${target}",
+  "assistant.tool.titleTemplates.prefixedDone": "${prefix} ${action}"
+}

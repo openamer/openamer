@@ -1,0 +1,15 @@
+{
+  "settings.about.version": "Версія ${value}",
+  "agents.durationSeconds": "${seconds} с",
+  "agents.durationMinutes": "${minutes} хв ${seconds} с",
+  "commandCenter.actions": "${count} дій",
+  "shell.statusbar.desktopVersion": "OpenAmer Desktop v${version}",
+  "shell.statusbar.clientLabel": "клієнт v${version}",
+  "shell.statusbar.providerModelTitle": "${provider} · ${model}",
+  "zones.zoneTag": "зона ${index}",
+  "zones.zoneCount": "${count} зон",
+  "assistant.tool.titleTemplates.actionCommand": "${action} ${command}",
+  "assistant.tool.titleTemplates.actionQuoted": "${action} «${value}»",
+  "assistant.tool.titleTemplates.actionTarget": "${action} ${target}",
+  "assistant.tool.titleTemplates.prefixedDone": "${prefix} ${action}"
+}
