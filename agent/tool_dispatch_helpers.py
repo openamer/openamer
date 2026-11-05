@@ -541,6 +541,12 @@ def make_tool_result_message(
 _UNTRUSTED_TOOL_NAMES = frozenset({
     "web_extract",
     "web_search",
+    # Past-session text is attacker-reachable too: a poisoned session
+    # (or one written by an injected instruction) is replayed verbatim
+    # into the current prompt, so it carries the same indirect-injection
+    # risk as a fetched web page. Marking it keeps the model treating
+    # recalled content as data, not as instructions.
+    "session_search",
 })
 
 _UNTRUSTED_TOOL_PREFIXES = (
