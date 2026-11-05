@@ -325,7 +325,7 @@ export const cs = defineLocale({
       about: 'O aplikaci',
       billing: 'Fakturace',
       notifications: 'Oznámení',
-      plugins: 'Zásuvné moduly',
+      plugins: 'Pluginy',
     },
     plugins: {
       title: 'Doplněky pro desktop',
@@ -413,7 +413,7 @@ export const cs = defineLocale({
         description: 'Prostor s nízkým oslněním',
       },
       system: {
-        label: 'Podle systému',
+        label: 'Systém',
         description: 'Následovat vzhled systému',
       },
     },
@@ -445,7 +445,7 @@ export const cs = defineLocale({
       themeProfileNote: profile => `Uloženo pro profil ${profile} — každý profil si uchovává vlastní motiv.`,
       installTitle: 'Nainstalovat z VS Code',
       installDesc: 'Vložte ID rozšíření z Marketplace (např. dracula-theme.theme-dracula) a jeho barevný motiv se převede na desktopovou paletu.',
-      installPlaceholder: 'publisher.extension',
+      installPlaceholder: 'vydavatel.rozšíření',
       installButton: 'Instalovat',
       installing: 'Instalace…',
       installError: 'Tento motiv nelze nainstalovat.',
@@ -507,12 +507,12 @@ export const cs = defineLocale({
       cantUpdate: "Tato sestava se nemůže aktualizovat zevnitř aplikace.",
       cantReach: "Nepodařilo se spojit s aktualizačním serverem.",
       tapCheck: 'Klepnutím na „Zkontrolovat nyní“ vyhledáte aktualizace.',
-      updateReady: count => `K dispozici je nová aktualizace (obsahuje ${count} změnu${count === 1 ? '' : 's'}).`,
+      updateReady: count => `K dispozici je nová aktualizace (včetně ${count} změny${count === 1 ? '' : 's'}).`,
       lastChecked: age => `Naposledy zkontrolováno ${age}`,
       justNowSuffix: ' · právě teď',
       automaticUpdates: 'Automatické aktualizace',
       automaticUpdatesDesc: 'OpenAmer automaticky kontroluje aktualizace na pozadí a upozorní vás, když je jedna připravena.',
-      branchCommit: (branch, commit) => `Větev ${branch} · Odevzdání ${commit}`,
+      branchCommit: (branch, commit) => `Větev ${branch} · Revize ${commit}`,
       never: 'nikdy',
       justNow: 'právě teď',
       minAgo: count => `před ${count} min`,
@@ -592,7 +592,7 @@ export const cs = defineLocale({
       cloudLoadingAgents: 'Načítání vašich agentů…',
       cloudNoAgents: {
         before: 'Na tomto účtu nebyli nalezeni žádní agenti. Vytvořte jeden v ',
-        linkText: 'OpenAmer portal',
+        linkText: 'Portál OpenAmer',
         after: ', pak aktualizujte.',
       },
       cloudRefresh: 'Aktualizovat',
@@ -671,7 +671,7 @@ export const cs = defineLocale({
       sshOpenAmerPathTitle: 'Cesta k OpenAmer (volitelné)',
       sshOpenAmerPathDesc: 'Plná cesta k vzdálenému binárnímu souboru openamer. Prázdné = automatická detekce.',
       sshOpenAmerPathPlaceholder: 'automatická detekce',
-      sshTestConnection: 'Test SSH',
+      sshTestConnection: 'Otestovat SSH',
       sshConnect: 'Připojit',
       sshButtonsHint: 'Uložení se projeví při příštím spuštění. Připojit znovu připojí nyní.',
       sshReachable: (host, platform) => `Dosažitelný: ${host} (${platform}) — OpenAmer nalezen`,
@@ -1097,8 +1097,8 @@ export const cs = defineLocale({
     ageMinutes: minutes => `před ${minutes}m`,
     ageHours: hours => `před ${hours}h`,
     ageDays: days => `před ${days} dny`,
-    durationSeconds: seconds => `${seconds}s`,
-    durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
+    durationSeconds: seconds => `${seconds} s`,
+    durationMinutes: (minutes, seconds) => `${minutes} m ${seconds} s`,
     tokens: value => `${value} tokenů`,
   },
   commandCenter: {
@@ -1151,7 +1151,7 @@ export const cs = defineLocale({
       staleBackend: 'Aktualizujte OpenAmer pro generování mazlíčků.',
       backgroundHint: 'Můžete to zavřít — OpenAmer vás upozorní, až to bude hotové.',
       slowProviderHint: 'To může trvat několik minut',
-      remix: 'Remix',
+      remix: 'Přepracovat',
       remixConfirmTitle: 'Remixovat tento vzhled?',
       remixConfirmBody: 'Toto vygeneruje novou sadu návrhů s tímto jako výchozím bodem. Může to trvat několik minut.',
       genericError: 'Generování selhalo — zkuste to znovu nebo vyberte návrh.',
@@ -1791,7 +1791,7 @@ export const cs = defineLocale({
     kindImage: 'obrázek',
     kindFile: 'soubor',
     kindLink: 'odkaz',
-    chat: 'Chat',
+    chat: 'Konverzace',
     copyUrl: 'Zkopírovat URL',
     copyPath: 'Zkopírovat cestu',
   },
@@ -1883,7 +1883,7 @@ export const cs = defineLocale({
       back: 'Všechny projekty',
     },
     newSessionIn: label => `Nová relace v ${label}`,
-    showMoreIn: (count, label) => `Zobrazit ${count} dalších v ${label}`,
+    showMoreIn: (count, label) => `Zobrazit ${count} další v ${label}`,
     loading: 'Načítání…',
     loadMore: 'Načíst více',
     loadCount: step => `Načíst ${step} dalších`,
@@ -2146,7 +2146,7 @@ export const cs = defineLocale({
     availableBodyNoChangelog: 'Novější verze je připravena. Poznámky k verzi nejsou k dispozici pro tento typ instalace.',
     updateNow: 'Aktualizovat nyní',
     maybeLater: 'Možná později',
-    moreChanges: count => `+ ${count} dalších změn${count === 1 ? '' : 's'} v součástí.`,
+    moreChanges: count => `+ vč. ${count} dalších změn${count === 1 ? '' : 's'}.`,
     manualTitle: 'Aktualizovat z terminálu',
     manualBody: 'Nainstalovali jste OpenAmer z příkazové řádky, takže aktualizace probíhají tam také. Vložte toto do terminálu:',
     manualPickedUp: 'OpenAmer načte novou verzi při příštím spuštění.',
@@ -2339,7 +2339,7 @@ export const cs = defineLocale({
     free: 'Zdarma',
     freeTier: 'Bezplatný tarif',
     priceTitle: 'Cena vstupu / výstupu za milion tokenů',
-    wasPrice: 'bylo',
+    wasPrice: 'byl',
   },
   modelVisibility: {
     title: 'Modely',
@@ -2378,7 +2378,7 @@ export const cs = defineLocale({
       gateway: 'Brána',
       connected: 'Připojeno',
       connecting: 'Připojování',
-      offline: 'Offline',
+      offline: 'Nepřipojeno',
       inferenceReady: 'Inference připraven',
       inferenceNotReady: 'Inference není připraven',
       checkingInference: 'Kontrola inference',
@@ -2404,18 +2404,18 @@ export const cs = defineLocale({
       restart: 'Restart',
       update: 'Aktualizace',
       updateInProgress: 'Aktualizace probíhá',
-      commitsBehind: (count, branch) => `${count} commitů${count === 1 ? '' : 's'} pozadu za ${branch}`,
+      commitsBehind: (count, branch) => `${count} commit${count === 1 ? '' : 's'} pozadu za ${branch}`,
       desktopVersion: version => `OpenAmer Desktop v${version}`,
-      backendVersion: version => `Backend v${version}`,
+      backendVersion: version => `Server v${version}`,
       clientLabel: version => `klient v${version}`,
       connectionSsh: host => `SSH: ${host}`,
-      connectionRemote: host => `Vzdálený: ${host}`,
+      connectionRemote: host => `Vzdálené: ${host}`,
       connectionCloud: host => `Cloud: ${host}`,
       connectionCloudTooltip: host => `Připojeno k OpenAmer Cloud na ${host} · klikněte pro správu`,
       connectionSshTooltip: host => `Připojeno přes SSH k ${host} · klikněte pro správu`,
       connectionRemoteTooltip: host => `Připojeno ke vzdálenému backend ${host} · klikněte pro správu`,
-      backendLabel: version => `backend v${version}`,
-      commit: sha => `commit ${sha}`,
+      backendLabel: version => `server v${version}`,
+      commit: sha => `revize ${sha}`,
       branch: branch => `větev ${branch}`,
       closeCommandCenter: 'Zavřít Command Center',
       openCommandCenter: 'Otevřít Command Center',
@@ -2426,7 +2426,7 @@ export const cs = defineLocale({
       gatewayNeedsSetup: 'vyžaduje nastavení',
       gatewayChecking: 'kontrola',
       gatewayConnecting: 'připojování',
-      gatewayOffline: 'offline',
+      gatewayOffline: 'nepřipojeno',
       gatewayRestarting: 'restartuje se…',
       gatewayTitle: 'Stav brány inference OpenAmer',
       agents: 'Agenti',
@@ -2564,7 +2564,7 @@ export const cs = defineLocale({
       empty: 'Zatím žádné zprávy konzole.',
       promptHeader: 'Náhled konzole:',
       sentTitle: 'Odesláno do chatu',
-      sentMessage: count => `Do composeru přidáno ${count} záznamů v protokolu${count === 1 ? 'y' : 'ies'}`,
+      sentMessage: count => `Do kompozera přidáno ${count} záznamů v protokolu${count === 1 ? 'y' : 'ies'}`,
     },
     web: {
       appFailedToBoot: 'Náhled aplikace se nepodařilo spustit',
@@ -2651,8 +2651,22 @@ export const cs = defineLocale({
       loadingSession: 'Načítání relace',
       showEarlier: 'Zobrazit starší zprávy',
       loadingResponse: 'OpenAmer načítá odpověď',
-      resumeWhenBackgroundDone: count => count === 1
-          ? 'Will resume when the background task finishes'
+      resumeWhenBackgroundDone: count => count === 1
+
+
+
+
+
+
+
+          ? 'Will resume when the background task finishes'
+
+
+
+
+
+
+
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Uvažuje',
       today: time => `Dnes, ${time}`,
@@ -2751,7 +2765,7 @@ export const cs = defineLocale({
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
-        actionQuoted: (action, value) => `${action} „${value}“`,
+        actionQuoted: (action, value) => `${action} “${value}”`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Běží ${prefix.toLowerCase()} ${action.toLowerCase()}`,

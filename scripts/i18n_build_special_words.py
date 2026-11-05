@@ -36,13 +36,21 @@ SPECIAL_KEYS = [
     "composer.url",
     "shell.statusbar.desktopVersion",
     "shell.statusbar.clientLabel",
+    "shell.statusbar.backendVersion",
+    "shell.statusbar.backendLabel",
     "shell.statusbar.providerModelTitle",
+    "shell.statusbar.modelTitle",
+    "shell.statusbar.connectionSsh",
     "zones.zoneTag",
     "zones.zoneCount",
     "assistant.tool.titleTemplates.actionCommand",
     "assistant.tool.titleTemplates.actionQuoted",
     "assistant.tool.titleTemplates.actionTarget",
     "assistant.tool.titleTemplates.prefixedDone",
+    "sidebar.showMoreIn",
+    "settings.gateway.sshHostTitle",
+    "settings.gateway.sshHostPickTitle",
+    "commandCenter.sections.system",
 ]
 
 

@@ -501,6 +501,16 @@ if (check.parseDiagnostics && check.parseDiagnostics.length) {
 // Preserve the line endings of the file we are replacing. The repository
 // stores most locale files with CRLF; writing LF would rewrite every line
 // of every file and bury the real change in the diff.
+//
+// The conversion must be IDEMPOTENT. `out` can carry CRLF of its own: the
+// renderer copies raw source text (an arrow function with a multi-line body)
+// verbatim from the file it read, and that text still has the file's CRLF
+// line endings. A plain `out.replace(/\n/g, '\r\n')` turns every existing
+// "\r\n" into "\r\r\n" — and because the next run reads the file back and
+// does it again, the carriage returns multiply on every rewrite until the
+// file is unparsable. Normalising to LF first makes the conversion
+// idempotent, so a rewrite never changes the line endings of the source
+// text it carries over.
 let eol = '\n'
 try {
   const existing = readFileSync(abs, 'utf8')
@@ -508,7 +518,8 @@ try {
 } catch {
   // new file — keep LF
 }
-const finalText = eol === '\r\n' ? out.replace(/\n/g, '\r\n') : out
+const normalized = out.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+const finalText = eol === '\r\n' ? normalized.replace(/\n/g, '\r\n') : normalized
 
 writeFileSync(abs, finalText, 'utf8')
 console.error(`wrote ${abs}: ${body.length} lines (parse OK, eol=${eol === '\r\n' ? 'CRLF' : 'LF'})`)

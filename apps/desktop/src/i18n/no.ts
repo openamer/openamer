@@ -112,7 +112,7 @@ export const no = defineLocale({
     region: 'Varsler',
     hide: 'Skjul',
     show: 'Vis',
-    more: count => `${count} mer ${count === 1 ? 'varsel' : 'varsler'}`,
+    more: count => `${count} flere ${count === 1 ? 'varsel' : 'varsler'}`,
     clearAll: 'Tøm alle',
     dismiss: 'Avvis varsel',
     details: 'Detaljer',
@@ -315,7 +315,7 @@ export const no = defineLocale({
       providerAccounts: 'Kontoer',
       providerApiKeys: 'API-nøkler',
       providerCustomEndpoints: 'Egendefinerte endepunkter',
-      gateway: 'Tilgangspunkt',
+      gateway: 'Portner',
       apiKeys: 'Verktøy og nøkler',
       keybinds: 'Tastatursnarveier',
       keysTools: 'Verktøy',
@@ -435,7 +435,7 @@ export const no = defineLocale({
       embedsAsk: 'Spør',
       embedsAlways: 'Alltid',
       embedsOff: 'Av',
-      embedsReset: (count: number) => `Tilbakestill ${count} tillatt ${count === 1 ? 'tjeneste' : 'tjenester'}`,
+      embedsReset: (count: number) => `Nullstill ${count} tillatt ${count === 1 ? 'tjeneste' : 'tjenester'}`,
       product: 'Produkt',
       productDesc: 'Vennlig verktøyaktivitet med konsise sammendrag.',
       technical: 'Teknisk',
@@ -592,7 +592,7 @@ export const no = defineLocale({
       cloudLoadingAgents: 'Laster inn agentene dine…',
       cloudNoAgents: {
         before: 'Fant ingen agenter på denne kontoen. Opprett en i ',
-        linkText: 'OpenAmer-portalen',
+        linkText: 'OpenAmer-portal',
         after: ', og oppdater.',
       },
       cloudRefresh: 'Oppdater',
@@ -714,7 +714,7 @@ export const no = defineLocale({
       disabled: 'deaktivert',
       editServer: 'Rediger server',
       name: 'Navn',
-      serverJson: 'Server-JSON',
+      serverJson: 'Server JSON',
       remove: 'Fjern',
       saveServer: 'Lagre server',
       test: 'Test tilkobling',
@@ -979,7 +979,7 @@ export const no = defineLocale({
     enableAll: 'Aktiver alle',
     disableAll: 'Deaktiver alle',
     disableUnused: 'Deaktiver ubrukte',
-    bulkUpdated: count => `Oppdatert ${count} ${count === 1 ? 'element' : 'elementer'} for nye økter.`,
+    bulkUpdated: count => `Oppdatert ${count} ${count === 1 ? 'element' : 'elementer'} for nye sesjoner.`,
     bulkNoChange: 'Ingenting å endre.',
     usageCount: count => `brukt ${count}×`,
     provenance: {
@@ -1080,7 +1080,7 @@ export const no = defineLocale({
     running: 'Kjører',
     failed: 'Feilet',
     done: 'Ferdig',
-    streaming: 'Strømmer',
+    streaming: 'Strømming',
     files: 'Filer',
     moreFiles: count => `+${count} flere filer`,
     delegation: index => `Delegering ${index}`,
@@ -1099,7 +1099,7 @@ export const no = defineLocale({
     ageDays: days => `for ${days} d siden`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} token`,
   },
   commandCenter: {
     close: 'Lukk kommandosenter',
@@ -1362,7 +1362,7 @@ export const no = defineLocale({
     failedClear: key => `Kunne ikke tømme ${key}`,
     fieldCopy: {
       TELEGRAM_BOT_TOKEN: {
-        label: 'Bot-token',
+        label: 'Bot-tilgangsnøkkel',
         help: 'Opprett en bot med @BotFather, og lim inn tokenet du får.',
         placeholder: 'Lim inn Telegram-bot-token',
       },
@@ -1371,11 +1371,11 @@ export const no = defineLocale({
         help: 'Anbefalt. Kommaseparerte numeriske ID-er fra @userinfobot. Uten dette kan hvem som helst sende DM til boten din.',
       },
       TELEGRAM_PROXY: {
-        label: 'Proxy-URL',
+        label: 'Mellomtjener-URL',
         help: 'Bare nødvendig på nettverk der Telegram er blokkert.',
       },
       DISCORD_BOT_TOKEN: {
-        label: 'Bot-token',
+        label: 'Bot-tilgangsnøkkel',
         help: 'Opprett en applikasjon i Discord Developer Portal, legg til en bot, og lim inn tokenet.',
       },
       DISCORD_ALLOWED_USERS: {
@@ -1419,7 +1419,7 @@ export const no = defineLocale({
         label: 'Navn på QQ-hjemmekanal',
       },
       SLACK_BOT_TOKEN: {
-        label: 'Slack-bottoken',
+        label: 'Slack-bot-tilgangsnøkkel',
         help: 'Bruk bottokenen fra OAuth og tillatelser etter at du har installert Slack-appen.',
         placeholder: 'Lim inn Slack-bottoken',
       },
@@ -1437,7 +1437,7 @@ export const no = defineLocale({
         placeholder: 'https://mattermost.example.com',
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot-token',
+        label: 'Bot-tilgangsnøkkel',
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Tillatte bruker-ID-er',
@@ -1520,7 +1520,7 @@ export const no = defineLocale({
     deliverOnly: 'kun levering',
     createdTitle: 'Abonnement opprettet',
     createdSecretHint: 'Kopier hemmeligheten nå – den vises bare én gang.',
-    webhookUrl: 'Webhook-URL',
+    webhookUrl: 'Nettkrok-URL',
     secretOnce: 'Hemmelighet (vises én gang)',
     done: 'Ferdig',
     fieldName: 'Navn',
@@ -1640,7 +1640,7 @@ La stå tom for å beholde ${mode}-standarden.`,
       running: 'Kjører',
       paused: 'Pauset',
       disabled: 'Deaktivert',
-      error: 'Feil',
+      error: 'feil',
       completed: 'Fullført',
     },
     deliveryLabels: {
@@ -1884,7 +1884,7 @@ La stå tom for å beholde ${mode}-standarden.`,
       back: 'Alle prosjekter',
     },
     newSessionIn: label => `Ny økt i ${label}`,
-    showMoreIn: (count, label) => `Vis ${count} flere i ${label}`,
+    showMoreIn: (count, label) => `Vis ${count} mer i ${label}`,
     loading: 'Laster inn…',
     loadMore: 'Last inn flere',
     loadCount: step => `Last inn ${step} flere`,
@@ -2376,7 +2376,7 @@ La stå tom for å beholde ${mode}-standarden.`,
       fastFailed: 'Oppdatering av hurtigmodus mislyktes',
     },
     gatewayMenu: {
-      gateway: 'Tilgangspunkt',
+      gateway: 'Portner',
       connected: 'Tilkoblet',
       connecting: 'Kobler til',
       offline: 'Frakoblet',
@@ -2406,8 +2406,8 @@ La stå tom for å beholde ${mode}-standarden.`,
       update: 'oppdater',
       updateInProgress: 'Oppdatering pågår',
       commitsBehind: (count, branch) => `${count} commit${count === 1 ? '' : 's'} bak ${branch}`,
-      desktopVersion: version => `OpenAmer Skrivebord v${version}`,
-      backendVersion: version => `Serverdel v${version}`,
+      desktopVersion: version => `OpenAmer Desktop v${version}`,
+      backendVersion: version => `Backend v${version}`,
       clientLabel: version => `klient v${version}`,
       connectionSsh: host => `SSH: ${host}`,
       connectionRemote: host => `Ekstern: ${host}`,
@@ -2415,14 +2415,14 @@ La stå tom for å beholde ${mode}-standarden.`,
       connectionCloudTooltip: host => `Tilkoblet OpenAmer Cloud på ${host} · klikk for å administrere`,
       connectionSshTooltip: host => `Tilkoblet over SSH til ${host} · klikk for å administrere`,
       connectionRemoteTooltip: host => `Tilkoblet ekstern backend ${host} · klikk for å administrere`,
-      backendLabel: version => `serverdel v${version}`,
-      commit: sha => `innsending ${sha}`,
+      backendLabel: version => `backend v${version}`,
+      commit: sha => `innsjekking ${sha}`,
       branch: branch => `gren ${branch}`,
       closeCommandCenter: 'Lukk kommandosenter',
       openCommandCenter: 'Åpne kommandosenter',
       showTerminal: 'Vis terminal',
       hideTerminal: 'Skjul terminal',
-      gateway: 'Tilgangspunkt',
+      gateway: 'Portner',
       gatewayReady: 'klar',
       gatewayNeedsSetup: 'trenger oppsett',
       gatewayChecking: 'sjekker',
@@ -2565,7 +2565,7 @@ La stå tom for å beholde ${mode}-standarden.`,
       empty: 'Ingen konsollmeldinger ennå.',
       promptHeader: 'Forhåndsvisningskonsoll:',
       sentTitle: 'Sendt til chat',
-      sentMessage: count => `${count} loggoppføring${count === 1 ? 'y' : 'yer'} lagt til i skrivefeltet`,
+      sentMessage: count => `${count} loggoppføring${count === 1 ? 'y' : 'ies'} lagt til i composer`,
     },
     web: {
       appFailedToBoot: 'Forhåndsvisningsappen kunne ikke starte opp',
@@ -2652,8 +2652,20 @@ La stå tom for å beholde ${mode}-standarden.`,
       loadingSession: 'Laster inn økt',
       showEarlier: 'Vis tidligere meldinger',
       loadingResponse: 'OpenAmer laster inn et svar',
-      resumeWhenBackgroundDone: count => count === 1
-          ? 'Will resume when the background task finishes'
+      resumeWhenBackgroundDone: count => count === 1
+
+
+
+
+
+
+          ? 'Will resume when the background task finishes'
+
+
+
+
+
+
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Tenker',
       today: time => `I dag, ${time}`,
@@ -2891,17 +2903,17 @@ La stå tom for å beholde ${mode}-standarden.`,
     providerCredentialRequired: 'Legg til legitimasjon for leverandøren før du sender den første meldingen.',
     emptySlashCommand: 'tom skråstrekkommando',
     desktopCommands: 'Skrivebordskommandoer',
-    skillCommandsAvailable: count => `${count} skill commands available.`,
-    warningLine: message => `warning: ${message}`,
+    skillCommandsAvailable: count => `${count} ferdighetskommandoer tilgjengelig.`,
+    warningLine: message => `advarsel: ${message}`,
     yoloArmed: 'YOLO aktivert for denne samtalen',
     yoloOff: 'YOLO av',
-    yoloSystem: active => `YOLO ${active ? 'på' : 'av'} for denne økten`,
+    yoloSystem: active => `YOLO ${active ? 'på' : 'av'} for denne sesjonen`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Kunne ikke veksle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current => `Profil: ${current}. Bruk /profile <navn> eller velgeren «Ny økt» for å starte en samtale i en annen profil.`,
     unknownProfile: 'Ukjent profil',
-    noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
-    newChatsProfile: name => `New chats will use profile ${name}.`,
+    noProfileNamed: (target, available) => `Ingen profil med navnet «${target}». Tilgjengelige: ${available}`,
+    newChatsProfile: name => `Nye samtaler bruker profil ${name}.`,
     setProfileFailed: 'Kunne ikke angi profil',
     sttDisabled: 'Tale-til-tekst er deaktivert i innstillingene.',
     stopFailed: 'Stopp feilet',

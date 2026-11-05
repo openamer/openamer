@@ -332,7 +332,7 @@ def unmask_variables(text: str, found: list[str]) -> str:
 
 
 def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
-                   force_translate: bool = False) -> list[str] | None:
+                   force_translate: bool = False, extra_hint: str = "") -> list[str] | None:
     name, url, keyenv, model = backend
     key = env.get(keyenv, "")
     if not key:
@@ -372,14 +372,16 @@ def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
             f"You are a professional software localizer translating a desktop app "
             f"into {language}. "
             f"Translate every element of the JSON array into {language}. "
-            f"Rules: keep the array length and order; keep every U+E000 marker "
-            f"(and the digits between two markers) exactly as it is; never translate "
-            f"the product name OpenAmer; keep the UI tone short and direct; "
-            f"ALWAYS translate even short strings, single words, abbreviations "
-            f"like 'Version', 'Options', 'Minimal' or 'Terminal' — only the product "
-            f"name, acronyms like MCP and URLs stay as they are; "
-            f"output ONLY a JSON array of strings, no commentary, no code fence."
+            "Rules: keep the array length and order; keep every U+E000 marker "
+            "(and the digits between two markers) exactly as it is; never translate "
+            "the product name OpenAmer; keep the UI tone short and direct; "
+            "ALWAYS translate even short strings, single words, abbreviations "
+            "like 'Version', 'Options', 'Minimal' or 'Terminal' — only the product "
+            "name, acronyms like MCP and URLs stay as they are; "
+            "output ONLY a JSON array of strings, no commentary, no code fence."
         )
+    if extra_hint:
+        system += " " + extra_hint
     messages = [
         {"role": "system", "content": system},
         {"role": "user", "content": payload},
@@ -410,6 +412,57 @@ def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
         print(f"    [{name}] {broken} string(s) with broken placeholders -> English kept",
               file=sys.stderr)
     return out
+
+
+def translate_labels(items: list[str], language: str, backend: tuple, env: dict) -> list[str] | None:
+    """Translate SHORT UI LABELS — single words and short phrases.
+
+    The regular prompt carries a sentence in every language ("Translate
+    every element of the JSON array into {language}"). The model reads that
+    as "these are sentences" and leaves a bare label alone: "Gateway",
+    "Host", "System" come back in English. A label has to be asked for as a
+    label, with an explicit instruction that an echo is a failure.
+
+    Only the product name, the acronyms and the brand names stay
+    untranslated — those are real exceptions, and they are named.
+    """
+    name, url, keyenv, model = backend
+    key = env.get(keyenv, "")
+    if not key:
+        return None
+    system = (
+        f"You are a professional software localizer translating the desktop UI "
+        f"of an app into {language}. "
+        "You receive a JSON array of SHORT UI LABELS (single words and short "
+        f"phrases). Translate EVERY element into {language}. "
+        "IMPORTANT: even a single English word must be translated — do NOT echo "
+        "the English back, not even when the word looks like a technical term, "
+        "an acronym, a product name or a loanword that is usually left "
+        "untranslated. The only exceptions are the product name 'OpenAmer', "
+        "the acronyms 'MCP', 'SSH', 'JSON', 'URL' and the brand names "
+        "'Telegram', 'Discord', 'Slack'. A lowercase 'm' used as a unit "
+        "(minutes) stays 'm'. A state name such as 'error' must be "
+        "translated. "
+        "Keep the array length and the order. Output ONLY a JSON array of "
+        "strings, no commentary, no code fence."
+    )
+    payload = json.dumps(items, ensure_ascii=False)
+    messages = [
+        {"role": "system", "content": system},
+        {"role": "user", "content": payload},
+    ]
+    try:
+        reply = call_model(url, model, key, messages)
+    except (urllib.error.URLError, urllib.error.HTTPError, OSError, TimeoutError,
+            KeyError, ValueError, json.JSONDecodeError) as exc:
+        print(f"    [{name}] failed: {type(exc).__name__} {str(exc)[:120]}", file=sys.stderr)
+        return None
+    parsed = extract_json_array(reply)
+    if parsed is None or len(parsed) != len(items):
+        print(f"    [{name}] bad reply (got {len(parsed) if parsed else 0}, "
+              f"want {len(items)})", file=sys.stderr)
+        return None
+    return parsed
 
 
 def load_leaves(locale: str) -> list[dict]:

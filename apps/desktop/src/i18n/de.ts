@@ -315,7 +315,7 @@ export const de = defineLocale({
       providerAccounts: 'Konten',
       providerApiKeys: 'API-Schlüssel',
       providerCustomEndpoints: 'Benutzerdefinierte Endpunkte',
-      gateway: 'Gateway',
+      gateway: 'Zugang',
       apiKeys: 'Tools & Schlüssel',
       keybinds: 'Tastaturkürzel',
       keysTools: 'Werkzeuge',
@@ -325,7 +325,7 @@ export const de = defineLocale({
       about: 'Über',
       billing: 'Abrechnung',
       notifications: 'Benachrichtigungen',
-      plugins: 'Plugins',
+      plugins: 'Erweiterungen',
     },
     plugins: {
       title: 'Desktop-Plugins',
@@ -387,7 +387,7 @@ export const de = defineLocale({
     },
     sections: {
       model: 'Modell',
-      chat: 'Chat',
+      chat: 'Unterhaltung',
       appearance: 'Darstellung',
       workspace: 'Arbeitsbereich',
       safety: 'Sicherheit',
@@ -436,7 +436,7 @@ export const de = defineLocale({
       embedsAlways: 'Immer',
       embedsOff: 'Aus',
       embedsReset: (count: number) => `Zurücksetzen ${count} erlaubt ${count === 1 ? 'service' : 'services'}`,
-      product: 'Produktiv',
+      product: 'Produkt',
       productDesc: 'Menschenfreundliche Tool-Aktivität mit prägnanten Zusammenfassungen.',
       technical: 'Technisch',
       technicalDesc: 'Rohdaten von Tool-Argumenten/Ergebnissen und niedrigstufige Details einbeziehen.',
@@ -512,7 +512,7 @@ export const de = defineLocale({
       justNowSuffix: ' · gerade eben',
       automaticUpdates: 'Automatische Updates',
       automaticUpdatesDesc: 'OpenAmer sucht im Hintergrund automatisch nach Updates und benachrichtigt dich, wenn eines bereit ist.',
-      branchCommit: (branch, commit) => `Zweig ${branch} · Commit ${commit}`,
+      branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       never: 'nie',
       justNow: 'gerade eben',
       minAgo: count => `vor ${count} Min`,
@@ -655,10 +655,10 @@ export const de = defineLocale({
       sshTitle: 'Per SSH verbinden',
       sshDesc: 'OpenAmer wird per SSH auf dem entfernten Rechner gestartet und zu dieser App getunnelt — nichts muss selbst gestartet oder freigegeben werden. Erfordert funktionierenden schlüsselbasierten SSH-Zugang zum Host.',
       sshTrustHint: 'Der erste präsentierte Host-Key wird vertraut und fixiert; spätere Änderungen schlagen fehl.',
-      sshHostTitle: 'Host',
+      sshHostTitle: 'Rechner',
       sshHostDesc: 'benutzer@host oder ein Host-Alias aus ~/.ssh/config.',
       sshHostPick: 'Wähle einen Host…',
-      sshHostPickTitle: 'Host',
+      sshHostPickTitle: 'Rechner',
       sshHostPickDesc: 'Ein Host-Alias aus ~/.ssh/config oder „Benutzerdefiniert", um einen einzugeben.',
       sshHostCustom: 'Benutzerdefiniert (manuell eingeben)…',
       sshUserTitle: 'Benutzer',
@@ -1080,10 +1080,10 @@ export const de = defineLocale({
     running: 'Läuft',
     failed: 'Fehlgeschlagen',
     done: 'Fertig',
-    streaming: 'Streamt',
+    streaming: 'Streamen',
     files: 'Dateien',
     moreFiles: count => `+${count} weitere Dateien`,
-    delegation: index => `Delegation ${index}`,
+    delegation: index => `Delegierung ${index}`,
     workers: count => `${count} Arbeiter`,
     workersActive: count => `${count} aktiv`,
     agentsCount: count => `${count} ${count === 1 ? 'agent' : 'agents'}`,
@@ -1151,7 +1151,7 @@ export const de = defineLocale({
       staleBackend: 'Aktualisiere OpenAmer, um Haustiere zu generieren.',
       backgroundHint: 'Du kannst dies schließen — OpenAmer benachrichtigt dich, wenn es fertig ist.',
       slowProviderHint: 'Dies kann mehrere Minuten dauern',
-      remix: 'Remixen',
+      remix: 'Neuabmischung',
       remixConfirmTitle: 'Diesen Look remixen?',
       remixConfirmBody: 'Dies erzeugt einen neuen Satz Entwürfe, die auf diesem basieren. Es kann mehrere Minuten dauern.',
       genericError: 'Generierung fehlgeschlagen — versuche es erneut oder wähle einen Vorschlag.',
@@ -1362,7 +1362,7 @@ export const de = defineLocale({
     failedClear: key => `${key} konnte nicht gelöscht werden`,
     fieldCopy: {
       TELEGRAM_BOT_TOKEN: {
-        label: 'Bot-Token',
+        label: 'Bot-Zugangsschlüssel',
         help: 'Erstelle einen Bot mit @BotFather und füge dann das erhaltene Token ein.',
         placeholder: 'Telegram-Bot-Token einfügen',
       },
@@ -1375,7 +1375,7 @@ export const de = defineLocale({
         help: 'Nur in Netzwerken erforderlich, in denen Telegram blockiert ist.',
       },
       DISCORD_BOT_TOKEN: {
-        label: 'Bot-Token',
+        label: 'Bot-Zugangsschlüssel',
         help: 'Erstelle eine Anwendung im Discord Developer Portal, füge einen Bot hinzu und füge dann sein Token ein.',
       },
       DISCORD_ALLOWED_USERS: {
@@ -1419,7 +1419,7 @@ export const de = defineLocale({
         label: 'QQ-Home-Channel-Name',
       },
       SLACK_BOT_TOKEN: {
-        label: 'Slack-Bot-Token',
+        label: 'Slack-Bot-Zugangsschlüssel',
         help: 'Verwende das Bot-Token aus OAuth & Permissions nach der Installation deiner Slack-App.',
         placeholder: 'Slack-Bot-Token einfügen',
       },
@@ -1437,7 +1437,7 @@ export const de = defineLocale({
         placeholder: 'https://mattermost.example.com',
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot-Token',
+        label: 'Bot-Zugangsschlüssel',
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Erlaubte Benutzer-IDs',
@@ -1533,7 +1533,7 @@ export const de = defineLocale({
     fieldSkillsPlaceholder: 'Komma-getrennte Fähigkeitsnamen (optional)',
     fieldDeliver: 'Zustellen an',
     fieldDeliverOnly: 'Nur Nutzdaten zustellen',
-    fieldPrompt: 'Prompt',
+    fieldPrompt: 'Eingabeaufforderung',
     fieldPromptPlaceholder: 'Anweisungen für den Agenten, wenn dieser Webhook ausgelöst wird (optional)',
     nameRequired: 'Name erforderlich',
     create: 'Erstellen',
@@ -1725,7 +1725,7 @@ export const de = defineLocale({
     createDesc: 'Plane einen Prompt zur automatischen Ausführung. Verwende Cron-Syntax oder einen natürlichen Ausdruck wie „alle 15 Minuten".',
     nameLabel: 'Name',
     namePlaceholder: 'Morgenbriefing',
-    promptLabel: 'Eingabeaufforderung',
+    promptLabel: 'Anweisung',
     promptPlaceholder: 'Fasse meine ungelesenen Slack-Threads zusammen und sende mir die Top 5 per E-Mail...',
     frequencyLabel: 'Häufigkeit',
     deliverLabel: 'Zustellen an',
@@ -1769,15 +1769,15 @@ export const de = defineLocale({
     tabAll: 'Alle',
     tabImages: 'Bilder',
     tabFiles: 'Dateien',
-    tabLinks: 'Verknüpfungen',
+    tabLinks: 'Links',
     noArtifactsTitle: 'Keine Artefakte gefunden',
     noArtifactsDesc: 'Generierte Bilder und Dateiausgaben werden hier angezeigt, sobald Sitzungen sie produzieren.',
     failedLoad: 'Artefakte konnten nicht geladen werden',
     openFailed: 'Öffnen fehlgeschlagen',
     itemsImage: 'Bilder',
-    itemsLink: 'Verknüpfungen',
+    itemsLink: 'Links',
     itemsFile: 'Dateien',
-    itemsGeneric: 'Elemente',
+    itemsGeneric: 'Einträge',
     zero: '0',
     rangeOf: (start, end, total) => `${start}-${end} von ${total}`,
     goToPage: (itemLabel, page) => `Gehe zu ${itemLabel} Seite ${page}`,
@@ -1867,7 +1867,7 @@ export const de = defineLocale({
       convertBranchDesc: 'Öffne ausgecheckte Branches oder erstelle einen Worktree für einen freien Branch.',
       convertBranchPlaceholder: 'Branches durchsuchen…',
       convertBranchInstead: 'Vorhandenen Branch konvertieren',
-      branchOpenExisting: 'offen',
+      branchOpenExisting: 'Öffnen',
       branchSwitchHome: 'Home wechseln',
       branchCreateWorktree: 'neuer Worktree',
       branchesLoading: 'Lade Branches…',
@@ -1877,7 +1877,7 @@ export const de = defineLocale({
       removeWorktreeConfirm: 'Aus Git entfernen (löscht das Worktree-Verzeichnis; der Branch bleibt), oder die Spur nur aus der Seitenleiste ausblenden und den Worktree auf der Festplatte belassen.',
       removeWorktreeDirty: 'Dieser Worktree hat nicht abgeschlossene Änderungen. Erzwungen entfernen (verwirft diese Änderungen) oder nur die Spur ausblenden und auf der Festplatte belassen.',
       forceRemove: 'Erzwungen entfernen',
-      enter: label => `${label} öffnen`,
+      enter: label => `Offen ${label}`,
       reorder: label => `${label} neu anordnen`,
       toggle: label => `${label}-Sitzungen umschalten`,
       back: 'Alle Projekte',
@@ -1918,7 +1918,7 @@ export const de = defineLocale({
       ageNow: 'jetzt',
       ageDay: 'T',
       ageHour: 'Std',
-      ageMin: 'Min',
+      ageMin: 'm',
     },
     dateDivider: {
       today: 'Heute früher',
@@ -1955,7 +1955,7 @@ export const de = defineLocale({
     startVoice: 'Sprachkonversation starten',
     queueMessage: 'Nachricht in Warteschlange',
     steer: 'Aktuellen Durchlauf steuern',
-    stop: 'Anhalten',
+    stop: 'Stopp',
     send: 'Senden',
     speaking: 'Spreche',
     transcribing: 'Transkribiere',
@@ -2067,7 +2067,7 @@ export const de = defineLocale({
     subagents: count => `${count} Unteragent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Aufgaben ${done}/${total}`,
     running: 'Läuft',
-    stop: 'Anhalten',
+    stop: 'Stopp',
     dismiss: 'Schließen',
     exit: code => `Beenden ${code}`,
     coding: {
@@ -2375,10 +2375,10 @@ export const de = defineLocale({
       fastFailed: 'Schnellmodus-Update fehlgeschlagen',
     },
     gatewayMenu: {
-      gateway: 'Gateway',
+      gateway: 'Netzübergang',
       connected: 'Verbunden',
       connecting: 'Verbinde',
-      offline: 'Offline',
+      offline: 'Nicht verbunden',
       inferenceReady: 'Inferenz bereit',
       inferenceNotReady: 'Inferenz nicht bereit',
       checkingInference: 'Prüfe Inferenz',
@@ -2421,12 +2421,12 @@ export const de = defineLocale({
       openCommandCenter: 'Befehlszentrale öffnen',
       showTerminal: 'Terminal anzeigen',
       hideTerminal: 'Terminal ausblenden',
-      gateway: 'Gateway',
+      gateway: 'Netzübergang',
       gatewayReady: 'bereit',
       gatewayNeedsSetup: 'Einrichtung erforderlich',
       gatewayChecking: 'prüfe',
       gatewayConnecting: 'verbinde',
-      gatewayOffline: 'offline',
+      gatewayOffline: 'nicht verbunden',
       gatewayRestarting: 'starte neu…',
       gatewayTitle: 'OpenAmer-Inferenz-Gateway-Status',
       agents: 'Agenten',
@@ -2505,7 +2505,7 @@ export const de = defineLocale({
     loadingTree: 'Lade Dateibaum',
     loadingFiles: 'Lade Dateien',
     terminalHide: 'Terminal ausblenden',
-    terminalsAria: 'Terminals',
+    terminalsAria: 'Terminalfenster',
     terminalNew: 'Neues Terminal',
     terminalCloseOthers: 'Andere schließen',
     terminalCloseAll: 'Alle schließen',
@@ -2622,7 +2622,7 @@ export const de = defineLocale({
     pluginDisabled: pluginId => `Plugin „${pluginId}” deaktiviert`,
     pluginDisabledBody: 'Reaktiviere es in Einstellungen → Plugins, um den Bereich zurückzubringen.',
     missingPane: paneId => `fehlender Bereich: ${paneId}`,
-    editTitle: 'Layouts',
+    editTitle: 'Anordnungen',
     editHint: 'Wähle ein Layout oder ziehe Bereiche zwischen Zonen. Rechtsklick auf eine Zone zum Teilen.',
     reset: 'Zurücksetzen',
     templates: 'Vorlagen',
@@ -2651,8 +2651,16 @@ export const de = defineLocale({
       loadingSession: 'Lade Sitzung',
       showEarlier: 'Frühere Nachrichten anzeigen',
       loadingResponse: 'OpenAmer lädt eine Antwort',
-      resumeWhenBackgroundDone: count => count === 1
-          ? 'Wird fortgesetzt, wenn die Hintergrundaufgabe abgeschlossen ist'
+      resumeWhenBackgroundDone: count => count === 1
+
+
+
+
+          ? 'Wird fortgesetzt, wenn die Hintergrundaufgabe abgeschlossen ist'
+
+
+
+
           : `Wird fortgesetzt, wenn ${count} Hintergrundaufgaben abgeschlossen sind`,
       thinking: 'Denkt nach',
       today: time => `Heute, ${time}`,
@@ -2669,7 +2677,7 @@ export const de = defineLocale({
       editMessage: 'Nachricht bearbeiten',
       expandMessage: 'Nachricht erweitern',
       scrollToBottom: 'Nach unten scrollen',
-      stop: 'Anhalten',
+      stop: 'Stopp',
       restorePrevious: 'Vorherigen Prüfpunkt wiederherstellen',
       restoreCheckpoint: 'Prüfpunkt wiederherstellen',
       restoreFromHere: 'Prüfpunkt wiederherstellen — ab diesem Prompt erneut ausführen',
@@ -2746,7 +2754,7 @@ export const de = defineLocale({
         runningCode: 'Skript läuft',
       },
       prefixes: {
-        browser: 'Browser',
+        browser: 'Webbrowser',
         web: 'Web',
       },
       titleTemplates: {

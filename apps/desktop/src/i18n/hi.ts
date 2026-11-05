@@ -325,7 +325,7 @@ export const hi = defineLocale({
       about: 'परिचय',
       billing: 'बिलिंग',
       notifications: 'सूचनाएँ',
-      plugins: 'प्लगइन्स',
+      plugins: 'प्लगइन',
     },
     plugins: {
       title: 'डेस्कटॉप प्लगइन',
@@ -435,8 +435,8 @@ export const hi = defineLocale({
       embedsAsk: 'पूछें',
       embedsAlways: 'हमेशा',
       embedsOff: 'बंद',
-      embedsReset: (count: number) => `रीसेट ${count} अनुमत ${count === 1 ? 'सेवा' : 'सेवाएँ'}`,
-      product: 'प्रोडक्ट',
+      embedsReset: (count: number) => `रीसेट ${count} की अनुमति ${count === 1 ? 'सेवा' : 'सेवाएँ'}`,
+      product: 'उत्पाद',
       productDesc: 'संक्षिप्त सारांश के साथ मित्रवत टूल गतिविधि।',
       technical: 'टेक्निकल',
       technicalDesc: 'कच्चे आर्ग्युमेंट/परिणाम और निम्न-स्तरीय विवरण शामिल करता है।',
@@ -469,7 +469,7 @@ export const hi = defineLocale({
         noMatch: query => `कोई पालतू "${query}" से मेल नहीं खाता।`,
         installedTag: 'इंस्टॉल किया गया',
         generatedTag: 'जनरेट किया गया',
-        countCapped: (cap, total) => `Showing ${cap} of ${total} — type to narrow it down.`,
+        countCapped: (cap, total) => `${cap} (${total} में से) दिखा रहे हैं — सीमित करने के लिए टाइप करें।`,
         count: n => `${n} पालतू${n === 1 ? '' : 's'}।`,
         uninstall: name => `${name} अनइंस्टॉल करें`,
         delete: name => `${name} हटाएं`,
@@ -507,12 +507,12 @@ export const hi = defineLocale({
       cantUpdate: "यह बिल्ड ऐप के भीतर से स्वयं को अपडेट नहीं कर सकता।",
       cantReach: "अपडेट सर्वर तक नहीं पहुँच सके।",
       tapCheck: 'अपडेट खोजने के लिए "अभी जाँचें" दबाएँ।',
-      updateReady: count => `नया अपडेट तैयार है (${count} बदलाव${count === 1 ? '' : 's'} शामिल)।`,
+      updateReady: count => `एक नया अपडेट तैयार है (${count} बदलाव${count === 1 ? '' : 's'} शामिल)।`,
       lastChecked: age => `अंतिम जाँच ${age}`,
       justNowSuffix: ' · अभी',
       automaticUpdates: 'स्वचालित अपडेट',
       automaticUpdatesDesc: 'OpenAmer बैकग्राउंड में स्वतः अपडेट जाँचता है और तैयार होने पर आपको बताता है।',
-      branchCommit: (branch, commit) => `ब्रांच ${branch} · कमिट ${commit}`,
+      branchCommit: (branch, commit) => `शाखा ${branch} · कमिट ${commit}`,
       never: 'कभी नहीं',
       justNow: 'अभी',
       minAgo: count => `${count} मिनट पहले`,
@@ -671,7 +671,7 @@ export const hi = defineLocale({
       sshOpenAmerPathTitle: 'OpenAmer पथ (वैकल्पिक)',
       sshOpenAmerPathDesc: 'रिमोट openamer बाइनरी का पूरा पथ। खाली = स्वतः पहचानें।',
       sshOpenAmerPathPlaceholder: 'स्वतः पहचानें',
-      sshTestConnection: 'SSH परीक्षण',
+      sshTestConnection: 'SSH परीक्षण करें',
       sshConnect: 'कनेक्ट करें',
       sshButtonsHint: 'सेव अगली बार लॉन्च पर लागू होगा। कनेक्ट अभी दोबारा जोड़ता है।',
       sshReachable: (host, platform) => `पहुँच योग्य: ${host} (${platform}) — OpenAmer मिला`,
@@ -973,13 +973,13 @@ export const hi = defineLocale({
     appliesToNewSessions: name => `${name} नए सत्रों पर लागू होता है।`,
     failedToUpdate: name => `${name} अपडेट नहीं हो सका`,
     sortMostUsed: 'सर्वाधिक उपयोग',
-    sortAlpha: 'A–Z',
+    sortAlpha: 'अ–ज्ञ',
     sortMostUsedDesc: '↓ सर्वाधिक उपयोग',
     sortLeastUsedAsc: '↑ न्यूनतम उपयोग',
     enableAll: 'सभी सक्षम करें',
     disableAll: 'सभी अक्षम करें',
     disableUnused: 'अप्रयुक्त अक्षम करें',
-    bulkUpdated: count => `नए सत्रों के लिए ${count} ${count === 1 ? 'आइटम' : 'आइटम्स'} अपडेट किया गया।`,
+    bulkUpdated: count => `नए सत्रों के लिए ${count} ${count === 1 ? 'वस्तु' : 'वस्तुएँ'} अपडेट किया गया।`,
     bulkNoChange: 'बदलने के लिए कुछ नहीं।',
     usageCount: count => `${count}× उपयोग`,
     provenance: {
@@ -1067,7 +1067,7 @@ export const hi = defineLocale({
     importMap: 'मैप आयात करें',
     importBtn: 'लोड करें',
     importEmpty: 'लोड करने के लिए मैप कोड पेस्ट करें।',
-    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'नोड' : 'नोड्स'} के साथ मैप लोड किया।`,
+    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'नोड' : 'नोड'} वाला मैप लोड किया गया।`,
     importedBadge: 'आयातित मैप',
     resetToMine: 'मेरे मैप पर वापस जाएँ',
   },
@@ -1083,10 +1083,10 @@ export const hi = defineLocale({
     streaming: 'स्ट्रीमिंग',
     files: 'फ़ाइलें',
     moreFiles: count => `+${count} और फ़ाइलें`,
-    delegation: index => `डेलीगेशन ${index}`,
+    delegation: index => `प्रत्यायोजन ${index}`,
     workers: count => `${count} वर्कर्स`,
     workersActive: count => `${count} सक्रिय`,
-    agentsCount: count => `${count} ${count === 1 ? 'एजेंट' : 'एजेंट्स'}`,
+    agentsCount: count => `${count} ${count === 1 ? 'एजेंट' : 'एजेंट'}`,
     activeCount: count => `${count} सक्रिय`,
     failedCount: count => `${count} विफल`,
     toolsCount: count => `${count} टूल्स`,
@@ -1151,7 +1151,7 @@ export const hi = defineLocale({
       staleBackend: 'पेट जनरेट करने के लिए OpenAmer अपडेट करें।',
       backgroundHint: 'आप इसे बंद कर सकते हैं — पूरा होने पर OpenAmer आपको सूचित करेगा।',
       slowProviderHint: 'इसमें कई मिनट लग सकते हैं',
-      remix: 'रीमिक्स',
+      remix: 'पुनर्मिश्रण',
       remixConfirmTitle: 'इस लुक को रीमिक्स करें?',
       remixConfirmBody: 'यह इसी को शुरुआती बिंदु बनाकर नए ड्राफ़्ट का एक सेट बनाता है। इसमें कई मिनट लग सकते हैं।',
       genericError: 'जनरेशन विफल — फिर से कोशिश करें या सुझाव चुनें।',
@@ -1178,7 +1178,7 @@ export const hi = defineLocale({
     sections: {
       maintenance: 'रखरखाव',
       sessions: 'सत्र',
-      system: 'सिस्टम',
+      system: 'प्रणाली',
       usage: 'उपयोग',
     },
     sectionDescriptions: {
@@ -1246,7 +1246,7 @@ export const hi = defineLocale({
     loadingStatus: 'स्थिति लोड हो रही है...',
     recentLogs: 'हाल के लॉग',
     noLogs: 'अभी तक कोई लॉग लोड नहीं हुआ।',
-    days: count => `${count}d`,
+    days: count => `${count} दिन`,
     statSessions: 'सत्र',
     statApiCalls: 'API कॉल',
     statTokens: 'टोकन इन/आउट',
@@ -1631,7 +1631,7 @@ export const hi = defineLocale({
   cron: {
     close: 'क्रॉन बंद करें',
     title: 'निर्धारित कार्य',
-    count: count => `${count} ${count === 1 ? 'जॉब' : 'जॉब्स'}`,
+    count: count => `${count} ${count === 1 ? 'कार्य' : 'कार्य'}`,
     search: 'क्रॉन कार्य खोजें...',
     loading: 'क्रॉन कार्य लोड हो रहे हैं...',
     states: {
@@ -1770,15 +1770,15 @@ export const hi = defineLocale({
     tabAll: 'सभी',
     tabImages: 'छवियाँ',
     tabFiles: 'फ़ाइलें',
-    tabLinks: 'लिंक',
+    tabLinks: 'कड़ियाँ',
     noArtifactsTitle: 'कोई आर्टिफ़ैक्ट नहीं मिला',
     noArtifactsDesc: 'सत्र जैसे-जैसे उन्हें बनाएँगे, जनरेट की गई छवियाँ और फ़ाइल आउटपुट यहाँ दिखाई देंगे।',
     failedLoad: 'आर्टिफ़ैक्ट लोड नहीं हो सके',
     openFailed: 'खोलना विफल रहा',
     itemsImage: 'छवियाँ',
-    itemsLink: 'लिंक',
+    itemsLink: 'कड़ियाँ',
     itemsFile: 'फ़ाइलें',
-    itemsGeneric: 'आइटम',
+    itemsGeneric: 'मदें',
     zero: '0',
     rangeOf: (start, end, total) => `${start}-${end} में से ${total}`,
     goToPage: (itemLabel, page) => `${itemLabel} पृष्ठ ${page} पर जाएँ`,
@@ -1790,8 +1790,8 @@ export const hi = defineLocale({
     colLocationDefault: 'स्थान',
     colSession: 'सत्र',
     kindImage: 'छवि',
-    kindFile: 'फ़ाइल',
-    kindLink: 'लिंक',
+    kindFile: 'संचिका',
+    kindLink: 'कड़ी',
     chat: 'चैट',
     copyUrl: 'URL कॉपी करें',
     copyPath: 'पथ कॉपी करें',
@@ -1878,7 +1878,7 @@ export const hi = defineLocale({
       removeWorktreeConfirm: 'इसे git से हटाएँ (वर्कट्री डायरेक्टरी मिटती है; ब्रांच रहती है), या बस साइडबार से लेन छिपाएँ और वर्कट्री को डिस्क पर रहने दें।',
       removeWorktreeDirty: 'इस वर्कट्री में बिना कमिट किए बदलाव हैं। ज़बरदस्ती हटाएँ (वे बदलाव खो जाएँगे), या बस लेन छिपाएँ और इसे डिस्क पर रखें।',
       forceRemove: 'ज़बरदस्ती हटाएँ',
-      enter: label => `${label} खोलें`,
+      enter: label => `खोलें ${label}`,
       reorder: label => `${label} का क्रम बदलें`,
       toggle: label => `${label} सत्र टॉगल करें`,
       back: 'सभी प्रोजेक्ट',
@@ -1919,7 +1919,7 @@ export const hi = defineLocale({
       ageNow: 'अभी',
       ageDay: 'दि',
       ageHour: 'घं',
-      ageMin: 'मि',
+      ageMin: 'm',
     },
     dateDivider: {
       today: 'आज पहले',
@@ -2395,7 +2395,7 @@ export const hi = defineLocale({
       ariaLabel: mode => `स्वीकृति मोड: ${mode}`,
       manual: 'मैन्युअल',
       manualDescription: 'स्वीकृति आवश्यक कार्रवाइयों से पहले पूछें',
-      smart: 'स्मार्ट',
+      smart: 'चतुर',
       smartDescription: 'कार्रवाइयों का स्वतः मूल्यांकन करें और ज़रूरत पड़ने पर पूछें',
       off: 'बंद',
       offDescription: 'स्वीकृति संकेतों के बिना चलाएँ',
@@ -2405,10 +2405,10 @@ export const hi = defineLocale({
       restart: 'पुनः आरंभ',
       update: 'अपडेट',
       updateInProgress: 'अपडेट जारी है',
-      commitsBehind: (count, branch) => `${count} कमिट${count === 1 ? '' : 's'} ${branch} से पीछे`,
-      desktopVersion: version => `OpenAmer डेस्कटॉप संस्करण ${version}`,
+      commitsBehind: (count, branch) => `${count} कमिट${count === 1 ? '' : 's'} ${branch} पीछे`,
+      desktopVersion: version => `OpenAmer डेस्कटॉप v${version}`,
       backendVersion: version => `बैकएंड v${version}`,
-      clientLabel: version => `क्लाइंट संस्करण ${version}`,
+      clientLabel: version => `क्लाइंट v${version}`,
       connectionSsh: host => `SSH: ${host}`,
       connectionRemote: host => `रिमोट: ${host}`,
       connectionCloud: host => `क्लाउड: ${host}`,
@@ -2417,7 +2417,7 @@ export const hi = defineLocale({
       connectionRemoteTooltip: host => `रिमोट बैकएंड ${host} से कनेक्टेड · प्रबंधित करने के लिए क्लिक करें`,
       backendLabel: version => `बैकएंड v${version}`,
       commit: sha => `कमिट ${sha}`,
-      branch: branch => `ब्रांच ${branch}`,
+      branch: branch => `शाखा ${branch}`,
       closeCommandCenter: 'कमांड सेंटर बंद करें',
       openCommandCenter: 'कमांड सेंटर खोलें',
       showTerminal: 'टर्मिनल दिखाएँ',
@@ -2565,7 +2565,7 @@ export const hi = defineLocale({
       empty: 'अभी तक कोई कंसोल संदेश नहीं।',
       promptHeader: 'प्रीव्यू कंसोल:',
       sentTitle: 'चैट में भेजा गया',
-      sentMessage: count => `कंपोज़र में ${count} लॉग प्रविष्टि${count === 1 ? 'ी' : 'ियाँ'} जोड़ी गई`,
+      sentMessage: count => `${count} लॉग प्रविष्टि${count === 1 ? 'y' : 'ies'} कंपोज़र में जोड़ी गई`,
     },
     web: {
       appFailedToBoot: 'प्रिव्यू ऐप बूट नहीं हो सका',
@@ -2652,8 +2652,22 @@ export const hi = defineLocale({
       loadingSession: 'सत्र लोड हो रहा है',
       showEarlier: 'पिछले संदेश दिखाएँ',
       loadingResponse: 'OpenAmer प्रतिक्रिया लोड कर रहा है',
-      resumeWhenBackgroundDone: count => count === 1
-          ? 'Will resume when the background task finishes'
+      resumeWhenBackgroundDone: count => count === 1
+
+
+
+
+
+
+
+          ? 'Will resume when the background task finishes'
+
+
+
+
+
+
+
           : `Will resume when ${count} background tasks finish`,
       thinking: 'सोच रहा है',
       today: time => `आज, ${time}`,
