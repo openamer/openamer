@@ -552,7 +552,41 @@ The registry handles schema collection, dispatch, availability checking, and err
 
 **State files**: If a tool stores persistent state (caches, logs, checkpoints), use `get_openamer_home()` for the base directory — never `Path.home() / ".openamer"`. This ensures each profile gets its own state.
 
-**Agent-level tools** (todo, memory): intercepted by `run_agent.py` before `handle_function_call()`. See `tools/todo_tool.py` for the pattern.
+**Agent-level tools** (todo, memory, session_search, clarify, read_terminal,
+delegate_task, workflow): intercepted by `run_agent.py` before
+`handle_function_call()`. See `tools/todo_tool.py` for the pattern.
+
+> **The dispatch trap — read this before you write a tool that needs the
+> agent or the session.**
+>
+> A *registry* dispatch passes only `task_id`, `session_id` and `user_task`
+> to the handler. It does **not** pass `parent_agent`. An *agent-level*
+> dispatch (the ones listed above) is intercepted by the agent and can hand
+> the tool the agent itself.
+>
+> So:
+>
+> - A tool that needs the **session** should bind on `session_id` from the
+>   dispatch kwargs, with `parent_agent.session_id` only as a fallback.
+>   Binding on `parent_agent` alone fails at runtime with "requires a
+>   session-bound agent context".
+> - A tool that needs to **act as the agent** (start subagents, reach
+>   agent-owned state) must be an agent-level tool: add a branch in
+>   `agent/agent_runtime_helpers.py` (`invoke_tool`) *and* in the parallel
+>   executor in `agent/tool_executor.py`, and add the name to
+>   `AGENT_RUNTIME_POST_HOOK_TOOL_NAMES`.
+>
+> **Unit tests with a fake agent will not catch this.** A fake that carries
+> `session_id` reproduces the shape the real registry dispatch does *not*
+> produce. Run the tool through a real agent before you believe it works:
+>
+> ```
+> openamer chat -q "Nutze das <tool>-Tool mit action=read. ..." --max-turns 6
+> ```
+>
+> Two tools shipped green and failed in the first real agent run for
+> exactly this reason. `goal` and `workflow` both returned
+> "requires a ... agent context" while every unit test passed.
 
 ---
 

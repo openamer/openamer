@@ -93,18 +93,32 @@ GOAL_SCHEMA = {
 }
 
 
-def _manager_for(parent_agent):
-    """Return a GoalManager bound to the agent's session, or None."""
-    if parent_agent is None:
+def _manager_for(parent_agent, session_id: str = ""):
+    """Return a GoalManager bound to the agent's session, or None.
+
+    The session id is what identifies the goal state. It arrives two ways:
+
+    * ``session_id`` — the registry dispatch always passes it (every
+      registry tool reads it from ``kw``), so this is the reliable path.
+    * ``parent_agent.session_id`` — an agent-level dispatch passes the
+      agent itself.
+
+    A registry-dispatched tool gets ``session_id`` but NOT ``parent_agent``:
+    the dispatch kwargs are ``task_id``/``session_id``/``user_task``. So the
+    agent alone is not enough — binding only on it made the tool fail with
+    "goal requires a session-bound agent context" in the real agent while
+    the unit tests (which pass a fake agent) stayed green.
+    """
+    sid = str(session_id or "").strip()
+    if not sid and parent_agent is not None:
+        sid = str(getattr(parent_agent, "session_id", None) or "").strip()
+    if not sid:
         return None
+
     try:
         from openamer_cli.goals import GoalManager
     except Exception as exc:  # pragma: no cover - defensive
         logger.debug("goal manager unavailable: %s", exc)
-        return None
-
-    session_id = getattr(parent_agent, "session_id", None) or ""
-    if not session_id:
         return None
 
     # Reuse the agent's manager when it already has one (the CLI binds
@@ -113,7 +127,7 @@ def _manager_for(parent_agent):
     if existing is not None:
         return existing
     try:
-        return GoalManager(session_id)
+        return GoalManager(sid)
     except Exception as exc:  # pragma: no cover - defensive
         logger.debug("could not bind goal manager: %s", exc)
         return None
@@ -169,10 +183,11 @@ def goal_tool(
     status: Optional[str] = None,
     reason: Optional[str] = None,
     parent_agent=None,
+    session_id: str = "",
     **_kwargs,
 ) -> str:
     """Read or steer the session goal."""
-    manager = _manager_for(parent_agent)
+    manager = _manager_for(parent_agent, session_id=session_id)
     if manager is None:
         return tool_error(
             "goal requires a session-bound agent context."
@@ -269,6 +284,7 @@ registry.register(
         status=args.get("status"),
         reason=args.get("reason"),
         parent_agent=kw.get("parent_agent"),
+        session_id=str(kw.get("session_id") or ""),
     ),
     check_fn=check_goal_requirements,
     emoji="🎯",

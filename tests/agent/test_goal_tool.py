@@ -41,6 +41,36 @@ def _call(agent, **kwargs):
     return json.loads(out)
 
 
+def test_works_without_parent_agent_via_session_id(tmp_path, monkeypatch):
+    """The registry dispatch passes session_id but NOT parent_agent.
+
+    This is the shape the real agent uses: model_tools dispatches every
+    registry tool with ``task_id``/``session_id``/``user_task`` kwargs.
+    A tool that binds only on ``parent_agent`` fails in production while
+    fake-agent unit tests stay green — this test pins the real shape.
+    """
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "home"))
+
+    class _NoAgent:
+        pass
+
+    out = _call(_NoAgent(), action="read", session_id="registry-dispatch-session")
+    assert out.get("error") is None, out
+    assert out.get("goal") is None
+
+
+def test_missing_session_id_reports_a_clear_error(tmp_path, monkeypatch):
+    """No session identity at all -> a clear error, not a crash."""
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "home"))
+
+    class _NoAgent:
+        pass
+
+    out = _call(_NoAgent(), action="read")
+    assert out.get("error")
+    assert "session" in out["error"].lower()
+
+
 def test_read_without_goal(agent):
     payload = _call(agent, action="read")
     assert payload["goal"] is None
