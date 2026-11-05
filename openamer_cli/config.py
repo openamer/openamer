@@ -2546,7 +2546,9 @@ DEFAULT_CONFIG = {
         "presets": {
             "default": {
                 "reference_models": [
-                    {"provider": "openai-codex", "model": "gpt-5.5"},
+                    # gpt-5.5 was retired from the ChatGPT Codex backend
+                    # (HTTP 400 ``model_not_found``); gpt-6.1-sol is current.
+                    {"provider": "openai-codex", "model": "gpt-6.1-sol"},
                     {"provider": "openrouter", "model": "deepseek/deepseek-v4-pro"},
                 ],
                 "aggregator": {"provider": "openrouter", "model": "anthropic/claude-opus-4.8"},

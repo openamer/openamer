@@ -13,60 +13,47 @@ import os
 logger = logging.getLogger(__name__)
 
 DEFAULT_CODEX_MODELS: List[str] = [
-    # GPT-5.6 series (Sol/Terra/Luna + -pro high-effort modes) — GA 2026-07-09
-    # (previewed 2026-06-26).
+    # GPT-6.1 series (Sol/Terra) — verified live 2026-11-05 against
+    # chatgpt.com/backend-api/codex/responses. A slug the Codex backend does
+    # not know answers HTTP 400 "The '<model>' model is not supported when
+    # using Codex with a ChatGPT account." (error code ``model_not_found``),
+    # whereas a known slug answers HTTP 429 ``usage_limit_reached`` once the
+    # account quota is spent. Probing both ways distinguishes "unknown slug"
+    # from "quota exhausted" without spending quota.
+    "gpt-6.1-sol",
+    "gpt-6.1-terra",
+    # GPT-6 series (Sol/Astra/Luna) — same live verification.
+    "gpt-6-sol",
+    "gpt-6-astra",
+    "gpt-6-luna",
+    # GPT-5.6 series (Sol/Terra/Luna) — same live verification.
     "gpt-5.6-sol",
-    "gpt-5.6-sol-pro",
     "gpt-5.6-terra",
-    "gpt-5.6-terra-pro",
     "gpt-5.6-luna",
-    "gpt-5.6-luna-pro",
-    "gpt-5.5",
-    "gpt-5.4-mini",
-    "gpt-5.4",
-    "gpt-5.3-codex",
-    # gpt-5.3-codex-spark is in research preview and is exposed *only* via
-    # the Codex CLI / OAuth backend (chatgpt.com/backend-api/codex/models)
-    # for ChatGPT Pro subscribers. It is NOT available in the public OpenAI
-    # API, so it intentionally stays out of the "openai" provider catalog
-    # in openamer_cli/models.py — only the openai-codex (OAuth) provider
-    # surfaces it. The Codex backend reports ``supported_in_api: false`` for
-    # this slug; that flag describes API availability, not Codex backend
-    # availability, so the fetch/cache code paths below intentionally do
-    # not filter on it. PR #12994 removed this entry on the assumption it
-    # was unsupported — that was wrong; restored here. Keep it in the
-    # curated fallback so Pro users still see Spark in `/model` when live
-    # discovery is unavailable (offline first run, transient API failure).
-    "gpt-5.3-codex-spark",
-    # NOTE: gpt-5.2-codex / gpt-5.1-codex-max / gpt-5.1-codex-mini were
-    # previously listed here but the chatgpt.com Codex backend returns
-    # HTTP 400 "The '<model>' model is not supported when using Codex with
-    # a ChatGPT account." for all three on every ChatGPT Pro account we've
-    # tested (verified live 2026-05-27). Keeping them in the fallback list
-    # leaked dead slugs into /model when live discovery was unavailable
-    # (transient API failure, first-run before refresh) and surfaced HTTP 400
-    # crashes on selection. The Codex CLI public catalog still references
-    # these slugs, which is why they survived previously — but those entries
-    # describe the public OpenAI API, not the OAuth-backed Codex backend
-    # OpenAmer uses. Removed here. If OpenAI re-enables them on Codex backend,
-    # live discovery will pick them up automatically via _fetch_models_from_api.
+    # NOTE: the whole GPT-5.x Codex line (gpt-5.5, gpt-5.5-pro, gpt-5.4,
+    # gpt-5.4-mini, gpt-5.3-codex, gpt-5.3-codex-spark) now answers HTTP 400
+    # ``model_not_found`` on the ChatGPT Codex backend — verified live
+    # 2026-11-05 on a ChatGPT Plus account. It was previously kept here
+    # because "Pro users still see Spark"; the entitlement is not the gate
+    # any more, the backend retired the slugs for every account. Leaving
+    # them in the fallback only offered dead slugs in ``/model`` and made
+    # a selection fail with HTTP 400 instead of the clearer HTTP 429.
 ]
 
 _FORWARD_COMPAT_TEMPLATE_MODELS: List[tuple[str, tuple[str, ...]]] = [
-    ("gpt-5.6-sol", ("gpt-5.5", "gpt-5.4")),
-    ("gpt-5.6-sol-pro", ("gpt-5.5", "gpt-5.4")),
-    ("gpt-5.6-terra", ("gpt-5.5", "gpt-5.4")),
-    ("gpt-5.6-terra-pro", ("gpt-5.5", "gpt-5.4")),
-    ("gpt-5.6-luna", ("gpt-5.5", "gpt-5.4")),
-    ("gpt-5.6-luna-pro", ("gpt-5.5", "gpt-5.4")),
-    ("gpt-5.5", ("gpt-5.4", "gpt-5.4-mini", "gpt-5.3-codex")),
-    ("gpt-5.4-mini", ("gpt-5.3-codex",)),
-    ("gpt-5.4", ("gpt-5.3-codex",)),
-    # Surface Spark whenever any compatible Codex template is present so
-    # accounts hitting the live endpoint with an older lineup still see
-    # Spark in the picker. Backend gates real availability by ChatGPT Pro
-    # entitlement; OpenAmer does not.
-    ("gpt-5.3-codex-spark", ("gpt-5.3-codex",)),
+    # Synthetic future slugs are templated off *live* Codex models only. A
+    # template model the backend retired must not synthesize anything: the
+    # backend answers HTTP 400 ``model_not_found`` for an unknown slug, which
+    # is a harder failure than a quota error (HTTP 429) and would break the
+    # whole turn instead of falling through to a fallback provider.
+    ("gpt-6.1-sol", ("gpt-6.1-sol", "gpt-6-sol")),
+    ("gpt-6.1-terra", ("gpt-6.1-sol", "gpt-6-sol")),
+    ("gpt-6-sol", ("gpt-6.1-sol", "gpt-5.6-sol")),
+    ("gpt-6-astra", ("gpt-6.1-sol", "gpt-6-sol")),
+    ("gpt-6-luna", ("gpt-6.1-sol", "gpt-6-sol")),
+    ("gpt-5.6-sol", ("gpt-6.1-sol", "gpt-6-sol")),
+    ("gpt-5.6-terra", ("gpt-6.1-terra", "gpt-5.6-sol")),
+    ("gpt-5.6-luna", ("gpt-6-luna", "gpt-5.6-sol")),
 ]
 
 
@@ -128,7 +115,16 @@ def _fetch_models_from_api(access_token: str) -> List[str]:
     """Fetch available models from the Codex API. Returns visible models sorted by priority."""
     try:
         import httpx
-        headers = {"Authorization": f"Bearer {access_token}"}
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+            # Ask for an unencoded body. httpx's BrotliDecoder (brotlicffi) raises
+            # "decoder process called with data when 'can_accept_more_data()' is
+            # False" on this endpoint's brotli response, and the decode error
+            # aborts the whole request — silently degrading the picker to the
+            # curated fallback list. The catalog is tiny; identity encoding is
+            # cheaper than debugging a decompressor.
+            "Accept-Encoding": "identity",
+        }
         acct_id = _extract_chatgpt_account_id(access_token)
         if acct_id:
             headers["ChatGPT-Account-Id"] = acct_id

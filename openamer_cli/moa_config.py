@@ -12,7 +12,9 @@ MOA_MARKER_PREFIX = "__OPENAMER_MOA_TURN_V1__"
 DEFAULT_MOA_PRESET_NAME = "default"
 
 DEFAULT_MOA_REFERENCE_MODELS: list[dict[str, str]] = [
-    {"provider": "openai-codex", "model": "gpt-5.5"},
+    # gpt-5.5 was retired from the ChatGPT Codex backend (HTTP 400
+    # ``model_not_found``); gpt-6.1-sol is the current top Codex slug.
+    {"provider": "openai-codex", "model": "gpt-6.1-sol"},
     {"provider": "openrouter", "model": "deepseek/deepseek-v4-pro"},
 ]
 
