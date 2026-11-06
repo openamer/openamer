@@ -75,7 +75,7 @@ def _load(home: Path, *, sensors=None):
             name = drive["name"]
             if name in sensors:
                 value = sensors[name]
-                drive["sensor"] = (lambda v: (lambda: v))(value)
+                drive["sensor"] = _freeze(value)
     return mod
 
 
@@ -83,6 +83,13 @@ def levels_unknown(mod, names):
     """True when every named drive has an unknown (None) urgency."""
     levels = mod.feel()
     return all(levels[n]["urgency"] is None for n in names)
+
+
+def _freeze(value):
+    """A sensor that always reports ``value`` (closure, not a called lambda)."""
+    def sensor():
+        return value
+    return sensor
 
 
 def _flat_history(n: int, drive: str, intensity: float):
@@ -150,7 +157,7 @@ class TestUnknownMeasure:
         }
         home = _home(tmp_path, benchmarks=benchmarks)
         mod = _load(home)
-        sat, state, note = mod._read_sensor(mod.sense_mastery)
+        sat, state, _note = mod._read_sensor(mod.sense_mastery)
         assert state == mod.LIVE
         assert sat is not None and 0.0 <= sat <= 1.0
 

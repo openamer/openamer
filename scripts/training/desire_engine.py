@@ -55,8 +55,9 @@ import json
 import os
 import sys
 import urllib.request
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from typing import Any
 
 
 def _default_home() -> Path:
@@ -114,8 +115,8 @@ def _count_lines(path) -> int:
         return 0
 
 
-def _read_jsonl(path) -> List[Dict[str, Any]]:
-    out: List[Dict[str, Any]] = []
+def _read_jsonl(path) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
     try:
         with open(path, encoding="utf-8", errors="replace") as fh:
             for line in fh:
@@ -135,7 +136,7 @@ def _read_jsonl(path) -> List[Dict[str, Any]]:
 # Measurement contract
 # ---------------------------------------------------------------------------
 
-def _read_sensor(sensor: Callable[[], Any]) -> Tuple[Optional[float], str, str]:
+def _read_sensor(sensor: Callable[[], Any]) -> tuple[float | None, str, str]:
     """Normalise a sensor into ``(satisfaction, measure_state, note)``.
 
     Returns ``satisfaction=None`` when the drive cannot be measured. That is a
@@ -227,7 +228,6 @@ def sense_mastery():
     runs = data.get("runs", []) if isinstance(data, dict) else []
     accs = [e.get("overall_accuracy") for e in hist
             if isinstance(e, dict) and e.get("overall_accuracy") is not None]
-    n_runs = len(runs) if runs else len(accs)
 
     items = 0
     if runs and isinstance(runs[-1], dict):
@@ -272,7 +272,8 @@ def sense_integrity():
     ok = 0
     for p in tools:
         try:
-            r = subprocess.run([sys.executable, str(p)], capture_output=True, timeout=60)
+            r = subprocess.run([sys.executable, str(p)], capture_output=True,
+                           timeout=60, check=False)
             if r.returncode == 0:
                 ok += 1
         except Exception:
@@ -294,7 +295,7 @@ def sense_coherence():
     if not isinstance(state, dict) or not state:
         return {"satisfaction": None, "measure": ABSENT,
                 "note": "no current_state.json to audit"}
-    checks: List[Tuple[str, bool]] = []
+    checks: list[tuple[str, bool]] = []
 
     reported_eps = state.get("memory_episodes", state.get("episodes"))
     if isinstance(reported_eps, int):
@@ -468,7 +469,7 @@ DRIVES = [
     },
 ]
 
-def _drive(name: str) -> Dict[str, Any]:
+def _drive(name: str) -> dict[str, Any]:
     """Look the drive up NOW, not at import time.
 
     Tests (and future extensions) inject drives into DRIVES; a module-level dict
@@ -485,7 +486,7 @@ def _drive(name: str) -> Dict[str, Any]:
 # Goal journal — the evidence a treadmill needs
 # ---------------------------------------------------------------------------
 
-def goal_history(desc: str) -> List[Dict[str, Any]]:
+def goal_history(desc: str) -> list[dict[str, Any]]:
     """Every SI goal ever created for exactly this goal text."""
     goals = _read_json(SI / "goals.json", [])
     if not isinstance(goals, list):
@@ -493,9 +494,9 @@ def goal_history(desc: str) -> List[Dict[str, Any]]:
     return [g for g in goals if isinstance(g, dict) and g.get("desc") == desc]
 
 
-def _intensities_for(drive_name: str) -> List[float]:
+def _intensities_for(drive_name: str) -> list[float]:
     """Urgencies this drive was recorded with while it was the dominant one."""
-    out: List[float] = []
+    out: list[float] = []
     for row in _read_jsonl(HISTORY):
         if row.get("dominant") != drive_name:
             continue
@@ -505,7 +506,7 @@ def _intensities_for(drive_name: str) -> List[float]:
     return out
 
 
-def treadmill(drive: Dict[str, Any]) -> Dict[str, Any]:
+def treadmill(drive: dict[str, Any]) -> dict[str, Any]:
     """Has this drive's rung-1 goal been completed without moving its sensor?
 
     Evidence, not opinion: the number of identical SI goals created, and the set
@@ -537,14 +538,14 @@ def treadmill(drive: Dict[str, Any]) -> Dict[str, Any]:
 # Feeling
 # ---------------------------------------------------------------------------
 
-def feel() -> Dict[str, Dict[str, Any]]:
+def feel() -> dict[str, dict[str, Any]]:
     """Measure every drive; return the current desire-state.
 
     ``satisfaction``/``urgency`` are ``None`` when the drive cannot be measured.
     An unknown drive is neither satisfied nor maximally hungry: it is a repair
     signal for its instrument.
     """
-    levels: Dict[str, Dict[str, Any]] = {}
+    levels: dict[str, dict[str, Any]] = {}
     for d in DRIVES:
         sat, state, note = _read_sensor(d["sensor"])
         urgency = None if sat is None else round(d["weight"] * (1.0 - sat), 3)
@@ -559,7 +560,7 @@ def feel() -> Dict[str, Dict[str, Any]]:
     return levels
 
 
-def _ranked(levels: Dict[str, Dict[str, Any]]) -> List[Tuple[str, Dict[str, Any]]]:
+def _ranked(levels: dict[str, dict[str, Any]]) -> list[tuple[str, dict[str, Any]]]:
     """Urgency order; unknowns last (they cannot be felt, only repaired)."""
     return sorted(
         levels.items(),
@@ -571,7 +572,7 @@ def _ranked(levels: Dict[str, Dict[str, Any]]) -> List[Tuple[str, Dict[str, Any]
 # Conscience
 # ---------------------------------------------------------------------------
 
-def _judge(proposal: str) -> Dict[str, Any]:
+def _judge(proposal: str) -> dict[str, Any]:
     """Consult the conscience before acting on a want."""
     try:
         import importlib.util
@@ -592,7 +593,7 @@ def _active_goal_descs():
             if isinstance(x, dict) and x.get("status") == "active"}
 
 
-def _emit_goal(text: str, verify: str) -> Optional[str]:
+def _emit_goal(text: str, verify: str) -> str | None:
     """Turn a want into a real SI goal (deduped against active goals)."""
     if not text or text in _active_goal_descs():
         return None
@@ -648,7 +649,7 @@ def decide(levels=None, emit=True, history=None):
     options = []
     instrument = None
     gated = None
-    eligible: List[str] = []
+    eligible: list[str] = []
     # A repair already queued must not block the other drives: without this the
     # engine would idle for as long as the repair goal stays active.
     active = _active_goal_descs()
@@ -682,7 +683,7 @@ def decide(levels=None, emit=True, history=None):
             entry["why_not"] = "satisfied"
         options.append(entry)
 
-    decision: Dict[str, Any] = {
+    decision: dict[str, Any] = {
         "chosen": None,
         "kind": "none",
         "reason": "every drive is satisfied — staying quiet",
@@ -743,12 +744,12 @@ def decide(levels=None, emit=True, history=None):
 # The cycle
 # ---------------------------------------------------------------------------
 
-def _append(path: Path, row: Dict[str, Any]) -> None:
+def _append(path: Path, row: dict[str, Any]) -> None:
     with open(path, "a", encoding="utf-8") as f:
         f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
-def cycle(emit=True) -> Dict[str, Any]:
+def cycle(emit=True) -> dict[str, Any]:
     ts = datetime.datetime.now().isoformat()
     levels = feel()
     felt_name, _, _ = act(levels, emit=False)     # what I feel (never emits)
