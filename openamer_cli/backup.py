@@ -66,6 +66,14 @@ _EXCLUDED_DIRS = {
     ".pytest_cache",
     ".mypy_cache",
     ".ruff_cache",
+    # Live Chromium profiles (agent browser under CDP :9222/:9223). A running
+    # browser holds locks on dozens of tiny .db files; each lock burns the whole
+    # per-file safe-copy deadline and the resulting failure discarded the entire
+    # archive. Browser state is regenerable (re-login), everything else is not.
+    "chrome-agent-profile",
+    "chrome-profile",
+    "chrome-user-data",
+    "chrome-headless-profile",
 }
 
 # File-name suffixes to skip
@@ -87,6 +95,27 @@ _EXCLUDED_NAMES = {
     "gateway.pid",
     "cron.pid",
 }
+
+# Paths (relative to OPENAMER_HOME) that must never enter a backup zip, matched
+# as a directory prefix. A pre-update backup has to FINISH before the update can
+# start: on 2026-10-25 the walk picked up 48 GB — 22.8 GB of LoRA/training
+# artifacts under ``scripts/training``, 9.5 GB of earlier ``state-snapshots`` and
+# three 1.7 GB emergency copies of ``state.db`` — so ``openamer update`` sat at
+# "Creating pre-update backup..." for tens of minutes per attempt, was killed,
+# and left a stale update marker plus a dead dashboard behind.
+_EXCLUDED_REL_PREFIXES = (
+    "scripts/training",   # LoRA adapters, merged models, tokenizer/datasets
+    "state-snapshots",    # earlier restore points (backups of backups)
+    "snapshots",
+    "repo-copy-test2",
+    "repo-tmp",
+)
+
+# Basename prefixes for derived duplicates of runtime state.
+_EXCLUDED_NAME_PREFIXES = (
+    "state.db.pre-update-emergency",  # updater's emergency copy, 1.7 GB each
+    "state.db.bak",
+)
 
 # File names that ``openamer import`` must never overwrite, matched by basename so
 # they're caught for the root profile (``gateway_state.json``) and for named
@@ -211,6 +240,11 @@ def _iter_external_files(base: Path) -> List[Path]:
 def _should_exclude(rel_path: Path) -> bool:
     """Return True if *rel_path* (relative to openamer root) should be skipped."""
     parts = rel_path.parts
+    as_posix = rel_path.as_posix()
+
+    for prefix in _EXCLUDED_REL_PREFIXES:
+        if as_posix == prefix or as_posix.startswith(prefix + "/"):
+            return True
 
     for part in parts:
         if part not in _EXCLUDED_DIRS:
@@ -225,6 +259,9 @@ def _should_exclude(rel_path: Path) -> bool:
     name = rel_path.name
 
     if name in _EXCLUDED_NAMES:
+        return True
+
+    if name.startswith(_EXCLUDED_NAME_PREFIXES):
         return True
 
     if name.endswith(_EXCLUDED_SUFFIXES):
@@ -260,10 +297,35 @@ def _should_skip_backup_file(abs_path: Path, rel_path: Path, out_path: Path) -> 
 # parameter at all. Measured 2026-10-13 on a live install: ``openamer update
 # --force`` printed "◆ Creating pre-update backup..." and then made no progress
 # for 25 minutes (0 I/O over a 30 s window) on a 1.9 GB state.db that 60+ cron
-# agents write to continuously, until the process had to be killed. A bounded
-# failure is correct here — every caller already treats a failed copy as "skip
-# this file and continue the update".
-_SAFE_COPY_DEADLINE_S = 180.0
+# agents write to continuously, until the process had to be killed.
+#
+# 30s, not the original 180s: a *locked* 70 KB file (Chrome's
+# first_party_sets.db) consumed the full 180s and the failure then threw the
+# whole archive away — a pre-update backup that blocks an update for minutes is
+# worse than one that skips a file. Any copy that cannot finish 30s is a hang,
+# not a slow copy, on this class of hardware.
+_SAFE_COPY_DEADLINE_S = 30.0
+
+# Databases whose contents cannot be reconstructed: if the SQLite safe copy
+# fails for one of these the archive is discarded rather than shipped with a
+# stale/truncated copy. Everything else (caches, indexes, per-feature DBs) is
+# dropped file-by-file so one lock cannot void the whole backup.
+_CRITICAL_BACKUP_DBS = frozenset({"state.db"})
+
+# Bounds for the pre-update FULL zip (``create_pre_update_backup``).
+#
+# The zip runs before the update starts, so every second it costs is a second the
+# user waits at "Creating pre-update backup..." with no way to cancel. Measured
+# 2026-10-25 on a real install: an unbounded archive over an 48 GB home had not
+# finished after 35 minutes and two update attempts were killed in that stage.
+# 180 s wall clock + a 64 MB per-file cap keeps the backup a coffee break even
+# when the home grows another 10x; the irreplaceable runtime state is protected
+# separately by the quick ``state-snapshots/<id>`` snapshot that runs first.
+_PRE_UPDATE_BUDGET_S = 180.0
+_PRE_UPDATE_MAX_FILE_BYTES = 64 * 1024 * 1024
+# Compression level 1 instead of 6: these trees are DB pages, logs and JSON, so
+# level 6 buys a few percent for 3-5x the CPU. The budget is wall clock.
+_ZIP_COMPRESSLEVEL = 1
 
 
 class _SafeCopyDeadlineExceeded(Exception):
@@ -1526,14 +1588,31 @@ def run_quick_backup(args) -> None:
 # Shared full-zip backup helper
 # ---------------------------------------------------------------------------
 
-def _write_full_zip_backup(out_path: Path, openamer_root: Path) -> Optional[Path]:
+def _write_full_zip_backup(
+    out_path: Path,
+    openamer_root: Path,
+    *,
+    budget_s: Optional[float] = None,
+    max_file_bytes: Optional[int] = None,
+) -> Optional[Path]:
     """Write a full zip snapshot of ``openamer_root`` to ``out_path``.
 
     Uses the same exclusion rules and SQLite safe-copy as :func:`run_backup`.
     Returns the output path on success, None on failure (nothing to back up,
-    or write error — caller should surface the outcome but not raise).
+    write error, or *budget_s* exhausted — caller should surface the outcome but
+    not raise).
+
+    ``budget_s`` is a hard wall-clock ceiling for the whole archive. A pre-update
+    backup runs *in front of* the update, so an unbounded one is an update that
+    never happens: on a 48 GB home it never finished and the update was killed
+    mid-backup every time. When the ceiling is hit the partial archive is
+    discarded (a half-populated zip silently restores an inconsistent install —
+    worse than "no full backup, quick state snapshot only") and the caller
+    continues.
     """
+    started = time.monotonic()
     files_to_add: list[tuple[Path, Path]] = []
+    skipped_big = 0
     try:
         for dirpath, dirnames, filenames in os.walk(openamer_root, followlinks=False):
             dp = Path(dirpath)
@@ -1550,18 +1629,48 @@ def _write_full_zip_backup(out_path: Path, openamer_root: Path) -> Optional[Path
                 if _should_skip_backup_file(fpath, rel, out_path):
                     continue
 
+                if max_file_bytes is not None:
+                    try:
+                        if fpath.stat().st_size > max_file_bytes:
+                            skipped_big += 1
+                            logger.info(
+                                "Full-zip backup: skipping %s (%s > %s cap)",
+                                rel,
+                                _format_size(fpath.stat().st_size),
+                                _format_size(max_file_bytes),
+                            )
+                            continue
+                    except OSError:
+                        continue
+
                 files_to_add.append((fpath, rel))
     except OSError as exc:
         logger.warning("Full-zip backup: walk failed: %s", exc)
         return None
 
+    if skipped_big:
+        logger.warning(
+            "Full-zip backup: %d file(s) skipped for exceeding the %s per-file cap",
+            skipped_big,
+            _format_size(max_file_bytes) if max_file_bytes else "unknown",
+        )
+
     if not files_to_add:
         return None
 
+    def _budget_exhausted() -> bool:
+        return budget_s is not None and (time.monotonic() - started) >= budget_s
+
     sqlite_snapshot_failed = False
+    over_budget = False
     try:
-        with zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as zf:
+        with zipfile.ZipFile(
+            out_path, "w", zipfile.ZIP_DEFLATED, compresslevel=_ZIP_COMPRESSLEVEL
+        ) as zf:
             for abs_path, rel_path in files_to_add:
+                if _budget_exhausted():
+                    over_budget = True
+                    break
                 try:
                     if abs_path.suffix == ".db":
                         # Stage the snapshot alongside the output zip so that the
@@ -1574,12 +1683,21 @@ def _write_full_zip_backup(out_path: Path, openamer_root: Path) -> Optional[Path
                             tmp_db = Path(tmp.name)
                         try:
                             if not _safe_copy_db(abs_path, tmp_db):
+                                if abs_path.name in _CRITICAL_BACKUP_DBS:
+                                    # Irreplaceable state must never ship as a
+                                    # silently-stale copy (WAL data missing).
+                                    logger.warning(
+                                        "Full-zip backup aborted: SQLite snapshot failed for %s",
+                                        rel_path,
+                                    )
+                                    sqlite_snapshot_failed = True
+                                    break
+                                # Auxiliary DB (cache/index/lock-held file): drop
+                                # this one file, keep the rest of the archive.
                                 logger.warning(
-                                    "Full-zip backup aborted: SQLite snapshot failed for %s",
-                                    rel_path,
+                                    "Full-zip backup: skipping locked DB %s", rel_path
                                 )
-                                sqlite_snapshot_failed = True
-                                break
+                                continue
                             zf.write(tmp_db, arcname=str(rel_path))
                         finally:
                             tmp_db.unlink(missing_ok=True)
@@ -1598,6 +1716,18 @@ def _write_full_zip_backup(out_path: Path, openamer_root: Path) -> Optional[Path
         return None
 
     if sqlite_snapshot_failed:
+        try:
+            out_path.unlink(missing_ok=True)
+        except OSError:
+            pass
+        return None
+
+    if over_budget:
+        logger.warning(
+            "Full-zip backup: %ss budget exhausted — discarding the partial "
+            "archive; the update continues (quick state snapshot is unaffected)",
+            int(budget_s) if budget_s else 0,
+        )
         try:
             out_path.unlink(missing_ok=True)
         except OSError:
@@ -1661,12 +1791,18 @@ def _prune_pre_update_backups(backup_dir: Path, keep: int) -> int:
 def create_pre_update_backup(
     openamer_home: Optional[Path] = None,
     keep: int = _PRE_UPDATE_DEFAULT_KEEP,
+    budget_s: Optional[float] = None,
+    max_file_bytes: Optional[int] = None,
 ) -> Optional[Path]:
     """Create a full zip backup of OPENAMER_HOME under ``backups/``.
 
     Mirrors :func:`run_backup` (same exclusion rules, same SQLite safe-copy)
     but writes to ``<OPENAMER_HOME>/backups/pre-update-<timestamp>.zip`` and
     auto-prunes old pre-update backups.
+
+    Bounded by ``budget_s`` (default :data:`_PRE_UPDATE_BUDGET_S`) and
+    ``max_file_bytes`` (default :data:`_PRE_UPDATE_MAX_FILE_BYTES`): the archive
+    must never be able to hold an update hostage.
 
     Returns the path to the created zip, or ``None`` if no files were
     found or the backup could not be created.  Never raises — the caller
@@ -1675,6 +1811,11 @@ def create_pre_update_backup(
     openamer_root = openamer_home or get_default_openamer_root()
     if not openamer_root.is_dir():
         return None
+
+    if budget_s is None:
+        budget_s = _PRE_UPDATE_BUDGET_S
+    if max_file_bytes is None:
+        max_file_bytes = _PRE_UPDATE_MAX_FILE_BYTES
 
     backup_dir = _pre_update_backup_dir(openamer_root)
     try:
@@ -1686,7 +1827,12 @@ def create_pre_update_backup(
     stamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
     out_path = backup_dir / f"{_PRE_UPDATE_PREFIX}{stamp}.zip"
 
-    result = _write_full_zip_backup(out_path, openamer_root)
+    result = _write_full_zip_backup(
+        out_path,
+        openamer_root,
+        budget_s=budget_s,
+        max_file_bytes=max_file_bytes,
+    )
     if result is None:
         return None
 
@@ -1763,7 +1909,12 @@ def create_pre_migration_backup(
     stamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
     out_path = backup_dir / f"{_PRE_MIGRATION_PREFIX}{stamp}.zip"
 
-    result = _write_full_zip_backup(out_path, openamer_root)
+    result = _write_full_zip_backup(
+        out_path,
+        openamer_root,
+        budget_s=_PRE_UPDATE_BUDGET_S,
+        max_file_bytes=_PRE_UPDATE_MAX_FILE_BYTES,
+    )
     if result is None:
         return None
 
