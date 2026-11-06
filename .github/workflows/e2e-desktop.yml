@@ -67,6 +67,15 @@ jobs:
       # The Playwright step below runs `npm run build` before testing so
       # dist/ is always fresh — no separate build step needed here.
 
+      # ── Install the browser the real-browser specs launch ──────────────
+      # Most specs drive the Electron binary, but `preview-act-fixture.spec.ts`
+      # drives real Chromium (that is the point: the shipped engine source run
+      # in a real browser, not jsdom). `npm ci` does not download browsers, so
+      # install the one those specs use.
+      - name: Install Playwright Chromium
+        working-directory: apps/desktop
+        run: npx playwright install --with-deps chromium
+
       # ── Restore visual baseline screenshots from main ──────────────────
       # Baselines are generated on main (via --update-snapshots) and cached.
       # On PRs, we restore them so toHaveScreenshot has something to compare

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Preview Act Fixture</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #12101a;
+    color: #e8e6f0;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+  }
+  .card {
+    max-width: 560px;
+    padding: 2rem 2.25rem;
+    border: 1px solid rgba(160,150,220,0.25);
+    border-radius: 14px;
+    background: rgba(24,22,34,0.85);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  }
+  h1 { margin: 0 0 0.75rem; font-size: 1.4rem; }
+  p { margin: 0.4rem 0; opacity: 0.85; line-height: 1.5; }
+  label { display: block; margin: 1rem 0 0.25rem; font-size: 0.85rem; opacity: 0.8; }
+  input {
+    width: 100%; padding: 0.55rem 0.7rem; font: inherit;
+    color: inherit; background: #1d1a29;
+    border: 1px solid rgba(160,150,220,0.35); border-radius: 8px;
+  }
+  button {
+    margin-top: 1.25rem; padding: 0.55rem 1.1rem; font: inherit; cursor: pointer;
+    color: #12101a; background: #b9a7ff; border: 0; border-radius: 8px;
+  }
+  a { color: #b9a7ff; }
+  #status { margin-top: 1rem; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1>Preview Act Fixture</h1>
+    <p>A locally served page for the preview-act engine.</p>
+
+    <label for="email">Email</label>
+    <input id="email" name="email" placeholder="you@example.com" />
+
+    <button id="toggle" type="button">Toggle status</button>
+
+    <p id="status">status: idle</p>
+    <p><a href="#docs">Read the docs</a></p>
+  </main>
+
+  <script>
+    // Clicking the button changes the visible status text, so a real browser
+    // run can prove that the engine's click actually reached the page.
+    let clicks = 0
+    document.getElementById('toggle').addEventListener('click', () => {
+      clicks += 1
+      document.getElementById('status').textContent = 'status: clicked ' + clicks + ' time(s)'
+    })
+  </script>
+</body>
+</html>
