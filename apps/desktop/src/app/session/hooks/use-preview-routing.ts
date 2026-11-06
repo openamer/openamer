@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/react'
 import { type MutableRefObject, useCallback, useEffect } from 'react'
 
+import { answerPreviewAct } from '@/app/chat/right-rail/preview-act-bridge'
 import { gatewayEventCompletedFileDiff } from '@/lib/gateway-events'
 import { normalizeOrLocalPreviewTarget } from '@/lib/local-preview'
 import {
@@ -127,6 +128,21 @@ export function usePreviewRouting({
         return
       }
 
+      if (event.type === 'preview.act.request') {
+        // drive_preview: the gateway's tool call is BLOCKED on this answer, so
+        // every path out of here must respond — including a refusal. The bridge
+        // decides ownership (this session, this pane) and answers 'denied'
+        // rather than acting when the request belongs to another conversation.
+        void answerPreviewAct({
+          activeSessionId: activeSessionIdRef.current,
+          eventSessionId: event.session_id ?? null,
+          payload: asRecord(event.payload),
+          respond: body => void requestGateway('preview.act.respond', body)
+        })
+
+        return
+      }
+
       if (event.type === 'preview.restart.complete') {
         const { task_id, text } = asRecord(event.payload)
 
@@ -152,7 +168,7 @@ export function usePreviewRouting({
         requestPreviewReload()
       }
     },
-    [activeSessionIdRef, baseHandleGatewayEvent, currentCwd]
+    [activeSessionIdRef, baseHandleGatewayEvent, currentCwd, requestGateway]
   )
 
   return { handleDesktopGatewayEvent, restartPreviewServer }
