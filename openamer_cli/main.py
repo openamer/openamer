@@ -459,6 +459,7 @@ from openamer_cli.subcommands.version import build_version_parser
 from openamer_cli.subcommands.update import build_update_parser
 from openamer_cli.subcommands.feedback import build_feedback_parser
 from openamer_cli.subcommands.a2a import build_a2a_parser
+from openamer_cli.subcommands.directive import build_directive_parser
 from openamer_cli.subcommands.re import build_re_parser
 from openamer_cli.subcommands.agent import build_agent_parser
 from openamer_cli.subcommands.marketplace import build_marketplace_parser
@@ -15983,6 +15984,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         # set from the real parser and fails when one is missing, because an
         # undeclared subcommand forces a needless plugin-discovery pass.
         "agent", "cost", "crew", "cross-session", "initiative", "lint-fix",
+        "directive",
         "marketplace", "observe", "plugin", "re", "repomap", "review-pr", "sandbox",
         "super", "swarm", "tracing", "tree", "voice", "web-agent", "workflow",
         # ``brain`` is a built-in subcommand tree (openamer_cli/brain_cli.py),
@@ -19100,6 +19102,7 @@ def main():
     build_version_parser(subparsers, cmd_version=cmd_version)
 
     build_a2a_parser(subparsers)
+    build_directive_parser(subparsers)
     build_re_parser(subparsers)
     build_agent_parser(subparsers)
     build_marketplace_parser(subparsers)
