@@ -23,6 +23,15 @@ def build_doctor_parser(subparsers, *, cmd_doctor: Callable) -> None:
         "--fix", action="store_true", help="Attempt to fix issues automatically"
     )
     doctor_parser.add_argument(
+        "--runtime",
+        action="store_true",
+        help=(
+            "Diagnose the runtime's core dependency imports — interpreter, profile "
+            "and uv.lock provenance — and with --fix force-reinstall what is broken. "
+            "Works even when a broken venv makes the rest of the CLI unimportable."
+        ),
+    )
+    doctor_parser.add_argument(
         "--ack",
         metavar="ADVISORY_ID",
         default=None,

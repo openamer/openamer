@@ -678,6 +678,16 @@ def run_doctor(args):
     should_fix = getattr(args, 'fix', False)
     ack_target = getattr(args, 'ack', None)
 
+    # `--runtime` is the dependency-light half of this command: it reports the
+    # interpreter, profile and dependency-spec provenance plus real import
+    # probes, and repairs on --fix.  It is the same implementation `openamer
+    # doctor --runtime` runs from main.py's pre-import hook, so the output is
+    # identical whether or not the rest of the CLI could be imported.
+    if getattr(args, "runtime", False):
+        from openamer_cli import _early_recovery as _early_recovery_mod
+
+        sys.exit(_early_recovery_mod.repair_runtime(should_fix=should_fix))
+
     # Doctor runs from the interactive CLI, so CLI-gated tool availability
     # checks (like cronjob management) should see the same context as `openamer`.
     os.environ.setdefault("OPENAMER_INTERACTIVE", "1")

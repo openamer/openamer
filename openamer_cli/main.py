@@ -726,6 +726,21 @@ def _apply_profile_override() -> None:
 
 _apply_profile_override()
 
+# ``openamer doctor --runtime`` must stay reachable in exactly the state it
+# diagnoses: a venv where a core package's import files were wiped (#57828),
+# where the ``from openamer_cli.config import ...`` two lines below raises
+# ImportError.  This runs after profile resolution (so OPENAMER_HOME is right)
+# and before every third-party import, and exits only when the invocation IS
+# that explicit command — every other argv falls through untouched.  A failure
+# here is reported, never swallowed: the user asked for this diagnosis.
+try:
+    _early_runtime_rc = _early_recovery_mod.maybe_run_early_command()
+except Exception as _early_runtime_exc:  # pragma: no cover - defensive
+    print(f"openamer runtime: early dispatch failed: {_early_runtime_exc}", file=sys.stderr)
+    _early_runtime_rc = None
+if _early_runtime_rc is not None:
+    raise SystemExit(_early_runtime_rc)
+
 # Load .env from ~/.openamer/.env first, then project root as dev fallback.
 # User-managed env files should override stale shell exports on restart.
 from openamer_cli.config import get_openamer_home
