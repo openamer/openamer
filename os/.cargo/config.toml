@@ -1,0 +1,50 @@
+# The OpenAmer OS build configuration.
+#
+# The kernel is a freestanding binary that the bootloader loads at a
+# fixed physical address, so it must not be position independent. The
+# target's default is a PIE executable, which lets a loader choose the
+# address -- and there is no loader.
+#
+# The flags live here rather than in the crate's Cargo.toml because a
+# workspace member's `target.<triple>.rustflags` are not applied: the
+# build configuration belongs to the build, not to one crate.
+
+[target.x86_64-unknown-none]
+rustflags = [
+    # No dynamic relocations: the kernel runs at a fixed address.
+    "-C", "relocation-model=static",
+    # A plain executable, not a position independent one.
+    "-C", "link-arg=--no-pie",
+    "-C", "link-arg=-no-pie",
+    # The kernel's load address. The bootloader loads the ELF here.
+    "-C", "link-arg=--image-base=0x10000",
+    # The entry point is the 32-bit stub: it switches the processor
+    # into long mode and then jumps into the 64-bit kernel. The
+    # linker would otherwise pick the first Rust function it finds.
+    "-C", "link-arg=-e",
+    "-C", "link-arg=_start",
+    # The link script puts the whole kernel into one segment: the
+    # boot code reads it from the disk in one go, so there can be no
+    # gaps between the sections.
+    "-C", "link-arg=-TC:/Users/damir/AppData/Local/openamer-laptop/openamer-agent/os/kernel/link.ld",
+]
+
+# The 32-bit boot stub is linked with lld, because there is no C
+# compiler on this machine for the i686 target. lld comes with the
+# Rust toolchain.
+[target.i686-unknown-linux-gnu]
+linker = "rust-lld"
+rustflags = [
+    "-C", "link-arg=-nostdlib",
+    "-C", "link-arg=-static",
+    "-C", "link-arg=--no-pie",
+    "-C", "link-arg=--image-base=0x10000",
+    # The entry point is the 32-bit stub: it switches the processor
+    # into long mode and then jumps into the 64-bit kernel.
+    "-C", "link-arg=-e",
+    "-C", "link-arg=_start",
+    # The link script puts the whole kernel into one segment: the
+    # boot code reads it from the disk in one go, so there can be no
+    # gaps between the sections.
+    "-C", "link-arg=-TC:/Users/damir/AppData/Local/openamer-laptop/openamer-agent/os/kernel/link.ld",
+]
