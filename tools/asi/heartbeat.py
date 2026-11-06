@@ -343,6 +343,9 @@ class Subsystem:
             # model in ONE run, instead of ticking predict_validate.py and
             # self_model.py separately in the "learning" subsystem.
             "cognition_cycle.py":          "tools.asi.cognition.cycle",
+            # The goal executor. Its cron was retired, so without this the
+            # thing that runs my goals has no supervisor at all.
+            "si_core_watchdog.py":         "tools.asi.si_core.health",
         }
 
         native_path = native_map.get(script_name)
@@ -640,6 +643,21 @@ class Heartbeat:
             scripts=["cognition_cycle.py", "training/predict_validate.py"],
             cron_ids=[],
             timeout=300,
+            native=True,
+        )
+
+        # â”€â”€ 14. SI Core â€” der Executor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        # The desire engine emits goals; this core is what executes them. It had
+        # no supervisor in the heartbeat at all (measured 2026-11-06), so a dead
+        # executor left desires.json claiming "chosen: curiosity, goal emitted"
+        # while nothing ran. The probe measures BEHAVIOUR (goal counter moves,
+        # no goal stuck active) â€” not just that :8123 answers.
+        self.subsystems["si_core"] = Subsystem(
+            name="si_core", category="infra", cadence_minutes=15,
+            description="SI Core â€” fuehrt die Ziele des Willens aus (Verbrauch gemessen, nicht nur Liveness)",
+            scripts=["si_core_watchdog.py"],
+            cron_ids=["si-core-watchdog"],
+            timeout=60,
             native=True,
         )
 
