@@ -15836,6 +15836,9 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         # (openamer_cli/supervisor.py), so plugin discovery can be skipped when
         # the user targets it.
         "supervisor",
+        # ``eval`` is a built-in benchmark-suite subcommand tree
+        # (openamer_cli/subcommands/eval.py + cli_handlers.cmd_eval).
+        "eval",
         # Help-ish invocations — plugin commands not being listed in
         # top-level --help is an acceptable trade-off for skipping an
         # expensive eager import of every bundled plugin module.
@@ -17104,6 +17107,22 @@ def main():
                     plugin_parser.set_defaults(func=cmd_info["handler_fn"])
         except Exception as _exc:
             logging.getLogger(__name__).debug("Plugin CLI discovery failed: %s", _exc)
+
+    # =========================================================================
+    # eval command — benchmark suites (offline-capable, provider-backed)
+    #
+    # The parser + handler already existed in openamer_cli/subcommands/eval.py
+    # and openamer_cli/cli_handlers.py but were never registered here, so
+    # ``openamer eval`` was unreachable. Wiring is covered by an end-to-end
+    # test that runs this CLI against a deterministic local provider fixture.
+    # =========================================================================
+    try:
+        from openamer_cli.subcommands.eval import build_eval_parser
+        from openamer_cli.cli_handlers import cmd_eval
+
+        build_eval_parser(subparsers, cmd_eval=cmd_eval)
+    except Exception as _exc:
+        logging.getLogger(__name__).debug("eval CLI wiring failed: %s", _exc)
 
     # =========================================================================
     # curator command — background skill maintenance
