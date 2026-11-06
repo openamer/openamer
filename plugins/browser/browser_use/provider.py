@@ -230,7 +230,47 @@ class BrowserUseBrowserProvider(BrowserProvider):
                 f"{response.status_code} {response.text}"
             )
 
-        session_data = response.json()
+        try:
+            session_data = response.json()
+        except ValueError as exc:
+            # A 2xx with a non-JSON body may still have created (and billed) a
+            # session we cannot identify. Keep the idempotency key so a retry
+            # deduplicates instead of creating a second one.
+            raise RuntimeError(
+                "Browser Use create response was not JSON; cannot tell whether "
+                f"a session was created ({exc})"
+            ) from exc
+
+        if not isinstance(session_data, dict):
+            raise RuntimeError(
+                "Browser Use create response is ambiguous: expected a JSON "
+                f"object, got {type(session_data).__name__}"
+            )
+
+        session_id = session_data.get("id")
+        cdp_url = session_data.get("cdpUrl") or session_data.get("connectUrl") or ""
+
+        if not isinstance(session_id, str) or not session_id.strip():
+            # No id means we cannot drive *or* stop it. Preserve the pending
+            # key (retry dedups) and surface the ambiguity instead of letting
+            # a KeyError bubble up from session_data["id"].
+            raise RuntimeError(
+                "Browser Use create response is ambiguous: no session id in "
+                f"payload keys {sorted(session_data)}"
+            )
+
+        if not cdp_url:
+            # The session exists but is unusable: callers need a CDP endpoint
+            # to attach, and an unclosed cloud session keeps running (and
+            # billing) until its own timeout. Stop it before failing.
+            self._stop_session(config, session_id, timeout=10)
+            if managed_mode:
+                _clear_pending_create_key(task_id)
+            raise RuntimeError(
+                f"Browser Use session {session_id} has no CDP URL; "
+                "stopped it and refused the unusable session"
+            )
+
         if managed_mode:
             _clear_pending_create_key(task_id)
         session_name = f"openamer_{task_id}_{uuid.uuid4().hex[:8]}"
@@ -240,15 +280,27 @@ class BrowserUseBrowserProvider(BrowserProvider):
 
         logger.info("Created Browser Use session %s", session_name)
 
-        cdp_url = session_data.get("cdpUrl") or session_data.get("connectUrl") or ""
-
         return {
             "session_name": session_name,
-            "bb_session_id": session_data["id"],
+            "bb_session_id": session_id,
             "cdp_url": cdp_url,
             "features": {"browser_use": True},
             "external_call_id": external_call_id,
         }
+
+    def _stop_session(self, config: Dict[str, Any], session_id: str, *, timeout: float) -> bool:
+        """Best-effort ``PATCH /browsers/{id} {action: stop}``. Never raises."""
+        try:
+            response = requests.patch(
+                f"{config['base_url']}/browsers/{session_id}",
+                headers=self._headers(config),
+                json={"action": "stop"},
+                timeout=timeout,
+            )
+        except Exception as e:
+            logger.debug("Browser Use stop failed for session %s: %s", session_id, e)
+            return False
+        return response.status_code in {200, 201, 204}
 
     def close_session(self, session_id: str) -> bool:
         try:
@@ -289,16 +341,10 @@ class BrowserUseBrowserProvider(BrowserProvider):
                 session_id,
             )
             return
-        try:
-            requests.patch(
-                f"{config['base_url']}/browsers/{session_id}",
-                headers=self._headers(config),
-                json={"action": "stop"},
-                timeout=5,
-            )
-        except Exception as e:
+        if not self._stop_session(config, session_id, timeout=5):
             logger.debug(
-                "Emergency cleanup failed for Browser Use session %s: %s", session_id, e
+                "Emergency cleanup did not confirm stop for Browser Use session %s",
+                session_id,
             )
 
     def get_setup_schema(self) -> Dict[str, Any]:
