@@ -226,3 +226,55 @@ def test_state_written_atomically_leaves_no_tmp_file(temp_home):
     rt.tick(now=1000.0)
     leftovers = list(Path(temp_home).glob("**/*.tmp"))
     assert leftovers == [], f"atomic write left {leftovers}"
+
+
+def test_benchmark_probe_reads_the_runners_own_verdict(tmp_path, monkeypatch):
+    """DIR-05 must see a REAL suite verdict, not a timed-out watchdog log.
+
+    Measured 2026-11-06: `logs/test-suite-watchdog.json` existed but carried
+    passed=None/failed=None (that run had timed out), so the probe reported
+    unknown and the directive stayed gated while 7238 tests had just passed.
+    The canonical runner now writes logs/suite-verdict.json on every run.
+    """
+    logs = tmp_path / "logs"
+    logs.mkdir()
+    (logs / "suite-verdict.json").write_text(json.dumps({
+        "ts": "2026-11-06T22:13:38+00:00",
+        "passed": 7238, "failed": 0, "files": 339,
+        "scope": "full", "source": "scripts/run_tests.sh",
+    }), encoding="utf-8")
+    monkeypatch.setattr(rt, "_home", lambda: tmp_path)
+
+    probe = rt._probe_benchmarks()
+    assert probe.verdict == rt.SATISFIED
+    assert probe.values["passed"] == 7238
+    assert probe.values["scope"] == "full"
+
+
+def test_targeted_verdict_is_partial_not_satisfied(tmp_path, monkeypatch):
+    """A green ONE-FILE run proves that file, not the suite."""
+    logs = tmp_path / "logs"
+    logs.mkdir()
+    (logs / "suite-verdict.json").write_text(json.dumps({
+        "ts": "2026-11-06T22:13:38+00:00",
+        "passed": 7, "failed": 0, "files": 1,
+        "scope": "targeted", "source": "scripts/run_tests.sh",
+    }), encoding="utf-8")
+    monkeypatch.setattr(rt, "_home", lambda: tmp_path)
+
+    probe = rt._probe_benchmarks()
+    assert probe.verdict == rt.PARTIAL
+    assert "scope=targeted" in probe.detail
+
+
+def test_failed_verdict_is_partial(tmp_path, monkeypatch):
+    logs = tmp_path / "logs"
+    logs.mkdir()
+    (logs / "suite-verdict.json").write_text(json.dumps({
+        "ts": "2026-11-06T22:13:38+00:00",
+        "passed": 7000, "failed": 3, "files": 339, "scope": "full",
+    }), encoding="utf-8")
+    monkeypatch.setattr(rt, "_home", lambda: tmp_path)
+
+    probe = rt._probe_benchmarks()
+    assert probe.verdict == rt.PARTIAL

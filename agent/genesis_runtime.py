@@ -381,6 +381,10 @@ def _probe_kernel() -> Probe:
 
 def _probe_benchmarks() -> Probe:
     candidates = [
+        # The canonical runner writes this on EVERY run. Without it the probe
+        # depended on a watchdog log that had timed out (passed/failed = None),
+        # so a freshly verified suite still reported DIR-05 as gated.
+        _home() / "logs" / "suite-verdict.json",
         _home() / "logs" / "test-suite-watchdog.json",
         _home() / "reports" / "darwin-fitness.json",
     ]
@@ -392,11 +396,23 @@ def _probe_benchmarks() -> Probe:
         passed = payload.get("passed")
         ts = payload.get("ts") or payload.get("timestamp")
         if isinstance(failed, int):
-            verdict = SATISFIED if failed == 0 else PARTIAL
+            scope = payload.get("scope")
+            if failed != 0:
+                verdict = PARTIAL
+            elif scope == "targeted":
+                # A green one-file run proves that file, not the suite. Reporting
+                # it as satisfied is the same false pass as "7 tests, 0 failed".
+                verdict = PARTIAL
+            else:
+                verdict = SATISFIED
+            detail = f"{path.name}: passed={passed} failed={failed} ts={ts}"
+            if scope:
+                detail += f" scope={scope}"
             return Probe(
                 verdict,
-                f"{path.name}: passed={passed} failed={failed} ts={ts}",
-                {"passed": passed, "failed": failed, "ts": ts, "source": str(path)},
+                detail,
+                {"passed": passed, "failed": failed, "ts": ts,
+                 "scope": scope, "source": str(path)},
             )
     return Probe(UNKNOWN, "no recorded benchmark/suite verdict found")
 

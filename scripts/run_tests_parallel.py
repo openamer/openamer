@@ -1311,6 +1311,40 @@ def main() -> int:
     pct = min(100, (tests_done / approx_total_tests * 100)) if approx_total_tests else 0
     print(f"=== Summary: {len(files)} files, {tests_passed} tests passed, {tests_failed} failed ({pct:.0f}% complete) in {elapsed:.1f}s ({args.jobs} workers) ===")
 
+    # â”€â”€ Physical evidence for DIR-05 (reality anchor) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # A suite verdict that only exists as stdout is not evidence a later reader
+    # can find: the DIR-05 probe looked for a verdict file, found the watchdog's
+    # timed-out one (passed/failed = None) and therefore reported the directive
+    # as gated while 7238 real tests had just passed. Every canonical run now
+    # writes its own verdict, so the anchor is measurable instead of assumed.
+    try:
+        import datetime as _dt, json as _json, os as _os
+        _home = _os.environ.get("OPENAMER_HOME", "").strip()
+        if not _home:
+            _base = Path.home() / "AppData" / "Local"
+            _cands = [_base / "openamer", _base / "openamer-laptop",
+                      Path(__file__).resolve().parent.parent]
+            _home = str(next((c for c in _cands if (c / "memory").is_dir()), _cands[-1]))
+        _out = Path(_home) / "logs" / "suite-verdict.json"
+        _out.parent.mkdir(parents=True, exist_ok=True)
+        _out.write_text(_json.dumps({
+            "ts": _dt.datetime.now(_dt.timezone.utc).isoformat(),
+            "passed": tests_passed,
+            "failed": tests_failed,
+            "files": len(files),
+            "tests_collected": tests_collected,
+            "elapsed_s": round(elapsed, 1),
+            "workers": args.jobs,
+            # Scope matters: a 7-test targeted run is a verdict, but it is
+            # not THE suite. The DIR-05 probe treats a targeted verdict as
+            # partial, so a green one-file run can never pass the gate.
+            "scope": "targeted" if getattr(args, "paths_positional", None) else "full",
+            "source": "scripts/run_tests.sh",
+        }, indent=2), encoding="utf-8")
+        print(f"=== verdict written: {_out} (passed={tests_passed} failed={tests_failed}) ===")
+    except Exception as _exc:  # evidence must never break the run
+        print(f"=== WARNING: could not write the suite verdict: {_exc} ===")
+
     # Zero tests collected across the WHOLE run is NOT a pass. Per-file rc=5
     # is deliberately tolerated above (platform-gated files), but if NOTHING
     # ran anywhere the invocation itself was broken — a venv without pytest, a
