@@ -104,6 +104,7 @@ const sidebars: SidebarsConfig = {
             'user-guide/features/code-execution',
             'user-guide/features/hooks',
             'user-guide/features/batch-processing',
+            'user-guide/features/durable-execution',
           ],
         },
         {

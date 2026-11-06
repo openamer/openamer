@@ -9,6 +9,12 @@ description: "Filesystem safety nets for destructive operations using shadow git
 
 OpenAmer Agent can automatically snapshot your project before **destructive operations** and restore it with a single command. Checkpoints are **opt-in** as of v2 — most users never use `/rollback`, and the shadow-store storage is non-trivial over time, so the default is off.
 
+:::note
+This page is about the filesystem rollback store (`openamer checkpoints`).
+Crash-safe agent/run state is a different store — see
+[Durable Execution](./features/durable-execution.md) and `openamer checkpoint`.
+:::
+
 Enable checkpoints per-session with `--checkpoints`:
 
 ```bash

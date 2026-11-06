@@ -15809,7 +15809,7 @@ def _build_provider_choices() -> list[str]:
 # to parse.
 _BUILTIN_SUBCOMMANDS = frozenset(
     {
-        "acp", "approvals", "auth", "backup", "bundles", "checkpoints", "claw", "completion",
+        "acp", "approvals", "auth", "backup", "bundles", "checkpoint", "checkpoints", "claw", "completion",
         "computer-use",
         "config", "console", "cron", "curator", "dashboard", "serve", "debug", "doctor",
         "dump", "egress", "fallback", "feedback", "gateway", "hooks", "import", "insights",
@@ -16941,6 +16941,13 @@ def main():
     )
     from openamer_cli.checkpoints import register_cli as _register_checkpoints_cli
     _register_checkpoints_cli(checkpoints_parser)
+
+    # =========================================================================
+    # checkpoint command — durable-execution store (session snapshots + run
+    # journals). Distinct from `checkpoints` above, which is the filesystem
+    # rollback/shadow-git store.
+    # =========================================================================
+    build_checkpoint_parser(subparsers)
 
     # =========================================================================
     # approvals command — Smart Approvals (Human-in-the-Loop)
