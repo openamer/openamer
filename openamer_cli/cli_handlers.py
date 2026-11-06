@@ -183,6 +183,42 @@ def _eval_run_summary(run: BenchmarkRun, path: Path) -> None:
             print(f"  [{marker}] {r.test_name} ({r.latency_ms:.0f}ms) — {r.reason}")
 
 
+def cmd_self_critique(args: Any) -> Optional[int]:
+    """Handle ``openamer self-critique``.
+
+    Exit codes: 0 clean or warnings only, 1 when any CRITICAL finding stands
+    (a failing organ, a red cron, stale evidence), 2 when the audit itself could
+    not run. A tool that reports "fine" because it could not look is worse than
+    no tool, so an unreadable home is an error, not a pass.
+    """
+    import json as _json
+
+    try:
+        from agent.self_critique import CHECKS, audit, render
+    except Exception as exc:
+        print(f"self-critique unavailable: {exc}")
+        return 2
+
+    only = getattr(args, "check", None)
+    report = audit()
+    if only:
+        wanted = only.strip().lower()
+        matching = [label for label, _ in CHECKS if wanted in label.lower()]
+        if not matching:
+            print(f"unknown check {only!r}; available: " +
+                  ", ".join(label for label, _ in CHECKS))
+            return 2
+        report["findings"] = [f for f in report["findings"]
+                              if any(w in f["kind"].replace("-", " ") for w in matching)]
+
+    if getattr(args, "json", False):
+        print(_json.dumps(report, indent=2, ensure_ascii=False))
+    else:
+        print(render(report))
+
+    return 1 if report["counts"]["critical"] else 0
+
+
 def cmd_eval(args: Any) -> Optional[int]:
     """Handle ``openamer eval run|compare|leaderboard``.
 

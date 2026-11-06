@@ -15997,6 +15997,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         # ``eval`` is a built-in benchmark-suite subcommand tree
         # (openamer_cli/subcommands/eval.py + cli_handlers.cmd_eval).
         "eval",
+        "self-critique",
         # Help-ish invocations — plugin commands not being listed in
         # top-level --help is an acceptable trade-off for skipping an
         # expensive eager import of every bundled plugin module.
@@ -17288,6 +17289,17 @@ def main():
         build_eval_parser(subparsers, cmd_eval=cmd_eval)
     except Exception as _exc:
         logging.getLogger(__name__).debug("eval CLI wiring failed: %s", _exc)
+
+    # =========================================================================
+    # self-critique command â€” the adversarial audit of my own claims
+    # =========================================================================
+    try:
+        from openamer_cli.subcommands.self_critique import build_self_critique_parser
+        from openamer_cli.cli_handlers import cmd_self_critique
+
+        build_self_critique_parser(subparsers, cmd_self_critique=cmd_self_critique)
+    except Exception as _exc:
+        logging.getLogger(__name__).debug("self-critique CLI wiring failed: %s", _exc)
 
     # =========================================================================
     # curator command — background skill maintenance
