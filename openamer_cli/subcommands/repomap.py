@@ -32,11 +32,20 @@ def _cmd_build(args) -> int:
 
 def _cmd_context(args) -> int:
     """Print a human-readable repo context summary."""
-    from openamer_cli.repomap import get_repo_context
+    from openamer_cli.repomap import RepoMap, estimate_tokens, get_repo_context
 
     try:
-        ctx = get_repo_context(args.path, args.file)
-        print(ctx)
+        if args.query:
+            context = RepoMap(args.path).render_context(args.query, args.budget)
+            print(
+                f"# Repo context for '{args.query}' "
+                f"({estimate_tokens(context)}/{args.budget} tokens)",
+                file=sys.stdout,
+            )
+            print(context)
+        else:
+            context = get_repo_context(args.path, args.file)
+            print(context)
         return 0
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
@@ -49,9 +58,14 @@ def _cmd_rank(args) -> int:
 
     try:
         rm = build_repo_map(args.path)
-        ranked = rank_files_by_relevance(args.query, rm)
+        if args.strategy == "graph":
+            from openamer_cli.repomap import RepoMap
+
+            ranked = RepoMap(args.path).rank_files_graph(args.query, rm)
+        else:
+            ranked = rank_files_by_relevance(args.query, rm)
         if ranked:
-            print(f"Top files for '{args.query}':")
+            print(f"Top files for '{args.query}' ({args.strategy}):")
             for f, score in ranked[:20]:
                 print(f"  {score:6.2f}  {f}")
         else:
@@ -70,7 +84,8 @@ def build_repomap_parser(subparsers) -> None:
         description=(
             "Scan a git repository and build a structured map of the codebase, "
             "including files, languages, classes, functions, and dependencies. "
-            "Zero external dependencies — uses git ls-files and simple keyword matching."
+            "Uses git ls-files and stdlib-only parsing; `rank --strategy graph` "
+            "and `context --query` use syntax-aware symbol/reference ranking."
         ),
     )
     sub = p.add_subparsers(dest="repomap_command")
@@ -104,6 +119,14 @@ def build_repomap_parser(subparsers) -> None:
         "--file", "-f", default="",
         help="Focus summary on a specific file (relative path)",
     )
+    ctx_p.add_argument(
+        "--query", "-q", default="",
+        help="Render the highest-ranked definitions for a keyword query",
+    )
+    ctx_p.add_argument(
+        "--budget", type=int, default=120,
+        help="Token budget for --query rendering (default: 120)",
+    )
     ctx_p.set_defaults(func=_cmd_context)
 
     # repomap rank [PATH] <query>
@@ -120,4 +143,11 @@ def build_repomap_parser(subparsers) -> None:
         help="Path to git repo root (default: current directory)",
     )
     rank_p.add_argument("query", help="Keyword query string")
+    rank_p.add_argument(
+        "--strategy", choices=("keyword", "graph"), default="keyword",
+        help=(
+            "keyword: path/identifier substring scoring (default). "
+            "graph: syntax-aware symbol and reference ranking."
+        ),
+    )
     rank_p.set_defaults(func=_cmd_rank)
