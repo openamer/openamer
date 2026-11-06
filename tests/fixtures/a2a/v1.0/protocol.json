@@ -1,0 +1,33 @@
+{
+  "protocolVersion": "1.0",
+  "spec": "https://github.com/a2aproject/A2A/blob/v1.0.1/docs/specification.md",
+  "schema": "https://github.com/a2aproject/A2A/blob/v1.0.1/specification/a2a.proto",
+  "discoveryPaths": [
+    "/.well-known/agent-card.json",
+    "/.well-known/agent.json"
+  ],
+  "methods": {
+    "sendMessage": "SendMessage",
+    "getTask": "GetTask"
+  },
+  "legacyMethodAliases": {
+    "message/send": "SendMessage",
+    "tasks/get": "GetTask"
+  },
+  "taskStates": {
+    "completed": "TASK_STATE_COMPLETED",
+    "failed": "TASK_STATE_FAILED"
+  },
+  "roles": {
+    "user": "ROLE_USER",
+    "agent": "ROLE_AGENT"
+  },
+  "errorCodes": {
+    "parse": -32700,
+    "invalidRequest": -32600,
+    "methodNotFound": -32601,
+    "invalidParams": -32602,
+    "taskNotFound": -32001,
+    "versionNotSupported": -32009
+  }
+}
