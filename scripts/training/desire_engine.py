@@ -382,18 +382,27 @@ DRIVES = [
     {
         "name": "curiosity", "weight": 0.7, "sensor": sense_curiosity,
         "want": "to learn things that are actually worth knowing",
+        # The metric is DEFINED here, not left to the executor. Measured
+        # 2026-11-06: the first version said only "good_ratio", and the goal
+        # completed with 0.0 (share of entries flagged good) while this drive's
+        # sensor read 0.013 (accepted / all attempts) â€” a finished goal that
+        # could not move the sensor it was emitted for.
         "goal": ("Learn better: create memory/si/insight_quality_report.py that reads "
                  "scripts/training/buffer_junk.jsonl and scripts/training/online_buffer.jsonl "
-                 "and prints ONLY JSON {\"good_ratio\": F, \"top_junk_reason\": S}."),
+                 "and prints ONLY JSON {\"good_ratio\": F, \"top_junk_reason\": S}, where "
+                 "good_ratio = lines(online_buffer) / (lines(online_buffer) + "
+                 "lines(buffer_junk)) â€” the SAME definition this drive's sensor uses â€” and "
+                 "top_junk_reason is the most common \"reason\" among the rejected lines."),
         "verify": ("test:python -c \"import subprocess,json;r=subprocess.run(['python',"
                    f"'{HOME.as_posix()}/memory/si/insight_quality_report.py'],"
                    "capture_output=True,text=True);d=json.loads(r.stdout);"
                    "assert 'good_ratio' in d;print('OK')\""),
-        "escalate": ("Raise the measured good ratio: read the top junk reason , fix the "
-                     "filter/gate that lets that junk through in "
+        "escalate": ("Raise the measured good ratio, using the SAME definition as the "
+                     "sensor (accepted / all attempts): read top_junk_reason, fix the filter "
+                     "or gate that lets that junk through in "
                      "scripts/training/internet_learner.py, re-run one learning cycle, and "
-                     "record before/after good_ratio in memory/si/learning_quality.jsonl. "
-                     "The sensor itself must move — a report is not accepted as progress."),
+                     "record before/after in memory/si/learning_quality.jsonl. The sensor "
+                     "itself must move â€” a report is not accepted as progress."),
         "escalate_verify": "file:memory/si/learning_quality.jsonl:",
         "gate": None,
         "unblocks": None,

@@ -176,6 +176,21 @@ class TestTreadmill:
         assert tm["completed"] == 3
         assert "never moved the sensor" in tm["reason"]
 
+
+    def test_a_goal_names_the_metric_its_sensor_uses(self, tmp_path):
+        """A goal that leaves the metric open cannot be proven to move the sensor.
+
+        Measured 2026-11-06: curiosity's first goal said only "good_ratio" and
+        completed with 0.0 (share of entries flagged good) while the sensor read
+        0.013 (accepted / all attempts). The completion was real and the goal was
+        useless. Every drive that measures a ratio must define it in the goal.
+        """
+        mod = _load(_home(tmp_path))
+        curiosity = mod._drive("curiosity")
+        assert "SAME definition" in curiosity["goal"]
+        assert "accepted / all attempts" in curiosity["escalate"]
+
+
     def test_not_detected_without_goal_history(self, tmp_path):
         home = _home(tmp_path, goals=[], history=_flat_history(9, "hunger", 1.0))
         mod = _load(home)
