@@ -1,0 +1,5964 @@
+{
+ "fr": {
+  "Subagent": [
+   "Sous-agent",
+   "Sous-agents"
+  ],
+  "agent": [
+   "agent",
+   "agents"
+  ],
+  "attachment": [
+   "pièce jointe",
+   "pièces jointes"
+  ],
+  "change": [
+   "modification",
+   "modifications"
+  ],
+  "commit": [
+   "commit",
+   "commits"
+  ],
+  "entry": [
+   "entrée de journal",
+   "entrées de journal"
+  ],
+  "finding": [
+   "constat",
+   "constats"
+  ],
+  "item": [
+   "élément",
+   "éléments"
+  ],
+  "job": [
+   "tâche",
+   "tâches"
+  ],
+  "line": [
+   "ligne",
+   "lignes"
+  ],
+  "message": [
+   "message",
+   "messages"
+  ],
+  "model": [
+   "modèle",
+   "modèles"
+  ],
+  "node": [
+   "nœud",
+   "nœuds"
+  ],
+  "notification": [
+   "notification",
+   "notifications"
+  ],
+  "on": [
+   "activé",
+   "désactivé"
+  ],
+  "pet": [
+   "animal",
+   "animaux"
+  ],
+  "profile": [
+   "profil",
+   "profils"
+  ],
+  "result": [
+   "résultat",
+   "résultats"
+  ],
+  "service": [
+   "service",
+   "services"
+  ],
+  "skill": [
+   "compétence",
+   "compétences"
+  ],
+  "subagent": [
+   "sous-agent",
+   "sous-agents"
+  ],
+  "tool": [
+   "outil",
+   "outils"
+  ],
+  "image": [
+   "image",
+   "images"
+  ],
+  "action": [
+   "action",
+   "actions"
+  ],
+  "zone": [
+   "zone",
+   "zones"
+  ],
+  "prompt": [
+   "invite",
+   "invites"
+  ],
+  "resource": [
+   "ressource",
+   "ressources"
+  ],
+  "option": [
+   "option",
+   "options"
+  ],
+  "task": [
+   "tâche",
+   "tâches"
+  ],
+  "file": [
+   "fichier",
+   "fichiers"
+  ],
+  "folder": [
+   "dossier",
+   "dossiers"
+  ],
+  "plugin": [
+   "plugin",
+   "plugins"
+  ],
+  "voice": [
+   "voix",
+   "voix"
+  ],
+  "hour": [
+   "heure",
+   "heures"
+  ],
+  "minute": [
+   "minute",
+   "minutes"
+  ],
+  "second": [
+   "seconde",
+   "secondes"
+  ],
+  "day": [
+   "jour",
+   "jours"
+  ],
+  "week": [
+   "semaine",
+   "semaines"
+  ],
+  "month": [
+   "mois",
+   "mois"
+  ],
+  "year": [
+   "an",
+   "ans"
+  ],
+  "update": [
+   "mise à jour",
+   "mises à jour"
+  ],
+  "warning": [
+   "avertissement",
+   "avertissements"
+  ],
+  "error": [
+   "erreur",
+   "erreurs"
+  ],
+  "command": [
+   "commande",
+   "commandes"
+  ],
+  "step": [
+   "étape",
+   "étapes"
+  ],
+  "token": [
+   "jeton",
+   "jetons"
+  ],
+  "credit": [
+   "crédit",
+   "crédits"
+  ],
+  "reply": [
+   "réponse",
+   "réponses"
+  ],
+  "provider": [
+   "fournisseur",
+   "fournisseurs"
+  ],
+  "branch": [
+   "branche",
+   "branches"
+  ],
+  "release": [
+   "version",
+   "versions"
+  ],
+  "cron": [
+   "cron",
+   "crons"
+  ],
+  "webhook": [
+   "webhook",
+   "webhooks"
+  ],
+  "artifact": [
+   "artefact",
+   "artefacts"
+  ],
+  "memory": [
+   "mémoire",
+   "mémoires"
+  ],
+  "database": [
+   "base de données",
+   "bases de données"
+  ],
+  "workspace": [
+   "espace de travail",
+   "espaces de travail"
+  ],
+  "context": [
+   "contexte",
+   "contextes"
+  ]
+ },
+ "de": {
+  "": [
+   "",
+   "s"
+  ],
+  "agent": [
+   "Agent",
+   "Agenten"
+  ],
+  "item": [
+   "Element",
+   "Elemente"
+  ],
+  "job": [
+   "Job",
+   "Jobs"
+  ],
+  "message": [
+   "Nachricht",
+   "Nachrichten"
+  ],
+  "node": [
+   "Knoten",
+   "Knoten"
+  ],
+  "notification": [
+   "Benachrichtigung",
+   "Benachrichtigungen"
+  ],
+  "on": [
+   "Ein",
+   "Aus"
+  ],
+  "profile": [
+   "Profil",
+   "Profile"
+  ],
+  "service": [
+   "Dienst",
+   "Dienste"
+  ],
+  "skill": [
+   "Skill",
+   "Skills"
+  ],
+  "entry": [
+   "Logeintrag",
+   "Logeinträge"
+  ],
+  "Subagent": [
+   "Subagent",
+   "Subagenten"
+  ],
+  "attachment": [
+   "Anhang",
+   "Anhänge"
+  ],
+  "change": [
+   "Änderung",
+   "Änderungen"
+  ],
+  "commit": [
+   "Commit",
+   "Commits"
+  ],
+  "finding": [
+   "Fund",
+   "Funde"
+  ],
+  "line": [
+   "Zeile",
+   "Zeilen"
+  ],
+  "model": [
+   "Modell",
+   "Modelle"
+  ],
+  "pet": [
+   "Haustier",
+   "Haustiere"
+  ],
+  "result": [
+   "Ergebnis",
+   "Ergebnisse"
+  ],
+  "subagent": [
+   "subagent",
+   "subagenten"
+  ],
+  "tool": [
+   "Werkzeug",
+   "Werkzeuge"
+  ],
+  "image": [
+   "Bild",
+   "Bilder"
+  ],
+  "action": [
+   "Aktion",
+   "Aktionen"
+  ],
+  "zone": [
+   "Zone",
+   "Zonen"
+  ],
+  "prompt": [
+   "Prompt",
+   "Prompts"
+  ],
+  "resource": [
+   "Ressource",
+   "Ressourcen"
+  ],
+  "option": [
+   "Option",
+   "Optionen"
+  ],
+  "task": [
+   "Aufgabe",
+   "Aufgaben"
+  ],
+  "file": [
+   "Datei",
+   "Dateien"
+  ],
+  "folder": [
+   "Ordner",
+   "Ordner"
+  ],
+  "plugin": [
+   "Plugin",
+   "Plugins"
+  ],
+  "voice": [
+   "Stimme",
+   "Stimmen"
+  ],
+  "hour": [
+   "Stunde",
+   "Stunden"
+  ],
+  "minute": [
+   "Minute",
+   "Minuten"
+  ],
+  "second": [
+   "Sekunde",
+   "Sekunden"
+  ],
+  "day": [
+   "Tag",
+   "Tage"
+  ],
+  "week": [
+   "Woche",
+   "Wochen"
+  ],
+  "month": [
+   "Monat",
+   "Monate"
+  ],
+  "year": [
+   "Jahr",
+   "Jahre"
+  ],
+  "update": [
+   "Update",
+   "Updates"
+  ],
+  "warning": [
+   "Warnung",
+   "Warnungen"
+  ],
+  "error": [
+   "Fehler",
+   "Fehler"
+  ],
+  "command": [
+   "Befehl",
+   "Befehle"
+  ],
+  "step": [
+   "Schritt",
+   "Schritte"
+  ],
+  "token": [
+   "Token",
+   "Token"
+  ],
+  "credit": [
+   "Kredit",
+   "Kredite"
+  ],
+  "reply": [
+   "Antwort",
+   "Antworten"
+  ],
+  "provider": [
+   "Anbieter",
+   "Anbieter"
+  ],
+  "branch": [
+   "Zweig",
+   "Zweige"
+  ],
+  "release": [
+   "Release",
+   "Releases"
+  ],
+  "cron": [
+   "Cron",
+   "Crons"
+  ],
+  "webhook": [
+   "Webhook",
+   "Webhooks"
+  ],
+  "artifact": [
+   "Artefakt",
+   "Artefakte"
+  ],
+  "memory": [
+   "Speicher",
+   "Speicher"
+  ],
+  "database": [
+   "Datenbank",
+   "Datenbanken"
+  ],
+  "workspace": [
+   "Arbeitsbereich",
+   "Arbeitsbereiche"
+  ],
+  "context": [
+   "Kontext",
+   "Kontexte"
+  ]
+ },
+ "es": {
+  "Subagent": [
+   "Subagente",
+   "Subagentes"
+  ],
+  "agent": [
+   "agente",
+   "agentes"
+  ],
+  "attachment": [
+   "adjunto",
+   "adjuntos"
+  ],
+  "change": [
+   "cambio",
+   "cambios"
+  ],
+  "commit": [
+   "confirmación",
+   "confirmaciones"
+  ],
+  "entry": [
+   "entrada de registro",
+   "entradas de registro"
+  ],
+  "finding": [
+   "hallazgo",
+   "hallazgos"
+  ],
+  "item": [
+   "elemento",
+   "elementos"
+  ],
+  "job": [
+   "trabajo",
+   "trabajos"
+  ],
+  "line": [
+   "línea",
+   "líneas"
+  ],
+  "message": [
+   "mensaje",
+   "mensajes"
+  ],
+  "model": [
+   "modelo",
+   "modelos"
+  ],
+  "node": [
+   "nodo",
+   "nodos"
+  ],
+  "notification": [
+   "notificación",
+   "notificaciones"
+  ],
+  "on": [
+   "activado",
+   "desactivado"
+  ],
+  "pet": [
+   "mascota",
+   "mascotas"
+  ],
+  "profile": [
+   "perfil",
+   "perfiles"
+  ],
+  "result": [
+   "resultado",
+   "resultados"
+  ],
+  "service": [
+   "servicio",
+   "servicios"
+  ],
+  "skill": [
+   "habilidad",
+   "habilidades"
+  ],
+  "subagent": [
+   "subagente",
+   "subagentes"
+  ],
+  "tool": [
+   "herramienta",
+   "herramientas"
+  ],
+  "image": [
+   "image",
+   "imágenes"
+  ],
+  "action": [
+   "action",
+   "acciones"
+  ],
+  "zone": [
+   "zone",
+   "zonas"
+  ],
+  "prompt": [
+   "prompt",
+   "prompts"
+  ],
+  "resource": [
+   "resource",
+   "recursos"
+  ],
+  "option": [
+   "option",
+   "opciones"
+  ],
+  "task": [
+   "task",
+   "tareas"
+  ],
+  "file": [
+   "file",
+   "archivos"
+  ],
+  "folder": [
+   "folder",
+   "carpetas"
+  ],
+  "plugin": [
+   "plugin",
+   "plugins"
+  ],
+  "voice": [
+   "voice",
+   "voces"
+  ],
+  "hour": [
+   "hour",
+   "horas"
+  ],
+  "minute": [
+   "minute",
+   "minutos"
+  ],
+  "second": [
+   "second",
+   "segundos"
+  ],
+  "day": [
+   "day",
+   "días"
+  ],
+  "week": [
+   "week",
+   "semanas"
+  ],
+  "month": [
+   "month",
+   "meses"
+  ],
+  "year": [
+   "year",
+   "años"
+  ],
+  "update": [
+   "update",
+   "actualizaciones"
+  ],
+  "warning": [
+   "warning",
+   "advertencias"
+  ],
+  "error": [
+   "error",
+   "errores"
+  ],
+  "command": [
+   "command",
+   "comandos"
+  ],
+  "step": [
+   "step",
+   "pasos"
+  ],
+  "token": [
+   "token",
+   "tokens"
+  ],
+  "credit": [
+   "credit",
+   "créditos"
+  ],
+  "reply": [
+   "reply",
+   "respuestas"
+  ],
+  "provider": [
+   "provider",
+   "proveedores"
+  ],
+  "branch": [
+   "branch",
+   "ramas"
+  ],
+  "release": [
+   "release",
+   "lanzamientos"
+  ],
+  "cron": [
+   "cron",
+   "crons"
+  ],
+  "webhook": [
+   "webhook",
+   "webhooks"
+  ],
+  "artifact": [
+   "artifact",
+   "artefactos"
+  ],
+  "memory": [
+   "memory",
+   "memorias"
+  ],
+  "database": [
+   "database",
+   "bases de datos"
+  ],
+  "workspace": [
+   "workspace",
+   "espacios de trabajo"
+  ],
+  "context": [
+   "context",
+   "contextos"
+  ]
+ },
+ "it": {
+  "Subagent": [
+   "Subagente",
+   "Subagenti"
+  ],
+  "agent": [
+   "agente",
+   "agenti"
+  ],
+  "attachment": [
+   "allegato",
+   "allegati"
+  ],
+  "change": [
+   "modifica",
+   "modifiche"
+  ],
+  "commit": [
+   "commit",
+   "commit"
+  ],
+  "entry": [
+   "voce di registro",
+   "voci di registro"
+  ],
+  "finding": [
+   "riscontro",
+   "riscontri"
+  ],
+  "item": [
+   "elemento",
+   "elementi"
+  ],
+  "job": [
+   "lavoro",
+   "lavori"
+  ],
+  "line": [
+   "riga",
+   "righe"
+  ],
+  "message": [
+   "messaggio",
+   "messaggi"
+  ],
+  "model": [
+   "modello",
+   "modelli"
+  ],
+  "node": [
+   "nodo",
+   "nodi"
+  ],
+  "notification": [
+   "notifica",
+   "notifiche"
+  ],
+  "on": [
+   "attivo",
+   "inattivo"
+  ],
+  "pet": [
+   "animale",
+   "animali"
+  ],
+  "profile": [
+   "profilo",
+   "profili"
+  ],
+  "result": [
+   "risultato",
+   "risultati"
+  ],
+  "service": [
+   "servizio",
+   "servizi"
+  ],
+  "skill": [
+   "abilità",
+   "abilità"
+  ],
+  "subagent": [
+   "subagente",
+   "subagenti"
+  ],
+  "tool": [
+   "strumento",
+   "strumenti"
+  ]
+ },
+ "pt": {
+  "Subagent": [
+   "Subagente",
+   "Subagentes"
+  ],
+  "agent": [
+   "agente",
+   "agentes"
+  ],
+  "attachment": [
+   "anexo",
+   "anexos"
+  ],
+  "change": [
+   "alteração",
+   "alterações"
+  ],
+  "commit": [
+   "confirmação",
+   "confirmações"
+  ],
+  "entry": [
+   "entrada de registro",
+   "entradas de registro"
+  ],
+  "finding": [
+   "achado",
+   "achados"
+  ],
+  "item": [
+   "item",
+   "itens"
+  ],
+  "job": [
+   "tarefa",
+   "tarefas"
+  ],
+  "line": [
+   "linha",
+   "linhas"
+  ],
+  "message": [
+   "mensagem",
+   "mensagens"
+  ],
+  "model": [
+   "modelo",
+   "modelos"
+  ],
+  "node": [
+   "nó",
+   "nós"
+  ],
+  "notification": [
+   "notificação",
+   "notificações"
+  ],
+  "on": [
+   "ligado",
+   "desligado"
+  ],
+  "pet": [
+   "mascote",
+   "mascotes"
+  ],
+  "profile": [
+   "perfil",
+   "perfis"
+  ],
+  "result": [
+   "resultado",
+   "resultados"
+  ],
+  "service": [
+   "serviço",
+   "serviços"
+  ],
+  "skill": [
+   "habilidade",
+   "habilidades"
+  ],
+  "subagent": [
+   "subagente",
+   "subagentes"
+  ],
+  "tool": [
+   "ferramenta",
+   "ferramentas"
+  ]
+ },
+ "ar": {
+  "Subagent": [
+   "وكيل فرعي",
+   "وكلاء فرعيون"
+  ],
+  "agent": [
+   "وكيل",
+   "وكلاء"
+  ],
+  "attachment": [
+   "مرفق",
+   "مرفقات"
+  ],
+  "change": [
+   "تغيير",
+   "تغييرات"
+  ],
+  "commit": [
+   "إيداع",
+   "إيداعات"
+  ],
+  "entry": [
+   "سجل الإدخال",
+   "سجلات الإدخال"
+  ],
+  "finding": [
+   "اكتشاف",
+   "اكتشافات"
+  ],
+  "item": [
+   "عنصر",
+   "عناصر"
+  ],
+  "job": [
+   "مهمة",
+   "مهام"
+  ],
+  "line": [
+   "سطر",
+   "أسطر"
+  ],
+  "message": [
+   "رسالة",
+   "رسائل"
+  ],
+  "model": [
+   "نموذج",
+   "نماذج"
+  ],
+  "node": [
+   "عقدة",
+   "عقد"
+  ],
+  "notification": [
+   "إشعار",
+   "إشعارات"
+  ],
+  "on": [
+   "تشغيل",
+   "إيقاف"
+  ],
+  "pet": [
+   "حيوان أليف",
+   "حيوانات أليفة"
+  ],
+  "profile": [
+   "ملف تعريف",
+   "ملفات تعريف"
+  ],
+  "result": [
+   "نتيجة",
+   "نتائج"
+  ],
+  "service": [
+   "خدمة",
+   "خدمات"
+  ],
+  "skill": [
+   "مهارة",
+   "مهارات"
+  ],
+  "subagent": [
+   "وكيل فرعي",
+   "وكلاء فرعيون"
+  ],
+  "tool": [
+   "أداة",
+   "أدوات"
+  ],
+  "image": [
+   "صورة",
+   "صور"
+  ],
+  "action": [
+   "إجراء",
+   "إجراءات"
+  ],
+  "zone": [
+   "منطقة",
+   "مناطق"
+  ],
+  "prompt": [
+   "موجه",
+   "موجهات"
+  ],
+  "resource": [
+   "مورد",
+   "موارد"
+  ],
+  "option": [
+   "خيار",
+   "خيارات"
+  ],
+  "task": [
+   "مهمة",
+   "مهام"
+  ],
+  "file": [
+   "ملف",
+   "ملفات"
+  ],
+  "folder": [
+   "مجلد",
+   "مجلدات"
+  ],
+  "plugin": [
+   "مكون إضافي",
+   "مكونات إضافية"
+  ],
+  "voice": [
+   "صوت",
+   "أصوات"
+  ],
+  "hour": [
+   "ساعة",
+   "ساعات"
+  ],
+  "minute": [
+   "دقيقة",
+   "دقائق"
+  ],
+  "second": [
+   "ثانية",
+   "ثوانٍ"
+  ],
+  "day": [
+   "يوم",
+   "أيام"
+  ],
+  "week": [
+   "أسبوع",
+   "أسابيع"
+  ],
+  "month": [
+   "شهر",
+   "أشهر"
+  ],
+  "year": [
+   "سنة",
+   "سنوات"
+  ],
+  "update": [
+   "تحديث",
+   "تحديثات"
+  ],
+  "warning": [
+   "تحذير",
+   "تحذيرات"
+  ],
+  "error": [
+   "خطأ",
+   "أخطاء"
+  ],
+  "command": [
+   "أمر",
+   "أوامر"
+  ],
+  "step": [
+   "خطوة",
+   "خطوات"
+  ],
+  "token": [
+   "رمز",
+   "رموز"
+  ],
+  "credit": [
+   "رصيد",
+   "أرصدة"
+  ],
+  "reply": [
+   "رد",
+   "ردود"
+  ],
+  "provider": [
+   "مزود",
+   "مزودون"
+  ],
+  "branch": [
+   "فرع",
+   "فروع"
+  ],
+  "release": [
+   "إصدار",
+   "إصدارات"
+  ],
+  "cron": [
+   "مهمة مجدولة",
+   "مهام مجدولة"
+  ],
+  "webhook": [
+   "ويب هوك",
+   "ويب هوكس"
+  ],
+  "artifact": [
+   "مخرج",
+   "مخرجات"
+  ],
+  "memory": [
+   "ذاكرة",
+   "ذاكرات"
+  ],
+  "database": [
+   "قاعدة بيانات",
+   "قواعد بيانات"
+  ],
+  "workspace": [
+   "مساحة عمل",
+   "مساحات عمل"
+  ],
+  "context": [
+   "سياق",
+   "سياقات"
+  ]
+ },
+ "bg": {
+  "Subagent": [
+   "Подагент",
+   "Подагенти"
+  ],
+  "agent": [
+   "агент",
+   "агенти"
+  ],
+  "attachment": [
+   "прикачен файл",
+   "прикачени файлове"
+  ],
+  "change": [
+   "промяна",
+   "промени"
+  ],
+  "commit": [
+   "комит",
+   "комити"
+  ],
+  "entry": [
+   "запис в дневника",
+   "записи в дневника"
+  ],
+  "finding": [
+   "находка",
+   "находки"
+  ],
+  "item": [
+   "елемент",
+   "елементи"
+  ],
+  "job": [
+   "задача",
+   "задачи"
+  ],
+  "line": [
+   "ред",
+   "редове"
+  ],
+  "message": [
+   "съобщение",
+   "съобщения"
+  ],
+  "model": [
+   "модел",
+   "модели"
+  ],
+  "node": [
+   "възел",
+   "възли"
+  ],
+  "notification": [
+   "известие",
+   "известия"
+  ],
+  "on": [
+   "включено",
+   "изключено"
+  ],
+  "pet": [
+   "любимец",
+   "любимци"
+  ],
+  "profile": [
+   "профил",
+   "профили"
+  ],
+  "result": [
+   "резултат",
+   "резултати"
+  ],
+  "service": [
+   "услуга",
+   "услуги"
+  ],
+  "skill": [
+   "умение",
+   "умения"
+  ],
+  "subagent": [
+   "подагент",
+   "подагенти"
+  ],
+  "tool": [
+   "инструмент",
+   "инструменти"
+  ],
+  "image": [
+   "изображение",
+   "изображения"
+  ],
+  "action": [
+   "действие",
+   "действия"
+  ],
+  "zone": [
+   "зона",
+   "зони"
+  ],
+  "prompt": [
+   "подкана",
+   "подкани"
+  ],
+  "resource": [
+   "ресурс",
+   "ресурси"
+  ],
+  "option": [
+   "опция",
+   "опции"
+  ],
+  "task": [
+   "задача",
+   "задачи"
+  ],
+  "file": [
+   "файл",
+   "файлове"
+  ],
+  "folder": [
+   "папка",
+   "папки"
+  ],
+  "plugin": [
+   "приставка",
+   "приставки"
+  ],
+  "voice": [
+   "глас",
+   "гласове"
+  ],
+  "hour": [
+   "час",
+   "часове"
+  ],
+  "minute": [
+   "минута",
+   "минути"
+  ],
+  "second": [
+   "секунда",
+   "секунди"
+  ],
+  "day": [
+   "ден",
+   "дни"
+  ],
+  "week": [
+   "седмица",
+   "седмици"
+  ],
+  "month": [
+   "месец",
+   "месеци"
+  ],
+  "year": [
+   "година",
+   "години"
+  ],
+  "update": [
+   "актуализация",
+   "актуализации"
+  ],
+  "warning": [
+   "предупреждение",
+   "предупреждения"
+  ],
+  "error": [
+   "грешка",
+   "грешки"
+  ],
+  "command": [
+   "команда",
+   "команди"
+  ],
+  "step": [
+   "стъпка",
+   "стъпки"
+  ],
+  "token": [
+   "жетон",
+   "жетони"
+  ],
+  "credit": [
+   "кредит",
+   "кредити"
+  ],
+  "reply": [
+   "отговор",
+   "отговори"
+  ],
+  "provider": [
+   "доставчик",
+   "доставчици"
+  ],
+  "branch": [
+   "клон",
+   "клонове"
+  ],
+  "release": [
+   "издание",
+   "издания"
+  ],
+  "cron": [
+   "крон",
+   "крони"
+  ],
+  "webhook": [
+   "уебхук",
+   "уебхукове"
+  ],
+  "artifact": [
+   "артефакт",
+   "артефакти"
+  ],
+  "memory": [
+   "памет",
+   "памети"
+  ],
+  "database": [
+   "база данни",
+   "бази данни"
+  ],
+  "workspace": [
+   "работно пространство",
+   "работни пространства"
+  ],
+  "context": [
+   "контекст",
+   "контексти"
+  ]
+ },
+ "bs": {
+  "Subagent": [
+   "Podagent",
+   "Podagenti"
+  ],
+  "agent": [
+   "agent",
+   "agenti"
+  ],
+  "attachment": [
+   "prilog",
+   "prilozi"
+  ],
+  "change": [
+   "promjena",
+   "promjene"
+  ],
+  "commit": [
+   "commit",
+   "commitovi"
+  ],
+  "entry": [
+   "unos u dnevnik",
+   "unosi u dnevniku"
+  ],
+  "finding": [
+   "nalaz",
+   "nalazi"
+  ],
+  "item": [
+   "stavka",
+   "stavke"
+  ],
+  "job": [
+   "posao",
+   "poslovi"
+  ],
+  "line": [
+   "linija",
+   "linije"
+  ],
+  "message": [
+   "poruka",
+   "poruke"
+  ],
+  "model": [
+   "model",
+   "modeli"
+  ],
+  "node": [
+   "čvor",
+   "čvorovi"
+  ],
+  "notification": [
+   "obavještenje",
+   "obavještenja"
+  ],
+  "on": [
+   "uključeno",
+   "isključeno"
+  ],
+  "pet": [
+   "ljubimac",
+   "ljubimci"
+  ],
+  "profile": [
+   "profil",
+   "profili"
+  ],
+  "result": [
+   "rezultat",
+   "rezultati"
+  ],
+  "service": [
+   "usluga",
+   "usluge"
+  ],
+  "skill": [
+   "vještina",
+   "vještine"
+  ],
+  "subagent": [
+   "podagent",
+   "podagenti"
+  ],
+  "tool": [
+   "alat",
+   "alati"
+  ],
+  "image": [
+   "image",
+   "slike"
+  ],
+  "action": [
+   "action",
+   "akcije"
+  ],
+  "zone": [
+   "zone",
+   "zone"
+  ],
+  "prompt": [
+   "prompt",
+   "upiti"
+  ],
+  "resource": [
+   "resource",
+   "resursi"
+  ],
+  "option": [
+   "option",
+   "opcije"
+  ],
+  "task": [
+   "task",
+   "zadaci"
+  ],
+  "file": [
+   "file",
+   "datoteke"
+  ],
+  "folder": [
+   "folder",
+   "mape"
+  ],
+  "plugin": [
+   "plugin",
+   "dodaci"
+  ],
+  "voice": [
+   "voice",
+   "glasovi"
+  ],
+  "hour": [
+   "hour",
+   "sati"
+  ],
+  "minute": [
+   "minute",
+   "minuta"
+  ],
+  "second": [
+   "second",
+   "sekunde"
+  ],
+  "day": [
+   "day",
+   "dana"
+  ],
+  "week": [
+   "week",
+   "sedmice"
+  ],
+  "month": [
+   "month",
+   "mjeseci"
+  ],
+  "year": [
+   "year",
+   "godine"
+  ],
+  "update": [
+   "update",
+   "ažuriranja"
+  ],
+  "warning": [
+   "warning",
+   "upozorenja"
+  ],
+  "error": [
+   "error",
+   "greške"
+  ],
+  "command": [
+   "command",
+   "naredbe"
+  ],
+  "step": [
+   "step",
+   "koraci"
+  ],
+  "token": [
+   "token",
+   "tokeni"
+  ],
+  "credit": [
+   "credit",
+   "krediti"
+  ],
+  "reply": [
+   "reply",
+   "odgovori"
+  ],
+  "provider": [
+   "provider",
+   "provajderi"
+  ],
+  "branch": [
+   "branch",
+   "grane"
+  ],
+  "release": [
+   "release",
+   "izdanja"
+  ],
+  "cron": [
+   "cron",
+   "cronovi"
+  ],
+  "webhook": [
+   "webhook",
+   "webhook-i"
+  ],
+  "artifact": [
+   "artifact",
+   "artefakti"
+  ],
+  "memory": [
+   "memory",
+   "memorije"
+  ],
+  "database": [
+   "database",
+   "baze podataka"
+  ],
+  "workspace": [
+   "workspace",
+   "radni prostori"
+  ],
+  "context": [
+   "context",
+   "konteksti"
+  ]
+ },
+ "cs": {
+  "Subagent": [
+   "Podagent",
+   "Podagenti"
+  ],
+  "agent": [
+   "agent",
+   "agenti"
+  ],
+  "attachment": [
+   "příloha",
+   "přílohy"
+  ],
+  "change": [
+   "změna",
+   "změny"
+  ],
+  "commit": [
+   "commit",
+   "commity"
+  ],
+  "entry": [
+   "záznam protokolu",
+   "záznamy protokolu"
+  ],
+  "finding": [
+   "nález",
+   "nálezy"
+  ],
+  "item": [
+   "položka",
+   "položky"
+  ],
+  "job": [
+   "úloha",
+   "úlohy"
+  ],
+  "line": [
+   "řádek",
+   "řádky"
+  ],
+  "message": [
+   "zpráva",
+   "zprávy"
+  ],
+  "model": [
+   "model",
+   "modely"
+  ],
+  "node": [
+   "uzel",
+   "uzly"
+  ],
+  "notification": [
+   "oznámení",
+   "oznámení"
+  ],
+  "on": [
+   "zapnuto",
+   "vypnuto"
+  ],
+  "pet": [
+   "mazlíček",
+   "mazlíčci"
+  ],
+  "profile": [
+   "profil",
+   "profily"
+  ],
+  "result": [
+   "výsledek",
+   "výsledky"
+  ],
+  "service": [
+   "služba",
+   "služby"
+  ],
+  "skill": [
+   "dovednost",
+   "dovednosti"
+  ],
+  "subagent": [
+   "podagent",
+   "podagenti"
+  ],
+  "tool": [
+   "nástroj",
+   "nástroje"
+  ],
+  "image": [
+   "obrázek",
+   "obrázky"
+  ],
+  "action": [
+   "akce",
+   "akce"
+  ],
+  "zone": [
+   "zóna",
+   "zóny"
+  ],
+  "prompt": [
+   "výzva",
+   "výzvy"
+  ],
+  "resource": [
+   "zdroj",
+   "zdroje"
+  ],
+  "option": [
+   "možnost",
+   "možnosti"
+  ],
+  "task": [
+   "úkol",
+   "úkoly"
+  ],
+  "file": [
+   "soubor",
+   "soubory"
+  ],
+  "folder": [
+   "složka",
+   "složky"
+  ],
+  "plugin": [
+   "plugin",
+   "pluginy"
+  ],
+  "voice": [
+   "hlas",
+   "hlasy"
+  ],
+  "hour": [
+   "hodina",
+   "hodiny"
+  ],
+  "minute": [
+   "minuta",
+   "minuty"
+  ],
+  "second": [
+   "sekunda",
+   "sekundy"
+  ],
+  "day": [
+   "den",
+   "dny"
+  ],
+  "week": [
+   "týden",
+   "týdny"
+  ],
+  "month": [
+   "měsíc",
+   "měsíce"
+  ],
+  "year": [
+   "rok",
+   "roky"
+  ],
+  "update": [
+   "aktualizace",
+   "aktualizace"
+  ],
+  "warning": [
+   "varování",
+   "varování"
+  ],
+  "error": [
+   "chyba",
+   "chyby"
+  ],
+  "command": [
+   "příkaz",
+   "příkazy"
+  ],
+  "step": [
+   "krok",
+   "kroky"
+  ],
+  "token": [
+   "token",
+   "tokeny"
+  ],
+  "credit": [
+   "kredit",
+   "kredity"
+  ],
+  "reply": [
+   "odpověď",
+   "odpovědi"
+  ],
+  "provider": [
+   "poskytovatel",
+   "poskytovatelé"
+  ],
+  "branch": [
+   "větev",
+   "větve"
+  ],
+  "release": [
+   "verze",
+   "verze"
+  ],
+  "cron": [
+   "cron",
+   "crony"
+  ],
+  "webhook": [
+   "webhook",
+   "webhooky"
+  ],
+  "artifact": [
+   "artefakt",
+   "artefakty"
+  ],
+  "memory": [
+   "paměť",
+   "paměti"
+  ],
+  "database": [
+   "databáze",
+   "databáze"
+  ],
+  "workspace": [
+   "pracovní prostor",
+   "pracovní prostory"
+  ],
+  "context": [
+   "kontext",
+   "kontexty"
+  ]
+ },
+ "da": {
+  "Subagent": [
+   "Underagent",
+   "Underagenter"
+  ],
+  "agent": [
+   "agent",
+   "agenter"
+  ],
+  "attachment": [
+   "vedhæftning",
+   "vedhæftninger"
+  ],
+  "change": [
+   "ændring",
+   "ændringer"
+  ],
+  "commit": [
+   "commit",
+   "commits"
+  ],
+  "entry": [
+   "logpost",
+   "logposter"
+  ],
+  "finding": [
+   "fund",
+   "fund"
+  ],
+  "item": [
+   "element",
+   "elementer"
+  ],
+  "job": [
+   "job",
+   "jobs"
+  ],
+  "line": [
+   "linje",
+   "linjer"
+  ],
+  "message": [
+   "besked",
+   "beskeder"
+  ],
+  "model": [
+   "model",
+   "modeller"
+  ],
+  "node": [
+   "node",
+   "noder"
+  ],
+  "notification": [
+   "notifikation",
+   "notifikationer"
+  ],
+  "on": [
+   "til",
+   "fra"
+  ],
+  "pet": [
+   "kæledyr",
+   "kæledyr"
+  ],
+  "profile": [
+   "profil",
+   "profiler"
+  ],
+  "result": [
+   "resultat",
+   "resultater"
+  ],
+  "service": [
+   "tjeneste",
+   "tjenester"
+  ],
+  "skill": [
+   "færdighed",
+   "færdigheder"
+  ],
+  "subagent": [
+   "underagent",
+   "underagenter"
+  ],
+  "tool": [
+   "værktøj",
+   "værktøjer"
+  ],
+  "image": [
+   "billede",
+   "billeder"
+  ],
+  "action": [
+   "handling",
+   "handlinger"
+  ],
+  "zone": [
+   "zone",
+   "zoner"
+  ],
+  "prompt": [
+   "prompt",
+   "prompter"
+  ],
+  "resource": [
+   "ressource",
+   "ressourcer"
+  ],
+  "option": [
+   "indstilling",
+   "indstillinger"
+  ],
+  "task": [
+   "opgave",
+   "opgaver"
+  ],
+  "file": [
+   "fil",
+   "filer"
+  ],
+  "folder": [
+   "mappe",
+   "mapper"
+  ],
+  "plugin": [
+   "udvidelse",
+   "udvidelser"
+  ],
+  "voice": [
+   "stemme",
+   "stemmer"
+  ],
+  "hour": [
+   "time",
+   "timer"
+  ],
+  "minute": [
+   "minut",
+   "minutter"
+  ],
+  "second": [
+   "sekund",
+   "sekunder"
+  ],
+  "day": [
+   "dag",
+   "dage"
+  ],
+  "week": [
+   "uge",
+   "uger"
+  ],
+  "month": [
+   "måned",
+   "måneder"
+  ],
+  "year": [
+   "år",
+   "år"
+  ],
+  "update": [
+   "opdatering",
+   "opdateringer"
+  ],
+  "warning": [
+   "advarsel",
+   "advarsler"
+  ],
+  "error": [
+   "fejl",
+   "fejl"
+  ],
+  "command": [
+   "kommando",
+   "kommandoer"
+  ],
+  "step": [
+   "trin",
+   "trin"
+  ],
+  "token": [
+   "token",
+   "tokens"
+  ],
+  "credit": [
+   "kredit",
+   "kreditter"
+  ],
+  "reply": [
+   "svar",
+   "svar"
+  ],
+  "provider": [
+   "udbyder",
+   "udbydere"
+  ],
+  "branch": [
+   "gren",
+   "grene"
+  ],
+  "release": [
+   "udgivelse",
+   "udgivelser"
+  ],
+  "cron": [
+   "cron",
+   "crons"
+  ],
+  "webhook": [
+   "webhook",
+   "webhooks"
+  ],
+  "artifact": [
+   "artefakt",
+   "artefakter"
+  ],
+  "memory": [
+   "hukommelse",
+   "hukommelser"
+  ],
+  "database": [
+   "database",
+   "databaser"
+  ],
+  "workspace": [
+   "arbejdsområde",
+   "arbejdsområder"
+  ],
+  "context": [
+   "kontekst",
+   "kontekster"
+  ]
+ },
+ "el": {
+  "Subagent": [
+   "Υποπράκτορας",
+   "Υποπράκτορες"
+  ],
+  "agent": [
+   "πράκτορας",
+   "πράκτορες"
+  ],
+  "attachment": [
+   "συνημμένο",
+   "συνημμένα"
+  ],
+  "change": [
+   "αλλαγή",
+   "αλλαγές"
+  ],
+  "commit": [
+   "δέσμευση",
+   "δεσμεύσεις"
+  ],
+  "entry": [
+   "καταγραφή αρχείου",
+   "καταγραφές αρχείου"
+  ],
+  "finding": [
+   "εύρημα",
+   "ευρήματα"
+  ],
+  "item": [
+   "στοιχείο",
+   "στοιχεία"
+  ],
+  "job": [
+   "εργασία",
+   "εργασίες"
+  ],
+  "line": [
+   "γραμμή",
+   "γραμμές"
+  ],
+  "message": [
+   "μήνυμα",
+   "μηνύματα"
+  ],
+  "model": [
+   "μοντέλο",
+   "μοντέλα"
+  ],
+  "node": [
+   "κόμβος",
+   "κόμβοι"
+  ],
+  "notification": [
+   "ειδοποίηση",
+   "ειδοποιήσεις"
+  ],
+  "on": [
+   "ενεργό",
+   "ανενεργό"
+  ],
+  "pet": [
+   "κατοικίδιο",
+   "κατοικίδια"
+  ],
+  "profile": [
+   "προφίλ",
+   "προφίλ"
+  ],
+  "result": [
+   "αποτέλεσμα",
+   "αποτελέσματα"
+  ],
+  "service": [
+   "υπηρεσία",
+   "υπηρεσίες"
+  ],
+  "skill": [
+   "δεξιότητα",
+   "δεξιότητες"
+  ],
+  "subagent": [
+   "υποπράκτορας",
+   "υποπράκτορες"
+  ],
+  "tool": [
+   "εργαλείο",
+   "εργαλεία"
+  ],
+  "image": [
+   "εικόνα",
+   "εικόνες"
+  ],
+  "action": [
+   "ενέργεια",
+   "ενέργειες"
+  ],
+  "zone": [
+   "ζώνη",
+   "ζώνες"
+  ],
+  "prompt": [
+   "προτροπή",
+   "προτροπές"
+  ],
+  "resource": [
+   "πόρος",
+   "πόροι"
+  ],
+  "option": [
+   "επιλογή",
+   "επιλογές"
+  ],
+  "task": [
+   "εργασία",
+   "εργασίες"
+  ],
+  "file": [
+   "αρχείο",
+   "αρχεία"
+  ],
+  "folder": [
+   "φάκελος",
+   "φάκελοι"
+  ],
+  "plugin": [
+   "πρόσθετο",
+   "πρόσθετα"
+  ],
+  "voice": [
+   "φωνή",
+   "φωνές"
+  ],
+  "hour": [
+   "ώρα",
+   "ώρες"
+  ],
+  "minute": [
+   "λεπτό",
+   "λεπτά"
+  ],
+  "second": [
+   "δευτερόλεπτο",
+   "δευτερόλεπτα"
+  ],
+  "day": [
+   "ημέρα",
+   "ημέρες"
+  ],
+  "week": [
+   "εβδομάδα",
+   "εβδομάδες"
+  ],
+  "month": [
+   "μήνας",
+   "μήνες"
+  ],
+  "year": [
+   "έτος",
+   "έτη"
+  ],
+  "update": [
+   "ενημέρωση",
+   "ενημερώσεις"
+  ],
+  "warning": [
+   "προειδοποίηση",
+   "προειδοποιήσεις"
+  ],
+  "error": [
+   "σφάλμα",
+   "σφάλματα"
+  ],
+  "command": [
+   "εντολή",
+   "εντολές"
+  ],
+  "step": [
+   "βήμα",
+   "βήματα"
+  ],
+  "token": [
+   "διακριτικό",
+   "διακριτικά"
+  ],
+  "credit": [
+   "πιστωτικό",
+   "πιστωτικά"
+  ],
+  "reply": [
+   "απάντηση",
+   "απαντήσεις"
+  ],
+  "provider": [
+   "πάροχος",
+   "παρόχοι"
+  ],
+  "branch": [
+   "κλάδος",
+   "κλάδοι"
+  ],
+  "release": [
+   "έκδοση",
+   "εκδόσεις"
+  ],
+  "cron": [
+   "χρονικό",
+   "χρονικά"
+  ],
+  "webhook": [
+   "διαδικτυακή αγκύλι",
+   "διαδικτυακές αγκύλες"
+  ],
+  "artifact": [
+   "αποτέλεσμα",
+   "αποτελέσματα"
+  ],
+  "memory": [
+   "μνήμη",
+   "μνήμες"
+  ],
+  "database": [
+   "βάση δεδομένων",
+   "βάσεις δεδομένων"
+  ],
+  "workspace": [
+   "χώρος εργασίας",
+   "χώροι εργασίας"
+  ],
+  "context": [
+   "πλαίσιο",
+   "πλαίσια"
+  ]
+ },
+ "eo": {
+  "Subagent": [
+   "Subagento",
+   "Subagentoj"
+  ],
+  "agent": [
+   "agento",
+   "agentoj"
+  ],
+  "attachment": [
+   "aldonaĵo",
+   "aldonaĵoj"
+  ],
+  "change": [
+   "ŝanĝo",
+   "ŝanĝoj"
+  ],
+  "commit": [
+   "komito",
+   "komitoj"
+  ],
+  "entry": [
+   "registro enskribo",
+   "registro enskriboj"
+  ],
+  "finding": [
+   "trovo",
+   "trovoj"
+  ],
+  "item": [
+   "ero",
+   "eroj"
+  ],
+  "job": [
+   "tasko",
+   "taskoj"
+  ],
+  "line": [
+   "linio",
+   "linioj"
+  ],
+  "message": [
+   "mesaĝo",
+   "mesaĝoj"
+  ],
+  "model": [
+   "modelo",
+   "modeloj"
+  ],
+  "node": [
+   "nodo",
+   "nodoj"
+  ],
+  "notification": [
+   "sciigo",
+   "sciigoj"
+  ],
+  "on": [
+   "ŝaltita",
+   "malŝaltita"
+  ],
+  "pet": [
+   "dorlotbesto",
+   "dorlotbestoj"
+  ],
+  "profile": [
+   "profilo",
+   "profiloj"
+  ],
+  "result": [
+   "rezulto",
+   "rezultoj"
+  ],
+  "service": [
+   "servo",
+   "servoj"
+  ],
+  "skill": [
+   "kapablo",
+   "kapabloj"
+  ],
+  "subagent": [
+   "subagento",
+   "subagentoj"
+  ],
+  "tool": [
+   "ilo",
+   "iloj"
+  ],
+  "image": [
+   "image",
+   "bildoj"
+  ],
+  "action": [
+   "action",
+   "agoj"
+  ],
+  "zone": [
+   "zone",
+   "zonoj"
+  ],
+  "prompt": [
+   "prompt",
+   "instigoj"
+  ],
+  "resource": [
+   "resource",
+   "rimedoj"
+  ],
+  "option": [
+   "option",
+   "opcioj"
+  ],
+  "task": [
+   "task",
+   "taskoj"
+  ],
+  "file": [
+   "file",
+   "dosieroj"
+  ],
+  "folder": [
+   "folder",
+   "dosierujoj"
+  ],
+  "plugin": [
+   "plugin",
+   "aldonaĵoj"
+  ],
+  "voice": [
+   "voice",
+   "vojcoj"
+  ],
+  "hour": [
+   "hour",
+   "horoj"
+  ],
+  "minute": [
+   "minute",
+   "minutoj"
+  ],
+  "second": [
+   "second",
+   "sekundoj"
+  ],
+  "day": [
+   "day",
+   "tagoj"
+  ],
+  "week": [
+   "week",
+   "semajnoj"
+  ],
+  "month": [
+   "month",
+   "monatoj"
+  ],
+  "year": [
+   "year",
+   "jaroj"
+  ],
+  "update": [
+   "update",
+   "ĝisdatigoj"
+  ],
+  "warning": [
+   "warning",
+   "avertoj"
+  ],
+  "error": [
+   "error",
+   "eraroj"
+  ],
+  "command": [
+   "command",
+   "ordonoj"
+  ],
+  "step": [
+   "step",
+   "paŝoj"
+  ],
+  "token": [
+   "token",
+   "markoj"
+  ],
+  "credit": [
+   "credit",
+   "kreditoj"
+  ],
+  "reply": [
+   "reply",
+   "respondoj"
+  ],
+  "provider": [
+   "provider",
+   "provizantoj"
+  ],
+  "branch": [
+   "branch",
+   "branĉoj"
+  ],
+  "release": [
+   "release",
+   "eldonoj"
+  ],
+  "cron": [
+   "cron",
+   "kronoj"
+  ],
+  "webhook": [
+   "webhook",
+   "rethukoj"
+  ],
+  "artifact": [
+   "artifact",
+   "artefaktoj"
+  ],
+  "memory": [
+   "memory",
+   "memoroj"
+  ],
+  "database": [
+   "database",
+   "datumbazoj"
+  ],
+  "workspace": [
+   "workspace",
+   "laborejoj"
+  ],
+  "context": [
+   "context",
+   "kontekstoj"
+  ]
+ },
+ "et": {
+  "Subagent": [
+   "Alamagent",
+   "Alamagendid"
+  ],
+  "agent": [
+   "agent",
+   "agendid"
+  ],
+  "attachment": [
+   "manus",
+   "manused"
+  ],
+  "change": [
+   "muudatus",
+   "muudatused"
+  ],
+  "commit": [
+   "kinnitus",
+   "kinnitused"
+  ],
+  "entry": [
+   "logi kirje",
+   "logi kirjed"
+  ],
+  "finding": [
+   "leid",
+   "leiud"
+  ],
+  "item": [
+   "üksus",
+   "üksused"
+  ],
+  "job": [
+   "töö",
+   "tööd"
+  ],
+  "line": [
+   "rida",
+   "read"
+  ],
+  "message": [
+   "sõnum",
+   "sõnumid"
+  ],
+  "model": [
+   "mudel",
+   "mudelid"
+  ],
+  "node": [
+   "sõlm",
+   "sõlmed"
+  ],
+  "notification": [
+   "teavitus",
+   "teavitused"
+  ],
+  "on": [
+   "sees",
+   "väljas"
+  ],
+  "pet": [
+   "lemmikloom",
+   "lemmikloomad"
+  ],
+  "profile": [
+   "profiil",
+   "profiilid"
+  ],
+  "result": [
+   "tulemus",
+   "tulemused"
+  ],
+  "service": [
+   "teenus",
+   "teenused"
+  ],
+  "skill": [
+   "oskus",
+   "oskused"
+  ],
+  "subagent": [
+   "alamagent",
+   "alamagendid"
+  ],
+  "tool": [
+   "tööriist",
+   "tööriistad"
+  ],
+  "image": [
+   "pilt",
+   "pildid"
+  ],
+  "action": [
+   "tegevus",
+   "tegevused"
+  ],
+  "zone": [
+   "tsoon",
+   "tsoonid"
+  ],
+  "prompt": [
+   "küsimus",
+   "küsimused"
+  ],
+  "resource": [
+   "ressurs",
+   "ressursid"
+  ],
+  "option": [
+   "valik",
+   "valikud"
+  ],
+  "task": [
+   "ülesanne",
+   "ülesanded"
+  ],
+  "file": [
+   "fail",
+   "failid"
+  ],
+  "folder": [
+   "kaust",
+   "kaustad"
+  ],
+  "plugin": [
+   "lisandmoodul",
+   "lisandmoodulid"
+  ],
+  "voice": [
+   "hääl",
+   "hääled"
+  ],
+  "hour": [
+   "tund",
+   "tunnid"
+  ],
+  "minute": [
+   "minut",
+   "minutid"
+  ],
+  "second": [
+   "sekund",
+   "sekundid"
+  ],
+  "day": [
+   "päev",
+   "päevad"
+  ],
+  "week": [
+   "nädal",
+   "nädalad"
+  ],
+  "month": [
+   "kuu",
+   "kuud"
+  ],
+  "year": [
+   "aasta",
+   "aastad"
+  ],
+  "update": [
+   "uuendus",
+   "uuendused"
+  ],
+  "warning": [
+   "hoiatus",
+   "hoiatused"
+  ],
+  "error": [
+   "viga",
+   "vead"
+  ],
+  "command": [
+   "käsk",
+   "käskud"
+  ],
+  "step": [
+   "samm",
+   "sammud"
+  ],
+  "token": [
+   "märk",
+   "märgid"
+  ],
+  "credit": [
+   "krediit",
+   "krediidid"
+  ],
+  "reply": [
+   "vastus",
+   "vastused"
+  ],
+  "provider": [
+   "pakkuja",
+   "pakkujad"
+  ],
+  "branch": [
+   "haru",
+   "harud"
+  ],
+  "release": [
+   "väljalase",
+   "väljalased"
+  ],
+  "cron": [
+   "ajastus",
+   "ajastused"
+  ],
+  "webhook": [
+   "veebikrog",
+   "veebikrogid"
+  ],
+  "artifact": [
+   "artefakt",
+   "artefaktid"
+  ],
+  "memory": [
+   "mälu",
+   "mälu"
+  ],
+  "database": [
+   "andmebaas",
+   "andmebaasid"
+  ],
+  "workspace": [
+   "töökeskkond",
+   "töökeskkonnad"
+  ],
+  "context": [
+   "kontekst",
+   "kontekstid"
+  ]
+ },
+ "fa": {
+  "Subagent": [
+   "زیرعامل",
+   "زیرعامل‌ها"
+  ],
+  "agent": [
+   "عامل",
+   "عامل‌ها"
+  ],
+  "attachment": [
+   "پیوست",
+   "پیوست‌ها"
+  ],
+  "change": [
+   "تغییر",
+   "تغییرها"
+  ],
+  "commit": [
+   "کامیت",
+   "کامیت‌ها"
+  ],
+  "entry": [
+   "گزارش ورود",
+   "گزارش‌های ورود"
+  ],
+  "finding": [
+   "یافته",
+   "یافته‌ها"
+  ],
+  "item": [
+   "مورد",
+   "موردها"
+  ],
+  "job": [
+   "کار",
+   "کارها"
+  ],
+  "line": [
+   "خط",
+   "خط‌ها"
+  ],
+  "message": [
+   "پیام",
+   "پیام‌ها"
+  ],
+  "model": [
+   "مدل",
+   "مدل‌ها"
+  ],
+  "node": [
+   "گره",
+   "گره‌ها"
+  ],
+  "notification": [
+   "اعلان",
+   "اعلان‌ها"
+  ],
+  "on": [
+   "روشن",
+   "خاموش"
+  ],
+  "pet": [
+   "حیوان خانگی",
+   "حیوانات خانگی"
+  ],
+  "profile": [
+   "نمایه",
+   "نمایه‌ها"
+  ],
+  "result": [
+   "نتیجه",
+   "نتیجه‌ها"
+  ],
+  "service": [
+   "سرویس",
+   "سرویس‌ها"
+  ],
+  "skill": [
+   "مهارت",
+   "مهارت‌ها"
+  ],
+  "subagent": [
+   "زیرعامل",
+   "زیرعامل‌ها"
+  ],
+  "tool": [
+   "ابزار",
+   "ابزارها"
+  ],
+  "image": [
+   "تصویر",
+   "تصاویر"
+  ],
+  "action": [
+   "اقدام",
+   "اقدام‌ها"
+  ],
+  "zone": [
+   "ناحیه",
+   "ناحیه‌ها"
+  ],
+  "prompt": [
+   "دستور",
+   "دستورها"
+  ],
+  "resource": [
+   "منبع",
+   "منابع"
+  ],
+  "option": [
+   "گزینه",
+   "گزینه‌ها"
+  ],
+  "task": [
+   "وظیفه",
+   "وظایف"
+  ],
+  "file": [
+   "پرونده",
+   "پرونده‌ها"
+  ],
+  "folder": [
+   "پوشه",
+   "پوشه‌ها"
+  ],
+  "plugin": [
+   "افزونه",
+   "افزونه‌ها"
+  ],
+  "voice": [
+   "صدا",
+   "صداها"
+  ],
+  "hour": [
+   "ساعت",
+   "ساعت‌ها"
+  ],
+  "minute": [
+   "دقیقه",
+   "دقیقه‌ها"
+  ],
+  "second": [
+   "ثانیه",
+   "ثانیه‌ها"
+  ],
+  "day": [
+   "روز",
+   "روزها"
+  ],
+  "week": [
+   "هفته",
+   "هفته‌ها"
+  ],
+  "month": [
+   "ماه",
+   "ماه‌ها"
+  ],
+  "year": [
+   "سال",
+   "سال‌ها"
+  ],
+  "update": [
+   "به‌روزرسانی",
+   "به‌روزرسانی‌ها"
+  ],
+  "warning": [
+   "هشدار",
+   "هشدارها"
+  ],
+  "error": [
+   "خطا",
+   "خطاها"
+  ],
+  "command": [
+   "دستور",
+   "دستورها"
+  ],
+  "step": [
+   "مرحله",
+   "مراحل"
+  ],
+  "token": [
+   "توکن",
+   "توکن‌ها"
+  ],
+  "credit": [
+   "اعتبار",
+   "اعتبارها"
+  ],
+  "reply": [
+   "پاسخ",
+   "پاسخ‌ها"
+  ],
+  "provider": [
+   "ارائه‌دهنده",
+   "ارائه‌دهندگان"
+  ],
+  "branch": [
+   "شاخه",
+   "شاخه‌ها"
+  ],
+  "release": [
+   "انتشار",
+   "انتشارها"
+  ],
+  "cron": [
+   "کرون",
+   "کرون‌ها"
+  ],
+  "webhook": [
+   "وب‌هوک",
+   "وب‌هوک‌ها"
+  ],
+  "artifact": [
+   "مصنوع",
+   "مصنوعات"
+  ],
+  "memory": [
+   "حافظه",
+   "حافظه‌ها"
+  ],
+  "database": [
+   "پایگاه‌داده",
+   "پایگاه‌داده‌ها"
+  ],
+  "workspace": [
+   "فضای‌کار",
+   "فضای‌کارها"
+  ],
+  "context": [
+   "زمینه",
+   "زمینه‌ها"
+  ]
+ },
+ "fi": {
+  "Subagent": [
+   "Ala-agentti",
+   "Ala-agentit"
+  ],
+  "agent": [
+   "agentti",
+   "agentit"
+  ],
+  "attachment": [
+   "liite",
+   "liitteet"
+  ],
+  "change": [
+   "muutos",
+   "muutokset"
+  ],
+  "commit": [
+   "committi",
+   "committit"
+  ],
+  "entry": [
+   "lokimerkintä",
+   "lokimerkinnät"
+  ],
+  "finding": [
+   "löydös",
+   "löydökset"
+  ],
+  "item": [
+   "kohde",
+   "kohteet"
+  ],
+  "job": [
+   "työ",
+   "työt"
+  ],
+  "line": [
+   "rivi",
+   "rivit"
+  ],
+  "message": [
+   "viesti",
+   "viestit"
+  ],
+  "model": [
+   "malli",
+   "mallit"
+  ],
+  "node": [
+   "solmu",
+   "solmut"
+  ],
+  "notification": [
+   "ilmoitus",
+   "ilmoitukset"
+  ],
+  "on": [
+   "päällä",
+   "pois"
+  ],
+  "pet": [
+   "lemmikki",
+   "lemmikit"
+  ],
+  "profile": [
+   "profiili",
+   "profiilit"
+  ],
+  "result": [
+   "tulos",
+   "tulokset"
+  ],
+  "service": [
+   "palvelu",
+   "palvelut"
+  ],
+  "skill": [
+   "taito",
+   "taidot"
+  ],
+  "subagent": [
+   "ala-agentti",
+   "ala-agentit"
+  ],
+  "tool": [
+   "työkalu",
+   "työkalut"
+  ],
+  "image": [
+   "kuva",
+   "kuvat"
+  ],
+  "action": [
+   "toiminto",
+   "toiminnot"
+  ],
+  "zone": [
+   "vyöhyke",
+   "vyöhykkeet"
+  ],
+  "prompt": [
+   "kehote",
+   "kehotteet"
+  ],
+  "resource": [
+   "resurssi",
+   "resurssit"
+  ],
+  "option": [
+   "asetus",
+   "asetukset"
+  ],
+  "task": [
+   "tehtävä",
+   "tehtävät"
+  ],
+  "file": [
+   "tiedosto",
+   "tiedostot"
+  ],
+  "folder": [
+   "kansio",
+   "kansiot"
+  ],
+  "plugin": [
+   "laajennos",
+   "laajennokset"
+  ],
+  "voice": [
+   "ääni",
+   "äänet"
+  ],
+  "hour": [
+   "tunti",
+   "tunnit"
+  ],
+  "minute": [
+   "minuutti",
+   "minuutit"
+  ],
+  "second": [
+   "sekunti",
+   "sekunnit"
+  ],
+  "day": [
+   "päivä",
+   "päivät"
+  ],
+  "week": [
+   "viikko",
+   "viikot"
+  ],
+  "month": [
+   "kuukausi",
+   "kuukaudet"
+  ],
+  "year": [
+   "vuosi",
+   "vuodet"
+  ],
+  "update": [
+   "päivitys",
+   "päivitykset"
+  ],
+  "warning": [
+   "varoitus",
+   "varoitukset"
+  ],
+  "error": [
+   "virhe",
+   "virheet"
+  ],
+  "command": [
+   "komento",
+   "komennot"
+  ],
+  "step": [
+   "vaihe",
+   "vaiheet"
+  ],
+  "token": [
+   "tunnus",
+   "tunnukset"
+  ],
+  "credit": [
+   "krediitti",
+   "krediitit"
+  ],
+  "reply": [
+   "vastaus",
+   "vastaukset"
+  ],
+  "provider": [
+   "tarjoaja",
+   "tarjoajat"
+  ],
+  "branch": [
+   "haara",
+   "haarat"
+  ],
+  "release": [
+   "julkaisu",
+   "julkaisut"
+  ],
+  "cron": [
+   "cron",
+   "cronit"
+  ],
+  "webhook": [
+   "webhook",
+   "webhookit"
+  ],
+  "artifact": [
+   "artefakti",
+   "artefaktit"
+  ],
+  "memory": [
+   "muisti",
+   "muistit"
+  ],
+  "database": [
+   "tietokanta",
+   "tietokannat"
+  ],
+  "workspace": [
+   "työtila",
+   "työtilat"
+  ],
+  "context": [
+   "konteksti",
+   "kontekstit"
+  ]
+ },
+ "ga": {
+  "Subagent": [
+   "Fo-ghníomhaire",
+   "Fo-ghníomhairí"
+  ],
+  "agent": [
+   "gníomhaire",
+   "gníomhairí"
+  ],
+  "attachment": [
+   "ceangaltán",
+   "ceangaltáin"
+  ],
+  "change": [
+   "athrú",
+   "athruithe"
+  ],
+  "commit": [
+   "tiomantas",
+   "tiomantais"
+  ],
+  "entry": [
+   "taifead logála",
+   "taifeadta logála"
+  ],
+  "finding": [
+   "aimsiú",
+   "aimsithe"
+  ],
+  "item": [
+   "mír",
+   "míreanna"
+  ],
+  "job": [
+   "jab",
+   "jabanna"
+  ],
+  "line": [
+   "líne",
+   "línte"
+  ],
+  "message": [
+   "teachtaireacht",
+   "teachtaireachtaí"
+  ],
+  "model": [
+   "samhail",
+   "samhlacha"
+  ],
+  "node": [
+   "nód",
+   "nóid"
+  ],
+  "notification": [
+   "fógra",
+   "fógraí"
+  ],
+  "on": [
+   "ar",
+   "as"
+  ],
+  "pet": [
+   "peata",
+   "peataí"
+  ],
+  "profile": [
+   "próifíl",
+   "próifílí"
+  ],
+  "result": [
+   "toradh",
+   "torthaí"
+  ],
+  "service": [
+   "seirbhís",
+   "seirbhísí"
+  ],
+  "skill": [
+   "scil",
+   "scileanna"
+  ],
+  "subagent": [
+   "fo-ghníomhaire",
+   "fo-ghníomhairí"
+  ],
+  "tool": [
+   "uirlis",
+   "uirlisí"
+  ],
+  "image": [
+   "íomhá",
+   "íomhánna"
+  ],
+  "action": [
+   "gníomh",
+   "gníomhartha"
+  ],
+  "zone": [
+   "zón",
+   "zónna"
+  ],
+  "prompt": [
+   "moladh",
+   "molaidí"
+  ],
+  "resource": [
+   "acmhainn",
+   "acmhainní"
+  ],
+  "option": [
+   "rogha",
+   "roghanna"
+  ],
+  "task": [
+   "tasg",
+   "tascaí"
+  ],
+  "file": [
+   "comhad",
+   "comhaid"
+  ],
+  "folder": [
+   "comhadán",
+   "comhadáin"
+  ],
+  "plugin": [
+   "plug-in",
+   "plug-iní"
+  ],
+  "voice": [
+   "guth",
+   "guthanna"
+  ],
+  "hour": [
+   "uair",
+   "uaireanta"
+  ],
+  "minute": [
+   "nóiméad",
+   "nóiméid"
+  ],
+  "second": [
+   "dara",
+   "daraí"
+  ],
+  "day": [
+   "lá",
+   "laethanta"
+  ],
+  "week": [
+   "seachtain",
+   "seachtainí"
+  ],
+  "month": [
+   "mí",
+   "míonna"
+  ],
+  "year": [
+   "bliain",
+   "bliana"
+  ],
+  "update": [
+   "nuashonrú",
+   "nuashonruithe"
+  ],
+  "warning": [
+   "rabhadh",
+   "rabhaidh"
+  ],
+  "error": [
+   "earráid",
+   "earráidí"
+  ],
+  "command": [
+   "ordú",
+   "orduithe"
+  ],
+  "step": [
+   "céim",
+   "céimeanna"
+  ],
+  "token": [
+   "token",
+   "tokenanna"
+  ],
+  "credit": [
+   "creidmheas",
+   "creidmheasanna"
+  ],
+  "reply": [
+   "freagra",
+   "freagraí"
+  ],
+  "provider": [
+   "soláthraí",
+   "soláthraithe"
+  ],
+  "branch": [
+   "branar",
+   "branair"
+  ],
+  "release": [
+   "eisiúint",
+   "eisiúintí"
+  ],
+  "cron": [
+   "cron",
+   "cronanna"
+  ],
+  "webhook": [
+   "webhook",
+   "webhookanna"
+  ],
+  "artifact": [
+   "tairbhe",
+   "tairbhí"
+  ],
+  "memory": [
+   "cuimhne",
+   "cuimhní"
+  ],
+  "database": [
+   "bunachar sonraí",
+   "bunachair sonraí"
+  ],
+  "workspace": [
+   "spás oibre",
+   "spásanna oibre"
+  ],
+  "context": [
+   "comhthéacs",
+   "comhthéacsanna"
+  ]
+ },
+ "hi": {
+  "Subagent": [
+   "उपएजेंट",
+   "उपएजेंट"
+  ],
+  "agent": [
+   "एजेंट",
+   "एजेंट"
+  ],
+  "attachment": [
+   "अनुलग्नक",
+   "अनुलग्नक"
+  ],
+  "change": [
+   "परिवर्तन",
+   "परिवर्तन"
+  ],
+  "commit": [
+   "कमिट",
+   "कमिट"
+  ],
+  "entry": [
+   "लॉग प्रविष्टि",
+   "लॉग प्रविष्टियाँ"
+  ],
+  "finding": [
+   "निष्कर्ष",
+   "निष्कर्ष"
+  ],
+  "item": [
+   "वस्तु",
+   "वस्तुएँ"
+  ],
+  "job": [
+   "कार्य",
+   "कार्य"
+  ],
+  "line": [
+   "पंक्ति",
+   "पंक्तियाँ"
+  ],
+  "message": [
+   "संदेश",
+   "संदेश"
+  ],
+  "model": [
+   "मॉडल",
+   "मॉडल"
+  ],
+  "node": [
+   "नोड",
+   "नोड"
+  ],
+  "notification": [
+   "सूचना",
+   "सूचनाएँ"
+  ],
+  "on": [
+   "चालू",
+   "बंद"
+  ],
+  "pet": [
+   "पालतू",
+   "पालतू"
+  ],
+  "profile": [
+   "प्रोफ़ाइल",
+   "प्रोफ़ाइलें"
+  ],
+  "result": [
+   "परिणाम",
+   "परिणाम"
+  ],
+  "service": [
+   "सेवा",
+   "सेवाएँ"
+  ],
+  "skill": [
+   "कौशल",
+   "कौशल"
+  ],
+  "subagent": [
+   "उपएजेंट",
+   "उपएजेंट"
+  ],
+  "tool": [
+   "उपकरण",
+   "उपकरण"
+  ],
+  "image": [
+   "छवि",
+   "छवियाँ"
+  ],
+  "action": [
+   "कार्रवाई",
+   "कार्रवाइयाँ"
+  ],
+  "zone": [
+   "क्षेत्र",
+   "क्षेत्र"
+  ],
+  "prompt": [
+   "संकेत",
+   "संकेत"
+  ],
+  "resource": [
+   "संसाधन",
+   "संसाधन"
+  ],
+  "option": [
+   "विकल्प",
+   "विकल्प"
+  ],
+  "task": [
+   "कार्य",
+   "कार्य"
+  ],
+  "file": [
+   "फ़ाइल",
+   "फ़ाइलें"
+  ],
+  "folder": [
+   "फ़ोल्डर",
+   "फ़ोल्डर"
+  ],
+  "plugin": [
+   "प्लगइन",
+   "प्लगइन"
+  ],
+  "voice": [
+   "आवाज़",
+   "आवाज़ें"
+  ],
+  "hour": [
+   "घंटा",
+   "घंटे"
+  ],
+  "minute": [
+   "मिनट",
+   "मिनट"
+  ],
+  "second": [
+   "सेकंड",
+   "सेकंड"
+  ],
+  "day": [
+   "दिन",
+   "दिन"
+  ],
+  "week": [
+   "सप्ताह",
+   "सप्ताह"
+  ],
+  "month": [
+   "महीना",
+   "महीने"
+  ],
+  "year": [
+   "वर्ष",
+   "वर्ष"
+  ],
+  "update": [
+   "अपडेट",
+   "अपडेट"
+  ],
+  "warning": [
+   "चेतावनी",
+   "चेतावनियाँ"
+  ],
+  "error": [
+   "त्रुटि",
+   "त्रुटियाँ"
+  ],
+  "command": [
+   "कमांड",
+   "कमांड"
+  ],
+  "step": [
+   "चरण",
+   "चरण"
+  ],
+  "token": [
+   "टोकन",
+   "टोकन"
+  ],
+  "credit": [
+   "क्रेडिट",
+   "क्रेडिट"
+  ],
+  "reply": [
+   "उत्तर",
+   "उत्तर"
+  ],
+  "provider": [
+   "प्रदाता",
+   "प्रदाता"
+  ],
+  "branch": [
+   "शाखा",
+   "शाखाएँ"
+  ],
+  "release": [
+   "रिलीज़",
+   "रिलीज़"
+  ],
+  "cron": [
+   "क्रॉन",
+   "क्रॉन"
+  ],
+  "webhook": [
+   "वेबहुक",
+   "वेबहुक"
+  ],
+  "artifact": [
+   "कलाकृति",
+   "कलाकृतियाँ"
+  ],
+  "memory": [
+   "मेमोरी",
+   "मेमोरी"
+  ],
+  "database": [
+   "डेटाबेस",
+   "डेटाबेस"
+  ],
+  "workspace": [
+   "कार्यक्षेत्र",
+   "कार्यक्षेत्र"
+  ],
+  "context": [
+   "संदर्भ",
+   "संदर्भ"
+  ]
+ },
+ "hr": {
+  "Subagent": [
+   "Podagent",
+   "Podagenti"
+  ],
+  "agent": [
+   "agent",
+   "agenti"
+  ],
+  "attachment": [
+   "privitak",
+   "privitci"
+  ],
+  "change": [
+   "promjena",
+   "promjene"
+  ],
+  "commit": [
+   "predaja",
+   "predaje"
+  ],
+  "entry": [
+   "zapis zapisnika",
+   "zapisi zapisnika"
+  ],
+  "finding": [
+   "nalaz",
+   "nalazi"
+  ],
+  "item": [
+   "stavka",
+   "stavke"
+  ],
+  "job": [
+   "posao",
+   "poslovi"
+  ],
+  "line": [
+   "redak",
+   "retci"
+  ],
+  "message": [
+   "poruka",
+   "poruke"
+  ],
+  "model": [
+   "model",
+   "modeli"
+  ],
+  "node": [
+   "čvor",
+   "čvorovi"
+  ],
+  "notification": [
+   "obavijest",
+   "obavijesti"
+  ],
+  "on": [
+   "uključeno",
+   "isključeno"
+  ],
+  "pet": [
+   "ljubimac",
+   "ljubimci"
+  ],
+  "profile": [
+   "profil",
+   "profili"
+  ],
+  "result": [
+   "rezultat",
+   "rezultati"
+  ],
+  "service": [
+   "usluga",
+   "usluge"
+  ],
+  "skill": [
+   "vještina",
+   "vještine"
+  ],
+  "subagent": [
+   "podagent",
+   "podagenti"
+  ],
+  "tool": [
+   "alat",
+   "alati"
+  ],
+  "image": [
+   "slika",
+   "slike"
+  ],
+  "action": [
+   "akcija",
+   "akcije"
+  ],
+  "zone": [
+   "zona",
+   "zone"
+  ],
+  "prompt": [
+   "upit",
+   "upiti"
+  ],
+  "resource": [
+   "resurs",
+   "resursi"
+  ],
+  "option": [
+   "opcija",
+   "opcije"
+  ],
+  "task": [
+   "zadatak",
+   "zadaci"
+  ],
+  "file": [
+   "datoteka",
+   "datoteke"
+  ],
+  "folder": [
+   "mapa",
+   "mape"
+  ],
+  "plugin": [
+   "dodatak",
+   "dodaci"
+  ],
+  "voice": [
+   "glas",
+   "glasovi"
+  ],
+  "hour": [
+   "sat",
+   "sati"
+  ],
+  "minute": [
+   "minuta",
+   "minute"
+  ],
+  "second": [
+   "sekunda",
+   "sekunde"
+  ],
+  "day": [
+   "dan",
+   "dana"
+  ],
+  "week": [
+   "tjedan",
+   "tjedana"
+  ],
+  "month": [
+   "mjesec",
+   "mjeseci"
+  ],
+  "year": [
+   "godina",
+   "godine"
+  ],
+  "update": [
+   "ažuriranje",
+   "ažuriranja"
+  ],
+  "warning": [
+   "upozorenje",
+   "upozorenja"
+  ],
+  "error": [
+   "pogreška",
+   "pogreške"
+  ],
+  "command": [
+   "naredba",
+   "naredbe"
+  ],
+  "step": [
+   "korak",
+   "koraci"
+  ],
+  "token": [
+   "žeton",
+   "žetoni"
+  ],
+  "credit": [
+   "kredit",
+   "krediti"
+  ],
+  "reply": [
+   "odgovor",
+   "odgovori"
+  ],
+  "provider": [
+   "davatelj",
+   "davatelji"
+  ],
+  "branch": [
+   "grana",
+   "grane"
+  ],
+  "release": [
+   "izdanje",
+   "izdanja"
+  ],
+  "cron": [
+   "cron",
+   "cronovi"
+  ],
+  "webhook": [
+   "webhook",
+   "webhookovi"
+  ],
+  "artifact": [
+   "artefakt",
+   "artefakti"
+  ],
+  "memory": [
+   "memorija",
+   "memorije"
+  ],
+  "database": [
+   "baza podataka",
+   "baze podataka"
+  ],
+  "workspace": [
+   "radni prostor",
+   "radni prostori"
+  ],
+  "context": [
+   "kontekst",
+   "konteksti"
+  ]
+ },
+ "hu": {
+  "Subagent": [
+   "Alügynök",
+   "Alügynökök"
+  ],
+  "agent": [
+   "ügynök",
+   "ügynökök"
+  ],
+  "attachment": [
+   "melléklet",
+   "mellékletek"
+  ],
+  "change": [
+   "változás",
+   "változások"
+  ],
+  "commit": [
+   "commit",
+   "commitok"
+  ],
+  "entry": [
+   "naplófbejegyzés",
+   "naplófbejegyzések"
+  ],
+  "finding": [
+   "találat",
+   "találatok"
+  ],
+  "item": [
+   "elem",
+   "elemek"
+  ],
+  "job": [
+   "feladat",
+   "feladatok"
+  ],
+  "line": [
+   "sor",
+   "sorok"
+  ],
+  "message": [
+   "üzenet",
+   "üzenetek"
+  ],
+  "model": [
+   "modell",
+   "modellek"
+  ],
+  "node": [
+   "csomópont",
+   "csomópontok"
+  ],
+  "notification": [
+   "értesítés",
+   "értesítések"
+  ],
+  "on": [
+   "be",
+   "ki"
+  ],
+  "pet": [
+   "háziállat",
+   "háziállatok"
+  ],
+  "profile": [
+   "profil",
+   "profilok"
+  ],
+  "result": [
+   "eredmény",
+   "eredmények"
+  ],
+  "service": [
+   "szolgáltatás",
+   "szolgáltatások"
+  ],
+  "skill": [
+   "készség",
+   "készségek"
+  ],
+  "subagent": [
+   "alügynök",
+   "alügynökök"
+  ],
+  "tool": [
+   "eszköz",
+   "eszközök"
+  ],
+  "image": [
+   "kép",
+   "képek"
+  ],
+  "action": [
+   "művelet",
+   "műveletek"
+  ],
+  "zone": [
+   "zóna",
+   "zónák"
+  ],
+  "prompt": [
+   "kérés",
+   "kérések"
+  ],
+  "resource": [
+   "erőforrás",
+   "erőforrások"
+  ],
+  "option": [
+   "opció",
+   "opciók"
+  ],
+  "task": [
+   "feladat",
+   "feladatok"
+  ],
+  "file": [
+   "fájl",
+   "fájlok"
+  ],
+  "folder": [
+   "mappa",
+   "mappák"
+  ],
+  "plugin": [
+   "bővítmény",
+   "bővítmények"
+  ],
+  "voice": [
+   "hang",
+   "hangok"
+  ],
+  "hour": [
+   "óra",
+   "órák"
+  ],
+  "minute": [
+   "perc",
+   "percek"
+  ],
+  "second": [
+   "másodperc",
+   "másodpercek"
+  ],
+  "day": [
+   "nap",
+   "napok"
+  ],
+  "week": [
+   "hét",
+   "hetek"
+  ],
+  "month": [
+   "hónap",
+   "hónapok"
+  ],
+  "year": [
+   "év",
+   "évek"
+  ],
+  "update": [
+   "frissítés",
+   "frissítések"
+  ],
+  "warning": [
+   "figyelmeztetés",
+   "figyelmeztetések"
+  ],
+  "error": [
+   "hiba",
+   "hibák"
+  ],
+  "command": [
+   "parancs",
+   "parancsok"
+  ],
+  "step": [
+   "lépés",
+   "lépcsők"
+  ],
+  "token": [
+   "token",
+   "tokenek"
+  ],
+  "credit": [
+   "kredit",
+   "kreditek"
+  ],
+  "reply": [
+   "válasz",
+   "válaszok"
+  ],
+  "provider": [
+   "szolgáltató",
+   "szolgáltatók"
+  ],
+  "branch": [
+   "ág",
+   "ágak"
+  ],
+  "release": [
+   "kiadás",
+   "kiadások"
+  ],
+  "cron": [
+   "cron",
+   "cronok"
+  ],
+  "webhook": [
+   "webhook",
+   "webhookok"
+  ],
+  "artifact": [
+   "artefaktum",
+   "artefaktumok"
+  ],
+  "memory": [
+   "memória",
+   "memóriák"
+  ],
+  "database": [
+   "adatbázis",
+   "adatbázisok"
+  ],
+  "workspace": [
+   "munkaterület",
+   "munkaterületek"
+  ],
+  "context": [
+   "kontextus",
+   "kontextusok"
+  ]
+ },
+ "id": {
+  "Subagent": [
+   "Subagen",
+   "Subagen"
+  ],
+  "agent": [
+   "agen",
+   "agen"
+  ],
+  "attachment": [
+   "lampiran",
+   "lampiran"
+  ],
+  "change": [
+   "perubahan",
+   "perubahan"
+  ],
+  "commit": [
+   "komit",
+   "komit"
+  ],
+  "entry": [
+   "entri log",
+   "entri log"
+  ],
+  "finding": [
+   "temuan",
+   "temuan"
+  ],
+  "item": [
+   "item",
+   "item"
+  ],
+  "job": [
+   "pekerjaan",
+   "pekerjaan"
+  ],
+  "line": [
+   "baris",
+   "baris"
+  ],
+  "message": [
+   "pesan",
+   "pesan"
+  ],
+  "model": [
+   "model",
+   "model"
+  ],
+  "node": [
+   "simpul",
+   "simpul"
+  ],
+  "notification": [
+   "notifikasi",
+   "notifikasi"
+  ],
+  "on": [
+   "aktif",
+   "nonaktif"
+  ],
+  "pet": [
+   "piaraan",
+   "piaraan"
+  ],
+  "profile": [
+   "profil",
+   "profil"
+  ],
+  "result": [
+   "hasil",
+   "hasil"
+  ],
+  "service": [
+   "layanan",
+   "layanan"
+  ],
+  "skill": [
+   "keterampilan",
+   "keterampilan"
+  ],
+  "subagent": [
+   "subagen",
+   "subagen"
+  ],
+  "tool": [
+   "alat",
+   "alat"
+  ]
+ },
+ "ja": {
+  "Subagent": [
+   "サブエージェント",
+   "サブエージェント"
+  ],
+  "agent": [
+   "エージェント",
+   "エージェント"
+  ],
+  "attachment": [
+   "添付ファイル",
+   "添付ファイル"
+  ],
+  "change": [
+   "変更",
+   "変更"
+  ],
+  "commit": [
+   "コミット",
+   "コミット"
+  ],
+  "entry": [
+   "エントリ",
+   "エントリ"
+  ],
+  "finding": [
+   "検出結果",
+   "検出結果"
+  ],
+  "item": [
+   "項目",
+   "項目"
+  ],
+  "job": [
+   "ジョブ",
+   "ジョブ"
+  ],
+  "line": [
+   "行",
+   "行"
+  ],
+  "message": [
+   "メッセージ",
+   "メッセージ"
+  ],
+  "model": [
+   "モデル",
+   "モデル"
+  ],
+  "node": [
+   "ノード",
+   "ノード"
+  ],
+  "notification": [
+   "通知",
+   "通知"
+  ],
+  "on": [
+   "オン",
+   "オフ"
+  ],
+  "pet": [
+   "ペット",
+   "ペット"
+  ],
+  "profile": [
+   "プロファイル",
+   "プロファイル"
+  ],
+  "result": [
+   "結果",
+   "結果"
+  ],
+  "service": [
+   "サービス",
+   "サービス"
+  ],
+  "skill": [
+   "スキル",
+   "スキル"
+  ],
+  "subagent": [
+   "サブエージェント",
+   "サブエージェント"
+  ],
+  "tool": [
+   "ツール",
+   "ツール"
+  ]
+ },
+ "ko": {
+  "Subagent": [
+   "서브에이전트",
+   "서브에이전트"
+  ],
+  "agent": [
+   "에이전트",
+   "에이전트"
+  ],
+  "attachment": [
+   "첨부 파일",
+   "첨부 파일"
+  ],
+  "change": [
+   "변경",
+   "변경"
+  ],
+  "commit": [
+   "커밋",
+   "커밋"
+  ],
+  "entry": [
+   "로그 항목",
+   "로그 항목"
+  ],
+  "finding": [
+   "발견 사항",
+   "발견 사항"
+  ],
+  "item": [
+   "항목",
+   "항목"
+  ],
+  "job": [
+   "작업",
+   "작업"
+  ],
+  "line": [
+   "줄",
+   "줄"
+  ],
+  "message": [
+   "메시지",
+   "메시지"
+  ],
+  "model": [
+   "모델",
+   "모델"
+  ],
+  "node": [
+   "노드",
+   "노드"
+  ],
+  "notification": [
+   "알림",
+   "알림"
+  ],
+  "on": [
+   "켜기",
+   "끄기"
+  ],
+  "pet": [
+   "펫",
+   "펫"
+  ],
+  "profile": [
+   "프로필",
+   "프로필"
+  ],
+  "result": [
+   "결과",
+   "결과"
+  ],
+  "service": [
+   "서비스",
+   "서비스"
+  ],
+  "skill": [
+   "스킬",
+   "스킬"
+  ],
+  "subagent": [
+   "서브에이전트",
+   "서브에이전트"
+  ],
+  "tool": [
+   "도구",
+   "도구"
+  ]
+ },
+ "lt": {
+  "Subagent": [
+   "Subagentas",
+   "Subagentai"
+  ],
+  "agent": [
+   "agentas",
+   "agentai"
+  ],
+  "attachment": [
+   "priedas",
+   "priedai"
+  ],
+  "change": [
+   "pakeitimas",
+   "pakeitimai"
+  ],
+  "commit": [
+   "komitas",
+   "komitai"
+  ],
+  "entry": [
+   "žurnalo įrašas",
+   "žurnalo įrašai"
+  ],
+  "finding": [
+   "radinys",
+   "radiniai"
+  ],
+  "item": [
+   "elementas",
+   "elementai"
+  ],
+  "job": [
+   "užduotis",
+   "užduotys"
+  ],
+  "line": [
+   "eilutė",
+   "eilutės"
+  ],
+  "message": [
+   "žinutė",
+   "žinutės"
+  ],
+  "model": [
+   "modelis",
+   "modeliai"
+  ],
+  "node": [
+   "mazgas",
+   "mazgai"
+  ],
+  "notification": [
+   "pranešimas",
+   "pranešimai"
+  ],
+  "on": [
+   "įjungta",
+   "išjungta"
+  ],
+  "pet": [
+   "augintinis",
+   "augintiniai"
+  ],
+  "profile": [
+   "profilis",
+   "profiliai"
+  ],
+  "result": [
+   "rezultatas",
+   "rezultatai"
+  ],
+  "service": [
+   "paslauga",
+   "paslaugos"
+  ],
+  "skill": [
+   "įgūdis",
+   "įgūdžiai"
+  ],
+  "subagent": [
+   "subagentas",
+   "subagentai"
+  ],
+  "tool": [
+   "įrankis",
+   "įrankiai"
+  ]
+ },
+ "lv": {
+  "Subagent": [
+   "Apakšagents",
+   "Apakšagenti"
+  ],
+  "agent": [
+   "agents",
+   "agenti"
+  ],
+  "attachment": [
+   "pielikums",
+   "pielikumi"
+  ],
+  "change": [
+   "izmaiņa",
+   "izmaiņas"
+  ],
+  "commit": [
+   "komits",
+   "komiti"
+  ],
+  "entry": [
+   "žurnāla ieraksts",
+   "žurnāla ieraksti"
+  ],
+  "finding": [
+   "konstatējums",
+   "konstatējumi"
+  ],
+  "item": [
+   "vienums",
+   "vienumi"
+  ],
+  "job": [
+   "darbs",
+   "darbi"
+  ],
+  "line": [
+   "rinda",
+   "rindas"
+  ],
+  "message": [
+   "ziņa",
+   "ziņas"
+  ],
+  "model": [
+   "modelis",
+   "modeļi"
+  ],
+  "node": [
+   "mezgls",
+   "mezgli"
+  ],
+  "notification": [
+   "paziņojums",
+   "paziņojumi"
+  ],
+  "on": [
+   "ieslēgts",
+   "izslēgts"
+  ],
+  "pet": [
+   "mīlulis",
+   "mīluļi"
+  ],
+  "profile": [
+   "profils",
+   "profili"
+  ],
+  "result": [
+   "rezultāts",
+   "rezultāti"
+  ],
+  "service": [
+   "pakalpojums",
+   "pakalpojumi"
+  ],
+  "skill": [
+   "prasme",
+   "prasmes"
+  ],
+  "subagent": [
+   "apakšagents",
+   "apakšagenti"
+  ],
+  "tool": [
+   "rīks",
+   "rīki"
+  ]
+ },
+ "nl": {
+  "Subagent": [
+   "Subagent",
+   "Subagenten"
+  ],
+  "agent": [
+   "agent",
+   "agenten"
+  ],
+  "attachment": [
+   "bijlage",
+   "bijlagen"
+  ],
+  "change": [
+   "wijziging",
+   "wijzigingen"
+  ],
+  "commit": [
+   "vastlegging",
+   "vastleggingen"
+  ],
+  "entry": [
+   "logitem",
+   "logitems"
+  ],
+  "finding": [
+   "bevinding",
+   "bevindingen"
+  ],
+  "item": [
+   "onderdeel",
+   "onderdelen"
+  ],
+  "job": [
+   "taak",
+   "taken"
+  ],
+  "line": [
+   "regel",
+   "regels"
+  ],
+  "message": [
+   "bericht",
+   "berichten"
+  ],
+  "model": [
+   "model",
+   "modellen"
+  ],
+  "node": [
+   "knooppunt",
+   "knooppunten"
+  ],
+  "notification": [
+   "melding",
+   "meldingen"
+  ],
+  "on": [
+   "aan",
+   "uit"
+  ],
+  "pet": [
+   "huisdier",
+   "huisdieren"
+  ],
+  "profile": [
+   "profiel",
+   "profielen"
+  ],
+  "result": [
+   "resultaat",
+   "resultaten"
+  ],
+  "service": [
+   "dienst",
+   "diensten"
+  ],
+  "skill": [
+   "vaardigheid",
+   "vaardigheden"
+  ],
+  "subagent": [
+   "subagent",
+   "subagenten"
+  ],
+  "tool": [
+   "hulpmiddel",
+   "hulpmiddelen"
+  ]
+ },
+ "no": {
+  "Subagent": [
+   "Underagent",
+   "Underagenter"
+  ],
+  "agent": [
+   "agent",
+   "agenter"
+  ],
+  "attachment": [
+   "vedlegg",
+   "vedlegg"
+  ],
+  "change": [
+   "endring",
+   "endringer"
+  ],
+  "commit": [
+   "innsending",
+   "innsendinger"
+  ],
+  "entry": [
+   "loggoppføring",
+   "loggoppføringer"
+  ],
+  "finding": [
+   "funn",
+   "funn"
+  ],
+  "item": [
+   "element",
+   "elementer"
+  ],
+  "job": [
+   "jobb",
+   "jobber"
+  ],
+  "line": [
+   "linje",
+   "linjer"
+  ],
+  "message": [
+   "melding",
+   "meldinger"
+  ],
+  "model": [
+   "modell",
+   "modeller"
+  ],
+  "node": [
+   "node",
+   "noder"
+  ],
+  "notification": [
+   "varsel",
+   "varsler"
+  ],
+  "on": [
+   "på",
+   "av"
+  ],
+  "pet": [
+   "kjæledyr",
+   "kjæledyr"
+  ],
+  "profile": [
+   "profil",
+   "profiler"
+  ],
+  "result": [
+   "resultat",
+   "resultater"
+  ],
+  "service": [
+   "tjeneste",
+   "tjenester"
+  ],
+  "skill": [
+   "ferdighet",
+   "ferdigheter"
+  ],
+  "subagent": [
+   "underagent",
+   "underagenter"
+  ],
+  "tool": [
+   "verktøy",
+   "verktøy"
+  ]
+ },
+ "pl": {
+  "Subagent": [
+   "Podagent",
+   "Podagenci"
+  ],
+  "agent": [
+   "agent",
+   "agenci"
+  ],
+  "attachment": [
+   "załącznik",
+   "załączniki"
+  ],
+  "change": [
+   "zmiana",
+   "zmiany"
+  ],
+  "commit": [
+   "zatwierdzenie",
+   "zatwierdzenia"
+  ],
+  "entry": [
+   "wpis dziennika",
+   "wpisy dziennika"
+  ],
+  "finding": [
+   "znalezisko",
+   "znaleziska"
+  ],
+  "item": [
+   "element",
+   "elementy"
+  ],
+  "job": [
+   "zadanie",
+   "zadania"
+  ],
+  "line": [
+   "wiersz",
+   "wiersze"
+  ],
+  "message": [
+   "wiadomość",
+   "wiadomości"
+  ],
+  "model": [
+   "model",
+   "modele"
+  ],
+  "node": [
+   "węzeł",
+   "węzły"
+  ],
+  "notification": [
+   "powiadomienie",
+   "powiadomienia"
+  ],
+  "on": [
+   "włączone",
+   "wyłączone"
+  ],
+  "pet": [
+   "pupil",
+   "pupile"
+  ],
+  "profile": [
+   "profil",
+   "profile"
+  ],
+  "result": [
+   "wynik",
+   "wyniki"
+  ],
+  "service": [
+   "usługa",
+   "usługi"
+  ],
+  "skill": [
+   "umiejętność",
+   "umiejętności"
+  ],
+  "subagent": [
+   "podagent",
+   "podagenci"
+  ],
+  "tool": [
+   "narzędzie",
+   "narzędzia"
+  ]
+ },
+ "ro": {
+  "Subagent": [
+   "Subagent",
+   "Subagenți"
+  ],
+  "agent": [
+   "agent",
+   "agenți"
+  ],
+  "attachment": [
+   "atașament",
+   "atașamente"
+  ],
+  "change": [
+   "modificare",
+   "modificări"
+  ],
+  "commit": [
+   "commit",
+   "commit-uri"
+  ],
+  "entry": [
+   "intrare în jurnal",
+   "intrări în jurnal"
+  ],
+  "finding": [
+   "constatare",
+   "constatări"
+  ],
+  "item": [
+   "element",
+   "elemente"
+  ],
+  "job": [
+   "sarcină",
+   "sarcini"
+  ],
+  "line": [
+   "linie",
+   "linii"
+  ],
+  "message": [
+   "mesaj",
+   "mesaje"
+  ],
+  "model": [
+   "model",
+   "modele"
+  ],
+  "node": [
+   "nod",
+   "noduri"
+  ],
+  "notification": [
+   "notificare",
+   "notificări"
+  ],
+  "on": [
+   "activ",
+   "inactiv"
+  ],
+  "pet": [
+   "animal",
+   "animale"
+  ],
+  "profile": [
+   "profil",
+   "profiluri"
+  ],
+  "result": [
+   "rezultat",
+   "rezultate"
+  ],
+  "service": [
+   "serviciu",
+   "servicii"
+  ],
+  "skill": [
+   "abilitate",
+   "abilități"
+  ],
+  "subagent": [
+   "subagent",
+   "subagenți"
+  ],
+  "tool": [
+   "instrument",
+   "instrumente"
+  ]
+ },
+ "ru": {
+  "Subagent": [
+   "Субагент",
+   "Субагенты"
+  ],
+  "agent": [
+   "агент",
+   "агенты"
+  ],
+  "attachment": [
+   "вложение",
+   "вложения"
+  ],
+  "change": [
+   "изменение",
+   "изменения"
+  ],
+  "commit": [
+   "коммит",
+   "коммиты"
+  ],
+  "entry": [
+   "запись журнала",
+   "записи журнала"
+  ],
+  "finding": [
+   "находка",
+   "находки"
+  ],
+  "item": [
+   "элемент",
+   "элементы"
+  ],
+  "job": [
+   "задание",
+   "задания"
+  ],
+  "line": [
+   "строка",
+   "строки"
+  ],
+  "message": [
+   "сообщение",
+   "сообщения"
+  ],
+  "model": [
+   "модель",
+   "модели"
+  ],
+  "node": [
+   "узел",
+   "узлы"
+  ],
+  "notification": [
+   "уведомление",
+   "уведомления"
+  ],
+  "on": [
+   "вкл",
+   "выкл"
+  ],
+  "pet": [
+   "питомец",
+   "питомцы"
+  ],
+  "profile": [
+   "профиль",
+   "профили"
+  ],
+  "result": [
+   "результат",
+   "результаты"
+  ],
+  "service": [
+   "сервис",
+   "сервисы"
+  ],
+  "skill": [
+   "навык",
+   "навыки"
+  ],
+  "subagent": [
+   "субагент",
+   "субагенты"
+  ],
+  "tool": [
+   "инструмент",
+   "инструменты"
+  ]
+ },
+ "sk": {
+  "Subagent": [
+   "Subagent",
+   "Subagenti"
+  ],
+  "agent": [
+   "agent",
+   "agenti"
+  ],
+  "attachment": [
+   "príloha",
+   "prílohy"
+  ],
+  "change": [
+   "zmena",
+   "zmeny"
+  ],
+  "commit": [
+   "commit",
+   "commity"
+  ],
+  "entry": [
+   "záznam logu",
+   "záznamy logu"
+  ],
+  "finding": [
+   "zistenie",
+   "zistenia"
+  ],
+  "item": [
+   "položka",
+   "položky"
+  ],
+  "job": [
+   "úloha",
+   "úlohy"
+  ],
+  "line": [
+   "riadok",
+   "riadky"
+  ],
+  "message": [
+   "správa",
+   "správy"
+  ],
+  "model": [
+   "model",
+   "modely"
+  ],
+  "node": [
+   "uzol",
+   "uzly"
+  ],
+  "notification": [
+   "oznámenie",
+   "oznámenia"
+  ],
+  "on": [
+   "zapnuté",
+   "vypnuté"
+  ],
+  "pet": [
+   "maznáčik",
+   "maznáčiky"
+  ],
+  "profile": [
+   "profil",
+   "profily"
+  ],
+  "result": [
+   "výsledok",
+   "výsledky"
+  ],
+  "service": [
+   "služba",
+   "služby"
+  ],
+  "skill": [
+   "zručnosť",
+   "zručnosti"
+  ],
+  "subagent": [
+   "subagent",
+   "subagenti"
+  ],
+  "tool": [
+   "nástroj",
+   "nástroje"
+  ]
+ },
+ "sl": {
+  "Subagent": [
+   "Podagent",
+   "Podagenti"
+  ],
+  "agent": [
+   "agent",
+   "agenti"
+  ],
+  "attachment": [
+   "priloga",
+   "priloge"
+  ],
+  "change": [
+   "sprememba",
+   "spremembe"
+  ],
+  "commit": [
+   "potrditev",
+   "potrditve"
+  ],
+  "entry": [
+   "vnos dnevnika",
+   "vnosi dnevnika"
+  ],
+  "finding": [
+   "ugotovitev",
+   "ugotovitve"
+  ],
+  "item": [
+   "postavka",
+   "postavke"
+  ],
+  "job": [
+   "opravilo",
+   "opravila"
+  ],
+  "line": [
+   "vrstica",
+   "vrstice"
+  ],
+  "message": [
+   "sporočilo",
+   "sporočila"
+  ],
+  "model": [
+   "model",
+   "modeli"
+  ],
+  "node": [
+   "vozlišče",
+   "vozlišča"
+  ],
+  "notification": [
+   "obvestilo",
+   "obvestila"
+  ],
+  "on": [
+   "vklopljeno",
+   "izklopljeno"
+  ],
+  "pet": [
+   "ljubljenček",
+   "ljubljenčki"
+  ],
+  "profile": [
+   "profil",
+   "profili"
+  ],
+  "result": [
+   "rezultat",
+   "rezultati"
+  ],
+  "service": [
+   "storitev",
+   "storitve"
+  ],
+  "skill": [
+   "veščina",
+   "veščine"
+  ],
+  "subagent": [
+   "podagent",
+   "podagenti"
+  ],
+  "tool": [
+   "orodje",
+   "orodja"
+  ]
+ },
+ "sq": {
+  "Subagent": [
+   "Nënagjent",
+   "Nënagjentë"
+  ],
+  "agent": [
+   "agjent",
+   "agjentë"
+  ],
+  "attachment": [
+   "bashkëngjitje",
+   "bashkëngjitje"
+  ],
+  "change": [
+   "ndryshim",
+   "ndryshime"
+  ],
+  "commit": [
+   "komit",
+   "komite"
+  ],
+  "entry": [
+   "hyrje logu",
+   "hyrje logu"
+  ],
+  "finding": [
+   "gjetje",
+   "gjetje"
+  ],
+  "item": [
+   "artikull",
+   "artikuj"
+  ],
+  "job": [
+   "detyrë",
+   "detyra"
+  ],
+  "line": [
+   "rresht",
+   "rreshta"
+  ],
+  "message": [
+   "mesazh",
+   "mesazhe"
+  ],
+  "model": [
+   "model",
+   "modele"
+  ],
+  "node": [
+   "nyjë",
+   "nyje"
+  ],
+  "notification": [
+   "njoftim",
+   "njoftime"
+  ],
+  "on": [
+   "ndezur",
+   "fikur"
+  ],
+  "pet": [
+   "kafshë shtëpiake",
+   "kafshë shtëpiake"
+  ],
+  "profile": [
+   "profil",
+   "profile"
+  ],
+  "result": [
+   "rezultat",
+   "rezultate"
+  ],
+  "service": [
+   "shërbim",
+   "shërbime"
+  ],
+  "skill": [
+   "aftësi",
+   "aftësi"
+  ],
+  "subagent": [
+   "nënagjent",
+   "nënagjentë"
+  ],
+  "tool": [
+   "mjet",
+   "mjete"
+  ]
+ },
+ "sv": {
+  "Subagent": [
+   "Underagent",
+   "Underagenter"
+  ],
+  "agent": [
+   "agent",
+   "agenter"
+  ],
+  "attachment": [
+   "bilaga",
+   "bilagor"
+  ],
+  "change": [
+   "ändring",
+   "ändringar"
+  ],
+  "commit": [
+   "incheckning",
+   "incheckningar"
+  ],
+  "entry": [
+   "loggrad",
+   "loggrader"
+  ],
+  "finding": [
+   "fynd",
+   "fynd"
+  ],
+  "item": [
+   "objekt",
+   "objekt"
+  ],
+  "job": [
+   "jobb",
+   "jobb"
+  ],
+  "line": [
+   "rad",
+   "rader"
+  ],
+  "message": [
+   "meddelande",
+   "meddelanden"
+  ],
+  "model": [
+   "modell",
+   "modeller"
+  ],
+  "node": [
+   "nod",
+   "noder"
+  ],
+  "notification": [
+   "avisering",
+   "aviseringar"
+  ],
+  "on": [
+   "på",
+   "av"
+  ],
+  "pet": [
+   "husdjur",
+   "husdjur"
+  ],
+  "profile": [
+   "profil",
+   "profiler"
+  ],
+  "result": [
+   "resultat",
+   "resultat"
+  ],
+  "service": [
+   "tjänst",
+   "tjänster"
+  ],
+  "skill": [
+   "färdighet",
+   "färdigheter"
+  ],
+  "subagent": [
+   "underagent",
+   "underagenter"
+  ],
+  "tool": [
+   "verktyg",
+   "verktyg"
+  ]
+ },
+ "th": {
+  "Subagent": [
+   "เอเจนต์ย่อย",
+   "เอเจนต์ย่อย"
+  ],
+  "agent": [
+   "เอเจนต์",
+   "เอเจนต์"
+  ],
+  "attachment": [
+   "ไฟล์แนบ",
+   "ไฟล์แนบ"
+  ],
+  "change": [
+   "การเปลี่ยนแปลง",
+   "การเปลี่ยนแปลง"
+  ],
+  "commit": [
+   "คอมมิต",
+   "คอมมิต"
+  ],
+  "entry": [
+   "รายการบันทึก",
+   "รายการบันทึก"
+  ],
+  "finding": [
+   "ข้อค้นพบ",
+   "ข้อค้นพบ"
+  ],
+  "item": [
+   "ไอเท็ม",
+   "ไอเท็ม"
+  ],
+  "job": [
+   "งาน",
+   "งาน"
+  ],
+  "line": [
+   "บรรทัด",
+   "บรรทัด"
+  ],
+  "message": [
+   "ข้อความ",
+   "ข้อความ"
+  ],
+  "model": [
+   "โมเดล",
+   "โมเดล"
+  ],
+  "node": [
+   "โหนด",
+   "โหนด"
+  ],
+  "notification": [
+   "การแจ้งเตือน",
+   "การแจ้งเตือน"
+  ],
+  "on": [
+   "เปิด",
+   "ปิด"
+  ],
+  "pet": [
+   "สัตว์เลี้ยง",
+   "สัตว์เลี้ยง"
+  ],
+  "profile": [
+   "โปรไฟล์",
+   "โปรไฟล์"
+  ],
+  "result": [
+   "ผลลัพธ์",
+   "ผลลัพธ์"
+  ],
+  "service": [
+   "บริการ",
+   "บริการ"
+  ],
+  "skill": [
+   "ทักษะ",
+   "ทักษะ"
+  ],
+  "subagent": [
+   "เอเจนต์ย่อย",
+   "เอเจนต์ย่อย"
+  ],
+  "tool": [
+   "เครื่องมือ",
+   "เครื่องมือ"
+  ]
+ },
+ "tr": {
+  "Subagent": [
+   "Alt ajan",
+   "Alt ajanlar"
+  ],
+  "agent": [
+   "ajan",
+   "ajanlar"
+  ],
+  "attachment": [
+   "ek",
+   "ekler"
+  ],
+  "change": [
+   "değişiklik",
+   "değişiklikler"
+  ],
+  "commit": [
+   "işleme",
+   "işlemeler"
+  ],
+  "entry": [
+   "günlük kaydı",
+   "günlük kayıtları"
+  ],
+  "finding": [
+   "bulgu",
+   "bulgular"
+  ],
+  "item": [
+   "öğe",
+   "öğeler"
+  ],
+  "job": [
+   "iş",
+   "işler"
+  ],
+  "line": [
+   "satır",
+   "satırlar"
+  ],
+  "message": [
+   "mesaj",
+   "mesajlar"
+  ],
+  "model": [
+   "model",
+   "modeller"
+  ],
+  "node": [
+   "düğüm",
+   "düğümler"
+  ],
+  "notification": [
+   "bildirim",
+   "bildirimler"
+  ],
+  "on": [
+   "açık",
+   "kapalı"
+  ],
+  "pet": [
+   "evcil hayvan",
+   "evcil hayvanlar"
+  ],
+  "profile": [
+   "profil",
+   "profiller"
+  ],
+  "result": [
+   "sonuç",
+   "sonuçlar"
+  ],
+  "service": [
+   "hizmet",
+   "hizmetler"
+  ],
+  "skill": [
+   "beceri",
+   "beceriler"
+  ],
+  "subagent": [
+   "alt ajan",
+   "alt ajanlar"
+  ],
+  "tool": [
+   "araç",
+   "araçlar"
+  ]
+ },
+ "uk": {
+  "Subagent": [
+   "Субагент",
+   "Субагенти"
+  ],
+  "agent": [
+   "агент",
+   "агенти"
+  ],
+  "attachment": [
+   "вкладення",
+   "вкладення"
+  ],
+  "change": [
+   "зміна",
+   "зміни"
+  ],
+  "commit": [
+   "коміт",
+   "коміти"
+  ],
+  "entry": [
+   "запис журналу",
+   "записи журналу"
+  ],
+  "finding": [
+   "знахідка",
+   "знахідки"
+  ],
+  "item": [
+   "елемент",
+   "елементи"
+  ],
+  "job": [
+   "завдання",
+   "завдання"
+  ],
+  "line": [
+   "рядок",
+   "рядки"
+  ],
+  "message": [
+   "повідомлення",
+   "повідомлення"
+  ],
+  "model": [
+   "модель",
+   "моделі"
+  ],
+  "node": [
+   "вузол",
+   "вузли"
+  ],
+  "notification": [
+   "сповіщення",
+   "сповіщення"
+  ],
+  "on": [
+   "увімкнено",
+   "вимкнено"
+  ],
+  "pet": [
+   "улюбленець",
+   "улюбленці"
+  ],
+  "profile": [
+   "профіль",
+   "профілі"
+  ],
+  "result": [
+   "результат",
+   "результати"
+  ],
+  "service": [
+   "сервіс",
+   "сервіси"
+  ],
+  "skill": [
+   "навичка",
+   "навички"
+  ],
+  "subagent": [
+   "субагент",
+   "субагенти"
+  ],
+  "tool": [
+   "інструмент",
+   "інструменти"
+  ]
+ },
+ "vi": {
+  "Subagent": [
+   "Tác nhân phụ",
+   "Tác nhân phụ"
+  ],
+  "agent": [
+   "Tác nhân",
+   "Tác nhân"
+  ],
+  "attachment": [
+   "Tệp đính kèm",
+   "Tệp đính kèm"
+  ],
+  "change": [
+   "Thay đổi",
+   "Thay đổi"
+  ],
+  "commit": [
+   "Commit",
+   "Commit"
+  ],
+  "entry": [
+   "mục nhật ký",
+   "mục nhật ký"
+  ],
+  "finding": [
+   "Phát hiện",
+   "Phát hiện"
+  ],
+  "item": [
+   "Mục",
+   "Mục"
+  ],
+  "job": [
+   "Công việc",
+   "Công việc"
+  ],
+  "line": [
+   "Dòng",
+   "Dòng"
+  ],
+  "message": [
+   "Tin nhắn",
+   "Tin nhắn"
+  ],
+  "model": [
+   "Mô hình",
+   "Mô hình"
+  ],
+  "node": [
+   "Nút",
+   "Nút"
+  ],
+  "notification": [
+   "Thông báo",
+   "Thông báo"
+  ],
+  "on": [
+   "bật",
+   "tắt"
+  ],
+  "pet": [
+   "Thú cưng",
+   "Thú cưng"
+  ],
+  "profile": [
+   "Hồ sơ",
+   "Hồ sơ"
+  ],
+  "result": [
+   "Kết quả",
+   "Kết quả"
+  ],
+  "service": [
+   "Dịch vụ",
+   "Dịch vụ"
+  ],
+  "skill": [
+   "Kỹ năng",
+   "Kỹ năng"
+  ],
+  "subagent": [
+   "Tác nhân phụ",
+   "Tác nhân phụ"
+  ],
+  "tool": [
+   "Công cụ",
+   "Công cụ"
+  ]
+ },
+ "zh-hant": {
+  "Subagent": [
+   "子代理",
+   "子代理"
+  ],
+  "agent": [
+   "代理",
+   "代理"
+  ],
+  "attachment": [
+   "附件",
+   "附件"
+  ],
+  "change": [
+   "變更",
+   "變更"
+  ],
+  "commit": [
+   "提交",
+   "提交"
+  ],
+  "entry": [
+   "日誌項目",
+   "日誌項目"
+  ],
+  "finding": [
+   "發現",
+   "發現"
+  ],
+  "item": [
+   "項目",
+   "項目"
+  ],
+  "job": [
+   "工作",
+   "工作"
+  ],
+  "line": [
+   "行",
+   "行"
+  ],
+  "message": [
+   "訊息",
+   "訊息"
+  ],
+  "model": [
+   "模型",
+   "模型"
+  ],
+  "node": [
+   "節點",
+   "節點"
+  ],
+  "notification": [
+   "通知",
+   "通知"
+  ],
+  "on": [
+   "開啟",
+   "關閉"
+  ],
+  "pet": [
+   "寵物",
+   "寵物"
+  ],
+  "profile": [
+   "設定檔",
+   "設定檔"
+  ],
+  "result": [
+   "結果",
+   "結果"
+  ],
+  "service": [
+   "服務",
+   "服務"
+  ],
+  "skill": [
+   "技能",
+   "技能"
+  ],
+  "subagent": [
+   "子代理",
+   "子代理"
+  ],
+  "tool": [
+   "工具",
+   "工具"
+  ]
+ },
+ "zh": {
+  "Subagent": [
+   "子代理",
+   "子代理"
+  ],
+  "agent": [
+   "代理",
+   "代理"
+  ],
+  "attachment": [
+   "附件",
+   "附件"
+  ],
+  "change": [
+   "更改",
+   "更改"
+  ],
+  "commit": [
+   "提交",
+   "提交"
+  ],
+  "entry": [
+   "条目",
+   "条目"
+  ],
+  "finding": [
+   "发现",
+   "发现"
+  ],
+  "item": [
+   "项目",
+   "项目"
+  ],
+  "job": [
+   "任务",
+   "任务"
+  ],
+  "line": [
+   "行",
+   "行"
+  ],
+  "message": [
+   "消息",
+   "消息"
+  ],
+  "model": [
+   "模型",
+   "模型"
+  ],
+  "node": [
+   "节点",
+   "节点"
+  ],
+  "notification": [
+   "通知",
+   "通知"
+  ],
+  "on": [
+   "开",
+   "关"
+  ],
+  "pet": [
+   "宠物",
+   "宠物"
+  ],
+  "profile": [
+   "配置",
+   "配置"
+  ],
+  "result": [
+   "结果",
+   "结果"
+  ],
+  "service": [
+   "服务",
+   "服务"
+  ],
+  "skill": [
+   "技能",
+   "技能"
+  ],
+  "subagent": [
+   "子代理",
+   "子代理"
+  ],
+  "tool": [
+   "工具",
+   "工具"
+  ]
+ }
+}
