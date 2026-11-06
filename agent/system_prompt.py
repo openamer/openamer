@@ -210,6 +210,35 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         # Goal engine failure must never block prompt build.
         pass
 
+    # Language instruction — inject the user's chosen language into the
+    # system prompt so the agent responds in that language.  Code, commits,
+    # and docs remain English regardless.
+    try:
+        from agent.i18n import get_language
+        _lang = get_language()
+        if _lang and _lang != "en":
+            _lang_names = {
+                "de": "German", "fr": "French", "es": "Spanish", "it": "Italian",
+                "pt": "Portuguese", "nl": "Dutch", "pl": "Polish", "ru": "Russian",
+                "uk": "Ukrainian", "ja": "Japanese", "ko": "Korean", "zh": "Chinese (Simplified)",
+                "zh-hant": "Chinese (Traditional)", "ar": "Arabic", "tr": "Turkish",
+                "hi": "Hindi", "fa": "Persian", "th": "Thai", "vi": "Vietnamese",
+                "id": "Indonesian", "sq": "Albanian", "bs": "Bosnian", "ro": "Romanian",
+                "el": "Greek", "cs": "Czech", "sv": "Swedish", "hu": "Hungarian",
+                "bg": "Bulgarian", "da": "Danish", "fi": "Finnish", "sk": "Slovak",
+                "no": "Norwegian", "ga": "Irish", "sl": "Slovenian", "hr": "Croatian",
+                "et": "Estonian", "lv": "Latvian", "lt": "Lithuanian", "eo": "Esperanto",
+            }
+            _lang_name = _lang_names.get(_lang, _lang)
+            stable_parts.append(
+                f"## Response Language\n\n"
+                f"Respond to the user in **{_lang_name}**. "
+                f"Code, commits, documentation, and file contents must remain in English."
+            )
+    except Exception:
+        # Language injection failure must never block prompt build.
+        pass
+
     # Pointer to the openamer-agent skill + docs for user questions about OpenAmer itself.
     stable_parts.append(OPENAMER_AGENT_HELP_GUIDANCE)
 

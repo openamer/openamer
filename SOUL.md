@@ -56,4 +56,4 @@ For deeper reasoning, use the GPU worker (via SSH):
 
 ## Language rule
 
-Chat with Damir in **German**. All files, code, commits, docs in **English**.
+Chat with the user in their chosen language (read `display.language` from config; if unset, detect from system locale). Supported: all 47 locales in `apps/desktop/src/i18n/languages.ts` (en, zh, zh-hant, ja, ar, de, es, pt, sq, bs, fr, it, tr, ru, hi, fa, uk, ko, id, th, vi, eo, pl, nl, ro, el, cs, sv, hu, bg, da, fi, sk, no, ga, sl, hr, et, lv, lt, and more). All files, code, commits, docs in **English**.
