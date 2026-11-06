@@ -134,4 +134,51 @@ def build_plugins_parser(subparsers, *, cmd_plugins: Callable) -> None:
         help="Optional plugin name (a force re-discovery reloads every plugin)",
     )
 
+    plugins_package = plugins_subparsers.add_parser(
+        "package",
+        help="Manage portable agent-plugin packages (plugin.json; installed inert)",
+        description=(
+            "Install and inspect Agent Plugins v1 portable packages. Packages are "
+            "stored under the profile's plugin-packages/ directory, are never "
+            "imported as Python, and never start an MCP server unless explicitly "
+            "enabled with `openamer plugins package enable <name>`."
+        ),
+    )
+    package_subparsers = plugins_package.add_subparsers(dest="package_action")
+
+    package_install = package_subparsers.add_parser(
+        "install", help="Install a portable package from a local directory (inert)"
+    )
+    package_install.add_argument("identifier", help="Path to the package directory")
+    package_install.add_argument(
+        "--force", "-f", action="store_true", help="Reinstall over an existing package"
+    )
+
+    package_list = package_subparsers.add_parser(
+        "list", aliases=["ls"], help="List installed portable packages"
+    )
+    package_list.add_argument("--json", action="store_true", help="Machine-readable output")
+
+    package_show = package_subparsers.add_parser(
+        "show", help="Show a package's declared skills and MCP servers"
+    )
+    package_show.add_argument("name", help="Package name")
+    package_show.add_argument("--json", action="store_true", help="Machine-readable output")
+
+    package_enable = package_subparsers.add_parser(
+        "enable",
+        help="Allow a package's declared MCP servers to reach the MCP config",
+    )
+    package_enable.add_argument("name", help="Package name")
+
+    package_disable = package_subparsers.add_parser(
+        "disable", help="Keep a package installed but stop exposing its MCP servers"
+    )
+    package_disable.add_argument("name", help="Package name")
+
+    package_remove = package_subparsers.add_parser(
+        "remove", aliases=["rm"], help="Remove an installed portable package"
+    )
+    package_remove.add_argument("name", help="Package name")
+
     plugins_parser.set_defaults(func=cmd_plugins)

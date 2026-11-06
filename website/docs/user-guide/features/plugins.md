@@ -344,3 +344,38 @@ This enables plugins like remote control viewers, messaging bridges, or webhook 
 :::
 
 See the **[full guide](/developer-guide/plugins)** for handler contracts, schema format, hook behavior, error handling, and common mistakes.
+## Portable agent-plugin packages
+
+OpenAmer can also import **portable agent-plugin packages** in the
+[Agent Plugins v1](https://agent-plugins.org/) shape: a directory with a
+`plugin.json` manifest, optional `skills/<name>/SKILL.md` bundles and an
+optional `mcp.json` describing MCP servers.
+
+These packages are treated as **declarations only**:
+
+```bash
+openamer plugins package install ./my-agent-plugin   # copied, inert
+openamer plugins package list                       # shows skills + MCP servers
+openamer plugins package show my-agent-plugin       # full declaration report
+openamer plugins package enable my-agent-plugin     # allow its MCP servers to connect
+openamer plugins package disable my-agent-plugin    # keep it, stop exposing servers
+openamer plugins package remove my-agent-plugin
+```
+
+- Packages live in `~/.openamer/plugin-packages/<name>/` (profile-scoped), a
+  directory the Python plugin loader never scans.
+- **Package Python is never imported.** A package may ship `__init__.py`, but
+  inspecting or installing it does not execute it.
+- **No MCP server starts automatically.** Installation and inspection are inert;
+  a server only reaches the MCP client after an explicit
+  `openamer plugins package enable`, and its name is namespaced
+  (`<package>__<server>`) so it cannot shadow a server from `config.yaml`.
+- Skills are recorded as declarations and are not merged into the active skill
+  index.
+- Refused outright: path traversal and symlink escapes, non-`https` remote MCP
+  URLs (loopback `http` is allowed), multi-token stdio commands, credential-shaped
+  files, and packages shipping private-key material or live-looking tokens.
+
+The format and the safety rules follow the Agent Plugins v1 schemas listed
+above; OpenAmer makes no compatibility claim beyond the behaviour covered by
+`tests/openamer_cli/test_agent_plugins.py`.
