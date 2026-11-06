@@ -120,10 +120,24 @@ def _real_openamer_home() -> Path | None:
 
     Deliberately NOT OPENAMER_HOME: under pytest that points at a temp dir, which
     is exactly why this guard is a machine-level check in the first place.
+
+    The directory existing is not enough. A test running in parallel can
+    create the tree while this one is already scheduled, and then the tree
+    is empty — every evidence path would be "missing" and the guard would
+    fail for a machine that has no OpenAmer at all. So the home counts as
+    present only when it holds the agent checkout the evidence paths point
+    into.
     """
     base = os.environ.get("USERPROFILE") or os.environ.get("HOME") or str(Path.home())
     cand = Path(base) / "AppData" / "Local" / "openamer-laptop"
-    return cand if cand.is_dir() else None
+    if not cand.is_dir():
+        return None
+    # The evidence paths are relative to the agent checkout inside the home
+    # ("openamer-agent/tools/..."). Without that checkout there is nothing to
+    # check against, so this is not a machine with an OpenAmer install.
+    if not (cand / "openamer-agent").is_dir():
+        return None
+    return cand
 
 
 @pytest.mark.skipif(_real_openamer_home() is None,
