@@ -26,7 +26,25 @@ tauri-build = { version = "2", features = [] }
 
 [dependencies]
 # Tauri runtime + plugins
-tauri = { version = "2", features = [] }
+#
+# `custom-protocol` MUST stay enabled. Without it Tauri compiles in DEV mode
+# (`tauri-2/src/lib.rs`: `!cfg!(feature = "custom-protocol")` selects the dev
+# asset server) and the built binary serves the frontend from the Vite devUrl
+# `http://127.0.0.1:5175` instead of the assets embedded in the binary. That
+# dev server does not run on a user's machine, so the installer window opens
+# WHITE/EMPTY — measured on this Windows host: the deployed
+# `openamer-setup.exe` carried 0 embedded assets (`assets/` count 0, no
+# `index-*.js`, no fonts) and the in-app update showed a blank window, while
+# a rebuild with `--features tauri/custom-protocol` carried 66 `assets/`
+# entries plus `index-*.js` and rendered the UI (ink coverage 19% vs. an
+# empty window).
+#
+# The Tauri CLI passes this feature automatically for `tauri build`; a plain
+# `cargo build --release` does NOT, which is exactly how the broken binary
+# was produced. Declaring it as a default feature makes the correct build the
+# ONLY possible one, so a manual `cargo build --release` can no longer ship
+# an installer with a blank window.
+tauri = { version = "2", features = ["custom-protocol"] }
 tauri-plugin-dialog = "2"
 tauri-plugin-opener = "2"
 tauri-plugin-process = "2"
