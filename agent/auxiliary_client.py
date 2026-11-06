@@ -4144,6 +4144,29 @@ def _call_fallback_candidate_sync(
             fb_client.chat.completions.create(**fb_kwargs), task)
     except Exception as fb_err:
         if not _is_auth_error(fb_err):
+            # A candidate that fails for a CAPACITY reason (payment/quota,
+            # rate limit, unreachable endpoint, 5xx) or a capability
+            # mismatch (the route cannot serve this model / this modality)
+            # must not abort the whole chain — the next candidate may serve
+            # the task fine. Only a genuinely malformed request (a 400 that
+            # no candidate can satisfy) is fatal, because every later
+            # candidate would fail the same way.
+            #
+            # Live case (2026-11-06): the first fallback candidate was a
+            # text-only model that answered the image request with a
+            # provider-side 500. That error propagated out of the chain and
+            # killed the auxiliary task even though the next candidate was
+            # vision-capable and healthy.
+            if _is_payment_error(fb_err) or _is_rate_limit_error(fb_err) \
+                    or _is_connection_error(fb_err) \
+                    or _is_model_incompatible_error(fb_err) \
+                    or _is_transient_transport_error(fb_err):
+                logger.warning(
+                    "Auxiliary %s: fallback candidate %s failed (%s) — "
+                    "skipping to next fallback",
+                    task or "call", fb_label, fb_err,
+                )
+                return None
             raise
         fb_provider = _auth_refresh_provider_for_route(fb_label, fb_base)
         if fb_provider not in {"auto", "", None} and _refresh_provider_credentials(fb_provider):
@@ -4210,6 +4233,19 @@ async def _call_fallback_candidate_async(
             await fb_client.chat.completions.create(**fb_kwargs), task)
     except Exception as fb_err:
         if not _is_auth_error(fb_err):
+            # See the sync path (_call_fallback_candidate_sync) for the
+            # rationale: a capacity failure or capability mismatch in one
+            # candidate must not abort the whole chain.
+            if _is_payment_error(fb_err) or _is_rate_limit_error(fb_err) \
+                    or _is_connection_error(fb_err) \
+                    or _is_model_incompatible_error(fb_err) \
+                    or _is_transient_transport_error(fb_err):
+                logger.warning(
+                    "Auxiliary %s (async): fallback candidate %s failed (%s) — "
+                    "skipping to next fallback",
+                    task or "call", fb_label, fb_err,
+                )
+                return None
             raise
         fb_provider = _auth_refresh_provider_for_route(fb_label, fb_base)
         if fb_provider not in {"auto", "", None} and _refresh_provider_credentials(fb_provider):
@@ -4483,6 +4519,19 @@ def _try_configured_fallback_chain(
                     )
                     tried.append(f"{label} (context too small: {fb_ctx}<{min_ctx})")
                     continue
+            if task == "vision" and resolved_model and not _main_model_supports_vision(
+                fb_provider, resolved_model
+            ):
+                # A text-only candidate answers a vision request with a
+                # provider-side 500 ("unknown variant `image_url`") instead of
+                # a clean error, which aborts the whole aux call. Skip it and
+                # continue down the chain to a vision-capable candidate.
+                logger.info(
+                    "Auxiliary %s: skipping %s (%s is not vision-capable), continuing chain",
+                    task, label, resolved_model,
+                )
+                tried.append(f"{label} (not vision-capable)")
+                continue
             logger.info(
                 "Auxiliary %s: %s on %s — configured fallback to %s (%s)",
                 task, reason, failed_provider, label, resolved_model or fb_model or "default",
@@ -4616,6 +4665,18 @@ def _try_main_fallback_chain(
                     )
                     tried.append(f"{label} (context too small: {fb_ctx}<{min_ctx})")
                     continue
+            if task == "vision" and (resolved_model or fb_model) and not _main_model_supports_vision(
+                fb_provider, resolved_model or fb_model
+            ):
+                # Same guard as in _try_configured_fallback_chain: a text-only
+                # candidate answers a vision request with a provider-side 500
+                # instead of a clean error. Skip it and keep walking the chain.
+                logger.info(
+                    "Auxiliary %s: skipping %s (not vision-capable), continuing chain",
+                    task or "call", label,
+                )
+                tried.append(f"{label} (not vision-capable)")
+                continue
             logger.info(
                 "Auxiliary %s: %s on %s — main fallback chain to %s (%s)",
                 task or "call", reason, failed_provider or "auto", label,
@@ -5300,12 +5361,28 @@ def resolve_provider_client(
                 custom_key = os.getenv(custom_key_env, "").strip()
             custom_key = custom_key or "no-key-required"
             if custom_key == "no-key-required":
-                logger.warning(
-                    "resolve_provider_client: named custom provider %r has no resolvable "
-                    "api_key — request will be sent with placeholder no-key-required "
-                    "and will 401 on auth-required endpoints",
-                    custom_entry.get("name") or provider,
+                # A provider that declares its own ``extra_headers`` (e.g. an
+                # empty ``Authorization`` for a keyless gateway) overrides the
+                # placeholder below, so the request will NOT carry the
+                # placeholder token and will not 401.  Only warn when no
+                # such override exists.
+                _declared_headers = custom_entry.get("extra_headers") or {}
+                _overrides_auth = any(
+                    str(h).strip().lower() == "authorization" for h in _declared_headers
                 )
+                if _overrides_auth:
+                    logger.info(
+                        "resolve_provider_client: named custom provider %r has no "
+                        "api_key — its extra_headers override the auth header",
+                        custom_entry.get("name") or provider,
+                    )
+                else:
+                    logger.warning(
+                        "resolve_provider_client: named custom provider %r has no resolvable "
+                        "api_key — request will be sent with placeholder no-key-required "
+                        "and will 401 on auth-required endpoints",
+                        custom_entry.get("name") or provider,
+                    )
             # An explicit per-task api_mode override (from _resolve_task_provider_model)
             # wins; otherwise fall back to what the provider entry declared.
             entry_api_mode = (api_mode or custom_entry.get("api_mode") or "").strip()
@@ -5333,6 +5410,19 @@ def resolve_provider_client(
                 _headers2 = _apply_user_default_headers(_extra2.get("default_headers"))
                 if _headers2:
                     _extra2["default_headers"] = _headers2
+                # Per-provider ``extra_headers`` (config.yaml ``custom_providers``
+                # entries) must reach the client here too.  The main-agent path
+                # already applies them via
+                # ``apply_custom_provider_extra_headers_to_client_kwargs``; without
+                # the same here, an auxiliary task routed to a named custom
+                # provider would miss auth headers that the provider requires
+                # (e.g. an empty ``Authorization`` for a keyless gateway, or a
+                # Cloudflare Access service token) and fail with 401.
+                _provider_extra_headers = custom_entry.get("extra_headers") or {}
+                if _provider_extra_headers:
+                    _merged_headers = dict(_extra2.get("default_headers") or {})
+                    _merged_headers.update(_provider_extra_headers)
+                    _extra2["default_headers"] = _merged_headers
                 logger.debug(
                     "resolve_provider_client: named custom provider %r (%s, api_mode=%s)",
                     provider, final_model, entry_api_mode or "chat_completions")
@@ -7690,7 +7780,32 @@ def call_llm(
     effective_extra_body = _get_task_extra_body(task)
     effective_extra_body.update(extra_body or {})
 
+    # True when this call was routed by auto-detection rather than by an
+    # explicit provider choice. For non-vision tasks ``resolved_provider``
+    # keeps the "auto" sentinel, so this stays False; the vision path below
+    # narrows it to a concrete backend and sets the flag explicitly.
+    vision_auto_requested = False
+
     if task == "vision":
+        # Remember whether the caller asked for auto-detection BEFORE the
+        # vision resolver collapses it to a concrete backend.
+        #
+        # ``resolve_vision_provider_client(provider="auto")`` returns the
+        # concrete backend it selected (e.g. "openai-api"), and the old code
+        # assigned that label straight back into ``resolved_provider``. The
+        # fallback gate below then computed ``is_auto = resolved_provider in
+        # {"auto", "", None}`` as FALSE, so an auto-routed vision call that hit
+        # a payment/quota error skipped the configured fallback chain entirely
+        # and only reached the "main agent model" safety net — which returns
+        # nothing when the main provider IS the failed one. The aux task then
+        # died with "all fallbacks exhausted" even though a healthy fallback
+        # was configured and reachable.
+        #
+        # Keep the auto-ness as a separate flag instead of rewriting
+        # ``resolved_provider``: the concrete route label is still needed for
+        # request shaping (Anthropic-compat detection), provider-pool
+        # recovery, and the unhealthy-marking label.
+        vision_auto_requested = (resolved_provider or "").strip().lower() in {"auto", ""}
         effective_provider, client, final_model = resolve_vision_provider_client(
             provider=resolved_provider if resolved_provider != "auto" else provider,
             model=resolved_model or model,
@@ -8142,7 +8257,14 @@ def call_llm(
         # connection failures are capacity problems, not request constraints.
         # See #26803: daily token quota (429 + "too many tokens per day") must
         # fall back just like a 402 credit error.
-        is_auto = resolved_provider in {"auto", "", None}
+        #
+        # ``resolved_provider`` may have been narrowed from "auto" to the
+        # concrete backend the vision resolver picked (see
+        # ``vision_auto_requested`` in call_llm). The auto-routed case must
+        # still count as auto here, otherwise the configured fallback chain is
+        # skipped and only the "main agent model" safety net is tried — which
+        # is empty whenever the main provider IS the failed one.
+        is_auto = resolved_provider in {"auto", "", None} or vision_auto_requested
         # Capacity errors bypass the explicit-provider gate: the provider
         # literally cannot serve this request regardless of user intent.
         # Rate limits are included: after retries are exhausted, a 429 means
@@ -8214,9 +8336,10 @@ def call_llm(
                     reasoning_config=reasoning_config)
                 if fb_resp is not None:
                     return fb_resp
-                # The candidate had a stale/unrefreshable credential and was
-                # quarantined — walk the discovery chain once more; unhealthy
-                # entries are skipped so the next viable candidate serves.
+                # The candidate failed (stale/unrefreshable credential, or a
+                # capacity/capability error) and was skipped — walk the
+                # remaining layers; unhealthy entries are skipped so the next
+                # viable candidate serves.
                 fb_client, fb_model, fb_label = _try_payment_fallback(
                     resolved_provider, task, reason="stale fallback credential")
                 if fb_client is not None:
@@ -8335,7 +8458,16 @@ async def async_call_llm(
     effective_extra_body = _get_task_extra_body(task)
     effective_extra_body.update(extra_body or {})
 
+    # See the sync path (call_llm) for what this flag means.
+    vision_auto_requested = False
+
     if task == "vision":
+        # See the sync path (call_llm) for the full rationale: the concrete
+        # route label returned by the vision resolver must not erase the
+        # auto-routed marker, or the fallback chain is skipped on a
+        # payment/quota error and the aux task dies with "all fallbacks
+        # exhausted" even though a healthy fallback is configured.
+        vision_auto_requested = (resolved_provider or "").strip().lower() in {"auto", ""}
         effective_provider, client, final_model = resolve_vision_provider_client(
             provider=resolved_provider if resolved_provider != "auto" else provider,
             model=resolved_model or model,
@@ -8361,6 +8493,8 @@ async def async_call_llm(
                 f"Run: openamer setup"
             )
         resolved_provider = effective_provider or resolved_provider
+        if vision_auto_requested:
+            resolved_provider = "auto"
     else:
         client, final_model = _get_cached_client(
             resolved_provider,
@@ -8689,7 +8823,14 @@ async def async_call_llm(
         # See #26803: daily token quota must fall back like a 402 credit error.
         # Model-incompatibility 400s (route cannot run this model at all)
         # bypass the gate too — see the sync call_llm() path for rationale.
-        is_auto = resolved_provider in {"auto", "", None}
+        #
+        # ``resolved_provider`` may have been narrowed from "auto" to the
+        # concrete backend the vision resolver picked (see
+        # ``vision_auto_requested`` in async_call_llm). The auto-routed case
+        # must still count as auto here, otherwise the configured fallback
+        # chain is skipped and only the "main agent model" safety net is
+        # tried — which is empty whenever the main provider IS the failed one.
+        is_auto = resolved_provider in {"auto", "", None} or vision_auto_requested
         is_capacity_error = (
             _is_payment_error(first_err)
             or _is_connection_error(first_err)
