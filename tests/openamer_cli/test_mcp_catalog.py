@@ -135,3 +135,126 @@ def test_format_entry_truncates_long_description():
     s = mcp_catalog.format_entry({
         "name": "a/b", "url": "", "description": longd})
     assert len(s) <= 200
+
+
+# ─── Official registry (registry.modelcontextprotocol.io) ──────────────────
+
+
+# The real response shape: {"servers": [{"server": {...}, "_meta": {...}}]},
+# with remotes[] for remote-only servers and repository.url when published
+# from a repo. Deprecated rows stay in the registry and must be filtered out.
+REGISTRY_FIXTURE = {
+    "servers": [
+        {
+            "server": {
+                "name": "io.example/github-mcp",
+                "title": "GitHub",
+                "description": "GitHub issues and pull requests.",
+                "version": "1.2.3",
+                "repository": {"url": "https://github.com/example/github-mcp/",
+                               "source": "github"},
+                "remotes": [{"type": "streamable-http",
+                             "url": "https://api.example.com/mcp"}],
+            },
+            "_meta": {"io.modelcontextprotocol.registry/official":
+                      {"status": "active"}},
+        },
+        {
+            "server": {
+                "name": "io.example/remote-only",
+                "description": "Web scraping, remote only.",
+                "version": "0.1.0",
+                "remotes": [{"type": "streamable-http",
+                             "url": "https://scrape.example.com/mcp"}],
+            },
+            "_meta": {"io.modelcontextprotocol.registry/official":
+                      {"status": "active"}},
+        },
+        {
+            "server": {"name": "io.example/dead", "description": "Deprecated."},
+            "_meta": {"io.modelcontextprotocol.registry/official":
+                      {"status": "deprecated"}},
+        },
+    ]
+}
+
+
+def test_registry_entries_parses_and_filters_deprecated():
+    rows = mcp_catalog._registry_entries(REGISTRY_FIXTURE)
+    assert [r["id"] for r in rows] == [
+        "io.example/github-mcp", "io.example/remote-only"]
+    assert all(r["source"] == "registry" for r in rows)
+
+
+def test_registry_entries_prefers_repo_then_remote():
+    rows = mcp_catalog._registry_entries(REGISTRY_FIXTURE)
+    # repo wins (trailing slash stripped), remote kept for reference
+    assert rows[0]["url"] == "https://github.com/example/github-mcp"
+    assert rows[0]["remote"]["type"] == "streamable-http"
+    assert rows[0]["name"] == "GitHub"  # title preferred over machine name
+    # remote-only server still yields a usable install target
+    assert rows[1]["url"] == "https://scrape.example.com/mcp"
+
+
+def test_registry_entries_absent_metadata_keeps_row():
+    # A row without official _meta is not "not active" — keep it.
+    rows = mcp_catalog._registry_entries(
+        {"servers": [{"server": {"name": "x", "description": "d"}}]})
+    assert len(rows) == 1 and rows[0]["url"] == ""
+
+
+def test_registry_entries_dedupes_versions_keeping_latest():
+    """The registry lists every published version; one row per server."""
+    payload = {"servers": [
+        {"server": {"name": "io.x/a", "description": "old", "version": "1.0.0"},
+         "_meta": {"io.modelcontextprotocol.registry/official":
+                   {"status": "active", "isLatest": False}}},
+        {"server": {"name": "io.x/a", "description": "new", "version": "2.0.0"},
+         "_meta": {"io.modelcontextprotocol.registry/official":
+                   {"status": "active", "isLatest": True}}},
+        {"server": {"name": "io.x/b", "description": "b", "version": "1.0.0"}},
+    ]}
+    rows = mcp_catalog._registry_entries(payload)
+    assert [r["id"] for r in rows] == ["io.x/a", "io.x/b"]
+    assert rows[0]["version"] == "2.0.0"  # isLatest wins over row order
+    assert rows[0]["description"] == "new"
+    assert "_latest" not in rows[0]  # internal flag never leaks to callers
+
+
+def test_search_registry_source_uses_registry(monkeypatch):
+    import json as _json
+
+    class _Resp:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def read(self):
+            return _json.dumps(REGISTRY_FIXTURE).encode()
+
+    seen = {}
+
+    def _fake_urlopen(req, *a, **k):
+        seen["url"] = getattr(req, "full_url", str(req))
+        return _Resp()
+
+    monkeypatch.setattr(mcp_catalog.urllib.request, "urlopen", _fake_urlopen)
+    monkeypatch.setattr(mcp_catalog, "_registry_cache", {})
+    monkeypatch.setattr(mcp_catalog, "_curated_cache", ({}, set()))
+    hits = mcp_catalog.search("github", limit=5, source="registry")
+    assert "/v0/servers" in seen["url"] and "search=github" in seen["url"]
+    assert hits and hits[0]["id"] == "io.example/github-mcp"
+
+
+def test_search_community_source_skips_registry(monkeypatch):
+    calls = []
+
+    def _fake_urlopen(req, *a, **k):
+        calls.append(getattr(req, "full_url", str(req)))
+        raise OSError("offline")
+
+    monkeypatch.setattr(mcp_catalog.urllib.request, "urlopen", _fake_urlopen)
+    assert mcp_catalog.search("x", source="community") == []
+    assert all("/v0/servers" not in c for c in calls)

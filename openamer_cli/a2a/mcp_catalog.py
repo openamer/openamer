@@ -10,13 +10,22 @@ We parse rows; github links are the primary install target.
 """
 from __future__ import annotations
 
+import json
 import re
 import subprocess
+import urllib.parse
 import urllib.request
 
 RAW = ("https://raw.githubusercontent.com/punkpeye/awesome-mcp-servers/"
        "main/README.md")
+
+# Official, machine-readable MCP registry (AAIF / Linux Foundation). It listed
+# 40,965 servers on 2026-10-09 versus ~1.9k rows in the community README, so it
+# is the primary source and the README is the fallback.
+REGISTRY = "https://registry.modelcontextprotocol.io/v0/servers"
+
 CACHE = None  # module-level cache (per process)
+_registry_cache: dict = {}
 
 # Curated-catalog name lookup, built lazily on first use (see _curated_index).
 _curated_cache = None
@@ -164,7 +173,78 @@ def _parse(text: str) -> list[dict]:
     return out
 
 
-def search(query: str, *, raw: str = RAW, limit: int = 10, timeout: float = 25.0) -> list:
+def _registry_entries(payload: dict) -> list[dict]:
+    """Normalise an official-registry response into catalog entries.
+
+    The registry wraps each server as ``{"server": {...}, "_meta": {...}}``.
+    We keep only ``active`` rows (deprecated/deleted ones stay in the registry
+    for auditing but must never be offered as an install), prefer the GitHub
+    repository as the install target, and carry the first remote endpoint so a
+    remote-only server is still usable (``openamer mcp add <url>``).
+    """
+    out = []
+    seen: dict[str, int] = {}  # registry id -> index in out (one row per server)
+    for row in (payload or {}).get("servers") or []:
+        if not isinstance(row, dict):
+            continue
+        srv = row.get("server") or {}
+        meta = (row.get("_meta") or {}).get(
+            "io.modelcontextprotocol.registry/official") or {}
+        status = meta.get("status")
+        if status and status != "active":
+            continue
+        remote = None
+        for r in srv.get("remotes") or []:
+            if isinstance(r, dict) and r.get("url"):
+                remote = {"type": r.get("type") or "", "url": r["url"]}
+                break
+        repo = ((srv.get("repository") or {}).get("url") or "").rstrip("/")
+        url = repo or (remote or {}).get("url", "")
+        entry = {
+            "name": srv.get("title") or srv.get("name") or "",
+            "id": srv.get("name") or "",
+            "url": url,
+            "description": _clean_markdown(srv.get("description") or ""),
+            "version": srv.get("version") or "",
+            "remote": remote,
+            "source": "registry",
+        }
+        # The registry holds every published version of a server. Keep one row
+        # per id: an explicit isLatest wins, otherwise the later row.
+        key = entry["id"] or entry["name"]
+        if key in seen:
+            keep_new = meta.get("isLatest") or not out[seen[key]].get("_latest")
+            if keep_new:
+                out[seen[key]] = {**entry, "_latest": bool(meta.get("isLatest"))}
+            continue
+        seen[key] = len(out)
+        out.append({**entry, "_latest": bool(meta.get("isLatest"))})
+    for e in out:
+        e.pop("_latest", None)
+    return out
+
+
+def _fetch_registry(query: str, limit: int, timeout: float,
+                    registry: str = REGISTRY) -> list[dict]:
+    """Query the official registry (keyless). Cached per (query, limit)."""
+    key = (registry, query, limit)
+    if key in _registry_cache:
+        return _registry_cache[key]
+    url = f"{registry}?limit={int(limit)}"
+    if query:
+        url += "&search=" + urllib.parse.quote(query)
+    req = urllib.request.Request(
+        url, headers={"User-Agent": "openamer-mcp-catalog/1.0",
+                      "Accept": "application/json"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        payload = json.loads(r.read().decode("utf-8", "replace"))
+    entries = _registry_entries(payload)
+    _registry_cache[key] = entries
+    return entries
+
+
+def search(query: str, *, raw: str = RAW, limit: int = 10, timeout: float = 25.0,
+           registry: str = REGISTRY, source: str = "auto") -> list:
     """Return MCP-server entries matching ``query``.
 
     Query syntax: space-separated bare terms are AND-ed, ``|`` ORs
@@ -174,23 +254,43 @@ def search(query: str, *, raw: str = RAW, limit: int = 10, timeout: float = 25.0
     OpenAmer-approved catalog name this server maps to, if any) and
     ``installed`` (whether that approved entry is currently installed), so a
     caller can offer a safe install path instead of pinning an arbitrary repo.
+
+    ``source``: ``"auto"`` (default) asks the official registry first and only
+    falls back to the community README when the registry yields nothing —
+    ~40k structured servers versus ~1.9k curated rows. ``"registry"`` and
+    ``"community"`` pin one source (``auto``/``registry`` are what the CLI
+    uses; ``community`` keeps the old behaviour and the hermetic tests).
     """
     clauses = _tokenize_clauses(query)
-    try:
-        text = _fetch(raw, timeout)
-    except Exception:
-        return []
-    entries = _parse(text)
-    if not clauses:
-        return _annotate(entries[:limit])
-    hits = [e for e in entries if _matches(e, clauses)]
-    return _annotate(hits[:limit])
+    entries: list[dict] = []
+    if source in ("auto", "registry"):
+        try:
+            entries = _fetch_registry(query, max(limit, 25), timeout, registry)
+        except Exception:
+            entries = []
+        if clauses:
+            entries = [e for e in entries if _matches(e, clauses)]
+    if not entries and source in ("auto", "community"):
+        try:
+            text = _fetch(raw, timeout)
+        except Exception:
+            text = None
+        if text is not None:
+            entries = _parse(text)
+            if clauses:
+                entries = [e for e in entries if _matches(e, clauses)]
+    return _annotate(entries[:limit])
 
 
 def format_entry(e: dict) -> str:
     gh = ""
-    if "github" in e.get("url", "").lower():
-        gh = f"  [{e['url']}]"
+    url = e.get("url", "")
+    if "github" in url.lower():
+        gh = f"  [{url}]"
+    elif url:
+        remote = e.get("remote") or {}
+        kind = f"{remote.get('type', 'remote')} " if remote else ""
+        gh = f"  [{kind}{url}]"
     badges = []
     curated = e.get("curated")
     if curated:

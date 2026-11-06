@@ -217,10 +217,14 @@ def _cmd_mcp_catalog(args) -> int:
         return 0
 
     from openamer_cli.a2a import mcp_catalog
-    q = getattr(args, "query", "")
+    q = getattr(args, "query", "") or ""
     limit = int(getattr(args, "limit", 10))
-    entries = mcp_catalog.search(q, limit=limit)
-    print(f"[a2a mcp-catalog] '{q or ''}' — {len(entries)} MCP server(s)")
+    source = getattr(args, "source", "auto") or "auto"
+    entries = mcp_catalog.search(q, limit=limit, source=source)
+    where = {"auto": "official registry → community",
+             "registry": "official registry",
+             "community": "community README"}.get(source, source)
+    print(f"[a2a mcp-catalog] '{q}' — {len(entries)} MCP server(s) from {where}")
     if not entries:
         print("  (catalog unreachable or no matches — check network)")
         return 1
@@ -773,6 +777,9 @@ def build_a2a_parser(subparsers) -> None:
     mc.add_argument("query", nargs="?",
                     help="keyword(s), e.g. 'github' or 'postgres|mysql' or '\"web scraping\"'")
     mc.add_argument("--limit", type=int, default=10)
+    mc.add_argument("--source", choices=["auto", "registry", "community"], default="auto",
+                    help="auto = official MCP registry (~40k servers), then the community "
+                         "README (~1.9k) as fallback")
     mc.add_argument("--install", metavar="NAME",
                     help="install an approved entry by catalog name (safe, pinned path) instead of searching")
     mc.set_defaults(func=_cmd_mcp_catalog)
