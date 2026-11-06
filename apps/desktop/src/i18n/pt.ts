@@ -1,6 +1,5 @@
-import { FIELD_DESCRIPTIONS, FIELD_LABELS } from './field-copy/pt'
-
 import { defineLocale } from './define-locale'
+import { FIELD_DESCRIPTIONS, FIELD_LABELS } from './field-copy/pt'
 
 // pt — generated from en.ts by scripts/i18n_write_locale.mjs.
 // Every section of en.ts is present. Strings not yet translated keep their

@@ -457,21 +457,41 @@ if (imports.includes('FIELD_LABELS') || imports.includes('FIELD_DESCRIPTIONS')) 
     fieldCopyImport = localeNameEarly
   }
 }
-const header = []
+// The import order has to satisfy the repo's perfectionist/sort-imports
+// rule: the groups are internal ("@/…"), then sibling ("./…"), and inside
+// a group the module path decides. There is no blank line inside a group.
+const internal = []
+const sibling = []
 if (fieldCopyImport) {
-  header.push(
-    `import { FIELD_DESCRIPTIONS, FIELD_LABELS } from './field-copy/${fieldCopyImport}'`,
-  )
-  header.push('')
-} else if (imports.length) {
+  sibling.push({
+    path: `./field-copy/${fieldCopyImport}`,
+    stmt: `import { FIELD_DESCRIPTIONS, FIELD_LABELS } from './field-copy/${fieldCopyImport}'`,
+  })
+}
+if (wrappers.size) {
+  internal.push({
+    path: '@/app/settings/field-copy',
+    stmt: `import { ${[...wrappers].sort().join(', ')} } from '@/app/settings/field-copy'`,
+  })
+}
+sibling.push({
+  path: './define-locale',
+  stmt: `import { defineLocale } from './define-locale'`,
+})
+const byPath = (a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0)
+internal.sort(byPath)
+sibling.sort(byPath)
+
+const header = []
+if (imports.length && !fieldCopyImport) {
   header.push(`import { ${imports.join(', ')} } from '@/app/settings/constants'`)
   header.push('')
 }
-if (wrappers.size) {
-  header.push(`import { ${[...wrappers].sort().join(', ')} } from '@/app/settings/field-copy'`)
+header.push(...internal.map((r) => r.stmt))
+if (internal.length && sibling.length) {
   header.push('')
 }
-header.push(`import { defineLocale } from './define-locale'`)
+header.push(...sibling.map((r) => r.stmt))
 header.push('')
 header.push(`// ${localeName} — generated from en.ts by scripts/i18n_write_locale.mjs.`)
 header.push(`// Every section of en.ts is present. Strings not yet translated keep their`)

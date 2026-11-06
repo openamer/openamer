@@ -1,6 +1,5 @@
-import { FIELD_DESCRIPTIONS, FIELD_LABELS } from './field-copy/vi'
-
 import { defineLocale } from './define-locale'
+import { FIELD_DESCRIPTIONS, FIELD_LABELS } from './field-copy/vi'
 
 // vi — generated from en.ts by scripts/i18n_write_locale.mjs.
 // Every section of en.ts is present. Strings not yet translated keep their
