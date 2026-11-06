@@ -17,6 +17,7 @@ survive, or the English original is kept.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -51,6 +52,24 @@ def overlay_keys() -> list[str]:
         if TERNARY.search(text) or find_placeholders(text):
             out.append(leaf["path"])
     return out
+
+
+def base_word_before(text: str, key: str) -> str:
+    """The word that a suffix ternary is attached to.
+
+    The English source reads "${count} model${count === 1 ? '' : 's'}": the
+    ternary supplies the plural suffix and the base word stands in front of
+    the interpolation.
+    """
+    m = TERNARY.search(text)
+    if not m:
+        return ""
+    interp = text.rfind("${", 0, m.start())
+    if interp < 0:
+        return ""
+    before = text[:interp]
+    base = re.search(r"([A-Za-z]+)\s*$", before)
+    return base.group(1) if base else ""
 
 
 def main() -> int:
@@ -135,7 +154,16 @@ def main() -> int:
                     s, p = words[plur]
                     repl = f"? '{s}' : '{p}'"
                 else:
-                    repl = f"? '{sing}' : '{plur}'"
+                    # A suffix ternary: the base word sits in front of the
+                    # interpolation ("model" + "s"). The word table is keyed by
+                    # the base word, so the base has to be recovered from the
+                    # English source.
+                    base = base_word_before(en_text.get(k, ''), k)
+                    if base and base in words:
+                        s, p = words[base]
+                        repl = f"? '{s}' : '{p}'"
+                    else:
+                        repl = f"? '{sing}' : '{plur}'"
                 out = out.replace(marker, repl)
             if out is None:
                 continue

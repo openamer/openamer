@@ -201,7 +201,7 @@ function renderLeaf(kind, text, sig, quote) {
   }
   return text // raw / ref / array — verbatim
 }
-function buildTree(obj, translations, prefix, out) {
+function buildTree(obj, translations, prefix, out, localeWords) {
   for (const prop of obj.properties) {
     if (!ts.isPropertyAssignment(prop)) continue
     const name = ts.isIdentifier(prop.name)
@@ -255,7 +255,17 @@ function buildTree(obj, translations, prefix, out) {
         }
         // The translated text replaces the whole body; the parts are only
         // needed when there is no translation (the English fallback).
-        const translated = translations[path]
+        let translated = translations[path]
+        // The English source builds a plural by suffixing the base word
+        // ("model" + "s"). A target language has a different plural word,
+        // so the construct is swapped for the localized pair.
+        if (translated !== undefined && localeWords) {
+          translated = localizeDetachedSuffixPlural(
+            localizeSuffixPlural(translated, localeWords, englishText[path]),
+            localeWords,
+            englishText[path],
+          )
+        }
         out[name] = {
           __leaf: 'func',
           text: translated ?? flatTemplate(parts),
@@ -289,7 +299,7 @@ function buildTree(obj, translations, prefix, out) {
 
     if (ts.isObjectLiteralExpression(init)) {
       const child = {}
-      buildTree(init, translations, path, child)
+      buildTree(init, translations, path, child, localeWords)
       out[name] = child
       continue
     }
@@ -300,7 +310,7 @@ function buildTree(obj, translations, prefix, out) {
     if (ts.isCallExpression(init) && init.arguments.length === 1
         && ts.isObjectLiteralExpression(init.arguments[0])) {
       const child = {}
-      buildTree(init.arguments[0], translations, path, child)
+      buildTree(init.arguments[0], translations, path, child, localeWords)
       out[name] = { __leaf: 'wrapped', text: init.expression.getText(), children: child }
       continue
     }
@@ -312,7 +322,7 @@ function buildTree(obj, translations, prefix, out) {
 // Copy the parts of the reference object that the locale does not have yet.
 // The locale keeps its own values (including inline field copies), but gains
 // the missing sections and keys from en.ts.
-function mergeMissing(enObj, tree, translations, prefix) {
+function mergeMissing(enObj, tree, translations, prefix, localeWords) {
   for (const prop of enObj.properties) {
     if (!ts.isPropertyAssignment(prop)) continue
     const name = ts.isIdentifier(prop.name)
@@ -326,13 +336,13 @@ function mergeMissing(enObj, tree, translations, prefix) {
     if (existing === undefined) {
       // the whole subtree is missing — take it from the reference
       const child = {}
-      buildTree({ properties: [prop] }, translations, path, child)
+      buildTree({ properties: [prop] }, translations, path, child, localeWords)
       tree[name] = child[name]
       continue
     }
     if (ts.isObjectLiteralExpression(init) && existing && typeof existing === 'object'
         && existing.__leaf === undefined) {
-      mergeMissing(init, existing, translations, path)
+      mergeMissing(init, existing, translations, path, localeWords)
     }
   }
 }
@@ -405,6 +415,96 @@ try {
   // no locale file yet — en.ts is the base
 }
 
+// The English source builds a plural by suffixing the base word:
+//
+//     ${count} model${count === 1 ? '' : 's'}
+//
+// In a target language the plural is a different word, not the base plus
+// an "s" — German has "1 Modell" / "2 Modelle". So the whole construct
+// has to be replaced: the base word AND the two branches.
+//
+// The plural table (scripts/i18n_plural_words.json) holds the pair per
+// base word, so the writer can swap the construct without touching the
+// code around it.
+const PLURAL_TABLE = (() => {
+  const file = resolve(import.meta.dirname, 'i18n_plural_words.json')
+  try {
+    return JSON.parse(readFileSync(file, 'utf8'))
+  } catch {
+    return {}
+  }
+})()
+
+// Replace the English suffix plural with the localized pair.
+//
+// The English source builds the plural by suffixing the base word:
+//
+//     ${count} model${count === 1 ? '' : 's'}
+//
+// The translation may reorder the words ("model ${count}${…}" in Croatian),
+// so the swap is done on the ENGLISH text and the result is matched back
+// into the translation by the interpolation that follows the base word.
+//
+// The pair comes from the plural table, which is keyed by the English base
+// word.
+function localizeSuffixPlural(text, words, englishText) {
+  if (!words || !englishText) return text
+  // the english base word of every suffix ternary, in order
+  const bases = []
+  const re = /(\p{L}+)\s*(\$\{[^}]*?\? '' : 's'\})/gu
+  let m
+  while ((m = re.exec(englishText)) !== null) {
+    bases.push(m[1])
+  }
+  if (bases.length === 0) return text
+  let index = 0
+  return text.replace(
+    /(\p{L}+)(\s*)(\$\{[^}]*?\? '' : 's'\})/gu,
+    (match, base, gap, tail) => {
+      const englishBase = bases[index++] ?? base
+      const pair = words[englishBase]
+      if (!pair || !Array.isArray(pair) || pair.length !== 2) return match
+      // the condition stays, only the two branches change
+      const cond = tail.match(/\$\{([^}]*?)\? '' : 's'\}/)[1]
+      return `${pair[0]}${gap}\${${cond}? '${pair[0]}' : '${pair[1]}'}`
+    },
+  )
+}
+
+// The same swap, but the base word may sit further in front of the
+// interpolation: "model ${count}${count === 1 ? '' : 's'}". The ternary
+// itself is a separate interpolation, so it is matched on its own and the
+// base word is looked up in the plural table by the english source.
+//
+// The base word is the one that stands in front of the interpolation that
+// HOLDS the ternary — in the english source, which is the same place it
+// stands in the translation.
+function localizeDetachedSuffixPlural(text, words, englishText) {
+  if (!words || !englishText) return text
+  // The english source may put the base word right in front of the ternary
+  // ("${count} model${count === 1 ? '' : 's'}") while the translation puts
+  // it further in front ("model ${count}${count === 1 ? '' : 's'}"). Both
+  // shapes are collected, so the lookup finds the base word either way.
+  const bases = []
+  const re = /(\p{L}+)\s*(\$\{[^}]*?\}\s*)?(\$\{[^}]*?\? '' : 's'\})/gu
+  let m
+  while ((m = re.exec(englishText)) !== null) {
+    bases.push(m[1])
+  }
+  if (bases.length === 0) return text
+  let index = 0
+  return text.replace(
+    /(\p{L}+)(\s*)(\$\{[^}]*?\})(\s*)(\$\{[^}]*?\? '' : 's'\})/gu,
+    (match, base, gap1, first, gap2, tail) => {
+      const englishBase = bases[index++] ?? base
+      const pair = words[englishBase]
+      if (!pair || !Array.isArray(pair) || pair.length !== 2) return match
+      const cond = tail.match(/\$\{([^}]*?)\? '' : 's'\}/)[1]
+      return `${pair[0]}${gap1}${first}${gap2}\${${cond}? '${pair[0]}' : '${pair[1]}'}`
+    },
+  )
+}
+
 // The generated file needs the same imports as en.ts when it references an
 // imported constant (FIELD_LABELS / FIELD_DESCRIPTIONS). Without them the
 // module fails at runtime with "FIELD_LABELS is not defined".
@@ -424,13 +524,55 @@ function collectImports(tree) {
   return [...refs].sort()
 }
 
+const localeName = abs.split(/[\\/]/).pop().replace(/\.ts$/, '')
+// The plural table of this locale, used to swap the English suffix plural
+// ("model" + "s") for the localized pair.
+const localeWords = PLURAL_TABLE[localeName] || null
+
+// The English text of every leaf, keyed by path. The plural swap needs it:
+// the base word in the translation is already localized, so the table has
+// to be looked up by the English base word.
+const englishText = {}
+;(function collectEnglish(obj, prefix) {
+  for (const prop of obj.properties) {
+    if (!ts.isPropertyAssignment(prop)) continue
+    const name = ts.isIdentifier(prop.name)
+      ? prop.name.text
+      : ts.isStringLiteral(prop.name)
+        ? prop.name.text
+        : prop.name.getText()
+    const path = prefix ? `${prefix}.${name}` : name
+    const init = prop.initializer
+    if (ts.isStringLiteral(init) || ts.isNoSubstitutionTemplateLiteral(init)) {
+      englishText[path] = init.text
+    } else if (ts.isArrowFunction(init)) {
+      const body = init.body
+      if (ts.isTemplateExpression(body) || ts.isNoSubstitutionTemplateLiteral(body)) {
+        englishText[path] = flatTemplate(
+          ts.isTemplateExpression(body)
+            ? [
+                { kind: 'head', text: body.head.text },
+                ...body.templateSpans.map((sp) => ({
+                  kind: 'span',
+                  expr: sp.expression.getText(),
+                  literal: sp.literal.text,
+                })),
+              ]
+            : [{ kind: 'head', text: body.text }],
+        )
+      }
+    } else if (ts.isObjectLiteralExpression(init)) {
+      collectEnglish(init, path)
+    }
+  }
+})(enObj, '')
+
 const tree = {}
-buildTree(baseObj, translations, '', tree)
+buildTree(baseObj, translations, '', tree, localeWords)
 // Sections the locale does not have yet come from en.ts, so the locale ends
 // up with exactly the same shape as the reference.
-mergeMissing(enObj, tree, translations, '')
+mergeMissing(enObj, tree, translations, '', localeWords)
 
-const localeName = abs.split(/[\\/]/).pop().replace(/\.ts$/, '')
 // zh-hant -> zhHant
 const exportName = localeName.replace(/-(\w)/g, (_, c) => c.toUpperCase())
 const imports = collectImports(tree)

@@ -87,6 +87,150 @@
   "tool": [
    "outil",
    "outils"
+  ],
+  "image": [
+   "image",
+   "images"
+  ],
+  "action": [
+   "action",
+   "actions"
+  ],
+  "zone": [
+   "zone",
+   "zones"
+  ],
+  "prompt": [
+   "invite",
+   "invites"
+  ],
+  "resource": [
+   "ressource",
+   "ressources"
+  ],
+  "option": [
+   "option",
+   "options"
+  ],
+  "task": [
+   "tâche",
+   "tâches"
+  ],
+  "file": [
+   "fichier",
+   "fichiers"
+  ],
+  "folder": [
+   "dossier",
+   "dossiers"
+  ],
+  "plugin": [
+   "plugin",
+   "plugins"
+  ],
+  "voice": [
+   "voix",
+   "voix"
+  ],
+  "hour": [
+   "heure",
+   "heures"
+  ],
+  "minute": [
+   "minute",
+   "minutes"
+  ],
+  "second": [
+   "seconde",
+   "secondes"
+  ],
+  "day": [
+   "jour",
+   "jours"
+  ],
+  "week": [
+   "semaine",
+   "semaines"
+  ],
+  "month": [
+   "mois",
+   "mois"
+  ],
+  "year": [
+   "an",
+   "ans"
+  ],
+  "update": [
+   "mise à jour",
+   "mises à jour"
+  ],
+  "warning": [
+   "avertissement",
+   "avertissements"
+  ],
+  "error": [
+   "erreur",
+   "erreurs"
+  ],
+  "command": [
+   "commande",
+   "commandes"
+  ],
+  "step": [
+   "étape",
+   "étapes"
+  ],
+  "token": [
+   "jeton",
+   "jetons"
+  ],
+  "credit": [
+   "crédit",
+   "crédits"
+  ],
+  "reply": [
+   "réponse",
+   "réponses"
+  ],
+  "provider": [
+   "fournisseur",
+   "fournisseurs"
+  ],
+  "branch": [
+   "branche",
+   "branches"
+  ],
+  "release": [
+   "version",
+   "versions"
+  ],
+  "cron": [
+   "cron",
+   "crons"
+  ],
+  "webhook": [
+   "webhook",
+   "webhooks"
+  ],
+  "artifact": [
+   "artefact",
+   "artefacts"
+  ],
+  "memory": [
+   "mémoire",
+   "mémoires"
+  ],
+  "database": [
+   "base de données",
+   "bases de données"
+  ],
+  "workspace": [
+   "espace de travail",
+   "espaces de travail"
+  ],
+  "context": [
+   "contexte",
+   "contextes"
   ]
  },
  "de": {
@@ -137,6 +281,194 @@
   "entry": [
    "Logeintrag",
    "Logeinträge"
+  ],
+  "Subagent": [
+   "Subagent",
+   "Subagenten"
+  ],
+  "attachment": [
+   "Anhang",
+   "Anhänge"
+  ],
+  "change": [
+   "Änderung",
+   "Änderungen"
+  ],
+  "commit": [
+   "Commit",
+   "Commits"
+  ],
+  "finding": [
+   "Fund",
+   "Funde"
+  ],
+  "line": [
+   "Zeile",
+   "Zeilen"
+  ],
+  "model": [
+   "Modell",
+   "Modelle"
+  ],
+  "pet": [
+   "Haustier",
+   "Haustiere"
+  ],
+  "result": [
+   "Ergebnis",
+   "Ergebnisse"
+  ],
+  "subagent": [
+   "subagent",
+   "subagenten"
+  ],
+  "tool": [
+   "Werkzeug",
+   "Werkzeuge"
+  ],
+  "image": [
+   "Bild",
+   "Bilder"
+  ],
+  "action": [
+   "Aktion",
+   "Aktionen"
+  ],
+  "zone": [
+   "Zone",
+   "Zonen"
+  ],
+  "prompt": [
+   "Prompt",
+   "Prompts"
+  ],
+  "resource": [
+   "Ressource",
+   "Ressourcen"
+  ],
+  "option": [
+   "Option",
+   "Optionen"
+  ],
+  "task": [
+   "Aufgabe",
+   "Aufgaben"
+  ],
+  "file": [
+   "Datei",
+   "Dateien"
+  ],
+  "folder": [
+   "Ordner",
+   "Ordner"
+  ],
+  "plugin": [
+   "Plugin",
+   "Plugins"
+  ],
+  "voice": [
+   "Stimme",
+   "Stimmen"
+  ],
+  "hour": [
+   "Stunde",
+   "Stunden"
+  ],
+  "minute": [
+   "Minute",
+   "Minuten"
+  ],
+  "second": [
+   "Sekunde",
+   "Sekunden"
+  ],
+  "day": [
+   "Tag",
+   "Tage"
+  ],
+  "week": [
+   "Woche",
+   "Wochen"
+  ],
+  "month": [
+   "Monat",
+   "Monate"
+  ],
+  "year": [
+   "Jahr",
+   "Jahre"
+  ],
+  "update": [
+   "Update",
+   "Updates"
+  ],
+  "warning": [
+   "Warnung",
+   "Warnungen"
+  ],
+  "error": [
+   "Fehler",
+   "Fehler"
+  ],
+  "command": [
+   "Befehl",
+   "Befehle"
+  ],
+  "step": [
+   "Schritt",
+   "Schritte"
+  ],
+  "token": [
+   "Token",
+   "Token"
+  ],
+  "credit": [
+   "Kredit",
+   "Kredite"
+  ],
+  "reply": [
+   "Antwort",
+   "Antworten"
+  ],
+  "provider": [
+   "Anbieter",
+   "Anbieter"
+  ],
+  "branch": [
+   "Zweig",
+   "Zweige"
+  ],
+  "release": [
+   "Release",
+   "Releases"
+  ],
+  "cron": [
+   "Cron",
+   "Crons"
+  ],
+  "webhook": [
+   "Webhook",
+   "Webhooks"
+  ],
+  "artifact": [
+   "Artefakt",
+   "Artefakte"
+  ],
+  "memory": [
+   "Speicher",
+   "Speicher"
+  ],
+  "database": [
+   "Datenbank",
+   "Datenbanken"
+  ],
+  "workspace": [
+   "Arbeitsbereich",
+   "Arbeitsbereiche"
+  ],
+  "context": [
+   "Kontext",
+   "Kontexte"
   ]
  },
  "es": {
@@ -227,6 +559,150 @@
   "tool": [
    "herramienta",
    "herramientas"
+  ],
+  "image": [
+   "image",
+   "imágenes"
+  ],
+  "action": [
+   "action",
+   "acciones"
+  ],
+  "zone": [
+   "zone",
+   "zonas"
+  ],
+  "prompt": [
+   "prompt",
+   "prompts"
+  ],
+  "resource": [
+   "resource",
+   "recursos"
+  ],
+  "option": [
+   "option",
+   "opciones"
+  ],
+  "task": [
+   "task",
+   "tareas"
+  ],
+  "file": [
+   "file",
+   "archivos"
+  ],
+  "folder": [
+   "folder",
+   "carpetas"
+  ],
+  "plugin": [
+   "plugin",
+   "plugins"
+  ],
+  "voice": [
+   "voice",
+   "voces"
+  ],
+  "hour": [
+   "hour",
+   "horas"
+  ],
+  "minute": [
+   "minute",
+   "minutos"
+  ],
+  "second": [
+   "second",
+   "segundos"
+  ],
+  "day": [
+   "day",
+   "días"
+  ],
+  "week": [
+   "week",
+   "semanas"
+  ],
+  "month": [
+   "month",
+   "meses"
+  ],
+  "year": [
+   "year",
+   "años"
+  ],
+  "update": [
+   "update",
+   "actualizaciones"
+  ],
+  "warning": [
+   "warning",
+   "advertencias"
+  ],
+  "error": [
+   "error",
+   "errores"
+  ],
+  "command": [
+   "command",
+   "comandos"
+  ],
+  "step": [
+   "step",
+   "pasos"
+  ],
+  "token": [
+   "token",
+   "tokens"
+  ],
+  "credit": [
+   "credit",
+   "créditos"
+  ],
+  "reply": [
+   "reply",
+   "respuestas"
+  ],
+  "provider": [
+   "provider",
+   "proveedores"
+  ],
+  "branch": [
+   "branch",
+   "ramas"
+  ],
+  "release": [
+   "release",
+   "lanzamientos"
+  ],
+  "cron": [
+   "cron",
+   "crons"
+  ],
+  "webhook": [
+   "webhook",
+   "webhooks"
+  ],
+  "artifact": [
+   "artifact",
+   "artefactos"
+  ],
+  "memory": [
+   "memory",
+   "memorias"
+  ],
+  "database": [
+   "database",
+   "bases de datos"
+  ],
+  "workspace": [
+   "workspace",
+   "espacios de trabajo"
+  ],
+  "context": [
+   "context",
+   "contextos"
   ]
  },
  "it": {
@@ -497,6 +973,150 @@
   "tool": [
    "أداة",
    "أدوات"
+  ],
+  "image": [
+   "صورة",
+   "صور"
+  ],
+  "action": [
+   "إجراء",
+   "إجراءات"
+  ],
+  "zone": [
+   "منطقة",
+   "مناطق"
+  ],
+  "prompt": [
+   "موجه",
+   "موجهات"
+  ],
+  "resource": [
+   "مورد",
+   "موارد"
+  ],
+  "option": [
+   "خيار",
+   "خيارات"
+  ],
+  "task": [
+   "مهمة",
+   "مهام"
+  ],
+  "file": [
+   "ملف",
+   "ملفات"
+  ],
+  "folder": [
+   "مجلد",
+   "مجلدات"
+  ],
+  "plugin": [
+   "مكون إضافي",
+   "مكونات إضافية"
+  ],
+  "voice": [
+   "صوت",
+   "أصوات"
+  ],
+  "hour": [
+   "ساعة",
+   "ساعات"
+  ],
+  "minute": [
+   "دقيقة",
+   "دقائق"
+  ],
+  "second": [
+   "ثانية",
+   "ثوانٍ"
+  ],
+  "day": [
+   "يوم",
+   "أيام"
+  ],
+  "week": [
+   "أسبوع",
+   "أسابيع"
+  ],
+  "month": [
+   "شهر",
+   "أشهر"
+  ],
+  "year": [
+   "سنة",
+   "سنوات"
+  ],
+  "update": [
+   "تحديث",
+   "تحديثات"
+  ],
+  "warning": [
+   "تحذير",
+   "تحذيرات"
+  ],
+  "error": [
+   "خطأ",
+   "أخطاء"
+  ],
+  "command": [
+   "أمر",
+   "أوامر"
+  ],
+  "step": [
+   "خطوة",
+   "خطوات"
+  ],
+  "token": [
+   "رمز",
+   "رموز"
+  ],
+  "credit": [
+   "رصيد",
+   "أرصدة"
+  ],
+  "reply": [
+   "رد",
+   "ردود"
+  ],
+  "provider": [
+   "مزود",
+   "مزودون"
+  ],
+  "branch": [
+   "فرع",
+   "فروع"
+  ],
+  "release": [
+   "إصدار",
+   "إصدارات"
+  ],
+  "cron": [
+   "مهمة مجدولة",
+   "مهام مجدولة"
+  ],
+  "webhook": [
+   "ويب هوك",
+   "ويب هوكس"
+  ],
+  "artifact": [
+   "مخرج",
+   "مخرجات"
+  ],
+  "memory": [
+   "ذاكرة",
+   "ذاكرات"
+  ],
+  "database": [
+   "قاعدة بيانات",
+   "قواعد بيانات"
+  ],
+  "workspace": [
+   "مساحة عمل",
+   "مساحات عمل"
+  ],
+  "context": [
+   "سياق",
+   "سياقات"
   ]
  },
  "bg": {
@@ -587,6 +1207,150 @@
   "tool": [
    "инструмент",
    "инструменти"
+  ],
+  "image": [
+   "изображение",
+   "изображения"
+  ],
+  "action": [
+   "действие",
+   "действия"
+  ],
+  "zone": [
+   "зона",
+   "зони"
+  ],
+  "prompt": [
+   "подкана",
+   "подкани"
+  ],
+  "resource": [
+   "ресурс",
+   "ресурси"
+  ],
+  "option": [
+   "опция",
+   "опции"
+  ],
+  "task": [
+   "задача",
+   "задачи"
+  ],
+  "file": [
+   "файл",
+   "файлове"
+  ],
+  "folder": [
+   "папка",
+   "папки"
+  ],
+  "plugin": [
+   "приставка",
+   "приставки"
+  ],
+  "voice": [
+   "глас",
+   "гласове"
+  ],
+  "hour": [
+   "час",
+   "часове"
+  ],
+  "minute": [
+   "минута",
+   "минути"
+  ],
+  "second": [
+   "секунда",
+   "секунди"
+  ],
+  "day": [
+   "ден",
+   "дни"
+  ],
+  "week": [
+   "седмица",
+   "седмици"
+  ],
+  "month": [
+   "месец",
+   "месеци"
+  ],
+  "year": [
+   "година",
+   "години"
+  ],
+  "update": [
+   "актуализация",
+   "актуализации"
+  ],
+  "warning": [
+   "предупреждение",
+   "предупреждения"
+  ],
+  "error": [
+   "грешка",
+   "грешки"
+  ],
+  "command": [
+   "команда",
+   "команди"
+  ],
+  "step": [
+   "стъпка",
+   "стъпки"
+  ],
+  "token": [
+   "жетон",
+   "жетони"
+  ],
+  "credit": [
+   "кредит",
+   "кредити"
+  ],
+  "reply": [
+   "отговор",
+   "отговори"
+  ],
+  "provider": [
+   "доставчик",
+   "доставчици"
+  ],
+  "branch": [
+   "клон",
+   "клонове"
+  ],
+  "release": [
+   "издание",
+   "издания"
+  ],
+  "cron": [
+   "крон",
+   "крони"
+  ],
+  "webhook": [
+   "уебхук",
+   "уебхукове"
+  ],
+  "artifact": [
+   "артефакт",
+   "артефакти"
+  ],
+  "memory": [
+   "памет",
+   "памети"
+  ],
+  "database": [
+   "база данни",
+   "бази данни"
+  ],
+  "workspace": [
+   "работно пространство",
+   "работни пространства"
+  ],
+  "context": [
+   "контекст",
+   "контексти"
   ]
  },
  "bs": {
@@ -673,6 +1437,154 @@
   "subagent": [
    "podagent",
    "podagenti"
+  ],
+  "tool": [
+   "alat",
+   "alati"
+  ],
+  "image": [
+   "image",
+   "slike"
+  ],
+  "action": [
+   "action",
+   "akcije"
+  ],
+  "zone": [
+   "zone",
+   "zone"
+  ],
+  "prompt": [
+   "prompt",
+   "upiti"
+  ],
+  "resource": [
+   "resource",
+   "resursi"
+  ],
+  "option": [
+   "option",
+   "opcije"
+  ],
+  "task": [
+   "task",
+   "zadaci"
+  ],
+  "file": [
+   "file",
+   "datoteke"
+  ],
+  "folder": [
+   "folder",
+   "mape"
+  ],
+  "plugin": [
+   "plugin",
+   "dodaci"
+  ],
+  "voice": [
+   "voice",
+   "glasovi"
+  ],
+  "hour": [
+   "hour",
+   "sati"
+  ],
+  "minute": [
+   "minute",
+   "minuta"
+  ],
+  "second": [
+   "second",
+   "sekunde"
+  ],
+  "day": [
+   "day",
+   "dana"
+  ],
+  "week": [
+   "week",
+   "sedmice"
+  ],
+  "month": [
+   "month",
+   "mjeseci"
+  ],
+  "year": [
+   "year",
+   "godine"
+  ],
+  "update": [
+   "update",
+   "ažuriranja"
+  ],
+  "warning": [
+   "warning",
+   "upozorenja"
+  ],
+  "error": [
+   "error",
+   "greške"
+  ],
+  "command": [
+   "command",
+   "naredbe"
+  ],
+  "step": [
+   "step",
+   "koraci"
+  ],
+  "token": [
+   "token",
+   "tokeni"
+  ],
+  "credit": [
+   "credit",
+   "krediti"
+  ],
+  "reply": [
+   "reply",
+   "odgovori"
+  ],
+  "provider": [
+   "provider",
+   "provajderi"
+  ],
+  "branch": [
+   "branch",
+   "grane"
+  ],
+  "release": [
+   "release",
+   "izdanja"
+  ],
+  "cron": [
+   "cron",
+   "cronovi"
+  ],
+  "webhook": [
+   "webhook",
+   "webhook-i"
+  ],
+  "artifact": [
+   "artifact",
+   "artefakti"
+  ],
+  "memory": [
+   "memory",
+   "memorije"
+  ],
+  "database": [
+   "database",
+   "baze podataka"
+  ],
+  "workspace": [
+   "workspace",
+   "radni prostori"
+  ],
+  "context": [
+   "context",
+   "konteksti"
   ]
  },
  "cs": {
@@ -763,6 +1675,150 @@
   "tool": [
    "nástroj",
    "nástroje"
+  ],
+  "image": [
+   "obrázek",
+   "obrázky"
+  ],
+  "action": [
+   "akce",
+   "akce"
+  ],
+  "zone": [
+   "zóna",
+   "zóny"
+  ],
+  "prompt": [
+   "výzva",
+   "výzvy"
+  ],
+  "resource": [
+   "zdroj",
+   "zdroje"
+  ],
+  "option": [
+   "možnost",
+   "možnosti"
+  ],
+  "task": [
+   "úkol",
+   "úkoly"
+  ],
+  "file": [
+   "soubor",
+   "soubory"
+  ],
+  "folder": [
+   "složka",
+   "složky"
+  ],
+  "plugin": [
+   "plugin",
+   "pluginy"
+  ],
+  "voice": [
+   "hlas",
+   "hlasy"
+  ],
+  "hour": [
+   "hodina",
+   "hodiny"
+  ],
+  "minute": [
+   "minuta",
+   "minuty"
+  ],
+  "second": [
+   "sekunda",
+   "sekundy"
+  ],
+  "day": [
+   "den",
+   "dny"
+  ],
+  "week": [
+   "týden",
+   "týdny"
+  ],
+  "month": [
+   "měsíc",
+   "měsíce"
+  ],
+  "year": [
+   "rok",
+   "roky"
+  ],
+  "update": [
+   "aktualizace",
+   "aktualizace"
+  ],
+  "warning": [
+   "varování",
+   "varování"
+  ],
+  "error": [
+   "chyba",
+   "chyby"
+  ],
+  "command": [
+   "příkaz",
+   "příkazy"
+  ],
+  "step": [
+   "krok",
+   "kroky"
+  ],
+  "token": [
+   "token",
+   "tokeny"
+  ],
+  "credit": [
+   "kredit",
+   "kredity"
+  ],
+  "reply": [
+   "odpověď",
+   "odpovědi"
+  ],
+  "provider": [
+   "poskytovatel",
+   "poskytovatelé"
+  ],
+  "branch": [
+   "větev",
+   "větve"
+  ],
+  "release": [
+   "verze",
+   "verze"
+  ],
+  "cron": [
+   "cron",
+   "crony"
+  ],
+  "webhook": [
+   "webhook",
+   "webhooky"
+  ],
+  "artifact": [
+   "artefakt",
+   "artefakty"
+  ],
+  "memory": [
+   "paměť",
+   "paměti"
+  ],
+  "database": [
+   "databáze",
+   "databáze"
+  ],
+  "workspace": [
+   "pracovní prostor",
+   "pracovní prostory"
+  ],
+  "context": [
+   "kontext",
+   "kontexty"
   ]
  },
  "da": {
@@ -853,6 +1909,150 @@
   "tool": [
    "værktøj",
    "værktøjer"
+  ],
+  "image": [
+   "billede",
+   "billeder"
+  ],
+  "action": [
+   "handling",
+   "handlinger"
+  ],
+  "zone": [
+   "zone",
+   "zoner"
+  ],
+  "prompt": [
+   "prompt",
+   "prompter"
+  ],
+  "resource": [
+   "ressource",
+   "ressourcer"
+  ],
+  "option": [
+   "indstilling",
+   "indstillinger"
+  ],
+  "task": [
+   "opgave",
+   "opgaver"
+  ],
+  "file": [
+   "fil",
+   "filer"
+  ],
+  "folder": [
+   "mappe",
+   "mapper"
+  ],
+  "plugin": [
+   "udvidelse",
+   "udvidelser"
+  ],
+  "voice": [
+   "stemme",
+   "stemmer"
+  ],
+  "hour": [
+   "time",
+   "timer"
+  ],
+  "minute": [
+   "minut",
+   "minutter"
+  ],
+  "second": [
+   "sekund",
+   "sekunder"
+  ],
+  "day": [
+   "dag",
+   "dage"
+  ],
+  "week": [
+   "uge",
+   "uger"
+  ],
+  "month": [
+   "måned",
+   "måneder"
+  ],
+  "year": [
+   "år",
+   "år"
+  ],
+  "update": [
+   "opdatering",
+   "opdateringer"
+  ],
+  "warning": [
+   "advarsel",
+   "advarsler"
+  ],
+  "error": [
+   "fejl",
+   "fejl"
+  ],
+  "command": [
+   "kommando",
+   "kommandoer"
+  ],
+  "step": [
+   "trin",
+   "trin"
+  ],
+  "token": [
+   "token",
+   "tokens"
+  ],
+  "credit": [
+   "kredit",
+   "kreditter"
+  ],
+  "reply": [
+   "svar",
+   "svar"
+  ],
+  "provider": [
+   "udbyder",
+   "udbydere"
+  ],
+  "branch": [
+   "gren",
+   "grene"
+  ],
+  "release": [
+   "udgivelse",
+   "udgivelser"
+  ],
+  "cron": [
+   "cron",
+   "crons"
+  ],
+  "webhook": [
+   "webhook",
+   "webhooks"
+  ],
+  "artifact": [
+   "artefakt",
+   "artefakter"
+  ],
+  "memory": [
+   "hukommelse",
+   "hukommelser"
+  ],
+  "database": [
+   "database",
+   "databaser"
+  ],
+  "workspace": [
+   "arbejdsområde",
+   "arbejdsområder"
+  ],
+  "context": [
+   "kontekst",
+   "kontekster"
   ]
  },
  "el": {
@@ -943,6 +2143,150 @@
   "tool": [
    "εργαλείο",
    "εργαλεία"
+  ],
+  "image": [
+   "εικόνα",
+   "εικόνες"
+  ],
+  "action": [
+   "ενέργεια",
+   "ενέργειες"
+  ],
+  "zone": [
+   "ζώνη",
+   "ζώνες"
+  ],
+  "prompt": [
+   "προτροπή",
+   "προτροπές"
+  ],
+  "resource": [
+   "πόρος",
+   "πόροι"
+  ],
+  "option": [
+   "επιλογή",
+   "επιλογές"
+  ],
+  "task": [
+   "εργασία",
+   "εργασίες"
+  ],
+  "file": [
+   "αρχείο",
+   "αρχεία"
+  ],
+  "folder": [
+   "φάκελος",
+   "φάκελοι"
+  ],
+  "plugin": [
+   "πρόσθετο",
+   "πρόσθετα"
+  ],
+  "voice": [
+   "φωνή",
+   "φωνές"
+  ],
+  "hour": [
+   "ώρα",
+   "ώρες"
+  ],
+  "minute": [
+   "λεπτό",
+   "λεπτά"
+  ],
+  "second": [
+   "δευτερόλεπτο",
+   "δευτερόλεπτα"
+  ],
+  "day": [
+   "ημέρα",
+   "ημέρες"
+  ],
+  "week": [
+   "εβδομάδα",
+   "εβδομάδες"
+  ],
+  "month": [
+   "μήνας",
+   "μήνες"
+  ],
+  "year": [
+   "έτος",
+   "έτη"
+  ],
+  "update": [
+   "ενημέρωση",
+   "ενημερώσεις"
+  ],
+  "warning": [
+   "προειδοποίηση",
+   "προειδοποιήσεις"
+  ],
+  "error": [
+   "σφάλμα",
+   "σφάλματα"
+  ],
+  "command": [
+   "εντολή",
+   "εντολές"
+  ],
+  "step": [
+   "βήμα",
+   "βήματα"
+  ],
+  "token": [
+   "διακριτικό",
+   "διακριτικά"
+  ],
+  "credit": [
+   "πιστωτικό",
+   "πιστωτικά"
+  ],
+  "reply": [
+   "απάντηση",
+   "απαντήσεις"
+  ],
+  "provider": [
+   "πάροχος",
+   "παρόχοι"
+  ],
+  "branch": [
+   "κλάδος",
+   "κλάδοι"
+  ],
+  "release": [
+   "έκδοση",
+   "εκδόσεις"
+  ],
+  "cron": [
+   "χρονικό",
+   "χρονικά"
+  ],
+  "webhook": [
+   "διαδικτυακή αγκύλι",
+   "διαδικτυακές αγκύλες"
+  ],
+  "artifact": [
+   "αποτέλεσμα",
+   "αποτελέσματα"
+  ],
+  "memory": [
+   "μνήμη",
+   "μνήμες"
+  ],
+  "database": [
+   "βάση δεδομένων",
+   "βάσεις δεδομένων"
+  ],
+  "workspace": [
+   "χώρος εργασίας",
+   "χώροι εργασίας"
+  ],
+  "context": [
+   "πλαίσιο",
+   "πλαίσια"
   ]
  },
  "eo": {
@@ -1033,6 +2377,150 @@
   "tool": [
    "ilo",
    "iloj"
+  ],
+  "image": [
+   "image",
+   "bildoj"
+  ],
+  "action": [
+   "action",
+   "agoj"
+  ],
+  "zone": [
+   "zone",
+   "zonoj"
+  ],
+  "prompt": [
+   "prompt",
+   "instigoj"
+  ],
+  "resource": [
+   "resource",
+   "rimedoj"
+  ],
+  "option": [
+   "option",
+   "opcioj"
+  ],
+  "task": [
+   "task",
+   "taskoj"
+  ],
+  "file": [
+   "file",
+   "dosieroj"
+  ],
+  "folder": [
+   "folder",
+   "dosierujoj"
+  ],
+  "plugin": [
+   "plugin",
+   "aldonaĵoj"
+  ],
+  "voice": [
+   "voice",
+   "vojcoj"
+  ],
+  "hour": [
+   "hour",
+   "horoj"
+  ],
+  "minute": [
+   "minute",
+   "minutoj"
+  ],
+  "second": [
+   "second",
+   "sekundoj"
+  ],
+  "day": [
+   "day",
+   "tagoj"
+  ],
+  "week": [
+   "week",
+   "semajnoj"
+  ],
+  "month": [
+   "month",
+   "monatoj"
+  ],
+  "year": [
+   "year",
+   "jaroj"
+  ],
+  "update": [
+   "update",
+   "ĝisdatigoj"
+  ],
+  "warning": [
+   "warning",
+   "avertoj"
+  ],
+  "error": [
+   "error",
+   "eraroj"
+  ],
+  "command": [
+   "command",
+   "ordonoj"
+  ],
+  "step": [
+   "step",
+   "paŝoj"
+  ],
+  "token": [
+   "token",
+   "markoj"
+  ],
+  "credit": [
+   "credit",
+   "kreditoj"
+  ],
+  "reply": [
+   "reply",
+   "respondoj"
+  ],
+  "provider": [
+   "provider",
+   "provizantoj"
+  ],
+  "branch": [
+   "branch",
+   "branĉoj"
+  ],
+  "release": [
+   "release",
+   "eldonoj"
+  ],
+  "cron": [
+   "cron",
+   "kronoj"
+  ],
+  "webhook": [
+   "webhook",
+   "rethukoj"
+  ],
+  "artifact": [
+   "artifact",
+   "artefaktoj"
+  ],
+  "memory": [
+   "memory",
+   "memoroj"
+  ],
+  "database": [
+   "database",
+   "datumbazoj"
+  ],
+  "workspace": [
+   "workspace",
+   "laborejoj"
+  ],
+  "context": [
+   "context",
+   "kontekstoj"
   ]
  },
  "et": {
@@ -1123,6 +2611,150 @@
   "tool": [
    "tööriist",
    "tööriistad"
+  ],
+  "image": [
+   "pilt",
+   "pildid"
+  ],
+  "action": [
+   "tegevus",
+   "tegevused"
+  ],
+  "zone": [
+   "tsoon",
+   "tsoonid"
+  ],
+  "prompt": [
+   "küsimus",
+   "küsimused"
+  ],
+  "resource": [
+   "ressurs",
+   "ressursid"
+  ],
+  "option": [
+   "valik",
+   "valikud"
+  ],
+  "task": [
+   "ülesanne",
+   "ülesanded"
+  ],
+  "file": [
+   "fail",
+   "failid"
+  ],
+  "folder": [
+   "kaust",
+   "kaustad"
+  ],
+  "plugin": [
+   "lisandmoodul",
+   "lisandmoodulid"
+  ],
+  "voice": [
+   "hääl",
+   "hääled"
+  ],
+  "hour": [
+   "tund",
+   "tunnid"
+  ],
+  "minute": [
+   "minut",
+   "minutid"
+  ],
+  "second": [
+   "sekund",
+   "sekundid"
+  ],
+  "day": [
+   "päev",
+   "päevad"
+  ],
+  "week": [
+   "nädal",
+   "nädalad"
+  ],
+  "month": [
+   "kuu",
+   "kuud"
+  ],
+  "year": [
+   "aasta",
+   "aastad"
+  ],
+  "update": [
+   "uuendus",
+   "uuendused"
+  ],
+  "warning": [
+   "hoiatus",
+   "hoiatused"
+  ],
+  "error": [
+   "viga",
+   "vead"
+  ],
+  "command": [
+   "käsk",
+   "käskud"
+  ],
+  "step": [
+   "samm",
+   "sammud"
+  ],
+  "token": [
+   "märk",
+   "märgid"
+  ],
+  "credit": [
+   "krediit",
+   "krediidid"
+  ],
+  "reply": [
+   "vastus",
+   "vastused"
+  ],
+  "provider": [
+   "pakkuja",
+   "pakkujad"
+  ],
+  "branch": [
+   "haru",
+   "harud"
+  ],
+  "release": [
+   "väljalase",
+   "väljalased"
+  ],
+  "cron": [
+   "ajastus",
+   "ajastused"
+  ],
+  "webhook": [
+   "veebikrog",
+   "veebikrogid"
+  ],
+  "artifact": [
+   "artefakt",
+   "artefaktid"
+  ],
+  "memory": [
+   "mälu",
+   "mälu"
+  ],
+  "database": [
+   "andmebaas",
+   "andmebaasid"
+  ],
+  "workspace": [
+   "töökeskkond",
+   "töökeskkonnad"
+  ],
+  "context": [
+   "kontekst",
+   "kontekstid"
   ]
  },
  "fa": {
@@ -1213,6 +2845,150 @@
   "tool": [
    "ابزار",
    "ابزارها"
+  ],
+  "image": [
+   "تصویر",
+   "تصاویر"
+  ],
+  "action": [
+   "اقدام",
+   "اقدام‌ها"
+  ],
+  "zone": [
+   "ناحیه",
+   "ناحیه‌ها"
+  ],
+  "prompt": [
+   "دستور",
+   "دستورها"
+  ],
+  "resource": [
+   "منبع",
+   "منابع"
+  ],
+  "option": [
+   "گزینه",
+   "گزینه‌ها"
+  ],
+  "task": [
+   "وظیفه",
+   "وظایف"
+  ],
+  "file": [
+   "پرونده",
+   "پرونده‌ها"
+  ],
+  "folder": [
+   "پوشه",
+   "پوشه‌ها"
+  ],
+  "plugin": [
+   "افزونه",
+   "افزونه‌ها"
+  ],
+  "voice": [
+   "صدا",
+   "صداها"
+  ],
+  "hour": [
+   "ساعت",
+   "ساعت‌ها"
+  ],
+  "minute": [
+   "دقیقه",
+   "دقیقه‌ها"
+  ],
+  "second": [
+   "ثانیه",
+   "ثانیه‌ها"
+  ],
+  "day": [
+   "روز",
+   "روزها"
+  ],
+  "week": [
+   "هفته",
+   "هفته‌ها"
+  ],
+  "month": [
+   "ماه",
+   "ماه‌ها"
+  ],
+  "year": [
+   "سال",
+   "سال‌ها"
+  ],
+  "update": [
+   "به‌روزرسانی",
+   "به‌روزرسانی‌ها"
+  ],
+  "warning": [
+   "هشدار",
+   "هشدارها"
+  ],
+  "error": [
+   "خطا",
+   "خطاها"
+  ],
+  "command": [
+   "دستور",
+   "دستورها"
+  ],
+  "step": [
+   "مرحله",
+   "مراحل"
+  ],
+  "token": [
+   "توکن",
+   "توکن‌ها"
+  ],
+  "credit": [
+   "اعتبار",
+   "اعتبارها"
+  ],
+  "reply": [
+   "پاسخ",
+   "پاسخ‌ها"
+  ],
+  "provider": [
+   "ارائه‌دهنده",
+   "ارائه‌دهندگان"
+  ],
+  "branch": [
+   "شاخه",
+   "شاخه‌ها"
+  ],
+  "release": [
+   "انتشار",
+   "انتشارها"
+  ],
+  "cron": [
+   "کرون",
+   "کرون‌ها"
+  ],
+  "webhook": [
+   "وب‌هوک",
+   "وب‌هوک‌ها"
+  ],
+  "artifact": [
+   "مصنوع",
+   "مصنوعات"
+  ],
+  "memory": [
+   "حافظه",
+   "حافظه‌ها"
+  ],
+  "database": [
+   "پایگاه‌داده",
+   "پایگاه‌داده‌ها"
+  ],
+  "workspace": [
+   "فضای‌کار",
+   "فضای‌کارها"
+  ],
+  "context": [
+   "زمینه",
+   "زمینه‌ها"
   ]
  },
  "fi": {
@@ -1303,6 +3079,150 @@
   "tool": [
    "työkalu",
    "työkalut"
+  ],
+  "image": [
+   "kuva",
+   "kuvat"
+  ],
+  "action": [
+   "toiminto",
+   "toiminnot"
+  ],
+  "zone": [
+   "vyöhyke",
+   "vyöhykkeet"
+  ],
+  "prompt": [
+   "kehote",
+   "kehotteet"
+  ],
+  "resource": [
+   "resurssi",
+   "resurssit"
+  ],
+  "option": [
+   "asetus",
+   "asetukset"
+  ],
+  "task": [
+   "tehtävä",
+   "tehtävät"
+  ],
+  "file": [
+   "tiedosto",
+   "tiedostot"
+  ],
+  "folder": [
+   "kansio",
+   "kansiot"
+  ],
+  "plugin": [
+   "laajennos",
+   "laajennokset"
+  ],
+  "voice": [
+   "ääni",
+   "äänet"
+  ],
+  "hour": [
+   "tunti",
+   "tunnit"
+  ],
+  "minute": [
+   "minuutti",
+   "minuutit"
+  ],
+  "second": [
+   "sekunti",
+   "sekunnit"
+  ],
+  "day": [
+   "päivä",
+   "päivät"
+  ],
+  "week": [
+   "viikko",
+   "viikot"
+  ],
+  "month": [
+   "kuukausi",
+   "kuukaudet"
+  ],
+  "year": [
+   "vuosi",
+   "vuodet"
+  ],
+  "update": [
+   "päivitys",
+   "päivitykset"
+  ],
+  "warning": [
+   "varoitus",
+   "varoitukset"
+  ],
+  "error": [
+   "virhe",
+   "virheet"
+  ],
+  "command": [
+   "komento",
+   "komennot"
+  ],
+  "step": [
+   "vaihe",
+   "vaiheet"
+  ],
+  "token": [
+   "tunnus",
+   "tunnukset"
+  ],
+  "credit": [
+   "krediitti",
+   "krediitit"
+  ],
+  "reply": [
+   "vastaus",
+   "vastaukset"
+  ],
+  "provider": [
+   "tarjoaja",
+   "tarjoajat"
+  ],
+  "branch": [
+   "haara",
+   "haarat"
+  ],
+  "release": [
+   "julkaisu",
+   "julkaisut"
+  ],
+  "cron": [
+   "cron",
+   "cronit"
+  ],
+  "webhook": [
+   "webhook",
+   "webhookit"
+  ],
+  "artifact": [
+   "artefakti",
+   "artefaktit"
+  ],
+  "memory": [
+   "muisti",
+   "muistit"
+  ],
+  "database": [
+   "tietokanta",
+   "tietokannat"
+  ],
+  "workspace": [
+   "työtila",
+   "työtilat"
+  ],
+  "context": [
+   "konteksti",
+   "kontekstit"
   ]
  },
  "ga": {
@@ -1393,6 +3313,150 @@
   "tool": [
    "uirlis",
    "uirlisí"
+  ],
+  "image": [
+   "íomhá",
+   "íomhánna"
+  ],
+  "action": [
+   "gníomh",
+   "gníomhartha"
+  ],
+  "zone": [
+   "zón",
+   "zónna"
+  ],
+  "prompt": [
+   "moladh",
+   "molaidí"
+  ],
+  "resource": [
+   "acmhainn",
+   "acmhainní"
+  ],
+  "option": [
+   "rogha",
+   "roghanna"
+  ],
+  "task": [
+   "tasg",
+   "tascaí"
+  ],
+  "file": [
+   "comhad",
+   "comhaid"
+  ],
+  "folder": [
+   "comhadán",
+   "comhadáin"
+  ],
+  "plugin": [
+   "plug-in",
+   "plug-iní"
+  ],
+  "voice": [
+   "guth",
+   "guthanna"
+  ],
+  "hour": [
+   "uair",
+   "uaireanta"
+  ],
+  "minute": [
+   "nóiméad",
+   "nóiméid"
+  ],
+  "second": [
+   "dara",
+   "daraí"
+  ],
+  "day": [
+   "lá",
+   "laethanta"
+  ],
+  "week": [
+   "seachtain",
+   "seachtainí"
+  ],
+  "month": [
+   "mí",
+   "míonna"
+  ],
+  "year": [
+   "bliain",
+   "bliana"
+  ],
+  "update": [
+   "nuashonrú",
+   "nuashonruithe"
+  ],
+  "warning": [
+   "rabhadh",
+   "rabhaidh"
+  ],
+  "error": [
+   "earráid",
+   "earráidí"
+  ],
+  "command": [
+   "ordú",
+   "orduithe"
+  ],
+  "step": [
+   "céim",
+   "céimeanna"
+  ],
+  "token": [
+   "token",
+   "tokenanna"
+  ],
+  "credit": [
+   "creidmheas",
+   "creidmheasanna"
+  ],
+  "reply": [
+   "freagra",
+   "freagraí"
+  ],
+  "provider": [
+   "soláthraí",
+   "soláthraithe"
+  ],
+  "branch": [
+   "branar",
+   "branair"
+  ],
+  "release": [
+   "eisiúint",
+   "eisiúintí"
+  ],
+  "cron": [
+   "cron",
+   "cronanna"
+  ],
+  "webhook": [
+   "webhook",
+   "webhookanna"
+  ],
+  "artifact": [
+   "tairbhe",
+   "tairbhí"
+  ],
+  "memory": [
+   "cuimhne",
+   "cuimhní"
+  ],
+  "database": [
+   "bunachar sonraí",
+   "bunachair sonraí"
+  ],
+  "workspace": [
+   "spás oibre",
+   "spásanna oibre"
+  ],
+  "context": [
+   "comhthéacs",
+   "comhthéacsanna"
   ]
  },
  "hi": {
@@ -1483,6 +3547,150 @@
   "tool": [
    "उपकरण",
    "उपकरण"
+  ],
+  "image": [
+   "छवि",
+   "छवियाँ"
+  ],
+  "action": [
+   "कार्रवाई",
+   "कार्रवाइयाँ"
+  ],
+  "zone": [
+   "क्षेत्र",
+   "क्षेत्र"
+  ],
+  "prompt": [
+   "संकेत",
+   "संकेत"
+  ],
+  "resource": [
+   "संसाधन",
+   "संसाधन"
+  ],
+  "option": [
+   "विकल्प",
+   "विकल्प"
+  ],
+  "task": [
+   "कार्य",
+   "कार्य"
+  ],
+  "file": [
+   "फ़ाइल",
+   "फ़ाइलें"
+  ],
+  "folder": [
+   "फ़ोल्डर",
+   "फ़ोल्डर"
+  ],
+  "plugin": [
+   "प्लगइन",
+   "प्लगइन"
+  ],
+  "voice": [
+   "आवाज़",
+   "आवाज़ें"
+  ],
+  "hour": [
+   "घंटा",
+   "घंटे"
+  ],
+  "minute": [
+   "मिनट",
+   "मिनट"
+  ],
+  "second": [
+   "सेकंड",
+   "सेकंड"
+  ],
+  "day": [
+   "दिन",
+   "दिन"
+  ],
+  "week": [
+   "सप्ताह",
+   "सप्ताह"
+  ],
+  "month": [
+   "महीना",
+   "महीने"
+  ],
+  "year": [
+   "वर्ष",
+   "वर्ष"
+  ],
+  "update": [
+   "अपडेट",
+   "अपडेट"
+  ],
+  "warning": [
+   "चेतावनी",
+   "चेतावनियाँ"
+  ],
+  "error": [
+   "त्रुटि",
+   "त्रुटियाँ"
+  ],
+  "command": [
+   "कमांड",
+   "कमांड"
+  ],
+  "step": [
+   "चरण",
+   "चरण"
+  ],
+  "token": [
+   "टोकन",
+   "टोकन"
+  ],
+  "credit": [
+   "क्रेडिट",
+   "क्रेडिट"
+  ],
+  "reply": [
+   "उत्तर",
+   "उत्तर"
+  ],
+  "provider": [
+   "प्रदाता",
+   "प्रदाता"
+  ],
+  "branch": [
+   "शाखा",
+   "शाखाएँ"
+  ],
+  "release": [
+   "रिलीज़",
+   "रिलीज़"
+  ],
+  "cron": [
+   "क्रॉन",
+   "क्रॉन"
+  ],
+  "webhook": [
+   "वेबहुक",
+   "वेबहुक"
+  ],
+  "artifact": [
+   "कलाकृति",
+   "कलाकृतियाँ"
+  ],
+  "memory": [
+   "मेमोरी",
+   "मेमोरी"
+  ],
+  "database": [
+   "डेटाबेस",
+   "डेटाबेस"
+  ],
+  "workspace": [
+   "कार्यक्षेत्र",
+   "कार्यक्षेत्र"
+  ],
+  "context": [
+   "संदर्भ",
+   "संदर्भ"
   ]
  },
  "hr": {
@@ -1573,6 +3781,150 @@
   "tool": [
    "alat",
    "alati"
+  ],
+  "image": [
+   "slika",
+   "slike"
+  ],
+  "action": [
+   "akcija",
+   "akcije"
+  ],
+  "zone": [
+   "zona",
+   "zone"
+  ],
+  "prompt": [
+   "upit",
+   "upiti"
+  ],
+  "resource": [
+   "resurs",
+   "resursi"
+  ],
+  "option": [
+   "opcija",
+   "opcije"
+  ],
+  "task": [
+   "zadatak",
+   "zadaci"
+  ],
+  "file": [
+   "datoteka",
+   "datoteke"
+  ],
+  "folder": [
+   "mapa",
+   "mape"
+  ],
+  "plugin": [
+   "dodatak",
+   "dodaci"
+  ],
+  "voice": [
+   "glas",
+   "glasovi"
+  ],
+  "hour": [
+   "sat",
+   "sati"
+  ],
+  "minute": [
+   "minuta",
+   "minute"
+  ],
+  "second": [
+   "sekunda",
+   "sekunde"
+  ],
+  "day": [
+   "dan",
+   "dana"
+  ],
+  "week": [
+   "tjedan",
+   "tjedana"
+  ],
+  "month": [
+   "mjesec",
+   "mjeseci"
+  ],
+  "year": [
+   "godina",
+   "godine"
+  ],
+  "update": [
+   "ažuriranje",
+   "ažuriranja"
+  ],
+  "warning": [
+   "upozorenje",
+   "upozorenja"
+  ],
+  "error": [
+   "pogreška",
+   "pogreške"
+  ],
+  "command": [
+   "naredba",
+   "naredbe"
+  ],
+  "step": [
+   "korak",
+   "koraci"
+  ],
+  "token": [
+   "žeton",
+   "žetoni"
+  ],
+  "credit": [
+   "kredit",
+   "krediti"
+  ],
+  "reply": [
+   "odgovor",
+   "odgovori"
+  ],
+  "provider": [
+   "davatelj",
+   "davatelji"
+  ],
+  "branch": [
+   "grana",
+   "grane"
+  ],
+  "release": [
+   "izdanje",
+   "izdanja"
+  ],
+  "cron": [
+   "cron",
+   "cronovi"
+  ],
+  "webhook": [
+   "webhook",
+   "webhookovi"
+  ],
+  "artifact": [
+   "artefakt",
+   "artefakti"
+  ],
+  "memory": [
+   "memorija",
+   "memorije"
+  ],
+  "database": [
+   "baza podataka",
+   "baze podataka"
+  ],
+  "workspace": [
+   "radni prostor",
+   "radni prostori"
+  ],
+  "context": [
+   "kontekst",
+   "konteksti"
   ]
  },
  "hu": {
@@ -1663,6 +4015,150 @@
   "tool": [
    "eszköz",
    "eszközök"
+  ],
+  "image": [
+   "kép",
+   "képek"
+  ],
+  "action": [
+   "művelet",
+   "műveletek"
+  ],
+  "zone": [
+   "zóna",
+   "zónák"
+  ],
+  "prompt": [
+   "kérés",
+   "kérések"
+  ],
+  "resource": [
+   "erőforrás",
+   "erőforrások"
+  ],
+  "option": [
+   "opció",
+   "opciók"
+  ],
+  "task": [
+   "feladat",
+   "feladatok"
+  ],
+  "file": [
+   "fájl",
+   "fájlok"
+  ],
+  "folder": [
+   "mappa",
+   "mappák"
+  ],
+  "plugin": [
+   "bővítmény",
+   "bővítmények"
+  ],
+  "voice": [
+   "hang",
+   "hangok"
+  ],
+  "hour": [
+   "óra",
+   "órák"
+  ],
+  "minute": [
+   "perc",
+   "percek"
+  ],
+  "second": [
+   "másodperc",
+   "másodpercek"
+  ],
+  "day": [
+   "nap",
+   "napok"
+  ],
+  "week": [
+   "hét",
+   "hetek"
+  ],
+  "month": [
+   "hónap",
+   "hónapok"
+  ],
+  "year": [
+   "év",
+   "évek"
+  ],
+  "update": [
+   "frissítés",
+   "frissítések"
+  ],
+  "warning": [
+   "figyelmeztetés",
+   "figyelmeztetések"
+  ],
+  "error": [
+   "hiba",
+   "hibák"
+  ],
+  "command": [
+   "parancs",
+   "parancsok"
+  ],
+  "step": [
+   "lépés",
+   "lépcsők"
+  ],
+  "token": [
+   "token",
+   "tokenek"
+  ],
+  "credit": [
+   "kredit",
+   "kreditek"
+  ],
+  "reply": [
+   "válasz",
+   "válaszok"
+  ],
+  "provider": [
+   "szolgáltató",
+   "szolgáltatók"
+  ],
+  "branch": [
+   "ág",
+   "ágak"
+  ],
+  "release": [
+   "kiadás",
+   "kiadások"
+  ],
+  "cron": [
+   "cron",
+   "cronok"
+  ],
+  "webhook": [
+   "webhook",
+   "webhookok"
+  ],
+  "artifact": [
+   "artefaktum",
+   "artefaktumok"
+  ],
+  "memory": [
+   "memória",
+   "memóriák"
+  ],
+  "database": [
+   "adatbázis",
+   "adatbázisok"
+  ],
+  "workspace": [
+   "munkaterület",
+   "munkaterületek"
+  ],
+  "context": [
+   "kontextus",
+   "kontextusok"
   ]
  },
  "id": {

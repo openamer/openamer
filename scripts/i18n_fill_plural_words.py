@@ -39,9 +39,20 @@ def main() -> int:
     table = json.loads(TABLE.read_text(encoding="utf-8"))
     env = load_env()
     # the base words that are missing from every locale's table
+    # Every word that can appear inside a ternary in en.ts. The full list
+    # is needed because the suffix form ("model" + "s") attaches the plural
+    # to a base word that is not a complete word in the ternary itself.
     base_words = [
         "Subagent", "attachment", "change", "commit", "finding", "line",
         "model", "pet", "result", "subagent", "tool",
+        "image", "action", "zone", "prompt", "resource", "option", "task",
+        "file", "folder", "plugin", "voice", "hour", "minute", "second",
+        "day", "week", "month", "year", "entry", "update", "warning",
+        "error", "command", "step", "token", "credit", "reply",
+        "provider", "branch", "release", "cron", "webhook", "artifact",
+        "memory", "database", "workspace", "context",
+        "notification", "service", "node", "message", "agent", "job",
+        "profile", "skill", "item",
     ]
     for locale in sys.argv[1:]:
         language = LANGUAGE_NAMES.get(locale, locale)

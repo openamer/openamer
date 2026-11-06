@@ -26,5 +26,18 @@
   "profiles.count": "${count} ${count === 1 ? 'profil' : 'profilok'}",
   "profiles.skills": "${count} ${count === 1 ? 'készség' : 'készségek'}",
   "cron.count": "${count} ${count === 1 ? 'feladat' : 'feladatok'}",
-  "desktop.yoloSystem": "YOLO ${active ? 'be' : 'ki'} for this session"
+  "desktop.yoloSystem": "YOLO ${active ? 'be' : 'ki'} for this session",
+  "notifications.updateReadyMessage": "${count} new change${count === 1 ? 'változás' : 'változások'} available.",
+  "settings.appearance.pet.count": "${n} pet${n === 1 ? 'háziállat' : 'háziállatok'}.",
+  "settings.about.updateReady": "A new update is ready (${count} change${count === 1 ? 'változás' : 'változások'} included).",
+  "settings.mcp.testOk": "Connected — ${count} tool${count === 1 ? 'eszköz' : 'eszközök'} available",
+  "settings.toolsets.modelCount": "${count} model${count === 1 ? 'modell' : 'modellek'}",
+  "skills.hub.resultCount": "${count} result${count === 1 ? 'eredmény' : 'eredmények'}${ms !== null ? ` in ${ms}ms` : ''}",
+  "skills.hub.findings": "${count} finding${count === 1 ? 'találat' : 'találatok'}",
+  "composer.attachments": "${count} attachment${count === 1 ? 'melléklet' : 'mellékletek'}",
+  "statusStack.subagents": "${count} Subagent${count === 1 ? 'Alügynök' : 'Alügynökök'}",
+  "updates.moreChanges": "+ ${count} more change${count === 1 ? 'változás' : 'változások'} included.",
+  "install.lines": "${count} line${count === 1 ? 'sor' : 'sorok'}",
+  "shell.statusbar.commitsBehind": "${count} commit${count === 1 ? 'commit' : 'commitok'} behind ${branch}",
+  "shell.statusbar.subagents": "${count} subagent${count === 1 ? 'alügynök' : 'alügynökök'}"
 }
