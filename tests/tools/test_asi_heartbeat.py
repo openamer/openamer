@@ -182,3 +182,17 @@ def test_state_file_carries_the_outcome(hb):
     entry = state["subsystems"]["fine"]
     assert entry["last_result"]["ok"] is True
     assert entry["consecutive_failures"] == 0
+
+
+def test_cognition_subystem_runs_the_error_correction_step():
+    """The integrated cycle only READS facts; predict_validate scores them.
+
+    Measured 2026-11-06: predict_validate.py belonged to NO subsystem, so the
+    error-correction half of the loop had not run since 2026-10-31 while the
+    cycle kept reporting "nothing new to process". A cycle that reads without
+    scoring cannot get better.
+    """
+    h = Heartbeat()
+    scripts = h.subsystems["cognition"].scripts
+    assert "cognition_cycle.py" in scripts
+    assert "training/predict_validate.py" in scripts

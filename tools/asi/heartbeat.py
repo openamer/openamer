@@ -625,11 +625,19 @@ class Heartbeat:
         # self_model in ONE pass. That replaces ticking
         # training/predict_validate.py and training/self_model.py SEPARATELY in
         # the "learning" subsystem — the two blocks that must see each other to
-        # close the loop (a prediction is only useful with its correction).
+        # close the loop (a prediction is only useful with its correction).        # The perception half is NOT self-contained: cognition_cycle.py READS facts
+        # and scores nothing. Measured 2026-11-06 â€” predict_validate.py belonged to
+        # NO subsystem (its cron was repurposed to rsi_nightly.py), so the
+        # error-correction step had not run since 2026-10-31 and the cycle kept
+        # finding "nothing new to process". It costs 1.9 s, makes no network
+        # calls, and scores each prediction exactly once (prediction_scored.json),
+        # so ticking it with the cycle is idempotent. Its output is the honest
+        # capability number: 19/87 correct.
+
         self.subsystems["cognition"] = Subsystem(
             name="cognition", category="meta", cadence_minutes=30,
             description="Integrierter Kognitions-Zyklus — world model + prediction + self model in EINEM Durchlauf",
-            scripts=["cognition_cycle.py"],
+            scripts=["cognition_cycle.py", "training/predict_validate.py"],
             cron_ids=[],
             timeout=300,
             native=True,
