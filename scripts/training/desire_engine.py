@@ -494,15 +494,31 @@ def goal_history(desc: str) -> list[dict[str, Any]]:
     return [g for g in goals if isinstance(g, dict) and g.get("desc") == desc]
 
 
-def _intensities_for(drive_name: str) -> list[float]:
-    """Urgencies this drive was recorded with while it was the dominant one."""
+def _urgencies_for(drive: dict[str, Any]) -> list[float]:
+    """This drive's urgency over time â€” for EVERY drive, not just the loudest.
+
+    Reading only the rows where the drive was dominant looked sufficient and was
+    wrong: measured 2026-11-06, ``curiosity`` was dominant 0 times out of 520
+    cycles (hunger always wins), so its treadmill could never be detected â€” the
+    one drive with a movable measure was structurally exempt from the check.
+
+    Current rows record ``satisfaction`` for every drive, so the series is
+    rebuilt from that (urgency = weight * (1 - satisfaction)). Legacy rows carry
+    only the dominant drive's intensity and are used as a fallback. A cycle where
+    the drive was unmeasurable contributes no value: unknown is not evidence.
+    """
+    name = drive["name"]
+    weight = float(drive["weight"])
     out: list[float] = []
     for row in _read_jsonl(HISTORY):
-        if row.get("dominant") != drive_name:
-            continue
-        val = row.get("intensity")
-        if isinstance(val, (int, float)):
-            out.append(float(val))
+        sat_map = row.get("satisfaction")
+        if isinstance(sat_map, dict) and name in sat_map:
+            sat = sat_map.get(name)
+            if isinstance(sat, (int, float)):
+                out.append(round(weight * (1.0 - float(sat)), 3))
+            continue  # unmeasurable in that cycle -> no evidence, not a zero
+        if row.get("dominant") == name and isinstance(row.get("intensity"), (int, float)):
+            out.append(float(row["intensity"]))
     return out
 
 
@@ -516,7 +532,7 @@ def treadmill(drive: dict[str, Any]) -> dict[str, Any]:
     desc = drive.get("goal") or ""
     emitted = goal_history(desc)
     done = [g for g in emitted if g.get("status") == "done"]
-    urgencies = _intensities_for(drive["name"])
+    urgencies = _urgencies_for(drive)
     varied = len({round(u, 4) for u in urgencies}) > 1
     spun = len(done) >= 2 and len(urgencies) >= 3 and not varied
     reason = ""

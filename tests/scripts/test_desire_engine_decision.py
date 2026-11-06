@@ -182,6 +182,39 @@ class TestTreadmill:
         drive = dict(mod._drive("hunger"), goal=GOAL)
         assert mod.treadmill(drive)["treadmill"] is False
 
+
+    def test_detected_for_a_drive_that_is_never_dominant(self, tmp_path):
+        """The measured hole: `curiosity` was dominant 0 times in 520 cycles.
+
+        A treadmill check that only reads rows where the drive was the loudest
+        structurally exempts every quiet-but-actionable drive â€” the exact ones
+        worth pursuing. Current rows record satisfaction for ALL drives.
+        """
+        history = [{"ts": f"t{i}", "dominant": "hunger", "intensity": 1.0,
+                    "satisfaction": {"hunger": 0.0, "curiosity": 0.013}}
+                   for i in range(4)]
+        home = _home(tmp_path, goals=_goals(GOAL, 2), history=history)
+        mod = _load(home)
+        curiosity = dict(mod._drive("curiosity"), goal=GOAL)
+        tm = mod.treadmill(curiosity)
+        assert tm["treadmill"] is True
+        assert tm["cycles_dominant"] == 4, "the per-drive series must include quiet drives"
+
+    def test_unmeasurable_cycle_is_not_evidence_of_stagnation(self, tmp_path):
+        """A None satisfaction contributes no value â€” it must not read as 'flat'."""
+        history = [
+            {"ts": "t0", "dominant": "hunger", "intensity": 1.0,
+             "satisfaction": {"hunger": 0.0, "curiosity": 0.5}},
+            {"ts": "t1", "dominant": "hunger", "intensity": 1.0,
+             "satisfaction": {"hunger": 0.0, "curiosity": None}},
+            {"ts": "t2", "dominant": "hunger", "intensity": 1.0,
+             "satisfaction": {"hunger": 0.0, "curiosity": 0.9}},
+        ]
+        home = _home(tmp_path, goals=_goals(GOAL, 2), history=history)
+        mod = _load(home)
+        curiosity = dict(mod._drive("curiosity"), goal=GOAL)
+        assert mod.treadmill(curiosity)["treadmill"] is False
+
     def test_not_detected_when_the_feeling_moved(self, tmp_path):
         history = [{"ts": f"t{i}", "dominant": "hunger", "intensity": i / 10.0}
                    for i in range(1, 6)]
