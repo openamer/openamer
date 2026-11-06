@@ -1,0 +1,7 @@
+[toolchain]
+channel = "nightly"
+# rust-src is required: bootloader 0.11 builds its BIOS/UEFI stage binaries
+# against the standard library. Without it, `cargo run` fails on a fresh
+# machine with "unable to build with the standard library".
+components = ["rustfmt", "clippy", "llvm-tools", "rust-src"]
+targets = ["x86_64-unknown-none", "x86_64-unknown-uefi"]

@@ -170,7 +170,20 @@ pub struct Console;
 
 impl Console {
     /// Write a string to the console.
+    ///
+    /// The text goes into the pixel framebuffer, when the boot loader
+    /// handed one over, and into the VGA's text memory otherwise.
+    ///
+    /// Not into both: on a machine with a graphics card the VGA's
+    /// text memory is not mapped, and writing to it raises a page
+    /// fault. On a machine without a graphics card the framebuffer
+    /// does not exist.
     pub fn write_str(text: &str) {
+        if let Some(framebuffer) = crate::framebuffer::get() {
+            let _ = framebuffer.write_str(text);
+            return;
+        }
+
         unsafe {
             let writer = &mut *core::ptr::addr_of_mut!(WRITER);
             let _ = writer.write_str(text);
@@ -179,6 +192,11 @@ impl Console {
 
     /// Write formatted output to the console.
     pub fn print_fmt(args: fmt::Arguments) {
+        if let Some(framebuffer) = crate::framebuffer::get() {
+            let _ = framebuffer.write_fmt(args);
+            return;
+        }
+
         unsafe {
             let writer = &mut *core::ptr::addr_of_mut!(WRITER);
             let _ = writer.write_fmt(args);
@@ -187,6 +205,28 @@ impl Console {
 
     /// Set the colour new characters are written in.
     pub fn set_color(color: Color) {
+        if let Some(framebuffer) = crate::framebuffer::get() {
+            framebuffer.set_color(match color {
+                Color::Black => crate::framebuffer::Color::Black,
+                Color::Blue => crate::framebuffer::Color::Blue,
+                Color::Green => crate::framebuffer::Color::Green,
+                Color::Cyan => crate::framebuffer::Color::Cyan,
+                Color::Red => crate::framebuffer::Color::Red,
+                Color::Magenta => crate::framebuffer::Color::Magenta,
+                Color::Brown => crate::framebuffer::Color::Brown,
+                Color::LightGrey => crate::framebuffer::Color::LightGrey,
+                Color::DarkGrey => crate::framebuffer::Color::DarkGrey,
+                Color::LightBlue => crate::framebuffer::Color::LightBlue,
+                Color::LightGreen => crate::framebuffer::Color::LightGreen,
+                Color::LightCyan => crate::framebuffer::Color::LightCyan,
+                Color::LightRed => crate::framebuffer::Color::LightRed,
+                Color::LightMagenta => crate::framebuffer::Color::LightMagenta,
+                Color::Yellow => crate::framebuffer::Color::Yellow,
+                Color::White => crate::framebuffer::Color::White,
+            });
+            return;
+        }
+
         unsafe {
             let writer = &mut *core::ptr::addr_of_mut!(WRITER);
             writer.set_color(color);
@@ -195,6 +235,11 @@ impl Console {
 
     /// Clear the screen.
     pub fn clear() {
+        if let Some(framebuffer) = crate::framebuffer::get() {
+            framebuffer.clear();
+            return;
+        }
+
         unsafe {
             let writer = &mut *core::ptr::addr_of_mut!(WRITER);
             writer.clear();

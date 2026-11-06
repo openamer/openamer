@@ -1,0 +1,72 @@
+name: OS boot
+
+# The audit resolves DIR-04 against the kernel tree and records "it boots".
+# Nothing proved that automatically: no workflow built the kernel, and QEMU is
+# not installed on every developer box, so the claim rested on one earlier run
+# on one machine. This job turns it into a measurement: build the image, boot it
+# in QEMU without a display, and require the kernel's own ready marker.
+
+on:
+  pull_request:
+    paths:
+      - "os/**"
+      - ".github/workflows/os-boot.yml"
+  push:
+    branches: [main]
+    paths:
+      - "os/**"
+      - ".github/workflows/os-boot.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: os-boot-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  boot:
+    name: Build image and verify the boot marker
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # rustup is preinstalled on the runner, so no third-party action is pulled
+      # in for the toolchain. Targets come from os/rust-toolchain.toml.
+      - name: Install the pinned Rust toolchain
+        run: |
+          rustup toolchain install nightly --profile minimal \
+            --component llvm-tools-preview,rustfmt,clippy,rust-src \
+            --target x86_64-unknown-none,x86_64-unknown-uefi
+          rustup default nightly
+          cargo --version
+
+      - name: Install QEMU
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends qemu-system-x86
+          qemu-system-x86_64 --version | head -1
+
+      # `paths` builds the kernel as an artifact dependency and prints where the
+      # images landed; the boot itself is done by verify_boot.py, which runs QEMU
+      # bounded, read-only (-snapshot) and reads only the debug console.
+      - name: Build the BIOS image
+        working-directory: os
+        run: |
+          set -euo pipefail
+          cargo +nightly run --release -- paths | tee "$RUNNER_TEMP/paths.txt"
+          test -s "$RUNNER_TEMP/paths.txt"
+
+      - name: Verify the kernel reaches its ready marker
+        working-directory: os
+        run: |
+          set -euo pipefail
+          image=$(sed -n 's/^the BIOS image:  //p' "$RUNNER_TEMP/paths.txt")
+          if [ -z "$image" ]; then
+            echo "::error::the image builder did not report a BIOS image path"
+            exit 1
+          fi
+          echo "booting $image"
+          python3 scripts/verify_boot.py "$image" --seconds 25

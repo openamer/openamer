@@ -99,11 +99,21 @@ pub fn init() {
         // zero, which is a safety net rather than a nicety.
         set_gate(0, 0, 0, 0, 0);
         // The kernel's code segment: ring 0, executable, readable.
-        set_gate(1, 0, 0xFFFFF, 0x9A, 0xC0);
+        //
+        // The flags carry three bits:
+        //
+        //   0x20  the long mode bit: the segment is a 64-bit one
+        //   0x40  default operand size: must be CLEAR when L=1
+        //   0x80  the granularity: the limit is in pages, not bytes
+        //
+        // The long mode bit is the one that matters here: without
+        // it the code segment is a 32-bit one, and the 64-bit
+        // instructions in it raise a fault.
+        set_gate(1, 0, 0xFFFFF, 0x9A, 0xA0);
         // The kernel's data segment: ring 0, writable.
         set_gate(2, 0, 0xFFFFF, 0x92, 0xC0);
         // The user code segment: ring 3, executable, readable.
-        set_gate(3, 0, 0xFFFFF, 0xFA, 0xC0);
+        set_gate(3, 0, 0xFFFFF, 0xFA, 0xA0);
         // The user data segment: ring 3, writable.
         set_gate(4, 0, 0xFFFFF, 0xF2, 0xC0);
         // The TSS.
@@ -114,7 +124,27 @@ pub fn init() {
             base: core::ptr::addr_of!(GDT) as u64,
         };
 
-        asm!("lgdt [{}]", in(reg) &pointer, options(nostack, preserves_flags));
+        // The GDT pointer: the limit, and then the base.
+        //
+        // The limit is sixteen bits, and the base is sixty-four. The
+        // instruction takes the pointer's address, and the pointer
+        // has to be where the instruction can reach it -- in a
+        // register, and not on the stack: the stack is the kernel's,
+        // and the loader's stack is not this one any more.
+        //
+        // The layout is the one the instruction reads:
+        //
+        //   0x00  the limit, two bytes
+        //   0x02  the base, eight bytes
+        //
+        // The base is written as a 64-bit value, because the
+        // instruction reads eight bytes of it.
+
+        asm!(
+            "lgdt [{pointer}]",
+            pointer = in(reg) &pointer,
+            options(preserves_flags),
+        );
         load_segments();
     }
 }
@@ -124,22 +154,17 @@ pub fn init() {
 /// The far jump is what actually switches the processor from the
 /// bootloader's flat segment over to the kernel's own table.
 ///
-/// The label is named rather than numbered: Rust's assembler rejects
-/// labels that consist only of digits, because they are ambiguous with
-/// the numeric local labels of the AT&T syntax.
+/// Reload CS with a local far-return target, then the data selectors.
 unsafe fn load_segments() {
-    // The label is a global one, declared with `global_asm!` rather
-    // than a numeric local: Rust's assembler rejects labels that
-    // consist only of digits, because they are ambiguous with the
-    // AT&T syntax's numeric locals. And the operand is a fixed
-    // register rather than a placeholder, because a `sym` operand
-    // needs a path that does not exist for a label defined in
-    // assembly.
+    // RETFQ pops RIP first, then CS: push CS first and RIP last.
+    // Local label 2 is valid in Rust inline assembly (avoid labels 0/1).
+
     asm!(
         "push 0x08",
-        "lea rax, [rip + openamer_segment_reload_target]",
+        "lea rax, [rip + 2f]",
         "push rax",
-        "retf",
+        "retfq",
+        "2:",
         "mov ax, 0x10",
         "mov ds, ax",
         "mov es, ax",
@@ -151,10 +176,6 @@ unsafe fn load_segments() {
     );
 }
 
-core::arch::global_asm!(
-    ".global openamer_segment_reload_target",
-    "openamer_segment_reload_target:",
-);
 
 /// Set the kernel stack pointer the CPU uses when an interrupt moves
 /// the processor to ring 0.
