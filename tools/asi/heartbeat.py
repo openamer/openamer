@@ -636,11 +636,17 @@ class Heartbeat:
         # calls, and scores each prediction exactly once (prediction_scored.json),
         # so ticking it with the cycle is idempotent. Its output is the honest
         # capability number: 19/87 correct.
+        #
+        # si_learner.py is the third phase: it distills the outcome ledger into the
+        # lessons the core injects into its prompts (memory/si/lessons.json). It too
+        # belonged to no subsystem, and that file was last written 2026-10-14 â€” so
+        # the executor was prompting itself with three-week-old failure modes. 278 ms,
+        # local, rewrites the file each run.
 
         self.subsystems["cognition"] = Subsystem(
             name="cognition", category="meta", cadence_minutes=30,
             description="Integrierter Kognitions-Zyklus — world model + prediction + self model in EINEM Durchlauf",
-            scripts=["cognition_cycle.py", "training/predict_validate.py"],
+            scripts=["cognition_cycle.py", "training/predict_validate.py", "si_learner.py"],
             cron_ids=[],
             timeout=300,
             native=True,

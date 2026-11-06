@@ -196,3 +196,5 @@ def test_cognition_subystem_runs_the_error_correction_step():
     scripts = h.subsystems["cognition"].scripts
     assert "cognition_cycle.py" in scripts
     assert "training/predict_validate.py" in scripts
+    # ... and the lessons the core injects into its own prompts
+    assert "si_learner.py" in scripts
