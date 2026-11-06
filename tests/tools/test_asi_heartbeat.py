@@ -119,3 +119,66 @@ def test_a2a_server_is_health_checked_not_started():
     # down -> a fast, honest failure (not a hang)
     r = a2a.server_health(url="http://127.0.0.1:9/a2a/health", timeout=1.0)
     assert r["success"] is False and "down" in r["error"]
+
+
+# â”€â”€ Native resolution: a dotted path into a flat module â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+#
+# The map is written "tools.asi.cognition.cycle", but tools/asi/cognition.py is a
+# MODULE â€” splitting on the last dot asked Python for
+# "tools.asi.cognition.cycle" (impossible) and EVERY "native" subsystem silently
+# fell back to spawning a subprocess. Measured 2026-11-06: all four probed specs
+# failed to import, so nothing was ever native.
+
+def test_dotted_native_spec_resolves_into_a_flat_module():
+    from tools.asi.heartbeat import _resolve_native
+
+    for spec in ("tools.asi.cognition.cycle", "tools.asi.a2a.server_health",
+                 "tools.asi.swarm.cycle", "tools.asi.darwin.grid_sync"):
+        fn = _resolve_native(spec)
+        assert callable(fn), f"{spec} must resolve to a callable"
+
+
+def test_unresolvable_native_spec_returns_none_not_a_wrong_callable():
+    from tools.asi.heartbeat import _resolve_native
+
+    assert _resolve_native("tools.asi.does.not.exist") is None
+    assert _resolve_native("no_such_module.at_all") is None
+
+
+# â”€â”€ The outcome must be persisted, not just the timestamp â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+def test_failed_script_is_recorded_as_failure(hb):
+    """A missing script must leave evidence, not a fresh last_run."""
+    sub = Subsystem(name="broken", category="test", cadence_minutes=0,
+                    scripts=["definitely-not-a-script.py"], description="fails")
+    hb.subsystems["broken"] = sub
+    out = sub.tick(force=True)
+    assert out["any_success"] is False
+    rec = sub._state["last_result"]
+    assert rec["ok"] is False
+    assert "not found" in rec["detail"].lower() or rec["detail"]
+    assert sub._state["consecutive_failures"] == 1
+
+
+def test_successful_script_is_recorded_and_resets_the_counter(hb):
+    sub = Subsystem(name="fine", category="test", cadence_minutes=0,
+                    scripts=["whatever.py"], description="ok")
+    sub._state["consecutive_failures"] = 2
+    sub._run_script = lambda name: {"success": True, "stdout": "done"}
+    sub.tick(force=True)
+    assert sub._state["last_result"]["ok"] is True
+    assert sub._state["consecutive_failures"] == 0
+
+
+def test_state_file_carries_the_outcome(hb):
+    """asi_heartbeat.json must let a reader tell a working organ from a dead one."""
+    sub = Subsystem(name="fine", category="test", cadence_minutes=0,
+                    scripts=["whatever.py"], description="ok")
+    sub._run_script = lambda name: {"success": True, "stdout": "done"}
+    hb.subsystems["fine"] = sub
+    sub.tick(force=True)
+    hb._save_state()
+    state = json.loads(hb.STATE_FILE.read_text(encoding="utf-8"))
+    entry = state["subsystems"]["fine"]
+    assert entry["last_result"]["ok"] is True
+    assert entry["consecutive_failures"] == 0

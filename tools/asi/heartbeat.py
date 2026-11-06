@@ -179,6 +179,40 @@ def _as_result(result: Any) -> Dict[str, Any]:
 
 # ── Subsystem Definition ────────────────────────────────────────────────────
 
+def _resolve_native(spec: str):
+    """Resolve a ``"module.path.function"`` spec to a callable, robustly.
+
+    The map below is written as dotted paths (``tools.asi.cognition.cycle``), but
+    ``tools/asi/cognition.py`` is a MODULE, not a package. Splitting on the last
+    dot therefore asked Python to import ``tools.asi.cognition.cycle`` â€” which
+    cannot exist â€” and every "native" subsystem silently fell back to spawning a
+    subprocess. Measured 2026-11-06: all four probed entries
+    (a2a.server_health, cognition.cycle, swarm.cycle, darwin.grid_sync) failed to
+    import.
+
+    Walking the dotted path from the RIGHT until an import succeeds resolves both
+    shapes without ambiguity: a real package path keeps its tail as attributes, a
+    flat module keeps its tail as the function name.
+    """
+    import importlib
+
+    parts = spec.split(".")
+    for cut in range(len(parts) - 1, 0, -1):
+        mod_name = ".".join(parts[:cut])
+        try:
+            mod = importlib.import_module(mod_name)
+        except Exception:
+            continue
+        obj = mod
+        for attr in parts[cut:]:
+            obj = getattr(obj, attr, None)
+            if obj is None:
+                break
+        if callable(obj):
+            return obj
+    return None
+
+
 class Subsystem:
     """A single ASI subsystem with its own cadence and execution."""
 
@@ -253,12 +287,30 @@ class Subsystem:
                     "output": result.get("stdout", "")[-200:] if isinstance(result.get("stdout"), str) else "",
                 })
             except Exception as e:
+                result = {"success": False, "error": str(e)}
                 results.append({
                     "script": script,
                     "success": False,
                     "error": str(e),
                 })
             ran[script] = now
+
+            # Persist WHAT happened, not just WHEN. Without this a subsystem that
+            # failed on every single tick looked identical to a healthy one in
+            # asi_heartbeat.json (only last_run + script mtimes were stored), so
+            # "the heartbeat is fresh" proved nothing about the work.
+            ok = bool(result.get("success"))
+            fails = 0 if ok else int(self._state.get("consecutive_failures", 0)) + 1
+            self._state["consecutive_failures"] = fails
+            self._state["last_result"] = {
+                "ts": datetime.now(timezone.utc).isoformat(),
+                "script": script,
+                "ok": ok,
+                "detail": str(
+                    result.get("error") or result.get("output") or ""
+                )[:300],
+                "exit_code": result.get("exit_code"),
+            }
 
         return {
             "subsystem": self.name,
@@ -296,17 +348,22 @@ class Subsystem:
         native_path = native_map.get(script_name)
         if native_path:
             try:
-                parts = native_path.split(".")
-                mod_name = ".".join(parts[:-1])
-                func_name = parts[-1]
-                import importlib
-                mod = importlib.import_module(mod_name)
-                fn = getattr(mod, func_name, None)
-                if fn:
-                    result = fn()
-                    return _as_result(result)
+                fn = _resolve_native(native_path)
             except Exception as e:
-                logger.warning(f"Native module {native_path} failed: {e}, falling back")
+                fn = None
+                logger.warning(f"Native spec {native_path} could not be resolved: {e}")
+            if fn is not None:
+                try:
+                    return _as_result(fn())
+                except Exception as e:
+                    logger.warning(f"Native module {native_path} raised: {e}")
+            else:
+                logger.warning(
+                    "Native spec %r resolved to nothing â€” falling back to the "
+                    "script. A dotted path whose module does not exist is a "
+                    "broken integration, not a missing optimisation.",
+                    native_path,
+                )
 
         # Otherwise run it exactly as the cron job did: ``python <script>`` under
         # OPENAMER_HOME. A blind import-and-call would execute a CLI script with
@@ -684,6 +741,8 @@ class Heartbeat:
                     "last_run": sub.last_run,
                     "enabled": sub.enabled,
                     "scripts": sub._state.get("script_last_run", {}),
+                    "last_result": sub._state.get("last_result"),
+                    "consecutive_failures": sub._state.get("consecutive_failures", 0),
                 }
                 for name, sub in self.subsystems.items()
             },
@@ -710,6 +769,8 @@ class Heartbeat:
                     "due": sub.is_due(now, sub.last_run),
                     "scripts": sub.scripts,
                     "description": sub.description,
+                    "last_result": sub._state.get("last_result"),
+                    "consecutive_failures": sub._state.get("consecutive_failures", 0),
                 }
                 for name, sub in sorted(self.subsystems.items())
             },
