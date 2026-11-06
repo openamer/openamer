@@ -5,5 +5,6 @@
     "composite": true
   },
   "include": ["e2e", "playwright.config.ts"],
+  "files": ["src/lib/preview-act/act-in-page.ts"],
   "exclude": ["src", "electron"]
 }

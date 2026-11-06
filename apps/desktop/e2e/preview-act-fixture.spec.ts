@@ -12,11 +12,12 @@
 // This spec injects it the same way — via `page.evaluate` — so the code that
 // runs here is byte-identical to the code that ships.
 
-import { expect, test } from '@playwright/test'
-import { createServer, type Server } from 'node:http'
 import { mkdirSync, readFileSync } from 'node:fs'
+import { createServer, type Server } from 'node:http'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+import { expect, test } from '@playwright/test'
 
 import { previewActEngineSource } from '../src/lib/preview-act/act-in-page'
 
@@ -39,10 +40,12 @@ type EngineResult = {
 /** A minimal static server for the fixture — a real http origin, not a data URL. */
 function serveFixture(): Promise<{ server: Server; origin: string }> {
   const html = readFileSync(FIXTURE, 'utf8')
+
   const server = createServer((_req, res) => {
     res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' })
     res.end(html)
   })
+
   return new Promise((done) => {
     server.listen(0, '127.0.0.1', () => {
       const address = server.address()
@@ -56,11 +59,13 @@ test('the preview-act engine drives a real served page and returns a real readba
   page
 }) => {
   const { server, origin } = await serveFixture()
+
   try {
     await page.goto(`${origin}/preview-act-fixture.html`)
 
     const run = async (action: Record<string, unknown>): Promise<EngineResult> => {
       const src = previewActEngineSource(action as never)
+
       return (await page.evaluate(
         (a: { src: string; helper: string }) =>
           (0, eval)(a.helper + a.src) as unknown as Promise<EngineResult>,
