@@ -177,6 +177,33 @@ class TestTreadmill:
         assert "never moved the sensor" in tm["reason"]
 
 
+
+    def test_every_file_a_goal_names_is_absolute(self, tmp_path):
+        """The executor resolution only matches absolute paths.
+
+        `_artifact_path_from_goal()` in scripts/superintelligence_core.py matches
+        `[A-Za-z]:[/\\]...`. A goal naming "memory/benchmarks_v2.json" therefore
+        resolves to no artifact, the executor writes nothing, and the verify step
+        fails with "file missing/empty". Measured 2026-11-06: 43 of the last 60 SI
+        failures were this class â€” the wish was right, its path was invisible.
+        """
+        import re
+
+        mod = _load(_home(tmp_path))
+        pattern = re.compile(r"(?<![\w/.~-])(memory|scripts|darwin)/")
+        for drive in mod.DRIVES:
+            for key in ("goal", "escalate", "verify", "escalate_verify"):
+                value = drive.get(key)
+                parts = value if isinstance(value, (list, tuple)) else [value]
+                for text in parts:
+                    if not isinstance(text, str):
+                        continue
+                    assert not pattern.search(text), (
+                        f"{drive['name']}.{key} names a home-relative path the "
+                        f"executor cannot resolve: {text[:80]}"
+                    )
+
+
     def test_a_goal_names_the_metric_its_sensor_uses(self, tmp_path):
         """A goal that leaves the metric open cannot be proven to move the sensor.
 
@@ -245,13 +272,15 @@ class TestTreadmill:
 
 class TestDecision:
     def test_skips_treadmill_and_pursues_the_live_drive(self, tmp_path):
-        hunger_goal = _load(_home(tmp_path / "probe"))  # read the real goal text
-        goal_text = hunger_goal._drive("hunger")["goal"]
-        home = _home(tmp_path, goals=_goals(goal_text, 4),
-                     history=_flat_history(6, "hunger", 1.0))
+        home = _home(tmp_path, history=_flat_history(6, "hunger", 1.0))
         mod = _load(home, sensors={"hunger": 0.0, "curiosity": 0.013,
                                    "mastery": 1.0, "integrity": 1.0,
                                    "coherence": 1.0, "solidarity": 1.0})
+        # the goal text is HOME-specific now (absolute paths), so it must come
+        # from THIS module instance, not from a probe load against another home
+        goal_text = mod._drive("hunger")["goal"]
+        (home / "memory" / "si" / "goals.json").write_text(
+            json.dumps(_goals(goal_text, 4)), encoding="utf-8")
         levels = mod.feel()
         decision = mod.decide(levels, emit=False)
         assert decision["chosen"] == "curiosity"
@@ -272,13 +301,13 @@ class TestDecision:
         assert decision["kind"] == "none"
 
     def test_all_live_drives_on_treadmills_names_the_gate(self, tmp_path):
-        probe = _load(_home(tmp_path / "probe2"))
-        goal_text = probe._drive("hunger")["goal"]
-        home = _home(tmp_path, goals=_goals(goal_text, 5),
-                     history=_flat_history(6, "hunger", 1.0))
+        home = _home(tmp_path, history=_flat_history(6, "hunger", 1.0))
         mod = _load(home, sensors={"hunger": 0.0, "curiosity": 1.0,
                                    "mastery": 1.0, "integrity": 1.0,
                                    "coherence": 1.0, "solidarity": 1.0})
+        goal_text = mod._drive("hunger")["goal"]
+        (home / "memory" / "si" / "goals.json").write_text(
+            json.dumps(_goals(goal_text, 5)), encoding="utf-8")
         decision = mod.decide(mod.feel(), emit=False)
         assert decision["kind"] == "gated"
         assert decision["gate"]
@@ -340,13 +369,13 @@ class TestDecisionLedger:
 
     def test_state_keeps_felt_and_chosen_separate(self, tmp_path):
         """The felt want and the pursued want are both kept, on purpose."""
-        probe = _load(_home(tmp_path / "probe3"))
-        goal_text = probe._drive("hunger")["goal"]
-        home = _home(tmp_path, goals=_goals(goal_text, 4),
-                     history=_flat_history(6, "hunger", 1.0))
+        home = _home(tmp_path, history=_flat_history(6, "hunger", 1.0))
         mod = _load(home, sensors={"hunger": 0.0, "curiosity": 0.013,
                                    "mastery": 1.0, "integrity": 1.0,
                                    "coherence": 1.0, "solidarity": 1.0})
+        goal_text = mod._drive("hunger")["goal"]
+        (home / "memory" / "si" / "goals.json").write_text(
+            json.dumps(_goals(goal_text, 4)), encoding="utf-8")
         state = mod.cycle(emit=False)
         assert state["dominant_drive"] == "hunger"
         assert state["chosen"]["drive"] == "curiosity"

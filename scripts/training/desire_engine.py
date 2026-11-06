@@ -478,6 +478,44 @@ DRIVES = [
     },
 ]
 
+def _absolutise(drive: dict[str, Any]) -> None:
+    """Rewrite home-relative paths in a drive's texts to ABSOLUTE ones.
+
+    The SI core resolves a goal's artifact with
+    ``_artifact_path_from_goal()``, whose regex only matches an absolute
+    Windows/POSIX path (``[A-Za-z]:[/\\]...``). A goal saying
+    "memory/benchmarks_v2.json" therefore yields ``artifact_path = None``: the
+    executor writes nothing, and the verify step then fails with "file
+    missing/empty" or "No such file".
+
+    Measured 2026-11-06 on the live goal store: 43 of the last 60 SI failures were
+    exactly this class ("missing-artifact: path taken from verify cmd"), including
+    7 for the mastery goal this engine emitted. The wish was correct, the path
+    was invisible to the only component that could fulfil it.
+    """
+    import re as _re
+
+    def _fix(text: str) -> str:
+        if not isinstance(text, str):
+            return text
+        return _re.sub(
+            r"(?<![\w/.~-])(memory|scripts|darwin)/",
+            lambda m: f"{HOME.as_posix()}/{m.group(1)}/",
+            text,
+        )
+
+    for key in ("goal", "escalate", "verify", "escalate_verify"):
+        value = drive.get(key)
+        if isinstance(value, tuple):
+            drive[key] = tuple(_fix(v) for v in value)
+        else:
+            drive[key] = _fix(value)
+
+
+for _d in DRIVES:
+    _absolutise(_d)
+
+
 def _drive(name: str) -> dict[str, Any]:
     """Look the drive up NOW, not at import time.
 
