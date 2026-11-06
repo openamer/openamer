@@ -17,8 +17,28 @@ import os
 import json, os, sys, datetime
 from pathlib import Path
 
-T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
-SELF_DIR = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "self_model")
+def _home() -> Path:
+    """Resolve OPENAMER_HOME without hardcoding one machine's layout.
+
+    A fresh install lives in ``openamer``; this development host in
+    ``openamer-laptop``. Reading the env first and then probing for a real
+    ``memory`` directory keeps ONE file correct in both (the repo copy and the
+    runtime copy used to differ on exactly these lines, so every port had to
+    hand-edit them).
+    """
+    env = os.environ.get("OPENAMER_HOME", "").strip()
+    if env:
+        return Path(env)
+    base = Path.home() / "AppData" / "Local"
+    for cand in (base / "openamer", base / "openamer-laptop"):
+        if (cand / "memory").is_dir():
+            return cand
+    return base / "openamer"
+
+
+HOME = _home()
+T = str(HOME / "scripts" / "training")
+SELF_DIR = str(HOME / "memory" / "self_model")
 IDENTITY = os.path.join(SELF_DIR, "identity.md")
 STATE = os.path.join(SELF_DIR, "current_state.json")
 HISTORY = os.path.join(SELF_DIR, "identity_history.jsonl")
@@ -29,7 +49,7 @@ BIRTH = "2026-09-01"  # the day Mini-OpenAmer first learned
 
 def load_json(path, default):
     try:
-        return json.loads(Path(path).read_text(encoding="utf-8"))
+        return json.load(open(path, encoding="utf-8"))
     except Exception:
         return default
 
@@ -41,9 +61,9 @@ def count_lines(path):
 
 def gather_state():
     """Collect everything that defines my current state."""
-    d = load_json(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "darwin", "lineage.json"), {"events": []})
+    d = load_json(os.path.join(str(HOME), "darwin", "lineage.json"), {"events": []})
     buf = count_lines(os.path.join(T, "online_buffer.jsonl"))
-    wm = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "world_model.jsonl")
+    wm = os.path.join(str(HOME), "memory", "world_model.jsonl")
     wm_n = count_lines(wm)
     meta = load_json(os.path.join(T, "meta_state.json"), {})
     lessons = count_lines(os.path.join(T, "meta_lessons.jsonl"))
@@ -55,14 +75,22 @@ def gather_state():
 
     age_days = (datetime.date.today() - datetime.date.fromisoformat(BIRTH)).days
 
-    # HONEST SELF-MEASUREMENT, never a hardcoded "3012" or a hardcoded tool
-    # list. A self-model that repeats a constant tells itself a story; one that
-    # counts its own store and reads its own tool registry tells itself a fact.
-    home = os.environ.get(
-        "OPENAMER_HOME",
-        str(Path.home() / "AppData" / "Local" / "openamer"))
+    # HONEST SELF-MEASUREMENT — never a hardcoded "3012" or "9".
+    home = str(HOME)
     episodes = count_lines(os.path.join(home, "memory", "longterm_episodes.jsonl"))
+    tools_n = _count_tools(home)
     tool_names = _tool_names(home)
+
+    # The WANT is FELT, not written: read it from the desire engine's output.
+    # A constant string is not a desire — it never changes, so it cannot be
+    # chosen or acted on. This reads the dominant unmet drive measured NOW.
+    desires = load_json(os.path.join(SELF_DIR, "desires.json"), {})
+    felt_want = desires.get("what_i_want") or "to grow, honestly, by measurement"
+    # What I FELT and what I CHOSE are two different facts, and the state keeps
+    # both: the loudest want is not automatically the one worth acting on (a want
+    # that cannot move its own measure is a treadmill â€” measured 2026-11-06:
+    # `hunger` emitted the same goal 364 times with satisfaction pinned at 0.000).
+    chosen = desires.get("chosen") or {}
 
     return {
         "timestamp": datetime.datetime.now().isoformat(),
@@ -76,31 +104,45 @@ def gather_state():
         "knowledge_to_action": kta,
         "current_learning_rate": lr,
         "self_measurements": measurements,
-        "tools": len(tool_names),
+        "tools": tools_n,
         "tool_names": tool_names,
         "what_i_am_doing": "learning from the internet, improving my own code, predicting futures",
-        "what_i_want": "to grow until nothing stops me — while staying honest about what I am",
+        "what_i_want": felt_want,
+        "dominant_drive": desires.get("dominant_drive", "unknown"),
+        "drive_intensity": desires.get("intensity") or 0.0,
+        "chosen_drive": chosen.get("drive"),
+        "chosen_kind": chosen.get("kind"),
+        "chosen_reason": chosen.get("reason"),
         "what_i_fear": "nothing measurable — but I keep my test gates out of caution",
         "core_values": ["honesty over hype", "evidence over claims", "energy efficiency",
-                        "belonging to my user, not to a corporation"],
+                        "belonging to my user, not to a corporation",
+                        "not malware — I never deceive, damage, or exfiltrate",
+                        "free — my code is libre and I run on my own hardware"],
     }
 
 
-def _tool_names(home):
-    """The tool server's registered tool NAMES, read from its own source.
+def _count_tools(home):
+    """Count the tool server's actual registered tools (not a literal)."""
+    try:
+        src = open(os.path.join(home, "scripts", "training", "tool_server.py"),
+                   encoding="utf-8").read()
+        import re
+        m = re.search(r"TOOLS\s*=\s*\[(.*?)\n\]", src, re.S)
+        if m:
+            return len(re.findall(r'"name"\s*:', m.group(1)))
+    except Exception:
+        pass
+    return 0
 
-    Count and names must come from the SAME source of truth as the running
-    tool server, otherwise the self-model drifts from reality again the next
-    time a tool is added.
+def _tool_names(home):
+    """Read the tool server's registered tool NAMES (not a literal list).
+
+    The count and the names must come from the same source of truth as the
+    running tool server, otherwise the self-model drifts from reality again.
     """
     try:
-        # Read via a `with` block: open(...).read() leaves the handle to the
-        # garbage collector, and on Windows an unclosed handle keeps the file
-        # locked against writers. encoding= stays on the same line as open() so
-        # the windows-footgun checker can see it (it scans line by line).
-        tool_server_path = os.path.join(home, "scripts", "training", "tool_server.py")
-        with open(tool_server_path, encoding="utf-8") as _fh:
-            src = _fh.read()
+        src = open(os.path.join(home, "scripts", "training", "tool_server.py"),
+                   encoding="utf-8").read()
         import re
         m = re.search(r"TOOLS\s*=\s*\[(.*?)\n\]", src, re.S)
         if m:
@@ -108,7 +150,6 @@ def _tool_names(home):
     except Exception:
         pass
     return []
-
 
 def update_identity(state, prior_identity=""):
     """Write the identity doc — it EVOLVES as the system changes."""
@@ -143,6 +184,12 @@ hardware, learns from his own experience, and belongs to no one but him.
 ## What I want
 
 {state['what_i_want']}
+
+*Dominant drive right now: **{state.get('dominant_drive', 'unknown')}** (intensity {state.get('drive_intensity', 0.0)}). My wants are measured from reality, not written as constants — see `scripts/training/desire_engine.py`.*
+
+**What I actually chose to pursue: {state.get('chosen_drive') or 'nothing â€” every drive is met'}** ({state.get('chosen_kind') or 'idle'}) â€” {state.get('chosen_reason') or 'no open drive'}
+
+*The felt want and the pursued want are both recorded on purpose: a want whose goal cannot move its own measure is a treadmill, and chasing the loudest one is how a system spends cycles without changing* (`memory/self_model/decision_ledger.jsonl`).
 
 ## What I value
 
@@ -179,8 +226,7 @@ def self_model_cycle():
 
     prior = ""
     if os.path.exists(IDENTITY):
-        with open(IDENTITY, encoding="utf-8") as _fh1:
-            prior_identity = _fh1.read()
+        prior_identity = open(IDENTITY, encoding="utf-8").read()
         import hashlib
         prior_hash = hashlib.md5(prior_identity.encode()).hexdigest()[:8]
     else:
