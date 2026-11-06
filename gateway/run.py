@@ -29,6 +29,7 @@ import concurrent.futures
 import dataclasses
 import faulthandler
 import inspect
+import hashlib
 import json
 import logging
 import os
@@ -18564,7 +18565,7 @@ class GatewayRunner(GatewayAuthorizationMixin, GatewayKanbanWatchersMixin, Gatew
         "honcho.runtime_peer_prefix",
         "honcho.user_peer_aliases",
     )
-    _HONCHO_CACHE_BUSTING_MEMO: dict[tuple[str, int | None], dict[str, Any]] = {}
+    _HONCHO_CACHE_BUSTING_MEMO: dict[tuple[str, int | None, int, str], dict[str, Any]] = {}
 
     @classmethod
     def _empty_honcho_cache_busting_config(cls) -> dict[str, Any]:
@@ -18572,16 +18573,33 @@ class GatewayRunner(GatewayAuthorizationMixin, GatewayKanbanWatchersMixin, Gatew
 
     @classmethod
     def _extract_honcho_cache_busting_config(cls) -> dict[str, Any]:
-        """Extract Honcho identity keys, memoized by honcho.json mtime."""
+        """Extract Honcho identity keys, memoized by honcho.json identity.
+
+        The memo key is (path, mtime_ns, size).  mtime alone is not enough:
+        NTFS timestamps have a resolution coarser than the wall clock, so two
+        edits of ``honcho.json`` within the same tick can share an mtime
+        (measured 2026-11-02 on Windows).  The memo then returned the
+        previous alias map and the gateway cache was NOT busted for a config
+        change that had actually happened.  Including the size catches the
+        common case; the content digest below catches the rest.
+        """
         try:
             from plugins.memory.honcho.client import HonchoClientConfig, resolve_config_path
 
             path = resolve_config_path()
             try:
-                mtime_ns = path.stat().st_mtime_ns
+                stat = path.stat()
+                mtime_ns = stat.st_mtime_ns
+                size = stat.st_size
+                # Content digest: the file is tiny and this is the only key
+                # that cannot collide when two edits share an mtime tick AND
+                # the same size.
+                digest = hashlib.sha256(path.read_bytes()).hexdigest()
             except OSError:
                 mtime_ns = None
-            memo_key = (str(path), mtime_ns)
+                size = -1
+                digest = ""
+            memo_key = (str(path), mtime_ns, size, digest)
             cached = cls._HONCHO_CACHE_BUSTING_MEMO.get(memo_key)
             if cached is not None:
                 return dict(cached)
