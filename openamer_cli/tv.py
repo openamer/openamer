@@ -311,16 +311,43 @@ def cmd_mute(args) -> int:
     return 0 if ok else 1
 
 
+def _open_url(host: str, url: str):
+    """Put a URL on the TV screen and return ``(status, body)``.
+
+    Measured on 58PUS6203/12 (NetTV 4.6.0.1, firmware 018.005.058.001):
+
+    * ``POST /6/activities/browser {"url": url}`` -> 200 and the browser
+      really navigates. Verified by serving the page on the LAN and watching
+      this TV fetch it (User-Agent ``NETTV/4.6.0.1``) within a second.
+    * ``POST /6/activities/browser {"intent": {"action": "android.intent.action.VIEW",
+      "uri": url}}`` -> **200 and nothing happens**. Same status, no navigation.
+      A status check can therefore never tell the two forms apart, and the
+      Intent form is not a valid "newer API" upgrade path on this set.
+
+    The Intent form is kept only as a fallback for firmware where the flat
+    ``url`` body is rejected outright.
+    """
+    status, body = _request(host, "/6/activities/browser", {"url": url})
+    if status != 200:
+        status, body = _request(
+            host, "/6/activities/browser",
+            {"intent": {"action": "android.intent.action.VIEW", "uri": url}},
+        )
+    return status, body
+
+
 def cmd_open(args) -> int:
     """Open a URL in the TV's built-in browser.
 
     The endpoint is ``POST /6/activities/<activity>``, NOT ``.../launch``.
     Measured on 58PUS6203/12: ``/6/activities/launch`` answers 405 Method Not
     Allowed for every method, while ``/6/activities/browser`` answers 200.
+
+    The body matters more than the endpoint: see :func:`_open_url` — the
+    documented Intent form returns 200 without navigating on this model.
     """
     h = resolve_host(args.host)
-    payload = {"intent": {"action": "android.intent.action.VIEW", "uri": args.url}}
-    status, body = _request(h, "/6/activities/browser", payload)
+    status, _body = _open_url(h, args.url)
     ok = status == 200
     print(f"open {args.url} -> http {status}{'' if ok else ' (expected 200)'}")
     return 0 if ok else 1
@@ -392,10 +419,7 @@ def cmd_browse(args) -> int:
         if not re.match(r"^https?://", url, re.IGNORECASE):
             url = "https://" + url
         target = f"{BROWSER_APP}?u={urllib.parse.quote(url, safe='')}"
-    status, _ = _request(
-        h, "/6/activities/browser",
-        {"intent": {"action": "android.intent.action.VIEW", "uri": target}},
-    )
+    status, _body = _open_url(h, target)
     ok = status == 200
     print(f"browser -> {target}  (http {status})")
     if not ok:

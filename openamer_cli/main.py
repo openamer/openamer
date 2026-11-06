@@ -471,6 +471,7 @@ from openamer_cli.subcommands.initiative import build_initiative_parser
 from openamer_cli.subcommands.cross_session import build_cross_session_parser
 from openamer_cli.subcommands.repomap import build_repomap_parser
 from openamer_cli.subcommands.workflow import build_workflow_parser
+from openamer_cli.subcommands.tv import build_tv_parser
 from openamer_cli.subcommands.tree import build_tree_parser
 from openamer_cli.durable_execution import build_checkpoint_parser
 from openamer_cli.observability import build_trace_parser
@@ -15819,7 +15820,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "project", "proxy",
         "prompt-size",
         "send", "sessions", "setup",
-        "skin", "skills", "slack", "status", "tools", "uninstall", "update",
+        "skin", "skills", "slack", "status", "tools", "tv", "uninstall", "update",
         "version", "webhook", "whatsapp", "whatsapp-cloud", "chat", "secrets", "security",
         "a2a", "asi", "genesis", "replication", "system", "identity",
         # Registered subparsers that were never declared here. The gating test
@@ -18953,6 +18954,7 @@ def main():
     build_cross_session_parser(subparsers)
     build_repomap_parser(subparsers)
     build_workflow_parser(subparsers)
+    build_tv_parser(subparsers)
     build_tree_parser(subparsers)
     build_system_parser(subparsers)
 

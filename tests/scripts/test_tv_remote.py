@@ -156,7 +156,40 @@ def test_open_posts_to_the_activity_route_not_launch(tv, capsys):
     assert tv.main(["open", "https://example.com"]) == 0
     path, body = dev.calls[-1]
     assert path == "/6/activities/browser"
-    assert body["intent"]["uri"] == "https://example.com"
+    assert body == {"url": "https://example.com"}
+
+
+def test_open_uses_the_flat_url_body_that_actually_navigates(tv, capsys):
+    """Measured on 58PUS6203/12: the Intent body answers 200 and does nothing.
+
+    Only ``{"url": ...}`` moves the browser, so it must be the first (and on a
+    working TV the only) call. The Intent form is a fallback, not the default.
+    """
+    dev = FakeDevice()
+    tv._request = dev
+    assert tv.main(["open", "https://example.com"]) == 0
+    bodies = [body for path, body in dev.calls if path == "/6/activities/browser"]
+    assert bodies == [{"url": "https://example.com"}], \
+        "the Intent form returns 200 without navigating and must not be sent first"
+
+
+def test_open_falls_back_to_the_intent_body_when_url_is_rejected(tv, capsys):
+    """Firmware that rejects the flat body gets the documented Intent form."""
+    real = FakeDevice()
+
+    def request(host, path, payload=None, timeout=6.0):
+        if path == "/6/activities/browser" and payload is not None and "url" in payload:
+            real.calls.append((path, payload))
+            return 405, "Method not allowed"
+        return real(host, path, payload, timeout)
+
+    tv._request = request
+    # the fallback succeeds, so the command reports success - but only after
+    # the flat body was tried and rejected
+    assert tv.main(["open", "https://example.com"]) == 0
+    bodies = [body for path, body in real.calls if path == "/6/activities/browser"]
+    assert bodies[0] == {"url": "https://example.com"}
+    assert bodies[-1]["intent"]["uri"] == "https://example.com"
 
 
 def test_activity_reports_405_as_failure(tv, capsys):
@@ -214,7 +247,7 @@ def test_browse_wraps_the_target_in_the_browser_app(tv):
     assert tv.main(["browse", "github.com"]) == 0
     path, body = dev.calls[-1]
     assert path == "/6/activities/browser"
-    uri = body["intent"]["uri"]
+    uri = body["url"]
     assert uri.startswith(tv.BROWSER_APP + "?u=")
     assert "https%3A%2F%2Fgithub.com" in uri, uri
 
@@ -223,14 +256,14 @@ def test_browse_without_url_opens_the_shell_only(tv):
     dev = FakeDevice()
     tv._request = dev
     assert tv.main(["browse"]) == 0
-    assert dev.calls[-1][1]["intent"]["uri"] == tv.BROWSER_APP
+    assert dev.calls[-1][1]["url"] == tv.BROWSER_APP
 
 
 def test_browse_keeps_an_explicit_scheme(tv):
     dev = FakeDevice()
     tv._request = dev
     tv.main(["browse", "http://example.com/x"])
-    uri = dev.calls[-1][1]["intent"]["uri"]
+    uri = dev.calls[-1][1]["url"]
     assert "http%3A%2F%2Fexample.com%2Fx" in uri, uri
 
 
