@@ -45,7 +45,7 @@ export const lv = defineLocale({
     update: 'Atjaunināt',
     tryHint: term => `Mēģiniet “${term}”`,
     on: 'Ieslēgts',
-    off: 'Izslēgts',
+    off: 'Izslēgts'
   },
   fileMenu: {
     revealFinder: 'Rādīt Finder',
@@ -60,7 +60,7 @@ export const lv = defineLocale({
     renameLabel: 'Jauns nosaukums',
     deleteTitle: name => `Dzēst ${name}?`,
     deleteBody: 'Tas tiks pārcelts uz Miskasti — no turienes varat to atjaunot.',
-    pathCopied: 'Ceļs nokopēts',
+    pathCopied: 'Ceļs nokopēts'
   },
   boot: {
     ready: 'OpenAmer Desktop ir gatavs',
@@ -70,7 +70,7 @@ export const lv = defineLocale({
       loadingSettings: 'Notiek OpenAmer iestatījumu ielāde',
       loadingSessions: 'Notiek neseno sesiju ielāde',
       startingDesktopConnection: 'Notiek darbvirsmas savienojuma palaišana',
-      startingOpenAmerDesktop: 'Notiek OpenAmer Desktop palaišana…',
+      startingOpenAmerDesktop: 'Notiek OpenAmer Desktop palaišana…'
     },
     errors: {
       backgroundExited: 'OpenAmer fona process ir beidzis darbu.',
@@ -79,13 +79,15 @@ export const lv = defineLocale({
       desktopBootFailed: 'Neizdevās palaist darbvirsmu',
       gatewayConnectionLost: 'Savienojums ar vārteju zaudēts',
       gatewaySignInRequired: 'Nepieciešama pieteikšanās vārtejā',
-      ipcBridgeUnavailable: 'Darbvirsmas IPC tilts nav pieejams.',
+      ipcBridgeUnavailable: 'Darbvirsmas IPC tilts nav pieejams.'
     },
     failure: {
-      title: "OpenAmer neizdevās palaist",
-      description: "Fona vārteja nestartējās. Pamēģiniet kādu no atkopšanas darbībām zemāk. Šeit nekas nedzēš jūsu sarunas vai iestatījumus.",
+      title: 'OpenAmer neizdevās palaist',
+      description:
+        'Fona vārteja nestartējās. Pamēģiniet kādu no atkopšanas darbībām zemāk. Šeit nekas nedzēš jūsu sarunas vai iestatījumus.',
       remoteTitle: 'Nepieciešama pieteikšanās attālinātajā vārtejā',
-      remoteDescription: 'Jūsu attālinātās vārtejas sesija ir beigusies. Piesakieties vēlreiz, lai atkārtoti izveidotu savienojumu. Šeit nekas nedzēš jūsu sarunas vai iestatījumus.',
+      remoteDescription:
+        'Jūsu attālinātās vārtejas sesija ir beigusies. Piesakieties vēlreiz, lai atkārtoti izveidotu savienojumu. Šeit nekas nedzēš jūsu sarunas vai iestatījumus.',
       retry: 'Mēģināt vēlreiz',
       repairInstall: 'Labot instalāciju',
       useLocalGateway: 'Izmantot vietējo vārteju',
@@ -93,7 +95,8 @@ export const lv = defineLocale({
       back: 'Atpakaļ',
       openLogs: 'Atvērt žurnālus',
       repairHint: 'Labošana vēlreiz palaiž instalēšanas programu un jaunā datorā var aizņemt dažas minūtes.',
-      remoteSignInHint: signInLabel => `Atteikšanās no saglabātās attālinātā pārlūka sesijas un pēc tam atver ${signInLabel}. Izmantojiet “Izmantot vietējo vārteju”, lai pārslēgtos uz iebūvēto aizmugures sistēmu.`,
+      remoteSignInHint: signInLabel =>
+        `Atteikšanās no saglabātās attālinātā pārlūka sesijas un pēc tam atver ${signInLabel}. Izmantojiet “Izmantot vietējo vārteju”, lai pārslēgtos uz iebūvēto aizmugures sistēmu.`,
       signOutAndSignIn: 'Izrakstīties un pieteikties',
       remoteFailureHint: 'Pārbaudiet URL un pieteikšanos vārtejas iestatījumos vai pārslēdzieties uz vietējo vārteju.',
       hideRecentLogs: 'Paslēpt nesenos žurnālus',
@@ -105,8 +108,8 @@ export const lv = defineLocale({
       signInFailed: 'Pieteikšanās neizdevās',
       signInToRemoteGateway: 'Pieteikties attālinātajā vārtejā',
       signInWithProvider: provider => `Pieteikties ar ${provider}`,
-      identityProvider: 'savu identitātes nodrošinātāju',
-    },
+      identityProvider: 'savu identitātes nodrošinātāju'
+    }
   },
   notifications: {
     region: 'Paziņojumi',
@@ -119,21 +122,23 @@ export const lv = defineLocale({
     copyDetail: 'Kopēt detaļu',
     copyDetailFailed: 'Nevarēja nokopēt paziņojuma detaļu',
     backendOutOfDateTitle: 'Aizmugures sistēma ir novecojusi',
-    backendOutOfDateMessage: 'Jūsu OpenAmer aizmugures sistēma ir vecāka par šo darbvirsmas versiju un var nedarboties pareizi. Atjauniniet, lai tos saskaņotu.',
+    backendOutOfDateMessage:
+      'Jūsu OpenAmer aizmugures sistēma ir vecāka par šo darbvirsmas versiju un var nedarboties pareizi. Atjauniniet, lai tos saskaņotu.',
     installMethodUnsupportedTitle: 'Instalēšanas veids netiek atbalstīts',
     updateOpenAmer: 'Atjaunināt OpenAmer',
     updateReadyTitle: 'Atjauninājums ir gatavs',
     updateReadyMessage: count => `${count} jauna${count === 1 ? 'izmaiņa' : 'izmaiņas'} izmaiņa pieejama.`,
-    seeWhatsNew: "Skatīt jaunumus",
+    seeWhatsNew: 'Skatīt jaunumus',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT nepieciešama ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs noraidīja API atslēgu (401).',
       gatewayAuthFailed: 'Vārtejas autentifikācija neizdevās — pārbaudiet savu API_SERVER_KEY.',
-      methodNotAllowed: 'Darbvirsmas aizmugures sistēma noraidīja šo pieprasījumu (405 Method Not Allowed). Pamēģiniet restartēt OpenAmer Desktop.',
+      methodNotAllowed:
+        'Darbvirsmas aizmugures sistēma noraidīja šo pieprasījumu (405 Method Not Allowed). Pamēģiniet restartēt OpenAmer Desktop.',
       microphonePermission: 'Mikrofona atļauja tika noraidīta.',
       openaiRejectedApiKey: 'OpenAI noraidīja API atslēgu.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI noraidīja API atslēgu (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS nepieciešama VOICE_TOOLS_OPENAI_KEY vai OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS nepieciešama VOICE_TOOLS_OPENAI_KEY vai OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Konfigurējiet runas pārvēršanu tekstā, lai izmantotu balss režīmu.',
@@ -152,7 +157,7 @@ export const lv = defineLocale({
       transcriptionFailed: 'Balss transkribēšana neizdevās',
       transcriptionUnavailable: 'Balss transkribēšana vēl nav pieejama.',
       tryRecordingAgain: 'Pamēģiniet ierakstīt vēlreiz.',
-      unavailable: 'Balss nav pieejama',
+      unavailable: 'Balss nav pieejama'
     },
     native: {
       approvalTitle: 'Nepieciešams apstiprinājums',
@@ -165,11 +170,12 @@ export const lv = defineLocale({
       turnErrorTitle: 'Gājiens neizdevās',
       backgroundDoneTitle: 'Fona uzdevums pabeigts',
       backgroundFailedTitle: 'Fona uzdevums neizdevās',
-      creditsTitle: 'Kredīti',
-    },
+      creditsTitle: 'Kredīti'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Programmatūras renderēšana ir aktīva — konstatēts attālināts displejs (${reason}). GPU paātrinājums ir atspējots, lai novērstu mirgošanu.`,
+    message: reason =>
+      `Programmatūras renderēšana ir aktīva — konstatēts attālināts displejs (${reason}). GPU paātrinājums ir atspējots, lai novērstu mirgošanu.`
   },
   billingBlock: {
     titleOpenamer: 'Nav OpenAmer kredītu',
@@ -177,7 +183,7 @@ export const lv = defineLocale({
     fallbackMessage: 'Jūsu kontā nav kredītu. Pievienojiet kredītus, lai turpinātu.',
     openBilling: 'Atvērt norēķinus',
     addCredits: 'Pievienot kredītus',
-    dismiss: 'Noraidīt',
+    dismiss: 'Noraidīt'
   },
   titlebar: {
     hideSidebar: 'Paslēpt sānu joslu',
@@ -194,7 +200,7 @@ export const lv = defineLocale({
     openStarmap: 'Atvērt atmiņas grafu',
     openKeybinds: 'Tastatūras saīsnes',
     layoutEditor: 'Izkārtojuma redaktors',
-    layoutEditorTitle: 'Izkārtojuma redaktors — Cmd/Ctrl+klikšķis atjauno izkārtojumu',
+    layoutEditorTitle: 'Izkārtojuma redaktors — Cmd/Ctrl+klikšķis atjauno izkārtojumu'
   },
   keybinds: {
     title: 'Tastatūras saīsnes',
@@ -211,7 +217,7 @@ export const lv = defineLocale({
       profiles: 'Profili',
       session: 'Sesija',
       navigation: 'Navigācija',
-      view: 'Skats',
+      view: 'Skats'
     },
     actions: {
       'keybinds.openPanel': 'Atvērt tastatūras saīsnes',
@@ -290,8 +296,8 @@ export const lv = defineLocale({
       'composer.slash': 'Slīpsvītras komandu palete',
       'composer.help': 'Ātrā palīdzība',
       'composer.history': 'Pārslēgt uzlecošo logu / vēsturi',
-      'composer.cancel': 'Aizvērt uzlecošo logu · atcelt izpildi',
-    },
+      'composer.cancel': 'Aizvērt uzlecošo logu · atcelt izpildi'
+    }
   },
   language: {
     label: 'Valoda',
@@ -300,7 +306,7 @@ export const lv = defineLocale({
     saveError: 'Neizdevās atjaunināt valodu',
     switchTo: 'Mainīt valodu',
     searchPlaceholder: 'Meklēt valodas…',
-    noResults: 'Valoda nav atrasta',
+    noResults: 'Valoda nav atrasta'
   },
   settings: {
     closeSettings: 'Aizvērt iestatījumus',
@@ -325,11 +331,12 @@ export const lv = defineLocale({
       about: 'Par',
       billing: 'Norēķini',
       notifications: 'Paziņojumi',
-      plugins: 'Spraudņi',
+      plugins: 'Spraudņi'
     },
     plugins: {
       title: 'Darbvirsmas spraudņi',
-      blurb: 'UI paplašinājumi, kas ielādēti šajā lietotnē — iekļauti būvējumā vai ievietoti darbvirsmas spraudņu mapē (tostarp tie, ko raksta OpenAmer). Atspējošana izkrauj spraudni uzreiz, un izmaiņa saglabājas pēc restartiem.',
+      blurb:
+        'UI paplašinājumi, kas ielādēti šajā lietotnē — iekļauti būvējumā vai ievietoti darbvirsmas spraudņu mapē (tostarp tie, ko raksta OpenAmer). Atspējošana izkrauj spraudni uzreiz, un izmaiņa saglabājas pēc restartiem.',
       count: n => `${n} instalēti`,
       openFolder: 'Atvērt spraudņu mapi',
       rescan: 'Pārskenēt',
@@ -341,49 +348,51 @@ export const lv = defineLocale({
       kinds: {
         bundled: 'iekļauts',
         disk: 'diskā',
-        runtime: 'izpildlaiks',
-      },
+        runtime: 'izpildlaiks'
+      }
     },
     notifications: {
       title: 'Paziņojumi',
-      intro: 'Vietējie darbvirsmas paziņojumi, atsevišķi no paziņojumiem lietotnē. Tie ir lokāli ierīcē — katrs dators saglabā savus iestatījumus.',
+      intro:
+        'Vietējie darbvirsmas paziņojumi, atsevišķi no paziņojumiem lietotnē. Tie ir lokāli ierīcē — katrs dators saglabā savus iestatījumus.',
       enableAll: 'Ieslēgt paziņojumus',
       enableAllDesc: 'Galvenais slēdzis. Izslēdziet to, lai izslēgtu visus zemāk esošos paziņojumus.',
       focusedHint: 'Pabeigšanas brīdinājumi parādās tikai tad, kad OpenAmer darbojas fonā.',
       kinds: {
         approval: {
           label: 'Nepieciešams apstiprinājums',
-          description: 'Kā komanda gaida, lai jūs to apstiprinātu vai noraidītu.',
+          description: 'Kā komanda gaida, lai jūs to apstiprinātu vai noraidītu.'
         },
         input: {
           label: 'Nepieciešama ievade',
-          description: 'OpenAmer uzdevis jautājumu vai pieprasa paroli vai noslēpumu.',
+          description: 'OpenAmer uzdevis jautājumu vai pieprasa paroli vai noslēpumu.'
         },
         turnDone: {
           label: 'Atbilde gatava',
-          description: 'Kārtika beidzās, kamēr OpenAmer darbojās fonā.',
+          description: 'Kārtika beidzās, kamēr OpenAmer darbojās fonā.'
         },
         turnError: {
           label: 'Kārtika neizdevās',
-          description: 'Kārtika beidzās ar kļūdu.',
+          description: 'Kārtika beidzās ar kļūdu.'
         },
         backgroundDone: {
           label: 'Fona uzdevums pabeigts',
-          description: 'Fonā izpildīta termināļa komanda pabeidzās.',
+          description: 'Fonā izpildīta termināļa komanda pabeidzās.'
         },
         credits: {
           label: 'Kredītu brīdinājumi',
-          description: 'Kredītu piekļuve ir pauzēta vai atjaunota.',
-        },
+          description: 'Kredītu piekļuve ir pauzēta vai atjaunota.'
+        }
       },
       test: 'Sūtīt testa paziņojumu',
       testTitle: 'OpenAmer',
       testBody: 'Paziņojumi darbojas.',
-      testSent: 'Tests nosūtīts. Ja nekas neparādās, pārbaudiet savas OS paziņojumu atļaujas un Fokusa/Disturbēt režīmu.',
+      testSent:
+        'Tests nosūtīts. Ja nekas neparādās, pārbaudiet savas OS paziņojumu atļaujas un Fokusa/Disturbēt režīmu.',
       testUnsupported: 'Šī sistēma neatbalsta vietējos paziņojumus.',
       completionSoundTitle: 'Pabeigšanas skaņa',
       completionSoundDesc: 'Skaņē, kad agenta kārta beidzas. Izvēlieties presetu un noklausīto šeit.',
-      completionSoundPreview: 'Priekšskatīt',
+      completionSoundPreview: 'Priekšskatīt'
     },
     sections: {
       model: 'Modelis',
@@ -393,7 +402,7 @@ export const lv = defineLocale({
       safety: 'Drošība',
       memory: 'Atmiņa un konteksts',
       voice: 'Balss',
-      advanced: 'Papildu',
+      advanced: 'Papildu'
     },
     searchPlaceholder: {
       about: 'Par OpenAmer Desktop',
@@ -401,37 +410,40 @@ export const lv = defineLocale({
       gateway: 'Vārtu savienojums...',
       keys: 'Meklēt API atslēgas...',
       mcp: 'Meklēt MCP serverus...',
-      sessions: 'Meklēt arhivētās sesijas...',
+      sessions: 'Meklēt arhivētās sesijas...'
     },
     modeOptions: {
       light: {
         label: 'Gaišs',
-        description: 'Spilgtas virsmas',
+        description: 'Spilgtas virsmas'
       },
       dark: {
         label: 'Tumšs',
-        description: 'Telpa ar vāju gaismu',
+        description: 'Telpa ar vāju gaismu'
       },
       system: {
         label: 'Sistēma',
-        description: 'Sekot sistēmas izskatam',
-      },
+        description: 'Sekot sistēmas izskatam'
+      }
     },
     appearance: {
       title: 'Izskats',
-      intro: 'Šie ir tikai darbvirsmas attēlošanas iestatījumi. Režīms nosaka spilgtumu; motīvs nosaka akcentu paleti un sarunas stilu.',
+      intro:
+        'Šie ir tikai darbvirsmas attēlošanas iestatījumi. Režīms nosaka spilgtumu; motīvs nosaka akcentu paleti un sarunas stilu.',
       colorMode: 'Krāsu režīms',
       colorModeDesc: 'Izvēlieties fiksētu režīmu vai ļaujiet OpenAmer sekot jūsu sistēmas iestatījumiem.',
       toolViewTitle: 'Rīku izsaukumu attēlojums',
       toolViewDesc: 'Produkts paslēpj rīku neapstrādātos datus; Tehniskais rāda pilnus ievadus/izvadus.',
       uiScaleTitle: 'Saskarnes mērogs',
-      uiScaleDesc: (percent: number) => `Mērogo tekstu un vadīklas visā lietotnē. Darbojas arī Cmd/Ctrl ar +, - un 0. Pašlaik: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Mērogo tekstu un vadīklas visā lietotnē. Darbojas arī Cmd/Ctrl ar +, - un 0. Pašlaik: ${percent}%.`,
       translucencyTitle: 'Loga caurspīdīgums',
       translucencyDesc: 'Skatiet savu darbvirsmu caur logu. Tikai macOS un Windows.',
       backdropTitle: 'Sarunas fons',
       backdropDesc: 'Nemanāms statujas attēls aiz sarunas.',
       embedsTitle: 'Iegultie saturs',
-      embedsDesc: 'Priekšskatījumi tiek ielādēti no trešo pušu vietnēm (YouTube, X, …). Vaicāt rāda marķieri, līdz apstiprināt katru; Vienmēr ielādē automātiski; Izslēgts patur tikai saites.',
+      embedsDesc:
+        'Priekšskatījumi tiek ielādēti no trešo pušu vietnēm (YouTube, X, …). Vaicāt rāda marķieri, līdz apstiprināt katru; Vienmēr ielādē automātiski; Izslēgts patur tikai saites.',
       embedsAsk: 'Vaicāt',
       embedsAlways: 'Vienmēr',
       embedsOff: 'Izslēgts',
@@ -444,7 +456,8 @@ export const lv = defineLocale({
       themeDesc: 'Tikai darbvirsmas paletes. Izvēlētais režīms tiek lietots virs tām.',
       themeProfileNote: profile => `Saglabāts profilam ${profile} — katram profilam ir savs motīvs.`,
       installTitle: 'Instalēt no VS Code',
-      installDesc: 'Ielīmējiet Marketplace paplašinājuma id (piem. dracula-theme.theme-dracula), lai pārvērstu savu krāsu motīvu darbvirsmas paletē.',
+      installDesc:
+        'Ielīmējiet Marketplace paplašinājuma id (piem. dracula-theme.theme-dracula), lai pārvērstu savu krāsu motīvu darbvirsmas paletē.',
       installPlaceholder: 'izdevējs.paplašinājums',
       installButton: 'Instalēt',
       installing: 'Notiek instalēšana…',
@@ -454,8 +467,10 @@ export const lv = defineLocale({
       importedBadge: 'Importēts',
       pet: {
         title: 'Mājdzīvnieks',
-        intro: 'Pievienojiet animētu petdex talismanu, kas peld pāri lietotnei un reaģē uz to, ko OpenAmer dara — skrien, kamēr tiek izpildīti rīki, svin panākumu gadījumā, ūnoras kļūdu gadījumā.',
-        restartHint: 'Mājdzīvniekiem nepieciešams ātrs restartēšana — pašreizējā lietotne sākās pirms šīs funkcijas pievienošanas. Aizvērt un atvērt OpenAmer no jauna, tad atgriezieties šeit.',
+        intro:
+          'Pievienojiet animētu petdex talismanu, kas peld pāri lietotnei un reaģē uz to, ko OpenAmer dara — skrien, kamēr tiek izpildīti rīki, svin panākumu gadījumā, ūnoras kļūdu gadījumā.',
+        restartHint:
+          'Mājdzīvniekiem nepieciešams ātrs restartēšana — pašreizējā lietotne sākās pirms šīs funkcijas pievienošanas. Aizvērt un atvērt OpenAmer no jauna, tad atgriezieties šeit.',
         on: 'Ieslēgts',
         off: 'Izslēgts',
         scaleTitle: 'Izmērs',
@@ -465,7 +480,7 @@ export const lv = defineLocale({
         chooseTitle: 'Izvēlies mīluli',
         chooseDesc: 'Izvēloties vienu, tas tiek instalēts (ja nepieciešams) un kļūst aktīvs.',
         searchPlaceholder: 'Meklēt mīluļus…',
-        unreachable: "Nevarēja sasniegt petdex galeriju. Pārbaudi savienojumu un atver šo lapu no jauna.",
+        unreachable: 'Nevarēja sasniegt petdex galeriju. Pārbaudi savienojumu un atver šo lapu no jauna.',
         noMatch: query => `Neviens mīlulis neatbilst "${query}".`,
         installedTag: 'instalēts',
         generatedTag: 'Ģenerēts',
@@ -474,7 +489,7 @@ export const lv = defineLocale({
         uninstall: name => `Atinstalēt ${name}`,
         delete: name => `Dzēst ${name}`,
         deleteTitle: name => `Dzēst ${name}?`,
-        deleteBody: "Tas neatgriezeniski dzēsīs mīluli — to nevarēs instalēt no jauna.",
+        deleteBody: 'Tas neatgriezeniski dzēsīs mīluli — to nevarēs instalēt no jauna.',
         deleteConfirm: 'Dzēst',
         rename: name => `Pārdēvēt ${name}`,
         renameTitle: 'Pārdēvēt mīluli',
@@ -487,8 +502,8 @@ export const lv = defineLocale({
         exportFailed: slug => `Neizdevās eksportēt ${slug}`,
         noneAvailable: 'Pašlaik nav pieejamu mīluļu, ko ieslēgt.',
         turnOnFailed: 'Neizdevās ieslēgt mīluli.',
-        turnOffFailed: 'Neizdevās izslēgt mīluli.',
-      },
+        turnOffFailed: 'Neizdevās izslēgt mīluli.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -499,15 +514,16 @@ export const lv = defineLocale({
       updates: 'Atjauninājumi',
       checkNow: 'Pārbaudīt tagad',
       checking: 'Notiek pārbaude…',
-      seeWhatsNew: "Skatīt jaunumus",
+      seeWhatsNew: 'Skatīt jaunumus',
       updateNow: 'Atjaunināt tagad',
       releaseNotes: 'Izlaiduma piezīmes',
-      onLatest: "Jūs izmantojat jaunāko versiju.",
+      onLatest: 'Jūs izmantojat jaunāko versiju.',
       installing: 'Notiek atjauninājuma instalēšana.',
-      cantUpdate: "Šo versiju nevar atjaunināt no lietotnes iekšpuses.",
-      cantReach: "Nevarējām sasniegt atjauninājumu serveri.",
+      cantUpdate: 'Šo versiju nevar atjaunināt no lietotnes iekšpuses.',
+      cantReach: 'Nevarējām sasniegt atjauninājumu serveri.',
       tapCheck: 'Pieskarieties “Pārbaudīt tagad”, lai meklētu atjauninājumus.',
-      updateReady: count => `Jauns atjauninājums ir gatavs (${count} izmaiņa${count === 1 ? 'izmaiņa' : 'izmaiņas'} iekļauta).`,
+      updateReady: count =>
+        `Jauns atjauninājums ir gatavs (${count} izmaiņa${count === 1 ? 'izmaiņa' : 'izmaiņas'} iekļauta).`,
       lastChecked: age => `Pēdējoreiz pārbaudīts ${age}`,
       justNowSuffix: ' · tikko',
       automaticUpdates: 'Automātiskie atjauninājumi',
@@ -517,7 +533,7 @@ export const lv = defineLocale({
       justNow: 'tikko',
       minAgo: count => `pirms ${count} min`,
       hoursAgo: count => `pirms ${count} h`,
-      daysAgo: count => `pirms ${count} dienām`,
+      daysAgo: count => `pirms ${count} dienām`
     },
     config: {
       none: 'Neviens',
@@ -533,7 +549,8 @@ export const lv = defineLocale({
       imported: 'Konfigurācija importēta',
       invalidJson: 'Nederīgs konfigurācijas JSON',
       keepAwakeTitle: 'Neļaut datoram aizmigt',
-      keepAwakeDesc: 'Neļauj šai ierīcei aizmigt, lai ilgi vai pa nakti notiekošie darbi turpinātos. Displejs joprojām var aptumšoties.',
+      keepAwakeDesc:
+        'Neļauj šai ierīcei aizmigt, lai ilgi vai pa nakti notiekošie darbi turpinātos. Displejs joprojām var aptumšoties.'
     },
     credentials: {
       pasteKey: 'Ielīmēt atslēgu',
@@ -543,7 +560,7 @@ export const lv = defineLocale({
       couldNotSave: 'Neizdevās saglabāt akreditācijas datus.',
       remove: 'Noņemt',
       getKey: 'Iegūt atslēgu',
-      saving: 'Saglabā...',
+      saving: 'Saglabā...'
     },
     envActions: {
       actionsFor: label => `Darbības ${label}`,
@@ -554,7 +571,7 @@ export const lv = defineLocale({
       revealValue: 'Parādīt vērtību',
       replace: 'Aizstāt',
       set: 'Iestatīt',
-      clear: 'Notīrīt',
+      clear: 'Notīrīt'
     },
     gateway: {
       loading: 'Ielādē vārtejas iestatījumus...',
@@ -562,21 +579,26 @@ export const lv = defineLocale({
       unavailableDesc: 'Darbvirsmas IPC tilts neatklāj vārtejas iestatījumus.',
       title: 'Vārtejas savienojums',
       envOverride: 'vides mainīgā pārraksts',
-      intro: 'OpenAmer Desktop pēc noklusējuma palaiž savu vietējo vārteju. Izmantojiet attālinātu vārteju, ja vēlaties, lai šī lietotne kontrolētu jau darbojošos OpenAmer aizmugurējo daļu citā datorā vai aiz uzticama starpniekservera. Tālāk izvēlieties profilu, lai tam būtu savs attālinātais resursdators.',
+      intro:
+        'OpenAmer Desktop pēc noklusējuma palaiž savu vietējo vārteju. Izmantojiet attālinātu vārteju, ja vēlaties, lai šī lietotne kontrolētu jau darbojošos OpenAmer aizmugurējo daļu citā datorā vai aiz uzticama starpniekservera. Tālāk izvēlieties profilu, lai tam būtu savs attālinātais resursdators.',
       appliesTo: 'Attiecas uz',
       allProfiles: 'Visi profili',
       defaultConnection: 'Noklusējuma savienojums katram profilam, kuram nav sava pārraksta.',
-      profileConnection: profile => `Savienojums tiek izmantots tikai tad, kad aktīvais profils ir “${profile}”. Izvēlieties “Izmantot noklusējuma vārteju”, lai noņemtu tā pārrakstu.`,
+      profileConnection: profile =>
+        `Savienojums tiek izmantots tikai tad, kad aktīvais profils ir “${profile}”. Izvēlieties “Izmantot noklusējuma vārteju”, lai noņemtu tā pārrakstu.`,
       envOverrideTitle: 'Šo darbvirsmas sesiju kontrolē vides mainīgie.',
-      envOverrideDesc: 'Noņemiet OPENAMER_DESKTOP_REMOTE_URL un OPENAMER_DESKTOP_REMOTE_TOKEN, lai izmantotu zemāk saglabāto iestatījumu.',
+      envOverrideDesc:
+        'Noņemiet OPENAMER_DESKTOP_REMOTE_URL un OPENAMER_DESKTOP_REMOTE_TOKEN, lai izmantotu zemāk saglabāto iestatījumu.',
       modeTitle: 'Savienojuma režīms',
       localTitle: 'Vietējā vārteja',
-      localDesc: 'Palaidiet privātu OpenAmer aizmugures pakalpojumu uz localhost. Tas ir noklusējums un darbojas bezsaistē.',
+      localDesc:
+        'Palaidiet privātu OpenAmer aizmugures pakalpojumu uz localhost. Tas ir noklusējums un darbojas bezsaistē.',
       inheritTitle: 'Izmantot noklusējuma vārteju',
-      inheritDesc: "Noņemiet šī profila pārrakstu un izmantojiet noklusējuma savienojumu.",
+      inheritDesc: 'Noņemiet šī profila pārrakstu un izmantojiet noklusējuma savienojumu.',
       remoteTitle: 'Attālā vārteja',
       remoteDesc: 'Savienojiet šo darbvirsmas apvalku ar attālu OpenAmer aizmugures pakalpojumu.',
-      remoteAuthHint: 'Hostētās vārtejas izmanto OAuth vai lietotājvārdu un paroli; pašhostētās var izmantot sesijas tokenu.',
+      remoteAuthHint:
+        'Hostētās vārtejas izmanto OAuth vai lietotājvārdu un paroli; pašhostētās var izmantot sesijas tokenu.',
       cloudTitle: 'OpenAmer māknesis',
       cloudDesc: 'Piesakieties vienreiz OpenAmer Cloud un izvēlieties aģentus savā kontā — nav jāielīmē URL.',
       cloudSignInTitle: 'OpenAmer māknesis',
@@ -593,7 +615,7 @@ export const lv = defineLocale({
       cloudNoAgents: {
         before: 'Šajā kontā nav atrasts neviens aģents. Izveidojiet vienu ',
         linkText: 'OpenAmer portāls',
-        after: ', pēc tam atjauniniet.',
+        after: ', pēc tam atjauniniet.'
       },
       cloudRefresh: 'Atjaunināt',
       cloudConnect: 'Savienot',
@@ -609,20 +631,26 @@ export const lv = defineLocale({
       cloudAgentProvisioning: 'Notiek nodrošināšana…',
       cloudStatusLabel: status => `Statuss: ${status}`,
       remoteUrlTitle: 'Attālais URL',
-      remoteUrlDesc: 'Pamata URL attālajai vadības paneļa aizmugursistēmai. Tiek atbalstīti ceļa prefiksi, piemēram, /openamer.',
+      remoteUrlDesc:
+        'Pamata URL attālajai vadības paneļa aizmugursistēmai. Tiek atbalstīti ceļa prefiksi, piemēram, /openamer.',
       probing: 'Pārbauda, kā šī vārteja autentificē…',
-      probeError: 'Vēl nevar sasniegt šo vārteju. Pārbaudiet URL — autentifikācijas metode parādīsies, tiklīdz tā atbildēs.',
+      probeError:
+        'Vēl nevar sasniegt šo vārteju. Pārbaudiet URL — autentifikācijas metode parādīsies, tiklīdz tā atbildēs.',
       signedIn: 'Esat pierakstījies',
       signIn: 'Pierakstīties',
       signOut: 'Izrakstīties',
       signInWith: provider => `Pierakstīties ar ${provider}`,
       authTitle: 'Autentifikācija',
-      authSignedInPassword: 'Šī vārteja izmanto lietotājvārdu un paroli. Esat pierakstījies; sesija tiek atjaunināta automātiski.',
+      authSignedInPassword:
+        'Šī vārteja izmanto lietotājvārdu un paroli. Esat pierakstījies; sesija tiek atjaunināta automātiski.',
       authSignedInOauth: 'Šī vārteja izmanto OAuth. Esat pierakstījies; sesija tiek atjaunināta automātiski.',
-      authNeedsPassword: 'Šī vārteja izmanto lietotājvārdu un paroli. Pierakstieties, lai autorizētu šo darbvirsmas lietotni.',
-      authNeedsOauth: provider => `Šī vārteja izmanto OAuth. Pierakstieties ar ${provider}, lai autorizētu šo darbvirsmas lietotni.`,
+      authNeedsPassword:
+        'Šī vārteja izmanto lietotājvārdu un paroli. Pierakstieties, lai autorizētu šo darbvirsmas lietotni.',
+      authNeedsOauth: provider =>
+        `Šī vārteja izmanto OAuth. Pierakstieties ar ${provider}, lai autorizētu šo darbvirsmas lietotni.`,
       tokenTitle: 'Sesijas marķieris',
-      tokenDesc: 'Vadības paneļa sesijas marķieris, ko izmanto REST un WebSocket piekļuvei. Atstājiet tukšu, lai paturētu saglabāto marķieri.',
+      tokenDesc:
+        'Vadības paneļa sesijas marķieris, ko izmanto REST un WebSocket piekļuvei. Atstājiet tukšu, lai paturētu saglabāto marķieri.',
       existingToken: value => `Esošais marķieris ${value}`,
       savedToken: 'saglabāts',
       pasteSessionToken: 'Ielīmēt sesijas tokenu',
@@ -640,7 +668,8 @@ export const lv = defineLocale({
       enterUrlFirst: 'Vispirms ievadiet attālināto URL.',
       restartingTitle: 'Vārtejas savienojums tiek pārstartēts',
       savedTitle: 'Vārtejas iestatījumi saglabāti',
-      restartingMessage: 'OpenAmer Desktop atkārtoti savienosies, izmantojot saglabātos iestatījumus — čaula paliks atvērta.',
+      restartingMessage:
+        'OpenAmer Desktop atkārtoti savienosies, izmantojot saglabātos iestatījumus — čaula paliks atvērta.',
       savedMessage: 'Saglabāts nākamajai pārstartēšanai.',
       connectedTo: (baseUrl, version) => `Savienots ar ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Attālinātā vārteja sasniedzama',
@@ -653,8 +682,10 @@ export const lv = defineLocale({
       applyFailed: 'Neizdevās piemērot vārtejas iestatījumus',
       saveFailed: 'Neizdevās saglabāt vārtejas iestatījumus',
       sshTitle: 'Savienot caur SSH',
-      sshDesc: 'OpenAmer tiek palaists attālajā resursdatorā pa SSH un tunelēts uz šo lietotni — nekas nav jāpalaiž vai jāatver pašam. Nepieciešama darbojoša uz atslēgām balstīta SSH piekļuve resursdatoram.',
-      sshTrustHint: 'Pirmā uzrādītā resursdatora atslēga tiek uzticēta un piesprausta; vēlākas izmaiņas tiek droši noraidītas.',
+      sshDesc:
+        'OpenAmer tiek palaists attālajā resursdatorā pa SSH un tunelēts uz šo lietotni — nekas nav jāpalaiž vai jāatver pašam. Nepieciešama darbojoša uz atslēgām balstīta SSH piekļuve resursdatoram.',
+      sshTrustHint:
+        'Pirmā uzrādītā resursdatora atslēga tiek uzticēta un piesprausta; vēlākas izmaiņas tiek droši noraidītas.',
       sshHostTitle: 'Resursdators',
       sshHostDesc: 'lietotājs@resursdators vai resursdatora aizstājvārds no ~/.ssh/config.',
       sshHostPick: 'Atlasīt resursdatoru…',
@@ -677,18 +708,22 @@ export const lv = defineLocale({
       sshReachable: (host, platform) => `Sasniedzams: ${host} (${platform}) — OpenAmer atrasts`,
       sshIncompleteHost: 'Pirms savienošanās ievadiet SSH resursdatoru.',
       sshErrUnreachable: 'Neizdevās sasniegt šo resursdatoru pēc SSH. Pārbaudiet resursdatoru, portu un tīklu.',
-      sshErrAuth: 'SSH autentifikācija neizdevās. Ielādējiet atslēgu ssh-agent (ssh-add) vai iestatiet IdentityFile failā ~/.ssh/config — OpenAmer palaiž ssh neinteraktīvā režīmā.',
-      sshErrHostKey: 'Resursdatora atslēga ir MAINĪJUSIES, kopš pēdējās savienošanās. Pārliecinieties, ka tas ir gaidīts, pēc tam izpildiet ssh-keygen -R <host> un savienojieties no jauna.',
-      sshErrNotInstalled: 'OpenAmer nav instalēts attālinātajā resursdatorā. Instalējiet to tur (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) vai iestatiet OpenAmer ceļu.',
-      sshErrPlatform: 'Neatbalstīta attālinātā platforma. OpenAmer datora SSH režīms atbalsta attālinātos resursdatorus ar Linux, macOS un Windows.',
+      sshErrAuth:
+        'SSH autentifikācija neizdevās. Ielādējiet atslēgu ssh-agent (ssh-add) vai iestatiet IdentityFile failā ~/.ssh/config — OpenAmer palaiž ssh neinteraktīvā režīmā.',
+      sshErrHostKey:
+        'Resursdatora atslēga ir MAINĪJUSIES, kopš pēdējās savienošanās. Pārliecinieties, ka tas ir gaidīts, pēc tam izpildiet ssh-keygen -R <host> un savienojieties no jauna.',
+      sshErrNotInstalled:
+        'OpenAmer nav instalēts attālinātajā resursdatorā. Instalējiet to tur (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) vai iestatiet OpenAmer ceļu.',
+      sshErrPlatform:
+        'Neatbalstīta attālinātā platforma. OpenAmer datora SSH režīms atbalsta attālinātos resursdatorus ar Linux, macOS un Windows.',
       sshErrTimeout: 'SSH savienojuma laika limits beidzās. Resursdators var būt nesasniedzams vai miega režīmā.',
       sshErrUpdateRequired: 'Atjauniniet OpenAmer attālinātajā resursdatorā pirms savienošanās ar datora SSH režīmu.',
-      sshErrUnknown: 'SSH savienojums neizdevās.',
+      sshErrUnknown: 'SSH savienojums neizdevās.'
     },
     keys: {
       loading: 'Notiek API atslēgu un akreditācijas datu ielādēšana...',
       failedLoad: 'API atslēgu ielāde neizdevās',
-      empty: 'Šajā kategorijā vēl nekas nav konfigurēts.',
+      empty: 'Šajā kategorijā vēl nekas nav konfigurēts.'
     },
     mcp: {
       loading: 'Ielādē MCP serverus...',
@@ -740,7 +775,8 @@ export const lv = defineLocale({
       catalogInstallFailed: name => `Neizdevās instalēt ${name}`,
       catalogEnvPrompt: name => `${name} nepieciešami akreditācijas dati`,
       catalogEnvRequired: 'Pirms instalēšanas aizpildiet nepieciešamās vērtības.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} iespējots`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} iespējots`,
       statusConnecting: 'Savieno…',
       statusNeedsAuth: 'Nepieciešama autentifikācija',
       statusError: 'Kļūda',
@@ -753,11 +789,12 @@ export const lv = defineLocale({
       unsavedConnect: 'Nav saglabāts — saglabājiet mcp.json, lai savienotos.',
       enableTool: tool => `Iespējot ${tool}`,
       disableTool: tool => `Atspējot ${tool}`,
-      noOutput: 'Vēl nav izvades.',
+      noOutput: 'Vēl nav izvades.'
     },
     model: {
       loading: 'Ielādē modeļa konfigurāciju...',
-      appliesDesc: 'Attiecas uz jaunām sesijām. Izmantojiet modeļa atlasītāju ievades laukā, lai nekavējoties nomainītu aktīvo tērzēšanu.',
+      appliesDesc:
+        'Attiecas uz jaunām sesijām. Izmantojiet modeļa atlasītāju ievades laukā, lai nekavējoties nomainītu aktīvo tērzēšanu.',
       provider: 'Sniedzējs',
       model: 'Modelis',
       applying: 'Piemēro...',
@@ -767,53 +804,55 @@ export const lv = defineLocale({
       defaultsFailed: 'Neizdevās saglabāt modeļa noklusējumus',
       auxiliaryTitle: 'Palīgmodeļi',
       resetAllToMain: 'Atiestatīt visus uz galveno',
-      auxiliaryDesc: 'Palīguzdevumi pēc noklusējuma darbojas ar galveno modeli. Lai mainītu, piešķiriet jebkuram uzdevumam atsevišķu modeli.',
+      auxiliaryDesc:
+        'Palīguzdevumi pēc noklusējuma darbojas ar galveno modeli. Lai mainītu, piešķiriet jebkuram uzdevumam atsevišķu modeli.',
       setToMain: 'Iestatīt uz galveno',
       change: 'Mainīt',
       autoUseMain: 'auto · izmantot galveno modeli',
       providerDefault: '(sniedzēja noklusējums)',
       fallbackAdd: 'Pievienot rezerves modeli',
       fallbackEmpty: 'Nav rezerves modeļu — tiek izmantots noklusējuma modelis, ja vien tas neizdodas.',
-      notInCatalog: "nav šī nodrošinātāja modeļu sarakstā — izsaukumi var pāriet uz rezerves modeli.",
+      notInCatalog: 'nav šī nodrošinātāja modeļu sarakstā — izsaukumi var pāriet uz rezerves modeli.',
       tasks: {
         vision: {
           label: 'Redze',
-          hint: 'Attēlu analīze',
+          hint: 'Attēlu analīze'
         },
         web_extract: {
           label: 'Tīmekļa izgūšana',
-          hint: 'Lapas rezumēšana',
+          hint: 'Lapas rezumēšana'
         },
         compression: {
           label: 'Saspiešana',
-          hint: 'Konteksta saspiešana',
+          hint: 'Konteksta saspiešana'
         },
         skills_hub: {
           label: 'Prasmju centrs',
-          hint: 'Prasmju meklēšana',
+          hint: 'Prasmju meklēšana'
         },
         approval: {
           label: 'Apstiprināšana',
-          hint: 'Viedā autoapstiprināšana',
+          hint: 'Viedā autoapstiprināšana'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP rīku maršrutēšana',
+          hint: 'MCP rīku maršrutēšana'
         },
         title_generation: {
           label: 'Virsrakstu ģenerēšana',
-          hint: 'Sesiju virsraksti',
+          hint: 'Sesiju virsraksti'
         },
         curator: {
           label: 'Kurators',
-          hint: 'Prasmju lietojuma pārskats',
-        },
-      },
+          hint: 'Prasmju lietojuma pārskats'
+        }
+      }
     },
     providers: {
       connectAccount: 'Savienot kontu',
       haveApiKey: 'Vai ir API atslēga?',
-      intro: 'Pierakstieties ar abonementu — nav jākopē API atslēga. OpenAmer palaiž pārlūka pierakstīšanos jūsu vietā, tepat lietotnē.',
+      intro:
+        'Pierakstieties ar abonementu — nav jākopē API atslēga. OpenAmer palaiž pārlūka pierakstīšanos jūsu vietā, tepat lietotnē.',
       connected: 'Savienots',
       collapse: 'Sakļaut',
       connectAnother: 'Savienot citu pakalpojumu sniedzēju',
@@ -823,7 +862,8 @@ export const lv = defineLocale({
       removeConfirm: provider => `Noņemt ${provider}?`,
       removeExternalGeneric: provider => `${provider} pārvalda tā pati CLI — noņemiet to tur.`,
       removeKeyManaged: provider => `${provider} tiek konfigurēts ar API atslēgu. Noņemiet to sadaļā API atslēgas.`,
-      removeTerminalConfirm: (provider, command) => `Atvienot ${provider}? Tas terminālī izpilda "${command}", lai notīrītu akreditācijas datus.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Atvienot ${provider}? Tas terminālī izpilda "${command}", lai notīrītu akreditācijas datus.`,
       removeTerminalRunning: provider => `Terminālī izpilda ${provider} atvienošanu…`,
       removedTitle: 'Konts noņemts',
       removedMessage: provider => `${provider} tika noņemts.`,
@@ -833,14 +873,15 @@ export const lv = defineLocale({
       noKeysMatch: 'Neviens pakalpojumu sniedzējs neatbilst meklējumam.',
       localEndpoint: {
         title: 'Vietējais / pielāgots galapunkts',
-        description: 'Norādiet OpenAmer uz jebkuru OpenAI saderīgu galapunktu (Zyphra, vLLM, llama.cpp, Ollama u.c.).',
+        description: 'Norādiet OpenAmer uz jebkuru OpenAI saderīgu galapunktu (Zyphra, vLLM, llama.cpp, Ollama u.c.).'
       },
-      loading: 'Ielādē pakalpojumu sniedzējus...',
+      loading: 'Ielādē pakalpojumu sniedzējus...'
     },
     sessions: {
       loading: 'Ielādē arhivētās sesijas…',
       archivedTitle: 'Arhivētās sesijas',
-      archivedIntro: 'Arhivētās tērzēšanas ir paslēptas sānjoslā, bet saglabā visas ziņas. Noklikšķiniet uz tērzēšanas sānjoslā ar Ctrl/⌘, lai to arhivētu.',
+      archivedIntro:
+        'Arhivētās tērzēšanas ir paslēptas sānjoslā, bet saglabā visas ziņas. Noklikšķiniet uz tērzēšanas sānjoslā ar Ctrl/⌘, lai to arhivētu.',
       emptyArchivedTitle: 'Nekas nav arhivēts',
       emptyArchivedDesc: 'Arhivējiet tērzēšanu, lai to paslēptu šeit.',
       unarchive: 'Atarhivēt',
@@ -849,13 +890,16 @@ export const lv = defineLocale({
       restored: 'Atjaunots',
       deleteConfirm: title => `Neatgriezeniski dzēst "${title}"? To nevar atsaukt.`,
       autoArchiveTitle: 'Automātiski arhivēt novecojušas tērzēšanas',
-      autoArchiveDesc: "Automātiski arhivēt tērzēšanas, kuras kādu laiku neesat lietojis. Piespraustās tērzēšanas nekad netiek arhivētas, un nekas netiek dzēsts — arhivētās tērzēšanas vienkārši pārvietojas šeit.",
+      autoArchiveDesc:
+        'Automātiski arhivēt tērzēšanas, kuras kādu laiku neesat lietojis. Piespraustās tērzēšanas nekad netiek arhivētas, un nekas netiek dzēsts — arhivētās tērzēšanas vienkārši pārvietojas šeit.',
       autoArchiveDaysLabel: 'Arhivēt pēc',
       autoArchiveDaysUnit: 'dienām bez darbības',
       autoArchiveFailed: 'Neizdevās atjaunināt automātisko arhivēšanu',
       defaultDirTitle: 'Noklusējuma projekta direktorija',
-      defaultDirDesc: 'Jaunas sesijas sākas šajā mapē, ja vien neizvēlaties citu. Atstājiet neiestatītu, lai izmantotu mājas direktoriju.',
-      defaultDirUpdated: 'Noklusējuma projekta direktorija atjaunināta — sāciet jaunu tērzēšanu (Ctrl/⌘+N), lai tā stātos spēkā',
+      defaultDirDesc:
+        'Jaunas sesijas sākas šajā mapē, ja vien neizvēlaties citu. Atstājiet neiestatītu, lai izmantotu mājas direktoriju.',
+      defaultDirUpdated:
+        'Noklusējuma projekta direktorija atjaunināta — sāciet jaunu tērzēšanu (Ctrl/⌘+N), lai tā stātos spēkā',
       defaultsTo: label => `Pēc noklusējuma ${label}.`,
       change: 'Mainīt',
       choose: 'Izvēlēties',
@@ -865,7 +909,7 @@ export const lv = defineLocale({
       unarchiveFailed: 'Neizdevās atarhivēt',
       deleteFailed: 'Neizdevās dzēst',
       updateDirFailed: 'Nevarēja atjaunināt noklusējuma mapi',
-      clearDirFailed: 'Nevarēja notīrīt noklusējuma mapi',
+      clearDirFailed: 'Nevarēja notīrīt noklusējuma mapi'
     },
     toolsets: {
       loadingConfig: 'Ielādē konfigurāciju',
@@ -883,20 +927,23 @@ export const lv = defineLocale({
       selectedMessage: provider => `${provider} tagad ir aktīvs.`,
       failedSelect: provider => `Neizdevās atlasīt ${provider}`,
       failedLoad: 'Rīku konfigurāciju neizdevās ielādēt',
-      noProviderOptions: 'Šim rīku kopumam nav sniedzēja opciju — iespējojiet to, un tas darbosies ar pašreizējo iestatījumu.',
+      noProviderOptions:
+        'Šim rīku kopumam nav sniedzēja opciju — iespējojiet to, un tas darbosies ar pašreizējo iestatījumu.',
       noProviders: 'Šim rīku kopumam pašlaik nav pieejamu sniedzēju.',
       ready: 'Gatavs',
       needsSignIn: 'Nepieciešama pieteikšanās',
       needsSetup: 'Nepieciešama iestatīšana',
       openamerIncluded: 'Iekļauts OpenAmer abonementā — pieteikties OpenAmer Portal, lai aktivizētu.',
       openamerAuthNeededTitle: 'Pieteikties OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} ir saglabāts, bet netiks aktivizēts, līdz pieteiksieties OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} ir saglabāts, bet netiks aktivizēts, līdz pieteiksieties OpenAmer Portal.`,
       openamerAuthSignIn: 'Pieteikties',
       openamerAuthDoneTitle: 'OpenAmer Portal savienots',
       openamerAuthDoneMessage: 'Jūsu abonementa aizmugursistēmas tagad ir aktīvas.',
       openamerAuthFailed: 'OpenAmer Portal pieteikšanās netika pabeigta',
       noApiKeyRequired: 'API atslēga nav nepieciešama.',
-      postSetupHint: step => `Šai aizmugursistēmai nepieciešama vienreizēja instalēšana (${step}). Tā darbojas šajā datorā — var aizņemt dažas minūtes.`,
+      postSetupHint: step =>
+        `Šai aizmugursistēmai nepieciešama vienreizēja instalēšana (${step}). Tā darbojas šajā datorā — var aizņemt dažas minūtes.`,
       postSetupInstalledHint: 'Instalēts. Iestatīšanu atkārtojiet tikai tad, ja kaut kas nedarbojas.',
       postSetupRun: 'Palaist iestatīšanu',
       postSetupRerun: 'Atkārtoti palaist iestatīšanu',
@@ -935,11 +982,12 @@ export const lv = defineLocale({
         unavailable: 'Nav pieejams',
         inUse: 'Tiek izmantots',
         selectedTitle: 'Backends izvēlēts',
-        selectedMessage: backend => `Termināļa komandas tagad tiek izpildītas ar ${backend}. Attiecas uz jaunām sesijām.`,
+        selectedMessage: backend =>
+          `Termināļa komandas tagad tiek izpildītas ar ${backend}. Attiecas uz jaunām sesijām.`,
         failedSelect: backend => `Neizdevās izvēlēties ${backend}`,
-        needsSetupHint: 'Varat izvēlēties šo backendu tagad — komandas neizdosies, līdz iestatīšana būs pabeigta.',
-      },
-    },
+        needsSetupHint: 'Varat izvēlēties šo backendu tagad — komandas neizdosies, līdz iestatīšana būs pabeigta.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Prasmes',
@@ -959,7 +1007,8 @@ export const lv = defineLocale({
     noDescription: 'Nav apraksta.',
     configured: 'Konfigurēts',
     needsKeys: 'Nepieciešamas atslēgas',
-    visionModelHint: 'Redze izmanto jūsu papildu modeļa konfigurāciju — attēlu atbalstošais modelis tiek izvēlēts tur, nevis katram nodrošinātājam šeit.',
+    visionModelHint:
+      'Redze izmanto jūsu papildu modeļa konfigurāciju — attēlu atbalstošais modelis tiek izvēlēts tur, nevis katram nodrošinātājam šeit.',
     visionModelLink: 'Izvēlieties redzes modeli sadaļā Iestatījumi → Modeļi',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} rīku kopas iespējotas`,
     configureToolset: label => `Konfigurēt ${label}`,
@@ -985,7 +1034,7 @@ export const lv = defineLocale({
     provenance: {
       agent: 'Apgūta',
       bundled: 'Iebūvēta',
-      hub: 'Centrs',
+      hub: 'Centrs'
     },
     emptyNoneFound: noun => `Neviena ${noun} nav atrasta`,
     emptyNothingMatches: query => `Nav nekas, kas atbilst “${query}”.`,
@@ -1003,9 +1052,11 @@ export const lv = defineLocale({
       connectingHubs: 'Savienojas ar prasmju centriem...',
       connectedHubs: 'Savienotie centri:',
       featured: 'Ieteiktās prasmes',
-      landingHint: 'Meklējiet centrā, lai pārlūkotu instalējamās prasmes no oficiālā indeksa, GitHub un kopienas avotiem.',
+      landingHint:
+        'Meklējiet centrā, lai pārlūkotu instalējamās prasmes no oficiālā indeksa, GitHub un kopienas avotiem.',
       noResults: 'Centrā nav atrastas atbilstošas prasmes.',
-      resultCount: (count, ms) => `${count} rezultāts${count === 1 ? 'rezultāts' : 'rezultāti'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} rezultāts${count === 1 ? 'rezultāts' : 'rezultāti'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Laika limits iztecēja: ${sources}`,
       installed: 'Instalēta',
       install: 'Instalēt',
@@ -1023,7 +1074,7 @@ export const lv = defineLocale({
       trust: {
         builtin: 'iebūvēts',
         trusted: 'uzticams',
-        community: 'kopiena',
+        community: 'kopiena'
       },
       verdictSafe: 'Droši',
       verdictCaution: 'Uzmanību',
@@ -1041,8 +1092,8 @@ export const lv = defineLocale({
       loadFailed: 'Prasmju centra ielāde neizdevās',
       previewFailed: 'Prasmes priekšskatījums neizdevās',
       scanFailed: 'Drošības skenēšana neizdevās',
-      searchFailed: 'Centra meklēšana neizdevās',
-    },
+      searchFailed: 'Centra meklēšana neizdevās'
+    }
   },
   starmap: {
     title: 'Atmiņas grafiks',
@@ -1059,7 +1110,8 @@ export const lv = defineLocale({
     emptyTitle: 'Vēl nekas nav iemācīts',
     emptyDesc: 'Kad OpenAmer veido jūsu darbam prasmes un atmiņas, tās parādās šeit.',
     share: 'Dalīties ar karti',
-    shareHint: 'Kopējiet kodu, lai dalītos ar šo karti, vai ielīmējiet kodu, lai to ielādētu. Tas ietver tikai izkārtojumu, nevis jūsu atmiņu vai prasmju tekstu.',
+    shareHint:
+      'Kopējiet kodu, lai dalītos ar šo karti, vai ielīmējiet kodu, lai to ielādētu. Tas ietver tikai izkārtojumu, nevis jūsu atmiņu vai prasmju tekstu.',
     shareTitle: 'Importēt / eksportēt karti',
     sharePlaceholder: 'Ielīmējiet kartes kodu…',
     copy: 'Kopēt kartes kodu',
@@ -1069,7 +1121,7 @@ export const lv = defineLocale({
     importEmpty: 'Ielīmējiet kartes kodu, lai to ielādētu.',
     importSuccess: nodes => `Ielādēta karte ar ${nodes} ${nodes === 1 ? 'mezgls' : 'mezgli'}.`,
     importedBadge: 'importēta karte',
-    resetToMine: 'Atpakaļ uz manu karti',
+    resetToMine: 'Atpakaļ uz manu karti'
   },
   agents: {
     close: 'Aizvērt aģentus',
@@ -1099,7 +1151,7 @@ export const lv = defineLocale({
     ageDays: days => `pirms ${days} d`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tokeni`,
+    tokens: value => `${value} tokeni`
   },
   commandCenter: {
     close: 'Aizvērt komandu centru',
@@ -1129,7 +1181,7 @@ export const lv = defineLocale({
       generatedTag: 'Ģenerēts',
       adoptFailed: 'Neizdevās adoptēt šo mājdzīvnieku.',
       toggleFailed: 'Neizdevās pārslēgt mājdzīvnieku.',
-      noneAvailable: 'Nav pieejamu mājdzīvnieku — izvēlieties kādu zemāk, lai instalētu.',
+      noneAvailable: 'Nav pieejamu mājdzīvnieku — izvēlieties kādu zemāk, lai instalētu.'
     },
     generatePet: {
       title: 'Ģenerēt mājdzīvnieku',
@@ -1153,12 +1205,13 @@ export const lv = defineLocale({
       slowProviderHint: 'Tas var aizņemt vairākas minūtes',
       remix: 'Remikss',
       remixConfirmTitle: 'Remiksēt šo izskatu?',
-      remixConfirmBody: 'Tas ģenerē jaunu melnrakstu kopu, izmantojot šo kā sākumpunktu. Tas var aizņemt vairākas minūtes.',
+      remixConfirmBody:
+        'Tas ģenerē jaunu melnrakstu kopu, izmantojot šo kā sākumpunktu. Tas var aizņemt vairākas minūtes.',
       genericError: 'Ģenerēšana neizdevās — mēģiniet vēlreiz vai izvēlieties ieteikumu.',
       referenceImageTooLarge: 'Atsauces attēls ir pārāk liels. Izmantojiet attēlu, kas ir mazāks par 16 MB.',
       referenceImageInvalid: 'Nevarēja nolasīt šo atsauces attēlu. Mēģiniet ar PNG, JPG, WebP vai GIF.',
       adopt: 'Adoptēt',
-      startOver: 'Sākt no jauna',
+      startOver: 'Sākt no jauna'
     },
     installTheme: {
       title: 'Instalēt tēmu…',
@@ -1170,7 +1223,7 @@ export const lv = defineLocale({
       install: 'Instalēt',
       installing: 'Instalē...',
       installed: 'Instalēts',
-      installs: count => `${count} instalāciju`,
+      installs: count => `${count} instalāciju`
     },
     settingsFields: 'Iestatījumu lauki',
     mcpServers: 'MCP serveri',
@@ -1179,49 +1232,49 @@ export const lv = defineLocale({
       maintenance: 'Apkope',
       sessions: 'Sesijas',
       system: 'Sistēma',
-      usage: 'Lietojums',
+      usage: 'Lietojums'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostika, dublējumi, kurators un atmiņas dati',
       sessions: 'Meklēt un pārvaldīt sesijas',
       system: 'Statuss, žurnāli un sistēmas darbības',
-      usage: 'Tokenu, izmaksu un prasmju aktivitāte laika gaitā',
+      usage: 'Tokenu, izmaksu un prasmju aktivitāte laika gaitā'
     },
     nav: {
       newChat: {
         title: 'Jauna sesija',
-        detail: 'Sākt jaunu sesiju',
+        detail: 'Sākt jaunu sesiju'
       },
       settings: {
         title: 'Iestatījumi',
-        detail: 'Konfigurēt OpenAmer darbvirsmu',
+        detail: 'Konfigurēt OpenAmer darbvirsmu'
       },
       skills: {
         title: 'Iespējas',
-        detail: 'Prasmes, rīki un MCP serveri',
+        detail: 'Prasmes, rīki un MCP serveri'
       },
       messaging: {
         title: 'Ziņojumapmaiņa',
-        detail: 'Iestatīt Telegram, Slack, Discord un citas',
+        detail: 'Iestatīt Telegram, Slack, Discord un citas'
       },
       artifacts: {
         title: 'Artefakti',
-        detail: 'Pārlūkot ģenerētos rezultātus',
-      },
+        detail: 'Pārlūkot ģenerētos rezultātus'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Sesiju panelis',
-        detail: 'Meklēt, piespraust un pārvaldīt sesijas',
+        detail: 'Meklēt, piespraust un pārvaldīt sesijas'
       },
       system: {
         title: 'Sistēmas panelis',
-        detail: 'Vārtejas statuss, žurnāli, restartēšana/atjaunināšana',
+        detail: 'Vārtejas statuss, žurnāli, restartēšana/atjaunināšana'
       },
       usage: {
         title: 'Lietojuma panelis',
-        detail: 'Tokenu, izmaksu un prasmju aktivitāte',
-      },
+        detail: 'Tokenu, izmaksu un prasmju aktivitāte'
+      }
     },
     providerNavigate: 'Navigēt',
     providerSessions: 'Sesijas',
@@ -1276,7 +1329,8 @@ export const lv = defineLocale({
       backup: 'Izveidot dublējumu',
       backupDesc: 'Arhivēt konfigurāciju, atmiņas, prasmes un sesijas',
       debugShare: 'Atkļūdošanas koplietošana',
-      debugShareDesc: 'Augšupielādēt rediģētu atskaiti un žurnālus, iegūt koplietojamas saites (automātiski dzēš pēc 6 h)',
+      debugShareDesc:
+        'Augšupielādēt rediģētu atskaiti un žurnālus, iegūt koplietojamas saites (automātiski dzēš pēc 6 h)',
       debugShareRunning: 'Augšupielādē atkļūdošanas atskaiti...',
       debugShareLinks: 'Koplietošanas saites',
       debugShareFailed: 'Atkļūdošanas koplietošana neizdevās',
@@ -1309,8 +1363,8 @@ export const lv = defineLocale({
       actionStarted: name => `${name} palaists — sekoju žurnālam...`,
       actionFailed: name => `${name} neizdevās palaist`,
       running: 'Darbojas...',
-      viewLog: 'Darbību žurnāls',
-    },
+      viewLog: 'Darbību žurnāls'
+    }
   },
   messaging: {
     search: 'Meklēt ziņojumapmaiņā...',
@@ -1325,7 +1379,7 @@ export const lv = defineLocale({
       not_configured: 'Jāiestata',
       pending_restart: 'Jārestartē',
       retrying: 'Mēģina vēlreiz',
-      startup_failed: 'Palaišana neizdevās',
+      startup_failed: 'Palaišana neizdevās'
     },
     unknown: 'Nezināms',
     hintPendingRestart: 'Restartējiet vārteju no statusa joslas, lai piemērotu šo izmaiņu.',
@@ -1338,7 +1392,8 @@ export const lv = defineLocale({
     required: 'Nepieciešams',
     recommended: 'Ieteicams',
     advanced: count => `Papildu (${count})`,
-    noTokenNeeded: 'Šai platformai šeit nav nepieciešams tokens. Izmantojiet augstāk esošo iestatīšanas pamācību, pēc tam iespējojiet to zemāk.',
+    noTokenNeeded:
+      'Šai platformai šeit nav nepieciešams tokens. Izmantojiet augstāk esošo iestatīšanas pamācību, pēc tam iespējojiet to zemāk.',
     enabled: 'Iespējots',
     disabled: 'Atspējots',
     unsavedChanges: 'Nesaglabātas izmaiņas',
@@ -1364,127 +1419,126 @@ export const lv = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bota tokens',
         help: 'Izveido botu ar @BotFather un ielīmē saņemto tokenu.',
-        placeholder: 'Ielīmē Telegram bota tokenu',
+        placeholder: 'Ielīmē Telegram bota tokenu'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Atļautie Telegram lietotāju ID',
-        help: 'Ieteicams. Ar komatu atdalīti skaitliski ID no @userinfobot. Bez tā ikviens var sūtīt tavam botam tiešziņas.',
+        help: 'Ieteicams. Ar komatu atdalīti skaitliski ID no @userinfobot. Bez tā ikviens var sūtīt tavam botam tiešziņas.'
       },
       TELEGRAM_PROXY: {
         label: 'Prokšijas URL',
-        help: 'Nepieciešams tikai tīklos, kuros Telegram ir bloķēts.',
+        help: 'Nepieciešams tikai tīklos, kuros Telegram ir bloķēts.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bota tokens',
-        help: 'Izveido lietotni Discord Developer Portal, pievieno botu un ielīmē tā tokenu.',
+        help: 'Izveido lietotni Discord Developer Portal, pievieno botu un ielīmē tā tokenu.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Atļautie Discord lietotāju ID',
-        help: 'Ieteicams. Ar komatu atdalīti Discord lietotāju ID.',
+        help: 'Ieteicams. Ar komatu atdalīti Discord lietotāju ID.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Atbildes stils',
-        help: 'Pirmais, visi vai izslēgts.',
+        help: 'Pirmais, visi vai izslēgts.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Atļaut visus Discord lietotājus',
-        help: 'Tikai izstrādei. Ja iespējots, ikviens var sūtīt botam tiešziņas bez atļauju saraksta.',
+        help: 'Tikai izstrādei. Ja iespējots, ikviens var sūtīt botam tiešziņas bez atļauju saraksta.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Mājas kanāla ID',
-        help: 'Kanāls, kurā bots sūta proaktīvas ziņas (cron izvade, atgādinājumi).',
+        help: 'Kanāls, kurā bots sūta proaktīvas ziņas (cron izvade, atgādinājumi).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Mājas kanāla nosaukums',
-        help: 'Mājas kanāla parādāmais nosaukums žurnālos un statusa izvadē.',
+        help: 'Mājas kanāla parādāmais nosaukums žurnālos un statusa izvadē.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Atļaut visus iMessage lietotājus',
-        help: 'Kad patiess, izlaist BlueBubbles atļauto sarakstu.',
+        help: 'Kad patiess, izlaist BlueBubbles atļauto sarakstu.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Atļaut visus Mattermost lietotājus',
+        label: 'Atļaut visus Mattermost lietotājus'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Mājas kanāls',
+        label: 'Mājas kanāls'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Atļaut visus QQ lietotājus',
+        label: 'Atļaut visus QQ lietotājus'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ mājas kanāls',
-        help: 'Noklusējuma kanāls vai grupa cron piegādei.',
+        help: 'Noklusējuma kanāls vai grupa cron piegādei.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ mājas kanāla nosaukums',
+        label: 'QQ mājas kanāla nosaukums'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bota tokens',
         help: 'Pēc Slack lietotnes instalēšanas izmantojiet bot tokenu no OAuth & Permissions.',
-        placeholder: 'Ielīmējiet Slack bot tokenu',
+        placeholder: 'Ielīmējiet Slack bot tokenu'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack lietotnes tokens',
         help: 'Izmantojiet lietotnes līmeņa tokenu, kas nepieciešams Socket Mode režīmam.',
-        placeholder: 'Ielīmējiet Slack lietotnes tokenu',
+        placeholder: 'Ielīmējiet Slack lietotnes tokenu'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Atļautie Slack lietotāju ID',
-        help: 'Ieteicams. Ar komatām atdalīti Slack lietotāju ID.',
+        help: 'Ieteicams. Ar komatām atdalīti Slack lietotāju ID.'
       },
       MATTERMOST_URL: {
         label: 'Servera URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bota tokens',
+        label: 'Bota tokens'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Atļautie lietotāju ID',
-        help: 'Ieteicams. Ar komatām atdalīti Mattermost lietotāju ID.',
+        help: 'Ieteicams. Ar komatām atdalīti Mattermost lietotāju ID.'
       },
       MATRIX_HOMESERVER: {
         label: 'Mājas servera URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Piekļuves tokens',
+        label: 'Piekļuves tokens'
       },
       MATRIX_USER_ID: {
         label: 'Bot lietotāja ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Atļautie Matrix lietotāju ID',
-        help: 'Ieteicams. Ar komatām atdalīti lietotāju ID @user:server formātā.',
+        help: 'Ieteicams. Ar komatām atdalīti lietotāju ID @user:server formātā.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal tilta URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Darbojošās signal-cli REST tilta URL.',
+        help: 'Darbojošās signal-cli REST tilta URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefona numurs',
-        help: 'Jūsu signal-cli tiltā reģistrētais numurs.',
+        help: 'Jūsu signal-cli tiltā reģistrētais numurs.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Atļautie Signal lietotāji',
-        help: 'Ieteicams. Ar komatu atdalīti Signal identifikatori.',
+        help: 'Ieteicams. Ar komatu atdalīti Signal identifikatori.'
       },
       WHATSAPP_ENABLED: {
         label: 'Iespējot WhatsApp tiltu',
-        help: 'Automātiski iestata zemāk esošais pārslēgs. Atstājiet bez izmaiņām, ja vien nezināt, ka tas jums nepieciešams.',
+        help: 'Automātiski iestata zemāk esošais pārslēgs. Atstājiet bez izmaiņām, ja vien nezināt, ka tas jums nepieciešams.'
       },
       WHATSAPP_MODE: {
-        label: 'Tilta režīms',
+        label: 'Tilta režīms'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Atļautie WhatsApp lietotāji',
-        help: 'Ieteicams. Ar komatu atdalīti tālruņu numuri vai WhatsApp ID.',
-      },
+        help: 'Ieteicams. Ar komatu atdalīti tālruņu numuri vai WhatsApp ID.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Meklēt webhookus...',
@@ -1494,7 +1548,8 @@ export const lv = defineLocale({
     hint: 'Abonementu izmaiņas tiek automātiski pārlādētas, tiklīdz uztvērējs darbojas. Atspējoti abonementi noraida ienākošos notikumus.',
     empty: 'Vēl nav webhook abonementu.',
     disabledTitle: 'Webhook uztvērējs atspējots',
-    disabledBody: 'Webhooki ir atsevišķa vārtejas platforma. Iespējojiet tos šeit, lai pieņemtu ienākošos HTTP notikumus; tērzēšanas kanāli ir nepieciešami tikai tad, kad abonements piegādā uz Telegram, Discord, Slack vai citu kanālu.',
+    disabledBody:
+      'Webhooki ir atsevišķa vārtejas platforma. Iespējojiet tos šeit, lai pieņemtu ienākošos HTTP notikumus; tērzēšanas kanāli ir nepieciešami tikai tad, kad abonements piegādā uz Telegram, Discord, Slack vai citu kanālu.',
     enable: 'Iespējot webhookus',
     enabling: 'Iespējo...',
     enabled: (name: string) => `Iespējots: "${name}"`,
@@ -1547,8 +1602,8 @@ export const lv = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-pasts',
-      github_comment: 'GitHub komentārs',
-    },
+      github_comment: 'GitHub komentārs'
+    }
   },
   profiles: {
     close: 'Aizvērt profilus',
@@ -1626,7 +1681,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     failedLoadSoul: 'Neizdevās ielādēt SOUL.md',
     failedSaveSoul: 'Neizdevās saglabāt SOUL.md',
     failedCreate: 'Neizdevās izveidot profilu',
-    failedRename: 'Neizdevās pārdēvēt profilu',
+    failedRename: 'Neizdevās pārdēvēt profilu'
   },
   cron: {
     close: 'Aizvērt cron',
@@ -1641,14 +1696,14 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       paused: 'Pauzēts',
       disabled: 'Atspējots',
       error: 'kļūda',
-      completed: 'Pabeigts',
+      completed: 'Pabeigts'
     },
     deliveryLabels: {
       local: 'Šis dators',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-pasts',
+      email: 'E-pasts'
     },
     scheduleLabels: {
       daily: 'Katru dienu',
@@ -1657,7 +1712,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       monthly: 'Katru mēnesi',
       hourly: 'Katru stundu',
       'every-15-minutes': 'Ik pēc 15 minūtēm',
-      custom: 'Pielāgots',
+      custom: 'Pielāgots'
     },
     scheduleHints: {
       daily: 'Katru dienu plkst. 9:00',
@@ -1666,7 +1721,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       monthly: 'Katra mēneša pirmajā dienā plkst. 9:00',
       hourly: 'Katras stundas sākumā',
       'every-15-minutes': 'Ik pēc 15 minūtēm',
-      custom: 'Cron sintakse vai dabiskā valoda',
+      custom: 'Cron sintakse vai dabiskā valoda'
     },
     days: {
       '0': 'Svētdiena',
@@ -1676,7 +1731,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       '4': 'Ceturtdiena',
       '5': 'Piektdiena',
       '6': 'Sestdiena',
-      '7': 'Svētdiena',
+      '7': 'Svētdiena'
     },
     dayFallback: value => `diena ${value}`,
     everyDayAt: time => `Katru dienu plkst. ${time}`,
@@ -1686,7 +1741,8 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     topOfHour: 'Katras stundas sākumā',
     everyHourAt: minute => `Katru stundu plkst. :${minute}`,
     newCron: 'Jauns cron',
-    emptyDescNew: 'Ieplāno uzvedni, kas darbosies pēc cron izteiksmes. OpenAmer to izpildīs un nogādās rezultātus izvēlētajā galamērķī.',
+    emptyDescNew:
+      'Ieplāno uzvedni, kas darbosies pēc cron izteiksmes. OpenAmer to izpildīs un nogādās rezultātus izvēlētajā galamērķī.',
     emptyDescSearch: 'Mēģiniet plašāku meklēšanas vaicājumu.',
     emptyTitleNew: 'Vēl nav ieplānotu darbu',
     emptyTitleSearch: 'Nav atbilstību',
@@ -1723,7 +1779,8 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     editTitle: 'Rediģēt cron uzdevumu',
     createTitle: 'Jauns cron uzdevums',
     editDesc: 'Atjauniniet grafiku, uzvedni vai piegādes mērķi. Izmaiņas tiks piemērotas nākamajā palaišanā.',
-    createDesc: 'Ieplānojiet uzvednes automātisku palaišanu. Izmantojiet cron sintaksi vai dabisku frāzi, piemēram, "ik pēc 15 minūtēm".',
+    createDesc:
+      'Ieplānojiet uzvednes automātisku palaišanu. Izmantojiet cron sintaksi vai dabisku frāzi, piemēram, "ik pēc 15 minūtēm".',
     nameLabel: 'Nosaukums',
     namePlaceholder: 'Rīta kopsavilkums',
     promptLabel: 'Uzvedne',
@@ -1745,7 +1802,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     createAction: 'Izveidot cron',
     tabs: {
       jobs: 'Uzdevumi',
-      blueprints: 'Zīmējumi',
+      blueprints: 'Zīmējumi'
     },
     blueprints: {
       tab: 'Zīmējumi',
@@ -1759,8 +1816,8 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       loading: 'Ielādē blueprints...',
       failedLoad: 'Neizdevās ielādēt blueprints',
       emptyTitle: 'Nav pieejamu blueprints',
-      emptyDesc: 'Šajā aizmugurē nav pieejamu automatizācijas blueprints.',
-    },
+      emptyDesc: 'Šajā aizmugurē nav pieejamu automatizācijas blueprints.'
+    }
   },
   artifacts: {
     search: 'Meklēt artefaktus...',
@@ -1794,14 +1851,14 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     kindLink: 'saite',
     chat: 'Tērzēšana',
     copyUrl: 'Kopēt URL',
-    copyPath: 'Kopēt ceļu',
+    copyPath: 'Kopēt ceļu'
   },
   sidebar: {
     nav: {
       'new-session': 'Jauna sesija',
       skills: 'Iespējas',
       messaging: 'Ziņojumapmaiņa',
-      artifacts: 'Artefakti',
+      artifacts: 'Artefakti'
     },
     searchAria: 'Meklēt sesijas',
     searchPlaceholder: 'Meklēt sesijas…',
@@ -1833,7 +1890,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       namePlaceholder: 'piem., Skunkworks',
       foldersLabel: 'Mapes',
       ideaLabel: 'Ideja',
-      ideaPlaceholder: "Par ko ir šis projekts? (saglabāts IDEA.md)",
+      ideaPlaceholder: 'Par ko ir šis projekts? (saglabāts IDEA.md)',
       ideaGenerate: 'Ģenerēt ideju',
       ideaGenerating: 'Ģenerē…',
       ideaShuffle: 'Sajaukt veidnes',
@@ -1853,7 +1910,8 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       copyPath: 'Kopēt ceļu',
       removeFromSidebar: 'Slēpt no sānjoslas',
       createFailed: 'Neizdevās izveidot projektu',
-      staleBackend: 'Atjauniniet OpenAmer aizmugursistēmu, lai izveidotu projektus — jūsu aizmugursistēma ir vecāka nekā šī darbvirsmas lietotne (Iestatījumi → Atjauninājumi → Aizmugursistēma).',
+      staleBackend:
+        'Atjauniniet OpenAmer aizmugursistēmu, lai izveidotu projektus — jūsu aizmugursistēma ir vecāka nekā šī darbvirsmas lietotne (Iestatījumi → Atjauninājumi → Aizmugursistēma).',
       deleteConfirm: 'Tas noņem saglabāto projektu no OpenAmer. Faili, git repozitoriji un darba koki paliek neskarti.',
       startWork: 'Jauna darba koksne',
       newWorktreeTitle: 'Jauna darba koksne',
@@ -1875,13 +1933,15 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       noBranches: 'Zari nav atrasti',
       removeWorktree: 'Noņemt darba koksni',
       removeWorktreeFailed: 'Nevarēja noņemt darba koksni (nefiksētas izmaiņas?)',
-      removeWorktreeConfirm: 'Noņemiet to no git (izdzēš darba koksnes direktoriju; zars paliek), vai vienkārši paslēpiet joslu sānjoslā un atstājiet darba koksni diskā.',
-      removeWorktreeDirty: 'Šim darba kokam ir neapstiprinātas izmaiņas. Noņemt to piespiedu kārtā (izmetīs šīs izmaiņas) vai vienkārši paslēpt joslu un paturēt to diskā.',
+      removeWorktreeConfirm:
+        'Noņemiet to no git (izdzēš darba koksnes direktoriju; zars paliek), vai vienkārši paslēpiet joslu sānjoslā un atstājiet darba koksni diskā.',
+      removeWorktreeDirty:
+        'Šim darba kokam ir neapstiprinātas izmaiņas. Noņemt to piespiedu kārtā (izmetīs šīs izmaiņas) vai vienkārši paslēpt joslu un paturēt to diskā.',
       forceRemove: 'Noņemt piespiedu kārtā',
       enter: label => `Atvērt ${label}`,
       reorder: label => `Pārkārtot ${label}`,
       toggle: label => `Pārslēgt ${label} sesijas`,
-      back: 'Visi projekti',
+      back: 'Visi projekti'
     },
     newSessionIn: label => `Jauna sesija ${label}`,
     showMoreIn: (count, label) => `Rādīt ${count} vairāk ${label}`,
@@ -1919,15 +1979,15 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       ageNow: 'tagad',
       ageDay: 'd',
       ageHour: 'st',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Šodien agrāk',
       yesterday: 'Vakar',
       thisWeek: 'Šonedēļ agrāk',
       lastWeek: 'Pagājušajā nedēļā',
-      thisMonth: 'Agrāk šomēnes',
-    },
+      thisMonth: 'Agrāk šomēnes'
+    }
   },
   composer: {
     message: 'Ziņojums',
@@ -1938,20 +1998,20 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     newSessionPlaceholders: [
       'Ko veidojam?',
       'Uzdod OpenAmer uzdevumu',
-      "Kas tev prātā?",
+      'Kas tev prātā?',
       'Apraksti, kas tev vajadzīgs',
       'Ko risināsim?',
       'Jautā jebko',
-      'Sāc ar mērķi',
+      'Sāc ar mērķi'
     ],
     followUpPlaceholders: [
       'Nosūti papildu ziņu',
       'Pievieno vairāk konteksta',
       'Precizē pieprasījumu',
-      "Kas tālāk?",
+      'Kas tālāk?',
       'Turpini',
       'Ej vēl tālāk',
-      'Pielāgot vai turpināt',
+      'Pielāgot vai turpināt'
     ],
     startVoice: 'Sākt balss sarunu',
     queueMessage: 'Ievietot ziņojumu rindā',
@@ -1987,7 +2047,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       '/resume': 'atsākt iepriekšēju sesiju',
       '/details': 'kontrolēt transkripta detalitātes līmeni',
       '/copy': 'kopēt atlasi vai pēdējo asistenta ziņu',
-      '/quit': 'iziet no openamer',
+      '/quit': 'iziet no openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'atsauces uz failiem, mapēm, URL, git',
@@ -1997,7 +2057,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       'composer.sendQueued': 'sūtīt nākamo rindā esošo',
       'keybinds.openPanel': 'visas tastatūras saīsnes',
       'composer.cancel': 'aizvērt uznirstošo logu · atcelt izpildi',
-      'composer.history': 'pārcyklosiet uznirstošo logu / vēsturi',
+      'composer.history': 'pārcyklosiet uznirstošo logu / vēsturi'
     },
     attachUrlTitle: 'Pievienot URL',
     attachUrlDesc: 'OpenAmer ielādīs lapu un iekļaus to kā kontekstu šai rindai.',
@@ -2047,20 +2107,21 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     snippets: {
       codeReview: {
         label: 'Koda pārskats',
-        description: 'Auditē pašreizējās izmaiņas, lai atrastu regresijas, izlaistas malas situācijas un trūkstošus testus.',
-        text: 'Lūdzu, pārskati šo, vai nav kļūdu, regresiju un trūkstošu testu.',
+        description:
+          'Auditē pašreizējās izmaiņas, lai atrastu regresijas, izlaistas malas situācijas un trūkstošus testus.',
+        text: 'Lūdzu, pārskati šo, vai nav kļūdu, regresiju un trūkstošu testu.'
       },
       implementationPlan: {
         label: 'Ieviešanas plāns',
         description: 'Ieskicē pieeju pirms ķeries pie koda, lai izmaiņu kopums paliktu fokusēts.',
-        text: 'Lūdzu, pirms koda maiņas izveido kodolīgu ieviešanas plānu.',
+        text: 'Lūdzu, pirms koda maiņas izveido kodolīgu ieviešanas plānu.'
       },
       explainThis: {
         label: 'Paskaidro šo',
         description: 'Izstāsti, kā darbojas atlasītais kods, un pievieno saites uz galvenajiem failiem.',
-        text: 'Lūdzu, paskaidro, kā tas darbojas, un norādi uz galvenajiem failiem.',
-      },
-    },
+        text: 'Lūdzu, paskaidro, kā tas darbojas, un norādi uz galvenajiem failiem.'
+      }
+    }
   },
   statusStack: {
     agents: 'Aģenti',
@@ -2108,13 +2169,14 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       openPr: 'Atvērt PR',
       ghMissing: 'Instalējiet GitHub CLI (gh) un piesakieties, lai atvērtu PR',
       agentShip: 'Lūgt OpenAmer atvērt PR',
-      agentShipPrompt: 'Pārskatiet pašreizējās izmaiņas, commitējiet tās ar skaidru conventional-commit ziņojumu, nosūtiet atzaru un atveriet izmaiņu pieprasījumu.',
+      agentShipPrompt:
+        'Pārskatiet pašreizējās izmaiņas, commitējiet tās ar skaidru conventional-commit ziņojumu, nosūtiet atzaru un atveriet izmaiņu pieprasījumu.',
       newBranch: 'Jauns atzars',
       branchOffFrom: base => `Jauns atzars no ${base}`,
       switchTo: branch => `Pārslēgties uz ${branch}`,
       switchFailed: branch => `Neizdevās pārslēgties uz ${branch}`,
-      worktrees: 'Darba koki',
-    },
+      worktrees: 'Darba koki'
+    }
   },
   updates: {
     stages: {
@@ -2129,7 +2191,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       done: 'Atjaunināšana pabeigta',
       manual: 'Atjauniniet no termināļa',
       guiSkew: 'Atjauniniet darbvirsmas lietotni',
-      error: 'Atjaunināšana apturēta',
+      error: 'Atjaunināšana apturēta'
     },
     checking: 'Meklējam atjauninājumus…',
     checkFailedTitle: 'Nevarēja pārbaudīt atjauninājumus',
@@ -2152,12 +2214,15 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     manualBody: 'Jūs instalējāt OpenAmer no komandrindas, tāpēc atjauninājumi notiek arī tur. Ielīmējiet šo terminālī:',
     manualPickedUp: 'OpenAmer pārņems jauno versiju nākamreiz, kad to palaidīsiet.',
     guiSkewTitle: 'Atjauniniet darbvirsmas lietotni',
-    guiSkewBody: 'Aizmugursistēma tika atjaunināta, bet šī darbvirsmas lietotnes pakotne netika mainīta. Atjauniniet vai pārinstalējiet OpenAmer darbvirsmas lietotni (jūsu AppImage / .deb / .rpm), lai tā atbilstu.',
+    guiSkewBody:
+      'Aizmugursistēma tika atjaunināta, bet šī darbvirsmas lietotnes pakotne netika mainīta. Atjauniniet vai pārinstalējiet OpenAmer darbvirsmas lietotni (jūsu AppImage / .deb / .rpm), lai tā atbilstu.',
     copy: 'Kopēt',
     copied: 'Kopēts',
     done: 'Gatavs',
-    applyingBody: 'OpenAmer atjauninātājs pārņem vadību savā logā un automātiski atkārtoti atver OpenAmer, kad tas ir pabeigts. Lūdzu, atjaunināšanas laikā neatveriet OpenAmer vēlreiz.',
-    applyingBodyBackend: 'Attālā aizmugursistēma instalē atjauninājumu un tiks restartēta. OpenAmer automātiski izveidos savienojumu no jauna, kad tā būs pieejama.',
+    applyingBody:
+      'OpenAmer atjauninātājs pārņem vadību savā logā un automātiski atkārtoti atver OpenAmer, kad tas ir pabeigts. Lūdzu, atjaunināšanas laikā neatveriet OpenAmer vēlreiz.',
+    applyingBodyBackend:
+      'Attālā aizmugursistēma instalē atjauninājumu un tiks restartēta. OpenAmer automātiski izveidos savienojumu no jauna, kad tā būs pieejama.',
     applyingClose: 'Šis logs aizvērsies atjaunināšanas laikā, pēc tam OpenAmer atvērsies pats no jauna.',
     errorTitle: 'Atjaunināšana netika pabeigta',
     errorBody: 'Nav ko uztraukties — nekas netika zaudēts. Varat mēģināt vēlreiz tagad.',
@@ -2168,12 +2233,14 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       restarting: 'Aizmugure pārstartējas, lai ielādētu atjauninājumu…',
       notAvailable: 'Atjauninājums šai aizmugurei nav pieejams.',
       failed: 'Neizdevās atjaunināt backendu.',
-      noReturn: 'Backends neatgriezās tiešsaistē. Atjaunināšana, iespējams, netika pabeigta — pārbaudiet backenda resursdatoru.',
+      noReturn:
+        'Backends neatgriezās tiešsaistē. Atjaunināšana, iespējams, netika pabeigta — pārbaudiet backenda resursdatoru.'
     },
     appErrors: {
-      updateLocked: 'Atjaunināšana atcelta: šo instalāciju tur atvērts cits OpenAmer logs vai terminālis, kurā darbojas openamer. Aizvērt to un mēģiniet vēlreiz.',
-      updateFailed: 'Atjaunināšana netika pabeigta. Nav problēmu — nekas netika zaudēts. Varat mēģināt vēlreiz tagad.',
-    },
+      updateLocked:
+        'Atjaunināšana atcelta: šo instalāciju tur atvērts cits OpenAmer logs vai terminālis, kurā darbojas openamer. Aizvērt to un mēģiniet vēlreiz.',
+      updateFailed: 'Atjaunināšana netika pabeigta. Nav problēmu — nekas netika zaudēts. Varat mēģināt vēlreiz tagad.'
+    }
   },
   install: {
     stageStates: {
@@ -2181,25 +2248,29 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       running: 'Instalē',
       succeeded: 'Pabeigts',
       skipped: 'Izlaista',
-      failed: 'Neizdevās',
+      failed: 'Neizdevās'
     },
     oneTimeTitle: 'OpenAmer vajag vienreizēju instalēšanu',
-    unsupportedDesc: platform => `Automātiska instalēšana pirmajā palaišanā vēl nav pieejama ${platform}. Atveriet termināli un palaidiet zemāk esošo komandu, pēc tam palaidiet šo lietotni no jauna. Nākamajās palaišanās šis posms tiks izlaists.`,
+    unsupportedDesc: platform =>
+      `Automātiska instalēšana pirmajā palaišanā vēl nav pieejama ${platform}. Atveriet termināli un palaidiet zemāk esošo komandu, pēc tam palaidiet šo lietotni no jauna. Nākamajās palaišanās šis posms tiks izlaists.`,
     installCommand: 'Instalēšanas komanda',
     copyCommand: 'Kopēt komandu',
     viewDocs: 'Skatīt instalēšanas dokumentāciju',
     installTo: 'Instalēs uz',
     retryAfterRun: 'Izpildīts — mēģināt vēlreiz',
     setupChoiceTitle: 'Iestatiet OpenAmer Desktop',
-    setupChoiceDesc: 'Savienojiet šo lietotni ar OpenAmer vārtu, ko jau izmantojat, vai instalējiet OpenAmer lokāli šajā datorā.',
+    setupChoiceDesc:
+      'Savienojiet šo lietotni ar OpenAmer vārtu, ko jau izmantojat, vai instalējiet OpenAmer lokāli šajā datorā.',
     connectExistingTitle: 'Savienot ar esošo OpenAmer',
     connectExistingShort: 'Savienot esošo',
-    connectExistingDesc: 'Izmantojiet attālināto backendu ar sesijas pilnīgu vai pierakstīšanos pārlūkā. Lokālā instalēšana netiks sākta.',
+    connectExistingDesc:
+      'Izmantojiet attālināto backendu ar sesijas pilnīgu vai pierakstīšanos pārlūkā. Lokālā instalēšana netiks sākta.',
     installLocalTitle: 'Instalēt OpenAmer lokāli',
     installLocalDesc: 'Lejupielādējiet OpenAmer, izveidojiet tā Python vidi un palaidiet backendu šajā datorā.',
     localStartUnavailable: 'Lokālo instalēšanu nevarēja sākt. Restartējiet OpenAmer Desktop un mēģiniet vēlreiz.',
     remoteSetupTitle: 'Savienot ar esošo OpenAmer',
-    remoteSetupDesc: 'Ievadiet vārtejas URL. OpenAmer Desktop noteiks, vai nepieciešams tokens vai pierakstīšanās pārlūkā.',
+    remoteSetupDesc:
+      'Ievadiet vārtejas URL. OpenAmer Desktop noteiks, vai nepieciešams tokens vai pierakstīšanās pārlūkā.',
     remoteUrlTitle: 'Vārtejas URL',
     remoteUrlDesc: 'Izmantojiet OpenAmer vārtejas bāzes URL, iekļaujot https://, ja piekļūstat attālināti.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2226,8 +2297,10 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     failedTitle: 'Instalēšana neizdevās',
     settingUpTitle: 'OpenAmer Agent iestatīšana',
     finishingTitle: 'Pabeigšana',
-    failedDesc: 'Viens no instalēšanas sobiem neizdevās. Windows tas var notikt, ja darbojas cita OpenAmer CLI vai datora lietojumuma instance. Apturiet visas darbojošās OpenAmer instances un tad mēģiniet vēlreiz. Pilnu transkriptu skatiet detaļās zemāk vai datora žurnālā.',
-    activeDesc: 'Šis ir vienreizējs iestatījums. OpenAmer instalētājs lejupielādē atkarības un konfigurē jūsu ierīci. Turpmākās palaišanas šo soli izlaist.',
+    failedDesc:
+      'Viens no instalēšanas sobiem neizdevās. Windows tas var notikt, ja darbojas cita OpenAmer CLI vai datora lietojumuma instance. Apturiet visas darbojošās OpenAmer instances un tad mēģiniet vēlreiz. Pilnu transkriptu skatiet detaļās zemāk vai datora žurnālā.',
+    activeDesc:
+      'Šis ir vienreizējs iestatījums. OpenAmer instalētājs lejupielādē atkarības un konfigurē jūsu ierīci. Turpmākās palaišanas šo soli izlaist.',
     progress: (completed, total) => `${completed} no ${total} sobas pabeigti`,
     currentStage: stage => ` -- tagad: ${stage}`,
     fetchingManifest: 'Instalētāja manifesta iegūšana...',
@@ -2241,18 +2314,19 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     transcriptSaved: 'Pilns transkripts saglabāts',
     copiedOutput: 'Nokopēts!',
     copyOutput: 'Kopēt izvadi',
-    reloadRetry: 'Pārlādēt un mēģināt vēlreiz',
+    reloadRetry: 'Pārlādēt un mēģināt vēlreiz'
   },
   onboarding: {
-    headerTitle: "Iestatīsim OpenAmer Agent",
-    headerDesc: 'Pievienojiet modeļa pakalpojumu, lai sāktu sarunu. Lielākajai daļai opciju nepieciešams viens klikšķis.',
+    headerTitle: 'Iestatīsim OpenAmer Agent',
+    headerDesc:
+      'Pievienojiet modeļa pakalpojumu, lai sāktu sarunu. Lielākajai daļai opciju nepieciešams viens klikšķis.',
     preparingInstall: 'OpenAmer pabeidz instalēšanu. Parasti tas aizņem mazāk par minūti pirmajā palaišanā.',
     starting: 'OpenAmer palaižana…',
     lookingUpProviders: 'Pakalpojumu meklēšana...',
     collapse: 'Sakļaut',
     otherProviders: 'Citi pakalpojumi',
     haveApiKey: 'Man ir API atslēga',
-    chooseLater: "Pakalpojumu sniedzēju izvēlēšos vēlāk",
+    chooseLater: 'Pakalpojumu sniedzēju izvēlēšos vēlāk',
     recommended: 'Ieteicams',
     connected: 'Savienots',
     featuredPitch: 'Viens abonements, 300+ vadošie modeļi — ieteicamais veids, kā darbināt OpenAmer',
@@ -2261,28 +2335,29 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     apiKeyOptions: {
       fireworks: {
         short: 'tiešs modeļa API',
-        description: 'Tieša piekļuve Fireworks AI mitinātajiem modeļiem.',
+        description: 'Tieša piekļuve Fireworks AI mitinātajiem modeļiem.'
       },
       openrouter: {
         short: 'viena atslēga, daudzi modeļi',
-        description: 'Simtiem modeļu aiz vienas atslēgas. Labs noklusējums jaunām instalācijām.',
+        description: 'Simtiem modeļu aiz vienas atslēgas. Labs noklusējums jaunām instalācijām.'
       },
       openai: {
         short: 'GPT klases modeļi',
-        description: 'Tieša piekļuve OpenAI modeļiem.',
+        description: 'Tieša piekļuve OpenAI modeļiem.'
       },
       gemini: {
         short: 'Gemini modeļi',
-        description: 'Tieša piekļuve Google Gemini modeļiem.',
+        description: 'Tieša piekļuve Google Gemini modeļiem.'
       },
       xai: {
         short: 'Grok modeļi',
-        description: 'Tieša piekļuve xAI Grok modeļiem.',
+        description: 'Tieša piekļuve xAI Grok modeļiem.'
       },
       local: {
         short: 'pašmitināts',
-        description: 'Norādiet OpenAmer uz lokālu vai pašmitinātu OpenAI saderīgu galapunktu (vLLM, llama.cpp, Ollama u.c.).',
-      },
+        description:
+          'Norādiet OpenAmer uz lokālu vai pašmitinātu OpenAI saderīgu galapunktu (vLLM, llama.cpp, Ollama u.c.).'
+      }
     },
     backToSignIn: 'Atpakaļ uz pierakstīšanos',
     getKey: 'Iegūt atslēgu',
@@ -2295,7 +2370,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     flowSubtitles: {
       pkce: 'Atver pārlūku, lai pierakstītos, un pēc tam turpina šeit',
       device_code: 'Atver pārbaudes lapu pārlūkā — OpenAmer savienojas automātiski',
-      external: 'Pierakstieties vienreiz terminālī, pēc tam atgriezieties tērzēšanā',
+      external: 'Pierakstieties vienreiz terminālī, pēc tam atgriezieties tērzēšanā'
     },
     startingSignIn: provider => `Sāk pierakstīšanos ar ${provider}...`,
     verifyingCode: provider => `Pārbaudām jūsu kodu ar ${provider}...`,
@@ -2309,11 +2384,13 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     copyAuthCode: 'Kopējiet autorizācijas kodu un ielīmējiet to zemāk.',
     pasteAuthCode: 'Ielīmējiet autorizācijas kodu',
     reopenAuthPage: 'Vēlreiz atvērt autorizācijas lapu',
-    autoBrowser: provider => `Mēs atvērām ${provider} jūsu pārlūkā. Autorizējiet tur OpenAmer, un jūs tiksit savienots automātiski — nekas nav jākopē vai jāielīmē.`,
+    autoBrowser: provider =>
+      `Mēs atvērām ${provider} jūsu pārlūkā. Autorizējiet tur OpenAmer, un jūs tiksit savienots automātiski — nekas nav jākopē vai jāielīmē.`,
     reopenSignInPage: 'Vēlreiz atvērt pieteikšanās lapu',
     waitingAuthorize: 'Gaidām jūsu autorizāciju...',
-    externalPending: provider => `${provider} pieteikšanai izmanto savu CLI. Palaidiet šo komandu terminālī, pēc tam atgriezieties un izvēlieties "Esmu pieteicies":`,
-    signedIn: "Esmu pieteicies",
+    externalPending: provider =>
+      `${provider} pieteikšanai izmanto savu CLI. Palaidiet šo komandu terminālī, pēc tam atgriezieties un izvēlieties "Esmu pieteicies":`,
+    signedIn: 'Esmu pieteicies',
     deviceCodeOpened: provider => `Mēs atvērām ${provider} jūsu pārlūkā. Ievadiet tur šo kodu:`,
     reopenVerification: 'Vēlreiz atvērt verifikācijas lapu',
     copy: 'Kopēt',
@@ -2324,7 +2401,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     price: (input, output) => `${input} ievade / ${output} izvade par Mtok`,
     change: 'Mainīt',
     startChatting: 'Sākt',
-    docs: provider => `${provider} dokumenti`,
+    docs: provider => `${provider} dokumenti`
   },
   modelPicker: {
     title: 'Mainīt modeli',
@@ -2340,13 +2417,13 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     free: 'Bezmaksas',
     freeTier: 'Bezmaksas līmenis',
     priceTitle: 'Ievades / izvades cena par miljonu marķieru',
-    wasPrice: 'bija',
+    wasPrice: 'bija'
   },
   modelVisibility: {
     title: 'Modeļi',
     search: 'Meklēt modeļus',
     noAuthenticatedProviders: 'Nav autentificētu nodrošinātāju.',
-    addProvider: 'Pievienot nodrošinātāju…',
+    addProvider: 'Pievienot nodrošinātāju…'
   },
   shell: {
     windowControls: 'Loga vadīklas',
@@ -2357,7 +2434,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       noModels: 'Modeļi nav atrasti',
       editModels: 'Rediģēt modeļus…',
       refreshModels: 'Atjaunot modeļus',
-      fast: 'Ātri',
+      fast: 'Ātri'
     },
     modelOptions: {
       noOptions: 'Šim modelim nav opciju',
@@ -2373,7 +2450,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       max: 'Maks.',
       ultra: 'Ultraaugsts',
       updateFailed: 'Modeļa opcijas atjauninājums neizdevās',
-      fastFailed: 'Ātrā režīma atjauninājums neizdevās',
+      fastFailed: 'Ātrā režīma atjauninājums neizdevās'
     },
     gatewayMenu: {
       gateway: 'Vārteja',
@@ -2388,7 +2465,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       connection: label => `Savienojums: ${label}`,
       recentActivity: 'Nesenā aktivitāte',
       viewAllLogs: 'Skatīt visus žurnālus →',
-      messagingPlatforms: 'Ziņapmaiņas platformas',
+      messagingPlatforms: 'Ziņapmaiņas platformas'
     },
     approvalMode: {
       title: 'Apstiprināšanas režīms',
@@ -2398,7 +2475,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       smart: 'Vieds',
       smartDescription: 'Automātiski novērtēt darbības un jautāt, kad nepieciešams',
       off: 'Izslēgts',
-      offDescription: 'Palaist bez apstiprinājuma uzvednēm',
+      offDescription: 'Palaist bez apstiprinājuma uzvednēm'
     },
     statusbar: {
       unknown: 'nezināms',
@@ -2414,7 +2491,8 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       connectionCloud: host => `Mākons: ${host}`,
       connectionCloudTooltip: host => `Savienots ar OpenAmer Cloud ${host} · noklikšķiniet, lai pārvaldītu`,
       connectionSshTooltip: host => `Savienots ar ${host}, izmantojot SSH · noklikšķiniet, lai pārvaldītu`,
-      connectionRemoteTooltip: host => `Savienots ar attālināto aizmugursistēmu ${host} · noklikšķiniet, lai pārvaldītu`,
+      connectionRemoteTooltip: host =>
+        `Savienots ar attālināto aizmugursistēmu ${host} · noklikšķiniet, lai pārvaldītu`,
       backendLabel: version => `backend v${version}`,
       commit: sha => `komits ${sha}`,
       branch: branch => `zara ${branch}`,
@@ -2454,27 +2532,29 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
           skills: 'Prasmes',
           subagent_definitions: 'Apakšagentu definīcijas',
           system_prompt: 'Sistēmas uzvedne',
-          tool_definitions: 'Rīku definīcijas',
+          tool_definitions: 'Rīku definīcijas'
         },
         empty: 'Vēl nav konteksta datu',
         loading: 'Ielādē sadalījumu…',
         percentFull: percent => `${percent}% pilns`,
         title: 'Konteksta izmantošana',
-        tokenSummary: (used, max) => `${used} / ${max} žetoni`,
+        tokenSummary: (used, max) => `${used} / ${max} žetoni`
       },
       openContextUsage: 'Atvērt konteksta izmantošanas sadalījumu',
       session: 'Sesija',
       runtimeSessionElapsed: 'Sesijas ilgums',
-      yoloOn: 'YOLO ieslēgts — automātiski apstiprina bīstamas komandas. Noklikšķiniet, lai izslēgtu. Shift+noklikšķis pārslēdz to globāli.',
-      yoloOff: 'YOLO izslēgts — noklikšķiniet, lai automātiski apstiprinātu bīstamas komandas. Shift+noklikšķis pārslēdz to globāli.',
+      yoloOn:
+        'YOLO ieslēgts — automātiski apstiprina bīstamas komandas. Noklikšķiniet, lai izslēgtu. Shift+noklikšķis pārslēdz to globāli.',
+      yoloOff:
+        'YOLO izslēgts — noklikšķiniet, lai automātiski apstiprinātu bīstamas komandas. Shift+noklikšķis pārslēdz to globāli.',
       modelNone: 'nav',
       noModel: 'nav modeļa',
       switchModel: 'Mainīt modeli',
       openModelPicker: 'Atvērt modeļa atlasītāju',
       modelPinned: 'Jūs piespravinājāt; jaunās sarunas izmanto to, nevis iestatījumu noklusējuma vērtību',
       modelTitle: (provider, model) => `Modelis · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Labā sānjosla',
@@ -2510,7 +2590,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     terminalNew: 'Jauns terminālis',
     terminalCloseOthers: 'Aizvērt pārējos',
     terminalCloseAll: 'Aizvērt visus',
-    addToChat: 'Pievienot sarunai',
+    addToChat: 'Pievienot sarunai'
   },
   preview: {
     tab: 'Priekšskatījums',
@@ -2544,7 +2624,8 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     unsavedChanges: 'Nesaglabātas izmaiņas',
     saveFailed: message => `Neizdevās saglabāt: ${message}`,
     diskChangedTitle: 'Datne mainīta diskā',
-    diskChangedBody: 'Šī datne ir mainīta kopš atvēršanas. Pārrakstīt ar jūsu versiju vai atmest izmaiņas un ielādēt no jauna?',
+    diskChangedBody:
+      'Šī datne ir mainīta kopš atvēršanas. Pārrakstīt ar jūsu versiju vai atmest izmaiņas un ielādēt no jauna?',
     overwrite: 'Pārrakstīt',
     discardReload: 'Atmest un ielādēt no jauna',
     console: {
@@ -2565,7 +2646,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       empty: 'Konsoles ziņojumi vēl nav pieejami.',
       promptHeader: 'Konsoles prizkats:',
       sentTitle: 'Nosūtīts tērzēšanai',
-      sentMessage: count => `${count} loga ieraksts${count === 1 ? 'y' : 'ies'} pievienots kompozitoram`,
+      sentMessage: count => `${count} loga ieraksts${count === 1 ? 'y' : 'ies'} pievienots kompozitoram`
     },
     web: {
       appFailedToBoot: 'Prizkata lietotne nevarēja startēt',
@@ -2590,17 +2671,19 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       reloadingNow: 'Priekšskatījums tiek pārlādēts.',
       restartFailedTitle: 'Priekšskatījuma restartēšana neizdevās',
       restartFailedMessage: 'OpenAmer nevarēja restartēt serveri.',
-      stillWorking: 'OpenAmer joprojām darbojas, bet restartēšanas rezultāts vēl nav ieradies. Servera komanda var darboties priekšplānā.',
+      stillWorking:
+        'OpenAmer joprojām darbojas, bet restartēšanas rezultāts vēl nav ieradies. Servera komanda var darboties priekšplānā.',
       workspaceReloading: 'Darba vieta mainīta, priekšskatījums tiek pārlādēts',
       fileChanged: url => `Fails mainīts, priekšskatījums tiek pārlādēts: ${url}`,
       filesChanged: (count, url) => `${count} failu izmaiņas, priekšskatījums tiek pārlādēts: ${url}`,
       watchFailed: message => `Nevarēja novērot priekšskatījuma failu: ${message}`,
-      moduleMimeDescription: 'Moduļu skripti tiek apkalpoti ar nepareizu MIME tipu. Tas parasti nozīmē, ka statiskā failu serveris apkalpo Vite/React lietotni, nevis projekta izstrādes serveri.',
+      moduleMimeDescription:
+        'Moduļu skripti tiek apkalpoti ar nepareizu MIME tipu. Tas parasti nozīmē, ka statiskā failu serveris apkalpo Vite/React lietotni, nevis projekta izstrādes serveri.',
       loadFailedConsole: (code, message) => `Ielādēšana neizdevās${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Priekšskatījuma lapu nevarēja sasniegt.',
       openTarget: url => `Atvērt ${url}`,
-      fallbackTitle: 'Priekšskatījums',
-    },
+      fallbackTitle: 'Priekšskatījums'
+    }
   },
   zones: {
     showHeader: 'Rādīt galveni',
@@ -2608,7 +2691,8 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     minimize: 'Minimizēt',
     restore: 'Atjaunot',
     closeRunningTitle: 'Aizvērt darbojošos cilni?',
-    closeRunningBody: 'Šis čats joprojām darbojas (vai gaida jūsu ievadi). Aizverot cilni, tas tiek paslēpts — sesija saglabā savu progresu, un to var atkārtoti atvērt no sānjoslas.',
+    closeRunningBody:
+      'Šis čats joprojām darbojas (vai gaida jūsu ievadi). Aizverot cilni, tas tiek paslēpts — sesija saglabā savu progresu, un to var atkārtoti atvērt no sānjoslas.',
     closeRunningConfirm: 'Aizvērt cilni',
     closeOthers: 'Aizvērt pārējās',
     closeToRight: 'Aizvērt cilnes pa labi',
@@ -2624,7 +2708,8 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     pluginDisabledBody: 'Iespējojiet to vēlreiz sadaļā Iestatījumi → Spraudņi, lai atgrieztu paneli.',
     missingPane: paneId => `Trūkst paneļa: ${paneId}`,
     editTitle: 'Izkārtojumi',
-    editHint: 'Izvēlieties izkārtojumu vai velciet paneļus starp zonām. Ar labo pogu noklikšķiniet uz zonas, lai sadalītu.',
+    editHint:
+      'Izvēlieties izkārtojumu vai velciet paneļus starp zonām. Ar labo pogu noklikšķiniet uz zonas, lai sadalītu.',
     reset: 'Atiestatīt',
     templates: 'Veidnes',
     custom: 'Pielāgots',
@@ -2634,7 +2719,8 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     deletePreset: name => `Dzēst ${name}`,
     zoneEditorTitle: 'Zonu redaktors',
     editorHintPre: 'noklikšķiniet, lai sadalītu · ',
-    editorHintPost: ' apgriež līniju · velciet pāri zonām, lai apvienotu · velciet koplietotās malas, lai mainītu izmēru',
+    editorHintPost:
+      ' apgriež līniju · velciet pāri zonām, lai apvienotu · velciet koplietotās malas, lai mainītu izmēru',
     templateColumns: 'Kolonnas',
     templateRows: 'Rindas',
     templateGrid: 'Režģis',
@@ -2645,25 +2731,16 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     layoutNamePlaceholder: fallback => `Izkārtojuma nosaukums (${fallback})`,
     saveApply: 'Saglabāt un piemērot',
     notExpressible: 'šis izkārtojums savijas (vējdzirnaviņas) — vēl nav izsakāms kā ligzdoti sadalījumi',
-    zoneCount: count => `${count} zonas`,
+    zoneCount: count => `${count} zonas`
   },
   assistant: {
     thread: {
       loadingSession: 'Ielādē sesiju',
       showEarlier: 'Rādīt agrākās ziņas',
       loadingResponse: 'OpenAmer ielādē atbildi',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Domā',
       today: time => `Šodien, ${time}`,
@@ -2690,7 +2767,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       restoreNext: 'Atjaunot nākamo kontrolpunktu',
       goForward: 'Doties uz priekšu',
       sendEdited: 'Sūtīt laboto ziņojumu',
-      attachingFile: 'Pievieno…',
+      attachingFile: 'Pievieno…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer vārteja nav savienota',
@@ -2703,8 +2780,9 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       jumpToApproval: 'Nepieciešams apstiprinājums',
       reject: 'Noraidīt',
       alwaysTitle: 'Vienmēr atļaut šo komandu?',
-      alwaysDescription: pattern => `Tas pievieno šablonu “${pattern}” jūsu pastāvīgajam atļauto sarakstam (~/.openamer/config.yaml). OpenAmer vairs nejautās par šādām komandām — ne šajā sesijā, ne turpmākajās.`,
-      alwaysAllow: 'Vienmēr atļaut',
+      alwaysDescription: pattern =>
+        `Tas pievieno šablonu “${pattern}” jūsu pastāvīgajam atļauto sarakstam (~/.openamer/config.yaml). OpenAmer vairs nejautās par šādām komandām — ne šajā sesijā, ne turpmākajās.`,
+      alwaysAllow: 'Vienmēr atļaut'
     },
     clarify: {
       notReady: 'Precizējuma pieprasījums vēl nav gatavs',
@@ -2718,7 +2796,7 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       continueLabel: 'Turpināt',
       lateAnswer: (question, choice) => `Par: "${question}" — mana atbilde: ${choice}`,
       lateAnswerTip: 'Sagatavot šo atbildi kā papildu ziņojumu',
-      lateAnswerHint: 'Šī uzvedne vairs negaida. Izvēlieties opciju, lai to sagatavotu kā papildu ziņojumu.',
+      lateAnswerHint: 'Šī uzvedne vairs negaida. Izvēlieties opciju, lai to sagatavotu kā papildu ziņojumu.'
     },
     tool: {
       code: 'Kods',
@@ -2754,11 +2832,11 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
         ran: 'Izpildīts',
         running: 'Izpilde',
         ranCode: 'Izpildīja kodu',
-        runningCode: 'Skriptēšana',
+        runningCode: 'Skriptēšana'
       },
       prefixes: {
         browser: 'Pārlūks',
-        web: 'Tīmeklis',
+        web: 'Tīmeklis'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2766,139 +2844,141 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Izpilda ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Izpilda ${action.toLowerCase()}`,
+        runningTool: action => `Izpilda ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Noklikšķināja lapas elementu',
           pending: 'Noklikšķina lapas elementu',
-          pendingAction: 'Klikšķināšana',
+          pendingAction: 'Klikšķināšana'
         },
         browser_fill: {
           done: 'Aizpildīts veidlapas lauks',
           pending: 'Veidlapas lauka aizpildīšana',
-          pendingAction: 'Aizpildīšana',
+          pendingAction: 'Aizpildīšana'
         },
         browser_navigate: {
           done: 'Atvērta lapa',
           pending: 'Lapas atvēršana',
-          pendingAction: 'Atvēršana',
+          pendingAction: 'Atvēršana'
         },
         browser_snapshot: {
           done: 'Uzņemts lapas momentuzņēmums',
           pending: 'Lapas momentuzņēmuma uzņemšana',
-          pendingAction: 'Uzņemšana',
+          pendingAction: 'Uzņemšana'
         },
         browser_take_screenshot: {
           done: 'Uzņemts ekrānuzņēmums',
           pending: 'Ekrānuzņēmuma uzņemšana',
-          pendingAction: 'Uzņemšana',
+          pendingAction: 'Uzņemšana'
         },
         browser_type: {
           done: 'Ierakstīts lapā',
           pending: 'Rakstīšana lapā',
-          pendingAction: 'Rakstīšana',
+          pendingAction: 'Rakstīšana'
         },
         clarify: {
           done: 'Uzdots jautājums',
           pending: 'Jautājuma uzdošana',
-          pendingAction: 'Jautāšana',
+          pendingAction: 'Jautāšana'
         },
         cronjob: {
           done: 'Cron uzdevums',
           pending: 'Cron uzdevuma plānošana',
-          pendingAction: 'Plānošana',
+          pendingAction: 'Plānošana'
         },
         edit_file: {
           done: 'Rediģēts fails',
           pending: 'Faila rediģēšana',
-          pendingAction: 'Rediģēšana',
+          pendingAction: 'Rediģēšana'
         },
         execute_code: {
           done: 'Izpildīts kods',
           pending: 'Skriptošana',
-          pendingAction: 'Skriptošana',
+          pendingAction: 'Skriptošana'
         },
         image_generate: {
           done: 'Ģenerēts attēls',
           pending: 'Attēla ģenerēšana',
-          pendingAction: 'Ģenerēšana',
+          pendingAction: 'Ģenerēšana'
         },
         list_files: {
           done: 'Uzskaitīti faili',
           pending: 'Failu uzskaitīšana',
-          pendingAction: 'Uzskaitīšana',
+          pendingAction: 'Uzskaitīšana'
         },
         patch: {
           done: 'Labots fails',
           pending: 'Faila labošana',
-          pendingAction: 'Labošana',
+          pendingAction: 'Labošana'
         },
         read_file: {
           done: 'Nolasīts fails',
           pending: 'Faila lasīšana',
-          pendingAction: 'Lasīšana',
+          pendingAction: 'Lasīšana'
         },
         search_files: {
           done: 'Faili meklēti',
           pending: 'Meklē failus',
-          pendingAction: 'Meklē',
+          pendingAction: 'Meklē'
         },
         session_search_recall: {
           done: 'Sesijas vēsture meklēta',
           pending: 'Meklē sesijas vēsturi',
-          pendingAction: 'Meklē',
+          pendingAction: 'Meklē'
         },
         terminal: {
           done: 'Komanda izpildīta',
           pending: 'Izpilda komandu',
-          pendingAction: 'Izpilda',
+          pendingAction: 'Izpilda'
         },
         todo: {
           done: 'Uzdevumi atjaunināti',
           pending: 'Atjaunina uzdevumus',
-          pendingAction: 'Atjaunina',
+          pendingAction: 'Atjaunina'
         },
         vision_analyze: {
           done: 'Attēls analizēts',
           pending: 'Analizē attēlu',
-          pendingAction: 'Analizē',
+          pendingAction: 'Analizē'
         },
         web_extract: {
           done: 'Tīmekļa lapa nolasīta',
           pending: 'Lasa tīmekļa lapu',
-          pendingAction: 'Lasa',
+          pendingAction: 'Lasa'
         },
         web_search: {
           done: 'Meklēts tīmeklī',
           pending: 'Meklē tīmeklī',
-          pendingAction: 'Meklēšana',
+          pendingAction: 'Meklēšana'
         },
         write_file: {
           done: 'Rediģēts fails',
           pending: 'Rediģē failu',
-          pendingAction: 'Rediģēšana',
-        },
-      },
-    },
+          pendingAction: 'Rediģēšana'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer vārteja nav savienota',
     sudoSendFailed: 'Nevarēja nosūtīt sudo paroli',
     secretSendFailed: 'Nevarēja nosūtīt noslēpumu',
     sudoTitle: 'Administratora parole',
-    sudoDesc: 'OpenAmer nepieciešama jūsu sudo parole, lai izpildītu privileģētu komandu. Tā tiek nosūtīta tikai jūsu vietējam aģentam.',
+    sudoDesc:
+      'OpenAmer nepieciešama jūsu sudo parole, lai izpildītu privileģētu komandu. Tā tiek nosūtīta tikai jūsu vietējam aģentam.',
     sudoPlaceholder: 'sudo parole',
     secretTitle: 'Nepieciešams noslēpums',
     secretDesc: 'OpenAmer nepieciešami akreditācijas dati, lai turpinātu.',
-    secretPlaceholder: 'noslēpuma vērtība',
+    secretPlaceholder: 'noslēpuma vērtība'
   },
   desktop: {
     audioReadFailed: 'Nevarēja nolasīt ierakstīto audio',
     sessionUnavailable: 'Sesija nav pieejama',
     createSessionFailed: 'Nevarēja izveidot jaunu sesiju',
     promptFailed: 'Neizdevās izpildīt uzvedni',
-    providerCredentialRequired: 'Pirms pirmās ziņas nosūtīšanas pievienojiet pakalpojuma sniedzēja akreditācijas datus.',
+    providerCredentialRequired:
+      'Pirms pirmās ziņas nosūtīšanas pievienojiet pakalpojuma sniedzēja akreditācijas datus.',
     emptySlashCommand: 'tukša slīpsvītras komanda',
     desktopCommands: 'Darbvirsmas komandas',
     skillCommandsAvailable: count => `${count} prasmju komandas pieejamas.`,
@@ -2908,7 +2988,8 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     yoloSystem: active => `YOLO ${active ? 'ieslēgts' : 'izslēgts'} šīs sesijas`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Neizdevās pārslēgt YOLO',
-    profileStatus: current => `Profils: ${current}. Lai sāktu tērzēšanu citā profilā, izmantojiet /profile <name> vai izvēlni "Jauna sesija".`,
+    profileStatus: current =>
+      `Profils: ${current}. Lai sāktu tērzēšanu citā profilā, izmantojiet /profile <name> vai izvēlni "Jauna sesija".`,
     unknownProfile: 'Nezināms profils',
     noProfileNamed: (target, available) => `Nav profila ar nosaukumu "${target}". Pieejami: ${available}`,
     newChatsProfile: name => `Jaunas tērzēšanas izmantos profilu ${name}.`,
@@ -2918,8 +2999,9 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
     regenerateFailed: 'Neizdevās pārģenerēt',
     editFailed: 'Neizdevās rediģēt',
     resumeFailed: 'Neizdevās atsākt',
-    resumeStrandedTitle: "Nevarēja ielādēt šo sesiju",
-    resumeStrandedBody: 'Savienojums ar šo sesiju neizdevās, un automātiskie mēģinājumi tika pārtraukti. Pārbaudiet, vai vārteja darbojas, un pēc tam mēģiniet vēlreiz.',
+    resumeStrandedTitle: 'Nevarēja ielādēt šo sesiju',
+    resumeStrandedBody:
+      'Savienojums ar šo sesiju neizdevās, un automātiskie mēģinājumi tika pārtraukti. Pārbaudiet, vai vārteja darbojas, un pēc tam mēģiniet vēlreiz.',
     resumeRetry: 'Mēģināt vēlreiz',
     nothingToBranch: 'Nav ko atzarot',
     branchNeedsChat: 'Pirms atzarošanas sāciet vai atsāciet tērzēšanu.',
@@ -2959,31 +3041,31 @@ Atstājiet tukšu, lai saglabātu ${mode} noklusējumu.`,
       success: platform => `Nodots ${platform}. Šeit varat turpināt jebkurā laikā.`,
       systemNote: platform => `↻ Nodots ${platform} — turpiniet šeit jebkurā laikā.`,
       failed: error => `Nodošana neizdevās: ${error}`,
-      timedOut: 'Gaidot vārteju, iestājās taimauts. Vai `openamer gateway` darbojas?',
-    },
+      timedOut: 'Gaidot vārteju, iestājās taimauts. Vai `openamer gateway` darbojas?'
+    }
   },
   errors: {
     genericFailure: 'Kaut kas nogāja greizi',
     boundaryTitle: 'Saskarnē kaut kas salūza',
     boundaryDesc: 'Skats saskārās ar negaidītu kļūdu. Jūsu čati un iestatījumi ir drošībā.',
     reloadWindow: 'Pārlādēt logu',
-    openLogs: 'Atvērt žurnālus',
+    openLogs: 'Atvērt žurnālus'
   },
   ui: {
     search: {
-      clear: 'Notīrīt meklēšanu',
+      clear: 'Notīrīt meklēšanu'
     },
     pagination: {
       label: 'lappošana',
       previous: 'Iepr.',
       previousAria: 'Pāriet uz iepriekšējo lapu',
       next: 'Tālāk',
-      nextAria: 'Pāriet uz nākamo lapu',
+      nextAria: 'Pāriet uz nākamo lapu'
     },
     sidebar: {
       title: 'Sānjosla',
       description: 'Parāda mobilo sānjoslu.',
-      toggle: 'Pārslēgt sānjoslu',
-    },
-  },
+      toggle: 'Pārslēgt sānjoslu'
+    }
+  }
 })

@@ -44,7 +44,7 @@ export const fi = defineLocale({
     update: 'Päivitä',
     tryHint: term => `Kokeile: “${term}”`,
     on: 'Päällä',
-    off: 'Pois',
+    off: 'Pois'
   },
   fileMenu: {
     revealFinder: 'Näytä Finderissa',
@@ -59,7 +59,7 @@ export const fi = defineLocale({
     renameLabel: 'Uusi nimi',
     deleteTitle: name => `Poistetaanko ${name}?`,
     deleteBody: 'Se siirretään Roskakoriin — voit palauttaa sen sieltä.',
-    pathCopied: 'Polku kopioitu',
+    pathCopied: 'Polku kopioitu'
   },
   boot: {
     ready: 'OpenAmer Desktop on valmis',
@@ -69,7 +69,7 @@ export const fi = defineLocale({
       loadingSettings: 'Ladataan OpenAmer-asetuksia',
       loadingSessions: 'Ladataan viimeaikaisia istuntoja',
       startingDesktopConnection: 'Käynnistetään työpöytäyhteyttä',
-      startingOpenAmerDesktop: 'Käynnistetään OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Käynnistetään OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmerin taustaprosessi päättyi.',
@@ -78,13 +78,15 @@ export const fi = defineLocale({
       desktopBootFailed: 'Työpöydän käynnistys epäonnistui',
       gatewayConnectionLost: 'Yhteys yhdyskäytävään katkesi',
       gatewaySignInRequired: 'Vaaditaan kirjautuminen yhdyskäytävään',
-      ipcBridgeUnavailable: 'Työpöydän IPC-silta ei ole käytettävissä.',
+      ipcBridgeUnavailable: 'Työpöydän IPC-silta ei ole käytettävissä.'
     },
     failure: {
-      title: "OpenAmeria ei voitu käynnistää",
-      description: "Taustayhdyskäytävä ei käynnistynyt. Kokeile jotakin alla olevista palautusvaiheista. Mikään täällä ei poista keskustelujasi tai asetuksiasi.",
+      title: 'OpenAmeria ei voitu käynnistää',
+      description:
+        'Taustayhdyskäytävä ei käynnistynyt. Kokeile jotakin alla olevista palautusvaiheista. Mikään täällä ei poista keskustelujasi tai asetuksiasi.',
       remoteTitle: 'Vaaditaan kirjautuminen etäyhdyskäytävään',
-      remoteDescription: 'Etäyhdyskäytävä-istuntosi vanheni. Kirjaudu uudelleen sisään yhdistääksesi uudelleen. Mikään täällä ei poista keskustelujasi tai asetuksiasi.',
+      remoteDescription:
+        'Etäyhdyskäytävä-istuntosi vanheni. Kirjaudu uudelleen sisään yhdistääksesi uudelleen. Mikään täällä ei poista keskustelujasi tai asetuksiasi.',
       retry: 'Yritä uudelleen',
       repairInstall: 'Korjaa asennus',
       useLocalGateway: 'Käytä paikallista yhdyskäytävää',
@@ -92,9 +94,11 @@ export const fi = defineLocale({
       back: 'Takaisin',
       openLogs: 'Avaa lokit',
       repairHint: 'Korjaus suorittaa asennusohjelman uudelleen ja voi kestää muutaman minuutin uudella koneella.',
-      remoteSignInHint: signInLabel => `Kirjautuu ulos tallennetusta etäselainistunnosta ja avaa sitten ${signInLabel}. Käytä "Käytä paikallista yhdyskäytävää" palataksesi mukana toimitettuun taustajärjestelmään.`,
+      remoteSignInHint: signInLabel =>
+        `Kirjautuu ulos tallennetusta etäselainistunnosta ja avaa sitten ${signInLabel}. Käytä "Käytä paikallista yhdyskäytävää" palataksesi mukana toimitettuun taustajärjestelmään.`,
       signOutAndSignIn: 'Kirjaudu ulos ja sisään',
-      remoteFailureHint: 'Tarkista URL ja kirjautuminen yhdyskäytävän asetuksista tai vaihda paikalliseen yhdyskäytävään.',
+      remoteFailureHint:
+        'Tarkista URL ja kirjautuminen yhdyskäytävän asetuksista tai vaihda paikalliseen yhdyskäytävään.',
       hideRecentLogs: 'Piilota viimeaikaiset lokit',
       showRecentLogs: 'Näytä viimeaikaiset lokit',
       signedInTitle: 'Kirjautunut',
@@ -104,8 +108,8 @@ export const fi = defineLocale({
       signInFailed: 'Kirjautuminen epäonnistui',
       signInToRemoteGateway: 'Kirjaudu etäyhdyskäytävään',
       signInWithProvider: provider => `Kirjaudu ${provider}-tilillä`,
-      identityProvider: 'identiteettisi tarjoaja',
-    },
+      identityProvider: 'identiteettisi tarjoaja'
+    }
   },
   notifications: {
     region: 'Ilmoitukset',
@@ -118,21 +122,23 @@ export const fi = defineLocale({
     copyDetail: 'Kopioi yksityiskohdat',
     copyDetailFailed: 'Ilmoituksen yksityiskohtia ei voitu kopioida',
     backendOutOfDateTitle: 'Taustajärjestelmä on vanhentunut',
-    backendOutOfDateMessage: 'OpenAmer-taustajärjestelmäsi on vanhempi kuin tämä työpöytäversio eikä välttämättä toimi oikein. Päivitä ne samoiksi.',
+    backendOutOfDateMessage:
+      'OpenAmer-taustajärjestelmäsi on vanhempi kuin tämä työpöytäversio eikä välttämättä toimi oikein. Päivitä ne samoiksi.',
     installMethodUnsupportedTitle: 'Ei tuettu asennustapa',
     updateOpenAmer: 'Päivitä OpenAmer',
     updateReadyTitle: 'Päivitys valmis',
     updateReadyMessage: count => `${count} uusi muutos${count === 1 ? 'muutos' : 'muutokset'} saatavilla.`,
-    seeWhatsNew: "Katso uutuudet",
+    seeWhatsNew: 'Katso uutuudet',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT vaatii ELEVENLABS_API_KEY-arvon.',
       elevenLabsRejectedKey: 'ElevenLabs hylkäsi API-avaimen (401).',
       gatewayAuthFailed: 'Yhdyskäytävän todennus epäonnistui — tarkista API_SERVER_KEY-arvosi.',
-      methodNotAllowed: 'Työpöydän taustajärjestelmä hylkäsi pyynnön (405 Method Not Allowed). Yritä käynnistää OpenAmer Desktop uudelleen.',
+      methodNotAllowed:
+        'Työpöydän taustajärjestelmä hylkäsi pyynnön (405 Method Not Allowed). Yritä käynnistää OpenAmer Desktop uudelleen.',
       microphonePermission: 'Mikrofonin käyttöoikeus evättiin.',
       openaiRejectedApiKey: 'OpenAI hylkäsi API-avaimen.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI hylkäsi API-avaimen (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS vaatii VOICE_TOOLS_OPENAI_KEY- tai OPENAI_API_KEY-arvon.',
+      openaiTtsNeedsKey: 'OpenAI TTS vaatii VOICE_TOOLS_OPENAI_KEY- tai OPENAI_API_KEY-arvon.'
     },
     voice: {
       configureSpeechToText: 'Määritä puhe tekstiksi -toiminto käyttääksesi äänitilaa.',
@@ -151,7 +157,7 @@ export const fi = defineLocale({
       transcriptionFailed: 'Äänen transkriptio epäonnistui',
       transcriptionUnavailable: 'Äänen transkriptio ei ole vielä saatavilla.',
       tryRecordingAgain: 'Yritä tallentaa uudelleen.',
-      unavailable: 'Ääni ei ole käytettävissä',
+      unavailable: 'Ääni ei ole käytettävissä'
     },
     native: {
       approvalTitle: 'Vaatii hyväksynnän',
@@ -164,11 +170,12 @@ export const fi = defineLocale({
       turnErrorTitle: 'Vuoro epäonnistui',
       backgroundDoneTitle: 'Taustatehtävä valmistui',
       backgroundFailedTitle: 'Taustatehtävä epäonnistui',
-      creditsTitle: 'Krediitit',
-    },
+      creditsTitle: 'Krediitit'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Ohjelmistorasterointi käytössä — etä näyttö havaittu (${reason}). GPU-kiihdytys on poistettu käytöstä välkkymisen estämiseksi.`,
+    message: reason =>
+      `Ohjelmistorasterointi käytössä — etä näyttö havaittu (${reason}). GPU-kiihdytys on poistettu käytöstä välkkymisen estämiseksi.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer-krediitit loppuivat',
@@ -176,7 +183,7 @@ export const fi = defineLocale({
     fallbackMessage: 'Tililläsi ei ole enää krediitejä. Lisää krediittejä jatkaaksesi.',
     openBilling: 'Avaa laskutus',
     addCredits: 'Lisää krediittejä',
-    dismiss: 'Hylkää',
+    dismiss: 'Hylkää'
   },
   titlebar: {
     hideSidebar: 'Piilota sivupalkki',
@@ -193,7 +200,7 @@ export const fi = defineLocale({
     openStarmap: 'Avaa muistikartta',
     openKeybinds: 'Pikanäppäimet',
     layoutEditor: 'Asettelueditori',
-    layoutEditorTitle: 'Asettelueditori — Cmd/Ctrl+napsautus palauttaa asettelun',
+    layoutEditorTitle: 'Asettelueditori — Cmd/Ctrl+napsautus palauttaa asettelun'
   },
   keybinds: {
     title: 'Näppäinoikotiet',
@@ -210,7 +217,7 @@ export const fi = defineLocale({
       profiles: 'Profiilit',
       session: 'Istunto',
       navigation: 'Navigointi',
-      view: 'Näkymä',
+      view: 'Näkymä'
     },
     actions: {
       'keybinds.openPanel': 'Avaa näppäinoikotiet',
@@ -289,8 +296,8 @@ export const fi = defineLocale({
       'composer.slash': 'Kauttaviivakomentojen valikko',
       'composer.help': 'Pikaohje',
       'composer.history': 'Vaihda ponnahdusikkuna / historia',
-      'composer.cancel': 'Sulje ponnahdusikkuna · peruuta ajo',
-    },
+      'composer.cancel': 'Sulje ponnahdusikkuna · peruuta ajo'
+    }
   },
   language: {
     label: 'Kieli',
@@ -299,7 +306,7 @@ export const fi = defineLocale({
     saveError: 'Kielen päivittäminen epäonnistui',
     switchTo: 'Vaihda kieltä',
     searchPlaceholder: 'Hae kieliä…',
-    noResults: 'Kieliä ei löytynyt',
+    noResults: 'Kieliä ei löytynyt'
   },
   settings: {
     closeSettings: 'Sulje asetukset',
@@ -324,11 +331,12 @@ export const fi = defineLocale({
       about: 'Tietoja',
       billing: 'Laskutus',
       notifications: 'Ilmoitukset',
-      plugins: 'Liitännäiset',
+      plugins: 'Liitännäiset'
     },
     plugins: {
       title: 'Työpöytäliitännäiset',
-      blurb: 'Tähän sovellukseen ladatut käyttöliittymälaajennukset — mukana asennuksessa tai pudotettu desktop-plugins-kansioon (myös OpenAmerin kirjoittamat). Käytöstä poistaminen purkaa liitännäisen lennossa, ja muutos säilyy uudelleenkäynnistysten yli.',
+      blurb:
+        'Tähän sovellukseen ladatut käyttöliittymälaajennukset — mukana asennuksessa tai pudotettu desktop-plugins-kansioon (myös OpenAmerin kirjoittamat). Käytöstä poistaminen purkaa liitännäisen lennossa, ja muutos säilyy uudelleenkäynnistysten yli.',
       count: n => `${n} asennettu`,
       openFolder: 'Avaa liitännäiskansio',
       rescan: 'Skannaa uudelleen',
@@ -340,49 +348,51 @@ export const fi = defineLocale({
       kinds: {
         bundled: 'mukana toimitettu',
         disk: 'levyllä',
-        runtime: 'ajonaika',
-      },
+        runtime: 'ajonaika'
+      }
     },
     notifications: {
       title: 'Ilmoitukset',
-      intro: 'Omat työpöytäilmoitukset, erillisinä sovelluksen sisäisistä ilmoituspalkeista. Ne ovat laittekohtaisia — jokainen tietokone säilyttää omat asetuksensa.',
+      intro:
+        'Omat työpöytäilmoitukset, erillisinä sovelluksen sisäisistä ilmoituspalkeista. Ne ovat laittekohtaisia — jokainen tietokone säilyttää omat asetuksensa.',
       enableAll: 'Ota ilmoitukset käyttöön',
       enableAllDesc: 'Pääkytkin. Poista tämä käytöstä, niin kaikki alla olevat ilmoitukset mykistyvät.',
       focusedHint: 'Valmistumisilmoitukset näkyvät vain, kun OpenAmer on taustalla.',
       kinds: {
         approval: {
           label: 'Hyväksyntä tarvitaan',
-          description: 'Komento odottaa hyväksyntää tai hylkämistä.',
+          description: 'Komento odottaa hyväksyntää tai hylkämistä.'
         },
         input: {
           label: 'Syötettä tarvitaan',
-          description: 'OpenAmer esitti kysymyksen tai tarvitsee salasanan tai salaisen avaimen.',
+          description: 'OpenAmer esitti kysymyksen tai tarvitsee salasanan tai salaisen avaimen.'
         },
         turnDone: {
           label: 'Vastaus valmis',
-          description: 'Vuoro päättyi, kun OpenAmer oli taustalla.',
+          description: 'Vuoro päättyi, kun OpenAmer oli taustalla.'
         },
         turnError: {
           label: 'Vuoro epäonnistui',
-          description: 'Vuoro päättyi virheeseen.',
+          description: 'Vuoro päättyi virheeseen.'
         },
         backgroundDone: {
           label: 'Taustatehtävä valmis',
-          description: 'Taustalla suoritettu päätekomento valmistui.',
+          description: 'Taustalla suoritettu päätekomento valmistui.'
         },
         credits: {
           label: 'Krediittihälytykset',
-          description: 'Krediittien käyttö on keskeytetty tai palautettu.',
-        },
+          description: 'Krediittien käyttö on keskeytetty tai palautettu.'
+        }
       },
       test: 'Lähetä testi-ilmoitus',
       testTitle: 'OpenAmer',
       testBody: 'Ilmoitukset toimivat.',
-      testSent: 'Testi lähetetty. Jos mitään ei näy, tarkista käyttöjärjestelmän ilmoitusoikeudet ja Keskittyminen/Älä häiritse.',
+      testSent:
+        'Testi lähetetty. Jos mitään ei näy, tarkista käyttöjärjestelmän ilmoitusoikeudet ja Keskittyminen/Älä häiritse.',
       testUnsupported: 'Tämä järjestelmä ei tue natiiveja ilmoituksia.',
       completionSoundTitle: 'Valmistumisääni',
       completionSoundDesc: 'Toistetaan, kun agentin vuoro päättyy. Valitse esiasetus ja esikatsele sitä tässä.',
-      completionSoundPreview: 'Esikatsele',
+      completionSoundPreview: 'Esikatsele'
     },
     sections: {
       model: 'Malli',
@@ -392,7 +402,7 @@ export const fi = defineLocale({
       safety: 'Turvallisuus',
       memory: 'Muisti ja konteksti',
       voice: 'Ääni',
-      advanced: 'Lisäasetukset',
+      advanced: 'Lisäasetukset'
     },
     searchPlaceholder: {
       about: 'Tietoja OpenAmer Desktopista',
@@ -400,37 +410,40 @@ export const fi = defineLocale({
       gateway: 'Yhdyskäytävän yhteys...',
       keys: 'Hae API-avaimia...',
       mcp: 'Hae MCP-palvelimia...',
-      sessions: 'Hae arkistoituja istuntoja...',
+      sessions: 'Hae arkistoituja istuntoja...'
     },
     modeOptions: {
       light: {
         label: 'Vaalea',
-        description: 'Vaaleat pinnat',
+        description: 'Vaaleat pinnat'
       },
       dark: {
         label: 'Tumma',
-        description: 'Vähän häikäisevä työtila',
+        description: 'Vähän häikäisevä työtila'
       },
       system: {
         label: 'Järjestelmä',
-        description: 'Noudata järjestelmän ulkoasua',
-      },
+        description: 'Noudata järjestelmän ulkoasua'
+      }
     },
     appearance: {
       title: 'Ulkoasu',
-      intro: 'Nämä ovat vain työpöydän näyttöasetuksia. Tila ohjaa kirkkautta; teema ohjaa korostuspalettia ja keskustelun tyyliä.',
+      intro:
+        'Nämä ovat vain työpöydän näyttöasetuksia. Tila ohjaa kirkkautta; teema ohjaa korostuspalettia ja keskustelun tyyliä.',
       colorMode: 'Väritila',
       colorModeDesc: 'Valitse kiinteä tila tai anna OpenAmerin noudattaa järjestelmäasetusta.',
       toolViewTitle: 'Työkalukutsujen näyttö',
       toolViewDesc: 'Tuote piilottaa työkalujen raakadatan; Tekninen näyttää koko syötön/tulosteen.',
       uiScaleTitle: 'Käyttöliittymän skaala',
-      uiScaleDesc: (percent: number) => `Skaalaa tekstiä ja ohjaimia koko sovelluksessa. Cmd/Ctrl +, - ja 0 toimii myös. Nykyinen: ${percent} %.`,
+      uiScaleDesc: (percent: number) =>
+        `Skaalaa tekstiä ja ohjaimia koko sovelluksessa. Cmd/Ctrl +, - ja 0 toimii myös. Nykyinen: ${percent} %.`,
       translucencyTitle: 'Ikkunan läpinäkyvyys',
       translucencyDesc: 'Näe työpöytäsi koko ikkunan läpi. Vain macOS ja Windows.',
       backdropTitle: 'Keskustelun tausta',
       backdropDesc: 'Haalea patsaskuva keskustelun takana.',
       embedsTitle: 'Upotetut sisällöt',
-      embedsDesc: 'Rich-esikatselut ladataan kolmansien osapuolten sivustoilta (YouTube, X, …). Kysy näyttää paikkamerkin, kunnes sallit kunkin; Aina lataa ne automaattisesti; Pois pitää pelkät linkit.',
+      embedsDesc:
+        'Rich-esikatselut ladataan kolmansien osapuolten sivustoilta (YouTube, X, …). Kysy näyttää paikkamerkin, kunnes sallit kunkin; Aina lataa ne automaattisesti; Pois pitää pelkät linkit.',
       embedsAsk: 'Kysy',
       embedsAlways: 'Aina',
       embedsOff: 'Pois',
@@ -443,7 +456,8 @@ export const fi = defineLocale({
       themeDesc: 'Vain työpöytäpaletit. Valittu tila levitetään sen päälle.',
       themeProfileNote: profile => `Tallennettu profiilille ${profile} — jokainen profili säilyttää oman teemansa.`,
       installTitle: 'Asenna VS Codesta',
-      installDesc: 'Liitä Marketplace-laajennuksen tunnus (esim. dracula-theme.theme-dracula) muuntaaksesi sen väriteeman työpöytäpaletiksi.',
+      installDesc:
+        'Liitä Marketplace-laajennuksen tunnus (esim. dracula-theme.theme-dracula) muuntaaksesi sen väriteeman työpöytäpaletiksi.',
       installPlaceholder: 'julkaisija.laajennus',
       installButton: 'Asenna',
       installing: 'Asennetaan…',
@@ -453,8 +467,10 @@ export const fi = defineLocale({
       importedBadge: 'Tuotu',
       pet: {
         title: 'Lemmikki',
-        intro: 'Hanki animoitu petdex-maskotti, joka leijuu sovelluksen päällä ja reagoi OpenAmerin toimintaan — juoksee työkalujen suorituksen aikana, juhlii onnistumisissa ja murehtii virheissä.',
-        restartHint: 'Lemmikit vaativat nopean uudelleenkäynnistyksen — sovellus käynnistettiin ennen tämän ominaisuuden lisäämistä. Sulje ja avaa OpenAmer uudelleen, ja palaa sitten tänne.',
+        intro:
+          'Hanki animoitu petdex-maskotti, joka leijuu sovelluksen päällä ja reagoi OpenAmerin toimintaan — juoksee työkalujen suorituksen aikana, juhlii onnistumisissa ja murehtii virheissä.',
+        restartHint:
+          'Lemmikit vaativat nopean uudelleenkäynnistyksen — sovellus käynnistettiin ennen tämän ominaisuuden lisäämistä. Sulje ja avaa OpenAmer uudelleen, ja palaa sitten tänne.',
         on: 'Päällä',
         off: 'Poissa',
         scaleTitle: 'Koko',
@@ -464,7 +480,7 @@ export const fi = defineLocale({
         chooseTitle: 'Valitse lemmikki',
         chooseDesc: 'Valitseminen asentaa lemmikin (tarvittaessa) ja aktivoi sen.',
         searchPlaceholder: 'Etsi lemmikkejä…',
-        unreachable: "Petdex-galleriaan ei saada yhteyttä. Tarkista yhteys ja avaa tämä sivu uudelleen.",
+        unreachable: 'Petdex-galleriaan ei saada yhteyttä. Tarkista yhteys ja avaa tämä sivu uudelleen.',
         noMatch: query => `Ei lemmikkejä, jotka vastaavat hakua "${query}".`,
         installedTag: 'asennettu',
         generatedTag: 'Luotu',
@@ -473,7 +489,7 @@ export const fi = defineLocale({
         uninstall: name => `Poista asennus ${name}`,
         delete: name => `Poista ${name}`,
         deleteTitle: name => `Poistetaanko ${name}?`,
-        deleteBody: "Tämä poistaa lemmikin pysyvästi — sitä ei voi asentaa uudelleen.",
+        deleteBody: 'Tämä poistaa lemmikin pysyvästi — sitä ei voi asentaa uudelleen.',
         deleteConfirm: 'Poista',
         rename: name => `Nimeä ${name} uudelleen`,
         renameTitle: 'Nimeä lemmikki uudelleen',
@@ -486,8 +502,8 @@ export const fi = defineLocale({
         exportFailed: slug => `Kohteen ${slug} vienti epäonnistui`,
         noneAvailable: 'Ei käynnistettäviä lemmikkejä juuri nyt.',
         turnOnFailed: 'Petin päälle kytkeminen epäonnistui.',
-        turnOffFailed: 'Petin pois päältä kytkeminen epäonnistui.',
-      },
+        turnOffFailed: 'Petin pois päältä kytkeminen epäonnistui.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,25 +514,26 @@ export const fi = defineLocale({
       updates: 'Päivitykset',
       checkNow: 'Tarkista nyt',
       checking: 'Tarkistetaan…',
-      seeWhatsNew: "Katso uutuudet",
+      seeWhatsNew: 'Katso uutuudet',
       updateNow: 'Päivitä nyt',
       releaseNotes: 'Julkaisutiedot',
-      onLatest: "Käytät uusinta versiota.",
+      onLatest: 'Käytät uusinta versiota.',
       installing: 'Päivitystä asennetaan juuri nyt.',
-      cantUpdate: "Tämä kooste ei voi päivittää itseään sovelluksen sisältä.",
-      cantReach: "Emme voineet tavoittaa päivityspalvelinta.",
+      cantUpdate: 'Tämä kooste ei voi päivittää itseään sovelluksen sisältä.',
+      cantReach: 'Emme voineet tavoittaa päivityspalvelinta.',
       tapCheck: 'Napauta "Tarkista nyt" hakeaksesi päivityksiä.',
       updateReady: count => `Uusi päivitys on valmis (${count} muutos${count === 1 ? 'muutos' : 'muutokset'} mukana).`,
       lastChecked: age => `Viimeksi tarkistettu ${age}`,
       justNowSuffix: ' · juuri nyt',
       automaticUpdates: 'Automaattiset päivitykset',
-      automaticUpdatesDesc: 'OpenAmer tarkistaa päivitykset automaattisesti taustalla ja ilmoittaa, kun sellainen on valmis.',
+      automaticUpdatesDesc:
+        'OpenAmer tarkistaa päivitykset automaattisesti taustalla ja ilmoittaa, kun sellainen on valmis.',
       branchCommit: (branch, commit) => `Haara ${branch} · Sitoumus ${commit}`,
       never: 'ei koskaan',
       justNow: 'juuri nyt',
       minAgo: count => `${count} min sitten`,
       hoursAgo: count => `${count} tuntia sitten`,
-      daysAgo: count => `${count} päivää sitten`,
+      daysAgo: count => `${count} päivää sitten`
     },
     config: {
       none: 'Ei mitään',
@@ -532,7 +549,8 @@ export const fi = defineLocale({
       imported: 'Asetukset tuotiin',
       invalidJson: 'Virheellinen asetus-JSON',
       keepAwakeTitle: 'Pidä tietokone hereillä',
-      keepAwakeDesc: 'Estä koneen siirtyminen lepotilaan, jotta pitkät tai yöttäiset ajot jatkuvat. Näyttö voi silti himmetä.',
+      keepAwakeDesc:
+        'Estä koneen siirtyminen lepotilaan, jotta pitkät tai yöttäiset ajot jatkuvat. Näyttö voi silti himmetä.'
     },
     credentials: {
       pasteKey: 'Liitä avain',
@@ -542,7 +560,7 @@ export const fi = defineLocale({
       couldNotSave: 'Tunnistetietojen tallennus epäonnistui.',
       remove: 'Poista',
       getKey: 'Hanki avain',
-      saving: 'Tallennetaan',
+      saving: 'Tallennetaan'
     },
     envActions: {
       actionsFor: label => `Toiminnot kohteelle ${label}`,
@@ -553,7 +571,7 @@ export const fi = defineLocale({
       revealValue: 'Näytä arvo',
       replace: 'Korvaa',
       set: 'Aseta',
-      clear: 'Tyhjennä',
+      clear: 'Tyhjennä'
     },
     gateway: {
       loading: 'Ladataan yhdyskäytävän asetuksia...',
@@ -561,21 +579,25 @@ export const fi = defineLocale({
       unavailableDesc: 'Työpöydän IPC-silta ei tarjoa yhdyskäytävän asetuksia.',
       title: 'Yhdyskäytäväyhteys',
       envOverride: 'Ympäristömuuttujan ohitus',
-      intro: 'OpenAmer Desktop käynnistää oman paikallisen yhdyskäytävän oletuksena. Käytä etäyhdyskäytävää, kun haluat tämän sovelluksen ohjaavan jo käynnissä olevaa OpenAmer-taustaosaa toisella koneella tai luotetun välityspalvelimen takana. Valitse alta profiili, jolle annetaan oma etäisäntä.',
+      intro:
+        'OpenAmer Desktop käynnistää oman paikallisen yhdyskäytävän oletuksena. Käytä etäyhdyskäytävää, kun haluat tämän sovelluksen ohjaavan jo käynnissä olevaa OpenAmer-taustaosaa toisella koneella tai luotetun välityspalvelimen takana. Valitse alta profiili, jolle annetaan oma etäisäntä.',
       appliesTo: 'Koskee',
       allProfiles: 'Kaikki profiilit',
       defaultConnection: 'Oletusyhteys jokaiselle profiilille, jolla ei ole omaa ohitusta.',
-      profileConnection: profile => `Yhteys, jota käytetään vain, kun “${profile}” on aktiivinen profiili. Valitse Käytä oletusyhdyskäytävää poistaaksesi sen ohituksen.`,
+      profileConnection: profile =>
+        `Yhteys, jota käytetään vain, kun “${profile}” on aktiivinen profiili. Valitse Käytä oletusyhdyskäytävää poistaaksesi sen ohituksen.`,
       envOverrideTitle: 'Ympäristömuuttujat ohjaavat tätä työpöytäistuntoa.',
-      envOverrideDesc: 'Tyhjennä OPENAMER_DESKTOP_REMOTE_URL ja OPENAMER_DESKTOP_REMOTE_TOKEN käyttääksesi alla tallennettua asetusta.',
+      envOverrideDesc:
+        'Tyhjennä OPENAMER_DESKTOP_REMOTE_URL ja OPENAMER_DESKTOP_REMOTE_TOKEN käyttääksesi alla tallennettua asetusta.',
       modeTitle: 'Yhteystila',
       localTitle: 'Paikallinen yhdyskäytävä',
       localDesc: 'Käynnistä yksityinen OpenAmer-taustapalvelu localhostissa. Tämä on oletus ja toimii offline-tilassa.',
       inheritTitle: 'Käytä oletusyhdyskäytävää',
-      inheritDesc: "Poista tämän profiilin ohitus ja käytä oletusyhteyttä.",
+      inheritDesc: 'Poista tämän profiilin ohitus ja käytä oletusyhteyttä.',
       remoteTitle: 'Etäyhdyskäytävä',
       remoteDesc: 'Yhdistä tämä työpöytäkuori etäiseen OpenAmer-taustaosaan.',
-      remoteAuthHint: 'Isännöidyt yhdyskäytävät käyttävät OAuthia tai käyttäjätunnusta ja salasanaa; itse isännöidyt voivat käyttää istuntotunnistetta.',
+      remoteAuthHint:
+        'Isännöidyt yhdyskäytävät käyttävät OAuthia tai käyttäjätunnusta ja salasanaa; itse isännöidyt voivat käyttää istuntotunnistetta.',
       cloudTitle: 'OpenAmer-pilvi',
       cloudDesc: 'Kirjaudu kerran OpenAmer Cloudiin ja valitse tilisi agentit — URL-osoitetta ei tarvitse liittää.',
       cloudSignInTitle: 'OpenAmer-pilvi',
@@ -592,7 +614,7 @@ export const fi = defineLocale({
       cloudNoAgents: {
         before: 'Tältä tililtä ei löytynyt agentteja. Luo agentti ',
         linkText: 'OpenAmer-portaali',
-        after: ' ja päivitä sitten.',
+        after: ' ja päivitä sitten.'
       },
       cloudRefresh: 'Päivitä',
       cloudConnect: 'Yhdistä',
@@ -608,7 +630,8 @@ export const fi = defineLocale({
       cloudAgentProvisioning: 'Otetaan käyttöön…',
       cloudStatusLabel: status => `Tila: ${status}`,
       remoteUrlTitle: 'Etä-URL',
-      remoteUrlDesc: 'Etähallintapaneelin taustajärjestelmän perus-URL. Polun etuliitteet ovat tuettuja, esimerkiksi /openamer.',
+      remoteUrlDesc:
+        'Etähallintapaneelin taustajärjestelmän perus-URL. Polun etuliitteet ovat tuettuja, esimerkiksi /openamer.',
       probing: 'Tarkistetaan, miten tämä yhdyskäytävä todentaa…',
       probeError: 'Yhdyskäytävään ei vielä saatu yhteyttä. Tarkista URL — todennusmenetelmä ilmestyy, kun se vastaa.',
       signedIn: 'Kirjauduttu sisään',
@@ -616,12 +639,17 @@ export const fi = defineLocale({
       signOut: 'Kirjaudu ulos',
       signInWith: provider => `Kirjaudu sisään palvelun ${provider} kautta`,
       authTitle: 'Todennus',
-      authSignedInPassword: 'Tämä yhdyskäytävä käyttää käyttäjätunnusta ja salasanaa. Olet kirjautunut sisään; istunto päivittyy automaattisesti.',
-      authSignedInOauth: 'Tämä yhdyskäytävä käyttää OAuthia. Olet kirjautunut sisään; istunto päivittyy automaattisesti.',
-      authNeedsPassword: 'Tämä yhdyskäytävä käyttää käyttäjätunnusta ja salasanaa. Kirjaudu sisään valtuuttaaksesi tämän työpöytäsovelluksen.',
-      authNeedsOauth: provider => `Tämä yhdyskäytävä käyttää OAuthia. Kirjaudu sisään palvelun ${provider} kautta valtuuttaaksesi tämän työpöytäsovelluksen.`,
+      authSignedInPassword:
+        'Tämä yhdyskäytävä käyttää käyttäjätunnusta ja salasanaa. Olet kirjautunut sisään; istunto päivittyy automaattisesti.',
+      authSignedInOauth:
+        'Tämä yhdyskäytävä käyttää OAuthia. Olet kirjautunut sisään; istunto päivittyy automaattisesti.',
+      authNeedsPassword:
+        'Tämä yhdyskäytävä käyttää käyttäjätunnusta ja salasanaa. Kirjaudu sisään valtuuttaaksesi tämän työpöytäsovelluksen.',
+      authNeedsOauth: provider =>
+        `Tämä yhdyskäytävä käyttää OAuthia. Kirjaudu sisään palvelun ${provider} kautta valtuuttaaksesi tämän työpöytäsovelluksen.`,
       tokenTitle: 'Istuntotunnus',
-      tokenDesc: 'REST- ja WebSocket-käyttöön käytettävä hallintapaneelin istuntotunnus. Jätä tyhjäksi säilyttääksesi tallennetun tunnuksen.',
+      tokenDesc:
+        'REST- ja WebSocket-käyttöön käytettävä hallintapaneelin istuntotunnus. Jätä tyhjäksi säilyttääksesi tallennetun tunnuksen.',
       existingToken: value => `Nykyinen tunnus ${value}`,
       savedToken: 'tallennettu',
       pasteSessionToken: 'Liitä istuntotunnus',
@@ -652,7 +680,8 @@ export const fi = defineLocale({
       applyFailed: 'Yhdyskäytävän asetuksia ei voitu ottaa käyttöön',
       saveFailed: 'Yhdyskäytävän asetuksia ei voitu tallentaa',
       sshTitle: 'Yhdistä SSH:lla',
-      sshDesc: 'OpenAmer käynnistetään etäkoneella SSH:n kautta ja tunneloidaan tähän sovellukseen — sinun ei tarvitse käynnistää tai paljastaa mitään itse. Edellyttää toimivaa avainpohjaista SSH-yhteyttä isäntään.',
+      sshDesc:
+        'OpenAmer käynnistetään etäkoneella SSH:n kautta ja tunneloidaan tähän sovellukseen — sinun ei tarvitse käynnistää tai paljastaa mitään itse. Edellyttää toimivaa avainpohjaista SSH-yhteyttä isäntään.',
       sshTrustHint: 'Ensimmäinen esitetty isäntäavain hyväksytään ja kiinnitetään; myöhemmät muutokset hylätään.',
       sshHostTitle: 'Isäntä',
       sshHostDesc: 'käyttäjä@isäntä tai Host-alias tiedostosta ~/.ssh/config.',
@@ -676,18 +705,21 @@ export const fi = defineLocale({
       sshReachable: (host, platform) => `Tavoitettavissa: ${host} (${platform}) — OpenAmer löytyi`,
       sshIncompleteHost: 'Anna SSH-isäntä ennen yhdistämistä.',
       sshErrUnreachable: 'Kyseiseen isäntään ei saatu SSH-yhteyttä. Tarkista isäntä, portti ja verkko.',
-      sshErrAuth: 'SSH-todennus epäonnistui. Lataa avaimesi ssh-agenttiin (ssh-add) tai aseta IdentityFile tiedostoon ~/.ssh/config — OpenAmer suorittaa ssh:n ei-interaktiivisesti.',
-      sshErrHostKey: 'Isäntäavain on MUUTTUNUT viime yhdistämisen jälkeen. Varmista, että tämä on odotettua, ja suorita sitten ssh-keygen -R <host> ja yhdistä uudelleen.',
-      sshErrNotInstalled: 'OpenAmeria ei ole asennettu etäisäntään. Asenna se sinne (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) tai aseta OpenAmerin polku.',
+      sshErrAuth:
+        'SSH-todennus epäonnistui. Lataa avaimesi ssh-agenttiin (ssh-add) tai aseta IdentityFile tiedostoon ~/.ssh/config — OpenAmer suorittaa ssh:n ei-interaktiivisesti.',
+      sshErrHostKey:
+        'Isäntäavain on MUUTTUNUT viime yhdistämisen jälkeen. Varmista, että tämä on odotettua, ja suorita sitten ssh-keygen -R <host> ja yhdistä uudelleen.',
+      sshErrNotInstalled:
+        'OpenAmeria ei ole asennettu etäisäntään. Asenna se sinne (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) tai aseta OpenAmerin polku.',
       sshErrPlatform: 'Ei-tuettu etäalusta. OpenAmer Desktopin SSH-tila tukee Linux-, macOS- ja Windows-etäisäntiä.',
       sshErrTimeout: 'SSH-yhteys aikakatkaistiin. Isäntä voi olla tavoittamattomissa tai lepotilassa.',
       sshErrUpdateRequired: 'Päivitä etäisännän OpenAmer ennen Desktop SSH -yhteyttä.',
-      sshErrUnknown: 'SSH-yhteys epäonnistui.',
+      sshErrUnknown: 'SSH-yhteys epäonnistui.'
     },
     keys: {
       loading: 'Ladataan API-avaimia ja tunnistetietoja...',
       failedLoad: 'API-avainten lataus epäonnistui',
-      empty: 'Tähän luokkaan ei ole vielä määritetty mitään.',
+      empty: 'Tähän luokkaan ei ole vielä määritetty mitään.'
     },
     mcp: {
       loading: 'Ladataan MCP-palvelimia...',
@@ -739,7 +771,8 @@ export const fi = defineLocale({
       catalogInstallFailed: name => `Kohteen ${name} asennus epäonnistui`,
       catalogEnvPrompt: name => `${name} vaatii tunnistetiedot`,
       catalogEnvRequired: 'Täytä vaaditut arvot ennen asennusta.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} käytössä`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} käytössä`,
       statusConnecting: 'Yhdistetään…',
       statusNeedsAuth: 'Vaatii todennuksen',
       statusError: 'Virhe',
@@ -752,11 +785,12 @@ export const fi = defineLocale({
       unsavedConnect: 'Tallentamatta — tallenna mcp.json yhdistääksesi.',
       enableTool: tool => `Ota käyttöön ${tool}`,
       disableTool: tool => `Poista käytöstä ${tool}`,
-      noOutput: 'Ei vielä tulostetta.',
+      noOutput: 'Ei vielä tulostetta.'
     },
     model: {
       loading: 'Ladataan mallin kokoonpanoa...',
-      appliesDesc: 'Koskee uusia istuntoja. Vaihda aktiivisen keskustelun malli lennossa viestikentän mallivalitsimella.',
+      appliesDesc:
+        'Koskee uusia istuntoja. Vaihda aktiivisen keskustelun malli lennossa viestikentän mallivalitsimella.',
       provider: 'Palveluntarjoaja',
       model: 'Malli',
       applying: 'Otetaan käyttöön...',
@@ -773,46 +807,47 @@ export const fi = defineLocale({
       providerDefault: '(palveluntarjoajan oletus)',
       fallbackAdd: 'Lisää varamalli',
       fallbackEmpty: 'Ei varamalleja — oletusmallia käytetään, ellei se epäonnistu.',
-      notInCatalog: "ei ole tämän palveluntarjoajan malliluettelossa — kutsut voivat siirtyä varamalliin.",
+      notInCatalog: 'ei ole tämän palveluntarjoajan malliluettelossa — kutsut voivat siirtyä varamalliin.',
       tasks: {
         vision: {
           label: 'Näkö',
-          hint: 'Kuva-analyysi',
+          hint: 'Kuva-analyysi'
         },
         web_extract: {
           label: 'Web-uutto',
-          hint: 'Sivun tiivistys',
+          hint: 'Sivun tiivistys'
         },
         compression: {
           label: 'Pakkaus',
-          hint: 'Kontekstin tiivistäminen',
+          hint: 'Kontekstin tiivistäminen'
         },
         skills_hub: {
           label: 'Taitokeskus',
-          hint: 'Taitohaku',
+          hint: 'Taitohaku'
         },
         approval: {
           label: 'Hyväksyntä',
-          hint: 'Älykäs automaattihyväksyntä',
+          hint: 'Älykäs automaattihyväksyntä'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP-työkalureititys',
+          hint: 'MCP-työkalureititys'
         },
         title_generation: {
           label: 'Otsikon luonti',
-          hint: 'Istunnon otsikot',
+          hint: 'Istunnon otsikot'
         },
         curator: {
           label: 'Kuraattori',
-          hint: 'Taitojen käytön tarkistus',
-        },
-      },
+          hint: 'Taitojen käytön tarkistus'
+        }
+      }
     },
     providers: {
       connectAccount: 'Yhdistä tili',
       haveApiKey: 'Onko sinulla API-avain?',
-      intro: 'Kirjaudu sisään tilauksella — ei API-avainta kopioitavaksi. OpenAmer hoitaa selaimen kirjautumisen puolestasi tässä sovelluksessa.',
+      intro:
+        'Kirjaudu sisään tilauksella — ei API-avainta kopioitavaksi. OpenAmer hoitaa selaimen kirjautumisen puolestasi tässä sovelluksessa.',
       connected: 'Yhdistetty',
       collapse: 'Kokoa',
       connectAnother: 'Yhdistä toinen palveluntarjoaja',
@@ -822,7 +857,8 @@ export const fi = defineLocale({
       removeConfirm: provider => `Poista ${provider}?`,
       removeExternalGeneric: provider => `${provider} hallitaan omalla CLI:llä — poista se sieltä.`,
       removeKeyManaged: provider => `${provider} määritetään API-avaimella. Poista se API-avaimista.`,
-      removeTerminalConfirm: (provider, command) => `Katkaistaanko kohteen ${provider} yhteys? Tämä suorittaa "${command}" terminaalissa tunnistetietojen poistamiseksi.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Katkaistaanko kohteen ${provider} yhteys? Tämä suorittaa "${command}" terminaalissa tunnistetietojen poistamiseksi.`,
       removeTerminalRunning: provider => `Katkaistaan kohteen ${provider} yhteys terminaalissa…`,
       removedTitle: 'Tili poistettu',
       removedMessage: provider => `${provider} poistettiin.`,
@@ -832,14 +868,16 @@ export const fi = defineLocale({
       noKeysMatch: 'Hakua vastaavia tarjoajia ei löytynyt.',
       localEndpoint: {
         title: 'Paikallinen / mukautettu päätepiste',
-        description: 'Yhdistä OpenAmer mihin tahansa OpenAI-yhteensopivaan päätepisteeseen (Zyphra, vLLM, llama.cpp, Ollama jne.).',
+        description:
+          'Yhdistä OpenAmer mihin tahansa OpenAI-yhteensopivaan päätepisteeseen (Zyphra, vLLM, llama.cpp, Ollama jne.).'
       },
-      loading: 'Ladataan tarjoajia...',
+      loading: 'Ladataan tarjoajia...'
     },
     sessions: {
       loading: 'Ladataan arkistoituja istuntoja…',
       archivedTitle: 'Arkistoidut istunnot',
-      archivedIntro: 'Arkistoidut keskustelut piilotetaan sivupalkista, mutta kaikki viestit säilyvät. Arkistoi keskustelu Ctrl/⌘-napsauttamalla sitä sivupalkissa.',
+      archivedIntro:
+        'Arkistoidut keskustelut piilotetaan sivupalkista, mutta kaikki viestit säilyvät. Arkistoi keskustelu Ctrl/⌘-napsauttamalla sitä sivupalkissa.',
       emptyArchivedTitle: 'Ei arkistoituja kohteita',
       emptyArchivedDesc: 'Arkistoi keskustelu, niin se piilotetaan tänne.',
       unarchive: 'Poista arkistosta',
@@ -848,13 +886,16 @@ export const fi = defineLocale({
       restored: 'Palautettu',
       deleteConfirm: title => `Poistetaanko "${title}" pysyvästi? Tätä ei voi kumota.`,
       autoArchiveTitle: 'Arkistoi vanhentuneet keskustelut automaattisesti',
-      autoArchiveDesc: "Arkistoi automaattisesti keskustelut, joita et ole käyttänyt vähään aikaan. Kiinnitettyjä keskusteluja ei koskaan arkistoida, eikä mitään poisteta – arkistoidut keskustelut vain siirretään tänne.",
+      autoArchiveDesc:
+        'Arkistoi automaattisesti keskustelut, joita et ole käyttänyt vähään aikaan. Kiinnitettyjä keskusteluja ei koskaan arkistoida, eikä mitään poisteta – arkistoidut keskustelut vain siirretään tänne.',
       autoArchiveDaysLabel: 'Arkistoi ajan kuluttua',
       autoArchiveDaysUnit: 'toimettomuuspäiviä',
       autoArchiveFailed: 'Automaattista arkistointia ei voitu päivittää',
       defaultDirTitle: 'Projektin oletushakemisto',
-      defaultDirDesc: 'Uudet istunnot alkavat tässä kansiossa, ellet valitse toista. Jos et aseta tätä, käytetään kotihakemistoasi.',
-      defaultDirUpdated: 'Projektin oletushakemisto päivitetty — aloita uusi keskustelu (Ctrl/⌘+N), jotta muutos tulee voimaan',
+      defaultDirDesc:
+        'Uudet istunnot alkavat tässä kansiossa, ellet valitse toista. Jos et aseta tätä, käytetään kotihakemistoasi.',
+      defaultDirUpdated:
+        'Projektin oletushakemisto päivitetty — aloita uusi keskustelu (Ctrl/⌘+N), jotta muutos tulee voimaan',
       defaultsTo: label => `Oletusarvo on ${label}.`,
       change: 'Vaihda',
       choose: 'Valitse',
@@ -864,7 +905,7 @@ export const fi = defineLocale({
       unarchiveFailed: 'Arkistosta palauttaminen epäonnistui',
       deleteFailed: 'Poistaminen epäonnistui',
       updateDirFailed: 'Oletushakemistoa ei voitu päivittää',
-      clearDirFailed: 'Oletushakemistoa ei voitu tyhjentää',
+      clearDirFailed: 'Oletushakemistoa ei voitu tyhjentää'
     },
     toolsets: {
       loadingConfig: 'Ladataan määrityksiä',
@@ -882,20 +923,23 @@ export const fi = defineLocale({
       selectedMessage: provider => `${provider} on nyt käytössä.`,
       failedSelect: provider => `Kohteen ${provider} valinta epäonnistui`,
       failedLoad: 'Työkalukokoonpanon lataus epäonnistui',
-      noProviderOptions: 'Tässä työkalusarjassa ei ole palveluntarjoajavalintoja — ota se käyttöön, niin se toimii nykyisellä kokoonpanollasi.',
+      noProviderOptions:
+        'Tässä työkalusarjassa ei ole palveluntarjoajavalintoja — ota se käyttöön, niin se toimii nykyisellä kokoonpanollasi.',
       noProviders: 'Tälle työkalusarjalle ei ole juuri nyt tarjolla palveluntarjoajia.',
       ready: 'Valmis',
       needsSignIn: 'Vaatii kirjautumisen',
       needsSetup: 'Vaatii asennuksen',
       openamerIncluded: 'Sisältyy OpenAmer-tilaukseen — aktivoi kirjautumalla OpenAmer-portaaliin.',
       openamerAuthNeededTitle: 'Kirjaudu OpenAmer-portaaliin',
-      openamerAuthNeededMessage: provider => `${provider} on tallennettu, mutta se ei aktivoidu ennen kuin kirjaudut OpenAmer-portaaliin.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} on tallennettu, mutta se ei aktivoidu ennen kuin kirjaudut OpenAmer-portaaliin.`,
       openamerAuthSignIn: 'Kirjaudu',
       openamerAuthDoneTitle: 'OpenAmer-portaali yhdistetty',
       openamerAuthDoneMessage: 'Tilauksesi taustapalvelut ovat nyt käytössä.',
       openamerAuthFailed: 'OpenAmer-portaaliin kirjautuminen ei valmistunut',
       noApiKeyRequired: 'API-avainta ei tarvita.',
-      postSetupHint: step => `Tämä taustapalvelu vaatii kertaluonteisen asennuksen (${step}). Toimii tällä koneella — voi kestää muutaman minuutin.`,
+      postSetupHint: step =>
+        `Tämä taustapalvelu vaatii kertaluonteisen asennuksen (${step}). Toimii tällä koneella — voi kestää muutaman minuutin.`,
       postSetupInstalledHint: 'Asennettu. Suorita asennus uudelleen vain, jos jokin on rikki.',
       postSetupRun: 'Suorita asennus',
       postSetupRerun: 'Suorita asennus uudelleen',
@@ -936,9 +980,9 @@ export const fi = defineLocale({
         selectedTitle: 'Taustajärjestelmä valittu',
         selectedMessage: backend => `Päätekomennot suoritetaan nyt kohteen ${backend} kautta. Koskee uusia istuntoja.`,
         failedSelect: backend => `Kohteen ${backend} valinta epäonnistui`,
-        needsSetupHint: 'Voit valita tämän taustajärjestelmän nyt — komennot epäonnistuvat, kunnes määritys on valmis.',
-      },
-    },
+        needsSetupHint: 'Voit valita tämän taustajärjestelmän nyt — komennot epäonnistuvat, kunnes määritys on valmis.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Taidot',
@@ -958,7 +1002,8 @@ export const fi = defineLocale({
     noDescription: 'Ei kuvausta.',
     configured: 'Määritetty',
     needsKeys: 'Tarvitsee avaimet',
-    visionModelHint: 'Visio käyttää apumalliasetuksiasi — kuvakykynen malli valitaan siellä, ei tarjoajakohtaisesti täällä.',
+    visionModelHint:
+      'Visio käyttää apumalliasetuksiasi — kuvakykynen malli valitaan siellä, ei tarjoajakohtaisesti täällä.',
     visionModelLink: 'Valitse visiomalli kohdasta Asetukset → Mallit',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} työkalusarjaa käytössä`,
     configureToolset: label => `Määritä ${label}`,
@@ -984,7 +1029,7 @@ export const fi = defineLocale({
     provenance: {
       agent: 'Opittu',
       bundled: 'Sisäänrakennettu',
-      hub: 'Keskus',
+      hub: 'Keskus'
     },
     emptyNoneFound: noun => `Ei löytynyt: ${noun}`,
     emptyNothingMatches: query => `Mikään ei vastaa “${query}”.`,
@@ -1004,7 +1049,8 @@ export const fi = defineLocale({
       featured: 'Suositellut taidot',
       landingHint: 'Hae keskuksesta asennettavia taitoja virallisesta hakemistosta, GitHubista ja yhteisön lähteistä.',
       noResults: 'Keskuksesta ei löytynyt vastaavia taitoja.',
-      resultCount: (count, ms) => `${count} tulos${count === 1 ? 'tulos' : 'tulokset'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} tulos${count === 1 ? 'tulos' : 'tulokset'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Aikakatkaisu: ${sources}`,
       installed: 'Asennettu',
       install: 'Asenna',
@@ -1022,7 +1068,7 @@ export const fi = defineLocale({
       trust: {
         builtin: 'sisäänrakennettu',
         trusted: 'luotettu',
-        community: 'yhteisö',
+        community: 'yhteisö'
       },
       verdictSafe: 'Turvallinen',
       verdictCaution: 'Varoitus',
@@ -1040,8 +1086,8 @@ export const fi = defineLocale({
       loadFailed: 'Taitokeskuksen lataus epäonnistui',
       previewFailed: 'Taidon esikatselu epäonnistui',
       scanFailed: 'Tietoturvaskannaus epäonnistui',
-      searchFailed: 'Hub-haku epäonnistui',
-    },
+      searchFailed: 'Hub-haku epäonnistui'
+    }
   },
   starmap: {
     title: 'Muistikaavio',
@@ -1058,7 +1104,8 @@ export const fi = defineLocale({
     emptyTitle: 'Ei vielä opittuja asioita',
     emptyDesc: 'Kun OpenAmer rakentaa taitoja ja muistoja työtäsi varten, ne näkyvät täällä.',
     share: 'Jaa kartta',
-    shareHint: 'Kopioi koodi jakaaksesi tämän kartan tai liitä koodi ladataksesi sen. Se sisältää vain asettelun, ei muistosi tai taitosi tekstiä.',
+    shareHint:
+      'Kopioi koodi jakaaksesi tämän kartan tai liitä koodi ladataksesi sen. Se sisältää vain asettelun, ei muistosi tai taitosi tekstiä.',
     shareTitle: 'Tuo / vie kartta',
     sharePlaceholder: 'Liitä karttakoodi…',
     copy: 'Kopioi karttakoodi',
@@ -1068,7 +1115,7 @@ export const fi = defineLocale({
     importEmpty: 'Liitä karttakoodi ladataksesi sen.',
     importSuccess: nodes => `Ladattiin kartta, jossa on ${nodes} ${nodes === 1 ? 'solmu' : 'solmut'}.`,
     importedBadge: 'tuotu kartta',
-    resetToMine: 'Takaisin kartalleni',
+    resetToMine: 'Takaisin kartalleni'
   },
   agents: {
     close: 'Sulje agentit',
@@ -1098,7 +1145,7 @@ export const fi = defineLocale({
     ageDays: days => `${days} pv sitten`,
     durationSeconds: seconds => `${seconds} s`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} s`,
-    tokens: value => `${value} tokenia`,
+    tokens: value => `${value} tokenia`
   },
   commandCenter: {
     close: 'Sulje komentokeskus',
@@ -1120,7 +1167,8 @@ export const fi = defineLocale({
       placeholder: 'Hae lemmikkejä…',
       loading: 'Ladataan petdex-galleriaa…',
       error: 'Petdex-galleriaa ei voitu tavoittaa.',
-      staleBackend: 'Käynnistä OpenAmer uudelleen, jotta voit käyttää lemmikkejä — taustajärjestelmä on tätä ominaisuutta vanhempi.',
+      staleBackend:
+        'Käynnistä OpenAmer uudelleen, jotta voit käyttää lemmikkejä — taustajärjestelmä on tätä ominaisuutta vanhempi.',
       empty: 'Ei vastaavia lemmikkejä.',
       turnOff: 'Poista käytöstä',
       turnOn: 'Kytke päälle',
@@ -1128,7 +1176,7 @@ export const fi = defineLocale({
       generatedTag: 'Luotu',
       adoptFailed: 'Kyseistä lemmikkiä ei voitu ottaa.',
       toggleFailed: 'Lemmikin tilaa ei voitu vaihtaa.',
-      noneAvailable: 'Lemmikkejä ei ole saatavilla — valitse yksi alta asennettavaksi.',
+      noneAvailable: 'Lemmikkejä ei ole saatavilla — valitse yksi alta asennettavaksi.'
     },
     generatePet: {
       title: 'Luo lemmikki',
@@ -1157,7 +1205,7 @@ export const fi = defineLocale({
       referenceImageTooLarge: 'Viitekuva on liian suuri. Käytä alle 16 MB:n kuvaa.',
       referenceImageInvalid: 'Viitekuvaa ei voitu lukea. Kokeile PNG-, JPG-, WebP- tai GIF-kuvaa.',
       adopt: 'Ota käyttöön',
-      startOver: 'Aloita alusta',
+      startOver: 'Aloita alusta'
     },
     installTheme: {
       title: 'Asenna teema…',
@@ -1169,7 +1217,7 @@ export const fi = defineLocale({
       install: 'Asenna',
       installing: 'Asennetaan...',
       installed: 'Asennettu',
-      installs: count => `${count} asennusta`,
+      installs: count => `${count} asennusta`
     },
     settingsFields: 'Asetuskentät',
     mcpServers: 'MCP-palvelimet',
@@ -1178,49 +1226,49 @@ export const fi = defineLocale({
       maintenance: 'Ylläpito',
       sessions: 'Istunnot',
       system: 'Järjestelmä',
-      usage: 'Käyttö',
+      usage: 'Käyttö'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostiikka, varmuuskopiot, kuraattori ja muistidata',
       sessions: 'Hae ja hallinnoi istuntoja',
       system: 'Tila, lokit ja järjestelmätoiminnot',
-      usage: 'Tokenien, kustannusten ja taitojen aktiivisuus ajan myötä',
+      usage: 'Tokenien, kustannusten ja taitojen aktiivisuus ajan myötä'
     },
     nav: {
       newChat: {
         title: 'Uusi istunto',
-        detail: 'Aloita uusi istunto',
+        detail: 'Aloita uusi istunto'
       },
       settings: {
         title: 'Asetukset',
-        detail: 'Määritä OpenAmer-työpöytä',
+        detail: 'Määritä OpenAmer-työpöytä'
       },
       skills: {
         title: 'Ominaisuudet',
-        detail: 'Taidot, työkalut ja MCP-palvelimet',
+        detail: 'Taidot, työkalut ja MCP-palvelimet'
       },
       messaging: {
         title: 'Viestintä',
-        detail: 'Määritä Telegram, Slack, Discord ja muut',
+        detail: 'Määritä Telegram, Slack, Discord ja muut'
       },
       artifacts: {
         title: 'Tuotokset',
-        detail: 'Selaa luotuja tulosteita',
-      },
+        detail: 'Selaa luotuja tulosteita'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Istuntopaneeli',
-        detail: 'Hae, kiinnitä ja hallinnoi istuntoja',
+        detail: 'Hae, kiinnitä ja hallinnoi istuntoja'
       },
       system: {
         title: 'Järjestelmäpaneeli',
-        detail: 'Yhdyskäytävän tila, lokit, uudelleenkäynnistys/päivitys',
+        detail: 'Yhdyskäytävän tila, lokit, uudelleenkäynnistys/päivitys'
       },
       usage: {
         title: 'Käyttöpaneeli',
-        detail: 'Tokenien, kustannusten ja taitojen aktiivisuus',
-      },
+        detail: 'Tokenien, kustannusten ja taitojen aktiivisuus'
+      }
     },
     providerNavigate: 'Siirry',
     providerSessions: 'Istunnot',
@@ -1308,8 +1356,8 @@ export const fi = defineLocale({
       actionStarted: name => `${name} käynnistetty — seurataan lokia...`,
       actionFailed: name => `${name} ei käynnistynyt`,
       running: 'Käynnissä...',
-      viewLog: 'Toimintoloki',
-    },
+      viewLog: 'Toimintoloki'
+    }
   },
   messaging: {
     search: 'Hae viestintä...',
@@ -1324,7 +1372,7 @@ export const fi = defineLocale({
       not_configured: 'Vaatii määrityksen',
       pending_restart: 'Uudelleenkäynnistys tarvitaan',
       retrying: 'Yritetään uudelleen',
-      startup_failed: 'Käynnistys epäonnistui',
+      startup_failed: 'Käynnistys epäonnistui'
     },
     unknown: 'Tuntematon',
     hintPendingRestart: 'Käynnistä yhdyskäytävä uudelleen tilapalkista ottaaksesi tämän muutoksen käyttöön.',
@@ -1337,7 +1385,8 @@ export const fi = defineLocale({
     required: 'Pakollinen',
     recommended: 'Suositeltu',
     advanced: count => `Lisäasetukset (${count})`,
-    noTokenNeeded: 'Tämä alusta ei tarvitse tässä tokenia. Käytä yllä olevaa asennusohjetta ja ota se sitten käyttöön alla.',
+    noTokenNeeded:
+      'Tämä alusta ei tarvitse tässä tokenia. Käytä yllä olevaa asennusohjetta ja ota se sitten käyttöön alla.',
     enabled: 'Käytössä',
     disabled: 'Ei käytössä',
     unsavedChanges: 'Tallentamattomia muutoksia',
@@ -1363,127 +1412,126 @@ export const fi = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Botin tunniste',
         help: 'Luo botti @BotFatherlla ja liitä sitten sen antama tunnus.',
-        placeholder: 'Liitä Telegram-botin tunnus',
+        placeholder: 'Liitä Telegram-botin tunnus'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Sallitut Telegram-käyttäjätunnisteet',
-        help: 'Suositeltu. Pilkuilla erotetut numerotunnukset @userinfobotista. Ilman tätä kuka tahansa voi lähettää yksityisviestin botillesi.',
+        help: 'Suositeltu. Pilkuilla erotetut numerotunnukset @userinfobotista. Ilman tätä kuka tahansa voi lähettää yksityisviestin botillesi.'
       },
       TELEGRAM_PROXY: {
         label: 'Välityspalvelimen URL',
-        help: 'Tarvitaan vain verkoissa, joissa Telegram on estetty.',
+        help: 'Tarvitaan vain verkoissa, joissa Telegram on estetty.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Botin tunniste',
-        help: 'Luo sovellus Discord Developer Portalissa, lisää botti ja liitä sen token.',
+        help: 'Luo sovellus Discord Developer Portalissa, lisää botti ja liitä sen token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Sallitut Discord-käyttäjätunnukset',
-        help: 'Suositeltu. Pilkuilla erotetut Discord-käyttäjätunnukset.',
+        help: 'Suositeltu. Pilkuilla erotetut Discord-käyttäjätunnukset.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Vastaustyyli',
-        help: 'first, all tai off.',
+        help: 'first, all tai off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Salli kaikki Discord-käyttäjät',
-        help: 'Vain kehitykseen. Kun true, kuka tahansa voi lähettää yksityisviestin botille ilman sallittujen luetteloa.',
+        help: 'Vain kehitykseen. Kun true, kuka tahansa voi lähettää yksityisviestin botille ilman sallittujen luetteloa.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Kotikanavan ID',
-        help: 'Kanava, jonne botti lähettää proaktiivisia viestejä (cron-tulosteet, muistutukset).',
+        help: 'Kanava, jonne botti lähettää proaktiivisia viestejä (cron-tulosteet, muistutukset).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Kotikanavan nimi',
-        help: 'Kotikanavan näyttönimi lokeissa ja tilatulosteissa.',
+        help: 'Kotikanavan näyttönimi lokeissa ja tilatulosteissa.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Salli kaikki iMessage-käyttäjät',
-        help: 'Kun true, ohita BlueBubbles-sallittujen luettelo.',
+        help: 'Kun true, ohita BlueBubbles-sallittujen luettelo.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Salli kaikki Mattermost-käyttäjät',
+        label: 'Salli kaikki Mattermost-käyttäjät'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kotikanava',
+        label: 'Kotikanava'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Salli kaikki QQ-käyttäjät',
+        label: 'Salli kaikki QQ-käyttäjät'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ-kotikanava',
-        help: 'Oletuskanava tai -ryhmä cron-toimituksille.',
+        help: 'Oletuskanava tai -ryhmä cron-toimituksille.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ-kotikanavan nimi',
+        label: 'QQ-kotikanavan nimi'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack-botin tunniste',
         help: 'Käytä botin tokenia OAuth & Permissions -kohdasta Slack-sovelluksen asennuksen jälkeen.',
-        placeholder: 'Liitä Slack-botin token',
+        placeholder: 'Liitä Slack-botin token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack-sovelluksen token',
         help: 'Käytä sovellustason tokenia, jota Socket Mode edellyttää.',
-        placeholder: 'Liitä Slack-sovelluksen token',
+        placeholder: 'Liitä Slack-sovelluksen token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Sallitut Slack-käyttäjätunnisteet',
-        help: 'Suositeltu. Pilkuilla erotetut Slack-käyttäjätunnisteet.',
+        help: 'Suositeltu. Pilkuilla erotetut Slack-käyttäjätunnisteet.'
       },
       MATTERMOST_URL: {
         label: 'Palvelimen URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Botin tunniste',
+        label: 'Botin tunniste'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Sallitut käyttäjätunnisteet',
-        help: 'Suositeltu. Pilkuilla erotetut Mattermost-käyttäjätunnisteet.',
+        help: 'Suositeltu. Pilkuilla erotetut Mattermost-käyttäjätunnisteet.'
       },
       MATRIX_HOMESERVER: {
         label: 'Kotipalvelimen URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Käyttöoikeustoken',
+        label: 'Käyttöoikeustoken'
       },
       MATRIX_USER_ID: {
         label: 'Botin käyttäjätunniste',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Sallitut Matrix-käyttäjätunnukset',
-        help: 'Suositeltu. Pilkuin erotellut käyttäjätunnukset muodossa @user:server.',
+        help: 'Suositeltu. Pilkuin erotellut käyttäjätunnukset muodossa @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal-sillan URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Käynnissä olevan signal-cli REST -sillan URL.',
+        help: 'Käynnissä olevan signal-cli REST -sillan URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Puhelinnumero',
-        help: 'Numero, joka on rekisteröity signal-cli-siltaasi.',
+        help: 'Numero, joka on rekisteröity signal-cli-siltaasi.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Sallitut Signal-käyttäjät',
-        help: 'Suositeltu. Pilkuin erotellut Signal-tunnisteet.',
+        help: 'Suositeltu. Pilkuin erotellut Signal-tunnisteet.'
       },
       WHATSAPP_ENABLED: {
         label: 'Ota WhatsApp-silta käyttöön',
-        help: 'Asetetaan automaattisesti alla olevalla kytkimellä. Älä koske, ellet tiedä tarvitsevasi sitä.',
+        help: 'Asetetaan automaattisesti alla olevalla kytkimellä. Älä koske, ellet tiedä tarvitsevasi sitä.'
       },
       WHATSAPP_MODE: {
-        label: 'Siltatila',
+        label: 'Siltatila'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Sallitut WhatsApp-käyttäjät',
-        help: 'Suositeltu. Pilkuin erotellut puhelinnumerot tai WhatsApp-ID:t.',
-      },
+        help: 'Suositeltu. Pilkuin erotellut puhelinnumerot tai WhatsApp-ID:t.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Hae webhookkeja...',
@@ -1493,7 +1541,8 @@ export const fi = defineLocale({
     hint: 'Tilausten muutokset päivittyvät lennossa, kun vastaanotin on käynnissä. Pois käytöstä olevat tilaukset hylkäävät saapuvat tapahtumat.',
     empty: 'Ei vielä webhook-tilauksia.',
     disabledTitle: 'Webhook-vastaanotin pois käytöstä',
-    disabledBody: 'Webhookit ovat oma yhdyskäytäväalustansa. Ota ne käyttöön tässä, jotta saapuvat HTTP-tapahtumat hyväksytään; keskustelukanavia tarvitaan vain, kun tilaus toimittaa viestin Telegramiin, Discordiin, Slackiin tai muuhun kanavaan.',
+    disabledBody:
+      'Webhookit ovat oma yhdyskäytäväalustansa. Ota ne käyttöön tässä, jotta saapuvat HTTP-tapahtumat hyväksytään; keskustelukanavia tarvitaan vain, kun tilaus toimittaa viestin Telegramiin, Discordiin, Slackiin tai muuhun kanavaan.',
     enable: 'Ota webhookit käyttöön',
     enabling: 'Otetaan käyttöön...',
     enabled: (name: string) => `Käytössä: "${name}"`,
@@ -1510,7 +1559,8 @@ export const fi = defineLocale({
     toggleFailed: (name: string) => `Kohteen "${name}" päivittäminen epäonnistui`,
     newSubscription: 'Uusi tilaus',
     restarting: 'Yhdyskäytävä käynnistyy uudelleen...',
-    restartNeeded: 'Webhookit ovat käytössä, mutta yhdyskäytävä on vielä käynnistettävä uudelleen, ennen kuin vastaanotin voi tulla käyttöön.',
+    restartNeeded:
+      'Webhookit ovat käytössä, mutta yhdyskäytävä on vielä käynnistettävä uudelleen, ennen kuin vastaanotin voi tulla käyttöön.',
     restartGateway: 'Käynnistä yhdyskäytävä uudelleen',
     restartingGateway: 'Käynnistetään uudelleen...',
     restartFailed: (detail: string) => `Yhdyskäytävän uudelleenkäynnistys epäonnistui${detail}`,
@@ -1546,8 +1596,8 @@ export const fi = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Sähköposti',
-      github_comment: 'GitHub-kommentti',
-    },
+      github_comment: 'GitHub-kommentti'
+    }
   },
   profiles: {
     close: 'Sulje profiilit',
@@ -1625,7 +1675,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     failedLoadSoul: 'SOUL.md:n lataus epäonnistui',
     failedSaveSoul: 'SOUL.md:n tallennus epäonnistui',
     failedCreate: 'Profiilin luonti epäonnistui',
-    failedRename: 'Profiilin uudelleennimeäminen epäonnistui',
+    failedRename: 'Profiilin uudelleennimeäminen epäonnistui'
   },
   cron: {
     close: 'Sulje cron',
@@ -1640,14 +1690,14 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       paused: 'keskeytetty',
       disabled: 'pois käytöstä',
       error: 'virhe',
-      completed: 'valmis',
+      completed: 'valmis'
     },
     deliveryLabels: {
       local: 'Tämä työpöytä',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Sähköposti',
+      email: 'Sähköposti'
     },
     scheduleLabels: {
       daily: 'Päivittäin',
@@ -1656,7 +1706,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       monthly: 'Kuukausittain',
       hourly: 'Tunneittain',
       'every-15-minutes': '15 minuutin välein',
-      custom: 'Mukautettu',
+      custom: 'Mukautettu'
     },
     scheduleHints: {
       daily: 'Joka päivä klo 9:00',
@@ -1665,7 +1715,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       monthly: 'Kuukauden ensimmäinen päivä klo 9:00',
       hourly: 'Jokaisen tunnin alussa',
       'every-15-minutes': '15 minuutin välein',
-      custom: 'Cron-syntaksi tai luonnollinen kieli',
+      custom: 'Cron-syntaksi tai luonnollinen kieli'
     },
     days: {
       '0': 'Sunnuntai',
@@ -1675,7 +1725,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       '4': 'torstai',
       '5': 'perjantai',
       '6': 'lauantai',
-      '7': 'sunnuntai',
+      '7': 'sunnuntai'
     },
     dayFallback: value => `päivä ${value}`,
     everyDayAt: time => `Joka päivä klo ${time}`,
@@ -1685,7 +1735,8 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     topOfHour: 'Jokaisen tunnin alussa',
     everyHourAt: minute => `Joka tunti :${minute}`,
     newCron: 'Uusi cron',
-    emptyDescNew: 'Ajoita kehote cron-lausekkeella. OpenAmer suorittaa sen ja toimittaa tulokset valitsemaasi kohteeseen.',
+    emptyDescNew:
+      'Ajoita kehote cron-lausekkeella. OpenAmer suorittaa sen ja toimittaa tulokset valitsemaasi kohteeseen.',
     emptyDescSearch: 'Kokeile laajempaa hakua.',
     emptyTitleNew: 'Ei vielä ajoitettuja töitä',
     emptyTitleSearch: 'Ei osumia',
@@ -1722,7 +1773,8 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     editTitle: 'Muokkaa cron-työtä',
     createTitle: 'Uusi cron-työ',
     editDesc: 'Päivitä aikataulu, kehote tai toimituskohde. Muutokset tulevat voimaan seuraavalla suorituskerralla.',
-    createDesc: 'Ajasta kehote suoritettavaksi automaattisesti. Käytä cron-syntaksia tai luonnollista ilmausta, kuten "15 minuutin välein".',
+    createDesc:
+      'Ajasta kehote suoritettavaksi automaattisesti. Käytä cron-syntaksia tai luonnollista ilmausta, kuten "15 minuutin välein".',
     nameLabel: 'Nimi',
     namePlaceholder: 'Aamukatsaus',
     promptLabel: 'Kehote',
@@ -1744,7 +1796,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     createAction: 'Luo cron-ajastus',
     tabs: {
       jobs: 'Työt',
-      blueprints: 'Mallipohjat',
+      blueprints: 'Mallipohjat'
     },
     blueprints: {
       tab: 'Mallipohjat',
@@ -1758,8 +1810,8 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       loading: 'Ladataan mallipohjia...',
       failedLoad: 'Suunnitelmien lataaminen epäonnistui',
       emptyTitle: 'Ei suunnitelmia saatavilla',
-      emptyDesc: 'Tällä taustapalvelulla ei ole automaatiosuunnitelmia saatavilla.',
-    },
+      emptyDesc: 'Tällä taustapalvelulla ei ole automaatiosuunnitelmia saatavilla.'
+    }
   },
   artifacts: {
     search: 'Hae artefakteja...',
@@ -1793,14 +1845,14 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     kindLink: 'linkki',
     chat: 'Keskustelu',
     copyUrl: 'Kopioi URL',
-    copyPath: 'Kopioi polku',
+    copyPath: 'Kopioi polku'
   },
   sidebar: {
     nav: {
       'new-session': 'Uusi istunto',
       skills: 'Ominaisuudet',
       messaging: 'Viestintä',
-      artifacts: 'Artefaktit',
+      artifacts: 'Artefaktit'
     },
     searchAria: 'Hae istuntoja',
     searchPlaceholder: 'Hae istuntoja…',
@@ -1832,7 +1884,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       namePlaceholder: 'esim. Skunkworks',
       foldersLabel: 'Kansiot',
       ideaLabel: 'Ajatus',
-      ideaPlaceholder: "Mistä tässä projektissa on kyse? (tallennetaan tiedostoon IDEA.md)",
+      ideaPlaceholder: 'Mistä tässä projektissa on kyse? (tallennetaan tiedostoon IDEA.md)',
       ideaGenerate: 'Luo idea',
       ideaGenerating: 'Luodaan…',
       ideaShuffle: 'Sekoita mallipohjat',
@@ -1852,8 +1904,10 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       copyPath: 'Kopioi polku',
       removeFromSidebar: 'Piilota sivupalkista',
       createFailed: 'Projektin luonti epäonnistui',
-      staleBackend: 'Päivitä OpenAmer-taustaosa projektien luomiseksi — taustaosasi on vanhempi kuin tämä työpöytäsovellus (Asetukset → Päivitykset → Taustaosa).',
-      deleteConfirm: 'Tämä poistaa tallennetun projektin OpenAmerista. Tiedostot, git-repot ja worktreet säilyvät koskemattomina.',
+      staleBackend:
+        'Päivitä OpenAmer-taustaosa projektien luomiseksi — taustaosasi on vanhempi kuin tämä työpöytäsovellus (Asetukset → Päivitykset → Taustaosa).',
+      deleteConfirm:
+        'Tämä poistaa tallennetun projektin OpenAmerista. Tiedostot, git-repot ja worktreet säilyvät koskemattomina.',
       startWork: 'Uusi worktree',
       newWorktreeTitle: 'Uusi worktree',
       newWorktreeDesc: 'Anna tälle worktreelle haaran nimi.',
@@ -1874,13 +1928,15 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       noBranches: 'Haaroja ei löytynyt',
       removeWorktree: 'Poista worktree',
       removeWorktreeFailed: 'Worktreen poisto epäonnistui (keskeneräisiä muutoksia?)',
-      removeWorktreeConfirm: 'Poista se gitistä (poistaa worktree-hakemiston; haara säilyy), tai piilota vain kaistale sivupalkista ja jätä worktree levylle.',
-      removeWorktreeDirty: 'Tässä worktreessä on keskeneräisiä muutoksia. Poista se pakotetusti (hylkää muutokset), tai piilota vain kaistale ja säilytä se levyllä.',
+      removeWorktreeConfirm:
+        'Poista se gitistä (poistaa worktree-hakemiston; haara säilyy), tai piilota vain kaistale sivupalkista ja jätä worktree levylle.',
+      removeWorktreeDirty:
+        'Tässä worktreessä on keskeneräisiä muutoksia. Poista se pakotetusti (hylkää muutokset), tai piilota vain kaistale ja säilytä se levyllä.',
       forceRemove: 'Poista pakotetusti',
       enter: label => `Avaa ${label}`,
       reorder: label => `Järjestä ${label}`,
       toggle: label => `Näytä tai piilota ${label} istuntoa`,
-      back: 'Kaikki projektit',
+      back: 'Kaikki projektit'
     },
     newSessionIn: label => `Uusi istunto kohteessa ${label}`,
     showMoreIn: (count, label) => `Näytä ${count} lisää kohteessa ${label}`,
@@ -1918,15 +1974,15 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       ageNow: 'nyt',
       ageDay: 'pv',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Aiemmin tänään',
       yesterday: 'Eilen',
       thisWeek: 'Aiemmin tällä viikolla',
       lastWeek: 'Viime viikolla',
-      thisMonth: 'Aiemmin tässä kuussa',
-    },
+      thisMonth: 'Aiemmin tässä kuussa'
+    }
   },
   composer: {
     message: 'Viesti',
@@ -1937,20 +1993,20 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     newSessionPlaceholders: [
       'Mitä rakennamme?',
       'Anna OpenAmerille tehtävä',
-      "Mitä mielessäsi on?",
+      'Mitä mielessäsi on?',
       'Kuvaile tarpeesi',
       'Mihin ryhdymme?',
       'Kysy mitä tahansa',
-      'Aloita tavoitteesta',
+      'Aloita tavoitteesta'
     ],
     followUpPlaceholders: [
       'Lähetä jatkoviesti',
       'Lisää kontekstia',
       'Tarkenna pyyntöä',
-      "Mitä seuraavaksi?",
+      'Mitä seuraavaksi?',
       'Jatka',
       'Vie pidemmälle',
-      'Säädä tai jatka',
+      'Säädä tai jatka'
     ],
     startVoice: 'Aloita äänikeskustelu',
     queueMessage: 'Jonota viesti',
@@ -1986,7 +2042,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       '/resume': 'jatka aiempaa istuntoa',
       '/details': 'säädä keskustelulokin tarkkuustasoa',
       '/copy': 'kopioi valinta tai viimeisin avustajan viesti',
-      '/quit': 'poistu OpenAmerista',
+      '/quit': 'poistu OpenAmerista'
     },
     hotkeyDescs: {
       'composer.mention': 'viittaa tiedostoihin, kansioihin, URL-osoitteisiin, gitiin',
@@ -1996,7 +2052,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       'composer.sendQueued': 'lähetä seuraava jonossa oleva vuoro',
       'keybinds.openPanel': 'kaikki pikanäppäimet',
       'composer.cancel': 'sulje ponnahdusikkuna · peruuta suoritus',
-      'composer.history': 'selaa ponnahdusikkunaa / historiaa',
+      'composer.history': 'selaa ponnahdusikkunaa / historiaa'
     },
     attachUrlTitle: 'Liitä URL-osoite',
     attachUrlDesc: 'OpenAmer hakee sivun ja sisällyttää sen tämän vuoron kontekstiin.',
@@ -2017,7 +2073,8 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     queueResume: 'Jatka',
     queueResumeTip: 'Pysäytys keskeytti — jatka jonossa olevien vuorojen lähettämistä',
     queueStuckTitle: 'Jonossa olevaa viestiä ei lähetetty',
-    queueStuckBody: 'Jonossa olevan vuoron lähettäminen epäonnistui toistuvasti. Se on yhä jonossa – yritä lähettää se uudelleen.',
+    queueStuckBody:
+      'Jonossa olevan vuoron lähettäminen epäonnistui toistuvasti. Se on yhä jonossa – yritä lähettää se uudelleen.',
     previewUnavailable: 'Esikatselu ei ole saatavilla',
     previewLabel: label => `Esikatselu ${label}`,
     couldNotPreview: label => `Kohteen ${label} esikatselu ei onnistunut`,
@@ -2046,20 +2103,21 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     snippets: {
       codeReview: {
         label: 'Koodikatselmointi',
-        description: 'Tarkasta nykyinen muutos regressioiden, pudonneiden reunatapausten ja puuttuvien testien varalta.',
-        text: 'Tarkista tämä bugien, regressioiden ja puuttuvien testien varalta.',
+        description:
+          'Tarkasta nykyinen muutos regressioiden, pudonneiden reunatapausten ja puuttuvien testien varalta.',
+        text: 'Tarkista tämä bugien, regressioiden ja puuttuvien testien varalta.'
       },
       implementationPlan: {
         label: 'Toteutussuunnitelma',
         description: 'Hahmottele lähestymistapa ennen koodiin koskemista, jotta diff pysyy kohdennettuna.',
-        text: 'Laadi tiivis toteutussuunnitelma ennen koodin muuttamista.',
+        text: 'Laadi tiivis toteutussuunnitelma ennen koodin muuttamista.'
       },
       explainThis: {
         label: 'Selitä tämä',
         description: 'Käy läpi, miten valittu koodi toimii, ja linkitä keskeisiin tiedostoihin.',
-        text: 'Selitä, miten tämä toimii, ja osoita keskeiset tiedostot.',
-      },
-    },
+        text: 'Selitä, miten tämä toimii, ja osoita keskeiset tiedostot.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agentit',
@@ -2089,8 +2147,10 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       viewAsList: 'Näytä luettelona',
       revert: 'Palauta',
       revertAll: 'Palauta kaikki',
-      revertConfirm: 'Hylätäänkö tämän tiedoston muutokset ja palautetaanko se viimeksi commitettuun tilaan? Tätä ei voi peruuttaa.',
-      revertAllConfirm: 'Hylätäänkö kaikki muutokset ja palautetaanko tiedostot viimeksi commitettuun tilaan? Tätä ei voi peruuttaa.',
+      revertConfirm:
+        'Hylätäänkö tämän tiedoston muutokset ja palautetaanko se viimeksi commitettuun tilaan? Tätä ei voi peruuttaa.',
+      revertAllConfirm:
+        'Hylätäänkö kaikki muutokset ja palautetaanko tiedostot viimeksi commitettuun tilaan? Tätä ei voi peruuttaa.',
       staged: 'Vaiheistettu',
       noChanges: 'Ei muutoksia',
       notRepo: 'Ei git-repositorio',
@@ -2107,13 +2167,14 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       openPr: 'Avaa PR',
       ghMissing: 'Asenna GitHub CLI (gh) ja kirjaudu sisään avataksesi PR:t',
       agentShip: 'Pyydä OpenAmer avaamaan PR',
-      agentShipPrompt: 'Tarkista nykyiset muutokset, commitoi ne selkeällä conventional-commit-viestillä, pushaa haara ja avaa pull request.',
+      agentShipPrompt:
+        'Tarkista nykyiset muutokset, commitoi ne selkeällä conventional-commit-viestillä, pushaa haara ja avaa pull request.',
       newBranch: 'Uusi haara',
       branchOffFrom: base => `Uusi haara lähteestä ${base}`,
       switchTo: branch => `Vaihda haaraan ${branch}`,
       switchFailed: branch => `Haaraan ${branch} ei voitu vaihtaa`,
-      worktrees: 'Työpuut',
-    },
+      worktrees: 'Työpuut'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2189,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       done: 'Päivitys valmis',
       manual: 'Päivitä päätteestä',
       guiSkew: 'Päivitä työpöytäsovellus',
-      error: 'Päivitys keskeytetty',
+      error: 'Päivitys keskeytetty'
     },
     checking: 'Etsitään päivityksiä…',
     checkFailedTitle: 'Päivityksiä ei voitu tarkistaa',
@@ -2151,12 +2212,15 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     manualBody: 'Asensit OpenAmerin komentoriviltä, joten päivitykset ajetaan myös siellä. Liitä tämä päätteeseen:',
     manualPickedUp: 'OpenAmer ottaa uuden version käyttöön seuraavalla käynnistyskerralla.',
     guiSkewTitle: 'Päivitä työpöytäsovellus',
-    guiSkewBody: 'Taustajärjestelmä päivitettiin, mutta tätä työpöytäsovelluksen pakettia ei muutettu. Päivitä tai asenna OpenAmer-työpöytäsovellus uudelleen (AppImage / .deb / .rpm) vastaamaan sitä.',
+    guiSkewBody:
+      'Taustajärjestelmä päivitettiin, mutta tätä työpöytäsovelluksen pakettia ei muutettu. Päivitä tai asenna OpenAmer-työpöytäsovellus uudelleen (AppImage / .deb / .rpm) vastaamaan sitä.',
     copy: 'Kopioi',
     copied: 'Kopioitu',
     done: 'Valmis',
-    applyingBody: 'OpenAmer-päivitys jatkaa omassa ikkunassaan ja avaa OpenAmerican automaattisesti, kun se on valmis. Älä avaa OpenAmeria itse päivityksen aikana.',
-    applyingBodyBackend: 'Etätaustapalvelu asentaa päivitystä ja käynnistyy uudelleen. OpenAmer yhdistää automaattisesti, kun se on palannut.',
+    applyingBody:
+      'OpenAmer-päivitys jatkaa omassa ikkunassaan ja avaa OpenAmerican automaattisesti, kun se on valmis. Älä avaa OpenAmeria itse päivityksen aikana.',
+    applyingBodyBackend:
+      'Etätaustapalvelu asentaa päivitystä ja käynnistyy uudelleen. OpenAmer yhdistää automaattisesti, kun se on palannut.',
     applyingClose: 'Tämä ikkuna sulkeutuu päivityksen ajaksi, minkä jälkeen OpenAmer avautuu itsestään.',
     errorTitle: 'Päivitys ei valmistunut',
     errorBody: 'Ei hätää — mitään ei menetetty. Voit yrittää uudelleen nyt.',
@@ -2167,12 +2231,13 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       restarting: 'Taustapalvelu käynnistyy uudelleen päivityksen lataamiseksi…',
       notAvailable: 'Päivitys ei ole saatavilla tälle taustapalvelulle.',
       failed: 'Taustapalvelun päivitys epäonnistui.',
-      noReturn: 'Taustapalvelu ei palannut verkkoon. Päivitys ei ehkä valmistunut — tarkista taustapalvelun isäntä.',
+      noReturn: 'Taustapalvelu ei palannut verkkoon. Päivitys ei ehkä valmistunut — tarkista taustapalvelun isäntä.'
     },
     appErrors: {
-      updateLocked: 'Päivitys keskeytetty: toinen OpenAmer-ikkuna tai openamer-pääte pitää tämän asennuksen avoinna. Sulje se ja yritä uudelleen.',
-      updateFailed: 'Päivitys ei valmistunut. Ei hätää — mitään ei menetetty. Voit yrittää uudelleen nyt.',
-    },
+      updateLocked:
+        'Päivitys keskeytetty: toinen OpenAmer-ikkuna tai openamer-pääte pitää tämän asennuksen avoinna. Sulje se ja yritä uudelleen.',
+      updateFailed: 'Päivitys ei valmistunut. Ei hätää — mitään ei menetetty. Voit yrittää uudelleen nyt.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2245,30 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       running: 'Asennetaan',
       succeeded: 'Valmis',
       skipped: 'Ohitettu',
-      failed: 'Epäonnistui',
+      failed: 'Epäonnistui'
     },
     oneTimeTitle: 'OpenAmer tarvitsee kertaluonteisen asennuksen',
-    unsupportedDesc: platform => `Automaattinen ensikäynnistyksen asennus ei ole vielä saatavilla alustalla ${platform}. Avaa Pääte ja suorita alla oleva komento, käynnistä sitten tämä sovellus uudelleen. Seuraavat käynnistykset ohittavat tämän vaiheen.`,
+    unsupportedDesc: platform =>
+      `Automaattinen ensikäynnistyksen asennus ei ole vielä saatavilla alustalla ${platform}. Avaa Pääte ja suorita alla oleva komento, käynnistä sitten tämä sovellus uudelleen. Seuraavat käynnistykset ohittavat tämän vaiheen.`,
     installCommand: 'Asennuskomento',
     copyCommand: 'Kopioi komento',
     viewDocs: 'Näytä asennusohjeet',
     installTo: 'Asennetaan kohteeseen',
     retryAfterRun: 'Olen suorittanut sen -- yritä uudelleen',
     setupChoiceTitle: 'Määritä OpenAmer Desktop',
-    setupChoiceDesc: 'Yhdistä tämä sovellus jo käytössä olevaan OpenAmer-yhdyskäytävään tai asenna OpenAmer paikallisesti tälle tietokoneelle.',
+    setupChoiceDesc:
+      'Yhdistä tämä sovellus jo käytössä olevaan OpenAmer-yhdyskäytävään tai asenna OpenAmer paikallisesti tälle tietokoneelle.',
     connectExistingTitle: 'Yhdistä olemassa olevaan OpenAmeriin',
     connectExistingShort: 'Yhdistä olemassa oleva',
-    connectExistingDesc: 'Käytä etätaustapalvelua istuntotunnuksella tai selaimen kirjautumisella. Paikallista asennusta ei aloiteta.',
+    connectExistingDesc:
+      'Käytä etätaustapalvelua istuntotunnuksella tai selaimen kirjautumisella. Paikallista asennusta ei aloiteta.',
     installLocalTitle: 'Asenna OpenAmer paikallisesti',
     installLocalDesc: 'Lataa OpenAmer, luo sen Python-ympäristö ja suorita taustapalvelu tällä tietokoneella.',
-    localStartUnavailable: 'Paikallista asennusta ei voitu aloittaa. Käynnistä OpenAmer Desktop uudelleen ja yritä uudelleen.',
+    localStartUnavailable:
+      'Paikallista asennusta ei voitu aloittaa. Käynnistä OpenAmer Desktop uudelleen ja yritä uudelleen.',
     remoteSetupTitle: 'Yhdistä olemassa olevaan OpenAmeriin',
-    remoteSetupDesc: 'Anna yhdyskäytävän URL-osoite. OpenAmer Desktop tunnistaa, tarvitaanko tunnus vai selaimen kirjautuminen.',
+    remoteSetupDesc:
+      'Anna yhdyskäytävän URL-osoite. OpenAmer Desktop tunnistaa, tarvitaanko tunnus vai selaimen kirjautuminen.',
     remoteUrlTitle: 'Yhdyskäytävän URL',
     remoteUrlDesc: 'Käytä OpenAmer-yhdyskäytävän perus-URL-osoitetta ja sisällytä https://, kun käytät etäyhteyttä.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2295,10 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     failedTitle: 'Asennus epäonnistui',
     settingUpTitle: 'Valmistellaan OpenAmer Agent',
     finishingTitle: 'Viimeistellään',
-    failedDesc: 'Yksi asennusvaiheista epäonnistui. Windowsissa tämä voi tapahtua, jos toinen OpenAmer CLI- tai työpöytäinstanssi on käynnissä. Pysäytä kaikki käynnissä olevat OpenAmer-instanssit ja yritä uudelleen. Tarkista alla olevat tiedot tai työpöytäloki saadaksesi koko lokin.',
-    activeDesc: 'Tämä on kertaluonteinen käyttöönotto. OpenAmer-asentaja lataa riippuvuuksia ja määrittää tietokoneesi. Seuraavat käynnistykset ohittavat tämän vaiheen.',
+    failedDesc:
+      'Yksi asennusvaiheista epäonnistui. Windowsissa tämä voi tapahtua, jos toinen OpenAmer CLI- tai työpöytäinstanssi on käynnissä. Pysäytä kaikki käynnissä olevat OpenAmer-instanssit ja yritä uudelleen. Tarkista alla olevat tiedot tai työpöytäloki saadaksesi koko lokin.',
+    activeDesc:
+      'Tämä on kertaluonteinen käyttöönotto. OpenAmer-asentaja lataa riippuvuuksia ja määrittää tietokoneesi. Seuraavat käynnistykset ohittavat tämän vaiheen.',
     progress: (completed, total) => `${completed} / ${total} vaihetta valmiina`,
     currentStage: stage => ` -- nyt: ${stage}`,
     fetchingManifest: 'Haetaan asentajan manifestia...',
@@ -2240,18 +2312,20 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     transcriptSaved: 'Koko loki tallennettu sijaintiin',
     copiedOutput: 'Kopioitu!',
     copyOutput: 'Kopioi tuloste',
-    reloadRetry: 'Lataa uudelleen ja yritä uudelleen',
+    reloadRetry: 'Lataa uudelleen ja yritä uudelleen'
   },
   onboarding: {
-    headerTitle: "Otetaan OpenAmer Agent käyttöön",
-    headerDesc: 'Yhdistä mallipalveluntarjoaja, niin voit aloittaa keskustelun. Useimmat vaihtoehdot hoituvat yhdellä napsautuksella.',
-    preparingInstall: 'OpenAmer viimeistelee asennusta. Ensimmäisellä käynnistyksellä tämä kestää yleensä alle minuutin.',
+    headerTitle: 'Otetaan OpenAmer Agent käyttöön',
+    headerDesc:
+      'Yhdistä mallipalveluntarjoaja, niin voit aloittaa keskustelun. Useimmat vaihtoehdot hoituvat yhdellä napsautuksella.',
+    preparingInstall:
+      'OpenAmer viimeistelee asennusta. Ensimmäisellä käynnistyksellä tämä kestää yleensä alle minuutin.',
     starting: 'Käynnistetään OpenAmer…',
     lookingUpProviders: 'Etsitään palveluntarjoajia...',
     collapse: 'Kutista',
     otherProviders: 'Muut palveluntarjoajat',
     haveApiKey: 'Minulla on API-avain',
-    chooseLater: "Valitsen palveluntarjoajan myöhemmin",
+    chooseLater: 'Valitsen palveluntarjoajan myöhemmin',
     recommended: 'Suositeltu',
     connected: 'Yhdistetty',
     featuredPitch: 'Yksi tilaus, yli 300 huippumallia — suositeltu tapa käyttää OpenAmeria',
@@ -2260,28 +2334,29 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     apiKeyOptions: {
       fireworks: {
         short: 'suora mallin API',
-        description: 'Suora pääsy Fireworks AI:n isännöimiin malleihin.',
+        description: 'Suora pääsy Fireworks AI:n isännöimiin malleihin.'
       },
       openrouter: {
         short: 'yksi avain, monta mallia',
-        description: 'Tarjoaa satoja malleja yhden avaimen takana. Hyvä oletusvalinta uusiin asennuksiin.',
+        description: 'Tarjoaa satoja malleja yhden avaimen takana. Hyvä oletusvalinta uusiin asennuksiin.'
       },
       openai: {
         short: 'GPT-luokan mallit',
-        description: 'Suora pääsy OpenAI-malleihin.',
+        description: 'Suora pääsy OpenAI-malleihin.'
       },
       gemini: {
         short: 'Gemini-mallit',
-        description: 'Suora pääsy Google Gemini -malleihin.',
+        description: 'Suora pääsy Google Gemini -malleihin.'
       },
       xai: {
         short: 'Grok-mallit',
-        description: 'Suora pääsy xAI Grok -malleihin.',
+        description: 'Suora pääsy xAI Grok -malleihin.'
       },
       local: {
         short: 'itse isännöity',
-        description: 'Ohjaa OpenAmer paikalliseen tai itse isännöityyn OpenAI-yhteensopivaan päätepisteeseen (vLLM, llama.cpp, Ollama jne.).',
-      },
+        description:
+          'Ohjaa OpenAmer paikalliseen tai itse isännöityyn OpenAI-yhteensopivaan päätepisteeseen (vLLM, llama.cpp, Ollama jne.).'
+      }
     },
     backToSignIn: 'Takaisin kirjautumiseen',
     getKey: 'Hanki avain',
@@ -2294,7 +2369,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     flowSubtitles: {
       pkce: 'Avaa selaimen kirjautumista varten ja jatkaa sitten täällä',
       device_code: 'Avaa vahvistussivun selaimessa — OpenAmer yhdistää automaattisesti',
-      external: 'Kirjaudu kerran päätteessäsi ja palaa sitten keskusteluun',
+      external: 'Kirjaudu kerran päätteessäsi ja palaa sitten keskusteluun'
     },
     startingSignIn: provider => `Aloitetaan kirjautumista ${provider} varten...`,
     verifyingCode: provider => `Vahvistetaan koodiasi ${provider}...`,
@@ -2308,11 +2383,13 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     copyAuthCode: 'Kopioi valtuutuskoodi ja liitä se alle.',
     pasteAuthCode: 'Liitä valtuutuskoodi',
     reopenAuthPage: 'Avaa valtuutussivu uudelleen',
-    autoBrowser: provider => `Avasimme ${provider} selaimessasi. Valtuuta OpenAmer siellä, niin yhteys muodostetaan automaattisesti — mitään ei tarvitse kopioida tai liittää.`,
+    autoBrowser: provider =>
+      `Avasimme ${provider} selaimessasi. Valtuuta OpenAmer siellä, niin yhteys muodostetaan automaattisesti — mitään ei tarvitse kopioida tai liittää.`,
     reopenSignInPage: 'Avaa kirjautumissivu uudelleen',
     waitingAuthorize: 'Odotetaan valtuutustasi...',
-    externalPending: provider => `${provider} kirjautuu sisään oman CLI-työkalunsa kautta. Suorita tämä komento terminaalissa, palaa sitten takaisin ja valitse "Olen kirjautunut sisään":`,
-    signedIn: "Olen kirjautunut sisään",
+    externalPending: provider =>
+      `${provider} kirjautuu sisään oman CLI-työkalunsa kautta. Suorita tämä komento terminaalissa, palaa sitten takaisin ja valitse "Olen kirjautunut sisään":`,
+    signedIn: 'Olen kirjautunut sisään',
     deviceCodeOpened: provider => `Avasimme ${provider} selaimessasi. Syötä tämä koodi siellä:`,
     reopenVerification: 'Avaa vahvistussivu uudelleen',
     copy: 'Kopioi',
@@ -2323,7 +2400,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     price: (input, output) => `${input} sisään / ${output} ulos per Mtok`,
     change: 'Vaihda',
     startChatting: 'Aloita',
-    docs: provider => `${provider} dokumenttia`,
+    docs: provider => `${provider} dokumenttia`
   },
   modelPicker: {
     title: 'Vaihda malli',
@@ -2339,13 +2416,13 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     free: 'Ilmainen',
     freeTier: 'Ilmainen taso',
     priceTitle: 'Syötteen / tulosteen hinta miljoonaa tokenia kohden',
-    wasPrice: 'oli',
+    wasPrice: 'oli'
   },
   modelVisibility: {
     title: 'Mallit',
     search: 'Hae malleja',
     noAuthenticatedProviders: 'Ei todennettuja tarjoajia.',
-    addProvider: 'Lisää palveluntarjoaja…',
+    addProvider: 'Lisää palveluntarjoaja…'
   },
   shell: {
     windowControls: 'Ikkunan säätimet',
@@ -2356,7 +2433,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       noModels: 'Malleja ei löytynyt',
       editModels: 'Muokkaa malleja…',
       refreshModels: 'Päivitä mallit',
-      fast: 'Nopea',
+      fast: 'Nopea'
     },
     modelOptions: {
       noOptions: 'Ei valintoja tälle mallille',
@@ -2372,7 +2449,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       max: 'Maksimi',
       ultra: 'Ultra',
       updateFailed: 'Malliasetuksen päivitys epäonnistui',
-      fastFailed: 'Pikatilan päivitys epäonnistui',
+      fastFailed: 'Pikatilan päivitys epäonnistui'
     },
     gatewayMenu: {
       gateway: 'Yhdyskäytävä',
@@ -2387,7 +2464,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       connection: label => `Yhteys: ${label}`,
       recentActivity: 'Viimeaikainen toiminta',
       viewAllLogs: 'Näytä kaikki lokit →',
-      messagingPlatforms: 'Viestintäalustat',
+      messagingPlatforms: 'Viestintäalustat'
     },
     approvalMode: {
       title: 'Hyväksyntätila',
@@ -2397,14 +2474,15 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       smart: 'Älykäs',
       smartDescription: 'Arvioi toiminnot automaattisesti ja kysy tarvittaessa',
       off: 'Pois',
-      offDescription: 'Suorita ilman hyväksyntäkehotteita',
+      offDescription: 'Suorita ilman hyväksyntäkehotteita'
     },
     statusbar: {
       unknown: 'tuntematon',
       restart: 'käynnistä uudelleen',
       update: 'päivitä',
       updateInProgress: 'Päivitys käynnissä',
-      commitsBehind: (count, branch) => `${count} committia${count === 1 ? 'committi' : 'committit'} jäljessä ${branch}`,
+      commitsBehind: (count, branch) =>
+        `${count} committia${count === 1 ? 'committi' : 'committit'} jäljessä ${branch}`,
       desktopVersion: version => `OpenAmer Desktop v${version}`,
       backendVersion: version => `Taustaosa v${version}`,
       clientLabel: version => `asiakas v${version}`,
@@ -2453,27 +2531,29 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
           skills: 'Taidot',
           subagent_definitions: 'Ala-agenttien määritelmät',
           system_prompt: 'Järjestelmäkehote',
-          tool_definitions: 'Työkalujen määritelmät',
+          tool_definitions: 'Työkalujen määritelmät'
         },
         empty: 'Ei vielä kontekstitietoja',
         loading: 'Ladataan erittelyä…',
         percentFull: percent => `${percent} % täynnä`,
         title: 'Kontekstin käyttö',
-        tokenSummary: (used, max) => `${used} / ${max} tokenia`,
+        tokenSummary: (used, max) => `${used} / ${max} tokenia`
       },
       openContextUsage: 'Avaa kontekstin käytön erittely',
       session: 'Istunto',
       runtimeSessionElapsed: 'Ajoistunnon kulunut aika',
-      yoloOn: 'YOLO päällä — hyväksyy vaaralliset komennot automaattisesti. Napsauta kytkeäksesi pois. Shift+napsautus vaihtaa tilan globaalisti.',
-      yoloOff: 'YOLO pois — napsauta hyväksyäksesi vaaralliset komennot automaattisesti. Shift+napsautus vaihtaa tilan globaalisti.',
+      yoloOn:
+        'YOLO päällä — hyväksyy vaaralliset komennot automaattisesti. Napsauta kytkeäksesi pois. Shift+napsautus vaihtaa tilan globaalisti.',
+      yoloOff:
+        'YOLO pois — napsauta hyväksyäksesi vaaralliset komennot automaattisesti. Shift+napsautus vaihtaa tilan globaalisti.',
       modelNone: 'ei mitään',
       noModel: 'ei mallia',
       switchModel: 'Vaihda malli',
       openModelPicker: 'Avaa mallivalitsin',
       modelPinned: 'sinun kiinnittämäsi; uudet keskustelut käyttävät tätä asetusten oletuksen sijaan',
       modelTitle: (provider, model) => `Malli · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Oikea sivupalkki',
@@ -2509,7 +2589,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     terminalNew: 'Uusi terminaali',
     terminalCloseOthers: 'Sulje muut',
     terminalCloseAll: 'Sulje kaikki',
-    addToChat: 'Lisää chattiin',
+    addToChat: 'Lisää chattiin'
   },
   preview: {
     tab: 'Esikatselu',
@@ -2543,7 +2623,8 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     unsavedChanges: 'Tallentamattomia muutoksia',
     saveFailed: message => `Tallennus epäonnistui: ${message}`,
     diskChangedTitle: 'Tiedosto on muuttunut levyllä',
-    diskChangedBody: 'Tämä tiedosto on muuttunut sen jälkeen, kun avasit sen. Korvaanko se versiollasi, hylätäänkö muutoksesi ja ladataanko uudelleen?',
+    diskChangedBody:
+      'Tämä tiedosto on muuttunut sen jälkeen, kun avasit sen. Korvaanko se versiollasi, hylätäänkö muutoksesi ja ladataanko uudelleen?',
     overwrite: 'Korvaa',
     discardReload: 'Hylkää ja lataa uudelleen',
     console: {
@@ -2564,7 +2645,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       empty: 'Ei vielä konsoliviestejä.',
       promptHeader: 'Esikatselukonsoli:',
       sentTitle: 'Lähetetty chattiin',
-      sentMessage: count => `${count} lokimerkintä${count === 1 ? 'y' : 'ies'} lisätty viestikenttään`,
+      sentMessage: count => `${count} lokimerkintä${count === 1 ? 'y' : 'ies'} lisätty viestikenttään`
     },
     web: {
       appFailedToBoot: 'Esikatselusovelluksen käynnistys epäonnistui',
@@ -2582,24 +2663,27 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       showConsole: 'Näytä esikatselukonsoli',
       hideDevTools: 'Piilota esikatselun kehittäjätyökalut',
       openDevTools: 'Avaa esikatselun kehittäjätyökalut',
-      finishedRestarting: message => `OpenAmer sai esikatselupalvelimen uudelleenkäynnistyksen valmiiksi${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer sai esikatselupalvelimen uudelleenkäynnistyksen valmiiksi${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Palvelimen uudelleenkäynnistys epäonnistui: ${message}`,
       unknownError: 'tuntematon virhe',
       restartedTitle: 'Esikatselupalvelin käynnistettiin uudelleen',
       reloadingNow: 'Ladataan esikatselu uudelleen nyt.',
       restartFailedTitle: 'Esikatselun uudelleenkäynnistys epäonnistui',
       restartFailedMessage: 'OpenAmer ei voinut käynnistää palvelinta uudelleen.',
-      stillWorking: 'OpenAmer työskentelee edelleen, mutta uudelleenkäynnistyksen tulosta ei ole vielä saapunut. Palvelinkomento voi olla käynnissä etualalla.',
+      stillWorking:
+        'OpenAmer työskentelee edelleen, mutta uudelleenkäynnistyksen tulosta ei ole vielä saapunut. Palvelinkomento voi olla käynnissä etualalla.',
       workspaceReloading: 'Työtila muuttui, ladataan esikatselu uudelleen',
       fileChanged: url => `Tiedosto muuttui, ladataan esikatselu uudelleen: ${url}`,
       filesChanged: (count, url) => `${count} tiedostomuutosta, ladataan esikatselu uudelleen: ${url}`,
       watchFailed: message => `Esikatselutiedostoa ei voitu tarkkailla: ${message}`,
-      moduleMimeDescription: 'Moduuliskriptejä tarjoillaan väärällä MIME-tyypillä. Tämä tarkoittaa yleensä, että staattinen tiedostopalvelin tarjoilee Vite/React-sovellusta projektin kehityspalvelimen sijaan.',
+      moduleMimeDescription:
+        'Moduuliskriptejä tarjoillaan väärällä MIME-tyypillä. Tämä tarkoittaa yleensä, että staattinen tiedostopalvelin tarjoilee Vite/React-sovellusta projektin kehityspalvelimen sijaan.',
       loadFailedConsole: (code, message) => `Lataus epäonnistui${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Esikatselusivua ei voitu tavoittaa.',
       openTarget: url => `Avaa ${url}`,
-      fallbackTitle: 'Esikatselu',
-    },
+      fallbackTitle: 'Esikatselu'
+    }
   },
   zones: {
     showHeader: 'Näytä otsikko',
@@ -2607,7 +2691,8 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     minimize: 'Minimoi',
     restore: 'Palauta',
     closeRunningTitle: 'Suljetaanko käynnissä oleva välilehti?',
-    closeRunningBody: 'Tämä keskustelu on vielä käynnissä (tai odottaa syötettäsi). Välilehden sulkeminen piilottaa sen — istunnon edistyminen säilyy ja sen voi avata uudelleen sivupalkista.',
+    closeRunningBody:
+      'Tämä keskustelu on vielä käynnissä (tai odottaa syötettäsi). Välilehden sulkeminen piilottaa sen — istunnon edistyminen säilyy ja sen voi avata uudelleen sivupalkista.',
     closeRunningConfirm: 'Sulje välilehti',
     closeOthers: 'Sulje muut',
     closeToRight: 'Sulje oikealla olevat',
@@ -2623,7 +2708,8 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     pluginDisabledBody: 'Ota se uudelleen käyttöön Asetukset → Lisäosat palauttaaksesi paneelin.',
     missingPane: paneId => `puuttuva paneeli: ${paneId}`,
     editTitle: 'Asettelut',
-    editHint: 'Valitse asettelu tai raahaa paneeleja vyöhykkeiden välillä. Klikkaa vyöhykettä hiiren oikealla jakaaksesi sen.',
+    editHint:
+      'Valitse asettelu tai raahaa paneeleja vyöhykkeiden välillä. Klikkaa vyöhykettä hiiren oikealla jakaaksesi sen.',
     reset: 'Nollaa',
     templates: 'Mallit',
     custom: 'Mukautettu',
@@ -2644,29 +2730,16 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     layoutNamePlaceholder: fallback => `Asettelun nimi (${fallback})`,
     saveApply: 'Tallenna ja käytä',
     notExpressible: 'tämä järjestely limittyy (tuulimylly) — ei vielä ilmaistavissa sisäkkäisinä jakoina',
-    zoneCount: count => `${count} vyöhykettä`,
+    zoneCount: count => `${count} vyöhykettä`
   },
   assistant: {
     thread: {
       loadingSession: 'Ladataan istuntoa',
       showEarlier: 'Näytä aiemmat viestit',
       loadingResponse: 'OpenAmer lataa vastausta',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Mietitään',
       today: time => `Tänään, ${time}`,
@@ -2693,7 +2766,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       restoreNext: 'Palauta seuraavaan tarkistuspisteeseen',
       goForward: 'Siirry eteenpäin',
       sendEdited: 'Lähetä muokattu viesti',
-      attachingFile: 'Liitetään…',
+      attachingFile: 'Liitetään…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer-yhdyskäytävä ei ole yhteydessä',
@@ -2706,8 +2779,9 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       jumpToApproval: 'Hyväksyntä tarvitaan',
       reject: 'Hylkää',
       alwaysTitle: 'Sallitaanko tämä komento aina?',
-      alwaysDescription: pattern => `Tämä lisää “${pattern}”-kuvion pysyvään sallittujen luetteloosi (~/.openamer/config.yaml). OpenAmer ei kysy enää uudelleen tällaisia komentoja — ei tässä istunnossa eikä missään tulevassa istunnossa.`,
-      alwaysAllow: 'Salli aina',
+      alwaysDescription: pattern =>
+        `Tämä lisää “${pattern}”-kuvion pysyvään sallittujen luetteloosi (~/.openamer/config.yaml). OpenAmer ei kysy enää uudelleen tällaisia komentoja — ei tässä istunnossa eikä missään tulevassa istunnossa.`,
+      alwaysAllow: 'Salli aina'
     },
     clarify: {
       notReady: 'Tarkennuspyyntö ei ole vielä valmis',
@@ -2721,7 +2795,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       continueLabel: 'Jatka',
       lateAnswer: (question, choice) => `Koskee: "${question}" — vastaukseni: ${choice}`,
       lateAnswerTip: 'Laadi tämä vastaus jatkoviestiksi',
-      lateAnswerHint: 'Kehote ei ole enää odottamassa. Valitse vaihtoehto, niin laadit sen jatkoviestiksi.',
+      lateAnswerHint: 'Kehote ei ole enää odottamassa. Valitse vaihtoehto, niin laadit sen jatkoviestiksi.'
     },
     tool: {
       code: 'Koodi',
@@ -2757,11 +2831,11 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
         ran: 'Suoritettu',
         running: 'Suoritetaan',
         ranCode: 'Koodi suoritettu',
-        runningCode: 'Skriptataan',
+        runningCode: 'Skriptataan'
       },
       prefixes: {
         browser: 'Selain',
-        web: 'Verkko',
+        web: 'Verkko'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2769,132 +2843,133 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Suoritetaan ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Suoritetaan ${action.toLowerCase()}`,
+        runningTool: action => `Suoritetaan ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Sivun elementtiä napsautettu',
           pending: 'Napsautetaan sivun elementtiä',
-          pendingAction: 'Napsautetaan',
+          pendingAction: 'Napsautetaan'
         },
         browser_fill: {
           done: 'Lomakekenttä täytetty',
           pending: 'Täytetään lomakekenttää',
-          pendingAction: 'Täytetään',
+          pendingAction: 'Täytetään'
         },
         browser_navigate: {
           done: 'Sivu avattu',
           pending: 'Avataan sivua',
-          pendingAction: 'Avataan',
+          pendingAction: 'Avataan'
         },
         browser_snapshot: {
           done: 'Sivun tilannekuva otettu',
           pending: 'Otetaan sivun tilannekuva',
-          pendingAction: 'Otetaan',
+          pendingAction: 'Otetaan'
         },
         browser_take_screenshot: {
           done: 'Kuvakaappaus otettu',
           pending: 'Otetaan kuvakaappaus',
-          pendingAction: 'Nauhoittaa',
+          pendingAction: 'Nauhoittaa'
         },
         browser_type: {
           done: 'Kirjoitettu sivulle',
           pending: 'Kirjoitetaan sivulle',
-          pendingAction: 'Kirjoittaa',
+          pendingAction: 'Kirjoittaa'
         },
         clarify: {
           done: 'Kysytty kysymys',
           pending: 'Esitetään kysymys',
-          pendingAction: 'Kysyy',
+          pendingAction: 'Kysyy'
         },
         cronjob: {
           done: 'Cron-tehtävä',
           pending: 'Aikataulutetaan cron-tehtävä',
-          pendingAction: 'Aikatauluttaa',
+          pendingAction: 'Aikatauluttaa'
         },
         edit_file: {
           done: 'Muokattu tiedosto',
           pending: 'Muokataan tiedostoa',
-          pendingAction: 'Muokkaa',
+          pendingAction: 'Muokkaa'
         },
         execute_code: {
           done: 'Suoritettu koodi',
           pending: 'Skriptaus',
-          pendingAction: 'Skriptaus',
+          pendingAction: 'Skriptaus'
         },
         image_generate: {
           done: 'Luotu kuva',
           pending: 'Luodaan kuva',
-          pendingAction: 'Luoda',
+          pendingAction: 'Luoda'
         },
         list_files: {
           done: 'Listatut tiedostot',
           pending: 'Listataan tiedostoja',
-          pendingAction: 'Listataan',
+          pendingAction: 'Listataan'
         },
         patch: {
           done: 'Paikattu tiedosto',
           pending: 'Paikataan tiedostoa',
-          pendingAction: 'Paikkaa',
+          pendingAction: 'Paikkaa'
         },
         read_file: {
           done: 'Tiedosto luettu',
           pending: 'Luetaan tiedostoa',
-          pendingAction: 'Luetaan',
+          pendingAction: 'Luetaan'
         },
         search_files: {
           done: 'Tiedostoja haettu',
           pending: 'Haetaan tiedostoja',
-          pendingAction: 'Haetaan',
+          pendingAction: 'Haetaan'
         },
         session_search_recall: {
           done: 'Istuntohistoria haettu',
           pending: 'Haetaan istuntohistoriaa',
-          pendingAction: 'Haetaan',
+          pendingAction: 'Haetaan'
         },
         terminal: {
           done: 'Komento suoritettu',
           pending: 'Suoritetaan komentoa',
-          pendingAction: 'Suoritetaan',
+          pendingAction: 'Suoritetaan'
         },
         todo: {
           done: 'Tehtävät päivitetty',
           pending: 'Päivitetään tehtäviä',
-          pendingAction: 'Päivitetään',
+          pendingAction: 'Päivitetään'
         },
         vision_analyze: {
           done: 'Kuva analysoitu',
           pending: 'Analysoidaan kuvaa',
-          pendingAction: 'Analysoidaan',
+          pendingAction: 'Analysoidaan'
         },
         web_extract: {
           done: 'Verkkosivu luettu',
           pending: 'Luetaan verkkosivua',
-          pendingAction: 'Luetaan',
+          pendingAction: 'Luetaan'
         },
         web_search: {
           done: 'Haettu verkosta',
           pending: 'Haetaan verkosta',
-          pendingAction: 'Haetaan',
+          pendingAction: 'Haetaan'
         },
         write_file: {
           done: 'Tiedosto muokattu',
           pending: 'Muokataan tiedostoa',
-          pendingAction: 'Muokataan',
-        },
-      },
-    },
+          pendingAction: 'Muokataan'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer-yhdyskäytävä ei ole yhteydessä',
     sudoSendFailed: 'Sudo-salasanan lähetys epäonnistui',
     secretSendFailed: 'Salaisuuden lähetys epäonnistui',
     sudoTitle: 'Järjestelmänvalvojan salasana',
-    sudoDesc: 'OpenAmer tarvitsee sudo-salasanasi suorittaakseen etuoikeutetun komennon. Se lähetetään vain paikalliselle agentillesi.',
+    sudoDesc:
+      'OpenAmer tarvitsee sudo-salasanasi suorittaakseen etuoikeutetun komennon. Se lähetetään vain paikalliselle agentillesi.',
     sudoPlaceholder: 'sudo-salasana',
     secretTitle: 'Salaisuus vaaditaan',
     secretDesc: 'OpenAmer tarvitsee tunnistetiedon jatkaakseen.',
-    secretPlaceholder: 'salaisuuden arvo',
+    secretPlaceholder: 'salaisuuden arvo'
   },
   desktop: {
     audioReadFailed: 'Tallennettua ääntä ei voitu lukea',
@@ -2911,7 +2986,8 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     yoloSystem: active => `YOLO ${active ? 'päällä' : 'pois'} tälle istunnolle`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'YOLOn tilaa ei voitu vaihtaa',
-    profileStatus: current => `Profiili: ${current}. Käytä /profile <name> -komentoa tai "Uusi istunto" -valitsinta aloittaaksesi keskustelun toisessa profiilissa.`,
+    profileStatus: current =>
+      `Profiili: ${current}. Käytä /profile <name> -komentoa tai "Uusi istunto" -valitsinta aloittaaksesi keskustelun toisessa profiilissa.`,
     unknownProfile: 'Tuntematon profiili',
     noProfileNamed: (target, available) => `Profiilia nimeltä "${target}" ei ole. Saatavilla: ${available}`,
     newChatsProfile: name => `Uudet keskustelut käyttävät profiilia ${name}.`,
@@ -2921,8 +2997,9 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
     regenerateFailed: 'Uudelleenluonti epäonnistui',
     editFailed: 'Muokkaus epäonnistui',
     resumeFailed: 'Jatkaminen epäonnistui',
-    resumeStrandedTitle: "Tätä istuntoa ei voitu ladata",
-    resumeStrandedBody: 'Yhteys tähän istuntoon epäonnistui ja automaattiset uudelleenyritykset loppuivat. Tarkista, että yhdyskäytävä on käynnissä, ja yritä uudelleen.',
+    resumeStrandedTitle: 'Tätä istuntoa ei voitu ladata',
+    resumeStrandedBody:
+      'Yhteys tähän istuntoon epäonnistui ja automaattiset uudelleenyritykset loppuivat. Tarkista, että yhdyskäytävä on käynnissä, ja yritä uudelleen.',
     resumeRetry: 'Yritä uudelleen',
     nothingToBranch: 'Ei haarautettavaa',
     branchNeedsChat: 'Aloita tai jatka keskustelua ennen haarauttamista.',
@@ -2962,31 +3039,31 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       success: platform => `Siirretty ${platform}. Jatka tästä milloin vain.`,
       systemNote: platform => `↻ Siirretty ${platform} — jatka tästä milloin vain.`,
       failed: error => `Siirto epäonnistui: ${error}`,
-      timedOut: 'Yhteys aikakatkesi. Onko `openamer gateway` käynnissä?',
-    },
+      timedOut: 'Yhteys aikakatkesi. Onko `openamer gateway` käynnissä?'
+    }
   },
   errors: {
     genericFailure: 'Jotain meni vikaan',
     boundaryTitle: 'Käyttöliittymässä tapahtui virhe',
     boundaryDesc: 'Näkymässä tapahtui odottamaton virhe. Chatit ja asetukset ovat tallessa.',
     reloadWindow: 'Lataa ikkuna uudelleen',
-    openLogs: 'Avaa lokit',
+    openLogs: 'Avaa lokit'
   },
   ui: {
     search: {
-      clear: 'Tyhjennä haku',
+      clear: 'Tyhjennä haku'
     },
     pagination: {
       label: 'sivutus',
       previous: 'Edellinen',
       previousAria: 'Siirry edelliselle sivulle',
       next: 'Seuraava',
-      nextAria: 'Siirry seuraavalle sivulle',
+      nextAria: 'Siirry seuraavalle sivulle'
     },
     sidebar: {
       title: 'Sivupalkki',
       description: 'Näyttää mobiilivalikon.',
-      toggle: 'Vaihda sivupalkin tila',
-    },
-  },
+      toggle: 'Vaihda sivupalkin tila'
+    }
+  }
 })

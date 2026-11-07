@@ -44,7 +44,7 @@ export const hu = defineLocale({
     update: 'Frissítés',
     tryHint: term => `Próbálja: „${term}”`,
     on: 'Be',
-    off: 'Ki',
+    off: 'Ki'
   },
   fileMenu: {
     revealFinder: 'Megjelenítés a Finderben',
@@ -59,7 +59,7 @@ export const hu = defineLocale({
     renameLabel: 'Új név',
     deleteTitle: name => `Törli: ${name}?`,
     deleteBody: 'A Kukába kerül — onnan visszaállítható.',
-    pathCopied: 'Útvonal másolva',
+    pathCopied: 'Útvonal másolva'
   },
   boot: {
     ready: 'Az OpenAmer Desktop készen áll',
@@ -69,7 +69,7 @@ export const hu = defineLocale({
       loadingSettings: 'OpenAmer beállítások betöltése',
       loadingSessions: 'Legutóbbi munkamenetek betöltése',
       startingDesktopConnection: 'Asztali kapcsolat indítása',
-      startingOpenAmerDesktop: 'OpenAmer Desktop indítása…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop indítása…'
     },
     errors: {
       backgroundExited: 'Az OpenAmer háttérfolyamata befejeződött.',
@@ -78,13 +78,15 @@ export const hu = defineLocale({
       desktopBootFailed: 'Az asztal indítása sikertelen',
       gatewayConnectionLost: 'Megszakadt a gateway-kapcsolat',
       gatewaySignInRequired: 'Gateway-bejelentkezés szükséges',
-      ipcBridgeUnavailable: 'Az asztali IPC-híd nem elérhető.',
+      ipcBridgeUnavailable: 'Az asztali IPC-híd nem elérhető.'
     },
     failure: {
-      title: "Az OpenAmer nem tudott elindulni",
-      description: "A háttérben futó gateway nem indult el. Próbálja ki az alábbi helyreállítási lépések egyikét. Semmi nem törli itt a beszélgetéseit vagy beállításait.",
+      title: 'Az OpenAmer nem tudott elindulni',
+      description:
+        'A háttérben futó gateway nem indult el. Próbálja ki az alábbi helyreállítási lépések egyikét. Semmi nem törli itt a beszélgetéseit vagy beállításait.',
       remoteTitle: 'Távoli gateway-bejelentkezés szükséges',
-      remoteDescription: 'A távoli gateway-munkamenete lejárt. Jelentkezzen be újra az újracsatlakozáshoz. Semmi nem törli itt a beszélgetéseit vagy beállításait.',
+      remoteDescription:
+        'A távoli gateway-munkamenete lejárt. Jelentkezzen be újra az újracsatlakozáshoz. Semmi nem törli itt a beszélgetéseit vagy beállításait.',
       retry: 'Újrapróbálás',
       repairInstall: 'Telepítés javítása',
       useLocalGateway: 'Helyi gateway használata',
@@ -92,9 +94,11 @@ export const hu = defineLocale({
       back: 'Vissza',
       openLogs: 'Naplófájlok megnyitása',
       repairHint: 'A javítás újrafuttatja a telepítőt, és új gépen néhány percig is eltarthat.',
-      remoteSignInHint: signInLabel => `Kijelentkezteti a mentett távoli böngésző-munkamenetből, majd megnyitja: ${signInLabel}. A beépített backendhez való visszatéréshez használja a „Helyi gateway használata” opciót.`,
+      remoteSignInHint: signInLabel =>
+        `Kijelentkezteti a mentett távoli böngésző-munkamenetből, majd megnyitja: ${signInLabel}. A beépített backendhez való visszatéréshez használja a „Helyi gateway használata” opciót.`,
       signOutAndSignIn: 'Kijelentkezés és bejelentkezés',
-      remoteFailureHint: 'Ellenőrizze az URL-t és a bejelentkezést a gateway-beállításokban, vagy váltson helyi gatewayre.',
+      remoteFailureHint:
+        'Ellenőrizze az URL-t és a bejelentkezést a gateway-beállításokban, vagy váltson helyi gatewayre.',
       hideRecentLogs: 'Legutóbbi naplók elrejtése',
       showRecentLogs: 'Legutóbbi naplók megjelenítése',
       signedInTitle: 'Bejelentkezve',
@@ -104,8 +108,8 @@ export const hu = defineLocale({
       signInFailed: 'A bejelentkezés sikertelen',
       signInToRemoteGateway: 'Bejelentkezés a távoli gatewaybe',
       signInWithProvider: provider => `Bejelentkezés ezzel: ${provider}`,
-      identityProvider: 'Az Ön identitásszolgáltatója',
-    },
+      identityProvider: 'Az Ön identitásszolgáltatója'
+    }
   },
   notifications: {
     region: 'Értesítések',
@@ -118,21 +122,23 @@ export const hu = defineLocale({
     copyDetail: 'Részletek másolása',
     copyDetailFailed: 'Az értesítés részletei nem másolhatók',
     backendOutOfDateTitle: 'A backend elavult',
-    backendOutOfDateMessage: 'Az Ön OpenAmer backendje régebbi ennél az asztali verziónál, és nem biztos, hogy megfelelően működik. Frissítse az összehangoláshoz.',
+    backendOutOfDateMessage:
+      'Az Ön OpenAmer backendje régebbi ennél az asztali verziónál, és nem biztos, hogy megfelelően működik. Frissítse az összehangoláshoz.',
     installMethodUnsupportedTitle: 'Nem támogatott telepítési mód',
     updateOpenAmer: 'OpenAmer frissítése',
     updateReadyTitle: 'A frissítés kész',
     updateReadyMessage: count => `${count} new change${count === 1 ? 'változás' : 'változások'} available.`,
-    seeWhatsNew: "Újdonságok megtekintése",
+    seeWhatsNew: 'Újdonságok megtekintése',
     errors: {
       elevenLabsNeedsKey: 'Az ElevenLabs STT-hez ELEVENLABS_API_KEY szükséges.',
       elevenLabsRejectedKey: 'Az ElevenLabs elutasította az API-kulcsot (401).',
       gatewayAuthFailed: 'A gateway-hitelesítés sikertelen — ellenőrizze az API_SERVER_KEY-t.',
-      methodNotAllowed: 'Az asztali backend elutasította a kérést (405 Method Not Allowed). Próbálja újraindítani az OpenAmer Desktopot.',
+      methodNotAllowed:
+        'Az asztali backend elutasította a kérést (405 Method Not Allowed). Próbálja újraindítani az OpenAmer Desktopot.',
       microphonePermission: 'A mikrofon-engedély megtagadva.',
       openaiRejectedApiKey: 'Az OpenAI elutasította az API-kulcsot.',
       openaiRejectedApiKeyWithStatus: status => `Az OpenAI elutasította az API-kulcsot (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'Az OpenAI TTS-hez VOICE_TOOLS_OPENAI_KEY vagy OPENAI_API_KEY szükséges.',
+      openaiTtsNeedsKey: 'Az OpenAI TTS-hez VOICE_TOOLS_OPENAI_KEY vagy OPENAI_API_KEY szükséges.'
     },
     voice: {
       configureSpeechToText: 'A hangmód használatához állítsa be a beszédfelismerést.',
@@ -151,7 +157,7 @@ export const hu = defineLocale({
       transcriptionFailed: 'A hang átirata sikertelen',
       transcriptionUnavailable: 'A hangátirat még nem érhető el.',
       tryRecordingAgain: 'Próbálja újra rögzíteni.',
-      unavailable: 'A hang nem elérhető',
+      unavailable: 'A hang nem elérhető'
     },
     native: {
       approvalTitle: 'Jóváhagyás szükséges',
@@ -164,11 +170,12 @@ export const hu = defineLocale({
       turnErrorTitle: 'A kör meghiúsult',
       backgroundDoneTitle: 'A háttérfeladat befejeződött',
       backgroundFailedTitle: 'A háttérfeladat sikertelen',
-      creditsTitle: 'Kreditek',
-    },
+      creditsTitle: 'Kreditek'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Szoftveres renderelés aktív — távoli kijelző észlelve (${reason}). A GPU-gyorsítás le van tiltva a villogás elkerülése érdekében.`,
+    message: reason =>
+      `Szoftveres renderelés aktív — távoli kijelző észlelve (${reason}). A GPU-gyorsítás le van tiltva a villogás elkerülése érdekében.`
   },
   billingBlock: {
     titleOpenamer: 'Elfogytak az OpenAmer-kreditek',
@@ -176,7 +183,7 @@ export const hu = defineLocale({
     fallbackMessage: 'A fiókja kreditei kimerültek. A folytatáshoz adjon hozzá krediteket.',
     openBilling: 'Számlázás megnyitása',
     addCredits: 'Kreditek hozzáadása',
-    dismiss: 'Elvetés',
+    dismiss: 'Elvetés'
   },
   titlebar: {
     hideSidebar: 'Oldalsáv elrejtése',
@@ -193,7 +200,7 @@ export const hu = defineLocale({
     openStarmap: 'Memóriagrafikon megnyitása',
     openKeybinds: 'Gyorsbillentyűk',
     layoutEditor: 'Elrendezésszerkesztő',
-    layoutEditorTitle: 'Elrendezésszerkesztő — Cmd/Ctrl+kattintás visszaállítja az elrendezést',
+    layoutEditorTitle: 'Elrendezésszerkesztő — Cmd/Ctrl+kattintás visszaállítja az elrendezést'
   },
   keybinds: {
     title: 'Billentyűparancsok',
@@ -210,7 +217,7 @@ export const hu = defineLocale({
       profiles: 'Profilok',
       session: 'Munkamenet',
       navigation: 'Navigáció',
-      view: 'Nézet',
+      view: 'Nézet'
     },
     actions: {
       'keybinds.openPanel': 'Billentyűparancsok megnyitása',
@@ -289,8 +296,8 @@ export const hu = defineLocale({
       'composer.slash': 'Perjelparancs-paletta',
       'composer.help': 'Gyors súgó',
       'composer.history': 'Felugró ablak / előzmények váltogatása',
-      'composer.cancel': 'Felugró ablak bezárása · futás megszakítása',
-    },
+      'composer.cancel': 'Felugró ablak bezárása · futás megszakítása'
+    }
   },
   language: {
     label: 'Nyelv',
@@ -299,7 +306,7 @@ export const hu = defineLocale({
     saveError: 'A nyelv frissítése sikertelen',
     switchTo: 'Nyelv váltása',
     searchPlaceholder: 'Nyelvek keresése…',
-    noResults: 'Nem található nyelv',
+    noResults: 'Nem található nyelv'
   },
   settings: {
     closeSettings: 'Beállítások bezárása',
@@ -324,11 +331,12 @@ export const hu = defineLocale({
       about: 'Névjegy',
       billing: 'Számlázás',
       notifications: 'Értesítések',
-      plugins: 'Bővítmények',
+      plugins: 'Bővítmények'
     },
     plugins: {
       title: 'Asztali bővítmények',
-      blurb: 'Az ebbe az alkalmazásba betöltött UI-bővítmények — a builddel együtt érkeznek, vagy a desktop-plugins mappába kerülnek (az OpenAmer által írtakat is beleértve). A letiltás élőben eltávolítja a bővítményt, és az újraindítást is túléli.',
+      blurb:
+        'Az ebbe az alkalmazásba betöltött UI-bővítmények — a builddel együtt érkeznek, vagy a desktop-plugins mappába kerülnek (az OpenAmer által írtakat is beleértve). A letiltás élőben eltávolítja a bővítményt, és az újraindítást is túléli.',
       count: n => `${n} telepítve`,
       openFolder: 'Bővítménymappa megnyitása',
       rescan: 'Újraszkennelés',
@@ -340,49 +348,52 @@ export const hu = defineLocale({
       kinds: {
         bundled: 'csomagolt',
         disk: 'lemezen',
-        runtime: 'futásidő',
-      },
+        runtime: 'futásidő'
+      }
     },
     notifications: {
       title: 'Értesítések',
-      intro: 'Natív asztali értesítések, külön az alkalmazáson belüli felugró értesítésektől. Eszközszintűek — minden számítógép a saját beállításait őrzi.',
+      intro:
+        'Natív asztali értesítések, külön az alkalmazáson belüli felugró értesítésektől. Eszközszintűek — minden számítógép a saját beállításait őrzi.',
       enableAll: 'Értesítések engedélyezése',
       enableAllDesc: 'Fő kapcsoló. Kikapcsolásával az összes alábbi értesítés elnémul.',
       focusedHint: 'A befejezési értesítések csak akkor aktiválódnak, ha az OpenAmer a háttérben van.',
       kinds: {
         approval: {
           label: 'Jóváhagyás szükséges',
-          description: 'Egy parancs vár jóváhagyásra vagy elutasításra.',
+          description: 'Egy parancs vár jóváhagyásra vagy elutasításra.'
         },
         input: {
           label: 'Bevitel szükséges',
-          description: 'Az OpenAmer kérdést tett fel, vagy jelszóra vagy titokra van szüksége.',
+          description: 'Az OpenAmer kérdést tett fel, vagy jelszóra vagy titokra van szüksége.'
         },
         turnDone: {
           label: 'Válasz kész',
-          description: 'Egy kör befejeződött, miközben az OpenAmer a háttérben futott.',
+          description: 'Egy kör befejeződött, miközben az OpenAmer a háttérben futott.'
         },
         turnError: {
           label: 'A kör sikertelen',
-          description: 'Egy kör hibával fejeződött be.',
+          description: 'Egy kör hibával fejeződött be.'
         },
         backgroundDone: {
           label: 'Háttérfeladat befejeződött',
-          description: 'Egy háttérben futó terminálparancs befejeződött.',
+          description: 'Egy háttérben futó terminálparancs befejeződött.'
         },
         credits: {
           label: 'Kreditértesítések',
-          description: 'A kredithozzáférés szüneteltetve vagy visszaállítva.',
-        },
+          description: 'A kredithozzáférés szüneteltetve vagy visszaállítva.'
+        }
       },
       test: 'Tesztértesítés küldése',
       testTitle: 'OpenAmer',
       testBody: 'Az értesítések működnek.',
-      testSent: 'Teszt elküldve. Ha semmi nem jelenik meg, ellenőrizze az operációs rendszer értesítési engedélyeit és a Fókusz/Ne zavarjon beállítást.',
+      testSent:
+        'Teszt elküldve. Ha semmi nem jelenik meg, ellenőrizze az operációs rendszer értesítési engedélyeit és a Fókusz/Ne zavarjon beállítást.',
       testUnsupported: 'Ez a rendszer nem támogatja a natív értesítéseket.',
       completionSoundTitle: 'Befejezési hang',
-      completionSoundDesc: 'Akkor szól, amikor egy ügynök köre befejeződik. Válasszon előbeállítást, és itt hallgassa meg.',
-      completionSoundPreview: 'Meghallgatás',
+      completionSoundDesc:
+        'Akkor szól, amikor egy ügynök köre befejeződik. Válasszon előbeállítást, és itt hallgassa meg.',
+      completionSoundPreview: 'Meghallgatás'
     },
     sections: {
       model: 'Modell',
@@ -392,7 +403,7 @@ export const hu = defineLocale({
       safety: 'Biztonság',
       memory: 'Memória és kontextus',
       voice: 'Hang',
-      advanced: 'Speciális',
+      advanced: 'Speciális'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop névjegye',
@@ -400,37 +411,40 @@ export const hu = defineLocale({
       gateway: 'Átjárókapcsolat...',
       keys: 'API-kulcsok keresése...',
       mcp: 'MCP-kiszolgálók keresése...',
-      sessions: 'Archivált munkamenetek keresése...',
+      sessions: 'Archivált munkamenetek keresése...'
     },
     modeOptions: {
       light: {
         label: 'Világos',
-        description: 'Világos felületek',
+        description: 'Világos felületek'
       },
       dark: {
         label: 'Sötét',
-        description: 'Kevésbé vakító munkaterület',
+        description: 'Kevésbé vakító munkaterület'
       },
       system: {
         label: 'Rendszer',
-        description: 'A rendszer megjelenésének követése',
-      },
+        description: 'A rendszer megjelenésének követése'
+      }
     },
     appearance: {
       title: 'Megjelenés',
-      intro: 'Ezek csak asztali megjelenítési beállítások. A mód a fényerőt, a téma a kiemelő palettát és a csevegés stílusát szabályozza.',
+      intro:
+        'Ezek csak asztali megjelenítési beállítások. A mód a fényerőt, a téma a kiemelő palettát és a csevegés stílusát szabályozza.',
       colorMode: 'Színmód',
       colorModeDesc: 'Válasszon rögzített módot, vagy hagyja, hogy az OpenAmer a rendszerbeállításokat kövesse.',
       toolViewTitle: 'Eszközhívások megjelenítése',
       toolViewDesc: 'A Termék elrejti az eszközök nyers adatait; a Technikai a teljes bemenetet/kimenetet mutatja.',
       uiScaleTitle: 'Felületi skála',
-      uiScaleDesc: (percent: number) => `Átméretezi a szöveget és a vezérlőket az egész alkalmazásban. A Cmd/Ctrl +, - és 0 is működik. Jelenlegi: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Átméretezi a szöveget és a vezérlőket az egész alkalmazásban. A Cmd/Ctrl +, - és 0 is működik. Jelenlegi: ${percent}%.`,
       translucencyTitle: 'Ablak áttetszősége',
       translucencyDesc: 'Láthatja az asztalát a teljes ablakon át. Csak macOS és Windows.',
       backdropTitle: 'Csevegés háttere',
       backdropDesc: 'A halvány szoborkép a beszélgetés mögött.',
       embedsTitle: 'Beágyazott tartalmak',
-      embedsDesc: 'A gazdag előnézetek harmadik fél oldalairól töltődnek be (YouTube, X, …). A „Kérdezés” helyőrzőt mutat, amíg mindet engedélyezi; a „Mindig” automatikusan betölti; a „Ki” csak sima linkeket tart.',
+      embedsDesc:
+        'A gazdag előnézetek harmadik fél oldalairól töltődnek be (YouTube, X, …). A „Kérdezés” helyőrzőt mutat, amíg mindet engedélyezi; a „Mindig” automatikusan betölti; a „Ki” csak sima linkeket tart.',
       embedsAsk: 'Kérdezés',
       embedsAlways: 'Mindig',
       embedsOff: 'Ki',
@@ -443,7 +457,8 @@ export const hu = defineLocale({
       themeDesc: 'Csak asztali paletták. A kiválasztott mód fölé kerül.',
       themeProfileNote: profile => `Elmentve a(z) ${profile} profilhoz — minden profil saját témát tart.`,
       installTitle: 'Telepítés VS Code-ból',
-      installDesc: 'Illesszen be egy Marketplace-bővítményazonosítót (pl. dracula-theme.theme-dracula), hogy színtémáját asztali palettává alakítsa.',
+      installDesc:
+        'Illesszen be egy Marketplace-bővítményazonosítót (pl. dracula-theme.theme-dracula), hogy színtémáját asztali palettává alakítsa.',
       installPlaceholder: 'kiadó.kiterjesztés',
       installButton: 'Telepítés',
       installing: 'Telepítés…',
@@ -453,8 +468,10 @@ export const hu = defineLocale({
       importedBadge: 'Importálva',
       pet: {
         title: 'Kisállat',
-        intro: 'Fogadj örökbe egy animált petdex kabalát, amely az alkalmazás fölött lebeg, és reagál arra, amit az OpenAmer csinál — fut, miközben az eszközök végrehajtódnak, ünnepel siker esetén, duzzog hiba esetén.',
-        restartHint: 'A kisállatokhoz gyors újraindítás kell — a futó alkalmazás a funkció hozzáadása előtt indult. Lépj ki az OpenAmerből, nyisd meg újra, majd gyere vissza ide.',
+        intro:
+          'Fogadj örökbe egy animált petdex kabalát, amely az alkalmazás fölött lebeg, és reagál arra, amit az OpenAmer csinál — fut, miközben az eszközök végrehajtódnak, ünnepel siker esetén, duzzog hiba esetén.',
+        restartHint:
+          'A kisállatokhoz gyors újraindítás kell — a futó alkalmazás a funkció hozzáadása előtt indult. Lépj ki az OpenAmerből, nyisd meg újra, majd gyere vissza ide.',
         on: 'Be',
         off: 'Ki',
         scaleTitle: 'Méret',
@@ -464,7 +481,8 @@ export const hu = defineLocale({
         chooseTitle: 'Válassz kisállatot',
         chooseDesc: 'A kiválasztás telepíti (ha kell), és aktívvá teszi.',
         searchPlaceholder: 'Kisállatok keresése…',
-        unreachable: "Nem sikerült elérni a petdex galériát. Ellenőrizd a kapcsolatot, és nyisd meg újra ezt az oldalt.",
+        unreachable:
+          'Nem sikerült elérni a petdex galériát. Ellenőrizd a kapcsolatot, és nyisd meg újra ezt az oldalt.',
         noMatch: query => `Nincs egyező kisállat: "${query}".`,
         installedTag: 'telepítve',
         generatedTag: 'Generált',
@@ -473,7 +491,7 @@ export const hu = defineLocale({
         uninstall: name => `${name} eltávolítása`,
         delete: name => `${name} törlése`,
         deleteTitle: name => `Törlöd: ${name}?`,
-        deleteBody: "Ez véglegesen törli a kisállatot — nem telepíthető újra.",
+        deleteBody: 'Ez véglegesen törli a kisállatot — nem telepíthető újra.',
         deleteConfirm: 'Törlés',
         rename: name => `${name} átnevezése`,
         renameTitle: 'Kisállat átnevezése',
@@ -486,8 +504,8 @@ export const hu = defineLocale({
         exportFailed: slug => `Nem sikerült exportálni: ${slug}`,
         noneAvailable: 'Most nincs bekapcsolható kisállat.',
         turnOnFailed: 'Nem sikerült bekapcsolni a háziállatot.',
-        turnOffFailed: 'Nem sikerült kikapcsolni a háziállatot.',
-      },
+        turnOffFailed: 'Nem sikerült kikapcsolni a háziállatot.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,15 +516,16 @@ export const hu = defineLocale({
       updates: 'Frissítések',
       checkNow: 'Ellenőrzés most',
       checking: 'Ellenőrzés…',
-      seeWhatsNew: "Újdonságok megtekintése",
+      seeWhatsNew: 'Újdonságok megtekintése',
       updateNow: 'Frissítés most',
       releaseNotes: 'Kiadási megjegyzések',
-      onLatest: "A legfrissebb verziót használja.",
+      onLatest: 'A legfrissebb verziót használja.',
       installing: 'Egy frissítés telepítése folyamatban van.',
-      cantUpdate: "Ez a build nem tudja magát frissíteni az alkalmazásból.",
-      cantReach: "Nem tudtuk elérni a frissítési szervert.",
+      cantUpdate: 'Ez a build nem tudja magát frissíteni az alkalmazásból.',
+      cantReach: 'Nem tudtuk elérni a frissítési szervert.',
       tapCheck: 'A frissítések kereséséhez koppintson az „Ellenőrzés most” gombra.',
-      updateReady: count => `A new update is ready (${count} change${count === 1 ? 'változás' : 'változások'} included).`,
+      updateReady: count =>
+        `A new update is ready (${count} change${count === 1 ? 'változás' : 'változások'} included).`,
       lastChecked: age => `Utolsó ellenőrzés: ${age}`,
       justNowSuffix: ' · éppen most',
       automaticUpdates: 'Automatikus frissítések',
@@ -516,7 +535,7 @@ export const hu = defineLocale({
       justNow: 'éppen most',
       minAgo: count => `${count} perce`,
       hoursAgo: count => `${count} órája`,
-      daysAgo: count => `${count} napja`,
+      daysAgo: count => `${count} napja`
     },
     config: {
       none: 'Nincs',
@@ -532,7 +551,8 @@ export const hu = defineLocale({
       imported: 'Konfiguráció importálva.',
       invalidJson: 'Érvénytelen konfigurációs JSON',
       keepAwakeTitle: 'Számítógép ébren tartása',
-      keepAwakeDesc: 'Akadályozza meg, hogy ez a gép elaludjon, hogy a hosszú vagy éjszakai futások folytatódhassanak. A kijelző továbbra is elsötétülhet.',
+      keepAwakeDesc:
+        'Akadályozza meg, hogy ez a gép elaludjon, hogy a hosszú vagy éjszakai futások folytatódhassanak. A kijelző továbbra is elsötétülhet.'
     },
     credentials: {
       pasteKey: 'Kulcs beillesztése',
@@ -542,7 +562,7 @@ export const hu = defineLocale({
       couldNotSave: 'Nem sikerült menteni a hitelesítő adatot.',
       remove: 'Eltávolítás',
       getKey: 'Kulcs beszerzése',
-      saving: 'Mentés',
+      saving: 'Mentés'
     },
     envActions: {
       actionsFor: label => `Műveletek ehhez: ${label}`,
@@ -553,7 +573,7 @@ export const hu = defineLocale({
       revealValue: 'Érték megjelenítése',
       replace: 'Lecserélés',
       set: 'Beállítás',
-      clear: 'Törlés',
+      clear: 'Törlés'
     },
     gateway: {
       loading: 'Átjáró beállításainak betöltése...',
@@ -561,23 +581,29 @@ export const hu = defineLocale({
       unavailableDesc: 'Az asztali IPC-híd nem teszi elérhetővé az átjáró beállításait.',
       title: 'Átjáró kapcsolat',
       envOverride: 'környezeti felülírás',
-      intro: 'Az OpenAmer Desktop alapértelmezés szerint saját helyi átjárót indít. Távoli átjárót akkor használjon, ha azt szeretné, hogy ez az alkalmazás egy másik gépen vagy megbízható proxy mögött már futó OpenAmer-háttérrendszert vezéreljen. Válasszon egy profilt lent, hogy saját távoli gazdagépet kapjon.',
+      intro:
+        'Az OpenAmer Desktop alapértelmezés szerint saját helyi átjárót indít. Távoli átjárót akkor használjon, ha azt szeretné, hogy ez az alkalmazás egy másik gépen vagy megbízható proxy mögött már futó OpenAmer-háttérrendszert vezéreljen. Válasszon egy profilt lent, hogy saját távoli gazdagépet kapjon.',
       appliesTo: 'Érvényes erre',
       allProfiles: 'Minden profil',
       defaultConnection: 'Alapértelmezett kapcsolat minden olyan profilhoz, amelynek nincs saját felülírása.',
-      profileConnection: profile => `Csak akkor használt kapcsolat, amikor a „${profile}” az aktív profil. Válassza az Alapértelmezett átjáró használata lehetőséget a felülírás eltávolításához.`,
+      profileConnection: profile =>
+        `Csak akkor használt kapcsolat, amikor a „${profile}” az aktív profil. Válassza az Alapértelmezett átjáró használata lehetőséget a felülírás eltávolításához.`,
       envOverrideTitle: 'Környezeti változók vezérlik ezt az asztali munkamenetet.',
-      envOverrideDesc: 'Törölje az OPENAMER_DESKTOP_REMOTE_URL és OPENAMER_DESKTOP_REMOTE_TOKEN változót, hogy az alább mentett beállítást használja.',
+      envOverrideDesc:
+        'Törölje az OPENAMER_DESKTOP_REMOTE_URL és OPENAMER_DESKTOP_REMOTE_TOKEN változót, hogy az alább mentett beállítást használja.',
       modeTitle: 'Kapcsolódási mód',
       localTitle: 'Helyi átjáró',
-      localDesc: 'Indítson privát OpenAmer-háttérrendszert a localhoston. Ez az alapértelmezett mód, és offline is működik.',
+      localDesc:
+        'Indítson privát OpenAmer-háttérrendszert a localhoston. Ez az alapértelmezett mód, és offline is működik.',
       inheritTitle: 'Alapértelmezett átjáró használata',
-      inheritDesc: "Távolítsa el ennek a profilnak a felülírását, és használja az alapértelmezett kapcsolatot.",
+      inheritDesc: 'Távolítsa el ennek a profilnak a felülírását, és használja az alapértelmezett kapcsolatot.',
       remoteTitle: 'Távoli átjáró',
       remoteDesc: 'Kapcsolja ezt az asztali héjat egy távoli OpenAmer-háttérrendszerhez.',
-      remoteAuthHint: 'A hosztolt átjárók OAuthot vagy felhasználónevet és jelszót használnak; a saját hosztolásúak munkamenet-tokent használhatnak.',
+      remoteAuthHint:
+        'A hosztolt átjárók OAuthot vagy felhasználónevet és jelszót használnak; a saját hosztolásúak munkamenet-tokent használhatnak.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Jelentkezzen be egyszer az OpenAmer Cloudba, és válasszon a fiókja ügynökei közül – URL-t nem kell beilleszteni.',
+      cloudDesc:
+        'Jelentkezzen be egyszer az OpenAmer Cloudba, és válasszon a fiókja ügynökei közül – URL-t nem kell beilleszteni.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Jelentkezzen be az OpenAmer Cloudba',
       cloudSignedIn: 'Bejelentkezve az OpenAmer Cloudba',
@@ -592,7 +618,7 @@ export const hu = defineLocale({
       cloudNoAgents: {
         before: 'Ezen a fiókon nem találhatók ügynökök. Hozzon létre egyet a ',
         linkText: 'OpenAmer portál',
-        after: ', majd frissítsen.',
+        after: ', majd frissítsen.'
       },
       cloudRefresh: 'Frissítés',
       cloudConnect: 'Csatlakozás',
@@ -608,20 +634,26 @@ export const hu = defineLocale({
       cloudAgentProvisioning: 'Kiépítés…',
       cloudStatusLabel: status => `Állapot: ${status}`,
       remoteUrlTitle: 'Távoli URL',
-      remoteUrlDesc: 'A távoli irányítópult háttérrendszerének alap URL-je. Az útvonal-előtagok támogatottak, például /openamer.',
+      remoteUrlDesc:
+        'A távoli irányítópult háttérrendszerének alap URL-je. Az útvonal-előtagok támogatottak, például /openamer.',
       probing: 'Az átjáró hitelesítésének ellenőrzése…',
-      probeError: 'Még nem érhető el ez az átjáró. Ellenőrizze az URL-t — a hitelesítési mód megjelenik, amint válaszol.',
+      probeError:
+        'Még nem érhető el ez az átjáró. Ellenőrizze az URL-t — a hitelesítési mód megjelenik, amint válaszol.',
       signedIn: 'Bejelentkezve',
       signIn: 'Bejelentkezés',
       signOut: 'Kijelentkezés',
       signInWith: provider => `Bejelentkezés ezzel: ${provider}`,
       authTitle: 'Hitelesítés',
-      authSignedInPassword: 'Ez az átjáró felhasználónevet és jelszót használ. Ön be van jelentkezve; a munkamenet automatikusan frissül.',
+      authSignedInPassword:
+        'Ez az átjáró felhasználónevet és jelszót használ. Ön be van jelentkezve; a munkamenet automatikusan frissül.',
       authSignedInOauth: 'Ez az átjáró OAuthot használ. Be van jelentkezve; a munkamenet automatikusan frissül.',
-      authNeedsPassword: 'Ez az átjáró felhasználónevet és jelszót használ. Jelentkezzen be az asztali alkalmazás engedélyezéséhez.',
-      authNeedsOauth: provider => `Ez az átjáró OAuthot használ. Jelentkezzen be a ${provider} használatával az asztali alkalmazás engedélyezéséhez.`,
+      authNeedsPassword:
+        'Ez az átjáró felhasználónevet és jelszót használ. Jelentkezzen be az asztali alkalmazás engedélyezéséhez.',
+      authNeedsOauth: provider =>
+        `Ez az átjáró OAuthot használ. Jelentkezzen be a ${provider} használatával az asztali alkalmazás engedélyezéséhez.`,
       tokenTitle: 'Munkamenet-token',
-      tokenDesc: 'Az irányítópult munkamenet-tokenje a REST- és WebSocket-hozzáféréshez. Hagyja üresen a mentett token megtartásához.',
+      tokenDesc:
+        'Az irányítópult munkamenet-tokenje a REST- és WebSocket-hozzáféréshez. Hagyja üresen a mentett token megtartásához.',
       existingToken: value => `Meglévő token ${value}`,
       savedToken: 'mentve',
       pasteSessionToken: 'Munkamenet-token beillesztése',
@@ -652,8 +684,10 @@ export const hu = defineLocale({
       applyFailed: 'Nem sikerült alkalmazni az átjáró beállításait',
       saveFailed: 'Nem sikerült menteni az átjáró beállításait',
       sshTitle: 'Kapcsolódás SSH-n keresztül',
-      sshDesc: 'Az OpenAmer SSH-n keresztül indul a távoli gépen, és alagúton át kapcsolódik ehhez az alkalmazáshoz — semmit nem kell elindítania vagy kitennie. Működő kulcsalapú SSH-hozzáférést igényel a gazdagéphez.',
-      sshTrustHint: 'Az elsőként bemutatott gazdagépkulcs megbízhatóként rögzítésre kerül; a későbbi változások biztonságosan meghiúsulnak.',
+      sshDesc:
+        'Az OpenAmer SSH-n keresztül indul a távoli gépen, és alagúton át kapcsolódik ehhez az alkalmazáshoz — semmit nem kell elindítania vagy kitennie. Működő kulcsalapú SSH-hozzáférést igényel a gazdagéphez.',
+      sshTrustHint:
+        'Az elsőként bemutatott gazdagépkulcs megbízhatóként rögzítésre kerül; a későbbi változások biztonságosan meghiúsulnak.',
       sshHostTitle: 'Gazdagép',
       sshHostDesc: 'user@host, vagy egy Host alias a ~/.ssh/config fájlból.',
       sshHostPick: 'Válasszon gazdagépet…',
@@ -676,18 +710,23 @@ export const hu = defineLocale({
       sshReachable: (host, platform) => `Elérhető: ${host} (${platform}) — OpenAmer megtalálva`,
       sshIncompleteHost: 'Adjon meg SSH-gazdagépet csatlakozás előtt.',
       sshErrUnreachable: 'Nem sikerült elérni a gazdagépet SSH-n. Ellenőrizze a gazdagépet, a portot és a hálózatot.',
-      sshErrAuth: 'Az SSH-hitelesítés sikertelen. Töltse be a kulcsát az ssh-agentbe (ssh-add), vagy állítson be IdentityFile-t a ~/.ssh/config fájlban — az OpenAmer nem interaktívan futtatja az ssh-t.',
-      sshErrHostKey: 'A gazdagépkulcs MEGVÁLTOZOTT az utolsó csatlakozás óta. Ellenőrizze, hogy ez várható-e, majd futtassa az ssh-keygen -R <host> parancsot, és csatlakozzon újra.',
-      sshErrNotInstalled: 'Az OpenAmer nincs telepítve a távoli gazdagépen. Telepítse ott (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh), vagy állítsa be az OpenAmer elérési útját.',
-      sshErrPlatform: 'Nem támogatott távoli platform. Az OpenAmer Desktop SSH módja Linux, macOS és Windows távoli gazdagépeket támogat.',
-      sshErrTimeout: 'Az SSH-kapcsolat időtúllépés miatt megszakadt. A gazdagép elérhetetlen vagy alvó állapotban lehet.',
+      sshErrAuth:
+        'Az SSH-hitelesítés sikertelen. Töltse be a kulcsát az ssh-agentbe (ssh-add), vagy állítson be IdentityFile-t a ~/.ssh/config fájlban — az OpenAmer nem interaktívan futtatja az ssh-t.',
+      sshErrHostKey:
+        'A gazdagépkulcs MEGVÁLTOZOTT az utolsó csatlakozás óta. Ellenőrizze, hogy ez várható-e, majd futtassa az ssh-keygen -R <host> parancsot, és csatlakozzon újra.',
+      sshErrNotInstalled:
+        'Az OpenAmer nincs telepítve a távoli gazdagépen. Telepítse ott (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh), vagy állítsa be az OpenAmer elérési útját.',
+      sshErrPlatform:
+        'Nem támogatott távoli platform. Az OpenAmer Desktop SSH módja Linux, macOS és Windows távoli gazdagépeket támogat.',
+      sshErrTimeout:
+        'Az SSH-kapcsolat időtúllépés miatt megszakadt. A gazdagép elérhetetlen vagy alvó állapotban lehet.',
       sshErrUpdateRequired: 'Frissítse az OpenAmeret a távoli gazdagépen, mielőtt Desktop SSH-val csatlakozik.',
-      sshErrUnknown: 'Az SSH-kapcsolat sikertelen.',
+      sshErrUnknown: 'Az SSH-kapcsolat sikertelen.'
     },
     keys: {
       loading: 'API-kulcsok és hitelesítő adatok betöltése...',
       failedLoad: 'Nem sikerült betölteni az API-kulcsokat',
-      empty: 'Ebben a kategóriában még nincs beállítva semmi.',
+      empty: 'Ebben a kategóriában még nincs beállítva semmi.'
     },
     mcp: {
       loading: 'MCP-kiszolgálók betöltése...',
@@ -739,7 +778,8 @@ export const hu = defineLocale({
       catalogInstallFailed: name => `A(z) ${name} telepítése sikertelen`,
       catalogEnvPrompt: name => `A(z) ${name} hitelesítő adatokat igényel`,
       catalogEnvRequired: 'Telepítés előtt töltse ki a kötelező értékeket.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} engedélyezve`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} engedélyezve`,
       statusConnecting: 'Kapcsolódás…',
       statusNeedsAuth: 'Hitelesítés szükséges',
       statusError: 'Hiba',
@@ -752,11 +792,12 @@ export const hu = defineLocale({
       unsavedConnect: 'Nem mentett — mentse el az mcp.json fájlt a kapcsolódáshoz.',
       enableTool: tool => `${tool} engedélyezése`,
       disableTool: tool => `${tool} letiltása`,
-      noOutput: 'Még nincs kimenet.',
+      noOutput: 'Még nincs kimenet.'
     },
     model: {
       loading: 'Modellkonfiguráció betöltése...',
-      appliesDesc: 'Új munkamenetekre érvényes. Az aktív csevegés gyorsváltásához használd a beviteli mező modellválasztóját.',
+      appliesDesc:
+        'Új munkamenetekre érvényes. Az aktív csevegés gyorsváltásához használd a beviteli mező modellválasztóját.',
       provider: 'Szolgáltató',
       model: 'Modell',
       applying: 'Alkalmazás...',
@@ -766,53 +807,55 @@ export const hu = defineLocale({
       defaultsFailed: 'Nem sikerült menteni a modell alapértelmezéseit',
       auxiliaryTitle: 'Segédmodellek',
       resetAllToMain: 'Összes visszaállítása főmodellre',
-      auxiliaryDesc: 'A segédfeladatok alapértelmezés szerint a főmodellen futnak. Bármely feladatnál rendelhetsz külön modellt a felülíráshoz.',
+      auxiliaryDesc:
+        'A segédfeladatok alapértelmezés szerint a főmodellen futnak. Bármely feladatnál rendelhetsz külön modellt a felülíráshoz.',
       setToMain: 'Főmodellre állítás',
       change: 'Módosítás',
       autoUseMain: 'auto · főmodell használata',
       providerDefault: '(szolgáltatói alapértelmezés)',
       fallbackAdd: 'Tartalék hozzáadása',
       fallbackEmpty: 'Nincs tartalék modell — az alapértelmezett modellt használja, hacsak az nem hibázik.',
-      notInCatalog: "nincs a szolgáltató modelljei között — a hívások tartalékra válthatnak.",
+      notInCatalog: 'nincs a szolgáltató modelljei között — a hívások tartalékra válthatnak.',
       tasks: {
         vision: {
           label: 'Látás',
-          hint: 'Képelemzés',
+          hint: 'Képelemzés'
         },
         web_extract: {
           label: 'Webes kinyerés',
-          hint: 'Oldalösszegzés',
+          hint: 'Oldalösszegzés'
         },
         compression: {
           label: 'Tömörítés',
-          hint: 'Kontextustömörítés',
+          hint: 'Kontextustömörítés'
         },
         skills_hub: {
           label: 'Készségközpont',
-          hint: 'Készségkeresés',
+          hint: 'Készségkeresés'
         },
         approval: {
           label: 'Jóváhagyás',
-          hint: 'Intelligens automatikus jóváhagyás',
+          hint: 'Intelligens automatikus jóváhagyás'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP-eszközútválasztás',
+          hint: 'MCP-eszközútválasztás'
         },
         title_generation: {
           label: 'Címgenerálás',
-          hint: 'Munkamenetcímek',
+          hint: 'Munkamenetcímek'
         },
         curator: {
           label: 'Kurátor',
-          hint: 'Készséghasználat áttekintése',
-        },
-      },
+          hint: 'Készséghasználat áttekintése'
+        }
+      }
     },
     providers: {
       connectAccount: 'Fiók csatlakoztatása',
       haveApiKey: 'Inkább API-kulcsa van?',
-      intro: 'Jelentkezzen be előfizetéssel – nem kell API-kulcsot másolni. Az OpenAmer elvégzi a böngészős bejelentkezést Ön helyett, itt az alkalmazásban.',
+      intro:
+        'Jelentkezzen be előfizetéssel – nem kell API-kulcsot másolni. Az OpenAmer elvégzi a böngészős bejelentkezést Ön helyett, itt az alkalmazásban.',
       connected: 'Csatlakoztatva',
       collapse: 'Összecsukás',
       connectAnother: 'Másik szolgáltató csatlakoztatása',
@@ -822,7 +865,8 @@ export const hu = defineLocale({
       removeConfirm: provider => `Eltávolítja: ${provider}?`,
       removeExternalGeneric: provider => `A(z) ${provider} saját CLI-vel kezelhető — ott távolítsa el.`,
       removeKeyManaged: provider => `A(z) ${provider} API-kulccsal van beállítva. Távolítsa el az API-kulcsoknál.`,
-      removeTerminalConfirm: (provider, command) => `Leválasztja: ${provider}? Ez a(z) "${command}" parancsot futtatja a terminálban a hitelesítő adat törléséhez.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Leválasztja: ${provider}? Ez a(z) "${command}" parancsot futtatja a terminálban a hitelesítő adat törléséhez.`,
       removeTerminalRunning: provider => `${provider} leválasztás futtatása a terminálban…`,
       removedTitle: 'Fiók eltávolítva',
       removedMessage: provider => `A(z) ${provider} eltávolítva.`,
@@ -832,14 +876,16 @@ export const hu = defineLocale({
       noKeysMatch: 'Nincs a keresésnek megfelelő szolgáltató.',
       localEndpoint: {
         title: 'Helyi / egyéni végpont',
-        description: 'Irányítsa az OpenAmer-t bármely OpenAI-kompatibilis végpontra (Zyphra, vLLM, llama.cpp, Ollama stb.).',
+        description:
+          'Irányítsa az OpenAmer-t bármely OpenAI-kompatibilis végpontra (Zyphra, vLLM, llama.cpp, Ollama stb.).'
       },
-      loading: 'Szolgáltatók betöltése...',
+      loading: 'Szolgáltatók betöltése...'
     },
     sessions: {
       loading: 'Archivált munkamenetek betöltése…',
       archivedTitle: 'Archivált munkamenetek',
-      archivedIntro: 'Az archivált csevegések rejtve vannak az oldalsávon, de minden üzenetük megmarad. Ctrl/⌘-kattintás az oldalsávon egy csevegésre archiválja.',
+      archivedIntro:
+        'Az archivált csevegések rejtve vannak az oldalsávon, de minden üzenetük megmarad. Ctrl/⌘-kattintás az oldalsávon egy csevegésre archiválja.',
       emptyArchivedTitle: 'Nincs archivált csevegés',
       emptyArchivedDesc: 'Archiváljon egy csevegést, hogy itt rejtve legyen.',
       unarchive: 'Visszaállítás',
@@ -848,13 +894,16 @@ export const hu = defineLocale({
       restored: 'Visszaállítva',
       deleteConfirm: title => `Véglegesen törli a(z) "${title}" elemet? Ez nem vonható vissza.`,
       autoArchiveTitle: 'Inaktív csevegések automatikus archiválása',
-      autoArchiveDesc: "Automatikusan archiválja azokat a csevegéseket, amelyeket egy ideje nem használt. A kitűzött csevegések soha nem archiválódnak, és semmi nem törlődik — az archivált csevegések csak ide kerülnek.",
+      autoArchiveDesc:
+        'Automatikusan archiválja azokat a csevegéseket, amelyeket egy ideje nem használt. A kitűzött csevegések soha nem archiválódnak, és semmi nem törlődik — az archivált csevegések csak ide kerülnek.',
       autoArchiveDaysLabel: 'Archiválás ennyi után:',
       autoArchiveDaysUnit: 'nap inaktivitás után',
       autoArchiveFailed: 'Nem sikerült frissíteni az automatikus archiválást',
       defaultDirTitle: 'Alapértelmezett projektkönyvtár',
-      defaultDirDesc: 'Az új munkamenetek ebben a mappában indulnak, hacsak nem választ másikat. Hagyja üresen, ha a saját könyvtárát szeretné használni.',
-      defaultDirUpdated: 'Az alapértelmezett projektkönyvtár frissítve — indítson új csevegést (Ctrl/⌘+N), hogy érvénybe lépjen.',
+      defaultDirDesc:
+        'Az új munkamenetek ebben a mappában indulnak, hacsak nem választ másikat. Hagyja üresen, ha a saját könyvtárát szeretné használni.',
+      defaultDirUpdated:
+        'Az alapértelmezett projektkönyvtár frissítve — indítson új csevegést (Ctrl/⌘+N), hogy érvénybe lépjen.',
       defaultsTo: label => `Alapértelmezés: ${label}.`,
       change: 'Módosítás',
       choose: 'Kiválasztás',
@@ -864,7 +913,7 @@ export const hu = defineLocale({
       unarchiveFailed: 'Az archiválás visszavonása nem sikerült',
       deleteFailed: 'A törlés nem sikerült',
       updateDirFailed: 'Az alapértelmezett könyvtár frissítése nem sikerült',
-      clearDirFailed: 'Az alapértelmezett könyvtár törlése nem sikerült',
+      clearDirFailed: 'Az alapértelmezett könyvtár törlése nem sikerült'
     },
     toolsets: {
       loadingConfig: 'Konfiguráció betöltése',
@@ -882,20 +931,23 @@ export const hu = defineLocale({
       selectedMessage: provider => `${provider} most aktív.`,
       failedSelect: provider => `${provider} kiválasztása nem sikerült`,
       failedLoad: 'Az eszközkonfiguráció betöltése nem sikerült',
-      noProviderOptions: 'Ehhez az eszközkészlethez nincsenek szolgáltatói beállítások — kapcsold be, és a jelenlegi beállításokkal működik.',
+      noProviderOptions:
+        'Ehhez az eszközkészlethez nincsenek szolgáltatói beállítások — kapcsold be, és a jelenlegi beállításokkal működik.',
       noProviders: 'Jelenleg nem érhető el szolgáltató ehhez az eszközkészlethez.',
       ready: 'Kész',
       needsSignIn: 'Bejelentkezés szükséges',
       needsSetup: 'Beállítás szükséges',
       openamerIncluded: 'Egy OpenAmer-előfizetés része — aktiváld az OpenAmer Portalba való bejelentkezéssel.',
       openamerAuthNeededTitle: 'Bejelentkezés az OpenAmer Portalba',
-      openamerAuthNeededMessage: provider => `${provider} mentve, de nem aktiválódik, amíg be nem jelentkezel az OpenAmer Portalba.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} mentve, de nem aktiválódik, amíg be nem jelentkezel az OpenAmer Portalba.`,
       openamerAuthSignIn: 'Bejelentkezés',
       openamerAuthDoneTitle: 'Az OpenAmer Portal csatlakoztatva',
       openamerAuthDoneMessage: 'Az előfizetéses hátterek most aktívak.',
       openamerAuthFailed: 'Az OpenAmer Portalba való bejelentkezés nem fejeződött be',
       noApiKeyRequired: 'Nem szükséges API-kulcs.',
-      postSetupHint: step => `Ez a háttér egyszeri telepítést igényel (${step}). Ezen a gépen fut — néhány percig is eltarthat.`,
+      postSetupHint: step =>
+        `Ez a háttér egyszeri telepítést igényel (${step}). Ezen a gépen fut — néhány percig is eltarthat.`,
       postSetupInstalledHint: 'Telepítve. Csak akkor futtasd újra a beállítást, ha valami hibás.',
       postSetupRun: 'Beállítás futtatása',
       postSetupRerun: 'Beállítás újrafuttatása',
@@ -914,7 +966,8 @@ export const hu = defineLocale({
       webUseForExtract: 'Használat kinyeréshez',
       webUsedForSearch: 'Keresési háttérrendszer',
       webUsedForExtract: 'Kinyerési háttérrendszer',
-      webCapabilitySelectedMessage: (provider, capability) => `A ${provider} mostantól a webes ${capability}-et kezeli.`,
+      webCapabilitySelectedMessage: (provider, capability) =>
+        `A ${provider} mostantól a webes ${capability}-et kezeli.`,
       failedSelectCapability: provider => `Nem sikerült beállítani a ${provider}-t`,
       loadingModels: 'Modellkatalógus betöltése…',
       modelSectionTitle: 'Modell',
@@ -934,11 +987,13 @@ export const hu = defineLocale({
         unavailable: 'Nem elérhető',
         inUse: 'Használatban',
         selectedTitle: 'Háttér kiválasztva',
-        selectedMessage: backend => `A terminálparancsok mostantól ezen keresztül futnak: ${backend}. Az új munkamenetekre vonatkozik.`,
+        selectedMessage: backend =>
+          `A terminálparancsok mostantól ezen keresztül futnak: ${backend}. Az új munkamenetekre vonatkozik.`,
         failedSelect: backend => `${backend} kiválasztása sikertelen`,
-        needsSetupHint: 'Ezt a hátteret most kiválaszthatja — a parancsok a beállítás befejezéséig sikertelenek lesznek.',
-      },
-    },
+        needsSetupHint:
+          'Ezt a hátteret most kiválaszthatja — a parancsok a beállítás befejezéséig sikertelenek lesznek.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Készségek',
@@ -958,7 +1013,8 @@ export const hu = defineLocale({
     noDescription: 'Nincs leírás.',
     configured: 'Beállítva',
     needsKeys: 'Kulcsok szükségesek',
-    visionModelHint: 'A látás a kiegészítő modell beállításait használja — a képes modell ott van kiválasztva, nem itt, szolgáltatónként.',
+    visionModelHint:
+      'A látás a kiegészítő modell beállításait használja — a képes modell ott van kiválasztva, nem itt, szolgáltatónként.',
     visionModelLink: 'Válasszon látásmodellt a Beállítások → Modellek alatt',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} eszközkészlet engedélyezve`,
     configureToolset: label => `${label} beállítása`,
@@ -984,7 +1040,7 @@ export const hu = defineLocale({
     provenance: {
       agent: 'Tanult',
       bundled: 'Beépített',
-      hub: 'Központ',
+      hub: 'Központ'
     },
     emptyNoneFound: noun => `Nem található ${noun}`,
     emptyNothingMatches: query => `Nincs egyezés: „${query}”.`,
@@ -1002,9 +1058,11 @@ export const hu = defineLocale({
       connectingHubs: 'Csatlakozás a készségközpontokhoz...',
       connectedHubs: 'Csatlakozott központok:',
       featured: 'Kiemelt készségek',
-      landingHint: 'A központban böngészhet a hivatalos indexből, a GitHubról és közösségi forrásokból telepíthető készségek között.',
+      landingHint:
+        'A központban böngészhet a hivatalos indexből, a GitHubról és közösségi forrásokból telepíthető készségek között.',
       noResults: 'Nem található megfelelő készség a központban.',
-      resultCount: (count, ms) => `${count} result${count === 1 ? 'eredmény' : 'eredmények'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} result${count === 1 ? 'eredmény' : 'eredmények'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Időtúllépés: ${sources}`,
       installed: 'Telepítve',
       install: 'Telepítés',
@@ -1022,7 +1080,7 @@ export const hu = defineLocale({
       trust: {
         builtin: 'beépített',
         trusted: 'megbízható',
-        community: 'közösségi',
+        community: 'közösségi'
       },
       verdictSafe: 'Biztonságos',
       verdictCaution: 'Vigyázat',
@@ -1040,8 +1098,8 @@ export const hu = defineLocale({
       loadFailed: 'A készségközpont betöltése sikertelen',
       previewFailed: 'A készség előnézetének betöltése sikertelen',
       scanFailed: 'A biztonsági vizsgálat sikertelen',
-      searchFailed: 'A központban való keresés sikertelen',
-    },
+      searchFailed: 'A központban való keresés sikertelen'
+    }
   },
   starmap: {
     title: 'Memóriagráf',
@@ -1058,7 +1116,8 @@ export const hu = defineLocale({
     emptyTitle: 'Még nincs tanult elem',
     emptyDesc: 'Ahogy az OpenAmer készségeket és emlékeket épít a munkádhoz, itt jelennek meg.',
     share: 'Térkép megosztása',
-    shareHint: 'Másold ki a kódot a térkép megosztásához, vagy illessz be egyet a betöltéshez. Csak az elrendezést tartalmazza, a memóriádat és a képesség szövegedet nem.',
+    shareHint:
+      'Másold ki a kódot a térkép megosztásához, vagy illessz be egyet a betöltéshez. Csak az elrendezést tartalmazza, a memóriádat és a képesség szövegedet nem.',
     shareTitle: 'Térkép importálása / exportálása',
     sharePlaceholder: 'Térképkód beillesztése…',
     copy: 'Térképkód másolása',
@@ -1068,7 +1127,7 @@ export const hu = defineLocale({
     importEmpty: 'Illessz be egy térképkódot a betöltéshez.',
     importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'csomópont' : 'csomópontok'}.`,
     importedBadge: 'importált térkép',
-    resetToMine: 'Vissza a saját térképemhez',
+    resetToMine: 'Vissza a saját térképemhez'
   },
   agents: {
     close: 'Ügynökök bezárása',
@@ -1098,7 +1157,7 @@ export const hu = defineLocale({
     ageDays: days => `${days} napja`,
     durationSeconds: seconds => `${seconds} mp`,
     durationMinutes: (minutes, seconds) => `${minutes}p ${seconds}mp`,
-    tokens: value => `${value} token`,
+    tokens: value => `${value} token`
   },
   commandCenter: {
     close: 'Parancsközpont bezárása',
@@ -1120,7 +1179,8 @@ export const hu = defineLocale({
       placeholder: 'Kisállatok keresése…',
       loading: 'Petdex-galéria betöltése…',
       error: 'Nem sikerült elérni a petdex-galériát.',
-      staleBackend: 'Indítsd újra az OpenAmer alkalmazást a kisállatok használatához — a háttérrendszer régebbi ennél a funkciónál.',
+      staleBackend:
+        'Indítsd újra az OpenAmer alkalmazást a kisállatok használatához — a háttérrendszer régebbi ennél a funkciónál.',
       empty: 'Nincs megfelelő kisállat.',
       turnOff: 'Kikapcsolás',
       turnOn: 'Bekapcsolás',
@@ -1128,7 +1188,7 @@ export const hu = defineLocale({
       generatedTag: 'Generálva',
       adoptFailed: 'Nem sikerült örökbe fogadni ezt a kisállatot.',
       toggleFailed: 'Nem sikerült átkapcsolni a kisállatot.',
-      noneAvailable: 'Nincs elérhető kisállat — válassz egyet alább a telepítéshez.',
+      noneAvailable: 'Nincs elérhető kisállat — válassz egyet alább a telepítéshez.'
     },
     generatePet: {
       title: 'Kisállat generálása',
@@ -1157,7 +1217,7 @@ export const hu = defineLocale({
       referenceImageTooLarge: 'A referenciakép túl nagy. Használj 16 MB-nál kisebbet.',
       referenceImageInvalid: 'Nem sikerült beolvasni a referenciaképet. Próbálj PNG, JPG, WebP vagy GIF fájlt.',
       adopt: 'Örökbefogadás',
-      startOver: 'Kezd újra',
+      startOver: 'Kezd újra'
     },
     installTheme: {
       title: 'Téma telepítése…',
@@ -1169,7 +1229,7 @@ export const hu = defineLocale({
       install: 'Telepítés',
       installing: 'Telepítés...',
       installed: 'Telepítve',
-      installs: count => `${count} telepítés`,
+      installs: count => `${count} telepítés`
     },
     settingsFields: 'Beállítási mezők',
     mcpServers: 'MCP-kiszolgálók',
@@ -1178,49 +1238,49 @@ export const hu = defineLocale({
       maintenance: 'Karbantartás',
       sessions: 'Munkamenetek',
       system: 'Rendszer',
-      usage: 'Használat',
+      usage: 'Használat'
     },
     sectionDescriptions: {
       maintenance: 'Diagnosztika, biztonsági mentések, kurátor és memóriaadatok',
       sessions: 'Munkamenetek keresése és kezelése',
       system: 'Állapot, naplók és rendszerműveletek',
-      usage: 'Token-, költség- és készségaktivitás idővel',
+      usage: 'Token-, költség- és készségaktivitás idővel'
     },
     nav: {
       newChat: {
         title: 'Új munkamenet',
-        detail: 'Friss munkamenet indítása',
+        detail: 'Friss munkamenet indítása'
       },
       settings: {
         title: 'Beállítások',
-        detail: 'OpenAmer asztali beállítása',
+        detail: 'OpenAmer asztali beállítása'
       },
       skills: {
         title: 'Képességek',
-        detail: 'Készségek, eszközök és MCP-kiszolgálók',
+        detail: 'Készségek, eszközök és MCP-kiszolgálók'
       },
       messaging: {
         title: 'Üzenetküldés',
-        detail: 'Telegram, Slack, Discord és egyebek beállítása',
+        detail: 'Telegram, Slack, Discord és egyebek beállítása'
       },
       artifacts: {
         title: 'Artefaktumok',
-        detail: 'Generált kimenetek böngészése',
-      },
+        detail: 'Generált kimenetek böngészése'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Munkamenetek panel',
-        detail: 'Munkamenetek keresése, kitűzése és kezelése',
+        detail: 'Munkamenetek keresése, kitűzése és kezelése'
       },
       system: {
         title: 'Rendszerpanel',
-        detail: 'Átjáró állapota, naplók, újraindítás/frissítés',
+        detail: 'Átjáró állapota, naplók, újraindítás/frissítés'
       },
       usage: {
         title: 'Használatpanel',
-        detail: 'Token-, költség- és készségaktivitás',
-      },
+        detail: 'Token-, költség- és készségaktivitás'
+      }
     },
     providerNavigate: 'Navigálás',
     providerSessions: 'Munkamenetek',
@@ -1275,7 +1335,8 @@ export const hu = defineLocale({
       backup: 'Biztonsági másolat készítése',
       backupDesc: 'Konfiguráció, memóriák, skillek és munkamenetek tömörítése',
       debugShare: 'Hibakeresés megosztása',
-      debugShareDesc: 'Töltsön fel egy maszkolt jelentést és naplókat, és kapjon megosztható hivatkozásokat (6 óra után automatikusan törlődik)',
+      debugShareDesc:
+        'Töltsön fel egy maszkolt jelentést és naplókat, és kapjon megosztható hivatkozásokat (6 óra után automatikusan törlődik)',
       debugShareRunning: 'Hibakeresési jelentés feltöltése...',
       debugShareLinks: 'Megosztási hivatkozások',
       debugShareFailed: 'Hibakeresés megosztása nem sikerült',
@@ -1308,8 +1369,8 @@ export const hu = defineLocale({
       actionStarted: name => `${name} elindult — napló követése...`,
       actionFailed: name => `${name} nem indult el`,
       running: 'Fut...',
-      viewLog: 'Műveletnapló',
-    },
+      viewLog: 'Műveletnapló'
+    }
   },
   messaging: {
     search: 'Üzenetküldés keresése...',
@@ -1324,7 +1385,7 @@ export const hu = defineLocale({
       not_configured: 'Beállítás szükséges',
       pending_restart: 'Újraindítás szükséges',
       retrying: 'Újrapróbálás...',
-      startup_failed: 'Indítás sikertelen',
+      startup_failed: 'Indítás sikertelen'
     },
     unknown: 'Ismeretlen',
     hintPendingRestart: 'A módosítás alkalmazásához indítsd újra az átjárót az állapotsávból.',
@@ -1337,7 +1398,8 @@ export const hu = defineLocale({
     required: 'Kötelező',
     recommended: 'Ajánlott',
     advanced: count => `Speciális (${count})`,
-    noTokenNeeded: 'Ehhez a platformhoz itt nincs szükség tokenre. Használd a fenti beállítási útmutatót, majd engedélyezd alább.',
+    noTokenNeeded:
+      'Ehhez a platformhoz itt nincs szükség tokenre. Használd a fenti beállítási útmutatót, majd engedélyezd alább.',
     enabled: 'Engedélyezve',
     disabled: 'Letiltva',
     unsavedChanges: 'Nem mentett módosítások',
@@ -1363,127 +1425,126 @@ export const hu = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot hitelesítő kód',
         help: 'Hozzon létre egy botot a @BotFather segítségével, majd illessze be a kapott tokent.',
-        placeholder: 'Illessze be a Telegram bot tokenjét',
+        placeholder: 'Illessze be a Telegram bot tokenjét'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Engedélyezett Telegram felhasználói azonosítók',
-        help: 'Ajánlott. Vesszővel elválasztott számozott azonosítók a @userinfobot-tól. Ennek hiányában bárki üzenetet küldhet a botjának.',
+        help: 'Ajánlott. Vesszővel elválasztott számozott azonosítók a @userinfobot-tól. Ennek hiányában bárki üzenetet küldhet a botjának.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxyszerver URL',
-        help: 'Csak olyan hálózatokon szükséges, ahol a Telegram le van tiltva.',
+        help: 'Csak olyan hálózatokon szükséges, ahol a Telegram le van tiltva.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot hitelesítő kód',
-        help: 'Hozz létre egy alkalmazást a Discord Developer Portalon, adj hozzá egy botot, majd illeszd be a tokenjét.',
+        help: 'Hozz létre egy alkalmazást a Discord Developer Portalon, adj hozzá egy botot, majd illeszd be a tokenjét.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Engedélyezett Discord felhasználói azonosítók',
-        help: 'Ajánlott. Vesszővel elválasztott Discord felhasználói azonosítók.',
+        help: 'Ajánlott. Vesszővel elválasztott Discord felhasználói azonosítók.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Válaszstílus',
-        help: 'first, all vagy off.',
+        help: 'first, all vagy off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Minden Discord felhasználó engedélyezése',
-        help: 'Csak fejlesztéshez. Ha true, bárki privát üzenetet küldhet a botnak engedélyezési lista nélkül.',
+        help: 'Csak fejlesztéshez. Ha true, bárki privát üzenetet küldhet a botnak engedélyezési lista nélkül.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Főcsatorna azonosítója',
-        help: 'Csatorna, ahová a bot a proaktív üzeneteket küldi (cron kimenet, emlékeztetők).',
+        help: 'Csatorna, ahová a bot a proaktív üzeneteket küldi (cron kimenet, emlékeztetők).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Főcsatorna neve',
-        help: 'A főcsatorna megjelenítési neve a naplókban és az állapotkimenetben.',
+        help: 'A főcsatorna megjelenítési neve a naplókban és az állapotkimenetben.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Minden iMessage felhasználó engedélyezése',
-        help: 'Ha true, kihagyja a BlueBubbles engedélyezési listáját.',
+        help: 'Ha true, kihagyja a BlueBubbles engedélyezési listáját.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Minden Mattermost felhasználó engedélyezése',
+        label: 'Minden Mattermost felhasználó engedélyezése'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Főcsatorna',
+        label: 'Főcsatorna'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Minden QQ felhasználó engedélyezése',
+        label: 'Minden QQ felhasználó engedélyezése'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ főcsatorna',
-        help: 'Alapértelmezett csatorna vagy csoport a cron kézbesítéséhez.',
+        help: 'Alapértelmezett csatorna vagy csoport a cron kézbesítéséhez.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ főcsatorna neve',
+        label: 'QQ főcsatorna neve'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot hitelesítő kód',
         help: 'Használja az OAuth & Permissions oldalon található bot tokent a Slack alkalmazás telepítése után.',
-        placeholder: 'Slack bot token beillesztése',
+        placeholder: 'Slack bot token beillesztése'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack alkalmazás token',
         help: 'Használja a Socket Mode-hoz szükséges alkalmazásszintű tokent.',
-        placeholder: 'Slack alkalmazás token beillesztése',
+        placeholder: 'Slack alkalmazás token beillesztése'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Engedélyezett Slack felhasználói azonosítók',
-        help: 'Ajánlott. Vesszővel elválasztott Slack felhasználói azonosítók.',
+        help: 'Ajánlott. Vesszővel elválasztott Slack felhasználói azonosítók.'
       },
       MATTERMOST_URL: {
         label: 'Szerver URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot hitelesítő kód',
+        label: 'Bot hitelesítő kód'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Engedélyezett felhasználói azonosítók',
-        help: 'Ajánlott. Vesszővel elválasztott Mattermost felhasználói azonosítók.',
+        help: 'Ajánlott. Vesszővel elválasztott Mattermost felhasználói azonosítók.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeszerver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Hozzáférési token',
+        label: 'Hozzáférési token'
       },
       MATRIX_USER_ID: {
         label: 'Bot felhasználói azonosító',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Engedélyezett Matrix felhasználói azonosítók',
-        help: 'Ajánlott. Vesszővel elválasztott felhasználói azonosítók @user:server formátumban.',
+        help: 'Ajánlott. Vesszővel elválasztott felhasználói azonosítók @user:server formátumban.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal-híd URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Egy futó signal-cli REST híd URL-je.',
+        help: 'Egy futó signal-cli REST híd URL-je.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefonszám',
-        help: 'A signal-cli hídjánál regisztrált szám.',
+        help: 'A signal-cli hídjánál regisztrált szám.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Engedélyezett Signal-felhasználók',
-        help: 'Ajánlott. Vesszővel elválasztott Signal-azonosítók.',
+        help: 'Ajánlott. Vesszővel elválasztott Signal-azonosítók.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp-híd engedélyezése',
-        help: 'Az alábbi kapcsoló állítja be automatikusan. Ne módosítsa, hacsak nem tudja, hogy szüksége van rá.',
+        help: 'Az alábbi kapcsoló állítja be automatikusan. Ne módosítsa, hacsak nem tudja, hogy szüksége van rá.'
       },
       WHATSAPP_MODE: {
-        label: 'Híd mód',
+        label: 'Híd mód'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Engedélyezett WhatsApp-felhasználók',
-        help: 'Ajánlott. Vesszővel elválasztott telefonszámok vagy WhatsApp-azonosítók.',
-      },
+        help: 'Ajánlott. Vesszővel elválasztott telefonszámok vagy WhatsApp-azonosítók.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Webhookok keresése...',
@@ -1493,7 +1554,8 @@ export const hu = defineLocale({
     hint: 'A feliratkozások módosításai azonnal újratöltődnek, amint a fogadó fut. A letiltott feliratkozások elutasítják a beérkező eseményeket.',
     empty: 'Még nincsenek webhook-feliratkozások.',
     disabledTitle: 'Webhook-fogadó letiltva',
-    disabledBody: 'A webhookok saját átjáróplatformmal rendelkeznek. Engedélyezze őket itt a beérkező HTTP-események fogadásához; csevegőcsatornákra csak akkor van szükség, ha egy feliratkozás Telegramra, Discordra, Slackre vagy más csatornára kézbesít.',
+    disabledBody:
+      'A webhookok saját átjáróplatformmal rendelkeznek. Engedélyezze őket itt a beérkező HTTP-események fogadásához; csevegőcsatornákra csak akkor van szükség, ha egy feliratkozás Telegramra, Discordra, Slackre vagy más csatornára kézbesít.',
     enable: 'Webhookok engedélyezése',
     enabling: 'Engedélyezés...',
     enabled: (name: string) => `Engedélyezve: "${name}"`,
@@ -1510,7 +1572,8 @@ export const hu = defineLocale({
     toggleFailed: (name: string) => `Nem sikerült frissíteni: "${name}"`,
     newSubscription: 'Új feliratkozás',
     restarting: 'Átjáró újraindítása...',
-    restartNeeded: 'A webhookok engedélyezve vannak, de az átjárót még újra kell indítani, mielőtt a fogadó online állapotba kerülhet.',
+    restartNeeded:
+      'A webhookok engedélyezve vannak, de az átjárót még újra kell indítani, mielőtt a fogadó online állapotba kerülhet.',
     restartGateway: 'Átjáró újraindítása',
     restartingGateway: 'Újraindítás...',
     restartFailed: (detail: string) => `Az átjáró újraindítása nem sikerült: ${detail}`,
@@ -1546,8 +1609,8 @@ export const hu = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-mail',
-      github_comment: 'GitHub-hozzászólás',
-    },
+      github_comment: 'GitHub-hozzászólás'
+    }
   },
   profiles: {
     close: 'Profilok bezárása',
@@ -1625,7 +1688,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     failedLoadSoul: 'Nem sikerült betölteni a SOUL.md-t',
     failedSaveSoul: 'SOUL.md mentése sikertelen',
     failedCreate: 'Profil létrehozása sikertelen',
-    failedRename: 'Profil átnevezése sikertelen',
+    failedRename: 'Profil átnevezése sikertelen'
   },
   cron: {
     close: 'Cron bezárása',
@@ -1640,14 +1703,14 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       paused: 'szüneteltetve',
       disabled: 'letiltva',
       error: 'hiba',
-      completed: 'befejezve',
+      completed: 'befejezve'
     },
     deliveryLabels: {
       local: 'Ez az asztali gép',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-mail',
+      email: 'E-mail'
     },
     scheduleLabels: {
       daily: 'Naponta',
@@ -1656,7 +1719,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       monthly: 'Havonta',
       hourly: 'Óránként',
       'every-15-minutes': '15 percenként',
-      custom: 'Egyéni',
+      custom: 'Egyéni'
     },
     scheduleHints: {
       daily: 'Minden nap 9:00-kor',
@@ -1665,7 +1728,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       monthly: 'Minden hónap első napján 9:00-kor',
       hourly: 'Minden óra elején',
       'every-15-minutes': '15 percenként',
-      custom: 'Cron-szintaxis vagy természetes nyelv',
+      custom: 'Cron-szintaxis vagy természetes nyelv'
     },
     days: {
       '0': 'Vasárnap',
@@ -1675,7 +1738,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       '4': 'Csütörtök',
       '5': 'Péntek',
       '6': 'Szombat',
-      '7': 'Vasárnap',
+      '7': 'Vasárnap'
     },
     dayFallback: value => `nap ${value}`,
     everyDayAt: time => `Minden nap ${time}-kor`,
@@ -1685,7 +1748,8 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     topOfHour: 'Minden óra elején',
     everyHourAt: minute => `Óránként :${minute}-kor`,
     newCron: 'Új cron',
-    emptyDescNew: 'Ütemezz egy promptot cron-kifejezés alapján. Az OpenAmer lefuttatja, és az eredményeket az általad kiválasztott célhelyre továbbítja.',
+    emptyDescNew:
+      'Ütemezz egy promptot cron-kifejezés alapján. Az OpenAmer lefuttatja, és az eredményeket az általad kiválasztott célhelyre továbbítja.',
     emptyDescSearch: 'Próbálj tágabb keresést.',
     emptyTitleNew: 'Még nincsenek ütemezett feladatok',
     emptyTitleSearch: 'Nincs találat',
@@ -1721,8 +1785,10 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     failedSave: 'Nem sikerült menteni az időzített feladatot',
     editTitle: 'Időzített feladat szerkesztése',
     createTitle: 'Új időzített feladat',
-    editDesc: 'Frissítse az ütemezést, az utasítást vagy a kézbesítési célt. A módosítások a következő futáskor lépnek érvénybe.',
-    createDesc: 'Ütemezzen automatikusan futtatandó utasítást. Használjon cron-szintaxist vagy természetes kifejezést, például „15 percenként”.',
+    editDesc:
+      'Frissítse az ütemezést, az utasítást vagy a kézbesítési célt. A módosítások a következő futáskor lépnek érvénybe.',
+    createDesc:
+      'Ütemezzen automatikusan futtatandó utasítást. Használjon cron-szintaxist vagy természetes kifejezést, például „15 percenként”.',
     nameLabel: 'Név',
     namePlaceholder: 'Reggeli összefoglaló',
     promptLabel: 'Kérés',
@@ -1744,7 +1810,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     createAction: 'Cron létrehozása',
     tabs: {
       jobs: 'Feladatok',
-      blueprints: 'Tervrajzok',
+      blueprints: 'Tervrajzok'
     },
     blueprints: {
       tab: 'Tervrajzok',
@@ -1758,8 +1824,8 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       loading: 'Tervrajzok betöltése...',
       failedLoad: 'Nem sikerült betölteni a tervrajzokat',
       emptyTitle: 'Nincsenek elérhető tervrajzok',
-      emptyDesc: 'Ezen a háttérrendszeren nincsenek elérhető automatizálási tervrajzok.',
-    },
+      emptyDesc: 'Ezen a háttérrendszeren nincsenek elérhető automatizálási tervrajzok.'
+    }
   },
   artifacts: {
     search: 'Artefaktumok keresése...',
@@ -1793,14 +1859,14 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     kindLink: 'hivatkozás',
     chat: 'Beszélgetés',
     copyUrl: 'URL másolása',
-    copyPath: 'Útvonal másolása',
+    copyPath: 'Útvonal másolása'
   },
   sidebar: {
     nav: {
       'new-session': 'Új munkamenet',
       skills: 'Képességek',
       messaging: 'Üzenetküldés',
-      artifacts: 'Artefaktumok',
+      artifacts: 'Artefaktumok'
     },
     searchAria: 'Munkamenetek keresése',
     searchPlaceholder: 'Munkamenetek keresése…',
@@ -1832,7 +1898,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       namePlaceholder: 'pl. Skunkworks',
       foldersLabel: 'Mappák',
       ideaLabel: 'Ötlet',
-      ideaPlaceholder: "Miről szól ez a projekt? (mentés az IDEA.md fájlba)",
+      ideaPlaceholder: 'Miről szól ez a projekt? (mentés az IDEA.md fájlba)',
       ideaGenerate: 'Ötlet generálása',
       ideaGenerating: 'Generálás…',
       ideaShuffle: 'Sablonok keverése',
@@ -1852,8 +1918,10 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       copyPath: 'Útvonal másolása',
       removeFromSidebar: 'Elrejtés az oldalsávból',
       createFailed: 'Nem sikerült létrehozni a projektet',
-      staleBackend: 'Frissítse az OpenAmer háttérszolgáltatást a projektek létrehozásához — a háttérszolgáltatás régebbi, mint ez az asztali alkalmazás (Beállítások → Frissítések → Háttérszolgáltatás).',
-      deleteConfirm: 'Ezzel eltávolítja a mentett projektet az OpenAmerből. A fájlok, a git-adattárak és a munkafák érintetlenek maradnak.',
+      staleBackend:
+        'Frissítse az OpenAmer háttérszolgáltatást a projektek létrehozásához — a háttérszolgáltatás régebbi, mint ez az asztali alkalmazás (Beállítások → Frissítések → Háttérszolgáltatás).',
+      deleteConfirm:
+        'Ezzel eltávolítja a mentett projektet az OpenAmerből. A fájlok, a git-adattárak és a munkafák érintetlenek maradnak.',
       startWork: 'Új munkafa',
       newWorktreeTitle: 'Új munkafa',
       newWorktreeDesc: 'Add meg a munkafa ágának nevét.',
@@ -1874,13 +1942,15 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       noBranches: 'Nem található ág',
       removeWorktree: 'Munkafa eltávolítása',
       removeWorktreeFailed: 'Nem sikerült eltávolítani a munkafát (nem commitolt változások?)',
-      removeWorktreeConfirm: 'Távolítsd el a gitből (törli a munkafa könyvtárát; az ág megmarad), vagy csak rejtsd el a sávot az oldalsávból, és hagyd a munkafát a lemezen.',
-      removeWorktreeDirty: 'Ennek a munkafának nem commitolt változásai vannak. Kényszerítve távolítsd el (eldobja ezeket a változásokat), vagy csak rejtsd el a sávot, és hagyd a lemezen.',
+      removeWorktreeConfirm:
+        'Távolítsd el a gitből (törli a munkafa könyvtárát; az ág megmarad), vagy csak rejtsd el a sávot az oldalsávból, és hagyd a munkafát a lemezen.',
+      removeWorktreeDirty:
+        'Ennek a munkafának nem commitolt változásai vannak. Kényszerítve távolítsd el (eldobja ezeket a változásokat), vagy csak rejtsd el a sávot, és hagyd a lemezen.',
       forceRemove: 'Kényszerített eltávolítás',
       enter: label => `Megnyitás ${label}`,
       reorder: label => `Átrendezés ${label}`,
       toggle: label => `Munkamenetek váltása ${label}`,
-      back: 'Minden projekt',
+      back: 'Minden projekt'
     },
     newSessionIn: label => `Új munkamenet ekkor: ${label}`,
     showMoreIn: (count, label) => `További ${count} megjelenítése itt: ${label}`,
@@ -1918,15 +1988,15 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       ageNow: 'most',
       ageDay: 'n',
       ageHour: 'ó',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Korábban ma',
       yesterday: 'Tegnap',
       thisWeek: 'Korábban a héten',
       lastWeek: 'Múlt héten',
-      thisMonth: 'Korábban a hónapban',
-    },
+      thisMonth: 'Korábban a hónapban'
+    }
   },
   composer: {
     message: 'Üzenet',
@@ -1937,20 +2007,20 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     newSessionPlaceholders: [
       'Mit építünk?',
       'Adj feladatot az OpenAmernek',
-      "Mi jár a fejedben?",
+      'Mi jár a fejedben?',
       'Írd le, mire van szükséged',
       'Mivel foglalkozzunk?',
       'Kérdezz bármit',
-      'Kezdd egy céllal',
+      'Kezdd egy céllal'
     ],
     followUpPlaceholders: [
       'Küldj követő üzenetet',
       'Adj hozzá több kontextust',
       'Pontosítsd a kérést',
-      "Mi következik?",
+      'Mi következik?',
       'Folytasd',
       'Vidd még tovább',
-      'Módosíts vagy folytasd',
+      'Módosíts vagy folytasd'
     ],
     startVoice: 'Hangbeszélgetés indítása',
     queueMessage: 'Üzenet sorba állítása',
@@ -1986,7 +2056,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       '/resume': 'korábbi munkamenet folytatása',
       '/details': 'az átirat részletességének szabályozása',
       '/copy': 'a kijelölés vagy az utolsó asszisztensüzenet másolása',
-      '/quit': 'kilépés az openamerből',
+      '/quit': 'kilépés az openamerből'
     },
     hotkeyDescs: {
       'composer.mention': 'fájlok, mappák, URL-ek, git hivatkozása',
@@ -1996,7 +2066,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       'composer.sendQueued': 'a következő sorban álló kör elküldése',
       'keybinds.openPanel': 'minden gyorsbillentyű',
       'composer.cancel': 'a felugró panel bezárása · futás megszakítása',
-      'composer.history': 'Ciklus felugró / előzmények',
+      'composer.history': 'Ciklus felugró / előzmények'
     },
     attachUrlTitle: 'URL csatolása',
     attachUrlDesc: 'Az OpenAmer lehívja az oldalt, és kontextusként hozzáadja ehhez a körhöz.',
@@ -2017,7 +2087,8 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     queueResume: 'Folytatás',
     queueResumeTip: 'Leállítás miatt szüneteltetve — folytasd a sorban álló körök küldését',
     queueStuckTitle: 'A sorban álló üzenet nem lett elküldve',
-    queueStuckBody: 'Egy sorban álló kör küldése ismételten meghiúsult. Még mindig a sorban van — próbáld újra elküldeni.',
+    queueStuckBody:
+      'Egy sorban álló kör küldése ismételten meghiúsult. Még mindig a sorban van — próbáld újra elküldeni.',
     previewUnavailable: 'Előnézet nem érhető el',
     previewLabel: label => `Előnézet ${label}`,
     couldNotPreview: label => `Nem sikerült előnézni: ${label}`,
@@ -2046,20 +2117,21 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     snippets: {
       codeReview: {
         label: 'Kódellenőrzés',
-        description: 'Vizsgáld át a jelenlegi változtatást regressziók, kimaradt szélsőséges esetek és hiányzó tesztek szempontjából.',
-        text: 'Nézd át ezt hibák, regressziók és hiányzó tesztek szempontjából.',
+        description:
+          'Vizsgáld át a jelenlegi változtatást regressziók, kimaradt szélsőséges esetek és hiányzó tesztek szempontjából.',
+        text: 'Nézd át ezt hibák, regressziók és hiányzó tesztek szempontjából.'
       },
       implementationPlan: {
         label: 'Megvalósítási terv',
         description: 'Vázolj fel egy megközelítést a kód módosítása előtt, hogy a diff fókuszált maradjon.',
-        text: 'Készíts tömör megvalósítási tervet a kód módosítása előtt.',
+        text: 'Készíts tömör megvalósítási tervet a kód módosítása előtt.'
       },
       explainThis: {
         label: 'Magyarázd el ezt',
         description: 'Mutasd be a kijelölt kód működését, és hivatkozz a kulcsfájlokra.',
-        text: 'Magyarázd el, hogyan működik ez, és mutasd meg a kulcsfájlokat.',
-      },
-    },
+        text: 'Magyarázd el, hogyan működik ez, és mutasd meg a kulcsfájlokat.'
+      }
+    }
   },
   statusStack: {
     agents: 'Ügynökök',
@@ -2090,7 +2162,8 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       revert: 'Visszavonás',
       revertAll: 'Összes visszavonása',
       revertConfirm: 'Eldobod a fájl módosításait, és visszaállítod a commitolt állapotba? Ezt nem lehet visszavonni.',
-      revertAllConfirm: 'Eldobod az összes módosítást, és visszaállítod a fájlokat a commitolt állapotba? Ezt nem lehet visszavonni.',
+      revertAllConfirm:
+        'Eldobod az összes módosítást, és visszaállítod a fájlokat a commitolt állapotba? Ezt nem lehet visszavonni.',
       staged: 'Stagelt',
       noChanges: 'Nincs módosítás',
       notRepo: 'Nem git-tár',
@@ -2107,13 +2180,14 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       openPr: 'PR megnyitása',
       ghMissing: 'Telepítsd a GitHub CLI-t (gh), és jelentkezz be a PR-ek megnyitásához',
       agentShip: 'Kérd meg az OpenAmer-t, hogy nyisson PR-t',
-      agentShipPrompt: 'Nézze át a jelenlegi módosításokat, commitolja őket egy egyértelmű conventional commit üzenettel, pusholja az ágat, és nyisson pull requestet.',
+      agentShipPrompt:
+        'Nézze át a jelenlegi módosításokat, commitolja őket egy egyértelmű conventional commit üzenettel, pusholja az ágat, és nyisson pull requestet.',
       newBranch: 'Új ág',
       branchOffFrom: base => `Új ág ebből: ${base}`,
       switchTo: branch => `Váltás erre: ${branch}`,
       switchFailed: branch => `Nem sikerült erre váltani: ${branch}`,
-      worktrees: 'Munkafák',
-    },
+      worktrees: 'Munkafák'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2202,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       done: 'Frissítés kész',
       manual: 'Frissítés a terminálból',
       guiSkew: 'Asztali alkalmazás frissítése',
-      error: 'Frissítés szüneteltetve',
+      error: 'Frissítés szüneteltetve'
     },
     checking: 'Frissítések keresése…',
     checkFailedTitle: 'Nem sikerült ellenőrizni a frissítéseket',
@@ -2143,20 +2217,25 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     availableBody: 'Az OpenAmer új verziója készen áll a telepítésre.',
     availableTitleBackend: 'Backend frissítés elérhető',
     availableBodyBackend: 'A csatlakoztatott OpenAmer backend újabb verziója készen áll a telepítésre.',
-    availableBodyNoChangelog: 'Újabb verzió áll rendelkezésre. A kiadási jegyzékek nem érhetők el ehhez a telepítési típushoz.',
+    availableBodyNoChangelog:
+      'Újabb verzió áll rendelkezésre. A kiadási jegyzékek nem érhetők el ehhez a telepítési típushoz.',
     updateNow: 'Frissítés most',
     maybeLater: 'Talán később',
     moreChanges: count => `+ ${count} more change${count === 1 ? 'változás' : 'változások'} included.`,
     manualTitle: 'Frissítés a terminálból',
-    manualBody: 'Az OpenAmer-t a parancssorból telepítetted, ezért a frissítések is ott futnak. Illeszd be ezt a terminálba:',
+    manualBody:
+      'Az OpenAmer-t a parancssorból telepítetted, ezért a frissítések is ott futnak. Illeszd be ezt a terminálba:',
     manualPickedUp: 'Az OpenAmer legközelebbi indításakor felveszi az új verziót.',
     guiSkewTitle: 'Asztali alkalmazás frissítése',
-    guiSkewBody: 'A backend frissült, de az asztali alkalmazás csomagja nem változott. Frissítsd vagy telepítsd újra az OpenAmer asztali alkalmazást (AppImage / .deb / .rpm), hogy egyezzen.',
+    guiSkewBody:
+      'A backend frissült, de az asztali alkalmazás csomagja nem változott. Frissítsd vagy telepítsd újra az OpenAmer asztali alkalmazást (AppImage / .deb / .rpm), hogy egyezzen.',
     copy: 'Másolás',
     copied: 'Másolva',
     done: 'Kész',
-    applyingBody: 'Az OpenAmer frissítő saját ablakban veszi át a folyamatot, és a befejezés után automatikusan újraindítja az OpenAmer-t. Kérjük, ne indítsd újra az OpenAmer-t, amíg frissül.',
-    applyingBodyBackend: 'A távoli backend alkalmazza a frissítést, majd újraindul. Az OpenAmer automatikusan újracsatlakozik, amikor visszatér.',
+    applyingBody:
+      'Az OpenAmer frissítő saját ablakban veszi át a folyamatot, és a befejezés után automatikusan újraindítja az OpenAmer-t. Kérjük, ne indítsd újra az OpenAmer-t, amíg frissül.',
+    applyingBodyBackend:
+      'A távoli backend alkalmazza a frissítést, majd újraindul. Az OpenAmer automatikusan újracsatlakozik, amikor visszatér.',
     applyingClose: 'Ez az ablak bezáródik a frissítés futása közben, majd az OpenAmer magától újra megnyílik.',
     errorTitle: 'A frissítés nem fejeződött be',
     errorBody: 'Ne aggódj — semmi sem veszett el. Most újra próbálhatod.',
@@ -2167,12 +2246,14 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       restarting: 'A háttérrendszer újraindul a frissítés betöltéséhez…',
       notAvailable: 'A frissítés nem érhető el ehhez a háttérrendszerhez.',
       failed: 'A háttérrendszer frissítése nem sikerült.',
-      noReturn: 'A háttérrendszer nem állt vissza. Lehet, hogy a frissítés nem fejeződött be – ellenőrizd a háttérrendszer gazdagépét.',
+      noReturn:
+        'A háttérrendszer nem állt vissza. Lehet, hogy a frissítés nem fejeződött be – ellenőrizd a háttérrendszer gazdagépét.'
     },
     appErrors: {
-      updateLocked: 'A frissítés megszakítva: egy másik OpenAmer-ablak vagy egy openamer-t futtató terminál nyitva tartja ezt a telepítést. Zárd be, és próbáld újra.',
-      updateFailed: 'A frissítés nem fejeződött be. Semmi baj – semmi sem veszett el. Most újra próbálkozhatsz.',
-    },
+      updateLocked:
+        'A frissítés megszakítva: egy másik OpenAmer-ablak vagy egy openamer-t futtató terminál nyitva tartja ezt a telepítést. Zárd be, és próbáld újra.',
+      updateFailed: 'A frissítés nem fejeződött be. Semmi baj – semmi sem veszett el. Most újra próbálkozhatsz.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2261,31 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       running: 'Telepítés',
       succeeded: 'Kész',
       skipped: 'Kihagyva',
-      failed: 'Sikertelen',
+      failed: 'Sikertelen'
     },
     oneTimeTitle: 'Az OpenAmer egyszeri telepítést igényel',
-    unsupportedDesc: platform => `Az automatikus telepítés első indításkor még nem érhető el a ${platform} rendszeren. Nyissa meg a Terminált, és futtassa az alábbi parancsot, majd indítsa újra ezt az alkalmazást. A későbbi indítások kihagyják ezt a lépést.`,
+    unsupportedDesc: platform =>
+      `Az automatikus telepítés első indításkor még nem érhető el a ${platform} rendszeren. Nyissa meg a Terminált, és futtassa az alábbi parancsot, majd indítsa újra ezt az alkalmazást. A későbbi indítások kihagyják ezt a lépést.`,
     installCommand: 'Telepítési parancs',
     copyCommand: 'Parancs másolása',
     viewDocs: 'Telepítési dokumentáció megtekintése',
     installTo: 'Ide telepít:',
     retryAfterRun: 'Lefuttattam -- újrapróbálás',
     setupChoiceTitle: 'OpenAmer Desktop beállítása',
-    setupChoiceDesc: 'Csatlakoztassa ezt az alkalmazást egy már futtatott OpenAmer-átjáróhoz, vagy telepítse az OpenAmer programot helyben erre a számítógépre.',
+    setupChoiceDesc:
+      'Csatlakoztassa ezt az alkalmazást egy már futtatott OpenAmer-átjáróhoz, vagy telepítse az OpenAmer programot helyben erre a számítógépre.',
     connectExistingTitle: 'Csatlakozás meglévő OpenAmer-hez',
     connectExistingShort: 'Meglévőhöz csatlakozás',
-    connectExistingDesc: 'Távoli háttérrendszer használata munkamenet-tokennel vagy böngészős bejelentkezéssel. Nem indul helyi telepítés.',
+    connectExistingDesc:
+      'Távoli háttérrendszer használata munkamenet-tokennel vagy böngészős bejelentkezéssel. Nem indul helyi telepítés.',
     installLocalTitle: 'OpenAmer telepítése helyben',
-    installLocalDesc: 'Töltse le az OpenAmer programot, hozza létre a Python-környezetét, és futtassa a háttérrendszert ezen a számítógépen.',
-    localStartUnavailable: 'A helyi telepítés nem indult el. Indítsa újra az OpenAmer Desktop alkalmazást, és próbálja újra.',
+    installLocalDesc:
+      'Töltse le az OpenAmer programot, hozza létre a Python-környezetét, és futtassa a háttérrendszert ezen a számítógépen.',
+    localStartUnavailable:
+      'A helyi telepítés nem indult el. Indítsa újra az OpenAmer Desktop alkalmazást, és próbálja újra.',
     remoteSetupTitle: 'Csatlakozás meglévő OpenAmer-hez',
-    remoteSetupDesc: 'Adja meg az átjáró URL-címét. Az OpenAmer Desktop felismeri, hogy tokentre vagy böngészős bejelentkezésre van-e szükség.',
+    remoteSetupDesc:
+      'Adja meg az átjáró URL-címét. Az OpenAmer Desktop felismeri, hogy tokentre vagy böngészős bejelentkezésre van-e szükség.',
     remoteUrlTitle: 'Átjáró URL',
     remoteUrlDesc: 'Használja az OpenAmer-átjáró alap URL-címét, távoli esetén a https:// részt is beleértve.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2312,10 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     failedTitle: 'A telepítés sikertelen',
     settingUpTitle: 'OpenAmer Agent beállítása',
     finishingTitle: 'Befejezés',
-    failedDesc: 'Egy telepítési lépés sikertelen volt. Windowson ez akkor fordulhat elő, ha egy másik OpenAmer CLI vagy asztali példány fut. Állítsa le a futó OpenAmer példányokat, majd próbálja újra. Nézze meg az alábbi részleteket vagy az asztali naplót a teljes jegyzőkönyvhöz.',
-    activeDesc: 'Ez egy egyszeri beállítás. Az OpenAmer telepítője letölti a függőségeket, és konfigurálja a gépét. A későbbi indítások kihagyják ezt a lépést.',
+    failedDesc:
+      'Egy telepítési lépés sikertelen volt. Windowson ez akkor fordulhat elő, ha egy másik OpenAmer CLI vagy asztali példány fut. Állítsa le a futó OpenAmer példányokat, majd próbálja újra. Nézze meg az alábbi részleteket vagy az asztali naplót a teljes jegyzőkönyvhöz.',
+    activeDesc:
+      'Ez egy egyszeri beállítás. Az OpenAmer telepítője letölti a függőségeket, és konfigurálja a gépét. A későbbi indítások kihagyják ezt a lépést.',
     progress: (completed, total) => `${completed} / ${total} lépés teljesítve`,
     currentStage: stage => ` -- most: ${stage}`,
     fetchingManifest: 'Telepítőjegyzék lekérése...',
@@ -2240,18 +2329,19 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     transcriptSaved: 'A teljes jegyzőkönyv mentve ide:',
     copiedOutput: 'Másolva!',
     copyOutput: 'Kimenet másolása',
-    reloadRetry: 'Újratöltés és újrapróbálás',
+    reloadRetry: 'Újratöltés és újrapróbálás'
   },
   onboarding: {
-    headerTitle: "Kezdjük el az OpenAmer Agent beállítását.",
+    headerTitle: 'Kezdjük el az OpenAmer Agent beállítását.',
     headerDesc: 'Csatlakoztasson egy modellszolgáltatót a csevegéshez. A legtöbb lehetőség egy kattintással elérhető.',
-    preparingInstall: 'Az OpenAmer befejezi a telepítést. Ez első indításkor általában kevesebb mint egy percet vesz igénybe.',
+    preparingInstall:
+      'Az OpenAmer befejezi a telepítést. Ez első indításkor általában kevesebb mint egy percet vesz igénybe.',
     starting: 'OpenAmer indítása…',
     lookingUpProviders: 'Szolgáltatók keresése...',
     collapse: 'Összecsukás',
     otherProviders: 'Egyéb szolgáltatók',
     haveApiKey: 'Van API-kulcsom',
-    chooseLater: "Később választok szolgáltatót",
+    chooseLater: 'Később választok szolgáltatót',
     recommended: 'Ajánlott',
     connected: 'Csatlakoztatva',
     featuredPitch: 'Egy előfizetés, 300+ élvonalbeli modell — ez az ajánlott módja az OpenAmer futtatásának',
@@ -2260,28 +2350,29 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     apiKeyOptions: {
       fireworks: {
         short: 'közvetlen modell API',
-        description: 'Közvetlen hozzáférés a Fireworks AI által hosztolt modellekhez.',
+        description: 'Közvetlen hozzáférés a Fireworks AI által hosztolt modellekhez.'
       },
       openrouter: {
         short: 'egy kulcs, sok modell',
-        description: 'Több száz modellt kínál egyetlen kulcs mögött. Jó alapértelmezés új telepítésekhez.',
+        description: 'Több száz modellt kínál egyetlen kulcs mögött. Jó alapértelmezés új telepítésekhez.'
       },
       openai: {
         short: 'GPT-szintű modellek',
-        description: 'Közvetlen hozzáférés az OpenAI modellekhez.',
+        description: 'Közvetlen hozzáférés az OpenAI modellekhez.'
       },
       gemini: {
         short: 'Gemini modellek',
-        description: 'Közvetlen hozzáférés a Google Gemini modellekhez.',
+        description: 'Közvetlen hozzáférés a Google Gemini modellekhez.'
       },
       xai: {
         short: 'Grok modellek',
-        description: 'Közvetlen hozzáférés az xAI Grok modellekhez.',
+        description: 'Közvetlen hozzáférés az xAI Grok modellekhez.'
       },
       local: {
         short: 'saját üzemeltetésű',
-        description: 'Irányítsd az OpenAmer-t egy helyi vagy saját üzemeltetésű, OpenAI-kompatibilis végpontra (vLLM, llama.cpp, Ollama stb.).',
-      },
+        description:
+          'Irányítsd az OpenAmer-t egy helyi vagy saját üzemeltetésű, OpenAI-kompatibilis végpontra (vLLM, llama.cpp, Ollama stb.).'
+      }
     },
     backToSignIn: 'Vissza a bejelentkezéshez',
     getKey: 'Kulcs beszerzése',
@@ -2294,7 +2385,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     flowSubtitles: {
       pkce: 'Megnyitja a böngészőt a bejelentkezéshez, majd itt folytatódik',
       device_code: 'Megnyit egy ellenőrző oldalt a böngésződben — OpenAmer automatikusan csatlakozik',
-      external: 'Jelentkezz be egyszer a terminálban, majd térj vissza a csevegéshez',
+      external: 'Jelentkezz be egyszer a terminálban, majd térj vissza a csevegéshez'
     },
     startingSignIn: provider => `Bejelentkezés indítása ehhez: ${provider}...`,
     verifyingCode: provider => `Kód ellenőrzése ezzel: ${provider}...`,
@@ -2308,11 +2399,13 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     copyAuthCode: 'Másold ki az engedélyezési kódot, majd illeszd be alább.',
     pasteAuthCode: 'Engedélyezési kód beillesztése',
     reopenAuthPage: 'Engedélyezési oldal újbóli megnyitása',
-    autoBrowser: provider => `A böngésződben megnyitottuk: ${provider}. Ott engedélyezd az OpenAmer-t, és automatikusan csatlakozol — nem kell semmit másolni vagy beilleszteni.`,
+    autoBrowser: provider =>
+      `A böngésződben megnyitottuk: ${provider}. Ott engedélyezd az OpenAmer-t, és automatikusan csatlakozol — nem kell semmit másolni vagy beilleszteni.`,
     reopenSignInPage: 'Bejelentkező oldal újbóli megnyitása',
     waitingAuthorize: 'Várjuk, hogy engedélyezd...',
-    externalPending: provider => `A ${provider} saját CLI-jén keresztül jelentkezik be. Futtasd ezt a parancsot egy terminálban, majd térj vissza, és válaszd a „Bejelentkeztem” lehetőséget:`,
-    signedIn: "Bejelentkeztem",
+    externalPending: provider =>
+      `A ${provider} saját CLI-jén keresztül jelentkezik be. Futtasd ezt a parancsot egy terminálban, majd térj vissza, és válaszd a „Bejelentkeztem” lehetőséget:`,
+    signedIn: 'Bejelentkeztem',
     deviceCodeOpened: provider => `Megnyitottuk a ${provider} oldalt a böngészőjében. Írja be ezt a kódot:`,
     reopenVerification: 'Ellenőrző oldal újranyitása',
     copy: 'Másolás',
@@ -2323,7 +2416,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     price: (input, output) => `${input} be / ${output} ki Mtok-onként`,
     change: 'Módosítás',
     startChatting: 'Kezdés',
-    docs: provider => `${provider} dokumentum`,
+    docs: provider => `${provider} dokumentum`
   },
   modelPicker: {
     title: 'Modell váltása',
@@ -2339,13 +2432,13 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     free: 'Ingyenes',
     freeTier: 'Ingyenes szint',
     priceTitle: 'Bemenet / kimenet ára millió tokenenként',
-    wasPrice: 'volt',
+    wasPrice: 'volt'
   },
   modelVisibility: {
     title: 'Modellek',
     search: 'Modellek keresése',
     noAuthenticatedProviders: 'Nincsenek hitelesített szolgáltatók.',
-    addProvider: 'Szolgáltató hozzáadása…',
+    addProvider: 'Szolgáltató hozzáadása…'
   },
   shell: {
     windowControls: 'Ablakvezérlők',
@@ -2356,7 +2449,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       noModels: 'Nem található modell',
       editModels: 'Modellek szerkesztése…',
       refreshModels: 'Modellek frissítése',
-      fast: 'Gyors',
+      fast: 'Gyors'
     },
     modelOptions: {
       noOptions: 'Nincs beállítás ehhez a modellhez',
@@ -2372,7 +2465,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       max: 'Maximum',
       ultra: 'Ultra',
       updateFailed: 'A modellbeállítás frissítése sikertelen',
-      fastFailed: 'A gyors mód frissítése sikertelen',
+      fastFailed: 'A gyors mód frissítése sikertelen'
     },
     gatewayMenu: {
       gateway: 'Átjáró',
@@ -2387,7 +2480,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       connection: label => `Kapcsolat: ${label}`,
       recentActivity: 'Legutóbbi tevékenység',
       viewAllLogs: 'Összes napló megtekintése →',
-      messagingPlatforms: 'Üzenetküldő platformok',
+      messagingPlatforms: 'Üzenetküldő platformok'
     },
     approvalMode: {
       title: 'Jóváhagyási mód',
@@ -2397,7 +2490,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       smart: 'Okos',
       smartDescription: 'Automatikusan értékelje a műveleteket, és szükség esetén kérdezzen',
       off: 'Ki',
-      offDescription: 'Futtatás jóváhagyási kérések nélkül',
+      offDescription: 'Futtatás jóváhagyási kérések nélkül'
     },
     statusbar: {
       unknown: 'ismeretlen',
@@ -2453,27 +2546,29 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
           skills: 'Készségek',
           subagent_definitions: 'Alügynök-definíciók',
           system_prompt: 'Rendszerprompt',
-          tool_definitions: 'Eszközdefiníciók',
+          tool_definitions: 'Eszközdefiníciók'
         },
         empty: 'Még nincs kontextusadat',
         loading: 'Részletek betöltése…',
         percentFull: percent => `${percent}% Teljes`,
         title: 'Kontextus használata',
-        tokenSummary: (used, max) => `${used} / ${max} Token`,
+        tokenSummary: (used, max) => `${used} / ${max} Token`
       },
       openContextUsage: 'Kontextus használat részletei',
       session: 'Sesszió',
       runtimeSessionElapsed: 'LefutottRUNTIME sesszió',
-      yoloOn: 'YOLO be — veszélyes parancsok automatikus jóváhagyása. Kattintson a kikapcsoláshoz. Shift+kattintás globális váltás.',
-      yoloOff: 'YOLO ki — kattintson a veszélyes parancsok automatikus jóváhagyásához. Shift+kattintás globális váltás.',
+      yoloOn:
+        'YOLO be — veszélyes parancsok automatikus jóváhagyása. Kattintson a kikapcsoláshoz. Shift+kattintás globális váltás.',
+      yoloOff:
+        'YOLO ki — kattintson a veszélyes parancsok automatikus jóváhagyásához. Shift+kattintás globális váltás.',
       modelNone: 'nincs',
       noModel: 'nincs modell',
       switchModel: 'Modell váltása',
       openModelPicker: 'Modellválasztó megnyitása',
       modelPinned: 'Ön által rögzítve; az új csevegések ezt használják a Beállítások alapértelmezett értéke helyett',
       modelTitle: (provider, model) => `Modell · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Jobb oldalsáv',
@@ -2509,7 +2604,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     terminalNew: 'Új terminál',
     terminalCloseOthers: 'Többiek bezárása',
     terminalCloseAll: 'Összes bezárása',
-    addToChat: 'Chathez adása',
+    addToChat: 'Chathez adása'
   },
   preview: {
     tab: 'Előnézet',
@@ -2543,7 +2638,8 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     unsavedChanges: 'Mentetlen módosítások',
     saveFailed: message => `Nem sikerült menteni: ${message}`,
     diskChangedTitle: 'A fájl megváltozott a lemezen',
-    diskChangedBody: 'Ez a fájl megváltozott, mióta megnyitotta. Felülírja a saját verziójával, vagy elveti a módosításait, és újratölti?',
+    diskChangedBody:
+      'Ez a fájl megváltozott, mióta megnyitotta. Felülírja a saját verziójával, vagy elveti a módosításait, és újratölti?',
     overwrite: 'Felülírás',
     discardReload: 'Elvetés és újratöltés',
     console: {
@@ -2564,7 +2660,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       empty: 'Még nincsenek konzolüzenetek.',
       promptHeader: 'Előnézeti konzol:',
       sentTitle: 'Elküldve csevegésbe',
-      sentMessage: count => `${count} naplóbejegyzés ${count === 1 ? 'y' : 'ies'} hozzáadva a bevitelmezőhöz`,
+      sentMessage: count => `${count} naplóbejegyzés ${count === 1 ? 'y' : 'ies'} hozzáadva a bevitelmezőhöz`
     },
     web: {
       appFailedToBoot: 'Az előnézeti alkalmazás nem indult el',
@@ -2582,24 +2678,27 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       showConsole: 'Előnézeti konzol megjelenítése',
       hideDevTools: 'Előnézeti fejlesztői eszközök elrejtése',
       openDevTools: 'Előnézeti fejlesztői eszközök megnyitása',
-      finishedRestarting: message => `Az OpenAmer befejezte az előnézeti szerver újraindítását${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `Az OpenAmer befejezte az előnézeti szerver újraindítását${message ? `: ${message}` : ''}`,
       failedRestarting: message => `A szerver újraindítása sikertelen: ${message}`,
       unknownError: 'ismeretlen hiba',
       restartedTitle: 'Az előnézeti szerver újraindult',
       reloadingNow: 'Az előnézet most újratöltődik.',
       restartFailedTitle: 'Az előnézet újraindítása sikertelen',
       restartFailedMessage: 'Az OpenAmer nem tudta újraindítani a szervert.',
-      stillWorking: 'Az OpenAmer még dolgozik, de az újraindítási eredmény még nem érkezett meg. A szerverparancs az előtérben futhat.',
+      stillWorking:
+        'Az OpenAmer még dolgozik, de az újraindítási eredmény még nem érkezett meg. A szerverparancs az előtérben futhat.',
       workspaceReloading: 'A munkaterület megváltozott, az előnézet újratöltése',
       fileChanged: url => `Fájl módosult, előnézet újratöltése: ${url}`,
       filesChanged: (count, url) => `${count} fájlváltozás, előnézet újratöltése: ${url}`,
       watchFailed: message => `Nem sikerült figyelni az előnézeti fájlt: ${message}`,
-      moduleMimeDescription: 'A modulparancsfájlok rossz MIME-típussal kerülnek kiszolgálásra. Ez általában azt jelenti, hogy egy statikus fájlszerver a Vite/React alkalmazást szolgálja ki a projekt fejlesztői szervere helyett.',
+      moduleMimeDescription:
+        'A modulparancsfájlok rossz MIME-típussal kerülnek kiszolgálásra. Ez általában azt jelenti, hogy egy statikus fájlszerver a Vite/React alkalmazást szolgálja ki a projekt fejlesztői szervere helyett.',
       loadFailedConsole: (code, message) => `Betöltés sikertelen${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Az előnézeti oldal nem érhető el.',
       openTarget: url => `Megnyitás ${url}`,
-      fallbackTitle: 'Előnézet',
-    },
+      fallbackTitle: 'Előnézet'
+    }
   },
   zones: {
     showHeader: 'Fejléc megjelenítése',
@@ -2607,7 +2706,8 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     minimize: 'Minimalizálás',
     restore: 'Visszaállítás',
     closeRunningTitle: 'Bezárja a futó lapot?',
-    closeRunningBody: 'Ez a csevegés még dolgozik (vagy a bemenetedre vár). A lap bezárása elrejti — a munkamenet megőrzi a haladását, és az oldalsávból újra megnyitható.',
+    closeRunningBody:
+      'Ez a csevegés még dolgozik (vagy a bemenetedre vár). A lap bezárása elrejti — a munkamenet megőrzi a haladását, és az oldalsávból újra megnyitható.',
     closeRunningConfirm: 'Lap bezárása',
     closeOthers: 'Többi bezárása',
     closeToRight: 'Jobbra lévő lapok bezárása',
@@ -2623,7 +2723,8 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     pluginDisabledBody: 'Engedélyezze újra a Beállítások → Bővítmények menüben, hogy visszakerüljön a panel.',
     missingPane: paneId => `hiányzó panel: ${paneId}`,
     editTitle: 'Elrendezések',
-    editHint: 'Válasszon elrendezést, vagy húzza a paneleket a zónák közé. A felosztáshoz kattintson jobb gombbal egy zónára.',
+    editHint:
+      'Válasszon elrendezést, vagy húzza a paneleket a zónák közé. A felosztáshoz kattintson jobb gombbal egy zónára.',
     reset: 'Visszaállítás',
     templates: 'Sablonok',
     custom: 'Egyéni',
@@ -2633,7 +2734,8 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     deletePreset: name => `Törlés ${name}`,
     zoneEditorTitle: 'Zónaszerkesztő',
     editorHintPre: 'kattintson a felosztáshoz · ',
-    editorHintPost: ' átfordítja a vonalat · húzzon át zónák között az egyesítéshez · a közös szélek húzásával méretezhet',
+    editorHintPost:
+      ' átfordítja a vonalat · húzzon át zónák között az egyesítéshez · a közös szélek húzásával méretezhet',
     templateColumns: 'Oszlopok',
     templateRows: 'Sorok',
     templateGrid: 'Rács',
@@ -2644,23 +2746,16 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     layoutNamePlaceholder: fallback => `Elrendezés neve (${fallback})`,
     saveApply: 'Mentés és alkalmazás',
     notExpressible: 'ez az elrendezés egymásba kapcsolódik (szélkerék) — beágyazott felosztásként még nem ábrázolható',
-    zoneCount: count => `${count} zóna`,
+    zoneCount: count => `${count} zóna`
   },
   assistant: {
     thread: {
       loadingSession: 'Munkamenet betöltése',
       showEarlier: 'Korábbi üzenetek megjelenítése',
       loadingResponse: 'OpenAmer választ tölt be',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Gondolkodik',
       today: time => `Ma, ${time}`,
@@ -2687,7 +2782,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       restoreNext: 'Következő ellenőrlégi pont visszaállítása',
       goForward: 'Tovább',
       sendEdited: 'Szerkesztett üzenet küldése',
-      attachingFile: 'Csatolás...',
+      attachingFile: 'Csatolás...'
     },
     approval: {
       gatewayDisconnected: 'Az OpenAmer gateway nem csatlakoztatva',
@@ -2700,8 +2795,9 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       jumpToApproval: 'Jóváhagyás szükséges',
       reject: 'Elutasítás',
       alwaysTitle: 'Mindig engedélyezze ezt a parancsot?',
-      alwaysDescription: pattern => `Ez hozzáadja a „${pattern}” mintát a maradandó engedélyezési listájához (~/.openamer/config.yaml). Az OpenAmer többé nem fog kérdezni az ilyen parancsokról — sem ebben, sem későbbi munkamenetben.`,
-      alwaysAllow: 'Mindig engedélyezze',
+      alwaysDescription: pattern =>
+        `Ez hozzáadja a „${pattern}” mintát a maradandó engedélyezési listájához (~/.openamer/config.yaml). Az OpenAmer többé nem fog kérdezni az ilyen parancsokról — sem ebben, sem későbbi munkamenetben.`,
+      alwaysAllow: 'Mindig engedélyezze'
     },
     clarify: {
       notReady: 'A pontosító kérés még nincs kész',
@@ -2715,7 +2811,7 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       continueLabel: 'Folytatás',
       lateAnswer: (question, choice) => `Válasz: "${question}" — a válaszom: ${choice}`,
       lateAnswerTip: 'Piszkozat készítése ebből a válaszból utóüzenetként',
-      lateAnswerHint: 'Ez a kérdés már nem várakozik. Válassz egy opciót, és készíts belőle utóüzenet-piszkozatot.',
+      lateAnswerHint: 'Ez a kérdés már nem várakozik. Válassz egy opciót, és készíts belőle utóüzenet-piszkozatot.'
     },
     tool: {
       code: 'Kód',
@@ -2751,11 +2847,11 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
         ran: 'Futtatva',
         running: 'Futás',
         ranCode: 'Kód futtatva',
-        runningCode: 'Szkriptezés',
+        runningCode: 'Szkriptezés'
       },
       prefixes: {
         browser: 'Böngésző',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2763,132 +2859,133 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Fut: ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Fut: ${action.toLowerCase()}`,
+        runningTool: action => `Fut: ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Oldalelemre kattintva',
           pending: 'Oldalelem kattintása',
-          pendingAction: 'Kattintás',
+          pendingAction: 'Kattintás'
         },
         browser_fill: {
           done: 'Űrlapmező kitöltve',
           pending: 'Űrlapmező kitöltése',
-          pendingAction: 'Kitöltés',
+          pendingAction: 'Kitöltés'
         },
         browser_navigate: {
           done: 'Oldal megnyitva',
           pending: 'Oldal megnyitása',
-          pendingAction: 'Megnyitás',
+          pendingAction: 'Megnyitás'
         },
         browser_snapshot: {
           done: 'Oldalpillanatkép rögzítve',
           pending: 'Oldalpillanatkép rögzítése',
-          pendingAction: 'Rögzítés',
+          pendingAction: 'Rögzítés'
         },
         browser_take_screenshot: {
           done: 'Képernyőkép rögzítve',
           pending: 'Képernyőkép rögzítése',
-          pendingAction: 'Rögzítés',
+          pendingAction: 'Rögzítés'
         },
         browser_type: {
           done: 'Az oldalon gépelt',
           pending: 'Gépelés az oldalon',
-          pendingAction: 'Gépelés',
+          pendingAction: 'Gépelés'
         },
         clarify: {
           done: 'Kérdést tett fel',
           pending: 'Kérdés feltevése',
-          pendingAction: 'Kérdezés',
+          pendingAction: 'Kérdezés'
         },
         cronjob: {
           done: 'Cron-feladat',
           pending: 'Cron-feladat ütemezése',
-          pendingAction: 'Ütemezés',
+          pendingAction: 'Ütemezés'
         },
         edit_file: {
           done: 'Fájl szerkesztve',
           pending: 'Fájl szerkesztése',
-          pendingAction: 'Szerkesztés',
+          pendingAction: 'Szerkesztés'
         },
         execute_code: {
           done: 'Kód futtatva',
           pending: 'Szkriptelés',
-          pendingAction: 'Szkriptelés',
+          pendingAction: 'Szkriptelés'
         },
         image_generate: {
           done: 'Kép generálva',
           pending: 'Kép generálása',
-          pendingAction: 'Generálás',
+          pendingAction: 'Generálás'
         },
         list_files: {
           done: 'Fájlok listázva',
           pending: 'Fájlok listázása',
-          pendingAction: 'Listázás',
+          pendingAction: 'Listázás'
         },
         patch: {
           done: 'Fájl javítva',
           pending: 'Fájl javítása',
-          pendingAction: 'Javítás',
+          pendingAction: 'Javítás'
         },
         read_file: {
           done: 'Fájl beolvasva',
           pending: 'Fájl beolvasása',
-          pendingAction: 'Beolvasás',
+          pendingAction: 'Beolvasás'
         },
         search_files: {
           done: 'Fájlok keresve',
           pending: 'Fájlok keresése',
-          pendingAction: 'Keresés',
+          pendingAction: 'Keresés'
         },
         session_search_recall: {
           done: 'Munkamenet-előzmények átkutatva',
           pending: 'Munkamenet-előzmények keresése',
-          pendingAction: 'Keresés',
+          pendingAction: 'Keresés'
         },
         terminal: {
           done: 'Parancs futtatva',
           pending: 'Parancs futtatása',
-          pendingAction: 'Futtatás',
+          pendingAction: 'Futtatás'
         },
         todo: {
           done: 'Teendők frissítve',
           pending: 'Teendők frissítése',
-          pendingAction: 'Frissítés',
+          pendingAction: 'Frissítés'
         },
         vision_analyze: {
           done: 'Kép elemezve',
           pending: 'Kép elemzése',
-          pendingAction: 'Elemzés',
+          pendingAction: 'Elemzés'
         },
         web_extract: {
           done: 'Weboldal beolvasva',
           pending: 'Weboldal olvasása',
-          pendingAction: 'Olvasás',
+          pendingAction: 'Olvasás'
         },
         web_search: {
           done: 'Webes keresés kész',
           pending: 'Webes keresés',
-          pendingAction: 'Keresés',
+          pendingAction: 'Keresés'
         },
         write_file: {
           done: 'Fájl szerkesztve',
           pending: 'Fájl szerkesztése',
-          pendingAction: 'Szerkesztés',
-        },
-      },
-    },
+          pendingAction: 'Szerkesztés'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Az OpenAmer átjáró nincs csatlakoztatva',
     sudoSendFailed: 'Nem sikerült elküldeni a sudo jelszót',
     secretSendFailed: 'Nem sikerült elküldeni a titkot',
     sudoTitle: 'Rendszergazdai jelszó',
-    sudoDesc: 'Az OpenAmernek sudo jelszóra van szüksége egy emelt szintű parancs futtatásához. A jelszót csak a helyi ügynöködnek küldjük el.',
+    sudoDesc:
+      'Az OpenAmernek sudo jelszóra van szüksége egy emelt szintű parancs futtatásához. A jelszót csak a helyi ügynöködnek küldjük el.',
     sudoPlaceholder: 'sudo jelszó',
     secretTitle: 'Titok szükséges',
     secretDesc: 'Az OpenAmernek hitelesítő adatra van szüksége a folytatáshoz.',
-    secretPlaceholder: 'titkos érték',
+    secretPlaceholder: 'titkos érték'
   },
   desktop: {
     audioReadFailed: 'Nem sikerült beolvasni a felvett hangot',
@@ -2905,7 +3002,8 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     yoloSystem: active => `YOLO ${active ? 'be' : 'ki'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Nem sikerült átváltani a YOLO-t',
-    profileStatus: current => `Profil: ${current}. Használja a /profile <name> parancsot vagy az „Új munkamenet” választót, ha másik profilban szeretne csevegni.`,
+    profileStatus: current =>
+      `Profil: ${current}. Használja a /profile <name> parancsot vagy az „Új munkamenet” választót, ha másik profilban szeretne csevegni.`,
     unknownProfile: 'Ismeretlen profil',
     noProfileNamed: (target, available) => `Nincs „${target}” nevű profil. Elérhető: ${available}`,
     newChatsProfile: name => `Az új csevegések a ${name} profilt használják.`,
@@ -2915,8 +3013,9 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     regenerateFailed: 'Újragenerálás sikertelen',
     editFailed: 'Szerkesztés sikertelen',
     resumeFailed: 'Folytatás sikertelen',
-    resumeStrandedTitle: "Nem sikerült betölteni ezt a munkamenetet",
-    resumeStrandedBody: 'A munkamenethez való kapcsolódás sikertelen volt, és az automatikus újrapróbálkozások feladták. Ellenőrizze, hogy fut az átjáró, majd próbálja újra.',
+    resumeStrandedTitle: 'Nem sikerült betölteni ezt a munkamenetet',
+    resumeStrandedBody:
+      'A munkamenethez való kapcsolódás sikertelen volt, és az automatikus újrapróbálkozások feladták. Ellenőrizze, hogy fut az átjáró, majd próbálja újra.',
     resumeRetry: 'Újrapróbálás',
     nothingToBranch: 'Nincs mit elágaztatni',
     branchNeedsChat: 'Elágaztatás előtt indítson vagy folytasson csevegést.',
@@ -2930,7 +3029,8 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
     archiveFailed: 'Archiválás nem sikerült',
     cwdChangeFailed: 'A munkakönyvtár módosítása nem sikerült',
     cwdStagedTitle: 'Munkakönyvtár beállítva',
-    cwdStagedMessage: 'Indítsa újra a desktop háttéralkalmazást a munkakönyvtár módosításainak alkalmazásához ebben az aktív munkamenetben.',
+    cwdStagedMessage:
+      'Indítsa újra a desktop háttéralkalmazást a munkakönyvtár módosításainak alkalmazásához ebben az aktív munkamenetben.',
     modelSwitchFailed: 'Modellváltás nem sikerült',
     sessionExported: 'Munkamenet exportálva',
     sessionExportFailed: 'A munkamenet exportálása nem sikerült',
@@ -2956,31 +3056,31 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       success: platform => `Átadva: ${platform}. Bármikor folytathatja itt.`,
       systemNote: platform => `↻ Átadva: ${platform} — bármikor folytathatja itt.`,
       failed: error => `Az átadás nem sikerült: ${error}`,
-      timedOut: 'Időtúllépés az átjáróra való várakozás közben. Fut a `openamer gateway`?',
-    },
+      timedOut: 'Időtúllépés az átjáróra való várakozás közben. Fut a `openamer gateway`?'
+    }
   },
   errors: {
     genericFailure: 'Valami hiba történt',
     boundaryTitle: 'Valami elromlott a felületen',
     boundaryDesc: 'A nézet váratlan hibába ütközött. A beszélgetései és beállításai biztonságban vannak.',
     reloadWindow: 'Ablak újratöltése',
-    openLogs: 'Naplók megnyitása',
+    openLogs: 'Naplók megnyitása'
   },
   ui: {
     search: {
-      clear: 'Keresés törlése',
+      clear: 'Keresés törlése'
     },
     pagination: {
       label: 'lapozás',
       previous: 'Előző',
       previousAria: 'Ugrás az előző oldalra',
       next: 'Következő',
-      nextAria: 'Ugrás a következő oldalra',
+      nextAria: 'Ugrás a következő oldalra'
     },
     sidebar: {
       title: 'Oldalsáv',
       description: 'Megjeleníti a mobil oldalsávot.',
-      toggle: 'Oldalsáv váltása',
-    },
-  },
+      toggle: 'Oldalsáv váltása'
+    }
+  }
 })

@@ -6,249 +6,251 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Domyślny model",
-    modelContextLength: "Okno kontekstu",
-    fallbackProviders: "Modele zapasowe",
-    toolsets: "Włączone zestawy narzędzi",
-    timezone: "Strefa czasowa",
-    display: {
-      personality: "Osobowość",
-      showReasoning: "Bloki rozumowania",
+  model: 'Domyślny model',
+  modelContextLength: 'Okno kontekstu',
+  fallbackProviders: 'Modele zapasowe',
+  toolsets: 'Włączone zestawy narzędzi',
+  timezone: 'Strefa czasowa',
+  display: {
+    personality: 'Osobowość',
+    showReasoning: 'Bloki rozumowania'
+  },
+  desktop: {
+    repoScanEnabled: 'Automatyczne wykrywanie repozytoriów',
+    repoScanRoots: 'Katalogi bazowe wykrywania repozytoriów',
+    repoScanExcludePaths: 'Wykluczone ścieżki repozytoriów'
+  },
+  agent: {
+    maxTurns: 'Maks. liczba kroków agenta',
+    imageInputMode: 'Załączniki obrazów',
+    apiMaxRetries: 'Ponowienia API',
+    serviceTier: 'Poziom usługi',
+    toolUseEnforcement: 'Wymuszanie użycia narzędzi'
+  },
+  terminal: {
+    cwd: 'Katalog roboczy',
+    backend: 'Backend wykonawczy',
+    timeout: 'Limit czasu polecenia',
+    persistentShell: 'Trwała powłoka',
+    envPassthrough: 'Przekazywanie środowiska',
+    dockerImage: 'Obraz Docker',
+    singularityImage: 'Obraz Singularity',
+    modalImage: 'Obraz Modal',
+    daytonaImage: 'Obraz Daytona'
+  },
+  fileReadMaxChars: 'Limit odczytu pliku',
+  toolOutput: {
+    maxBytes: 'Limit wyjścia terminala',
+    maxLines: 'Limit stron pliku',
+    maxLineLength: 'Limit długości wiersza'
+  },
+  codeExecution: {
+    mode: 'Tryb wykonywania kodu'
+  },
+  approvals: {
+    mode: 'Tryb zatwierdzania',
+    timeout: 'Limit czasu zatwierdzania',
+    mcpReloadConfirm: 'Potwierdź przeładowania MCP'
+  },
+  commandAllowlist: 'Lista dozwolonych poleceń',
+  security: {
+    redactSecrets: 'Ukrywaj sekrety',
+    allowPrivateUrls: 'Zezwalaj na prywatne adresy URL'
+  },
+  browser: {
+    allowPrivateUrls: 'Prywatne adresy URL w przeglądarce',
+    autoLocalForPrivateUrls: 'Lokalna przeglądarka dla prywatnych adresów URL'
+  },
+  checkpoints: {
+    enabled: 'Punkty kontrolne plików',
+    maxSnapshots: 'Limit punktów kontrolnych'
+  },
+  voice: {
+    recordKey: 'Skrót głosowy',
+    maxRecordingSeconds: 'Maks. długość nagrania',
+    autoTts: 'Czytaj odpowiedzi na głos'
+  },
+  stt: {
+    enabled: 'Mowa na tekst',
+    echoTranscripts: 'Powtarzaj transkrypcje',
+    provider: 'Dostawca mowy na tekst',
+    local: {
+      model: 'Lokalny model transkrypcji',
+      language: 'Język transkrypcji'
     },
-    desktop: {
-      repoScanEnabled: "Automatyczne wykrywanie repozytoriów",
-      repoScanRoots: "Katalogi bazowe wykrywania repozytoriów",
-      repoScanExcludePaths: "Wykluczone ścieżki repozytoriów",
+    openai: {
+      model: 'Model STT OpenAI'
     },
-    agent: {
-      maxTurns: "Maks. liczba kroków agenta",
-      imageInputMode: "Załączniki obrazów",
-      apiMaxRetries: "Ponowienia API",
-      serviceTier: "Poziom usługi",
-      toolUseEnforcement: "Wymuszanie użycia narzędzi",
+    groq: {
+      model: 'Model STT Groq'
     },
-    terminal: {
-      cwd: "Katalog roboczy",
-      backend: "Backend wykonawczy",
-      timeout: "Limit czasu polecenia",
-      persistentShell: "Trwała powłoka",
-      envPassthrough: "Przekazywanie środowiska",
-      dockerImage: "Obraz Docker",
-      singularityImage: "Obraz Singularity",
-      modalImage: "Obraz Modal",
-      daytonaImage: "Obraz Daytona",
+    mistral: {
+      model: 'Model STT Mistral'
     },
-    fileReadMaxChars: "Limit odczytu pliku",
-    toolOutput: {
-      maxBytes: "Limit wyjścia terminala",
-      maxLines: "Limit stron pliku",
-      maxLineLength: "Limit długości wiersza",
+    elevenlabs: {
+      modelId: 'Model STT ElevenLabs',
+      languageCode: 'Język ElevenLabs',
+      tagAudioEvents: 'Oznaczaj zdarzenia dźwiękowe',
+      diarize: 'Diarizacja mówców'
+    }
+  },
+  tts: {
+    provider: 'Dostawca tekstu na mowę',
+    edge: {
+      voice: 'Głos Edge'
     },
-    codeExecution: {
-      mode: "Tryb wykonywania kodu",
+    openai: {
+      model: 'Model TTS OpenAI',
+      voice: 'Głos OpenAI'
     },
-    approvals: {
-      mode: "Tryb zatwierdzania",
-      timeout: "Limit czasu zatwierdzania",
-      mcpReloadConfirm: "Potwierdź przeładowania MCP",
+    elevenlabs: {
+      voiceId: 'Głos ElevenLabs',
+      modelId: 'Model ElevenLabs'
     },
-    commandAllowlist: "Lista dozwolonych poleceń",
-    security: {
-      redactSecrets: "Ukrywaj sekrety",
-      allowPrivateUrls: "Zezwalaj na prywatne adresy URL",
+    xai: {
+      voiceId: 'Głos xAI (Grok)',
+      language: 'Język xAI',
+      speed: 'Szybkość odtwarzania xAI',
+      autoSpeechTags: 'Automatyczne znaczniki mowy xAI',
+      optimizeStreamingLatency: 'Optymalizacja opóźnienia strumieniowania xAI',
+      sampleRate: 'Częstotliwość próbkowania xAI',
+      bitRate: 'Przepływność bitowa xAI'
     },
-    browser: {
-      allowPrivateUrls: "Prywatne adresy URL w przeglądarce",
-      autoLocalForPrivateUrls: "Lokalna przeglądarka dla prywatnych adresów URL",
+    minimax: {
+      model: 'Model TTS MiniMax',
+      voiceId: 'Głos MiniMax'
     },
-    checkpoints: {
-      enabled: "Punkty kontrolne plików",
-      maxSnapshots: "Limit punktów kontrolnych",
+    mistral: {
+      model: 'Model TTS Mistral',
+      voiceId: 'Głos Mistral'
     },
-    voice: {
-      recordKey: "Skrót głosowy",
-      maxRecordingSeconds: "Maks. długość nagrania",
-      autoTts: "Czytaj odpowiedzi na głos",
+    gemini: {
+      model: 'Model TTS Gemini',
+      voice: 'Głos Gemini'
     },
-    stt: {
-      enabled: "Mowa na tekst",
-      echoTranscripts: "Powtarzaj transkrypcje",
-      provider: "Dostawca mowy na tekst",
-      local: {
-        model: "Lokalny model transkrypcji",
-        language: "Język transkrypcji",
-      },
-      openai: {
-        model: "Model STT OpenAI",
-      },
-      groq: {
-        model: "Model STT Groq",
-      },
-      mistral: {
-        model: "Model STT Mistral",
-      },
-      elevenlabs: {
-        modelId: "Model STT ElevenLabs",
-        languageCode: "Język ElevenLabs",
-        tagAudioEvents: "Oznaczaj zdarzenia dźwiękowe",
-        diarize: "Diarizacja mówców",
-      },
+    neutts: {
+      model: 'Model NeuTTS',
+      device: 'Urządzenie NeuTTS'
     },
-    tts: {
-      provider: "Dostawca tekstu na mowę",
-      edge: {
-        voice: "Głos Edge",
-      },
-      openai: {
-        model: "Model TTS OpenAI",
-        voice: "Głos OpenAI",
-      },
-      elevenlabs: {
-        voiceId: "Głos ElevenLabs",
-        modelId: "Model ElevenLabs",
-      },
-      xai: {
-        voiceId: "Głos xAI (Grok)",
-        language: "Język xAI",
-        speed: "Szybkość odtwarzania xAI",
-        autoSpeechTags: "Automatyczne znaczniki mowy xAI",
-        optimizeStreamingLatency: "Optymalizacja opóźnienia strumieniowania xAI",
-        sampleRate: "Częstotliwość próbkowania xAI",
-        bitRate: "Przepływność bitowa xAI",
-      },
-      minimax: {
-        model: "Model TTS MiniMax",
-        voiceId: "Głos MiniMax",
-      },
-      mistral: {
-        model: "Model TTS Mistral",
-        voiceId: "Głos Mistral",
-      },
-      gemini: {
-        model: "Model TTS Gemini",
-        voice: "Głos Gemini",
-      },
-      neutts: {
-        model: "Model NeuTTS",
-        device: "Urządzenie NeuTTS",
-      },
-      kittentts: {
-        model: "Model KittenTTS",
-        voice: "Głos KittenTTS",
-      },
-      piper: {
-        voice: "Głos Piper",
-      },
-      deepinfra: {
-        model: "Model TTS DeepInfra",
-        voice: "Głos DeepInfra",
-      },
+    kittentts: {
+      model: 'Model KittenTTS',
+      voice: 'Głos KittenTTS'
     },
-    memory: {
-      memoryEnabled: "Pamięć trwała",
-      userProfileEnabled: "Profil użytkownika",
-      memoryCharLimit: "Budżet pamięci",
-      userCharLimit: "Budżet profilu",
-      provider: "Dostawca pamięci",
+    piper: {
+      voice: 'Głos Piper'
     },
-    context: {
-      engine: "Silnik kontekstu",
-    },
-    compression: {
-      enabled: "Automatyczna kompresja",
-      threshold: "Próg kompresji",
-      targetRatio: "Cel kompresji",
-      protectLastN: "Chronione ostatnie wiadomości",
-    },
-    delegation: {
-      model: "Model podagenta",
-      provider: "Dostawca podagenta",
-      maxIterations: "Limit tur podagenta",
-      maxConcurrentChildren: "Równoległe podagenty",
-      childTimeoutSeconds: "Limit czasu podagenta",
-      reasoningEffort: "Wysiłek rozumowania podagenta",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Lokalne zmiany aktualizacji w aplikacji",
-    },
+    deepinfra: {
+      model: 'Model TTS DeepInfra',
+      voice: 'Głos DeepInfra'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Pamięć trwała',
+    userProfileEnabled: 'Profil użytkownika',
+    memoryCharLimit: 'Budżet pamięci',
+    userCharLimit: 'Budżet profilu',
+    provider: 'Dostawca pamięci'
+  },
+  context: {
+    engine: 'Silnik kontekstu'
+  },
+  compression: {
+    enabled: 'Automatyczna kompresja',
+    threshold: 'Próg kompresji',
+    targetRatio: 'Cel kompresji',
+    protectLastN: 'Chronione ostatnie wiadomości'
+  },
+  delegation: {
+    model: 'Model podagenta',
+    provider: 'Dostawca podagenta',
+    maxIterations: 'Limit tur podagenta',
+    maxConcurrentChildren: 'Równoległe podagenty',
+    childTimeoutSeconds: 'Limit czasu podagenta',
+    reasoningEffort: 'Wysiłek rozumowania podagenta'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Lokalne zmiany aktualizacji w aplikacji'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Używany w nowych czatach, chyba że wybierzesz inny model w edytorze.",
-    modelContextLength: "Ustaw 0, aby użyć wykrytego okna kontekstowego wybranego modelu.",
-    fallbackProviders: "Zapasowe wpisy provider:model do wypróbowania, jeśli model domyślny zawiedzie.",
-    display: {
-      personality: "Domyślny styl asystenta dla nowych sesji.",
-      showReasoning: "Pokazuj sekcje rozumowania, gdy backend je udostępnia.",
+  model: 'Używany w nowych czatach, chyba że wybierzesz inny model w edytorze.',
+  modelContextLength: 'Ustaw 0, aby użyć wykrytego okna kontekstowego wybranego modelu.',
+  fallbackProviders: 'Zapasowe wpisy provider:model do wypróbowania, jeśli model domyślny zawiedzie.',
+  display: {
+    personality: 'Domyślny styl asystenta dla nowych sesji.',
+    showReasoning: 'Pokazuj sekcje rozumowania, gdy backend je udostępnia.'
+  },
+  desktop: {
+    repoScanEnabled: 'Skanuj lokalne foldery w poszukiwaniu repozytoriów Git do wyświetlenia w Projektach.',
+    repoScanRoots: 'Foldery do skanowania. Puste pole oznacza skanowanie katalogu domowego.',
+    repoScanExcludePaths: 'Foldery i ich elementy podrzędne do pominięcia podczas wyszukiwania repozytoriów.'
+  },
+  timezone: 'Używane, gdy OpenAmer potrzebuje kontekstu lokalnego czasu. Puste pole używa strefy czasowej systemu.',
+  agent: {
+    imageInputMode: 'Steruje sposobem wysyłania załączników graficznych do modelu.',
+    maxTurns: 'Górny limit tur wywołań narzędzi, po którym OpenAmer zatrzymuje przebieg.'
+  },
+  terminal: {
+    cwd: 'Domyślny folder projektu dla pracy z narzędziami i terminalem.',
+    persistentShell: 'Zachowuj stan powłoki między poleceniami, gdy backend to obsługuje.',
+    envPassthrough: 'Zmienne środowiskowe przekazywane do wykonania narzędzi.',
+    dockerImage: 'Obraz kontenera używany, gdy backend wykonania to Docker.',
+    singularityImage: 'Obraz używany, gdy backend wykonania to Singularity.',
+    modalImage: 'Obraz używany, gdy backend wykonania to Modal.',
+    daytonaImage: 'Obraz używany, gdy backend wykonania to Daytona.'
+  },
+  codeExecution: {
+    mode: 'Jak ściśle wykonanie kodu jest ograniczone do bieżącego projektu.'
+  },
+  fileReadMaxChars: 'Maksymalna liczba znaków, jakie OpenAmer może odczytać w jednym żądaniu pliku.',
+  approvals: {
+    mode: 'Sposób, w jaki OpenAmer obsługuje polecenia wymagające wyraźnej zgody.',
+    timeout: 'Jak długo monity o zatwierdzenie czekają przed przekroczeniem limitu czasu.'
+  },
+  security: {
+    redactSecrets: 'Ukrywaj wykryte sekrety w treści widocznej dla modelu, gdy to możliwe.'
+  },
+  checkpoints: {
+    enabled: 'Twórz migawki wycofania przed edycją plików.'
+  },
+  memory: {
+    memoryEnabled: 'Zapisuj trwałe wspomnienia, które mogą pomóc w przyszłych sesjach.',
+    userProfileEnabled: 'Utrzymuj zwięzły profil preferencji użytkownika.'
+  },
+  context: {
+    engine: 'Strategia zarządzania długimi rozmowami blisko limitu kontekstu.'
+  },
+  compression: {
+    enabled: 'Podsumowuj starszy kontekst, gdy rozmowy się wydłużają.'
+  },
+  voice: {
+    autoTts: 'Automatycznie wypowiadaj odpowiedzi asystenta.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'Identyfikator głosu xAI (np. eve) lub własny identyfikator głosu.',
+      language: 'Kod mówionego języka (np. en, pt-BR) lub "auto" do automatycznego wykrywania.',
+      speed: 'Szybkość odtwarzania. 0.7 = wolniej, 1.0 = normalnie, 1.5 = szybciej.',
+      autoSpeechTags: 'Pozwól LLM wstawiać tagi ekspresyjnego dźwięku ([laughing], [sighs]) do skryptu przed syntezą.',
+      optimizeStreamingLatency:
+        'Kompromis między opóźnieniem a jakością. 0 = najlepsza jakość, 2 = najniższe opóźnienie.',
+      sampleRate: 'Częstotliwość próbkowania audio w Hz. Wyższa = lepsza jakość, większe pliki.',
+      bitRate: 'Przepływność bitowa MP3 w bps. Dotyczy tylko kodeka mp3.'
     },
-    desktop: {
-      repoScanEnabled: "Skanuj lokalne foldery w poszukiwaniu repozytoriów Git do wyświetlenia w Projektach.",
-      repoScanRoots: "Foldery do skanowania. Puste pole oznacza skanowanie katalogu domowego.",
-      repoScanExcludePaths: "Foldery i ich elementy podrzędne do pominięcia podczas wyszukiwania repozytoriów.",
-    },
-    timezone: "Używane, gdy OpenAmer potrzebuje kontekstu lokalnego czasu. Puste pole używa strefy czasowej systemu.",
-    agent: {
-      imageInputMode: "Steruje sposobem wysyłania załączników graficznych do modelu.",
-      maxTurns: "Górny limit tur wywołań narzędzi, po którym OpenAmer zatrzymuje przebieg.",
-    },
-    terminal: {
-      cwd: "Domyślny folder projektu dla pracy z narzędziami i terminalem.",
-      persistentShell: "Zachowuj stan powłoki między poleceniami, gdy backend to obsługuje.",
-      envPassthrough: "Zmienne środowiskowe przekazywane do wykonania narzędzi.",
-      dockerImage: "Obraz kontenera używany, gdy backend wykonania to Docker.",
-      singularityImage: "Obraz używany, gdy backend wykonania to Singularity.",
-      modalImage: "Obraz używany, gdy backend wykonania to Modal.",
-      daytonaImage: "Obraz używany, gdy backend wykonania to Daytona.",
-    },
-    codeExecution: {
-      mode: "Jak ściśle wykonanie kodu jest ograniczone do bieżącego projektu.",
-    },
-    fileReadMaxChars: "Maksymalna liczba znaków, jakie OpenAmer może odczytać w jednym żądaniu pliku.",
-    approvals: {
-      mode: "Sposób, w jaki OpenAmer obsługuje polecenia wymagające wyraźnej zgody.",
-      timeout: "Jak długo monity o zatwierdzenie czekają przed przekroczeniem limitu czasu.",
-    },
-    security: {
-      redactSecrets: "Ukrywaj wykryte sekrety w treści widocznej dla modelu, gdy to możliwe.",
-    },
-    checkpoints: {
-      enabled: "Twórz migawki wycofania przed edycją plików.",
-    },
-    memory: {
-      memoryEnabled: "Zapisuj trwałe wspomnienia, które mogą pomóc w przyszłych sesjach.",
-      userProfileEnabled: "Utrzymuj zwięzły profil preferencji użytkownika.",
-    },
-    context: {
-      engine: "Strategia zarządzania długimi rozmowami blisko limitu kontekstu.",
-    },
-    compression: {
-      enabled: "Podsumowuj starszy kontekst, gdy rozmowy się wydłużają.",
-    },
-    voice: {
-      autoTts: "Automatycznie wypowiadaj odpowiedzi asystenta.",
-    },
-    tts: {
-      xai: {
-        voiceId: "Identyfikator głosu xAI (np. eve) lub własny identyfikator głosu.",
-        language: "Kod mówionego języka (np. en, pt-BR) lub \"auto\" do automatycznego wykrywania.",
-        speed: "Szybkość odtwarzania. 0.7 = wolniej, 1.0 = normalnie, 1.5 = szybciej.",
-        autoSpeechTags: "Pozwól LLM wstawiać tagi ekspresyjnego dźwięku ([laughing], [sighs]) do skryptu przed syntezą.",
-        optimizeStreamingLatency: "Kompromis między opóźnieniem a jakością. 0 = najlepsza jakość, 2 = najniższe opóźnienie.",
-        sampleRate: "Częstotliwość próbkowania audio w Hz. Wyższa = lepsza jakość, większe pliki.",
-        bitRate: "Przepływność bitowa MP3 w bps. Dotyczy tylko kodeka mp3.",
-      },
-      neutts: {
-        device: "Urządzenie do lokalnego wnioskowania dla NeuTTS.",
-      },
-    },
-    stt: {
-      enabled: "Włącz lokalną lub obsługiwaną przez dostawcę transkrypcję mowy.",
-      echoTranscripts: "Wysyłaj surowy transkrypt 🎙️ wiadomości głosowych z powrotem na czat.",
-      elevenlabs: {
-        languageCode: "Opcjonalny kod języka ISO-639-3. Puste pole pozwala ElevenLabs na automatyczne wykrywanie.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Gdy OpenAmer aktualizuje się z aplikacji (bez monitu w terminalu), zachowaj lokalne zmiany w kodzie (stash) lub je odrzuć (discard). Aktualizacje z terminala zawsze pytają.",
-    },
+    neutts: {
+      device: 'Urządzenie do lokalnego wnioskowania dla NeuTTS.'
+    }
+  },
+  stt: {
+    enabled: 'Włącz lokalną lub obsługiwaną przez dostawcę transkrypcję mowy.',
+    echoTranscripts: 'Wysyłaj surowy transkrypt 🎙️ wiadomości głosowych z powrotem na czat.',
+    elevenlabs: {
+      languageCode: 'Opcjonalny kod języka ISO-639-3. Puste pole pozwala ElevenLabs na automatyczne wykrywanie.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Gdy OpenAmer aktualizuje się z aplikacji (bez monitu w terminalu), zachowaj lokalne zmiany w kodzie (stash) lub je odrzuć (discard). Aktualizacje z terminala zawsze pytają.'
+  }
 })

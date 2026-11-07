@@ -44,7 +44,7 @@ export const uk = defineLocale({
     update: 'Оновити',
     tryHint: term => `Спробуйте «${term}»`,
     on: 'Увімк.',
-    off: 'Вимк.',
+    off: 'Вимк.'
   },
   fileMenu: {
     revealFinder: 'Показати у Finder',
@@ -59,7 +59,7 @@ export const uk = defineLocale({
     renameLabel: 'Нова назва',
     deleteTitle: name => `Видалити ${name}?`,
     deleteBody: 'Буде переміщено до Кошика — звідти можна відновити.',
-    pathCopied: 'Шлях скопійовано',
+    pathCopied: 'Шлях скопійовано'
   },
   boot: {
     ready: 'OpenAmer Desktop готовий',
@@ -69,7 +69,7 @@ export const uk = defineLocale({
       loadingSettings: 'Завантаження налаштувань OpenAmer',
       loadingSessions: 'Завантаження нещодавніх сесій',
       startingDesktopConnection: 'Запуск з’єднання стільниці',
-      startingOpenAmerDesktop: 'Запуск OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Запуск OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Фоновий процес OpenAmer завершився.',
@@ -78,13 +78,15 @@ export const uk = defineLocale({
       desktopBootFailed: 'Не вдалося запустити стільницю',
       gatewayConnectionLost: 'З’єднання зі шлюзом втрачено',
       gatewaySignInRequired: 'Потрібен вхід до шлюзу',
-      ipcBridgeUnavailable: 'IPC-міст стільниці недоступний.',
+      ipcBridgeUnavailable: 'IPC-міст стільниці недоступний.'
     },
     failure: {
-      title: "OpenAmer не вдалося запустити",
-      description: "Фоновий шлюз не запустився. Спробуйте один із кроків відновлення нижче. Нічого тут не видаляє ваші чати чи налаштування.",
+      title: 'OpenAmer не вдалося запустити',
+      description:
+        'Фоновий шлюз не запустився. Спробуйте один із кроків відновлення нижче. Нічого тут не видаляє ваші чати чи налаштування.',
       remoteTitle: 'Потрібен вхід на віддалений шлюз',
-      remoteDescription: 'Ваша сесія віддаленого шлюзу спливла. Увійдіть знову, щоб перепідключитися. Нічого тут не видаляє ваші чати чи налаштування.',
+      remoteDescription:
+        'Ваша сесія віддаленого шлюзу спливла. Увійдіть знову, щоб перепідключитися. Нічого тут не видаляє ваші чати чи налаштування.',
       retry: 'Спробувати знову',
       repairInstall: 'Відновити встановлення',
       useLocalGateway: 'Використати локальний шлюз',
@@ -92,7 +94,8 @@ export const uk = defineLocale({
       back: 'Назад',
       openLogs: 'Відкрити журнали',
       repairHint: 'Відновлення повторно запускає інсталятор і може тривати кілька хвилин на новій машині.',
-      remoteSignInHint: signInLabel => `Виходить із збереженої сесії віддаленого браузера, потім відкриває ${signInLabel}. Використовуйте «Використати локальний шлюз», щоб повернутися до вбудованого бекенду.`,
+      remoteSignInHint: signInLabel =>
+        `Виходить із збереженої сесії віддаленого браузера, потім відкриває ${signInLabel}. Використовуйте «Використати локальний шлюз», щоб повернутися до вбудованого бекенду.`,
       signOutAndSignIn: 'Вийти та увійти',
       remoteFailureHint: 'Перевірте URL та вхід у налаштуваннях шлюзу або перейдіть на локальний шлюз.',
       hideRecentLogs: 'Приховати нещодавні журнали',
@@ -104,8 +107,8 @@ export const uk = defineLocale({
       signInFailed: 'Помилка входу',
       signInToRemoteGateway: 'Увійти на віддалений шлюз',
       signInWithProvider: provider => `Увійти через ${provider}`,
-      identityProvider: 'ваш провайдер ідентифікації',
-    },
+      identityProvider: 'ваш провайдер ідентифікації'
+    }
   },
   notifications: {
     region: 'Сповіщення',
@@ -118,21 +121,23 @@ export const uk = defineLocale({
     copyDetail: 'Копіювати подробиці',
     copyDetailFailed: 'Не вдалося скопіювати подробиці сповіщення',
     backendOutOfDateTitle: 'Бекенд застарів',
-    backendOutOfDateMessage: 'Ваш бекенд OpenAmer старіший за цю збірку стільниці та може працювати некоректно. Оновіть, щоб узгодити.',
+    backendOutOfDateMessage:
+      'Ваш бекенд OpenAmer старіший за цю збірку стільниці та може працювати некоректно. Оновіть, щоб узгодити.',
     installMethodUnsupportedTitle: 'Непідтримуваний спосіб встановлення',
     updateOpenAmer: 'Оновити OpenAmer',
     updateReadyTitle: 'Оновлення готове',
     updateReadyMessage: count => `${count} нова зміна${count === 1 ? 'зміна' : 'зміни'} доступна.`,
-    seeWhatsNew: "Що нового",
+    seeWhatsNew: 'Що нового',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT потребує ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs відхилив API-ключ (401).',
       gatewayAuthFailed: 'Помилка автентифікації шлюзу — перевірте ваш API_SERVER_KEY.',
-      methodNotAllowed: 'Бекенд стільниці відхилив цей запит (405 Method Not Allowed). Спробуйте перезапустити OpenAmer Desktop.',
+      methodNotAllowed:
+        'Бекенд стільниці відхилив цей запит (405 Method Not Allowed). Спробуйте перезапустити OpenAmer Desktop.',
       microphonePermission: 'Дозвіл на мікрофон відхилено.',
       openaiRejectedApiKey: 'OpenAI відхилив API-ключ.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI відхилив API-ключ (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS потребує VOICE_TOOLS_OPENAI_KEY або OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS потребує VOICE_TOOLS_OPENAI_KEY або OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Налаштуйте розпізнавання мовлення, щоб використовувати голосовий режим.',
@@ -151,7 +156,7 @@ export const uk = defineLocale({
       transcriptionFailed: 'Збій транскрипції голосу',
       transcriptionUnavailable: 'Транскрипція голосу ще недоступна.',
       tryRecordingAgain: 'Спробуйте записати знову.',
-      unavailable: 'Голос недоступний',
+      unavailable: 'Голос недоступний'
     },
     native: {
       approvalTitle: 'Потрібне схвалення',
@@ -164,11 +169,12 @@ export const uk = defineLocale({
       turnErrorTitle: 'Хід завершився помилкою',
       backgroundDoneTitle: 'Фонове завдання завершено',
       backgroundFailedTitle: 'Фонове завдання завершилося помилкою',
-      creditsTitle: 'Кредити',
-    },
+      creditsTitle: 'Кредити'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Увімкнено програмний рендеринг — виявлено віддалений дисплей (${reason}). Прискорення GPU вимкнено, щоб уникнути мерехтіння.`,
+    message: reason =>
+      `Увімкнено програмний рендеринг — виявлено віддалений дисплей (${reason}). Прискорення GPU вимкнено, щоб уникнути мерехтіння.`
   },
   billingBlock: {
     titleOpenamer: 'Кредити OpenAmer вичерпано',
@@ -176,7 +182,7 @@ export const uk = defineLocale({
     fallbackMessage: 'На вашому рахунку закінчилися кредити. Додайте кредити, щоб продовжити.',
     openBilling: 'Відкрити білінг',
     addCredits: 'Додати кредити',
-    dismiss: 'Відхилити',
+    dismiss: 'Відхилити'
   },
   titlebar: {
     hideSidebar: 'Приховати бічну панель',
@@ -193,7 +199,7 @@ export const uk = defineLocale({
     openStarmap: 'Відкрити граф пам’яті',
     openKeybinds: 'Комбінації клавіш',
     layoutEditor: 'Редактор розкладки',
-    layoutEditorTitle: 'Редактор розкладки — Cmd/Ctrl+клік скидає розкладку',
+    layoutEditorTitle: 'Редактор розкладки — Cmd/Ctrl+клік скидає розкладку'
   },
   keybinds: {
     title: 'Клавіатурні скорочення',
@@ -210,7 +216,7 @@ export const uk = defineLocale({
       profiles: 'Профілі',
       session: 'Сеанс',
       navigation: 'Навігація',
-      view: 'Вигляд',
+      view: 'Вигляд'
     },
     actions: {
       'keybinds.openPanel': 'Відкрити клавіатурні скорочення',
@@ -289,8 +295,8 @@ export const uk = defineLocale({
       'composer.slash': 'Палітра слеш-команд',
       'composer.help': 'Швидка довідка',
       'composer.history': 'Перемикати поповер / історію',
-      'composer.cancel': 'Закрити поповер · скасувати запуск',
-    },
+      'composer.cancel': 'Закрити поповер · скасувати запуск'
+    }
   },
   language: {
     label: 'Мова',
@@ -299,7 +305,7 @@ export const uk = defineLocale({
     saveError: 'Не вдалося оновити мову',
     switchTo: 'Змінити мову',
     searchPlaceholder: 'Пошук мов…',
-    noResults: 'Мови не знайдено',
+    noResults: 'Мови не знайдено'
   },
   settings: {
     closeSettings: 'Закрити налаштування',
@@ -324,11 +330,12 @@ export const uk = defineLocale({
       about: 'Про програму',
       billing: 'Білінг',
       notifications: 'Сповіщення',
-      plugins: 'Плагіни',
+      plugins: 'Плагіни'
     },
     plugins: {
       title: 'Настільні плагіни',
-      blurb: 'Розширення інтерфейсу, завантажені в цей застосунок — вбудовані у збірку або додані до теки desktop-plugins (зокрема ті, що створює OpenAmer). Вимкнення вивантажує плагін наживо й зберігається після перезапусків.',
+      blurb:
+        'Розширення інтерфейсу, завантажені в цей застосунок — вбудовані у збірку або додані до теки desktop-plugins (зокрема ті, що створює OpenAmer). Вимкнення вивантажує плагін наживо й зберігається після перезапусків.',
       count: n => `${n} встановлено`,
       openFolder: 'Відкрити теку плагінів',
       rescan: 'Пересканувати',
@@ -340,49 +347,51 @@ export const uk = defineLocale({
       kinds: {
         bundled: 'вбудовано',
         disk: 'на диску',
-        runtime: 'середовище виконання',
-      },
+        runtime: 'середовище виконання'
+      }
     },
     notifications: {
       title: 'Сповіщення',
-      intro: 'Системні настільні сповіщення, окремі від внутрішніх сповіщень. Вони локальні для пристрою — кожен комп’ютер зберігає власні налаштування.',
+      intro:
+        'Системні настільні сповіщення, окремі від внутрішніх сповіщень. Вони локальні для пристрою — кожен комп’ютер зберігає власні налаштування.',
       enableAll: 'Увімкнути сповіщення',
       enableAllDesc: 'Головний перемикач. Вимкніть його, щоб заглушити всі сповіщення нижче.',
       focusedHint: 'Сповіщення про завершення спрацьовують лише тоді, коли OpenAmer у фоновому режимі.',
       kinds: {
         approval: {
           label: 'Потрібне схвалення',
-          description: 'Команда очікує, щоб ви її схвалили або відхилили.',
+          description: 'Команда очікує, щоб ви її схвалили або відхилили.'
         },
         input: {
           label: 'Потрібне введення',
-          description: 'OpenAmer поставив запитання або потребує пароля чи секрету.',
+          description: 'OpenAmer поставив запитання або потребує пароля чи секрету.'
         },
         turnDone: {
           label: 'Відповідь готова',
-          description: 'Хід завершився, поки OpenAmer був у фоновому режимі.',
+          description: 'Хід завершився, поки OpenAmer був у фоновому режимі.'
         },
         turnError: {
           label: 'Хід не вдався',
-          description: 'Хід завершився з помилкою.',
+          description: 'Хід завершився з помилкою.'
         },
         backgroundDone: {
           label: 'Фонове завдання завершено',
-          description: 'Команду термінала у фоні завершено.',
+          description: 'Команду термінала у фоні завершено.'
         },
         credits: {
           label: 'Сповіщення про кредити',
-          description: 'Доступ до кредитів призупинено або відновлено.',
-        },
+          description: 'Доступ до кредитів призупинено або відновлено.'
+        }
       },
       test: 'Надіслати тестове сповіщення',
       testTitle: 'OpenAmer',
       testBody: 'Сповіщення працюють.',
-      testSent: 'Тест надіслано. Якщо нічого не з’явилося, перевірте дозволи на сповіщення в ОС і режим Фокус/Не турбувати.',
+      testSent:
+        'Тест надіслано. Якщо нічого не з’явилося, перевірте дозволи на сповіщення в ОС і режим Фокус/Не турбувати.',
       testUnsupported: 'Ця система не підтримує системні сповіщення.',
       completionSoundTitle: 'Звук завершення',
       completionSoundDesc: 'Відтворюється після завершення ходу агента. Виберіть пресет і прослухайте його тут.',
-      completionSoundPreview: 'Прослухати',
+      completionSoundPreview: 'Прослухати'
     },
     sections: {
       model: 'Модель',
@@ -392,7 +401,7 @@ export const uk = defineLocale({
       safety: 'Безпека',
       memory: 'Пам’ять і контекст',
       voice: 'Голос',
-      advanced: 'Додатково',
+      advanced: 'Додатково'
     },
     searchPlaceholder: {
       about: 'Про OpenAmer Desktop',
@@ -400,37 +409,40 @@ export const uk = defineLocale({
       gateway: 'Підключення до шлюзу...',
       keys: 'Пошук API-ключів...',
       mcp: 'Пошук серверів MCP...',
-      sessions: 'Пошук архівованих сеансів...',
+      sessions: 'Пошук архівованих сеансів...'
     },
     modeOptions: {
       light: {
         label: 'Світла',
-        description: 'Яскраві поверхні',
+        description: 'Яскраві поверхні'
       },
       dark: {
         label: 'Темна',
-        description: 'Простір з меншим блиском',
+        description: 'Простір з меншим блиском'
       },
       system: {
         label: 'Система',
-        description: 'Слідувати оформленню системи',
-      },
+        description: 'Слідувати оформленню системи'
+      }
     },
     appearance: {
       title: 'Вигляд',
-      intro: 'Це налаштування показу лише для стільниці. Режим керує яскравістю; тема керує палітрою акцентів і стилем чату.',
+      intro:
+        'Це налаштування показу лише для стільниці. Режим керує яскравістю; тема керує палітрою акцентів і стилем чату.',
       colorMode: 'Кольоровий режим',
       colorModeDesc: 'Виберіть фіксований режим або дозвольте OpenAmer слідувати налаштуванням системи.',
       toolViewTitle: 'Показ викликів інструментів',
       toolViewDesc: '«Продукт» приховує сирі дані інструментів; «Технічний» показує повний ввід/вивід.',
       uiScaleTitle: 'Масштаб інтерфейсу',
-      uiScaleDesc: (percent: number) => `Масштабує текст і елементи керування в усьому застосунку. Також працюють Cmd/Ctrl із +, - та 0. Поточний: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Масштабує текст і елементи керування в усьому застосунку. Також працюють Cmd/Ctrl із +, - та 0. Поточний: ${percent}%.`,
       translucencyTitle: 'Прозорість вікна',
       translucencyDesc: 'Бачте свою стільницю крізь усе вікно. Лише macOS і Windows.',
       backdropTitle: 'Фон чату',
       backdropDesc: 'Тьмяне зображення статуї за розмовою.',
       embedsTitle: 'Вбудований вміст',
-      embedsDesc: 'Багаті попередні перегляди завантажуються зі сторонніх сайтів (YouTube, X, …). «Питати» показує заповнювач, доки ви не дозволите кожен; «Завжди» завантажує автоматично; «Вимк.» лишає прості посилання.',
+      embedsDesc:
+        'Багаті попередні перегляди завантажуються зі сторонніх сайтів (YouTube, X, …). «Питати» показує заповнювач, доки ви не дозволите кожен; «Завжди» завантажує автоматично; «Вимк.» лишає прості посилання.',
       embedsAsk: 'Питати',
       embedsAlways: 'Завжди',
       embedsOff: 'Вимк.',
@@ -443,7 +455,8 @@ export const uk = defineLocale({
       themeDesc: 'Лише палітри стільниці. Вибраний режим застосовується поверх.',
       themeProfileNote: profile => `Збережено для профілю ${profile} — кожен профіль тримає свою тему.`,
       installTitle: 'Встановити з VS Code',
-      installDesc: 'Вставте ідентифікатор розширення Marketplace (напр. dracula-theme.theme-dracula), щоб перетворити його колірну тему на палітру стільниці.',
+      installDesc:
+        'Вставте ідентифікатор розширення Marketplace (напр. dracula-theme.theme-dracula), щоб перетворити його колірну тему на палітру стільниці.',
       installPlaceholder: 'видавець.розширення',
       installButton: 'Встановити',
       installing: 'Встановлення…',
@@ -453,8 +466,10 @@ export const uk = defineLocale({
       importedBadge: 'Імпортовано',
       pet: {
         title: 'Таран',
-        intro: 'Оберіть анімованого маскота petdex, який плаває над застосунком і реагує на дії OpenAmer — біжить під час виконання інструментів, святкує успіх, сумує через помилки.',
-        restartHint: 'Таран потребує швидкого перезапуску — застосунок запущено до додавання цієї функції. Закрийте та відкрийте OpenAmer знову, потім поверніться сюди.',
+        intro:
+          'Оберіть анімованого маскота petdex, який плаває над застосунком і реагує на дії OpenAmer — біжить під час виконання інструментів, святкує успіх, сумує через помилки.',
+        restartHint:
+          'Таран потребує швидкого перезапуску — застосунок запущено до додавання цієї функції. Закрийте та відкрийте OpenAmer знову, потім поверніться сюди.',
         on: 'Увімкнено',
         off: 'Вимкнено',
         scaleTitle: 'Розмір',
@@ -473,7 +488,7 @@ export const uk = defineLocale({
         uninstall: name => `Видалити ${name}`,
         delete: name => `Видалити ${name}`,
         deleteTitle: name => `Видалити ${name}?`,
-        deleteBody: "Це остаточно видалить улюбленця — його не можна буде встановити знову.",
+        deleteBody: 'Це остаточно видалить улюбленця — його не можна буде встановити знову.',
         deleteConfirm: 'Видалити',
         rename: name => `Перейменувати ${name}`,
         renameTitle: 'Перейменувати улюбленця',
@@ -486,8 +501,8 @@ export const uk = defineLocale({
         exportFailed: slug => `Не вдалося експортувати ${slug}`,
         noneAvailable: 'Зараз немає улюбленців, яких можна ввімкнути.',
         turnOnFailed: 'Не вдалося ввімкнути улюбленця.',
-        turnOffFailed: 'Не вдалося вимкнути улюбленця.',
-      },
+        turnOffFailed: 'Не вдалося вимкнути улюбленця.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,13 +513,13 @@ export const uk = defineLocale({
       updates: 'Оновлення',
       checkNow: 'Перевірити зараз',
       checking: 'Перевірка…',
-      seeWhatsNew: "Що нового",
+      seeWhatsNew: 'Що нового',
       updateNow: 'Оновити зараз',
       releaseNotes: 'Примітки до випуску',
-      onLatest: "У вас найновіша версія.",
+      onLatest: 'У вас найновіша версія.',
       installing: 'Зараз встановлюється оновлення.',
-      cantUpdate: "Ця збірка не може оновити себе зсередини застосунку.",
-      cantReach: "Не вдалося зв’язатися з сервером оновлень.",
+      cantUpdate: 'Ця збірка не може оновити себе зсередини застосунку.',
+      cantReach: 'Не вдалося зв’язатися з сервером оновлень.',
       tapCheck: 'Торкніться «Перевірити зараз», щоб шукати оновлення.',
       updateReady: count => `Доступне нове оновлення (${count} зміну${count === 1 ? 'зміна' : 'зміни'} включено).`,
       lastChecked: age => `Остання перевірка ${age}`,
@@ -516,7 +531,7 @@ export const uk = defineLocale({
       justNow: 'щойно',
       minAgo: count => `${count} хв тому`,
       hoursAgo: count => `${count} год тому`,
-      daysAgo: count => `${count} дн тому`,
+      daysAgo: count => `${count} дн тому`
     },
     config: {
       none: 'Немає',
@@ -531,8 +546,9 @@ export const uk = defineLocale({
       autosaveFailed: 'Не вдалося автозберегти',
       imported: 'Конфігурацію імпортовано',
       invalidJson: 'Некоректний JSON конфігурації',
-      keepAwakeTitle: 'Не давати комп\'ютеру засинати',
-      keepAwakeDesc: 'Не давайте цьому комп\'ютеру засинати, щоб тривалі або нічні запуски не зупинялися. Дисплей усе одно може тьмяніти.',
+      keepAwakeTitle: "Не давати комп'ютеру засинати",
+      keepAwakeDesc:
+        "Не давайте цьому комп'ютеру засинати, щоб тривалі або нічні запуски не зупинялися. Дисплей усе одно може тьмяніти."
     },
     credentials: {
       pasteKey: 'Вставити ключ',
@@ -542,7 +558,7 @@ export const uk = defineLocale({
       couldNotSave: 'Не вдалося зберегти облікові дані.',
       remove: 'Видалити',
       getKey: 'Отримати ключ',
-      saving: 'Збереження',
+      saving: 'Збереження'
     },
     envActions: {
       actionsFor: label => `Дії для ${label}`,
@@ -553,7 +569,7 @@ export const uk = defineLocale({
       revealValue: 'Показати значення',
       replace: 'Замінити',
       set: 'Встановити',
-      clear: 'Очистити',
+      clear: 'Очистити'
     },
     gateway: {
       loading: 'Завантаження налаштувань шлюзу...',
@@ -561,23 +577,28 @@ export const uk = defineLocale({
       unavailableDesc: 'Міст IPC робочого столу не надає налаштувань шлюзу.',
       title: 'Підключення до шлюзу',
       envOverride: 'Перевизначення змінної середовища',
-      intro: 'OpenAmer Desktop за замовчуванням запускає власний локальний шлюз. Використовуйте віддалений шлюз, якщо хочете, щоб цей застосунок керував уже запущеним бекендом OpenAmer на іншій машині або за довіреним проксі. Виберіть профіль нижче, щоб задати для нього власний віддалений хост.',
+      intro:
+        'OpenAmer Desktop за замовчуванням запускає власний локальний шлюз. Використовуйте віддалений шлюз, якщо хочете, щоб цей застосунок керував уже запущеним бекендом OpenAmer на іншій машині або за довіреним проксі. Виберіть профіль нижче, щоб задати для нього власний віддалений хост.',
       appliesTo: 'Застосовується до',
       allProfiles: 'Усі профілі',
       defaultConnection: 'Стандартне підключення для кожного профілю без власного перевизначення.',
-      profileConnection: profile => `Підключення використовується, лише коли активний профіль “${profile}”. Виберіть «Використовувати стандартний шлюз», щоб видалити його перевизначення.`,
+      profileConnection: profile =>
+        `Підключення використовується, лише коли активний профіль “${profile}”. Виберіть «Використовувати стандартний шлюз», щоб видалити його перевизначення.`,
       envOverrideTitle: 'Змінні середовища керують цим настільним сеансом.',
-      envOverrideDesc: 'Очистіть OPENAMER_DESKTOP_REMOTE_URL і OPENAMER_DESKTOP_REMOTE_TOKEN, щоб використати збережене налаштування нижче.',
+      envOverrideDesc:
+        'Очистіть OPENAMER_DESKTOP_REMOTE_URL і OPENAMER_DESKTOP_REMOTE_TOKEN, щоб використати збережене налаштування нижче.',
       modeTitle: 'Режим підключення',
       localTitle: 'Локальний шлюз',
       localDesc: 'Запустіть приватний бекенд OpenAmer на localhost. Це стандартний варіант, який працює офлайн.',
       inheritTitle: 'Використовувати стандартний шлюз',
-      inheritDesc: "Видалити перевизначення цього профілю й використовувати стандартне підключення.",
+      inheritDesc: 'Видалити перевизначення цього профілю й використовувати стандартне підключення.',
       remoteTitle: 'Віддалений шлюз',
       remoteDesc: 'Підключіть цю настільну оболонку до віддаленого бекенду OpenAmer.',
-      remoteAuthHint: 'Розміщені шлюзи використовують OAuth або ім\'я користувача та пароль; самостійно розміщені можуть використовувати токен сеансу.',
+      remoteAuthHint:
+        "Розміщені шлюзи використовують OAuth або ім'я користувача та пароль; самостійно розміщені можуть використовувати токен сеансу.",
       cloudTitle: 'OpenAmer Хмара',
-      cloudDesc: 'Увійдіть один раз в OpenAmer Cloud і виберіть одного з агентів у своєму обліковому записі — не потрібно вставляти URL.',
+      cloudDesc:
+        'Увійдіть один раз в OpenAmer Cloud і виберіть одного з агентів у своєму обліковому записі — не потрібно вставляти URL.',
       cloudSignInTitle: 'OpenAmer Хмара',
       cloudSignIn: 'Увійти в OpenAmer Cloud',
       cloudSignedIn: 'Ви увійшли в OpenAmer Cloud',
@@ -592,7 +613,7 @@ export const uk = defineLocale({
       cloudNoAgents: {
         before: 'На цьому акаунті агентів не знайдено. Створіть одного в ',
         linkText: 'Портал OpenAmer',
-        after: ', потім оновіть.',
+        after: ', потім оновіть.'
       },
       cloudRefresh: 'Оновити',
       cloudConnect: 'Підключити',
@@ -610,16 +631,19 @@ export const uk = defineLocale({
       remoteUrlTitle: 'Віддалений URL',
       remoteUrlDesc: 'Базовий URL для віддаленого бекенду панелі. Підтримуються префікси шляху, наприклад /openamer.',
       probing: 'Перевірка способу автентифікації шлюзу…',
-      probeError: 'Шлюз поки недоступний. Перевірте URL — метод автентифікації з\'явиться після відповіді.',
+      probeError: "Шлюз поки недоступний. Перевірте URL — метод автентифікації з'явиться після відповіді.",
       signedIn: 'Виконано вхід',
       signIn: 'Увійти',
       signOut: 'Вийти',
       signInWith: provider => `Увійдіть через ${provider}`,
       authTitle: 'Автентифікація',
-      authSignedInPassword: 'Цей шлюз використовує ім\'я користувача та пароль. Ви увійшли; сесія оновлюється автоматично.',
+      authSignedInPassword:
+        "Цей шлюз використовує ім'я користувача та пароль. Ви увійшли; сесія оновлюється автоматично.",
       authSignedInOauth: 'Цей шлюз використовує OAuth. Ви увійшли; сесія оновлюється автоматично.',
-      authNeedsPassword: 'Цей шлюз використовує ім\'я користувача та пароль. Увійдіть, щоб авторизувати цей десктопний застосунок.',
-      authNeedsOauth: provider => `Цей шлюз використовує OAuth. Увійдіть через ${provider}, щоб авторизувати цей десктопний застосунок.`,
+      authNeedsPassword:
+        "Цей шлюз використовує ім'я користувача та пароль. Увійдіть, щоб авторизувати цей десктопний застосунок.",
+      authNeedsOauth: provider =>
+        `Цей шлюз використовує OAuth. Увійдіть через ${provider}, щоб авторизувати цей десктопний застосунок.`,
       tokenTitle: 'Токен сесії',
       tokenDesc: 'Токен сесії панелі для доступу до REST і WebSocket. Залиште порожнім, щоб зберегти наявний токен.',
       existingToken: value => `Наявний токен ${value}`,
@@ -637,9 +661,10 @@ export const uk = defineLocale({
       incompleteSignInTest: 'Введіть віддалену URL-адресу та увійдіть, перш ніж тестувати.',
       incompleteTokenTest: 'Введіть віддалену URL-адресу та токен сеансу, перш ніж тестувати.',
       enterUrlFirst: 'Спершу введіть віддалену URL-адресу.',
-      restartingTitle: 'Перезапуск з\'єднання зі шлюзом',
+      restartingTitle: "Перезапуск з'єднання зі шлюзом",
       savedTitle: 'Налаштування шлюзу збережено',
-      restartingMessage: 'OpenAmer Desktop перепідключиться зі збереженими налаштуваннями — оболонка залишиться відкритою.',
+      restartingMessage:
+        'OpenAmer Desktop перепідключиться зі збереженими налаштуваннями — оболонка залишиться відкритою.',
       savedMessage: 'Збережено для наступного перезапуску.',
       connectedTo: (baseUrl, version) => `Підключено до ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Віддалений шлюз доступний',
@@ -652,7 +677,8 @@ export const uk = defineLocale({
       applyFailed: 'Не вдалося застосувати налаштування шлюзу',
       saveFailed: 'Не вдалося зберегти налаштування шлюзу',
       sshTitle: 'Підключитися через SSH',
-      sshDesc: 'OpenAmer запускається на віддаленому хості через SSH і тунелюється до цього застосунку — нічого не потрібно запускати чи відкривати вручну. Потрібен робочий доступ до хоста через SSH за ключем.',
+      sshDesc:
+        'OpenAmer запускається на віддаленому хості через SSH і тунелюється до цього застосунку — нічого не потрібно запускати чи відкривати вручну. Потрібен робочий доступ до хоста через SSH за ключем.',
       sshTrustHint: 'Перший показаний ключ хоста вважається довіреним і закріплюється; подальші зміни відхиляються.',
       sshHostTitle: 'Хост',
       sshHostDesc: 'user@host або псевдонім Host із ~/.ssh/config.',
@@ -667,7 +693,7 @@ export const uk = defineLocale({
       sshPortDesc: 'Порожньо = 22 або порт із ~/.ssh/config.',
       sshKeyTitle: 'Файл ключа',
       sshKeyDesc: 'Шлях до приватного ключа. Порожньо = ssh-agent або ~/.ssh/config.',
-      sshOpenAmerPathTitle: 'Шлях до OpenAmer (необов\'язково)',
+      sshOpenAmerPathTitle: "Шлях до OpenAmer (необов'язково)",
       sshOpenAmerPathDesc: 'Повний шлях до віддаленого двійкового файлу openamer. Порожньо = автовизначення.',
       sshOpenAmerPathPlaceholder: 'автовизначення',
       sshTestConnection: 'Перевірити SSH',
@@ -676,25 +702,29 @@ export const uk = defineLocale({
       sshReachable: (host, platform) => `Досяжний: ${host} (${platform}) — OpenAmer знайдено`,
       sshIncompleteHost: 'Введіть SSH-хост перед підключенням.',
       sshErrUnreachable: 'Не вдалося досягти цього хоста через SSH. Перевірте хост, порт і мережу.',
-      sshErrAuth: 'Помилка автентифікації SSH. Завантажте ключ у ssh-agent (ssh-add) або вкажіть IdentityFile у ~/.ssh/config — OpenAmer запускає ssh неінтерактивно.',
-      sshErrHostKey: 'Ключ хоста ЗМІНИВСЯ з моменту останнього підключення. Переконайтеся, що це очікувано, потім виконайте ssh-keygen -R <host> і підключіться знову.',
-      sshErrNotInstalled: 'OpenAmer не встановлено на віддаленому хості. Встановіть його там (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) або вкажіть шлях до OpenAmer.',
-      sshErrPlatform: 'Непідтримувана віддалена платформа. Режим SSH OpenAmer Desktop підтримує віддалені хости Linux, macOS і Windows.',
+      sshErrAuth:
+        'Помилка автентифікації SSH. Завантажте ключ у ssh-agent (ssh-add) або вкажіть IdentityFile у ~/.ssh/config — OpenAmer запускає ssh неінтерактивно.',
+      sshErrHostKey:
+        'Ключ хоста ЗМІНИВСЯ з моменту останнього підключення. Переконайтеся, що це очікувано, потім виконайте ssh-keygen -R <host> і підключіться знову.',
+      sshErrNotInstalled:
+        'OpenAmer не встановлено на віддаленому хості. Встановіть його там (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) або вкажіть шлях до OpenAmer.',
+      sshErrPlatform:
+        'Непідтримувана віддалена платформа. Режим SSH OpenAmer Desktop підтримує віддалені хости Linux, macOS і Windows.',
       sshErrTimeout: 'Час очікування SSH-підключення вичерпано. Хост може бути недосяжним або неактивним.',
       sshErrUpdateRequired: 'Оновіть OpenAmer на віддаленому хості перед підключенням через Desktop SSH.',
-      sshErrUnknown: 'Не вдалося підключитися через SSH.',
+      sshErrUnknown: 'Не вдалося підключитися через SSH.'
     },
     keys: {
       loading: 'Завантаження API-ключів і облікових даних...',
       failedLoad: 'Не вдалося завантажити API-ключі',
-      empty: 'У цій категорії ще нічого не налаштовано.',
+      empty: 'У цій категорії ще нічого не налаштовано.'
     },
     mcp: {
       loading: 'Завантаження MCP-серверів...',
       failedLoad: 'Не вдалося завантажити конфігурацію MCP',
       nameRequiredTitle: 'Потрібна назва',
       nameRequiredMessage: 'Вкажіть ключ конфігурації для цього MCP-сервера.',
-      objectRequired: 'Конфігурація сервера має бути JSON-об\'єктом',
+      objectRequired: "Конфігурація сервера має бути JSON-об'єктом",
       invalidJson: 'Недійсний MCP JSON',
       saveFailed: 'Помилка збереження',
       removeFailed: 'Помилка видалення',
@@ -739,7 +769,8 @@ export const uk = defineLocale({
       catalogInstallFailed: name => `Не вдалося встановити ${name}`,
       catalogEnvPrompt: name => `${name} потребує облікових даних`,
       catalogEnvRequired: 'Заповніть потрібні значення перед встановленням.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} увімкнено`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} увімкнено`,
       statusConnecting: 'Підключення…',
       statusNeedsAuth: 'Потрібна автентифікація',
       statusError: 'Помилка',
@@ -752,11 +783,12 @@ export const uk = defineLocale({
       unsavedConnect: 'Незбережено — збережіть mcp.json, щоб підключитися.',
       enableTool: tool => `Увімкнути ${tool}`,
       disableTool: tool => `Вимкнути ${tool}`,
-      noOutput: 'Ще немає виводу.',
+      noOutput: 'Ще немає виводу.'
     },
     model: {
       loading: 'Завантаження конфігурації моделі...',
-      appliesDesc: 'Застосовується до нових сесій. Скористайтеся вибором моделі в редакторі, щоб швидко замінити модель активного чату.',
+      appliesDesc:
+        'Застосовується до нових сесій. Скористайтеся вибором моделі в редакторі, щоб швидко замінити модель активного чату.',
       provider: 'Провайдер',
       model: 'Модель',
       applying: 'Застосування...',
@@ -766,53 +798,55 @@ export const uk = defineLocale({
       defaultsFailed: 'Не вдалося зберегти типові налаштування моделі',
       auxiliaryTitle: 'Допоміжні моделі',
       resetAllToMain: 'Скинути всі до основної',
-      auxiliaryDesc: 'Допоміжні завдання за замовчуванням виконуються основною моделлю. Призначте окрему модель будь-якому завданню, щоб перевизначити це.',
+      auxiliaryDesc:
+        'Допоміжні завдання за замовчуванням виконуються основною моделлю. Призначте окрему модель будь-якому завданню, щоб перевизначити це.',
       setToMain: 'Встановити як основну',
       change: 'Змінити',
       autoUseMain: 'авто · використовувати основну модель',
       providerDefault: '(за замовчуванням провайдера)',
       fallbackAdd: 'Додати резервну',
       fallbackEmpty: 'Немає резервних моделей — використовується типова модель, якщо вона не збоїть.',
-      notInCatalog: "немає в списку моделей цього провайдера — запити можуть перейти на резервну модель.",
+      notInCatalog: 'немає в списку моделей цього провайдера — запити можуть перейти на резервну модель.',
       tasks: {
         vision: {
           label: 'Зір',
-          hint: 'Аналіз зображень',
+          hint: 'Аналіз зображень'
         },
         web_extract: {
           label: 'Витяг з вебу',
-          hint: 'Підсумок сторінки',
+          hint: 'Підсумок сторінки'
         },
         compression: {
           label: 'Стиснення',
-          hint: 'Ущільнення контексту',
+          hint: 'Ущільнення контексту'
         },
         skills_hub: {
           label: 'Хаб навичок',
-          hint: 'Пошук навичок',
+          hint: 'Пошук навичок'
         },
         approval: {
           label: 'Схвалення',
-          hint: 'Розумне автосхвалення',
+          hint: 'Розумне автосхвалення'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Маршрутизація інструментів MCP',
+          hint: 'Маршрутизація інструментів MCP'
         },
         title_generation: {
           label: 'Генерація заголовків',
-          hint: 'Заголовки сеансів',
+          hint: 'Заголовки сеансів'
         },
         curator: {
           label: 'Куратор',
-          hint: 'Огляд використання навичок',
-        },
-      },
+          hint: 'Огляд використання навичок'
+        }
+      }
     },
     providers: {
       connectAccount: 'Під’єднати обліковий запис',
       haveApiKey: 'Натомість маєте API-ключ?',
-      intro: 'Увійдіть із підпискою — не потрібно копіювати API-ключ. OpenAmer запустить вхід у браузері для вас прямо тут, у застосунку.',
+      intro:
+        'Увійдіть із підпискою — не потрібно копіювати API-ключ. OpenAmer запустить вхід у браузері для вас прямо тут, у застосунку.',
       connected: 'Під’єднано',
       collapse: 'Згорнути',
       connectAnother: 'Під’єднати іншого провайдера',
@@ -822,7 +856,8 @@ export const uk = defineLocale({
       removeConfirm: provider => `Видалити ${provider}?`,
       removeExternalGeneric: provider => `${provider} керується власним CLI — видаліть його там.`,
       removeKeyManaged: provider => `${provider} налаштовується через API-ключ. Видаліть його в API-ключах.`,
-      removeTerminalConfirm: (provider, command) => `Від’єднати ${provider}? Це виконає "${command}" у терміналі, щоб очистити облікові дані.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Від’єднати ${provider}? Це виконає "${command}" у терміналі, щоб очистити облікові дані.`,
       removeTerminalRunning: provider => `Виконується від’єднання ${provider} у терміналі…`,
       removedTitle: 'Акаунт видалено',
       removedMessage: provider => `${provider} видалено.`,
@@ -832,14 +867,16 @@ export const uk = defineLocale({
       noKeysMatch: 'Жоден постачальник не відповідає пошуку.',
       localEndpoint: {
         title: 'Локальна / власна кінцева точка',
-        description: 'Спрямуйте OpenAmer на будь-яку кінцеву точку, сумісну з OpenAI (Zyphra, vLLM, llama.cpp, Ollama тощо).',
+        description:
+          'Спрямуйте OpenAmer на будь-яку кінцеву точку, сумісну з OpenAI (Zyphra, vLLM, llama.cpp, Ollama тощо).'
       },
-      loading: 'Завантаження постачальників...',
+      loading: 'Завантаження постачальників...'
     },
     sessions: {
       loading: 'Завантаження архівованих сеансів…',
       archivedTitle: 'Архівовані сеанси',
-      archivedIntro: 'Архівовані чати приховані з бічної панелі, але зберігають усі повідомлення. Клацніть чат у бічній панелі з Ctrl/⌘, щоб архівувати його.',
+      archivedIntro:
+        'Архівовані чати приховані з бічної панелі, але зберігають усі повідомлення. Клацніть чат у бічній панелі з Ctrl/⌘, щоб архівувати його.',
       emptyArchivedTitle: 'Нічого не архівовано',
       emptyArchivedDesc: 'Архівуйте чат, щоб приховати його тут.',
       unarchive: 'Розархівувати',
@@ -848,12 +885,14 @@ export const uk = defineLocale({
       restored: 'Відновлено',
       deleteConfirm: title => `Остаточно видалити "${title}"? Цю дію не можна скасувати.`,
       autoArchiveTitle: 'Автоархівувати застарілі чати',
-      autoArchiveDesc: "Автоматично архівувати чати, до яких ви давно не торкалися. Закріплені чати ніколи не архівуються, і нічого не видаляється — архівовані чати просто переміщуються сюди.",
+      autoArchiveDesc:
+        'Автоматично архівувати чати, до яких ви давно не торкалися. Закріплені чати ніколи не архівуються, і нічого не видаляється — архівовані чати просто переміщуються сюди.',
       autoArchiveDaysLabel: 'Архівувати через',
       autoArchiveDaysUnit: 'днів без активності',
       autoArchiveFailed: 'Не вдалося оновити автоархівування',
       defaultDirTitle: 'Типовий каталог проєкту',
-      defaultDirDesc: 'Нові сеанси починаються в цій папці, якщо не вибрати іншу. Залиште не заданим, щоб використовувати домашній каталог.',
+      defaultDirDesc:
+        'Нові сеанси починаються в цій папці, якщо не вибрати іншу. Залиште не заданим, щоб використовувати домашній каталог.',
       defaultDirUpdated: 'Типовий каталог проєкту оновлено — почніть новий чат (Ctrl/⌘+N), щоб це набуло чинності',
       defaultsTo: label => `За замовчуванням: ${label}.`,
       change: 'Змінити',
@@ -864,7 +903,7 @@ export const uk = defineLocale({
       unarchiveFailed: 'Не вдалося розархівувати',
       deleteFailed: 'Не вдалося видалити',
       updateDirFailed: 'Не вдалося оновити типовий каталог',
-      clearDirFailed: 'Не вдалося очистити каталог за замовчуванням',
+      clearDirFailed: 'Не вдалося очистити каталог за замовчуванням'
     },
     toolsets: {
       loadingConfig: 'Завантаження конфігурації',
@@ -882,20 +921,23 @@ export const uk = defineLocale({
       selectedMessage: provider => `${provider} тепер активний.`,
       failedSelect: provider => `Не вдалося вибрати ${provider}`,
       failedLoad: 'Помилка завантаження конфігурації інструмента',
-      noProviderOptions: 'Цей набір інструментів не має параметрів провайдера — увімкніть його, і він працюватиме з вашим поточним налаштуванням.',
+      noProviderOptions:
+        'Цей набір інструментів не має параметрів провайдера — увімкніть його, і він працюватиме з вашим поточним налаштуванням.',
       noProviders: 'Наразі для цього набору інструментів немає доступних провайдерів.',
       ready: 'Готово',
       needsSignIn: 'Потрібен вхід',
       needsSetup: 'Потрібне налаштування',
       openamerIncluded: 'Доступно за передплатою OpenAmer — увійдіть до OpenAmer Portal, щоб активувати.',
       openamerAuthNeededTitle: 'Увійти до OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} збережено, але не активується, доки ви не увійдете до OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} збережено, але не активується, доки ви не увійдете до OpenAmer Portal.`,
       openamerAuthSignIn: 'Увійти',
       openamerAuthDoneTitle: 'OpenAmer Portal підключено',
       openamerAuthDoneMessage: 'Ваші бекенди передплати тепер активні.',
       openamerAuthFailed: 'Вхід до OpenAmer Portal не завершено',
       noApiKeyRequired: 'API-ключ не потрібен.',
-      postSetupHint: step => `Цей бекенд потребує одноразового встановлення (${step}). Виконується на цьому комп’ютері — може тривати кілька хвилин.`,
+      postSetupHint: step =>
+        `Цей бекенд потребує одноразового встановлення (${step}). Виконується на цьому комп’ютері — може тривати кілька хвилин.`,
       postSetupInstalledHint: 'Встановлено. Повторіть налаштування, лише якщо щось не працює.',
       postSetupRun: 'Запустити налаштування',
       postSetupRerun: 'Повторити налаштування',
@@ -934,11 +976,13 @@ export const uk = defineLocale({
         unavailable: 'Недоступно',
         inUse: 'Використовується',
         selectedTitle: 'Бекенд вибрано',
-        selectedMessage: backend => `Команди термінала тепер виконуються через ${backend}. Застосовується до нових сесій.`,
+        selectedMessage: backend =>
+          `Команди термінала тепер виконуються через ${backend}. Застосовується до нових сесій.`,
         failedSelect: backend => `Не вдалося вибрати ${backend}`,
-        needsSetupHint: 'Цей бекенд можна вибрати вже зараз — команди не працюватимуть, доки налаштування не завершиться.',
-      },
-    },
+        needsSetupHint:
+          'Цей бекенд можна вибрати вже зараз — команди не працюватимуть, доки налаштування не завершиться.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Навички',
@@ -958,7 +1002,8 @@ export const uk = defineLocale({
     noDescription: 'Немає опису.',
     configured: 'Налаштовано',
     needsKeys: 'Потрібні ключі',
-    visionModelHint: 'Vision використовує вашу конфігурацію допоміжної моделі — модель, що працює із зображеннями, обирається там, а не окремо для кожного постачальника тут.',
+    visionModelHint:
+      'Vision використовує вашу конфігурацію допоміжної моделі — модель, що працює із зображеннями, обирається там, а не окремо для кожного постачальника тут.',
     visionModelLink: 'Виберіть модель Vision у розділі Налаштування → Моделі',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} наборів інструментів увімкнено`,
     configureToolset: label => `Налаштувати ${label}`,
@@ -984,7 +1029,7 @@ export const uk = defineLocale({
     provenance: {
       agent: 'Засвоєно',
       bundled: 'Вбудований',
-      hub: 'Хаб',
+      hub: 'Хаб'
     },
     emptyNoneFound: noun => `${noun} не знайдено`,
     emptyNothingMatches: query => `Нічого не відповідає «${query}».`,
@@ -1002,9 +1047,11 @@ export const uk = defineLocale({
       connectingHubs: 'Підключення до хабів навичок...',
       connectedHubs: 'Підключені хаби:',
       featured: 'Рекомендовані навички',
-      landingHint: 'Шукайте в хабі, щоб переглядати навички для встановлення з офіційного індексу, GitHub і джерел спільноти.',
+      landingHint:
+        'Шукайте в хабі, щоб переглядати навички для встановлення з офіційного індексу, GitHub і джерел спільноти.',
       noResults: 'У хабі не знайдено відповідних навичок.',
-      resultCount: (count, ms) => `${count} результат${count === 1 ? 'результат' : 'результати'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} результат${count === 1 ? 'результат' : 'результати'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Час вичерпано: ${sources}`,
       installed: 'Встановлено',
       install: 'Встановити',
@@ -1022,7 +1069,7 @@ export const uk = defineLocale({
       trust: {
         builtin: 'вбудовано',
         trusted: 'довірено',
-        community: 'спільнота',
+        community: 'спільнота'
       },
       verdictSafe: 'Безпечно',
       verdictCaution: 'Обережно',
@@ -1040,25 +1087,26 @@ export const uk = defineLocale({
       loadFailed: 'Помилка завантаження хаба навичок',
       previewFailed: 'Помилка попереднього перегляду навички',
       scanFailed: 'Помилка сканування безпеки',
-      searchFailed: 'Помилка пошуку в хабі',
-    },
+      searchFailed: 'Помилка пошуку в хабі'
+    }
   },
   starmap: {
-    title: 'Граф пам\'яті',
+    title: "Граф пам'яті",
     subtitle: (nodes, clusters) => `${nodes} навичок у ${clusters} категоріях`,
-    close: 'Закрити граф пам\'яті',
+    close: "Закрити граф пам'яті",
     refresh: 'Оновити',
-    memory: 'Пам\'ять',
+    memory: "Пам'ять",
     filterAll: 'Усі',
     filterUsed: 'Використані',
     filterLearned: 'Вивчені',
     viewGraph: 'Граф',
-    loadFailed: 'Не вдалося завантажити граф пам\'яті',
+    loadFailed: "Не вдалося завантажити граф пам'яті",
     loading: 'Завантаження…',
     emptyTitle: 'Ще нічого не вивчено',
-    emptyDesc: 'Коли OpenAmer створює навички та спогади для вашої роботи, вони з\'являються тут.',
+    emptyDesc: "Коли OpenAmer створює навички та спогади для вашої роботи, вони з'являються тут.",
     share: 'Поділитися картою',
-    shareHint: 'Скопіюйте код, щоб поділитися цією картою, або вставте код, щоб завантажити. Він містить лише розташування, а не текст вашої пам\'яті чи навичок.',
+    shareHint:
+      "Скопіюйте код, щоб поділитися цією картою, або вставте код, щоб завантажити. Він містить лише розташування, а не текст вашої пам'яті чи навичок.",
     shareTitle: 'Імпорт / експорт карти',
     sharePlaceholder: 'Вставте код карти…',
     copy: 'Копіювати код карти',
@@ -1068,7 +1116,7 @@ export const uk = defineLocale({
     importEmpty: 'Вставте код мапи, щоб завантажити її.',
     importSuccess: nodes => `Завантажено карту з ${nodes} ${nodes === 1 ? 'вузол' : 'вузли'}.`,
     importedBadge: 'імпортована мапа',
-    resetToMine: 'Назад до моєї мапи',
+    resetToMine: 'Назад до моєї мапи'
   },
   agents: {
     close: 'Закрити агентів',
@@ -1098,7 +1146,7 @@ export const uk = defineLocale({
     ageDays: days => `${days} дн тому`,
     durationSeconds: seconds => `${seconds} с`,
     durationMinutes: (minutes, seconds) => `${minutes} хв ${seconds} с`,
-    tokens: value => `${value} ток`,
+    tokens: value => `${value} ток`
   },
   commandCenter: {
     close: 'Закрити командний центр',
@@ -1128,7 +1176,7 @@ export const uk = defineLocale({
       generatedTag: 'Згенеровано',
       adoptFailed: 'Не вдалося прихистити цього улюбленця.',
       toggleFailed: 'Не вдалося перемкнути улюбленця.',
-      noneAvailable: 'Немає доступних улюбленців — виберіть одного нижче, щоб установити.',
+      noneAvailable: 'Немає доступних улюбленців — виберіть одного нижче, щоб установити.'
     },
     generatePet: {
       title: 'Згенерувати улюбленця',
@@ -1157,7 +1205,7 @@ export const uk = defineLocale({
       referenceImageTooLarge: 'Референсне зображення завелике. Використовуйте файл до 16 МБ.',
       referenceImageInvalid: 'Не вдалося прочитати це референсне зображення. Спробуйте PNG, JPG, WebP або GIF.',
       adopt: 'Застосувати',
-      startOver: 'Почати спочатку',
+      startOver: 'Почати спочатку'
     },
     installTheme: {
       title: 'Установити тему…',
@@ -1169,7 +1217,7 @@ export const uk = defineLocale({
       install: 'Установити',
       installing: 'Установлення...',
       installed: 'Установлено',
-      installs: count => `${count} встановлень`,
+      installs: count => `${count} встановлень`
     },
     settingsFields: 'Поля налаштувань',
     mcpServers: 'Сервери MCP',
@@ -1178,49 +1226,49 @@ export const uk = defineLocale({
       maintenance: 'Обслуговування',
       sessions: 'Сесії',
       system: 'Система',
-      usage: 'Використання',
+      usage: 'Використання'
     },
     sectionDescriptions: {
-      maintenance: 'Діагностика, резервні копії, куратор і дані пам\'яті',
+      maintenance: "Діагностика, резервні копії, куратор і дані пам'яті",
       sessions: 'Пошук і керування сеансами',
       system: 'Статус, журнали й системні дії',
-      usage: 'Токени, витрати й активність навичок у часі',
+      usage: 'Токени, витрати й активність навичок у часі'
     },
     nav: {
       newChat: {
         title: 'Новий сеанс',
-        detail: 'Почати новий сеанс',
+        detail: 'Почати новий сеанс'
       },
       settings: {
         title: 'Налаштування',
-        detail: 'Налаштувати OpenAmer desktop',
+        detail: 'Налаштувати OpenAmer desktop'
       },
       skills: {
         title: 'Можливості',
-        detail: 'Навички, інструменти й сервери MCP',
+        detail: 'Навички, інструменти й сервери MCP'
       },
       messaging: {
         title: 'Повідомлення',
-        detail: 'Налаштувати Telegram, Slack, Discord та інші',
+        detail: 'Налаштувати Telegram, Slack, Discord та інші'
       },
       artifacts: {
         title: 'Артефакти',
-        detail: 'Переглянути створені результати',
-      },
+        detail: 'Переглянути створені результати'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Панель сеансів',
-        detail: 'Пошук, закріплення й керування сеансами',
+        detail: 'Пошук, закріплення й керування сеансами'
       },
       system: {
         title: 'Панель системи',
-        detail: 'Статус шлюзу, журнали, перезапуск/оновлення',
+        detail: 'Статус шлюзу, журнали, перезапуск/оновлення'
       },
       usage: {
         title: 'Панель використання',
-        detail: 'Токени, витрати й активність навичок',
-      },
+        detail: 'Токени, витрати й активність навичок'
+      }
     },
     providerNavigate: 'Навігація',
     providerSessions: 'Сесії',
@@ -1308,8 +1356,8 @@ export const uk = defineLocale({
       actionStarted: name => `${name} запущено — стеження за журналом...`,
       actionFailed: name => `${name} не вдалося запустити`,
       running: 'Працює...',
-      viewLog: 'Журнал дій',
-    },
+      viewLog: 'Журнал дій'
+    }
   },
   messaging: {
     search: 'Пошук повідомлень...',
@@ -1324,7 +1372,7 @@ export const uk = defineLocale({
       not_configured: 'Потрібне налаштування',
       pending_restart: 'Потрібен перезапуск',
       retrying: 'Повторна спроба',
-      startup_failed: 'Помилка запуску',
+      startup_failed: 'Помилка запуску'
     },
     unknown: 'Невідомо',
     hintPendingRestart: 'Перезапустіть шлюз з панелі стану, щоб застосувати цю зміну.',
@@ -1334,7 +1382,7 @@ export const uk = defineLocale({
     gatewayStopped: 'Шлюз обміну повідомленнями зупинено',
     getCredentials: 'Отримати дані доступу',
     openSetupGuide: 'Відкрити посібник з налаштування',
-    required: 'Обов\'язково',
+    required: "Обов'язково",
     recommended: 'Рекомендовано',
     advanced: count => `Додатково (${count})`,
     noTokenNeeded: 'Цій платформі тут не потрібен токен. Скористайтеся посібником вище, потім увімкніть її нижче.',
@@ -1363,127 +1411,126 @@ export const uk = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Токен бота',
         help: 'Створіть бота через @BotFather, потім вставте отриманий токен.',
-        placeholder: 'Вставте токен Telegram-бота',
+        placeholder: 'Вставте токен Telegram-бота'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Дозволені ID користувачів Telegram',
-        help: 'Рекомендовано. Числові ID, розділені комами, від @userinfobot. Без цього будь-хто може писати вашому боту в приватні повідомлення.',
+        help: 'Рекомендовано. Числові ID, розділені комами, від @userinfobot. Без цього будь-хто може писати вашому боту в приватні повідомлення.'
       },
       TELEGRAM_PROXY: {
         label: 'URL проксі',
-        help: 'Потрібно лише в мережах, де Telegram заблоковано.',
+        help: 'Потрібно лише в мережах, де Telegram заблоковано.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Токен бота',
-        help: 'Створіть застосунок у Discord Developer Portal, додайте бота, потім вставте його токен.',
+        help: 'Створіть застосунок у Discord Developer Portal, додайте бота, потім вставте його токен.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Дозволені ID користувачів Discord',
-        help: 'Рекомендовано. ID користувачів Discord через кому.',
+        help: 'Рекомендовано. ID користувачів Discord через кому.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Стиль відповідей',
-        help: 'first, all або off.',
+        help: 'first, all або off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Дозволити всіх користувачів Discord',
-        help: 'Лише для розробки. Якщо true, будь-хто може писати боту в DM без списку дозволених.',
+        help: 'Лише для розробки. Якщо true, будь-хто може писати боту в DM без списку дозволених.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID домашнього каналу',
-        help: 'Канал, куди бот надсилає проактивні повідомлення (вивід cron, нагадування).',
+        help: 'Канал, куди бот надсилає проактивні повідомлення (вивід cron, нагадування).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Назва домашнього каналу',
-        help: 'Відображувана назва домашнього каналу в журналах і статусі.',
+        help: 'Відображувана назва домашнього каналу в журналах і статусі.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Дозволити всіх користувачів iMessage',
-        help: 'Якщо true, пропускати список дозволених BlueBubbles.',
+        help: 'Якщо true, пропускати список дозволених BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Дозволити всіх користувачів Mattermost',
+        label: 'Дозволити всіх користувачів Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Домашній канал',
+        label: 'Домашній канал'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Дозволити всіх користувачів QQ',
+        label: 'Дозволити всіх користувачів QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Домашній канал QQ',
-        help: 'Типовий канал або група для доставки cron.',
+        help: 'Типовий канал або група для доставки cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Назва домашнього каналу QQ',
+        label: 'Назва домашнього каналу QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Токен бота Slack',
         help: 'Використовуйте токен бота з OAuth & Permissions після встановлення застосунку Slack.',
-        placeholder: 'Вставте токен бота Slack',
+        placeholder: 'Вставте токен бота Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Токен застосунку Slack',
         help: 'Використайте токен рівня застосунку, потрібний для Socket Mode.',
-        placeholder: 'Вставте токен застосунку Slack',
+        placeholder: 'Вставте токен застосунку Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Дозволені ідентифікатори користувачів Slack',
-        help: 'Рекомендовано. Ідентифікатори користувачів Slack через кому.',
+        help: 'Рекомендовано. Ідентифікатори користувачів Slack через кому.'
       },
       MATTERMOST_URL: {
         label: 'URL сервера',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Токен бота',
+        label: 'Токен бота'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Дозволені ідентифікатори користувачів',
-        help: 'Рекомендовано. Ідентифікатори користувачів Mattermost через кому.',
+        help: 'Рекомендовано. Ідентифікатори користувачів Mattermost через кому.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL домашнього сервера',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Токен доступу',
+        label: 'Токен доступу'
       },
       MATRIX_USER_ID: {
         label: 'Ідентифікатор користувача бота',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Дозволені ідентифікатори користувачів Matrix',
-        help: 'Рекомендовано. Ідентифікатори користувачів у форматі @user:server через кому.',
+        help: 'Рекомендовано. Ідентифікатори користувачів у форматі @user:server через кому.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL мосту Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL запущеного REST-моста signal-cli.',
+        help: 'URL запущеного REST-моста signal-cli.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Номер телефону',
-        help: 'Номер, зареєстрований у вашому мості signal-cli.',
+        help: 'Номер, зареєстрований у вашому мості signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Дозволені користувачі Signal',
-        help: 'Рекомендовано. Ідентифікатори Signal через кому.',
+        help: 'Рекомендовано. Ідентифікатори Signal через кому.'
       },
       WHATSAPP_ENABLED: {
         label: 'Увімкнути міст WhatsApp',
-        help: 'Встановлюється автоматично перемикачем нижче. Не змінюйте, якщо не знаєте, що це потрібно.',
+        help: 'Встановлюється автоматично перемикачем нижче. Не змінюйте, якщо не знаєте, що це потрібно.'
       },
       WHATSAPP_MODE: {
-        label: 'Режим моста',
+        label: 'Режим моста'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Дозволені користувачі WhatsApp',
-        help: 'Рекомендовано. Номери телефонів або ідентифікатори WhatsApp через кому.',
-      },
+        help: 'Рекомендовано. Номери телефонів або ідентифікатори WhatsApp через кому.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Пошук вебхуків...',
@@ -1493,7 +1540,8 @@ export const uk = defineLocale({
     hint: 'Зміни підписок застосовуються гарячим перезавантаженням, коли приймач запущено. Вимкнені підписки відхиляють вхідні події.',
     empty: 'Підписок на вебхуки ще немає.',
     disabledTitle: 'Приймач вебхуків вимкнено',
-    disabledBody: 'Вебхуки — це окрема платформа шлюзу. Увімкніть їх тут, щоб приймати вхідні HTTP-події; канали чату потрібні лише тоді, коли підписка доставляє в Telegram, Discord, Slack або інший канал.',
+    disabledBody:
+      'Вебхуки — це окрема платформа шлюзу. Увімкніть їх тут, щоб приймати вхідні HTTP-події; канали чату потрібні лише тоді, коли підписка доставляє в Telegram, Discord, Slack або інший канал.',
     enable: 'Увімкнути вебхуки',
     enabling: 'Увімкнення...',
     enabled: (name: string) => `Увімкнено: "${name}"`,
@@ -1546,8 +1594,8 @@ export const uk = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Ел. пошта',
-      github_comment: 'Коментар GitHub',
-    },
+      github_comment: 'Коментар GitHub'
+    }
   },
   profiles: {
     close: 'Закрити профілі',
@@ -1583,7 +1631,7 @@ export const uk = defineLocale({
     skillsLabel: 'Навички',
     notSet: 'Не задано',
     soulDesc: 'Системний запит і інструкції персони, вбудовані в цей профіль.',
-    soulOptional: 'необов\'язково',
+    soulOptional: "необов'язково",
     soulPlaceholder: mode => `Системний запит / персона для цього профілю.
 Залиште поле порожнім, щоб зберегти стандартне значення ${mode}.`,
     soulPlaceholderCloned: 'клоновано',
@@ -1606,7 +1654,7 @@ export const uk = defineLocale({
     cloneFromDefault: 'Клонувати з типового',
     cloneFromDefaultDesc: 'Копіювати конфігурацію, навички та SOUL.md з вашого типового профілю.',
     invalidName: hint => `Неприпустима назва. ${hint}`,
-    nameRequired: 'Назва обов\'язкова.',
+    nameRequired: "Назва обов'язкова.",
     creating: 'Створення...',
     createAction: 'Створити профіль',
     renameTitle: 'Перейменувати профіль',
@@ -1625,7 +1673,7 @@ export const uk = defineLocale({
     failedLoadSoul: 'Не вдалося завантажити SOUL.md',
     failedSaveSoul: 'Не вдалося зберегти SOUL.md',
     failedCreate: 'Не вдалося створити профіль',
-    failedRename: 'Не вдалося перейменувати профіль',
+    failedRename: 'Не вдалося перейменувати профіль'
   },
   cron: {
     close: 'Закрити cron',
@@ -1640,14 +1688,14 @@ export const uk = defineLocale({
       paused: 'призупинено',
       disabled: 'вимкнено',
       error: 'помилка',
-      completed: 'завершено',
+      completed: 'завершено'
     },
     deliveryLabels: {
       local: 'Цей комп’ютер',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Ел. пошта',
+      email: 'Ел. пошта'
     },
     scheduleLabels: {
       daily: 'Щодня',
@@ -1656,7 +1704,7 @@ export const uk = defineLocale({
       monthly: 'Щомісяця',
       hourly: 'Щогодини',
       'every-15-minutes': 'Кожні 15 хвилин',
-      custom: 'Власний',
+      custom: 'Власний'
     },
     scheduleHints: {
       daily: 'Щодня о 9:00',
@@ -1665,7 +1713,7 @@ export const uk = defineLocale({
       monthly: 'Першого дня кожного місяця о 9:00',
       hourly: 'На початку кожної години',
       'every-15-minutes': 'Кожні 15 хвилин',
-      custom: 'Синтаксис Cron або природна мова',
+      custom: 'Синтаксис Cron або природна мова'
     },
     days: {
       '0': 'Неділя',
@@ -1675,7 +1723,7 @@ export const uk = defineLocale({
       '4': 'Четвер',
       '5': 'П’ятниця',
       '6': 'Субота',
-      '7': 'Неділя',
+      '7': 'Неділя'
     },
     dayFallback: value => `день ${value}`,
     everyDayAt: time => `Щодня о ${time}`,
@@ -1685,7 +1733,8 @@ export const uk = defineLocale({
     topOfHour: 'На початку кожної години',
     everyHourAt: minute => `Щогодини о :${minute}`,
     newCron: 'Новий cron',
-    emptyDescNew: 'Заплануйте виконання запиту за cron-виразом. OpenAmer виконає його й надішле результати до обраного вами призначення.',
+    emptyDescNew:
+      'Заплануйте виконання запиту за cron-виразом. OpenAmer виконає його й надішле результати до обраного вами призначення.',
     emptyDescSearch: 'Спробуйте ширший пошуковий запит.',
     emptyTitleNew: 'Запланованих завдань ще немає',
     emptyTitleSearch: 'Збігів немає',
@@ -1722,7 +1771,8 @@ export const uk = defineLocale({
     editTitle: 'Редагувати cron-завдання',
     createTitle: 'Нове cron-завдання',
     editDesc: 'Оновіть розклад, підказку або ціль доставки. Зміни застосуються під час наступного запуску.',
-    createDesc: 'Заплануйте автоматичний запуск підказки. Використовуйте синтаксис cron або природну фразу, як-от "кожні 15 хвилин".',
+    createDesc:
+      'Заплануйте автоматичний запуск підказки. Використовуйте синтаксис cron або природну фразу, як-от "кожні 15 хвилин".',
     nameLabel: 'Назва',
     namePlaceholder: 'Ранковий брифінг',
     promptLabel: 'Підказка',
@@ -1735,7 +1785,7 @@ export const uk = defineLocale({
     customScheduleLabel: 'Власний розклад',
     customPlaceholder: '0 9 * * * або будні о 9:00',
     customHint: 'Cron-вираз або фрази на кшталт "щогодини" чи "будні о 9:00".',
-    optional: 'Необов\'язково',
+    optional: "Необов'язково",
     promptRequired: 'Потрібен запит.',
     promptScheduleRequired: 'Потрібні запит і розклад.',
     scheduleRequired: 'Потрібен розклад.',
@@ -1744,7 +1794,7 @@ export const uk = defineLocale({
     createAction: 'Створити cron',
     tabs: {
       jobs: 'Завдання',
-      blueprints: 'Шаблони',
+      blueprints: 'Шаблони'
     },
     blueprints: {
       tab: 'Шаблони',
@@ -1758,8 +1808,8 @@ export const uk = defineLocale({
       loading: 'Завантаження шаблонів...',
       failedLoad: 'Не вдалося завантажити шаблони',
       emptyTitle: 'Немає доступних шаблонів',
-      emptyDesc: 'На цьому бекенді немає доступних шаблонів автоматизації.',
-    },
+      emptyDesc: 'На цьому бекенді немає доступних шаблонів автоматизації.'
+    }
   },
   artifacts: {
     search: 'Пошук артефактів...',
@@ -1793,14 +1843,14 @@ export const uk = defineLocale({
     kindLink: 'посилання',
     chat: 'Чат',
     copyUrl: 'Копіювати URL',
-    copyPath: 'Копіювати шлях',
+    copyPath: 'Копіювати шлях'
   },
   sidebar: {
     nav: {
       'new-session': 'Новий сеанс',
       skills: 'Можливості',
       messaging: 'Обмін повідомленнями',
-      artifacts: 'Артефакти',
+      artifacts: 'Артефакти'
     },
     searchAria: 'Пошук сеансів',
     searchPlaceholder: 'Пошук сеансів…',
@@ -1832,7 +1882,7 @@ export const uk = defineLocale({
       namePlaceholder: 'напр. Skunkworks',
       foldersLabel: 'Теки',
       ideaLabel: 'Ідея',
-      ideaPlaceholder: "Про що цей проєкт? (зберігається в IDEA.md)",
+      ideaPlaceholder: 'Про що цей проєкт? (зберігається в IDEA.md)',
       ideaGenerate: 'Згенерувати ідею',
       ideaGenerating: 'Генерування…',
       ideaShuffle: 'Перемішати шаблони',
@@ -1852,8 +1902,10 @@ export const uk = defineLocale({
       copyPath: 'Копіювати шлях',
       removeFromSidebar: 'Сховати з бічної панелі',
       createFailed: 'Не вдалося створити проєкт',
-      staleBackend: 'Оновіть бекенд OpenAmer, щоб створювати проєкти — ваш бекенд старіший за цю програму (Налаштування → Оновлення → Бекенд).',
-      deleteConfirm: 'Це видаляє збережений проєкт з OpenAmer. Файли, репозиторії git і робочі дерева залишаються без змін.',
+      staleBackend:
+        'Оновіть бекенд OpenAmer, щоб створювати проєкти — ваш бекенд старіший за цю програму (Налаштування → Оновлення → Бекенд).',
+      deleteConfirm:
+        'Це видаляє збережений проєкт з OpenAmer. Файли, репозиторії git і робочі дерева залишаються без змін.',
       startWork: 'Нове робоче дерево',
       newWorktreeTitle: 'Нове робоче дерево',
       newWorktreeDesc: 'Назвіть гілку для цього робочого дерева.',
@@ -1874,13 +1926,15 @@ export const uk = defineLocale({
       noBranches: 'Гілок не знайдено',
       removeWorktree: 'Видалити робоче дерево',
       removeWorktreeFailed: 'Не вдалося видалити робоче дерево (незакомічені зміни?)',
-      removeWorktreeConfirm: 'Видалити його з git (видаляє каталог робочого дерева; гілка залишається) або просто сховати смугу з бічної панелі й залишити робоче дерево на диску.',
-      removeWorktreeDirty: 'Це робоче дерево має незакомічені зміни. Примусово видалити його (відкине ці зміни) або просто сховати смугу й залишити його на диску.',
+      removeWorktreeConfirm:
+        'Видалити його з git (видаляє каталог робочого дерева; гілка залишається) або просто сховати смугу з бічної панелі й залишити робоче дерево на диску.',
+      removeWorktreeDirty:
+        'Це робоче дерево має незакомічені зміни. Примусово видалити його (відкине ці зміни) або просто сховати смугу й залишити його на диску.',
       forceRemove: 'Примусово видалити',
       enter: label => `Відкрити ${label}`,
       reorder: label => `Перевпорядкувати ${label}`,
       toggle: label => `Перемкнути сеанси ${label}`,
-      back: 'Усі проєкти',
+      back: 'Усі проєкти'
     },
     newSessionIn: label => `Новий сеанс у ${label}`,
     showMoreIn: (count, label) => `Показати ще ${count} у ${label}`,
@@ -1912,21 +1966,21 @@ export const uk = defineLocale({
       renamed: 'Перейменовано',
       renameFailed: 'Не вдалося перейменувати',
       renameTitle: 'Перейменувати сесію',
-      renameDesc: 'Дайте цьому чату назву, яку легко запам\'ятати. Залиште порожнім, щоб очистити.',
+      renameDesc: "Дайте цьому чату назву, яку легко запам'ятати. Залиште порожнім, щоб очистити.",
       untitledPlaceholder: 'Сесія без назви',
       untitledChat: id => `Чат ${id}`,
       ageNow: 'зараз',
       ageDay: 'д',
       ageHour: 'год',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Раніше сьогодні',
       yesterday: 'Учора',
       thisWeek: 'Раніше цього тижня',
       lastWeek: 'Минулого тижня',
-      thisMonth: 'Раніше цього місяця',
-    },
+      thisMonth: 'Раніше цього місяця'
+    }
   },
   composer: {
     message: 'Повідомлення',
@@ -1937,20 +1991,20 @@ export const uk = defineLocale({
     newSessionPlaceholders: [
       'Що ми створюємо?',
       'Дайте OpenAmer завдання',
-      "Що у вас на думці?",
+      'Що у вас на думці?',
       'Опишіть, що вам потрібно',
       'За що візьмемося?',
       'Запитайте будь-що',
-      'Почніть із мети',
+      'Почніть із мети'
     ],
     followUpPlaceholders: [
       'Надіслати уточнення',
       'Додайте більше контексту',
       'Уточніть запит',
-      "Що далі?",
+      'Що далі?',
       'Продовжуйте',
       'Розвиньте далі',
-      'Змініть або продовжте',
+      'Змініть або продовжте'
     ],
     startVoice: 'Почати голосову розмову',
     queueMessage: 'Поставити повідомлення в чергу',
@@ -1986,7 +2040,7 @@ export const uk = defineLocale({
       '/resume': 'продовжити попередній сеанс',
       '/details': 'керувати рівнем деталізації транскрипту',
       '/copy': 'копіювати виділене або останнє повідомлення асистента',
-      '/quit': 'вийти з OpenAmer',
+      '/quit': 'вийти з OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'посилання на файли, теки, URL-адреси, git',
@@ -1996,7 +2050,7 @@ export const uk = defineLocale({
       'composer.sendQueued': 'надіслати наступний хід із черги',
       'keybinds.openPanel': 'усі комбінації клавіш',
       'composer.cancel': 'закрити поповер · скасувати запуск',
-      'composer.history': 'перемикати поповер / історію',
+      'composer.history': 'перемикати поповер / історію'
     },
     attachUrlTitle: 'Прикріпити URL-адресу',
     attachUrlDesc: 'OpenAmer завантажить сторінку й додасть її як контекст для цього ходу.',
@@ -2017,7 +2071,8 @@ export const uk = defineLocale({
     queueResume: 'Продовжити',
     queueResumeTip: 'Призупинено через «Стоп» — відновити надсилання реплік у черзі',
     queueStuckTitle: 'Повідомлення з черги не надіслано',
-    queueStuckBody: 'Репліку з черги постійно не вдавалося надіслати. Вона досі в черзі — спробуйте надіслати її ще раз.',
+    queueStuckBody:
+      'Репліку з черги постійно не вдавалося надіслати. Вона досі в черзі — спробуйте надіслати її ще раз.',
     previewUnavailable: 'Попередній перегляд недоступний',
     previewLabel: label => `Переглянути ${label}`,
     couldNotPreview: label => `Не вдалося переглянути ${label}`,
@@ -2047,19 +2102,19 @@ export const uk = defineLocale({
       codeReview: {
         label: 'Огляд коду',
         description: 'Перевірте поточну зміну на регресії, пропущені граничні випадки й відсутні тести.',
-        text: 'Перевірте це на помилки, регресії та відсутні тести.',
+        text: 'Перевірте це на помилки, регресії та відсутні тести.'
       },
       implementationPlan: {
         label: 'План реалізації',
         description: 'Опишіть підхід перед написанням коду, щоб diff залишався цілеспрямованим.',
-        text: 'Будь ласка, складіть стислий план реалізації перед зміною коду.',
+        text: 'Будь ласка, складіть стислий план реалізації перед зміною коду.'
       },
       explainThis: {
         label: 'Пояснити це',
         description: 'Розберіть, як працює вибраний код, і надайте посилання на ключові файли.',
-        text: 'Будь ласка, поясніть, як це працює, і вкажіть на ключові файли.',
-      },
-    },
+        text: 'Будь ласка, поясніть, як це працює, і вкажіть на ключові файли.'
+      }
+    }
   },
   statusStack: {
     agents: 'Агенти',
@@ -2089,7 +2144,8 @@ export const uk = defineLocale({
       viewAsList: 'Переглянути як список',
       revert: 'Відкотити',
       revertAll: 'Відкотити все',
-      revertConfirm: 'Скасувати зміни в цьому файлі й відновити його до зафіксованого стану? Цю дію неможливо скасувати.',
+      revertConfirm:
+        'Скасувати зміни в цьому файлі й відновити його до зафіксованого стану? Цю дію неможливо скасувати.',
       revertAllConfirm: 'Скасувати всі зміни й відновити файли до зафіксованого стану? Цю дію неможливо скасувати.',
       staged: 'Проіндексовано',
       noChanges: 'Немає змін',
@@ -2107,13 +2163,14 @@ export const uk = defineLocale({
       openPr: 'Відкрити PR',
       ghMissing: 'Установіть GitHub CLI (gh) і увійдіть, щоб відкривати PR',
       agentShip: 'Попросіть OpenAmer відкрити PR',
-      agentShipPrompt: 'Перегляньте поточні зміни, зробіть коміт із чітким повідомленням у стилі conventional commit, надішліть гілку й відкрийте запит на злиття.',
+      agentShipPrompt:
+        'Перегляньте поточні зміни, зробіть коміт із чітким повідомленням у стилі conventional commit, надішліть гілку й відкрийте запит на злиття.',
       newBranch: 'Нова гілка',
       branchOffFrom: base => `Нова гілка з ${base}`,
       switchTo: branch => `Переключитися на ${branch}`,
       switchFailed: branch => `Не вдалося переключитися на ${branch}`,
-      worktrees: 'Робочі дерева',
-    },
+      worktrees: 'Робочі дерева'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2185,7 @@ export const uk = defineLocale({
       done: 'Оновлення завершено',
       manual: 'Оновіть із термінала',
       guiSkew: 'Оновити застосунок',
-      error: 'Оновлення призупинено',
+      error: 'Оновлення призупинено'
     },
     checking: 'Пошук оновлень…',
     checkFailedTitle: 'Не вдалося перевірити оновлення',
@@ -2148,15 +2205,19 @@ export const uk = defineLocale({
     maybeLater: 'Можливо, пізніше',
     moreChanges: count => `+ ${count} додаткова зміна${count === 1 ? 'зміна' : 'зміни'} включена.`,
     manualTitle: 'Оновіть із термінала',
-    manualBody: 'Ви встановили OpenAmer з командного рядка, тому оновлення також запускаються там. Вставте це у термінал:',
+    manualBody:
+      'Ви встановили OpenAmer з командного рядка, тому оновлення також запускаються там. Вставте це у термінал:',
     manualPickedUp: 'OpenAmer підхопить нову версію під час наступного запуску.',
     guiSkewTitle: 'Оновити десктопний застосунок',
-    guiSkewBody: 'Бекенд оновлено, але цей пакет десктопного застосунку не змінився. Оновіть або перевстановіть десктопний застосунок OpenAmer (ваш AppImage / .deb / .rpm), щоб узгодити версії.',
+    guiSkewBody:
+      'Бекенд оновлено, але цей пакет десктопного застосунку не змінився. Оновіть або перевстановіть десктопний застосунок OpenAmer (ваш AppImage / .deb / .rpm), щоб узгодити версії.',
     copy: 'Копіювати',
     copied: 'Скопійовано',
     done: 'Готово',
-    applyingBody: 'Оновлювач OpenAmer відкриється у власному вікні й автоматично перезапустить OpenAmer після завершення. Будь ласка, не відкривайте OpenAmer самостійно під час оновлення.',
-    applyingBodyBackend: 'Віддалений бекенд застосовує оновлення й перезапуститься. OpenAmer автоматично перепідключиться, коли він повернеться.',
+    applyingBody:
+      'Оновлювач OpenAmer відкриється у власному вікні й автоматично перезапустить OpenAmer після завершення. Будь ласка, не відкривайте OpenAmer самостійно під час оновлення.',
+    applyingBodyBackend:
+      'Віддалений бекенд застосовує оновлення й перезапуститься. OpenAmer автоматично перепідключиться, коли він повернеться.',
     applyingClose: 'Це вікно закриється під час оновлення, після чого OpenAmer відкриється самостійно.',
     errorTitle: 'Оновлення не завершено',
     errorBody: 'Нічого страшного — нічого не втрачено. Можете спробувати ще раз зараз.',
@@ -2167,12 +2228,13 @@ export const uk = defineLocale({
       restarting: 'Бекенд перезапускається, щоб завантажити оновлення…',
       notAvailable: 'Оновлення недоступне для цього бекенду.',
       failed: 'Не вдалося оновити бекенд.',
-      noReturn: 'Бекенд не повернувся в мережу. Оновлення могло не завершитися — перевірте хост бекенду.',
+      noReturn: 'Бекенд не повернувся в мережу. Оновлення могло не завершитися — перевірте хост бекенду.'
     },
     appErrors: {
-      updateLocked: 'Оновлення перервано: інше вікно OpenAmer або термінал із запущеним openamer блокує цю інсталяцію. Закрийте його та повторіть спробу.',
-      updateFailed: 'Оновлення не завершилося. Нічого страшного — нічого не втрачено. Можете спробувати ще раз зараз.',
-    },
+      updateLocked:
+        'Оновлення перервано: інше вікно OpenAmer або термінал із запущеним openamer блокує цю інсталяцію. Закрийте його та повторіть спробу.',
+      updateFailed: 'Оновлення не завершилося. Нічого страшного — нічого не втрачено. Можете спробувати ще раз зараз.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,23 +2242,27 @@ export const uk = defineLocale({
       running: 'Встановлюється',
       succeeded: 'Готово',
       skipped: 'Пропущено',
-      failed: 'Не вдалося',
+      failed: 'Не вдалося'
     },
     oneTimeTitle: 'OpenAmer потрібно встановити один раз',
-    unsupportedDesc: platform => `Автоматичне встановлення під час першого запуску ще недоступне на ${platform}. Відкрийте Термінал і виконайте наведену нижче команду, потім перезапустіть цей застосунок. Під час наступних запусків цей крок буде пропущено.`,
+    unsupportedDesc: platform =>
+      `Автоматичне встановлення під час першого запуску ще недоступне на ${platform}. Відкрийте Термінал і виконайте наведену нижче команду, потім перезапустіть цей застосунок. Під час наступних запусків цей крок буде пропущено.`,
     installCommand: 'Команда встановлення',
     copyCommand: 'Копіювати команду',
     viewDocs: 'Переглянути документацію зі встановлення',
     installTo: 'Буде встановлено в',
     retryAfterRun: 'Команду виконано — повторити',
     setupChoiceTitle: 'Налаштувати настільну версію OpenAmer',
-    setupChoiceDesc: 'Підключіть цей застосунок до наявного шлюзу OpenAmer або встановіть OpenAmer локально на цей комп’ютер.',
+    setupChoiceDesc:
+      'Підключіть цей застосунок до наявного шлюзу OpenAmer або встановіть OpenAmer локально на цей комп’ютер.',
     connectExistingTitle: 'Підключитися до наявного OpenAmer',
     connectExistingShort: 'Підключити наявний',
-    connectExistingDesc: 'Використовуйте віддалений бекенд із сесійним токеном або входом через браузер. Локальне встановлення не почнеться.',
+    connectExistingDesc:
+      'Використовуйте віддалений бекенд із сесійним токеном або входом через браузер. Локальне встановлення не почнеться.',
     installLocalTitle: 'Встановити OpenAmer локально',
     installLocalDesc: 'Завантажте OpenAmer, створіть його середовище Python і запустіть бекенд на цьому комп’ютері.',
-    localStartUnavailable: 'Не вдалося запустити локальне встановлення. Перезапустіть OpenAmer Desktop і спробуйте знову.',
+    localStartUnavailable:
+      'Не вдалося запустити локальне встановлення. Перезапустіть OpenAmer Desktop і спробуйте знову.',
     remoteSetupTitle: 'Підключитися до наявного OpenAmer',
     remoteSetupDesc: 'Введіть URL шлюзу. OpenAmer Desktop визначить, чи потрібен токен або вхід через браузер.',
     remoteUrlTitle: 'URL шлюзу',
@@ -2225,8 +2291,10 @@ export const uk = defineLocale({
     failedTitle: 'Не вдалося встановити',
     settingUpTitle: 'Налаштування OpenAmer Agent',
     finishingTitle: 'Завершуємо',
-    failedDesc: 'Один з кроків встановлення не вдався. У Windows це може статися, якщо запущено інший примірник OpenAmer CLI або настільного застосунку OpenAmer. Зупиніть усі запущені примірники OpenAmer, потім повторіть спробу. Перегляньте подробиці нижче або журнал настільного застосунку для повного звіту.',
-    activeDesc: 'Це одноразове налаштування. Інсталятор OpenAmer завантажує залежності та налаштовує ваш комп’ютер. Наступні запуски пропускатимуть цей крок.',
+    failedDesc:
+      'Один з кроків встановлення не вдався. У Windows це може статися, якщо запущено інший примірник OpenAmer CLI або настільного застосунку OpenAmer. Зупиніть усі запущені примірники OpenAmer, потім повторіть спробу. Перегляньте подробиці нижче або журнал настільного застосунку для повного звіту.',
+    activeDesc:
+      'Це одноразове налаштування. Інсталятор OpenAmer завантажує залежності та налаштовує ваш комп’ютер. Наступні запуски пропускатимуть цей крок.',
     progress: (completed, total) => `${completed} з ${total} кроків завершено`,
     currentStage: stage => ` -- зараз: ${stage}`,
     fetchingManifest: 'Отримання маніфесту інсталятора...',
@@ -2240,18 +2308,19 @@ export const uk = defineLocale({
     transcriptSaved: 'Повний журнал збережено в',
     copiedOutput: 'Скопійовано!',
     copyOutput: 'Копіювати вивід',
-    reloadRetry: 'Перезавантажити й повторити',
+    reloadRetry: 'Перезавантажити й повторити'
   },
   onboarding: {
-    headerTitle: "Давайте налаштуємо OpenAmer Agent",
-    headerDesc: 'Підключіть постачальника моделі, щоб почати спілкуватися. Більшість параметрів налаштовується одним кліком.',
+    headerTitle: 'Давайте налаштуємо OpenAmer Agent',
+    headerDesc:
+      'Підключіть постачальника моделі, щоб почати спілкуватися. Більшість параметрів налаштовується одним кліком.',
     preparingInstall: 'OpenAmer завершує встановлення. Зазвичай це займає менше хвилини під час першого запуску.',
     starting: 'Запуск OpenAmer…',
     lookingUpProviders: 'Пошук постачальників...',
     collapse: 'Згорнути',
     otherProviders: 'Інші провайдери',
     haveApiKey: 'У мене є API-ключ',
-    chooseLater: "Виберу провайдера пізніше",
+    chooseLater: 'Виберу провайдера пізніше',
     recommended: 'Рекомендовано',
     connected: 'Підключено',
     featuredPitch: 'Одна підписка, 300+ передових моделей — рекомендований спосіб запуску OpenAmer',
@@ -2260,28 +2329,29 @@ export const uk = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'прямий API моделей',
-        description: 'Прямий доступ до моделей, розміщених Fireworks AI.',
+        description: 'Прямий доступ до моделей, розміщених Fireworks AI.'
       },
       openrouter: {
         short: 'один ключ, багато моделей',
-        description: 'Розміщує сотні моделей за одним ключем. Гарний варіант за замовчуванням для нових інсталяцій.',
+        description: 'Розміщує сотні моделей за одним ключем. Гарний варіант за замовчуванням для нових інсталяцій.'
       },
       openai: {
         short: 'Моделі класу GPT',
-        description: 'Прямий доступ до моделей OpenAI.',
+        description: 'Прямий доступ до моделей OpenAI.'
       },
       gemini: {
         short: 'Моделі Gemini',
-        description: 'Прямий доступ до моделей Google Gemini.',
+        description: 'Прямий доступ до моделей Google Gemini.'
       },
       xai: {
         short: 'Моделі Grok',
-        description: 'Прямий доступ до моделей xAI Grok.',
+        description: 'Прямий доступ до моделей xAI Grok.'
       },
       local: {
         short: 'Власний хостинг',
-        description: 'Спрямуйте OpenAmer на локальну або самостійно розміщену кінцеву точку, сумісну з OpenAI (vLLM, llama.cpp, Ollama тощо).',
-      },
+        description:
+          'Спрямуйте OpenAmer на локальну або самостійно розміщену кінцеву точку, сумісну з OpenAI (vLLM, llama.cpp, Ollama тощо).'
+      }
     },
     backToSignIn: 'Повернутися до входу',
     getKey: 'Отримати ключ',
@@ -2294,7 +2364,7 @@ export const uk = defineLocale({
     flowSubtitles: {
       pkce: 'Відкриває браузер для входу, потім продовжує тут',
       device_code: 'Відкриває сторінку перевірки у вашому браузері — OpenAmer підключиться автоматично',
-      external: 'Увійдіть один раз у терміналі, потім поверніться до чату',
+      external: 'Увійдіть один раз у терміналі, потім поверніться до чату'
     },
     startingSignIn: provider => `Початок входу для ${provider}...`,
     verifyingCode: provider => `Перевірка вашого коду з ${provider}...`,
@@ -2308,11 +2378,13 @@ export const uk = defineLocale({
     copyAuthCode: 'Скопіюйте код авторизації та вставте його нижче.',
     pasteAuthCode: 'Вставте код авторизації',
     reopenAuthPage: 'Знову відкрити сторінку авторизації',
-    autoBrowser: provider => `Ми відкрили ${provider} у вашому браузері. Авторизуйте OpenAmer там, і вас буде підключено автоматично — нічого копіювати чи вставляти.`,
+    autoBrowser: provider =>
+      `Ми відкрили ${provider} у вашому браузері. Авторизуйте OpenAmer там, і вас буде підключено автоматично — нічого копіювати чи вставляти.`,
     reopenSignInPage: 'Знову відкрити сторінку входу',
     waitingAuthorize: 'Очікуємо на вашу авторизацію...',
-    externalPending: provider => `${provider} входить через власний CLI. Виконайте цю команду в терміналі, потім поверніться та виберіть «Я увійшов»:`,
-    signedIn: "Я увійшов",
+    externalPending: provider =>
+      `${provider} входить через власний CLI. Виконайте цю команду в терміналі, потім поверніться та виберіть «Я увійшов»:`,
+    signedIn: 'Я увійшов',
     deviceCodeOpened: provider => `Ми відкрили ${provider} у вашому браузері. Введіть цей код там:`,
     reopenVerification: 'Повторно відкрити сторінку підтвердження',
     copy: 'Копіювати',
@@ -2323,7 +2395,7 @@ export const uk = defineLocale({
     price: (input, output) => `${input} вхідних / ${output} вихідних за Mtok`,
     change: 'Змінити',
     startChatting: 'Почати',
-    docs: provider => `${provider} док.`,
+    docs: provider => `${provider} док.`
   },
   modelPicker: {
     title: 'Змінити модель',
@@ -2339,13 +2411,13 @@ export const uk = defineLocale({
     free: 'Безкоштовний',
     freeTier: 'Безкоштовний тариф',
     priceTitle: 'Ціна введення / виведення за мільйон токенів',
-    wasPrice: 'було',
+    wasPrice: 'було'
   },
   modelVisibility: {
     title: 'Моделі',
     search: 'Пошук моделей',
     noAuthenticatedProviders: 'Немає автентифікованих провайдерів.',
-    addProvider: 'Додати провайдера…',
+    addProvider: 'Додати провайдера…'
   },
   shell: {
     windowControls: 'Керування вікном',
@@ -2356,7 +2428,7 @@ export const uk = defineLocale({
       noModels: 'Моделей не знайдено',
       editModels: 'Редагувати моделі…',
       refreshModels: 'Оновити моделі',
-      fast: 'Швидко',
+      fast: 'Швидко'
     },
     modelOptions: {
       noOptions: 'Немає параметрів для цієї моделі',
@@ -2372,7 +2444,7 @@ export const uk = defineLocale({
       max: 'Максимум',
       ultra: 'Ультра',
       updateFailed: 'Не вдалося оновити параметр моделі',
-      fastFailed: 'Не вдалося оновити швидкий режим',
+      fastFailed: 'Не вдалося оновити швидкий режим'
     },
     gatewayMenu: {
       gateway: 'Шлюз',
@@ -2382,12 +2454,12 @@ export const uk = defineLocale({
       inferenceReady: 'Інференс готовий',
       inferenceNotReady: 'Інференс не готовий',
       checkingInference: 'Перевірка інференсу',
-      disconnected: 'Від\'єднано',
+      disconnected: "Від'єднано",
       openSystem: 'Відкрити системну панель',
       connection: label => `Підключення: ${label}`,
       recentActivity: 'Остання активність',
       viewAllLogs: 'Переглянути всі журнали →',
-      messagingPlatforms: 'Платформи обміну повідомленнями',
+      messagingPlatforms: 'Платформи обміну повідомленнями'
     },
     approvalMode: {
       title: 'Режим схвалення',
@@ -2397,7 +2469,7 @@ export const uk = defineLocale({
       smart: 'Розумний',
       smartDescription: 'Автоматично оцінювати дії та запитувати за потреби',
       off: 'Вимкнено',
-      offDescription: 'Виконувати без запитів на схвалення',
+      offDescription: 'Виконувати без запитів на схвалення'
     },
     statusbar: {
       unknown: 'невідомо',
@@ -2439,8 +2511,8 @@ export const uk = defineLocale({
       openCron: 'Відкрити завдання Крона',
       webhooks: 'Вебхуки',
       openWebhooks: 'Відкрити вебхуки',
-      starmap: 'Граф пам\'яті',
-      openStarmap: 'Відкрити граф пам\'яті',
+      starmap: "Граф пам'яті",
+      openStarmap: "Відкрити граф пам'яті",
       turnRunning: 'Виконується',
       currentTurnElapsed: 'Час поточного ходу',
       contextUsage: 'Використання контексту',
@@ -2448,23 +2520,24 @@ export const uk = defineLocale({
         categories: {
           conversation: 'Розмова',
           mcp: 'MCP',
-          memory: 'Пам\'ять',
+          memory: "Пам'ять",
           rules: 'Правила',
           skills: 'Навички',
           subagent_definitions: 'Визначення субагентів',
           system_prompt: 'Системний промпт',
-          tool_definitions: 'Визначення інструментів',
+          tool_definitions: 'Визначення інструментів'
         },
         empty: 'Даних про контекст ще немає',
         loading: 'Завантаження розподілу…',
         percentFull: percent => `${percent}% заповнено`,
         title: 'Використання контексту',
-        tokenSummary: (used, max) => `${used} / ${max} токенів`,
+        tokenSummary: (used, max) => `${used} / ${max} токенів`
       },
       openContextUsage: 'Відкрити деталізацію використання контексту',
       session: 'Сеанс',
       runtimeSessionElapsed: 'Минуло часу сеансу',
-      yoloOn: 'YOLO увімкнено — автосхвалення небезпечних команд. Натисніть, щоб вимкнути. Shift+клік перемикає глобально.',
+      yoloOn:
+        'YOLO увімкнено — автосхвалення небезпечних команд. Натисніть, щоб вимкнути. Shift+клік перемикає глобально.',
       yoloOff: 'YOLO вимкнено — натисніть, щоб автосхвалювати небезпечні команди. Shift+клік перемикає глобально.',
       modelNone: 'немає',
       noModel: 'немає моделі',
@@ -2472,8 +2545,8 @@ export const uk = defineLocale({
       openModelPicker: 'Відкрити вибір моделі',
       modelPinned: 'закріплено вами; нові чати використовують це замість типового з налаштувань',
       modelTitle: (provider, model) => `Модель · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Права бічна панель',
@@ -2509,7 +2582,7 @@ export const uk = defineLocale({
     terminalNew: 'Новий термінал',
     terminalCloseOthers: 'Закрити інші',
     terminalCloseAll: 'Закрити всі',
-    addToChat: 'Додати до чату',
+    addToChat: 'Додати до чату'
   },
   preview: {
     tab: 'Попередній перегляд',
@@ -2543,7 +2616,8 @@ export const uk = defineLocale({
     unsavedChanges: 'Незбережені зміни',
     saveFailed: message => `Не вдалося зберегти: ${message}`,
     diskChangedTitle: 'Файл змінено на диску',
-    diskChangedBody: 'Цей файл змінено з моменту відкриття. Перезаписати його вашою версією або відхилити редагування й перезавантажити?',
+    diskChangedBody:
+      'Цей файл змінено з моменту відкриття. Перезаписати його вашою версією або відхилити редагування й перезавантажити?',
     overwrite: 'Перезаписати',
     discardReload: 'Відхилити й перезавантажити',
     console: {
@@ -2564,7 +2638,7 @@ export const uk = defineLocale({
       empty: 'Повідомлень консолі ще немає.',
       promptHeader: 'Консоль попереднього перегляду:',
       sentTitle: 'Надіслано в чат',
-      sentMessage: count => `${count} запис журналу${count === 1 ? 'y' : 'ies'} додано до поля введення`,
+      sentMessage: count => `${count} запис журналу${count === 1 ? 'y' : 'ies'} додано до поля введення`
     },
     web: {
       appFailedToBoot: 'Не вдалося запустити застосунок перегляду',
@@ -2589,17 +2663,19 @@ export const uk = defineLocale({
       reloadingNow: 'Перегляд перезавантажується.',
       restartFailedTitle: 'Не вдалося перезапустити попередній перегляд',
       restartFailedMessage: 'OpenAmer не вдалося перезапустити сервер.',
-      stillWorking: 'OpenAmer досі працює, але результат перезапуску ще не надійшов. Команда сервера може виконуватися на передньому плані.',
+      stillWorking:
+        'OpenAmer досі працює, але результат перезапуску ще не надійшов. Команда сервера може виконуватися на передньому плані.',
       workspaceReloading: 'Робочу область змінено, перезавантажуємо попередній перегляд',
       fileChanged: url => `Файл змінено, перезавантажуємо попередній перегляд: ${url}`,
       filesChanged: (count, url) => `Змін файлів: ${count}, перезавантажуємо попередній перегляд: ${url}`,
       watchFailed: message => `Не вдалося відстежувати файл попереднього перегляду: ${message}`,
-      moduleMimeDescription: 'Модульні скрипти подаються з неправильним MIME-типом. Зазвичай це означає, що сервер статичних файлів обслуговує застосунок Vite/React замість сервера розробки проєкту.',
+      moduleMimeDescription:
+        'Модульні скрипти подаються з неправильним MIME-типом. Зазвичай це означає, що сервер статичних файлів обслуговує застосунок Vite/React замість сервера розробки проєкту.',
       loadFailedConsole: (code, message) => `Не вдалося завантажити${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Сторінка попереднього перегляду недоступна.',
       openTarget: url => `Відкрити ${url}`,
-      fallbackTitle: 'Попередній перегляд',
-    },
+      fallbackTitle: 'Попередній перегляд'
+    }
   },
   zones: {
     showHeader: 'Показати заголовок',
@@ -2607,7 +2683,8 @@ export const uk = defineLocale({
     minimize: 'Згорнути',
     restore: 'Відновити',
     closeRunningTitle: 'Закрити активну вкладку?',
-    closeRunningBody: 'Цей чат усе ще працює (або чекає на ваше введення). Закриття вкладки приховає його — сеанс збереже свій прогрес, і його можна знову відкрити з бічної панелі.',
+    closeRunningBody:
+      'Цей чат усе ще працює (або чекає на ваше введення). Закриття вкладки приховає його — сеанс збереже свій прогрес, і його можна знову відкрити з бічної панелі.',
     closeRunningConfirm: 'Закрити вкладку',
     closeOthers: 'Закрити інші',
     closeToRight: 'Закрити праворуч',
@@ -2633,7 +2710,8 @@ export const uk = defineLocale({
     deletePreset: name => `Видалити ${name}`,
     zoneEditorTitle: 'Редактор зон',
     editorHintPre: 'клацніть, щоб розділити · ',
-    editorHintPost: ' перевертає лінію · перетягніть по зонах, щоб об’єднати · перетягніть спільні межі, щоб змінити розмір',
+    editorHintPost:
+      ' перевертає лінію · перетягніть по зонах, щоб об’єднати · перетягніть спільні межі, щоб змінити розмір',
     templateColumns: 'Стовпці',
     templateRows: 'Рядки',
     templateGrid: 'Сітка',
@@ -2644,25 +2722,16 @@ export const uk = defineLocale({
     layoutNamePlaceholder: fallback => `Назва макета (${fallback})`,
     saveApply: 'Зберегти й застосувати',
     notExpressible: 'це компонування переплітається (вертушка) — поки не можна виразити як вкладені розділення',
-    zoneCount: count => `${count} зон`,
+    zoneCount: count => `${count} зон`
   },
   assistant: {
     thread: {
       loadingSession: 'Завантаження сесії',
       showEarlier: 'Показати попередні повідомлення',
       loadingResponse: 'OpenAmer завантажує відповідь',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Думає',
       today: time => `Сьогодні, ${time}`,
@@ -2689,7 +2758,7 @@ export const uk = defineLocale({
       restoreNext: 'Відновити наступну контрольну точку',
       goForward: 'Перейти вперед',
       sendEdited: 'Надіслати відредаговане повідомлення',
-      attachingFile: 'Прикріплення…',
+      attachingFile: 'Прикріплення…'
     },
     approval: {
       gatewayDisconnected: 'Шлюз OpenAmer не підключено',
@@ -2702,8 +2771,9 @@ export const uk = defineLocale({
       jumpToApproval: 'Потрібен дозвіл',
       reject: 'Відхилити',
       alwaysTitle: 'Завжди дозволяти цю команду?',
-      alwaysDescription: pattern => `Це додає шаблон “${pattern}” до вашого постійного списку дозволів (~/.openamer/config.yaml). OpenAmer більше не питатиме для таких команд — ні в цій сесії, ні в майбутніх.`,
-      alwaysAllow: 'Завжди дозволяти',
+      alwaysDescription: pattern =>
+        `Це додає шаблон “${pattern}” до вашого постійного списку дозволів (~/.openamer/config.yaml). OpenAmer більше не питатиме для таких команд — ні в цій сесії, ні в майбутніх.`,
+      alwaysAllow: 'Завжди дозволяти'
     },
     clarify: {
       notReady: 'Запит на уточнення ще не готовий',
@@ -2717,7 +2787,7 @@ export const uk = defineLocale({
       continueLabel: 'Продовжити',
       lateAnswer: (question, choice) => `Re: "${question}" — моя відповідь: ${choice}`,
       lateAnswerTip: 'Створити цю відповідь як наступне повідомлення',
-      lateAnswerHint: 'Цей запит більше не очікує. Оберіть варіант, щоб створити його як наступне повідомлення.',
+      lateAnswerHint: 'Цей запит більше не очікує. Оберіть варіант, щоб створити його як наступне повідомлення.'
     },
     tool: {
       code: 'Код',
@@ -2753,11 +2823,11 @@ export const uk = defineLocale({
         ran: 'Запущено',
         running: 'Виконується',
         ranCode: 'Код виконано',
-        runningCode: 'Скриптування',
+        runningCode: 'Скриптування'
       },
       prefixes: {
         browser: 'Браузер',
-        web: 'Веб',
+        web: 'Веб'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2765,132 +2835,133 @@ export const uk = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Виконується ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Виконується ${action.toLowerCase()}`,
+        runningTool: action => `Виконується ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Натиснуто елемент сторінки',
           pending: 'Натискання елемента сторінки',
-          pendingAction: 'Натискання',
+          pendingAction: 'Натискання'
         },
         browser_fill: {
           done: 'Заповнено поле форми',
           pending: 'Заповнення поля форми',
-          pendingAction: 'Заповнення',
+          pendingAction: 'Заповнення'
         },
         browser_navigate: {
           done: 'Відкрито сторінку',
           pending: 'Відкриття сторінки',
-          pendingAction: 'Відкриття',
+          pendingAction: 'Відкриття'
         },
         browser_snapshot: {
           done: 'Захоплено знімок сторінки',
           pending: 'Захоплення знімка сторінки',
-          pendingAction: 'Захоплення',
+          pendingAction: 'Захоплення'
         },
         browser_take_screenshot: {
           done: 'Захоплено знімок екрана',
           pending: 'Захоплення знімка екрана',
-          pendingAction: 'Захоплення',
+          pendingAction: 'Захоплення'
         },
         browser_type: {
           done: 'Введено на сторінці',
           pending: 'Введення на сторінці',
-          pendingAction: 'Введення',
+          pendingAction: 'Введення'
         },
         clarify: {
           done: 'Задано запитання',
           pending: 'Ставлю запитання',
-          pendingAction: 'Запитую',
+          pendingAction: 'Запитую'
         },
         cronjob: {
           done: 'Завдання cron',
           pending: 'Планування завдання cron',
-          pendingAction: 'Планування',
+          pendingAction: 'Планування'
         },
         edit_file: {
           done: 'Файл відредаговано',
           pending: 'Редагування файлу',
-          pendingAction: 'Редагування',
+          pendingAction: 'Редагування'
         },
         execute_code: {
           done: 'Код виконано',
           pending: 'Сценарій',
-          pendingAction: 'Сценарій',
+          pendingAction: 'Сценарій'
         },
         image_generate: {
           done: 'Зображення згенеровано',
           pending: 'Генерування зображення',
-          pendingAction: 'Генерування',
+          pendingAction: 'Генерування'
         },
         list_files: {
           done: 'Файли перелічено',
           pending: 'Перелік файлів',
-          pendingAction: 'Перелік',
+          pendingAction: 'Перелік'
         },
         patch: {
           done: 'Файл пропатчено',
           pending: 'Патчення файлу',
-          pendingAction: 'Патчення',
+          pendingAction: 'Патчення'
         },
         read_file: {
           done: 'Файл прочитано',
           pending: 'Читання файлу',
-          pendingAction: 'Читання',
+          pendingAction: 'Читання'
         },
         search_files: {
           done: 'Пошук файлів виконано',
           pending: 'Пошук файлів',
-          pendingAction: 'Пошук',
+          pendingAction: 'Пошук'
         },
         session_search_recall: {
           done: 'Пошук в історії сесії виконано',
           pending: 'Пошук в історії сесії',
-          pendingAction: 'Пошук',
+          pendingAction: 'Пошук'
         },
         terminal: {
           done: 'Команду виконано',
           pending: 'Виконання команди',
-          pendingAction: 'Виконання',
+          pendingAction: 'Виконання'
         },
         todo: {
           done: 'Завдання оновлено',
           pending: 'Оновлення завдань',
-          pendingAction: 'Оновлення',
+          pendingAction: 'Оновлення'
         },
         vision_analyze: {
           done: 'Зображення проаналізовано',
           pending: 'Аналіз зображення',
-          pendingAction: 'Аналіз',
+          pendingAction: 'Аналіз'
         },
         web_extract: {
           done: 'Вебсторінку прочитано',
           pending: 'Читання вебсторінки',
-          pendingAction: 'Читання',
+          pendingAction: 'Читання'
         },
         web_search: {
           done: 'Пошук у вебі виконано',
           pending: 'Пошук у вебі',
-          pendingAction: 'Пошук',
+          pendingAction: 'Пошук'
         },
         write_file: {
           done: 'Файл відредаговано',
           pending: 'Редагування файлу',
-          pendingAction: 'Редагування',
-        },
-      },
-    },
+          pendingAction: 'Редагування'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Шлюз OpenAmer не підключено',
     sudoSendFailed: 'Не вдалося надіслати пароль sudo',
     secretSendFailed: 'Не вдалося надіслати секрет',
     sudoTitle: 'Пароль адміністратора',
-    sudoDesc: 'OpenAmer потребує ваш пароль sudo для виконання привілейованої команди. Він надсилається лише вашому локальному агенту.',
+    sudoDesc:
+      'OpenAmer потребує ваш пароль sudo для виконання привілейованої команди. Він надсилається лише вашому локальному агенту.',
     sudoPlaceholder: 'пароль sudo',
     secretTitle: 'Потрібен секрет',
     secretDesc: 'OpenAmer потребує облікових даних, щоб продовжити.',
-    secretPlaceholder: 'значення секрету',
+    secretPlaceholder: 'значення секрету'
   },
   desktop: {
     audioReadFailed: 'Не вдалося прочитати записане аудіо',
@@ -2907,7 +2978,8 @@ export const uk = defineLocale({
     yoloSystem: active => `YOLO ${active ? 'увімкнено' : 'вимкнено'} для цього сеансу`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Не вдалося перемкнути YOLO',
-    profileStatus: current => `Профіль: ${current}. Використайте /profile <name> або вибірник «Нова сесія», щоб почати чат в іншому профілі.`,
+    profileStatus: current =>
+      `Профіль: ${current}. Використайте /profile <name> або вибірник «Нова сесія», щоб почати чат в іншому профілі.`,
     unknownProfile: 'Невідомий профіль',
     noProfileNamed: (target, available) => `Немає профілю з назвою "${target}". Доступні: ${available}`,
     newChatsProfile: name => `Нові чати використовуватимуть профіль ${name}.`,
@@ -2917,8 +2989,9 @@ export const uk = defineLocale({
     regenerateFailed: 'Не вдалося згенерувати ще раз',
     editFailed: 'Не вдалося редагувати',
     resumeFailed: 'Не вдалося відновити',
-    resumeStrandedTitle: "Не вдалося завантажити цю сесію",
-    resumeStrandedBody: 'Підключення до цієї сесії не вдалося, а автоматичні повторні спроби вичерпано. Перевірте, чи працює шлюз, і спробуйте ще раз.',
+    resumeStrandedTitle: 'Не вдалося завантажити цю сесію',
+    resumeStrandedBody:
+      'Підключення до цієї сесії не вдалося, а автоматичні повторні спроби вичерпано. Перевірте, чи працює шлюз, і спробуйте ще раз.',
     resumeRetry: 'Повторити',
     nothingToBranch: 'Немає чого розгалужувати',
     branchNeedsChat: 'Почніть або відновіть чат перед розгалуженням.',
@@ -2932,7 +3005,8 @@ export const uk = defineLocale({
     archiveFailed: 'Не вдалося архівувати',
     cwdChangeFailed: 'Не вдалося змінити робочу директорію',
     cwdStagedTitle: 'Робочу директорію підготовлено',
-    cwdStagedMessage: 'Перезапустіть бекенд застосунку, щоб застосувати зміни робочої директорії до цього активного сеансу.',
+    cwdStagedMessage:
+      'Перезапустіть бекенд застосунку, щоб застосувати зміни робочої директорії до цього активного сеансу.',
     modelSwitchFailed: 'Не вдалося перемкнути модель',
     sessionExported: 'Сеанс експортовано',
     sessionExportFailed: 'Не вдалося експортувати сеанс',
@@ -2958,31 +3032,31 @@ export const uk = defineLocale({
       success: platform => `Передано ${platform}. Можна продовжити тут будь-коли.`,
       systemNote: platform => `↻ Передано ${platform} — можна продовжити тут будь-коли.`,
       failed: error => `Не вдалося передати: ${error}`,
-      timedOut: 'Час очікування шлюзу вичерпано. Чи запущено `openamer gateway`?',
-    },
+      timedOut: 'Час очікування шлюзу вичерпано. Чи запущено `openamer gateway`?'
+    }
   },
   errors: {
     genericFailure: 'Щось пішло не так',
     boundaryTitle: 'В інтерфейсі сталася помилка',
     boundaryDesc: 'У поданні сталася неочікувана помилка. Ваші чати й налаштування збережено.',
     reloadWindow: 'Перезавантажити вікно',
-    openLogs: 'Відкрити журнали',
+    openLogs: 'Відкрити журнали'
   },
   ui: {
     search: {
-      clear: 'Очистити пошук',
+      clear: 'Очистити пошук'
     },
     pagination: {
       label: 'пагінація',
       previous: 'Попередня',
       previousAria: 'Перейти на попередню сторінку',
       next: 'Наступна',
-      nextAria: 'Перейти на наступну сторінку',
+      nextAria: 'Перейти на наступну сторінку'
     },
     sidebar: {
       title: 'Бічна панель',
       description: 'Показує мобільну бічну панель.',
-      toggle: 'Перемкнути бічну панель',
-    },
-  },
+      toggle: 'Перемкнути бічну панель'
+    }
+  }
 })

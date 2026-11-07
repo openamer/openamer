@@ -102,7 +102,8 @@ export function decidePreviewAct(input: PreviewActDecisionInput): PreviewActDeci
 
   if (!host.sessionId) {
     return {
-      message: 'This window has not settled which conversation the pane belongs to yet — try again once the turn is under way.',
+      message:
+        'This window has not settled which conversation the pane belongs to yet — try again once the turn is under way.',
       ok: false,
       reason: 'no-active-session'
     }
@@ -128,7 +129,8 @@ function clampResult(result: PreviewActEngineResult): string {
   }
 
   return JSON.stringify({
-    message: 'The page answered with more than this bridge will carry; narrow the request (elements max, or read one ref).',
+    message:
+      'The page answered with more than this bridge will carry; narrow the request (elements max, or read one ref).',
     ok: false,
     status: 'unsupported'
   })

@@ -44,7 +44,7 @@ export const cs = defineLocale({
     update: 'Aktualizovat',
     tryHint: term => `Zkuste „${term}“`,
     on: 'Zapnuto',
-    off: 'Vypnuto',
+    off: 'Vypnuto'
   },
   fileMenu: {
     revealFinder: 'Zobrazit ve Finder',
@@ -59,7 +59,7 @@ export const cs = defineLocale({
     renameLabel: 'Nový název',
     deleteTitle: name => `Smazat ${name}?`,
     deleteBody: 'Položka bude přesunuta do Koše — lze ji tam obnovit.',
-    pathCopied: 'Cesta zkopírována',
+    pathCopied: 'Cesta zkopírována'
   },
   boot: {
     ready: 'OpenAmer Desktop je připraven',
@@ -69,7 +69,7 @@ export const cs = defineLocale({
       loadingSettings: 'Načítání nastavení OpenAmer',
       loadingSessions: 'Načítání nedávných sezení',
       startingDesktopConnection: 'Spouštění desktopového připojení',
-      startingOpenAmerDesktop: 'Spouštění OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Spouštění OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Proces OpenAmer na pozadí skončil.',
@@ -78,13 +78,15 @@ export const cs = defineLocale({
       desktopBootFailed: 'Spuštění desktopu selhalo',
       gatewayConnectionLost: 'Spojení s bránou bylo ztraceno',
       gatewaySignInRequired: 'Vyžadováno přihlášení ke bráně',
-      ipcBridgeUnavailable: 'Desktopový IPC-most není dostupný.',
+      ipcBridgeUnavailable: 'Desktopový IPC-most není dostupný.'
     },
     failure: {
-      title: "OpenAmer se nepodařilo spustit",
-      description: "Brána na pozadí se nespustila. Zkuste jeden z kroků obnovy níže. Nic zde nesmaže vaše konverzace ani nastavení.",
+      title: 'OpenAmer se nepodařilo spustit',
+      description:
+        'Brána na pozadí se nespustila. Zkuste jeden z kroků obnovy níže. Nic zde nesmaže vaše konverzace ani nastavení.',
       remoteTitle: 'Vyžadováno přihlášení ke vzdálené bráně',
-      remoteDescription: 'Vaše relace vzdálené brány vypršela. Přihlaste se znovu kvůli obnovení spojení. Nic zde nesmaže vaše konverzace ani nastavení.',
+      remoteDescription:
+        'Vaše relace vzdálené brány vypršela. Přihlaste se znovu kvůli obnovení spojení. Nic zde nesmaže vaše konverzace ani nastavení.',
       retry: 'Zkusit znovu',
       repairInstall: 'Opravit instalaci',
       useLocalGateway: 'Použít místní bránu',
@@ -92,7 +94,8 @@ export const cs = defineLocale({
       back: 'Zpět',
       openLogs: 'Otevřít protokoly',
       repairHint: 'Oprava znovu spustí instalační program a na novém počítači může trvat několik minut.',
-      remoteSignInHint: signInLabel => `Odhlásí uloženou relaci vzdáleného prohlížeče a poté otevře ${signInLabel}. Pomocí „Použít místní bránu“ se vrátíte k vestavěnému backendu.`,
+      remoteSignInHint: signInLabel =>
+        `Odhlásí uloženou relaci vzdáleného prohlížeče a poté otevře ${signInLabel}. Pomocí „Použít místní bránu“ se vrátíte k vestavěnému backendu.`,
       signOutAndSignIn: 'Odhlásit a přihlásit',
       remoteFailureHint: 'Zkontrolujte URL a přihlášení v nastavení brány, nebo přejděte na místní bránu.',
       hideRecentLogs: 'Skrýt nedávné protokoly',
@@ -104,8 +107,8 @@ export const cs = defineLocale({
       signInFailed: 'Přihlášení selhalo',
       signInToRemoteGateway: 'Přihlásit ke vzdálené bráně',
       signInWithProvider: provider => `Přihlásit se přes ${provider}`,
-      identityProvider: 'váš poskytovatel identity',
-    },
+      identityProvider: 'váš poskytovatel identity'
+    }
   },
   notifications: {
     region: 'Oznámení',
@@ -118,21 +121,23 @@ export const cs = defineLocale({
     copyDetail: 'Kopírovat podrobnosti',
     copyDetailFailed: 'Podrobnosti oznámení nelze zkopírovat',
     backendOutOfDateTitle: 'Backend je zastaralý',
-    backendOutOfDateMessage: 'Váš OpenAmer backend je starší než tato desktopová verze a nemusí fungovat správně. Aktualizujte je, aby byly sladěny.',
+    backendOutOfDateMessage:
+      'Váš OpenAmer backend je starší než tato desktopová verze a nemusí fungovat správně. Aktualizujte je, aby byly sladěny.',
     installMethodUnsupportedTitle: 'Nepodporovaný způsob instalace',
     updateOpenAmer: 'Aktualizovat OpenAmer',
     updateReadyTitle: 'Aktualizace připravena',
     updateReadyMessage: count => `K dispozici ${count} nová změna${count === 1 ? 'změna' : 'změny'}.`,
-    seeWhatsNew: "Zobrazit novinky",
+    seeWhatsNew: 'Zobrazit novinky',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT vyžaduje ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs odmítl klíč API (401).',
       gatewayAuthFailed: 'Ověření brány selhalo — zkontrolujte svůj API_SERVER_KEY.',
-      methodNotAllowed: 'Desktopový backend odmítl tento požadavek (405 Method Not Allowed). Zkuste restartovat OpenAmer Desktop.',
+      methodNotAllowed:
+        'Desktopový backend odmítl tento požadavek (405 Method Not Allowed). Zkuste restartovat OpenAmer Desktop.',
       microphonePermission: 'Oprávnění k mikrofonu bylo zamítnuto.',
       openaiRejectedApiKey: 'OpenAI odmítl klíč API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI odmítl klíč API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS vyžaduje VOICE_TOOLS_OPENAI_KEY nebo OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS vyžaduje VOICE_TOOLS_OPENAI_KEY nebo OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Nakonfigurujte převod řeči na text pro použití hlasového režimu.',
@@ -151,7 +156,7 @@ export const cs = defineLocale({
       transcriptionFailed: 'Přepis hlasu selhal',
       transcriptionUnavailable: 'Přepis hlasu zatím není dostupný.',
       tryRecordingAgain: 'Zkuste nahrát znovu.',
-      unavailable: 'Hlas není dostupný',
+      unavailable: 'Hlas není dostupný'
     },
     native: {
       approvalTitle: 'Vyžadováno schválení',
@@ -164,11 +169,12 @@ export const cs = defineLocale({
       turnErrorTitle: 'Kolo selhalo',
       backgroundDoneTitle: 'Úloha na pozadí dokončena',
       backgroundFailedTitle: 'Úloha na pozadí selhala',
-      creditsTitle: 'Kredity',
-    },
+      creditsTitle: 'Kredity'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Softwarové vykreslování aktivní — zjištěn vzdálený displej (${reason}). GPU akcelerace je zakázána, aby se zabránilo mrání.`,
+    message: reason =>
+      `Softwarové vykreslování aktivní — zjištěn vzdálený displej (${reason}). GPU akcelerace je zakázána, aby se zabránilo mrání.`
   },
   billingBlock: {
     titleOpenamer: 'Došly kredity OpenAmer',
@@ -176,7 +182,7 @@ export const cs = defineLocale({
     fallbackMessage: 'Váš účet nemá žádné kredity. Přidejte kredity pro pokračování.',
     openBilling: 'Otevřít fakturaci',
     addCredits: 'Přidat kredity',
-    dismiss: 'Zrušit',
+    dismiss: 'Zrušit'
   },
   titlebar: {
     hideSidebar: 'Skrýt postranní panel',
@@ -193,7 +199,7 @@ export const cs = defineLocale({
     openStarmap: 'Otevřít graf paměti',
     openKeybinds: 'Klávesové zkratky',
     layoutEditor: 'Editor rozvržení',
-    layoutEditorTitle: 'Editor rozvržení — Cmd/Ctrl+klik obnoví rozvržení',
+    layoutEditorTitle: 'Editor rozvržení — Cmd/Ctrl+klik obnoví rozvržení'
   },
   keybinds: {
     title: 'Klávesové zkratky',
@@ -210,7 +216,7 @@ export const cs = defineLocale({
       profiles: 'Profily',
       session: 'Relace',
       navigation: 'Navigace',
-      view: 'Zobrazení',
+      view: 'Zobrazení'
     },
     actions: {
       'keybinds.openPanel': 'Otevřít klávesové zkratky',
@@ -289,8 +295,8 @@ export const cs = defineLocale({
       'composer.slash': 'Paleta příkazů se lomítkem',
       'composer.help': 'Rychlá nápověda',
       'composer.history': 'Procházet bublinu / historii',
-      'composer.cancel': 'Zavřít bublinu · zrušit běh',
-    },
+      'composer.cancel': 'Zavřít bublinu · zrušit běh'
+    }
   },
   language: {
     label: 'Jazyk',
@@ -299,7 +305,7 @@ export const cs = defineLocale({
     saveError: 'Aktualizace jazyka selhala',
     switchTo: 'Změnit jazyk',
     searchPlaceholder: 'Hledat jazyky…',
-    noResults: 'Nebyly nalezeny žádné jazyky',
+    noResults: 'Nebyly nalezeny žádné jazyky'
   },
   settings: {
     closeSettings: 'Zavřít nastavení',
@@ -324,11 +330,12 @@ export const cs = defineLocale({
       about: 'O aplikaci',
       billing: 'Fakturace',
       notifications: 'Oznámení',
-      plugins: 'Pluginy',
+      plugins: 'Pluginy'
     },
     plugins: {
       title: 'Doplněky pro desktop',
-      blurb: 'Rozšíření UI načtená do této aplikace — zabalená s buildem nebo vložená do složky desktop-plugins (včetně těch, které zapisuje OpenAmer). Zakázání odstraňuje plugin za běhu a trvá i po restartu.',
+      blurb:
+        'Rozšíření UI načtená do této aplikace — zabalená s buildem nebo vložená do složky desktop-plugins (včetně těch, které zapisuje OpenAmer). Zakázání odstraňuje plugin za běhu a trvá i po restartu.',
       count: n => `${n} nainstalováno`,
       openFolder: 'Otevřít složku pluginů',
       rescan: 'Přeprohledat',
@@ -340,49 +347,51 @@ export const cs = defineLocale({
       kinds: {
         bundled: 'sbalené',
         disk: 'na disku',
-        runtime: 'běh',
-      },
+        runtime: 'běh'
+      }
     },
     notifications: {
       title: 'Upozornění',
-      intro: 'Nativní desktopová upozornění, oddělená od v aplikaci. Jsou lokální pro zařízení – každý počítač si uchovává vlastní nastavení.',
+      intro:
+        'Nativní desktopová upozornění, oddělená od v aplikaci. Jsou lokální pro zařízení – každý počítač si uchovává vlastní nastavení.',
       enableAll: 'Povolit upozornění',
       enableAllDesc: 'Hlavní přepínač. Vypněte pro potlačení všech upozornění níže.',
       focusedHint: 'Upozornění na dokončení se spouští pouze když je OpenAmer na pozadí.',
       kinds: {
         approval: {
           label: 'Potřebné schválení',
-          description: 'Příkaz čeká na vaše schválení nebo zamítnutí.',
+          description: 'Příkaz čeká na vaše schválení nebo zamítnutí.'
         },
         input: {
           label: 'Potřebný vstup',
-          description: 'OpenAmer se zeptal nebo potřebuje heslo nebo tajemství.',
+          description: 'OpenAmer se zeptal nebo potřebuje heslo nebo tajemství.'
         },
         turnDone: {
           label: 'Odpověď připravena',
-          description: 'Kolo skončilo, zatímco byl OpenAmer na pozadí.',
+          description: 'Kolo skončilo, zatímco byl OpenAmer na pozadí.'
         },
         turnError: {
           label: 'Kolo selhalo',
-          description: 'Kolo skončilo s chybou.',
+          description: 'Kolo skončilo s chybou.'
         },
         backgroundDone: {
           label: 'Úloha na pozadí dokončena',
-          description: 'Příkaz terminálu na pozadí byl dokončen.',
+          description: 'Příkaz terminálu na pozadí byl dokončen.'
         },
         credits: {
           label: 'Upozornění kreditů',
-          description: 'Přístup k kreditům je pozastaven nebo obnoven.',
-        },
+          description: 'Přístup k kreditům je pozastaven nebo obnoven.'
+        }
       },
       test: 'Odeslat testovací upozornění',
       testTitle: 'OpenAmer',
       testBody: 'Upozornění fungují.',
-      testSent: 'Test odeslán. Pokud se nic nezobrazí, zkontrolujte oprávnění upozornění v OS a režim Soustředění/Nerušit.',
+      testSent:
+        'Test odeslán. Pokud se nic nezobrazí, zkontrolujte oprávnění upozornění v OS a režim Soustředění/Nerušit.',
       testUnsupported: 'Tento systém nepodporuje nativní upozornění.',
       completionSoundTitle: 'Zvuk dokončení',
       completionSoundDesc: 'Přehrává se po skončení tahu agenta. Vyberte předvolbu a přehrajte ji zde.',
-      completionSoundPreview: 'Náhled',
+      completionSoundPreview: 'Náhled'
     },
     sections: {
       model: 'Model',
@@ -392,7 +401,7 @@ export const cs = defineLocale({
       safety: 'Bezpečnost',
       memory: 'Paměť a kontext',
       voice: 'Hlas',
-      advanced: 'Pokročilé',
+      advanced: 'Pokročilé'
     },
     searchPlaceholder: {
       about: 'O OpenAmer Desktop',
@@ -400,37 +409,40 @@ export const cs = defineLocale({
       gateway: 'Připojení brány...',
       keys: 'Hledat klíče API...',
       mcp: 'Hledat servery MCP...',
-      sessions: 'Hledat archivované relace...',
+      sessions: 'Hledat archivované relace...'
     },
     modeOptions: {
       light: {
         label: 'Světlý',
-        description: 'Světlé povrchy',
+        description: 'Světlé povrchy'
       },
       dark: {
         label: 'Tmavý',
-        description: 'Prostor s nízkým oslněním',
+        description: 'Prostor s nízkým oslněním'
       },
       system: {
         label: 'Systém',
-        description: 'Následovat vzhled systému',
-      },
+        description: 'Následovat vzhled systému'
+      }
     },
     appearance: {
       title: 'Vzhled',
-      intro: 'Toto jsou předvolby zobrazení jen pro desktop. Režim řídí jas; motiv řídí paletu akcentů a styl konverzace.',
+      intro:
+        'Toto jsou předvolby zobrazení jen pro desktop. Režim řídí jas; motiv řídí paletu akcentů a styl konverzace.',
       colorMode: 'Barevný režim',
       colorModeDesc: 'Vyberte pevný režim nebo nechte OpenAmer následovat nastavení systému.',
       toolViewTitle: 'Zobrazení volání nástrojů',
       toolViewDesc: 'Produkt skrývá surová data nástrojů; Technické zobrazuje kompletní vstup/výstup.',
       uiScaleTitle: 'Měřítko rozhraní',
-      uiScaleDesc: (percent: number) => `Škáluje text a ovládací prvky v celé aplikaci. Funguje také Cmd/Ctrl s +, - a 0. Aktuální: ${percent} %.`,
+      uiScaleDesc: (percent: number) =>
+        `Škáluje text a ovládací prvky v celé aplikaci. Funguje také Cmd/Ctrl s +, - a 0. Aktuální: ${percent} %.`,
       translucencyTitle: 'Průhlednost okna',
       translucencyDesc: 'Viděte svou plochu skrz celé okno. Pouze macOS a Windows.',
       backdropTitle: 'Pozadí konverzace',
       backdropDesc: 'Tmavý obraz sochy za konverzací.',
       embedsTitle: 'Vložený obsah',
-      embedsDesc: 'Bohaté náhledy se načítají z webů třetích stran (YouTube, X, …). „Zeptat se“ zobrazuje zástupný symbol, dokud každý nepovolíte; „Vždy“ je načítá automaticky; „Vypnuto“ ponechá jen odkazy.',
+      embedsDesc:
+        'Bohaté náhledy se načítají z webů třetích stran (YouTube, X, …). „Zeptat se“ zobrazuje zástupný symbol, dokud každý nepovolíte; „Vždy“ je načítá automaticky; „Vypnuto“ ponechá jen odkazy.',
       embedsAsk: 'Zeptat se',
       embedsAlways: 'Vždy',
       embedsOff: 'Vypnuto',
@@ -443,7 +455,8 @@ export const cs = defineLocale({
       themeDesc: 'Pouze desktopové palety. Vybraný režim se aplikuje navrch.',
       themeProfileNote: profile => `Uloženo pro profil ${profile} — každý profil si uchovává vlastní motiv.`,
       installTitle: 'Nainstalovat z VS Code',
-      installDesc: 'Vložte ID rozšíření z Marketplace (např. dracula-theme.theme-dracula) a jeho barevný motiv se převede na desktopovou paletu.',
+      installDesc:
+        'Vložte ID rozšíření z Marketplace (např. dracula-theme.theme-dracula) a jeho barevný motiv se převede na desktopovou paletu.',
       installPlaceholder: 'vydavatel.rozšíření',
       installButton: 'Instalovat',
       installing: 'Instalace…',
@@ -453,8 +466,10 @@ export const cs = defineLocale({
       importedBadge: 'Importováno',
       pet: {
         title: 'Mazlíček',
-        intro: 'Přijměte animovaného mazlíčka Petdex, který plave nad aplikací a reaguje na to, co dělá OpenAmer — běží při spuštění nástrojů, slaví úspěch, smutní při chybách.',
-        restartHint: 'Mazlíčci vyžadují rychlý restart — běžící aplikace byla spuštěna před přidáním této funkce. Ukončete a znovu otevřete OpenAmer, pak se vraťte sem.',
+        intro:
+          'Přijměte animovaného mazlíčka Petdex, který plave nad aplikací a reaguje na to, co dělá OpenAmer — běží při spuštění nástrojů, slaví úspěch, smutní při chybách.',
+        restartHint:
+          'Mazlíčci vyžadují rychlý restart — běžící aplikace byla spuštěna před přidáním této funkce. Ukončete a znovu otevřete OpenAmer, pak se vraťte sem.',
         on: 'Zapnuto',
         off: 'Vypnuto',
         scaleTitle: 'Velikost',
@@ -464,7 +479,7 @@ export const cs = defineLocale({
         chooseTitle: 'Vyberte mazlíčka',
         chooseDesc: 'Výběr nainstaluje ho (pokud je potřeba) a aktivuje.',
         searchPlaceholder: 'Hledat mazlíčky…',
-        unreachable: "Nelze načíst galerii petdex. Zkontrolujte připojení a znovu otevřete tuto stránku.",
+        unreachable: 'Nelze načíst galerii petdex. Zkontrolujte připojení a znovu otevřete tuto stránku.',
         noMatch: query => `Žádné mazlíčky neodpovídají „${query}“.`,
         installedTag: 'nainstalováno',
         generatedTag: 'Vygenerováno',
@@ -473,7 +488,7 @@ export const cs = defineLocale({
         uninstall: name => `Odinstalovat ${name}`,
         delete: name => `Smazat ${name}`,
         deleteTitle: name => `Smazat ${name}?`,
-        deleteBody: "Toto trvale smaže mazlíčka — nelze ho znovu nainstalovat.",
+        deleteBody: 'Toto trvale smaže mazlíčka — nelze ho znovu nainstalovat.',
         deleteConfirm: 'Smazat',
         rename: name => `Přejmenovat ${name}`,
         renameTitle: 'Přejmenovat mazlíčka',
@@ -486,8 +501,8 @@ export const cs = defineLocale({
         exportFailed: slug => `Nelze exportovat ${slug}`,
         noneAvailable: 'Žádné mazlíčky k zapnutí momentálně nejsou k dispozici.',
         turnOnFailed: 'Nelze zapnout mazlíčka.',
-        turnOffFailed: 'Nelze vypnout mazlíčka.',
-      },
+        turnOffFailed: 'Nelze vypnout mazlíčka.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,25 +513,27 @@ export const cs = defineLocale({
       updates: 'Aktualizace',
       checkNow: 'Zkontrolovat nyní',
       checking: 'Kontrolování…',
-      seeWhatsNew: "Zobrazit novinky",
+      seeWhatsNew: 'Zobrazit novinky',
       updateNow: 'Aktualizovat nyní',
       releaseNotes: 'Poznámky k vydání',
-      onLatest: "Máte nejnovější verzi.",
+      onLatest: 'Máte nejnovější verzi.',
       installing: 'Právě se instaluje aktualizace.',
-      cantUpdate: "Tato sestava se nemůže aktualizovat zevnitř aplikace.",
-      cantReach: "Nepodařilo se spojit s aktualizačním serverem.",
+      cantUpdate: 'Tato sestava se nemůže aktualizovat zevnitř aplikace.',
+      cantReach: 'Nepodařilo se spojit s aktualizačním serverem.',
       tapCheck: 'Klepnutím na „Zkontrolovat nyní“ vyhledáte aktualizace.',
-      updateReady: count => `K dispozici je nová aktualizace (včetně ${count} změny${count === 1 ? 'změna' : 'změny'}).`,
+      updateReady: count =>
+        `K dispozici je nová aktualizace (včetně ${count} změny${count === 1 ? 'změna' : 'změny'}).`,
       lastChecked: age => `Naposledy zkontrolováno ${age}`,
       justNowSuffix: ' · právě teď',
       automaticUpdates: 'Automatické aktualizace',
-      automaticUpdatesDesc: 'OpenAmer automaticky kontroluje aktualizace na pozadí a upozorní vás, když je jedna připravena.',
+      automaticUpdatesDesc:
+        'OpenAmer automaticky kontroluje aktualizace na pozadí a upozorní vás, když je jedna připravena.',
       branchCommit: (branch, commit) => `Větev ${branch} · Revize ${commit}`,
       never: 'nikdy',
       justNow: 'právě teď',
       minAgo: count => `před ${count} min`,
       hoursAgo: count => `před ${count} hod`,
-      daysAgo: count => `před ${count} dny`,
+      daysAgo: count => `před ${count} dny`
     },
     config: {
       none: 'Žádné',
@@ -532,7 +549,7 @@ export const cs = defineLocale({
       imported: 'Konfigurace importována',
       invalidJson: 'Neplatný JSON konfigurace',
       keepAwakeTitle: 'Zabránit uspání počítače',
-      keepAwakeDesc: 'Zabraňte uspání počítače, aby dlouhé nebo noční běhy pokračovaly. Displej se stále může ztmavit.',
+      keepAwakeDesc: 'Zabraňte uspání počítače, aby dlouhé nebo noční běhy pokračovaly. Displej se stále může ztmavit.'
     },
     credentials: {
       pasteKey: 'Vložit klíč',
@@ -542,7 +559,7 @@ export const cs = defineLocale({
       couldNotSave: 'Nelze uložit přihlašovací údaj.',
       remove: 'Odebrat',
       getKey: 'Získat klíč',
-      saving: 'Ukládání',
+      saving: 'Ukládání'
     },
     envActions: {
       actionsFor: label => `Akce pro ${label}`,
@@ -553,7 +570,7 @@ export const cs = defineLocale({
       revealValue: 'Zobrazit hodnotu',
       replace: 'Nahradit',
       set: 'Nastavit',
-      clear: 'Vymazat',
+      clear: 'Vymazat'
     },
     gateway: {
       loading: 'Načítání nastavení brány...',
@@ -561,21 +578,25 @@ export const cs = defineLocale({
       unavailableDesc: 'Desktopový IPC most nevystavuje nastavení brány.',
       title: 'Připojení brány',
       envOverride: 'Přepis env',
-      intro: 'OpenAmer Desktop ve výchozím nastavení spouští vlastní lokální bránu. Použijte vzdálenou bránu, když chcete, aby tato aplikace ovládala již běžící backend OpenAmer na jiném počítači nebo za důvěryhodným proxy. Vyberte níže profil, aby získal vlastní vzdálený hostitel.',
+      intro:
+        'OpenAmer Desktop ve výchozím nastavení spouští vlastní lokální bránu. Použijte vzdálenou bránu, když chcete, aby tato aplikace ovládala již běžící backend OpenAmer na jiném počítači nebo za důvěryhodným proxy. Vyberte níže profil, aby získal vlastní vzdálený hostitel.',
       appliesTo: 'Platí pro',
       allProfiles: 'Všechny profily',
       defaultConnection: 'Výchozí připojení pro každý profil, který nemá vlastní přepis.',
-      profileConnection: profile => `Připojení používané pouze při aktivním profilu „${profile}“. Zvolte Použít výchozí bránu pro odstranění jeho přepisu.`,
+      profileConnection: profile =>
+        `Připojení používané pouze při aktivním profilu „${profile}“. Zvolte Použít výchozí bránu pro odstranění jeho přepisu.`,
       envOverrideTitle: 'Proměnné prostředí ovládají tuto desktopovou relaci.',
-      envOverrideDesc: 'Odstraňte OPENAMER_DESKTOP_REMOTE_URL a OPENAMER_DESKTOP_REMOTE_TOKEN, aby se použilo uložené nastavení níže.',
+      envOverrideDesc:
+        'Odstraňte OPENAMER_DESKTOP_REMOTE_URL a OPENAMER_DESKTOP_REMOTE_TOKEN, aby se použilo uložené nastavení níže.',
       modeTitle: 'Režim připojení',
       localTitle: 'Lokální brána',
       localDesc: 'Spusťte privátní backend OpenAmer na localhostu. Je to výchozí a funguje offline.',
       inheritTitle: 'Použít výchozí bránu',
-      inheritDesc: "Odebrat přepsání tohoto profilu a použít výchozí připojení.",
+      inheritDesc: 'Odebrat přepsání tohoto profilu a použít výchozí připojení.',
       remoteTitle: 'Vzdálená brána',
       remoteDesc: 'Připojit desktopový shell k vzdálenému backendu OpenAmer.',
-      remoteAuthHint: 'Hostované brány používají OAuth nebo uživatelské jméno a heslo; u vlastních může být token relace.',
+      remoteAuthHint:
+        'Hostované brány používají OAuth nebo uživatelské jméno a heslo; u vlastních může být token relace.',
       cloudTitle: 'OpenAmer Cloud',
       cloudDesc: 'Přihlaste se jednou k OpenAmer Cloud a vyberte z agentů na svém účtu — žádná URL k vložení.',
       cloudSignInTitle: 'OpenAmer Cloud',
@@ -592,7 +613,7 @@ export const cs = defineLocale({
       cloudNoAgents: {
         before: 'Na tomto účtu nebyli nalezeni žádní agenti. Vytvořte jeden v ',
         linkText: 'Portál OpenAmer',
-        after: ', pak aktualizujte.',
+        after: ', pak aktualizujte.'
       },
       cloudRefresh: 'Aktualizovat',
       cloudConnect: 'Připojit',
@@ -616,12 +637,16 @@ export const cs = defineLocale({
       signOut: 'Odhlásit se',
       signInWith: provider => `Přihlásit se pomocí ${provider}`,
       authTitle: 'Autentizace',
-      authSignedInPassword: 'Tato brána používá uživatelské jméno a heslo. Jste přihlášen; relace se obnovuje automaticky.',
+      authSignedInPassword:
+        'Tato brána používá uživatelské jméno a heslo. Jste přihlášen; relace se obnovuje automaticky.',
       authSignedInOauth: 'Tato brána používá OAuth. Jste přihlášen; relace se obnovuje automaticky.',
-      authNeedsPassword: 'Tato brána používá uživatelské jméno a heslo. Přihlaste se, abyste autorizovali tuto desktopovou aplikaci.',
-      authNeedsOauth: provider => `Tato brána používá OAuth. Přihlaste se pomocí ${provider}, abyste autorizovali tuto desktopovou aplikaci.`,
+      authNeedsPassword:
+        'Tato brána používá uživatelské jméno a heslo. Přihlaste se, abyste autorizovali tuto desktopovou aplikaci.',
+      authNeedsOauth: provider =>
+        `Tato brána používá OAuth. Přihlaste se pomocí ${provider}, abyste autorizovali tuto desktopovou aplikaci.`,
       tokenTitle: 'Token relace',
-      tokenDesc: 'Token relace dashboardu používaný pro přístup k REST a WebSocket. Nechte prázdné, chcete-li zachovat uložený token.',
+      tokenDesc:
+        'Token relace dashboardu používaný pro přístup k REST a WebSocket. Nechte prázdné, chcete-li zachovat uložený token.',
       existingToken: value => `Stávající token ${value}`,
       savedToken: 'Uloženo',
       pasteSessionToken: 'Vložit token relace',
@@ -652,7 +677,8 @@ export const cs = defineLocale({
       applyFailed: 'Nepodařilo se aplikovat nastavení brány',
       saveFailed: 'Nepodařilo se uložit nastavení brány',
       sshTitle: 'Připojit přes SSH',
-      sshDesc: 'OpenAmer se spouští na vzdáleném počítači přes SSH a tuneluje se do této aplikace — nic nemusíte spouštět ani vystavovat. Vyžaduje funkční klíčový přístup SSH k hostiteli.',
+      sshDesc:
+        'OpenAmer se spouští na vzdáleném počítači přes SSH a tuneluje se do této aplikace — nic nemusíte spouštět ani vystavovat. Vyžaduje funkční klíčový přístup SSH k hostiteli.',
       sshTrustHint: 'První předložený klíč hostitele je důvěryhodný a připnutý; pozdější změny selžou uzavřeně.',
       sshHostTitle: 'Hostitel',
       sshHostDesc: 'user@host, nebo alias Host z ~/.ssh/config.',
@@ -676,18 +702,22 @@ export const cs = defineLocale({
       sshReachable: (host, platform) => `Dosažitelný: ${host} (${platform}) — OpenAmer nalezen`,
       sshIncompleteHost: 'Zadejte SSH host před připojením.',
       sshErrUnreachable: 'Nelze dosáhnout tohoto hostitele přes SSH. Zkontrolujte hostitele, port a síť.',
-      sshErrAuth: 'SSH autentizace selhala. Načtěte svůj klíč do ssh-agent (ssh-add) nebo nastavte IdentityFile v ~/.ssh/config — OpenAmer spouští ssh neinteraktivně.',
-      sshErrHostKey: 'Hostitelský klíč se ZMĚNIL od posledního připojení. Ověřte, že je to očekáváno, pak spusťte ssh-keygen -R <host> a znovu se připojte.',
-      sshErrNotInstalled: 'OpenAmer není nainstalován na vzdáleném hostiteli. Nainstalujte ho tam (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) nebo nastavte cestu k OpenAmer.',
-      sshErrPlatform: 'Nepodporovaná vzdálená platforma. Režim OpenAmer Desktop SSH podporuje vzdálené hostitele Linux, macOS a Windows.',
+      sshErrAuth:
+        'SSH autentizace selhala. Načtěte svůj klíč do ssh-agent (ssh-add) nebo nastavte IdentityFile v ~/.ssh/config — OpenAmer spouští ssh neinteraktivně.',
+      sshErrHostKey:
+        'Hostitelský klíč se ZMĚNIL od posledního připojení. Ověřte, že je to očekáváno, pak spusťte ssh-keygen -R <host> a znovu se připojte.',
+      sshErrNotInstalled:
+        'OpenAmer není nainstalován na vzdáleném hostiteli. Nainstalujte ho tam (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) nebo nastavte cestu k OpenAmer.',
+      sshErrPlatform:
+        'Nepodporovaná vzdálená platforma. Režim OpenAmer Desktop SSH podporuje vzdálené hostitele Linux, macOS a Windows.',
       sshErrTimeout: 'Připojení SSH vypršelo. Hostitel může být nedosažitelný nebo ve spánku.',
       sshErrUpdateRequired: 'Aktualizujte OpenAmer na vzdáleném hostiteli před připojením přes Desktop SSH.',
-      sshErrUnknown: 'Připojení SSH selhalo.',
+      sshErrUnknown: 'Připojení SSH selhalo.'
     },
     keys: {
       loading: 'Načítání API klíčů a přihlašovacích údajů...',
       failedLoad: 'Načtení API klíčů selhalo',
-      empty: 'V této kategorii ještě nic není nakonfigurováno.',
+      empty: 'V této kategorii ještě nic není nakonfigurováno.'
     },
     mcp: {
       loading: 'Načítání MCP serverů...',
@@ -739,7 +769,8 @@ export const cs = defineLocale({
       catalogInstallFailed: name => `Nepodařilo se nainstalovat ${name}`,
       catalogEnvPrompt: name => `${name} vyžaduje přihlašovací údaje`,
       catalogEnvRequired: 'Vyplňte požadované hodnoty před instalací.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} povoleno`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} povoleno`,
       statusConnecting: 'Připojování…',
       statusNeedsAuth: 'Vyžaduje ověření',
       statusError: 'Chyba',
@@ -752,7 +783,7 @@ export const cs = defineLocale({
       unsavedConnect: 'Neuloženo — uložte mcp.json pro připojení.',
       enableTool: tool => `Povolit ${tool}`,
       disableTool: tool => `Zakázat ${tool}`,
-      noOutput: 'Žádný výstup zatím.',
+      noOutput: 'Žádný výstup zatím.'
     },
     model: {
       loading: 'Načítání konfigurace modelu...',
@@ -773,46 +804,47 @@ export const cs = defineLocale({
       providerDefault: '(výchozí poskytovatele)',
       fallbackAdd: 'Přidat záložní',
       fallbackEmpty: 'Žádné záložní modely — používá se výchozí model, pokud neselže.',
-      notInCatalog: "není v seznamu modelů tohoto poskytovatele — volání může přejít na záložní.",
+      notInCatalog: 'není v seznamu modelů tohoto poskytovatele — volání může přejít na záložní.',
       tasks: {
         vision: {
           label: 'Vize',
-          hint: 'Analýza obrázků',
+          hint: 'Analýza obrázků'
         },
         web_extract: {
           label: 'Extrahování webu',
-          hint: 'Shrnutí stránky',
+          hint: 'Shrnutí stránky'
         },
         compression: {
           label: 'Komprese',
-          hint: 'Komprese kontextu',
+          hint: 'Komprese kontextu'
         },
         skills_hub: {
           label: 'Centrum dovedností',
-          hint: 'Vyhledávání dovedností',
+          hint: 'Vyhledávání dovedností'
         },
         approval: {
           label: 'Schválení',
-          hint: 'Chytré automatické schvalování',
+          hint: 'Chytré automatické schvalování'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Směrování nástrojů MCP',
+          hint: 'Směrování nástrojů MCP'
         },
         title_generation: {
           label: 'Generování titulů',
-          hint: 'Názvy relací',
+          hint: 'Názvy relací'
         },
         curator: {
           label: 'Kurátor',
-          hint: 'Revize používání dovedností',
-        },
-      },
+          hint: 'Revize používání dovedností'
+        }
+      }
     },
     providers: {
       connectAccount: 'Připojit účet',
       haveApiKey: 'Máte místo toho API klíč?',
-      intro: 'Přihlaste se pomocí předplatného — není potřeba kopírovat API klíč. OpenAmer spustí přihlášení v prohlížeči za vás, přímo v aplikaci.',
+      intro:
+        'Přihlaste se pomocí předplatného — není potřeba kopírovat API klíč. OpenAmer spustí přihlášení v prohlížeči za vás, přímo v aplikaci.',
       connected: 'Připojeno',
       collapse: 'Sbalit',
       connectAnother: 'Připojit jiného poskytovatele',
@@ -822,7 +854,8 @@ export const cs = defineLocale({
       removeConfirm: provider => `Odebrat ${provider}?`,
       removeExternalGeneric: provider => `${provider} spravuje jeho vlastní CLI — odeberte ho tam.`,
       removeKeyManaged: provider => `${provider} je nakonfigurován z API klíče. Odeberte ho z API klíčů.`,
-      removeTerminalConfirm: (provider, command) => `Odpojit ${provider}? Tím se v terminálu spustí "${command}" pro vymazání přihlašovacích údajů.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Odpojit ${provider}? Tím se v terminálu spustí "${command}" pro vymazání přihlašovacích údajů.`,
       removeTerminalRunning: provider => `Probíhá odpojení ${provider} v terminálu…`,
       removedTitle: 'Účet odebrán',
       removedMessage: provider => `${provider} byl odebrán.`,
@@ -832,14 +865,16 @@ export const cs = defineLocale({
       noKeysMatch: 'Žádní poskytovatelé neodpovídají vašemu hledání.',
       localEndpoint: {
         title: 'Lokální / vlastní koncový bod',
-        description: 'Nasměrujte OpenAmer na libovolný koncový bod kompatibilní s OpenAI (Zyphra, vLLM, llama.cpp, Ollama atd.).',
+        description:
+          'Nasměrujte OpenAmer na libovolný koncový bod kompatibilní s OpenAI (Zyphra, vLLM, llama.cpp, Ollama atd.).'
       },
-      loading: 'Načítání poskytovatelů...',
+      loading: 'Načítání poskytovatelů...'
     },
     sessions: {
       loading: 'Načítání archivovaných relací…',
       archivedTitle: 'Archivované relace',
-      archivedIntro: 'Archivované chaty jsou skryté z postranního panelu, ale zachovávají všechny své zprávy. Ctrl/⌘-klikněte na chat v postranním panelu pro jeho archivaci.',
+      archivedIntro:
+        'Archivované chaty jsou skryté z postranního panelu, ale zachovávají všechny své zprávy. Ctrl/⌘-klikněte na chat v postranním panelu pro jeho archivaci.',
       emptyArchivedTitle: 'Nic nearchivováno',
       emptyArchivedDesc: 'Archivujte chat, abyste ho skryli zde.',
       unarchive: 'Obnovit z archivu',
@@ -848,12 +883,14 @@ export const cs = defineLocale({
       restored: 'Obnoveno',
       deleteConfirm: title => `Trvale smazat "${title}"? Toto nelze vrátit.`,
       autoArchiveTitle: 'Automaticky archivovat neaktivní chaty',
-      autoArchiveDesc: "Automaticky archivujte chaty, které jste dlouho nepoužívali. Připnuté chaty nikdy nejsou archivovány a nic není smazáno — archivované chaty se jen přesunou sem.",
+      autoArchiveDesc:
+        'Automaticky archivujte chaty, které jste dlouho nepoužívali. Připnuté chaty nikdy nejsou archivovány a nic není smazáno — archivované chaty se jen přesunou sem.',
       autoArchiveDaysLabel: 'Archivovat po',
       autoArchiveDaysUnit: 'dnech neaktivity',
       autoArchiveFailed: 'Nepodařilo se aktualizovat automatické archivování',
       defaultDirTitle: 'Výchozí adresář projektu',
-      defaultDirDesc: 'Nové seance začínají ve této složce, pokud nevyberete jinou. Nechte to nenastavené pro použití domovského adresáře.',
+      defaultDirDesc:
+        'Nové seance začínají ve této složce, pokud nevyberete jinou. Nechte to nenastavené pro použití domovského adresáře.',
       defaultDirUpdated: 'Výchozí adresář projektu aktualizován — spusťte nový chat (Ctrl/⌘+N), aby se projevilo',
       defaultsTo: label => `Výchozí je ${label}.`,
       change: 'Změnit',
@@ -864,7 +901,7 @@ export const cs = defineLocale({
       unarchiveFailed: 'Obnova z archivu selhala',
       deleteFailed: 'Smazání selhalo',
       updateDirFailed: 'Nepodařilo se aktualizovat výchozí adresář',
-      clearDirFailed: 'Nepodařilo se vymazat výchozí adresář',
+      clearDirFailed: 'Nepodařilo se vymazat výchozí adresář'
     },
     toolsets: {
       loadingConfig: 'Načítání konfigurace',
@@ -882,20 +919,23 @@ export const cs = defineLocale({
       selectedMessage: provider => `${provider} je nyní aktivní.`,
       failedSelect: provider => `Nepodařilo se vybrat ${provider}`,
       failedLoad: 'Načtení konfigurace nástroje selhalo',
-      noProviderOptions: 'Tato sada nástrojů nemá možnosti poskytovatele — povolte ji, aby fungovala s vaším nastavením.',
+      noProviderOptions:
+        'Tato sada nástrojů nemá možnosti poskytovatele — povolte ji, aby fungovala s vaším nastavením.',
       noProviders: 'Pro tuto sadu nástrojů momentálně nejsou k dispozici žádní poskytovatelé.',
       ready: 'Připraveno',
       needsSignIn: 'Vyžaduje přihlášení',
       needsSetup: 'Vyžaduje nastavení',
       openamerIncluded: 'Zahrnuto v předplatném OpenAmer — přihlaste se do OpenAmer Portal pro aktivaci.',
       openamerAuthNeededTitle: 'Přihlásit se do OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} je uloženo, ale nebude aktivováno, dokud se nepřihlásíte do OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} je uloženo, ale nebude aktivováno, dokud se nepřihlásíte do OpenAmer Portal.`,
       openamerAuthSignIn: 'Přihlásit se',
       openamerAuthDoneTitle: 'OpenAmer Portal připojen',
       openamerAuthDoneMessage: 'Vaše back-endy předplatného jsou nyní aktivní.',
       openamerAuthFailed: 'Přihlášení do OpenAmer Portal nebylo dokončeno',
       noApiKeyRequired: 'API klíč není vyžadován.',
-      postSetupHint: step => `Tento back-end vyžaduje jednorázovou instalaci (${step}). Běží na tomto počítači — může trvat několik minut.`,
+      postSetupHint: step =>
+        `Tento back-end vyžaduje jednorázovou instalaci (${step}). Běží na tomto počítači — může trvat několik minut.`,
       postSetupInstalledHint: 'Nainstalováno. Spusťte nastavení znovu pouze v případě problému.',
       postSetupRun: 'Spustit nastavení',
       postSetupRerun: 'Spustit nastavení znovu',
@@ -936,9 +976,9 @@ export const cs = defineLocale({
         selectedTitle: 'Backend vybrán',
         selectedMessage: backend => `Terminálové příkazy nyní běží přes ${backend}. Platí pro nové relace.`,
         failedSelect: backend => `Nepodařilo se vybrat ${backend}`,
-        needsSetupHint: 'Tento backend můžete vybrat nyní — příkazy selžou, dokud není nastavení dokončeno.',
-      },
-    },
+        needsSetupHint: 'Tento backend můžete vybrat nyní — příkazy selžou, dokud není nastavení dokončeno.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Dovednosti',
@@ -958,7 +998,8 @@ export const cs = defineLocale({
     noDescription: 'Bez popisu.',
     configured: 'Nakonfigurováno',
     needsKeys: 'Vyžaduje klíče',
-    visionModelHint: 'Vize používá vaši pomocnou konfiguraci modelu — model schopný obrázků se vybírá tam, ne podle poskytovatele zde.',
+    visionModelHint:
+      'Vize používá vaši pomocnou konfiguraci modelu — model schopný obrázků se vybírá tam, ne podle poskytovatele zde.',
     visionModelLink: 'Vyberte model vize v Nastavení → Modely',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} sady nástrojů povoleny`,
     configureToolset: label => `Konfigurovat ${label}`,
@@ -984,7 +1025,7 @@ export const cs = defineLocale({
     provenance: {
       agent: 'Naučeno',
       bundled: 'Vestavěné',
-      hub: 'Centrum',
+      hub: 'Centrum'
     },
     emptyNoneFound: noun => `Žádné ${noun} nenalezeno`,
     emptyNothingMatches: query => `Nic neodpovídá „${query}“.`,
@@ -1002,9 +1043,11 @@ export const cs = defineLocale({
       connectingHubs: 'Připojování k centrům dovedností...',
       connectedHubs: 'Připojená centra:',
       featured: 'Doporučené dovednosti',
-      landingHint: 'Prohledejte centrum pro instalovatelné dovednosti z oficiálního indexu, GitHub a komunitních zdrojů.',
+      landingHint:
+        'Prohledejte centrum pro instalovatelné dovednosti z oficiálního indexu, GitHub a komunitních zdrojů.',
       noResults: 'V centru nebyly nalezeny žádné odpovídající dovednosti.',
-      resultCount: (count, ms) => `${count} výsledek${count === 1 ? 'výsledek' : 'výsledky'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} výsledek${count === 1 ? 'výsledek' : 'výsledky'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Vypršel časový limit: ${sources}`,
       installed: 'Nainstalováno',
       install: 'Nainstalovat',
@@ -1022,7 +1065,7 @@ export const cs = defineLocale({
       trust: {
         builtin: 'vestavěná',
         trusted: 'důvěryhodná',
-        community: 'komunitní',
+        community: 'komunitní'
       },
       verdictSafe: 'Bezpečné',
       verdictCaution: 'Pozor',
@@ -1040,8 +1083,8 @@ export const cs = defineLocale({
       loadFailed: 'Centrum dovedností se nepodařilo načíst',
       previewFailed: 'Náhled dovednosti selhal',
       scanFailed: 'Bezpečnostní skenování selhalo',
-      searchFailed: 'Hledání v centru selhalo',
-    },
+      searchFailed: 'Hledání v centru selhalo'
+    }
   },
   starmap: {
     title: 'Graf paměti',
@@ -1058,7 +1101,8 @@ export const cs = defineLocale({
     emptyTitle: 'Zatím nic nenaučeno',
     emptyDesc: 'Jak OpenAmer vytváří dovednosti a paměti pro vaši práci, zobrazují se zde.',
     share: 'Sdílet mapu',
-    shareHint: 'Zkopírujte kód pro sdílení této mapy, nebo vložte kód pro načtení. Obsahuje pouze rozvržení, ne vaši paměť ani text dovedností.',
+    shareHint:
+      'Zkopírujte kód pro sdílení této mapy, nebo vložte kód pro načtení. Obsahuje pouze rozvržení, ne vaši paměť ani text dovedností.',
     shareTitle: 'Import / export mapy',
     sharePlaceholder: 'Vložit kód mapy…',
     copy: 'Zkopírovat kód mapy',
@@ -1068,7 +1112,7 @@ export const cs = defineLocale({
     importEmpty: 'Vložte kód mapy pro načtení.',
     importSuccess: nodes => `Načtena mapa s ${nodes} ${nodes === 1 ? 'uzel' : 'uzly'}.`,
     importedBadge: 'importovaná mapa',
-    resetToMine: 'Zpět na mou mapu',
+    resetToMine: 'Zpět na mou mapu'
   },
   agents: {
     close: 'Zavřít agenty',
@@ -1098,7 +1142,7 @@ export const cs = defineLocale({
     ageDays: days => `před ${days} dny`,
     durationSeconds: seconds => `${seconds} s`,
     durationMinutes: (minutes, seconds) => `${minutes} m ${seconds} s`,
-    tokens: value => `${value} tokenů`,
+    tokens: value => `${value} tokenů`
   },
   commandCenter: {
     close: 'Zavřít centrum příkazů',
@@ -1128,7 +1172,7 @@ export const cs = defineLocale({
       generatedTag: 'Vygenerováno',
       adoptFailed: 'Nelze adoptovat toho mazlíčka.',
       toggleFailed: 'Nelze přepnout mazlíčka.',
-      noneAvailable: 'Žádné mazlíčky k dispozici — vyberte jeden níže k instalaci.',
+      noneAvailable: 'Žádné mazlíčky k dispozici — vyberte jeden níže k instalaci.'
     },
     generatePet: {
       title: 'Vygenerovat mazlíčka',
@@ -1157,7 +1201,7 @@ export const cs = defineLocale({
       referenceImageTooLarge: 'Referenční obrázek je příliš velký. Použijte obrázek do 16 MB.',
       referenceImageInvalid: 'Nelze přečíst referenční obrázek. Zkuste PNG, JPG, WebP nebo GIF.',
       adopt: 'Přijmout',
-      startOver: 'Začít znovu',
+      startOver: 'Začít znovu'
     },
     installTheme: {
       title: 'Nainstalovat téma…',
@@ -1169,7 +1213,7 @@ export const cs = defineLocale({
       install: 'Nainstalovat',
       installing: 'Instalace...',
       installed: 'Nainstalováno',
-      installs: count => `${count} instalací`,
+      installs: count => `${count} instalací`
     },
     settingsFields: 'Pole nastavení',
     mcpServers: 'MCP servery',
@@ -1178,49 +1222,49 @@ export const cs = defineLocale({
       maintenance: 'Údržba',
       sessions: 'Relace',
       system: 'Systém',
-      usage: 'Využití',
+      usage: 'Využití'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostika, zálohy, kurátor a paměťová data',
       sessions: 'Hledat a spravovat relace',
       system: 'Stav, protokoly a systémové akce',
-      usage: 'Tokeny, náklady a aktivita dovedností v čase',
+      usage: 'Tokeny, náklady a aktivita dovedností v čase'
     },
     nav: {
       newChat: {
         title: 'Nová relace',
-        detail: 'Spustit novou relaci',
+        detail: 'Spustit novou relaci'
       },
       settings: {
         title: 'Nastavení',
-        detail: 'Konfigurovat desktop OpenAmer',
+        detail: 'Konfigurovat desktop OpenAmer'
       },
       skills: {
         title: 'Schopnosti',
-        detail: 'Dovednosti, nástroje a servery MCP',
+        detail: 'Dovednosti, nástroje a servery MCP'
       },
       messaging: {
         title: 'Zprávy',
-        detail: 'Nastavit Telegram, Slack, Discord a další',
+        detail: 'Nastavit Telegram, Slack, Discord a další'
       },
       artifacts: {
         title: 'Artefakty',
-        detail: 'Procházet vygenerované výstupy',
-      },
+        detail: 'Procházet vygenerované výstupy'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel relací',
-        detail: 'Hledat, připnout a spravovat relace',
+        detail: 'Hledat, připnout a spravovat relace'
       },
       system: {
         title: 'Systémový panel',
-        detail: 'Stav brány, protokoly, restart/aktualizace',
+        detail: 'Stav brány, protokoly, restart/aktualizace'
       },
       usage: {
         title: 'Panel využití',
-        detail: 'Tokeny, náklady a aktivita dovedností',
-      },
+        detail: 'Tokeny, náklady a aktivita dovedností'
+      }
     },
     providerNavigate: 'Navigovat',
     providerSessions: 'Relace',
@@ -1308,8 +1352,8 @@ export const cs = defineLocale({
       actionStarted: name => `${name} spuštěn — sledování logu...`,
       actionFailed: name => `${name} se nepodařilo spustit`,
       running: 'Běží...',
-      viewLog: 'Protokol akcí',
-    },
+      viewLog: 'Protokol akcí'
+    }
   },
   messaging: {
     search: 'Hledání zpráv...',
@@ -1324,7 +1368,7 @@ export const cs = defineLocale({
       not_configured: 'Vyžaduje nastavení',
       pending_restart: 'Potřebný restart',
       retrying: 'Opakování',
-      startup_failed: 'Start selhal',
+      startup_failed: 'Start selhal'
     },
     unknown: 'Neznámé',
     hintPendingRestart: 'Restartujte bránu z panelu stavu, aby se změna projevila.',
@@ -1363,127 +1407,126 @@ export const cs = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bota',
         help: 'Vytvořte bota přes @BotFather a vložte token, který vám dá.',
-        placeholder: 'Vložte token Telegram bota',
+        placeholder: 'Vložte token Telegram bota'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Povolená ID uživatelů Telegram',
-        help: 'Doporučeno. Čárkou oddělená číselná ID z @userinfobot. Bez toho může kdokoliv posílat DM vašemu botu.',
+        help: 'Doporučeno. Čárkou oddělená číselná ID z @userinfobot. Bez toho může kdokoliv posílat DM vašemu botu.'
       },
       TELEGRAM_PROXY: {
         label: 'URL proxy',
-        help: 'Potřebné jen v sítích, kde je Telegram zablokován.',
+        help: 'Potřebné jen v sítích, kde je Telegram zablokován.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bota',
-        help: 'Vytvořte aplikaci v Discord Developer Portal, přidejte bota a vložte jeho token.',
+        help: 'Vytvořte aplikaci v Discord Developer Portal, přidejte bota a vložte jeho token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Povolená ID uživatelů Discord',
-        help: 'Doporučeno. Čárkou oddělená ID uživatelů Discord.',
+        help: 'Doporučeno. Čárkou oddělená ID uživatelů Discord.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Styl odpovědi',
-        help: 'first, all, nebo off.',
+        help: 'first, all, nebo off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Povolit všem uživatelům Discord',
-        help: 'Jen pro vývoj. Pokud je zapnuto, kdokoliv může posílat DM botu bez allowlistu.',
+        help: 'Jen pro vývoj. Pokud je zapnuto, kdokoliv může posílat DM botu bez allowlistu.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID domovského kanálu',
-        help: 'Kanál, kam bot posílá proaktivní zprávy (výstup cron, připomínky).',
+        help: 'Kanál, kam bot posílá proaktivní zprávy (výstup cron, připomínky).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Název domovského kanálu',
-        help: 'Zobrazovaný název domovského kanálu v logu a stavovém výstupu.',
+        help: 'Zobrazovaný název domovského kanálu v logu a stavovém výstupu.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Povolit všem uživatelům iMessage',
-        help: 'Pokud je zapnuto, přeskočí se allowlist BlueBubbles.',
+        help: 'Pokud je zapnuto, přeskočí se allowlist BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Povolit všem uživatelům Mattermost',
+        label: 'Povolit všem uživatelům Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Domovský kanál',
+        label: 'Domovský kanál'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Povolit všem uživatelům QQ',
+        label: 'Povolit všem uživatelům QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Domovský kanál QQ',
-        help: 'Výchozí kanál nebo skupina pro doručování cron.',
+        help: 'Výchozí kanál nebo skupina pro doručování cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Název domovského kanálu QQ',
+        label: 'Název domovského kanálu QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bota Slack',
         help: 'Použijte token bota z OAuth & Permissions po instalaci vaší Slack aplikace.',
-        placeholder: 'Vložte token bota Slack',
+        placeholder: 'Vložte token bota Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token aplikace Slack',
         help: 'Použijte token úrovně aplikace vyžadovaný pro Socket Mode.',
-        placeholder: 'Vložte token aplikace Slack',
+        placeholder: 'Vložte token aplikace Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Povolená ID uživatelů Slack',
-        help: 'Doporučeno. ID uživatelů Slack oddělená čárkami.',
+        help: 'Doporučeno. ID uživatelů Slack oddělená čárkami.'
       },
       MATTERMOST_URL: {
         label: 'URL serveru',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bota',
+        label: 'Token bota'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Povolená ID uživatelů',
-        help: 'Doporučeno. ID uživatelů Mattermost oddělená čárkami.',
+        help: 'Doporučeno. ID uživatelů Mattermost oddělená čárkami.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL domovského serveru',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Přístupový token',
+        label: 'Přístupový token'
       },
       MATRIX_USER_ID: {
         label: 'ID uživatele bota',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Povolená ID uživatelů Matrix',
-        help: 'Doporučeno. ID uživatelů oddělená čárkami ve formátu @user:server.',
+        help: 'Doporučeno. ID uživatelů oddělená čárkami ve formátu @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL mostu Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL běžícího REST mostu signal-cli.',
+        help: 'URL běžícího REST mostu signal-cli.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefonní číslo',
-        help: 'Číslo registrované u vašeho signal-cli mostu.',
+        help: 'Číslo registrované u vašeho signal-cli mostu.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Povolení uživatelé Signal',
-        help: 'Doporučeno. Identifikátory Signal oddělené čárkami.',
+        help: 'Doporučeno. Identifikátory Signal oddělené čárkami.'
       },
       WHATSAPP_ENABLED: {
         label: 'Povolit WhatsApp most',
-        help: 'Nastaví se automaticky přepínačem níže. Nechte beze změny, pokud nevíte, že to potřebujete.',
+        help: 'Nastaví se automaticky přepínačem níže. Nechte beze změny, pokud nevíte, že to potřebujete.'
       },
       WHATSAPP_MODE: {
-        label: 'Režim mostu',
+        label: 'Režim mostu'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Povolení uživatelé WhatsApp',
-        help: 'Doporučeno. Telefonní čísla nebo WhatsApp ID oddělená čárkami.',
-      },
+        help: 'Doporučeno. Telefonní čísla nebo WhatsApp ID oddělená čárkami.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Hledat webhooky...',
@@ -1493,7 +1536,8 @@ export const cs = defineLocale({
     hint: 'Změny předplatných se znovu načtou, jakmile běží přijímač. Zakázaná předplatná odmítají příchozí události.',
     empty: 'Zatím žádná předplatná webhooků.',
     disabledTitle: 'Přijímač webhooků zakázán',
-    disabledBody: 'Webhooky jsou samostatná platforma brány. Povolte je zde pro příjem příchozích HTTP událostí; chatové kanály jsou potřeba jen při doručení předplatného do Telegramu, Discordu, Slacku nebo jiného kanálu.',
+    disabledBody:
+      'Webhooky jsou samostatná platforma brány. Povolte je zde pro příjem příchozích HTTP událostí; chatové kanály jsou potřeba jen při doručení předplatného do Telegramu, Discordu, Slacku nebo jiného kanálu.',
     enable: 'Povolit webhooky',
     enabling: 'Povolování...',
     enabled: (name: string) => `Povoleno: "${name}"`,
@@ -1546,8 +1590,8 @@ export const cs = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-mail',
-      github_comment: 'Komentář na GitHubu',
-    },
+      github_comment: 'Komentář na GitHubu'
+    }
   },
   profiles: {
     close: 'Zavřít profily',
@@ -1584,7 +1628,8 @@ export const cs = defineLocale({
     notSet: 'Nenastaveno',
     soulDesc: 'Systémový prompt a instrukce persony uložené v tomto profilu.',
     soulOptional: 'volitelné',
-    soulPlaceholder: mode => `Systémový prompt / persona pro tento profil.\nNechejte prázdné, aby se zachoval ${mode} výchozí.`,
+    soulPlaceholder: mode =>
+      `Systémový prompt / persona pro tento profil.\nNechejte prázdné, aby se zachoval ${mode} výchozí.`,
     soulPlaceholderCloned: 'klonováno',
     soulPlaceholderEmpty: 'prázdné',
     unsavedChanges: 'Neuložené změny',
@@ -1624,7 +1669,7 @@ export const cs = defineLocale({
     failedLoadSoul: 'Nepodařilo se načíst SOUL.md',
     failedSaveSoul: 'Nepodařilo se uložit SOUL.md',
     failedCreate: 'Nepodařilo se vytvořit profil',
-    failedRename: 'Nepodařilo se přejmenovat profil',
+    failedRename: 'Nepodařilo se přejmenovat profil'
   },
   cron: {
     close: 'Zavřít cron',
@@ -1639,14 +1684,14 @@ export const cs = defineLocale({
       paused: 'pozastaveno',
       disabled: 'zakázáno',
       error: 'chyba',
-      completed: 'dokončeno',
+      completed: 'dokončeno'
     },
     deliveryLabels: {
       local: 'Tento počítač',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-mail',
+      email: 'E-mail'
     },
     scheduleLabels: {
       daily: 'Denně',
@@ -1655,7 +1700,7 @@ export const cs = defineLocale({
       monthly: 'Měsíčně',
       hourly: 'Hodinově',
       'every-15-minutes': 'Každých 15 minut',
-      custom: 'Vlastní',
+      custom: 'Vlastní'
     },
     scheduleHints: {
       daily: 'Každý den v 9:00',
@@ -1664,7 +1709,7 @@ export const cs = defineLocale({
       monthly: 'První den měsíce v 9:00',
       hourly: 'Na začátku každé hodiny',
       'every-15-minutes': 'Každých 15 minut',
-      custom: 'Cron syntax nebo přirozený jazyk',
+      custom: 'Cron syntax nebo přirozený jazyk'
     },
     days: {
       '0': 'Neděle',
@@ -1674,7 +1719,7 @@ export const cs = defineLocale({
       '4': 'Čtvrtek',
       '5': 'Pátek',
       '6': 'Sobota',
-      '7': 'Neděle',
+      '7': 'Neděle'
     },
     dayFallback: value => `den ${value}`,
     everyDayAt: time => `Každý den v ${time}`,
@@ -1684,7 +1729,8 @@ export const cs = defineLocale({
     topOfHour: 'Na začátku každé hodiny',
     everyHourAt: minute => `Každou hodinu v :${minute}`,
     newCron: 'Nový cron',
-    emptyDescNew: 'Naplánujte spuštění dotazu podle cron výrazu. OpenAmer ho spustí a doručí výsledky do vybraného cíle.',
+    emptyDescNew:
+      'Naplánujte spuštění dotazu podle cron výrazu. OpenAmer ho spustí a doručí výsledky do vybraného cíle.',
     emptyDescSearch: 'Zkuste širší vyhledávací dotaz.',
     emptyTitleNew: 'Zatím žádné naplánované úlohy',
     emptyTitleSearch: 'Žádné shody',
@@ -1721,7 +1767,8 @@ export const cs = defineLocale({
     editTitle: 'Upravit cron úlohu',
     createTitle: 'Nová cron úloha',
     editDesc: 'Aktualizovat plán, prompt nebo cíl doručení. Změny se projeví při příštím spuštění.',
-    createDesc: 'Naplánovat prompt pro automatické spuštění. Použijte cron syntaxi nebo přirozený výraz jako „každých 15 minut“.',
+    createDesc:
+      'Naplánovat prompt pro automatické spuštění. Použijte cron syntaxi nebo přirozený výraz jako „každých 15 minut“.',
     nameLabel: 'Název',
     namePlaceholder: 'Ranní briefing',
     promptLabel: 'Výzva',
@@ -1743,7 +1790,7 @@ export const cs = defineLocale({
     createAction: 'Vytvořit cron',
     tabs: {
       jobs: 'Úlohy',
-      blueprints: 'Šablony',
+      blueprints: 'Šablony'
     },
     blueprints: {
       tab: 'Plány',
@@ -1757,8 +1804,8 @@ export const cs = defineLocale({
       loading: 'Načítání plánů…',
       failedLoad: 'Načtení plánů selhalo',
       emptyTitle: 'Žádné plány nejsou k dispozici',
-      emptyDesc: 'Na tomto backendu nejsou k dispozici žádné plány automatizace.',
-    },
+      emptyDesc: 'Na tomto backendu nejsou k dispozici žádné plány automatizace.'
+    }
   },
   artifacts: {
     search: 'Hledat artefakty…',
@@ -1792,14 +1839,14 @@ export const cs = defineLocale({
     kindLink: 'odkaz',
     chat: 'Konverzace',
     copyUrl: 'Zkopírovat URL',
-    copyPath: 'Zkopírovat cestu',
+    copyPath: 'Zkopírovat cestu'
   },
   sidebar: {
     nav: {
       'new-session': 'Nová relace',
       skills: 'Schopnosti',
       messaging: 'Zasílání zpráv',
-      artifacts: 'Artefakty',
+      artifacts: 'Artefakty'
     },
     searchAria: 'Hledat relace',
     searchPlaceholder: 'Hledat relace…',
@@ -1831,7 +1878,7 @@ export const cs = defineLocale({
       namePlaceholder: 'např. Skunkworks',
       foldersLabel: 'Složky',
       ideaLabel: 'Nápad',
-      ideaPlaceholder: "O čem je tento projekt? (uloženo do IDEA.md)",
+      ideaPlaceholder: 'O čem je tento projekt? (uloženo do IDEA.md)',
       ideaGenerate: 'Vygenerovat nápad',
       ideaGenerating: 'Generování…',
       ideaShuffle: 'Zamíchat šablony',
@@ -1851,8 +1898,10 @@ export const cs = defineLocale({
       copyPath: 'Zkopírovat cestu',
       removeFromSidebar: 'Skrýt z postranního panelu',
       createFailed: 'Nepodařilo se vytvořit projekt',
-      staleBackend: 'Aktualizujte backend OpenAmer pro vytváření projektů – váš backend je starší než tato desktopová aplikace (Nastavení → Aktualizace → Backend).',
-      deleteConfirm: 'Toto odstraní uložený projekt z OpenAmer. Soubory, git repozitáře a worktrees zůstanou nezměněny.',
+      staleBackend:
+        'Aktualizujte backend OpenAmer pro vytváření projektů – váš backend je starší než tato desktopová aplikace (Nastavení → Aktualizace → Backend).',
+      deleteConfirm:
+        'Toto odstraní uložený projekt z OpenAmer. Soubory, git repozitáře a worktrees zůstanou nezměněny.',
       startWork: 'Nový worktree',
       newWorktreeTitle: 'Nový worktree',
       newWorktreeDesc: 'Nazvěte větev pro tento worktree.',
@@ -1873,13 +1922,15 @@ export const cs = defineLocale({
       noBranches: 'Žádné větve nenalezeny',
       removeWorktree: 'Odstranit worktree',
       removeWorktreeFailed: 'Nepodařilo se odstranit worktree (necommitované změny?)',
-      removeWorktreeConfirm: 'Odebrat z gitu (smaže adresář worktree; větev zůstane), nebo jen skrýt řádek z postranního panelu a nechat worktree na disku.',
-      removeWorktreeDirty: 'Tento worktree má necommitované změny. Vynutit odstranění (zahodí změny), nebo jen skrýt řádek a nechat ho na disku.',
+      removeWorktreeConfirm:
+        'Odebrat z gitu (smaže adresář worktree; větev zůstane), nebo jen skrýt řádek z postranního panelu a nechat worktree na disku.',
+      removeWorktreeDirty:
+        'Tento worktree má necommitované změny. Vynutit odstranění (zahodí změny), nebo jen skrýt řádek a nechat ho na disku.',
       forceRemove: 'Vynutit odstranění',
       enter: label => `Otevřít ${label}`,
       reorder: label => `Přesunout ${label}`,
       toggle: label => `Přepnout ${label} relace`,
-      back: 'Všechny projekty',
+      back: 'Všechny projekty'
     },
     newSessionIn: label => `Nová relace v ${label}`,
     showMoreIn: (count, label) => `Zobrazit ${count} dalších v ${label}`,
@@ -1917,15 +1968,15 @@ export const cs = defineLocale({
       ageNow: 'teď',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Dříve dnes',
       yesterday: 'Včera',
       thisWeek: 'Dříve tento týden',
       lastWeek: 'Minulý týden',
-      thisMonth: 'Dříve tento měsíc',
-    },
+      thisMonth: 'Dříve tento měsíc'
+    }
   },
   composer: {
     message: 'Zpráva',
@@ -1936,20 +1987,20 @@ export const cs = defineLocale({
     newSessionPlaceholders: [
       'Co vytváříme?',
       'Dej OpenAmer úkol',
-      "Co máš na mysli?",
+      'Co máš na mysli?',
       'Popiš, co potřebuješ',
       'Co bychom měli řešit?',
       'Zeptejte se čehokoli',
-      'Začněte s cílem',
+      'Začněte s cílem'
     ],
     followUpPlaceholders: [
       'Pošlete doplněk',
       'Přidejte více kontextu',
       'Upřesněte požadavek',
-      "Co dál?",
+      'Co dál?',
       'Pokračujte',
       'Posuňte to dál',
-      'Upravte nebo pokračujte',
+      'Upravte nebo pokračujte'
     ],
     startVoice: 'Začít hlasový rozhovor',
     queueMessage: 'Zařadit zprávu do fronty',
@@ -1985,7 +2036,7 @@ export const cs = defineLocale({
       '/resume': 'pokračovat v předchozí relaci',
       '/details': 'ovládat úroveň detailu přepisu',
       '/copy': 'zkopírovat výběr nebo poslední zprávu asistence',
-      '/quit': 'ukončit OpenAmer',
+      '/quit': 'ukončit OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'odkazovat soubory, složky, URL, git',
@@ -1995,7 +2046,7 @@ export const cs = defineLocale({
       'composer.sendQueued': 'odeslat další tah z fronty',
       'keybinds.openPanel': 'všechny klávesové zkratky',
       'composer.cancel': 'zavřít popover · zrušit běh',
-      'composer.history': 'přepínat popover / historii',
+      'composer.history': 'přepínat popover / historii'
     },
     attachUrlTitle: 'Připojit URL',
     attachUrlDesc: 'OpenAmer stáhne stránku a zahrne ji jako kontext pro tento krok.',
@@ -2046,19 +2097,19 @@ export const cs = defineLocale({
       codeReview: {
         label: 'Revize kódu',
         description: 'Zkontrolujte aktuální změnu na regrese, opomenuté hraniční případy a chybějící testy.',
-        text: 'Prosím, zkontrolujte toto na chyby, regrese a chybějící testy.',
+        text: 'Prosím, zkontrolujte toto na chyby, regrese a chybějící testy.'
       },
       implementationPlan: {
         label: 'Plán implementace',
         description: 'Nakreslete přístup před úpravou kódu, aby změny zůstaly zaměřené.',
-        text: 'Prosím, vytvořte stručný plán implementace před změnou kódu.',
+        text: 'Prosím, vytvořte stručný plán implementace před změnou kódu.'
       },
       explainThis: {
         label: 'Vysvětlete to',
         description: 'Projděte, jak vybraný kód funguje, a odkažte na klíčové soubory.',
-        text: 'Prosím, vysvětlete, jak to funguje, a ukažte mi klíčové soubory.',
-      },
-    },
+        text: 'Prosím, vysvětlete, jak to funguje, a ukažte mi klíčové soubory.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agenti',
@@ -2106,13 +2157,14 @@ export const cs = defineLocale({
       openPr: 'Otevřít PR',
       ghMissing: 'Nainstalujte GitHub CLI (gh) a přihlaste se pro otevření PR',
       agentShip: 'Požádejte OpenAmer o otevření PR',
-      agentShipPrompt: 'Projděte si aktuální změny, zkomitujte je s jasnou konvenční zprávou, odešlete větev a otevřete pull request.',
+      agentShipPrompt:
+        'Projděte si aktuální změny, zkomitujte je s jasnou konvenční zprávou, odešlete větev a otevřete pull request.',
       newBranch: 'Nová větev',
       branchOffFrom: base => `Nová větev z ${base}`,
       switchTo: branch => `Přepnout na ${branch}`,
       switchFailed: branch => `Nepodařilo se přepnout na ${branch}`,
-      worktrees: 'Pracovní stromy',
-    },
+      worktrees: 'Pracovní stromy'
+    }
   },
   updates: {
     stages: {
@@ -2127,7 +2179,7 @@ export const cs = defineLocale({
       done: 'Aktualizace dokončena',
       manual: 'Aktualizujte z terminálu',
       guiSkew: 'Aktualizujte desktopovou aplikaci',
-      error: 'Aktualizace pozastavena',
+      error: 'Aktualizace pozastavena'
     },
     checking: 'Hledám aktualizace…',
     checkFailedTitle: 'Nepodařilo se zkontrolovat aktualizace',
@@ -2142,20 +2194,25 @@ export const cs = defineLocale({
     availableBody: 'Nová verze OpenAmer je připravena k instalaci.',
     availableTitleBackend: 'K dispozici aktualizace backendu',
     availableBodyBackend: 'Novější verze připojeného backendu OpenAmer je připravena k instalaci.',
-    availableBodyNoChangelog: 'Novější verze je připravena. Poznámky k verzi nejsou k dispozici pro tento typ instalace.',
+    availableBodyNoChangelog:
+      'Novější verze je připravena. Poznámky k verzi nejsou k dispozici pro tento typ instalace.',
     updateNow: 'Aktualizovat nyní',
     maybeLater: 'Možná později',
     moreChanges: count => `+ vč. ${count} dalších změn${count === 1 ? 'změna' : 'změny'}.`,
     manualTitle: 'Aktualizovat z terminálu',
-    manualBody: 'Nainstalovali jste OpenAmer z příkazové řádky, takže aktualizace probíhají tam také. Vložte toto do terminálu:',
+    manualBody:
+      'Nainstalovali jste OpenAmer z příkazové řádky, takže aktualizace probíhají tam také. Vložte toto do terminálu:',
     manualPickedUp: 'OpenAmer načte novou verzi při příštím spuštění.',
     guiSkewTitle: 'Aktualizovat desktopovou aplikaci',
-    guiSkewBody: 'Backend byl aktualizován, ale tento balíček desktopové aplikace se nezměnil. Aktualizujte nebo přeinstalujte desktopovou aplikaci OpenAmer (váš AppImage / .deb / .rpm), aby odpovídala.',
+    guiSkewBody:
+      'Backend byl aktualizován, ale tento balíček desktopové aplikace se nezměnil. Aktualizujte nebo přeinstalujte desktopovou aplikaci OpenAmer (váš AppImage / .deb / .rpm), aby odpovídala.',
     copy: 'Kopírovat',
     copied: 'Zkopírováno',
     done: 'Hotovo',
-    applyingBody: 'Aktualizátor OpenAmer přebírá řízení ve vlastním okně a automaticky znovu otevře OpenAmer po dokončení. Prosím, neotevírejte OpenAmer sami během aktualizace.',
-    applyingBodyBackend: 'Vzdálený backend aplikuje aktualizaci a restartuje se. OpenAmer se automaticky znovu připojí, jakmile bude zpět.',
+    applyingBody:
+      'Aktualizátor OpenAmer přebírá řízení ve vlastním okně a automaticky znovu otevře OpenAmer po dokončení. Prosím, neotevírejte OpenAmer sami během aktualizace.',
+    applyingBodyBackend:
+      'Vzdálený backend aplikuje aktualizaci a restartuje se. OpenAmer se automaticky znovu připojí, jakmile bude zpět.',
     applyingClose: 'Toto okno se zavře během aktualizace a pak se OpenAmer otevře sám.',
     errorTitle: 'Aktualizace nebyla dokončena',
     errorBody: 'Nebojte se — nic se neztratilo. Můžete to zkusit znovu teď.',
@@ -2166,12 +2223,14 @@ export const cs = defineLocale({
       restarting: 'Backend se restartuje pro načtení aktualizace…',
       notAvailable: 'Aktualizace není k dispozici pro tento backend.',
       failed: 'Aktualizace backendu selhala.',
-      noReturn: 'Backend se nepřipojil zpět online. Aktualizace nemusela proběhnout úplně — zkontrolujte hostitele backendu.',
+      noReturn:
+        'Backend se nepřipojil zpět online. Aktualizace nemusela proběhnout úplně — zkontrolujte hostitele backendu.'
     },
     appErrors: {
-      updateLocked: 'Aktualizace přerušena: jiné okno OpenAmer nebo terminál spouštějící openamer drží tuto instalaci otevřenou. Zavřete ji a zkuste znovu.',
-      updateFailed: 'Aktualizace nedokončila. Nebojte se — nic se neztratilo. Můžete to zkusit znovu teď.',
-    },
+      updateLocked:
+        'Aktualizace přerušena: jiné okno OpenAmer nebo terminál spouštějící openamer drží tuto instalaci otevřenou. Zavřete ji a zkuste znovu.',
+      updateFailed: 'Aktualizace nedokončila. Nebojte se — nic se neztratilo. Můžete to zkusit znovu teď.'
+    }
   },
   install: {
     stageStates: {
@@ -2179,20 +2238,23 @@ export const cs = defineLocale({
       running: 'Instaluje se',
       succeeded: 'Hotovo',
       skipped: 'Přeskočeno',
-      failed: 'Selhalo',
+      failed: 'Selhalo'
     },
     oneTimeTitle: 'OpenAmer vyžaduje jednorázovou instalaci',
-    unsupportedDesc: platform => `Automatická instalace při prvním spuštění není na ${platform} k dispozici. Otevřete Terminál a spusťte níže uvedený příkaz, pak aplikaci restartujte. Další spuštění tento krok přeskočí.`,
+    unsupportedDesc: platform =>
+      `Automatická instalace při prvním spuštění není na ${platform} k dispozici. Otevřete Terminál a spusťte níže uvedený příkaz, pak aplikaci restartujte. Další spuštění tento krok přeskočí.`,
     installCommand: 'Instalační příkaz',
     copyCommand: 'Zkopírovat příkaz',
     viewDocs: 'Zobrazit instalační dokumentaci',
     installTo: 'Bude nainstalováno do',
     retryAfterRun: 'Spustil jsem to -- zkusit znovu',
     setupChoiceTitle: 'Nastavit OpenAmer Desktop',
-    setupChoiceDesc: 'Připojte tuto aplikaci k bráně OpenAmer, kterou již spouštíte, nebo nainstalujte OpenAmer lokálně na tomto počítači.',
+    setupChoiceDesc:
+      'Připojte tuto aplikaci k bráně OpenAmer, kterou již spouštíte, nebo nainstalujte OpenAmer lokálně na tomto počítači.',
     connectExistingTitle: 'Připojit k existujícímu OpenAmer',
     connectExistingShort: 'Připojit existující',
-    connectExistingDesc: 'Použijte vzdálený backend s tokenem relace nebo přihlášením v prohlížeči. Žádná lokální instalace se nespustí.',
+    connectExistingDesc:
+      'Použijte vzdálený backend s tokenem relace nebo přihlášením v prohlížeči. Žádná lokální instalace se nespustí.',
     installLocalTitle: 'Nainstalovat OpenAmer lokálně',
     installLocalDesc: 'Stáhněte OpenAmer, vytvořte jeho Python prostředí a spusťte backend na tomto počítači.',
     localStartUnavailable: 'Místní instalace se nepodařila spustit. Restartujte OpenAmer Desktop a zkuste to znovu.',
@@ -2224,8 +2286,10 @@ export const cs = defineLocale({
     failedTitle: 'Instalace selhala',
     settingUpTitle: 'Nastavování OpenAmer Agent',
     finishingTitle: 'Dokončování',
-    failedDesc: 'Jeden z instalačních kroků selhal. Ve Windows k tomu může dojít, pokud běží jiná instance OpenAmer CLI nebo desktopové aplikace. Zastavte všechny běžící instance OpenAmer a zkuste to znovu. Podívejte se na podrobnosti níže nebo do desktopového protokolu pro celý přepis.',
-    activeDesc: 'Jedná se o jednorázové nastavení. Instalátor OpenAmer stahuje závislosti a konfiguruje váš počítač. Při dalších spuštěních se tento krok přeskočí.',
+    failedDesc:
+      'Jeden z instalačních kroků selhal. Ve Windows k tomu může dojít, pokud běží jiná instance OpenAmer CLI nebo desktopové aplikace. Zastavte všechny běžící instance OpenAmer a zkuste to znovu. Podívejte se na podrobnosti níže nebo do desktopového protokolu pro celý přepis.',
+    activeDesc:
+      'Jedná se o jednorázové nastavení. Instalátor OpenAmer stahuje závislosti a konfiguruje váš počítač. Při dalších spuštěních se tento krok přeskočí.',
     progress: (completed, total) => `${completed} z ${total} kroků dokončeno`,
     currentStage: stage => ` -- nyní: ${stage}`,
     fetchingManifest: 'Stahování manifestu instalátoru...',
@@ -2239,10 +2303,10 @@ export const cs = defineLocale({
     transcriptSaved: 'Celý přepis uložen do',
     copiedOutput: 'Zkopírováno!',
     copyOutput: 'Kopírovat výstup',
-    reloadRetry: 'Obnovit a zkusit znovu',
+    reloadRetry: 'Obnovit a zkusit znovu'
   },
   onboarding: {
-    headerTitle: "Pojďme vás nastavit s OpenAmer Agent",
+    headerTitle: 'Pojďme vás nastavit s OpenAmer Agent',
     headerDesc: 'Připojte poskytovatele modelu pro zahájení chatu. Většina možností vyžaduje jeden klik.',
     preparingInstall: 'OpenAmer dokončuje instalaci. Obvykle to trvá pod minutu při prvním spuštění.',
     starting: 'Spouštění OpenAmer…',
@@ -2250,7 +2314,7 @@ export const cs = defineLocale({
     collapse: 'Sbalit',
     otherProviders: 'Další poskytovatelé',
     haveApiKey: 'Mám API klíč',
-    chooseLater: "Zvolím poskytovatele později",
+    chooseLater: 'Zvolím poskytovatele později',
     recommended: 'Doporučeno',
     connected: 'Připojeno',
     featuredPitch: 'Jedno předplatné, 300+ hraničních modelů — doporučený způsob spuštění OpenAmer',
@@ -2259,28 +2323,29 @@ export const cs = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'přímé API modelů',
-        description: 'Přímý přístup k modelům hostovaným Fireworks AI.',
+        description: 'Přímý přístup k modelům hostovaným Fireworks AI.'
       },
       openrouter: {
         short: 'jeden klíč, mnoho modelů',
-        description: 'Hostuje stovky modelů za jedním klíčem. Dobré výchozí nastavení pro nové instalace.',
+        description: 'Hostuje stovky modelů za jedním klíčem. Dobré výchozí nastavení pro nové instalace.'
       },
       openai: {
         short: 'Modely třídy GPT',
-        description: 'Přímý přístup k modelům OpenAI.',
+        description: 'Přímý přístup k modelům OpenAI.'
       },
       gemini: {
         short: 'Modely Gemini',
-        description: 'Přímý přístup k modelům Google Gemini.',
+        description: 'Přímý přístup k modelům Google Gemini.'
       },
       xai: {
         short: 'Modely Grok',
-        description: 'Přímý přístup k modelům xAI Grok.',
+        description: 'Přímý přístup k modelům xAI Grok.'
       },
       local: {
         short: 'vlastní hostování',
-        description: 'Nasměrujte OpenAmer na lokální nebo vlastní OpenAI-kompatibilní koncový bod (vLLM, llama.cpp, Ollama atd.).',
-      },
+        description:
+          'Nasměrujte OpenAmer na lokální nebo vlastní OpenAI-kompatibilní koncový bod (vLLM, llama.cpp, Ollama atd.).'
+      }
     },
     backToSignIn: 'Zpět k přihlášení',
     getKey: 'Získejte klíč',
@@ -2293,7 +2358,7 @@ export const cs = defineLocale({
     flowSubtitles: {
       pkce: 'Otevře prohlížeč pro přihlášení, pak pokračuje zde',
       device_code: 'Otevře ověřovací stránku v prohlížeči — OpenAmer se připojí automaticky',
-      external: 'Přihlaste se jednou v terminálu, pak se vraťte do chatu',
+      external: 'Přihlaste se jednou v terminálu, pak se vraťte do chatu'
     },
     startingSignIn: provider => `Spouštím přihlášení pro ${provider}...`,
     verifyingCode: provider => `Ověřuji váš kód s ${provider}...`,
@@ -2307,11 +2372,13 @@ export const cs = defineLocale({
     copyAuthCode: 'Zkopírujte autorizační kód a vložte ho níže.',
     pasteAuthCode: 'Vložit autorizační kód',
     reopenAuthPage: 'Znovu otevřít autorizační stránku',
-    autoBrowser: provider => `Otevřeli jsme ${provider} ve vašem prohlížeči. Autorizujte OpenAmer tam a budete připojeni automaticky — nic nemusíte kopírovat ani vkládat.`,
+    autoBrowser: provider =>
+      `Otevřeli jsme ${provider} ve vašem prohlížeči. Autorizujte OpenAmer tam a budete připojeni automaticky — nic nemusíte kopírovat ani vkládat.`,
     reopenSignInPage: 'Znovu otevřít přihlašovací stránku',
     waitingAuthorize: 'Čekám na vaši autorizaci...',
-    externalPending: provider => `${provider} se přihlašuje přes vlastní CLI. Spusťte tento příkaz v terminálu, pak se vraťte a vyberte "Přihlásil jsem se":`,
-    signedIn: "Přihlásil jsem se",
+    externalPending: provider =>
+      `${provider} se přihlašuje přes vlastní CLI. Spusťte tento příkaz v terminálu, pak se vraťte a vyberte "Přihlásil jsem se":`,
+    signedIn: 'Přihlásil jsem se',
     deviceCodeOpened: provider => `Otevřeli jsme ${provider} ve vašem prohlížeči. Zadejte tam tento kód:`,
     reopenVerification: 'Znovu otevřít ověřovací stránku',
     copy: 'Kopírovat',
@@ -2322,7 +2389,7 @@ export const cs = defineLocale({
     price: (input, output) => `${input} vstup / ${output} výstup na Mtok`,
     change: 'Změnit',
     startChatting: 'Začít',
-    docs: provider => `${provider} dokumenty`,
+    docs: provider => `${provider} dokumenty`
   },
   modelPicker: {
     title: 'Přepnout model',
@@ -2338,13 +2405,13 @@ export const cs = defineLocale({
     free: 'Zdarma',
     freeTier: 'Bezplatný tarif',
     priceTitle: 'Cena vstupu / výstupu za milion tokenů',
-    wasPrice: 'byl',
+    wasPrice: 'byl'
   },
   modelVisibility: {
     title: 'Modely',
     search: 'Hledat modely',
     noAuthenticatedProviders: 'Žádné ověřené poskytovatelé.',
-    addProvider: 'Přidat poskytovatele…',
+    addProvider: 'Přidat poskytovatele…'
   },
   shell: {
     windowControls: 'Ovládání oken',
@@ -2355,7 +2422,7 @@ export const cs = defineLocale({
       noModels: 'Žádné modely nenalezeny',
       editModels: 'Upravit modely…',
       refreshModels: 'Aktualizovat modely',
-      fast: 'Rychlé',
+      fast: 'Rychlé'
     },
     modelOptions: {
       noOptions: 'Žádné možnosti pro tento model',
@@ -2371,7 +2438,7 @@ export const cs = defineLocale({
       max: 'Maximum',
       ultra: 'Ultra',
       updateFailed: 'Aktualizace možností modelu selhala',
-      fastFailed: 'Aktualizace rychlého režimu selhala',
+      fastFailed: 'Aktualizace rychlého režimu selhala'
     },
     gatewayMenu: {
       gateway: 'Brána',
@@ -2386,7 +2453,7 @@ export const cs = defineLocale({
       connection: label => `Připojení: ${label}`,
       recentActivity: 'Nedávná aktivita',
       viewAllLogs: 'Zobrazit všechny protokoly →',
-      messagingPlatforms: 'Platformy pro zprávy',
+      messagingPlatforms: 'Platformy pro zprávy'
     },
     approvalMode: {
       title: 'Režim schvalování',
@@ -2396,7 +2463,7 @@ export const cs = defineLocale({
       smart: 'Chytrý',
       smartDescription: 'Automaticky posuzovat akce a ptát se, když je potřeba',
       off: 'Vypnuto',
-      offDescription: 'Běžet bez výzev ke schválení',
+      offDescription: 'Běžet bez výzev ke schválení'
     },
     statusbar: {
       unknown: 'neznámé',
@@ -2452,18 +2519,19 @@ export const cs = defineLocale({
           skills: 'Dovednosti',
           subagent_definitions: 'Definice subagentů',
           system_prompt: 'Systémový prompt',
-          tool_definitions: 'Definice nástrojů',
+          tool_definitions: 'Definice nástrojů'
         },
         empty: 'Zatím žádná kontextová data',
         loading: 'Načítání rozpisu…',
         percentFull: percent => `${percent}% Plné`,
         title: 'Využití kontextu',
-        tokenSummary: (used, max) => `${used} / ${max} tokenů`,
+        tokenSummary: (used, max) => `${used} / ${max} tokenů`
       },
       openContextUsage: 'Otevřít rozpis využití kontextu',
       session: 'Relace',
       runtimeSessionElapsed: 'Uplynulý čas relace',
-      yoloOn: 'YOLO zapnuto — automatické schvalování nebezpečných příkazů. Klikněte pro vypnutí. Shift+klik přepne globálně.',
+      yoloOn:
+        'YOLO zapnuto — automatické schvalování nebezpečných příkazů. Klikněte pro vypnutí. Shift+klik přepne globálně.',
       yoloOff: 'YOLO vypnuto — klikněte pro automatické schvalování nebezpečných příkazů. Shift+klik přepne globálně.',
       modelNone: 'žádné',
       noModel: 'žádný model',
@@ -2471,8 +2539,8 @@ export const cs = defineLocale({
       openModelPicker: 'Otevřít výběr modelu',
       modelPinned: 'připnuto vámi; nové chaty používají toto místo výchozího nastavení',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Pravý boční panel',
@@ -2508,7 +2576,7 @@ export const cs = defineLocale({
     terminalNew: 'Nový terminál',
     terminalCloseOthers: 'Zavřít ostatní',
     terminalCloseAll: 'Zavřít vše',
-    addToChat: 'Přidat do chatu',
+    addToChat: 'Přidat do chatu'
   },
   preview: {
     tab: 'Náhled',
@@ -2563,7 +2631,7 @@ export const cs = defineLocale({
       empty: 'Zatím žádné zprávy konzole.',
       promptHeader: 'Náhled konzole:',
       sentTitle: 'Odesláno do chatu',
-      sentMessage: count => `Do kompozera přidáno ${count} záznamů v protokolu${count === 1 ? 'y' : 'ies'}`,
+      sentMessage: count => `Do kompozera přidáno ${count} záznamů v protokolu${count === 1 ? 'y' : 'ies'}`
     },
     web: {
       appFailedToBoot: 'Náhled aplikace se nepodařilo spustit',
@@ -2588,17 +2656,19 @@ export const cs = defineLocale({
       reloadingNow: 'Načítám náhled znovu.',
       restartFailedTitle: 'Restart náhledu selhal',
       restartFailedMessage: 'OpenAmer nemohl restartovat server.',
-      stillWorking: 'OpenAmer stále pracuje, ale výsledek restartu ještě nepřišel. Příkaz serveru může běžet na popředí.',
+      stillWorking:
+        'OpenAmer stále pracuje, ale výsledek restartu ještě nepřišel. Příkaz serveru může běžet na popředí.',
       workspaceReloading: 'Pracovní prostor změněn, znovu načítám náhled',
       fileChanged: url => `Soubor změněn, znovu načítám náhled: ${url}`,
       filesChanged: (count, url) => `${count} změny souborů, znovu načítám náhled: ${url}`,
       watchFailed: message => `Nelze sledovat soubor náhledu: ${message}`,
-      moduleMimeDescription: 'Modulové skripty jsou servírovány s nesprávným MIME typem. To obvykle znamená, že statický souborový server servíruje Vite/React aplikaci místo vývojového serveru projektu.',
+      moduleMimeDescription:
+        'Modulové skripty jsou servírovány s nesprávným MIME typem. To obvykle znamená, že statický souborový server servíruje Vite/React aplikaci místo vývojového serveru projektu.',
       loadFailedConsole: (code, message) => `Načtení selhalo${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Stránka náhledu není dostupná.',
       openTarget: url => `Otevřít ${url}`,
-      fallbackTitle: 'Náhled',
-    },
+      fallbackTitle: 'Náhled'
+    }
   },
   zones: {
     showHeader: 'Zobrazit záhlaví',
@@ -2606,7 +2676,8 @@ export const cs = defineLocale({
     minimize: 'Minimalizovat',
     restore: 'Obnovit',
     closeRunningTitle: 'Zavřít běžící kartu?',
-    closeRunningBody: 'Tento chat stále pracuje (nebo čeká na váš vstup). Zavření karty ji skryje — relace zachová svůj průběh a lze ji znovu otevřít z postranního panelu.',
+    closeRunningBody:
+      'Tento chat stále pracuje (nebo čeká na váš vstup). Zavření karty ji skryje — relace zachová svůj průběh a lze ji znovu otevřít z postranního panelu.',
     closeRunningConfirm: 'Zavřít kartu',
     closeOthers: 'Zavřít ostatní',
     closeToRight: 'Zavřít vpravo',
@@ -2643,29 +2714,16 @@ export const cs = defineLocale({
     layoutNamePlaceholder: fallback => `Název rozvržení (${fallback})`,
     saveApply: 'Uložit a použít',
     notExpressible: 'toto uspořádání se překrývá (kolotoč) — nelze vyjádřit jako vnořené rozdělení zatím',
-    zoneCount: count => `${count} zón`,
+    zoneCount: count => `${count} zón`
   },
   assistant: {
     thread: {
       loadingSession: 'Načítání relace',
       showEarlier: 'Zobrazit starší zprávy',
       loadingResponse: 'OpenAmer načítá odpověď',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Uvažuje',
       today: time => `Dnes, ${time}`,
@@ -2692,7 +2750,7 @@ export const cs = defineLocale({
       restoreNext: 'Obnovit další kontrolní bod',
       goForward: 'Jít vpřed',
       sendEdited: 'Odeslat upravenou zprávu',
-      attachingFile: 'Připojuji…',
+      attachingFile: 'Připojuji…'
     },
     approval: {
       gatewayDisconnected: 'Brána OpenAmer není připojena',
@@ -2705,8 +2763,9 @@ export const cs = defineLocale({
       jumpToApproval: 'Potřebné schválení',
       reject: 'Zamítnout',
       alwaysTitle: 'Vždy povolit tento příkaz?',
-      alwaysDescription: pattern => `Tím se přidá vzor „${pattern}“ do vašeho trvalého seznamu povolených (~/.openamer/config.yaml). OpenAmer se už nezeptá na příkazy jako tento – ani v této relaci, ani v budoucích.`,
-      alwaysAllow: 'Vždy povolit',
+      alwaysDescription: pattern =>
+        `Tím se přidá vzor „${pattern}“ do vašeho trvalého seznamu povolených (~/.openamer/config.yaml). OpenAmer se už nezeptá na příkazy jako tento – ani v této relaci, ani v budoucích.`,
+      alwaysAllow: 'Vždy povolit'
     },
     clarify: {
       notReady: 'Požadavek na upřesnění ještě není připraven',
@@ -2720,7 +2779,7 @@ export const cs = defineLocale({
       continueLabel: 'Pokračovat',
       lateAnswer: (question, choice) => `Re: "${question}" — moje odpověď: ${choice}`,
       lateAnswerTip: 'Vytvořit odpověď jako následnou zprávu',
-      lateAnswerHint: 'Tento dotaz už nečeká. Vyberte možnost, jak ho vytvořit jako následnou zprávu.',
+      lateAnswerHint: 'Tento dotaz už nečeká. Vyberte možnost, jak ho vytvořit jako následnou zprávu.'
     },
     tool: {
       code: 'Kód',
@@ -2756,11 +2815,11 @@ export const cs = defineLocale({
         ran: 'Spusteno',
         running: 'Běží',
         ranCode: 'Spustěn kód',
-        runningCode: 'Skriptování',
+        runningCode: 'Skriptování'
       },
       prefixes: {
         browser: 'Prohlížeč',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2768,132 +2827,133 @@ export const cs = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Běží ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Běží ${action.toLowerCase()}`,
+        runningTool: action => `Běží ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Kliknuto na prvek stránky',
           pending: 'Klikání na prvek stránky',
-          pendingAction: 'Klikání',
+          pendingAction: 'Klikání'
         },
         browser_fill: {
           done: 'Vyplněno pole formuláře',
           pending: 'Vyplňování pole formuláře',
-          pendingAction: 'Vyplňování',
+          pendingAction: 'Vyplňování'
         },
         browser_navigate: {
           done: 'Otevřená stránka',
           pending: 'Otevírání stránky',
-          pendingAction: 'Otevírání',
+          pendingAction: 'Otevírání'
         },
         browser_snapshot: {
           done: 'Zachycený snímek stránky',
           pending: 'Zachycování snímku stránky',
-          pendingAction: 'Zachycování',
+          pendingAction: 'Zachycování'
         },
         browser_take_screenshot: {
           done: 'Zachycený snímek obrazovky',
           pending: 'Zachycování snímku obrazovky',
-          pendingAction: 'Zachycování',
+          pendingAction: 'Zachycování'
         },
         browser_type: {
           done: 'Napsáno na stránce',
           pending: 'Psaní na stránce',
-          pendingAction: 'Psaní',
+          pendingAction: 'Psaní'
         },
         clarify: {
           done: 'Položena otázka',
           pending: 'Položování otázky',
-          pendingAction: 'Položování',
+          pendingAction: 'Položování'
         },
         cronjob: {
           done: 'Cron úloha',
           pending: 'Plánování cron úlohy',
-          pendingAction: 'Plánování',
+          pendingAction: 'Plánování'
         },
         edit_file: {
           done: 'Upravený soubor',
           pending: 'Úprava souboru',
-          pendingAction: 'Úprava',
+          pendingAction: 'Úprava'
         },
         execute_code: {
           done: 'Spuštěn kód',
           pending: 'Skriptování',
-          pendingAction: 'Skriptování',
+          pendingAction: 'Skriptování'
         },
         image_generate: {
           done: 'Vygenerovaný obrázek',
           pending: 'Generování obrázku',
-          pendingAction: 'Generování',
+          pendingAction: 'Generování'
         },
         list_files: {
           done: 'Vypsané soubory',
           pending: 'Vypisování souborů',
-          pendingAction: 'Vypisování',
+          pendingAction: 'Vypisování'
         },
         patch: {
           done: 'Opravený soubor',
           pending: 'Oprava souboru',
-          pendingAction: 'Oprava',
+          pendingAction: 'Oprava'
         },
         read_file: {
           done: 'Přečtený soubor',
           pending: 'Čtení souboru',
-          pendingAction: 'Čtení',
+          pendingAction: 'Čtení'
         },
         search_files: {
           done: 'Vyhledané soubory',
           pending: 'Vyhledávání souborů',
-          pendingAction: 'Vyhledávání',
+          pendingAction: 'Vyhledávání'
         },
         session_search_recall: {
           done: 'Vyhledaná historie relace',
           pending: 'Vyhledávání historie relace',
-          pendingAction: 'Vyhledávání',
+          pendingAction: 'Vyhledávání'
         },
         terminal: {
           done: 'Spustěný příkaz',
           pending: 'Spuštění příkazu',
-          pendingAction: 'Běh',
+          pendingAction: 'Běh'
         },
         todo: {
           done: 'Aktualizované úkoly',
           pending: 'Aktualizace úkolů',
-          pendingAction: 'Aktualizace',
+          pendingAction: 'Aktualizace'
         },
         vision_analyze: {
           done: 'Obrázek analyzován',
           pending: 'Analyzuji obrázek',
-          pendingAction: 'Analyzuji',
+          pendingAction: 'Analyzuji'
         },
         web_extract: {
           done: 'Webová stránka přečtena',
           pending: 'Čtu webovou stránku',
-          pendingAction: 'Čtu',
+          pendingAction: 'Čtu'
         },
         web_search: {
           done: 'Web prohledán',
           pending: 'Hledám na webu',
-          pendingAction: 'Hledám',
+          pendingAction: 'Hledám'
         },
         write_file: {
           done: 'Soubor upraven',
           pending: 'Upravuji soubor',
-          pendingAction: 'Upravuji',
-        },
-      },
-    },
+          pendingAction: 'Upravuji'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Brána OpenAmer není připojena',
     sudoSendFailed: 'Nepodařilo se odeslat heslo sudo',
     secretSendFailed: 'Nepodařilo se odeslat tajemství',
     sudoTitle: 'Heslo správce',
-    sudoDesc: 'OpenAmer potřebuje vaše heslo sudo pro spuštění privilegovaného příkazu. Je odesláno pouze vašemu lokálnímu agentovi.',
+    sudoDesc:
+      'OpenAmer potřebuje vaše heslo sudo pro spuštění privilegovaného příkazu. Je odesláno pouze vašemu lokálnímu agentovi.',
     sudoPlaceholder: 'heslo sudo',
     secretTitle: 'Vyžadováno tajemství',
     secretDesc: 'OpenAmer potřebuje přihlašovací údaj pro pokračování.',
-    secretPlaceholder: 'hodnota tajemství',
+    secretPlaceholder: 'hodnota tajemství'
   },
   desktop: {
     audioReadFailed: 'Nepodařilo se přečíst nahrané audio',
@@ -2910,7 +2970,8 @@ export const cs = defineLocale({
     yoloSystem: active => `YOLO ${active ? 'zapnuto' : 'vypnuto'} pro tuto relaci`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Nepodařilo se přepnout YOLO',
-    profileStatus: current => `Profil: ${current}. Použijte /profile <název> nebo výběr "Nová relace" pro zahájení chatu v jiném profilu.`,
+    profileStatus: current =>
+      `Profil: ${current}. Použijte /profile <název> nebo výběr "Nová relace" pro zahájení chatu v jiném profilu.`,
     unknownProfile: 'Neznámý profil',
     noProfileNamed: (target, available) => `Žádný profil s názvem "${target}". Dostupné: ${available}`,
     newChatsProfile: name => `Nové chaty budou používat profil ${name}.`,
@@ -2920,8 +2981,9 @@ export const cs = defineLocale({
     regenerateFailed: 'Regenerace selhala',
     editFailed: 'Úprava selhala',
     resumeFailed: 'Obnovení selhalo',
-    resumeStrandedTitle: "Nelze načíst tuto relaci",
-    resumeStrandedBody: 'Připojení k této relaci selhalo a automatické opakování se vzdalo. Zkontrolujte, že brána běží, a zkuste to znovu.',
+    resumeStrandedTitle: 'Nelze načíst tuto relaci',
+    resumeStrandedBody:
+      'Připojení k této relaci selhalo a automatické opakování se vzdalo. Zkontrolujte, že brána běží, a zkuste to znovu.',
     resumeRetry: 'Zkusit znovu',
     nothingToBranch: 'Nic k rozvětvení',
     branchNeedsChat: 'Spusťte nebo obnovte chat před rozvětvením.',
@@ -2961,31 +3023,31 @@ export const cs = defineLocale({
       success: platform => `Předáno ${platform}. Můžete pokračovat kdykoli.`,
       systemNote: platform => `↻ Předáno ${platform} — můžete pokračovat kdykoli.`,
       failed: error => `Předání selhalo: ${error}`,
-      timedOut: 'Časový limit při čekání na bránu. Je `openamer gateway` spuštěn?',
-    },
+      timedOut: 'Časový limit při čekání na bránu. Je `openamer gateway` spuštěn?'
+    }
   },
   errors: {
     genericFailure: 'Něco se pokazilo',
     boundaryTitle: 'V rozhraní nastala chyba',
     boundaryDesc: 'Zobrazení narazilo na neočekávanou chybu. Vaše chaty a nastavení jsou v bezpečí.',
     reloadWindow: 'Obnovit okno',
-    openLogs: 'Otevřít protokoly',
+    openLogs: 'Otevřít protokoly'
   },
   ui: {
     search: {
-      clear: 'Vymazat vyhledávání',
+      clear: 'Vymazat vyhledávání'
     },
     pagination: {
       label: 'stránkování',
       previous: 'Předchozí',
       previousAria: 'Přejít na předchozí stránku',
       next: 'Další',
-      nextAria: 'Přejít na další stránku',
+      nextAria: 'Přejít na další stránku'
     },
     sidebar: {
       title: 'Boční panel',
       description: 'Zobrazuje mobilní boční panel.',
-      toggle: 'Přepnout boční panel',
-    },
-  },
+      toggle: 'Přepnout boční panel'
+    }
+  }
 })

@@ -37,7 +37,12 @@ const profile = (name: string, isDefault = false): ProfileInfo => ({
 })
 
 const remoteConn = (over: Partial<OpenAmerConnection> = {}): OpenAmerConnection =>
-  ({ baseUrl: 'https://openamer-roy.tail.ts.net', mode: 'remote', profile: 'vps-remote', ...over }) as OpenAmerConnection
+  ({
+    baseUrl: 'https://openamer-roy.tail.ts.net',
+    mode: 'remote',
+    profile: 'vps-remote',
+    ...over
+  }) as OpenAmerConnection
 
 const localConn = (over: Partial<OpenAmerConnection> = {}): OpenAmerConnection =>
   ({ baseUrl: '', mode: 'local', profile: 'default', ...over }) as OpenAmerConnection

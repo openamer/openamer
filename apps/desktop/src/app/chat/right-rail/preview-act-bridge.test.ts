@@ -1,6 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { answerPreviewAct, decidePreviewAct, type PreviewActHost, registerPreviewActHost, resetPreviewActHostForTests } from './preview-act-bridge'
+import {
+  answerPreviewAct,
+  decidePreviewAct,
+  type PreviewActHost,
+  registerPreviewActHost,
+  resetPreviewActHostForTests
+} from './preview-act-bridge'
 
 const SESSION_A = 'session-a'
 const SESSION_B = 'session-b'
@@ -10,7 +16,15 @@ function hostFor(sessionId: string, executed: string[] = []): PreviewActHost {
     executeJavaScript: vi.fn(async (code: string) => {
       executed.push(code)
 
-      return { action: 'elements', elements: [{ label: 'Sign in', ref: 'btn-sign-in', role: 'button' }], ok: true, status: 'ok', title: 'Fixture', truncated: false, url: 'http://127.0.0.1:8765/' }
+      return {
+        action: 'elements',
+        elements: [{ label: 'Sign in', ref: 'btn-sign-in', role: 'button' }],
+        ok: true,
+        status: 'ok',
+        title: 'Fixture',
+        truncated: false,
+        url: 'http://127.0.0.1:8765/'
+      }
     }),
     sessionId
   }
@@ -18,23 +32,35 @@ function hostFor(sessionId: string, executed: string[] = []): PreviewActHost {
 
 describe('decidePreviewAct', () => {
   it('allows the focused session to drive the pane it owns', () => {
-    expect(decidePreviewAct({ activeSessionId: SESSION_A, eventSessionId: SESSION_A, host: hostFor(SESSION_A) })).toMatchObject({ ok: true })
+    expect(
+      decidePreviewAct({ activeSessionId: SESSION_A, eventSessionId: SESSION_A, host: hostFor(SESSION_A) })
+    ).toMatchObject({ ok: true })
   })
 
   it('refuses a request that belongs to another conversation', () => {
-    const decision = decidePreviewAct({ activeSessionId: SESSION_A, eventSessionId: SESSION_B, host: hostFor(SESSION_A) })
+    const decision = decidePreviewAct({
+      activeSessionId: SESSION_A,
+      eventSessionId: SESSION_B,
+      host: hostFor(SESSION_A)
+    })
 
     expect(decision).toMatchObject({ ok: false, reason: 'not-active-session' })
   })
 
   it('refuses when the pane on screen belongs to another conversation', () => {
-    const decision = decidePreviewAct({ activeSessionId: SESSION_A, eventSessionId: SESSION_A, host: hostFor(SESSION_B) })
+    const decision = decidePreviewAct({
+      activeSessionId: SESSION_A,
+      eventSessionId: SESSION_A,
+      host: hostFor(SESSION_B)
+    })
 
     expect(decision).toMatchObject({ ok: false, reason: 'not-active-session' })
   })
 
   it('refuses when no conversation is focused', () => {
-    expect(decidePreviewAct({ activeSessionId: null, eventSessionId: SESSION_A, host: hostFor(SESSION_A) })).toMatchObject({
+    expect(
+      decidePreviewAct({ activeSessionId: null, eventSessionId: SESSION_A, host: hostFor(SESSION_A) })
+    ).toMatchObject({
       ok: false,
       reason: 'no-active-session'
     })
@@ -48,7 +74,9 @@ describe('decidePreviewAct', () => {
   })
 
   it('refuses when the pane has not resolved its conversation yet', () => {
-    expect(decidePreviewAct({ activeSessionId: SESSION_A, eventSessionId: SESSION_A, host: hostFor('') })).toMatchObject({
+    expect(
+      decidePreviewAct({ activeSessionId: SESSION_A, eventSessionId: SESSION_A, host: hostFor('') })
+    ).toMatchObject({
       ok: false,
       reason: 'no-active-session'
     })
@@ -103,7 +131,11 @@ describe('answerPreviewAct', () => {
 
   it('passes a stale-ref refusal through untouched', async () => {
     const host: PreviewActHost = {
-      executeJavaScript: vi.fn(async () => ({ message: "Ref 'btn-pay' belonged to a previous view of the page.", ok: false, status: 'stale-ref' })),
+      executeJavaScript: vi.fn(async () => ({
+        message: "Ref 'btn-pay' belonged to a previous view of the page.",
+        ok: false,
+        status: 'stale-ref'
+      })),
       sessionId: SESSION_A
     }
 

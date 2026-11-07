@@ -44,7 +44,7 @@ export const ar = defineLocale({
     update: 'تحديث',
     tryHint: term => `جرب “${term}”`,
     on: 'مفعل',
-    off: 'معطل',
+    off: 'معطل'
   },
   fileMenu: {
     revealFinder: 'إظهار في Finder',
@@ -59,7 +59,7 @@ export const ar = defineLocale({
     renameLabel: 'الاسم الجديد',
     deleteTitle: name => `حذف ${name}؟`,
     deleteBody: 'سيتم نقله إلى سلة المهملات — يمكنك استعادته من هناك.',
-    pathCopied: 'تم نسخ المسار',
+    pathCopied: 'تم نسخ المسار'
   },
   boot: {
     ready: 'OpenAmer Desktop جاهز',
@@ -69,7 +69,7 @@ export const ar = defineLocale({
       loadingSettings: 'جار تحميل إعدادات OpenAmer',
       loadingSessions: 'جار تحميل الجلسات الأخيرة',
       startingDesktopConnection: 'جار بدء اتصال سطح المكتب',
-      startingOpenAmerDesktop: 'جار تشغيل OpenAmer Desktop...',
+      startingOpenAmerDesktop: 'جار تشغيل OpenAmer Desktop...'
     },
     errors: {
       backgroundExited: 'خرجت عملية OpenAmer الخلفية.',
@@ -78,11 +78,11 @@ export const ar = defineLocale({
       desktopBootFailed: 'فشل تشغيل سطح المكتب',
       gatewayConnectionLost: 'انقطع الاتصال بالبوابة',
       gatewaySignInRequired: 'تسجيل الدخول للبوابة مطلوب',
-      ipcBridgeUnavailable: 'جسر IPC لسطح المكتب غير متاح.',
+      ipcBridgeUnavailable: 'جسر IPC لسطح المكتب غير متاح.'
     },
     failure: {
-      title: "تعذر تشغيل OpenAmer",
-      description: "لم تعمل البوابة الخلفية. جرب إحدى خطوات الاسترداد أدناه. لن يحذف ذلك محادثاتك أو إعداداتك.",
+      title: 'تعذر تشغيل OpenAmer',
+      description: 'لم تعمل البوابة الخلفية. جرب إحدى خطوات الاسترداد أدناه. لن يحذف ذلك محادثاتك أو إعداداتك.',
       remoteTitle: 'تسجيل الدخول للبوابة البعيدة مطلوب',
       remoteDescription: 'انتهت جلسة البوابة البعيدة. سجل الدخول مرة أخرى لإعادة الاتصال.',
       retry: 'إعادة المحاولة',
@@ -92,7 +92,8 @@ export const ar = defineLocale({
       back: 'رجوع',
       openLogs: 'فتح السجلات',
       repairHint: 'يعيد الإصلاح تشغيل المثبت وقد يستغرق بضع دقائق على جهاز جديد.',
-      remoteSignInHint: signInLabel => `يسجّل الخروج من جلسة المتصفح البعيدة المحفوظة، ثم يفتح ${signInLabel}. استخدم البوابة المحلية للتبديل إلى الخلفية المضمنة.`,
+      remoteSignInHint: signInLabel =>
+        `يسجّل الخروج من جلسة المتصفح البعيدة المحفوظة، ثم يفتح ${signInLabel}. استخدم البوابة المحلية للتبديل إلى الخلفية المضمنة.`,
       signOutAndSignIn: 'تسجيل الخروج وإعادة تسجيل الدخول',
       remoteFailureHint: 'تحقق من رابط البوابة وتسجيل الدخول ضمن إعدادات البوابة، أو التبديل إلى البوابة المحلية.',
       hideRecentLogs: 'إخفاء السجلات الأخيرة',
@@ -104,8 +105,8 @@ export const ar = defineLocale({
       signInFailed: 'فشل تسجيل الدخول',
       signInToRemoteGateway: 'تسجيل الدخول للبوابة البعيدة',
       signInWithProvider: provider => `تسجيل الدخول عبر ${provider}`,
-      identityProvider: 'مزود الهوية',
-    },
+      identityProvider: 'مزود الهوية'
+    }
   },
   notifications: {
     region: 'الإشعارات',
@@ -123,7 +124,7 @@ export const ar = defineLocale({
     updateOpenAmer: 'تحديث OpenAmer',
     updateReadyTitle: 'التحديث جاهز',
     updateReadyMessage: count => `${count} تغيير جديد ${count === 1 ? 'تغيير' : 'تغييرات'} متاح.`,
-    seeWhatsNew: "عرض الجديد",
+    seeWhatsNew: 'عرض الجديد',
     errors: {
       elevenLabsNeedsKey: 'يتطلب ElevenLabs STT المفتاح ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'رفض ElevenLabs مفتاح API (401).',
@@ -132,7 +133,7 @@ export const ar = defineLocale({
       microphonePermission: 'تم رفض إذن الميكروفون.',
       openaiRejectedApiKey: 'رفض OpenAI مفتاح API.',
       openaiRejectedApiKeyWithStatus: status => `رفض OpenAI مفتاح API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'يتطلب OpenAI TTS المفتاح VOICE_TOOLS_OPENAI_KEY أو OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'يتطلب OpenAI TTS المفتاح VOICE_TOOLS_OPENAI_KEY أو OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'اضبط تحويل الكلام إلى نص لاستخدام وضع الصوت.',
@@ -151,7 +152,7 @@ export const ar = defineLocale({
       transcriptionFailed: 'فشل التفريغ النصي',
       transcriptionUnavailable: 'التفريغ النصي غير متاح.',
       tryRecordingAgain: 'حاول التسجيل مرة أخرى.',
-      unavailable: 'الصوت غير متاح',
+      unavailable: 'الصوت غير متاح'
     },
     native: {
       approvalTitle: 'مطلوب موافقة',
@@ -164,11 +165,11 @@ export const ar = defineLocale({
       turnErrorTitle: 'فشلت الجولة',
       backgroundDoneTitle: 'انتهت المهمة في الخلفية',
       backgroundFailedTitle: 'فشلت المهمة في الخلفية',
-      creditsTitle: 'الرصيد',
-    },
+      creditsTitle: 'الرصيد'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `العرض البرمجي نشط — تم اكتشاف شاشة بعيدة (${reason}). تم تعطيل تسريع GPU لمنع الوميض.`,
+    message: reason => `العرض البرمجي نشط — تم اكتشاف شاشة بعيدة (${reason}). تم تعطيل تسريع GPU لمنع الوميض.`
   },
   billingBlock: {
     titleOpenamer: 'نفد رصيد OpenAmer',
@@ -176,7 +177,7 @@ export const ar = defineLocale({
     fallbackMessage: 'حسابك نفد رصيده. أضف رصيداً للمتابعة.',
     openBilling: 'فتح الفوترة',
     addCredits: 'إضافة رصيد',
-    dismiss: 'تجاهل',
+    dismiss: 'تجاهل'
   },
   titlebar: {
     hideSidebar: 'إخفاء الشريط الجانبي',
@@ -193,7 +194,7 @@ export const ar = defineLocale({
     openStarmap: 'فتح خريطة الذاكرة',
     openKeybinds: 'اختصارات لوحة المفاتيح',
     layoutEditor: 'محرر التخطيط',
-    layoutEditorTitle: 'محرر التخطيط — انقر مع ⌘ لإعادة ضبط التخطيط',
+    layoutEditorTitle: 'محرر التخطيط — انقر مع ⌘ لإعادة ضبط التخطيط'
   },
   keybinds: {
     title: 'اختصارات لوحة المفاتيح',
@@ -210,7 +211,7 @@ export const ar = defineLocale({
       profiles: 'الملفات الشخصية',
       session: 'الجلسة',
       navigation: 'التنقل',
-      view: 'العرض',
+      view: 'العرض'
     },
     actions: {
       'keybinds.openPanel': 'فتح اختصارات لوحة المفاتيح',
@@ -289,8 +290,8 @@ export const ar = defineLocale({
       'composer.slash': 'لوحة الأوامر المائلة',
       'composer.help': 'مساعدة سريعة',
       'composer.history': 'التنقل في النافذة المنبثقة / السجل',
-      'composer.cancel': 'إغلاق النافذة المنبثقة · إلغاء التشغيل',
-    },
+      'composer.cancel': 'إغلاق النافذة المنبثقة · إلغاء التشغيل'
+    }
   },
   language: {
     label: 'اللغة',
@@ -299,7 +300,7 @@ export const ar = defineLocale({
     saveError: 'تعذر تحديث اللغة',
     switchTo: 'تغيير اللغة',
     searchPlaceholder: 'ابحث عن لغة...',
-    noResults: 'لا توجد لغة مطابقة',
+    noResults: 'لا توجد لغة مطابقة'
   },
   settings: {
     closeSettings: 'إغلاق الإعدادات',
@@ -324,11 +325,12 @@ export const ar = defineLocale({
       about: 'حول',
       billing: 'الفوترة',
       notifications: 'الإشعارات',
-      plugins: 'الإضافات',
+      plugins: 'الإضافات'
     },
     plugins: {
       title: 'إضافات سطح المكتب',
-      blurb: 'امتدادات واجهة تُحمّل داخل هذا التطبيق — إما مضمّنة مع البناء، أو موضوعة في مجلد desktop-plugins (بما فيها التي يكتبها OpenAmer). تعطيل الإضافة يفرغها مباشرة ويبقى بعد إعادة التشغيل.',
+      blurb:
+        'امتدادات واجهة تُحمّل داخل هذا التطبيق — إما مضمّنة مع البناء، أو موضوعة في مجلد desktop-plugins (بما فيها التي يكتبها OpenAmer). تعطيل الإضافة يفرغها مباشرة ويبقى بعد إعادة التشغيل.',
       count: n => `${n} مثبتة`,
       openFolder: 'فتح مجلد الإضافات',
       rescan: 'إعادة الفحص',
@@ -340,40 +342,41 @@ export const ar = defineLocale({
       kinds: {
         bundled: 'مضمّنة',
         disk: 'على القرص',
-        runtime: 'وقت التشغيل',
-      },
+        runtime: 'وقت التشغيل'
+      }
     },
     notifications: {
       title: 'الإشعارات',
-      intro: 'إشعارات سطح المكتب الأصلية، منفصلة عن التنبيهات داخل التطبيق. هذه محلية على الجهاز — كل حاسوب يحتفظ بإعداداته الخاصة.',
+      intro:
+        'إشعارات سطح المكتب الأصلية، منفصلة عن التنبيهات داخل التطبيق. هذه محلية على الجهاز — كل حاسوب يحتفظ بإعداداته الخاصة.',
       enableAll: 'تفعيل الإشعارات',
       enableAllDesc: 'مفتاح رئيسي. أوقفه لإسكات كل الإشعارات أدناه.',
       focusedHint: 'تنبيهات الاكتمال تظهر فقط عندما يكون OpenAmer في الخلفية.',
       kinds: {
         approval: {
           label: 'يلزم الموافقة',
-          description: 'هناك أمر ينتظر موافقتك أو رفضك له.',
+          description: 'هناك أمر ينتظر موافقتك أو رفضك له.'
         },
         input: {
           label: 'يلزم إدخال',
-          description: 'طرح OpenAmer سؤالا أو يحتاج إلى كلمة مرور أو سر.',
+          description: 'طرح OpenAmer سؤالا أو يحتاج إلى كلمة مرور أو سر.'
         },
         turnDone: {
           label: 'الرد جاهز',
-          description: 'انتهى دور بينما كان OpenAmer في الخلفية.',
+          description: 'انتهى دور بينما كان OpenAmer في الخلفية.'
         },
         turnError: {
           label: 'فشل الدور',
-          description: 'انتهى دور بخطأ.',
+          description: 'انتهى دور بخطأ.'
         },
         backgroundDone: {
           label: 'اكتملت مهمة الخلفية',
-          description: 'اكتمل أمر طرفية يعمل في الخلفية.',
+          description: 'اكتمل أمر طرفية يعمل في الخلفية.'
         },
         credits: {
           label: 'تنبيهات الائتمان',
-          description: 'تم إيقاف الوصول الائتماني أو استعادته.',
-        },
+          description: 'تم إيقاف الوصول الائتماني أو استعادته.'
+        }
       },
       test: 'إرسال إشعار تجريبي',
       testTitle: 'OpenAmer',
@@ -382,7 +385,7 @@ export const ar = defineLocale({
       testUnsupported: 'هذا النظام لا يدعم الإشعارات الأصلية.',
       completionSoundTitle: 'صوت الاكتمال',
       completionSoundDesc: 'يُشغّل عند انتهاء دور الوكيل. اختر إعدادا مسبقا وعاينه هنا.',
-      completionSoundPreview: 'معاينة',
+      completionSoundPreview: 'معاينة'
     },
     sections: {
       model: 'النموذج',
@@ -392,7 +395,7 @@ export const ar = defineLocale({
       safety: 'الأمان',
       memory: 'الذاكرة والسياق',
       voice: 'الصوت',
-      advanced: 'متقدم',
+      advanced: 'متقدم'
     },
     searchPlaceholder: {
       about: 'حول OpenAmer Desktop',
@@ -400,21 +403,21 @@ export const ar = defineLocale({
       gateway: 'اتصال البوابة...',
       keys: 'ابحث في مفاتيح API...',
       mcp: 'ابحث في خوادم MCP...',
-      sessions: 'ابحث في المحادثات المؤرشفة...',
+      sessions: 'ابحث في المحادثات المؤرشفة...'
     },
     modeOptions: {
       light: {
         label: 'فاتح',
-        description: 'أسطح سطح مكتب ساطعة',
+        description: 'أسطح سطح مكتب ساطعة'
       },
       dark: {
         label: 'داكن',
-        description: 'مساحة عمل منخفضة الوهج',
+        description: 'مساحة عمل منخفضة الوهج'
       },
       system: {
         label: 'النظام',
-        description: 'اتباع مظهر نظام التشغيل',
-      },
+        description: 'اتباع مظهر نظام التشغيل'
+      }
     },
     appearance: {
       title: 'المظهر',
@@ -424,13 +427,15 @@ export const ar = defineLocale({
       toolViewTitle: 'عرض الأدوات',
       toolViewDesc: 'تحكم في كيفية عرض نشاط الأدوات داخل المحادثة.',
       uiScaleTitle: 'مقياس واجهة المستخدم',
-      uiScaleDesc: (percent: number) => `يضبط حجم النصوص وعناصر التحكم في التطبيق بالكامل. يعمل Cmd/Ctrl مع +، - و 0 أيضاً. الحالي: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `يضبط حجم النصوص وعناصر التحكم في التطبيق بالكامل. يعمل Cmd/Ctrl مع +، - و 0 أيضاً. الحالي: ${percent}%.`,
       translucencyTitle: 'شفافية النافذة',
       translucencyDesc: 'إظهار سطح المكتب من خلال النافذة بالكامل. متاح على macOS وWindows فقط.',
       backdropTitle: 'خلفية النافذة',
       backdropDesc: 'اختيار مقدار مزج خلفية سطح المكتب مع سطح OpenAmer.',
       embedsTitle: 'التضمينات المضمّنة',
-      embedsDesc: 'تُحمّل المعاينات الغنية من مواقع طرف ثالث (YouTube، X، …). "اسأل" يعرض عنصرا نائبا حتى تسمح لكل واحد؛ "دائما" يحمّلها تلقائيا؛ "إيقاف" يبقي الروابط عادية.',
+      embedsDesc:
+        'تُحمّل المعاينات الغنية من مواقع طرف ثالث (YouTube، X، …). "اسأل" يعرض عنصرا نائبا حتى تسمح لكل واحد؛ "دائما" يحمّلها تلقائيا؛ "إيقاف" يبقي الروابط عادية.',
       embedsAsk: 'اسأل',
       embedsAlways: 'دائما',
       embedsOff: 'إيقاف',
@@ -453,8 +458,10 @@ export const ar = defineLocale({
       importedBadge: 'مستورد',
       pet: {
         title: 'حيوان أليف',
-        intro: 'تبنَّ تعويذة petdex متحركة تطفو فوق التطبيق وتتفاعل مع ما يفعله OpenAmer — تجري أثناء تنفيذ الأدوات، وتحتفل عند النجاح، وتعبس عند الأخطاء.',
-        restartHint: 'تحتاج الحيوانات الأليفة إلى إعادة تشغيل سريعة — بدأ التطبيق العامل قبل إضافة هذه الميزة. أغلق OpenAmer وأعد فتحه، ثم ارجع إلى هنا.',
+        intro:
+          'تبنَّ تعويذة petdex متحركة تطفو فوق التطبيق وتتفاعل مع ما يفعله OpenAmer — تجري أثناء تنفيذ الأدوات، وتحتفل عند النجاح، وتعبس عند الأخطاء.',
+        restartHint:
+          'تحتاج الحيوانات الأليفة إلى إعادة تشغيل سريعة — بدأ التطبيق العامل قبل إضافة هذه الميزة. أغلق OpenAmer وأعد فتحه، ثم ارجع إلى هنا.',
         on: 'تشغيل',
         off: 'إيقاف',
         scaleTitle: 'الحجم',
@@ -464,7 +471,7 @@ export const ar = defineLocale({
         chooseTitle: 'اختر حيوانا أليفا',
         chooseDesc: 'اختياره يثبّته (إن لزم) ويجعله نشطا.',
         searchPlaceholder: 'البحث عن حيوانات أليفة...',
-        unreachable: "تعذّر الوصول إلى معرض petdex. تحقق من اتصالك وأعد فتح هذه الصفحة.",
+        unreachable: 'تعذّر الوصول إلى معرض petdex. تحقق من اتصالك وأعد فتح هذه الصفحة.',
         noMatch: query => `لا توجد حيوانات أليفة تطابق "${query}".`,
         installedTag: 'مثبّت',
         generatedTag: 'مُولّد',
@@ -473,7 +480,7 @@ export const ar = defineLocale({
         uninstall: name => `إلغاء تثبيت ${name}`,
         delete: name => `حذف ${name}`,
         deleteTitle: name => `حذف ${name}؟`,
-        deleteBody: "هذا يحذف الحيوان الأليف نهائيا — لا يمكن إعادة تثبيته.",
+        deleteBody: 'هذا يحذف الحيوان الأليف نهائيا — لا يمكن إعادة تثبيته.',
         deleteConfirm: 'حذف',
         rename: name => `إعادة تسمية ${name}`,
         renameTitle: 'إعادة تسمية الحيوان الأليف',
@@ -486,8 +493,8 @@ export const ar = defineLocale({
         exportFailed: slug => `تعذّر تصدير ${slug}`,
         noneAvailable: 'لا توجد حيوانات أليفة متاحة للتشغيل الآن.',
         turnOnFailed: 'تعذّر تشغيل الحيوان الأليف.',
-        turnOffFailed: 'تعذّر إيقاف الحيوان الأليف.',
-      },
+        turnOffFailed: 'تعذّر إيقاف الحيوان الأليف.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,13 +505,13 @@ export const ar = defineLocale({
       updates: 'التحديثات',
       checkNow: 'التحقق الآن',
       checking: 'جار التحقق...',
-      seeWhatsNew: "عرض الجديد",
+      seeWhatsNew: 'عرض الجديد',
       updateNow: 'تحديث الآن',
       releaseNotes: 'ملاحظات الإصدار',
-      onLatest: "أنت على أحدث إصدار",
+      onLatest: 'أنت على أحدث إصدار',
       installing: 'جار التثبيت...',
-      cantUpdate: "تعذر التحديث",
-      cantReach: "تعذر الوصول لخدمة التحديث",
+      cantUpdate: 'تعذر التحديث',
+      cantReach: 'تعذر الوصول لخدمة التحديث',
       tapCheck: 'اضغط للتحقق من التحديثات.',
       updateReady: count => `تحديث جديد جاهز (${count} تغيير ${count === 1 ? 'تغيير' : 'تغييرات'} مُضمَّن).`,
       lastChecked: age => `آخر تحقق ${age}`,
@@ -516,7 +523,7 @@ export const ar = defineLocale({
       justNow: 'الآن',
       minAgo: count => `قبل ${count} دقيقة`,
       hoursAgo: count => `قبل ${count} ساعة`,
-      daysAgo: count => `قبل ${count} يوم`,
+      daysAgo: count => `قبل ${count} يوم`
     },
     config: {
       none: 'لا شيء',
@@ -532,7 +539,7 @@ export const ar = defineLocale({
       imported: 'تم استيراد الإعدادات',
       invalidJson: 'JSON غير صالح',
       keepAwakeTitle: 'إبقاء الكمبيوتر مستيقظاً',
-      keepAwakeDesc: 'منع هذا الجهاز من النوم لفترات طويلة أو أثناء التشغيل الليلي. يمكن أن يخفت الشاشة.',
+      keepAwakeDesc: 'منع هذا الجهاز من النوم لفترات طويلة أو أثناء التشغيل الليلي. يمكن أن يخفت الشاشة.'
     },
     credentials: {
       pasteKey: 'لصق المفتاح',
@@ -542,7 +549,7 @@ export const ar = defineLocale({
       couldNotSave: 'تعذّر حفظ بيانات الاعتماد.',
       remove: 'إزالة',
       getKey: 'احصل على مفتاح',
-      saving: 'جار الحفظ',
+      saving: 'جار الحفظ'
     },
     envActions: {
       actionsFor: label => `إجراءات ${label}`,
@@ -553,7 +560,7 @@ export const ar = defineLocale({
       revealValue: 'إظهار القيمة',
       replace: 'استبدال',
       set: 'ضبط',
-      clear: 'مسح',
+      clear: 'مسح'
     },
     gateway: {
       loading: 'جار تحميل إعدادات البوابة...',
@@ -561,21 +568,26 @@ export const ar = defineLocale({
       unavailableDesc: 'جسر IPC في سطح المكتب لا يوفّر إعدادات البوابة.',
       title: 'اتصال البوابة',
       envOverride: 'تجاوز من البيئة',
-      intro: 'يشغّل OpenAmer Desktop بوابة محلية خاصة افتراضياً. استخدم بوابة بعيدة عندما تريد أن يتحكم هذا التطبيق بخلفية OpenAmer تعمل مسبقاً على جهاز آخر أو خلف وكيل موثوق.',
+      intro:
+        'يشغّل OpenAmer Desktop بوابة محلية خاصة افتراضياً. استخدم بوابة بعيدة عندما تريد أن يتحكم هذا التطبيق بخلفية OpenAmer تعمل مسبقاً على جهاز آخر أو خلف وكيل موثوق.',
       appliesTo: 'ينطبق على',
       allProfiles: 'كل الملفات الشخصية',
       defaultConnection: 'الاتصال الافتراضي لكل ملف شخصي لا يملك تجاوزاً خاصاً.',
-      profileConnection: profile => `الاتصال المستخدم فقط عندما يكون "${profile}" هو الملف الشخصي النشط. اختر "استخدام البوابة الافتراضية" لإزالة التجاوز الخاص به.`,
+      profileConnection: profile =>
+        `الاتصال المستخدم فقط عندما يكون "${profile}" هو الملف الشخصي النشط. اختر "استخدام البوابة الافتراضية" لإزالة التجاوز الخاص به.`,
       envOverrideTitle: 'متغيرات البيئة تتحكم في جلسة سطح المكتب هذه.',
-      envOverrideDesc: 'أزل OPENAMER_DESKTOP_REMOTE_URL و OPENAMER_DESKTOP_REMOTE_TOKEN لاستخدام الإعداد المحفوظ أدناه.',
+      envOverrideDesc:
+        'أزل OPENAMER_DESKTOP_REMOTE_URL و OPENAMER_DESKTOP_REMOTE_TOKEN لاستخدام الإعداد المحفوظ أدناه.',
       modeTitle: 'وضع الاتصال',
       localTitle: 'بوابة محلية',
       localDesc: 'تشغيل خلفية OpenAmer خاصة على localhost. هذا هو الافتراضي ويعمل دون اتصال.',
       inheritTitle: 'استخدام البوابة الافتراضية',
-      inheritDesc: "إزالة التجاوز الخاص بهذا الملف الشخصي واستخدام الاتصال الافتراضي.",
+      inheritDesc: 'إزالة التجاوز الخاص بهذا الملف الشخصي واستخدام الاتصال الافتراضي.',
       remoteTitle: 'بوابة بعيدة',
-      remoteDesc: 'صل واجهة سطح المكتب هذه بخلفية OpenAmer بعيدة. البوابات المستضافة تستخدم OAuth أو اسم مستخدم وكلمة مرور، والبوابات الذاتية قد تستخدم رمز جلسة.',
-      remoteAuthHint: 'تستخدم البوابات المستضافة OAuth أو اسم مستخدم وكلمة مرور؛ قد تستخدم البوابات المستضافة ذاتياً رمز جلسة.',
+      remoteDesc:
+        'صل واجهة سطح المكتب هذه بخلفية OpenAmer بعيدة. البوابات المستضافة تستخدم OAuth أو اسم مستخدم وكلمة مرور، والبوابات الذاتية قد تستخدم رمز جلسة.',
+      remoteAuthHint:
+        'تستخدم البوابات المستضافة OAuth أو اسم مستخدم وكلمة مرور؛ قد تستخدم البوابات المستضافة ذاتياً رمز جلسة.',
       cloudTitle: 'سحابة OpenAmer',
       cloudDesc: 'سجّل الدخول مرة واحدة إلى OpenAmer Cloud واختر من الوكلاء في حسابك — لا حاجة لنسخ رابط.',
       cloudSignInTitle: 'سحابة OpenAmer',
@@ -592,7 +604,7 @@ export const ar = defineLocale({
       cloudNoAgents: {
         before: 'لم يتم العثور على وكلاء في هذا الحساب. أنشئ واحداً في ',
         linkText: 'بوابة OpenAmer',
-        after: '، ثم حدّث.',
+        after: '، ثم حدّث.'
       },
       cloudRefresh: 'تحديث',
       cloudConnect: 'اتصال',
@@ -652,7 +664,8 @@ export const ar = defineLocale({
       applyFailed: 'تعذر تطبيق إعدادات البوابة',
       saveFailed: 'تعذر حفظ إعدادات البوابة',
       sshTitle: 'الاتصال عبر SSH',
-      sshDesc: 'يتم تشغيل OpenAmer على المضيف البعيد عبر SSH ويتم توجيهه للتطبيق — لا حاجة لبدء أو كشف خدمات. يتطلب وصول SSH بمفاتيح عاملة على المضيف.',
+      sshDesc:
+        'يتم تشغيل OpenAmer على المضيف البعيد عبر SSH ويتم توجيهه للتطبيق — لا حاجة لبدء أو كشف خدمات. يتطلب وصول SSH بمفاتيح عاملة على المضيف.',
       sshTrustHint: 'مفتاح المضيف الأول المعروض موثوق ومثبت؛ أي تغيير لاحق يفشل بشكل آمن.',
       sshHostTitle: 'المضيف',
       sshHostDesc: 'user@host، أو اسم مستعار للمضيف من ~/.ssh/config.',
@@ -676,18 +689,20 @@ export const ar = defineLocale({
       sshReachable: (host, platform) => `يمكن الوصول: ${host} (${platform}) — تم العثور على OpenAmer`,
       sshIncompleteHost: 'أدخل مضيف SSH قبل الاتصال.',
       sshErrUnreachable: 'تعذر الوصول إلى هذا المضيف عبر SSH. تحقق من المضيف والمنفذ والشبكة.',
-      sshErrAuth: 'فشل مصادقة SSH. حمّل مفتاحك في ssh-agent (ssh-add) أو عيّن IdentityFile في ~/.ssh/config — يشغّل OpenAmer ssh بشكل غير تفاعلي.',
+      sshErrAuth:
+        'فشل مصادقة SSH. حمّل مفتاحك في ssh-agent (ssh-add) أو عيّن IdentityFile في ~/.ssh/config — يشغّل OpenAmer ssh بشكل غير تفاعلي.',
       sshErrHostKey: 'مفتاح المضيف تغيّر منذ آخر اتصال. تأكد أن هذا متوقع، ثم شغّل ssh-keygen -R <host> وأعد الاتصال.',
-      sshErrNotInstalled: 'OpenAmer غير مثبت على المضيف البعيد. ثبّته هناك (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) أو عيّن مسار OpenAmer.',
+      sshErrNotInstalled:
+        'OpenAmer غير مثبت على المضيف البعيد. ثبّته هناك (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) أو عيّن مسار OpenAmer.',
       sshErrPlatform: 'منصة بعيدة غير مدعومة. وضع SSH في OpenAmer Desktop يدعم مضيفين بعيدين Linux و macOS و Windows.',
       sshErrTimeout: 'انتهت مهلة اتصال SSH. قد يكون المضيف غير قابل للوصول أو في وضع السكون.',
       sshErrUpdateRequired: 'حدّث OpenAmer على المضيف البعيد قبل الاتصال عبر Desktop SSH.',
-      sshErrUnknown: 'فشل اتصال SSH.',
+      sshErrUnknown: 'فشل اتصال SSH.'
     },
     keys: {
       loading: 'جار تحميل مفاتيح API وبيانات الاعتماد...',
       failedLoad: 'فشل تحميل مفاتيح API',
-      empty: 'لا يوجد شيء مضبوط في هذه الفئة بعد.',
+      empty: 'لا يوجد شيء مضبوط في هذه الفئة بعد.'
     },
     mcp: {
       loading: 'جار تحميل خوادم MCP...',
@@ -739,7 +754,8 @@ export const ar = defineLocale({
       catalogInstallFailed: name => `فشل تثبيت ${name}`,
       catalogEnvPrompt: name => `${name} يتطلب بيانات اعتماد`,
       catalogEnvRequired: 'أدخل القيم المطلوبة قبل التثبيت.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ممكّن`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ممكّن`,
       statusConnecting: 'جاري الاتصال…',
       statusNeedsAuth: 'يتطلب مصادقة',
       statusError: 'خطأ',
@@ -752,7 +768,7 @@ export const ar = defineLocale({
       unsavedConnect: 'غير محفوظ — احفظ mcp.json للاتصال.',
       enableTool: tool => `تمكين ${tool}`,
       disableTool: tool => `تعطيل ${tool}`,
-      noOutput: 'لا يوجد إخراج بعد.',
+      noOutput: 'لا يوجد إخراج بعد.'
     },
     model: {
       loading: 'جار تحميل إعدادات النموذج...',
@@ -773,41 +789,41 @@ export const ar = defineLocale({
       providerDefault: '(افتراضي المزوّد)',
       fallbackAdd: 'إضافة بديل',
       fallbackEmpty: 'لا توجد نماذج بديلة — يتم استخدام النموذج الافتراضي ما لم يفشل.',
-      notInCatalog: "غير موجود في قائمة نماذج هذا المزود — قد تعود المكالمات إلى بديل.",
+      notInCatalog: 'غير موجود في قائمة نماذج هذا المزود — قد تعود المكالمات إلى بديل.',
       tasks: {
         vision: {
           label: 'الرؤية',
-          hint: 'تحليل الصور',
+          hint: 'تحليل الصور'
         },
         web_extract: {
           label: 'استخراج الويب',
-          hint: 'تلخيص الصفحات',
+          hint: 'تلخيص الصفحات'
         },
         compression: {
           label: 'الضغط',
-          hint: 'ضغط السياق',
+          hint: 'ضغط السياق'
         },
         skills_hub: {
           label: 'مركز المهارات',
-          hint: 'بحث المهارات',
+          hint: 'بحث المهارات'
         },
         approval: {
           label: 'الموافقة',
-          hint: 'موافقة تلقائية ذكية',
+          hint: 'موافقة تلقائية ذكية'
         },
         mcp: {
           label: 'MCP',
-          hint: 'توجيه أدوات MCP',
+          hint: 'توجيه أدوات MCP'
         },
         title_generation: {
           label: 'توليد العناوين',
-          hint: 'عناوين الجلسات',
+          hint: 'عناوين الجلسات'
         },
         curator: {
           label: 'المنسق',
-          hint: 'مراجعة استخدام المهارات',
-        },
-      },
+          hint: 'مراجعة استخدام المهارات'
+        }
+      }
     },
     providers: {
       connectAccount: 'ربط حساب',
@@ -822,7 +838,8 @@ export const ar = defineLocale({
       removeConfirm: provider => `إزالة ${provider}؟`,
       removeExternalGeneric: provider => `${provider} يُدار عبر CLI خاص به — أزله من هناك.`,
       removeKeyManaged: provider => `${provider} مُعدّ من مفتاح API. أزله من مفاتيح API.`,
-      removeTerminalConfirm: (provider, command) => `قطع اتصال ${provider}؟ هذا يشغّل "${command}" في الطرفية لمسح بيانات الاعتماد.`,
+      removeTerminalConfirm: (provider, command) =>
+        `قطع اتصال ${provider}؟ هذا يشغّل "${command}" في الطرفية لمسح بيانات الاعتماد.`,
       removeTerminalRunning: provider => `جار تشغيل قطع اتصال ${provider} في الطرفية…`,
       removedTitle: 'تمت إزالة الحساب',
       removedMessage: provider => `تمت إزالة ${provider}.`,
@@ -832,14 +849,15 @@ export const ar = defineLocale({
       noKeysMatch: 'لا يوجد مزوّدون يطابقون بحثك.',
       localEndpoint: {
         title: 'نقطة نهاية محلية',
-        description: 'استخدم خادما محليا أو نقطة نهاية متوافقة مع OpenAI لهذا المزود.',
+        description: 'استخدم خادما محليا أو نقطة نهاية متوافقة مع OpenAI لهذا المزود.'
       },
-      loading: 'جار تحميل المزودين...',
+      loading: 'جار تحميل المزودين...'
     },
     sessions: {
       loading: 'جار تحميل الجلسات المؤرشفة...',
       archivedTitle: 'الجلسات المؤرشفة',
-      archivedIntro: 'تُخفى المحادثات المؤرشفة من الشريط الجانبي مع الاحتفاظ بكل رسائلها. اضغط Ctrl/⌘ مع النقر على محادثة في الشريط الجانبي لأرشفتها.',
+      archivedIntro:
+        'تُخفى المحادثات المؤرشفة من الشريط الجانبي مع الاحتفاظ بكل رسائلها. اضغط Ctrl/⌘ مع النقر على محادثة في الشريط الجانبي لأرشفتها.',
       emptyArchivedTitle: 'لا توجد محادثات مؤرشفة',
       emptyArchivedDesc: 'أرشف محادثة لإخفائها هنا.',
       unarchive: 'إلغاء الأرشفة',
@@ -848,7 +866,8 @@ export const ar = defineLocale({
       restored: 'تمت الاستعادة',
       deleteConfirm: title => `حذف "${title}" نهائياً؟ لا يمكن التراجع عن هذا.`,
       autoArchiveTitle: 'أرشفة المحادثات القديمة تلقائيًا',
-      autoArchiveDesc: "أرشفة المحادثات التي لم تفتحها منذ فترة تلقائيًا. المحادثات المثبتة لا تُؤرشف أبدًا، ولا يُحذف شيء — المحادثات المؤرشفة تنتقل إلى هنا فقط.",
+      autoArchiveDesc:
+        'أرشفة المحادثات التي لم تفتحها منذ فترة تلقائيًا. المحادثات المثبتة لا تُؤرشف أبدًا، ولا يُحذف شيء — المحادثات المؤرشفة تنتقل إلى هنا فقط.',
       autoArchiveDaysLabel: 'أرشفة بعد',
       autoArchiveDaysUnit: 'أيام من عدم النشاط',
       autoArchiveFailed: 'تعذر تحديث الأرشفة التلقائية',
@@ -864,7 +883,7 @@ export const ar = defineLocale({
       unarchiveFailed: 'فشل إلغاء الأرشفة',
       deleteFailed: 'فشل الحذف',
       updateDirFailed: 'تعذر تحديث المجلد الافتراضي',
-      clearDirFailed: 'تعذر مسح المجلد الافتراضي',
+      clearDirFailed: 'تعذر مسح المجلد الافتراضي'
     },
     toolsets: {
       loadingConfig: 'جار تحميل الإعدادات',
@@ -895,7 +914,8 @@ export const ar = defineLocale({
       openamerAuthDoneMessage: 'أصبحت خلفيات اشتراكك نشطة الآن.',
       openamerAuthFailed: 'لم يكتمل تسجيل الدخول إلى بوابة OpenAmer',
       noApiKeyRequired: 'لا يلزم مفتاح API.',
-      postSetupHint: step => `تحتاج هذه الخلفية إلى تثبيت لمرة واحدة (${step}). يعمل على هذا الجهاز — قد يستغرق بضع دقائق.`,
+      postSetupHint: step =>
+        `تحتاج هذه الخلفية إلى تثبيت لمرة واحدة (${step}). يعمل على هذا الجهاز — قد يستغرق بضع دقائق.`,
       postSetupInstalledHint: 'مُثبت. أعد تشغيل الإعداد فقط إذا كان هناك خلل.',
       postSetupRun: 'تشغيل الإعداد',
       postSetupRerun: 'أعد تشغيل الإعداد',
@@ -936,9 +956,9 @@ export const ar = defineLocale({
         selectedTitle: 'تم اختيار الخلفية',
         selectedMessage: backend => `أصبحت أوامر الطرفية تعمل عبر ${backend}. ينطبق على الجلسات الجديدة.`,
         failedSelect: backend => `فشل في اختيار ${backend}`,
-        needsSetupHint: 'يمكنك اختيار هذه الخلفية الآن — ستفشل الأوامر حتى يكتمل الإعداد.',
-      },
-    },
+        needsSetupHint: 'يمكنك اختيار هذه الخلفية الآن — ستفشل الأوامر حتى يكتمل الإعداد.'
+      }
+    }
   },
   skills: {
     tabSkills: 'المهارات',
@@ -958,7 +978,8 @@ export const ar = defineLocale({
     noDescription: 'لا يوجد وصف',
     configured: 'مضبوط',
     needsKeys: 'يحتاج مفاتيح',
-    visionModelHint: 'تستخدم الرؤية تكوين النموذج المساعد لديك — يتم اختيار النموذج القادر على الصور هناك، وليس لكل مزود هنا.',
+    visionModelHint:
+      'تستخدم الرؤية تكوين النموذج المساعد لديك — يتم اختيار النموذج القادر على الصور هناك، وليس لكل مزود هنا.',
     visionModelLink: 'اختر نموذج الرؤية في الإعدادات → النماذج',
     toolsetsEnabled: (enabled, total) => `${enabled} من ${total} مفعلة`,
     configureToolset: label => `ضبط ${label}`,
@@ -984,7 +1005,7 @@ export const ar = defineLocale({
     provenance: {
       agent: 'تم التعلم',
       bundled: 'مدمج',
-      hub: 'المركز',
+      hub: 'المركز'
     },
     emptyNoneFound: noun => `لم يتم العثور على ${noun}`,
     emptyNothingMatches: query => `لا يوجد تطابق لـ “${query}”.`,
@@ -1004,7 +1025,8 @@ export const ar = defineLocale({
       featured: 'المهارات المميزة',
       landingHint: 'ابحث في المركز لاستعراض المهارات القابلة للتثبيت من الفهرس الرسمي، وGitHub، ومصادر المجتمع.',
       noResults: 'لم يتم العثور على مهارات مطابقة في المركز.',
-      resultCount: (count, ms) => `${count} نتيجة ${count === 1 ? 'نتيجة' : 'نتائج'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} نتيجة ${count === 1 ? 'نتيجة' : 'نتائج'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `انتهت المهلة: ${sources}`,
       installed: 'مثبت',
       install: 'تثبيت',
@@ -1022,7 +1044,7 @@ export const ar = defineLocale({
       trust: {
         builtin: 'مدمج',
         trusted: 'موثوق',
-        community: 'مجتمع',
+        community: 'مجتمع'
       },
       verdictSafe: 'آمن',
       verdictCaution: 'تحذير',
@@ -1040,8 +1062,8 @@ export const ar = defineLocale({
       loadFailed: 'فشل تحميل مركز المهارات',
       previewFailed: 'فشل معاينة المهارة',
       scanFailed: 'فشل فحص الأمان',
-      searchFailed: 'فشل البحث في المركز',
-    },
+      searchFailed: 'فشل البحث في المركز'
+    }
   },
   starmap: {
     title: 'رسم بياني للذاكرة',
@@ -1058,7 +1080,8 @@ export const ar = defineLocale({
     emptyTitle: 'لا شيء مكتسب بعد',
     emptyDesc: 'عندما يبني OpenAmer المهارات والذكريات لعملك، تظهر هنا.',
     share: 'مشاركة الخريطة',
-    shareHint: 'انسخ الكود لمشاركة هذه الخريطة، أو الصق كوداً لتحميلها. يتضمن التخطيط فقط، وليس نصوص الذاكرة أو المهارات.',
+    shareHint:
+      'انسخ الكود لمشاركة هذه الخريطة، أو الصق كوداً لتحميلها. يتضمن التخطيط فقط، وليس نصوص الذاكرة أو المهارات.',
     shareTitle: 'استيراد / تصدير الخريطة',
     sharePlaceholder: 'الصق كود خريطة…',
     copy: 'نسخ كود الخريطة',
@@ -1068,7 +1091,7 @@ export const ar = defineLocale({
     importEmpty: 'الصق كود خريطة لتحميلها.',
     importSuccess: nodes => `تم تحميل خريطة تحتوي على ${nodes} ${nodes === 1 ? 'عقدة' : 'عقد'}.`,
     importedBadge: 'خريطة مستوردة',
-    resetToMine: 'العودة إلى خرائطي',
+    resetToMine: 'العودة إلى خرائطي'
   },
   agents: {
     close: 'إغلاق الوكلاء',
@@ -1098,7 +1121,7 @@ export const ar = defineLocale({
     ageDays: days => `منذ ${days}d`,
     durationSeconds: seconds => `${seconds} ث`,
     durationMinutes: (minutes, seconds) => `${minutes} د ${seconds} ث`,
-    tokens: value => `${value} رمز`,
+    tokens: value => `${value} رمز`
   },
   commandCenter: {
     close: 'إغلاق',
@@ -1128,7 +1151,7 @@ export const ar = defineLocale({
       generatedTag: 'مُولّد',
       adoptFailed: 'تعذّر تبنّي ذلك الحيوان الأليف.',
       toggleFailed: 'تعذّر تبديل الحيوان الأليف.',
-      noneAvailable: 'لا توجد حيوانات أليفة متاحة — اختر واحدا أدناه لتثبيته.',
+      noneAvailable: 'لا توجد حيوانات أليفة متاحة — اختر واحدا أدناه لتثبيته.'
     },
     generatePet: {
       title: 'توليد حيوان أليف',
@@ -1157,7 +1180,7 @@ export const ar = defineLocale({
       referenceImageTooLarge: 'صورة المرجع كبيرة جدا. استخدم واحدة أقل من 16 MB.',
       referenceImageInvalid: 'تعذّرت قراءة صورة المرجع تلك. جرّب PNG أو JPG أو WebP أو GIF.',
       adopt: 'تبنّي',
-      startOver: 'البدء من جديد',
+      startOver: 'البدء من جديد'
     },
     installTheme: {
       title: 'تثبيت سمة...',
@@ -1169,7 +1192,7 @@ export const ar = defineLocale({
       install: 'تثبيت',
       installing: 'جار التثبيت...',
       installed: 'مثبّت',
-      installs: count => `${count} عملية تثبيت`,
+      installs: count => `${count} عملية تثبيت`
     },
     settingsFields: 'حقول الإعدادات',
     mcpServers: 'خوادم MCP',
@@ -1178,49 +1201,49 @@ export const ar = defineLocale({
       maintenance: 'صيانة',
       sessions: 'الجلسات',
       system: 'النظام',
-      usage: 'الاستخدام',
+      usage: 'الاستخدام'
     },
     sectionDescriptions: {
       maintenance: 'التشخيص، النسخ الاحتياطي، القيم، وبيانات الذاكرة',
       sessions: 'البحث في الجلسات وإدارتها',
       system: 'الحالة والسجلات وإجراءات النظام',
-      usage: 'نشاط الرموز والتكلفة والمهارات عبر الزمن',
+      usage: 'نشاط الرموز والتكلفة والمهارات عبر الزمن'
     },
     nav: {
       newChat: {
         title: 'جلسة جديدة',
-        detail: 'بدء جلسة جديدة',
+        detail: 'بدء جلسة جديدة'
       },
       settings: {
         title: 'الإعدادات',
-        detail: 'تكوين OpenAmer desktop',
+        detail: 'تكوين OpenAmer desktop'
       },
       skills: {
         title: 'المهارات والأدوات',
-        detail: 'تفعيل المهارات ومجموعات الأدوات والمزوّدين',
+        detail: 'تفعيل المهارات ومجموعات الأدوات والمزوّدين'
       },
       messaging: {
         title: 'المراسلة',
-        detail: 'إعداد Telegram وSlack وDiscord والمزيد',
+        detail: 'إعداد Telegram وSlack وDiscord والمزيد'
       },
       artifacts: {
         title: 'العناصر',
-        detail: 'استعراض المخرجات المولّدة',
-      },
+        detail: 'استعراض المخرجات المولّدة'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'لوحة الجلسات',
-        detail: 'البحث في الجلسات وتثبيتها وإدارتها',
+        detail: 'البحث في الجلسات وتثبيتها وإدارتها'
       },
       system: {
         title: 'لوحة النظام',
-        detail: 'حالة البوابة والسجلات وإعادة التشغيل/التحديث',
+        detail: 'حالة البوابة والسجلات وإعادة التشغيل/التحديث'
       },
       usage: {
         title: 'لوحة الاستخدام',
-        detail: 'نشاط الرموز والتكلفة والمهارات',
-      },
+        detail: 'نشاط الرموز والتكلفة والمهارات'
+      }
     },
     providerNavigate: 'فتح المزود',
     providerSessions: 'جلسات المزود',
@@ -1308,8 +1331,8 @@ export const ar = defineLocale({
       actionStarted: name => `${name} بدأ — متابعة السجل...`,
       actionFailed: name => `فشل بدء ${name}`,
       running: 'جاري التشغيل...',
-      viewLog: 'سجل الإجراءات',
-    },
+      viewLog: 'سجل الإجراءات'
+    }
   },
   messaging: {
     search: 'بحث',
@@ -1324,7 +1347,7 @@ export const ar = defineLocale({
       not_configured: 'يحتاج إعدادا',
       pending_restart: 'يلزم إعادة التشغيل',
       retrying: 'جار إعادة المحاولة',
-      startup_failed: 'فشل بدء التشغيل',
+      startup_failed: 'فشل بدء التشغيل'
     },
     unknown: 'غير معروف',
     hintPendingRestart: 'تحتاج إعادة تشغيل لتطبيق التغييرات.',
@@ -1363,127 +1386,126 @@ export const ar = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'رمز البوت',
         help: 'أنشئ بوتا عبر @BotFather، ثم الصق الرمز الذي يمنحك إياه.',
-        placeholder: 'الصق رمز بوت Telegram',
+        placeholder: 'الصق رمز بوت Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'معرّفات مستخدمي Telegram المسموح بهم',
-        help: 'موصى به. معرّفات رقمية مفصولة بفواصل من @userinfobot. بدون ذلك، يمكن لأي شخص مراسلة بوتك مباشرة.',
+        help: 'موصى به. معرّفات رقمية مفصولة بفواصل من @userinfobot. بدون ذلك، يمكن لأي شخص مراسلة بوتك مباشرة.'
       },
       TELEGRAM_PROXY: {
         label: 'URL الوكيل',
-        help: 'مطلوب فقط على الشبكات التي يكون فيها Telegram محجوبا.',
+        help: 'مطلوب فقط على الشبكات التي يكون فيها Telegram محجوبا.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'رمز البوت',
-        help: 'أنشئ تطبيقا في Discord Developer Portal، وأضف بوتا، ثم الصق رمزه.',
+        help: 'أنشئ تطبيقا في Discord Developer Portal، وأضف بوتا، ثم الصق رمزه.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'معرّفات مستخدمي Discord المسموح بهم',
-        help: 'موصى به. معرّفات مستخدمي Discord مفصولة بفواصل.',
+        help: 'موصى به. معرّفات مستخدمي Discord مفصولة بفواصل.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'نمط الرد',
-        help: 'first أو all أو off.',
+        help: 'first أو all أو off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'السماح لكل مستخدمي Discord',
-        help: 'للتطوير فقط. عند التفعيل، يمكن لأي شخص مراسلة البوت مباشرة دون قائمة سماح.',
+        help: 'للتطوير فقط. عند التفعيل، يمكن لأي شخص مراسلة البوت مباشرة دون قائمة سماح.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'معرّف القناة الرئيسية',
-        help: 'القناة التي يرسل فيها البوت الرسائل الاستباقية (مخرجات cron، التذكيرات).',
+        help: 'القناة التي يرسل فيها البوت الرسائل الاستباقية (مخرجات cron، التذكيرات).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'اسم القناة الرئيسية',
-        help: 'الاسم المعروض للقناة الرئيسية في السجلات ومخرجات الحالة.',
+        help: 'الاسم المعروض للقناة الرئيسية في السجلات ومخرجات الحالة.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'السماح لكل مستخدمي iMessage',
-        help: 'عند التفعيل، يتم تخطي قائمة سماح BlueBubbles.',
+        help: 'عند التفعيل، يتم تخطي قائمة سماح BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'السماح لكل مستخدمي Mattermost',
+        label: 'السماح لكل مستخدمي Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'القناة الرئيسية',
+        label: 'القناة الرئيسية'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'السماح لكل مستخدمي QQ',
+        label: 'السماح لكل مستخدمي QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'قناة QQ الرئيسية',
-        help: 'القناة أو المجموعة الافتراضية لتسليم cron.',
+        help: 'القناة أو المجموعة الافتراضية لتسليم cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'اسم قناة QQ الرئيسية',
+        label: 'اسم قناة QQ الرئيسية'
       },
       SLACK_BOT_TOKEN: {
         label: 'رمز بوت Slack',
         help: 'استخدم رمز البوت من OAuth & Permissions بعد تثبيت تطبيق Slack الخاص بك.',
-        placeholder: 'الصق رمز بوت Slack',
+        placeholder: 'الصق رمز بوت Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'رمز تطبيق Slack',
         help: 'استخدم الرمز على مستوى التطبيق المطلوب لـ Socket Mode.',
-        placeholder: 'الصق رمز تطبيق Slack',
+        placeholder: 'الصق رمز تطبيق Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'معرّفات مستخدمي Slack المسموح بهم',
-        help: 'موصى به. معرّفات مستخدمي Slack مفصولة بفواصل.',
+        help: 'موصى به. معرّفات مستخدمي Slack مفصولة بفواصل.'
       },
       MATTERMOST_URL: {
         label: 'رابط الخادم',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'رمز البوت',
+        label: 'رمز البوت'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'معرّفات المستخدمين المسموح بهم',
-        help: 'موصى به. معرّفات مستخدمي Mattermost مفصولة بفواصل.',
+        help: 'موصى به. معرّفات مستخدمي Mattermost مفصولة بفواصل.'
       },
       MATRIX_HOMESERVER: {
         label: 'رابط Homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'رمز الوصول',
+        label: 'رمز الوصول'
       },
       MATRIX_USER_ID: {
         label: 'معرّف مستخدم البوت',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'معرّفات مستخدمي Matrix المسموح بهم',
-        help: 'موصى به. معرّفات مستخدمين مفصولة بفواصل بصيغة @user:server.',
+        help: 'موصى به. معرّفات مستخدمين مفصولة بفواصل بصيغة @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'رابط جسر Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'رابط جسر signal-cli REST قيد التشغيل.',
+        help: 'رابط جسر signal-cli REST قيد التشغيل.'
       },
       SIGNAL_ACCOUNT: {
         label: 'رقم الهاتف',
-        help: 'الرقم المسجّل مع جسر signal-cli الخاص بك.',
+        help: 'الرقم المسجّل مع جسر signal-cli الخاص بك.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'مستخدمو Signal المسموح بهم',
-        help: 'موصى به. معرّفات Signal مفصولة بفواصل.',
+        help: 'موصى به. معرّفات Signal مفصولة بفواصل.'
       },
       WHATSAPP_ENABLED: {
         label: 'تفعيل جسر WhatsApp',
-        help: 'يُضبط تلقائيا عبر المفتاح أدناه. اتركه دون تغيير ما لم تكن متأكدا من حاجتك إليه.',
+        help: 'يُضبط تلقائيا عبر المفتاح أدناه. اتركه دون تغيير ما لم تكن متأكدا من حاجتك إليه.'
       },
       WHATSAPP_MODE: {
-        label: 'وضع الجسر',
+        label: 'وضع الجسر'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'مستخدمو WhatsApp المسموح بهم',
-        help: 'موصى به. أرقام هواتف أو معرّفات WhatsApp مفصولة بفواصل.',
-      },
+        help: 'موصى به. أرقام هواتف أو معرّفات WhatsApp مفصولة بفواصل.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'البحث عن الويب هوكس...',
@@ -1493,7 +1515,8 @@ export const ar = defineLocale({
     hint: 'يتم إعادة تحميل تغييرات الاشتراكات تلقائيًا عند تشغيل المستلم. الاشتراكات المعطلة ترفض الأحداث الواردة.',
     empty: 'لا توجد اشتراكات ويب هوكس بعد.',
     disabledTitle: 'مستقبل الويب هوكس معطل',
-    disabledBody: 'الويب هوكس عبارة عن منصة بوابة مستقلة. قم بتمكينها هنا لقبول أحداث HTTP الواردة؛ قنوات الدردشة مطلوبة فقط عندما يسلم الاشتراك إلى Telegram أو Discord أو Slack أو قناة أخرى.',
+    disabledBody:
+      'الويب هوكس عبارة عن منصة بوابة مستقلة. قم بتمكينها هنا لقبول أحداث HTTP الواردة؛ قنوات الدردشة مطلوبة فقط عندما يسلم الاشتراك إلى Telegram أو Discord أو Slack أو قناة أخرى.',
     enable: 'تمكين الويب هوكس',
     enabling: 'جاري التمكين...',
     enabled: (name: string) => `مُمكّن: "${name}"`,
@@ -1546,8 +1569,8 @@ export const ar = defineLocale({
       discord: 'ديسكورد',
       slack: 'سلاك',
       email: 'بريد إلكتروني',
-      github_comment: 'تعليق GitHub',
-    },
+      github_comment: 'تعليق GitHub'
+    }
   },
   profiles: {
     close: 'إغلاق',
@@ -1625,7 +1648,7 @@ export const ar = defineLocale({
     failedLoadSoul: 'فشل تحميل التعليمات',
     failedSaveSoul: 'فشل حفظ التعليمات',
     failedCreate: 'فشل الإنشاء',
-    failedRename: 'فشل إعادة التسمية',
+    failedRename: 'فشل إعادة التسمية'
   },
   cron: {
     close: 'إغلاق',
@@ -1640,14 +1663,14 @@ export const ar = defineLocale({
       paused: 'متوقف مؤقتا',
       disabled: 'معطّل',
       error: 'خطأ',
-      completed: 'مكتمل',
+      completed: 'مكتمل'
     },
     deliveryLabels: {
       local: 'سطح المكتب هذا',
       telegram: 'تيليجرام',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'البريد الإلكتروني',
+      email: 'البريد الإلكتروني'
     },
     scheduleLabels: {
       daily: 'يوميا',
@@ -1656,7 +1679,7 @@ export const ar = defineLocale({
       monthly: 'شهريا',
       hourly: 'كل ساعة',
       'every-15-minutes': 'كل 15 دقيقة',
-      custom: 'مخصص',
+      custom: 'مخصص'
     },
     scheduleHints: {
       daily: 'كل يوم في الساعة 9:00 صباحا',
@@ -1665,7 +1688,7 @@ export const ar = defineLocale({
       monthly: 'أول يوم من كل شهر في الساعة 9:00 صباحا',
       hourly: 'في بداية كل ساعة',
       'every-15-minutes': 'كل 15 دقيقة',
-      custom: 'صياغة cron أو لغة طبيعية',
+      custom: 'صياغة cron أو لغة طبيعية'
     },
     days: {
       '0': 'الأحد',
@@ -1675,7 +1698,7 @@ export const ar = defineLocale({
       '4': 'الخميس',
       '5': 'الجمعة',
       '6': 'السبت',
-      '7': 'الأحد',
+      '7': 'الأحد'
     },
     dayFallback: value => `اليوم ${value}`,
     everyDayAt: time => `كل يوم في ${time}`,
@@ -1744,7 +1767,7 @@ export const ar = defineLocale({
     createAction: 'إنشاء',
     tabs: {
       jobs: 'الوظائف',
-      blueprints: 'المخططات',
+      blueprints: 'المخططات'
     },
     blueprints: {
       tab: 'المخططات',
@@ -1758,8 +1781,8 @@ export const ar = defineLocale({
       loading: 'جاري تحميل المخططات...',
       failedLoad: 'فشل تحميل المخططات',
       emptyTitle: 'لا توجد مخططات متاحة',
-      emptyDesc: 'لا توجد مخططات أتمتة متاحة على هذا الخادم الخلفي.',
-    },
+      emptyDesc: 'لا توجد مخططات أتمتة متاحة على هذا الخادم الخلفي.'
+    }
   },
   artifacts: {
     search: 'بحث',
@@ -1793,14 +1816,14 @@ export const ar = defineLocale({
     kindLink: 'رابط',
     chat: 'الدردشة',
     copyUrl: 'نسخ الرابط',
-    copyPath: 'نسخ المسار',
+    copyPath: 'نسخ المسار'
   },
   sidebar: {
     nav: {
       'new-session': 'جلسة جديدة',
       skills: 'المهارات',
       messaging: 'المراسلة',
-      artifacts: 'العناصر',
+      artifacts: 'العناصر'
     },
     searchAria: 'البحث في الجلسات',
     searchPlaceholder: 'البحث في الجلسات...',
@@ -1832,7 +1855,7 @@ export const ar = defineLocale({
       namePlaceholder: 'مثال: Skunkworks',
       foldersLabel: 'المجلدات',
       ideaLabel: 'فكرة',
-      ideaPlaceholder: "ما موضوع هذا المشروع؟ (يُحفظ في IDEA.md)",
+      ideaPlaceholder: 'ما موضوع هذا المشروع؟ (يُحفظ في IDEA.md)',
       ideaGenerate: 'توليد فكرة',
       ideaGenerating: 'جار التوليد...',
       ideaShuffle: 'خلط القوالب',
@@ -1852,7 +1875,8 @@ export const ar = defineLocale({
       copyPath: 'نسخ المسار',
       removeFromSidebar: 'إخفاء من الشريط الجانبي',
       createFailed: 'تعذّر إنشاء المشروع',
-      staleBackend: 'حدّث خادم OpenAmer الخلفي لإنشاء المشاريع — خادمك الخلفي أقدم من تطبيق سطح المكتب هذا (الإعدادات → التحديثات → الخادم الخلفي).',
+      staleBackend:
+        'حدّث خادم OpenAmer الخلفي لإنشاء المشاريع — خادمك الخلفي أقدم من تطبيق سطح المكتب هذا (الإعدادات → التحديثات → الخادم الخلفي).',
       deleteConfirm: 'هذا يزيل المشروع المحفوظ من OpenAmer. تبقى الملفات ومستودعات git وأشجار العمل دون تغيير.',
       startWork: 'شجرة عمل جديدة',
       newWorktreeTitle: 'شجرة عمل جديدة',
@@ -1874,13 +1898,15 @@ export const ar = defineLocale({
       noBranches: 'لم يتم العثور على فروع',
       removeWorktree: 'إزالة شجرة العمل',
       removeWorktreeFailed: 'تعذّر إزالة شجرة العمل (تغييرات غير مُودعة؟)',
-      removeWorktreeConfirm: 'أزِلها من git (يحذف مجلد شجرة العمل؛ يبقى الفرع)، أو فقط أخفِ المسار من الشريط الجانبي واترك شجرة العمل على القرص.',
-      removeWorktreeDirty: 'تحتوي شجرة العمل هذه على تغييرات غير مُودعة. أزِلها بالقوة (يتجاهل تلك التغييرات)، أو فقط أخفِ المسار واحتفظ بها على القرص.',
+      removeWorktreeConfirm:
+        'أزِلها من git (يحذف مجلد شجرة العمل؛ يبقى الفرع)، أو فقط أخفِ المسار من الشريط الجانبي واترك شجرة العمل على القرص.',
+      removeWorktreeDirty:
+        'تحتوي شجرة العمل هذه على تغييرات غير مُودعة. أزِلها بالقوة (يتجاهل تلك التغييرات)، أو فقط أخفِ المسار واحتفظ بها على القرص.',
       forceRemove: 'إزالة بالقوة',
       enter: label => `مفتوح ${label}`,
       reorder: label => `إعادة ترتيب ${label}`,
       toggle: label => `تبديل جلسات ${label}`,
-      back: 'كل المشاريع',
+      back: 'كل المشاريع'
     },
     newSessionIn: label => `جلسة جديدة في ${label}`,
     showMoreIn: (count, label) => `إظهار ${count} المزيد في ${label}`,
@@ -1918,15 +1944,15 @@ export const ar = defineLocale({
       ageNow: 'الآن',
       ageDay: 'يوم',
       ageHour: 'ساعة',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'في وقت سابق اليوم',
       yesterday: 'أمس',
       thisWeek: 'في وقت سابق هذا الأسبوع',
       lastWeek: 'الأسبوع الماضي',
-      thisMonth: 'في وقت سابق هذا الشهر',
-    },
+      thisMonth: 'في وقت سابق هذا الشهر'
+    }
   },
   composer: {
     message: 'الرسالة',
@@ -1937,20 +1963,20 @@ export const ar = defineLocale({
     newSessionPlaceholders: [
       'اسأل OpenAmer عن شيء...',
       'اطلب من OpenAmer تنفيذ مهمة...',
-      "ابدأ محادثة جديدة...",
+      'ابدأ محادثة جديدة...',
       'صف ما تحتاجه',
       'ماذا يجب أن نتعامل معه؟',
       'اسأل أي شيء',
-      'ابدأ بهدف',
+      'ابدأ بهدف'
     ],
     followUpPlaceholders: [
       'اكتب متابعة...',
       'أضف توجيها...',
       'اسأل سؤالا آخر...',
-      "ما التالي؟",
+      'ما التالي؟',
       'استمر',
       'ادفعه أبعد',
-      'ضبط أو استمر',
+      'ضبط أو استمر'
     ],
     startVoice: 'بدء الصوت',
     queueMessage: 'إضافة الرسالة للطابور',
@@ -1986,7 +2012,7 @@ export const ar = defineLocale({
       '/resume': 'استئناف جلسة سابقة',
       '/details': 'التحكم في مستوى تفاصيل النص',
       '/copy': 'نسخ التحديد أو آخر رسالة من المساعد',
-      '/quit': 'الخروج من openamer',
+      '/quit': 'الخروج من openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'الإشارة إلى الملفات والمجلدات والروابط وgit',
@@ -1996,7 +2022,7 @@ export const ar = defineLocale({
       'composer.sendQueued': 'إرسال الدور التالي في قائمة الانتظار',
       'keybinds.openPanel': 'كل اختصارات لوحة المفاتيح',
       'composer.cancel': 'إغلاق النافذة المنبثقة · إلغاء التشغيل',
-      'composer.history': 'التنقل في النافذة المنبثقة / السجل',
+      'composer.history': 'التنقل في النافذة المنبثقة / السجل'
     },
     attachUrlTitle: 'إرفاق رابط',
     attachUrlDesc: 'أضف رابطا إلى الرسالة.',
@@ -2047,19 +2073,19 @@ export const ar = defineLocale({
       codeReview: {
         label: 'مراجعة الكود',
         description: 'دقّق التغيير الحالي بحثًا عن الانحدارات والحالات الطرفية المُسقطة والاختبارات المفقودة.',
-        text: 'يرجى مراجعة هذا بحثًا عن الأخطاء والانحدارات والاختبارات المفقودة.',
+        text: 'يرجى مراجعة هذا بحثًا عن الأخطاء والانحدارات والاختبارات المفقودة.'
       },
       implementationPlan: {
         label: 'خطة التنفيذ',
         description: 'حدّد نهجًا قبل لمس الكود حتى يبقى الفرق مركّزًا.',
-        text: 'يرجى وضع خطة تنفيذ موجزة قبل تغيير الكود.',
+        text: 'يرجى وضع خطة تنفيذ موجزة قبل تغيير الكود.'
       },
       explainThis: {
         label: 'اشرح هذا',
         description: 'اشرح كيفية عمل الكود المحدد واربطه بالملفات الرئيسية.',
-        text: 'يرجى شرح كيفية عمل هذا وإرشادي إلى الملفات الرئيسية.',
-      },
-    },
+        text: 'يرجى شرح كيفية عمل هذا وإرشادي إلى الملفات الرئيسية.'
+      }
+    }
   },
   statusStack: {
     agents: 'الوكلاء',
@@ -2112,8 +2138,8 @@ export const ar = defineLocale({
       branchOffFrom: base => `فرع جديد من ${base}`,
       switchTo: branch => `التبديل إلى ${branch}`,
       switchFailed: branch => `تعذّر التبديل إلى ${branch}`,
-      worktrees: 'أشجار العمل',
-    },
+      worktrees: 'أشجار العمل'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2154,7 @@ export const ar = defineLocale({
       done: 'اكتمل التحديث',
       manual: 'التحديث من الطرفية',
       guiSkew: 'تحديث تطبيق سطح المكتب',
-      error: 'تم إيقاف التحديث مؤقتا',
+      error: 'تم إيقاف التحديث مؤقتا'
     },
     checking: 'جار البحث عن تحديثات...',
     checkFailedTitle: 'تعذّر التحقق من التحديثات',
@@ -2151,12 +2177,15 @@ export const ar = defineLocale({
     manualBody: 'لقد ثبّتت OpenAmer من سطر الأوامر، لذا تُجرى التحديثات من هناك أيضا. الصق هذا في طرفيتك:',
     manualPickedUp: 'سيلتقط OpenAmer الإصدار الجديد في المرة التالية التي تشغّله فيها.',
     guiSkewTitle: 'تحديث تطبيق سطح المكتب',
-    guiSkewBody: 'تم تحديث الواجهة الخلفية، لكن حزمة تطبيق سطح المكتب هذه لم تتغير. حدّث أو أعد تثبيت تطبيق OpenAmer لسطح المكتب (ملف AppImage / ‎.deb / ‎.rpm) لمطابقته.',
+    guiSkewBody:
+      'تم تحديث الواجهة الخلفية، لكن حزمة تطبيق سطح المكتب هذه لم تتغير. حدّث أو أعد تثبيت تطبيق OpenAmer لسطح المكتب (ملف AppImage / ‎.deb / ‎.rpm) لمطابقته.',
     copy: 'نسخ',
     copied: 'تم النسخ',
     done: 'تم',
-    applyingBody: 'يتولّى مُحدِّث OpenAmer المهمة في نافذته الخاصة ويعيد فتح OpenAmer تلقائيا عند الانتهاء. الرجاء عدم إعادة فتح OpenAmer بنفسك أثناء التحديث.',
-    applyingBodyBackend: 'تطبّق الواجهة الخلفية البعيدة التحديث وستعيد التشغيل. يعيد OpenAmer الاتصال تلقائيا عند عودتها.',
+    applyingBody:
+      'يتولّى مُحدِّث OpenAmer المهمة في نافذته الخاصة ويعيد فتح OpenAmer تلقائيا عند الانتهاء. الرجاء عدم إعادة فتح OpenAmer بنفسك أثناء التحديث.',
+    applyingBodyBackend:
+      'تطبّق الواجهة الخلفية البعيدة التحديث وستعيد التشغيل. يعيد OpenAmer الاتصال تلقائيا عند عودتها.',
     applyingClose: 'ستُغلق هذه النافذة أثناء تشغيل التحديث، ثم يعيد OpenAmer فتح نفسه تلقائيا.',
     errorTitle: 'لم يكتمل التحديث',
     errorBody: 'لا داعي للقلق — لم يُفقد شيء. يمكنك إعادة المحاولة الآن.',
@@ -2167,12 +2196,13 @@ export const ar = defineLocale({
       restarting: 'تعيد الواجهة الخلفية التشغيل لتحميل التحديث...',
       notAvailable: 'التحديث غير متاح لهذه الواجهة الخلفية.',
       failed: 'فشل تحديث الواجهة الخلفية.',
-      noReturn: 'لم تعد الواجهة الخلفية إلى الاتصال. قد لا يكون التحديث قد اكتمل — تحقق من مضيف الواجهة الخلفية.',
+      noReturn: 'لم تعد الواجهة الخلفية إلى الاتصال. قد لا يكون التحديث قد اكتمل — تحقق من مضيف الواجهة الخلفية.'
     },
     appErrors: {
-      updateLocked: 'تم إحباط التحديث: هناك نافذة OpenAmer أخرى أو محطة تشغّل openamer تمسك بهذا التثبيت. أغلقه ثم أعد المحاولة.',
-      updateFailed: 'لم يكتمل التحديث. لا تقلق — لم نفقد شيئًا. يمكنك المحاولة مرة أخرى الآن.',
-    },
+      updateLocked:
+        'تم إحباط التحديث: هناك نافذة OpenAmer أخرى أو محطة تشغّل openamer تمسك بهذا التثبيت. أغلقه ثم أعد المحاولة.',
+      updateFailed: 'لم يكتمل التحديث. لا تقلق — لم نفقد شيئًا. يمكنك المحاولة مرة أخرى الآن.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,17 +2210,19 @@ export const ar = defineLocale({
       running: 'جار التثبيت',
       succeeded: 'تم',
       skipped: 'تم التخطي',
-      failed: 'فشل',
+      failed: 'فشل'
     },
     oneTimeTitle: 'يحتاج OpenAmer إلى تثبيت لمرة واحدة',
-    unsupportedDesc: platform => `التثبيت التلقائي عند أول تشغيل غير متاح على ${platform} بعد. افتح الطرفية وشغّل الأمر أدناه، ثم أعد تشغيل هذا التطبيق. ستتخطى عمليات التشغيل اللاحقة هذه الخطوة.`,
+    unsupportedDesc: platform =>
+      `التثبيت التلقائي عند أول تشغيل غير متاح على ${platform} بعد. افتح الطرفية وشغّل الأمر أدناه، ثم أعد تشغيل هذا التطبيق. ستتخطى عمليات التشغيل اللاحقة هذه الخطوة.`,
     installCommand: 'أمر التثبيت',
     copyCommand: 'نسخ الأمر',
     viewDocs: 'عرض مستندات التثبيت',
     installTo: 'سيتم التثبيت في',
     retryAfterRun: 'لقد شغّلته -- إعادة المحاولة',
     setupChoiceTitle: 'إعداد OpenAmer Desktop',
-    setupChoiceDesc: 'قم بتوصيل هذا التطبيق ببوابة OpenAmer التي تشغلها بالفعل، أو ثبّت OpenAmer محليًا على هذا الكمبيوتر.',
+    setupChoiceDesc:
+      'قم بتوصيل هذا التطبيق ببوابة OpenAmer التي تشغلها بالفعل، أو ثبّت OpenAmer محليًا على هذا الكمبيوتر.',
     connectExistingTitle: 'الاتصال بـ OpenAmer الحالي',
     connectExistingShort: 'الاتصال بالموجود',
     connectExistingDesc: 'استخدم خلفية بعيدة مع رمز جلسة أو تسجيل دخول عبر المتصفح. لن يبدأ أي تثبيت محلي.',
@@ -2198,7 +2230,8 @@ export const ar = defineLocale({
     installLocalDesc: 'قم بتنزيل OpenAmer، وإنشاء بيئة Python الخاصة به، وتشغيل الخلفية على هذا الكمبيوتر.',
     localStartUnavailable: 'تعذر بدء التثبيت المحلي. أعد تشغيل OpenAmer Desktop وحاول مرة أخرى.',
     remoteSetupTitle: 'الاتصال بـ OpenAmer الحالي',
-    remoteSetupDesc: 'أدخل عنوان URL الخاص بالبوابة. سيكتشف OpenAmer Desktop ما إذا كان يحتاج إلى رمز أو تسجيل دخول عبر المتصفح.',
+    remoteSetupDesc:
+      'أدخل عنوان URL الخاص بالبوابة. سيكتشف OpenAmer Desktop ما إذا كان يحتاج إلى رمز أو تسجيل دخول عبر المتصفح.',
     remoteUrlTitle: 'عنوان URL للبوابة',
     remoteUrlDesc: 'استخدم عنوان URL الأساسي لبوابة OpenAmer، بما في ذلك https:// عند الاتصال عن بُعد.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2258,10 @@ export const ar = defineLocale({
     failedTitle: 'فشل التثبيت',
     settingUpTitle: 'جار إعداد وكيل OpenAmer',
     finishingTitle: 'جار الإنهاء',
-    failedDesc: 'فشلت إحدى خطوات التثبيت. على Windows، قد يحدث هذا إذا كان هناك نسخة أخرى من OpenAmer CLI أو تطبيق سطح المكتب قيد التشغيل. أوقف أي نسخ OpenAmer قيد التشغيل، ثم أعد المحاولة. تحقق من التفاصيل أدناه أو من سجل سطح المكتب للحصول على النص الكامل.',
-    activeDesc: 'هذا إعداد لمرة واحدة. يقوم مثبّت OpenAmer بتنزيل التبعيات وتهيئة جهازك. ستتخطى عمليات التشغيل اللاحقة هذه الخطوة.',
+    failedDesc:
+      'فشلت إحدى خطوات التثبيت. على Windows، قد يحدث هذا إذا كان هناك نسخة أخرى من OpenAmer CLI أو تطبيق سطح المكتب قيد التشغيل. أوقف أي نسخ OpenAmer قيد التشغيل، ثم أعد المحاولة. تحقق من التفاصيل أدناه أو من سجل سطح المكتب للحصول على النص الكامل.',
+    activeDesc:
+      'هذا إعداد لمرة واحدة. يقوم مثبّت OpenAmer بتنزيل التبعيات وتهيئة جهازك. ستتخطى عمليات التشغيل اللاحقة هذه الخطوة.',
     progress: (completed, total) => `اكتملت ${completed} من ${total} خطوة`,
     currentStage: stage => ` -- الآن: ${stage}`,
     fetchingManifest: 'جار جلب بيان المثبّت...',
@@ -2240,10 +2275,10 @@ export const ar = defineLocale({
     transcriptSaved: 'تم حفظ النص الكامل في',
     copiedOutput: 'تم النسخ!',
     copyOutput: 'نسخ المخرجات',
-    reloadRetry: 'إعادة التحميل وإعادة المحاولة',
+    reloadRetry: 'إعادة التحميل وإعادة المحاولة'
   },
   onboarding: {
-    headerTitle: "لنُعِدّ لك OpenAmer Agent",
+    headerTitle: 'لنُعِدّ لك OpenAmer Agent',
     headerDesc: 'اربط مزوّد نماذج لبدء المحادثة. معظم الخيارات تتطلب نقرة واحدة.',
     preparingInstall: 'يُكمل OpenAmer التثبيت. عادة ما يستغرق ذلك أقل من دقيقة في أول تشغيل.',
     starting: 'جار بدء OpenAmer...',
@@ -2251,7 +2286,7 @@ export const ar = defineLocale({
     collapse: 'طي',
     otherProviders: 'مزودون آخرون',
     haveApiKey: 'لديك مفتاح API',
-    chooseLater: "سأختار مزوّدا لاحقا",
+    chooseLater: 'سأختار مزوّدا لاحقا',
     recommended: 'موصى به',
     connected: 'متصل',
     featuredPitch: 'اشتراك واحد، أكثر من 300 نموذج متقدم — الطريقة الموصى بها لتشغيل OpenAmer',
@@ -2260,28 +2295,29 @@ export const ar = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'API نموذج مباشر',
-        description: 'وصول مباشر للنماذج المستضافة بواسطة Fireworks AI.',
+        description: 'وصول مباشر للنماذج المستضافة بواسطة Fireworks AI.'
       },
       openrouter: {
         short: 'مفتاح واحد، نماذج كثيرة',
-        description: 'يستضيف مئات النماذج خلف مفتاح واحد. خيار افتراضي جيد للتثبيتات الجديدة.',
+        description: 'يستضيف مئات النماذج خلف مفتاح واحد. خيار افتراضي جيد للتثبيتات الجديدة.'
       },
       openai: {
         short: 'نماذج من فئة GPT',
-        description: 'وصول مباشر إلى نماذج OpenAI.',
+        description: 'وصول مباشر إلى نماذج OpenAI.'
       },
       gemini: {
         short: 'نماذج Gemini',
-        description: 'وصول مباشر إلى نماذج Google Gemini.',
+        description: 'وصول مباشر إلى نماذج Google Gemini.'
       },
       xai: {
         short: 'نماذج Grok',
-        description: 'وصول مباشر إلى نماذج xAI Grok.',
+        description: 'وصول مباشر إلى نماذج xAI Grok.'
       },
       local: {
         short: 'مستضاف ذاتيا',
-        description: 'وجّه OpenAmer إلى نقطة نهاية محلية أو مستضافة ذاتيا متوافقة مع OpenAI (vLLM، llama.cpp، Ollama، إلخ).',
-      },
+        description:
+          'وجّه OpenAmer إلى نقطة نهاية محلية أو مستضافة ذاتيا متوافقة مع OpenAI (vLLM، llama.cpp، Ollama، إلخ).'
+      }
     },
     backToSignIn: 'العودة إلى تسجيل الدخول',
     getKey: 'الحصول على مفتاح',
@@ -2294,7 +2330,7 @@ export const ar = defineLocale({
     flowSubtitles: {
       pkce: 'يفتح المتصفح لتسجيل الدخول ثم يتابع هنا',
       device_code: 'يفتح صفحة تحقق في المتصفح — يتصل OpenAmer تلقائياً',
-      external: 'سجل الدخول مرة واحدة في الطرفية ثم عد إلى المحادثة',
+      external: 'سجل الدخول مرة واحدة في الطرفية ثم عد إلى المحادثة'
     },
     startingSignIn: provider => `جار بدء تسجيل الدخول لـ ${provider}...`,
     verifyingCode: provider => `جار التحقق من الرمز عبر ${provider}...`,
@@ -2308,11 +2344,13 @@ export const ar = defineLocale({
     copyAuthCode: 'انسخ رمز التفويض وألصقه أدناه.',
     pasteAuthCode: 'ألصق رمز التفويض',
     reopenAuthPage: 'إعادة فتح صفحة التفويض',
-    autoBrowser: provider => `فتحنا ${provider} في المتصفح. صرّح لـ OpenAmer هناك وسيتم الاتصال تلقائياً دون نسخ أو لصق.`,
+    autoBrowser: provider =>
+      `فتحنا ${provider} في المتصفح. صرّح لـ OpenAmer هناك وسيتم الاتصال تلقائياً دون نسخ أو لصق.`,
     reopenSignInPage: 'إعادة فتح صفحة تسجيل الدخول',
     waitingAuthorize: 'بانتظار التفويض...',
-    externalPending: provider => `${provider} يسجل الدخول عبر أداة سطر الأوامر الخاصة به. شغّل هذا الأمر في الطرفية، ثم عد واختر "سجلت الدخول":`,
-    signedIn: "سجلت الدخول",
+    externalPending: provider =>
+      `${provider} يسجل الدخول عبر أداة سطر الأوامر الخاصة به. شغّل هذا الأمر في الطرفية، ثم عد واختر "سجلت الدخول":`,
+    signedIn: 'سجلت الدخول',
     deviceCodeOpened: provider => `فتحنا ${provider} في المتصفح. أدخل هذا الرمز هناك:`,
     reopenVerification: 'إعادة فتح صفحة التحقق',
     copy: 'نسخ',
@@ -2323,7 +2361,7 @@ export const ar = defineLocale({
     price: (input, output) => `${input} إدخال / ${output} إخراج لكل مليون رمز`,
     change: 'تغيير',
     startChatting: 'ابدأ',
-    docs: provider => `وثائق ${provider}`,
+    docs: provider => `وثائق ${provider}`
   },
   modelPicker: {
     title: 'اختيار النموذج',
@@ -2339,13 +2377,13 @@ export const ar = defineLocale({
     free: 'مجاني',
     freeTier: 'طبقة مجانية',
     priceTitle: 'السعر',
-    wasPrice: 'كان',
+    wasPrice: 'كان'
   },
   modelVisibility: {
     title: 'النماذج',
     search: 'بحث في النماذج',
     noAuthenticatedProviders: 'لا يوجد مزوّدون مصادق عليهم.',
-    addProvider: 'إضافة مزوّد…',
+    addProvider: 'إضافة مزوّد…'
   },
   shell: {
     windowControls: 'تحكم النافذة',
@@ -2356,7 +2394,7 @@ export const ar = defineLocale({
       noModels: 'لا توجد نماذج',
       editModels: 'تحرير النماذج',
       refreshModels: 'تحديث النماذج',
-      fast: 'سريع',
+      fast: 'سريع'
     },
     modelOptions: {
       noOptions: 'لا توجد خيارات لهذا النموذج',
@@ -2372,7 +2410,7 @@ export const ar = defineLocale({
       max: 'أقصى',
       ultra: 'فائق',
       updateFailed: 'فشل تحديث خيار النموذج',
-      fastFailed: 'فشل تحديث الوضع السريع',
+      fastFailed: 'فشل تحديث الوضع السريع'
     },
     gatewayMenu: {
       gateway: 'بوابة',
@@ -2387,7 +2425,7 @@ export const ar = defineLocale({
       connection: label => `الاتصال: ${label}`,
       recentActivity: 'النشاط الأخير',
       viewAllLogs: 'عرض كل السجلات',
-      messagingPlatforms: 'منصات المراسلة',
+      messagingPlatforms: 'منصات المراسلة'
     },
     approvalMode: {
       title: 'وضع الموافقة',
@@ -2397,7 +2435,7 @@ export const ar = defineLocale({
       smart: 'ذكي',
       smartDescription: 'تقييم الإجراءات تلقائياً والسؤال عند الحاجة',
       off: 'إيقاف',
-      offDescription: 'تشغيل دون مطالبات موافقة',
+      offDescription: 'تشغيل دون مطالبات موافقة'
     },
     statusbar: {
       unknown: 'غير معروف',
@@ -2453,13 +2491,13 @@ export const ar = defineLocale({
           skills: 'المهارات',
           subagent_definitions: 'تعريفات الوكيل الفرعي',
           system_prompt: 'موجه النظام',
-          tool_definitions: 'تعريفات الأدوات',
+          tool_definitions: 'تعريفات الأدوات'
         },
         empty: 'لا توجد بيانات سياق بعد',
         loading: 'جاري تحميل التفصيل…',
         percentFull: percent => `${percent}% ممتلئ`,
         title: 'استخدام السياق',
-        tokenSummary: (used, max) => `${used} / ${max} رموز`,
+        tokenSummary: (used, max) => `${used} / ${max} رموز`
       },
       openContextUsage: 'فتح تفصيل استخدام السياق',
       session: 'الجلسة',
@@ -2472,8 +2510,8 @@ export const ar = defineLocale({
       openModelPicker: 'فتح اختيار النموذج',
       modelPinned: 'النموذج مثبت',
       modelTitle: (provider, model) => `النموذج · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'الشريط الجانبي الأيمن',
@@ -2509,7 +2547,7 @@ export const ar = defineLocale({
     terminalNew: 'محطة جديدة',
     terminalCloseOthers: 'إغلاق الباقي',
     terminalCloseAll: 'إغلاق الكل',
-    addToChat: 'إضافة للمحادثة',
+    addToChat: 'إضافة للمحادثة'
   },
   preview: {
     tab: 'معاينة',
@@ -2564,7 +2602,7 @@ export const ar = defineLocale({
       empty: 'لا توجد رسائل كونسول بعد.',
       promptHeader: 'كونسول المعاينة:',
       sentTitle: 'تم الإرسال إلى المحادثة',
-      sentMessage: count => `${count} مُدخل سجل ${count === 1 ? 'y' : 'ies'} أُضيف إلى مربع الإدخال`,
+      sentMessage: count => `${count} مُدخل سجل ${count === 1 ? 'y' : 'ies'} أُضيف إلى مربع الإدخال`
     },
     web: {
       appFailedToBoot: 'فشل إقلاع تطبيق المعاينة',
@@ -2589,17 +2627,19 @@ export const ar = defineLocale({
       reloadingNow: 'جار إعادة تحميل المعاينة الآن.',
       restartFailedTitle: 'فشلت إعادة تشغيل المعاينة',
       restartFailedMessage: 'تعذّر على OpenAmer إعادة تشغيل الخادم.',
-      stillWorking: 'لا يزال OpenAmer يعمل، لكن لم تصل نتيجة إعادة التشغيل بعد. قد يكون أمر الخادم قيد التشغيل في المقدمة.',
+      stillWorking:
+        'لا يزال OpenAmer يعمل، لكن لم تصل نتيجة إعادة التشغيل بعد. قد يكون أمر الخادم قيد التشغيل في المقدمة.',
       workspaceReloading: 'تغيّرت مساحة العمل، جار إعادة تحميل المعاينة',
       fileChanged: url => `تغيّر الملف، جار إعادة تحميل المعاينة: ${url}`,
       filesChanged: (count, url) => `${count} تغييرات ملفات، جار إعادة تحميل المعاينة: ${url}`,
       watchFailed: message => `تعذّر مراقبة ملف المعاينة: ${message}`,
-      moduleMimeDescription: 'يتم تقديم نصوص الوحدات بنوع MIME خاطئ. عادة ما يعني هذا أن خادم ملفات ثابتة يقدّم تطبيق Vite/React بدلا من خادم تطوير المشروع.',
+      moduleMimeDescription:
+        'يتم تقديم نصوص الوحدات بنوع MIME خاطئ. عادة ما يعني هذا أن خادم ملفات ثابتة يقدّم تطبيق Vite/React بدلا من خادم تطوير المشروع.',
       loadFailedConsole: (code, message) => `فشل التحميل${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'تعذّر الوصول إلى صفحة المعاينة.',
       openTarget: url => `فتح ${url}`,
-      fallbackTitle: 'معاينة',
-    },
+      fallbackTitle: 'معاينة'
+    }
   },
   zones: {
     showHeader: 'إظهار الرأس',
@@ -2607,7 +2647,8 @@ export const ar = defineLocale({
     minimize: 'تصغير',
     restore: 'استعادة',
     closeRunningTitle: 'إغلاق تبويب يعمل؟',
-    closeRunningBody: 'هذه المحادثة ما زالت تعمل (أو تنتظر إدخالك). إغلاق التبويب يخفيها فقط — ستحتفظ الجلسة بتقدمها ويمكن إعادة فتحها من الشريط الجانبي.',
+    closeRunningBody:
+      'هذه المحادثة ما زالت تعمل (أو تنتظر إدخالك). إغلاق التبويب يخفيها فقط — ستحتفظ الجلسة بتقدمها ويمكن إعادة فتحها من الشريط الجانبي.',
     closeRunningConfirm: 'إغلاق التبويب',
     closeOthers: 'إغلاق الأخرى',
     closeToRight: 'إغلاق ما على اليمين',
@@ -2644,21 +2685,16 @@ export const ar = defineLocale({
     layoutNamePlaceholder: fallback => `اسم التخطيط (${fallback})`,
     saveApply: 'حفظ وتطبيق',
     notExpressible: 'هذا الترتيب متشابك — لا يمكن تمثيله كتقسيمات متداخلة بعد',
-    zoneCount: count => `${count} مناطق`,
+    zoneCount: count => `${count} مناطق`
   },
   assistant: {
     thread: {
       loadingSession: 'جار تحميل الجلسة...',
       showEarlier: 'عرض الرسائل الأقدم',
       loadingResponse: 'جار تحميل الرد...',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'يفكر...',
       today: time => `اليوم ${time}`,
@@ -2685,7 +2721,7 @@ export const ar = defineLocale({
       restoreNext: 'استعادة التالي',
       goForward: 'تقدم',
       sendEdited: 'إرسال التعديل',
-      attachingFile: 'جار إرفاق الملف',
+      attachingFile: 'جار إرفاق الملف'
     },
     approval: {
       gatewayDisconnected: 'البوابة غير متصلة',
@@ -2699,7 +2735,7 @@ export const ar = defineLocale({
       reject: 'رفض',
       alwaysTitle: 'السماح دائما',
       alwaysDescription: pattern => `السماح دائما بالأوامر المطابقة لـ ${pattern}`,
-      alwaysAllow: 'السماح دائما',
+      alwaysAllow: 'السماح دائما'
     },
     clarify: {
       notReady: 'غير جاهز',
@@ -2713,7 +2749,7 @@ export const ar = defineLocale({
       continueLabel: 'متابعة',
       lateAnswer: (question, choice) => `رد: "${question}" — إجابتي: ${choice}`,
       lateAnswerTip: 'صياغة هذه الإجابة كرسالة متابعة',
-      lateAnswerHint: 'هذا المطلب لم يعد في انتظار. اختر خيارًا لصياغته كرسالة متابعة.',
+      lateAnswerHint: 'هذا المطلب لم يعد في انتظار. اختر خيارًا لصياغته كرسالة متابعة.'
     },
     tool: {
       code: 'الكود',
@@ -2749,11 +2785,11 @@ export const ar = defineLocale({
         ran: 'تم التشغيل',
         running: 'جار التشغيل',
         ranCode: 'تم تشغيل الكود',
-        runningCode: 'جار البرمجة',
+        runningCode: 'جار البرمجة'
       },
       prefixes: {
         browser: 'المتصفح',
-        web: 'الويب',
+        web: 'الويب'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2761,121 +2797,121 @@ export const ar = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `جار تشغيل ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `جار تشغيل ${action.toLowerCase()}`,
+        runningTool: action => `جار تشغيل ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'تم النقر على عنصر الصفحة',
           pending: 'جار النقر على عنصر الصفحة',
-          pendingAction: 'جار النقر',
+          pendingAction: 'جار النقر'
         },
         browser_fill: {
           done: 'تم ملء حقل النموذج',
           pending: 'جار ملء حقل النموذج',
-          pendingAction: 'جار الملء',
+          pendingAction: 'جار الملء'
         },
         browser_navigate: {
           done: 'تم فتح الصفحة',
           pending: 'جار فتح الصفحة',
-          pendingAction: 'جار الفتح',
+          pendingAction: 'جار الفتح'
         },
         browser_snapshot: {
           done: 'تم التقاط لقطة الصفحة',
           pending: 'جار التقاط لقطة الصفحة',
-          pendingAction: 'جار الالتقاط',
+          pendingAction: 'جار الالتقاط'
         },
         browser_take_screenshot: {
           done: 'تم التقاط لقطة الشاشة',
           pending: 'جار التقاط لقطة الشاشة',
-          pendingAction: 'جار الالتقاط',
+          pendingAction: 'جار الالتقاط'
         },
         browser_type: {
           done: 'تمت الكتابة على الصفحة',
           pending: 'جار الكتابة على الصفحة',
-          pendingAction: 'جار الكتابة',
+          pendingAction: 'جار الكتابة'
         },
         clarify: {
           done: 'تم طرح سؤال',
           pending: 'جار طرح سؤال',
-          pendingAction: 'جار السؤال',
+          pendingAction: 'جار السؤال'
         },
         cronjob: {
           done: 'مهمة مجدولة',
           pending: 'جار جدولة المهمة',
-          pendingAction: 'جار الجدولة',
+          pendingAction: 'جار الجدولة'
         },
         edit_file: {
           done: 'تم تحرير الملف',
           pending: 'جار تحرير الملف',
-          pendingAction: 'جار التحرير',
+          pendingAction: 'جار التحرير'
         },
         execute_code: {
           done: 'تم تشغيل الكود',
           pending: 'جار البرمجة',
-          pendingAction: 'جار البرمجة',
+          pendingAction: 'جار البرمجة'
         },
         image_generate: {
           done: 'تم إنشاء الصورة',
           pending: 'جار إنشاء الصورة',
-          pendingAction: 'جار الإنشاء',
+          pendingAction: 'جار الإنشاء'
         },
         list_files: {
           done: 'تم سرد الملفات',
           pending: 'جار سرد الملفات',
-          pendingAction: 'جار السرد',
+          pendingAction: 'جار السرد'
         },
         patch: {
           done: 'تم تصحيح الملف',
           pending: 'جار تصحيح الملف',
-          pendingAction: 'جار التصحيح',
+          pendingAction: 'جار التصحيح'
         },
         read_file: {
           done: 'تمت قراءة الملف',
           pending: 'جار قراءة الملف',
-          pendingAction: 'جار القراءة',
+          pendingAction: 'جار القراءة'
         },
         search_files: {
           done: 'تم البحث في الملفات',
           pending: 'جار البحث في الملفات',
-          pendingAction: 'جار البحث',
+          pendingAction: 'جار البحث'
         },
         session_search_recall: {
           done: 'تم البحث في سجل الجلسة',
           pending: 'جار البحث في سجل الجلسة',
-          pendingAction: 'جار البحث',
+          pendingAction: 'جار البحث'
         },
         terminal: {
           done: 'تم تشغيل الأمر',
           pending: 'جار تشغيل الأمر',
-          pendingAction: 'جار التشغيل',
+          pendingAction: 'جار التشغيل'
         },
         todo: {
           done: 'تم تحديث المهام',
           pending: 'جار تحديث المهام',
-          pendingAction: 'جار التحديث',
+          pendingAction: 'جار التحديث'
         },
         vision_analyze: {
           done: 'تم تحليل الصورة',
           pending: 'جار تحليل الصورة',
-          pendingAction: 'جار التحليل',
+          pendingAction: 'جار التحليل'
         },
         web_extract: {
           done: 'تمت قراءة صفحة الويب',
           pending: 'جار قراءة صفحة الويب',
-          pendingAction: 'جار القراءة',
+          pendingAction: 'جار القراءة'
         },
         web_search: {
           done: 'تم البحث في الويب',
           pending: 'جار البحث في الويب',
-          pendingAction: 'جار البحث',
+          pendingAction: 'جار البحث'
         },
         write_file: {
           done: 'تم تحرير الملف',
           pending: 'جار تحرير الملف',
-          pendingAction: 'جار التحرير',
-        },
-      },
-    },
+          pendingAction: 'جار التحرير'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'البوابة غير متصلة',
@@ -2886,7 +2922,7 @@ export const ar = defineLocale({
     sudoPlaceholder: 'كلمة المرور',
     secretTitle: 'مطلوب سر',
     secretDesc: 'أدخل القيمة المطلوبة لمتابعة المهمة.',
-    secretPlaceholder: 'القيمة السرية',
+    secretPlaceholder: 'القيمة السرية'
   },
   desktop: {
     audioReadFailed: 'فشلت قراءة الصوت',
@@ -2913,8 +2949,9 @@ export const ar = defineLocale({
     regenerateFailed: 'فشلت إعادة التوليد',
     editFailed: 'فشل التحرير',
     resumeFailed: 'فشل الاستئناف',
-    resumeStrandedTitle: "تعذّر تحميل هذه الجلسة",
-    resumeStrandedBody: 'فشل الاتصال بهذه الجلسة وتوقفت إعادة المحاولة التلقائية. تأكد من تشغيل البوابة، ثم حاول مجددا.',
+    resumeStrandedTitle: 'تعذّر تحميل هذه الجلسة',
+    resumeStrandedBody:
+      'فشل الاتصال بهذه الجلسة وتوقفت إعادة المحاولة التلقائية. تأكد من تشغيل البوابة، ثم حاول مجددا.',
     resumeRetry: 'إعادة المحاولة',
     nothingToBranch: 'لا يوجد ما يمكن تفريعه',
     branchNeedsChat: 'يحتاج التفريع إلى محادثة',
@@ -2954,31 +2991,31 @@ export const ar = defineLocale({
       success: platform => `تم التسليم إلى ${platform}. استأنف هنا في أي وقت.`,
       systemNote: platform => `↻ تم التسليم إلى ${platform} — استأنف هنا في أي وقت.`,
       failed: error => `فشل التسليم: ${error}`,
-      timedOut: 'انتهت المهلة في انتظار البوابة. هل `openamer gateway` قيد التشغيل؟',
-    },
+      timedOut: 'انتهت المهلة في انتظار البوابة. هل `openamer gateway` قيد التشغيل؟'
+    }
   },
   errors: {
     genericFailure: 'حدث خطأ',
     boundaryTitle: 'تعطل جزء من الواجهة',
     boundaryDesc: 'يمكنك إعادة تحميل النافذة أو فتح السجلات لمعرفة التفاصيل.',
     reloadWindow: 'إعادة تحميل النافذة',
-    openLogs: 'فتح السجلات',
+    openLogs: 'فتح السجلات'
   },
   ui: {
     search: {
-      clear: 'مسح البحث',
+      clear: 'مسح البحث'
     },
     pagination: {
       label: 'ترقيم الصفحات',
       previous: 'السابق',
       previousAria: 'الصفحة السابقة',
       next: 'التالي',
-      nextAria: 'الصفحة التالية',
+      nextAria: 'الصفحة التالية'
     },
     sidebar: {
       title: 'الشريط الجانبي',
       description: 'تنقل التطبيق',
-      toggle: 'تبديل الشريط الجانبي',
-    },
-  },
+      toggle: 'تبديل الشريط الجانبي'
+    }
+  }
 })

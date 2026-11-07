@@ -6,249 +6,251 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Standardmodell",
-    modelContextLength: "Kontextfenster",
-    fallbackProviders: "Fallback-Modelle",
-    toolsets: "Aktivierte Toolsets",
-    timezone: "Zeitzone",
-    display: {
-      personality: "Persönlichkeit",
-      showReasoning: "Denkblöcke",
+  model: 'Standardmodell',
+  modelContextLength: 'Kontextfenster',
+  fallbackProviders: 'Fallback-Modelle',
+  toolsets: 'Aktivierte Toolsets',
+  timezone: 'Zeitzone',
+  display: {
+    personality: 'Persönlichkeit',
+    showReasoning: 'Denkblöcke'
+  },
+  desktop: {
+    repoScanEnabled: 'Automatische Repository-Erkennung',
+    repoScanRoots: 'Repository-Erkennungswurzeln',
+    repoScanExcludePaths: 'Ausgeschlossene Repository-Pfade'
+  },
+  agent: {
+    maxTurns: 'Maximale Agentenschritte',
+    imageInputMode: 'Bildanhänge',
+    apiMaxRetries: 'API-Wiederholungen',
+    serviceTier: 'Service-Stufe',
+    toolUseEnforcement: 'Tool-Nutzung erzwingen'
+  },
+  terminal: {
+    cwd: 'Arbeitsverzeichnis',
+    backend: 'Ausführungs-Backend',
+    timeout: 'Befehls-Zeitlimit',
+    persistentShell: 'Persistente Shell',
+    envPassthrough: 'Umgebungsweitergabe',
+    dockerImage: 'Docker-Image',
+    singularityImage: 'Singularity-Image',
+    modalImage: 'Modal-Image',
+    daytonaImage: 'Daytona-Image'
+  },
+  fileReadMaxChars: 'Dateileselimit',
+  toolOutput: {
+    maxBytes: 'Terminal-Ausgabelimit',
+    maxLines: 'Seitenlimit für Dateien',
+    maxLineLength: 'Zeilenlängenlimit'
+  },
+  codeExecution: {
+    mode: 'Code-Ausführungsmodus'
+  },
+  approvals: {
+    mode: 'Genehmigungsmodus',
+    timeout: 'Genehmigungs-Zeitlimit',
+    mcpReloadConfirm: 'MCP-Neuladen bestätigen'
+  },
+  commandAllowlist: 'Befehls-Allowlist',
+  security: {
+    redactSecrets: 'Geheimnisse ausblenden',
+    allowPrivateUrls: 'Private URLs erlauben'
+  },
+  browser: {
+    allowPrivateUrls: 'Private URLs im Browser',
+    autoLocalForPrivateUrls: 'Lokaler Browser für private URLs'
+  },
+  checkpoints: {
+    enabled: 'Datei-Checkpoints',
+    maxSnapshots: 'Checkpoint-Limit'
+  },
+  voice: {
+    recordKey: 'Sprachkurzbefehl',
+    maxRecordingSeconds: 'Maximale Aufnahmedauer',
+    autoTts: 'Antworten laut vorlesen'
+  },
+  stt: {
+    enabled: 'Sprache zu Text',
+    echoTranscripts: 'Transkripte wiederholen',
+    provider: 'Sprache-zu-Text-Anbieter',
+    local: {
+      model: 'Lokales Transkriptionsmodell',
+      language: 'Transkriptionssprache'
     },
-    desktop: {
-      repoScanEnabled: "Automatische Repository-Erkennung",
-      repoScanRoots: "Repository-Erkennungswurzeln",
-      repoScanExcludePaths: "Ausgeschlossene Repository-Pfade",
+    openai: {
+      model: 'OpenAI-STT-Modell'
     },
-    agent: {
-      maxTurns: "Maximale Agentenschritte",
-      imageInputMode: "Bildanhänge",
-      apiMaxRetries: "API-Wiederholungen",
-      serviceTier: "Service-Stufe",
-      toolUseEnforcement: "Tool-Nutzung erzwingen",
+    groq: {
+      model: 'Groq-STT-Modell'
     },
-    terminal: {
-      cwd: "Arbeitsverzeichnis",
-      backend: "Ausführungs-Backend",
-      timeout: "Befehls-Zeitlimit",
-      persistentShell: "Persistente Shell",
-      envPassthrough: "Umgebungsweitergabe",
-      dockerImage: "Docker-Image",
-      singularityImage: "Singularity-Image",
-      modalImage: "Modal-Image",
-      daytonaImage: "Daytona-Image",
+    mistral: {
+      model: 'Mistral-STT-Modell'
     },
-    fileReadMaxChars: "Dateileselimit",
-    toolOutput: {
-      maxBytes: "Terminal-Ausgabelimit",
-      maxLines: "Seitenlimit für Dateien",
-      maxLineLength: "Zeilenlängenlimit",
+    elevenlabs: {
+      modelId: 'ElevenLabs-STT-Modell',
+      languageCode: 'ElevenLabs-Sprache',
+      tagAudioEvents: 'Audioereignisse markieren',
+      diarize: 'Sprecherdiarisierung'
+    }
+  },
+  tts: {
+    provider: 'Text-zu-Sprache-Anbieter',
+    edge: {
+      voice: 'Edge-Stimme'
     },
-    codeExecution: {
-      mode: "Code-Ausführungsmodus",
+    openai: {
+      model: 'OpenAI-TTS-Modell',
+      voice: 'OpenAI-Stimme'
     },
-    approvals: {
-      mode: "Genehmigungsmodus",
-      timeout: "Genehmigungs-Zeitlimit",
-      mcpReloadConfirm: "MCP-Neuladen bestätigen",
+    elevenlabs: {
+      voiceId: 'ElevenLabs-Stimme',
+      modelId: 'ElevenLabs-Modell'
     },
-    commandAllowlist: "Befehls-Allowlist",
-    security: {
-      redactSecrets: "Geheimnisse ausblenden",
-      allowPrivateUrls: "Private URLs erlauben",
+    xai: {
+      voiceId: 'xAI-(Grok)-Stimme',
+      language: 'xAI-Sprache',
+      speed: 'xAI-Wiedergabegeschwindigkeit',
+      autoSpeechTags: 'xAI-Automatische-Sprachtags',
+      optimizeStreamingLatency: 'xAI-Optimierung der Streaming-Latenz',
+      sampleRate: 'xAI-Abtastrate',
+      bitRate: 'xAI-Bitrate'
     },
-    browser: {
-      allowPrivateUrls: "Private URLs im Browser",
-      autoLocalForPrivateUrls: "Lokaler Browser für private URLs",
+    minimax: {
+      model: 'MiniMax-TTS-Modell',
+      voiceId: 'MiniMax-Stimme'
     },
-    checkpoints: {
-      enabled: "Datei-Checkpoints",
-      maxSnapshots: "Checkpoint-Limit",
+    mistral: {
+      model: 'Mistral-TTS-Modell',
+      voiceId: 'Mistral-Stimme'
     },
-    voice: {
-      recordKey: "Sprachkurzbefehl",
-      maxRecordingSeconds: "Maximale Aufnahmedauer",
-      autoTts: "Antworten laut vorlesen",
+    gemini: {
+      model: 'Gemini-TTS-Modell',
+      voice: 'Gemini-Stimme'
     },
-    stt: {
-      enabled: "Sprache zu Text",
-      echoTranscripts: "Transkripte wiederholen",
-      provider: "Sprache-zu-Text-Anbieter",
-      local: {
-        model: "Lokales Transkriptionsmodell",
-        language: "Transkriptionssprache",
-      },
-      openai: {
-        model: "OpenAI-STT-Modell",
-      },
-      groq: {
-        model: "Groq-STT-Modell",
-      },
-      mistral: {
-        model: "Mistral-STT-Modell",
-      },
-      elevenlabs: {
-        modelId: "ElevenLabs-STT-Modell",
-        languageCode: "ElevenLabs-Sprache",
-        tagAudioEvents: "Audioereignisse markieren",
-        diarize: "Sprecherdiarisierung",
-      },
+    neutts: {
+      model: 'NeuTTS-Modell',
+      device: 'NeuTTS-Gerät'
     },
-    tts: {
-      provider: "Text-zu-Sprache-Anbieter",
-      edge: {
-        voice: "Edge-Stimme",
-      },
-      openai: {
-        model: "OpenAI-TTS-Modell",
-        voice: "OpenAI-Stimme",
-      },
-      elevenlabs: {
-        voiceId: "ElevenLabs-Stimme",
-        modelId: "ElevenLabs-Modell",
-      },
-      xai: {
-        voiceId: "xAI-(Grok)-Stimme",
-        language: "xAI-Sprache",
-        speed: "xAI-Wiedergabegeschwindigkeit",
-        autoSpeechTags: "xAI-Automatische-Sprachtags",
-        optimizeStreamingLatency: "xAI-Optimierung der Streaming-Latenz",
-        sampleRate: "xAI-Abtastrate",
-        bitRate: "xAI-Bitrate",
-      },
-      minimax: {
-        model: "MiniMax-TTS-Modell",
-        voiceId: "MiniMax-Stimme",
-      },
-      mistral: {
-        model: "Mistral-TTS-Modell",
-        voiceId: "Mistral-Stimme",
-      },
-      gemini: {
-        model: "Gemini-TTS-Modell",
-        voice: "Gemini-Stimme",
-      },
-      neutts: {
-        model: "NeuTTS-Modell",
-        device: "NeuTTS-Gerät",
-      },
-      kittentts: {
-        model: "KittenTTS-Modell",
-        voice: "KittenTTS-Stimme",
-      },
-      piper: {
-        voice: "Piper-Stimme",
-      },
-      deepinfra: {
-        model: "DeepInfra-TTS-Modell",
-        voice: "DeepInfra-Stimme",
-      },
+    kittentts: {
+      model: 'KittenTTS-Modell',
+      voice: 'KittenTTS-Stimme'
     },
-    memory: {
-      memoryEnabled: "Persistenter Speicher",
-      userProfileEnabled: "Benutzerprofil",
-      memoryCharLimit: "Speicherbudget",
-      userCharLimit: "Profilbudget",
-      provider: "Speicheranbieter",
+    piper: {
+      voice: 'Piper-Stimme'
     },
-    context: {
-      engine: "Kontext-Engine",
-    },
-    compression: {
-      enabled: "Automatische Komprimierung",
-      threshold: "Komprimierungsschwelle",
-      targetRatio: "Komprimierungsziel",
-      protectLastN: "Geschützte kürzliche Nachrichten",
-    },
-    delegation: {
-      model: "Subagent-Modell",
-      provider: "Subagent-Anbieter",
-      maxIterations: "Subagent-Rundenlimit",
-      maxConcurrentChildren: "Parallele Subagenten",
-      childTimeoutSeconds: "Subagent-Zeitlimit",
-      reasoningEffort: "Subagent-Denkausmaß",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Lokale Änderungen bei In-App-Update beibehalten",
-    },
+    deepinfra: {
+      model: 'DeepInfra-TTS-Modell',
+      voice: 'DeepInfra-Stimme'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Persistenter Speicher',
+    userProfileEnabled: 'Benutzerprofil',
+    memoryCharLimit: 'Speicherbudget',
+    userCharLimit: 'Profilbudget',
+    provider: 'Speicheranbieter'
+  },
+  context: {
+    engine: 'Kontext-Engine'
+  },
+  compression: {
+    enabled: 'Automatische Komprimierung',
+    threshold: 'Komprimierungsschwelle',
+    targetRatio: 'Komprimierungsziel',
+    protectLastN: 'Geschützte kürzliche Nachrichten'
+  },
+  delegation: {
+    model: 'Subagent-Modell',
+    provider: 'Subagent-Anbieter',
+    maxIterations: 'Subagent-Rundenlimit',
+    maxConcurrentChildren: 'Parallele Subagenten',
+    childTimeoutSeconds: 'Subagent-Zeitlimit',
+    reasoningEffort: 'Subagent-Denkausmaß'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Lokale Änderungen bei In-App-Update beibehalten'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Wird für neue Chats verwendet, sofern du im Composer kein anderes Modell auswählst.",
-    modelContextLength: "Auf 0 lassen, um das erkannte Kontextfenster des gewählten Modells zu verwenden.",
-    fallbackProviders: "Backup-Einträge im Format provider:model, die bei Ausfall des Standardmodells versucht werden.",
-    display: {
-      personality: "Standard-Assistentenstil für neue Sitzungen.",
-      showReasoning: "Reasoning-Abschnitte anzeigen, wenn das Backend sie bereitstellt.",
+  model: 'Wird für neue Chats verwendet, sofern du im Composer kein anderes Modell auswählst.',
+  modelContextLength: 'Auf 0 lassen, um das erkannte Kontextfenster des gewählten Modells zu verwenden.',
+  fallbackProviders: 'Backup-Einträge im Format provider:model, die bei Ausfall des Standardmodells versucht werden.',
+  display: {
+    personality: 'Standard-Assistentenstil für neue Sitzungen.',
+    showReasoning: 'Reasoning-Abschnitte anzeigen, wenn das Backend sie bereitstellt.'
+  },
+  desktop: {
+    repoScanEnabled: 'Lokale Ordner nach Git-Repositories durchsuchen, um sie in Projekte anzuzeigen.',
+    repoScanRoots: 'Zu durchsuchende Ordner. Leer lassen, um dein Home-Verzeichnis zu durchsuchen.',
+    repoScanExcludePaths: 'Ordner und deren Unterordner, die bei der Repository-Erkennung übersprungen werden.'
+  },
+  timezone: 'Wird verwendet, wenn OpenAmer lokalen Zeitkontext benötigt. Leer verwendet die Systemzeitzone.',
+  agent: {
+    imageInputMode: 'Steuert, wie Bildanhänge an das Modell gesendet werden.',
+    maxTurns: 'Obergrenze für Tool-Calling-Runden, bevor OpenAmer einen Lauf stoppt.'
+  },
+  terminal: {
+    cwd: 'Standard-Projektordner für Tool- und Terminal-Arbeit.',
+    persistentShell: 'Shell-Zustand zwischen Befehlen beibehalten, wenn das Backend dies unterstützt.',
+    envPassthrough: 'Umgebungsvariablen, die an die Tool-Ausführung übergeben werden.',
+    dockerImage: 'Container-Image, das verwendet wird, wenn das Ausführungs-Backend Docker ist.',
+    singularityImage: 'Image, das verwendet wird, wenn das Ausführungs-Backend Singularity ist.',
+    modalImage: 'Image, das verwendet wird, wenn das Ausführungs-Backend Modal ist.',
+    daytonaImage: 'Image, das verwendet wird, wenn das Ausführungs-Backend Daytona ist.'
+  },
+  codeExecution: {
+    mode: 'Wie streng die Codeausführung auf das aktuelle Projekt beschränkt wird.'
+  },
+  fileReadMaxChars: 'Maximale Zeichenanzahl, die OpenAmer aus einer Dateianfrage lesen kann.',
+  approvals: {
+    mode: 'Wie OpenAmer Befehle behandelt, die eine ausdrückliche Genehmigung erfordern.',
+    timeout: 'Wie lange Genehmigungsaufforderungen warten, bevor sie ablaufen.'
+  },
+  security: {
+    redactSecrets: 'Erkannte Geheimnisse nach Möglichkeit aus modellsichtbaren Inhalten ausblenden.'
+  },
+  checkpoints: {
+    enabled: 'Vor Dateibearbeitungen Rollback-Snapshots erstellen.'
+  },
+  memory: {
+    memoryEnabled: 'Dauerhafte Erinnerungen speichern, die künftigen Sitzungen helfen können.',
+    userProfileEnabled: 'Ein kompaktes Profil der Benutzereinstellungen pflegen.'
+  },
+  context: {
+    engine: 'Strategie für lange Gespräche nahe am Kontextlimit.'
+  },
+  compression: {
+    enabled: 'Älteren Kontext zusammenfassen, wenn Gespräche groß werden.'
+  },
+  voice: {
+    autoTts: 'Assistentenantworten automatisch vorlesen.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'xAI-Stimmen-ID (z. B. eve) oder eine benutzerdefinierte Stimmen-ID.',
+      language: 'Sprachcode (z. B. en, pt-BR) oder "auto" für automatische Erkennung.',
+      speed: 'Wiedergabegeschwindigkeit. 0,7 = langsamer, 1,0 = normal, 1,5 = schneller.',
+      autoSpeechTags:
+        'Ein LLM ausdrucksstarke Audio-Tags ([laughing], [sighs]) vor der Synthese in das Skript einfügen lassen.',
+      optimizeStreamingLatency: 'Abwägung zwischen Latenz und Qualität. 0 = beste Qualität, 2 = niedrigste Latenz.',
+      sampleRate: 'Audio-Abtastrate in Hz. Höher = bessere Qualität, größere Dateien.',
+      bitRate: 'MP3-Bitrate in bps. Gilt nur, wenn der Codec mp3 ist.'
     },
-    desktop: {
-      repoScanEnabled: "Lokale Ordner nach Git-Repositories durchsuchen, um sie in Projekte anzuzeigen.",
-      repoScanRoots: "Zu durchsuchende Ordner. Leer lassen, um dein Home-Verzeichnis zu durchsuchen.",
-      repoScanExcludePaths: "Ordner und deren Unterordner, die bei der Repository-Erkennung übersprungen werden.",
-    },
-    timezone: "Wird verwendet, wenn OpenAmer lokalen Zeitkontext benötigt. Leer verwendet die Systemzeitzone.",
-    agent: {
-      imageInputMode: "Steuert, wie Bildanhänge an das Modell gesendet werden.",
-      maxTurns: "Obergrenze für Tool-Calling-Runden, bevor OpenAmer einen Lauf stoppt.",
-    },
-    terminal: {
-      cwd: "Standard-Projektordner für Tool- und Terminal-Arbeit.",
-      persistentShell: "Shell-Zustand zwischen Befehlen beibehalten, wenn das Backend dies unterstützt.",
-      envPassthrough: "Umgebungsvariablen, die an die Tool-Ausführung übergeben werden.",
-      dockerImage: "Container-Image, das verwendet wird, wenn das Ausführungs-Backend Docker ist.",
-      singularityImage: "Image, das verwendet wird, wenn das Ausführungs-Backend Singularity ist.",
-      modalImage: "Image, das verwendet wird, wenn das Ausführungs-Backend Modal ist.",
-      daytonaImage: "Image, das verwendet wird, wenn das Ausführungs-Backend Daytona ist.",
-    },
-    codeExecution: {
-      mode: "Wie streng die Codeausführung auf das aktuelle Projekt beschränkt wird.",
-    },
-    fileReadMaxChars: "Maximale Zeichenanzahl, die OpenAmer aus einer Dateianfrage lesen kann.",
-    approvals: {
-      mode: "Wie OpenAmer Befehle behandelt, die eine ausdrückliche Genehmigung erfordern.",
-      timeout: "Wie lange Genehmigungsaufforderungen warten, bevor sie ablaufen.",
-    },
-    security: {
-      redactSecrets: "Erkannte Geheimnisse nach Möglichkeit aus modellsichtbaren Inhalten ausblenden.",
-    },
-    checkpoints: {
-      enabled: "Vor Dateibearbeitungen Rollback-Snapshots erstellen.",
-    },
-    memory: {
-      memoryEnabled: "Dauerhafte Erinnerungen speichern, die künftigen Sitzungen helfen können.",
-      userProfileEnabled: "Ein kompaktes Profil der Benutzereinstellungen pflegen.",
-    },
-    context: {
-      engine: "Strategie für lange Gespräche nahe am Kontextlimit.",
-    },
-    compression: {
-      enabled: "Älteren Kontext zusammenfassen, wenn Gespräche groß werden.",
-    },
-    voice: {
-      autoTts: "Assistentenantworten automatisch vorlesen.",
-    },
-    tts: {
-      xai: {
-        voiceId: "xAI-Stimmen-ID (z. B. eve) oder eine benutzerdefinierte Stimmen-ID.",
-        language: "Sprachcode (z. B. en, pt-BR) oder \"auto\" für automatische Erkennung.",
-        speed: "Wiedergabegeschwindigkeit. 0,7 = langsamer, 1,0 = normal, 1,5 = schneller.",
-        autoSpeechTags: "Ein LLM ausdrucksstarke Audio-Tags ([laughing], [sighs]) vor der Synthese in das Skript einfügen lassen.",
-        optimizeStreamingLatency: "Abwägung zwischen Latenz und Qualität. 0 = beste Qualität, 2 = niedrigste Latenz.",
-        sampleRate: "Audio-Abtastrate in Hz. Höher = bessere Qualität, größere Dateien.",
-        bitRate: "MP3-Bitrate in bps. Gilt nur, wenn der Codec mp3 ist.",
-      },
-      neutts: {
-        device: "Lokales Inferenzgerät für NeuTTS.",
-      },
-    },
-    stt: {
-      enabled: "Lokale oder anbietergestützte Sprachtranskription aktivieren.",
-      echoTranscripts: "Das rohe 🎙️-Transkript von Sprachnachrichten zurück in den Chat senden.",
-      elevenlabs: {
-        languageCode: "Optionaler ISO-639-3-Sprachcode. Leer lässt ElevenLabs automatisch erkennen.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Wenn OpenAmer sich aus der App aktualisiert (ohne Terminal-Aufforderung), lokale Quellcode-Änderungen behalten (stash) oder verwerfen (discard). Terminal-Updates fragen immer nach.",
-    },
+    neutts: {
+      device: 'Lokales Inferenzgerät für NeuTTS.'
+    }
+  },
+  stt: {
+    enabled: 'Lokale oder anbietergestützte Sprachtranskription aktivieren.',
+    echoTranscripts: 'Das rohe 🎙️-Transkript von Sprachnachrichten zurück in den Chat senden.',
+    elevenlabs: {
+      languageCode: 'Optionaler ISO-639-3-Sprachcode. Leer lässt ElevenLabs automatisch erkennen.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Wenn OpenAmer sich aus der App aktualisiert (ohne Terminal-Aufforderung), lokale Quellcode-Änderungen behalten (stash) oder verwerfen (discard). Terminal-Updates fragen immer nach.'
+  }
 })

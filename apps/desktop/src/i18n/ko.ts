@@ -44,7 +44,7 @@ export const ko = defineLocale({
     update: '업데이트',
     tryHint: term => `“${term}” 시도`,
     on: '켬',
-    off: '끔',
+    off: '끔'
   },
   fileMenu: {
     revealFinder: 'Finder에서 보기',
@@ -59,7 +59,7 @@ export const ko = defineLocale({
     renameLabel: '새 이름',
     deleteTitle: name => `${name}을(를) 삭제할까요?`,
     deleteBody: '휴지통으로 이동됩니다 — 거기서 복원할 수 있습니다.',
-    pathCopied: '경로 복사됨',
+    pathCopied: '경로 복사됨'
   },
   boot: {
     ready: 'OpenAmer Desktop 준비 완료',
@@ -69,7 +69,7 @@ export const ko = defineLocale({
       loadingSettings: 'OpenAmer 설정 불러오는 중',
       loadingSessions: '최근 세션 불러오는 중',
       startingDesktopConnection: '데스크톱 연결 시작 중',
-      startingOpenAmerDesktop: 'OpenAmer Desktop 시작 중…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop 시작 중…'
     },
     errors: {
       backgroundExited: 'OpenAmer 백그라운드 프로세스가 종료되었습니다.',
@@ -78,13 +78,15 @@ export const ko = defineLocale({
       desktopBootFailed: '데스크톱 부팅 실패',
       gatewayConnectionLost: '게이트웨이 연결 끊김',
       gatewaySignInRequired: '게이트웨이 로그인 필요',
-      ipcBridgeUnavailable: '데스크톱 IPC 브리지를 사용할 수 없습니다.',
+      ipcBridgeUnavailable: '데스크톱 IPC 브리지를 사용할 수 없습니다.'
     },
     failure: {
-      title: "OpenAmer를 시작할 수 없습니다",
-      description: "백그라운드 게이트웨이가 시작되지 않았습니다. 아래 복구 단계 중 하나를 시도하세요. 여기서 채팅이나 설정이 삭제되지는 않습니다.",
+      title: 'OpenAmer를 시작할 수 없습니다',
+      description:
+        '백그라운드 게이트웨이가 시작되지 않았습니다. 아래 복구 단계 중 하나를 시도하세요. 여기서 채팅이나 설정이 삭제되지는 않습니다.',
       remoteTitle: '원격 게이트웨이 로그인 필요',
-      remoteDescription: '원격 게이트웨이 세션이 만료되었습니다. 다시 연결하려면 다시 로그인하세요. 여기서 채팅이나 설정이 삭제되지는 않습니다.',
+      remoteDescription:
+        '원격 게이트웨이 세션이 만료되었습니다. 다시 연결하려면 다시 로그인하세요. 여기서 채팅이나 설정이 삭제되지는 않습니다.',
       retry: '다시 시도',
       repairInstall: '설치 복구',
       useLocalGateway: '로컬 게이트웨이 사용',
@@ -92,7 +94,8 @@ export const ko = defineLocale({
       back: '뒤로',
       openLogs: '로그 열기',
       repairHint: '복구는 설치 프로그램을 다시 실행하며 새 컴퓨터에서는 몇 분 걸릴 수 있습니다.',
-      remoteSignInHint: signInLabel => `저장된 원격 브라우저 세션에서 로그아웃한 뒤 ${signInLabel}을(를) 엽니다. 번들 백엔드로 전환하려면 "로컬 게이트웨이 사용"을 선택하세요.`,
+      remoteSignInHint: signInLabel =>
+        `저장된 원격 브라우저 세션에서 로그아웃한 뒤 ${signInLabel}을(를) 엽니다. 번들 백엔드로 전환하려면 "로컬 게이트웨이 사용"을 선택하세요.`,
       signOutAndSignIn: '로그아웃 후 로그인',
       remoteFailureHint: '게이트웨이 설정에서 URL과 로그인을 확인하거나 로컬 게이트웨이로 전환하세요.',
       hideRecentLogs: '최근 로그 숨기기',
@@ -104,8 +107,8 @@ export const ko = defineLocale({
       signInFailed: '로그인 실패',
       signInToRemoteGateway: '원격 게이트웨이에 로그인',
       signInWithProvider: provider => `${provider}(으)로 로그인`,
-      identityProvider: '내 아이덴티티 공급자',
-    },
+      identityProvider: '내 아이덴티티 공급자'
+    }
   },
   notifications: {
     region: '알림',
@@ -118,21 +121,23 @@ export const ko = defineLocale({
     copyDetail: '세부 정보 복사',
     copyDetailFailed: '알림 세부 정보를 복사할 수 없습니다',
     backendOutOfDateTitle: '백엔드가 오래되었습니다',
-    backendOutOfDateMessage: 'OpenAmer 백엔드가 이 데스크톱 빌드보다 오래되어 제대로 작동하지 않을 수 있습니다. 맞추려면 업데이트하세요.',
+    backendOutOfDateMessage:
+      'OpenAmer 백엔드가 이 데스크톱 빌드보다 오래되어 제대로 작동하지 않을 수 있습니다. 맞추려면 업데이트하세요.',
     installMethodUnsupportedTitle: '지원되지 않는 설치 방법',
     updateOpenAmer: 'OpenAmer 업데이트',
     updateReadyTitle: '업데이트 준비됨',
     updateReadyMessage: count => `${count}개의 새 변경 사항 ${count === 1 ? '변경' : '변경'} 사용 가능.`,
-    seeWhatsNew: "새 소식 보기",
+    seeWhatsNew: '새 소식 보기',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT에는 ELEVENLABS_API_KEY가 필요합니다.',
       elevenLabsRejectedKey: 'ElevenLabs가 API 키를 거부했습니다 (401).',
       gatewayAuthFailed: '게이트웨이 인증 실패 — API_SERVER_KEY를 확인하세요.',
-      methodNotAllowed: '데스크톱 백엔드가 해당 요청을 거부했습니다 (405 Method Not Allowed). OpenAmer Desktop을 재시작해 보세요.',
+      methodNotAllowed:
+        '데스크톱 백엔드가 해당 요청을 거부했습니다 (405 Method Not Allowed). OpenAmer Desktop을 재시작해 보세요.',
       microphonePermission: '마이크 권한이 거부되었습니다.',
       openaiRejectedApiKey: 'OpenAI가 API 키를 거부했습니다.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI가 API 키를 거부했습니다 (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS에는 VOICE_TOOLS_OPENAI_KEY 또는 OPENAI_API_KEY가 필요합니다.',
+      openaiTtsNeedsKey: 'OpenAI TTS에는 VOICE_TOOLS_OPENAI_KEY 또는 OPENAI_API_KEY가 필요합니다.'
     },
     voice: {
       configureSpeechToText: '음성 모드를 사용하려면 음성 인식을 구성하세요.',
@@ -151,7 +156,7 @@ export const ko = defineLocale({
       transcriptionFailed: '음성 변환 실패',
       transcriptionUnavailable: '음성 변환을 아직 사용할 수 없습니다.',
       tryRecordingAgain: '다시 녹음해 보세요.',
-      unavailable: '음성 사용 불가',
+      unavailable: '음성 사용 불가'
     },
     native: {
       approvalTitle: '승인 필요',
@@ -164,11 +169,12 @@ export const ko = defineLocale({
       turnErrorTitle: '턴 실패',
       backgroundDoneTitle: '백그라운드 작업 완료',
       backgroundFailedTitle: '백그라운드 작업 실패',
-      creditsTitle: '크레딧',
-    },
+      creditsTitle: '크레딧'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `소프트웨어 렌더링 활성화 — 원격 디스플레이 감지(${reason}). 깜빡임을 방지하기 위해 GPU 가속이 비활성화되었습니다.`,
+    message: reason =>
+      `소프트웨어 렌더링 활성화 — 원격 디스플레이 감지(${reason}). 깜빡임을 방지하기 위해 GPU 가속이 비활성화되었습니다.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer 크레딧 소진',
@@ -176,7 +182,7 @@ export const ko = defineLocale({
     fallbackMessage: '계정의 크레딧이 소진되었습니다. 계속하려면 크레딧을 추가하세요.',
     openBilling: '결제 열기',
     addCredits: '크레딧 추가',
-    dismiss: '닫기',
+    dismiss: '닫기'
   },
   titlebar: {
     hideSidebar: '사이드바 숨기기',
@@ -193,7 +199,7 @@ export const ko = defineLocale({
     openStarmap: '메모리 그래프 열기',
     openKeybinds: '키보드 단축키',
     layoutEditor: '레이아웃 편집기',
-    layoutEditorTitle: '레이아웃 편집기 — Cmd/Ctrl+클릭으로 레이아웃 초기화',
+    layoutEditorTitle: '레이아웃 편집기 — Cmd/Ctrl+클릭으로 레이아웃 초기화'
   },
   keybinds: {
     title: '키보드 단축키',
@@ -210,7 +216,7 @@ export const ko = defineLocale({
       profiles: '프로필',
       session: '세션',
       navigation: '탐색',
-      view: '보기',
+      view: '보기'
     },
     actions: {
       'keybinds.openPanel': '키보드 단축키 열기',
@@ -289,8 +295,8 @@ export const ko = defineLocale({
       'composer.slash': '슬래시 명령 팔레트',
       'composer.help': '빠른 도움말',
       'composer.history': '팝오버 / 기록 순환',
-      'composer.cancel': '팝오버 닫기 · 실행 중단',
-    },
+      'composer.cancel': '팝오버 닫기 · 실행 중단'
+    }
   },
   language: {
     label: '언어',
@@ -299,7 +305,7 @@ export const ko = defineLocale({
     saveError: '언어 업데이트 실패',
     switchTo: '언어 변경',
     searchPlaceholder: '언어 검색…',
-    noResults: '언어를 찾을 수 없습니다',
+    noResults: '언어를 찾을 수 없습니다'
   },
   settings: {
     closeSettings: '설정 닫기',
@@ -324,11 +330,12 @@ export const ko = defineLocale({
       about: '정보',
       billing: '결제',
       notifications: '알림',
-      plugins: '플러그인',
+      plugins: '플러그인'
     },
     plugins: {
       title: '데스크톱 플러그인',
-      blurb: '이 앱에 로드된 UI 확장 기능 — 빌드에 포함되거나 데스크톱 플러그인 폴더에 넣은 것(OpenAmer가 작성한 것 포함). 비활성화하면 플러그인이 즉시 언로드되며 재시작 후에도 유지됩니다.',
+      blurb:
+        '이 앱에 로드된 UI 확장 기능 — 빌드에 포함되거나 데스크톱 플러그인 폴더에 넣은 것(OpenAmer가 작성한 것 포함). 비활성화하면 플러그인이 즉시 언로드되며 재시작 후에도 유지됩니다.',
       count: n => `${n} 설치됨`,
       openFolder: '플러그인 폴더 열기',
       rescan: '다시 검사',
@@ -340,40 +347,41 @@ export const ko = defineLocale({
       kinds: {
         bundled: '내장',
         disk: '디스크에 있음',
-        runtime: '런타임',
-      },
+        runtime: '런타임'
+      }
     },
     notifications: {
       title: '알림',
-      intro: '네이티브 데스크톱 알림으로, 앱 내 토스트와 별개입니다. 기기 로컬 설정이므로 각 컴퓨터가 자체 설정을 유지합니다.',
+      intro:
+        '네이티브 데스크톱 알림으로, 앱 내 토스트와 별개입니다. 기기 로컬 설정이므로 각 컴퓨터가 자체 설정을 유지합니다.',
       enableAll: '알림 사용',
       enableAllDesc: '마스터 스위치입니다. 끄면 아래 모든 알림이 꺼집니다.',
       focusedHint: '완료 알림은 OpenAmer가 백그라운드에 있을 때만 표시됩니다.',
       kinds: {
         approval: {
           label: '승인 필요',
-          description: '명령이 승인 또는 거부를 기다리고 있습니다.',
+          description: '명령이 승인 또는 거부를 기다리고 있습니다.'
         },
         input: {
           label: '입력 필요',
-          description: 'OpenAmer가 질문했거나 비밀번호 또는 시크릿이 필요합니다.',
+          description: 'OpenAmer가 질문했거나 비밀번호 또는 시크릿이 필요합니다.'
         },
         turnDone: {
           label: '응답 준비됨',
-          description: 'OpenAmer가 백그라운드에 있는 동안 턴이 완료되었습니다.',
+          description: 'OpenAmer가 백그라운드에 있는 동안 턴이 완료되었습니다.'
         },
         turnError: {
           label: '턴 실패',
-          description: '턴이 오류로 종료되었습니다.',
+          description: '턴이 오류로 종료되었습니다.'
         },
         backgroundDone: {
           label: '백그라운드 작업 완료',
-          description: '백그라운드 터미널 명령이 완료되었습니다.',
+          description: '백그라운드 터미널 명령이 완료되었습니다.'
         },
         credits: {
           label: '크레딧 알림',
-          description: '크레딧 액세스가 일시 중지되거나 복원되었습니다.',
-        },
+          description: '크레딧 액세스가 일시 중지되거나 복원되었습니다.'
+        }
       },
       test: '테스트 알림 보내기',
       testTitle: 'OpenAmer',
@@ -382,7 +390,7 @@ export const ko = defineLocale({
       testUnsupported: '이 시스템은 기본 알림을 지원하지 않습니다.',
       completionSoundTitle: '완료 소리',
       completionSoundDesc: '에이전트 턴이 끝나면 재생됩니다. 여기서 프리셋을 선택하고 미리 들어보세요.',
-      completionSoundPreview: '미리 듣기',
+      completionSoundPreview: '미리 듣기'
     },
     sections: {
       model: '모델',
@@ -392,7 +400,7 @@ export const ko = defineLocale({
       safety: '보안',
       memory: '메모리 및 컨텍스트',
       voice: '음성',
-      advanced: '고급',
+      advanced: '고급'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop 정보',
@@ -400,21 +408,21 @@ export const ko = defineLocale({
       gateway: '게이트웨이 연결...',
       keys: 'API 키 검색...',
       mcp: 'MCP 서버 검색...',
-      sessions: '보관된 세션 검색...',
+      sessions: '보관된 세션 검색...'
     },
     modeOptions: {
       light: {
         label: '라이트',
-        description: '밝은 화면',
+        description: '밝은 화면'
       },
       dark: {
         label: '다크',
-        description: '눈부심이 적은 화면',
+        description: '눈부심이 적은 화면'
       },
       system: {
         label: '시스템',
-        description: 'OS 설정 따르기',
-      },
+        description: 'OS 설정 따르기'
+      }
     },
     appearance: {
       title: '모양',
@@ -424,13 +432,15 @@ export const ko = defineLocale({
       toolViewTitle: '도구 호출 표시',
       toolViewDesc: '제품은 도구의 원시 데이터를 숨기고, 기술은 전체 입출력을 보여줍니다.',
       uiScaleTitle: 'UI 배율',
-      uiScaleDesc: (percent: number) => `앱 전체의 텍스트와 컨트롤 크기를 조절합니다. Cmd/Ctrl + +, -, 0도 작동합니다. 현재: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `앱 전체의 텍스트와 컨트롤 크기를 조절합니다. Cmd/Ctrl + +, -, 0도 작동합니다. 현재: ${percent}%.`,
       translucencyTitle: '창 반투명도',
       translucencyDesc: '전체 창을 통해 데스크톱이 보입니다. macOS와 Windows 전용.',
       backdropTitle: '채팅 배경',
       backdropDesc: '대화 뒤의 희미한 석상 이미지.',
       embedsTitle: '인라인 임베드',
-      embedsDesc: '풍부한 미리보기는 타사 사이트(YouTube, X 등)에서 로드됩니다. 묻기는 허용할 때까지 자리표시자를 보여주고, 항상은 자동 로드하며, 끔은 일반 링크를 유지합니다.',
+      embedsDesc:
+        '풍부한 미리보기는 타사 사이트(YouTube, X 등)에서 로드됩니다. 묻기는 허용할 때까지 자리표시자를 보여주고, 항상은 자동 로드하며, 끔은 일반 링크를 유지합니다.',
       embedsAsk: '묻기',
       embedsAlways: '항상',
       embedsOff: '끔',
@@ -443,7 +453,8 @@ export const ko = defineLocale({
       themeDesc: '데스크톱 팔레트 전용. 선택한 모드가 위에 적용됩니다.',
       themeProfileNote: profile => `${profile} 프로필에 저장됨 — 각 프로필은 자체 테마를 유지합니다.`,
       installTitle: 'VS Code에서 설치',
-      installDesc: '마켓플레이스 확장 ID(예: dracula-theme.theme-dracula)를 붙여넣으면 색 테마가 데스크톱 팔레트로 변환됩니다.',
+      installDesc:
+        '마켓플레이스 확장 ID(예: dracula-theme.theme-dracula)를 붙여넣으면 색 테마가 데스크톱 팔레트로 변환됩니다.',
       installPlaceholder: '게시자.확장',
       installButton: '설치',
       installing: '설치 중…',
@@ -453,8 +464,10 @@ export const ko = defineLocale({
       importedBadge: '가져옴',
       pet: {
         title: '펫',
-        intro: 'OpenAmer가 하는 일에 반응하며 앱 위에 떠다니는 애니메이션 petdex 마스코트를 입양하세요 — 도구 실행 중에는 달리고, 성공하면 축하하고, 오류가 나면 시무룩해집니다.',
-        restartHint: '펫을 사용하려면 빠르게 재시작해야 합니다 — 실행 중인 앱이 이 기능이 추가되기 전에 시작되었습니다. OpenAmer를 종료하고 다시 연 뒤 여기로 돌아오세요.',
+        intro:
+          'OpenAmer가 하는 일에 반응하며 앱 위에 떠다니는 애니메이션 petdex 마스코트를 입양하세요 — 도구 실행 중에는 달리고, 성공하면 축하하고, 오류가 나면 시무룩해집니다.',
+        restartHint:
+          '펫을 사용하려면 빠르게 재시작해야 합니다 — 실행 중인 앱이 이 기능이 추가되기 전에 시작되었습니다. OpenAmer를 종료하고 다시 연 뒤 여기로 돌아오세요.',
         on: '켜기',
         off: '끄기',
         scaleTitle: '크기',
@@ -464,7 +477,7 @@ export const ko = defineLocale({
         chooseTitle: '펫 선택',
         chooseDesc: '하나를 선택하면 (필요한 경우) 설치되고 활성화됩니다.',
         searchPlaceholder: '펫 검색…',
-        unreachable: "petdex 갤러리에 연결할 수 없습니다. 연결을 확인하고 이 페이지를 다시 여세요.",
+        unreachable: 'petdex 갤러리에 연결할 수 없습니다. 연결을 확인하고 이 페이지를 다시 여세요.',
         noMatch: query => `"${query}"에 일치하는 펫이 없습니다.`,
         installedTag: '설치됨',
         generatedTag: '생성됨',
@@ -473,7 +486,7 @@ export const ko = defineLocale({
         uninstall: name => `${name} 제거`,
         delete: name => `${name} 삭제`,
         deleteTitle: name => `${name} 삭제할까요?`,
-        deleteBody: "이 펫을 영구 삭제하며 다시 설치할 수 없습니다.",
+        deleteBody: '이 펫을 영구 삭제하며 다시 설치할 수 없습니다.',
         deleteConfirm: '삭제',
         rename: name => `${name} 이름 변경`,
         renameTitle: '펫 이름 변경',
@@ -486,8 +499,8 @@ export const ko = defineLocale({
         exportFailed: slug => `${slug} 내보낼 수 없습니다`,
         noneAvailable: '지금 켤 수 있는 펫이 없습니다.',
         turnOnFailed: '펫을 켤 수 없습니다.',
-        turnOffFailed: '펫을 끌 수 없습니다.',
-      },
+        turnOffFailed: '펫을 끌 수 없습니다.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,15 +511,16 @@ export const ko = defineLocale({
       updates: '업데이트',
       checkNow: '지금 확인',
       checking: '확인 중…',
-      seeWhatsNew: "새 소식 보기",
+      seeWhatsNew: '새 소식 보기',
       updateNow: '지금 업데이트',
       releaseNotes: '릴리스 노트',
-      onLatest: "최신 버전입니다.",
+      onLatest: '최신 버전입니다.',
       installing: '업데이트를 설치하는 중입니다.',
-      cantUpdate: "이 빌드는 앱 내부에서 자체 업데이트를 할 수 없습니다.",
-      cantReach: "업데이트 서버에 연결할 수 없습니다.",
+      cantUpdate: '이 빌드는 앱 내부에서 자체 업데이트를 할 수 없습니다.',
+      cantReach: '업데이트 서버에 연결할 수 없습니다.',
       tapCheck: '업데이트를 확인하려면 "지금 확인"을 누르세요.',
-      updateReady: count => `새 업데이트가 준비되었습니다 (${count}개 변경 사항 ${count === 1 ? '변경' : '변경'} 포함).`,
+      updateReady: count =>
+        `새 업데이트가 준비되었습니다 (${count}개 변경 사항 ${count === 1 ? '변경' : '변경'} 포함).`,
       lastChecked: age => `마지막 확인: ${age}`,
       justNowSuffix: ' · 방금',
       automaticUpdates: '자동 업데이트',
@@ -516,7 +530,7 @@ export const ko = defineLocale({
       justNow: '방금',
       minAgo: count => `${count}분 전`,
       hoursAgo: count => `${count}시간 전`,
-      daysAgo: count => `${count}일 전`,
+      daysAgo: count => `${count}일 전`
     },
     config: {
       none: '없음',
@@ -532,7 +546,7 @@ export const ko = defineLocale({
       imported: '구성 가져옴',
       invalidJson: '잘못된 구성 JSON',
       keepAwakeTitle: '컴퓨터 깨어 있게 유지',
-      keepAwakeDesc: '장시간 또는 야간 실행이 계속되도록 이 컴퓨터의 절전을 막습니다. 화면은 어두워질 수 있습니다.',
+      keepAwakeDesc: '장시간 또는 야간 실행이 계속되도록 이 컴퓨터의 절전을 막습니다. 화면은 어두워질 수 있습니다.'
     },
     credentials: {
       pasteKey: '키 붙여넣기',
@@ -542,7 +556,7 @@ export const ko = defineLocale({
       couldNotSave: '자격 증명을 저장하지 못했습니다.',
       remove: '제거',
       getKey: '키 받기',
-      saving: '저장 중',
+      saving: '저장 중'
     },
     envActions: {
       actionsFor: label => `${label}에 대한 작업`,
@@ -553,7 +567,7 @@ export const ko = defineLocale({
       revealValue: '값 표시',
       replace: '교체',
       set: '설정',
-      clear: '지우기',
+      clear: '지우기'
     },
     gateway: {
       loading: '게이트웨이 설정 불러오는 중...',
@@ -561,21 +575,25 @@ export const ko = defineLocale({
       unavailableDesc: '데스크톱 IPC 브리지가 게이트웨이 설정을 제공하지 않습니다.',
       title: '게이트웨이 연결',
       envOverride: '환경 변수 재정의',
-      intro: 'OpenAmer Desktop은 기본적으로 자체 로컬 게이트웨이를 시작합니다. 다른 머신이나 신뢰할 수 있는 프록시 뒤에서 이미 실행 중인 OpenAmer 백엔드를 이 앱에서 제어하려면 원격 게이트웨이를 사용하세요. 아래에서 프로필을 선택해 해당 프로필에 원격 호스트를 지정하세요.',
+      intro:
+        'OpenAmer Desktop은 기본적으로 자체 로컬 게이트웨이를 시작합니다. 다른 머신이나 신뢰할 수 있는 프록시 뒤에서 이미 실행 중인 OpenAmer 백엔드를 이 앱에서 제어하려면 원격 게이트웨이를 사용하세요. 아래에서 프로필을 선택해 해당 프로필에 원격 호스트를 지정하세요.',
       appliesTo: '적용 대상',
       allProfiles: '모든 프로필',
       defaultConnection: '자체 재정의가 없는 모든 프로필의 기본 연결입니다.',
-      profileConnection: profile => `“${profile}”이(가) 활성 프로필일 때만 사용되는 연결입니다. 재정의를 제거하려면 기본 게이트웨이 사용을 선택하세요.`,
+      profileConnection: profile =>
+        `“${profile}”이(가) 활성 프로필일 때만 사용되는 연결입니다. 재정의를 제거하려면 기본 게이트웨이 사용을 선택하세요.`,
       envOverrideTitle: '환경 변수가 이 데스크톱 세션을 제어하고 있습니다.',
-      envOverrideDesc: '아래 저장된 설정을 사용하려면 OPENAMER_DESKTOP_REMOTE_URL 및 OPENAMER_DESKTOP_REMOTE_TOKEN을 해제하세요.',
+      envOverrideDesc:
+        '아래 저장된 설정을 사용하려면 OPENAMER_DESKTOP_REMOTE_URL 및 OPENAMER_DESKTOP_REMOTE_TOKEN을 해제하세요.',
       modeTitle: '연결 모드',
       localTitle: '로컬 게이트웨이',
       localDesc: 'localhost에서 비공개 OpenAmer 백엔드를 시작합니다. 기본값이며 오프라인에서도 작동합니다.',
       inheritTitle: '기본 게이트웨이 사용',
-      inheritDesc: "이 프로필의 재정의를 제거하고 기본 연결을 사용하세요.",
+      inheritDesc: '이 프로필의 재정의를 제거하고 기본 연결을 사용하세요.',
       remoteTitle: '원격 게이트웨이',
       remoteDesc: '이 데스크톱 셸을 원격 OpenAmer 백엔드에 연결합니다.',
-      remoteAuthHint: '호스팅 게이트웨이는 OAuth 또는 사용자 이름과 비밀번호를 사용하며, 자체 호스팅 게이트웨이는 세션 토큰을 사용할 수 있습니다.',
+      remoteAuthHint:
+        '호스팅 게이트웨이는 OAuth 또는 사용자 이름과 비밀번호를 사용하며, 자체 호스팅 게이트웨이는 세션 토큰을 사용할 수 있습니다.',
       cloudTitle: 'OpenAmer 클라우드',
       cloudDesc: 'OpenAmer Cloud에 한 번 로그인하고 계정의 에이전트 중에서 선택하세요. URL을 붙여넣을 필요가 없습니다.',
       cloudSignInTitle: 'OpenAmer 클라우드',
@@ -592,7 +610,7 @@ export const ko = defineLocale({
       cloudNoAgents: {
         before: '이 계정에서 에이전트를 찾을 수 없습니다. 다음에서 생성하세요: ',
         linkText: 'OpenAmer 포털',
-        after: ', 그런 다음 새로 고침하세요.',
+        after: ', 그런 다음 새로 고침하세요.'
       },
       cloudRefresh: '새로 고침',
       cloudConnect: '연결',
@@ -616,10 +634,13 @@ export const ko = defineLocale({
       signOut: '로그아웃',
       signInWith: provider => `${provider}로 로그인`,
       authTitle: '인증',
-      authSignedInPassword: '이 게이트웨이는 사용자 이름과 비밀번호를 사용합니다. 로그인되어 있으며 세션이 자동으로 갱신됩니다.',
+      authSignedInPassword:
+        '이 게이트웨이는 사용자 이름과 비밀번호를 사용합니다. 로그인되어 있으며 세션이 자동으로 갱신됩니다.',
       authSignedInOauth: '이 게이트웨이는 OAuth를 사용합니다. 로그인되어 있으며 세션이 자동으로 갱신됩니다.',
-      authNeedsPassword: '이 게이트웨이는 사용자 이름과 비밀번호를 사용합니다. 이 데스크톱 앱을 승인하려면 로그인하세요.',
-      authNeedsOauth: provider => `이 게이트웨이는 OAuth를 사용합니다. 이 데스크톱 앱을 승인하려면 ${provider}로 로그인하세요.`,
+      authNeedsPassword:
+        '이 게이트웨이는 사용자 이름과 비밀번호를 사용합니다. 이 데스크톱 앱을 승인하려면 로그인하세요.',
+      authNeedsOauth: provider =>
+        `이 게이트웨이는 OAuth를 사용합니다. 이 데스크톱 앱을 승인하려면 ${provider}로 로그인하세요.`,
       tokenTitle: '세션 토큰',
       tokenDesc: 'REST 및 WebSocket 액세스에 사용되는 대시보드 세션 토큰입니다. 저장된 토큰을 유지하려면 비워 두세요.',
       existingToken: value => `기존 토큰 ${value}`,
@@ -652,7 +673,8 @@ export const ko = defineLocale({
       applyFailed: '게이트웨이 설정을 적용하지 못했습니다',
       saveFailed: '게이트웨이 설정을 저장하지 못했습니다',
       sshTitle: 'SSH로 연결',
-      sshDesc: 'OpenAmer는 SSH를 통해 원격에서 실행되어 이 앱으로 터널링됩니다. 직접 시작하거나 노출할 필요가 없습니다. 호스트에 키 기반 SSH 액세스가 되어 있어야 합니다.',
+      sshDesc:
+        'OpenAmer는 SSH를 통해 원격에서 실행되어 이 앱으로 터널링됩니다. 직접 시작하거나 노출할 필요가 없습니다. 호스트에 키 기반 SSH 액세스가 되어 있어야 합니다.',
       sshTrustHint: '처음 제시된 호스트 키를 신뢰하고 고정합니다. 이후 변경되면 연결이 거부됩니다.',
       sshHostTitle: '호스트',
       sshHostDesc: 'user@host 또는 ~/.ssh/config의 Host 별칭.',
@@ -676,18 +698,22 @@ export const ko = defineLocale({
       sshReachable: (host, platform) => `연결 가능: ${host} (${platform}) — OpenAmer 발견됨`,
       sshIncompleteHost: '연결하기 전에 SSH 호스트를 입력하세요.',
       sshErrUnreachable: 'SSH로 해당 호스트에 연결할 수 없습니다. 호스트, 포트 및 네트워크를 확인하세요.',
-      sshErrAuth: 'SSH 인증에 실패했습니다. 키를 ssh-agent에 로드(ssh-add)하거나 ~/.ssh/config에 IdentityFile을 설정하세요. OpenAmer는 ssh를 비대화식으로 실행합니다.',
-      sshErrHostKey: '마지막 연결 이후 호스트 키가 변경되었습니다. 예상된 변경인지 확인한 후 ssh-keygen -R <host>를 실행하고 다시 연결하세요.',
-      sshErrNotInstalled: '원격 호스트에 OpenAmer가 설치되어 있지 않습니다. 해당 호스트에 설치하거나(curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) OpenAmer 경로를 설정하세요.',
-      sshErrPlatform: '지원되지 않는 원격 플랫폼입니다. OpenAmer Desktop SSH 모드는 Linux, macOS, Windows 원격 호스트를 지원합니다.',
+      sshErrAuth:
+        'SSH 인증에 실패했습니다. 키를 ssh-agent에 로드(ssh-add)하거나 ~/.ssh/config에 IdentityFile을 설정하세요. OpenAmer는 ssh를 비대화식으로 실행합니다.',
+      sshErrHostKey:
+        '마지막 연결 이후 호스트 키가 변경되었습니다. 예상된 변경인지 확인한 후 ssh-keygen -R <host>를 실행하고 다시 연결하세요.',
+      sshErrNotInstalled:
+        '원격 호스트에 OpenAmer가 설치되어 있지 않습니다. 해당 호스트에 설치하거나(curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) OpenAmer 경로를 설정하세요.',
+      sshErrPlatform:
+        '지원되지 않는 원격 플랫폼입니다. OpenAmer Desktop SSH 모드는 Linux, macOS, Windows 원격 호스트를 지원합니다.',
       sshErrTimeout: 'SSH 연결 시간이 초과되었습니다. 호스트에 연결할 수 없거나 절전 상태일 수 있습니다.',
       sshErrUpdateRequired: 'Desktop SSH로 연결하기 전에 원격 호스트의 OpenAmer를 업데이트하세요.',
-      sshErrUnknown: 'SSH 연결에 실패했습니다.',
+      sshErrUnknown: 'SSH 연결에 실패했습니다.'
     },
     keys: {
       loading: 'API 키와 자격 증명을 불러오는 중...',
       failedLoad: 'API 키를 불러오지 못했습니다',
-      empty: '이 카테고리에는 아직 구성된 항목이 없습니다.',
+      empty: '이 카테고리에는 아직 구성된 항목이 없습니다.'
     },
     mcp: {
       loading: 'MCP 서버 로드 중...',
@@ -739,7 +765,8 @@ export const ko = defineLocale({
       catalogInstallFailed: name => `${name} 설치 실패`,
       catalogEnvPrompt: name => `${name}에 자격 증명이 필요합니다`,
       catalogEnvRequired: '설치 전에 필수 값을 입력하세요.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} 활성화됨`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} 활성화됨`,
       statusConnecting: '연결 중…',
       statusNeedsAuth: '인증 필요',
       statusError: '오류',
@@ -752,7 +779,7 @@ export const ko = defineLocale({
       unsavedConnect: '저장되지 않음 — 연결하려면 mcp.json을 저장하세요.',
       enableTool: tool => `사용 ${tool}`,
       disableTool: tool => `사용 안 함 ${tool}`,
-      noOutput: '아직 출력이 없습니다.',
+      noOutput: '아직 출력이 없습니다.'
     },
     model: {
       loading: '모델 구성 불러오는 중...',
@@ -773,41 +800,41 @@ export const ko = defineLocale({
       providerDefault: '(제공자 기본값)',
       fallbackAdd: '대체 추가',
       fallbackEmpty: '대체 모델 없음 — 기본 모델이 실패하지 않으면 기본 모델 사용.',
-      notInCatalog: "이 공급자의 모델 목록에 없음 — 호출이 백업으로 대체될 수 있음.",
+      notInCatalog: '이 공급자의 모델 목록에 없음 — 호출이 백업으로 대체될 수 있음.',
       tasks: {
         vision: {
           label: '비전',
-          hint: '이미지 분석',
+          hint: '이미지 분석'
         },
         web_extract: {
           label: '웹 추출',
-          hint: '페이지 요약',
+          hint: '페이지 요약'
         },
         compression: {
           label: '압축',
-          hint: '컨텍스트 압축',
+          hint: '컨텍스트 압축'
         },
         skills_hub: {
           label: '스킬 허브',
-          hint: '스킬 검색',
+          hint: '스킬 검색'
         },
         approval: {
           label: '승인',
-          hint: '스마트 자동 승인',
+          hint: '스마트 자동 승인'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP 도구 라우팅',
+          hint: 'MCP 도구 라우팅'
         },
         title_generation: {
           label: '제목 생성',
-          hint: '세션 제목',
+          hint: '세션 제목'
         },
         curator: {
           label: '큐레이터',
-          hint: '스킬 사용 검토',
-        },
-      },
+          hint: '스킬 사용 검토'
+        }
+      }
     },
     providers: {
       connectAccount: '계정 연결',
@@ -822,7 +849,8 @@ export const ko = defineLocale({
       removeConfirm: provider => `${provider} 제거할까요?`,
       removeExternalGeneric: provider => `${provider} — 자체 CLI로 관리됩니다. 그곳에서 제거하세요.`,
       removeKeyManaged: provider => `${provider} — API 키로 설정됩니다. API 키에서 제거하세요.`,
-      removeTerminalConfirm: (provider, command) => `${provider} 연결을 끊을까요? 자격 증명을 지우기 위해 터미널에서 "${command}"을 실행합니다.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider} 연결을 끊을까요? 자격 증명을 지우기 위해 터미널에서 "${command}"을 실행합니다.`,
       removeTerminalRunning: provider => `터미널에서 ${provider} 연결 끊기 실행 중…`,
       removedTitle: '계정 제거됨',
       removedMessage: provider => `${provider} 제거됨.`,
@@ -832,14 +860,15 @@ export const ko = defineLocale({
       noKeysMatch: '검색과 일치하는 공급자가 없습니다.',
       localEndpoint: {
         title: '로컬 / 사용자 지정 엔드포인트',
-        description: 'OpenAmer을 모든 OpenAI 호환 엔드포인트(Zyphra, vLLM, llama.cpp, Ollama 등)에 연결하세요.',
+        description: 'OpenAmer을 모든 OpenAI 호환 엔드포인트(Zyphra, vLLM, llama.cpp, Ollama 등)에 연결하세요.'
       },
-      loading: '제공자 로드 중...',
+      loading: '제공자 로드 중...'
     },
     sessions: {
       loading: '보관된 세션 불러오는 중…',
       archivedTitle: '보관된 세션',
-      archivedIntro: '보관된 채팅은 사이드바에서 숨겨지지만 모든 메시지는 유지됩니다. 사이드바에서 채팅을 Ctrl/⌘-클릭해 보관하세요.',
+      archivedIntro:
+        '보관된 채팅은 사이드바에서 숨겨지지만 모든 메시지는 유지됩니다. 사이드바에서 채팅을 Ctrl/⌘-클릭해 보관하세요.',
       emptyArchivedTitle: '보관된 채팅 없음',
       emptyArchivedDesc: '채팅을 보관하면 여기에 숨겨집니다.',
       unarchive: '보관 해제',
@@ -848,12 +877,14 @@ export const ko = defineLocale({
       restored: '복원됨',
       deleteConfirm: title => `“${title}”을(를) 영구 삭제할까요? 이 작업은 되돌릴 수 없습니다.`,
       autoArchiveTitle: '오래된 채팅 자동 보관',
-      autoArchiveDesc: "일정 기간 손대지 않은 채팅을 자동으로 보관합니다. 고정된 채팅은 절대 보관되지 않으며, 삭제되는 것은 없습니다 — 보관된 채팅은 여기로 이동할 뿐입니다.",
+      autoArchiveDesc:
+        '일정 기간 손대지 않은 채팅을 자동으로 보관합니다. 고정된 채팅은 절대 보관되지 않으며, 삭제되는 것은 없습니다 — 보관된 채팅은 여기로 이동할 뿐입니다.',
       autoArchiveDaysLabel: '보관 기준',
       autoArchiveDaysUnit: '일 비활성',
       autoArchiveFailed: '자동 보관 업데이트 실패',
       defaultDirTitle: '기본 프로젝트 디렉터리',
-      defaultDirDesc: '다른 폴더를 선택하지 않는 한 새 세션은 이 폴더에서 시작합니다. 설정하지 않으면 홈 디렉터리를 사용합니다.',
+      defaultDirDesc:
+        '다른 폴더를 선택하지 않는 한 새 세션은 이 폴더에서 시작합니다. 설정하지 않으면 홈 디렉터리를 사용합니다.',
       defaultDirUpdated: '기본 프로젝트 디렉터리 업데이트됨 — 적용하려면 새 채팅(Ctrl/⌘+N)을 시작하세요',
       defaultsTo: label => `기본값은 ${label}입니다.`,
       change: '변경',
@@ -864,7 +895,7 @@ export const ko = defineLocale({
       unarchiveFailed: '보관 해제 실패',
       deleteFailed: '삭제 실패',
       updateDirFailed: '기본 디렉터리를 업데이트할 수 없습니다',
-      clearDirFailed: '기본 디렉터리를 지울 수 없습니다',
+      clearDirFailed: '기본 디렉터리를 지울 수 없습니다'
     },
     toolsets: {
       loadingConfig: '구성 로드 중',
@@ -895,7 +926,8 @@ export const ko = defineLocale({
       openamerAuthDoneMessage: '구독 백엔드가 활성화되었습니다.',
       openamerAuthFailed: 'OpenAmer Portal 로그인이 완료되지 않았습니다',
       noApiKeyRequired: 'API 키 필요 없음.',
-      postSetupHint: step => `이 백엔드는 일회성 설치(${step})가 필요합니다. 이 컴퓨터에서 실행되며 몇 분 걸릴 수 있습니다.`,
+      postSetupHint: step =>
+        `이 백엔드는 일회성 설치(${step})가 필요합니다. 이 컴퓨터에서 실행되며 몇 분 걸릴 수 있습니다.`,
       postSetupInstalledHint: '설치됨. 문제가 있을 때만 설정을 다시 실행하세요.',
       postSetupRun: '설치 실행',
       postSetupRerun: '설치 다시 실행',
@@ -936,9 +968,9 @@ export const ko = defineLocale({
         selectedTitle: '백엔드 선택됨',
         selectedMessage: backend => `이제 터미널 명령이 ${backend}을(를) 통해 실행됩니다. 새 세션에 적용됩니다.`,
         failedSelect: backend => `${backend} 선택 실패`,
-        needsSetupHint: '이제 이 백엔드를 선택할 수 있습니다 — 설정이 완료될 때까지 명령이 실패합니다.',
-      },
-    },
+        needsSetupHint: '이제 이 백엔드를 선택할 수 있습니다 — 설정이 완료될 때까지 명령이 실패합니다.'
+      }
+    }
   },
   skills: {
     tabSkills: '스킬',
@@ -958,7 +990,8 @@ export const ko = defineLocale({
     noDescription: '설명 없음.',
     configured: '구성됨',
     needsKeys: '키 필요',
-    visionModelHint: '비전은 보조 모델 구성을 사용합니다 — 이미지 지원 모델은 거기서 선택되며, 여기서 공급자별로 선택하지 않습니다.',
+    visionModelHint:
+      '비전은 보조 모델 구성을 사용합니다 — 이미지 지원 모델은 거기서 선택되며, 여기서 공급자별로 선택하지 않습니다.',
     visionModelLink: '설정 → 모델에서 비전 모델 선택',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} 도구 세트 활성화됨`,
     configureToolset: label => `${label} 구성`,
@@ -984,7 +1017,7 @@ export const ko = defineLocale({
     provenance: {
       agent: '학습됨',
       bundled: '내장',
-      hub: '허브',
+      hub: '허브'
     },
     emptyNoneFound: noun => `${noun}을(를) 찾을 수 없습니다`,
     emptyNothingMatches: query => `“${query}”과(와) 일치하는 항목이 없습니다.`,
@@ -1004,7 +1037,8 @@ export const ko = defineLocale({
       featured: '추천 스킬',
       landingHint: '허브를 검색하여 공식 인덱스, GitHub 및 커뮤니티 소스에서 설치 가능한 스킬을 살펴보세요.',
       noResults: '허브에서 일치하는 스킬을 찾을 수 없습니다.',
-      resultCount: (count, ms) => `${count}개 결과 ${count === 1 ? '결과' : '결과'} ${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count}개 결과 ${count === 1 ? '결과' : '결과'} ${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `시간 초과: ${sources}`,
       installed: '설치됨',
       install: '설치',
@@ -1022,7 +1056,7 @@ export const ko = defineLocale({
       trust: {
         builtin: '내장',
         trusted: '신뢰됨',
-        community: '커뮤니티',
+        community: '커뮤니티'
       },
       verdictSafe: '안전',
       verdictCaution: '주의',
@@ -1040,8 +1074,8 @@ export const ko = defineLocale({
       loadFailed: '스킬 허브 로드 실패',
       previewFailed: '스킬 미리보기 실패',
       scanFailed: '보안 스캔 실패',
-      searchFailed: '허브 검색 실패',
-    },
+      searchFailed: '허브 검색 실패'
+    }
   },
   starmap: {
     title: '메모리 그래프',
@@ -1058,7 +1092,8 @@ export const ko = defineLocale({
     emptyTitle: '아직 학습된 것이 없습니다',
     emptyDesc: 'OpenAmer가 업무를 위한 스킬과 메모리를 만들면 여기에 표시됩니다.',
     share: '맵 공유',
-    shareHint: '코드를 복사해 이 맵을 공유하거나, 코드를 붙여넣어 불러오세요. 레이아웃만 포함되며 메모리나 스킬 내용은 포함되지 않습니다.',
+    shareHint:
+      '코드를 복사해 이 맵을 공유하거나, 코드를 붙여넣어 불러오세요. 레이아웃만 포함되며 메모리나 스킬 내용은 포함되지 않습니다.',
     shareTitle: '맵 가져오기 / 내보내기',
     sharePlaceholder: '맵 코드를 붙여넣으세요…',
     copy: '맵 코드 복사',
@@ -1068,7 +1103,7 @@ export const ko = defineLocale({
     importEmpty: '불러올 맵 코드를 붙여넣으세요.',
     importSuccess: nodes => `${nodes} ${nodes === 1 ? '노드' : '노드'}을 포함하는 맵을 불러왔습니다.`,
     importedBadge: '가져온 맵',
-    resetToMine: '내 맵으로 돌아가기',
+    resetToMine: '내 맵으로 돌아가기'
   },
   agents: {
     close: '에이전트 닫기',
@@ -1098,7 +1133,7 @@ export const ko = defineLocale({
     ageDays: days => `${days}일 전`,
     durationSeconds: seconds => `${seconds}초`,
     durationMinutes: (minutes, seconds) => `${minutes}분 ${seconds}초`,
-    tokens: value => `${value} 토큰`,
+    tokens: value => `${value} 토큰`
   },
   commandCenter: {
     close: '명령 센터 닫기',
@@ -1128,7 +1163,7 @@ export const ko = defineLocale({
       generatedTag: '생성됨',
       adoptFailed: '해당 펫을 입양할 수 없습니다.',
       toggleFailed: '펫을 켜거나 끌 수 없습니다.',
-      noneAvailable: '사용 가능한 펫이 없습니다 — 아래에서 설치할 펫을 선택하세요.',
+      noneAvailable: '사용 가능한 펫이 없습니다 — 아래에서 설치할 펫을 선택하세요.'
     },
     generatePet: {
       title: '펫 생성',
@@ -1157,7 +1192,7 @@ export const ko = defineLocale({
       referenceImageTooLarge: '참조 이미지가 너무 큽니다. 16MB 미만의 이미지를 사용하세요.',
       referenceImageInvalid: '참조 이미지를 읽을 수 없습니다. PNG, JPG, WebP 또는 GIF를 사용해 보세요.',
       adopt: '채택',
-      startOver: '처음부터 시작',
+      startOver: '처음부터 시작'
     },
     installTheme: {
       title: '테마 설치…',
@@ -1169,7 +1204,7 @@ export const ko = defineLocale({
       install: '설치',
       installing: '설치 중...',
       installed: '설치됨',
-      installs: count => `${count} 설치`,
+      installs: count => `${count} 설치`
     },
     settingsFields: '설정 필드',
     mcpServers: 'MCP 서버',
@@ -1178,49 +1213,49 @@ export const ko = defineLocale({
       maintenance: '유지 관리',
       sessions: '세션',
       system: '시스템',
-      usage: '사용량',
+      usage: '사용량'
     },
     sectionDescriptions: {
       maintenance: '진단, 백업, 큐레이터 및 메모리 데이터',
       sessions: '세션 검색 및 관리',
       system: '상태, 로그 및 시스템 작업',
-      usage: '시간 경과에 따른 토큰, 비용 및 스킬 활동',
+      usage: '시간 경과에 따른 토큰, 비용 및 스킬 활동'
     },
     nav: {
       newChat: {
         title: '새 세션',
-        detail: '새 세션 시작',
+        detail: '새 세션 시작'
       },
       settings: {
         title: '설정',
-        detail: 'OpenAmer 데스크톱 구성',
+        detail: 'OpenAmer 데스크톱 구성'
       },
       skills: {
         title: '기능',
-        detail: '스킬, 도구 및 MCP 서버',
+        detail: '스킬, 도구 및 MCP 서버'
       },
       messaging: {
         title: '메시징',
-        detail: 'Telegram, Slack, Discord 등 설정',
+        detail: 'Telegram, Slack, Discord 등 설정'
       },
       artifacts: {
         title: '아티팩트',
-        detail: '생성된 출력 탐색',
-      },
+        detail: '생성된 출력 탐색'
+      }
     },
     sectionEntries: {
       sessions: {
         title: '세션 패널',
-        detail: '세션 검색, 고정 및 관리',
+        detail: '세션 검색, 고정 및 관리'
       },
       system: {
         title: '시스템 패널',
-        detail: '게이트웨이 상태, 로그, 재시작/업데이트',
+        detail: '게이트웨이 상태, 로그, 재시작/업데이트'
       },
       usage: {
         title: '사용량 패널',
-        detail: '토큰, 비용 및 스킬 활동',
-      },
+        detail: '토큰, 비용 및 스킬 활동'
+      }
     },
     providerNavigate: '탐색',
     providerSessions: '세션',
@@ -1308,8 +1343,8 @@ export const ko = defineLocale({
       actionStarted: name => `${name} 시작됨 — 로그 추적 중...`,
       actionFailed: name => `${name} 시작 실패`,
       running: '실행 중...',
-      viewLog: '작업 로그',
-    },
+      viewLog: '작업 로그'
+    }
   },
   messaging: {
     search: '메시징 검색...',
@@ -1324,7 +1359,7 @@ export const ko = defineLocale({
       not_configured: '설정 필요',
       pending_restart: '재시작 필요',
       retrying: '재시도 중',
-      startup_failed: '시작 실패',
+      startup_failed: '시작 실패'
     },
     unknown: '알 수 없음',
     hintPendingRestart: '이 변경 사항을 적용하려면 상태 표시줄에서 게이트웨이를 재시작하세요.',
@@ -1363,127 +1398,126 @@ export const ko = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: '봇 토큰',
         help: '@BotFather로 봇을 만들고, 받은 토큰을 붙여넣으세요.',
-        placeholder: 'Telegram 봇 토큰 붙여넣기',
+        placeholder: 'Telegram 봇 토큰 붙여넣기'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: '허용된 Telegram 사용자 ID',
-        help: '권장. @userinfobot에서 받은 숫자 ID를 쉼표로 구분해 입력하세요. 없으면 누구나 봇에 DM을 보낼 수 있습니다.',
+        help: '권장. @userinfobot에서 받은 숫자 ID를 쉼표로 구분해 입력하세요. 없으면 누구나 봇에 DM을 보낼 수 있습니다.'
       },
       TELEGRAM_PROXY: {
         label: '프록시 URL',
-        help: 'Telegram이 차단된 네트워크에서만 필요합니다.',
+        help: 'Telegram이 차단된 네트워크에서만 필요합니다.'
       },
       DISCORD_BOT_TOKEN: {
         label: '봇 토큰',
-        help: 'Discord 개발자 포털에서 애플리케이션을 만들고 봇을 추가한 뒤, 해당 토큰을 붙여넣으세요.',
+        help: 'Discord 개발자 포털에서 애플리케이션을 만들고 봇을 추가한 뒤, 해당 토큰을 붙여넣으세요.'
       },
       DISCORD_ALLOWED_USERS: {
         label: '허용된 Discord 사용자 ID',
-        help: '권장. Discord 사용자 ID를 쉼표로 구분해 입력하세요.',
+        help: '권장. Discord 사용자 ID를 쉼표로 구분해 입력하세요.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: '응답 방식',
-        help: 'first, all 또는 off.',
+        help: 'first, all 또는 off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: '모든 Discord 사용자 허용',
-        help: '개발 전용. true이면 허용 목록 없이 누구나 봇에 DM을 보낼 수 있습니다.',
+        help: '개발 전용. true이면 허용 목록 없이 누구나 봇에 DM을 보낼 수 있습니다.'
       },
       DISCORD_HOME_CHANNEL: {
         label: '홈 채널 ID',
-        help: '봇이 능동적 메시지(크론 출력, 알림)를 보내는 채널입니다.',
+        help: '봇이 능동적 메시지(크론 출력, 알림)를 보내는 채널입니다.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: '홈 채널 이름',
-        help: '로그 및 상태 출력에서 홈 채널의 표시 이름입니다.',
+        help: '로그 및 상태 출력에서 홈 채널의 표시 이름입니다.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: '모든 iMessage 사용자 허용',
-        help: 'true이면 BlueBubbles 허용 목록을 건너뜁니다.',
+        help: 'true이면 BlueBubbles 허용 목록을 건너뜁니다.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: '모든 Mattermost 사용자 허용',
+        label: '모든 Mattermost 사용자 허용'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: '홈 채널',
+        label: '홈 채널'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: '모든 QQ 사용자 허용',
+        label: '모든 QQ 사용자 허용'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ 홈 채널',
-        help: 'cron 전달용 기본 채널 또는 그룹입니다.',
+        help: 'cron 전달용 기본 채널 또는 그룹입니다.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ 홈 채널 이름',
+        label: 'QQ 홈 채널 이름'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack 봇 토큰',
         help: 'Slack 앱 설치 후 OAuth & Permissions에서 봇 토큰을 사용하세요.',
-        placeholder: 'Slack 봇 토큰 붙여넣기',
+        placeholder: 'Slack 봇 토큰 붙여넣기'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack 앱 토큰',
         help: 'Socket Mode에 필요한 앱 레벨 토큰을 사용하세요.',
-        placeholder: 'Slack 앱 토큰 붙여넣기',
+        placeholder: 'Slack 앱 토큰 붙여넣기'
       },
       SLACK_ALLOWED_USERS: {
         label: '허용된 Slack 사용자 ID',
-        help: '권장됩니다. 쉼표로 구분된 Slack 사용자 ID입니다.',
+        help: '권장됩니다. 쉼표로 구분된 Slack 사용자 ID입니다.'
       },
       MATTERMOST_URL: {
         label: '서버 URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: '봇 토큰',
+        label: '봇 토큰'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: '허용 사용자 ID',
-        help: '권장. 쉼표로 구분된 Mattermost 사용자 ID.',
+        help: '권장. 쉼표로 구분된 Mattermost 사용자 ID.'
       },
       MATRIX_HOMESERVER: {
         label: '홈서버 URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: '액세스 토큰',
+        label: '액세스 토큰'
       },
       MATRIX_USER_ID: {
         label: '봇 사용자 ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: '허용 Matrix 사용자 ID',
-        help: '권장. @user:server 형식의 쉼표로 구분된 사용자 ID.',
+        help: '권장. @user:server 형식의 쉼표로 구분된 사용자 ID.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal 브리지 URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: '실행 중인 signal-cli REST 브리지의 URL입니다.',
+        help: '실행 중인 signal-cli REST 브리지의 URL입니다.'
       },
       SIGNAL_ACCOUNT: {
         label: '전화번호',
-        help: 'signal-cli 브리지에 등록된 번호입니다.',
+        help: 'signal-cli 브리지에 등록된 번호입니다.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: '허용된 Signal 사용자',
-        help: '권장 사항. 쉼표로 구분된 Signal 식별자입니다.',
+        help: '권장 사항. 쉼표로 구분된 Signal 식별자입니다.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp 브리지 활성화',
-        help: '아래 토글로 자동 설정됩니다. 필요한 경우에만 수정하십시오.',
+        help: '아래 토글로 자동 설정됩니다. 필요한 경우에만 수정하십시오.'
       },
       WHATSAPP_MODE: {
-        label: '브리지 모드',
+        label: '브리지 모드'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: '허용된 WhatsApp 사용자',
-        help: '권장 사항. 쉼표로 구분된 전화번호 또는 WhatsApp ID입니다.',
-      },
+        help: '권장 사항. 쉼표로 구분된 전화번호 또는 WhatsApp ID입니다.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: '웹후크 검색...',
@@ -1493,7 +1527,8 @@ export const ko = defineLocale({
     hint: '수신기가 실행 중이면 구독 변경 사항이 즉시 반영됩니다. 비활성화된 구독은 수신 이벤트를 거부합니다.',
     empty: '등록된 웹후크 구독이 없습니다.',
     disabledTitle: '웹후크 수신기 비활성화됨',
-    disabledBody: '웹후크는 자체 게이트웨이 플랫폼입니다. 여기서 활성화하여 수신 HTTP 이벤트를 수락하십시오. 채팅 채널은 Telegram, Discord, Slack 또는 다른 채널로 전달할 때만 필요합니다.',
+    disabledBody:
+      '웹후크는 자체 게이트웨이 플랫폼입니다. 여기서 활성화하여 수신 HTTP 이벤트를 수락하십시오. 채팅 채널은 Telegram, Discord, Slack 또는 다른 채널로 전달할 때만 필요합니다.',
     enable: '웹후크 활성화',
     enabling: '활성화 중...',
     enabled: (name: string) => `활성화됨: "${name}"`,
@@ -1546,8 +1581,8 @@ export const ko = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: '이메일',
-      github_comment: 'GitHub 댓글',
-    },
+      github_comment: 'GitHub 댓글'
+    }
   },
   profiles: {
     close: '프로필 닫기',
@@ -1625,7 +1660,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     failedLoadSoul: 'SOUL.md 로드 실패',
     failedSaveSoul: 'SOUL.md 저장 실패',
     failedCreate: '프로필 생성 실패',
-    failedRename: '프로필 이름 변경 실패',
+    failedRename: '프로필 이름 변경 실패'
   },
   cron: {
     close: 'cron 닫기',
@@ -1640,14 +1675,14 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       paused: '일시 중지됨',
       disabled: '비활성화됨',
       error: '오류',
-      completed: '완료됨',
+      completed: '완료됨'
     },
     deliveryLabels: {
       local: '이 데스크톱',
       telegram: '텔레그램',
       discord: '디스코드',
       slack: '슬랙',
-      email: '이메일',
+      email: '이메일'
     },
     scheduleLabels: {
       daily: '매일',
@@ -1656,7 +1691,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       monthly: '매월',
       hourly: '매시간',
       'every-15-minutes': '15분마다',
-      custom: '사용자 지정',
+      custom: '사용자 지정'
     },
     scheduleHints: {
       daily: '매일 오전 9:00',
@@ -1665,7 +1700,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       monthly: '매월 1일 오전 9:00',
       hourly: '매시간 정각',
       'every-15-minutes': '15분마다',
-      custom: 'Cron 구문 또는 자연어',
+      custom: 'Cron 구문 또는 자연어'
     },
     days: {
       '0': '일요일',
@@ -1675,7 +1710,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       '4': '목요일',
       '5': '금요일',
       '6': '토요일',
-      '7': '일요일',
+      '7': '일요일'
     },
     dayFallback: value => `${value}일`,
     everyDayAt: time => `매일 ${time}에`,
@@ -1685,7 +1720,8 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     topOfHour: '매시 정각',
     everyHourAt: minute => `매시간 :${minute}`,
     newCron: '새 크론',
-    emptyDescNew: '프롬프트를 크론 표현식으로 실행하도록 예약하세요. OpenAmer가 실행하고 선택한 대상으로 결과를 전달합니다.',
+    emptyDescNew:
+      '프롬프트를 크론 표현식으로 실행하도록 예약하세요. OpenAmer가 실행하고 선택한 대상으로 결과를 전달합니다.',
     emptyDescSearch: '더 넓은 검색어를 사용해 보세요.',
     emptyTitleNew: '예약된 작업이 아직 없습니다',
     emptyTitleSearch: '일치하는 항목 없음',
@@ -1744,7 +1780,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     createAction: '크론 생성',
     tabs: {
       jobs: '작업',
-      blueprints: '블루프린트',
+      blueprints: '블루프린트'
     },
     blueprints: {
       tab: '블루프린트',
@@ -1758,8 +1794,8 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       loading: '블루프린트 로드 중...',
       failedLoad: '블루프린트를 로드하지 못했습니다',
       emptyTitle: '사용 가능한 블루프린트 없음',
-      emptyDesc: '이 백엔드에서 사용 가능한 자동화 블루프린트가 없습니다.',
-    },
+      emptyDesc: '이 백엔드에서 사용 가능한 자동화 블루프린트가 없습니다.'
+    }
   },
   artifacts: {
     search: '아티팩트 검색...',
@@ -1793,14 +1829,14 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     kindLink: '링크',
     chat: '채팅',
     copyUrl: 'URL 복사',
-    copyPath: '경로 복사',
+    copyPath: '경로 복사'
   },
   sidebar: {
     nav: {
       'new-session': '새 세션',
       skills: '기능',
       messaging: '메시징',
-      artifacts: '아티팩트',
+      artifacts: '아티팩트'
     },
     searchAria: '세션 검색',
     searchPlaceholder: '세션 검색…',
@@ -1832,7 +1868,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       namePlaceholder: '예: 스컹크웍스',
       foldersLabel: '폴더',
       ideaLabel: '아이디어',
-      ideaPlaceholder: "이 프로젝트는 무엇인가요? (IDEA.md에 저장)",
+      ideaPlaceholder: '이 프로젝트는 무엇인가요? (IDEA.md에 저장)',
       ideaGenerate: '아이디어 생성',
       ideaGenerating: '생성 중…',
       ideaShuffle: '템플릿 섞기',
@@ -1852,7 +1888,8 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       copyPath: '경로 복사',
       removeFromSidebar: '사이드바에서 숨기기',
       createFailed: '프로젝트를 만들 수 없음',
-      staleBackend: 'OpenAmer 백엔드를 업데이트하여 프로젝트를 만드세요 — 백엔드가 이 데스크톱 앱보다 오래되었습니다 (설정 → 업데이트 → 백엔드).',
+      staleBackend:
+        'OpenAmer 백엔드를 업데이트하여 프로젝트를 만드세요 — 백엔드가 이 데스크톱 앱보다 오래되었습니다 (설정 → 업데이트 → 백엔드).',
       deleteConfirm: 'OpenAmer에서 저장된 프로젝트를 제거합니다. 파일, Git 저장소, 작업 트리는 그대로 유지됩니다.',
       startWork: '새 작업 트리',
       newWorktreeTitle: '새 작업 트리',
@@ -1874,13 +1911,15 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       noBranches: '브랜치 없음',
       removeWorktree: '워크트리 제거',
       removeWorktreeFailed: '워크트리를 제거할 수 없음 (커밋되지 않은 변경 사항?)',
-      removeWorktreeConfirm: 'git에서 제거하거나(워크트리 디렉터리가 삭제되고 브랜치는 유지됨), 사이드바에서 레인만 숨기고 워크트리는 디스크에 남겨 두세요.',
-      removeWorktreeDirty: '이 워크트리에 커밋되지 않은 변경 사항이 있습니다. 강제 제거하거나(변경 사항 폐기), 레인만 숨기고 디스크에 남겨 두세요.',
+      removeWorktreeConfirm:
+        'git에서 제거하거나(워크트리 디렉터리가 삭제되고 브랜치는 유지됨), 사이드바에서 레인만 숨기고 워크트리는 디스크에 남겨 두세요.',
+      removeWorktreeDirty:
+        '이 워크트리에 커밋되지 않은 변경 사항이 있습니다. 강제 제거하거나(변경 사항 폐기), 레인만 숨기고 디스크에 남겨 두세요.',
       forceRemove: '강제 제거',
       enter: label => `열기 ${label}`,
       reorder: label => `${label} 순서 변경`,
       toggle: label => `${label} 세션 토글`,
-      back: '모든 프로젝트',
+      back: '모든 프로젝트'
     },
     newSessionIn: label => `${label}에서 새 세션`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
@@ -1918,15 +1957,15 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       ageNow: '지금',
       ageDay: '일',
       ageHour: '시',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: '오늘 이른 시간',
       yesterday: '어제',
       thisWeek: '이번 주 초',
       lastWeek: '지난주',
-      thisMonth: '이번 달 초',
-    },
+      thisMonth: '이번 달 초'
+    }
   },
   composer: {
     message: '메시지',
@@ -1937,20 +1976,20 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     newSessionPlaceholders: [
       '무엇을 만들까요?',
       'OpenAmer에 작업 부여',
-      "어떤 생각을 하고 계신가요?",
+      '어떤 생각을 하고 계신가요?',
       '필요한 내용을 설명하세요',
       '무엇을 해결해 볼까요?',
       '무엇이든 물어보세요',
-      '목표부터 설정하세요',
+      '목표부터 설정하세요'
     ],
     followUpPlaceholders: [
       '후속 메시지 보내기',
       '컨텍스트 추가',
       '요청 수정',
-      "다음은 무엇인가요?",
+      '다음은 무엇인가요?',
       '계속 진행',
       '더 발전시키기',
-      '조정 또는 계속',
+      '조정 또는 계속'
     ],
     startVoice: '음성 대화 시작',
     queueMessage: '메시지 대기열 추가',
@@ -1986,7 +2025,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       '/resume': '이전 세션 재개',
       '/details': '대화 기록 상세 수준 제어',
       '/copy': '선택 항목 또는 마지막 어시스턴트 메시지 복사',
-      '/quit': 'openamer 종료',
+      '/quit': 'openamer 종료'
     },
     hotkeyDescs: {
       'composer.mention': '파일, 폴더, URL, git 참조',
@@ -1996,7 +2035,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       'composer.sendQueued': '대기 중인 다음 턴 전송',
       'keybinds.openPanel': '모든 키보드 단축키',
       'composer.cancel': '팝오버 닫기 · 실행 취소',
-      'composer.history': '팝오버/기록 순환',
+      'composer.history': '팝오버/기록 순환'
     },
     attachUrlTitle: 'URL 첨부',
     attachUrlDesc: 'OpenAmer가 페이지를 가져와 이번 턴의 컨텍스트로 포함합니다.',
@@ -2047,19 +2086,19 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       codeReview: {
         label: '코드 리뷰',
         description: '현재 변경 사항의 회귀, 누락된 엣지 케이스, 빠진 테스트를 점검합니다.',
-        text: '버그, 회귀, 누락된 테스트가 없는지 검토해 주세요.',
+        text: '버그, 회귀, 누락된 테스트가 없는지 검토해 주세요.'
       },
       implementationPlan: {
         label: '구현 계획',
         description: '코드를 건드리기 전에 접근 방식을 정리해 diff가 집중되도록 합니다.',
-        text: '코드를 변경하기 전에 간결한 구현 계획을 세워 주세요.',
+        text: '코드를 변경하기 전에 간결한 구현 계획을 세워 주세요.'
       },
       explainThis: {
         label: '이것 설명',
         description: '선택한 코드의 동작을 단계별로 설명하고 주요 파일을 연결합니다.',
-        text: '이것이 어떻게 동작하는지 설명하고 주요 파일을 알려 주세요.',
-      },
-    },
+        text: '이것이 어떻게 동작하는지 설명하고 주요 파일을 알려 주세요.'
+      }
+    }
   },
   statusStack: {
     agents: '에이전트',
@@ -2107,13 +2146,14 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       openPr: 'PR 열기',
       ghMissing: 'PR을 열려면 GitHub CLI(gh)를 설치하고 로그인하세요',
       agentShip: 'OpenAmer에 PR 열기 요청',
-      agentShipPrompt: '현재 변경 사항을 검토하고 명확한 컨벤셔널 커밋 메시지로 커밋한 후 브랜치를 푸시하고 풀 리퀘스트를 여세요.',
+      agentShipPrompt:
+        '현재 변경 사항을 검토하고 명확한 컨벤셔널 커밋 메시지로 커밋한 후 브랜치를 푸시하고 풀 리퀘스트를 여세요.',
       newBranch: '새 브랜치',
       branchOffFrom: base => `${base}에서 새 브랜치`,
       switchTo: branch => `${branch}로 전환`,
       switchFailed: branch => `${branch}(으)로 전환할 수 없습니다`,
-      worktrees: '워크트리',
-    },
+      worktrees: '워크트리'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2168,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       done: '업데이트 완료',
       manual: '터미널에서 업데이트',
       guiSkew: '데스크톱 앱 업데이트',
-      error: '업데이트 일시 중지됨',
+      error: '업데이트 일시 중지됨'
     },
     checking: '업데이트 확인 중…',
     checkFailedTitle: '업데이트를 확인할 수 없음',
@@ -2151,12 +2191,15 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     manualBody: 'OpenAmer를 명령줄에서 설치했으므로 업데이트도 거기서 실행됩니다. 터미널에 다음을 붙여넣으세요:',
     manualPickedUp: '다음에 OpenAmer를 실행할 때 새 버전이 적용됩니다.',
     guiSkewTitle: '데스크톱 앱 업데이트',
-    guiSkewBody: '백엔드는 업데이트되었지만 이 데스크톱 앱 패키지는 변경되지 않았습니다. 일치하도록 OpenAmer 데스크톱 앱(AppImage / .deb / .rpm)을 업데이트하거나 다시 설치하세요.',
+    guiSkewBody:
+      '백엔드는 업데이트되었지만 이 데스크톱 앱 패키지는 변경되지 않았습니다. 일치하도록 OpenAmer 데스크톱 앱(AppImage / .deb / .rpm)을 업데이트하거나 다시 설치하세요.',
     copy: '복사',
     copied: '복사됨',
     done: '완료',
-    applyingBody: 'OpenAmer 업데이터가 자체 창에서 진행되며 완료되면 OpenAmer를 자동으로 다시 엽니다. 업데이트 중에는 OpenAmer를 직접 다시 열지 마세요.',
-    applyingBodyBackend: '원격 백엔드가 업데이트를 적용하고 재시작합니다. 다시 돌아오면 OpenAmer가 자동으로 다시 연결됩니다.',
+    applyingBody:
+      'OpenAmer 업데이터가 자체 창에서 진행되며 완료되면 OpenAmer를 자동으로 다시 엽니다. 업데이트 중에는 OpenAmer를 직접 다시 열지 마세요.',
+    applyingBodyBackend:
+      '원격 백엔드가 업데이트를 적용하고 재시작합니다. 다시 돌아오면 OpenAmer가 자동으로 다시 연결됩니다.',
     applyingClose: '업데이트가 실행되는 동안 이 창이 닫히고, 그다음 OpenAmer가 자동으로 다시 열립니다.',
     errorTitle: '업데이트가 완료되지 않았습니다',
     errorBody: '걱정 마세요. 아무것도 손실되지 않았습니다. 지금 다시 시도할 수 있습니다.',
@@ -2167,12 +2210,15 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       restarting: '업데이트를 로드하기 위해 백엔드 재시작 중…',
       notAvailable: '이 백엔드에서는 업데이트를 사용할 수 없습니다.',
       failed: '백엔드 업데이트 실패.',
-      noReturn: '백엔드가 다시 온라인으로 돌아오지 않았습니다. 업데이트가 완료되지 않았을 수 있습니다 — 백엔드 호스트를 확인하세요.',
+      noReturn:
+        '백엔드가 다시 온라인으로 돌아오지 않았습니다. 업데이트가 완료되지 않았을 수 있습니다 — 백엔드 호스트를 확인하세요.'
     },
     appErrors: {
-      updateLocked: '업데이트 중단됨: 다른 OpenAmer 창이나 openamer를 실행 중인 터미널이 이 설치를 열어 두고 있습니다. 닫고 다시 시도하세요.',
-      updateFailed: '업데이트가 완료되지 않았습니다. 걱정 마세요 — 아무것도 손실되지 않았습니다. 지금 다시 시도할 수 있습니다.',
-    },
+      updateLocked:
+        '업데이트 중단됨: 다른 OpenAmer 창이나 openamer를 실행 중인 터미널이 이 설치를 열어 두고 있습니다. 닫고 다시 시도하세요.',
+      updateFailed:
+        '업데이트가 완료되지 않았습니다. 걱정 마세요 — 아무것도 손실되지 않았습니다. 지금 다시 시도할 수 있습니다.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,10 +2226,11 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       running: '설치 중',
       succeeded: '완료',
       skipped: '건너뜀',
-      failed: '실패',
+      failed: '실패'
     },
     oneTimeTitle: 'OpenAmer 일회성 설치 필요',
-    unsupportedDesc: platform => `자동 첫 실행 설치는 아직 ${platform}에서 사용할 수 없습니다. 터미널을 열고 아래 명령을 실행한 다음 이 앱을 다시 실행하세요. 이후 실행에서는 이 단계를 건너뜁니다.`,
+    unsupportedDesc: platform =>
+      `자동 첫 실행 설치는 아직 ${platform}에서 사용할 수 없습니다. 터미널을 열고 아래 명령을 실행한 다음 이 앱을 다시 실행하세요. 이후 실행에서는 이 단계를 건너뜁니다.`,
     installCommand: '설치 명령',
     copyCommand: '명령 복사',
     viewDocs: '설치 문서 보기',
@@ -2225,8 +2272,10 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     failedTitle: '설치 실패',
     settingUpTitle: 'OpenAmer Agent 설정 중',
     finishingTitle: '마무리 중',
-    failedDesc: '설치 단계 중 하나가 실패했습니다. Windows에서는 다른 OpenAmer CLI 또는 데스크톱 인스턴스가 실행 중일 때 발생할 수 있습니다. 실행 중인 OpenAmer 인스턴스를 모두 중지한 후 다시 시도하세요. 아래 세부 정보 또는 전체 기록은 데스크톱 로그를 확인하세요.',
-    activeDesc: '일회성 설정입니다. OpenAmer 설치 프로그램이 종속성을 다운로드하고 머신을 구성하고 있습니다. 이후 실행에서는 이 단계를 건너뜁니다.',
+    failedDesc:
+      '설치 단계 중 하나가 실패했습니다. Windows에서는 다른 OpenAmer CLI 또는 데스크톱 인스턴스가 실행 중일 때 발생할 수 있습니다. 실행 중인 OpenAmer 인스턴스를 모두 중지한 후 다시 시도하세요. 아래 세부 정보 또는 전체 기록은 데스크톱 로그를 확인하세요.',
+    activeDesc:
+      '일회성 설정입니다. OpenAmer 설치 프로그램이 종속성을 다운로드하고 머신을 구성하고 있습니다. 이후 실행에서는 이 단계를 건너뜁니다.',
     progress: (completed, total) => `${completed}/${total} 단계 완료`,
     currentStage: stage => ` -- 현재: ${stage}`,
     fetchingManifest: '설치 프로그램 매니페스트 가져오는 중...',
@@ -2240,10 +2289,10 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     transcriptSaved: '전체 기록 저장 위치',
     copiedOutput: '복사됨!',
     copyOutput: '출력 복사',
-    reloadRetry: '새로고침 후 다시 시도',
+    reloadRetry: '새로고침 후 다시 시도'
   },
   onboarding: {
-    headerTitle: "OpenAmer Agent 설정을 시작하겠습니다",
+    headerTitle: 'OpenAmer Agent 설정을 시작하겠습니다',
     headerDesc: '채팅을 시작하려면 모델 제공자를 연결하세요. 대부분의 옵션은 클릭 한 번이면 됩니다.',
     preparingInstall: 'OpenAmer가 설치를 마무리하고 있습니다. 첫 실행에서는 보통 1분 이내에 완료됩니다.',
     starting: 'OpenAmer 시작 중…',
@@ -2251,7 +2300,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     collapse: '접기',
     otherProviders: '기타 제공자',
     haveApiKey: 'API 키가 있습니다',
-    chooseLater: "나중에 제공자 선택",
+    chooseLater: '나중에 제공자 선택',
     recommended: '권장',
     connected: '연결됨',
     featuredPitch: '구독 하나로 300+ 프런티어 모델 — OpenAmer 실행에 권장되는 방법',
@@ -2260,28 +2309,28 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     apiKeyOptions: {
       fireworks: {
         short: '직접 모델 API',
-        description: 'Fireworks AI에서 호스팅하는 모델에 직접 접근.',
+        description: 'Fireworks AI에서 호스팅하는 모델에 직접 접근.'
       },
       openrouter: {
         short: '키 하나, 많은 모델',
-        description: '키 하나로 수백 개 모델 호스팅. 신규 설치에 좋은 기본값.',
+        description: '키 하나로 수백 개 모델 호스팅. 신규 설치에 좋은 기본값.'
       },
       openai: {
         short: 'GPT급 모델',
-        description: 'OpenAI 모델에 직접 접근.',
+        description: 'OpenAI 모델에 직접 접근.'
       },
       gemini: {
         short: 'Gemini 모델',
-        description: 'Google Gemini 모델에 직접 접근.',
+        description: 'Google Gemini 모델에 직접 접근.'
       },
       xai: {
         short: 'Grok 모델',
-        description: 'xAI Grok 모델에 직접 접근.',
+        description: 'xAI Grok 모델에 직접 접근.'
       },
       local: {
         short: '자체 호스팅',
-        description: 'OpenAmer를 로컬 또는 자체 호스팅 OpenAI 호환 엔드포인트(vLLM, llama.cpp, Ollama 등)로 지정하세요.',
-      },
+        description: 'OpenAmer를 로컬 또는 자체 호스팅 OpenAI 호환 엔드포인트(vLLM, llama.cpp, Ollama 등)로 지정하세요.'
+      }
     },
     backToSignIn: '로그인으로 돌아가기',
     getKey: '키 받기',
@@ -2294,7 +2343,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     flowSubtitles: {
       pkce: '브라우저에서 로그인한 후 여기로 이어집니다',
       device_code: '브라우저에서 인증 페이지를 엽니다 — OpenAmer가 자동으로 연결됩니다',
-      external: '터미널에서 한 번 로그인한 후 채팅으로 돌아오세요',
+      external: '터미널에서 한 번 로그인한 후 채팅으로 돌아오세요'
     },
     startingSignIn: provider => `${provider} 로그인 시작 중...`,
     verifyingCode: provider => `${provider}에서 코드 확인 중...`,
@@ -2308,11 +2357,13 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     copyAuthCode: '인증 코드를 복사해 아래에 붙여넣으세요.',
     pasteAuthCode: '인증 코드 붙여넣기',
     reopenAuthPage: '인증 페이지 다시 열기',
-    autoBrowser: provider => `브라우저에서 ${provider}을 열었습니다. 거기에서 OpenAmer를 승인하면 자동으로 연결됩니다 — 복사하거나 붙여넣을 필요가 없습니다.`,
+    autoBrowser: provider =>
+      `브라우저에서 ${provider}을 열었습니다. 거기에서 OpenAmer를 승인하면 자동으로 연결됩니다 — 복사하거나 붙여넣을 필요가 없습니다.`,
     reopenSignInPage: '로그인 페이지 다시 열기',
     waitingAuthorize: '승인을 기다리는 중...',
-    externalPending: provider => `${provider}은(는) 자체 CLI로 로그인합니다. 터미널에서 이 명령을 실행한 후 돌아와서 "로그인했습니다"를 선택하세요:`,
-    signedIn: "로그인했습니다",
+    externalPending: provider =>
+      `${provider}은(는) 자체 CLI로 로그인합니다. 터미널에서 이 명령을 실행한 후 돌아와서 "로그인했습니다"를 선택하세요:`,
+    signedIn: '로그인했습니다',
     deviceCodeOpened: provider => `브라우저에서 ${provider}을(를) 열었습니다. 거기에 이 코드를 입력하세요:`,
     reopenVerification: '인증 페이지 다시 열기',
     copy: '복사',
@@ -2323,7 +2374,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     price: (input, output) => `Mtok당 ${input} 입력 / ${output} 출력`,
     change: '변경',
     startChatting: '시작',
-    docs: provider => `${provider} 문서`,
+    docs: provider => `${provider} 문서`
   },
   modelPicker: {
     title: '모델 전환',
@@ -2339,13 +2390,13 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     free: '무료',
     freeTier: '무료 티어',
     priceTitle: '백만 토큰당 입출력 가격',
-    wasPrice: '이었음',
+    wasPrice: '이었음'
   },
   modelVisibility: {
     title: '모델',
     search: '모델 검색',
     noAuthenticatedProviders: '인증된 제공자가 없습니다.',
-    addProvider: '제공자 추가…',
+    addProvider: '제공자 추가…'
   },
   shell: {
     windowControls: '창 제어',
@@ -2356,7 +2407,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       noModels: '찾은 모델이 없습니다',
       editModels: '모델 편집…',
       refreshModels: '모델 새로고침',
-      fast: '빠름',
+      fast: '빠름'
     },
     modelOptions: {
       noOptions: '이 모델에 사용할 수 있는 옵션이 없습니다',
@@ -2372,7 +2423,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       max: '맥스',
       ultra: '울트라',
       updateFailed: '모델 옵션 업데이트 실패',
-      fastFailed: '빠른 모드 업데이트 실패',
+      fastFailed: '빠른 모드 업데이트 실패'
     },
     gatewayMenu: {
       gateway: '게이트웨이',
@@ -2387,7 +2438,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       connection: label => `연결: ${label}`,
       recentActivity: '최근 활동',
       viewAllLogs: '모든 로그 보기 →',
-      messagingPlatforms: '메시징 플랫폼',
+      messagingPlatforms: '메시징 플랫폼'
     },
     approvalMode: {
       title: '승인 모드',
@@ -2397,7 +2448,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       smart: '스마트',
       smartDescription: '작업을 자동 평가하고 필요 시 질문',
       off: '끔',
-      offDescription: '승인 프롬프트 없이 실행',
+      offDescription: '승인 프롬프트 없이 실행'
     },
     statusbar: {
       unknown: '알 수 없음',
@@ -2453,13 +2504,13 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
           skills: '스킬',
           subagent_definitions: '서브에이전트 정의',
           system_prompt: '시스템 프롬프트',
-          tool_definitions: '도구 정의',
+          tool_definitions: '도구 정의'
         },
         empty: '아직 컨텍스트 데이터 없음',
         loading: '내역 불러오는 중…',
         percentFull: percent => `${percent}% 가득 참`,
         title: '컨텍스트 사용량',
-        tokenSummary: (used, max) => `${used} / ${max} 토큰`,
+        tokenSummary: (used, max) => `${used} / ${max} 토큰`
       },
       openContextUsage: '컨텍스트 사용량 내역 열기',
       session: '세션',
@@ -2472,8 +2523,8 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       openModelPicker: '모델 선택기 열기',
       modelPinned: '사용자가 고정함; 새 채팅은 설정 기본값 대신 이를 사용합니다',
       modelTitle: (provider, model) => `모델 · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: '오른쪽 사이드바',
@@ -2509,7 +2560,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     terminalNew: '새 터미널',
     terminalCloseOthers: '다른 터미널 닫기',
     terminalCloseAll: '모두 닫기',
-    addToChat: '채팅에 추가',
+    addToChat: '채팅에 추가'
   },
   preview: {
     tab: '미리보기',
@@ -2543,7 +2594,8 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     unsavedChanges: '저장되지 않은 변경 사항',
     saveFailed: message => `저장 실패: ${message}`,
     diskChangedTitle: '디스크에서 파일 변경됨',
-    diskChangedBody: '이 파일은 연 후 변경되었습니다. 내 버전으로 덮어쓰거나, 편집 내용을 버리고 다시 불러오시겠습니까?',
+    diskChangedBody:
+      '이 파일은 연 후 변경되었습니다. 내 버전으로 덮어쓰거나, 편집 내용을 버리고 다시 불러오시겠습니까?',
     overwrite: '덮어쓰기',
     discardReload: '버리고 다시 불러오기',
     console: {
@@ -2564,7 +2616,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       empty: '아직 콘솔 메시지가 없습니다.',
       promptHeader: '미리보기 콘솔:',
       sentTitle: '채팅으로 전송됨',
-      sentMessage: count => `${count}개 로그 항목 ${count === 1 ? 'y' : 'ies'}이 작성창에 추가됨`,
+      sentMessage: count => `${count}개 로그 항목 ${count === 1 ? 'y' : 'ies'}이 작성창에 추가됨`
     },
     web: {
       appFailedToBoot: '미리보기 앱 부팅 실패',
@@ -2582,24 +2634,27 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       showConsole: '미리보기 콘솔 표시',
       hideDevTools: '미리보기 개발자 도구 숨기기',
       openDevTools: '미리보기 개발자 도구 열기',
-      finishedRestarting: message => `OpenAmer가 미리보기 서버 다시 시작을 완료했습니다${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer가 미리보기 서버 다시 시작을 완료했습니다${message ? `: ${message}` : ''}`,
       failedRestarting: message => `서버 다시 시작 실패: ${message}`,
       unknownError: '알 수 없는 오류',
       restartedTitle: '미리보기 서버가 다시 시작됨',
       reloadingNow: '미리보기를 다시 불러오는 중입니다.',
       restartFailedTitle: '미리보기 재시작 실패',
       restartFailedMessage: 'OpenAmer이 서버를 다시 시작하지 못했습니다.',
-      stillWorking: 'OpenAmer은 계속 작업 중이지만 아직 재시작 결과가 도착하지 않았습니다. 서버 명령이 포그라운드에서 실행 중일 수 있습니다.',
+      stillWorking:
+        'OpenAmer은 계속 작업 중이지만 아직 재시작 결과가 도착하지 않았습니다. 서버 명령이 포그라운드에서 실행 중일 수 있습니다.',
       workspaceReloading: '워크스페이스가 변경되어 미리보기를 다시 불러옵니다',
       fileChanged: url => `파일 변경됨, 미리보기 다시 불러오기: ${url}`,
       filesChanged: (count, url) => `파일 변경 ${count}건, 미리보기 다시 불러오기: ${url}`,
       watchFailed: message => `미리보기 파일을 감시할 수 없음: ${message}`,
-      moduleMimeDescription: '모듈 스크립트가 잘못된 MIME 타입으로 제공되고 있습니다. 일반적으로 정적 파일 서버가 프로젝트 개발 서버 대신 Vite/React 앱을 제공하고 있음을 의미합니다.',
+      moduleMimeDescription:
+        '모듈 스크립트가 잘못된 MIME 타입으로 제공되고 있습니다. 일반적으로 정적 파일 서버가 프로젝트 개발 서버 대신 Vite/React 앱을 제공하고 있음을 의미합니다.',
       loadFailedConsole: (code, message) => `불러오기 실패${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: '미리보기 페이지에 접속할 수 없습니다.',
       openTarget: url => `${url} 열기`,
-      fallbackTitle: '미리보기',
-    },
+      fallbackTitle: '미리보기'
+    }
   },
   zones: {
     showHeader: '헤더 표시',
@@ -2607,7 +2662,8 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     minimize: '최소화',
     restore: '복원',
     closeRunningTitle: '실행 중인 탭을 닫을까요?',
-    closeRunningBody: '이 채팅은 아직 작업 중입니다(또는 입력을 기다리는 중). 탭을 닫으면 숨겨지며, 세션은 진행 상태를 유지하고 사이드바에서 다시 열 수 있습니다.',
+    closeRunningBody:
+      '이 채팅은 아직 작업 중입니다(또는 입력을 기다리는 중). 탭을 닫으면 숨겨지며, 세션은 진행 상태를 유지하고 사이드바에서 다시 열 수 있습니다.',
     closeRunningConfirm: '탭 닫기',
     closeOthers: '다른 탭 닫기',
     closeToRight: '오른쪽 탭 닫기',
@@ -2644,27 +2700,16 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     layoutNamePlaceholder: fallback => `레이아웃 이름 (${fallback})`,
     saveApply: '저장 및 적용',
     notExpressible: '이 배치는 서로 맞물립니다(핀휠) — 아직 중첩 분할로 표현할 수 없습니다',
-    zoneCount: count => `영역 ${count}개`,
+    zoneCount: count => `영역 ${count}개`
   },
   assistant: {
     thread: {
       loadingSession: '세션 로드 중',
       showEarlier: '이전 메시지 표시',
       loadingResponse: 'OpenAmer가 응답을 불러오는 중',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: '생각 중',
       today: time => `오늘, ${time}`,
@@ -2691,7 +2736,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       restoreNext: '다음 체크포인트 복원',
       goForward: '앞으로 이동',
       sendEdited: '편집한 메시지 보내기',
-      attachingFile: '첨부 중…',
+      attachingFile: '첨부 중…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer 게이트웨이가 연결되지 않았습니다',
@@ -2704,8 +2749,9 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       jumpToApproval: '승인 필요',
       reject: '거부',
       alwaysTitle: '이 명령을 항상 허용할까요?',
-      alwaysDescription: pattern => `이렇게 하면 “${pattern}” 패턴이 영구 허용 목록(~/.openamer/config.yaml)에 추가됩니다. OpenAmer는 이 세션 또는 향후 세션에서 이런 명령을 다시 묻지 않습니다.`,
-      alwaysAllow: '항상 허용',
+      alwaysDescription: pattern =>
+        `이렇게 하면 “${pattern}” 패턴이 영구 허용 목록(~/.openamer/config.yaml)에 추가됩니다. OpenAmer는 이 세션 또는 향후 세션에서 이런 명령을 다시 묻지 않습니다.`,
+      alwaysAllow: '항상 허용'
     },
     clarify: {
       notReady: '명확화 요청이 아직 준비되지 않았습니다',
@@ -2719,7 +2765,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       continueLabel: '계속',
       lateAnswer: (question, choice) => `회신: "${question}" — 내 답변: ${choice}`,
       lateAnswerTip: '이 답변을 후속 메시지로 작성',
-      lateAnswerHint: '이 프롬프트는 더 이상 대기 중이 아닙니다. 후속 메시지로 작성하려면 옵션을 선택하세요.',
+      lateAnswerHint: '이 프롬프트는 더 이상 대기 중이 아닙니다. 후속 메시지로 작성하려면 옵션을 선택하세요.'
     },
     tool: {
       code: '코드',
@@ -2755,11 +2801,11 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
         ran: '실행함',
         running: '실행 중',
         ranCode: '코드 실행함',
-        runningCode: '스크립트 실행 중',
+        runningCode: '스크립트 실행 중'
       },
       prefixes: {
         browser: '브라우저',
-        web: '웹',
+        web: '웹'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${command} ${action}`,
@@ -2767,132 +2813,133 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
         actionTarget: (action, target) => `${target} ${action}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `실행 중 ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `실행 중 ${action.toLowerCase()}`,
+        runningTool: action => `실행 중 ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: '페이지 요소 클릭함',
           pending: '페이지 요소 클릭 중',
-          pendingAction: '클릭 중',
+          pendingAction: '클릭 중'
         },
         browser_fill: {
           done: '양식 필드 채움',
           pending: '양식 필드 채우는 중',
-          pendingAction: '입력 중',
+          pendingAction: '입력 중'
         },
         browser_navigate: {
           done: '페이지 열림',
           pending: '페이지 여는 중',
-          pendingAction: '여는 중',
+          pendingAction: '여는 중'
         },
         browser_snapshot: {
           done: '페이지 스냅샷 캡처됨',
           pending: '페이지 스냅샷 캡처 중',
-          pendingAction: '캡처 중',
+          pendingAction: '캡처 중'
         },
         browser_take_screenshot: {
           done: '스크린샷 캡처됨',
           pending: '스크린샷 캡처 중',
-          pendingAction: '캡처 중',
+          pendingAction: '캡처 중'
         },
         browser_type: {
           done: '페이지에서 입력함',
           pending: '페이지에서 입력 중',
-          pendingAction: '입력 중',
+          pendingAction: '입력 중'
         },
         clarify: {
           done: '질문함',
           pending: '질문하는 중',
-          pendingAction: '질문 중',
+          pendingAction: '질문 중'
         },
         cronjob: {
           done: 'Cron 작업',
           pending: 'Cron 작업 예약 중',
-          pendingAction: '예약 중',
+          pendingAction: '예약 중'
         },
         edit_file: {
           done: '파일 편집함',
           pending: '파일 편집 중',
-          pendingAction: '편집 중',
+          pendingAction: '편집 중'
         },
         execute_code: {
           done: '코드 실행함',
           pending: '스크립트 실행 중',
-          pendingAction: '스크립트 실행 중',
+          pendingAction: '스크립트 실행 중'
         },
         image_generate: {
           done: '이미지 생성됨',
           pending: '이미지 생성 중',
-          pendingAction: '생성 중',
+          pendingAction: '생성 중'
         },
         list_files: {
           done: '파일 목록 조회됨',
           pending: '파일 목록 조회 중',
-          pendingAction: '조회 중',
+          pendingAction: '조회 중'
         },
         patch: {
           done: '파일 패치됨',
           pending: '파일 패치 중',
-          pendingAction: '패치 중',
+          pendingAction: '패치 중'
         },
         read_file: {
           done: '파일 읽음',
           pending: '파일 읽는 중',
-          pendingAction: '읽는 중',
+          pendingAction: '읽는 중'
         },
         search_files: {
           done: '파일 검색됨',
           pending: '파일 검색 중',
-          pendingAction: '검색 중',
+          pendingAction: '검색 중'
         },
         session_search_recall: {
           done: '세션 기록 검색됨',
           pending: '세션 기록 검색 중',
-          pendingAction: '검색 중',
+          pendingAction: '검색 중'
         },
         terminal: {
           done: '명령어 실행됨',
           pending: '명령어 실행 중',
-          pendingAction: '실행 중',
+          pendingAction: '실행 중'
         },
         todo: {
           done: '할 일 목록 업데이트됨',
           pending: '할 일 목록 업데이트 중',
-          pendingAction: '업데이트 중',
+          pendingAction: '업데이트 중'
         },
         vision_analyze: {
           done: '이미지 분석됨',
           pending: '이미지 분석 중',
-          pendingAction: '분석 중',
+          pendingAction: '분석 중'
         },
         web_extract: {
           done: '웹페이지 읽기',
           pending: '웹페이지 읽는 중',
-          pendingAction: '읽는 중',
+          pendingAction: '읽는 중'
         },
         web_search: {
           done: '웹 검색함',
           pending: '웹 검색 중',
-          pendingAction: '검색 중',
+          pendingAction: '검색 중'
         },
         write_file: {
           done: '파일 편집함',
           pending: '파일 편집 중',
-          pendingAction: '편집 중',
-        },
-      },
-    },
+          pendingAction: '편집 중'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer 게이트웨이가 연결되지 않음',
     sudoSendFailed: 'sudo 비밀번호를 보낼 수 없음',
     secretSendFailed: '시크릿을 보낼 수 없음',
     sudoTitle: '관리자 비밀번호',
-    sudoDesc: 'OpenAmer가 권한 명령을 실행하려면 sudo 비밀번호가 필요합니다. 이 비밀번호는 로컬 에이전트에만 전송됩니다.',
+    sudoDesc:
+      'OpenAmer가 권한 명령을 실행하려면 sudo 비밀번호가 필요합니다. 이 비밀번호는 로컬 에이전트에만 전송됩니다.',
     sudoPlaceholder: 'sudo 비밀번호',
     secretTitle: '시크릿 필요',
     secretDesc: '계속하려면 OpenAmer에 자격 증명이 필요합니다.',
-    secretPlaceholder: '시크릿 값',
+    secretPlaceholder: '시크릿 값'
   },
   desktop: {
     audioReadFailed: '녹음된 오디오를 읽지 못했습니다',
@@ -2909,7 +2956,8 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     yoloSystem: active => `이번 세션에 YOLO ${active ? '켜기' : '끄기'} 적용`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'YOLO를 전환할 수 없습니다',
-    profileStatus: current => `프로필: ${current}. 다른 프로필에서 채팅을 시작하려면 /profile <name> 또는 "새 세션" 선택기를 사용하세요.`,
+    profileStatus: current =>
+      `프로필: ${current}. 다른 프로필에서 채팅을 시작하려면 /profile <name> 또는 "새 세션" 선택기를 사용하세요.`,
     unknownProfile: '알 수 없는 프로필',
     noProfileNamed: (target, available) => `이름이 "${target}"인 프로필이 없습니다. 사용 가능: ${available}`,
     newChatsProfile: name => `새 채팅은 프로필 ${name}을 사용합니다.`,
@@ -2919,8 +2967,9 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
     regenerateFailed: '재생성 실패',
     editFailed: '편집 실패',
     resumeFailed: '재개 실패',
-    resumeStrandedTitle: "이 세션을 불러오지 못했습니다",
-    resumeStrandedBody: '이 세션 연결에 실패했고 자동 재시도가 중단되었습니다. 게이트웨이가 실행 중인지 확인한 후 다시 시도하세요.',
+    resumeStrandedTitle: '이 세션을 불러오지 못했습니다',
+    resumeStrandedBody:
+      '이 세션 연결에 실패했고 자동 재시도가 중단되었습니다. 게이트웨이가 실행 중인지 확인한 후 다시 시도하세요.',
     resumeRetry: '다시 시도',
     nothingToBranch: '분기할 항목 없음',
     branchNeedsChat: '분기하기 전에 채팅을 시작하거나 재개하세요.',
@@ -2960,31 +3009,31 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       success: platform => `${platform}로 인계했습니다. 언제든 여기서 재개하세요.`,
       systemNote: platform => `↻ ${platform}로 인계했습니다 — 언제든 여기서 재개하세요.`,
       failed: error => `인계 실패: ${error}`,
-      timedOut: '게이트웨이 대기 시간 초과. `openamer gateway`가 실행 중인가요?',
-    },
+      timedOut: '게이트웨이 대기 시간 초과. `openamer gateway`가 실행 중인가요?'
+    }
   },
   errors: {
     genericFailure: '문제가 발생했습니다',
     boundaryTitle: '인터페이스에 문제가 발생했습니다',
     boundaryDesc: '화면에 예상치 못한 오류가 발생했습니다. 채팅과 설정은 안전합니다.',
     reloadWindow: '창 새로고침',
-    openLogs: '로그 열기',
+    openLogs: '로그 열기'
   },
   ui: {
     search: {
-      clear: '검색 지우기',
+      clear: '검색 지우기'
     },
     pagination: {
       label: '페이지네이션',
       previous: '이전',
       previousAria: '이전 페이지로 이동',
       next: '다음',
-      nextAria: '다음 페이지로 이동',
+      nextAria: '다음 페이지로 이동'
     },
     sidebar: {
       title: '사이드바',
       description: '모바일 사이드바를 표시합니다.',
-      toggle: '사이드바 전환',
-    },
-  },
+      toggle: '사이드바 전환'
+    }
+  }
 })

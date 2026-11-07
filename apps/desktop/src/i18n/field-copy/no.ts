@@ -6,249 +6,250 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Standardmodell",
-    modelContextLength: "Kontekstvindu",
-    fallbackProviders: "Reservemodeller",
-    toolsets: "Aktiverte verktøysett",
-    timezone: "Tidssone",
-    display: {
-      personality: "Personlighet",
-      showReasoning: "Resonneringsblokker",
+  model: 'Standardmodell',
+  modelContextLength: 'Kontekstvindu',
+  fallbackProviders: 'Reservemodeller',
+  toolsets: 'Aktiverte verktøysett',
+  timezone: 'Tidssone',
+  display: {
+    personality: 'Personlighet',
+    showReasoning: 'Resonneringsblokker'
+  },
+  desktop: {
+    repoScanEnabled: 'Automatisk repositorieoppdagelse',
+    repoScanRoots: 'Rotmapper for repositorieoppdagelse',
+    repoScanExcludePaths: 'Ekskluderte repositoriebaner'
+  },
+  agent: {
+    maxTurns: 'Maks antall agenttrinn',
+    imageInputMode: 'Bildevedlegg',
+    apiMaxRetries: 'API-forsøk på nytt',
+    serviceTier: 'Tjenestenivå',
+    toolUseEnforcement: 'Håndheving av verktøybruk'
+  },
+  terminal: {
+    cwd: 'Arbeidskatalog',
+    backend: 'Kjørebackend',
+    timeout: 'Tidsavbrudd for kommando',
+    persistentShell: 'Vedvarende skall',
+    envPassthrough: 'Videresending av miljøvariabler',
+    dockerImage: 'Docker-image',
+    singularityImage: 'Singularity-image',
+    modalImage: 'Modal-image',
+    daytonaImage: 'Daytona-image'
+  },
+  fileReadMaxChars: 'Grense for filling lesing',
+  toolOutput: {
+    maxBytes: 'Grense for terminalutdata',
+    maxLines: 'Grense for filsider',
+    maxLineLength: 'Grense for linjelengde'
+  },
+  codeExecution: {
+    mode: 'Modus for kjøring av kode'
+  },
+  approvals: {
+    mode: 'Godkjenningsmodus',
+    timeout: 'Tidsavbrudd for godkjenning',
+    mcpReloadConfirm: 'Bekreft nyinnlasting av MCP'
+  },
+  commandAllowlist: 'Tillatelsesliste for kommandoer',
+  security: {
+    redactSecrets: 'Skjul hemmeligheter',
+    allowPrivateUrls: 'Tillat private URL-er'
+  },
+  browser: {
+    allowPrivateUrls: 'Private URL-er i nettleser',
+    autoLocalForPrivateUrls: 'Lokal nettleser for private URL-er'
+  },
+  checkpoints: {
+    enabled: 'Filsjekkpunkter',
+    maxSnapshots: 'Grense for sjekkpunkter'
+  },
+  voice: {
+    recordKey: 'Stemmekommando',
+    maxRecordingSeconds: 'Maks lengde på opptak',
+    autoTts: 'Les svar høyt'
+  },
+  stt: {
+    enabled: 'Tal til tekst',
+    echoTranscripts: 'Gjenta transkripsjoner',
+    provider: 'Leverandør av tal til tekst',
+    local: {
+      model: 'Lokal transkripsjonsmodell',
+      language: 'Transkripsjonsspråk'
     },
-    desktop: {
-      repoScanEnabled: "Automatisk repositorieoppdagelse",
-      repoScanRoots: "Rotmapper for repositorieoppdagelse",
-      repoScanExcludePaths: "Ekskluderte repositoriebaner",
+    openai: {
+      model: 'OpenAI STT-modell'
     },
-    agent: {
-      maxTurns: "Maks antall agenttrinn",
-      imageInputMode: "Bildevedlegg",
-      apiMaxRetries: "API-forsøk på nytt",
-      serviceTier: "Tjenestenivå",
-      toolUseEnforcement: "Håndheving av verktøybruk",
+    groq: {
+      model: 'Groq STT-modell'
     },
-    terminal: {
-      cwd: "Arbeidskatalog",
-      backend: "Kjørebackend",
-      timeout: "Tidsavbrudd for kommando",
-      persistentShell: "Vedvarende skall",
-      envPassthrough: "Videresending av miljøvariabler",
-      dockerImage: "Docker-image",
-      singularityImage: "Singularity-image",
-      modalImage: "Modal-image",
-      daytonaImage: "Daytona-image",
+    mistral: {
+      model: 'Mistral STT-modell'
     },
-    fileReadMaxChars: "Grense for filling lesing",
-    toolOutput: {
-      maxBytes: "Grense for terminalutdata",
-      maxLines: "Grense for filsider",
-      maxLineLength: "Grense for linjelengde",
+    elevenlabs: {
+      modelId: 'ElevenLabs STT-modell',
+      languageCode: 'ElevenLabs-språk',
+      tagAudioEvents: 'Merk lydhendelser',
+      diarize: 'Skilling av talespersoner'
+    }
+  },
+  tts: {
+    provider: 'Leverandør av tekst til tale',
+    edge: {
+      voice: 'Edge-stemme'
     },
-    codeExecution: {
-      mode: "Modus for kjøring av kode",
+    openai: {
+      model: 'OpenAI TTS-modell',
+      voice: 'OpenAI-stemme'
     },
-    approvals: {
-      mode: "Godkjenningsmodus",
-      timeout: "Tidsavbrudd for godkjenning",
-      mcpReloadConfirm: "Bekreft nyinnlasting av MCP",
+    elevenlabs: {
+      voiceId: 'ElevenLabs-stemme',
+      modelId: 'ElevenLabs-modell'
     },
-    commandAllowlist: "Tillatelsesliste for kommandoer",
-    security: {
-      redactSecrets: "Skjul hemmeligheter",
-      allowPrivateUrls: "Tillat private URL-er",
+    xai: {
+      voiceId: 'xAI (Grok)-stemme',
+      language: 'xAI-språk',
+      speed: 'xAI-avspillingshastighet',
+      autoSpeechTags: 'xAI automatiske talemerker',
+      optimizeStreamingLatency: 'xAI-optimalisering av strømmelatens',
+      sampleRate: 'xAI-samplingrate',
+      bitRate: 'xAI-bitrate'
     },
-    browser: {
-      allowPrivateUrls: "Private URL-er i nettleser",
-      autoLocalForPrivateUrls: "Lokal nettleser for private URL-er",
+    minimax: {
+      model: 'MiniMax TTS-modell',
+      voiceId: 'MiniMax-stemme'
     },
-    checkpoints: {
-      enabled: "Filsjekkpunkter",
-      maxSnapshots: "Grense for sjekkpunkter",
+    mistral: {
+      model: 'Mistral TTS-modell',
+      voiceId: 'Mistral-stemme'
     },
-    voice: {
-      recordKey: "Stemmekommando",
-      maxRecordingSeconds: "Maks lengde på opptak",
-      autoTts: "Les svar høyt",
+    gemini: {
+      model: 'Gemini TTS-modell',
+      voice: 'Gemini-stemme'
     },
-    stt: {
-      enabled: "Tal til tekst",
-      echoTranscripts: "Gjenta transkripsjoner",
-      provider: "Leverandør av tal til tekst",
-      local: {
-        model: "Lokal transkripsjonsmodell",
-        language: "Transkripsjonsspråk",
-      },
-      openai: {
-        model: "OpenAI STT-modell",
-      },
-      groq: {
-        model: "Groq STT-modell",
-      },
-      mistral: {
-        model: "Mistral STT-modell",
-      },
-      elevenlabs: {
-        modelId: "ElevenLabs STT-modell",
-        languageCode: "ElevenLabs-språk",
-        tagAudioEvents: "Merk lydhendelser",
-        diarize: "Skilling av talespersoner",
-      },
+    neutts: {
+      model: 'NeuTTS-modell',
+      device: 'NeuTTS-enhet'
     },
-    tts: {
-      provider: "Leverandør av tekst til tale",
-      edge: {
-        voice: "Edge-stemme",
-      },
-      openai: {
-        model: "OpenAI TTS-modell",
-        voice: "OpenAI-stemme",
-      },
-      elevenlabs: {
-        voiceId: "ElevenLabs-stemme",
-        modelId: "ElevenLabs-modell",
-      },
-      xai: {
-        voiceId: "xAI (Grok)-stemme",
-        language: "xAI-språk",
-        speed: "xAI-avspillingshastighet",
-        autoSpeechTags: "xAI automatiske talemerker",
-        optimizeStreamingLatency: "xAI-optimalisering av strømmelatens",
-        sampleRate: "xAI-samplingrate",
-        bitRate: "xAI-bitrate",
-      },
-      minimax: {
-        model: "MiniMax TTS-modell",
-        voiceId: "MiniMax-stemme",
-      },
-      mistral: {
-        model: "Mistral TTS-modell",
-        voiceId: "Mistral-stemme",
-      },
-      gemini: {
-        model: "Gemini TTS-modell",
-        voice: "Gemini-stemme",
-      },
-      neutts: {
-        model: "NeuTTS-modell",
-        device: "NeuTTS-enhet",
-      },
-      kittentts: {
-        model: "KittenTTS-modell",
-        voice: "KittenTTS-stemme",
-      },
-      piper: {
-        voice: "Piper-stemme",
-      },
-      deepinfra: {
-        model: "DeepInfra TTS-modell",
-        voice: "DeepInfra-stemme",
-      },
+    kittentts: {
+      model: 'KittenTTS-modell',
+      voice: 'KittenTTS-stemme'
     },
-    memory: {
-      memoryEnabled: "Vedvarende minne",
-      userProfileEnabled: "Brukerprofil",
-      memoryCharLimit: "Minnesbudsjett",
-      userCharLimit: "Profilbudsjett",
-      provider: "Minneleverandør",
+    piper: {
+      voice: 'Piper-stemme'
     },
-    context: {
-      engine: "Kontekstmotor",
-    },
-    compression: {
-      enabled: "Automatisk komprimering",
-      threshold: "Kompresjonsterskel",
-      targetRatio: "Kompresjonsmål",
-      protectLastN: "Beskyttede nylige meldinger",
-    },
-    delegation: {
-      model: "Underagentmodell",
-      provider: "Underagentleverandør",
-      maxIterations: "Grense for underagentturer",
-      maxConcurrentChildren: "Parallelle underagenter",
-      childTimeoutSeconds: "Tidsavbrudd for underagent",
-      reasoningEffort: "Resonneringsinnsats for underagent",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Oppdater lokale endringer i appen",
-    },
+    deepinfra: {
+      model: 'DeepInfra TTS-modell',
+      voice: 'DeepInfra-stemme'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Vedvarende minne',
+    userProfileEnabled: 'Brukerprofil',
+    memoryCharLimit: 'Minnesbudsjett',
+    userCharLimit: 'Profilbudsjett',
+    provider: 'Minneleverandør'
+  },
+  context: {
+    engine: 'Kontekstmotor'
+  },
+  compression: {
+    enabled: 'Automatisk komprimering',
+    threshold: 'Kompresjonsterskel',
+    targetRatio: 'Kompresjonsmål',
+    protectLastN: 'Beskyttede nylige meldinger'
+  },
+  delegation: {
+    model: 'Underagentmodell',
+    provider: 'Underagentleverandør',
+    maxIterations: 'Grense for underagentturer',
+    maxConcurrentChildren: 'Parallelle underagenter',
+    childTimeoutSeconds: 'Tidsavbrudd for underagent',
+    reasoningEffort: 'Resonneringsinnsats for underagent'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Oppdater lokale endringer i appen'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Brukes for nye samtaler med mindre du velger en annen modell i skrivefeltet.",
-    modelContextLength: "La stå på 0 for å bruke den valgte modellens registrerte kontekstvindu.",
-    fallbackProviders: "Reserveoppføringer for leverandør:modell som prøves hvis standardmodellen feiler.",
-    display: {
-      personality: "Standard assistentstil for nye økter.",
-      showReasoning: "Vis resonnementdeler når backend-en tilbyr dem.",
+  model: 'Brukes for nye samtaler med mindre du velger en annen modell i skrivefeltet.',
+  modelContextLength: 'La stå på 0 for å bruke den valgte modellens registrerte kontekstvindu.',
+  fallbackProviders: 'Reserveoppføringer for leverandør:modell som prøves hvis standardmodellen feiler.',
+  display: {
+    personality: 'Standard assistentstil for nye økter.',
+    showReasoning: 'Vis resonnementdeler når backend-en tilbyr dem.'
+  },
+  desktop: {
+    repoScanEnabled: 'Skann lokale mapper etter Git-repositorier som skal vises i Prosjekter.',
+    repoScanRoots: 'Mapper som skal skannes. La stå tomt for å skanne hjemmekatalogen.',
+    repoScanExcludePaths: 'Mapper og deres undermapper som skal hoppes over når repositorier oppdages.'
+  },
+  timezone: 'Brukes når OpenAmer trenger lokal tidskontekst. Tomt felt bruker systemets tidssone.',
+  agent: {
+    imageInputMode: 'Styrer hvordan bildevedlegg sendes til modellen.',
+    maxTurns: 'Øvre grense for verktøykallrunder før OpenAmer stopper en kjøring.'
+  },
+  terminal: {
+    cwd: 'Standard prosjektmappe for verktøy- og terminalarbeid.',
+    persistentShell: 'Behold skalletilstand mellom kommandoer når backend-en støtter det.',
+    envPassthrough: 'Miljøvariabler som sendes inn i verktøykjøring.',
+    dockerImage: 'Containeravbildning som brukes når kjøringsbackend-en er Docker.',
+    singularityImage: 'Avbildning som brukes når kjøringsbackend-en er Singularity.',
+    modalImage: 'Avbildning som brukes når kjøringsbackend-en er Modal.',
+    daytonaImage: 'Avbildning som brukes når kjøringsbackend-en er Daytona.'
+  },
+  codeExecution: {
+    mode: 'Hvor strengt kodekjøring begrenses til gjeldende prosjekt.'
+  },
+  fileReadMaxChars: 'Maksimalt antall tegn OpenAmer kan lese fra én filforespørsel.',
+  approvals: {
+    mode: 'Hvordan OpenAmer håndterer kommandoer som krever eksplisitt godkjenning.',
+    timeout: 'Hvor lenge godkjenningsvarsler venter før de timer ut.'
+  },
+  security: {
+    redactSecrets: 'Skjul oppdagede hemmeligheter fra innhold modellen kan se når det er mulig.'
+  },
+  checkpoints: {
+    enabled: 'Lag gjenopprettingspunkter før filendringer.'
+  },
+  memory: {
+    memoryEnabled: 'Lagre varige minner som kan hjelpe fremtidige økter.',
+    userProfileEnabled: 'Vedlikehold en kompakt profil av brukerinnstillinger.'
+  },
+  context: {
+    engine: 'Strategi for å håndtere lange samtaler nær kontekstgrensen.'
+  },
+  compression: {
+    enabled: 'Oppsummer eldre kontekst når samtalene blir store.'
+  },
+  voice: {
+    autoTts: 'Les assistentens svar høyt automatisk.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'xAI-stemme-ID (f.eks. eve) eller en egendefinert stemme-ID.',
+      language: 'Språkkode for tale (f.eks. en, pt-BR) eller "auto" for automatisk gjenkjenning.',
+      speed: 'Avspillingshastighet. 0,7 = langsommere, 1,0 = normal, 1,5 = raskere.',
+      autoSpeechTags: 'La en LLM sette inn uttrykksfulle lydtagger ([laughing], [sighs]) i manuset før syntese.',
+      optimizeStreamingLatency: 'Avveining mellom forsinkelse og kvalitet. 0 = best kvalitet, 2 = lavest forsinkelse.',
+      sampleRate: 'Lydens samplingsfrekvens i Hz. Høyere = bedre kvalitet, større filer.',
+      bitRate: 'MP3-bitrate i bps. Gjelder bare når kodeken er mp3.'
     },
-    desktop: {
-      repoScanEnabled: "Skann lokale mapper etter Git-repositorier som skal vises i Prosjekter.",
-      repoScanRoots: "Mapper som skal skannes. La stå tomt for å skanne hjemmekatalogen.",
-      repoScanExcludePaths: "Mapper og deres undermapper som skal hoppes over når repositorier oppdages.",
-    },
-    timezone: "Brukes når OpenAmer trenger lokal tidskontekst. Tomt felt bruker systemets tidssone.",
-    agent: {
-      imageInputMode: "Styrer hvordan bildevedlegg sendes til modellen.",
-      maxTurns: "Øvre grense for verktøykallrunder før OpenAmer stopper en kjøring.",
-    },
-    terminal: {
-      cwd: "Standard prosjektmappe for verktøy- og terminalarbeid.",
-      persistentShell: "Behold skalletilstand mellom kommandoer når backend-en støtter det.",
-      envPassthrough: "Miljøvariabler som sendes inn i verktøykjøring.",
-      dockerImage: "Containeravbildning som brukes når kjøringsbackend-en er Docker.",
-      singularityImage: "Avbildning som brukes når kjøringsbackend-en er Singularity.",
-      modalImage: "Avbildning som brukes når kjøringsbackend-en er Modal.",
-      daytonaImage: "Avbildning som brukes når kjøringsbackend-en er Daytona.",
-    },
-    codeExecution: {
-      mode: "Hvor strengt kodekjøring begrenses til gjeldende prosjekt.",
-    },
-    fileReadMaxChars: "Maksimalt antall tegn OpenAmer kan lese fra én filforespørsel.",
-    approvals: {
-      mode: "Hvordan OpenAmer håndterer kommandoer som krever eksplisitt godkjenning.",
-      timeout: "Hvor lenge godkjenningsvarsler venter før de timer ut.",
-    },
-    security: {
-      redactSecrets: "Skjul oppdagede hemmeligheter fra innhold modellen kan se når det er mulig.",
-    },
-    checkpoints: {
-      enabled: "Lag gjenopprettingspunkter før filendringer.",
-    },
-    memory: {
-      memoryEnabled: "Lagre varige minner som kan hjelpe fremtidige økter.",
-      userProfileEnabled: "Vedlikehold en kompakt profil av brukerinnstillinger.",
-    },
-    context: {
-      engine: "Strategi for å håndtere lange samtaler nær kontekstgrensen.",
-    },
-    compression: {
-      enabled: "Oppsummer eldre kontekst når samtalene blir store.",
-    },
-    voice: {
-      autoTts: "Les assistentens svar høyt automatisk.",
-    },
-    tts: {
-      xai: {
-        voiceId: "xAI-stemme-ID (f.eks. eve) eller en egendefinert stemme-ID.",
-        language: "Språkkode for tale (f.eks. en, pt-BR) eller \"auto\" for automatisk gjenkjenning.",
-        speed: "Avspillingshastighet. 0,7 = langsommere, 1,0 = normal, 1,5 = raskere.",
-        autoSpeechTags: "La en LLM sette inn uttrykksfulle lydtagger ([laughing], [sighs]) i manuset før syntese.",
-        optimizeStreamingLatency: "Avveining mellom forsinkelse og kvalitet. 0 = best kvalitet, 2 = lavest forsinkelse.",
-        sampleRate: "Lydens samplingsfrekvens i Hz. Høyere = bedre kvalitet, større filer.",
-        bitRate: "MP3-bitrate i bps. Gjelder bare når kodeken er mp3.",
-      },
-      neutts: {
-        device: "Lokal inferensenhet for NeuTTS.",
-      },
-    },
-    stt: {
-      enabled: "Aktiver lokal eller leverandørbasert taletranskripsjon.",
-      echoTranscripts: "Send den rå 🎙️-transkripsjonen av talemeldinger tilbake til samtalen.",
-      elevenlabs: {
-        languageCode: "Valgfri ISO-639-3-språkkode. Tomt felt lar ElevenLabs oppdage automatisk.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Når OpenAmer oppdaterer seg selv fra appen (uten terminalvarsel), behold lokale kildeendringer (stash) eller forkast dem (discard). Oppdateringer via terminal spør alltid.",
-    },
+    neutts: {
+      device: 'Lokal inferensenhet for NeuTTS.'
+    }
+  },
+  stt: {
+    enabled: 'Aktiver lokal eller leverandørbasert taletranskripsjon.',
+    echoTranscripts: 'Send den rå 🎙️-transkripsjonen av talemeldinger tilbake til samtalen.',
+    elevenlabs: {
+      languageCode: 'Valgfri ISO-639-3-språkkode. Tomt felt lar ElevenLabs oppdage automatisk.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Når OpenAmer oppdaterer seg selv fra appen (uten terminalvarsel), behold lokale kildeendringer (stash) eller forkast dem (discard). Oppdateringer via terminal spør alltid.'
+  }
 })

@@ -44,7 +44,7 @@ export const pl = defineLocale({
     update: 'Aktualizuj',
     tryHint: term => `Spróbuj „${term}”`,
     on: 'Wł.',
-    off: 'Wył.',
+    off: 'Wył.'
   },
   fileMenu: {
     revealFinder: 'Pokaż w Finder',
@@ -59,7 +59,7 @@ export const pl = defineLocale({
     renameLabel: 'Nowa nazwa',
     deleteTitle: name => `Usunąć ${name}?`,
     deleteBody: 'Zostanie przeniesione do Kosza — można przywrócić stamtąd.',
-    pathCopied: 'Skopiowano ścieżkę',
+    pathCopied: 'Skopiowano ścieżkę'
   },
   boot: {
     ready: 'OpenAmer Desktop gotowy',
@@ -69,7 +69,7 @@ export const pl = defineLocale({
       loadingSettings: 'Wczytywanie ustawień OpenAmer',
       loadingSessions: 'Wczytywanie ostatnich sesji',
       startingDesktopConnection: 'Uruchamianie połączenia pulpitu',
-      startingOpenAmerDesktop: 'Uruchamianie OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Uruchamianie OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Proces w tle OpenAmer zakończył się.',
@@ -78,13 +78,15 @@ export const pl = defineLocale({
       desktopBootFailed: 'Uruchomienie pulpitu nie powiodło się',
       gatewayConnectionLost: 'Utracono połączenie z bramą',
       gatewaySignInRequired: 'Wymagane logowanie do bramy',
-      ipcBridgeUnavailable: 'Most IPC pulpitu jest niedostępny.',
+      ipcBridgeUnavailable: 'Most IPC pulpitu jest niedostępny.'
     },
     failure: {
-      title: "Nie udało się uruchomić OpenAmer",
-      description: "Brama w tle nie wystartowała. Wypróbuj jeden z kroków odzyskiwania poniżej. Nic tu nie usuwa Twoich czatów ani ustawień.",
+      title: 'Nie udało się uruchomić OpenAmer',
+      description:
+        'Brama w tle nie wystartowała. Wypróbuj jeden z kroków odzyskiwania poniżej. Nic tu nie usuwa Twoich czatów ani ustawień.',
       remoteTitle: 'Wymagane logowanie do zdalnej bramy',
-      remoteDescription: 'Twoja sesja zdalnej bramy wygasła. Zaloguj się ponownie, aby wznowić połączenie. Nic tu nie usuwa Twoich czatów ani ustawień.',
+      remoteDescription:
+        'Twoja sesja zdalnej bramy wygasła. Zaloguj się ponownie, aby wznowić połączenie. Nic tu nie usuwa Twoich czatów ani ustawień.',
       retry: 'Ponów',
       repairInstall: 'Napraw instalację',
       useLocalGateway: 'Użyj bramy lokalnej',
@@ -92,7 +94,8 @@ export const pl = defineLocale({
       back: 'Wstecz',
       openLogs: 'Otwórz dzienniki',
       repairHint: 'Naprawa ponownie uruchamia instalator i na świeżym komputerze może potrwać kilka minut.',
-      remoteSignInHint: signInLabel => `Wylogowuje zapisaną sesję zdalnej przeglądarki, a następnie otwiera ${signInLabel}. Użyj „Użyj bramy lokalnej”, aby wrócić do wbudowanego backendu.`,
+      remoteSignInHint: signInLabel =>
+        `Wylogowuje zapisaną sesję zdalnej przeglądarki, a następnie otwiera ${signInLabel}. Użyj „Użyj bramy lokalnej”, aby wrócić do wbudowanego backendu.`,
       signOutAndSignIn: 'Wyloguj i zaloguj',
       remoteFailureHint: 'Sprawdź adres URL i logowanie w ustawieniach bramy albo przełącz się na bramę lokalną.',
       hideRecentLogs: 'Ukryj ostatnie dzienniki',
@@ -104,8 +107,8 @@ export const pl = defineLocale({
       signInFailed: 'Logowanie nie powiodło się',
       signInToRemoteGateway: 'Zaloguj się do zdalnej bramy',
       signInWithProvider: provider => `Zaloguj się przez ${provider}`,
-      identityProvider: 'Twój dostawca tożsamości',
-    },
+      identityProvider: 'Twój dostawca tożsamości'
+    }
   },
   notifications: {
     region: 'Powiadomienia',
@@ -118,21 +121,23 @@ export const pl = defineLocale({
     copyDetail: 'Kopiuj szczegóły',
     copyDetailFailed: 'Nie udało się skopiować szczegółów powiadomienia',
     backendOutOfDateTitle: 'Backend przestarzały',
-    backendOutOfDateMessage: 'Twój backend OpenAmer jest starszy niż ta wersja pulpitu i może działać niepoprawnie. Zaktualizuj go, aby je wyrównać.',
+    backendOutOfDateMessage:
+      'Twój backend OpenAmer jest starszy niż ta wersja pulpitu i może działać niepoprawnie. Zaktualizuj go, aby je wyrównać.',
     installMethodUnsupportedTitle: 'Nieobsługiwana metoda instalacji',
     updateOpenAmer: 'Zaktualizuj OpenAmer',
     updateReadyTitle: 'Aktualizacja gotowa',
     updateReadyMessage: count => `${count} new change${count === 1 ? 'zmiana' : 'zmiany'} available.`,
-    seeWhatsNew: "Zobacz, co nowego",
+    seeWhatsNew: 'Zobacz, co nowego',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT wymaga ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs odrzucił klucz API (401).',
       gatewayAuthFailed: 'Uwierzytelnianie bramy nie powiodło się — sprawdź swój API_SERVER_KEY.',
-      methodNotAllowed: 'Backend pulpitu odrzucił to żądanie (405 Method Not Allowed). Spróbuj zrestartować OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend pulpitu odrzucił to żądanie (405 Method Not Allowed). Spróbuj zrestartować OpenAmer Desktop.',
       microphonePermission: 'Odmówiono dostępu do mikrofonu.',
       openaiRejectedApiKey: 'OpenAI odrzucił klucz API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI odrzucił klucz API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS wymaga VOICE_TOOLS_OPENAI_KEY lub OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS wymaga VOICE_TOOLS_OPENAI_KEY lub OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Skonfiguruj zamianę mowy na tekst, aby korzystać z trybu głosowego.',
@@ -151,7 +156,7 @@ export const pl = defineLocale({
       transcriptionFailed: 'Transkrypcja mowy nie powiodła się',
       transcriptionUnavailable: 'Transkrypcja mowy nie jest jeszcze dostępna.',
       tryRecordingAgain: 'Spróbuj nagrać ponownie.',
-      unavailable: 'Mowa niedostępna',
+      unavailable: 'Mowa niedostępna'
     },
     native: {
       approvalTitle: 'Wymagane zatwierdzenie',
@@ -164,11 +169,12 @@ export const pl = defineLocale({
       turnErrorTitle: 'Tura nie powiodła się',
       backgroundDoneTitle: 'Zadanie w tle ukończone',
       backgroundFailedTitle: 'Zadanie w tle nie powiodło się',
-      creditsTitle: 'Kredyty',
-    },
+      creditsTitle: 'Kredyty'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Aktywne renderowanie programowe — wykryto zdalny pulpit (${reason}). Akceleracja GPU jest wyłączona, aby zapobiec migotaniu.`,
+    message: reason =>
+      `Aktywne renderowanie programowe — wykryto zdalny pulpit (${reason}). Akceleracja GPU jest wyłączona, aby zapobiec migotaniu.`
   },
   billingBlock: {
     titleOpenamer: 'Brak kredytów OpenAmer',
@@ -176,7 +182,7 @@ export const pl = defineLocale({
     fallbackMessage: 'Na Twoim koncie nie ma kredytów. Dodaj kredyty, aby kontynuować.',
     openBilling: 'Otwórz rozliczenia',
     addCredits: 'Dodaj kredyty',
-    dismiss: 'Odrzuć',
+    dismiss: 'Odrzuć'
   },
   titlebar: {
     hideSidebar: 'Ukryj pasek boczny',
@@ -193,7 +199,7 @@ export const pl = defineLocale({
     openStarmap: 'Otwórz graf pamięci',
     openKeybinds: 'Skróty klawiszowe',
     layoutEditor: 'Edytor układu',
-    layoutEditorTitle: 'Edytor układu — Cmd/Ctrl+kliknięcie przywraca domyślny układ',
+    layoutEditorTitle: 'Edytor układu — Cmd/Ctrl+kliknięcie przywraca domyślny układ'
   },
   keybinds: {
     title: 'Skróty klawiszowe',
@@ -210,7 +216,7 @@ export const pl = defineLocale({
       profiles: 'Profile',
       session: 'Sesja',
       navigation: 'Nawigacja',
-      view: 'Widok',
+      view: 'Widok'
     },
     actions: {
       'keybinds.openPanel': 'Otwórz skróty klawiszowe',
@@ -289,8 +295,8 @@ export const pl = defineLocale({
       'composer.slash': 'Paleta poleceń slash',
       'composer.help': 'Szybka pomoc',
       'composer.history': 'Przełącz popover / historię',
-      'composer.cancel': 'Zamknij popover · anuluj uruchomienie',
-    },
+      'composer.cancel': 'Zamknij popover · anuluj uruchomienie'
+    }
   },
   language: {
     label: 'Język',
@@ -299,7 +305,7 @@ export const pl = defineLocale({
     saveError: 'Nie udało się zaktualizować języka',
     switchTo: 'Zmień język',
     searchPlaceholder: 'Szukaj języków…',
-    noResults: 'Nie znaleziono języków',
+    noResults: 'Nie znaleziono języków'
   },
   settings: {
     closeSettings: 'Zamknij ustawienia',
@@ -324,11 +330,12 @@ export const pl = defineLocale({
       about: 'Informacje',
       billing: 'Rozliczenia',
       notifications: 'Powiadomienia',
-      plugins: 'Wtyczki',
+      plugins: 'Wtyczki'
     },
     plugins: {
       title: 'Wtyczki desktopowe',
-      blurb: 'Rozszerzenia UI ładowane do tej aplikacji — dołączone do buildu lub wrzucone do folderu desktop-plugins (w tym te zapisywane przez OpenAmer). Wyłączenie odładowuje wtyczkę na żywo i przetrwa restarty.',
+      blurb:
+        'Rozszerzenia UI ładowane do tej aplikacji — dołączone do buildu lub wrzucone do folderu desktop-plugins (w tym te zapisywane przez OpenAmer). Wyłączenie odładowuje wtyczkę na żywo i przetrwa restarty.',
       count: n => `${n} zainstalowanych`,
       openFolder: 'Otwórz folder wtyczek',
       rescan: 'Skanuj ponownie',
@@ -340,49 +347,51 @@ export const pl = defineLocale({
       kinds: {
         bundled: 'wbudowane',
         disk: 'na dysku',
-        runtime: 'środowisko uruchomieniowe',
-      },
+        runtime: 'środowisko uruchomieniowe'
+      }
     },
     notifications: {
       title: 'Powiadomienia',
-      intro: 'Native powiadomienia pulpitu, oddzielne od komunikatów w aplikacji. Są lokalne dla urządzenia — każdy komputer ma własne ustawienia.',
+      intro:
+        'Native powiadomienia pulpitu, oddzielne od komunikatów w aplikacji. Są lokalne dla urządzenia — każdy komputer ma własne ustawienia.',
       enableAll: 'Włącz powiadomienia',
       enableAllDesc: 'Główny przełącznik. Wyłącz go, aby wyciszyć wszystkie poniższe powiadomienia.',
       focusedHint: 'Alerty o ukończeniu pojawiają się tylko wtedy, gdy OpenAmer działa w tle.',
       kinds: {
         approval: {
           label: 'Wymagana akceptacja',
-          description: 'Polecenie czeka na zatwierdzenie lub odrzucenie.',
+          description: 'Polecenie czeka na zatwierdzenie lub odrzucenie.'
         },
         input: {
           label: 'Potrzebne dane',
-          description: 'OpenAmer zadał pytanie lub potrzebuje hasła bądź sekretu.',
+          description: 'OpenAmer zadał pytanie lub potrzebuje hasła bądź sekretu.'
         },
         turnDone: {
           label: 'Odpowiedź gotowa',
-          description: 'Tura zakończyła się, gdy OpenAmer działał w tle.',
+          description: 'Tura zakończyła się, gdy OpenAmer działał w tle.'
         },
         turnError: {
           label: 'Tura nie powiodła się',
-          description: 'Tura zakończyła się błędem.',
+          description: 'Tura zakończyła się błędem.'
         },
         backgroundDone: {
           label: 'Zadanie w tle zakończone',
-          description: 'Polecenie terminala w tle zostało wykonane.',
+          description: 'Polecenie terminala w tle zostało wykonane.'
         },
         credits: {
           label: 'Alerty kredytowe',
-          description: 'Dostęp do kredytu został wstrzymany lub przywrócony.',
-        },
+          description: 'Dostęp do kredytu został wstrzymany lub przywrócony.'
+        }
       },
       test: 'Wyślij powiadomienie testowe',
       testTitle: 'OpenAmer',
       testBody: 'Powiadomienia działają.',
-      testSent: 'Wysłano test. Jeśli nic się nie pojawi, sprawdź uprawnienia do powiadomień w systemie i tryb skupienia/nie przeszkadzać.',
+      testSent:
+        'Wysłano test. Jeśli nic się nie pojawi, sprawdź uprawnienia do powiadomień w systemie i tryb skupienia/nie przeszkadzać.',
       testUnsupported: 'Ten system nie obsługuje powiadomień natywnych.',
       completionSoundTitle: 'Dźwięk ukończenia',
       completionSoundDesc: 'Odtwarzany po zakończeniu tury agenta. Wybierz preset i sprawdź go tutaj.',
-      completionSoundPreview: 'Podgląd',
+      completionSoundPreview: 'Podgląd'
     },
     sections: {
       model: 'Model',
@@ -392,7 +401,7 @@ export const pl = defineLocale({
       safety: 'Bezpieczeństwo',
       memory: 'Pamięć i kontekst',
       voice: 'Głos',
-      advanced: 'Zaawansowane',
+      advanced: 'Zaawansowane'
     },
     searchPlaceholder: {
       about: 'O aplikacji OpenAmer Desktop',
@@ -400,37 +409,40 @@ export const pl = defineLocale({
       gateway: 'Połączenie z bramą...',
       keys: 'Szukaj kluczy API...',
       mcp: 'Szukaj serwerów MCP...',
-      sessions: 'Szukaj zarchiwizowanych sesji...',
+      sessions: 'Szukaj zarchiwizowanych sesji...'
     },
     modeOptions: {
       light: {
         label: 'Jasny',
-        description: 'Jasne powierzchnie',
+        description: 'Jasne powierzchnie'
       },
       dark: {
         label: 'Ciemny',
-        description: 'Przestrzeń o słabym olśnieniu',
+        description: 'Przestrzeń o słabym olśnieniu'
       },
       system: {
         label: 'System',
-        description: 'Zgodnie z wyglądem systemu',
-      },
+        description: 'Zgodnie z wyglądem systemu'
+      }
     },
     appearance: {
       title: 'Wygląd',
-      intro: 'To preferencje wyświetlania tylko pulpitu. Tryb steruje jasnością; motyw steruje paletą akcentów i stylem powierzchni czatu.',
+      intro:
+        'To preferencje wyświetlania tylko pulpitu. Tryb steruje jasnością; motyw steruje paletą akcentów i stylem powierzchni czatu.',
       colorMode: 'Tryb kolorów',
       colorModeDesc: 'Wybierz stały tryb albo pozwól OpenAmer stosować ustawienia systemowe.',
       toolViewTitle: 'Wyświetlanie wywołań narzędzi',
       toolViewDesc: 'Produkt ukrywa surowe dane narzędzi; Techniczne pokazuje pełne wejścia/wyjścia.',
       uiScaleTitle: 'Skala interfejsu',
-      uiScaleDesc: (percent: number) => `Skaluje tekst i elementy sterujące w całej aplikacji. Działa też Cmd/Ctrl z +, - i 0. Aktualnie: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Skaluje tekst i elementy sterujące w całej aplikacji. Działa też Cmd/Ctrl z +, - i 0. Aktualnie: ${percent}%.`,
       translucencyTitle: 'Przezroczystość okna',
       translucencyDesc: 'Zobacz swój pulpit przez całe okno. Tylko macOS i Windows.',
       backdropTitle: 'Tło czatu',
       backdropDesc: 'Cichy obraz posągu za rozmową.',
       embedsTitle: 'Osadzone treści',
-      embedsDesc: 'Bogate podglądy ładowane są ze stron zewnętrznych (YouTube, X, …). Pytaj pokazuje symbol zastępczy do momentu zezwolenia na każdy z nich; Zawsze ładuje je automatycznie; Wył. pozostawia zwykłe linki.',
+      embedsDesc:
+        'Bogate podglądy ładowane są ze stron zewnętrznych (YouTube, X, …). Pytaj pokazuje symbol zastępczy do momentu zezwolenia na każdy z nich; Zawsze ładuje je automatycznie; Wył. pozostawia zwykłe linki.',
       embedsAsk: 'Pytaj',
       embedsAlways: 'Zawsze',
       embedsOff: 'Wył.',
@@ -443,7 +455,8 @@ export const pl = defineLocale({
       themeDesc: 'Tylko palety pulpitu. Wybrany tryb nakłada się na wierzch.',
       themeProfileNote: profile => `Zapisano dla profilu ${profile} — każdy profil przechowuje własny motyw.`,
       installTitle: 'Zainstaluj z VS Code',
-      installDesc: 'Wklej identyfikator rozszerzenia Marketplace (np. dracula-theme.theme-dracula), aby przekształcić jego motyw kolorów w paletę pulpitu.',
+      installDesc:
+        'Wklej identyfikator rozszerzenia Marketplace (np. dracula-theme.theme-dracula), aby przekształcić jego motyw kolorów w paletę pulpitu.',
       installPlaceholder: 'wydawca.rozszerzenie',
       installButton: 'Zainstaluj',
       installing: 'Instalowanie…',
@@ -453,8 +466,10 @@ export const pl = defineLocale({
       importedBadge: 'Zaimportowano',
       pet: {
         title: 'Maskotka',
-        intro: 'Zaadoptuj animowaną maskotkę petdex, która unosi się nad aplikacją i reaguje na to, co robi OpenAmer — biega, gdy narzędzia działają, świętuje sukcesy, dąsa się przy błędach.',
-        restartHint: 'Maskotki wymagają szybkiego restartu — uruchomiona aplikacja została otwarta przed dodaniem tej funkcji. Zamknij i otwórz ponownie OpenAmer, a potem wróć tutaj.',
+        intro:
+          'Zaadoptuj animowaną maskotkę petdex, która unosi się nad aplikacją i reaguje na to, co robi OpenAmer — biega, gdy narzędzia działają, świętuje sukcesy, dąsa się przy błędach.',
+        restartHint:
+          'Maskotki wymagają szybkiego restartu — uruchomiona aplikacja została otwarta przed dodaniem tej funkcji. Zamknij i otwórz ponownie OpenAmer, a potem wróć tutaj.',
         on: 'Wł.',
         off: 'Wył.',
         scaleTitle: 'Rozmiar',
@@ -464,7 +479,7 @@ export const pl = defineLocale({
         chooseTitle: 'Wybierz pupila',
         chooseDesc: 'Wybranie instaluje go (jeśli trzeba) i ustawia jako aktywnego.',
         searchPlaceholder: 'Szukaj pupilów…',
-        unreachable: "Nie udało się połączyć z galerią petdex. Sprawdź połączenie i otwórz tę stronę ponownie.",
+        unreachable: 'Nie udało się połączyć z galerią petdex. Sprawdź połączenie i otwórz tę stronę ponownie.',
         noMatch: query => `Żaden pupil nie pasuje do „${query}”.`,
         installedTag: 'zainstalowany',
         generatedTag: 'Wygenerowany',
@@ -473,7 +488,7 @@ export const pl = defineLocale({
         uninstall: name => `Odinstaluj ${name}`,
         delete: name => `Usuń ${name}`,
         deleteTitle: name => `Usunąć ${name}?`,
-        deleteBody: "Spowoduje to trwałe usunięcie pupila — nie będzie można go ponownie zainstalować.",
+        deleteBody: 'Spowoduje to trwałe usunięcie pupila — nie będzie można go ponownie zainstalować.',
         deleteConfirm: 'Usuń',
         rename: name => `Zmień nazwę ${name}`,
         renameTitle: 'Zmień nazwę pupila',
@@ -486,8 +501,8 @@ export const pl = defineLocale({
         exportFailed: slug => `Nie udało się wyeksportować ${slug}`,
         noneAvailable: 'Brak pupilów, które można teraz włączyć.',
         turnOnFailed: 'Nie udało się włączyć zwierzaka.',
-        turnOffFailed: 'Nie udało się wyłączyć zwierzaka.',
-      },
+        turnOffFailed: 'Nie udało się wyłączyć zwierzaka.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,13 +513,13 @@ export const pl = defineLocale({
       updates: 'Aktualizacje',
       checkNow: 'Sprawdź teraz',
       checking: 'Sprawdzanie…',
-      seeWhatsNew: "Zobacz, co nowego",
+      seeWhatsNew: 'Zobacz, co nowego',
       updateNow: 'Zaktualizuj teraz',
       releaseNotes: 'Informacje o wydaniu',
-      onLatest: "Masz najnowszą wersję.",
+      onLatest: 'Masz najnowszą wersję.',
       installing: 'Aktualizacja jest właśnie instalowana.',
-      cantUpdate: "Ta kompilacja nie może zaktualizować się z wnętrza aplikacji.",
-      cantReach: "Nie udało się połączyć z serwerem aktualizacji.",
+      cantUpdate: 'Ta kompilacja nie może zaktualizować się z wnętrza aplikacji.',
+      cantReach: 'Nie udało się połączyć z serwerem aktualizacji.',
       tapCheck: 'Dotknij „Sprawdź teraz”, aby szukać aktualizacji.',
       updateReady: count => `A new update is ready (${count} change${count === 1 ? 'zmiana' : 'zmiany'} included).`,
       lastChecked: age => `Ostatnio sprawdzono ${age}`,
@@ -516,7 +531,7 @@ export const pl = defineLocale({
       justNow: 'przed chwilą',
       minAgo: count => `${count} min temu`,
       hoursAgo: count => `${count} godz. temu`,
-      daysAgo: count => `${count} dni temu`,
+      daysAgo: count => `${count} dni temu`
     },
     config: {
       none: 'Brak',
@@ -532,7 +547,8 @@ export const pl = defineLocale({
       imported: 'Zaimportowano konfigurację',
       invalidJson: 'Nieprawidłowy JSON konfiguracji',
       keepAwakeTitle: 'Utrzymuj komputer aktywny',
-      keepAwakeDesc: 'Zapobiegaj usypianiu tego komputera, aby długie lub nocne zadania działały dalej. Wyświetlacz nadal może przygasnąć.',
+      keepAwakeDesc:
+        'Zapobiegaj usypianiu tego komputera, aby długie lub nocne zadania działały dalej. Wyświetlacz nadal może przygasnąć.'
     },
     credentials: {
       pasteKey: 'Wklej klucz',
@@ -542,7 +558,7 @@ export const pl = defineLocale({
       couldNotSave: 'Nie udało się zapisać danych uwierzytelniających.',
       remove: 'Usuń',
       getKey: 'Uzyskaj klucz',
-      saving: 'Zapisywanie',
+      saving: 'Zapisywanie'
     },
     envActions: {
       actionsFor: label => `Akcje dla ${label}`,
@@ -553,7 +569,7 @@ export const pl = defineLocale({
       revealValue: 'Pokaż wartość',
       replace: 'Zastąp',
       set: 'Ustaw',
-      clear: 'Wyczyść',
+      clear: 'Wyczyść'
     },
     gateway: {
       loading: 'Wczytywanie ustawień bramy...',
@@ -561,23 +577,28 @@ export const pl = defineLocale({
       unavailableDesc: 'Most IPC aplikacji desktopowej nie udostępnia ustawień bramy.',
       title: 'Połączenie z bramą',
       envOverride: 'Nadpisanie środowiskowe',
-      intro: 'OpenAmer Desktop domyślnie uruchamia własną lokalną bramę. Użyj zdalnej bramy, gdy chcesz, aby ta aplikacja kontrolowała już uruchomiony backend OpenAmer na innym komputerze lub za zaufanym serwerem proxy. Wybierz poniżej profil, aby nadać mu własny zdalny host.',
+      intro:
+        'OpenAmer Desktop domyślnie uruchamia własną lokalną bramę. Użyj zdalnej bramy, gdy chcesz, aby ta aplikacja kontrolowała już uruchomiony backend OpenAmer na innym komputerze lub za zaufanym serwerem proxy. Wybierz poniżej profil, aby nadać mu własny zdalny host.',
       appliesTo: 'Dotyczy',
       allProfiles: 'Wszystkie profile',
       defaultConnection: 'Domyślne połączenie dla każdego profilu bez własnego nadpisania.',
-      profileConnection: profile => `Połączenie używane tylko wtedy, gdy aktywnym profilem jest „${profile}”. Wybierz Użyj domyślnej bramy, aby usunąć jego nadpisanie.`,
+      profileConnection: profile =>
+        `Połączenie używane tylko wtedy, gdy aktywnym profilem jest „${profile}”. Wybierz Użyj domyślnej bramy, aby usunąć jego nadpisanie.`,
       envOverrideTitle: 'Zmienne środowiskowe kontrolują tę sesję pulpitu.',
-      envOverrideDesc: 'Usuń OPENAMER_DESKTOP_REMOTE_URL i OPENAMER_DESKTOP_REMOTE_TOKEN, aby użyć zapisanego ustawienia poniżej.',
+      envOverrideDesc:
+        'Usuń OPENAMER_DESKTOP_REMOTE_URL i OPENAMER_DESKTOP_REMOTE_TOKEN, aby użyć zapisanego ustawienia poniżej.',
       modeTitle: 'Tryb połączenia',
       localTitle: 'Lokalna brama',
       localDesc: 'Uruchom prywatny backend OpenAmer na localhost. To ustawienie domyślne i działa offline.',
       inheritTitle: 'Użyj domyślnej bramy',
-      inheritDesc: "Usuń nadpisanie tego profilu i użyj domyślnego połączenia.",
+      inheritDesc: 'Usuń nadpisanie tego profilu i użyj domyślnego połączenia.',
       remoteTitle: 'Zdalna brama',
       remoteDesc: 'Połącz tę powłokę pulpitu ze zdalnym backendem OpenAmer.',
-      remoteAuthHint: 'Bramy hostowane używają OAuth lub nazwy użytkownika i hasła; bramy samodzielnie hostowane mogą używać tokenu sesji.',
+      remoteAuthHint:
+        'Bramy hostowane używają OAuth lub nazwy użytkownika i hasła; bramy samodzielnie hostowane mogą używać tokenu sesji.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Zaloguj się raz do OpenAmer Cloud i wybierz spośród agentów na swoim koncie — bez wklejania adresu URL.',
+      cloudDesc:
+        'Zaloguj się raz do OpenAmer Cloud i wybierz spośród agentów na swoim koncie — bez wklejania adresu URL.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Zaloguj się do OpenAmer Cloud',
       cloudSignedIn: 'Zalogowano do OpenAmer Cloud',
@@ -592,7 +613,7 @@ export const pl = defineLocale({
       cloudNoAgents: {
         before: 'Nie znaleziono agentów na tym koncie. Utwórz agenta w ',
         linkText: 'Portal OpenAmer',
-        after: ', a następnie odśwież.',
+        after: ', a następnie odśwież.'
       },
       cloudRefresh: 'Odśwież',
       cloudConnect: 'Połącz',
@@ -608,20 +629,26 @@ export const pl = defineLocale({
       cloudAgentProvisioning: 'Przygotowywanie…',
       cloudStatusLabel: status => `Status: ${status}`,
       remoteUrlTitle: 'Zdalny URL',
-      remoteUrlDesc: 'Bazowy adres URL zaplecza zdalnego pulpitu nawigacyjnego. Prefiksy ścieżek są obsługiwane, na przykład /openamer.',
+      remoteUrlDesc:
+        'Bazowy adres URL zaplecza zdalnego pulpitu nawigacyjnego. Prefiksy ścieżek są obsługiwane, na przykład /openamer.',
       probing: 'Sprawdzanie metody uwierzytelniania tej bramy…',
-      probeError: 'Nie można jeszcze połączyć się z tą bramą. Sprawdź URL — metoda uwierzytelniania pojawi się, gdy brama odpowie.',
+      probeError:
+        'Nie można jeszcze połączyć się z tą bramą. Sprawdź URL — metoda uwierzytelniania pojawi się, gdy brama odpowie.',
       signedIn: 'Zalogowano',
       signIn: 'Zaloguj się',
       signOut: 'Wyloguj się',
       signInWith: provider => `Zaloguj się przez ${provider}`,
       authTitle: 'Uwierzytelnianie',
-      authSignedInPassword: 'Ta brama używa nazwy użytkownika i hasła. Jesteś zalogowany; sesja odświeża się automatycznie.',
+      authSignedInPassword:
+        'Ta brama używa nazwy użytkownika i hasła. Jesteś zalogowany; sesja odświeża się automatycznie.',
       authSignedInOauth: 'Ta brama używa OAuth. Jesteś zalogowany; sesja odświeża się automatycznie.',
-      authNeedsPassword: 'Ta brama używa nazwy użytkownika i hasła. Zaloguj się, aby autoryzować tę aplikację komputerową.',
-      authNeedsOauth: provider => `Ta brama używa OAuth. Zaloguj się przez ${provider}, aby autoryzować tę aplikację komputerową.`,
+      authNeedsPassword:
+        'Ta brama używa nazwy użytkownika i hasła. Zaloguj się, aby autoryzować tę aplikację komputerową.',
+      authNeedsOauth: provider =>
+        `Ta brama używa OAuth. Zaloguj się przez ${provider}, aby autoryzować tę aplikację komputerową.`,
       tokenTitle: 'Token sesji',
-      tokenDesc: 'Token sesji pulpitu nawigacyjnego używany do dostępu REST i WebSocket. Pozostaw puste, aby zachować zapisany token.',
+      tokenDesc:
+        'Token sesji pulpitu nawigacyjnego używany do dostępu REST i WebSocket. Pozostaw puste, aby zachować zapisany token.',
       existingToken: value => `Istniejący token ${value}`,
       savedToken: 'zapisany',
       pasteSessionToken: 'Wklej token sesji',
@@ -639,7 +666,8 @@ export const pl = defineLocale({
       enterUrlFirst: 'Najpierw wpisz zdalny URL.',
       restartingTitle: 'Restart połączenia z bramką',
       savedTitle: 'Ustawienia bramki zapisane',
-      restartingMessage: 'OpenAmer Desktop połączy się ponownie przy użyciu zapisanych ustawień — powłoka pozostanie otwarta.',
+      restartingMessage:
+        'OpenAmer Desktop połączy się ponownie przy użyciu zapisanych ustawień — powłoka pozostanie otwarta.',
       savedMessage: 'Zapisano na następny restart.',
       connectedTo: (baseUrl, version) => `Połączono z ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Zdalna bramka dostępna',
@@ -652,7 +680,8 @@ export const pl = defineLocale({
       applyFailed: 'Nie udało się zastosować ustawień bramy',
       saveFailed: 'Nie udało się zapisać ustawień bramy',
       sshTitle: 'Połącz przez SSH',
-      sshDesc: 'OpenAmer jest uruchamiany zdalnie przez SSH i tunelowany do tej aplikacji — nie trzeba niczego uruchamiać ani udostępniać. Wymaga działającego dostępu SSH do hosta opartego na kluczach.',
+      sshDesc:
+        'OpenAmer jest uruchamiany zdalnie przez SSH i tunelowany do tej aplikacji — nie trzeba niczego uruchamiać ani udostępniać. Wymaga działającego dostępu SSH do hosta opartego na kluczach.',
       sshTrustHint: 'Pierwszy przedstawiony klucz hosta jest zaufany i przypięty; późniejsze zmiany kończą się odmową.',
       sshHostTitle: 'Gospodarz',
       sshHostDesc: 'użytkownik@host lub alias Host z ~/.ssh/config.',
@@ -676,18 +705,22 @@ export const pl = defineLocale({
       sshReachable: (host, platform) => `Osiągalny: ${host} (${platform}) — znaleziono OpenAmer`,
       sshIncompleteHost: 'Wprowadź host SSH przed połączeniem.',
       sshErrUnreachable: 'Nie można połączyć się z tym hostem przez SSH. Sprawdź host, port i sieć.',
-      sshErrAuth: 'Uwierzytelnianie SSH nie powiodło się. Wczytaj klucz do ssh-agent (ssh-add) lub ustaw IdentityFile w ~/.ssh/config — OpenAmer uruchamia ssh nieinteraktywnie.',
-      sshErrHostKey: 'Klucz hosta ZMIENIŁ SIĘ od ostatniego połączenia. Sprawdź, czy to oczekiwane, a następnie uruchom ssh-keygen -R <host> i połącz ponownie.',
-      sshErrNotInstalled: 'OpenAmer nie jest zainstalowany na zdalnym hoście. Zainstaluj go tam (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) lub ustaw ścieżkę OpenAmer.',
-      sshErrPlatform: 'Nieobsługiwana platforma zdalna. Tryb SSH OpenAmer Desktop obsługuje zdalne hosty Linux, macOS i Windows.',
+      sshErrAuth:
+        'Uwierzytelnianie SSH nie powiodło się. Wczytaj klucz do ssh-agent (ssh-add) lub ustaw IdentityFile w ~/.ssh/config — OpenAmer uruchamia ssh nieinteraktywnie.',
+      sshErrHostKey:
+        'Klucz hosta ZMIENIŁ SIĘ od ostatniego połączenia. Sprawdź, czy to oczekiwane, a następnie uruchom ssh-keygen -R <host> i połącz ponownie.',
+      sshErrNotInstalled:
+        'OpenAmer nie jest zainstalowany na zdalnym hoście. Zainstaluj go tam (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) lub ustaw ścieżkę OpenAmer.',
+      sshErrPlatform:
+        'Nieobsługiwana platforma zdalna. Tryb SSH OpenAmer Desktop obsługuje zdalne hosty Linux, macOS i Windows.',
       sshErrTimeout: 'Połączenie SSH przekroczyło limit czasu. Host może być nieosiągalny lub uśpiony.',
       sshErrUpdateRequired: 'Zaktualizuj OpenAmer na zdalnym hoście przed połączeniem przez Desktop SSH.',
-      sshErrUnknown: 'Połączenie SSH nie powiodło się.',
+      sshErrUnknown: 'Połączenie SSH nie powiodło się.'
     },
     keys: {
       loading: 'Ładowanie kluczy API i danych uwierzytelniających...',
       failedLoad: 'Nie udało się załadować kluczy API',
-      empty: 'W tej kategorii nic nie skonfigurowano.',
+      empty: 'W tej kategorii nic nie skonfigurowano.'
     },
     mcp: {
       loading: 'Ładowanie serwerów MCP...',
@@ -739,7 +772,8 @@ export const pl = defineLocale({
       catalogInstallFailed: name => `Nie udało się zainstalować ${name}`,
       catalogEnvPrompt: name => `${name} wymaga danych logowania`,
       catalogEnvRequired: 'Uzupełnij wymagane wartości przed instalacją.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} włączone`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} włączone`,
       statusConnecting: 'Łączenie…',
       statusNeedsAuth: 'Wymaga uwierzytelnienia',
       statusError: 'Błąd',
@@ -752,7 +786,7 @@ export const pl = defineLocale({
       unsavedConnect: 'Niezapisane — zapisz mcp.json, aby połączyć.',
       enableTool: tool => `Włącz ${tool}`,
       disableTool: tool => `Wyłącz ${tool}`,
-      noOutput: 'Brak danych wyjściowych.',
+      noOutput: 'Brak danych wyjściowych.'
     },
     model: {
       loading: 'Ładowanie konfiguracji modelu...',
@@ -766,53 +800,55 @@ export const pl = defineLocale({
       defaultsFailed: 'Nie udało się zapisać domyślnych ustawień modelu',
       auxiliaryTitle: 'Modele pomocnicze',
       resetAllToMain: 'Przywróć wszystkie do głównego',
-      auxiliaryDesc: 'Zadania pomocnicze domyślnie działają na modelu głównym. Przypisz dedykowany model do dowolnego zadania, aby to zmienić.',
+      auxiliaryDesc:
+        'Zadania pomocnicze domyślnie działają na modelu głównym. Przypisz dedykowany model do dowolnego zadania, aby to zmienić.',
       setToMain: 'Ustaw na główny',
       change: 'Zmień',
       autoUseMain: 'auto · użyj modelu głównego',
       providerDefault: '(domyślny dostawcy)',
       fallbackAdd: 'Dodaj zapasowy',
       fallbackEmpty: 'Brak modeli zapasowych — używany jest model domyślny, chyba że zawiedzie.',
-      notInCatalog: "nie ma na liście modeli tego dostawcy — wywołania mogą przejść na model zapasowy.",
+      notInCatalog: 'nie ma na liście modeli tego dostawcy — wywołania mogą przejść na model zapasowy.',
       tasks: {
         vision: {
           label: 'Wizja',
-          hint: 'Analiza obrazów',
+          hint: 'Analiza obrazów'
         },
         web_extract: {
           label: 'Ekstrakcja z sieci',
-          hint: 'Streszczanie stron',
+          hint: 'Streszczanie stron'
         },
         compression: {
           label: 'Kompresja',
-          hint: 'Kompaktowanie kontekstu',
+          hint: 'Kompaktowanie kontekstu'
         },
         skills_hub: {
           label: 'Centrum umiejętności',
-          hint: 'Wyszukiwanie umiejętności',
+          hint: 'Wyszukiwanie umiejętności'
         },
         approval: {
           label: 'Zatwierdzanie',
-          hint: 'Inteligentne autozatwierdzanie',
+          hint: 'Inteligentne autozatwierdzanie'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Routing narzędzi MCP',
+          hint: 'Routing narzędzi MCP'
         },
         title_generation: {
           label: 'Generowanie tytułów',
-          hint: 'Tytuły sesji',
+          hint: 'Tytuły sesji'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Przegląd użycia umiejętności',
-        },
-      },
+          hint: 'Przegląd użycia umiejętności'
+        }
+      }
     },
     providers: {
       connectAccount: 'Połącz konto',
       haveApiKey: 'Masz klucz API?',
-      intro: 'Zaloguj się przez subskrypcję — bez kopiowania klucza API. OpenAmer przeprowadzi logowanie w przeglądarce za Ciebie, tutaj w aplikacji.',
+      intro:
+        'Zaloguj się przez subskrypcję — bez kopiowania klucza API. OpenAmer przeprowadzi logowanie w przeglądarce za Ciebie, tutaj w aplikacji.',
       connected: 'Połączono',
       collapse: 'Zwiń',
       connectAnother: 'Połącz z innym dostawcą',
@@ -822,7 +858,8 @@ export const pl = defineLocale({
       removeConfirm: provider => `Usunąć ${provider}?`,
       removeExternalGeneric: provider => `${provider} jest zarządzany przez własne CLI — usuń go tam.`,
       removeKeyManaged: provider => `${provider} jest konfigurowany za pomocą klucza API. Usuń go z Kluczy API.`,
-      removeTerminalConfirm: (provider, command) => `Rozłączyć ${provider}? Uruchomi to "${command}" w terminalu, aby wyczyścić poświadczenia.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Rozłączyć ${provider}? Uruchomi to "${command}" w terminalu, aby wyczyścić poświadczenia.`,
       removeTerminalRunning: provider => `Uruchamianie rozłączenia ${provider} w terminalu…`,
       removedTitle: 'Konto usunięte',
       removedMessage: provider => `Usunięto ${provider}`,
@@ -832,14 +869,15 @@ export const pl = defineLocale({
       noKeysMatch: 'Brak dostawców pasujących do wyszukiwania.',
       localEndpoint: {
         title: 'Lokalny / niestandardowy punkt końcowy',
-        description: 'Wskaż OpenAmer dowolny punkt końcowy zgodny z OpenAI (Zyphra, vLLM, llama.cpp, Ollama itd.).',
+        description: 'Wskaż OpenAmer dowolny punkt końcowy zgodny z OpenAI (Zyphra, vLLM, llama.cpp, Ollama itd.).'
       },
-      loading: 'Wczytywanie dostawców...',
+      loading: 'Wczytywanie dostawców...'
     },
     sessions: {
       loading: 'Wczytywanie zarchiwizowanych sesji…',
       archivedTitle: 'Zarchiwizowane sesje',
-      archivedIntro: 'Zarchiwizowane czaty są ukryte na pasku bocznym, ale zachowują wszystkie wiadomości. Ctrl/⌘-kliknij czat na pasku bocznym, aby go zarchiwizować.',
+      archivedIntro:
+        'Zarchiwizowane czaty są ukryte na pasku bocznym, ale zachowują wszystkie wiadomości. Ctrl/⌘-kliknij czat na pasku bocznym, aby go zarchiwizować.',
       emptyArchivedTitle: 'Nic nie zarchiwizowano',
       emptyArchivedDesc: 'Zarchiwizuj czat, aby ukryć go tutaj.',
       unarchive: 'Przywróć z archiwum',
@@ -848,13 +886,16 @@ export const pl = defineLocale({
       restored: 'Przywrócono',
       deleteConfirm: title => `Trwale usunąć „${title}”? Tej operacji nie można cofnąć.`,
       autoArchiveTitle: 'Automatycznie archiwizuj nieaktywne czaty',
-      autoArchiveDesc: "Automatycznie archiwizuj czaty, których dawno nie używałeś. Przypięte czaty nigdy nie są archiwizowane i nic nie jest usuwane — zarchiwizowane czaty po prostu trafiają tutaj.",
+      autoArchiveDesc:
+        'Automatycznie archiwizuj czaty, których dawno nie używałeś. Przypięte czaty nigdy nie są archiwizowane i nic nie jest usuwane — zarchiwizowane czaty po prostu trafiają tutaj.',
       autoArchiveDaysLabel: 'Archiwizuj po',
       autoArchiveDaysUnit: 'dniach bez aktywności',
       autoArchiveFailed: 'Nie udało się zaktualizować automatycznego archiwizowania',
       defaultDirTitle: 'Domyślny katalog projektu',
-      defaultDirDesc: 'Nowe sesje rozpoczynają się w tym folderze, chyba że wybierzesz inny. Pozostaw nieustawione, aby użyć katalogu domowego.',
-      defaultDirUpdated: 'Zaktualizowano domyślny katalog projektu — rozpocznij nowy czat (Ctrl/⌘+N), aby zmiana zaczęła obowiązywać',
+      defaultDirDesc:
+        'Nowe sesje rozpoczynają się w tym folderze, chyba że wybierzesz inny. Pozostaw nieustawione, aby użyć katalogu domowego.',
+      defaultDirUpdated:
+        'Zaktualizowano domyślny katalog projektu — rozpocznij nowy czat (Ctrl/⌘+N), aby zmiana zaczęła obowiązywać',
       defaultsTo: label => `Domyślnie: ${label}.`,
       change: 'Zmień',
       choose: 'Wybierz',
@@ -864,7 +905,7 @@ export const pl = defineLocale({
       unarchiveFailed: 'Nie udało się przywrócić z archiwum',
       deleteFailed: 'Nie udało się usunąć',
       updateDirFailed: 'Nie udało się zaktualizować domyślnego katalogu',
-      clearDirFailed: 'Nie udało się wyczyścić domyślnego katalogu',
+      clearDirFailed: 'Nie udało się wyczyścić domyślnego katalogu'
     },
     toolsets: {
       loadingConfig: 'Ładowanie konfiguracji',
@@ -882,20 +923,23 @@ export const pl = defineLocale({
       selectedMessage: provider => `${provider} jest teraz aktywny.`,
       failedSelect: provider => `Nie udało się wybrać ${provider}`,
       failedLoad: 'Nie udało się załadować konfiguracji narzędzia',
-      noProviderOptions: 'Ten zestaw narzędzi nie ma opcji dostawcy — włącz go, a będzie działać z bieżącą konfiguracją.',
+      noProviderOptions:
+        'Ten zestaw narzędzi nie ma opcji dostawcy — włącz go, a będzie działać z bieżącą konfiguracją.',
       noProviders: 'Obecnie dla tego zestawu narzędzi nie ma dostępnych dostawców.',
       ready: 'Gotowe',
       needsSignIn: 'Wymaga logowania',
       needsSetup: 'Wymaga konfiguracji',
       openamerIncluded: 'W zestawie z subskrypcją OpenAmer — zaloguj się do OpenAmer Portal, aby aktywować.',
       openamerAuthNeededTitle: 'Zaloguj się do OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} zapisano, ale nie aktywuje się, dopóki nie zalogujesz się do OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} zapisano, ale nie aktywuje się, dopóki nie zalogujesz się do OpenAmer Portal.`,
       openamerAuthSignIn: 'Zaloguj się',
       openamerAuthDoneTitle: 'Połączono z OpenAmer Portal',
       openamerAuthDoneMessage: 'Twoje backendy subskrypcji są teraz aktywne.',
       openamerAuthFailed: 'Logowanie do OpenAmer Portal nie zostało ukończone',
       noApiKeyRequired: 'Klucz API nie jest wymagany.',
-      postSetupHint: step => `Ten backend wymaga jednorazowej instalacji (${step}). Działa na tej maszynie — może zająć kilka minut.`,
+      postSetupHint: step =>
+        `Ten backend wymaga jednorazowej instalacji (${step}). Działa na tej maszynie — może zająć kilka minut.`,
       postSetupInstalledHint: 'Zainstalowano. Uruchom konfigurację ponownie tylko, jeśli coś nie działa.',
       postSetupRun: 'Uruchom konfigurację',
       postSetupRerun: 'Uruchom konfigurację ponownie',
@@ -936,9 +980,10 @@ export const pl = defineLocale({
         selectedTitle: 'Wybrano backend',
         selectedMessage: backend => `Polecenia terminala są teraz uruchamiane przez ${backend}. Dotyczy nowych sesji.`,
         failedSelect: backend => `Nie udało się wybrać ${backend}`,
-        needsSetupHint: 'Możesz teraz wybrać ten backend — polecenia będą kończyć się błędem, dopóki konfiguracja nie zostanie ukończona.',
-      },
-    },
+        needsSetupHint:
+          'Możesz teraz wybrać ten backend — polecenia będą kończyć się błędem, dopóki konfiguracja nie zostanie ukończona.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Umiejętności',
@@ -958,7 +1003,8 @@ export const pl = defineLocale({
     noDescription: 'Brak opisu.',
     configured: 'Skonfigurowano',
     needsKeys: 'Wymaga kluczy',
-    visionModelHint: 'Funkcja wizji korzysta z konfiguracji modelu pomocniczego — model obsługujący obrazy jest wybierany tam, a nie tutaj dla każdego dostawcy.',
+    visionModelHint:
+      'Funkcja wizji korzysta z konfiguracji modelu pomocniczego — model obsługujący obrazy jest wybierany tam, a nie tutaj dla każdego dostawcy.',
     visionModelLink: 'Wybierz model wizji w Ustawienia → Modele',
     toolsetsEnabled: (enabled, total) => `Włączono ${enabled}/${total} zestawów narzędzi`,
     configureToolset: label => `Skonfiguruj ${label}`,
@@ -984,7 +1030,7 @@ export const pl = defineLocale({
     provenance: {
       agent: 'Nauczone',
       bundled: 'Wbudowane',
-      hub: 'Centrum',
+      hub: 'Centrum'
     },
     emptyNoneFound: noun => `Nie znaleziono ${noun}`,
     emptyNothingMatches: query => `Brak dopasowań do „${query}”.`,
@@ -1002,9 +1048,11 @@ export const pl = defineLocale({
       connectingHubs: 'Łączenie z centrami umiejętności...',
       connectedHubs: 'Połączone centra:',
       featured: 'Polecane umiejętności',
-      landingHint: 'Przeszukaj centrum, aby przeglądać umiejętności do zainstalowania z oficjalnego indeksu, GitHub i źródeł społeczności.',
+      landingHint:
+        'Przeszukaj centrum, aby przeglądać umiejętności do zainstalowania z oficjalnego indeksu, GitHub i źródeł społeczności.',
       noResults: 'Nie znaleziono pasujących umiejętności w centrum.',
-      resultCount: (count, ms) => `${count} result${count === 1 ? 'wynik' : 'wyniki'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} result${count === 1 ? 'wynik' : 'wyniki'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Przekroczono limit czasu: ${sources}`,
       installed: 'Zainstalowano',
       install: 'Zainstaluj',
@@ -1022,7 +1070,7 @@ export const pl = defineLocale({
       trust: {
         builtin: 'wbudowana',
         trusted: 'zaufana',
-        community: 'społecznościowa',
+        community: 'społecznościowa'
       },
       verdictSafe: 'Bezpieczna',
       verdictCaution: 'Ostrożnie',
@@ -1040,8 +1088,8 @@ export const pl = defineLocale({
       loadFailed: 'Nie udało się załadować centrum umiejętności',
       previewFailed: 'Nie udało się wyświetlić podglądu umiejętności',
       scanFailed: 'Skanowanie bezpieczeństwa nie powiodło się',
-      searchFailed: 'Wyszukiwanie w Hubie nie powiodło się',
-    },
+      searchFailed: 'Wyszukiwanie w Hubie nie powiodło się'
+    }
   },
   starmap: {
     title: 'Graf pamięci',
@@ -1058,7 +1106,8 @@ export const pl = defineLocale({
     emptyTitle: 'Nic jeszcze nie nabyto',
     emptyDesc: 'W miarę jak OpenAmer buduje umiejętności i wspomnienia dla Twojej pracy, pojawią się one tutaj.',
     share: 'Udostępnij mapę',
-    shareHint: 'Skopiuj kod, aby udostępnić tę mapę, lub wklej kod, aby ją załadować. Zawiera on tylko układ, a nie treść pamięci ani umiejętności.',
+    shareHint:
+      'Skopiuj kod, aby udostępnić tę mapę, lub wklej kod, aby ją załadować. Zawiera on tylko układ, a nie treść pamięci ani umiejętności.',
     shareTitle: 'Importuj / eksportuj mapę',
     sharePlaceholder: 'Wklej kod mapy…',
     copy: 'Kopiuj kod mapy',
@@ -1068,7 +1117,7 @@ export const pl = defineLocale({
     importEmpty: 'Wklej kod mapy, aby ją załadować.',
     importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'węzeł' : 'węzły'}.`,
     importedBadge: 'zaimportowana mapa',
-    resetToMine: 'Powrót do mojej mapy',
+    resetToMine: 'Powrót do mojej mapy'
   },
   agents: {
     close: 'Zamknij agentów',
@@ -1098,7 +1147,7 @@ export const pl = defineLocale({
     ageDays: days => `${days} dni temu`,
     durationSeconds: seconds => `${seconds} s`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} s`,
-    tokens: value => `${value} tokenów`,
+    tokens: value => `${value} tokenów`
   },
   commandCenter: {
     close: 'Zamknij centrum poleceń',
@@ -1128,7 +1177,7 @@ export const pl = defineLocale({
       generatedTag: 'Wygenerowany',
       adoptFailed: 'Nie udało się adoptować tego zwierzaka.',
       toggleFailed: 'Nie udało się przełączyć zwierzaka.',
-      noneAvailable: 'Brak dostępnych zwierzaków — wybierz jeden poniżej, aby zainstalować.',
+      noneAvailable: 'Brak dostępnych zwierzaków — wybierz jeden poniżej, aby zainstalować.'
     },
     generatePet: {
       title: 'Wygeneruj zwierzaka',
@@ -1157,7 +1206,7 @@ export const pl = defineLocale({
       referenceImageTooLarge: 'Obraz referencyjny jest za duży. Użyj obrazu mniejszego niż 16 MB.',
       referenceImageInvalid: 'Nie można odczytać tego obrazu referencyjnego. Użyj PNG, JPG, WebP lub GIF.',
       adopt: 'Przyjmij',
-      startOver: 'Zacznij od nowa',
+      startOver: 'Zacznij od nowa'
     },
     installTheme: {
       title: 'Zainstaluj motyw…',
@@ -1169,7 +1218,7 @@ export const pl = defineLocale({
       install: 'Zainstaluj',
       installing: 'Instalowanie...',
       installed: 'Zainstalowano',
-      installs: count => `${count} instalacji`,
+      installs: count => `${count} instalacji`
     },
     settingsFields: 'Pola ustawień',
     mcpServers: 'Serwery MCP',
@@ -1178,49 +1227,49 @@ export const pl = defineLocale({
       maintenance: 'Konserwacja',
       sessions: 'Sesje',
       system: 'System',
-      usage: 'Użycie',
+      usage: 'Użycie'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostyka, kopie zapasowe, kurator i dane pamięci',
       sessions: 'Wyszukuj sesje i zarządzaj nimi',
       system: 'Status, logi i działania systemowe',
-      usage: 'Aktywność tokenów, kosztów i umiejętności w czasie',
+      usage: 'Aktywność tokenów, kosztów i umiejętności w czasie'
     },
     nav: {
       newChat: {
         title: 'Nowa sesja',
-        detail: 'Rozpocznij nową sesję',
+        detail: 'Rozpocznij nową sesję'
       },
       settings: {
         title: 'Ustawienia',
-        detail: 'Konfiguruj OpenAmer desktop',
+        detail: 'Konfiguruj OpenAmer desktop'
       },
       skills: {
         title: 'Możliwości',
-        detail: 'Umiejętności, narzędzia i serwery MCP',
+        detail: 'Umiejętności, narzędzia i serwery MCP'
       },
       messaging: {
         title: 'Komunikacja',
-        detail: 'Skonfiguruj Telegram, Slack, Discord i inne',
+        detail: 'Skonfiguruj Telegram, Slack, Discord i inne'
       },
       artifacts: {
         title: 'Artefakty',
-        detail: 'Przeglądaj wygenerowane wyniki',
-      },
+        detail: 'Przeglądaj wygenerowane wyniki'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel sesji',
-        detail: 'Wyszukuj, przypinaj i zarządzaj sesjami',
+        detail: 'Wyszukuj, przypinaj i zarządzaj sesjami'
       },
       system: {
         title: 'Panel systemowy',
-        detail: 'Status bramy, logi, restart/aktualizacja',
+        detail: 'Status bramy, logi, restart/aktualizacja'
       },
       usage: {
         title: 'Panel użycia',
-        detail: 'Aktywność tokenów, kosztów i umiejętności',
-      },
+        detail: 'Aktywność tokenów, kosztów i umiejętności'
+      }
     },
     providerNavigate: 'Nawigacja',
     providerSessions: 'Sesje',
@@ -1275,7 +1324,8 @@ export const pl = defineLocale({
       backup: 'Utwórz kopię zapasową',
       backupDesc: 'Spakuj konfigurację, pamięci, umiejętności i sesje',
       debugShare: 'Udostępnianie debugowania',
-      debugShareDesc: 'Prześlij zanonimizowany raport + logi, otrzymaj linki do udostępnienia (automatyczne usunięcie po 6 godz.)',
+      debugShareDesc:
+        'Prześlij zanonimizowany raport + logi, otrzymaj linki do udostępnienia (automatyczne usunięcie po 6 godz.)',
       debugShareRunning: 'Przesyłanie raportu debugowania...',
       debugShareLinks: 'Linki udostępniania',
       debugShareFailed: 'Udostępnianie debugowania nie powiodło się',
@@ -1308,8 +1358,8 @@ export const pl = defineLocale({
       actionStarted: name => `${name} uruchomiono — śledzenie dziennika...`,
       actionFailed: name => `Nie udało się uruchomić ${name}`,
       running: 'Działa...',
-      viewLog: 'Dziennik akcji',
-    },
+      viewLog: 'Dziennik akcji'
+    }
   },
   messaging: {
     search: 'Szukaj komunikatorów...',
@@ -1324,7 +1374,7 @@ export const pl = defineLocale({
       not_configured: 'Wymaga konfiguracji',
       pending_restart: 'Wymagane ponowne uruchomienie',
       retrying: 'Ponawianie',
-      startup_failed: 'Uruchomienie nie powiodło się',
+      startup_failed: 'Uruchomienie nie powiodło się'
     },
     unknown: 'Nieznany',
     hintPendingRestart: 'Uruchom ponownie bramę z paska stanu, aby zastosować tę zmianę.',
@@ -1337,7 +1387,8 @@ export const pl = defineLocale({
     required: 'Wymagane',
     recommended: 'Zalecane',
     advanced: count => `Zaawansowane (${count})`,
-    noTokenNeeded: 'Ta platforma nie wymaga tutaj tokenu. Skorzystaj z przewodnika konfiguracji powyżej, a następnie włącz ją poniżej.',
+    noTokenNeeded:
+      'Ta platforma nie wymaga tutaj tokenu. Skorzystaj z przewodnika konfiguracji powyżej, a następnie włącz ją poniżej.',
     enabled: 'Włączone',
     disabled: 'Wyłączone',
     unsavedChanges: 'Niezapisane zmiany',
@@ -1363,127 +1414,126 @@ export const pl = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Znacznik robota',
         help: 'Utwórz bota za pomocą @BotFather, a następnie wklej otrzymany token.',
-        placeholder: 'Wklej token bota Telegram',
+        placeholder: 'Wklej token bota Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Dozwolone identyfikatory użytkowników Telegram',
-        help: 'Zalecane. Numeryczne identyfikatory od @userinfobot oddzielone przecinkami. Bez tego każdy może napisać do Twojego bota na priv.',
+        help: 'Zalecane. Numeryczne identyfikatory od @userinfobot oddzielone przecinkami. Bez tego każdy może napisać do Twojego bota na priv.'
       },
       TELEGRAM_PROXY: {
         label: 'Adres URL serwera pośredniczącego',
-        help: 'Potrzebne tylko w sieciach, w których Telegram jest zablokowany.',
+        help: 'Potrzebne tylko w sieciach, w których Telegram jest zablokowany.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Znacznik robota',
-        help: 'Utwórz aplikację w Portalu deweloperskim Discord, dodaj bota, a następnie wklej jego token.',
+        help: 'Utwórz aplikację w Portalu deweloperskim Discord, dodaj bota, a następnie wklej jego token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Dozwolone identyfikatory użytkowników Discord',
-        help: 'Zalecane. Identyfikatory użytkowników Discord oddzielone przecinkami.',
+        help: 'Zalecane. Identyfikatory użytkowników Discord oddzielone przecinkami.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Styl odpowiedzi',
-        help: 'first, all lub off.',
+        help: 'first, all lub off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Zezwalaj wszystkim użytkownikom Discord',
-        help: 'Tylko do celów deweloperskich. Po włączeniu każdy może wysłać DM do bota bez listy dozwolonych.',
+        help: 'Tylko do celów deweloperskich. Po włączeniu każdy może wysłać DM do bota bez listy dozwolonych.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID kanału głównego',
-        help: 'Kanał, na który bot wysyła wiadomości proaktywne (wyniki cron, przypomnienia).',
+        help: 'Kanał, na który bot wysyła wiadomości proaktywne (wyniki cron, przypomnienia).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Nazwa kanału głównego',
-        help: 'Nazwa wyświetlana kanału głównego w logach i danych statusu.',
+        help: 'Nazwa wyświetlana kanału głównego w logach i danych statusu.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Zezwalaj wszystkim użytkownikom iMessage',
-        help: 'Po włączeniu pomiń listę dozwolonych BlueBubbles.',
+        help: 'Po włączeniu pomiń listę dozwolonych BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Zezwalaj wszystkim użytkownikom Mattermost',
+        label: 'Zezwalaj wszystkim użytkownikom Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kanał główny',
+        label: 'Kanał główny'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Zezwalaj wszystkim użytkownikom QQ',
+        label: 'Zezwalaj wszystkim użytkownikom QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Główny kanał QQ',
-        help: 'Domyślny kanał lub grupa dla dostarczania cron.',
+        help: 'Domyślny kanał lub grupa dla dostarczania cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Nazwa głównego kanału QQ',
+        label: 'Nazwa głównego kanału QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Znacznik robota Slack',
         help: 'Użyj tokenu bota z OAuth i uprawnień po zainstalowaniu aplikacji Slack.',
-        placeholder: 'Wklej token bota Slack',
+        placeholder: 'Wklej token bota Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token aplikacji Slack',
         help: 'Użyj tokenu aplikacji wymaganego dla trybu Socket.',
-        placeholder: 'Wklej token aplikacji Slack',
+        placeholder: 'Wklej token aplikacji Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Dozwolone identyfikatory użytkowników Slack',
-        help: 'Zalecane. Identyfikatory użytkowników Slack oddzielone przecinkami.',
+        help: 'Zalecane. Identyfikatory użytkowników Slack oddzielone przecinkami.'
       },
       MATTERMOST_URL: {
         label: 'URL serwera',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Znacznik robota',
+        label: 'Znacznik robota'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Dozwolone identyfikatory użytkowników',
-        help: 'Zalecane. Identyfikatory użytkowników Mattermost oddzielone przecinkami.',
+        help: 'Zalecane. Identyfikatory użytkowników Mattermost oddzielone przecinkami.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL serwera domowego',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token dostępu',
+        label: 'Token dostępu'
       },
       MATRIX_USER_ID: {
         label: 'Identyfikator użytkownika bota',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Dozwolone identyfikatory użytkowników Matrix',
-        help: 'Zalecane. Identyfikatory użytkowników oddzielone przecinkami w formacie @user:server.',
+        help: 'Zalecane. Identyfikatory użytkowników oddzielone przecinkami w formacie @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL mostu Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Adres URL działającego mostu REST signal-cli.',
+        help: 'Adres URL działającego mostu REST signal-cli.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Numer telefonu',
-        help: 'Numer zarejestrowany w moście signal-cli.',
+        help: 'Numer zarejestrowany w moście signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Dozwoleni użytkownicy Signal',
-        help: 'Zalecane. Identyfikatory Signal rozdzielone przecinkami.',
+        help: 'Zalecane. Identyfikatory Signal rozdzielone przecinkami.'
       },
       WHATSAPP_ENABLED: {
         label: 'Włącz most WhatsApp',
-        help: 'Ustawiane automatycznie przez przełącznik poniżej. Nie zmieniaj, jeśli nie wiesz, że tego potrzebujesz.',
+        help: 'Ustawiane automatycznie przez przełącznik poniżej. Nie zmieniaj, jeśli nie wiesz, że tego potrzebujesz.'
       },
       WHATSAPP_MODE: {
-        label: 'Tryb mostu',
+        label: 'Tryb mostu'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Dozwoleni użytkownicy WhatsApp',
-        help: 'Zalecane. Numery telefonów lub identyfikatory WhatsApp rozdzielone przecinkami.',
-      },
+        help: 'Zalecane. Numery telefonów lub identyfikatory WhatsApp rozdzielone przecinkami.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Szukaj webhooków...',
@@ -1493,7 +1543,8 @@ export const pl = defineLocale({
     hint: 'Zmiany subskrypcji są przeładowywane na gorąco, gdy odbiornik działa. Wyłączone subskrypcje odrzucają przychodzące zdarzenia.',
     empty: 'Brak subskrypcji webhooków.',
     disabledTitle: 'Odbiornik webhooków wyłączony',
-    disabledBody: 'Webhooki to odrębna platforma bramy. Włącz je tutaj, aby przyjmować przychodzące zdarzenia HTTP; kanały czatu są potrzebne tylko wtedy, gdy subskrypcja dostarcza do Telegram, Discord, Slack lub innego kanału.',
+    disabledBody:
+      'Webhooki to odrębna platforma bramy. Włącz je tutaj, aby przyjmować przychodzące zdarzenia HTTP; kanały czatu są potrzebne tylko wtedy, gdy subskrypcja dostarcza do Telegram, Discord, Slack lub innego kanału.',
     enable: 'Włącz webhooki',
     enabling: 'Włączanie...',
     enabled: (name: string) => `Włączone: "${name}"`,
@@ -1546,8 +1597,8 @@ export const pl = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-mail',
-      github_comment: 'Komentarz GitHub',
-    },
+      github_comment: 'Komentarz GitHub'
+    }
   },
   profiles: {
     close: 'Zamknij profile',
@@ -1625,7 +1676,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     failedLoadSoul: 'Nie udało się wczytać SOUL.md',
     failedSaveSoul: 'Nie udało się zapisać SOUL.md',
     failedCreate: 'Nie udało się utworzyć profilu',
-    failedRename: 'Nie udało się zmienić nazwy profilu',
+    failedRename: 'Nie udało się zmienić nazwy profilu'
   },
   cron: {
     close: 'Zamknij cron',
@@ -1640,14 +1691,14 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       paused: 'wstrzymane',
       disabled: 'wyłączone',
       error: 'błąd',
-      completed: 'ukończone',
+      completed: 'ukończone'
     },
     deliveryLabels: {
       local: 'Ten komputer',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-mail',
+      email: 'E-mail'
     },
     scheduleLabels: {
       daily: 'Codziennie',
@@ -1656,7 +1707,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       monthly: 'Co miesiąc',
       hourly: 'Co godzinę',
       'every-15-minutes': 'Co 15 minut',
-      custom: 'Własne',
+      custom: 'Własne'
     },
     scheduleHints: {
       daily: 'Codziennie o 9:00',
@@ -1665,7 +1716,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       monthly: 'Pierwszego dnia każdego miesiąca o 9:00',
       hourly: 'Na początku każdej godziny',
       'every-15-minutes': 'Co 15 minut',
-      custom: 'Składnia cron lub język naturalny',
+      custom: 'Składnia cron lub język naturalny'
     },
     days: {
       '0': 'Niedziela',
@@ -1675,7 +1726,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       '4': 'Czwartek',
       '5': 'Piątek',
       '6': 'Sobota',
-      '7': 'Niedziela',
+      '7': 'Niedziela'
     },
     dayFallback: value => `dzień ${value}`,
     everyDayAt: time => `Codziennie o ${time}`,
@@ -1685,7 +1736,8 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     topOfHour: 'Na początku każdej godziny',
     everyHourAt: minute => `Co godzinę o :${minute}`,
     newCron: 'Nowy cron',
-    emptyDescNew: 'Zaplanuj prompt do uruchamiania według wyrażenia cron. OpenAmer uruchomi go i dostarczy wyniki do wybranego miejsca docelowego.',
+    emptyDescNew:
+      'Zaplanuj prompt do uruchamiania według wyrażenia cron. OpenAmer uruchomi go i dostarczy wyniki do wybranego miejsca docelowego.',
     emptyDescSearch: 'Spróbuj szerszego zapytania.',
     emptyTitleNew: 'Brak zaplanowanych zadań',
     emptyTitleSearch: 'Brak dopasowań',
@@ -1721,8 +1773,10 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     failedSave: 'Nie udało się zapisać zadania cron',
     editTitle: 'Edytuj zadanie cron',
     createTitle: 'Nowe zadanie cron',
-    editDesc: 'Zaktualizuj harmonogram, polecenie lub cel dostarczania. Zmiany zostaną zastosowane przy następnym uruchomieniu.',
-    createDesc: 'Zaplanuj automatyczne uruchamianie polecenia. Użyj składni cron lub naturalnego zwrotu, np. "co 15 minut".',
+    editDesc:
+      'Zaktualizuj harmonogram, polecenie lub cel dostarczania. Zmiany zostaną zastosowane przy następnym uruchomieniu.',
+    createDesc:
+      'Zaplanuj automatyczne uruchamianie polecenia. Użyj składni cron lub naturalnego zwrotu, np. "co 15 minut".',
     nameLabel: 'Nazwa',
     namePlaceholder: 'Poranne podsumowanie',
     promptLabel: 'Polecenie',
@@ -1744,7 +1798,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     createAction: 'Utwórz zadanie cron',
     tabs: {
       jobs: 'Zadania',
-      blueprints: 'Szablony',
+      blueprints: 'Szablony'
     },
     blueprints: {
       tab: 'Szablony',
@@ -1758,8 +1812,8 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       loading: 'Ładowanie szablonów...',
       failedLoad: 'Nie udało się załadować szablonów',
       emptyTitle: 'Brak dostępnych szablonów',
-      emptyDesc: 'Na tym backendzie nie ma dostępnych szablonów automatyzacji.',
-    },
+      emptyDesc: 'Na tym backendzie nie ma dostępnych szablonów automatyzacji.'
+    }
   },
   artifacts: {
     search: 'Szukaj artefaktów...',
@@ -1793,14 +1847,14 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     kindLink: 'odnośnik',
     chat: 'Czat',
     copyUrl: 'Kopiuj URL',
-    copyPath: 'Kopiuj ścieżkę',
+    copyPath: 'Kopiuj ścieżkę'
   },
   sidebar: {
     nav: {
       'new-session': 'Nowa sesja',
       skills: 'Możliwości',
       messaging: 'Wiadomości',
-      artifacts: 'Artefakty',
+      artifacts: 'Artefakty'
     },
     searchAria: 'Szukaj sesji',
     searchPlaceholder: 'Szukaj sesji…',
@@ -1832,7 +1886,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       namePlaceholder: 'np. Skunkworks',
       foldersLabel: 'Foldery',
       ideaLabel: 'Pomysł',
-      ideaPlaceholder: "O czym jest ten projekt? (zapisywane w IDEA.md)",
+      ideaPlaceholder: 'O czym jest ten projekt? (zapisywane w IDEA.md)',
       ideaGenerate: 'Wygeneruj pomysł',
       ideaGenerating: 'Generowanie…',
       ideaShuffle: 'Przetasuj szablony',
@@ -1852,8 +1906,10 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       copyPath: 'Kopiuj ścieżkę',
       removeFromSidebar: 'Ukryj na pasku bocznym',
       createFailed: 'Nie udało się utworzyć projektu',
-      staleBackend: 'Zaktualizuj backend OpenAmer, aby móc tworzyć projekty — Twój backend jest starszy niż ta aplikacja desktopowa (Ustawienia → Aktualizacje → Backend).',
-      deleteConfirm: 'Spowoduje to usunięcie zapisanego projektu z OpenAmer. Pliki, repozytoria git i drzewa robocze pozostaną nietknięte.',
+      staleBackend:
+        'Zaktualizuj backend OpenAmer, aby móc tworzyć projekty — Twój backend jest starszy niż ta aplikacja desktopowa (Ustawienia → Aktualizacje → Backend).',
+      deleteConfirm:
+        'Spowoduje to usunięcie zapisanego projektu z OpenAmer. Pliki, repozytoria git i drzewa robocze pozostaną nietknięte.',
       startWork: 'Nowe drzewo robocze',
       newWorktreeTitle: 'Nowe drzewo robocze',
       newWorktreeDesc: 'Nadaj nazwę gałęzi dla tego drzewa roboczego.',
@@ -1874,13 +1930,15 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       noBranches: 'Nie znaleziono gałęzi',
       removeWorktree: 'Usuń drzewo robocze',
       removeWorktreeFailed: 'Nie udało się usunąć drzewa roboczego (niezatwierdzone zmiany?)',
-      removeWorktreeConfirm: 'Usuń je z gita (kasuje katalog drzewa roboczego; gałąź pozostaje) albo po prostu ukryj pozycję w pasku bocznym i pozostaw drzewo robocze na dysku.',
-      removeWorktreeDirty: 'To drzewo robocze ma niezatwierdzone zmiany. Wymuś usunięcie (odrzuci te zmiany) albo po prostu ukryj pozycję i pozostaw je na dysku.',
+      removeWorktreeConfirm:
+        'Usuń je z gita (kasuje katalog drzewa roboczego; gałąź pozostaje) albo po prostu ukryj pozycję w pasku bocznym i pozostaw drzewo robocze na dysku.',
+      removeWorktreeDirty:
+        'To drzewo robocze ma niezatwierdzone zmiany. Wymuś usunięcie (odrzuci te zmiany) albo po prostu ukryj pozycję i pozostaw je na dysku.',
       forceRemove: 'Wymuś usunięcie',
       enter: label => `Otwarte ${label}`,
       reorder: label => `Zmień kolejność ${label}`,
       toggle: label => `Przełącz ${label} sesji`,
-      back: 'Wszystkie projekty',
+      back: 'Wszystkie projekty'
     },
     newSessionIn: label => `Nowa sesja w ${label}`,
     showMoreIn: (count, label) => `Pokaż ${count} więcej w ${label}`,
@@ -1918,15 +1976,15 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       ageNow: 'teraz',
       ageDay: 'd',
       ageHour: 'godz.',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Wcześniej dziś',
       yesterday: 'Wczoraj',
       thisWeek: 'Wcześniej w tym tygodniu',
       lastWeek: 'W zeszłym tygodniu',
-      thisMonth: 'Wcześniej w tym miesiącu',
-    },
+      thisMonth: 'Wcześniej w tym miesiącu'
+    }
   },
   composer: {
     message: 'Wiadomość',
@@ -1937,20 +1995,20 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     newSessionPlaceholders: [
       'Co budujemy?',
       'Daj OpenAmer zadanie',
-      "Co masz na myśli?",
+      'Co masz na myśli?',
       'Opisz, czego potrzebujesz',
       'Czym się zajmiemy?',
       'Zapytaj o cokolwiek',
-      'Zacznij od celu',
+      'Zacznij od celu'
     ],
     followUpPlaceholders: [
       'Wyślij uzupełnienie',
       'Dodaj więcej kontekstu',
       'Doprecyzuj żądanie',
-      "Co dalej?",
+      'Co dalej?',
       'Kontynuuj',
       'Idź dalej',
-      'Dostosuj lub kontynuuj',
+      'Dostosuj lub kontynuuj'
     ],
     startVoice: 'Rozpocznij rozmowę głosową',
     queueMessage: 'Dodaj wiadomość do kolejki',
@@ -1986,7 +2044,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       '/resume': 'wznów poprzednią sesję',
       '/details': 'kontroluj poziom szczegółowości transkrypcji',
       '/copy': 'kopiuj zaznaczenie lub ostatnią wiadomość asystenta',
-      '/quit': 'wyjdź z OpenAmer',
+      '/quit': 'wyjdź z OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'odwołaj się do plików, folderów, adresów URL, git',
@@ -1996,7 +2054,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       'composer.sendQueued': 'wyślij następną turę z kolejki',
       'keybinds.openPanel': 'wszystkie skróty klawiszowe',
       'composer.cancel': 'zamknij okno · anuluj uruchomienie',
-      'composer.history': 'przełączaj okno / historię',
+      'composer.history': 'przełączaj okno / historię'
     },
     attachUrlTitle: 'Dołącz URL',
     attachUrlDesc: 'OpenAmer pobierze stronę i dołączy ją jako kontekst dla tej tury.',
@@ -2017,7 +2075,8 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     queueResume: 'Wznów',
     queueResumeTip: 'Wstrzymane przez Zatrzymanie — wznów wysyłanie zakolejkowanych tur',
     queueStuckTitle: 'Nie wysłano zakolejkowanej wiadomości',
-    queueStuckBody: 'Wysyłanie zakolejkowanej tury ciągle się nie udawało. Nadal jest w kolejce — spróbuj wysłać ją ponownie.',
+    queueStuckBody:
+      'Wysyłanie zakolejkowanej tury ciągle się nie udawało. Nadal jest w kolejce — spróbuj wysłać ją ponownie.',
     previewUnavailable: 'Podgląd niedostępny',
     previewLabel: label => `Podgląd ${label}`,
     couldNotPreview: label => `Nie udało się wyświetlić podglądu ${label}`,
@@ -2046,20 +2105,21 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     snippets: {
       codeReview: {
         label: 'Przegląd kodu',
-        description: 'Sprawdź bieżące zmiany pod kątem regresji, pominiętych przypadków brzegowych i brakujących testów.',
-        text: 'Sprawdź to pod kątem błędów, regresji i brakujących testów.',
+        description:
+          'Sprawdź bieżące zmiany pod kątem regresji, pominiętych przypadków brzegowych i brakujących testów.',
+        text: 'Sprawdź to pod kątem błędów, regresji i brakujących testów.'
       },
       implementationPlan: {
         label: 'Plan implementacji',
         description: 'Nakreśl podejście przed zmianą kodu, aby diff pozostał skupiony.',
-        text: 'Przygotuj zwięzły plan implementacji przed zmianą kodu.',
+        text: 'Przygotuj zwięzły plan implementacji przed zmianą kodu.'
       },
       explainThis: {
         label: 'Wyjaśnij to',
         description: 'Omów, jak działa wybrany kod, i podaj odnośniki do kluczowych plików.',
-        text: 'Wyjaśnij, jak to działa, i wskaż mi kluczowe pliki.',
-      },
-    },
+        text: 'Wyjaśnij, jak to działa, i wskaż mi kluczowe pliki.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agenci',
@@ -2089,8 +2149,10 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       viewAsList: 'Widok listy',
       revert: 'Przywróć',
       revertAll: 'Przywróć wszystko',
-      revertConfirm: 'Odrzucić zmiany w tym pliku i przywrócić go do stanu z ostatniego commita? Tej operacji nie można cofnąć.',
-      revertAllConfirm: 'Odrzucić wszystkie zmiany i przywrócić pliki do stanu z ostatniego commita? Tej operacji nie można cofnąć.',
+      revertConfirm:
+        'Odrzucić zmiany w tym pliku i przywrócić go do stanu z ostatniego commita? Tej operacji nie można cofnąć.',
+      revertAllConfirm:
+        'Odrzucić wszystkie zmiany i przywrócić pliki do stanu z ostatniego commita? Tej operacji nie można cofnąć.',
       staged: 'W indeksie',
       noChanges: 'Brak zmian',
       notRepo: 'To nie jest repozytorium git',
@@ -2107,13 +2169,14 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       openPr: 'Otwórz PR',
       ghMissing: 'Zainstaluj GitHub CLI (gh) i zaloguj się, aby otwierać PR-y',
       agentShip: 'Poproś OpenAmer o otwarcie PR',
-      agentShipPrompt: 'Przejrzyj aktualne zmiany, zatwierdź je z jasnym komunikatem conventional-commit, wypchnij gałąź i otwórz pull request.',
+      agentShipPrompt:
+        'Przejrzyj aktualne zmiany, zatwierdź je z jasnym komunikatem conventional-commit, wypchnij gałąź i otwórz pull request.',
       newBranch: 'Nowa gałąź',
       branchOffFrom: base => `Nowa gałąź z ${base}`,
       switchTo: branch => `Przełącz na ${branch}`,
       switchFailed: branch => `Nie udało się przełączyć na ${branch}`,
-      worktrees: 'Worktree',
-    },
+      worktrees: 'Worktree'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2191,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       done: 'Aktualizacja zakończona',
       manual: 'Aktualizuj z terminala',
       guiSkew: 'Aktualizuj aplikację desktopową',
-      error: 'Aktualizacja wstrzymana',
+      error: 'Aktualizacja wstrzymana'
     },
     checking: 'Szukanie aktualizacji…',
     checkFailedTitle: 'Nie udało się sprawdzić aktualizacji',
@@ -2143,20 +2206,25 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     availableBody: 'Nowa wersja OpenAmer jest gotowa do instalacji.',
     availableTitleBackend: 'Dostępna aktualizacja backendu',
     availableBodyBackend: 'Nowsza wersja połączonego backendu OpenAmer jest gotowa do instalacji.',
-    availableBodyNoChangelog: 'Nowsza wersja jest gotowa. Informacje o wydaniu nie są dostępne dla tego typu instalacji.',
+    availableBodyNoChangelog:
+      'Nowsza wersja jest gotowa. Informacje o wydaniu nie są dostępne dla tego typu instalacji.',
     updateNow: 'Zaktualizuj teraz',
     maybeLater: 'Może później',
     moreChanges: count => `+ ${count} more change${count === 1 ? 'zmiana' : 'zmiany'} included.`,
     manualTitle: 'Zaktualizuj z terminala',
-    manualBody: 'OpenAmer został zainstalowany z wiersza poleceń, więc aktualizacje też są tam uruchamiane. Wklej to do terminala:',
+    manualBody:
+      'OpenAmer został zainstalowany z wiersza poleceń, więc aktualizacje też są tam uruchamiane. Wklej to do terminala:',
     manualPickedUp: 'OpenAmer załaduje nową wersję przy następnym uruchomieniu.',
     guiSkewTitle: 'Zaktualizuj aplikację desktopową',
-    guiSkewBody: 'Backend został zaktualizowany, ale pakiet tej aplikacji desktopowej nie uległ zmianie. Zaktualizuj lub zainstaluj ponownie aplikację desktopową OpenAmer (AppImage / .deb / .rpm), aby wersje były zgodne.',
+    guiSkewBody:
+      'Backend został zaktualizowany, ale pakiet tej aplikacji desktopowej nie uległ zmianie. Zaktualizuj lub zainstaluj ponownie aplikację desktopową OpenAmer (AppImage / .deb / .rpm), aby wersje były zgodne.',
     copy: 'Kopiuj',
     copied: 'Skopiowano',
     done: 'Gotowe',
-    applyingBody: 'Aktualizator OpenAmer przejmuje kontrolę w osobnym oknie i automatycznie ponownie otwiera OpenAmer po zakończeniu. Nie otwieraj OpenAmer samodzielnie podczas aktualizacji.',
-    applyingBodyBackend: 'Zdalny backend stosuje aktualizację i zostanie uruchomiony ponownie. OpenAmer połączy się automatycznie, gdy backend wróci.',
+    applyingBody:
+      'Aktualizator OpenAmer przejmuje kontrolę w osobnym oknie i automatycznie ponownie otwiera OpenAmer po zakończeniu. Nie otwieraj OpenAmer samodzielnie podczas aktualizacji.',
+    applyingBodyBackend:
+      'Zdalny backend stosuje aktualizację i zostanie uruchomiony ponownie. OpenAmer połączy się automatycznie, gdy backend wróci.',
     applyingClose: 'To okno zamknie się podczas aktualizacji, a następnie OpenAmer otworzy się samodzielnie.',
     errorTitle: 'Aktualizacja nie została ukończona',
     errorBody: 'Bez obaw — nic nie zginęło. Możesz teraz spróbować ponownie.',
@@ -2167,12 +2235,13 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       restarting: 'Backend restartuje się, aby wczytać aktualizację…',
       notAvailable: 'Aktualizacja nie jest dostępna dla tego backendu.',
       failed: 'Aktualizacja backendu nie powiodła się.',
-      noReturn: 'Backend nie wrócił online. Aktualizacja mogła nie zostać ukończona — sprawdź host backendu.',
+      noReturn: 'Backend nie wrócił online. Aktualizacja mogła nie zostać ukończona — sprawdź host backendu.'
     },
     appErrors: {
-      updateLocked: 'Aktualizacja przerwana: inne okno OpenAmer lub terminal z uruchomionym openamer blokuje tę instalację. Zamknij go i spróbuj ponownie.',
-      updateFailed: 'Aktualizacja nie została ukończona. Bez obaw — nic nie przepadło. Możesz spróbować ponownie.',
-    },
+      updateLocked:
+        'Aktualizacja przerwana: inne okno OpenAmer lub terminal z uruchomionym openamer blokuje tę instalację. Zamknij go i spróbuj ponownie.',
+      updateFailed: 'Aktualizacja nie została ukończona. Bez obaw — nic nie przepadło. Możesz spróbować ponownie.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2249,30 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       running: 'Instalowanie',
       succeeded: 'Gotowe',
       skipped: 'Pominięto',
-      failed: 'Nie udało się',
+      failed: 'Nie udało się'
     },
     oneTimeTitle: 'OpenAmer wymaga jednorazowej instalacji',
-    unsupportedDesc: platform => `Zautomatyzowana instalacja przy pierwszym uruchomieniu nie jest jeszcze dostępna na ${platform}. Otwórz terminal i uruchom poniższe polecenie, a następnie uruchom tę aplikację ponownie. Kolejne uruchomienia pominą ten krok.`,
+    unsupportedDesc: platform =>
+      `Zautomatyzowana instalacja przy pierwszym uruchomieniu nie jest jeszcze dostępna na ${platform}. Otwórz terminal i uruchom poniższe polecenie, a następnie uruchom tę aplikację ponownie. Kolejne uruchomienia pominą ten krok.`,
     installCommand: 'Polecenie instalacji',
     copyCommand: 'Kopiuj polecenie',
     viewDocs: 'Zobacz dokumentację instalacji',
     installTo: 'Zostanie zainstalowane w',
     retryAfterRun: 'Uruchomiłem -- ponów',
     setupChoiceTitle: 'Skonfiguruj OpenAmer Desktop',
-    setupChoiceDesc: 'Połącz tę aplikację z bramą OpenAmer, którą już uruchamiasz, lub zainstaluj OpenAmer lokalnie na tym komputerze.',
+    setupChoiceDesc:
+      'Połącz tę aplikację z bramą OpenAmer, którą już uruchamiasz, lub zainstaluj OpenAmer lokalnie na tym komputerze.',
     connectExistingTitle: 'Połącz z istniejącym OpenAmer',
     connectExistingShort: 'Połącz istniejący',
-    connectExistingDesc: 'Użyj zdalnego backendu z tokenem sesji lub logowaniem przez przeglądarkę. Instalacja lokalna nie zostanie uruchomiona.',
+    connectExistingDesc:
+      'Użyj zdalnego backendu z tokenem sesji lub logowaniem przez przeglądarkę. Instalacja lokalna nie zostanie uruchomiona.',
     installLocalTitle: 'Zainstaluj OpenAmer lokalnie',
     installLocalDesc: 'Pobierz OpenAmer, utwórz środowisko Python i uruchom backend na tym komputerze.',
-    localStartUnavailable: 'Nie udało się rozpocząć instalacji lokalnej. Uruchom ponownie OpenAmer Desktop i spróbuj jeszcze raz.',
+    localStartUnavailable:
+      'Nie udało się rozpocząć instalacji lokalnej. Uruchom ponownie OpenAmer Desktop i spróbuj jeszcze raz.',
     remoteSetupTitle: 'Połącz z istniejącym OpenAmer',
-    remoteSetupDesc: 'Wprowadź URL bramy. OpenAmer Desktop wykryje, czy potrzebny jest token, czy logowanie w przeglądarce.',
+    remoteSetupDesc:
+      'Wprowadź URL bramy. OpenAmer Desktop wykryje, czy potrzebny jest token, czy logowanie w przeglądarce.',
     remoteUrlTitle: 'URL bramy',
     remoteUrlDesc: 'Użyj bazowego URL bramy OpenAmer, z https:// dla połączeń zdalnych.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2299,10 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     failedTitle: 'Instalacja nie powiodła się',
     settingUpTitle: 'Konfigurowanie OpenAmer Agent',
     finishingTitle: 'Kończenie',
-    failedDesc: 'Jeden z kroków instalacji nie powiódł się. W systemie Windows może się to zdarzyć, gdy działa inna instancja OpenAmer CLI lub aplikacji desktopowej. Zatrzymaj wszystkie działające instancje OpenAmer, a następnie spróbuj ponownie. Sprawdź szczegóły poniżej lub dziennik aplikacji desktopowej, aby zobaczyć pełny zapis.',
-    activeDesc: 'To jednorazowa konfiguracja. Instalator OpenAmer pobiera zależności i konfiguruje Twój komputer. Kolejne uruchomienia pominą ten krok.',
+    failedDesc:
+      'Jeden z kroków instalacji nie powiódł się. W systemie Windows może się to zdarzyć, gdy działa inna instancja OpenAmer CLI lub aplikacji desktopowej. Zatrzymaj wszystkie działające instancje OpenAmer, a następnie spróbuj ponownie. Sprawdź szczegóły poniżej lub dziennik aplikacji desktopowej, aby zobaczyć pełny zapis.',
+    activeDesc:
+      'To jednorazowa konfiguracja. Instalator OpenAmer pobiera zależności i konfiguruje Twój komputer. Kolejne uruchomienia pominą ten krok.',
     progress: (completed, total) => `Ukończono ${completed} z ${total} kroków`,
     currentStage: stage => ` -- teraz: ${stage}`,
     fetchingManifest: 'Pobieranie manifestu instalatora...',
@@ -2240,10 +2316,10 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     transcriptSaved: 'Pełny zapis zapisano w',
     copiedOutput: 'Skopiowano!',
     copyOutput: 'Kopiuj dane wyjściowe',
-    reloadRetry: 'Odśwież i ponów',
+    reloadRetry: 'Odśwież i ponów'
   },
   onboarding: {
-    headerTitle: "Skonfigurujmy OpenAmer Agent",
+    headerTitle: 'Skonfigurujmy OpenAmer Agent',
     headerDesc: 'Podłącz dostawcę modeli, aby zacząć rozmowę. Większość opcji wymaga jednego kliknięcia.',
     preparingInstall: 'OpenAmer kończy instalację. Przy pierwszym uruchomieniu zwykle trwa to poniżej minuty.',
     starting: 'Uruchamianie OpenAmer…',
@@ -2251,7 +2327,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     collapse: 'Zwiń',
     otherProviders: 'Inni dostawcy',
     haveApiKey: 'Mam klucz API',
-    chooseLater: "Wybiorę dostawcę później",
+    chooseLater: 'Wybiorę dostawcę później',
     recommended: 'Polecane',
     connected: 'Połączono',
     featuredPitch: 'Jedna subskrypcja, ponad 300 czołowych modeli — polecany sposób korzystania z OpenAmer',
@@ -2260,28 +2336,29 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'bezpośrednie API modelu',
-        description: 'Bezpośredni dostęp do modeli hostowanych przez Fireworks AI.',
+        description: 'Bezpośredni dostęp do modeli hostowanych przez Fireworks AI.'
       },
       openrouter: {
         short: 'jeden klucz, wiele modeli',
-        description: 'Hostuje setki modeli pod jednym kluczem. Dobry wybór domyślny dla nowych instalacji.',
+        description: 'Hostuje setki modeli pod jednym kluczem. Dobry wybór domyślny dla nowych instalacji.'
       },
       openai: {
         short: 'Modele klasy GPT',
-        description: 'Bezpośredni dostęp do modeli OpenAI.',
+        description: 'Bezpośredni dostęp do modeli OpenAI.'
       },
       gemini: {
         short: 'Modele Gemini',
-        description: 'Bezpośredni dostęp do modeli Google Gemini.',
+        description: 'Bezpośredni dostęp do modeli Google Gemini.'
       },
       xai: {
         short: 'Modele Grok',
-        description: 'Bezpośredni dostęp do modeli xAI Grok.',
+        description: 'Bezpośredni dostęp do modeli xAI Grok.'
       },
       local: {
         short: 'własny hosting',
-        description: 'Skieruj OpenAmer do lokalnego lub własnego punktu końcowego zgodnego z OpenAI (vLLM, llama.cpp, Ollama itp.).',
-      },
+        description:
+          'Skieruj OpenAmer do lokalnego lub własnego punktu końcowego zgodnego z OpenAI (vLLM, llama.cpp, Ollama itp.).'
+      }
     },
     backToSignIn: 'Powrót do logowania',
     getKey: 'Pobierz klucz',
@@ -2294,7 +2371,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     flowSubtitles: {
       pkce: 'Otwiera przeglądarkę do logowania, a następnie kontynuuje tutaj',
       device_code: 'Otwiera stronę weryfikacji w przeglądarce — OpenAmer łączy się automatycznie',
-      external: 'Zaloguj się raz w terminalu, a następnie wróć do czatu',
+      external: 'Zaloguj się raz w terminalu, a następnie wróć do czatu'
     },
     startingSignIn: provider => `Rozpoczynanie logowania dla ${provider}...`,
     verifyingCode: provider => `Weryfikowanie kodu z ${provider}...`,
@@ -2308,11 +2385,13 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     copyAuthCode: 'Skopiuj kod autoryzacyjny i wklej go poniżej.',
     pasteAuthCode: 'Wklej kod autoryzacyjny',
     reopenAuthPage: 'Ponownie otwórz stronę autoryzacji',
-    autoBrowser: provider => `Otworzyliśmy ${provider} w Twojej przeglądarce. Autoryzuj OpenAmer w tym miejscu, a zostaniesz połączony automatycznie — nie trzeba nic kopiować ani wklejać.`,
+    autoBrowser: provider =>
+      `Otworzyliśmy ${provider} w Twojej przeglądarce. Autoryzuj OpenAmer w tym miejscu, a zostaniesz połączony automatycznie — nie trzeba nic kopiować ani wklejać.`,
     reopenSignInPage: 'Ponownie otwórz stronę logowania',
     waitingAuthorize: 'Oczekiwanie na autoryzację...',
-    externalPending: provider => `${provider} loguje się przez własne CLI. Uruchom tę komendę w terminalu, a następnie wróć i wybierz „Zalogowałem się”:`,
-    signedIn: "Zalogowano się",
+    externalPending: provider =>
+      `${provider} loguje się przez własne CLI. Uruchom tę komendę w terminalu, a następnie wróć i wybierz „Zalogowałem się”:`,
+    signedIn: 'Zalogowano się',
     deviceCodeOpened: provider => `Otworzyliśmy ${provider} w przeglądarce. Wpisz tam ten kod:`,
     reopenVerification: 'Ponownie otwórz stronę weryfikacji',
     copy: 'Kopiuj',
@@ -2323,7 +2402,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     price: (input, output) => `${input} wejścia / ${output} wyjścia na Mtok`,
     change: 'Zmień',
     startChatting: 'Rozpocznij',
-    docs: provider => `Dokumentacja ${provider}`,
+    docs: provider => `Dokumentacja ${provider}`
   },
   modelPicker: {
     title: 'Zmień model',
@@ -2339,13 +2418,13 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     free: 'Bezpłatne',
     freeTier: 'Plan bezpłatny',
     priceTitle: 'Cena wejścia / wyjścia za milion tokenów',
-    wasPrice: 'był',
+    wasPrice: 'był'
   },
   modelVisibility: {
     title: 'Modele',
     search: 'Szukaj modeli',
     noAuthenticatedProviders: 'Brak uwierzytelnionych dostawców.',
-    addProvider: 'Dodaj dostawcę…',
+    addProvider: 'Dodaj dostawcę…'
   },
   shell: {
     windowControls: 'Sterowanie oknem',
@@ -2356,7 +2435,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       noModels: 'Nie znaleziono modeli',
       editModels: 'Edytuj modele…',
       refreshModels: 'Odśwież modele',
-      fast: 'Szybko',
+      fast: 'Szybko'
     },
     modelOptions: {
       noOptions: 'Brak opcji dla tego modelu',
@@ -2372,7 +2451,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       max: 'Maks',
       ultra: 'Ultra',
       updateFailed: 'Nie udało się zaktualizować opcji modelu',
-      fastFailed: 'Nie udało się zaktualizować trybu szybkiego',
+      fastFailed: 'Nie udało się zaktualizować trybu szybkiego'
     },
     gatewayMenu: {
       gateway: 'Brama',
@@ -2387,7 +2466,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       connection: label => `Połączenie: ${label}`,
       recentActivity: 'Ostatnia aktywność',
       viewAllLogs: 'Zobacz wszystkie logi →',
-      messagingPlatforms: 'Platformy komunikacyjne',
+      messagingPlatforms: 'Platformy komunikacyjne'
     },
     approvalMode: {
       title: 'Tryb zatwierdzania',
@@ -2397,14 +2476,15 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       smart: 'Inteligentny',
       smartDescription: 'Automatycznie oceniaj działania i pytaj w razie potrzeby',
       off: 'Wyłączony',
-      offDescription: 'Działaj bez monitów o zatwierdzenie',
+      offDescription: 'Działaj bez monitów o zatwierdzenie'
     },
     statusbar: {
       unknown: 'nieznany',
       restart: 'uruchom ponownie',
       update: 'aktualizuj',
       updateInProgress: 'Aktualizacja w toku',
-      commitsBehind: (count, branch) => `${count} commit${count === 1 ? 'zatwierdzenie' : 'zatwierdzenia'} behind ${branch}`,
+      commitsBehind: (count, branch) =>
+        `${count} commit${count === 1 ? 'zatwierdzenie' : 'zatwierdzenia'} behind ${branch}`,
       desktopVersion: version => `OpenAmer Pulpit wersja ${version}`,
       backendVersion: version => `Zaplecze v${version}`,
       clientLabel: version => `klient v${version}`,
@@ -2453,27 +2533,29 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
           skills: 'Umiejętności',
           subagent_definitions: 'Definicje podagentów',
           system_prompt: 'Prompt systemowy',
-          tool_definitions: 'Definicje narzędzi',
+          tool_definitions: 'Definicje narzędzi'
         },
         empty: 'Brak danych kontekstu',
         loading: 'Ładowanie podziału…',
         percentFull: percent => `${percent}% Pełne`,
         title: 'Użycie kontekstu',
-        tokenSummary: (used, max) => `${used} / ${max} tokenów`,
+        tokenSummary: (used, max) => `${used} / ${max} tokenów`
       },
       openContextUsage: 'Otwórz podział użycia kontekstu',
       session: 'Sesja',
       runtimeSessionElapsed: 'Czas działania sesji',
-      yoloOn: 'YOLO włączone — automatyczne zatwierdzanie niebezpiecznych poleceń. Kliknij, aby wyłączyć. Shift+klik przełącza globalnie.',
-      yoloOff: 'YOLO wyłączone — kliknij, aby automatycznie zatwierdzać niebezpieczne polecenia. Shift+klik przełącza globalnie.',
+      yoloOn:
+        'YOLO włączone — automatyczne zatwierdzanie niebezpiecznych poleceń. Kliknij, aby wyłączyć. Shift+klik przełącza globalnie.',
+      yoloOff:
+        'YOLO wyłączone — kliknij, aby automatycznie zatwierdzać niebezpieczne polecenia. Shift+klik przełącza globalnie.',
       modelNone: 'brak',
       noModel: 'brak modelu',
       switchModel: 'Przełącz model',
       openModelPicker: 'Otwórz wybór modelu',
       modelPinned: 'przypięty przez Ciebie; nowe czaty używają go zamiast domyślnego z Ustawień',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Prawy pasek boczny',
@@ -2509,7 +2591,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     terminalNew: 'Nowy terminal',
     terminalCloseOthers: 'Zamknij pozostałe',
     terminalCloseAll: 'Zamknij wszystkie',
-    addToChat: 'Dodaj do czatu',
+    addToChat: 'Dodaj do czatu'
   },
   preview: {
     tab: 'Podgląd',
@@ -2543,7 +2625,8 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     unsavedChanges: 'Niezapisane zmiany',
     saveFailed: message => `Nie udało się zapisać: ${message}`,
     diskChangedTitle: 'Plik zmieniony na dysku',
-    diskChangedBody: 'Ten plik zmienił się od czasu otwarcia. Nadpisać go swoją wersją czy odrzucić zmiany i wczytać ponownie?',
+    diskChangedBody:
+      'Ten plik zmienił się od czasu otwarcia. Nadpisać go swoją wersją czy odrzucić zmiany i wczytać ponownie?',
     overwrite: 'Nadpisz',
     discardReload: 'Odrzuć i wczytaj ponownie',
     console: {
@@ -2564,7 +2647,7 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       empty: 'Brak komunikatów konsoli.',
       promptHeader: 'Konsola podglądu:',
       sentTitle: 'Wysłano na czat',
-      sentMessage: count => `Do kompozytora dodano ${count} wpis w logach${count === 1 ? 'y' : 'ies'}`,
+      sentMessage: count => `Do kompozytora dodano ${count} wpis w logach${count === 1 ? 'y' : 'ies'}`
     },
     web: {
       appFailedToBoot: 'Nie udało się uruchomić aplikacji podglądu',
@@ -2589,17 +2672,19 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       reloadingNow: 'Ponownie wczytuję podgląd.',
       restartFailedTitle: 'Restart podglądu nie powiódł się',
       restartFailedMessage: 'OpenAmer nie mógł zrestartować serwera.',
-      stillWorking: 'OpenAmer nadal pracuje, ale wynik ponownego uruchomienia jeszcze nie dotarł. Polecenie serwera może działać na pierwszym planie.',
+      stillWorking:
+        'OpenAmer nadal pracuje, ale wynik ponownego uruchomienia jeszcze nie dotarł. Polecenie serwera może działać na pierwszym planie.',
       workspaceReloading: 'Obszar roboczy zmieniony, przeładowuję podgląd',
       fileChanged: url => `Plik zmieniony, przeładowuję podgląd: ${url}`,
       filesChanged: (count, url) => `Zmiany plików: ${count}, przeładowuję podgląd: ${url}`,
       watchFailed: message => `Nie można obserwować pliku podglądu: ${message}`,
-      moduleMimeDescription: 'Skrypty modułów są serwowane z nieprawidłowym typem MIME. Zwykle oznacza to, że serwer plików statycznych obsługuje aplikację Vite/React zamiast serwera deweloperskiego projektu.',
+      moduleMimeDescription:
+        'Skrypty modułów są serwowane z nieprawidłowym typem MIME. Zwykle oznacza to, że serwer plików statycznych obsługuje aplikację Vite/React zamiast serwera deweloperskiego projektu.',
       loadFailedConsole: (code, message) => `Ładowanie nie powiodło się${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Nie można uzyskać dostępu do strony podglądu.',
       openTarget: url => `Otwórz ${url}`,
-      fallbackTitle: 'Podgląd',
-    },
+      fallbackTitle: 'Podgląd'
+    }
   },
   zones: {
     showHeader: 'Pokaż nagłówek',
@@ -2607,7 +2692,8 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     minimize: 'Minimalizuj',
     restore: 'Przywróć',
     closeRunningTitle: 'Zamknąć uruchomioną kartę?',
-    closeRunningBody: 'Ten czat nadal pracuje (lub czeka na Twoje dane). Zamknięcie karty ukrywa go — sesja zachowuje postęp i można ją ponownie otworzyć z paska bocznego.',
+    closeRunningBody:
+      'Ten czat nadal pracuje (lub czeka na Twoje dane). Zamknięcie karty ukrywa go — sesja zachowuje postęp i można ją ponownie otworzyć z paska bocznego.',
     closeRunningConfirm: 'Zamknij kartę',
     closeOthers: 'Zamknij inne',
     closeToRight: 'Zamknij po prawej',
@@ -2633,7 +2719,8 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     deletePreset: name => `Usuń ${name}`,
     zoneEditorTitle: 'Edytor stref',
     editorHintPre: 'kliknij, aby podzielić · ',
-    editorHintPost: ' odwraca linię · przeciągnij między strefami, aby scalić · przeciągnij wspólne krawędzie, aby zmienić rozmiar',
+    editorHintPost:
+      ' odwraca linię · przeciągnij między strefami, aby scalić · przeciągnij wspólne krawędzie, aby zmienić rozmiar',
     templateColumns: 'Kolumny',
     templateRows: 'Wiersze',
     templateGrid: 'Siatka',
@@ -2644,27 +2731,16 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     layoutNamePlaceholder: fallback => `Nazwa układu (${fallback})`,
     saveApply: 'Zapisz i zastosuj',
     notExpressible: 'ten układ zazębia się (wiatraczek) — nie da się go jeszcze wyrazić jako zagnieżdżone podziały',
-    zoneCount: count => `${count} stref`,
+    zoneCount: count => `${count} stref`
   },
   assistant: {
     thread: {
       loadingSession: 'Ładowanie sesji',
       showEarlier: 'Pokaż wcześniejsze wiadomości',
       loadingResponse: 'OpenAmer ładuje odpowiedź',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Myślenie',
       today: time => `Dzisiaj, ${time}`,
@@ -2686,12 +2762,13 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       restoreCheckpoint: 'Przywróć punkt kontrolny',
       restoreFromHere: 'Przywróć punkt kontrolny — uruchom ponownie od tego polecenia',
       restoreTitle: 'Przywrócić do tego punktu kontrolnego?',
-      restoreBody: 'Wszystko po tym poleceniu zostanie usunięte z rozmowy, a polecenie uruchomi się ponownie od tego miejsca.',
+      restoreBody:
+        'Wszystko po tym poleceniu zostanie usunięte z rozmowy, a polecenie uruchomi się ponownie od tego miejsca.',
       restoreConfirm: 'Przywróć i uruchom ponownie',
       restoreNext: 'Przywróć następny punkt kontrolny',
       goForward: 'Przejdź dalej',
       sendEdited: 'Wyślij edytowaną wiadomość',
-      attachingFile: 'Załączanie…',
+      attachingFile: 'Załączanie…'
     },
     approval: {
       gatewayDisconnected: 'Brama OpenAmer nie jest połączona',
@@ -2704,8 +2781,9 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       jumpToApproval: 'Wymagane zatwierdzenie',
       reject: 'Odrzuć',
       alwaysTitle: 'Zawsze zezwalać na to polecenie?',
-      alwaysDescription: pattern => `To dodaje wzorzec „${pattern}” do stałej listy dozwolonych (~/.openamer/config.yaml). OpenAmer nie zapyta ponownie o takie polecenia — ani w tej sesji, ani w żadnej przyszłej.`,
-      alwaysAllow: 'Zawsze zezwalaj',
+      alwaysDescription: pattern =>
+        `To dodaje wzorzec „${pattern}” do stałej listy dozwolonych (~/.openamer/config.yaml). OpenAmer nie zapyta ponownie o takie polecenia — ani w tej sesji, ani w żadnej przyszłej.`,
+      alwaysAllow: 'Zawsze zezwalaj'
     },
     clarify: {
       notReady: 'Prośba o doprecyzowanie nie jest jeszcze gotowa',
@@ -2719,7 +2797,8 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       continueLabel: 'Kontynuuj',
       lateAnswer: (question, choice) => `Odp.: "${question}" — moja odpowiedź: ${choice}`,
       lateAnswerTip: 'Przygotuj tę odpowiedź jako wiadomość uzupełniającą',
-      lateAnswerHint: 'To zapytanie nie oczekuje już na odpowiedź. Wybierz opcję, aby przygotować je jako wiadomość uzupełniającą.',
+      lateAnswerHint:
+        'To zapytanie nie oczekuje już na odpowiedź. Wybierz opcję, aby przygotować je jako wiadomość uzupełniającą.'
     },
     tool: {
       code: 'Kod',
@@ -2755,11 +2834,11 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
         ran: 'Uruchomiono',
         running: 'Uruchamianie',
         ranCode: 'Uruchomiono kod',
-        runningCode: 'Skryptowanie',
+        runningCode: 'Skryptowanie'
       },
       prefixes: {
         browser: 'Przeglądarka',
-        web: 'Internet',
+        web: 'Internet'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2767,132 +2846,133 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Uruchamianie ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Uruchamianie ${action.toLowerCase()}`,
+        runningTool: action => `Uruchamianie ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Kliknięto element strony',
           pending: 'Klikanie elementu strony',
-          pendingAction: 'Klikanie',
+          pendingAction: 'Klikanie'
         },
         browser_fill: {
           done: 'Wypełniono pole formularza',
           pending: 'Wypełnianie pola formularza',
-          pendingAction: 'Wypełnianie',
+          pendingAction: 'Wypełnianie'
         },
         browser_navigate: {
           done: 'Otwarto stronę',
           pending: 'Otwieranie strony',
-          pendingAction: 'Otwieranie',
+          pendingAction: 'Otwieranie'
         },
         browser_snapshot: {
           done: 'Przechwycono migawkę strony',
           pending: 'Przechwytywanie migawki strony',
-          pendingAction: 'Przechwytywanie',
+          pendingAction: 'Przechwytywanie'
         },
         browser_take_screenshot: {
           done: 'Przechwycono zrzut ekranu',
           pending: 'Przechwytywanie zrzutu ekranu',
-          pendingAction: 'Przechwytywanie',
+          pendingAction: 'Przechwytywanie'
         },
         browser_type: {
           done: 'Wpisano na stronie',
           pending: 'Wpisywanie na stronie',
-          pendingAction: 'Wpisywanie',
+          pendingAction: 'Wpisywanie'
         },
         clarify: {
           done: 'Zadano pytanie',
           pending: 'Zadawanie pytania',
-          pendingAction: 'Zadawanie',
+          pendingAction: 'Zadawanie'
         },
         cronjob: {
           done: 'Zadanie cron',
           pending: 'Planowanie zadania cron',
-          pendingAction: 'Planowanie',
+          pendingAction: 'Planowanie'
         },
         edit_file: {
           done: 'Edytowano plik',
           pending: 'Edytowanie pliku',
-          pendingAction: 'Edytowanie',
+          pendingAction: 'Edytowanie'
         },
         execute_code: {
           done: 'Uruchomiono kod',
           pending: 'Skryptowanie',
-          pendingAction: 'Skryptowanie',
+          pendingAction: 'Skryptowanie'
         },
         image_generate: {
           done: 'Wygenerowano obraz',
           pending: 'Generowanie obrazu',
-          pendingAction: 'Generowanie',
+          pendingAction: 'Generowanie'
         },
         list_files: {
           done: 'Wyświetlono pliki',
           pending: 'Wyświetlanie plików',
-          pendingAction: 'Wyświetlanie',
+          pendingAction: 'Wyświetlanie'
         },
         patch: {
           done: 'Poprawiono plik',
           pending: 'Poprawianie pliku',
-          pendingAction: 'Poprawianie',
+          pendingAction: 'Poprawianie'
         },
         read_file: {
           done: 'Odczytano plik',
           pending: 'Odczytywanie pliku',
-          pendingAction: 'Odczytywanie',
+          pendingAction: 'Odczytywanie'
         },
         search_files: {
           done: 'Przeszukano pliki',
           pending: 'Przeszukiwanie plików',
-          pendingAction: 'Przeszukiwanie',
+          pendingAction: 'Przeszukiwanie'
         },
         session_search_recall: {
           done: 'Przeszukano historię sesji',
           pending: 'Przeszukiwanie historii sesji',
-          pendingAction: 'Przeszukiwanie',
+          pendingAction: 'Przeszukiwanie'
         },
         terminal: {
           done: 'Uruchomiono polecenie',
           pending: 'Uruchamianie polecenia',
-          pendingAction: 'Uruchamianie',
+          pendingAction: 'Uruchamianie'
         },
         todo: {
           done: 'Zaktualizowano zadania',
           pending: 'Aktualizowanie zadań',
-          pendingAction: 'Aktualizowanie',
+          pendingAction: 'Aktualizowanie'
         },
         vision_analyze: {
           done: 'Przeanalizowano obraz',
           pending: 'Analizowanie obrazu',
-          pendingAction: 'Analizowanie',
+          pendingAction: 'Analizowanie'
         },
         web_extract: {
           done: 'Odczytano stronę internetową',
           pending: 'Odczytywanie strony internetowej',
-          pendingAction: 'Odczytywanie',
+          pendingAction: 'Odczytywanie'
         },
         web_search: {
           done: 'Przeszukano sieć',
           pending: 'Przeszukiwanie sieci',
-          pendingAction: 'Przeszukiwanie',
+          pendingAction: 'Przeszukiwanie'
         },
         write_file: {
           done: 'Edytowano plik',
           pending: 'Edytowanie pliku',
-          pendingAction: 'Edytowanie',
-        },
-      },
-    },
+          pendingAction: 'Edytowanie'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Brama OpenAmer nie jest połączona',
     sudoSendFailed: 'Nie można wysłać hasła sudo',
     secretSendFailed: 'Nie można wysłać sekretu',
     sudoTitle: 'Hasło administratora',
-    sudoDesc: 'OpenAmer potrzebuje hasła sudo, aby uruchomić uprzywilejowane polecenie. Jest ono wysyłane tylko do lokalnego agenta.',
+    sudoDesc:
+      'OpenAmer potrzebuje hasła sudo, aby uruchomić uprzywilejowane polecenie. Jest ono wysyłane tylko do lokalnego agenta.',
     sudoPlaceholder: 'hasło sudo',
     secretTitle: 'Wymagany sekret',
     secretDesc: 'OpenAmer potrzebuje danych uwierzytelniających, aby kontynuować.',
-    secretPlaceholder: 'wartość sekretu',
+    secretPlaceholder: 'wartość sekretu'
   },
   desktop: {
     audioReadFailed: 'Nie można odczytać nagranego dźwięku',
@@ -2909,7 +2989,8 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'włączone' : 'wyłączone'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Nie udało się przełączyć YOLO',
-    profileStatus: current => `Profil: ${current}. Użyj /profile <nazwa> lub wyboru „Nowa sesja”, aby rozpocząć czat w innym profilu.`,
+    profileStatus: current =>
+      `Profil: ${current}. Użyj /profile <nazwa> lub wyboru „Nowa sesja”, aby rozpocząć czat w innym profilu.`,
     unknownProfile: 'Nieznany profil',
     noProfileNamed: (target, available) => `Brak profilu o nazwie „${target}”. Dostępne: ${available}`,
     newChatsProfile: name => `Nowe czaty będą używać profilu ${name}.`,
@@ -2919,8 +3000,9 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     regenerateFailed: 'Nie udało się wygenerować ponownie',
     editFailed: 'Nie udało się edytować',
     resumeFailed: 'Nie udało się wznowić',
-    resumeStrandedTitle: "Nie udało się wczytać tej sesji",
-    resumeStrandedBody: 'Połączenie z tą sesją nie powiodło się i automatyczne ponowienia zostały wstrzymane. Sprawdź, czy brama działa, i spróbuj ponownie.',
+    resumeStrandedTitle: 'Nie udało się wczytać tej sesji',
+    resumeStrandedBody:
+      'Połączenie z tą sesją nie powiodło się i automatyczne ponowienia zostały wstrzymane. Sprawdź, czy brama działa, i spróbuj ponownie.',
     resumeRetry: 'Ponów',
     nothingToBranch: 'Nie ma czego rozgałęzić',
     branchNeedsChat: 'Rozpocznij lub wznów czat przed rozgałęzieniem.',
@@ -2934,7 +3016,8 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
     archiveFailed: 'Błąd archiwizacji',
     cwdChangeFailed: 'Błąd zmiany katalogu roboczego',
     cwdStagedTitle: 'Katalog roboczy przygotowany',
-    cwdStagedMessage: 'Uruchom ponownie backend aplikacji desktopowej, aby zastosować zmiany katalogu roboczego w tej aktywnej sesji.',
+    cwdStagedMessage:
+      'Uruchom ponownie backend aplikacji desktopowej, aby zastosować zmiany katalogu roboczego w tej aktywnej sesji.',
     modelSwitchFailed: 'Błąd przełączenia modelu',
     sessionExported: 'Wyeksportowano sesję',
     sessionExportFailed: 'Nie udało się wyeksportować sesji',
@@ -2960,31 +3043,31 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       success: platform => `Przekazano do ${platform}. Wróć tutaj w dowolnym momencie.`,
       systemNote: platform => `↻ Przekazano do ${platform} — wróć tutaj w dowolnym momencie.`,
       failed: error => `Przekazanie nie powiodło się: ${error}`,
-      timedOut: 'Przekroczono limit czasu oczekiwania na bramę. Czy `openamer gateway` działa?',
-    },
+      timedOut: 'Przekroczono limit czasu oczekiwania na bramę. Czy `openamer gateway` działa?'
+    }
   },
   errors: {
     genericFailure: 'Coś poszło nie tak',
     boundaryTitle: 'Coś się zepsuło w interfejsie',
     boundaryDesc: 'Widok napotkał nieoczekiwany błąd. Twoje czaty i ustawienia są bezpieczne.',
     reloadWindow: 'Odśwież okno',
-    openLogs: 'Otwórz dzienniki',
+    openLogs: 'Otwórz dzienniki'
   },
   ui: {
     search: {
-      clear: 'Wyczyść wyszukiwanie',
+      clear: 'Wyczyść wyszukiwanie'
     },
     pagination: {
       label: 'paginacja',
       previous: 'Poprzednia',
       previousAria: 'Przejdź do poprzedniej strony',
       next: 'Następna',
-      nextAria: 'Przejdź do następnej strony',
+      nextAria: 'Przejdź do następnej strony'
     },
     sidebar: {
       title: 'Pasek boczny',
       description: 'Wyświetla mobilny pasek boczny.',
-      toggle: 'Przełącz pasek boczny',
-    },
-  },
+      toggle: 'Przełącz pasek boczny'
+    }
+  }
 })

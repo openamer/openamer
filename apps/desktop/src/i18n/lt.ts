@@ -44,7 +44,7 @@ export const lt = defineLocale({
     update: 'Atnaujinti',
     tryHint: term => `Išbandykite „${term}“`,
     on: 'Įjungta',
-    off: 'Išjungta',
+    off: 'Išjungta'
   },
   fileMenu: {
     revealFinder: 'Rodyti „Finder“',
@@ -59,7 +59,7 @@ export const lt = defineLocale({
     renameLabel: 'Naujas pavadinimas',
     deleteTitle: name => `Ištrinti ${name}?`,
     deleteBody: 'Jis bus perkeltas į šiukšlinę — iš ten galėsite atkurti.',
-    pathCopied: 'Kelias nukopijuotas',
+    pathCopied: 'Kelias nukopijuotas'
   },
   boot: {
     ready: 'OpenAmer Desktop paruoštas',
@@ -69,7 +69,7 @@ export const lt = defineLocale({
       loadingSettings: 'Įkeliami OpenAmer nustatymai',
       loadingSessions: 'Įkeliami neseniai naudoti seansai',
       startingDesktopConnection: 'Paleidžiamas darbalaukio ryšys',
-      startingOpenAmerDesktop: 'Paleidžiamas OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Paleidžiamas OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer foninis procesas baigė darbą.',
@@ -78,13 +78,15 @@ export const lt = defineLocale({
       desktopBootFailed: 'Nepavyko paleisti darbalaukio',
       gatewayConnectionLost: 'Ryšys su šliuzu prarastas',
       gatewaySignInRequired: 'Reikia prisijungti prie šliuzo',
-      ipcBridgeUnavailable: 'Darbalaukio IPC tiltas neprieinamas.',
+      ipcBridgeUnavailable: 'Darbalaukio IPC tiltas neprieinamas.'
     },
     failure: {
-      title: "OpenAmer nepavyko paleisti",
-      description: "Foninis šliuzas nepaleido. Pabandykite vieną iš žemiau esančių atkūrimo veiksmų. Joks veiksmas čia neištrina jūsų pokalbių ar nustatymų.",
+      title: 'OpenAmer nepavyko paleisti',
+      description:
+        'Foninis šliuzas nepaleido. Pabandykite vieną iš žemiau esančių atkūrimo veiksmų. Joks veiksmas čia neištrina jūsų pokalbių ar nustatymų.',
       remoteTitle: 'Reikia prisijungti prie nuotolinio šliuzo',
-      remoteDescription: 'Jūsų nuotolinio šliuzo seansas pasibaigė. Prisijunkite iš naujo, kad vėl prisijungtumėte. Joks veiksmas čia neištrina jūsų pokalbių ar nustatymų.',
+      remoteDescription:
+        'Jūsų nuotolinio šliuzo seansas pasibaigė. Prisijunkite iš naujo, kad vėl prisijungtumėte. Joks veiksmas čia neištrina jūsų pokalbių ar nustatymų.',
       retry: 'Bandyti dar kartą',
       repairInstall: 'Sutaisyti įdiegtį',
       useLocalGateway: 'Naudoti vietinį šliuzą',
@@ -92,7 +94,8 @@ export const lt = defineLocale({
       back: 'Atgal',
       openLogs: 'Atverti žurnalus',
       repairHint: 'Taisymas iš naujo paleidžia diegimo programą ir naujoje mašinoje gali užimti kelias minutes.',
-      remoteSignInHint: signInLabel => `Užbaigia išsaugotą nuotolinio naršyklės seansą ir tada atveria ${signInLabel}. Naudokite „Naudoti vietinį šliuzą“, kad pereitumėte prie integruotos vidinės dalies.`,
+      remoteSignInHint: signInLabel =>
+        `Užbaigia išsaugotą nuotolinio naršyklės seansą ir tada atveria ${signInLabel}. Naudokite „Naudoti vietinį šliuzą“, kad pereitumėte prie integruotos vidinės dalies.`,
       signOutAndSignIn: 'Atsijungti ir prisijungti',
       remoteFailureHint: 'Patikrinkite URL ir prisijungimą šliuzo nustatymuose, arba pereikite prie vietinio šliuzo.',
       hideRecentLogs: 'Slėpti naujausius žurnalus',
@@ -104,8 +107,8 @@ export const lt = defineLocale({
       signInFailed: 'Prisijungimas nepavyko',
       signInToRemoteGateway: 'Prisijungti prie nuotolinio šliuzo',
       signInWithProvider: provider => `Prisijungti per ${provider}`,
-      identityProvider: 'savą tapatybės teikėją',
-    },
+      identityProvider: 'savą tapatybės teikėją'
+    }
   },
   notifications: {
     region: 'Pranešimai',
@@ -118,21 +121,23 @@ export const lt = defineLocale({
     copyDetail: 'Kopijuoti išsamią informaciją',
     copyDetailFailed: 'Nepavyko nukopijuoti pranešimo informacijos',
     backendOutOfDateTitle: 'Vidinė dalis pasenusi',
-    backendOutOfDateMessage: 'Jūsų OpenAmer vidinė dalis senesnė už šią darbalaukio versiją ir gali veikti netinkamai. Atnaujinkite, kad jos sutaptų.',
+    backendOutOfDateMessage:
+      'Jūsų OpenAmer vidinė dalis senesnė už šią darbalaukio versiją ir gali veikti netinkamai. Atnaujinkite, kad jos sutaptų.',
     installMethodUnsupportedTitle: 'Įdiegimo būdas nepalaikomas',
     updateOpenAmer: 'Atnaujinti OpenAmer',
     updateReadyTitle: 'Atnaujinimas paruoštas',
     updateReadyMessage: count => `${count} naujas pakeitimas${count === 1 ? 'pakeitimas' : 'pakeitimai'} prieinamas.`,
-    seeWhatsNew: "Peržiūrėti naujienas",
+    seeWhatsNew: 'Peržiūrėti naujienas',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT reikia ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs atmetė API raktą (401).',
       gatewayAuthFailed: 'Šliuzo autentifikacija nepavyko — patikrinkite savo API_SERVER_KEY.',
-      methodNotAllowed: 'Darbalaukio vidinė dalis atmetė šią užklausą (405 Method Not Allowed). Pabandykite paleisti OpenAmer Desktop iš naujo.',
+      methodNotAllowed:
+        'Darbalaukio vidinė dalis atmetė šią užklausą (405 Method Not Allowed). Pabandykite paleisti OpenAmer Desktop iš naujo.',
       microphonePermission: 'Mikrofono leidimas atmestas.',
       openaiRejectedApiKey: 'OpenAI atmetė API raktą.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI atmetė API raktą (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS reikia VOICE_TOOLS_OPENAI_KEY arba OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS reikia VOICE_TOOLS_OPENAI_KEY arba OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Sukonfigūruokite kalbą į tekstą, kad naudotumėte balso režimą.',
@@ -151,7 +156,7 @@ export const lt = defineLocale({
       transcriptionFailed: 'Balso transkribavimas nepavyko',
       transcriptionUnavailable: 'Balso transkribavimas dar neprieinamas.',
       tryRecordingAgain: 'Pabandykite įrašyti dar kartą.',
-      unavailable: 'Balsas neprieinamas',
+      unavailable: 'Balsas neprieinamas'
     },
     native: {
       approvalTitle: 'Reikia patvirtinimo',
@@ -164,11 +169,12 @@ export const lt = defineLocale({
       turnErrorTitle: 'Ciklas nepavyko',
       backgroundDoneTitle: 'Foninė užduotis atlikta',
       backgroundFailedTitle: 'Foninė užduotis nepavyko',
-      creditsTitle: 'Kreditai',
-    },
+      creditsTitle: 'Kreditai'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Veikia programinis atvaizdavimas — aptiktas nuotolinis ekranas (${reason}). GPU spartinimas išjungtas, kad būtų išvengta mirksėjimo.`,
+    message: reason =>
+      `Veikia programinis atvaizdavimas — aptiktas nuotolinis ekranas (${reason}). GPU spartinimas išjungtas, kad būtų išvengta mirksėjimo.`
   },
   billingBlock: {
     titleOpenamer: 'Nėra OpenAmer kreditų',
@@ -176,7 +182,7 @@ export const lt = defineLocale({
     fallbackMessage: 'Jūsų paskyroje nėra kreditų. Įkelkite kreditų, kad galėtumėte tęsti.',
     openBilling: 'Atverti sąskaitas',
     addCredits: 'Įkelti kreditų',
-    dismiss: 'Uždaryti',
+    dismiss: 'Uždaryti'
   },
   titlebar: {
     hideSidebar: 'Slėpti šoninę juostą',
@@ -193,7 +199,7 @@ export const lt = defineLocale({
     openStarmap: 'Atverti atminties grafą',
     openKeybinds: 'Spartieji klavišai',
     layoutEditor: 'Išdėstymo rengyklė',
-    layoutEditorTitle: 'Išdėstymo rengyklė — Cmd/Ctrl+spustelėjimas atkuria išdėstymą',
+    layoutEditorTitle: 'Išdėstymo rengyklė — Cmd/Ctrl+spustelėjimas atkuria išdėstymą'
   },
   keybinds: {
     title: 'Klaviatūros trumpiniai',
@@ -210,7 +216,7 @@ export const lt = defineLocale({
       profiles: 'Profiliai',
       session: 'Sesija',
       navigation: 'Naršymas',
-      view: 'Rodinys',
+      view: 'Rodinys'
     },
     actions: {
       'keybinds.openPanel': 'Atidaryti klaviatūros trumpinius',
@@ -289,8 +295,8 @@ export const lt = defineLocale({
       'composer.slash': 'Pasviruko komandų paletė',
       'composer.help': 'Greitoji pagalba',
       'composer.history': 'Perjungti iškylantįjį langą / istoriją',
-      'composer.cancel': 'Uždaryti iškylantįjį · atšaukti vykdymą',
-    },
+      'composer.cancel': 'Uždaryti iškylantįjį · atšaukti vykdymą'
+    }
   },
   language: {
     label: 'Kalba',
@@ -299,7 +305,7 @@ export const lt = defineLocale({
     saveError: 'Nepavyko atnaujinti kalbos',
     switchTo: 'Pakeisti kalbą',
     searchPlaceholder: 'Ieškoti kalbų…',
-    noResults: 'Kalbų nerasta',
+    noResults: 'Kalbų nerasta'
   },
   settings: {
     closeSettings: 'Užverti nustatymus',
@@ -324,11 +330,12 @@ export const lt = defineLocale({
       about: 'Apie',
       billing: 'Sąskaitos',
       notifications: 'Pranešimai',
-      plugins: 'Įskiepiai',
+      plugins: 'Įskiepiai'
     },
     plugins: {
       title: 'Darbalaukio įskiepiai',
-      blurb: 'UI plėtiniai, įkelti į šią programą – įtraukti į versiją arba įmesti į desktop-plugins aplanką (įskaitant tuos, kuriuos rašo OpenAmer). Išjungus įskiepis iškraunamas iš karto, ir tai išlieka po paleidimo iš naujo.',
+      blurb:
+        'UI plėtiniai, įkelti į šią programą – įtraukti į versiją arba įmesti į desktop-plugins aplanką (įskaitant tuos, kuriuos rašo OpenAmer). Išjungus įskiepis iškraunamas iš karto, ir tai išlieka po paleidimo iš naujo.',
       count: n => `${n} įdiegta`,
       openFolder: 'Atidaryti įskiepių aplanką',
       rescan: 'Skenuoti iš naujo',
@@ -340,49 +347,52 @@ export const lt = defineLocale({
       kinds: {
         bundled: 'integruotas',
         disk: 'diske',
-        runtime: 'vykdymo aplinka',
-      },
+        runtime: 'vykdymo aplinka'
+      }
     },
     notifications: {
       title: 'Pranešimai',
-      intro: 'Vietiniai darbalaukio pranešimai, atskirti nuo pranešimų programoje. Jie susieti su įrenginiu – kiekvienas kompiuteris turi savo nustatymus.',
+      intro:
+        'Vietiniai darbalaukio pranešimai, atskirti nuo pranešimų programoje. Jie susieti su įrenginiu – kiekvienas kompiuteris turi savo nustatymus.',
       enableAll: 'Įjungti pranešimus',
       enableAllDesc: 'Pagrindinis jungiklis. Išjunkite jį, kad nutildytumėte visus žemiau esančius pranešimus.',
       focusedHint: 'Užbaigimo pranešimai rodomi tik kai OpenAmer veikia fone.',
       kinds: {
         approval: {
           label: 'Reikia patvirtinimo',
-          description: 'Komanda laukia, kol ją patvirtinsite arba atmesite.',
+          description: 'Komanda laukia, kol ją patvirtinsite arba atmesite.'
         },
         input: {
           label: 'Reikia įvesties',
-          description: 'OpenAmer uždavė klausimą arba prašo slaptažodžio ar kito slapto duomens.',
+          description: 'OpenAmer uždavė klausimą arba prašo slaptažodžio ar kito slapto duomens.'
         },
         turnDone: {
           label: 'Atsakymas paruoštas',
-          description: 'Ėjimas baigėsi, kol OpenAmer buvo fone.',
+          description: 'Ėjimas baigėsi, kol OpenAmer buvo fone.'
         },
         turnError: {
           label: 'Ėjimas nepavyko',
-          description: 'Ėjimas baigėsi su klaida.',
+          description: 'Ėjimas baigėsi su klaida.'
         },
         backgroundDone: {
           label: 'Fono užduotis baigta',
-          description: 'Fone vykdyta terminalo komanda baigta.',
+          description: 'Fone vykdyta terminalo komanda baigta.'
         },
         credits: {
           label: 'Kreditų įspėjimai',
-          description: 'Prieiga prie kreditų pristabdyta arba atkurta.',
-        },
+          description: 'Prieiga prie kreditų pristabdyta arba atkurta.'
+        }
       },
       test: 'Siųsti bandomąjį pranešimą',
       testTitle: 'OpenAmer',
       testBody: 'Pranešimai veikia.',
-      testSent: 'Testas išsiųstas. Jei nieko nematote, patikrinkite OS pranešimų leidimus ir „Fokusas / Netrikdyti“ režimą.',
+      testSent:
+        'Testas išsiųstas. Jei nieko nematote, patikrinkite OS pranešimų leidimus ir „Fokusas / Netrikdyti“ režimą.',
       testUnsupported: 'Ši sistema nepalaiko natyvių pranešimų.',
       completionSoundTitle: 'Baigimo garsas',
-      completionSoundDesc: 'Skamba, kai agento eiga baigiasi. Pasirinkite iš anksto nustatytą garsą ir peržiūrėkite jį čia.',
-      completionSoundPreview: 'Peržiūrėti',
+      completionSoundDesc:
+        'Skamba, kai agento eiga baigiasi. Pasirinkite iš anksto nustatytą garsą ir peržiūrėkite jį čia.',
+      completionSoundPreview: 'Peržiūrėti'
     },
     sections: {
       model: 'Modelis',
@@ -392,7 +402,7 @@ export const lt = defineLocale({
       safety: 'Sauga',
       memory: 'Atmintis ir kontekstas',
       voice: 'Balsas',
-      advanced: 'Išplėstiniai',
+      advanced: 'Išplėstiniai'
     },
     searchPlaceholder: {
       about: 'Apie OpenAmer Desktop',
@@ -400,37 +410,40 @@ export const lt = defineLocale({
       gateway: 'Tarpuvės ryšys...',
       keys: 'Ieškoti API raktų...',
       mcp: 'Ieškoti MCP serverių...',
-      sessions: 'Ieškoti archyvuotų sesijų...',
+      sessions: 'Ieškoti archyvuotų sesijų...'
     },
     modeOptions: {
       light: {
         label: 'Šviesus',
-        description: 'Šviesios paviršiai',
+        description: 'Šviesios paviršiai'
       },
       dark: {
         label: 'Tamsus',
-        description: 'Erdvė su mažu švytėjimu',
+        description: 'Erdvė su mažu švytėjimu'
       },
       system: {
         label: 'Sistema',
-        description: 'Laikytis sistemos išvaizdos',
-      },
+        description: 'Laikytis sistemos išvaizdos'
+      }
     },
     appearance: {
       title: 'Išvaizda',
-      intro: 'Tai tik darbalaukio rodymo nuostatos. Režimas valdo šviesumą; tema valdo akcentų paletę ir pokalbio stilių.',
+      intro:
+        'Tai tik darbalaukio rodymo nuostatos. Režimas valdo šviesumą; tema valdo akcentų paletę ir pokalbio stilių.',
       colorMode: 'Spalvų režimas',
       colorModeDesc: 'Pasirinkite fiksuotą režimą arba leiskite OpenAmer laikytis jūsų sistemos nustatymo.',
       toolViewTitle: 'Įrankių iškvietimų pateikimas',
       toolViewDesc: 'Produktas slepia žalius įrankių duomenis; Techninis rodo pilnus įėjimus/išėjimus.',
       uiScaleTitle: 'Sąsajos mastelis',
-      uiScaleDesc: (percent: number) => `Keičia teksto ir valdiklių mastelį visoje programoje. Taip pat veikia Cmd/Ctrl su +, - ir 0. Dabartinis: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Keičia teksto ir valdiklių mastelį visoje programoje. Taip pat veikia Cmd/Ctrl su +, - ir 0. Dabartinis: ${percent}%.`,
       translucencyTitle: 'Lango permatomumas',
       translucencyDesc: 'Matykite savo darbalaukį pro langą. Tik macOS ir Windows.',
       backdropTitle: 'Pokalbio fonas',
       backdropDesc: 'Pokalbio fone esantis didelis statulos vaizdas.',
       embedsTitle: 'Įterptas turinys',
-      embedsDesc: 'Peržiūros įkeliamos iš trečiųjų šalių svetainių (YouTube, X, …). Klausiant rodo žymeklį, kol leisite kiekvieną; Visada įkelia automatiškai; Išjungta palieka tik nuorodas.',
+      embedsDesc:
+        'Peržiūros įkeliamos iš trečiųjų šalių svetainių (YouTube, X, …). Klausiant rodo žymeklį, kol leisite kiekvieną; Visada įkelia automatiškai; Išjungta palieka tik nuorodas.',
       embedsAsk: 'Klausti',
       embedsAlways: 'Visada',
       embedsOff: 'Išjungta',
@@ -443,7 +456,8 @@ export const lt = defineLocale({
       themeDesc: 'Tik darbalaukio paletės. Pasirinktas režimas taikomas ant viršaus.',
       themeProfileNote: profile => `Įrašyta profiliui ${profile} — kiekvienas profilis turi savo temą.`,
       installTitle: 'Įdiegti iš VS Code',
-      installDesc: 'Įklijuokite Marketplace plėtinio ID (pvz. dracula-theme.theme-dracula), kad savo spalvų temą paverstumėte darbalaukio palete.',
+      installDesc:
+        'Įklijuokite Marketplace plėtinio ID (pvz. dracula-theme.theme-dracula), kad savo spalvų temą paverstumėte darbalaukio palete.',
       installPlaceholder: 'leidėjas.plėtinys',
       installButton: 'Įdiegti',
       installing: 'Diegiama…',
@@ -453,8 +467,10 @@ export const lt = defineLocale({
       importedBadge: 'Importuota',
       pet: {
         title: 'Gyvūnėlis',
-        intro: 'Įsigykite animuotą „petdex“ talismaną, kuris plūduriuoja virš programėlės ir reaguoja į OpenAmer veiksmus — bėga, kai vykdomi įrankiai, švenčia sėkmę, susirūpinsta dėl klaidų.',
-        restartHint: 'Gyvūnėliams reikia greito paleidimo iš naujo — dabar veikianti programa pradėjo veikti prieš įtraukiant šią funkciją. Išeikite iš OpenAmer ir atidarykite iš naujo, tada grįžkite čia.',
+        intro:
+          'Įsigykite animuotą „petdex“ talismaną, kuris plūduriuoja virš programėlės ir reaguoja į OpenAmer veiksmus — bėga, kai vykdomi įrankiai, švenčia sėkmę, susirūpinsta dėl klaidų.',
+        restartHint:
+          'Gyvūnėliams reikia greito paleidimo iš naujo — dabar veikianti programa pradėjo veikti prieš įtraukiant šią funkciją. Išeikite iš OpenAmer ir atidarykite iš naujo, tada grįžkite čia.',
         on: 'Įjungta',
         off: 'Išjungta',
         scaleTitle: 'Dydis',
@@ -464,7 +480,7 @@ export const lt = defineLocale({
         chooseTitle: 'Pasirinkite gyvūnėlį',
         chooseDesc: 'Pasirinkus jis įdiegiamas (jei reikia) ir aktyvuojamas.',
         searchPlaceholder: 'Ieškoti gyvūnėlių…',
-        unreachable: "Nepavyko pasiekti petdex galerijos. Patikrinkite ryšį ir iš naujo atidarykite šį puslapį.",
+        unreachable: 'Nepavyko pasiekti petdex galerijos. Patikrinkite ryšį ir iš naujo atidarykite šį puslapį.',
         noMatch: query => `Nėra gyvūnėlių, atitinkančių "${query}".`,
         installedTag: 'įdiegta',
         generatedTag: 'Sugeneruota',
@@ -473,7 +489,7 @@ export const lt = defineLocale({
         uninstall: name => `Pašalinti ${name}`,
         delete: name => `Ištrinti ${name}`,
         deleteTitle: name => `Ištrinti ${name}?`,
-        deleteBody: "Tai visam laikui ištrina augintinį — jo neįmanoma įdiegti iš naujo.",
+        deleteBody: 'Tai visam laikui ištrina augintinį — jo neįmanoma įdiegti iš naujo.',
         deleteConfirm: 'Ištrinti',
         rename: name => `Pervadinti ${name}`,
         renameTitle: 'Pervadinti augintinį',
@@ -486,8 +502,8 @@ export const lt = defineLocale({
         exportFailed: slug => `Nepavyko eksportuoti ${slug}`,
         noneAvailable: 'Šiuo metu nėra įjungtino augintinio.',
         turnOnFailed: 'Nepavyko įjungti augintinio.',
-        turnOffFailed: 'Nepavyko išjungti augintinio.',
-      },
+        turnOffFailed: 'Nepavyko išjungti augintinio.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,25 +514,27 @@ export const lt = defineLocale({
       updates: 'Atnaujinimai',
       checkNow: 'Tikrinti dabar',
       checking: 'Tikrinama…',
-      seeWhatsNew: "Peržiūrėti naujienas",
+      seeWhatsNew: 'Peržiūrėti naujienas',
       updateNow: 'Atnaujinti dabar',
       releaseNotes: 'Laidos pastabos',
-      onLatest: "Naudojate naujausią versiją.",
+      onLatest: 'Naudojate naujausią versiją.',
       installing: 'Diegiamas atnaujinimas.',
-      cantUpdate: "Šios programos negalima atnaujinti iš viduje.",
-      cantReach: "Nepavyko pasiekti atnaujinimų serverio.",
+      cantUpdate: 'Šios programos negalima atnaujinti iš viduje.',
+      cantReach: 'Nepavyko pasiekti atnaujinimų serverio.',
       tapCheck: 'Bakstelėkite „Tikrinti dabar“, kad ieškotumėte atnaujinimų.',
-      updateReady: count => `Naujas atnaujinimas paruoštas (įskaitant ${count} pakeitimą${count === 1 ? 'pakeitimas' : 'pakeitimai'}).`,
+      updateReady: count =>
+        `Naujas atnaujinimas paruoštas (įskaitant ${count} pakeitimą${count === 1 ? 'pakeitimas' : 'pakeitimai'}).`,
       lastChecked: age => `Paskutinį kartą tikrinta ${age}`,
       justNowSuffix: ' · dabar',
       automaticUpdates: 'Automatiniai atnaujinimai',
-      automaticUpdatesDesc: 'OpenAmer foniniu režimu automatiškai tikrina atnaujinimus ir įspėja, kai vienas paruoštas.',
+      automaticUpdatesDesc:
+        'OpenAmer foniniu režimu automatiškai tikrina atnaujinimus ir įspėja, kai vienas paruoštas.',
       branchCommit: (branch, commit) => `Šaka ${branch} · Įrašas ${commit}`,
       never: 'niekada',
       justNow: 'dabar',
       minAgo: count => `prieš ${count} min`,
       hoursAgo: count => `prieš ${count} valandas`,
-      daysAgo: count => `prieš ${count} dienų`,
+      daysAgo: count => `prieš ${count} dienų`
     },
     config: {
       none: 'Nėra',
@@ -532,7 +550,8 @@ export const lt = defineLocale({
       imported: 'Konfigūracija importuota',
       invalidJson: 'Neteisingas konfigūracijos JSON',
       keepAwakeTitle: 'Laikyti kompiuterį budriu',
-      keepAwakeDesc: 'Suteikite, kad šis įrenginys neužmigtų ilgų ar naktinių paleidimų metu. Ekranas vis tiek gali pritemdti.',
+      keepAwakeDesc:
+        'Suteikite, kad šis įrenginys neužmigtų ilgų ar naktinių paleidimų metu. Ekranas vis tiek gali pritemdti.'
     },
     credentials: {
       pasteKey: 'Įklijuoti raktą',
@@ -542,7 +561,7 @@ export const lt = defineLocale({
       couldNotSave: 'Nepavyko išsaugoti tapatybės duomenų.',
       remove: 'Pašalinti',
       getKey: 'Gauti raktą',
-      saving: 'Išsaugoma',
+      saving: 'Išsaugoma'
     },
     envActions: {
       actionsFor: label => `Veiksmai: ${label}`,
@@ -553,7 +572,7 @@ export const lt = defineLocale({
       revealValue: 'Rodyti reikšmę',
       replace: 'Pakeisti',
       set: 'Nustatyti',
-      clear: 'Išvalyti',
+      clear: 'Išvalyti'
     },
     gateway: {
       loading: 'Įkeliamos tinklo vartų nustatymai...',
@@ -561,23 +580,28 @@ export const lt = defineLocale({
       unavailableDesc: 'Darbalaukio IPC tiltas neatidgiria tinklo vartų nustatymų.',
       title: 'Tinklo vartų ryšys',
       envOverride: 'env peržiūra',
-      intro: 'OpenAmer Desktop pagal numatytąją paleidžia savo vietinį tinklo vartų serverį. Naudokite nuotolinį tinklo vartų serverį, kai norite, kad ši programa valdytų jau veikiantį OpenAmer backend\'ą kitame kompiuteryje arba už patikimo tarpinio serverio. Pasirinkite apačiau esantį profilį, kad suteiktumėte jam nuotolinį adresą.',
+      intro:
+        "OpenAmer Desktop pagal numatytąją paleidžia savo vietinį tinklo vartų serverį. Naudokite nuotolinį tinklo vartų serverį, kai norite, kad ši programa valdytų jau veikiantį OpenAmer backend'ą kitame kompiuteryje arba už patikimo tarpinio serverio. Pasirinkite apačiau esantį profilį, kad suteiktumėte jam nuotolinį adresą.",
       appliesTo: 'Taikoma',
       allProfiles: 'Visi profiliai',
       defaultConnection: 'Numatytasis ryšys kiekvienam profilui, kuris neturi savo peržiūros.',
-      profileConnection: profile => `Ryšys naudojamas tik kai aktyvus profilis yra “${profile}”. Pasirinkite „Naudoti numatytuosius tinklo vartus“, kad pašalintumėte jo peržiūrą.`,
+      profileConnection: profile =>
+        `Ryšys naudojamas tik kai aktyvus profilis yra “${profile}”. Pasirinkite „Naudoti numatytuosius tinklo vartus“, kad pašalintumėte jo peržiūrą.`,
       envOverrideTitle: 'Aplinkos kintamieji valdo šią darbalaukio sesiją.',
-      envOverrideDesc: 'Panaikinkite OPENAMER_DESKTOP_REMOTE_URL ir OPENAMER_DESKTOP_REMOTE_TOKEN, kad būtų naudojamas žemiau išsaugotas nustatymas.',
+      envOverrideDesc:
+        'Panaikinkite OPENAMER_DESKTOP_REMOTE_URL ir OPENAMER_DESKTOP_REMOTE_TOKEN, kad būtų naudojamas žemiau išsaugotas nustatymas.',
       modeTitle: 'Ryšio režimas',
       localTitle: 'Vietiniai tinklo vartai',
-      localDesc: 'Paleidžia privatų OpenAmer backend\'ą localhost. Tai numatytoji parinktis, kuri veikia be interneto.',
+      localDesc: "Paleidžia privatų OpenAmer backend'ą localhost. Tai numatytoji parinktis, kuri veikia be interneto.",
       inheritTitle: 'Naudoti numatytuosius tinklo vartus',
-      inheritDesc: "Pašalinkite šio profilio perrašymą ir naudokite numatytąjį ryšį.",
+      inheritDesc: 'Pašalinkite šio profilio perrašymą ir naudokite numatytąjį ryšį.',
       remoteTitle: 'Nuotolinis šliuzas',
       remoteDesc: 'Prijunkite šį darbalaukio apvalkalą prie nuotolinio OpenAmer serverio.',
-      remoteAuthHint: 'Priglobtieji šliuzai naudoja OAuth arba vartotojo vardą ir slaptažodį; savarankiškai priglobti gali naudoti sesijos žetoną.',
+      remoteAuthHint:
+        'Priglobtieji šliuzai naudoja OAuth arba vartotojo vardą ir slaptažodį; savarankiškai priglobti gali naudoti sesijos žetoną.',
       cloudTitle: 'OpenAmer debesija',
-      cloudDesc: 'Prisijunkite vieną kartą prie OpenAmer Cloud ir pasirinkite agentus savo paskyroje – nereikia įklijuoti URL.',
+      cloudDesc:
+        'Prisijunkite vieną kartą prie OpenAmer Cloud ir pasirinkite agentus savo paskyroje – nereikia įklijuoti URL.',
       cloudSignInTitle: 'OpenAmer debesija',
       cloudSignIn: 'Prisijunkite prie OpenAmer Cloud',
       cloudSignedIn: 'Prisijungta prie OpenAmer Cloud',
@@ -592,7 +616,7 @@ export const lt = defineLocale({
       cloudNoAgents: {
         before: 'Šioje paskyroje nerasta agentų. Sukurkite agentą ',
         linkText: 'OpenAmer portalas',
-        after: ', tada atnaujinkite.',
+        after: ', tada atnaujinkite.'
       },
       cloudRefresh: 'Atnaujinti',
       cloudConnect: 'Prisijungti',
@@ -610,18 +634,23 @@ export const lt = defineLocale({
       remoteUrlTitle: 'Nuotolinis URL',
       remoteUrlDesc: 'Bazinis nuotolinio prietaisų skydelio serverio URL. Palaikomi kelio prefiksai, pvz., /openamer.',
       probing: 'Tikrinama, kaip šis šliuzas autentifikuoja…',
-      probeError: 'Dar nepavyksta pasiekti šio šliuzo. Patikrinkite URL — autentifikavimo būdas atsiras, kai jis atsakys.',
+      probeError:
+        'Dar nepavyksta pasiekti šio šliuzo. Patikrinkite URL — autentifikavimo būdas atsiras, kai jis atsakys.',
       signedIn: 'Prisijungta',
       signIn: 'Prisijungti',
       signOut: 'Atsijungti',
       signInWith: provider => `Prisijungti su ${provider}`,
       authTitle: 'Autentifikavimas',
-      authSignedInPassword: 'Šis šliuzas naudoja vartotojo vardą ir slaptažodį. Esate prisijungę; sesija atnaujinama automatiškai.',
+      authSignedInPassword:
+        'Šis šliuzas naudoja vartotojo vardą ir slaptažodį. Esate prisijungę; sesija atnaujinama automatiškai.',
       authSignedInOauth: 'Šis šliuzas naudoja OAuth. Esate prisijungę; sesija atnaujinama automatiškai.',
-      authNeedsPassword: 'Šis šliuzas naudoja vartotojo vardą ir slaptažodį. Prisijunkite, kad autorizuotumėte šią darbalaukio programą.',
-      authNeedsOauth: provider => `Šis šliuzas naudoja OAuth. Prisijunkite su ${provider}, kad autorizuotumėte šią darbalaukio programą.`,
+      authNeedsPassword:
+        'Šis šliuzas naudoja vartotojo vardą ir slaptažodį. Prisijunkite, kad autorizuotumėte šią darbalaukio programą.',
+      authNeedsOauth: provider =>
+        `Šis šliuzas naudoja OAuth. Prisijunkite su ${provider}, kad autorizuotumėte šią darbalaukio programą.`,
       tokenTitle: 'Sesijos žetonas',
-      tokenDesc: 'Prisijungimo prie skydelio prieigos raktas, naudojamas REST ir WebSocket prieigai. Palikite tuščią, kad būtų naudojamas išsaugotas raktas.',
+      tokenDesc:
+        'Prisijungimo prie skydelio prieigos raktas, naudojamas REST ir WebSocket prieigai. Palikite tuščią, kad būtų naudojamas išsaugotas raktas.',
       existingToken: value => `Esamas raktas ${value}`,
       savedToken: 'išsaugota',
       pasteSessionToken: 'Įklijuokite sesijos raktą',
@@ -639,7 +668,8 @@ export const lt = defineLocale({
       enterUrlFirst: 'Pirmiausia įveskite nuotolinio serverio adresą.',
       restartingTitle: 'Restartuojamas serverio ryšys',
       savedTitle: 'Serverio nustatymai išsaugoti',
-      restartingMessage: 'OpenAmer Desktop prisijungs iš naujo naudodamas išsaugotus nustatymus — apvalkalas lieka atviras.',
+      restartingMessage:
+        'OpenAmer Desktop prisijungs iš naujo naudodamas išsaugotus nustatymus — apvalkalas lieka atviras.',
       savedMessage: 'Išsaugota kitam paleidimui.',
       connectedTo: (baseUrl, version) => `Prisijungta prie ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Nuotolinis serveris pasiekiamas',
@@ -652,8 +682,10 @@ export const lt = defineLocale({
       applyFailed: 'Nepavyko pritaikyti šliuzo nustatymų',
       saveFailed: 'Nepavyko išsaugoti šliuzo nustatymų',
       sshTitle: 'Prisijungti per SSH',
-      sshDesc: 'OpenAmer paleidžiamas nuotolinėje sistemoje per SSH ir tuneliuojamas į šią programą – nieko nereikia paleisti ar atskleisti patiems. Būtina veikianti SSH prieiga prie hosto naudojant raktą.',
-      sshTrustHint: 'Pirmasis pateiktas hosto raktas laikomas patikimu ir užfiksuojamas; vėlesni pakeitimai blokuojami.',
+      sshDesc:
+        'OpenAmer paleidžiamas nuotolinėje sistemoje per SSH ir tuneliuojamas į šią programą – nieko nereikia paleisti ar atskleisti patiems. Būtina veikianti SSH prieiga prie hosto naudojant raktą.',
+      sshTrustHint:
+        'Pirmasis pateiktas hosto raktas laikomas patikimu ir užfiksuojamas; vėlesni pakeitimai blokuojami.',
       sshHostTitle: 'Mazgas',
       sshHostDesc: 'user@host arba hosto aliasas iš ~/.ssh/config.',
       sshHostPick: 'Pasirinkite hostą…',
@@ -676,18 +708,22 @@ export const lt = defineLocale({
       sshReachable: (host, platform) => `Pasiekiama: ${host} (${platform}) — OpenAmer rastas`,
       sshIncompleteHost: 'Prieš prisijungiant įveskite SSH serverį.',
       sshErrUnreachable: 'Nepavyko pasiekti šio serverio per SSH. Patikrinkite serverį, portą ir tinklą.',
-      sshErrAuth: 'SSH autentifikavimas nepavyko. Įkelkite savo raktą į ssh-agent (ssh-add) arba nustatykite IdentityFile faile ~/.ssh/config — OpenAmer naudoja ssh neinteraktyviu režimu.',
-      sshErrHostKey: 'Serverio raktas PASIKEITė nuo paskutinio prisijungimo. Patikrinkite, ar tai tikėtina, tada paleiskite ssh-keygen -R <host> ir prisijunkite iš naujo.',
-      sshErrNotInstalled: 'OpenAmer nėra įdiegtas nuotoliniame serveryje. Įdiekite jį ten (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) arba nustatykite OpenAmer kelią.',
-      sshErrPlatform: 'Nepalaikoma nuotolinė platforma. OpenAmer Desktop SSH režimas palaiko nuotolines Linux, macOS ir Windows sistemas.',
+      sshErrAuth:
+        'SSH autentifikavimas nepavyko. Įkelkite savo raktą į ssh-agent (ssh-add) arba nustatykite IdentityFile faile ~/.ssh/config — OpenAmer naudoja ssh neinteraktyviu režimu.',
+      sshErrHostKey:
+        'Serverio raktas PASIKEITė nuo paskutinio prisijungimo. Patikrinkite, ar tai tikėtina, tada paleiskite ssh-keygen -R <host> ir prisijunkite iš naujo.',
+      sshErrNotInstalled:
+        'OpenAmer nėra įdiegtas nuotoliniame serveryje. Įdiekite jį ten (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) arba nustatykite OpenAmer kelią.',
+      sshErrPlatform:
+        'Nepalaikoma nuotolinė platforma. OpenAmer Desktop SSH režimas palaiko nuotolines Linux, macOS ir Windows sistemas.',
       sshErrTimeout: 'SSH ryšio laikas baigėsi. Serveris gali būti nepasiekiamas arba užmigęs.',
       sshErrUpdateRequired: 'Atnaujinkite OpenAmer nuotoliniame serveryje, kol prisijungiate su Desktop SSH.',
-      sshErrUnknown: 'SSH ryšys nepavyko.',
+      sshErrUnknown: 'SSH ryšys nepavyko.'
     },
     keys: {
       loading: 'Įkeliamos API raktai ir kredencialai...',
       failedLoad: 'Nepavyko įkelti API raktų',
-      empty: 'Šioje kategorijoje dar nieko nesukonfigūruota.',
+      empty: 'Šioje kategorijoje dar nieko nesukonfigūruota.'
     },
     mcp: {
       loading: 'Įkeliami MCP serveriai...',
@@ -739,7 +775,8 @@ export const lt = defineLocale({
       catalogInstallFailed: name => `Nepavyko įdiegti ${name}`,
       catalogEnvPrompt: name => `${name} reikia prisijungimo duomenų`,
       catalogEnvRequired: 'Prieš diegiant užpildykite privalomas reikšmes.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} įjungta`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} įjungta`,
       statusConnecting: 'Jungiamasi…',
       statusNeedsAuth: 'Reikia autentifikacijos',
       statusError: 'Klaida',
@@ -752,11 +789,12 @@ export const lt = defineLocale({
       unsavedConnect: 'Neišsaugota — išsaugokite mcp.json, kad prisijungtumėte.',
       enableTool: tool => `Įjungti ${tool}`,
       disableTool: tool => `Išjungti ${tool}`,
-      noOutput: 'Dar nėra išvesties.',
+      noOutput: 'Dar nėra išvesties.'
     },
     model: {
       loading: 'Įkeliama modelio konfigūracija...',
-      appliesDesc: 'Taikoma naujoms sesijoms. Naudokite modelio parinkiklį žinutės lauke, kad greitai pakeistumėte aktyvaus pokalbio modelį.',
+      appliesDesc:
+        'Taikoma naujoms sesijoms. Naudokite modelio parinkiklį žinutės lauke, kad greitai pakeistumėte aktyvaus pokalbio modelį.',
       provider: 'Tiekėjas',
       model: 'Modelis',
       applying: 'Taikoma...',
@@ -766,53 +804,55 @@ export const lt = defineLocale({
       defaultsFailed: 'Nepavyko išsaugoti numatytųjų modelio nustatymų',
       auxiliaryTitle: 'Pagalbiniai modeliai',
       resetAllToMain: 'Grąžinti visus į pagrindinį',
-      auxiliaryDesc: 'Pagalbinės užduotys pagal numatytuosius nustatymus vykdomos pagrindiniu modeliu. Bet kuriai užduočiai priskirkite atskirą modelį, kad tai pakeistumėte.',
+      auxiliaryDesc:
+        'Pagalbinės užduotys pagal numatytuosius nustatymus vykdomos pagrindiniu modeliu. Bet kuriai užduočiai priskirkite atskirą modelį, kad tai pakeistumėte.',
       setToMain: 'Nustatyti kaip pagrindinį',
       change: 'Keisti',
       autoUseMain: 'automatiškai · naudoti pagrindinį modelį',
       providerDefault: '(tiekėjo numatytasis)',
       fallbackAdd: 'Pridėti atsarginį',
       fallbackEmpty: 'Nėra atsarginių modelių — naudojamas numatytasis modelis, nebent jis nepavyksta.',
-      notInCatalog: "nėra šio tiekėjo modelių sąraše — užklausos gali būti nukreiptos į atsarginį modelį.",
+      notInCatalog: 'nėra šio tiekėjo modelių sąraše — užklausos gali būti nukreiptos į atsarginį modelį.',
       tasks: {
         vision: {
           label: 'Vaizdas',
-          hint: 'Vaizdų analizė',
+          hint: 'Vaizdų analizė'
         },
         web_extract: {
           label: 'Žiniatinklio ištraukimas',
-          hint: 'Puslapio apibendrinimas',
+          hint: 'Puslapio apibendrinimas'
         },
         compression: {
           label: 'Suspaudimas',
-          hint: 'Konteksto suspaudimas',
+          hint: 'Konteksto suspaudimas'
         },
         skills_hub: {
           label: 'Įgūdžių centras',
-          hint: 'Įgūdžių paieška',
+          hint: 'Įgūdžių paieška'
         },
         approval: {
           label: 'Patvirtinimas',
-          hint: 'Išmanus automatinis patvirtinimas',
+          hint: 'Išmanus automatinis patvirtinimas'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP įrankių maršrutizavimas',
+          hint: 'MCP įrankių maršrutizavimas'
         },
         title_generation: {
           label: 'Pavadinimų generavimas',
-          hint: 'Sesijų pavadinimai',
+          hint: 'Sesijų pavadinimai'
         },
         curator: {
           label: 'Kuratorius',
-          hint: 'Įgūdžių naudojimo peržiūra',
-        },
-      },
+          hint: 'Įgūdžių naudojimo peržiūra'
+        }
+      }
     },
     providers: {
       connectAccount: 'Prijungti paskyrą',
       haveApiKey: 'Turite API raktą?',
-      intro: 'Prisijunkite su prenumerata — nereikia kopijuoti API rakto. OpenAmer atlieka prisijungimą naršyklėje už jus, čia pat programoje.',
+      intro:
+        'Prisijunkite su prenumerata — nereikia kopijuoti API rakto. OpenAmer atlieka prisijungimą naršyklėje už jus, čia pat programoje.',
       connected: 'Prijungta',
       collapse: 'Sutraukti',
       connectAnother: 'Prijungti kitą teikėją',
@@ -822,7 +862,8 @@ export const lt = defineLocale({
       removeConfirm: provider => `Pašalinti ${provider}?`,
       removeExternalGeneric: provider => `${provider} valdomas per savo CLI — pašalinkite jį ten.`,
       removeKeyManaged: provider => `${provider} sukonfigūruotas naudojant API raktą. Pašalinkite jį iš API raktų.`,
-      removeTerminalConfirm: (provider, command) => `Atjungti ${provider}? Tai terminale paleidžia "${command}", kad išvalytų kredencialus.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Atjungti ${provider}? Tai terminale paleidžia "${command}", kad išvalytų kredencialus.`,
       removeTerminalRunning: provider => `Vykdomas ${provider} atsijungimas terminale…`,
       removedTitle: 'Paskyra pašalinta',
       removedMessage: provider => `${provider} buvo pašalinta.`,
@@ -832,14 +873,16 @@ export const lt = defineLocale({
       noKeysMatch: 'Nėra teikėjų, atitinkančių jūsų paiešką.',
       localEndpoint: {
         title: 'Vietinis / tinkintas galinis taškas',
-        description: 'Nukreipkite OpenAmer į bet kurį su OpenAI suderinamą galinį tašką (Zyphra, vLLM, llama.cpp, Ollama ir kt.).',
+        description:
+          'Nukreipkite OpenAmer į bet kurį su OpenAI suderinamą galinį tašką (Zyphra, vLLM, llama.cpp, Ollama ir kt.).'
       },
-      loading: 'Krauniami teikėjai...',
+      loading: 'Krauniami teikėjai...'
     },
     sessions: {
       loading: 'Kraunamos archyvuotos sesijos…',
       archivedTitle: 'Archyvuotos sesijos',
-      archivedIntro: 'Archyvuoti pokalbiai paslėpti nuo šoninės juostos, bet joje lieka visi jų pranešimai. Ctrl/⌘-spustelėkite pokalbį šoninėje juostoje, kad jį archyvuotumėte.',
+      archivedIntro:
+        'Archyvuoti pokalbiai paslėpti nuo šoninės juostos, bet joje lieka visi jų pranešimai. Ctrl/⌘-spustelėkite pokalbį šoninėje juostoje, kad jį archyvuotumėte.',
       emptyArchivedTitle: 'Nėra archyvuotų',
       emptyArchivedDesc: 'Archyvuokite pokalbį, kad jis būtų paslėptas čia.',
       unarchive: 'Atarchyvuoti',
@@ -848,13 +891,16 @@ export const lt = defineLocale({
       restored: 'Atkurta',
       deleteConfirm: title => `Negrįžtamai ištrinti "${title}"? Šio veiksmo atšaukti nebus galima.`,
       autoArchiveTitle: 'Automatiškai archyvuoti neveiklias pokalbius',
-      autoArchiveDesc: "Automatiškai archyvuokite pokalbius, kuriuos ilgą laiką neatidarėte. Prisegti pokalbiai niekada nearchyvuojami ir niekas neištrinama — archyvuoti pokalbiai tiesiog perkeliami čia.",
+      autoArchiveDesc:
+        'Automatiškai archyvuokite pokalbius, kuriuos ilgą laiką neatidarėte. Prisegti pokalbiai niekada nearchyvuojami ir niekas neištrinama — archyvuoti pokalbiai tiesiog perkeliami čia.',
       autoArchiveDaysLabel: 'Archyvuoti po',
       autoArchiveDaysUnit: 'dienų neveiklumo',
       autoArchiveFailed: 'Nepavyko atnaujinti automatinio archyvavimo',
       defaultDirTitle: 'Numatytoji projekto direktorija',
-      defaultDirDesc: 'Naujos sesijos pradedamos šiame aplanke, jei nepasirinksite kito. Palikite neapibrėžtą, kad būtų naudojamas jūsų namų katalogas.',
-      defaultDirUpdated: 'Numatytoji projekto direktorija atnaujinta — pradėkite naują pokalbį (Ctrl/⌘+N), kad ji pradėtų veikti',
+      defaultDirDesc:
+        'Naujos sesijos pradedamos šiame aplanke, jei nepasirinksite kito. Palikite neapibrėžtą, kad būtų naudojamas jūsų namų katalogas.',
+      defaultDirUpdated:
+        'Numatytoji projekto direktorija atnaujinta — pradėkite naują pokalbį (Ctrl/⌘+N), kad ji pradėtų veikti',
       defaultsTo: label => `Numatytoji reikšmė yra ${label}.`,
       change: 'Keisti',
       choose: 'Pasirinkti',
@@ -864,7 +910,7 @@ export const lt = defineLocale({
       unarchiveFailed: 'Nepavyko išarchyvuoti',
       deleteFailed: 'Nepavyko ištrinti',
       updateDirFailed: 'Nepavyko atnaujinti numatytosios direktoriajos',
-      clearDirFailed: 'Nepavyko išvalyti numatytosios direktoriajos',
+      clearDirFailed: 'Nepavyko išvalyti numatytosios direktoriajos'
     },
     toolsets: {
       loadingConfig: 'Įkeliama konfigūracija',
@@ -882,20 +928,23 @@ export const lt = defineLocale({
       selectedMessage: provider => `${provider} dabar aktyvus.`,
       failedSelect: provider => `Nepavyko pasirinkti ${provider}`,
       failedLoad: 'Nepavyko įkelti įrankio konfigūracijos',
-      noProviderOptions: 'Šis įrankių rinkinys neturi teikėjų parinkčių — įjunkite jį, ir jis veiks su esama konfigūracija.',
+      noProviderOptions:
+        'Šis įrankių rinkinys neturi teikėjų parinkčių — įjunkite jį, ir jis veiks su esama konfigūracija.',
       noProviders: 'Šiuo metu šiam įrankių rinkiniui nėra pasiekiamų teikėjų.',
       ready: 'Paruošta',
       needsSignIn: 'Reikia prisijungti',
       needsSetup: 'Reikia nustatyti',
       openamerIncluded: 'Įtraukta į OpenAmer prenumeratą — prisijunkite prie OpenAmer Portal, kad aktyvuotumėte.',
       openamerAuthNeededTitle: 'Prisijungti prie OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} išsaugota, bet nebus aktyvuota, kol neprisijungsite prie OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} išsaugota, bet nebus aktyvuota, kol neprisijungsite prie OpenAmer Portal.`,
       openamerAuthSignIn: 'Prisijungti',
       openamerAuthDoneTitle: 'OpenAmer Portal prijungtas',
       openamerAuthDoneMessage: 'Jūsų prenumeratos backendai dabar aktyvūs.',
       openamerAuthFailed: 'Prisijungimas prie OpenAmer Portal nebuvo užbaigtas',
       noApiKeyRequired: 'Nereikia API rakto.',
-      postSetupHint: step => `Šiam backendui reikia vienkartinio įdiegimo (${step}). Veikia šiame kompiuteryje — gali užtrukti kelias minutes.`,
+      postSetupHint: step =>
+        `Šiam backendui reikia vienkartinio įdiegimo (${step}). Veikia šiame kompiuteryje — gali užtrukti kelias minutes.`,
       postSetupInstalledHint: 'Įdiegta. Paleiskite nustatymą iš naujo tik jei kažkas neveikia.',
       postSetupRun: 'Paleisti nustatymą',
       postSetupRerun: 'Paleisti nustatymą iš naujo',
@@ -914,7 +963,8 @@ export const lt = defineLocale({
       webUseForExtract: 'Naudoti išgavimui',
       webUsedForSearch: 'Paieškos sistema',
       webUsedForExtract: 'Išgavimo sistema',
-      webCapabilitySelectedMessage: (provider, capability) => `${provider} dabar tvarko žiniatinklio funkciją: ${capability}.`,
+      webCapabilitySelectedMessage: (provider, capability) =>
+        `${provider} dabar tvarko žiniatinklio funkciją: ${capability}.`,
       failedSelectCapability: provider => `Nepavyko nustatyti ${provider}`,
       loadingModels: 'Įkeliamas modelių katalogas...',
       modelSectionTitle: 'Modelis',
@@ -936,9 +986,9 @@ export const lt = defineLocale({
         selectedTitle: 'Komponentas pasirinktas',
         selectedMessage: backend => `Terminalo komandos dabar vykdomos per ${backend}. Taikoma naujoms sesijoms.`,
         failedSelect: backend => `Nepavyko pasirinkti ${backend}`,
-        needsSetupHint: 'Šį komponentą galite pasirinkti dabar — komandos neveiks, kol nebus baigtas nustatymas.',
-      },
-    },
+        needsSetupHint: 'Šį komponentą galite pasirinkti dabar — komandos neveiks, kol nebus baigtas nustatymas.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Įgūdžiai',
@@ -958,7 +1008,8 @@ export const lt = defineLocale({
     noDescription: 'Nėra aprašymo.',
     configured: 'Sukonfigūruota',
     needsKeys: 'Reikia raktų',
-    visionModelHint: 'Vaizdo atpažinimas naudoja jūsų pagalbinio modelio konfigūraciją — vaizdams tinkamas modelis pasirenkamas ten, o ne pagal tiekėją čia.',
+    visionModelHint:
+      'Vaizdo atpažinimas naudoja jūsų pagalbinio modelio konfigūraciją — vaizdams tinkamas modelis pasirenkamas ten, o ne pagal tiekėją čia.',
     visionModelLink: 'Pasirinkite vaizdo modelį: Nustatymai → Modeliai',
     toolsetsEnabled: (enabled, total) => `Įjungta įrankių rinkinių: ${enabled}/${total}`,
     configureToolset: label => `Konfigūruoti ${label}`,
@@ -984,7 +1035,7 @@ export const lt = defineLocale({
     provenance: {
       agent: 'Išmokta',
       bundled: 'Integruota',
-      hub: 'Centras',
+      hub: 'Centras'
     },
     emptyNoneFound: noun => `Nerasta ${noun}`,
     emptyNothingMatches: query => `Nieko neatitinka “${query}”.`,
@@ -1002,9 +1053,11 @@ export const lt = defineLocale({
       connectingHubs: 'Jungiamasi prie įgūdžių centrų...',
       connectedHubs: 'Prijungti centrai:',
       featured: 'Rekomenduojami įgūdžiai',
-      landingHint: 'Ieškokite centre, kad peržiūrėtumėte įdiegiamus įgūdžius iš oficialaus indekso, GitHub ir bendruomenės šaltinių.',
+      landingHint:
+        'Ieškokite centre, kad peržiūrėtumėte įdiegiamus įgūdžius iš oficialaus indekso, GitHub ir bendruomenės šaltinių.',
       noResults: 'Centre nerasta atitinkančių įgūdžių.',
-      resultCount: (count, ms) => `${count} rezultatai${count === 1 ? 'rezultatas' : 'rezultatai'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} rezultatai${count === 1 ? 'rezultatas' : 'rezultatai'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Baigėsi laikas: ${sources}`,
       installed: 'Įdiegta',
       install: 'Įdiegti',
@@ -1022,7 +1075,7 @@ export const lt = defineLocale({
       trust: {
         builtin: 'įtaisytasis',
         trusted: 'patikimas',
-        community: 'bendruomenės',
+        community: 'bendruomenės'
       },
       verdictSafe: 'Saugu',
       verdictCaution: 'Atsargiai',
@@ -1040,8 +1093,8 @@ export const lt = defineLocale({
       loadFailed: 'Nepavyko įkelti įgūdžių centro',
       previewFailed: 'Nepavyko peržiūrėti įgūdžio',
       scanFailed: 'Saugumo patikra nepavyko',
-      searchFailed: 'Centro paieška nepavyko',
-    },
+      searchFailed: 'Centro paieška nepavyko'
+    }
   },
   starmap: {
     title: 'Atminties grafikas',
@@ -1058,7 +1111,8 @@ export const lt = defineLocale({
     emptyTitle: 'Dar nieko neišmokta',
     emptyDesc: 'Kai OpenAmer kaupia įgūdžius ir atsiminimus jūsų darbui, jie rodomi čia.',
     share: 'Bendrinti žemėlapį',
-    shareHint: 'Nukopijuokite kodą šiam žemėlapiui bendrinti arba įklijuokite kodą įkėlimui. Jame yra tik išdėstymas, o ne jūsų atminties ar įgūdžių tekstas.',
+    shareHint:
+      'Nukopijuokite kodą šiam žemėlapiui bendrinti arba įklijuokite kodą įkėlimui. Jame yra tik išdėstymas, o ne jūsų atminties ar įgūdžių tekstas.',
     shareTitle: 'Importuoti / eksportuoti žemėlapį',
     sharePlaceholder: 'Įklijuokite žemėlapio kodą…',
     copy: 'Kopijuoti žemėlapio kodą',
@@ -1068,7 +1122,7 @@ export const lt = defineLocale({
     importEmpty: 'Įklijuokite žemėlapio kodą, kad įkeltumėte.',
     importSuccess: nodes => `Įkelta žemėlapiu su ${nodes} ${nodes === 1 ? 'mazgas' : 'mazgai'}.`,
     importedBadge: 'importuotas žemėlapis',
-    resetToMine: 'Grįžti į mano žemėlapį',
+    resetToMine: 'Grįžti į mano žemėlapį'
   },
   agents: {
     close: 'Uždaryti agentus',
@@ -1098,7 +1152,7 @@ export const lt = defineLocale({
     ageDays: days => `prieš ${days} d.`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} s`,
-    tokens: value => `${value} žetonų`,
+    tokens: value => `${value} žetonų`
   },
   commandCenter: {
     close: 'Uždaryti komandų centrą',
@@ -1120,7 +1174,8 @@ export const lt = defineLocale({
       placeholder: 'Ieškoti augintinių…',
       loading: 'Įkeliama petdex galerija…',
       error: 'Nepavyko pasiekti petdex galerijos.',
-      staleBackend: 'Paleiskite OpenAmer iš naujo, kad galėtumėte naudoti augintinius – backendas senesnis už šią funkciją.',
+      staleBackend:
+        'Paleiskite OpenAmer iš naujo, kad galėtumėte naudoti augintinius – backendas senesnis už šią funkciją.',
       empty: 'Nėra atitinkančių augintinių.',
       turnOff: 'Išjungti',
       turnOn: 'Įjungti',
@@ -1128,7 +1183,7 @@ export const lt = defineLocale({
       generatedTag: 'Sugeneruota',
       adoptFailed: 'Nepavyko priglausti to augintinio.',
       toggleFailed: 'Nepavyko perjungti augintinio.',
-      noneAvailable: 'Nėra augintinių – pasirinkite vieną žemiau, kad įdiegtumėte.',
+      noneAvailable: 'Nėra augintinių – pasirinkite vieną žemiau, kad įdiegtumėte.'
     },
     generatePet: {
       title: 'Generuoti augintinį',
@@ -1152,12 +1207,13 @@ export const lt = defineLocale({
       slowProviderHint: 'Tai gali užtrukti kelias minutes',
       remix: 'Remiksas',
       remixConfirmTitle: 'Perdirbti šią išvaizdą?',
-      remixConfirmBody: 'Taip sugeneruojamas naujas juodraščių rinkinys, naudojant šį kaip pradinį tašką. Tai gali užtrukti kelias minutes.',
+      remixConfirmBody:
+        'Taip sugeneruojamas naujas juodraščių rinkinys, naudojant šį kaip pradinį tašką. Tai gali užtrukti kelias minutes.',
       genericError: 'Generavimas nepavyko — bandykite dar kartą arba pasirinkite pasiūlymą.',
       referenceImageTooLarge: 'Nuorodos vaizdas per didelis. Naudokite mažesnį nei 16 MB.',
       referenceImageInvalid: 'Nepavyko perskaityti to nuorodos vaizdo. Bandykite PNG, JPG, WebP arba GIF.',
       adopt: 'Įvaikinti',
-      startOver: 'Pradėti iš naujo',
+      startOver: 'Pradėti iš naujo'
     },
     installTheme: {
       title: 'Diegti temą…',
@@ -1169,7 +1225,7 @@ export const lt = defineLocale({
       install: 'Įdiegti',
       installing: 'Diegiama...',
       installed: 'Įdiegta',
-      installs: count => `${count} diegimų`,
+      installs: count => `${count} diegimų`
     },
     settingsFields: 'Nustatymų laukai',
     mcpServers: 'MCP serveriai',
@@ -1178,49 +1234,49 @@ export const lt = defineLocale({
       maintenance: 'Priežiūra',
       sessions: 'Sesijos',
       system: 'Sistema',
-      usage: 'Naudojimas',
+      usage: 'Naudojimas'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostika, atsarginės kopijos, kuratorius ir atminties duomenys',
       sessions: 'Ieškoti ir tvarkyti sesijas',
       system: 'Būsena, žurnalai ir sistemos veiksmai',
-      usage: 'Žetonų, išlaidų ir įgūdžių aktyvumas laikui bėgant',
+      usage: 'Žetonų, išlaidų ir įgūdžių aktyvumas laikui bėgant'
     },
     nav: {
       newChat: {
         title: 'Nauja sesija',
-        detail: 'Pradėti naują sesiją',
+        detail: 'Pradėti naują sesiją'
       },
       settings: {
         title: 'Nustatymai',
-        detail: 'Konfigūruoti OpenAmer darbalaukį',
+        detail: 'Konfigūruoti OpenAmer darbalaukį'
       },
       skills: {
         title: 'Galimybės',
-        detail: 'Įgūdžiai, įrankiai ir MCP serveriai',
+        detail: 'Įgūdžiai, įrankiai ir MCP serveriai'
       },
       messaging: {
         title: 'Žinutės',
-        detail: 'Nustatyti Telegram, Slack, Discord ir daugiau',
+        detail: 'Nustatyti Telegram, Slack, Discord ir daugiau'
       },
       artifacts: {
         title: 'Artefaktai',
-        detail: 'Naršyti sugeneruotus rezultatus',
-      },
+        detail: 'Naršyti sugeneruotus rezultatus'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Sesijų skydelis',
-        detail: 'Ieškoti, prisegti ir tvarkyti sesijas',
+        detail: 'Ieškoti, prisegti ir tvarkyti sesijas'
       },
       system: {
         title: 'Sistemos skydelis',
-        detail: 'Šliuzo būsena, žurnalai, paleisti iš naujo / atnaujinti',
+        detail: 'Šliuzo būsena, žurnalai, paleisti iš naujo / atnaujinti'
       },
       usage: {
         title: 'Naudojimo skydelis',
-        detail: 'Žetonų, kainos ir įgūdžių aktyvumas',
-      },
+        detail: 'Žetonų, kainos ir įgūdžių aktyvumas'
+      }
     },
     providerNavigate: 'Naviguoti',
     providerSessions: 'Sesijos',
@@ -1275,7 +1331,8 @@ export const lt = defineLocale({
       backup: 'Sukurti atsarginę kopiją',
       backupDesc: 'Suspausti konfigūraciją, atsiminimus, įgūdžius ir sesijas',
       debugShare: 'Derinimo bendrinimas',
-      debugShareDesc: 'Įkelkite apvalytą ataskaitą ir žurnalus, gaukite bendrinamas nuorodas (automatiškai ištrinama po 6 val.)',
+      debugShareDesc:
+        'Įkelkite apvalytą ataskaitą ir žurnalus, gaukite bendrinamas nuorodas (automatiškai ištrinama po 6 val.)',
       debugShareRunning: 'Įkeliama derinimo ataskaita...',
       debugShareLinks: 'Bendrinimo nuorodos',
       debugShareFailed: 'Derinimo bendrinimas nepavyko',
@@ -1308,8 +1365,8 @@ export const lt = defineLocale({
       actionStarted: name => `${name} paleista — sekamas žurnalas...`,
       actionFailed: name => `Nepavyko paleisti ${name}`,
       running: 'Veikia...',
-      viewLog: 'Veiksmų žurnalas',
-    },
+      viewLog: 'Veiksmų žurnalas'
+    }
   },
   messaging: {
     search: 'Ieškoti pranešimų...',
@@ -1324,7 +1381,7 @@ export const lt = defineLocale({
       not_configured: 'Reikia nustatyti',
       pending_restart: 'Reikia paleisti iš naujo',
       retrying: 'Bandoma dar kartą',
-      startup_failed: 'Nepavyko paleisti',
+      startup_failed: 'Nepavyko paleisti'
     },
     unknown: 'Nežinoma',
     hintPendingRestart: 'Kad pakeitimas įsigalėtų, paleiskite šliuzą iš naujo statuso juostoje.',
@@ -1337,7 +1394,8 @@ export const lt = defineLocale({
     required: 'Būtina',
     recommended: 'Rekomenduojama',
     advanced: count => `Išplėstinis (${count})`,
-    noTokenNeeded: 'Šiai platformai čia nereikia ženklo. Naudokite aukščiau esantį nustatymų vadovą, tada įjunkite ją žemiau.',
+    noTokenNeeded:
+      'Šiai platformai čia nereikia ženklo. Naudokite aukščiau esantį nustatymų vadovą, tada įjunkite ją žemiau.',
     enabled: 'Įjungta',
     disabled: 'Išjungta',
     unsavedChanges: 'Neišsaugoti pakeitimai',
@@ -1363,127 +1421,126 @@ export const lt = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Roboto prieigos raktas',
         help: 'Sukurkite botą su @BotFather, tada įklijuokite gautą žetoną.',
-        placeholder: 'Įklijuokite Telegram boto žetoną',
+        placeholder: 'Įklijuokite Telegram boto žetoną'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Leidžiami Telegram naudotojų ID',
-        help: 'Rekomenduojama. Skaitmeniniai ID iš @userinfobot, atskirti kableliais. Kitaip bet kas gali parašyti jūsų botui asmeninę žinutę.',
+        help: 'Rekomenduojama. Skaitmeniniai ID iš @userinfobot, atskirti kableliais. Kitaip bet kas gali parašyti jūsų botui asmeninę žinutę.'
       },
       TELEGRAM_PROXY: {
         label: 'Tarpinio serverio URL',
-        help: 'Reikia tik tuose tinkluose, kur Telegram užblokuotas.',
+        help: 'Reikia tik tuose tinkluose, kur Telegram užblokuotas.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Roboto prieigos raktas',
-        help: 'Sukurkite programą Discord Developer Portal, pridėkite botą ir įklijuokite jo tokeną.',
+        help: 'Sukurkite programą Discord Developer Portal, pridėkite botą ir įklijuokite jo tokeną.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Leidžiami Discord naudotojų ID',
-        help: 'Rekomenduojama. Discord naudotojų ID, atskirti kableliais.',
+        help: 'Rekomenduojama. Discord naudotojų ID, atskirti kableliais.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Atsakymo stilius',
-        help: 'first, all arba off.',
+        help: 'first, all arba off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Leisti visus Discord naudotojus',
-        help: 'Tik kūrimui. Kai true, bet kas gali siųsti botui asmenines žinutes be leidžiamųjų sąrašo.',
+        help: 'Tik kūrimui. Kai true, bet kas gali siųsti botui asmenines žinutes be leidžiamųjų sąrašo.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Pagrindinio kanalo ID',
-        help: 'Kanalas, kuriame botas siunčia iniciatyvius pranešimus (cron išvestį, priminimus).',
+        help: 'Kanalas, kuriame botas siunčia iniciatyvius pranešimus (cron išvestį, priminimus).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Pagrindinio kanalo pavadinimas',
-        help: 'Rodomas pagrindinio kanalo pavadinimas žurnaluose ir būsenos išvestyje.',
+        help: 'Rodomas pagrindinio kanalo pavadinimas žurnaluose ir būsenos išvestyje.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Leisti visus iMessage naudotojus',
-        help: 'Kai true, praleisti BlueBubbles leidžiamųjų sąrašą.',
+        help: 'Kai true, praleisti BlueBubbles leidžiamųjų sąrašą.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Leisti visus Mattermost naudotojus',
+        label: 'Leisti visus Mattermost naudotojus'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Pagrindinis kanalas',
+        label: 'Pagrindinis kanalas'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Leisti visus QQ naudotojus',
+        label: 'Leisti visus QQ naudotojus'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ pagrindinis kanalas',
-        help: 'Numatytasis kanalas arba grupė cron pristatymui.',
+        help: 'Numatytasis kanalas arba grupė cron pristatymui.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ pagrindinio kanalo pavadinimas',
+        label: 'QQ pagrindinio kanalo pavadinimas'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack roboto prieigos raktas',
         help: 'Naudokite boto prieigos raktą iš OAuth & Permissions, įdiegę Slack programą.',
-        placeholder: 'Įklijuokite Slack boto prieigos raktą',
+        placeholder: 'Įklijuokite Slack boto prieigos raktą'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack programos prieigos raktas',
         help: 'Naudokite programos lygio prieigos raktą, reikalingą Socket režimui.',
-        placeholder: 'Įklijuokite Slack programos prieigos raktą',
+        placeholder: 'Įklijuokite Slack programos prieigos raktą'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Leidžiami Slack naudotojų ID',
-        help: 'Rekomenduojama. Slack naudotojų ID, atskirti kableliais.',
+        help: 'Rekomenduojama. Slack naudotojų ID, atskirti kableliais.'
       },
       MATTERMOST_URL: {
         label: 'Serverio URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Roboto prieigos raktas',
+        label: 'Roboto prieigos raktas'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Leidžiami naudotojų ID',
-        help: 'Rekomenduojama. Mattermost naudotojų ID, atskirti kableliais.',
+        help: 'Rekomenduojama. Mattermost naudotojų ID, atskirti kableliais.'
       },
       MATRIX_HOMESERVER: {
         label: 'Namų serverio URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Prieigos raktas',
+        label: 'Prieigos raktas'
       },
       MATRIX_USER_ID: {
         label: 'Boto naudotojo ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Leidžiami Matrix naudotojų ID',
-        help: 'Rekomenduojama. Naudotojų ID @user:server formatu, atskirti kableliais.',
+        help: 'Rekomenduojama. Naudotojų ID @user:server formatu, atskirti kableliais.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal tilto URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Veikiančio signal-cli REST tilto URL.',
+        help: 'Veikiančio signal-cli REST tilto URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefono numeris',
-        help: 'Numeris, užregistruotas jūsų signal-cli tilte.',
+        help: 'Numeris, užregistruotas jūsų signal-cli tilte.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Leidžiami Signal naudotojai',
-        help: 'Rekomenduojama. Signal identifikatoriai, atskirti kableliais.',
+        help: 'Rekomenduojama. Signal identifikatoriai, atskirti kableliais.'
       },
       WHATSAPP_ENABLED: {
         label: 'Įjungti WhatsApp tiltą',
-        help: 'Nustatoma automatiškai toliau esančiu jungikliu. Nekeiskite, nebent žinote, kad reikia.',
+        help: 'Nustatoma automatiškai toliau esančiu jungikliu. Nekeiskite, nebent žinote, kad reikia.'
       },
       WHATSAPP_MODE: {
-        label: 'Tilto režimas',
+        label: 'Tilto režimas'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Leidžiami WhatsApp naudotojai',
-        help: 'Rekomenduojama. Telefono numeriai arba WhatsApp ID, atskirti kableliais.',
-      },
+        help: 'Rekomenduojama. Telefono numeriai arba WhatsApp ID, atskirti kableliais.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Ieškoti webhookų...',
@@ -1493,7 +1550,8 @@ export const lt = defineLocale({
     hint: 'Prenumeratų pakeitimai įkeliami iš naujo iškart, kai imtuvas veikia. Išjungtos prenumeratos atmeta gaunamus įvykius.',
     empty: 'Dar nėra webhook prenumeratų.',
     disabledTitle: 'Webhook imtuvas išjungtas',
-    disabledBody: 'Webhookai yra atskira vartų platforma. Įjunkite juos čia, kad priimtumėte gaunamus HTTP įvykius; pokalbių kanalai reikalingi tik tada, kai prenumerata pristato į Telegram, Discord, Slack ar kitą kanalą.',
+    disabledBody:
+      'Webhookai yra atskira vartų platforma. Įjunkite juos čia, kad priimtumėte gaunamus HTTP įvykius; pokalbių kanalai reikalingi tik tada, kai prenumerata pristato į Telegram, Discord, Slack ar kitą kanalą.',
     enable: 'Įjungti webhookus',
     enabling: 'Įjungiama...',
     enabled: (name: string) => `Įjungta: "${name}"`,
@@ -1510,7 +1568,8 @@ export const lt = defineLocale({
     toggleFailed: (name: string) => `Nepavyko atnaujinti "${name}"`,
     newSubscription: 'Nauja prenumerata',
     restarting: 'Šliuzas paleidžiamas iš naujo...',
-    restartNeeded: 'Žiniatinklio kabliukai įjungti, bet šliuzą dar reikia paleisti iš naujo, kad imtuvas galėtų pradėti veikti.',
+    restartNeeded:
+      'Žiniatinklio kabliukai įjungti, bet šliuzą dar reikia paleisti iš naujo, kad imtuvas galėtų pradėti veikti.',
     restartGateway: 'Paleisti šliuzą iš naujo',
     restartingGateway: 'Paleidžiama iš naujo...',
     restartFailed: (detail: string) => `Nepavyko paleisti šliuzo iš naujo${detail}`,
@@ -1546,12 +1605,13 @@ export const lt = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'El. paštas',
-      github_comment: 'GitHub komentaras',
-    },
+      github_comment: 'GitHub komentaras'
+    }
   },
   profiles: {
     close: 'Uždaryti profilius',
-    nameHint: 'Mažieji raidžiai, skaitmenys, brūkšniai ir apatiniai brūkšniai. Privaloma pradėti raide arba skaitmeniu.',
+    nameHint:
+      'Mažieji raidžiai, skaitmenys, brūkšniai ir apatiniai brūkšniai. Privaloma pradėti raide arba skaitmeniu.',
     title: 'Profiliai',
     count: count => `${count} ${count === 1 ? 'profilis' : 'profiliai'}`,
     search: 'Ieškoti profilių...',
@@ -1625,7 +1685,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     failedLoadSoul: 'Nepavyko įkelti SOUL.md',
     failedSaveSoul: 'Nepavyko išsaugoti SOUL.md',
     failedCreate: 'Nepavyko sukurti profilio',
-    failedRename: 'Nepavyko pervadinti profilio',
+    failedRename: 'Nepavyko pervadinti profilio'
   },
   cron: {
     close: 'Uždaryti cron',
@@ -1640,14 +1700,14 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       paused: 'pristabdyta',
       disabled: 'išjungta',
       error: 'klaida',
-      completed: 'baigta',
+      completed: 'baigta'
     },
     deliveryLabels: {
       local: 'Šis kompiuteris',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'El. paštas',
+      email: 'El. paštas'
     },
     scheduleLabels: {
       daily: 'Kasdien',
@@ -1656,7 +1716,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       monthly: 'Kas mėnesį',
       hourly: 'Kas valandą',
       'every-15-minutes': 'Kas 15 minučių',
-      custom: 'Pasirinktinis',
+      custom: 'Pasirinktinis'
     },
     scheduleHints: {
       daily: 'Kiekvieną dieną 9:00',
@@ -1665,7 +1725,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       monthly: 'Pirmąją kiekvieno mėnesio dieną 9:00',
       hourly: 'Kiekvienos valandos pradžioje',
       'every-15-minutes': 'Kas 15 minučių',
-      custom: 'Cron sintaksė arba natūrali kalba',
+      custom: 'Cron sintaksė arba natūrali kalba'
     },
     days: {
       '0': 'sekmadienis',
@@ -1675,7 +1735,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       '4': 'ketvirtadienis',
       '5': 'penktadienis',
       '6': 'šeštadienis',
-      '7': 'sekmadienis',
+      '7': 'sekmadienis'
     },
     dayFallback: value => `diena ${value}`,
     everyDayAt: time => `Kasdien ${time}`,
@@ -1685,7 +1745,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     topOfHour: 'Kiekvienos valandos pradžioje',
     everyHourAt: minute => `Kas valandą :${minute}`,
     newCron: 'Naujas cron',
-    emptyDescNew: 'Suplanuokite užklausą, kuri būtų vykdoma pagal cron išraišką. OpenAmer ją paleis ir pateiks rezultatus į pasirinktą paskirties vietą.',
+    emptyDescNew:
+      'Suplanuokite užklausą, kuri būtų vykdoma pagal cron išraišką. OpenAmer ją paleis ir pateiks rezultatus į pasirinktą paskirties vietą.',
     emptyDescSearch: 'Pabandykite platesnę paieškos užklausą.',
     emptyTitleNew: 'Suplanuotų užduočių dar nėra',
     emptyTitleSearch: 'Atitikmenų nėra',
@@ -1722,7 +1783,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     editTitle: 'Redaguoti cron užduotį',
     createTitle: 'Nauja cron užduotis',
     editDesc: 'Atnaujinkite grafiką, užklausą arba pristatymo tikslą. Pakeitimai įsigalios kitą kartą vykdant.',
-    createDesc: 'Suplanuokite automatiškai vykdomą užklausą. Naudokite cron sintaksę arba natūralią frazę, pvz., „kas 15 minučių“.',
+    createDesc:
+      'Suplanuokite automatiškai vykdomą užklausą. Naudokite cron sintaksę arba natūralią frazę, pvz., „kas 15 minučių“.',
     nameLabel: 'Pavadinimas',
     namePlaceholder: 'Rytinė suvestinė',
     promptLabel: 'Užklausa',
@@ -1744,7 +1806,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     createAction: 'Sukurti cron',
     tabs: {
       jobs: 'Užduotys',
-      blueprints: 'Šablonai',
+      blueprints: 'Šablonai'
     },
     blueprints: {
       tab: 'Šablonai',
@@ -1758,8 +1820,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       loading: 'Įkeliami šablonai...',
       failedLoad: 'Nepavyko įkelti šablonų',
       emptyTitle: 'Nėra šablonų',
-      emptyDesc: 'Šioje sistemoje nėra automatizavimo šablonų.',
-    },
+      emptyDesc: 'Šioje sistemoje nėra automatizavimo šablonų.'
+    }
   },
   artifacts: {
     search: 'Ieškoti artefaktų...',
@@ -1793,14 +1855,14 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     kindLink: 'nuoroda',
     chat: 'Pokalbis',
     copyUrl: 'Kopijuoti URL',
-    copyPath: 'Kopijuoti kelią',
+    copyPath: 'Kopijuoti kelią'
   },
   sidebar: {
     nav: {
       'new-session': 'Nauja sesija',
       skills: 'Galimybės',
       messaging: 'Žinutės',
-      artifacts: 'Artefaktai',
+      artifacts: 'Artefaktai'
     },
     searchAria: 'Ieškoti sesijų',
     searchPlaceholder: 'Ieškoti sesijų…',
@@ -1832,7 +1894,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       namePlaceholder: 'pvz. Skunkworks',
       foldersLabel: 'Aplankai',
       ideaLabel: 'Idėja',
-      ideaPlaceholder: "Apie ką šis projektas? (išsaugoma į IDEA.md)",
+      ideaPlaceholder: 'Apie ką šis projektas? (išsaugoma į IDEA.md)',
       ideaGenerate: 'Generuoti idėją',
       ideaGenerating: 'Generuojama…',
       ideaShuffle: 'Maišyti šablonus',
@@ -1852,8 +1914,10 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       copyPath: 'Kopijuoti kelią',
       removeFromSidebar: 'Slėpti iš šoninės juostos',
       createFailed: 'Nepavyko sukurti projekto',
-      staleBackend: 'Atnaujinkite OpenAmer backendą, kad galėtumėte kurti projektus — jūsų backendas senesnis už šią darbalaukio programą (Nustatymai → Atnaujinimai → Backendas).',
-      deleteConfirm: 'Tai pašalina išsaugotą projektą iš OpenAmer. Failai, git saugyklos ir darbo medžiai liks nepaliesti.',
+      staleBackend:
+        'Atnaujinkite OpenAmer backendą, kad galėtumėte kurti projektus — jūsų backendas senesnis už šią darbalaukio programą (Nustatymai → Atnaujinimai → Backendas).',
+      deleteConfirm:
+        'Tai pašalina išsaugotą projektą iš OpenAmer. Failai, git saugyklos ir darbo medžiai liks nepaliesti.',
       startWork: 'Naujas darbo medis',
       newWorktreeTitle: 'Naujas darbo medis',
       newWorktreeDesc: 'Pavadinkite šio darbo medžio šaką.',
@@ -1874,13 +1938,15 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       noBranches: 'Nerasta šakų',
       removeWorktree: 'Pašalinti darbo medį',
       removeWorktreeFailed: 'Nepavyko pašalinti darbo medžio (neįtrauktų pakeitimų?)',
-      removeWorktreeConfirm: 'Pašalinkite jį iš git (ištrinamas darbo medžio katalogas; šaka lieka) arba tiesiog paslėpkite eilutę šoninėje juostoje ir palikite darbo medį diske.',
-      removeWorktreeDirty: 'Šis darbo medis turi neįtrauktų pakeitimų. Priverstinai pašalinkite jį (pakeitimai bus atmesti) arba tiesiog paslėpkite eilutę ir palikite jį diske.',
+      removeWorktreeConfirm:
+        'Pašalinkite jį iš git (ištrinamas darbo medžio katalogas; šaka lieka) arba tiesiog paslėpkite eilutę šoninėje juostoje ir palikite darbo medį diske.',
+      removeWorktreeDirty:
+        'Šis darbo medis turi neįtrauktų pakeitimų. Priverstinai pašalinkite jį (pakeitimai bus atmesti) arba tiesiog paslėpkite eilutę ir palikite jį diske.',
       forceRemove: 'Priverstinai pašalinti',
       enter: label => `Atidaryti ${label}`,
       reorder: label => `Pertvarkyti ${label}`,
       toggle: label => `Perjungti ${label} sesijas`,
-      back: 'Visi projektai',
+      back: 'Visi projektai'
     },
     newSessionIn: label => `Nauja sesija: ${label}`,
     showMoreIn: (count, label) => `Rodyti dar ${count}: ${label}`,
@@ -1918,15 +1984,15 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       ageNow: 'dabar',
       ageDay: 'd.',
       ageHour: 'val.',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Anksčiau šiandien',
       yesterday: 'Vakar',
       thisWeek: 'Anksčiau šią savaitę',
       lastWeek: 'Praėjusią savaitę',
-      thisMonth: 'Anksčiau šį mėnesį',
-    },
+      thisMonth: 'Anksčiau šį mėnesį'
+    }
   },
   composer: {
     message: 'Žinutė',
@@ -1937,20 +2003,20 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     newSessionPlaceholders: [
       'Ką kuriame?',
       'Duok OpenAmer užduotį',
-      "Ką galvoji?",
+      'Ką galvoji?',
       'Aprašyk, ko reikia',
       'Ką spręsime?',
       'Klausk ką nori',
-      'Pradėk nuo tikslo',
+      'Pradėk nuo tikslo'
     ],
     followUpPlaceholders: [
       'Siųsti tolesnę žinutę',
       'Pridėk daugiau konteksto',
       'Patikslink užklausą',
-      "Kas toliau?",
+      'Kas toliau?',
       'Tęsk',
       'Pastūmėk toliau',
-      'Koreguoti arba tęsti',
+      'Koreguoti arba tęsti'
     ],
     startVoice: 'Pradėti balso pokalbį',
     queueMessage: 'Įtraukti žinutę į eilę',
@@ -1986,7 +2052,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       '/resume': 'tęsti ankstesnę sesiją',
       '/details': 'valdyti transkripto detalumo lygį',
       '/copy': 'kopijuoti pasirinkimą arba paskutinį asistento pranešimą',
-      '/quit': 'išeiti iš OpenAmer',
+      '/quit': 'išeiti iš OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'nurodyti failus, aplankus, URL, git',
@@ -1996,7 +2062,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       'composer.sendQueued': 'siųsti kitą eilėje esantį ėjimą',
       'keybinds.openPanel': 'visi klaviatūros trumpiniai',
       'composer.cancel': 'uždaryti iškylantįjį langą · atšaukti vykdymą',
-      'composer.history': 'perjungti iškylantįjį / istoriją',
+      'composer.history': 'perjungti iškylantįjį / istoriją'
     },
     attachUrlTitle: 'Pridėti URL',
     attachUrlDesc: 'OpenAmer atsisiųs puslapį ir įtrauks jį kaip šio karto kontekstą.',
@@ -2017,7 +2083,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     queueResume: 'Tęsti',
     queueResumeTip: 'Pristabdyta paspaudus Stabdyti — tęsti eilėje esančių kartų siuntimą',
     queueStuckTitle: 'Eilėje esantis pranešimas neišsiųstas',
-    queueStuckBody: 'Eilėje esantis ėjimas nuolat nepavykdavo išsiųsti. Jis vis dar eilėje — bandykite siųsti dar kartą.',
+    queueStuckBody:
+      'Eilėje esantis ėjimas nuolat nepavykdavo išsiųsti. Jis vis dar eilėje — bandykite siųsti dar kartą.',
     previewUnavailable: 'Peržiūra negalima',
     previewLabel: label => `Peržiūra ${label}`,
     couldNotPreview: label => `Nepavyko peržiūrėti ${label}`,
@@ -2047,19 +2114,19 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       codeReview: {
         label: 'Kodo peržiūra',
         description: 'Patikrinkite dabartinį pakeitimą dėl regresijų, praleistų kraštinių atvejų ir trūkstamų testų.',
-        text: 'Peržiūrėkite tai dėl klaidų, regresijų ir trūkstamų testų.',
+        text: 'Peržiūrėkite tai dėl klaidų, regresijų ir trūkstamų testų.'
       },
       implementationPlan: {
         label: 'Įgyvendinimo planas',
         description: 'Apibrėžkite požiūrį prieš liesdami kodą, kad pakeitimų skirtumas išliktų sutelktas.',
-        text: 'Sudarykite glaustą įgyvendinimo planą prieš keisdami kodą.',
+        text: 'Sudarykite glaustą įgyvendinimo planą prieš keisdami kodą.'
       },
       explainThis: {
         label: 'Paaiškinkite tai',
         description: 'Paaiškinkite, kaip veikia pasirinktas kodas, ir pateikite nuorodas į pagrindinius failus.',
-        text: 'Paaiškinkite, kaip tai veikia, ir nurodykite pagrindinius failus.',
-      },
-    },
+        text: 'Paaiškinkite, kaip tai veikia, ir nurodykite pagrindinius failus.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agentai',
@@ -2107,13 +2174,14 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       openPr: 'Atidaryti PR',
       ghMissing: 'Įdiekite GitHub CLI (gh) ir prisijunkite, kad galėtumėte atidaryti PR',
       agentShip: 'Paprašyti OpenAmer atidaryti PR',
-      agentShipPrompt: 'Peržiūrėkite dabartinius pakeitimus, įrašykite juos aiškia įprastinio įrašo žinute, išsiųskite šaką ir atidarykite ištraukimo užklausą.',
+      agentShipPrompt:
+        'Peržiūrėkite dabartinius pakeitimus, įrašykite juos aiškia įprastinio įrašo žinute, išsiųskite šaką ir atidarykite ištraukimo užklausą.',
       newBranch: 'Nauja šaka',
       branchOffFrom: base => `Nauja šaka iš ${base}`,
       switchTo: branch => `Perjungti į ${branch}`,
       switchFailed: branch => `Nepavyko perjungti į ${branch}`,
-      worktrees: 'Darbo medžiai',
-    },
+      worktrees: 'Darbo medžiai'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2196,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       done: 'Atnaujinimas baigtas',
       manual: 'Atnaujinkite iš terminalo',
       guiSkew: 'Atnaujinkite darbalaukio programą',
-      error: 'Atnaujinimas pristabdytas',
+      error: 'Atnaujinimas pristabdytas'
     },
     checking: 'Ieškoma atnaujinimų…',
     checkFailedTitle: 'Nepavyko patikrinti atnaujinimų',
@@ -2151,12 +2219,15 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     manualBody: 'Įdiegėte OpenAmer per komandinę eilutę, todėl atnaujinimai vyksta ten. Įklijuokite šį į terminalą:',
     manualPickedUp: 'OpenAmer naudos naują versiją, kai kitą kartą jį paleisite.',
     guiSkewTitle: 'Atnaujinti darbalaukio programą',
-    guiSkewBody: 'Serveris buvo atnaujintas, bet šis darbalaukio programos paketas nepasikeitė. Atnaujinkite arba įdiekite iš naujo OpenAmer darbalaukio programą (savo AppImage / .deb / .rpm), kad atitiktų.',
+    guiSkewBody:
+      'Serveris buvo atnaujintas, bet šis darbalaukio programos paketas nepasikeitė. Atnaujinkite arba įdiekite iš naujo OpenAmer darbalaukio programą (savo AppImage / .deb / .rpm), kad atitiktų.',
     copy: 'Kopijuoti',
     copied: 'Nukopijuota',
     done: 'Atlikta',
-    applyingBody: 'OpenAmer atnaujintojas perims valdymą atskirame lange ir automatiškai vėl atidarys OpenAmer, kai baigs. Kol atnaujinama, neatidarykite OpenAmer patys.',
-    applyingBodyBackend: 'Nuotolinis serveris taiko atnaujinimą ir bus paleistas iš naujo. OpenAmer automatiškai prisijungs, kai serveris grįš.',
+    applyingBody:
+      'OpenAmer atnaujintojas perims valdymą atskirame lange ir automatiškai vėl atidarys OpenAmer, kai baigs. Kol atnaujinama, neatidarykite OpenAmer patys.',
+    applyingBodyBackend:
+      'Nuotolinis serveris taiko atnaujinimą ir bus paleistas iš naujo. OpenAmer automatiškai prisijungs, kai serveris grįš.',
     applyingClose: 'Šis langas bus uždarytas, kol vyksta atnaujinimas, tada OpenAmer atsidarys pats.',
     errorTitle: 'Atnaujinimas nebaigėsi',
     errorBody: 'Nėra problemų — niekas neprarado. Galite bandyti dar kartą dabar.',
@@ -2167,12 +2238,13 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       restarting: 'Serveris paleidžiamas iš naujo, kad įkeltų atnaujinimą…',
       notAvailable: 'Šio serverio atnaujinimas nepasiekiamas.',
       failed: 'Serverio atnaujinimas nepavyko.',
-      noReturn: 'Serverio dalis vėl neprisijungė. Atnaujinimas galėjo nepasibaigti — patikrinkite serverio hostą.',
+      noReturn: 'Serverio dalis vėl neprisijungė. Atnaujinimas galėjo nepasibaigti — patikrinkite serverio hostą.'
     },
     appErrors: {
-      updateLocked: 'Atnaujinimas nutrauktas: kitas OpenAmer langas arba terminalas, kuriame veikia openamer, blokuoja šį įdiegimą. Uždarykite jį ir bandykite dar kartą.',
-      updateFailed: 'Atnaujinimas nebaigtas. Nesijaudinkite — nieko neprarasta. Galite bandyti dar kartą dabar.',
-    },
+      updateLocked:
+        'Atnaujinimas nutrauktas: kitas OpenAmer langas arba terminalas, kuriame veikia openamer, blokuoja šį įdiegimą. Uždarykite jį ir bandykite dar kartą.',
+      updateFailed: 'Atnaujinimas nebaigtas. Nesijaudinkite — nieko neprarasta. Galite bandyti dar kartą dabar.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2252,30 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       running: 'Diegiama',
       succeeded: 'Baigta',
       skipped: 'Praleista',
-      failed: 'Nepavyko',
+      failed: 'Nepavyko'
     },
     oneTimeTitle: 'OpenAmer reikia vienkartinio įdiegimo',
-    unsupportedDesc: platform => `Automatinis įdiegimas pirmojo paleidimo metu dar neprieinamas ${platform}. Atidarykite terminalą ir vykdykite žemiau pateiktą komandą, tada iš naujo paleiskite šią programą. Vėlesni paleidimai praleis šį veiksmą.`,
+    unsupportedDesc: platform =>
+      `Automatinis įdiegimas pirmojo paleidimo metu dar neprieinamas ${platform}. Atidarykite terminalą ir vykdykite žemiau pateiktą komandą, tada iš naujo paleiskite šią programą. Vėlesni paleidimai praleis šį veiksmą.`,
     installCommand: 'Įdiegimo komanda',
     copyCommand: 'Kopijuoti komandą',
     viewDocs: 'Rodyti įdiegimo dokumentus',
     installTo: 'Bus įdiegta į',
     retryAfterRun: 'Paleidau -- bandykite dar kartą',
     setupChoiceTitle: 'Nustatyti OpenAmer Desktop',
-    setupChoiceDesc: 'Prijunkite šią programą prie jau veikiančių OpenAmer vartų arba įdiekite OpenAmer lokaliai šiame kompiuteryje.',
+    setupChoiceDesc:
+      'Prijunkite šią programą prie jau veikiančių OpenAmer vartų arba įdiekite OpenAmer lokaliai šiame kompiuteryje.',
     connectExistingTitle: 'Prijungti prie esamo OpenAmer',
     connectExistingShort: 'Prijungti esamą',
-    connectExistingDesc: 'Naudokite nuotolinį backendą su sesijos tokenu arba prisijunkite per naršyklę. Vietinis diegimas nebus pradėtas.',
+    connectExistingDesc:
+      'Naudokite nuotolinį backendą su sesijos tokenu arba prisijunkite per naršyklę. Vietinis diegimas nebus pradėtas.',
     installLocalTitle: 'Įdiegti OpenAmer lokaliai',
     installLocalDesc: 'Atsisiųskite OpenAmer, sukurkite jo Python aplinką ir paleiskite backendą šiame kompiuteryje.',
-    localStartUnavailable: 'Vietinio diegimo nepavyko pradėti. Paleiskite OpenAmer Desktop iš naujo ir bandykite dar kartą.',
+    localStartUnavailable:
+      'Vietinio diegimo nepavyko pradėti. Paleiskite OpenAmer Desktop iš naujo ir bandykite dar kartą.',
     remoteSetupTitle: 'Prijungti prie esamo OpenAmer',
-    remoteSetupDesc: 'Įveskite savo vartų URL. OpenAmer Desktop nustatys, ar reikia tokeno, ar prisijungimo per naršyklę.',
+    remoteSetupDesc:
+      'Įveskite savo vartų URL. OpenAmer Desktop nustatys, ar reikia tokeno, ar prisijungimo per naršyklę.',
     remoteUrlTitle: 'Vartų URL',
     remoteUrlDesc: 'Naudokite bazinį OpenAmer vartų URL, įskaitant https://, kai jungiamasi nuotoliniu būdu.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2302,10 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     failedTitle: 'Įdiegimas nepavyko',
     settingUpTitle: 'Nustatomas OpenAmer Agent',
     finishingTitle: 'Baigiama',
-    failedDesc: 'Vienas įdiegimo veiksmas nepavyko. „Windows“ sistemoje taip gali nutikti, jei veikia kitas OpenAmer CLI arba darbalaukio egzempliorius. Sustabdykite visus veikiančius OpenAmer egzempliorius ir bandykite dar kartą. Išsamesnį įrašą rasite toliau pateiktoje informacijoje arba darbalaukio žurnale.',
-    activeDesc: 'Tai vienkartinis nustatymas. OpenAmer diegėjas atsisiunčia priklausomybes ir konfigūruoja jūsų kompiuterį. Vėlesni paleidimai praleis šį veiksmą.',
+    failedDesc:
+      'Vienas įdiegimo veiksmas nepavyko. „Windows“ sistemoje taip gali nutikti, jei veikia kitas OpenAmer CLI arba darbalaukio egzempliorius. Sustabdykite visus veikiančius OpenAmer egzempliorius ir bandykite dar kartą. Išsamesnį įrašą rasite toliau pateiktoje informacijoje arba darbalaukio žurnale.',
+    activeDesc:
+      'Tai vienkartinis nustatymas. OpenAmer diegėjas atsisiunčia priklausomybes ir konfigūruoja jūsų kompiuterį. Vėlesni paleidimai praleis šį veiksmą.',
     progress: (completed, total) => `Atlikta ${completed} iš ${total} žingsnių`,
     currentStage: stage => ` -- dabar: ${stage}`,
     fetchingManifest: 'Gaunamas diegimo manifestas...',
@@ -2240,18 +2319,19 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     transcriptSaved: 'Visas įrašas išsaugotas į',
     copiedOutput: 'Nukopijuota!',
     copyOutput: 'Kopijuoti išvestį',
-    reloadRetry: 'Įkelti iš naujo ir bandyti dar kartą',
+    reloadRetry: 'Įkelti iš naujo ir bandyti dar kartą'
   },
   onboarding: {
-    headerTitle: "Sukonfigūruokime OpenAmer Agent",
-    headerDesc: 'Prijunkite modelio teikėją, kad galėtumėte pradėti pokalbį. Daugumai parinkčių užtenka vieno paspaudimo.',
+    headerTitle: 'Sukonfigūruokime OpenAmer Agent',
+    headerDesc:
+      'Prijunkite modelio teikėją, kad galėtumėte pradėti pokalbį. Daugumai parinkčių užtenka vieno paspaudimo.',
     preparingInstall: 'OpenAmer baigia diegimą. Pirmą kartą tai paprastai užtrunka mažiau nei minutę.',
     starting: 'Paleidžiamas OpenAmer…',
     lookingUpProviders: 'Ieškoma teikėjų...',
     collapse: 'Sutraukti',
     otherProviders: 'Kiti teikėjai',
     haveApiKey: 'Turiu API raktą',
-    chooseLater: "Tiekėją pasirinksiu vėliau",
+    chooseLater: 'Tiekėją pasirinksiu vėliau',
     recommended: 'Rekomenduojama',
     connected: 'Prijungta',
     featuredPitch: 'Viena prenumerata, 300+ pažangiausių modelių — rekomenduojamas būdas naudoti OpenAmer',
@@ -2260,41 +2340,42 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     apiKeyOptions: {
       fireworks: {
         short: 'tiesioginė modelių API',
-        description: 'Tiesioginė prieiga prie Fireworks AI talpinamų modelių.',
+        description: 'Tiesioginė prieiga prie Fireworks AI talpinamų modelių.'
       },
       openrouter: {
         short: 'vienas raktas, daug modelių',
-        description: 'Talpina šimtus modelių po vienu raktu. Tinkamas numatytasis pasirinkimas naujiems įdiegimams.',
+        description: 'Talpina šimtus modelių po vienu raktu. Tinkamas numatytasis pasirinkimas naujiems įdiegimams.'
       },
       openai: {
         short: 'GPT klasės modeliai',
-        description: 'Tiesioginė prieiga prie OpenAI modelių.',
+        description: 'Tiesioginė prieiga prie OpenAI modelių.'
       },
       gemini: {
         short: 'Gemini modeliai',
-        description: 'Tiesioginė prieiga prie Google Gemini modelių.',
+        description: 'Tiesioginė prieiga prie Google Gemini modelių.'
       },
       xai: {
         short: 'Grok modeliai',
-        description: 'Tiesioginė prieiga prie xAI Grok modelių.',
+        description: 'Tiesioginė prieiga prie xAI Grok modelių.'
       },
       local: {
         short: 'savarankiškai talpinama',
-        description: 'Nukreipkite OpenAmer į vietinį arba savarankiškai talpinamą OpenAI suderinamą galinį tašką (vLLM, llama.cpp, Ollama ir kt.).',
-      },
+        description:
+          'Nukreipkite OpenAmer į vietinį arba savarankiškai talpinamą OpenAI suderinamą galinį tašką (vLLM, llama.cpp, Ollama ir kt.).'
+      }
     },
     backToSignIn: 'Grįžti į prisijungimą',
     getKey: 'Gauti raktą',
     replaceCurrent: 'Pakeisti dabartinę reikšmę',
     pasteApiKey: 'Įklijuoti API raktą',
-    localApiKeyPlaceholder: 'API raktas (neprivalomas — tik jei jūsų endpoint\'as jo reikalauja)',
+    localApiKeyPlaceholder: "API raktas (neprivalomas — tik jei jūsų endpoint'as jo reikalauja)",
     couldNotSave: 'Nepavyko išsaugoti prisijungimo duomenų.',
     connecting: 'Jungiamasi',
     update: 'Atnaujinti',
     flowSubtitles: {
       pkce: 'Atidaro naršyklę prisijungimui, tada tęsia čia',
       device_code: 'Atidaro patvirtinimo puslapį naršyklėje — OpenAmer prisijungia automatiškai',
-      external: 'Prisijunkite vieną kartą terminale, tada grįžkite į pokalbį',
+      external: 'Prisijunkite vieną kartą terminale, tada grįžkite į pokalbį'
     },
     startingSignIn: provider => `Pradedamas prisijungimas prie ${provider}...`,
     verifyingCode: provider => `Tikrinamas jūsų kodas su ${provider}...`,
@@ -2308,11 +2389,13 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     copyAuthCode: 'Nukopijuokite autorizacijos kodą ir įklijuokite jį žemiau.',
     pasteAuthCode: 'Įklijuoti autorizacijos kodą',
     reopenAuthPage: 'Iš naujo atidaryti autorizacijos puslapį',
-    autoBrowser: provider => `Jūsų naršyklėje atidarėme ${provider}. Autorizuokite OpenAmer ten ir būsite prijungti automatiškai – nieko nereikia kopijuoti ar įklijuoti.`,
+    autoBrowser: provider =>
+      `Jūsų naršyklėje atidarėme ${provider}. Autorizuokite OpenAmer ten ir būsite prijungti automatiškai – nieko nereikia kopijuoti ar įklijuoti.`,
     reopenSignInPage: 'Iš naujo atidaryti prisijungimo puslapį',
     waitingAuthorize: 'Laukiama, kai patvirtinsite...',
-    externalPending: provider => `${provider} prisijungia per savo CLI. Paleiskite šią komandą terminale, tada grįžkite ir pasirinkite „Prisijungiau“:`,
-    signedIn: "Prisijungiau",
+    externalPending: provider =>
+      `${provider} prisijungia per savo CLI. Paleiskite šią komandą terminale, tada grįžkite ir pasirinkite „Prisijungiau“:`,
+    signedIn: 'Prisijungiau',
     deviceCodeOpened: provider => `Atidarėme ${provider} jūsų naršyklėje. Įveskite ten šį kodą:`,
     reopenVerification: 'Atidaryti patvirtinimo puslapį iš naujo',
     copy: 'Kopijuoti',
@@ -2323,7 +2406,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     price: (input, output) => `${input} į / ${output} iš per Mtok`,
     change: 'Keisti',
     startChatting: 'Pradėti',
-    docs: provider => `${provider} dokumentacija`,
+    docs: provider => `${provider} dokumentacija`
   },
   modelPicker: {
     title: 'Keisti modelį',
@@ -2339,13 +2422,13 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     free: 'Nemokamas',
     freeTier: 'Nemokamas planas',
     priceTitle: 'Įvesties / išvesties kaina už milijoną žetonų',
-    wasPrice: 'buvo',
+    wasPrice: 'buvo'
   },
   modelVisibility: {
     title: 'Modeliai',
     search: 'Ieškoti modelių',
     noAuthenticatedProviders: 'Nėra autentifikuotų tiekėjų.',
-    addProvider: 'Pridėti tiekėją…',
+    addProvider: 'Pridėti tiekėją…'
   },
   shell: {
     windowControls: 'Lango valdikliai',
@@ -2356,7 +2439,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       noModels: 'Modelių nerasta',
       editModels: 'Redaguoti modelius…',
       refreshModels: 'Atnaujinti modelius',
-      fast: 'Greitas',
+      fast: 'Greitas'
     },
     modelOptions: {
       noOptions: 'Šiam modeliui parinkčių nėra',
@@ -2372,7 +2455,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       max: 'Maksimalios',
       ultra: 'Ultra',
       updateFailed: 'Nepavyko atnaujinti modelio parinkties',
-      fastFailed: 'Nepavyko atnaujinti greitojo režimo',
+      fastFailed: 'Nepavyko atnaujinti greitojo režimo'
     },
     gatewayMenu: {
       gateway: 'Šliuzas',
@@ -2387,7 +2470,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       connection: label => `Ryšys: ${label}`,
       recentActivity: 'Naujausia veikla',
       viewAllLogs: 'Peržiūrėti visus žurnalus →',
-      messagingPlatforms: 'Susirašinėjimo platformos',
+      messagingPlatforms: 'Susirašinėjimo platformos'
     },
     approvalMode: {
       title: 'Patvirtinimo režimas',
@@ -2397,14 +2480,15 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       smart: 'Išmanus',
       smartDescription: 'Automatiškai vertinti veiksmus ir klausti, kai reikia',
       off: 'Išjungta',
-      offDescription: 'Vykdyti be patvirtinimo užklausų',
+      offDescription: 'Vykdyti be patvirtinimo užklausų'
     },
     statusbar: {
       unknown: 'nežinoma',
       restart: 'paleisti iš naujo',
       update: 'atnaujinti',
       updateInProgress: 'Vyksta atnaujinimas',
-      commitsBehind: (count, branch) => `${count} commitas${count === 1 ? 'komitas' : 'komitai'} atsilika nuo ${branch}`,
+      commitsBehind: (count, branch) =>
+        `${count} commitas${count === 1 ? 'komitas' : 'komitai'} atsilika nuo ${branch}`,
       desktopVersion: version => `OpenAmer darbalaukio v${version}`,
       backendVersion: version => `Serverio dalis v${version}`,
       clientLabel: version => `klientas v${version}`,
@@ -2453,27 +2537,29 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
           skills: 'Įgūdžiai',
           subagent_definitions: 'Subagentų apibrėžtys',
           system_prompt: 'Sistemos užklausa',
-          tool_definitions: 'Įrankių apibrėžtys',
+          tool_definitions: 'Įrankių apibrėžtys'
         },
         empty: 'Konteksto duomenų dar nėra',
         loading: 'Įkeliamas suskirstymas…',
         percentFull: percent => `${percent} % užpildyta`,
         title: 'Konteksto naudojimas',
-        tokenSummary: (used, max) => `${used} / ${max} žetonų`,
+        tokenSummary: (used, max) => `${used} / ${max} žetonų`
       },
       openContextUsage: 'Atidaryti konteksto naudojimo suskirstymą',
       session: 'Sesija',
       runtimeSessionElapsed: 'Sesijos veikimo laikas',
-      yoloOn: 'YOLO įjungta — automatiškai tvirtinamos pavojingos komandos. Spustelėkite, kad išjungtumėte. Shift+spustelėjimas perjungia visur.',
-      yoloOff: 'YOLO išjungta — spustelėkite, kad automatiškai tvirtintumėte pavojingas komandas. Shift+spustelėjimas perjungia visur.',
+      yoloOn:
+        'YOLO įjungta — automatiškai tvirtinamos pavojingos komandos. Spustelėkite, kad išjungtumėte. Shift+spustelėjimas perjungia visur.',
+      yoloOff:
+        'YOLO išjungta — spustelėkite, kad automatiškai tvirtintumėte pavojingas komandas. Shift+spustelėjimas perjungia visur.',
       modelNone: 'nėra',
       noModel: 'nėra modelio',
       switchModel: 'Pakeisti modelį',
       openModelPicker: 'Atidaryti modelių pasirinkimą',
       modelPinned: 'prisegta jūsų; nauji pokalbiai naudoja tai vietoj nustatymų numatytojo',
       modelTitle: (provider, model) => `Modelis · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Dešinioji šoninė juosta',
@@ -2509,7 +2595,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     terminalNew: 'Naujas terminalas',
     terminalCloseOthers: 'Uždaryti kitus',
     terminalCloseAll: 'Uždaryti visus',
-    addToChat: 'Pridėti į pokalbį',
+    addToChat: 'Pridėti į pokalbį'
   },
   preview: {
     tab: 'Peržiūra',
@@ -2525,7 +2611,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     openPreview: 'Atidaryti peržiūrą',
     openInBrowser: 'Atidaryti naršyklėje',
     linkHint: '⌘/Ctrl-spustelėkite peržiūros sričiai',
-    sourceLineTitle: 'Spustelėkite, kad pasirinktumėte · Shift-spustelėkite, kad išplėstumėte · tempkite į komponavimo lauką',
+    sourceLineTitle:
+      'Spustelėkite, kad pasirinktumėte · Shift-spustelėkite, kad išplėstumėte · tempkite į komponavimo lauką',
     source: 'ŠALTINIS',
     renderedPreview: 'PERŽIŪRA',
     diff: 'SKIRTUMAI',
@@ -2543,7 +2630,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     unsavedChanges: 'Neišsaugoti pakeitimai',
     saveFailed: message => `Nepavyko išsaugoti: ${message}`,
     diskChangedTitle: 'Failas pakeistas diske',
-    diskChangedBody: 'Šis failas pasikeitė nuo jo atidarymo. Perrašyti savo versija arba atsisakyti pakeitimų ir įkelti iš naujo?',
+    diskChangedBody:
+      'Šis failas pasikeitė nuo jo atidarymo. Perrašyti savo versija arba atsisakyti pakeitimų ir įkelti iš naujo?',
     overwrite: 'Perrašyti',
     discardReload: 'Atsisakyti ir įkelti',
     console: {
@@ -2564,7 +2652,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       empty: 'Kol kas nėra konsolės pranešimų.',
       promptHeader: 'Peržiūros konsolė:',
       sentTitle: 'Išsiųsta į pokalbį',
-      sentMessage: count => `kompozitoriui pridėta ${count} žurnalo įrašų${count === 1 ? 'y' : 'ies'}`,
+      sentMessage: count => `kompozitoriui pridėta ${count} žurnalo įrašų${count === 1 ? 'y' : 'ies'}`
     },
     web: {
       appFailedToBoot: 'Peržiūros nepavyko paleisti',
@@ -2582,24 +2670,27 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       showConsole: 'Rodyti peržiūros konsolę',
       hideDevTools: 'Slėpti peržiūros DevTools',
       openDevTools: 'Atverti peržiūros DevTools',
-      finishedRestarting: message => `OpenAmer baigė paleisti peržiūros serverį iš naujo${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer baigė paleisti peržiūros serverį iš naujo${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Nepavyko paleisti serverio iš naujo: ${message}`,
       unknownError: 'nežinoma klaida',
       restartedTitle: 'Peržiūros serveris paleistas iš naujo',
       reloadingNow: 'Peržiūra įkeliama iš naujo.',
       restartFailedTitle: 'Perkrovimo peržiūra nepavyko',
       restartFailedMessage: 'OpenAmer nepavyko perkrovti serverio.',
-      stillWorking: 'OpenAmer vis dar veikia, tačiau perkrovimo rezultatas dar negautas. Serverio komanda gali būti vykdoma priešakine plane.',
+      stillWorking:
+        'OpenAmer vis dar veikia, tačiau perkrovimo rezultatas dar negautas. Serverio komanda gali būti vykdoma priešakine plane.',
       workspaceReloading: 'Darbinė erdvė pakeista, perkraunama peržiūra',
       fileChanged: url => `Failas pakeistas, perkraunama peržiūra: ${url}`,
       filesChanged: (count, url) => `${count} failo pakeitimai, perkraunama peržiūra: ${url}`,
       watchFailed: message => `Nepavyko stebėti peržiūros failo: ${message}`,
-      moduleMimeDescription: 'Modulių skriptai teikiami netinkamu MIME tipu. Tai paprastai reiškia, kad statinių failų serveris teikia Vite/React programą vietoj projekto plėtros serverio.',
+      moduleMimeDescription:
+        'Modulių skriptai teikiami netinkamu MIME tipu. Tai paprastai reiškia, kad statinių failų serveris teikia Vite/React programą vietoj projekto plėtros serverio.',
       loadFailedConsole: (code, message) => `Užkrovimas nepavyko${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Peržiūros puslapio nepavyko pasiekti.',
       openTarget: url => `Atidaryti ${url}`,
-      fallbackTitle: 'Peržiūra',
-    },
+      fallbackTitle: 'Peržiūra'
+    }
   },
   zones: {
     showHeader: 'Rodyti antraštę',
@@ -2607,7 +2698,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     minimize: 'Suminuoti',
     restore: 'Atkurti',
     closeRunningTitle: 'Uždaryti veikiančią skirtelę?',
-    closeRunningBody: 'Šis pokalbis vis dar veikia (arba laukia jūsų įvesties). Uždarius skirtelę ji bus paslėpta — sesija išsaugo progresą ir ją galima vėl atidaryti iš šoninės juostos.',
+    closeRunningBody:
+      'Šis pokalbis vis dar veikia (arba laukia jūsų įvesties). Uždarius skirtelę ji bus paslėpta — sesija išsaugo progresą ir ją galima vėl atidaryti iš šoninės juostos.',
     closeRunningConfirm: 'Uždaryti skirtuką',
     closeOthers: 'Uždaryti kitus',
     closeToRight: 'Uždaryti dešinėje',
@@ -2623,7 +2715,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     pluginDisabledBody: 'Vėl įjunkite jį Nustatymai → Plėtiniai, kad sritis sugrįžtų.',
     missingPane: paneId => `Trūksta srities: ${paneId}`,
     editTitle: 'Maketai',
-    editHint: 'Pasirinkite išdėstymą arba tempkite sritis tarp zonų. Dešiniuoju pelės mygtuku spustelėkite zoną, kad padalytumėte.',
+    editHint:
+      'Pasirinkite išdėstymą arba tempkite sritis tarp zonų. Dešiniuoju pelės mygtuku spustelėkite zoną, kad padalytumėte.',
     reset: 'Atstatyti',
     templates: 'Šablonai',
     custom: 'Pasirinktinis',
@@ -2633,7 +2726,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     deletePreset: name => `Ištrinti ${name}`,
     zoneEditorTitle: 'Zonų redaktorius',
     editorHintPre: 'spustelėkite, kad padalintumėte · ',
-    editorHintPost: ' apverčia liniją · tempkite per zonas, kad sujungtumėte · tempkite bendras briaunas, kad pakeistumėte dydį',
+    editorHintPost:
+      ' apverčia liniją · tempkite per zonas, kad sujungtumėte · tempkite bendras briaunas, kad pakeistumėte dydį',
     templateColumns: 'Stulpeliai',
     templateRows: 'Eilutės',
     templateGrid: 'Tinklelis',
@@ -2644,25 +2738,16 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     layoutNamePlaceholder: fallback => `Išdėstymo pavadinimas (${fallback})`,
     saveApply: 'Išsaugoti ir taikyti',
     notExpressible: 'šis išdėstymas susipina (malūnėlis) — dar neišreiškiamas kaip įdėtieji padalijimai',
-    zoneCount: count => `${count} zonų`,
+    zoneCount: count => `${count} zonų`
   },
   assistant: {
     thread: {
       loadingSession: 'Įkeliama sesija',
       showEarlier: 'Rodyti ankstesnius pranešimus',
       loadingResponse: 'OpenAmer įkelia atsakymą',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Galvoja',
       today: time => `Šiandien, ${time}`,
@@ -2689,7 +2774,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       restoreNext: 'Atkurti kitą kontrolinį tašką',
       goForward: 'Pirmyn',
       sendEdited: 'Siųsti redaguotą žinutę',
-      attachingFile: 'Prisegama…',
+      attachingFile: 'Prisegama…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer šliuzas neprijungtas',
@@ -2702,8 +2787,9 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       jumpToApproval: 'Reikia patvirtinimo',
       reject: 'Atmesti',
       alwaysTitle: 'Visada leisti šią komandą?',
-      alwaysDescription: pattern => `Tai prideda “${pattern}” šabloną prie jūsų nuolatinio leidžiamųjų sąrašo (~/.openamer/config.yaml). OpenAmer daugiau nebeklaus dėl tokių komandų — nei šiame seanse, nei jokiame būsimame.`,
-      alwaysAllow: 'Visada leisti',
+      alwaysDescription: pattern =>
+        `Tai prideda “${pattern}” šabloną prie jūsų nuolatinio leidžiamųjų sąrašo (~/.openamer/config.yaml). OpenAmer daugiau nebeklaus dėl tokių komandų — nei šiame seanse, nei jokiame būsimame.`,
+      alwaysAllow: 'Visada leisti'
     },
     clarify: {
       notReady: 'Patikslinimo užklausa dar neparengta',
@@ -2717,7 +2803,7 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       continueLabel: 'Tęsti',
       lateAnswer: (question, choice) => `Dėl: "${question}" — mano atsakymas: ${choice}`,
       lateAnswerTip: 'Parengti šį atsakymą kaip tolesnį pranešimą',
-      lateAnswerHint: 'Ši užklausa nebelaukiama. Pasirinkite parinktį, kad paruoštumėte ją kaip tolesnį pranešimą.',
+      lateAnswerHint: 'Ši užklausa nebelaukiama. Pasirinkite parinktį, kad paruoštumėte ją kaip tolesnį pranešimą.'
     },
     tool: {
       code: 'Kodas',
@@ -2753,11 +2839,11 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
         ran: 'Įvykdyta',
         running: 'Vykdoma',
         ranCode: 'Įvykdytas kodas',
-        runningCode: 'Skriptavimas',
+        runningCode: 'Skriptavimas'
       },
       prefixes: {
         browser: 'Naršyklė',
-        web: 'Žiniatinklis',
+        web: 'Žiniatinklis'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2765,132 +2851,133 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Vykdoma ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Vykdoma ${action.toLowerCase()}`,
+        runningTool: action => `Vykdoma ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Paspaustas puslapio elementas',
           pending: 'Puslapio elemento spustelėjimas',
-          pendingAction: 'Spustelėjimas',
+          pendingAction: 'Spustelėjimas'
         },
         browser_fill: {
           done: 'Užpildytas formos laukas',
           pending: 'Pildomas formos laukas',
-          pendingAction: 'Pildymas',
+          pendingAction: 'Pildymas'
         },
         browser_navigate: {
           done: 'Atidarytas puslapis',
           pending: 'Puslapio atidarymas',
-          pendingAction: 'Atidarymas',
+          pendingAction: 'Atidarymas'
         },
         browser_snapshot: {
           done: 'Užfiksuota puslapio kopija',
           pending: 'Puslapio kopijos fiksavimas',
-          pendingAction: 'Fiksavimas',
+          pendingAction: 'Fiksavimas'
         },
         browser_take_screenshot: {
           done: 'Užfiksuota ekrano kopija',
           pending: 'Daroma ekrano kopija',
-          pendingAction: 'Fiksuojama',
+          pendingAction: 'Fiksuojama'
         },
         browser_type: {
           done: 'Įvesta puslapyje',
           pending: 'Įvedama puslapyje',
-          pendingAction: 'Įvedama',
+          pendingAction: 'Įvedama'
         },
         clarify: {
           done: 'Užduotas klausimas',
           pending: 'Užduodamas klausimas',
-          pendingAction: 'Klausiama',
+          pendingAction: 'Klausiama'
         },
         cronjob: {
           done: 'Cron užduotis',
           pending: 'Planuojama Cron užduotis',
-          pendingAction: 'Planuojama',
+          pendingAction: 'Planuojama'
         },
         edit_file: {
           done: 'Redaguotas failas',
           pending: 'Redaguojamas failas',
-          pendingAction: 'Redaguojama',
+          pendingAction: 'Redaguojama'
         },
         execute_code: {
           done: 'Vykdytas kodas',
           pending: 'Scenarijų kūrimas',
-          pendingAction: 'Scenarijų kūrimas',
+          pendingAction: 'Scenarijų kūrimas'
         },
         image_generate: {
           done: 'Sugeneruotas vaizdas',
           pending: 'Generuojamas vaizdas',
-          pendingAction: 'Generuojama',
+          pendingAction: 'Generuojama'
         },
         list_files: {
           done: 'Išvardyti failai',
           pending: 'Išvardijami failai',
-          pendingAction: 'Išvardijama',
+          pendingAction: 'Išvardijama'
         },
         patch: {
           done: 'Pataisytas failas',
           pending: 'Taisomas failas',
-          pendingAction: 'Taisoma',
+          pendingAction: 'Taisoma'
         },
         read_file: {
           done: 'Perskaitytas failas',
           pending: 'Skaitomas failas',
-          pendingAction: 'Skaitoma',
+          pendingAction: 'Skaitoma'
         },
         search_files: {
           done: 'Ieškota failuose',
           pending: 'Ieškoma failuose',
-          pendingAction: 'Ieškoma',
+          pendingAction: 'Ieškoma'
         },
         session_search_recall: {
           done: 'Ieškota sesijos istorijoje',
           pending: 'Ieškoma sesijos istorijoje',
-          pendingAction: 'Ieškoma',
+          pendingAction: 'Ieškoma'
         },
         terminal: {
           done: 'Įvykdyta komanda',
           pending: 'Vykdoma komanda',
-          pendingAction: 'Vykdoma',
+          pendingAction: 'Vykdoma'
         },
         todo: {
           done: 'Atnaujintos užduotys',
           pending: 'Atnaujinamos užduotys',
-          pendingAction: 'Atnaujinama',
+          pendingAction: 'Atnaujinama'
         },
         vision_analyze: {
           done: 'Išanalizuotas vaizdas',
           pending: 'Analizuojamas vaizdas',
-          pendingAction: 'Analizuojama',
+          pendingAction: 'Analizuojama'
         },
         web_extract: {
           done: 'Perskaitytas tinklalapis',
           pending: 'Skaitomas tinklalapis',
-          pendingAction: 'Skaitoma',
+          pendingAction: 'Skaitoma'
         },
         web_search: {
           done: 'Ieškota internete',
           pending: 'Ieškoma internete',
-          pendingAction: 'Ieškoma',
+          pendingAction: 'Ieškoma'
         },
         write_file: {
           done: 'Redaguotas failas',
           pending: 'Redaguojamas failas',
-          pendingAction: 'Redaguojama',
-        },
-      },
-    },
+          pendingAction: 'Redaguojama'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer vartai neprijungti',
     sudoSendFailed: 'Nepavyko išsiųsti sudo slaptažodžio',
     secretSendFailed: 'Nepavyko išsiųsti slaptos reikšmės',
     sudoTitle: 'Administratoriaus slaptažodis',
-    sudoDesc: 'OpenAmer reikia jūsų sudo slaptažodžio, kad galėtų vykdyti privilegijuotą komandą. Jis siunčiamas tik jūsų vietiniam agentui.',
+    sudoDesc:
+      'OpenAmer reikia jūsų sudo slaptažodžio, kad galėtų vykdyti privilegijuotą komandą. Jis siunčiamas tik jūsų vietiniam agentui.',
     sudoPlaceholder: 'sudo slaptažodis',
     secretTitle: 'Reikalinga slapta reikšmė',
     secretDesc: 'OpenAmer reikia prisijungimo duomenų, kad galėtų tęsti.',
-    secretPlaceholder: 'slaptoji reikšmė',
+    secretPlaceholder: 'slaptoji reikšmė'
   },
   desktop: {
     audioReadFailed: 'Nepavyko nuskaityti įrašyto garso',
@@ -2907,7 +2994,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     yoloSystem: active => `YOLO ${active ? 'įjungta' : 'išjungta'} šiai sesijai`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Nepavyko pakeisti YOLO būsenos',
-    profileStatus: current => `Profilis: ${current}. Norėdami pradėti pokalbį kitame profilyje, naudokite /profile <pavadinimas> arba „Nauja sesija“ pasirinkimo sąrašą.`,
+    profileStatus: current =>
+      `Profilis: ${current}. Norėdami pradėti pokalbį kitame profilyje, naudokite /profile <pavadinimas> arba „Nauja sesija“ pasirinkimo sąrašą.`,
     unknownProfile: 'Nežinomas profilis',
     noProfileNamed: (target, available) => `Profilio pavadinimu „${target}“ nėra. Galimi: ${available}`,
     newChatsProfile: name => `Nauji pokalbiai bus priskirti profiliui ${name}.`,
@@ -2917,8 +3005,9 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     regenerateFailed: 'Regeneravimas nepavyko',
     editFailed: 'Redagavimas nepavyko',
     resumeFailed: 'Atnaujinimas nepavyko',
-    resumeStrandedTitle: "Nepavyko įkrauti šios sesijos",
-    resumeStrandedBody: 'Ryšys su šia sesija nutrūko ir automatiniai bandymai nepavyko. Patikrinkite, ar veikia šлюzas, tada pabandykite dar kartą.',
+    resumeStrandedTitle: 'Nepavyko įkrauti šios sesijos',
+    resumeStrandedBody:
+      'Ryšys su šia sesija nutrūko ir automatiniai bandymai nepavyko. Patikrinkite, ar veikia šлюzas, tada pabandykite dar kartą.',
     resumeRetry: 'Bandyti dar kartą',
     nothingToBranch: 'Nėra ko šakoti',
     branchNeedsChat: 'Prieš šakodami pradėkite arba tęskite pokalbį.',
@@ -2932,7 +3021,8 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
     archiveFailed: 'Archyvavimas nepavyko',
     cwdChangeFailed: 'Darbinio katalogo keitimas nepavyko',
     cwdStagedTitle: 'Darbinio katalogo pakeitimas paruoštas',
-    cwdStagedMessage: 'Paleiskite darbalaukio serverį iš naujo, kad cwd pakeitimai būtų pritaikyti šiai aktyviai sesijai.',
+    cwdStagedMessage:
+      'Paleiskite darbalaukio serverį iš naujo, kad cwd pakeitimai būtų pritaikyti šiai aktyviai sesijai.',
     modelSwitchFailed: 'Modelio pakeitimas nepavyko',
     sessionExported: 'Sesija eksportuota',
     sessionExportFailed: 'Nepavyko eksportuoti sesijos',
@@ -2958,31 +3048,31 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       success: platform => `Perduota ${platform}. Galite tęsti čia bet kada.`,
       systemNote: platform => `↻ Perduota ${platform} — galite tęsti čia bet kada.`,
       failed: error => `Perdavimas nepavyko: ${error}`,
-      timedOut: 'Baigėsi laukimo laikas laukiant vartų. Ar veikia `openamer gateway`?',
-    },
+      timedOut: 'Baigėsi laukimo laikas laukiant vartų. Ar veikia `openamer gateway`?'
+    }
   },
   errors: {
     genericFailure: 'Įvyko klaida',
     boundaryTitle: 'Sąsajoje įvyko klaida',
     boundaryDesc: 'Rodinyje įvyko netikėta klaida. Jūsų pokalbiai ir nustatymai saugūs.',
     reloadWindow: 'Įkelti langą iš naujo',
-    openLogs: 'Atidaryti žurnalus',
+    openLogs: 'Atidaryti žurnalus'
   },
   ui: {
     search: {
-      clear: 'Išvalyti paiešką',
+      clear: 'Išvalyti paiešką'
     },
     pagination: {
       label: 'puslapiavimas',
       previous: 'Ankst.',
       previousAria: 'Eiti į ankstesnį puslapį',
       next: 'Kitas',
-      nextAria: 'Eiti į kitą puslapį',
+      nextAria: 'Eiti į kitą puslapį'
     },
     sidebar: {
       title: 'Šoninė juosta',
       description: 'Rodo mobiliojo įrenginio šoninę juostą.',
-      toggle: 'Perjungti šoninę juostą',
-    },
-  },
+      toggle: 'Perjungti šoninę juostą'
+    }
+  }
 })

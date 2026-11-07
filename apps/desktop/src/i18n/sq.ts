@@ -44,7 +44,7 @@ export const sq = defineLocale({
     update: 'Përditëso',
     tryHint: term => `Provo „${term}“`,
     on: 'Aktiv',
-    off: 'Çaktiv',
+    off: 'Çaktiv'
   },
   fileMenu: {
     revealFinder: 'Shfaq në Finder',
@@ -59,7 +59,7 @@ export const sq = defineLocale({
     renameLabel: 'Emri i ri',
     deleteTitle: name => `Të fshihet ${name}?`,
     deleteBody: 'Do të shpëtohet në Kosh — mund ta rikthesh nga atje.',
-    pathCopied: 'Ruga u kopjua',
+    pathCopied: 'Ruga u kopjua'
   },
   boot: {
     ready: 'OpenAmer Desktop është gati',
@@ -69,7 +69,7 @@ export const sq = defineLocale({
       loadingSettings: 'Po ngarkohen konfigurimet e OpenAmer',
       loadingSessions: 'Po ngarkohen seancat e fundit',
       startingDesktopConnection: 'Po niset lidhja e desktopit',
-      startingOpenAmerDesktop: 'Po niset OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Po niset OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Procesi në sfond i OpenAmer përfundoi.',
@@ -78,13 +78,15 @@ export const sq = defineLocale({
       desktopBootFailed: 'Nisja e desktopit dështoi',
       gatewayConnectionLost: 'Lidhja me gateway-in u humb',
       gatewaySignInRequired: 'Kërkohet hyrja në gateway',
-      ipcBridgeUnavailable: 'Ura IPC e desktopit nuk është e disponueshme.',
+      ipcBridgeUnavailable: 'Ura IPC e desktopit nuk është e disponueshme.'
     },
     failure: {
-      title: "OpenAmer nuk mundi të nisej",
-      description: "Gateway-i në sfond nuk u nis. Provo një nga hapat e rikuperimit më poshtë. Asgjë këtu nuk flet bisedat ose konfigurimet e tua.",
+      title: 'OpenAmer nuk mundi të nisej',
+      description:
+        'Gateway-i në sfond nuk u nis. Provo një nga hapat e rikuperimit më poshtë. Asgjë këtu nuk flet bisedat ose konfigurimet e tua.',
       remoteTitle: 'Kërkohet hyrja në gateway-in e largët',
-      remoteDescription: 'Sesioni juaj i gateway-it të largët ka skaduar. Hyni përsëri për t\'u rilidhur. Asgjë këtu nuk flet bisedat ose konfigurimet e tua.',
+      remoteDescription:
+        "Sesioni juaj i gateway-it të largët ka skaduar. Hyni përsëri për t'u rilidhur. Asgjë këtu nuk flet bisedat ose konfigurimet e tua.",
       retry: 'Provo përsëri',
       repairInstall: 'Riparo instalimin',
       useLocalGateway: 'Përdor gateway lokal',
@@ -92,7 +94,8 @@ export const sq = defineLocale({
       back: 'Kthehu',
       openLogs: 'Hap regjistrat',
       repairHint: 'Riparimi ekzekuton përsëri instaluesin dhe mund të zgjasë disa minuta në një makinë të re.',
-      remoteSignInHint: signInLabel => `Dil nga sesioni i ruajtur i shfletuesit të largët, pastaj hap ${signInLabel}. Përdor "Përdor gateway lokal" për të kaluar te backend-i i përfshirë.`,
+      remoteSignInHint: signInLabel =>
+        `Dil nga sesioni i ruajtur i shfletuesit të largët, pastaj hap ${signInLabel}. Përdor "Përdor gateway lokal" për të kaluar te backend-i i përfshirë.`,
       signOutAndSignIn: 'Dil dhe hyj',
       remoteFailureHint: 'Kontrollo URL-në dhe hyrjen te konfigurimet e gateway, ose kalo te gateway-i lokal.',
       hideRecentLogs: 'Fshih regjistrat e fundit',
@@ -104,8 +107,8 @@ export const sq = defineLocale({
       signInFailed: 'Hyrja dështoi',
       signInToRemoteGateway: 'Hyr në gateway-in e largët',
       signInWithProvider: provider => `Hyr me ${provider}`,
-      identityProvider: 'ofruesi juaj i identitetit',
-    },
+      identityProvider: 'ofruesi juaj i identitetit'
+    }
   },
   notifications: {
     region: 'Njoftime',
@@ -118,21 +121,23 @@ export const sq = defineLocale({
     copyDetail: 'Kopjo detajin',
     copyDetailFailed: 'Nuk u kopjua detaji i njoftimit',
     backendOutOfDateTitle: 'Backend-i është i vjetëruar',
-    backendOutOfDateMessage: 'Backend-i juaj i OpenAmer është më i vjetër se ky build desktopi dhe mund të mos funksionojë si duhet. Përditësoje për t\'i njësuar.',
+    backendOutOfDateMessage:
+      "Backend-i juaj i OpenAmer është më i vjetër se ky build desktopi dhe mund të mos funksionojë si duhet. Përditësoje për t'i njësuar.",
     installMethodUnsupportedTitle: 'Metoda e instalimit e papërkrahur',
     updateOpenAmer: 'Përditëso OpenAmer',
     updateReadyTitle: 'Përditësimi gati',
     updateReadyMessage: count => `${count} ndryshim i ri${count === 1 ? 'ndryshim' : 'ndryshime'} në dispozicion.`,
-    seeWhatsNew: "Shih çfarë ka të re",
+    seeWhatsNew: 'Shih çfarë ka të re',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT ka nevojë për ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs refuzoi çelësin e API (401).',
       gatewayAuthFailed: 'Autentikimi i gateway dështoi — kontrollo API_SERVER_KEY.',
-      methodNotAllowed: 'Backend-i i desktopit e refuzoi atë kërkesë (405 Method Not Allowed). Provo ta rinisësh OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend-i i desktopit e refuzoi atë kërkesë (405 Method Not Allowed). Provo ta rinisësh OpenAmer Desktop.',
       microphonePermission: 'Leja e mikrofonit u refuzua.',
       openaiRejectedApiKey: 'OpenAI refuzoi çelësin e API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI refuzoi çelësin e API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS ka nevojë për VOICE_TOOLS_OPENAI_KEY ose OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS ka nevojë për VOICE_TOOLS_OPENAI_KEY ose OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Konfiguro zë-në-në-tekst për të përdorur modalitetin e zërit.',
@@ -151,7 +156,7 @@ export const sq = defineLocale({
       transcriptionFailed: 'Transkriptimi i zërit dështoi',
       transcriptionUnavailable: 'Transkriptimi i zërit nuk është ende i disponueshëm.',
       tryRecordingAgain: 'Provo të regjistrosh përsëri.',
-      unavailable: 'Zëri i padisponueshëm',
+      unavailable: 'Zëri i padisponueshëm'
     },
     native: {
       approvalTitle: 'Kërkohet miratim',
@@ -164,11 +169,12 @@ export const sq = defineLocale({
       turnErrorTitle: 'Turi dështoi',
       backgroundDoneTitle: 'Detyra në sfond përfundoi',
       backgroundFailedTitle: 'Detyra në sfond dështoi',
-      creditsTitle: 'Kreditë',
-    },
+      creditsTitle: 'Kreditë'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Renderimi me softuer është aktiv — u zbulua ekran në distancë (${reason}). Përshpejtimi i GPU-së është çaktivizuar për të parandaluar vezullimin.`,
+    message: reason =>
+      `Renderimi me softuer është aktiv — u zbulua ekran në distancë (${reason}). Përshpejtimi i GPU-së është çaktivizuar për të parandaluar vezullimin.`
   },
   billingBlock: {
     titleOpenamer: 'Pa kredite OpenAmer',
@@ -176,7 +182,7 @@ export const sq = defineLocale({
     fallbackMessage: 'Llogaria juaj nuk ka kredite. Shto kredite për të vazhduar.',
     openBilling: 'Hap faturimin',
     addCredits: 'Shto kredite',
-    dismiss: 'Hiq',
+    dismiss: 'Hiq'
   },
   titlebar: {
     hideSidebar: 'Fshih anën anësore',
@@ -193,7 +199,7 @@ export const sq = defineLocale({
     openStarmap: 'Hap grafikun e memories',
     openKeybinds: 'Shkurtoret e tastierës',
     layoutEditor: 'Redaktuesi i skemës',
-    layoutEditorTitle: 'Redaktuesi i skemës — Cmd/Ctrl+klik e rikthen skemën',
+    layoutEditorTitle: 'Redaktuesi i skemës — Cmd/Ctrl+klik e rikthen skemën'
   },
   keybinds: {
     title: 'Shkurtoret e tastierës',
@@ -210,7 +216,7 @@ export const sq = defineLocale({
       profiles: 'Profile',
       session: 'Sesioni',
       navigation: 'Navigimi',
-      view: 'Pamja',
+      view: 'Pamja'
     },
     actions: {
       'keybinds.openPanel': 'Hap shkurtoret e tastierës',
@@ -289,8 +295,8 @@ export const sq = defineLocale({
       'composer.slash': 'Paleta e komandave slash',
       'composer.help': 'Ndihmë e shpejtë',
       'composer.history': 'Ciklo dritaren lundruese / historikun',
-      'composer.cancel': 'Mbyll dritaren lundruese · anulo ekzekutimin',
-    },
+      'composer.cancel': 'Mbyll dritaren lundruese · anulo ekzekutimin'
+    }
   },
   language: {
     label: 'Gjuha',
@@ -299,7 +305,7 @@ export const sq = defineLocale({
     saveError: 'Përditësimi i gjuhës dështoi',
     switchTo: 'Ndrysho gjuhën',
     searchPlaceholder: 'Kërko gjuhë…',
-    noResults: 'Nuk u gjet asnjë gjuhë',
+    noResults: 'Nuk u gjet asnjë gjuhë'
   },
   settings: {
     closeSettings: 'Mbyll konfigurimet',
@@ -324,11 +330,12 @@ export const sq = defineLocale({
       about: 'Rreth',
       billing: 'Faturimi',
       notifications: 'Njoftime',
-      plugins: 'Shtojcat',
+      plugins: 'Shtojcat'
     },
     plugins: {
       title: 'Shtojcat e desktopit',
-      blurb: 'Zgjerimet e ndërfaqes të ngarkuara në këtë aplikacion — të paketuara me ndërtimin, ose të hedhura në dosjen desktop-plugins (përfshirë ato që shkruan OpenAmer). Çaktivizimi shkarkon menjëherë një shtojcë dhe vlen edhe pas rinisjeve.',
+      blurb:
+        'Zgjerimet e ndërfaqes të ngarkuara në këtë aplikacion — të paketuara me ndërtimin, ose të hedhura në dosjen desktop-plugins (përfshirë ato që shkruan OpenAmer). Çaktivizimi shkarkon menjëherë një shtojcë dhe vlen edhe pas rinisjeve.',
       count: n => `${n} të instaluara`,
       openFolder: 'Hap dosjen e shtojcave',
       rescan: 'Skano përsëri',
@@ -340,49 +347,51 @@ export const sq = defineLocale({
       kinds: {
         bundled: 'e paketuar',
         disk: 'në disk',
-        runtime: 'kohë ekzekutimi',
-      },
+        runtime: 'kohë ekzekutimi'
+      }
     },
     notifications: {
       title: 'Njoftime',
-      intro: 'Njoftime native të desktopit, të ndara nga njoftimet brenda aplikacionit. Këto janë lokale për pajisjen — çdo kompjuter mban cilësimet e veta.',
+      intro:
+        'Njoftime native të desktopit, të ndara nga njoftimet brenda aplikacionit. Këto janë lokale për pajisjen — çdo kompjuter mban cilësimet e veta.',
       enableAll: 'Aktivizo njoftimet',
       enableAllDesc: 'Çelësi kryesor. Fikeni për të heshtur të gjitha njoftimet më poshtë.',
       focusedHint: 'Njoftimet e përfundimit shfaqen vetëm kur OpenAmer është në sfond.',
       kinds: {
         approval: {
           label: 'Kërkohet miratim',
-          description: 'Një komandë po pret që ta miratoni ose ta refuzoni.',
+          description: 'Një komandë po pret që ta miratoni ose ta refuzoni.'
         },
         input: {
           label: 'Kërkohet të dhënë',
-          description: 'OpenAmer bëri një pyetje ose ka nevojë për një fjalëkalim ose sekret.',
+          description: 'OpenAmer bëri një pyetje ose ka nevojë për një fjalëkalim ose sekret.'
         },
         turnDone: {
           label: 'Përgjigja gati',
-          description: 'Një raund përfundoi ndërsa OpenAmer ishte në sfond.',
+          description: 'Një raund përfundoi ndërsa OpenAmer ishte në sfond.'
         },
         turnError: {
           label: 'Raundi dështoi',
-          description: 'Një raund përfundoi me gabim.',
+          description: 'Një raund përfundoi me gabim.'
         },
         backgroundDone: {
           label: 'Detyra në sfond përfundoi',
-          description: 'Një komandë terminali në sfond përfundoi.',
+          description: 'Një komandë terminali në sfond përfundoi.'
         },
         credits: {
           label: 'Njoftime për kreditë',
-          description: 'Qasja te kreditë është pezulluar ose rikthyer.',
-        },
+          description: 'Qasja te kreditë është pezulluar ose rikthyer.'
+        }
       },
       test: 'Dërgo njoftim prove',
       testTitle: 'OpenAmer',
       testBody: 'Njoftimet po funksionojnë.',
-      testSent: 'Testi u dërgua. Nëse nuk shfaqet asgjë, kontrollo lejet e njoftimeve të sistemit operativ dhe Fokusin / Mos shqetëso.',
+      testSent:
+        'Testi u dërgua. Nëse nuk shfaqet asgjë, kontrollo lejet e njoftimeve të sistemit operativ dhe Fokusin / Mos shqetëso.',
       testUnsupported: 'Ky sistem nuk mbështet njoftime native.',
       completionSoundTitle: 'Tingull përfundimi',
       completionSoundDesc: 'Luhet kur përfundon radha e agjentit. Zgjidh një preset dhe dëgjoje këtu.',
-      completionSoundPreview: 'Parapamje',
+      completionSoundPreview: 'Parapamje'
     },
     sections: {
       model: 'Modeli',
@@ -392,7 +401,7 @@ export const sq = defineLocale({
       safety: 'Siguria',
       memory: 'Kujtesa dhe Konteksti',
       voice: 'Zëri',
-      advanced: 'Të përparuara',
+      advanced: 'Të përparuara'
     },
     searchPlaceholder: {
       about: 'Rreth OpenAmer Desktop',
@@ -400,37 +409,40 @@ export const sq = defineLocale({
       gateway: 'Lidhja e gateway-it...',
       keys: 'Kërko çelësat e API-së...',
       mcp: 'Kërko serverët MCP...',
-      sessions: 'Kërko sesionet e arshivuaruara...',
+      sessions: 'Kërko sesionet e arshivuaruara...'
     },
     modeOptions: {
       light: {
         label: 'E ndritshme',
-        description: 'Sipërfaqe të ndritshme',
+        description: 'Sipërfaqe të ndritshme'
       },
       dark: {
         label: 'E errët',
-        description: 'Hapësirë me pak shkëlqim',
+        description: 'Hapësirë me pak shkëlqim'
       },
       system: {
         label: 'Sistemi',
-        description: 'Ndiq pamjen e sistemit',
-      },
+        description: 'Ndiq pamjen e sistemit'
+      }
     },
     appearance: {
       title: 'Pamja',
-      intro: 'Këto janë preferenca shfaqjeje vetëm për desktopin. Mënyra kontrollon ndriçimin; tema kontrollon paletën e aksenteve dhe stilin e bisedës.',
+      intro:
+        'Këto janë preferenca shfaqjeje vetëm për desktopin. Mënyra kontrollon ndriçimin; tema kontrollon paletën e aksenteve dhe stilin e bisedës.',
       colorMode: 'Mënyra e Ngjyrave',
       colorModeDesc: 'Zgjidh një mënyrë të fiksuar ose lër OpenAmer të ndjekë konfigurimin e sistemit.',
       toolViewTitle: 'Shfaqja e Thirrjeve të Mjeteve',
       toolViewDesc: 'Produkti fsheh të dhënat e papërpunuara; Tekniku tregon hyrje/dalje të plota.',
       uiScaleTitle: 'Shkalla e Ndërfaqes',
-      uiScaleDesc: (percent: number) => `Shkallon tekstin dhe kontrollet në të gjithë aplikacionin. Cmd/Ctrl me +, - dhe 0 gjithashtu funksionon. Aktual: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Shkallon tekstin dhe kontrollet në të gjithë aplikacionin. Cmd/Ctrl me +, - dhe 0 gjithashtu funksionon. Aktual: ${percent}%.`,
       translucencyTitle: 'Transparenca e Dritares',
       translucencyDesc: 'Shih desktopin tuaj përmes gjithë dritares. Vetëm në macOS dhe Windows.',
       backdropTitle: 'Sfondi i Bisedës',
       backdropDesc: 'Imazhi i dobët i statujës pas bisedës.',
       embedsTitle: 'Përmbajtje të Inkorporuara',
-      embedsDesc: 'Parapamjet ngarkohen nga sajte të palëve të treta (YouTube, X, …). Pyet tregon një vendmbajtës derisa t\'i lejosh secilin; Gjithmonë i ngarkon automatikisht; Fikur mban vetëm lidhje.',
+      embedsDesc:
+        "Parapamjet ngarkohen nga sajte të palëve të treta (YouTube, X, …). Pyet tregon një vendmbajtës derisa t'i lejosh secilin; Gjithmonë i ngarkon automatikisht; Fikur mban vetëm lidhje.",
       embedsAsk: 'Pyet',
       embedsAlways: 'Gjithmonë',
       embedsOff: 'Fikur',
@@ -443,7 +455,8 @@ export const sq = defineLocale({
       themeDesc: 'Vetëm paleta desktopi. Mënyra e zgjedhur aplikohet sipër.',
       themeProfileNote: profile => `U ruajt për profilin ${profile} — secili profil mban temën e vet.`,
       installTitle: 'Instalo nga VS Code',
-      installDesc: 'Ngjit një id të shtesës nga Marketplace (p.sh. dracula-theme.theme-dracula) për ta kthyer temën e saj të ngjyrave në një paletë desktopi.',
+      installDesc:
+        'Ngjit një id të shtesës nga Marketplace (p.sh. dracula-theme.theme-dracula) për ta kthyer temën e saj të ngjyrave në një paletë desktopi.',
       installPlaceholder: 'botues.zgjerim',
       installButton: 'Instalo',
       installing: 'Po instalohet…',
@@ -453,8 +466,10 @@ export const sq = defineLocale({
       importedBadge: 'Importuar',
       pet: {
         title: 'Kafshë',
-        intro: 'Adoptoni një maskot të animuar petdex që lundron mbi aplikacionin dhe reagon ndaj asaj që bën OpenAmer — duke vrapuar kur ekzekutohen vegla, duke festuar pas suksesit, duke u nënërgxur pas gabimeve.',
-        restartHint: 'Kafshët duan një rindërtim të shpejtë — aplikacioni që po ekzekutohet filloi para se të shtohej kjo funksion. Dilni dhe rihapni OpenAmer, pastaj kthehuni këtu.',
+        intro:
+          'Adoptoni një maskot të animuar petdex që lundron mbi aplikacionin dhe reagon ndaj asaj që bën OpenAmer — duke vrapuar kur ekzekutohen vegla, duke festuar pas suksesit, duke u nënërgxur pas gabimeve.',
+        restartHint:
+          'Kafshët duan një rindërtim të shpejtë — aplikacioni që po ekzekutohet filloi para se të shtohej kjo funksion. Dilni dhe rihapni OpenAmer, pastaj kthehuni këtu.',
         on: 'Ndezur',
         off: 'Fikur',
         scaleTitle: 'Madhësia',
@@ -464,7 +479,7 @@ export const sq = defineLocale({
         chooseTitle: 'Zgjidhni një kafshë',
         chooseDesc: 'Zgjedhja e njërës e instalon (nëse nevojitet) dhe e bën aktiv.',
         searchPlaceholder: 'Kërko kafshë…',
-        unreachable: "Nuk arrita të arrij te galeria e petdex. Kontrolloni lidhjen tuaj dhe rihapni këtë faqe.",
+        unreachable: 'Nuk arrita të arrij te galeria e petdex. Kontrolloni lidhjen tuaj dhe rihapni këtë faqe.',
         noMatch: query => `Asnjë kafshëz nuk përputhet me "${query}".`,
         installedTag: 'e instaluar',
         generatedTag: 'E gjeneruar',
@@ -473,7 +488,7 @@ export const sq = defineLocale({
         uninstall: name => `Çinstalo ${name}`,
         delete: name => `Fshi ${name}`,
         deleteTitle: name => `Të fshihet ${name}?`,
-        deleteBody: "Kjo e fshin përgjithmonë kafshëzën — nuk mund të instalohet më.",
+        deleteBody: 'Kjo e fshin përgjithmonë kafshëzën — nuk mund të instalohet më.',
         deleteConfirm: 'Fshi',
         rename: name => `Riemërto ${name}`,
         renameTitle: 'Riemërto kafshëzën',
@@ -484,10 +499,10 @@ export const sq = defineLocale({
         uninstallFailed: slug => `Nuk mund të çinstalohej ${slug}`,
         renameFailed: slug => `Nuk mund të riemërtohej ${slug}`,
         exportFailed: slug => `Nuk mund të eksportohej ${slug}`,
-        noneAvailable: 'Nuk ka kafshëza të disponueshme për t\'i aktivizuar tani.',
+        noneAvailable: "Nuk ka kafshëza të disponueshme për t'i aktivizuar tani.",
         turnOnFailed: 'Nuk mund të aktivizohej kafshëza.',
-        turnOffFailed: 'Nuk mund të çaktivizohej maskota.',
-      },
+        turnOffFailed: 'Nuk mund të çaktivizohej maskota.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,15 +513,16 @@ export const sq = defineLocale({
       updates: 'Përditësimet',
       checkNow: 'Kontrollo tani',
       checking: 'Po kontrollohet…',
-      seeWhatsNew: "Shih çfarë ka të re",
+      seeWhatsNew: 'Shih çfarë ka të re',
       updateNow: 'Përditëso tani',
       releaseNotes: 'Shënimet e versionit',
-      onLatest: "Jeni në versionin më të fundit.",
+      onLatest: 'Jeni në versionin më të fundit.',
       installing: 'Një përditësim po instalohet aktualisht.',
-      cantUpdate: "Ky build nuk mund të përditësohet nga brenda aplikacionit.",
-      cantReach: "Nuk arritëm të kontaktojmë serverin e përditësimeve.",
+      cantUpdate: 'Ky build nuk mund të përditësohet nga brenda aplikacionit.',
+      cantReach: 'Nuk arritëm të kontaktojmë serverin e përditësimeve.',
       tapCheck: 'Trokit "Kontrollo tani" për të kërkuar përditësime.',
-      updateReady: count => `Një përditësim i ri është gati (${count} ndryshim${count === 1 ? 'ndryshim' : 'ndryshime'} i përfshirë).`,
+      updateReady: count =>
+        `Një përditësim i ri është gati (${count} ndryshim${count === 1 ? 'ndryshim' : 'ndryshime'} i përfshirë).`,
       lastChecked: age => `Kontrolluar për herë të fundit ${age}`,
       justNowSuffix: ' · tani',
       automaticUpdates: 'Përditësime automatike',
@@ -516,7 +532,7 @@ export const sq = defineLocale({
       justNow: 'tani',
       minAgo: count => `para ${count} min`,
       hoursAgo: count => `para ${count} orësh`,
-      daysAgo: count => `para ${count} ditësh`,
+      daysAgo: count => `para ${count} ditësh`
     },
     config: {
       none: 'Asnjë',
@@ -532,7 +548,8 @@ export const sq = defineLocale({
       imported: 'Konfigurimi u importua',
       invalidJson: 'Konfigurim JSON i pavlefshëm',
       keepAwakeTitle: 'Mbaje kompjuterin zgjuar',
-      keepAwakeDesc: 'Pengo gjumin e kësaj makine që ekzekutimet e gjata ose gjatë natës të vazhdojnë. Ekrani mund të errësohet gjithsesi.',
+      keepAwakeDesc:
+        'Pengo gjumin e kësaj makine që ekzekutimet e gjata ose gjatë natës të vazhdojnë. Ekrani mund të errësohet gjithsesi.'
     },
     credentials: {
       pasteKey: 'Ngjit çelësin',
@@ -542,7 +559,7 @@ export const sq = defineLocale({
       couldNotSave: 'Nuk u ruajt kredenciali.',
       remove: 'Hiq',
       getKey: 'Merr një çelës',
-      saving: 'Po ruhet',
+      saving: 'Po ruhet'
     },
     envActions: {
       actionsFor: label => `Veprimet për ${label}`,
@@ -553,7 +570,7 @@ export const sq = defineLocale({
       revealValue: 'Shfaq vlerën',
       replace: 'Zëvendëso',
       set: 'Vendos',
-      clear: 'Pastro',
+      clear: 'Pastro'
     },
     gateway: {
       loading: 'Po ngarkohen cilësimet e gateway-it...',
@@ -561,21 +578,25 @@ export const sq = defineLocale({
       unavailableDesc: 'Ura IPC e desktopit nuk ekspozon cilësimet e gateway-it.',
       title: 'Lidhja me gateway-in',
       envOverride: 'Anashkalim nga env',
-      intro: 'OpenAmer Desktop nis si parazgjedhje gateway-in e vet lokal. Përdor një gateway të largët kur dëshiron që ky aplikacion të kontrollojë një backend OpenAmer që tashmë po punon në një makinë tjetër ose pas një proxy të besuar. Zgjidh një profil më poshtë për t\'i dhënë atij një host të largët të vetin.',
+      intro:
+        "OpenAmer Desktop nis si parazgjedhje gateway-in e vet lokal. Përdor një gateway të largët kur dëshiron që ky aplikacion të kontrollojë një backend OpenAmer që tashmë po punon në një makinë tjetër ose pas një proxy të besuar. Zgjidh një profil më poshtë për t'i dhënë atij një host të largët të vetin.",
       appliesTo: 'Vlen për',
       allProfiles: 'Të gjitha profilet',
       defaultConnection: 'Lidhja e parazgjedhur për çdo profil që nuk ka mbivendosje të vetën.',
-      profileConnection: profile => `Lidhja përdoret vetëm kur “${profile}” është profili aktiv. Zgjidh Përdor portën hyrëse të parazgjedhur për të hequr mbivendosjen e saj.`,
+      profileConnection: profile =>
+        `Lidhja përdoret vetëm kur “${profile}” është profili aktiv. Zgjidh Përdor portën hyrëse të parazgjedhur për të hequr mbivendosjen e saj.`,
       envOverrideTitle: 'Ndryshoret e mjedisit po kontrollojnë këtë sesion desktopi.',
-      envOverrideDesc: 'Hiq OPENAMER_DESKTOP_REMOTE_URL dhe OPENAMER_DESKTOP_REMOTE_TOKEN për të përdorur cilësimin e ruajtur më poshtë.',
+      envOverrideDesc:
+        'Hiq OPENAMER_DESKTOP_REMOTE_URL dhe OPENAMER_DESKTOP_REMOTE_TOKEN për të përdorur cilësimin e ruajtur më poshtë.',
       modeTitle: 'Mënyra e lidhjes',
       localTitle: 'Portë hyrëse lokale',
       localDesc: 'Nis një backend privat OpenAmer në localhost. Kjo është e parazgjedhura dhe funksionon offline.',
       inheritTitle: 'Përdor portën hyrëse të parazgjedhur',
-      inheritDesc: "Hiq mbivendosjen e këtij profili dhe përdor lidhjen e parazgjedhur.",
+      inheritDesc: 'Hiq mbivendosjen e këtij profili dhe përdor lidhjen e parazgjedhur.',
       remoteTitle: 'Portë hyrëse e largët',
       remoteDesc: 'Lidh këtë guaskë desktopi me një backend OpenAmer të largët.',
-      remoteAuthHint: 'Portat hyrëse të hostuara përdorin OAuth ose një emër përdoruesi dhe fjalëkalim; ato të vetëhostuara mund të përdorin një token sesioni.',
+      remoteAuthHint:
+        'Portat hyrëse të hostuara përdorin OAuth ose një emër përdoruesi dhe fjalëkalim; ato të vetëhostuara mund të përdorin një token sesioni.',
       cloudTitle: 'OpenAmer Cloud',
       cloudDesc: 'Hyr një herë në OpenAmer Cloud dhe zgjidh nga agjentët në llogarinë tënde — pa URL për të ngjitur.',
       cloudSignInTitle: 'OpenAmer Cloud',
@@ -592,7 +613,7 @@ export const sq = defineLocale({
       cloudNoAgents: {
         before: 'Nuk u gjet asnjë agjent në këtë llogari. Krijo një në ',
         linkText: 'Portali OpenAmer',
-        after: ', pastaj rifresko.',
+        after: ', pastaj rifresko.'
       },
       cloudRefresh: 'Rifresko',
       cloudConnect: 'Lidhu',
@@ -608,20 +629,26 @@ export const sq = defineLocale({
       cloudAgentProvisioning: 'Po përgatitet…',
       cloudStatusLabel: status => `Statusi: ${status}`,
       remoteUrlTitle: 'URL e largët',
-      remoteUrlDesc: 'URL bazë për backend-in e panelit në distancë. Prefikset e shtegut mbështeten, për shembull /openamer.',
+      remoteUrlDesc:
+        'URL bazë për backend-in e panelit në distancë. Prefikset e shtegut mbështeten, për shembull /openamer.',
       probing: 'Po kontrollohet metoda e vërtetimit të kësaj porte…',
-      probeError: 'Kjo portë nuk arrihet ende. Kontrollo URL-në — metoda e vërtetimit do të shfaqet sapo të përgjigjet.',
+      probeError:
+        'Kjo portë nuk arrihet ende. Kontrollo URL-në — metoda e vërtetimit do të shfaqet sapo të përgjigjet.',
       signedIn: 'Jeni identifikuar',
       signIn: 'Identifikohu',
       signOut: 'Dil',
       signInWith: provider => `Identifikohu me ${provider}`,
       authTitle: 'Vërtetimi',
-      authSignedInPassword: 'Kjo portë përdor emër përdoruesi dhe fjalëkalim. Jeni identifikuar; sesioni përditësohet automatikisht.',
+      authSignedInPassword:
+        'Kjo portë përdor emër përdoruesi dhe fjalëkalim. Jeni identifikuar; sesioni përditësohet automatikisht.',
       authSignedInOauth: 'Kjo portë përdor OAuth. Jeni identifikuar; sesioni përditësohet automatikisht.',
-      authNeedsPassword: 'Kjo portë përdor emër përdoruesi dhe fjalëkalim. Identifikohu për të autorizuar këtë aplikacion desktop.',
-      authNeedsOauth: provider => `Kjo portë përdor OAuth. Identifikohu me ${provider} për të autorizuar këtë aplikacion desktop.`,
+      authNeedsPassword:
+        'Kjo portë përdor emër përdoruesi dhe fjalëkalim. Identifikohu për të autorizuar këtë aplikacion desktop.',
+      authNeedsOauth: provider =>
+        `Kjo portë përdor OAuth. Identifikohu me ${provider} për të autorizuar këtë aplikacion desktop.`,
       tokenTitle: 'Token sesioni',
-      tokenDesc: 'Tokeni i sesionit të panelit që përdoret për akses REST dhe WebSocket. Lëre bosh për të mbajtur tokenin e ruajtur.',
+      tokenDesc:
+        'Tokeni i sesionit të panelit që përdoret për akses REST dhe WebSocket. Lëre bosh për të mbajtur tokenin e ruajtur.',
       existingToken: value => `Token ekzistues ${value}`,
       savedToken: 'i ruajtur',
       pasteSessionToken: 'Ngjit tokenin e sesionit',
@@ -652,8 +679,10 @@ export const sq = defineLocale({
       applyFailed: 'Cilësimet e gateway-it nuk u aplikuan',
       saveFailed: 'Cilësimet e gateway-it nuk u ruajtën',
       sshTitle: 'Lidhu përmes SSH',
-      sshDesc: 'OpenAmer niset në hostin e largët përmes SSH dhe tunelohet në këtë aplikacion — nuk ka asgjë për të nisur ose ekspozuar vetë. Kërkon akses funksional SSH me çelës te hosti.',
-      sshTrustHint: 'Çelësi i parë i hostit që paraqitet besohet dhe fiksohet; ndryshimet e mëvonshme refuzohen në mënyrë të sigurt.',
+      sshDesc:
+        'OpenAmer niset në hostin e largët përmes SSH dhe tunelohet në këtë aplikacion — nuk ka asgjë për të nisur ose ekspozuar vetë. Kërkon akses funksional SSH me çelës te hosti.',
+      sshTrustHint:
+        'Çelësi i parë i hostit që paraqitet besohet dhe fiksohet; ndryshimet e mëvonshme refuzohen në mënyrë të sigurt.',
       sshHostTitle: 'Pritësi',
       sshHostDesc: 'përdorues@host, ose një alias hosti nga ~/.ssh/config.',
       sshHostPick: 'Zgjidh një host…',
@@ -676,18 +705,22 @@ export const sq = defineLocale({
       sshReachable: (host, platform) => `Mund të arrihet: ${host} (${platform}) — OpenAmer u gjet`,
       sshIncompleteHost: 'Fut një host SSH përpara se të lidhesh.',
       sshErrUnreachable: 'Nuk mund të arrihej ai host përmes SSH. Kontrollo hostin, portin dhe rrjetin tënd.',
-      sshErrAuth: 'Vërtetimi SSH dështoi. Ngarko çelësin në ssh-agent (ssh-add) ose vendos një IdentityFile në ~/.ssh/config — OpenAmer ekzekuton ssh në mënyrë jo-interaktive.',
-      sshErrHostKey: 'Çelësi i hostit KA NDRYSHUAR që kur u lidhët herën e fundit. Verifiko që kjo është e pritshme, pastaj ekzekuto ssh-keygen -R <host> dhe rilidhu.',
-      sshErrNotInstalled: 'OpenAmer nuk është instaluar në hostin në distancë. Instaloje atje (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ose vendos rrugën e OpenAmer.',
-      sshErrPlatform: 'Platformë në distancë e pambështetur. Modaliteti SSH i OpenAmer Desktop mbështet hoste në distancë Linux, macOS dhe Windows.',
+      sshErrAuth:
+        'Vërtetimi SSH dështoi. Ngarko çelësin në ssh-agent (ssh-add) ose vendos një IdentityFile në ~/.ssh/config — OpenAmer ekzekuton ssh në mënyrë jo-interaktive.',
+      sshErrHostKey:
+        'Çelësi i hostit KA NDRYSHUAR që kur u lidhët herën e fundit. Verifiko që kjo është e pritshme, pastaj ekzekuto ssh-keygen -R <host> dhe rilidhu.',
+      sshErrNotInstalled:
+        'OpenAmer nuk është instaluar në hostin në distancë. Instaloje atje (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ose vendos rrugën e OpenAmer.',
+      sshErrPlatform:
+        'Platformë në distancë e pambështetur. Modaliteti SSH i OpenAmer Desktop mbështet hoste në distancë Linux, macOS dhe Windows.',
       sshErrTimeout: 'Lidhja SSH skadoi. Hostit mund të mos arrihet ose është në gjumë.',
       sshErrUpdateRequired: 'Përditëso OpenAmer në hostin në distancë përpara se të lidhesh me Desktop SSH.',
-      sshErrUnknown: 'Lidhja SSH dështoi.',
+      sshErrUnknown: 'Lidhja SSH dështoi.'
     },
     keys: {
       loading: 'Po ngarkohen çelësat API dhe kredencialet...',
       failedLoad: 'Ngarkimi i çelësave API dështoi',
-      empty: 'Asgjë nuk është konfiguruar ende në këtë kategori.',
+      empty: 'Asgjë nuk është konfiguruar ende në këtë kategori.'
     },
     mcp: {
       loading: 'Po ngarkohen serverët MCP...',
@@ -739,7 +772,8 @@ export const sq = defineLocale({
       catalogInstallFailed: name => `Dështoi instalimi i ${name}`,
       catalogEnvPrompt: name => `${name} kërkon kredenciale`,
       catalogEnvRequired: 'Plotëso vlerat e kërkuara përpara instalimit.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} aktivizuar`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} aktivizuar`,
       statusConnecting: 'Po lidhet…',
       statusNeedsAuth: 'Kërkon autentikim',
       statusError: 'Gabim',
@@ -749,14 +783,15 @@ export const sq = defineLocale({
       authenticatedMessage: (server, count) => `${server}: ${count} mjete`,
       waitingForBrowser: 'Po pritet shfletuesi…',
       authenticate: 'Autentiko',
-      unsavedConnect: 'Nuk është ruajtur — ruaj mcp.json për t\'u lidhur.',
+      unsavedConnect: "Nuk është ruajtur — ruaj mcp.json për t'u lidhur.",
       enableTool: tool => `Aktivizo ${tool}`,
       disableTool: tool => `Çaktivizo ${tool}`,
-      noOutput: 'Nuk ka dalje ende.',
+      noOutput: 'Nuk ka dalje ende.'
     },
     model: {
       loading: 'Po ngarkohet konfigurimi i modelit...',
-      appliesDesc: 'Zbatohet për sesionet e reja. Përdor zgjedhësin e modelit te kompozitori për të ndërruar menjëherë bisedën aktive.',
+      appliesDesc:
+        'Zbatohet për sesionet e reja. Përdor zgjedhësin e modelit te kompozitori për të ndërruar menjëherë bisedën aktive.',
       provider: 'Ofruesi',
       model: 'Modeli',
       applying: 'Po zbatohet...',
@@ -766,53 +801,55 @@ export const sq = defineLocale({
       defaultsFailed: 'Dështoi ruajtja e parazgjedhjeve të modelit',
       auxiliaryTitle: 'Modele ndihmëse',
       resetAllToMain: 'Rivendos të gjitha te modeli kryesor',
-      auxiliaryDesc: 'Detyrat ndihmëse ekzekutohen si parazgjedhje në modelin kryesor. Cakto një model të dedikuar për çdo detyrë për ta zëvendësuar.',
+      auxiliaryDesc:
+        'Detyrat ndihmëse ekzekutohen si parazgjedhje në modelin kryesor. Cakto një model të dedikuar për çdo detyrë për ta zëvendësuar.',
       setToMain: 'Vendos te modeli kryesor',
       change: 'Ndrysho',
       autoUseMain: 'automatik · përdor modelin kryesor',
       providerDefault: '(parazgjedhja e ofruesit)',
       fallbackAdd: 'Shto rezervë',
       fallbackEmpty: 'Pa modele rezervë — modeli i parazgjedhur përdoret përveç nëse dështon.',
-      notInCatalog: "nuk është në listën e modeleve të këtij ofruesi — thirrjet mund të kalojnë në një rezervë.",
+      notInCatalog: 'nuk është në listën e modeleve të këtij ofruesi — thirrjet mund të kalojnë në një rezervë.',
       tasks: {
         vision: {
           label: 'Vizioni',
-          hint: 'Analizë imazhesh',
+          hint: 'Analizë imazhesh'
         },
         web_extract: {
           label: 'Nxjerrje nga uebi',
-          hint: 'Përmbledhje faqesh',
+          hint: 'Përmbledhje faqesh'
         },
         compression: {
           label: 'Kompresim',
-          hint: 'Ngjeshje konteksti',
+          hint: 'Ngjeshje konteksti'
         },
         skills_hub: {
           label: 'Qendra e aftësive',
-          hint: 'Kërkim aftësish',
+          hint: 'Kërkim aftësish'
         },
         approval: {
           label: 'Miratim',
-          hint: 'Miratim automatik inteligjent',
+          hint: 'Miratim automatik inteligjent'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Rutimi i mjeteve MCP',
+          hint: 'Rutimi i mjeteve MCP'
         },
         title_generation: {
           label: 'Gjenerim titulli',
-          hint: 'Titujt e sesioneve',
+          hint: 'Titujt e sesioneve'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Rishikim i përdorimit të aftësive',
-        },
-      },
+          hint: 'Rishikim i përdorimit të aftësive'
+        }
+      }
     },
     providers: {
       connectAccount: 'Lidh një llogari',
       haveApiKey: 'Ke në vend të kësaj një çelës API?',
-      intro: 'Hyr me abonim — pa çelës API për të kopjuar. OpenAmer e kryen hyrjen në shfletues për ty, pikërisht këtu në aplikacion.',
+      intro:
+        'Hyr me abonim — pa çelës API për të kopjuar. OpenAmer e kryen hyrjen në shfletues për ty, pikërisht këtu në aplikacion.',
       connected: 'I lidhur',
       collapse: 'Palos',
       connectAnother: 'Lidh një ofrues tjetër',
@@ -822,7 +859,8 @@ export const sq = defineLocale({
       removeConfirm: provider => `Hiqe ${provider}?`,
       removeExternalGeneric: provider => `${provider} menaxhohet nga CLI e vet — hiqe atje.`,
       removeKeyManaged: provider => `${provider} konfigurohet nga një çelës API. Hiqe te Çelësat API.`,
-      removeTerminalConfirm: (provider, command) => `Shkëput ${provider}? Kjo ekzekuton "${command}" në terminal për të pastruar kredencialin.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Shkëput ${provider}? Kjo ekzekuton "${command}" në terminal për të pastruar kredencialin.`,
       removeTerminalRunning: provider => `Po ekzekutohet shkëputja e ${provider} në terminal…`,
       removedTitle: 'Llogaria u hoq',
       removedMessage: provider => `${provider} u hoq.`,
@@ -832,14 +870,16 @@ export const sq = defineLocale({
       noKeysMatch: 'Asnjë ofrues nuk përputhet me kërkimin.',
       localEndpoint: {
         title: 'Pikë fundore lokale / e personalizuar',
-        description: 'Drejto OpenAmer te çdo pikë fundore e pajtueshme me OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etj).',
+        description:
+          'Drejto OpenAmer te çdo pikë fundore e pajtueshme me OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etj).'
       },
-      loading: 'Po ngarkohen ofruesit…',
+      loading: 'Po ngarkohen ofruesit…'
     },
     sessions: {
       loading: 'Po ngarkohen sesionet e arkivuara…',
       archivedTitle: 'Sesione të arkivuara',
-      archivedIntro: 'Bisedat e arkivuara fshihen nga shiriti anësor, por i ruajnë të gjitha mesazhet. Ctrl/⌘-kliko një bisedë në shiritin anësor për ta arkivuar.',
+      archivedIntro:
+        'Bisedat e arkivuara fshihen nga shiriti anësor, por i ruajnë të gjitha mesazhet. Ctrl/⌘-kliko një bisedë në shiritin anësor për ta arkivuar.',
       emptyArchivedTitle: 'Nuk ka asgjë të arkivuar',
       emptyArchivedDesc: 'Arkivo një bisedë për ta fshehur këtu.',
       unarchive: 'Çarkivo',
@@ -848,13 +888,16 @@ export const sq = defineLocale({
       restored: 'U rikthye',
       deleteConfirm: title => `Të fshihet përgjithmonë "${title}"? Ky veprim nuk mund të zhbëhet.`,
       autoArchiveTitle: 'Auto-arkivo bisedat e vjetruara',
-      autoArchiveDesc: "Arkivo automatikisht bisedat që nuk i ke prekur për një kohë. Bisedat e fiksuara nuk arkivohen kurrë dhe asgjë nuk fshihet — bisedat e arkivuara thjesht zhvendosen këtu.",
+      autoArchiveDesc:
+        'Arkivo automatikisht bisedat që nuk i ke prekur për një kohë. Bisedat e fiksuara nuk arkivohen kurrë dhe asgjë nuk fshihet — bisedat e arkivuara thjesht zhvendosen këtu.',
       autoArchiveDaysLabel: 'Arkivo pas',
       autoArchiveDaysUnit: 'ditë pa aktivitet',
       autoArchiveFailed: 'Auto-arkivi nuk u përditësua',
       defaultDirTitle: 'Direktoria standarde e projektit',
-      defaultDirDesc: 'Sesionet e reja nisin në këtë dosje, përveçse kur zgjidh një tjetër. Lëre të pacaktuar për të përdorur direktorinë tënde bazë.',
-      defaultDirUpdated: 'Direktoria standarde e projektit u përditësua — nis një bisedë të re (Ctrl/⌘+N) për ta aplikuar',
+      defaultDirDesc:
+        'Sesionet e reja nisin në këtë dosje, përveçse kur zgjidh një tjetër. Lëre të pacaktuar për të përdorur direktorinë tënde bazë.',
+      defaultDirUpdated:
+        'Direktoria standarde e projektit u përditësua — nis një bisedë të re (Ctrl/⌘+N) për ta aplikuar',
       defaultsTo: label => `Vlera e parazgjedhur është ${label}.`,
       change: 'Ndrysho',
       choose: 'Zgjidh',
@@ -864,7 +907,7 @@ export const sq = defineLocale({
       unarchiveFailed: 'Dështoi çarkivimi',
       deleteFailed: 'Dështoi fshirja',
       updateDirFailed: 'Nuk u përditësua drejtoria e parazgjedhur',
-      clearDirFailed: 'Nuk u pastrua drejtoria e parazgjedhur',
+      clearDirFailed: 'Nuk u pastrua drejtoria e parazgjedhur'
     },
     toolsets: {
       loadingConfig: 'Po ngarkohet konfigurimi',
@@ -889,13 +932,15 @@ export const sq = defineLocale({
       needsSetup: 'Kërkon konfigurim',
       openamerIncluded: 'Përfshihet me abonim OpenAmer — hyr në OpenAmer Portal për ta aktivizuar.',
       openamerAuthNeededTitle: 'Hyr në OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} u ruajt, por aktivizohet vetëm pasi të hyni në OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} u ruajt, por aktivizohet vetëm pasi të hyni në OpenAmer Portal.`,
       openamerAuthSignIn: 'Hyr',
       openamerAuthDoneTitle: 'OpenAmer Portal u lidh',
       openamerAuthDoneMessage: 'Backend-et e abonimit tuaj tani janë aktive.',
       openamerAuthFailed: 'Hyrja në OpenAmer Portal nuk u përfundua',
       noApiKeyRequired: 'Nuk kërkohet çelës API.',
-      postSetupHint: step => `Ky backend kërkon një instalim të njëhershëm (${step}). Punon në këtë makinë — mund të marrë disa minuta.`,
+      postSetupHint: step =>
+        `Ky backend kërkon një instalim të njëhershëm (${step}). Punon në këtë makinë — mund të marrë disa minuta.`,
       postSetupInstalledHint: 'U instalua. Ekzekuto përsëri konfigurimin vetëm nëse diçka është prishur.',
       postSetupRun: 'Nis konfigurimin',
       postSetupRerun: 'Rikryej konfigurimin',
@@ -934,11 +979,13 @@ export const sq = defineLocale({
         unavailable: 'I padisponueshëm',
         inUse: 'Në përdorim',
         selectedTitle: 'Backend-i u zgjodh',
-        selectedMessage: backend => `Komandat e terminalit tani ekzekutohen përmes ${backend}. Zbatohet për sesionet e reja.`,
+        selectedMessage: backend =>
+          `Komandat e terminalit tani ekzekutohen përmes ${backend}. Zbatohet për sesionet e reja.`,
         failedSelect: backend => `Dështoi zgjedhja e ${backend}`,
-        needsSetupHint: 'Mund ta zgjidhni tani këtë backend — komandat do të dështojnë derisa konfigurimi të përfundojë.',
-      },
-    },
+        needsSetupHint:
+          'Mund ta zgjidhni tani këtë backend — komandat do të dështojnë derisa konfigurimi të përfundojë.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Aftësi',
@@ -958,7 +1005,8 @@ export const sq = defineLocale({
     noDescription: 'Nuk ka përshkrim.',
     configured: 'Konfiguruar',
     needsKeys: 'Kërkon çelësa',
-    visionModelHint: 'Vizioni përdor konfigurimin e modelit ndihmës — modeli që mbështet imazhe zgjidhet atje, jo për secilin ofrues këtu.',
+    visionModelHint:
+      'Vizioni përdor konfigurimin e modelit ndihmës — modeli që mbështet imazhe zgjidhet atje, jo për secilin ofrues këtu.',
     visionModelLink: 'Zgjidh modelin e vizionit në Cilësimet → Modelet',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} grupe mjetesh të aktivizuara`,
     configureToolset: label => `Konfiguro ${label}`,
@@ -984,7 +1032,7 @@ export const sq = defineLocale({
     provenance: {
       agent: 'Mësuar',
       bundled: 'Të integruara',
-      hub: 'Qendër',
+      hub: 'Qendër'
     },
     emptyNoneFound: noun => `Nuk u gjet ${noun}`,
     emptyNothingMatches: query => `Asgjë nuk përputhet me “${query}”.`,
@@ -1002,9 +1050,11 @@ export const sq = defineLocale({
       connectingHubs: 'Po lidhet me qendrat e aftësive...',
       connectedHubs: 'Qendra të lidhura:',
       featured: 'Aftësi të zgjedhura',
-      landingHint: 'Kërko në qendër për të shfletuar aftësi të instalueshme nga indeksi zyrtar, GitHub dhe burimet e komunitetit.',
+      landingHint:
+        'Kërko në qendër për të shfletuar aftësi të instalueshme nga indeksi zyrtar, GitHub dhe burimet e komunitetit.',
       noResults: 'Nuk u gjetën aftësi përputhëse në qendër.',
-      resultCount: (count, ms) => `${count} rezultat${count === 1 ? 'rezultat' : 'rezultate'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} rezultat${count === 1 ? 'rezultat' : 'rezultate'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Kohë e skaduar: ${sources}`,
       installed: 'Instaluar',
       install: 'Instalo',
@@ -1022,7 +1072,7 @@ export const sq = defineLocale({
       trust: {
         builtin: 'e integruar',
         trusted: 'e besuar',
-        community: 'komunitet',
+        community: 'komunitet'
       },
       verdictSafe: 'E sigurt',
       verdictCaution: 'Kujdes',
@@ -1040,8 +1090,8 @@ export const sq = defineLocale({
       loadFailed: 'Hub-i i aftësive nuk u ngarkua',
       previewFailed: 'Parapamja e aftësisë dështoi',
       scanFailed: 'Skanimi i sigurisë dështoi',
-      searchFailed: 'Kërkimi në hub dështoi',
-    },
+      searchFailed: 'Kërkimi në hub dështoi'
+    }
   },
   starmap: {
     title: 'Grafiku i kujtesës',
@@ -1058,7 +1108,8 @@ export const sq = defineLocale({
     emptyTitle: 'Asgjë e mësuar ende',
     emptyDesc: 'Ndërsa OpenAmer krijon aftësi dhe kujtime për punën tënde, ato shfaqen këtu.',
     share: 'Shpërndaj hartën',
-    shareHint: 'Kopjo kodin për të ndarë këtë hartë, ose ngjit një për ta ngarkuar. Përfshin vetëm strukturën, jo tekstin e kujtesës ose të aftësive.',
+    shareHint:
+      'Kopjo kodin për të ndarë këtë hartë, ose ngjit një për ta ngarkuar. Përfshin vetëm strukturën, jo tekstin e kujtesës ose të aftësive.',
     shareTitle: 'Importo / eksporto hartën',
     sharePlaceholder: 'Ngjit një kod harte…',
     copy: 'Kopjo kodin e hartës',
@@ -1068,7 +1119,7 @@ export const sq = defineLocale({
     importEmpty: 'Ngjit një kod harte për ta ngarkuar.',
     importSuccess: nodes => `Ngarkuar një hartë me ${nodes} ${nodes === 1 ? 'nyjë' : 'nyje'}.`,
     importedBadge: 'hartë e importuar',
-    resetToMine: 'Kthehu në hartën time',
+    resetToMine: 'Kthehu në hartën time'
   },
   agents: {
     close: 'Mbyll agjentët',
@@ -1098,7 +1149,7 @@ export const sq = defineLocale({
     ageDays: days => `${days} ditë më parë`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tokenë`,
+    tokens: value => `${value} tokenë`
   },
   commandCenter: {
     close: 'Mbyll qendrën e komandës',
@@ -1128,7 +1179,7 @@ export const sq = defineLocale({
       generatedTag: 'Gjeneruar',
       adoptFailed: 'Nuk mund të adoptohej kafshëza.',
       toggleFailed: 'Nuk mund të ndërrohej gjendja e kafshëzës.',
-      noneAvailable: 'Nuk ka kafshëza të disponueshme — zgjidh një më poshtë për ta instaluar.',
+      noneAvailable: 'Nuk ka kafshëza të disponueshme — zgjidh një më poshtë për ta instaluar.'
     },
     generatePet: {
       title: 'Gjenero një kafshëz',
@@ -1152,12 +1203,13 @@ export const sq = defineLocale({
       slowProviderHint: 'Kjo mund të zgjasë disa minuta',
       remix: 'Ripërziej',
       remixConfirmTitle: 'Ta ripërziejmë këtë pamje?',
-      remixConfirmBody: 'Kjo gjeneron një grup të ri skicash duke e përdorur këtë si pikënisje. Mund të zgjasë disa minuta.',
+      remixConfirmBody:
+        'Kjo gjeneron një grup të ri skicash duke e përdorur këtë si pikënisje. Mund të zgjasë disa minuta.',
       genericError: 'Gjenerimi dështoi — provo përsëri ose zgjidh një sugjerim.',
       referenceImageTooLarge: 'Imazhi referues është shumë i madh. Përdor një nën 16 MB.',
       referenceImageInvalid: 'Imazhi referues nuk mund të lexohej. Provo PNG, JPG, WebP ose GIF.',
       adopt: 'Adopto',
-      startOver: 'Fillo nga e para',
+      startOver: 'Fillo nga e para'
     },
     installTheme: {
       title: 'Instalo temë…',
@@ -1169,7 +1221,7 @@ export const sq = defineLocale({
       install: 'Instalo',
       installing: 'Po instalohet...',
       installed: 'Instaluar',
-      installs: count => `${count} instalime`,
+      installs: count => `${count} instalime`
     },
     settingsFields: 'Fushat e cilësimeve',
     mcpServers: 'Serverët MCP',
@@ -1178,49 +1230,49 @@ export const sq = defineLocale({
       maintenance: 'Mirëmbajtje',
       sessions: 'Sesione',
       system: 'Sistem',
-      usage: 'Përdorimi',
+      usage: 'Përdorimi'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostikim, kopje rezervë, kurator dhe të dhëna memorieje',
       sessions: 'Kërko dhe menaxho sesionet',
       system: 'Statusi, regjistrat dhe veprimet e sistemit',
-      usage: 'Tokenë, kosto dhe aktivitet aftësish me kalimin e kohës',
+      usage: 'Tokenë, kosto dhe aktivitet aftësish me kalimin e kohës'
     },
     nav: {
       newChat: {
         title: 'Sesion i ri',
-        detail: 'Nis një sesion të ri',
+        detail: 'Nis një sesion të ri'
       },
       settings: {
         title: 'Cilësimet',
-        detail: 'Konfiguro OpenAmer për desktop',
+        detail: 'Konfiguro OpenAmer për desktop'
       },
       skills: {
         title: 'Aftësitë',
-        detail: 'Aftësitë, mjetet dhe serverët MCP',
+        detail: 'Aftësitë, mjetet dhe serverët MCP'
       },
       messaging: {
         title: 'Mesazhet',
-        detail: 'Konfiguro Telegram, Slack, Discord dhe më shumë',
+        detail: 'Konfiguro Telegram, Slack, Discord dhe më shumë'
       },
       artifacts: {
         title: 'Artefaktet',
-        detail: 'Shfleto rezultatet e gjeneruara',
-      },
+        detail: 'Shfleto rezultatet e gjeneruara'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Paneli i sesioneve',
-        detail: 'Kërko, fikso dhe menaxho sesionet',
+        detail: 'Kërko, fikso dhe menaxho sesionet'
       },
       system: {
         title: 'Paneli i sistemit',
-        detail: 'Statusi i portës, regjistrat, rindezja/përditësimi',
+        detail: 'Statusi i portës, regjistrat, rindezja/përditësimi'
       },
       usage: {
         title: 'Paneli i përdorimit',
-        detail: 'Aktiviteti i tokenëve, kostos dhe aftësive',
-      },
+        detail: 'Aktiviteti i tokenëve, kostos dhe aftësive'
+      }
     },
     providerNavigate: 'Navigo',
     providerSessions: 'Sesionet',
@@ -1275,7 +1327,8 @@ export const sq = defineLocale({
       backup: 'Krijo kopje rezervë',
       backupDesc: 'Kompreso konfigurimin, kujtimet, aftësitë dhe sesionet',
       debugShare: 'Ndarja e diagnostikimit',
-      debugShareDesc: 'Ngarko një raport të redaktuar + regjistra, merr lidhje për ndarje (fshihen automatikisht pas 6 orësh)',
+      debugShareDesc:
+        'Ngarko një raport të redaktuar + regjistra, merr lidhje për ndarje (fshihen automatikisht pas 6 orësh)',
       debugShareRunning: 'Po ngarkohet raporti i diagnostikimit...',
       debugShareLinks: 'Lidhjet e ndarjes',
       debugShareFailed: 'Ndarja e diagnostikimit dështoi',
@@ -1308,8 +1361,8 @@ export const sq = defineLocale({
       actionStarted: name => `${name} u nis — po ndjek regjistrin...`,
       actionFailed: name => `${name} dështoi të nisej`,
       running: 'Po ekzekutohet...',
-      viewLog: 'Regjistri i veprimeve',
-    },
+      viewLog: 'Regjistri i veprimeve'
+    }
   },
   messaging: {
     search: 'Kërko mesazhe...',
@@ -1324,11 +1377,11 @@ export const sq = defineLocale({
       not_configured: 'Kërkon konfigurim',
       pending_restart: 'Kërkohet rinisje',
       retrying: 'Po provohet përsëri',
-      startup_failed: 'Nisja dështoi',
+      startup_failed: 'Nisja dështoi'
     },
     unknown: 'E panjohur',
     hintPendingRestart: 'Rinis portën nga shiriti i statusit për të zbatuar këtë ndryshim.',
-    hintGatewayStopped: 'Nis portën nga shiriti i statusit për t\'u lidhur.',
+    hintGatewayStopped: "Nis portën nga shiriti i statusit për t'u lidhur.",
     credentialsSet: 'Kredencialet u caktuan',
     needsSetup: 'Kërkon konfigurim',
     gatewayStopped: 'Porta e mesazheve u ndal',
@@ -1337,7 +1390,8 @@ export const sq = defineLocale({
     required: 'Kërkohet',
     recommended: 'Rekomandohet',
     advanced: count => `Të avancuara (${count})`,
-    noTokenNeeded: 'Kjo platformë nuk kërkon token këtu. Përdor udhëzuesin e konfigurimit më sipër, më pas aktivizoje më poshtë.',
+    noTokenNeeded:
+      'Kjo platformë nuk kërkon token këtu. Përdor udhëzuesin e konfigurimit më sipër, më pas aktivizoje më poshtë.',
     enabled: 'Aktivizuar',
     disabled: 'Çaktivizuar',
     unsavedChanges: 'Ndryshime të paruajtura',
@@ -1363,127 +1417,126 @@ export const sq = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Çelësi i botit',
         help: 'Krijo një bot me @BotFather, pastaj ngjit tokenin që të jep.',
-        placeholder: 'Ngjit tokenin e botit të Telegram',
+        placeholder: 'Ngjit tokenin e botit të Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID-të e lejuara të përdoruesve të Telegram',
-        help: 'E rekomanduar. ID numerike të ndara me presje nga @userinfobot. Pa këtë, kushdo mund t\'i dërgojë mesazhe direkt botit tënd.',
+        help: "E rekomanduar. ID numerike të ndara me presje nga @userinfobot. Pa këtë, kushdo mund t'i dërgojë mesazhe direkt botit tënd."
       },
       TELEGRAM_PROXY: {
         label: 'URL e ndërmjetësit',
-        help: 'Nevojitet vetëm në rrjetet ku Telegram është i bllokuar.',
+        help: 'Nevojitet vetëm në rrjetet ku Telegram është i bllokuar.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Çelësi i botit',
-        help: 'Krijo një aplikacion në Discord Developer Portal, shto një bot, pastaj ngjit tokenin e tij.',
+        help: 'Krijo një aplikacion në Discord Developer Portal, shto një bot, pastaj ngjit tokenin e tij.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID-të e lejuara të përdoruesve të Discord',
-        help: 'Rekomandohet. ID-të e përdoruesve të Discord të ndara me presje.',
+        help: 'Rekomandohet. ID-të e përdoruesve të Discord të ndara me presje.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Stili i përgjigjes',
-        help: 'first, all, ose off.',
+        help: 'first, all, ose off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Lejo të gjithë përdoruesit e Discord',
-        help: 'Vetëm për zhvillim. Kur është true, kushdo mund t\'i dërgojë DM botit pa listë të lejuar.',
+        help: "Vetëm për zhvillim. Kur është true, kushdo mund t'i dërgojë DM botit pa listë të lejuar."
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID e kanalit kryesor',
-        help: 'Kanali ku boti dërgon mesazhe proaktive (output cron, kujtues).',
+        help: 'Kanali ku boti dërgon mesazhe proaktive (output cron, kujtues).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Emri i kanalit kryesor',
-        help: 'Emri i shfaqur për kanalin kryesor në log dhe status.',
+        help: 'Emri i shfaqur për kanalin kryesor në log dhe status.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Lejo të gjithë përdoruesit e iMessage',
-        help: 'Kur është true, anashkalo listën e lejuar të BlueBubbles.',
+        help: 'Kur është true, anashkalo listën e lejuar të BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Lejo të gjithë përdoruesit e Mattermost',
+        label: 'Lejo të gjithë përdoruesit e Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kanali kryesor',
+        label: 'Kanali kryesor'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Lejo të gjithë përdoruesit e QQ',
+        label: 'Lejo të gjithë përdoruesit e QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Kanali kryesor i QQ',
-        help: 'Kanali ose grupi i parazgjedhur për dërgimin me cron.',
+        help: 'Kanali ose grupi i parazgjedhur për dërgimin me cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Emri i kanalit kryesor të QQ',
+        label: 'Emri i kanalit kryesor të QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Çelësi i botit të Slack',
         help: 'Përdorni token-in e botit nga OAuth & Permissions pas instalimit të aplikacionit tuaj Slack.',
-        placeholder: 'Ngjitni token-in e botit të Slack',
+        placeholder: 'Ngjitni token-in e botit të Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token-i i aplikacionit Slack',
         help: 'Përdorni token-in e nivelit të aplikacionit që kërkohet për Socket Mode.',
-        placeholder: 'Ngjitni token-in e aplikacionit Slack',
+        placeholder: 'Ngjitni token-in e aplikacionit Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID-të e përdoruesve të lejuar të Slack',
-        help: 'Rekomandohet. ID-të e përdoruesve të Slack të ndara me presje.',
+        help: 'Rekomandohet. ID-të e përdoruesve të Slack të ndara me presje.'
       },
       MATTERMOST_URL: {
         label: 'URL e serverit',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Çelësi i botit',
+        label: 'Çelësi i botit'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID-të e përdoruesve të lejuar',
-        help: 'Rekomandohet. ID-të e përdoruesve të Mattermost të ndara me presje.',
+        help: 'Rekomandohet. ID-të e përdoruesve të Mattermost të ndara me presje.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL e homeserver-it',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token-i i aksesit',
+        label: 'Token-i i aksesit'
       },
       MATRIX_USER_ID: {
         label: 'ID e përdoruesit të botit',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID-të e përdoruesve të lejuar të Matrix',
-        help: 'Rekomandohet. ID-të e përdoruesve në formatin @user:server, të ndara me presje.',
+        help: 'Rekomandohet. ID-të e përdoruesve në formatin @user:server, të ndara me presje.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL e urës Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL e një ure REST signal-cli që është në punë.',
+        help: 'URL e një ure REST signal-cli që është në punë.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Numri i telefonit',
-        help: 'Numri i regjistruar me urën tënde signal-cli.',
+        help: 'Numri i regjistruar me urën tënde signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Përdoruesit e lejuar të Signal',
-        help: 'Rekomandohet. Identifikues Signal të ndarë me presje.',
+        help: 'Rekomandohet. Identifikues Signal të ndarë me presje.'
       },
       WHATSAPP_ENABLED: {
         label: 'Aktivizo urën WhatsApp',
-        help: 'Vendoset automatikisht nga ndërprerësi më poshtë. Lëre ashtu, përveç nëse e di se të duhet.',
+        help: 'Vendoset automatikisht nga ndërprerësi më poshtë. Lëre ashtu, përveç nëse e di se të duhet.'
       },
       WHATSAPP_MODE: {
-        label: 'Modaliteti i urës',
+        label: 'Modaliteti i urës'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Përdoruesit e lejuar të WhatsApp',
-        help: 'Rekomandohet. Numra telefoni ose ID WhatsApp të ndarë me presje.',
-      },
+        help: 'Rekomandohet. Numra telefoni ose ID WhatsApp të ndarë me presje.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Kërko webhook-e...',
@@ -1493,7 +1546,8 @@ export const sq = defineLocale({
     hint: 'Ndryshimet e abonimeve ringarkohen menjëherë sapo marrësi të jetë në punë. Abonimet e çaktivizuara refuzojnë ngjarjet hyrëse.',
     empty: 'Nuk ka ende abonime webhook.',
     disabledTitle: 'Marrësi i webhook-eve është çaktivizuar',
-    disabledBody: 'Webhook-et janë platformë më vete e gateway-it. Aktivizoji këtu për të pranuar ngjarje HTTP hyrëse; kanalet e bisedës nevojiten vetëm kur një abonim dërgon te Telegram, Discord, Slack ose një kanal tjetër.',
+    disabledBody:
+      'Webhook-et janë platformë më vete e gateway-it. Aktivizoji këtu për të pranuar ngjarje HTTP hyrëse; kanalet e bisedës nevojiten vetëm kur një abonim dërgon te Telegram, Discord, Slack ose një kanal tjetër.',
     enable: 'Aktivizo webhookët',
     enabling: 'Po aktivizohet...',
     enabled: (name: string) => `Aktivizuar: "${name}"`,
@@ -1510,7 +1564,8 @@ export const sq = defineLocale({
     toggleFailed: (name: string) => `Përditësimi i "${name}" dështoi`,
     newSubscription: 'Abonim i ri',
     restarting: 'Porta po rindizet...',
-    restartNeeded: 'Webhookët janë aktivizuar, por porta ende duhet të rindizet para se marrësi të mund të vihet online.',
+    restartNeeded:
+      'Webhookët janë aktivizuar, por porta ende duhet të rindizet para se marrësi të mund të vihet online.',
     restartGateway: 'Rindiz portën',
     restartingGateway: 'Po rindizet...',
     restartFailed: (detail: string) => `Rindizja e portës dështoi${detail}`,
@@ -1546,8 +1601,8 @@ export const sq = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Postë elektronike',
-      github_comment: 'Koment në GitHub',
-    },
+      github_comment: 'Koment në GitHub'
+    }
   },
   profiles: {
     close: 'Mbyll profilet',
@@ -1625,7 +1680,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     failedLoadSoul: 'Ngarkimi i SOUL.md dështoi',
     failedSaveSoul: 'Ruajtja e SOUL.md dështoi',
     failedCreate: 'Krijimi i profilit dështoi',
-    failedRename: 'Riemërtimi i profilit dështoi',
+    failedRename: 'Riemërtimi i profilit dështoi'
   },
   cron: {
     close: 'Mbyll cron',
@@ -1640,14 +1695,14 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       paused: 'në pauzë',
       disabled: 'çaktivizuar',
       error: 'gabim',
-      completed: 'përfunduar',
+      completed: 'përfunduar'
     },
     deliveryLabels: {
       local: 'Ky kompjuter',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Postë elektronike',
+      email: 'Postë elektronike'
     },
     scheduleLabels: {
       daily: 'Ditor',
@@ -1656,7 +1711,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       monthly: 'Mujor',
       hourly: 'Orar',
       'every-15-minutes': 'Çdo 15 minuta',
-      custom: 'Personalizuar',
+      custom: 'Personalizuar'
     },
     scheduleHints: {
       daily: 'Çdo ditë në 9:00 paradite',
@@ -1665,7 +1720,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       monthly: 'Dita e parë e çdo muaji në 9:00 paradite',
       hourly: 'Në fillim të çdo ore',
       'every-15-minutes': 'Çdo 15 minuta',
-      custom: 'Sintaksë cron ose gjuhë natyrale',
+      custom: 'Sintaksë cron ose gjuhë natyrale'
     },
     days: {
       '0': 'E diel',
@@ -1675,7 +1730,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       '4': 'E enjte',
       '5': 'E premte',
       '6': 'E shtunë',
-      '7': 'E diel',
+      '7': 'E diel'
     },
     dayFallback: value => `dita ${value}`,
     everyDayAt: time => `Çdo ditë në ${time}`,
@@ -1685,7 +1740,8 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     topOfHour: 'Në fillim të çdo ore',
     everyHourAt: minute => `Çdo orë në :${minute}`,
     newCron: 'Cron i ri',
-    emptyDescNew: 'Programo një kërkesë për t\'u ekzekutuar sipas një shprehjeje cron. OpenAmer do ta ekzekutojë dhe do t\'i dërgojë rezultatet te destinacioni që zgjidhni.',
+    emptyDescNew:
+      "Programo një kërkesë për t'u ekzekutuar sipas një shprehjeje cron. OpenAmer do ta ekzekutojë dhe do t'i dërgojë rezultatet te destinacioni që zgjidhni.",
     emptyDescSearch: 'Provoni një kërkim më të gjerë.',
     emptyTitleNew: 'Ende nuk ka punë të planifikuara',
     emptyTitleSearch: 'Nuk ka përputhje',
@@ -1722,7 +1778,8 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     editTitle: 'Redakto punën Cron',
     createTitle: 'Punë e re Cron',
     editDesc: 'Përditëso orarin, udhëzimin ose objektivin e dërgimit. Ndryshimet zbatohen në ekzekutimin tjetër.',
-    createDesc: 'Programo një udhëzim që të ekzekutohet automatikisht. Përdor sintaksën cron ose një frazë të natyrshme si "çdo 15 minuta".',
+    createDesc:
+      'Programo një udhëzim që të ekzekutohet automatikisht. Përdor sintaksën cron ose një frazë të natyrshme si "çdo 15 minuta".',
     nameLabel: 'Emri',
     namePlaceholder: 'Përmbledhja e mëngjesit',
     promptLabel: 'Nxitje',
@@ -1744,7 +1801,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     createAction: 'Krijo cron',
     tabs: {
       jobs: 'Punët',
-      blueprints: 'Skica',
+      blueprints: 'Skica'
     },
     blueprints: {
       tab: 'Skica',
@@ -1758,8 +1815,8 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       loading: 'Duke ngarkuar skicat...',
       failedLoad: 'Dështoi ngarkimi i skicave',
       emptyTitle: 'Nuk ka skica të disponueshme',
-      emptyDesc: 'Nuk ka skica automatizimi të disponueshme në këtë backend.',
-    },
+      emptyDesc: 'Nuk ka skica automatizimi të disponueshme në këtë backend.'
+    }
   },
   artifacts: {
     search: 'Kërko artefakte...',
@@ -1793,14 +1850,14 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     kindLink: 'lidhje',
     chat: 'Bisedë',
     copyUrl: 'Kopjo URL-në',
-    copyPath: 'Kopjo shtegun',
+    copyPath: 'Kopjo shtegun'
   },
   sidebar: {
     nav: {
       'new-session': 'Sesion i ri',
       skills: 'Aftësitë',
       messaging: 'Mesazhimi',
-      artifacts: 'Artefaktet',
+      artifacts: 'Artefaktet'
     },
     searchAria: 'Kërko sesione',
     searchPlaceholder: 'Kërko sesione…',
@@ -1832,7 +1889,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       namePlaceholder: 'p.sh. Skunkworks',
       foldersLabel: 'Dosjet',
       ideaLabel: 'Ide',
-      ideaPlaceholder: "Për çfarë është ky projekt? (ruhet në IDEA.md)",
+      ideaPlaceholder: 'Për çfarë është ky projekt? (ruhet në IDEA.md)',
       ideaGenerate: 'Gjenero ide',
       ideaGenerating: 'Po gjenerohet…',
       ideaShuffle: 'Përziej shabllonet',
@@ -1852,8 +1909,10 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       copyPath: 'Kopjo shtegun',
       removeFromSidebar: 'Fshihe nga shiriti anësor',
       createFailed: 'Projekti nuk u krijua',
-      staleBackend: 'Përditëso backend-in e OpenAmer për të krijuar projekte — backend-i yt është më i vjetër se ky aplikacion desktop (Cilësimet → Përditësimet → Backend).',
-      deleteConfirm: 'Kjo heq projektin e ruajtur nga OpenAmer. Skedarët, repo-t Git dhe worktree-t mbeten të paprekura.',
+      staleBackend:
+        'Përditëso backend-in e OpenAmer për të krijuar projekte — backend-i yt është më i vjetër se ky aplikacion desktop (Cilësimet → Përditësimet → Backend).',
+      deleteConfirm:
+        'Kjo heq projektin e ruajtur nga OpenAmer. Skedarët, repo-t Git dhe worktree-t mbeten të paprekura.',
       startWork: 'Worktree i ri',
       newWorktreeTitle: 'Worktree i ri',
       newWorktreeDesc: 'Emërto degën për këtë worktree.',
@@ -1874,13 +1933,15 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       noBranches: 'Nuk u gjet asnjë degë',
       removeWorktree: 'Hiq pemën e punës',
       removeWorktreeFailed: 'Pema e punës nuk u hoq dot (ndryshime të paangazhuara?)',
-      removeWorktreeConfirm: 'Hiqe nga git (fshin drejtorinë e pemës së punës; dega mbetet), ose thjesht fshih korsinë nga shiriti anësor dhe lëre pemën e punës në disk.',
-      removeWorktreeDirty: 'Kjo pemë pune ka ndryshime të paangazhuara. Hiqe me forcë (i hedh poshtë ato ndryshime), ose thjesht fshih korsinë dhe mbaje në disk.',
+      removeWorktreeConfirm:
+        'Hiqe nga git (fshin drejtorinë e pemës së punës; dega mbetet), ose thjesht fshih korsinë nga shiriti anësor dhe lëre pemën e punës në disk.',
+      removeWorktreeDirty:
+        'Kjo pemë pune ka ndryshime të paangazhuara. Hiqe me forcë (i hedh poshtë ato ndryshime), ose thjesht fshih korsinë dhe mbaje në disk.',
       forceRemove: 'Hiq me forcë',
       enter: label => `Hap ${label}`,
       reorder: label => `Rirendit ${label}`,
       toggle: label => `Shfaq/fshih sesionet ${label}`,
-      back: 'Të gjitha projektet',
+      back: 'Të gjitha projektet'
     },
     newSessionIn: label => `Sesion i ri në ${label}`,
     showMoreIn: (count, label) => `Shfaq ${count} më shumë në ${label}`,
@@ -1918,15 +1979,15 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       ageNow: 'tani',
       ageDay: 'd',
       ageHour: 'o',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Më herët sot',
       yesterday: 'Dje',
       thisWeek: 'Më herët këtë javë',
       lastWeek: 'Javën e kaluar',
-      thisMonth: 'Më herët këtë muaj',
-    },
+      thisMonth: 'Më herët këtë muaj'
+    }
   },
   composer: {
     message: 'Mesazh',
@@ -1937,20 +1998,20 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     newSessionPlaceholders: [
       'Çfarë po ndërtojmë?',
       'Jepini OpenAmer një detyrë',
-      "Çfarë keni në mendje?",
+      'Çfarë keni në mendje?',
       'Përshkruani atë që ju nevojitet',
       'Çfarë duhet të trajtojmë?',
       'Pyet çdo gjë',
-      'Filloni me një qëllim',
+      'Filloni me një qëllim'
     ],
     followUpPlaceholders: [
       'Dërgoni një ndjekje',
       'Shtoni më shumë kontekst',
       'Përmirësoni kërkesën',
-      "Çfarë vjen pas?",
+      'Çfarë vjen pas?',
       'Vazhdoni',
       'Shkoni më tej',
-      'Rregulloni ose vazhdoni',
+      'Rregulloni ose vazhdoni'
     ],
     startVoice: 'Filloni bisedën me zë',
     queueMessage: 'Rradhitni mesazhin',
@@ -1986,7 +2047,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       '/resume': 'vazhdo një sesion të mëparshëm',
       '/details': 'kontrollo nivelin e detajeve të transkriptit',
       '/copy': 'kopjo përzgjedhjen ose mesazhin e fundit të asistentit',
-      '/quit': 'dil nga OpenAmer',
+      '/quit': 'dil nga OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'refero skedarë, dosje, url, git',
@@ -1996,7 +2057,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       'composer.sendQueued': 'dërgo kthesën tjetër në pritje',
       'keybinds.openPanel': 'të gjitha shkurtoret e tastierës',
       'composer.cancel': 'mbyll popover · anulo ekzekutimin',
-      'composer.history': 'ndërro popover / historikun',
+      'composer.history': 'ndërro popover / historikun'
     },
     attachUrlTitle: 'Bashkangjit një URL',
     attachUrlDesc: 'OpenAmer do të marrë faqen dhe do ta përfshijë si kontekst për këtë kthesë.',
@@ -2017,7 +2078,8 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     queueResume: 'Rifillo',
     queueResumeTip: 'Pauzuar nga Ndalo — rifilloni dërgimin e kthesave në radhë',
     queueStuckTitle: 'Mesazhi në radhë nuk u dërgua',
-    queueStuckBody: 'Një kthesë në radhë dështoi vazhdimisht të dërgohej. Është ende në radhë — provoni ta dërgoni përsëri.',
+    queueStuckBody:
+      'Një kthesë në radhë dështoi vazhdimisht të dërgohej. Është ende në radhë — provoni ta dërgoni përsëri.',
     previewUnavailable: 'Parapamje e padisponueshme',
     previewLabel: label => `Parapamje ${label}`,
     couldNotPreview: label => `Nuk mund të shfaqej paraprakisht ${label}`,
@@ -2041,25 +2103,25 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     tipPost: ' për të referuar skedarë brenda tekstit.',
     snippetsTitle: 'Fragmente prompti',
     snippetsDesc: 'Zgjidh një prompt fillestar për ta vendosur në redaktues.',
-    dropFiles: 'Tërhiq skedarë për t\'i bashkëngjitur',
+    dropFiles: "Tërhiq skedarë për t'i bashkëngjitur",
     dropSession: 'Tërhiq për ta lidhur këtë bisedë',
     snippets: {
       codeReview: {
         label: 'Rishikim kodi',
         description: 'Audito ndryshimin aktual për regresione, raste skajesh të humbura dhe teste që mungojnë.',
-        text: 'Rishiko këtë për gabime, regresione dhe teste që mungojnë.',
+        text: 'Rishiko këtë për gabime, regresione dhe teste që mungojnë.'
       },
       implementationPlan: {
         label: 'Plan zbatimi',
         description: 'Përshkruaj një qasje përpara se të prekësh kodin, që ndryshimi të mbetet i fokusuar.',
-        text: 'Bëj një plan konciz zbatimi përpara se të ndryshosh kodin.',
+        text: 'Bëj një plan konciz zbatimi përpara se të ndryshosh kodin.'
       },
       explainThis: {
         label: 'Shpjego këtë',
         description: 'Shpjego hap pas hapi si funksionon kodi i zgjedhur dhe jep lidhje për skedarët kryesorë.',
-        text: 'Shpjego si funksionon kjo dhe më trego skedarët kryesorë.',
-      },
-    },
+        text: 'Shpjego si funksionon kjo dhe më trego skedarët kryesorë.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agjentët',
@@ -2089,12 +2151,14 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       viewAsList: 'Shiko si listë',
       revert: 'Rikthe',
       revertAll: 'Rikthe të gjitha',
-      revertConfirm: 'Të hidhen ndryshimet e këtij skedari dhe të rikthehet në gjendjen e komituar? Kjo nuk mund të zhbëhet.',
-      revertAllConfirm: 'Të hidhen të gjitha ndryshimet dhe skedarët të rikthehen në gjendjen e komituar? Kjo nuk mund të zhbëhet.',
+      revertConfirm:
+        'Të hidhen ndryshimet e këtij skedari dhe të rikthehet në gjendjen e komituar? Kjo nuk mund të zhbëhet.',
+      revertAllConfirm:
+        'Të hidhen të gjitha ndryshimet dhe skedarët të rikthehen në gjendjen e komituar? Kjo nuk mund të zhbëhet.',
       staged: 'Të përgatitura',
       noChanges: 'Nuk ka ndryshime',
       notRepo: 'Nuk është një depo Git',
-      noDiff: 'Nuk ka diff për t\'u shfaqur',
+      noDiff: "Nuk ka diff për t'u shfaqur",
       scopeUncommitted: 'Të pakomituara',
       scopeBranch: 'Dega',
       scopeLastTurn: 'Turni i fundit',
@@ -2107,13 +2171,14 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       openPr: 'Hap PR',
       ghMissing: 'Instalo GitHub CLI (gh) dhe identifikohu për të hapur PR',
       agentShip: 'Kërko OpenAmer të hapë PR',
-      agentShipPrompt: 'Rishiko ndryshimet aktuale, komitoji me një mesazh të qartë conventional-commit, bëj push degën dhe hap një pull request.',
+      agentShipPrompt:
+        'Rishiko ndryshimet aktuale, komitoji me një mesazh të qartë conventional-commit, bëj push degën dhe hap një pull request.',
       newBranch: 'Degë e re',
       branchOffFrom: base => `Degë e re nga ${base}`,
       switchTo: branch => `Kalo në ${branch}`,
       switchFailed: branch => `Nuk mund të kalohej në ${branch}`,
-      worktrees: 'Pemët e punës',
-    },
+      worktrees: 'Pemët e punës'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2193,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       done: 'Përditësimi përfundoi',
       manual: 'Përditëso nga terminali',
       guiSkew: 'Përditëso aplikacionin desktop',
-      error: 'Përditësimi u pauzua',
+      error: 'Përditësimi u pauzua'
     },
     checking: 'Po kërkohet për përditësime…',
     checkFailedTitle: 'Nuk mund të kontrollohej për përditësime',
@@ -2143,20 +2208,25 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     availableBody: 'Një version i ri i OpenAmer është gati për instalim.',
     availableTitleBackend: 'Përditësim i backend-it në dispozicion.',
     availableBodyBackend: 'Një version më i ri i backend-it të lidhur të OpenAmer është gati për instalim.',
-    availableBodyNoChangelog: 'Një version më i ri është gati. Shënimet e publikimit nuk janë të disponueshme për këtë lloj instalimi.',
+    availableBodyNoChangelog:
+      'Një version më i ri është gati. Shënimet e publikimit nuk janë të disponueshme për këtë lloj instalimi.',
     updateNow: 'Përditësoni tani',
     maybeLater: 'Ndoshta më vonë',
     moreChanges: count => `+ ${count} ndryshim shtesë${count === 1 ? 'ndryshim' : 'ndryshime'} i përfshirë.`,
     manualTitle: 'Përditësoni nga terminali',
-    manualBody: 'E keni instaluar OpenAmer nga rreshti i komandave, prandaj përditësimet bëhen edhe atje. Ngjitni këtë në terminalin tuaj:',
+    manualBody:
+      'E keni instaluar OpenAmer nga rreshti i komandave, prandaj përditësimet bëhen edhe atje. Ngjitni këtë në terminalin tuaj:',
     manualPickedUp: 'OpenAmer do të marrë versionin e ri herën tjetër që e nisni.',
     guiSkewTitle: 'Përditësoni aplikacionin desktop',
-    guiSkewBody: 'Backend-i u përditësua, por paketa e aplikacionit desktop nuk ndryshoi. Përditësoni ose riinstaloni aplikacionin desktop të OpenAmer (AppImage / .deb / .rpm tuaj) që të përputhet.',
+    guiSkewBody:
+      'Backend-i u përditësua, por paketa e aplikacionit desktop nuk ndryshoi. Përditësoni ose riinstaloni aplikacionin desktop të OpenAmer (AppImage / .deb / .rpm tuaj) që të përputhet.',
     copy: 'Kopjo',
     copied: 'U kopjua',
     done: 'U krye',
-    applyingBody: 'Përditësuesi i OpenAmer merr kontrollin në dritaren e vet dhe e rihap OpenAmer automatikisht kur të mbarojë. Ju lutemi, mos e rihapni OpenAmer vetë gjatë përditësimit.',
-    applyingBodyBackend: 'Serveri i pasëm i largët po aplikon përditësimin dhe do të rindizet. OpenAmer rilidhet automatikisht kur të kthehet.',
+    applyingBody:
+      'Përditësuesi i OpenAmer merr kontrollin në dritaren e vet dhe e rihap OpenAmer automatikisht kur të mbarojë. Ju lutemi, mos e rihapni OpenAmer vetë gjatë përditësimit.',
+    applyingBodyBackend:
+      'Serveri i pasëm i largët po aplikon përditësimin dhe do të rindizet. OpenAmer rilidhet automatikisht kur të kthehet.',
     applyingClose: 'Kjo dritare do të mbyllet gjatë përditësimit, më pas OpenAmer rihapet vetë.',
     errorTitle: 'Përditësimi nuk përfundoi',
     errorBody: 'Mos u shqetëso — asgjë nuk u humb. Mund ta provosh përsëri tani.',
@@ -2167,12 +2237,14 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       restarting: 'Serveri i pasëm po rindizet për të ngarkuar përditësimin…',
       notAvailable: 'Përditësimi nuk është i disponueshëm për këtë server të pasëm.',
       failed: 'Përditësimi i serverit të pasëm dështoi.',
-      noReturn: 'Serveri i pasëm nuk u kthye online. Përditësimi mund të mos ketë përfunduar — kontrollo hostin e serverit të pasëm.',
+      noReturn:
+        'Serveri i pasëm nuk u kthye online. Përditësimi mund të mos ketë përfunduar — kontrollo hostin e serverit të pasëm.'
     },
     appErrors: {
-      updateLocked: 'Përditësimi u ndërpre: një dritare tjetër OpenAmer ose një terminal që po ekzekuton openamer po e mban të hapur këtë instalim. Mbylle dhe riprovo.',
-      updateFailed: 'Përditësimi nuk përfundoi. Mos u shqetëso — asgjë nuk u humb. Mund ta provosh përsëri tani.',
-    },
+      updateLocked:
+        'Përditësimi u ndërpre: një dritare tjetër OpenAmer ose një terminal që po ekzekuton openamer po e mban të hapur këtë instalim. Mbylle dhe riprovo.',
+      updateFailed: 'Përditësimi nuk përfundoi. Mos u shqetëso — asgjë nuk u humb. Mund ta provosh përsëri tani.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2252,29 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       running: 'Po instalohet',
       succeeded: 'Përfunduar',
       skipped: 'Anashkaluar',
-      failed: 'Dështoi',
+      failed: 'Dështoi'
     },
     oneTimeTitle: 'OpenAmer kërkon një instalim të njëhershëm',
-    unsupportedDesc: platform => `Instalimi automatik në hapjen e parë nuk disponohet ende në ${platform}. Hap Terminalin dhe ekzekuto komandën më poshtë, pastaj rinis këtë aplikacion. Hapjet e ardhshme do ta anashkalojnë këtë hap.`,
+    unsupportedDesc: platform =>
+      `Instalimi automatik në hapjen e parë nuk disponohet ende në ${platform}. Hap Terminalin dhe ekzekuto komandën më poshtë, pastaj rinis këtë aplikacion. Hapjet e ardhshme do ta anashkalojnë këtë hap.`,
     installCommand: 'Komanda e instalimit',
     copyCommand: 'Kopjo komandën',
     viewDocs: 'Shiko dokumentet e instalimit',
     installTo: 'Do të instalohet në',
     retryAfterRun: 'E ekzekutova -- riprovo',
     setupChoiceTitle: 'Konfiguro OpenAmer Desktop',
-    setupChoiceDesc: 'Lidh këtë aplikacion me një gateway OpenAmer që e ekzekutoni tashmë, ose instalo OpenAmer lokalisht në këtë kompjuter.',
+    setupChoiceDesc:
+      'Lidh këtë aplikacion me një gateway OpenAmer që e ekzekutoni tashmë, ose instalo OpenAmer lokalisht në këtë kompjuter.',
     connectExistingTitle: 'Lidhu me OpenAmer ekzistues',
     connectExistingShort: 'Lidhu me ekzistuesin',
-    connectExistingDesc: 'Përdor një backend në distancë me token sesioni ose hyrje përmes shfletuesit. Nuk do të nisë asnjë instalim lokal.',
+    connectExistingDesc:
+      'Përdor një backend në distancë me token sesioni ose hyrje përmes shfletuesit. Nuk do të nisë asnjë instalim lokal.',
     installLocalTitle: 'Instalo OpenAmer lokalisht',
     installLocalDesc: 'Shkarko OpenAmer, krijo mjedisin e tij Python dhe ekzekuto backend-in në këtë kompjuter.',
     localStartUnavailable: 'Instalimi lokal nuk mundi të niste. Rinis OpenAmer Desktop dhe provo përsëri.',
     remoteSetupTitle: 'Lidhu me OpenAmer ekzistues',
-    remoteSetupDesc: 'Fut URL-në e gateway-t. OpenAmer Desktop do të zbulojë nëse kërkon token ose hyrje përmes shfletuesit.',
+    remoteSetupDesc:
+      'Fut URL-në e gateway-t. OpenAmer Desktop do të zbulojë nëse kërkon token ose hyrje përmes shfletuesit.',
     remoteUrlTitle: 'URL e gateway-t',
     remoteUrlDesc: 'Përdor URL-në bazë të gateway-t OpenAmer, duke përfshirë https:// kur është në distancë.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2301,10 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     failedTitle: 'Instalimi dështoi',
     settingUpTitle: 'Po konfigurohet OpenAmer Agent',
     finishingTitle: 'Po përfundon',
-    failedDesc: 'Një nga hapat e instalimit dështoi. Në Windows, kjo mund të ndodhë nëse një OpenAmer CLI ose instancë e desktopit është duke punuar. Ndalo çdo instancë OpenAmer që është duke punuar, më pas provo përsëri. Kontrollo detajet më poshtë ose regjistrin e desktopit për transkriptin e plotë.',
-    activeDesc: 'Ky është një konfigurim një-herësh. Instaluesi i OpenAmer po shkarkon varësitë dhe po konfiguron makinën tënde. Nisjet e mëpasshme do ta anashkalojnë këtë hap.',
+    failedDesc:
+      'Një nga hapat e instalimit dështoi. Në Windows, kjo mund të ndodhë nëse një OpenAmer CLI ose instancë e desktopit është duke punuar. Ndalo çdo instancë OpenAmer që është duke punuar, më pas provo përsëri. Kontrollo detajet më poshtë ose regjistrin e desktopit për transkriptin e plotë.',
+    activeDesc:
+      'Ky është një konfigurim një-herësh. Instaluesi i OpenAmer po shkarkon varësitë dhe po konfiguron makinën tënde. Nisjet e mëpasshme do ta anashkalojnë këtë hap.',
     progress: (completed, total) => `${completed} nga ${total} hapa të përfunduar`,
     currentStage: stage => ` -- tani: ${stage}`,
     fetchingManifest: 'Po shkarkohet manifesti i instaluesit...',
@@ -2240,10 +2318,10 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     transcriptSaved: 'Transkripti i plotë u ruajt në',
     copiedOutput: 'U kopjua!',
     copyOutput: 'Kopjo daljen',
-    reloadRetry: 'Rifresko dhe provo përsëri',
+    reloadRetry: 'Rifresko dhe provo përsëri'
   },
   onboarding: {
-    headerTitle: "Le të konfigurojmë OpenAmer Agent për ty",
+    headerTitle: 'Le të konfigurojmë OpenAmer Agent për ty',
     headerDesc: 'Lidh një ofrues modelesh që të fillosh bisedën. Shumica e opsioneve kërkojnë vetëm një klikim.',
     preparingInstall: 'OpenAmer po përfundon instalimin. Kjo zakonisht zgjat më pak se një minutë në nisjen e parë.',
     starting: 'Po niset OpenAmer…',
@@ -2251,7 +2329,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     collapse: 'Palos',
     otherProviders: 'Ofrues të tjerë',
     haveApiKey: 'Kam një çelës API',
-    chooseLater: "Do të zgjedh një ofrues më vonë",
+    chooseLater: 'Do të zgjedh një ofrues më vonë',
     recommended: 'Rekomanduar',
     connected: 'I lidhur',
     featuredPitch: 'Një abonim, 300+ modele të avancuara — mënyra e rekomanduar për të ekzekutuar OpenAmer',
@@ -2260,28 +2338,29 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API direkt i modeleve',
-        description: 'Qasje e drejtpërdrejtë te modelet e hostuara nga Fireworks AI.',
+        description: 'Qasje e drejtpërdrejtë te modelet e hostuara nga Fireworks AI.'
       },
       openrouter: {
         short: 'një çelës, shumë modele',
-        description: 'Strehon qindra modele pas një çelësi të vetëm. Parazgjedhje e mirë për instalime të reja.',
+        description: 'Strehon qindra modele pas një çelësi të vetëm. Parazgjedhje e mirë për instalime të reja.'
       },
       openai: {
         short: 'Modele të klasit GPT',
-        description: 'Qasje e drejtpërdrejtë te modelet OpenAI.',
+        description: 'Qasje e drejtpërdrejtë te modelet OpenAI.'
       },
       gemini: {
         short: 'Modelet Gemini',
-        description: 'Qasje e drejtpërdrejtë te modelet Google Gemini.',
+        description: 'Qasje e drejtpërdrejtë te modelet Google Gemini.'
       },
       xai: {
         short: 'Modelet Grok',
-        description: 'Qasje e drejtpërdrejtë te modelet xAI Grok.',
+        description: 'Qasje e drejtpërdrejtë te modelet xAI Grok.'
       },
       local: {
         short: 'Vetëhostuar',
-        description: 'Përcakto OpenAmer në një pikë fundore lokale ose të vetëhostuar të përputhshme me OpenAI (vLLM, llama.cpp, Ollama, etj).',
-      },
+        description:
+          'Përcakto OpenAmer në një pikë fundore lokale ose të vetëhostuar të përputhshme me OpenAI (vLLM, llama.cpp, Ollama, etj).'
+      }
     },
     backToSignIn: 'Kthehu te identifikimi',
     getKey: 'Merr një çelës',
@@ -2292,9 +2371,9 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     connecting: 'Po lidhet',
     update: 'Përditëso',
     flowSubtitles: {
-      pkce: 'Hap shfletuesin për t\'u identifikuar, pastaj vazhdon këtu',
+      pkce: "Hap shfletuesin për t'u identifikuar, pastaj vazhdon këtu",
       device_code: 'Hap një faqe verifikimi në shfletuesin tënd — OpenAmer lidhet automatikisht',
-      external: 'Identifikohu një herë në terminalin tënd, pastaj kthehu te biseda',
+      external: 'Identifikohu një herë në terminalin tënd, pastaj kthehu te biseda'
     },
     startingSignIn: provider => `Po fillon identifikimi për ${provider}...`,
     verifyingCode: provider => `Po verifikohet kodi yt me ${provider}...`,
@@ -2308,11 +2387,13 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     copyAuthCode: 'Kopjoni kodin e autorizimit dhe ngjisni më poshtë.',
     pasteAuthCode: 'Ngjitni kodin e autorizimit',
     reopenAuthPage: 'Rihapni faqen e autorizimit',
-    autoBrowser: provider => `Hapëm ${provider} në shfletuesin tuaj. Autorizoni OpenAmer atje dhe do të lidheni automatikisht — asgjë për të kopjuar ose ngjitur.`,
+    autoBrowser: provider =>
+      `Hapëm ${provider} në shfletuesin tuaj. Autorizoni OpenAmer atje dhe do të lidheni automatikisht — asgjë për të kopjuar ose ngjitur.`,
     reopenSignInPage: 'Rihapni faqen e hyrjes',
     waitingAuthorize: 'Në pritje të autorizimit tuaj...',
-    externalPending: provider => `${provider} hyn përmes CLI-së së vet. Ekzekutoni këtë komandë në një terminal, më pas kthehuni dhe zgjidhni "Jam identifikuar":`,
-    signedIn: "Jam identifikuar",
+    externalPending: provider =>
+      `${provider} hyn përmes CLI-së së vet. Ekzekutoni këtë komandë në një terminal, më pas kthehuni dhe zgjidhni "Jam identifikuar":`,
+    signedIn: 'Jam identifikuar',
     deviceCodeOpened: provider => `Hapëm ${provider} në shfletuesin tuaj. Shkruani këtë kod atje:`,
     reopenVerification: 'Rihapni faqen e verifikimit',
     copy: 'Kopjo',
@@ -2323,7 +2404,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     price: (input, output) => `${input} hyrje / ${output} dalje për Mtok`,
     change: 'Ndrysho',
     startChatting: 'Fillo',
-    docs: provider => `${provider} dokumentet`,
+    docs: provider => `${provider} dokumentet`
   },
   modelPicker: {
     title: 'Ndrysho modelin',
@@ -2339,13 +2420,13 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     free: 'Falas',
     freeTier: 'Niveli falas',
     priceTitle: 'Çmimi i hyrjes / daljes për milion tokenë',
-    wasPrice: 'ishte',
+    wasPrice: 'ishte'
   },
   modelVisibility: {
     title: 'Modelet',
     search: 'Kërko modele',
     noAuthenticatedProviders: 'Nuk ka ofrues të autentikuar.',
-    addProvider: 'Shto ofrues…',
+    addProvider: 'Shto ofrues…'
   },
   shell: {
     windowControls: 'Kontrollet e dritares',
@@ -2356,7 +2437,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       noModels: 'Nuk u gjetën modele',
       editModels: 'Modifiko modelet…',
       refreshModels: 'Rifresko modelet',
-      fast: 'Shpejt',
+      fast: 'Shpejt'
     },
     modelOptions: {
       noOptions: 'Nuk ka opsione për këtë model',
@@ -2372,7 +2453,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       max: 'Maks',
       ultra: 'Ultra',
       updateFailed: 'Përditësimi i opsionit të modelit dështoi',
-      fastFailed: 'Përditësimi i modalitetit të shpejtë dështoi',
+      fastFailed: 'Përditësimi i modalitetit të shpejtë dështoi'
     },
     gatewayMenu: {
       gateway: 'Portë',
@@ -2387,7 +2468,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       connection: label => `Lidhja: ${label}`,
       recentActivity: 'Aktiviteti i fundit',
       viewAllLogs: 'Shiko të gjitha regjistrat →',
-      messagingPlatforms: 'Platformat e mesazheve',
+      messagingPlatforms: 'Platformat e mesazheve'
     },
     approvalMode: {
       title: 'Modaliteti i miratimit',
@@ -2397,7 +2478,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       smart: 'I zgjuar',
       smartDescription: 'Vlerëso automatikisht veprimet dhe pyet kur duhet',
       off: 'Fikur',
-      offDescription: 'Ekzekuto pa kërkesa miratimi',
+      offDescription: 'Ekzekuto pa kërkesa miratimi'
     },
     statusbar: {
       unknown: 'i panjohur',
@@ -2453,27 +2534,29 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
           skills: 'Aftësi',
           subagent_definitions: 'Përkufizime nënagjentësh',
           system_prompt: 'Udhëzim i sistemit',
-          tool_definitions: 'Përkufizime mjetesh',
+          tool_definitions: 'Përkufizime mjetesh'
         },
         empty: 'Nuk ka ende të dhëna konteksti',
         loading: 'Po ngarkohet zbërthimi…',
         percentFull: percent => `${percent}% Plot`,
         title: 'Përdorimi i kontekstit',
-        tokenSummary: (used, max) => `${used} / ${max} Tokenë`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokenë`
       },
       openContextUsage: 'Hap zbërthimin e përdorimit të kontekstit',
       session: 'Sesion',
       runtimeSessionElapsed: 'Koha e sesionit të ekzekutimit',
-      yoloOn: 'YOLO aktiv — miraton automatikisht komandat e rrezikshme. Kliko për ta çaktivizuar. Shift+klik e ndryshon globalisht.',
-      yoloOff: 'YOLO joaktiv — kliko për të miratuar automatikisht komandat e rrezikshme. Shift+klik e ndryshon globalisht.',
+      yoloOn:
+        'YOLO aktiv — miraton automatikisht komandat e rrezikshme. Kliko për ta çaktivizuar. Shift+klik e ndryshon globalisht.',
+      yoloOff:
+        'YOLO joaktiv — kliko për të miratuar automatikisht komandat e rrezikshme. Shift+klik e ndryshon globalisht.',
       modelNone: 'asnjë',
       noModel: 'pa model',
       switchModel: 'Ndrysho modelin',
       openModelPicker: 'Hap përzgjedhësin e modelit',
       modelPinned: 'fiksuar nga ju; bisedat e reja përdorin këtë në vend të parazgjedhjes së Cilësimeve',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Shiriti anësor i djathtë',
@@ -2509,7 +2592,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     terminalNew: 'Terminal i ri',
     terminalCloseOthers: 'Mbyll të tjerat',
     terminalCloseAll: 'Mbyll të gjitha',
-    addToChat: 'Shto në bisedë',
+    addToChat: 'Shto në bisedë'
   },
   preview: {
     tab: 'Parapamje',
@@ -2543,7 +2626,8 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     unsavedChanges: 'Ndryshime të paruajtura',
     saveFailed: message => `Nuk u ruajt: ${message}`,
     diskChangedTitle: 'Skedari ndryshoi në disk',
-    diskChangedBody: 'Ky skedar ka ndryshuar që kur e hapët. Ta mbishkruani me versionin tuaj, apo t\'i hidhni ndryshimet dhe ta ringarkoni?',
+    diskChangedBody:
+      "Ky skedar ka ndryshuar që kur e hapët. Ta mbishkruani me versionin tuaj, apo t'i hidhni ndryshimet dhe ta ringarkoni?",
     overwrite: 'Mbishkruaj',
     discardReload: 'Hidh & ringarko',
     console: {
@@ -2564,7 +2648,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       empty: 'Ende nuk ka mesazhe në konsolë.',
       promptHeader: 'Konsola e parapamës:',
       sentTitle: 'Dërguar në bisedë',
-      sentMessage: count => `${count} hyrje regjistri${count === 1 ? 'y' : 'ies'} u shtua në redaktues`,
+      sentMessage: count => `${count} hyrje regjistri${count === 1 ? 'y' : 'ies'} u shtua në redaktues`
     },
     web: {
       appFailedToBoot: 'Aplikacioni i parapamcës dështoi të niset',
@@ -2582,24 +2666,27 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       showConsole: 'Shfaq konsolën e parapamcës',
       hideDevTools: 'Fshih DevTools e parapamcës',
       openDevTools: 'Hap DevTools e parapamcës',
-      finishedRestarting: message => `OpenAmer përfundoi rinistrimin e serverit të parapamcës${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer përfundoi rinistrimin e serverit të parapamcës${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Rinistrimi i serverit dështoi: ${message}`,
       unknownError: 'gabim i panjohur',
       restartedTitle: 'Serveri i parapamcës u rinistua',
       reloadingNow: 'Po ngarkohet përsëri parapamja tani.',
       restartFailedTitle: 'Rinistrimi i parapamcës dështoi',
       restartFailedMessage: 'OpenAmer nuk mund ta rinistonte serverin.',
-      stillWorking: 'OpenAmer ende po punon, por rezultati i rinistrimit nuk ka ardhur ende. Komanda e serverit mund të po ekzekutohet në plan të parë.',
+      stillWorking:
+        'OpenAmer ende po punon, por rezultati i rinistrimit nuk ka ardhur ende. Komanda e serverit mund të po ekzekutohet në plan të parë.',
       workspaceReloading: 'Hapësira e punës ndryshoi, po rikarkohet parapamja',
       fileChanged: url => `Skedari ndryshoi, po rikarkohet parapamja: ${url}`,
       filesChanged: (count, url) => `${count} ndryshime skedari, po rikarkohet parapamja: ${url}`,
       watchFailed: message => `Nuk mundëj të vëzhgohet skedari i parapamës: ${message}`,
-      moduleMimeDescription: 'Skriptet e moduleve po shërbehen me tipin e gabuar MIME. Zakonisht kjo do të thotë se një server i skedarëve statikë po shërben një aplikacion Vite/React në vend të serverit të zhvillimit të projektit.',
+      moduleMimeDescription:
+        'Skriptet e moduleve po shërbehen me tipin e gabuar MIME. Zakonisht kjo do të thotë se një server i skedarëve statikë po shërben një aplikacion Vite/React në vend të serverit të zhvillimit të projektit.',
       loadFailedConsole: (code, message) => `Ngarkimi dështoi${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Faqja e parapamës nuk mundëj të arrihej.',
       openTarget: url => `Hap ${url}`,
-      fallbackTitle: 'Parapamje',
-    },
+      fallbackTitle: 'Parapamje'
+    }
   },
   zones: {
     showHeader: 'Shfaq kryetitullin',
@@ -2607,7 +2694,8 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     minimize: 'Minimizo',
     restore: 'Rikthe',
     closeRunningTitle: 'Të mbyllim skedën që po punon?',
-    closeRunningBody: 'Kjo bisedë po punon ende (ose po pret inputin tënd). Mbyllja e skedës e fsheh — sesioni ruan përparimin dhe mund të rihapet nga shiriti anësor.',
+    closeRunningBody:
+      'Kjo bisedë po punon ende (ose po pret inputin tënd). Mbyllja e skedës e fsheh — sesioni ruan përparimin dhe mund të rihapet nga shiriti anësor.',
     closeRunningConfirm: 'Mbyll skedën',
     closeOthers: 'Mbyll të tjerat',
     closeToRight: 'Mbyll në të djathtë',
@@ -2633,7 +2721,8 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     deletePreset: name => `Fshi ${name}`,
     zoneEditorTitle: 'Redaktori i zonave',
     editorHintPre: 'kliko për të ndarë · ',
-    editorHintPost: ' kthen vijën · tërhiq nëpër zona për t\'i bashkuar · tërhiq skajet e përbashkëta për të ndryshuar madhësinë',
+    editorHintPost:
+      " kthen vijën · tërhiq nëpër zona për t'i bashkuar · tërhiq skajet e përbashkëta për të ndryshuar madhësinë",
     templateColumns: 'Kolonat',
     templateRows: 'Rreshtat',
     templateGrid: 'Rrjeti',
@@ -2644,27 +2733,16 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     layoutNamePlaceholder: fallback => `Emri i paraqitjes (${fallback})`,
     saveApply: 'Ruaj & zbato',
     notExpressible: 'ky rregullim ndërlidhet (pinwheel) — ende nuk shprehet si ndarje të mbivendosura',
-    zoneCount: count => `${count} zona`,
+    zoneCount: count => `${count} zona`
   },
   assistant: {
     thread: {
       loadingSession: 'Po ngarkohet sesioni',
       showEarlier: 'Shfaq mesazhet e mëparshme',
       loadingResponse: 'OpenAmer po ngarkon një përgjigje',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Po mendohet',
       today: time => `Sot, ${time}`,
@@ -2691,7 +2769,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       restoreNext: 'Rikthe pikën tjetër të kontrollit',
       goForward: 'Shko përpara',
       sendEdited: 'Dërgo mesazhin e redaktuar',
-      attachingFile: 'Po bashkëngjitet…',
+      attachingFile: 'Po bashkëngjitet…'
     },
     approval: {
       gatewayDisconnected: 'Porta e OpenAmer nuk është e lidhur',
@@ -2704,13 +2782,14 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       jumpToApproval: 'Kërkohet miratim',
       reject: 'Refuzo',
       alwaysTitle: 'Të lejohet gjithmonë kjo komandë?',
-      alwaysDescription: pattern => `Kjo shton modelin “${pattern}” në listën tënde të përhershme të lejimeve (~/.openamer/config.yaml). OpenAmer nuk do të pyesë më për komanda si kjo — në këtë sesion ose në çdo sesion të ardhshëm.`,
-      alwaysAllow: 'Lejo gjithmonë',
+      alwaysDescription: pattern =>
+        `Kjo shton modelin “${pattern}” në listën tënde të përhershme të lejimeve (~/.openamer/config.yaml). OpenAmer nuk do të pyesë më për komanda si kjo — në këtë sesion ose në çdo sesion të ardhshëm.`,
+      alwaysAllow: 'Lejo gjithmonë'
     },
     clarify: {
       notReady: 'Kërkesa për sqarim nuk është gati ende',
       gatewayDisconnected: 'Porta OpenAmer nuk është e lidhur',
-      sendFailed: 'S\'u dërgua përgjigjja e sqarimit',
+      sendFailed: "S'u dërgua përgjigjja e sqarimit",
       loadingQuestion: 'Po ngarkohet pyetja…',
       other: 'Tjetër (shkruaj përgjigjen)',
       placeholder: 'Shkruaj përgjigjen…',
@@ -2719,7 +2798,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       continueLabel: 'Vazhdo',
       lateAnswer: (question, choice) => `Për: "${question}" — përgjigjja ime: ${choice}`,
       lateAnswerTip: 'Përpilo këtë përgjigje si mesazh pasues',
-      lateAnswerHint: 'Kjo kërkesë nuk po pret më. Zgjidh një opsion për ta hartuar si mesazh pasues.',
+      lateAnswerHint: 'Kjo kërkesë nuk po pret më. Zgjidh një opsion për ta hartuar si mesazh pasues.'
     },
     tool: {
       code: 'Kod',
@@ -2755,11 +2834,11 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
         ran: 'Ekzekutuar',
         running: 'Duke ekzekutuar',
         ranCode: 'Ekzekutuar kod',
-        runningCode: 'Duke skriptuar',
+        runningCode: 'Duke skriptuar'
       },
       prefixes: {
         browser: 'Shfletues',
-        web: 'Ueb',
+        web: 'Ueb'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2767,132 +2846,133 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Duke ekzekutuar ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Duke ekzekutuar ${action.toLowerCase()}`,
+        runningTool: action => `Duke ekzekutuar ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Klikuar element faqeje',
           pending: 'Duke klikuar element faqeje',
-          pendingAction: 'Duke klikuar',
+          pendingAction: 'Duke klikuar'
         },
         browser_fill: {
           done: 'Plotësuar fushë formulari',
           pending: 'Duke plotësuar fushë formulari',
-          pendingAction: 'Duke plotësuar',
+          pendingAction: 'Duke plotësuar'
         },
         browser_navigate: {
           done: 'Faqja u hap',
           pending: 'Po hapet faqja',
-          pendingAction: 'Po hapet',
+          pendingAction: 'Po hapet'
         },
         browser_snapshot: {
           done: 'Pamja e faqes u regjistrua',
           pending: 'Po regjistrohet pamja e faqes',
-          pendingAction: 'Po regjistrohet',
+          pendingAction: 'Po regjistrohet'
         },
         browser_take_screenshot: {
           done: 'Pamja e ekranit u regjistrua',
           pending: 'Po regjistrohet pamja e ekranit',
-          pendingAction: 'Po regjistrohet',
+          pendingAction: 'Po regjistrohet'
         },
         browser_type: {
           done: 'U shkrua në faqe',
           pending: 'Po shkruhet në faqe',
-          pendingAction: 'Po shkruhet',
+          pendingAction: 'Po shkruhet'
         },
         clarify: {
           done: 'U bë një pyetje',
           pending: 'Po bëhet një pyetje',
-          pendingAction: 'Po pyet',
+          pendingAction: 'Po pyet'
         },
         cronjob: {
           done: 'Detyrë cron',
           pending: 'Po planifikohet detyra cron',
-          pendingAction: 'Po planifikohet',
+          pendingAction: 'Po planifikohet'
         },
         edit_file: {
           done: 'Skedari u redaktua',
           pending: 'Po redaktohet skedari',
-          pendingAction: 'Po redaktohet',
+          pendingAction: 'Po redaktohet'
         },
         execute_code: {
           done: 'Kodi u ekzekutua',
           pending: 'Skriptim',
-          pendingAction: 'Skriptim',
+          pendingAction: 'Skriptim'
         },
         image_generate: {
           done: 'Imazhi u gjenerua',
           pending: 'Po gjenerohet imazhi',
-          pendingAction: 'Po gjenerohet',
+          pendingAction: 'Po gjenerohet'
         },
         list_files: {
           done: 'Skedarët u listuan',
           pending: 'Po listohen skedarët',
-          pendingAction: 'Po listohet',
+          pendingAction: 'Po listohet'
         },
         patch: {
           done: 'Skedari u arnua',
           pending: 'Po arnohet skedari',
-          pendingAction: 'Po arnohet',
+          pendingAction: 'Po arnohet'
         },
         read_file: {
           done: 'Skedari u lexua',
           pending: 'Po lexohet skedari',
-          pendingAction: 'Po lexohet',
+          pendingAction: 'Po lexohet'
         },
         search_files: {
           done: 'Skedarët u kërkuan',
           pending: 'Po kërkohen skedarët',
-          pendingAction: 'Po kërkohet',
+          pendingAction: 'Po kërkohet'
         },
         session_search_recall: {
           done: 'U kërkua në historikun e sesionit',
           pending: 'Po kërkohet historia e sesionit',
-          pendingAction: 'Po kërkohet',
+          pendingAction: 'Po kërkohet'
         },
         terminal: {
           done: 'Komanda u ekzekutua',
           pending: 'Po ekzekutohet komanda',
-          pendingAction: 'Po ekzekutohet',
+          pendingAction: 'Po ekzekutohet'
         },
         todo: {
           done: 'Detyrat u përditësuan',
           pending: 'Po përditësohen detyrat',
-          pendingAction: 'Përditësimi',
+          pendingAction: 'Përditësimi'
         },
         vision_analyze: {
           done: 'Imazhi i analizuar',
           pending: 'Analizimi i imazhit',
-          pendingAction: 'Analizimi',
+          pendingAction: 'Analizimi'
         },
         web_extract: {
           done: 'Lexoi faqen',
           pending: 'Leximi i faqes',
-          pendingAction: 'Leximi',
+          pendingAction: 'Leximi'
         },
         web_search: {
           done: 'Kërkoi në web',
           pending: 'Kërkimi në web',
-          pendingAction: 'Kërkimi',
+          pendingAction: 'Kërkimi'
         },
         write_file: {
           done: 'Skedari i redaktuar',
           pending: 'Redaktimi i skedarit',
-          pendingAction: 'Redaktimi',
-        },
-      },
-    },
+          pendingAction: 'Redaktimi'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway nuk është i lidhur',
     sudoSendFailed: 'Nuk u dërgua fjalëkalimi sudo',
     secretSendFailed: 'Nuk u dërgua sekreti',
     sudoTitle: 'Fjalëkalimi i administratorit',
-    sudoDesc: 'OpenAmer kërkon fjalëkalimin tuaj sudo për të ekzekutuar një komandë të privilegjuar. Ai dërgohet vetëm te agjenti juaj lokal.',
+    sudoDesc:
+      'OpenAmer kërkon fjalëkalimin tuaj sudo për të ekzekutuar një komandë të privilegjuar. Ai dërgohet vetëm te agjenti juaj lokal.',
     sudoPlaceholder: 'fjalëkalimi sudo',
     secretTitle: 'Sekreti është i kërkuar',
     secretDesc: 'OpenAmer kërkon një kredencial për të vazhduar.',
-    secretPlaceholder: 'vlera sekrete',
+    secretPlaceholder: 'vlera sekrete'
   },
   desktop: {
     audioReadFailed: 'Audio e regjistruar nuk u lexua',
@@ -2909,7 +2989,8 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'ndezur' : 'fikur'} për këtë sesion`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Ndërrimi i YOLO dështoi',
-    profileStatus: current => `Profili: ${current}. Përdor /profile <name> ose përzgjedhësin "Sesion i ri" për të nisur një bisedë në një profil tjetër.`,
+    profileStatus: current =>
+      `Profili: ${current}. Përdor /profile <name> ose përzgjedhësin "Sesion i ri" për të nisur një bisedë në një profil tjetër.`,
     unknownProfile: 'Profil i panjohur',
     noProfileNamed: (target, available) => `Nuk ka profil me emrin "${target}". Të disponueshëm: ${available}`,
     newChatsProfile: name => `Bisedat e reja do të përdorin profilin ${name}.`,
@@ -2919,8 +3000,9 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
     regenerateFailed: 'Rigjenerimi dështoi',
     editFailed: 'Redaktimi dështoi',
     resumeFailed: 'Rifillimi dështoi',
-    resumeStrandedTitle: "Ky sesion nuk u ngarkua dot",
-    resumeStrandedBody: 'Lidhja me këtë sesion dështoi dhe riprovimet automatike u ndërprenë. Kontrolloni nëse gateway është në punë, pastaj provoni përsëri.',
+    resumeStrandedTitle: 'Ky sesion nuk u ngarkua dot',
+    resumeStrandedBody:
+      'Lidhja me këtë sesion dështoi dhe riprovimet automatike u ndërprenë. Kontrolloni nëse gateway është në punë, pastaj provoni përsëri.',
     resumeRetry: 'Riprovo',
     nothingToBranch: 'Asgjë për të degëzuar',
     branchNeedsChat: 'Filloni ose rifilloni një bisedë përpara degëzimit.',
@@ -2960,31 +3042,31 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       success: platform => `U dorëzua te ${platform}. Vazhdo këtu në çdo moment.`,
       systemNote: platform => `↻ U dorëzua te ${platform} — vazhdo këtu në çdo moment.`,
       failed: error => `Dorëzimi dështoi: ${error}`,
-      timedOut: 'Skadoi koha duke pritur për portën hyrëse. A është duke u ekzekutuar `openamer gateway`?',
-    },
+      timedOut: 'Skadoi koha duke pritur për portën hyrëse. A është duke u ekzekutuar `openamer gateway`?'
+    }
   },
   errors: {
     genericFailure: 'Diçka shkoi keq',
     boundaryTitle: 'Diçka u prish në ndërfaqe',
     boundaryDesc: 'Pamja hasi një gabim të papritur. Bisedat dhe cilësimet e tua janë të sigurta.',
     reloadWindow: 'Ringarko dritaren',
-    openLogs: 'Hap regjistrat',
+    openLogs: 'Hap regjistrat'
   },
   ui: {
     search: {
-      clear: 'Pastro kërkimin',
+      clear: 'Pastro kërkimin'
     },
     pagination: {
       label: 'Faqezim',
       previous: 'Prapa',
       previousAria: 'Shko në faqen e mëparshme',
       next: 'Tjetra',
-      nextAria: 'Shko në faqen tjetër',
+      nextAria: 'Shko në faqen tjetër'
     },
     sidebar: {
       title: 'Shiriti anësor',
       description: 'Shfaq shiritin anësor të celularit.',
-      toggle: 'Ndërro shiritin anësor',
-    },
-  },
+      toggle: 'Ndërro shiritin anësor'
+    }
+  }
 })

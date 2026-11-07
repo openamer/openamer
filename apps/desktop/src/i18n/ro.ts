@@ -44,7 +44,7 @@ export const ro = defineLocale({
     update: 'Actualizează',
     tryHint: term => `Încearcă „${term}”`,
     on: 'Activat',
-    off: 'Dezactivat',
+    off: 'Dezactivat'
   },
   fileMenu: {
     revealFinder: 'Afișează în Finder',
@@ -59,7 +59,7 @@ export const ro = defineLocale({
     renameLabel: 'Nume nou',
     deleteTitle: name => `Ștergi ${name}?`,
     deleteBody: 'Va fi mutat în Coșul de reciclare — îl poți recupera de acolo.',
-    pathCopied: 'Cale copiată',
+    pathCopied: 'Cale copiată'
   },
   boot: {
     ready: 'OpenAmer Desktop este gata',
@@ -69,7 +69,7 @@ export const ro = defineLocale({
       loadingSettings: 'Se încarcă setările OpenAmer',
       loadingSessions: 'Se încarcă sesiunile recente',
       startingDesktopConnection: 'Se pornește conexiunea desktop',
-      startingOpenAmerDesktop: 'Se pornește OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Se pornește OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Procesul de fundal OpenAmer s-a încheiat.',
@@ -78,13 +78,15 @@ export const ro = defineLocale({
       desktopBootFailed: 'Pornirea desktopului a eșuat',
       gatewayConnectionLost: 'Conexiunea cu gateway-ul s-a pierdut',
       gatewaySignInRequired: 'Este necesară autentificarea în gateway',
-      ipcBridgeUnavailable: 'Puntea IPC a desktopului nu este disponibilă.',
+      ipcBridgeUnavailable: 'Puntea IPC a desktopului nu este disponibilă.'
     },
     failure: {
-      title: "OpenAmer nu a putut porni",
-      description: "Gateway-ul de fundal nu a pornit. Încearcă unul dintre pașii de recuperare de mai jos. Nimic de aici nu îți șterge discuțiile sau setările.",
+      title: 'OpenAmer nu a putut porni',
+      description:
+        'Gateway-ul de fundal nu a pornit. Încearcă unul dintre pașii de recuperare de mai jos. Nimic de aici nu îți șterge discuțiile sau setările.',
       remoteTitle: 'Este necesară autentificarea în gateway-ul la distanță',
-      remoteDescription: 'Sesiunea ta din gateway-ul la distanță a expirat. Autentifică-te din nou pentru reconectare. Nimic de aici nu îți șterge discuțiile sau setările.',
+      remoteDescription:
+        'Sesiunea ta din gateway-ul la distanță a expirat. Autentifică-te din nou pentru reconectare. Nimic de aici nu îți șterge discuțiile sau setările.',
       retry: 'Reîncearcă',
       repairInstall: 'Repară instalarea',
       useLocalGateway: 'Folosește gateway-ul local',
@@ -92,7 +94,8 @@ export const ro = defineLocale({
       back: 'Înapoi',
       openLogs: 'Deschide jurnalele',
       repairHint: 'Repararea rulează din nou instalatorul și poate dura câteva minute pe un computer nou.',
-      remoteSignInHint: signInLabel => `Deconectează sesia salvată a browserului la distanță, apoi deschide ${signInLabel}. Folosește „Folosește gateway-ul local” pentru a reveni la backend-ul inclus.`,
+      remoteSignInHint: signInLabel =>
+        `Deconectează sesia salvată a browserului la distanță, apoi deschide ${signInLabel}. Folosește „Folosește gateway-ul local” pentru a reveni la backend-ul inclus.`,
       signOutAndSignIn: 'Deconectare și autentificare',
       remoteFailureHint: 'Verifică URL-ul și autentificarea în setările gateway-ului sau treci la gateway-ul local.',
       hideRecentLogs: 'Ascunde jurnalele recente',
@@ -104,8 +107,8 @@ export const ro = defineLocale({
       signInFailed: 'Autentificarea a eșuat',
       signInToRemoteGateway: 'Autentifică-te în gateway-ul la distanță',
       signInWithProvider: provider => `Autentificare cu ${provider}`,
-      identityProvider: 'furnizorul tău de identitate',
-    },
+      identityProvider: 'furnizorul tău de identitate'
+    }
   },
   notifications: {
     region: 'Notificări',
@@ -118,21 +121,23 @@ export const ro = defineLocale({
     copyDetail: 'Copiază detaliile',
     copyDetailFailed: 'Nu s-au putut copia detaliile notificării',
     backendOutOfDateTitle: 'Backend învechit',
-    backendOutOfDateMessage: 'Backend-ul tău OpenAmer este mai vechi decât această versiune desktop și poate nu funcționează corect. Actualizează-l pentru aliniere.',
+    backendOutOfDateMessage:
+      'Backend-ul tău OpenAmer este mai vechi decât această versiune desktop și poate nu funcționează corect. Actualizează-l pentru aliniere.',
     installMethodUnsupportedTitle: 'Metodă de instalare nesuportată',
     updateOpenAmer: 'Actualizează OpenAmer',
     updateReadyTitle: 'Actualizare gata',
     updateReadyMessage: count => `${count} modificare nouă${count === 1 ? 'modificare' : 'modificări'} disponibilă.`,
-    seeWhatsNew: "Vezi noutățile",
+    seeWhatsNew: 'Vezi noutățile',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT necesită ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs a respins cheia API (401).',
       gatewayAuthFailed: 'Autentificarea gateway-ului a eșuat — verifică API_SERVER_KEY.',
-      methodNotAllowed: 'Backend-ul desktopului a respins cererea (405 Method Not Allowed). Încearcă să repornești OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend-ul desktopului a respins cererea (405 Method Not Allowed). Încearcă să repornești OpenAmer Desktop.',
       microphonePermission: 'Permisiunea pentru microfon a fost refuzată.',
       openaiRejectedApiKey: 'OpenAI a respins cheia API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI a respins cheia API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS necesită VOICE_TOOLS_OPENAI_KEY sau OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS necesită VOICE_TOOLS_OPENAI_KEY sau OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Configurează vorbirea în text pentru a folosi modul vocal.',
@@ -151,7 +156,7 @@ export const ro = defineLocale({
       transcriptionFailed: 'Transcrierea vocală a eșuat',
       transcriptionUnavailable: 'Transcrierea vocală nu este încă disponibilă.',
       tryRecordingAgain: 'Încearcă să înregistrezi din nou.',
-      unavailable: 'Voce indisponibilă',
+      unavailable: 'Voce indisponibilă'
     },
     native: {
       approvalTitle: 'Se necesită aprobare',
@@ -164,11 +169,12 @@ export const ro = defineLocale({
       turnErrorTitle: 'Runda a eșuat',
       backgroundDoneTitle: 'Sarcina de fundal s-a încheiat',
       backgroundFailedTitle: 'Sarcina de fundal a eșuat',
-      creditsTitle: 'Credite',
-    },
+      creditsTitle: 'Credite'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Randare software activă — afișaj la distanță detectat (${reason}). Accelerarea GPU este dezactivată pentru a preveni pâlpâirea.`,
+    message: reason =>
+      `Randare software activă — afișaj la distanță detectat (${reason}). Accelerarea GPU este dezactivată pentru a preveni pâlpâirea.`
   },
   billingBlock: {
     titleOpenamer: 'Fără credite OpenAmer',
@@ -176,7 +182,7 @@ export const ro = defineLocale({
     fallbackMessage: 'Contul tău nu mai are credite. Adaugă credite pentru a continua.',
     openBilling: 'Deschide facturarea',
     addCredits: 'Adaugă credite',
-    dismiss: 'Respinge',
+    dismiss: 'Respinge'
   },
   titlebar: {
     hideSidebar: 'Ascunde bara laterală',
@@ -193,7 +199,7 @@ export const ro = defineLocale({
     openStarmap: 'Deschide graful de memorie',
     openKeybinds: 'Comenzi rapide',
     layoutEditor: 'Editor de aspect',
-    layoutEditorTitle: 'Editor de aspect — Cmd/Ctrl+click resetează aspectul',
+    layoutEditorTitle: 'Editor de aspect — Cmd/Ctrl+click resetează aspectul'
   },
   keybinds: {
     title: 'Scurtături de tastatură',
@@ -210,7 +216,7 @@ export const ro = defineLocale({
       profiles: 'Profiluri',
       session: 'Sesiune',
       navigation: 'Navigare',
-      view: 'Vizualizare',
+      view: 'Vizualizare'
     },
     actions: {
       'keybinds.openPanel': 'Deschide scurtăturile de tastatură',
@@ -289,8 +295,8 @@ export const ro = defineLocale({
       'composer.slash': 'Paletă de comenzi slash',
       'composer.help': 'Ajutor rapid',
       'composer.history': 'Comută fereastra flotantă / istoric',
-      'composer.cancel': 'Închide fereastra flotantă · anulează rularea',
-    },
+      'composer.cancel': 'Închide fereastra flotantă · anulează rularea'
+    }
   },
   language: {
     label: 'Limbă',
@@ -299,7 +305,7 @@ export const ro = defineLocale({
     saveError: 'Actualizarea limbii a eșuat',
     switchTo: 'Schimbă limba',
     searchPlaceholder: 'Caută limbi…',
-    noResults: 'Nicio limbă găsită',
+    noResults: 'Nicio limbă găsită'
   },
   settings: {
     closeSettings: 'Închide setările',
@@ -324,11 +330,12 @@ export const ro = defineLocale({
       about: 'Despre',
       billing: 'Facturare',
       notifications: 'Notificări',
-      plugins: 'Module',
+      plugins: 'Module'
     },
     plugins: {
       title: 'Pluginuri desktop',
-      blurb: 'Extensii UI încărcate în această aplicație — incluse în build sau plasate în folderul desktop-plugins (inclusiv cele scrise de OpenAmer). Dezactivarea dezîncarcă un plugin pe loc și persistă după reporniri.',
+      blurb:
+        'Extensii UI încărcate în această aplicație — incluse în build sau plasate în folderul desktop-plugins (inclusiv cele scrise de OpenAmer). Dezactivarea dezîncarcă un plugin pe loc și persistă după reporniri.',
       count: n => `${n} instalate`,
       openFolder: 'Deschide folderul de pluginuri',
       rescan: 'Rescanează',
@@ -340,49 +347,51 @@ export const ro = defineLocale({
       kinds: {
         bundled: 'inclus',
         disk: 'pe disc',
-        runtime: 'Execuție',
-      },
+        runtime: 'Execuție'
+      }
     },
     notifications: {
       title: 'Notificări',
-      intro: 'Notificări native de desktop, separate de notificările pop-up din aplicație. Acestea sunt locale dispozitivului — fiecare computer își păstrează propriile setări.',
+      intro:
+        'Notificări native de desktop, separate de notificările pop-up din aplicație. Acestea sunt locale dispozitivului — fiecare computer își păstrează propriile setări.',
       enableAll: 'Activează notificările',
       enableAllDesc: 'Comutator principal. Dezactivează-l pentru a opri toate notificările de mai jos.',
       focusedHint: 'Alertele de finalizare se declanșează doar cât timp OpenAmer este în fundal.',
       kinds: {
         approval: {
           label: 'Necesită aprobare',
-          description: 'O comandă așteaptă să o aprobi sau să o respingi.',
+          description: 'O comandă așteaptă să o aprobi sau să o respingi.'
         },
         input: {
           label: 'Necesită introducere',
-          description: 'OpenAmer a pus o întrebare sau are nevoie de o parolă sau un secret.',
+          description: 'OpenAmer a pus o întrebare sau are nevoie de o parolă sau un secret.'
         },
         turnDone: {
           label: 'Răspuns pregătit',
-          description: 'O rundă s-a încheiat cât timp OpenAmer era în fundal.',
+          description: 'O rundă s-a încheiat cât timp OpenAmer era în fundal.'
         },
         turnError: {
           label: 'Runda a eșuat',
-          description: 'O rundă s-a încheiat cu o eroare.',
+          description: 'O rundă s-a încheiat cu o eroare.'
         },
         backgroundDone: {
           label: 'Sarcină din fundal finalizată',
-          description: 'O comandă de terminal rulată în fundal s-a finalizat.',
+          description: 'O comandă de terminal rulată în fundal s-a finalizat.'
         },
         credits: {
           label: 'Alerte de credite',
-          description: 'Accesul la credite este în pauză sau a fost restabilit.',
-        },
+          description: 'Accesul la credite este în pauză sau a fost restabilit.'
+        }
       },
       test: 'Trimite notificare de test',
       testTitle: 'OpenAmer',
       testBody: 'Notificările funcționează.',
-      testSent: 'Test trimis. Dacă nu apare nimic, verifică permisiunile de notificări ale sistemului și modul Focus/Do Not Disturb.',
+      testSent:
+        'Test trimis. Dacă nu apare nimic, verifică permisiunile de notificări ale sistemului și modul Focus/Do Not Disturb.',
       testUnsupported: 'Acest sistem nu acceptă notificări native.',
       completionSoundTitle: 'Sunet de finalizare',
       completionSoundDesc: 'Se redă când se termină un tur al agentului. Alege un preset și previzualizează-l aici.',
-      completionSoundPreview: 'Previzualizare',
+      completionSoundPreview: 'Previzualizare'
     },
     sections: {
       model: 'Model',
@@ -392,7 +401,7 @@ export const ro = defineLocale({
       safety: 'Siguranță',
       memory: 'Memorie și context',
       voice: 'Voce',
-      advanced: 'Avansat',
+      advanced: 'Avansat'
     },
     searchPlaceholder: {
       about: 'Despre OpenAmer Desktop',
@@ -400,37 +409,40 @@ export const ro = defineLocale({
       gateway: 'Conexiune gateway...',
       keys: 'Caută chei API...',
       mcp: 'Caută servere MCP...',
-      sessions: 'Caută sesiuni arhivate...',
+      sessions: 'Caută sesiuni arhivate...'
     },
     modeOptions: {
       light: {
         label: 'Deschis',
-        description: 'Suprafețe luminoase',
+        description: 'Suprafețe luminoase'
       },
       dark: {
         label: 'Întunecat',
-        description: 'Spațiu cu strălucire redusă',
+        description: 'Spațiu cu strălucire redusă'
       },
       system: {
         label: 'Sistem',
-        description: 'Urmărește aspectul sistemului',
-      },
+        description: 'Urmărește aspectul sistemului'
+      }
     },
     appearance: {
       title: 'Aspect',
-      intro: 'Acestea sunt preferințe de afișare doar pentru desktop. Modul controlează luminozitatea; tema controlează paleta de accente și stilul suprafeței de discuție.',
+      intro:
+        'Acestea sunt preferințe de afișare doar pentru desktop. Modul controlează luminozitatea; tema controlează paleta de accente și stilul suprafeței de discuție.',
       colorMode: 'Mod de culoare',
       colorModeDesc: 'Alege un mod fix sau lasă OpenAmer să urmărească setările sistemului.',
       toolViewTitle: 'Afișarea apelurilor de instrumente',
       toolViewDesc: 'Produsul ascunde datele brute ale instrumentelor; Tehnic afișează intrarea/ieșirea completă.',
       uiScaleTitle: 'Scara interfeței',
-      uiScaleDesc: (percent: number) => `Scalează textul și comenzile în toată aplicația. Cmd/Ctrl cu +, - și 0 funcționează și ele. Curent: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scalează textul și comenzile în toată aplicația. Cmd/Ctrl cu +, - și 0 funcționează și ele. Curent: ${percent}%.`,
       translucencyTitle: 'Transparența ferestrei',
       translucencyDesc: 'Vezi desktopul tău prin întreaga fereastră. Doar pe macOS și Windows.',
       backdropTitle: 'Fundalul discuției',
       backdropDesc: 'Imaginea estompată a statuii din spatele conversației.',
       embedsTitle: 'Conținut încorporat',
-      embedsDesc: 'Previzualizările bogate se încarcă de pe site-uri terțe (YouTube, X, …). Întreabă afișează un substituent până permiți fiecare; Întotdeauna le încarcă automat; Dezactivat păstrează linkuri simple.',
+      embedsDesc:
+        'Previzualizările bogate se încarcă de pe site-uri terțe (YouTube, X, …). Întreabă afișează un substituent până permiți fiecare; Întotdeauna le încarcă automat; Dezactivat păstrează linkuri simple.',
       embedsAsk: 'Întreabă',
       embedsAlways: 'Întotdeauna',
       embedsOff: 'Dezactivat',
@@ -443,7 +455,8 @@ export const ro = defineLocale({
       themeDesc: 'Doar palete desktop. Modul selectat se aplică deasupra.',
       themeProfileNote: profile => `Salvat pentru profilul ${profile} — fiecare profil își păstrează propria temă.`,
       installTitle: 'Instalează din VS Code',
-      installDesc: 'Lipește un ID de extensie Marketplace (ex. dracula-theme.theme-dracula) pentru a-i transforma tema de culori într-o paletă desktop.',
+      installDesc:
+        'Lipește un ID de extensie Marketplace (ex. dracula-theme.theme-dracula) pentru a-i transforma tema de culori într-o paletă desktop.',
       installPlaceholder: 'publicator.extensie',
       installButton: 'Instalează',
       installing: 'Se instalează…',
@@ -453,8 +466,10 @@ export const ro = defineLocale({
       importedBadge: 'Importat',
       pet: {
         title: 'Mascotă',
-        intro: 'Adoptă o mascotă animată petdex care plutește peste aplicație și reacționează la ce face OpenAmer — rulează cât timp se execută instrumentele, sărbătorește la succes, se întristează la erori.',
-        restartHint: 'Mascotele au nevoie de o repunere rapidă în funcțiune — aplicația care rulează a fost pornită înainte de adăugarea acestei funcții. Închide și redeschide OpenAmer, apoi revino aici.',
+        intro:
+          'Adoptă o mascotă animată petdex care plutește peste aplicație și reacționează la ce face OpenAmer — rulează cât timp se execută instrumentele, sărbătorește la succes, se întristează la erori.',
+        restartHint:
+          'Mascotele au nevoie de o repunere rapidă în funcțiune — aplicația care rulează a fost pornită înainte de adăugarea acestei funcții. Închide și redeschide OpenAmer, apoi revino aici.',
         on: 'Activat',
         off: 'Dezactivat',
         scaleTitle: 'Dimensiune',
@@ -464,7 +479,7 @@ export const ro = defineLocale({
         chooseTitle: 'Alege un animal',
         chooseDesc: 'Alegerea unuia îl instalează (dacă este necesar) și îl face activ.',
         searchPlaceholder: 'Caută animale…',
-        unreachable: "Nu s-a putut accesa galeria petdex. Verifică-ți conexiunea și reia deschiderea acestei pagini.",
+        unreachable: 'Nu s-a putut accesa galeria petdex. Verifică-ți conexiunea și reia deschiderea acestei pagini.',
         noMatch: query => `Niciun animal nu corespunde "${query}".`,
         installedTag: 'instalat',
         generatedTag: 'Generat',
@@ -473,7 +488,7 @@ export const ro = defineLocale({
         uninstall: name => `Dezinstalează ${name}`,
         delete: name => `Șterge ${name}`,
         deleteTitle: name => `Ștergi ${name}?`,
-        deleteBody: "Aceasta șterge definitiv animalul — nu mai poate fi reinstalat.",
+        deleteBody: 'Aceasta șterge definitiv animalul — nu mai poate fi reinstalat.',
         deleteConfirm: 'Șterge',
         rename: name => `Redenumește ${name}`,
         renameTitle: 'Redenumește animalul',
@@ -486,8 +501,8 @@ export const ro = defineLocale({
         exportFailed: slug => `Nu s-a putut exporta ${slug}`,
         noneAvailable: 'Nu există animăluțe de pornit acum.',
         turnOnFailed: 'Nu s-a putut porni animăluțul.',
-        turnOffFailed: 'Nu s-a putut opri animăluțul.',
-      },
+        turnOffFailed: 'Nu s-a putut opri animăluțul.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,15 +513,16 @@ export const ro = defineLocale({
       updates: 'Actualizări',
       checkNow: 'Verifică acum',
       checking: 'Se verifică…',
-      seeWhatsNew: "Vezi noutățile",
+      seeWhatsNew: 'Vezi noutățile',
       updateNow: 'Actualizează acum',
       releaseNotes: 'Note de versiune',
-      onLatest: "Ești pe cea mai recentă versiune.",
+      onLatest: 'Ești pe cea mai recentă versiune.',
       installing: 'O actualizare se instalează acum.',
-      cantUpdate: "Această versiune nu se poate actualiza din interiorul aplicației.",
-      cantReach: "Nu am putut contacta serverul de actualizări.",
+      cantUpdate: 'Această versiune nu se poate actualiza din interiorul aplicației.',
+      cantReach: 'Nu am putut contacta serverul de actualizări.',
       tapCheck: 'Atinge „Verifică acum” pentru a căuta actualizări.',
-      updateReady: count => `O nouă actualizare este pregătită (${count} modificare${count === 1 ? 'modificare' : 'modificări'} inclusă).`,
+      updateReady: count =>
+        `O nouă actualizare este pregătită (${count} modificare${count === 1 ? 'modificare' : 'modificări'} inclusă).`,
       lastChecked: age => `Ultima verificare ${age}`,
       justNowSuffix: ' · chiar acum',
       automaticUpdates: 'Actualizări automate',
@@ -516,7 +532,7 @@ export const ro = defineLocale({
       justNow: 'chiar acum',
       minAgo: count => `acum ${count} min`,
       hoursAgo: count => `acum ${count} ore`,
-      daysAgo: count => `acum ${count} zile`,
+      daysAgo: count => `acum ${count} zile`
     },
     config: {
       none: 'Niciunul',
@@ -532,7 +548,8 @@ export const ro = defineLocale({
       imported: 'Configurație importată',
       invalidJson: 'Config JSON invalid',
       keepAwakeTitle: 'Menține computerul treaz',
-      keepAwakeDesc: 'Împiedică acest calculator să adoarmă pentru ca rulările lungi sau peste noapte să continue. Afișajul poate fi totuși estompat.',
+      keepAwakeDesc:
+        'Împiedică acest calculator să adoarmă pentru ca rulările lungi sau peste noapte să continue. Afișajul poate fi totuși estompat.'
     },
     credentials: {
       pasteKey: 'Lipește cheia',
@@ -542,7 +559,7 @@ export const ro = defineLocale({
       couldNotSave: 'Nu s-a putut salva acreditarea.',
       remove: 'Elimină',
       getKey: 'Obține o cheie',
-      saving: 'Se salvează',
+      saving: 'Se salvează'
     },
     envActions: {
       actionsFor: label => `Acțiuni pentru ${label}`,
@@ -553,7 +570,7 @@ export const ro = defineLocale({
       revealValue: 'Arată valoarea',
       replace: 'Înlocuiește',
       set: 'Setează',
-      clear: 'Golește',
+      clear: 'Golește'
     },
     gateway: {
       loading: 'Se încarcă setările gateway-ului...',
@@ -561,23 +578,29 @@ export const ro = defineLocale({
       unavailableDesc: 'Puntea IPC desktop nu expune setările gateway-ului.',
       title: 'Conexiune gateway',
       envOverride: 'suprascriere mediu',
-      intro: 'OpenAmer Desktop pornește implicit propriul gateway local. Folosește un gateway la distanță când vrei ca această aplicație să controleze un backend OpenAmer deja pornit pe altă mașină sau în spatele unui proxy de încredere. Alege un profil mai jos pentru a-i atribui propriul host la distanță.',
+      intro:
+        'OpenAmer Desktop pornește implicit propriul gateway local. Folosește un gateway la distanță când vrei ca această aplicație să controleze un backend OpenAmer deja pornit pe altă mașină sau în spatele unui proxy de încredere. Alege un profil mai jos pentru a-i atribui propriul host la distanță.',
       appliesTo: 'Se aplică la',
       allProfiles: 'Toate profilurile',
       defaultConnection: 'Conexiunea implicită pentru fiecare profil care nu are propria suprascriere.',
-      profileConnection: profile => `Conexiune folosită doar când “${profile}” este profilul activ. Alege opțiunea Folosește gateway implicit pentru a elimina suprascrierea.`,
+      profileConnection: profile =>
+        `Conexiune folosită doar când “${profile}” este profilul activ. Alege opțiunea Folosește gateway implicit pentru a elimina suprascrierea.`,
       envOverrideTitle: 'Variabilele de mediu controlează această sesiune desktop.',
-      envOverrideDesc: 'Golește OPENAMER_DESKTOP_REMOTE_URL și OPENAMER_DESKTOP_REMOTE_TOKEN pentru a folosi setarea salvată mai jos.',
+      envOverrideDesc:
+        'Golește OPENAMER_DESKTOP_REMOTE_URL și OPENAMER_DESKTOP_REMOTE_TOKEN pentru a folosi setarea salvată mai jos.',
       modeTitle: 'Mod de conectare',
       localTitle: 'Gateway local',
-      localDesc: 'Pornește un backend OpenAmer privat pe localhost. Aceasta este opțiunea implicită și funcționează offline.',
+      localDesc:
+        'Pornește un backend OpenAmer privat pe localhost. Aceasta este opțiunea implicită și funcționează offline.',
       inheritTitle: 'Folosește gateway implicit',
-      inheritDesc: "Elimină suprascrierea acestui profil și folosește conexiunea implicită.",
+      inheritDesc: 'Elimină suprascrierea acestui profil și folosește conexiunea implicită.',
       remoteTitle: 'Gateway la distanță',
       remoteDesc: 'Conectează acest shell desktop la un backend OpenAmer la distanță.',
-      remoteAuthHint: 'Gateway-urile găzduite folosesc OAuth sau un nume de utilizator și o parolă; cele auto-găzduite pot folosi un token de sesiune.',
+      remoteAuthHint:
+        'Gateway-urile găzduite folosesc OAuth sau un nume de utilizator și o parolă; cele auto-găzduite pot folosi un token de sesiune.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Conectează-te o dată la OpenAmer Cloud și alege dintre agenții din contul tău — nu trebuie să lipești niciun URL.',
+      cloudDesc:
+        'Conectează-te o dată la OpenAmer Cloud și alege dintre agenții din contul tău — nu trebuie să lipești niciun URL.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Conectează-te la OpenAmer Cloud',
       cloudSignedIn: 'Conectat la OpenAmer Cloud',
@@ -592,7 +615,7 @@ export const ro = defineLocale({
       cloudNoAgents: {
         before: 'Nu s-au găsit agenți în acest cont. Creează unul în ',
         linkText: 'Portal OpenAmer',
-        after: ', apoi reîmprospătează.',
+        after: ', apoi reîmprospătează.'
       },
       cloudRefresh: 'Reîmprospătează',
       cloudConnect: 'Conectează',
@@ -608,20 +631,26 @@ export const ro = defineLocale({
       cloudAgentProvisioning: 'Se configurează…',
       cloudStatusLabel: status => `Stare: ${status}`,
       remoteUrlTitle: 'URL remot',
-      remoteUrlDesc: 'URL de bază pentru backendul panoului de control la distanță. Prefixele de cale sunt acceptate, de exemplu /openamer.',
+      remoteUrlDesc:
+        'URL de bază pentru backendul panoului de control la distanță. Prefixele de cale sunt acceptate, de exemplu /openamer.',
       probing: 'Se verifică modul de autentificare al acestui gateway…',
-      probeError: 'Nu se poate contacta încă acest gateway. Verifică URL-ul — metoda de autentificare va apărea după ce răspunde.',
+      probeError:
+        'Nu se poate contacta încă acest gateway. Verifică URL-ul — metoda de autentificare va apărea după ce răspunde.',
       signedIn: 'Autentificat',
       signIn: 'Autentificare',
       signOut: 'Deconectare',
       signInWith: provider => `Autentificare cu ${provider}`,
       authTitle: 'Autentificare',
-      authSignedInPassword: 'Acest gateway folosește un nume de utilizator și o parolă. Ești autentificat; sesiunea se reîmprospătează automat.',
+      authSignedInPassword:
+        'Acest gateway folosește un nume de utilizator și o parolă. Ești autentificat; sesiunea se reîmprospătează automat.',
       authSignedInOauth: 'Acest gateway folosește OAuth. Ești autentificat; sesiunea se reîmprospătează automat.',
-      authNeedsPassword: 'Acest gateway folosește un nume de utilizator și o parolă. Autentifică-te pentru a autoriza această aplicație desktop.',
-      authNeedsOauth: provider => `Acest gateway folosește OAuth. Autentifică-te cu ${provider} pentru a autoriza această aplicație desktop.`,
+      authNeedsPassword:
+        'Acest gateway folosește un nume de utilizator și o parolă. Autentifică-te pentru a autoriza această aplicație desktop.',
+      authNeedsOauth: provider =>
+        `Acest gateway folosește OAuth. Autentifică-te cu ${provider} pentru a autoriza această aplicație desktop.`,
       tokenTitle: 'Token de sesiune',
-      tokenDesc: 'Tokenul de sesiune al panoului de control folosit pentru accesul REST și WebSocket. Lasă gol pentru a păstra tokenul salvat.',
+      tokenDesc:
+        'Tokenul de sesiune al panoului de control folosit pentru accesul REST și WebSocket. Lasă gol pentru a păstra tokenul salvat.',
       existingToken: value => `Token existent ${value}`,
       savedToken: 'salvat',
       pasteSessionToken: 'Lipește tokenul de sesiune',
@@ -652,8 +681,10 @@ export const ro = defineLocale({
       applyFailed: 'Nu s-au putut aplica setările gateway-ului',
       saveFailed: 'Nu s-au putut salva setările gateway-ului',
       sshTitle: 'Conectare prin SSH',
-      sshDesc: 'OpenAmer este lansat pe mașina la distanță prin SSH și tunelat către această aplicație — nimic de pornit sau expus manual. Necesită acces SSH funcțional bazat pe chei la gazdă.',
-      sshTrustHint: 'Prima cheie de gazdă prezentată este considerată de încredere și fixată; modificările ulterioare sunt refuzate.',
+      sshDesc:
+        'OpenAmer este lansat pe mașina la distanță prin SSH și tunelat către această aplicație — nimic de pornit sau expus manual. Necesită acces SSH funcțional bazat pe chei la gazdă.',
+      sshTrustHint:
+        'Prima cheie de gazdă prezentată este considerată de încredere și fixată; modificările ulterioare sunt refuzate.',
       sshHostTitle: 'Gazdă',
       sshHostDesc: 'utilizator@gazdă, sau un alias Host din ~/.ssh/config.',
       sshHostPick: 'Selectați o gazdă…',
@@ -676,18 +707,22 @@ export const ro = defineLocale({
       sshReachable: (host, platform) => `Accesibil: ${host} (${platform}) — OpenAmer găsit`,
       sshIncompleteHost: 'Introdu un host SSH înainte de conectare.',
       sshErrUnreachable: 'Hostul nu a putut fi accesat prin SSH. Verifică hostul, portul și rețeaua.',
-      sshErrAuth: 'Autentificarea SSH a eșuat. Încarcă cheia în ssh-agent (ssh-add) sau setează un IdentityFile în ~/.ssh/config — OpenAmer rulează ssh neinteractiv.',
-      sshErrHostKey: 'Cheia hostului s-a SCHIMBAT de la ultima conectare. Verifică dacă este de așteptat, apoi rulează ssh-keygen -R <host> și reconectează-te.',
-      sshErrNotInstalled: 'OpenAmer nu este instalat pe hostul la distanță. Instalează-l acolo (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) sau setează calea OpenAmer.',
-      sshErrPlatform: 'Platformă la distanță neacceptată. Modul SSH OpenAmer Desktop acceptă hosturi la distanță Linux, macOS și Windows.',
+      sshErrAuth:
+        'Autentificarea SSH a eșuat. Încarcă cheia în ssh-agent (ssh-add) sau setează un IdentityFile în ~/.ssh/config — OpenAmer rulează ssh neinteractiv.',
+      sshErrHostKey:
+        'Cheia hostului s-a SCHIMBAT de la ultima conectare. Verifică dacă este de așteptat, apoi rulează ssh-keygen -R <host> și reconectează-te.',
+      sshErrNotInstalled:
+        'OpenAmer nu este instalat pe hostul la distanță. Instalează-l acolo (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) sau setează calea OpenAmer.',
+      sshErrPlatform:
+        'Platformă la distanță neacceptată. Modul SSH OpenAmer Desktop acceptă hosturi la distanță Linux, macOS și Windows.',
       sshErrTimeout: 'Conexiunea SSH a depășit timpul limită. Este posibil ca hostul să fie inaccesibil sau adormit.',
       sshErrUpdateRequired: 'Actualizează OpenAmer pe hostul la distanță înainte de a te conecta prin Desktop SSH.',
-      sshErrUnknown: 'Conexiunea SSH a eșuat.',
+      sshErrUnknown: 'Conexiunea SSH a eșuat.'
     },
     keys: {
       loading: 'Se încarcă cheile API și acreditările...',
       failedLoad: 'Cheile API nu au putut fi încărcate',
-      empty: 'Nu există nimic configurat în această categorie încă.',
+      empty: 'Nu există nimic configurat în această categorie încă.'
     },
     mcp: {
       loading: 'Se încarcă serverele MCP...',
@@ -739,7 +774,8 @@ export const ro = defineLocale({
       catalogInstallFailed: name => `Instalarea ${name} a eșuat`,
       catalogEnvPrompt: name => `${name} necesită credențiale`,
       catalogEnvRequired: 'Completează valorile necesare înainte de instalare.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} activat`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} activat`,
       statusConnecting: 'Se conectează…',
       statusNeedsAuth: 'Necesită autentificare',
       statusError: 'Eroare',
@@ -752,11 +788,12 @@ export const ro = defineLocale({
       unsavedConnect: 'Nesalvat — salvează mcp.json pentru conectare.',
       enableTool: tool => `Activează ${tool}`,
       disableTool: tool => `Dezactivează ${tool}`,
-      noOutput: 'Nicio ieșire încă.',
+      noOutput: 'Nicio ieșire încă.'
     },
     model: {
       loading: 'Se încarcă configurația modelului...',
-      appliesDesc: 'Se aplică sesiunilor noi. Folosiți selectorul de model din compozitor pentru a schimba rapid chatul activ.',
+      appliesDesc:
+        'Se aplică sesiunilor noi. Folosiți selectorul de model din compozitor pentru a schimba rapid chatul activ.',
       provider: 'Furnizor',
       model: 'Model',
       applying: 'Se aplică...',
@@ -766,53 +803,55 @@ export const ro = defineLocale({
       defaultsFailed: 'Salvarea valorilor implicite ale modelului a eșuat',
       auxiliaryTitle: 'Modele auxiliare',
       resetAllToMain: 'Resetează tot la principal',
-      auxiliaryDesc: 'Sarcinile auxiliare rulează implicit pe modelul principal. Atribuiți un model dedicat oricărei sarcini pentru a suprascrie.',
+      auxiliaryDesc:
+        'Sarcinile auxiliare rulează implicit pe modelul principal. Atribuiți un model dedicat oricărei sarcini pentru a suprascrie.',
       setToMain: 'Setează la principal',
       change: 'Schimbă',
       autoUseMain: 'auto · folosește modelul principal',
       providerDefault: '(implicit furnizor)',
       fallbackAdd: 'Adaugă rezervă',
       fallbackEmpty: 'Niciun model de rezervă — se folosește modelul implicit, cu excepția cazului în care eșuează.',
-      notInCatalog: "nu apare în lista de modele a acestui furnizor — apelurile pot reveni la o rezervă.",
+      notInCatalog: 'nu apare în lista de modele a acestui furnizor — apelurile pot reveni la o rezervă.',
       tasks: {
         vision: {
           label: 'Viziune',
-          hint: 'Analiză imagini',
+          hint: 'Analiză imagini'
         },
         web_extract: {
           label: 'Extragere web',
-          hint: 'Rezumare pagini',
+          hint: 'Rezumare pagini'
         },
         compression: {
           label: 'Compresie',
-          hint: 'Compactarea contextului',
+          hint: 'Compactarea contextului'
         },
         skills_hub: {
           label: 'Hub de competențe',
-          hint: 'Căutare de competențe',
+          hint: 'Căutare de competențe'
         },
         approval: {
           label: 'Aprobare',
-          hint: 'Aprobare automată inteligentă',
+          hint: 'Aprobare automată inteligentă'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Rutarea instrumentelor MCP',
+          hint: 'Rutarea instrumentelor MCP'
         },
         title_generation: {
           label: 'Generare titlu',
-          hint: 'Titluri de sesiune',
+          hint: 'Titluri de sesiune'
         },
         curator: {
           label: 'Curator',
-          hint: 'Revizuirea utilizării competențelor',
-        },
-      },
+          hint: 'Revizuirea utilizării competențelor'
+        }
+      }
     },
     providers: {
       connectAccount: 'Conectează un cont',
       haveApiKey: 'Ai o cheie API în schimb?',
-      intro: 'Autentifică-te cu un abonament — fără cheie API de copiat. OpenAmer se ocupă de autentificarea în browser, direct în aplicație.',
+      intro:
+        'Autentifică-te cu un abonament — fără cheie API de copiat. OpenAmer se ocupă de autentificarea în browser, direct în aplicație.',
       connected: 'Conectat',
       collapse: 'Restrânge',
       connectAnother: 'Conectează alt furnizor',
@@ -822,7 +861,8 @@ export const ro = defineLocale({
       removeConfirm: provider => `Elimini ${provider}?`,
       removeExternalGeneric: provider => `${provider} este gestionat de propriul CLI — elimină-l acolo.`,
       removeKeyManaged: provider => `${provider} este configurat dintr-o cheie API. Elimină-l din Cheile API.`,
-      removeTerminalConfirm: (provider, command) => `Deconectezi ${provider}? Se rulează "${command}" în terminal pentru a șterge credențialele.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Deconectezi ${provider}? Se rulează "${command}" în terminal pentru a șterge credențialele.`,
       removeTerminalRunning: provider => `Se rulează ${provider} deconectare în terminal…`,
       removedTitle: 'Cont eliminat',
       removedMessage: provider => `${provider} a fost eliminat.`,
@@ -832,14 +872,15 @@ export const ro = defineLocale({
       noKeysMatch: 'Niciun furnizor nu corespunde căutării.',
       localEndpoint: {
         title: 'Endpoint local / personalizat',
-        description: 'Îndreptați OpenAmer spre orice endpoint compatibil OpenAI (Zyphra, vLLM, llama.cpp, Ollama etc.).',
+        description: 'Îndreptați OpenAmer spre orice endpoint compatibil OpenAI (Zyphra, vLLM, llama.cpp, Ollama etc.).'
       },
-      loading: 'Se încarcă furnizorii...',
+      loading: 'Se încarcă furnizorii...'
     },
     sessions: {
       loading: 'Se încarcă sesiunile arhivate…',
       archivedTitle: 'Sesiuni arhivate',
-      archivedIntro: 'Conversațiile arhivate sunt ascunse din bara laterală, dar își păstrează toate mesajele. Ctrl/⌘-clic pe o conversație din bara laterală pentru a o arhiva.',
+      archivedIntro:
+        'Conversațiile arhivate sunt ascunse din bara laterală, dar își păstrează toate mesajele. Ctrl/⌘-clic pe o conversație din bara laterală pentru a o arhiva.',
       emptyArchivedTitle: 'Nimic arhivat',
       emptyArchivedDesc: 'Arhivează un chat pentru a-l ascunde aici.',
       unarchive: 'Scoate din arhivă',
@@ -848,13 +889,16 @@ export const ro = defineLocale({
       restored: 'Restaurat',
       deleteConfirm: title => `Ștergi definitiv "${title}"? Această acțiune nu poate fi anulată.`,
       autoArchiveTitle: 'Arhivează automat chaturile inactive',
-      autoArchiveDesc: "Arhivează automat chaturile în care nu ai intrat de ceva vreme. Chaturile fixate nu sunt niciodată arhivate și nu se șterge nimic — chaturile arhivate doar se mută aici.",
+      autoArchiveDesc:
+        'Arhivează automat chaturile în care nu ai intrat de ceva vreme. Chaturile fixate nu sunt niciodată arhivate și nu se șterge nimic — chaturile arhivate doar se mută aici.',
       autoArchiveDaysLabel: 'Arhivează după',
       autoArchiveDaysUnit: 'zile de inactivitate',
       autoArchiveFailed: 'Nu s-a putut actualiza arhivarea automată',
       defaultDirTitle: 'Director proiect implicit',
-      defaultDirDesc: 'Sesiunile noi încep în acest folder, dacă nu alegeți altul. Lăsați-l nesetat pentru a folosi directorul home.',
-      defaultDirUpdated: 'Directorul proiect implicit a fost actualizat — începeți un chat nou (Ctrl/⌘+N) pentru a aplica modificările',
+      defaultDirDesc:
+        'Sesiunile noi încep în acest folder, dacă nu alegeți altul. Lăsați-l nesetat pentru a folosi directorul home.',
+      defaultDirUpdated:
+        'Directorul proiect implicit a fost actualizat — începeți un chat nou (Ctrl/⌘+N) pentru a aplica modificările',
       defaultsTo: label => `Implicit este ${label}.`,
       change: 'Schimbă',
       choose: 'Alege',
@@ -864,7 +908,7 @@ export const ro = defineLocale({
       unarchiveFailed: 'Dezarhivare eșuată',
       deleteFailed: 'Ștergere eșuată',
       updateDirFailed: 'Directorul implicit nu a putut fi actualizat',
-      clearDirFailed: 'Directorul implicit nu a putut fi golit',
+      clearDirFailed: 'Directorul implicit nu a putut fi golit'
     },
     toolsets: {
       loadingConfig: 'Se încarcă configurarea',
@@ -882,20 +926,23 @@ export const ro = defineLocale({
       selectedMessage: provider => `${provider} este acum activ.`,
       failedSelect: provider => `Nu s-a putut selecta ${provider}`,
       failedLoad: 'Configurația instrumentului nu a putut fi încărcată',
-      noProviderOptions: 'Acest set de instrumente nu are opțiuni de furnizor — activează-l și funcționează cu configurația ta actuală.',
+      noProviderOptions:
+        'Acest set de instrumente nu are opțiuni de furnizor — activează-l și funcționează cu configurația ta actuală.',
       noProviders: 'Niciun furnizor nu este disponibil momentan pentru acest set de instrumente.',
       ready: 'Pregătit',
       needsSignIn: 'Necesită autentificare',
       needsSetup: 'Necesită configurare',
       openamerIncluded: 'Inclus în abonamentul OpenAmer — autentifică-te în OpenAmer Portal pentru a-l activa.',
       openamerAuthNeededTitle: 'Conectare la OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} este salvat, dar nu se va activa până nu vă conectați la OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} este salvat, dar nu se va activa până nu vă conectați la OpenAmer Portal.`,
       openamerAuthSignIn: 'Conectare',
       openamerAuthDoneTitle: 'OpenAmer Portal conectat',
       openamerAuthDoneMessage: 'Backend-urile abonamentului sunt acum active.',
       openamerAuthFailed: 'Conectarea la OpenAmer Portal nu s-a finalizat',
       noApiKeyRequired: 'Nu este necesară o cheie API.',
-      postSetupHint: step => `Acest backend necesită o instalare unică (${step}). Rulează pe această mașină — poate dura câteva minute.`,
+      postSetupHint: step =>
+        `Acest backend necesită o instalare unică (${step}). Rulează pe această mașină — poate dura câteva minute.`,
       postSetupInstalledHint: 'Instalat. Rulați din nou configurarea doar dacă ceva nu funcționează.',
       postSetupRun: 'Rulați configurarea',
       postSetupRerun: 'Rulați din nou configurarea',
@@ -936,9 +983,9 @@ export const ro = defineLocale({
         selectedTitle: 'Backend selectat',
         selectedMessage: backend => `Comenzile din terminal rulează acum prin ${backend}. Se aplică sesiunilor noi.`,
         failedSelect: backend => `Selectarea ${backend} a eșuat`,
-        needsSetupHint: 'Poți selecta acest backend acum — comenzile vor eșua până la finalizarea configurării.',
-      },
-    },
+        needsSetupHint: 'Poți selecta acest backend acum — comenzile vor eșua până la finalizarea configurării.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Abilități',
@@ -958,7 +1005,8 @@ export const ro = defineLocale({
     noDescription: 'Fără descriere.',
     configured: 'Configurat',
     needsKeys: 'Necesită chei',
-    visionModelHint: 'Viziunea folosește configurația modelului auxiliar — modelul compatibil cu imagini se alege acolo, nu pentru fiecare furnizor aici.',
+    visionModelHint:
+      'Viziunea folosește configurația modelului auxiliar — modelul compatibil cu imagini se alege acolo, nu pentru fiecare furnizor aici.',
     visionModelLink: 'Alegeți modelul de viziune în Setări → Modele',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} seturi de instrumente activate`,
     configureToolset: label => `Configurează ${label}`,
@@ -984,7 +1032,7 @@ export const ro = defineLocale({
     provenance: {
       agent: 'Învățat',
       bundled: 'Integrat',
-      hub: 'Centru',
+      hub: 'Centru'
     },
     emptyNoneFound: noun => `Nu s-a găsit niciun ${noun}`,
     emptyNothingMatches: query => `Nimic nu corespunde „${query}”.`,
@@ -1002,9 +1050,11 @@ export const ro = defineLocale({
       connectingHubs: 'Se conectează la huburile de abilități...',
       connectedHubs: 'Huburi conectate:',
       featured: 'Abilități recomandate',
-      landingHint: 'Caută în hub pentru a explora abilități instalabile din indexul oficial, GitHub și sursele comunității.',
+      landingHint:
+        'Caută în hub pentru a explora abilități instalabile din indexul oficial, GitHub și sursele comunității.',
       noResults: 'Nu s-au găsit abilități potrivite în hub.',
-      resultCount: (count, ms) => `${count} rezultat${count === 1 ? 'rezultat' : 'rezultate'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} rezultat${count === 1 ? 'rezultat' : 'rezultate'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timp expirat: ${sources}`,
       installed: 'Instalat',
       install: 'Instalează',
@@ -1022,7 +1072,7 @@ export const ro = defineLocale({
       trust: {
         builtin: 'încorporat',
         trusted: 'de încredere',
-        community: 'comunitate',
+        community: 'comunitate'
       },
       verdictSafe: 'Sigur',
       verdictCaution: 'Atenție',
@@ -1040,8 +1090,8 @@ export const ro = defineLocale({
       loadFailed: 'Centrul de abilități nu s-a putut încărca',
       previewFailed: 'Previzualizarea abilității a eșuat',
       scanFailed: 'Scanarea de securitate a eșuat',
-      searchFailed: 'Căutarea în hub a eșuat',
-    },
+      searchFailed: 'Căutarea în hub a eșuat'
+    }
   },
   starmap: {
     title: 'Graficul memoriei',
@@ -1058,7 +1108,8 @@ export const ro = defineLocale({
     emptyTitle: 'Nimic învățat încă',
     emptyDesc: 'Pe măsură ce OpenAmer creează abilități și amintiri pentru munca ta, acestea apar aici.',
     share: 'Partajează harta',
-    shareHint: 'Copiază codul pentru a partaja această hartă sau lipește unul pentru a o încărca. Include doar aranjarea, nu textul memoriei sau al abilităților.',
+    shareHint:
+      'Copiază codul pentru a partaja această hartă sau lipește unul pentru a o încărca. Include doar aranjarea, nu textul memoriei sau al abilităților.',
     shareTitle: 'Importă / exportă harta',
     sharePlaceholder: 'Lipește un cod de hartă…',
     copy: 'Copiază codul hărții',
@@ -1068,7 +1119,7 @@ export const ro = defineLocale({
     importEmpty: 'Lipește un cod de hartă pentru a o încărca.',
     importSuccess: nodes => `A încărcat o hartă cu ${nodes} ${nodes === 1 ? 'nod' : 'noduri'}.`,
     importedBadge: 'hartă importată',
-    resetToMine: 'Înapoi la harta mea',
+    resetToMine: 'Înapoi la harta mea'
   },
   agents: {
     close: 'Închide agenții',
@@ -1098,7 +1149,7 @@ export const ro = defineLocale({
     ageDays: days => `acum ${days}z`,
     durationSeconds: seconds => `${seconds} s`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} s`,
-    tokens: value => `${value} tokeni`,
+    tokens: value => `${value} tokeni`
   },
   commandCenter: {
     close: 'Închide centrul de comandă',
@@ -1128,7 +1179,7 @@ export const ro = defineLocale({
       generatedTag: 'Generat',
       adoptFailed: 'Nu am putut adopta acel animal.',
       toggleFailed: 'Nu am putut activa/dezactiva animalul.',
-      noneAvailable: 'Nu există animale disponibile — alege unul mai jos pentru instalare.',
+      noneAvailable: 'Nu există animale disponibile — alege unul mai jos pentru instalare.'
     },
     generatePet: {
       title: 'Generează un animal',
@@ -1152,12 +1203,13 @@ export const ro = defineLocale({
       slowProviderHint: 'Poate dura câteva minute',
       remix: 'Remixare',
       remixConfirmTitle: 'Remixezi acest stil?',
-      remixConfirmBody: 'Aceasta generează un set nou de schițe folosind aceasta ca punct de plecare. Poate dura câteva minute.',
+      remixConfirmBody:
+        'Aceasta generează un set nou de schițe folosind aceasta ca punct de plecare. Poate dura câteva minute.',
       genericError: 'Generarea a eșuat — încearcă din nou sau alege o sugestie.',
       referenceImageTooLarge: 'Imaginea de referință este prea mare. Folosește una sub 16 MB.',
       referenceImageInvalid: 'Nu s-a putut citi imaginea de referință. Încearcă un PNG, JPG, WebP sau GIF.',
       adopt: 'Adoptă',
-      startOver: 'Începe din nou',
+      startOver: 'Începe din nou'
     },
     installTheme: {
       title: 'Instalează tema…',
@@ -1169,7 +1221,7 @@ export const ro = defineLocale({
       install: 'Instalează',
       installing: 'Se instalează...',
       installed: 'Instalat',
-      installs: count => `${count} instalări`,
+      installs: count => `${count} instalări`
     },
     settingsFields: 'Câmpuri de setări',
     mcpServers: 'Servere MCP',
@@ -1178,49 +1230,49 @@ export const ro = defineLocale({
       maintenance: 'Întreținere',
       sessions: 'Sesiuni',
       system: 'Sistem',
-      usage: 'Utilizare',
+      usage: 'Utilizare'
     },
     sectionDescriptions: {
       maintenance: 'Date de diagnosticare, backup, curator și memorie',
       sessions: 'Căutare și gestionare sesiuni',
       system: 'Stare, jurnale și acțiuni de sistem',
-      usage: 'Activitate token, cost și skill în timp',
+      usage: 'Activitate token, cost și skill în timp'
     },
     nav: {
       newChat: {
         title: 'Sesiune nouă',
-        detail: 'Începe o sesiune nouă',
+        detail: 'Începe o sesiune nouă'
       },
       settings: {
         title: 'Setări',
-        detail: 'Configurare OpenAmer desktop',
+        detail: 'Configurare OpenAmer desktop'
       },
       skills: {
         title: 'Capabilități',
-        detail: 'Skill-uri, instrumente și servere MCP',
+        detail: 'Skill-uri, instrumente și servere MCP'
       },
       messaging: {
         title: 'Mesagerie',
-        detail: 'Configurare Telegram, Slack, Discord și altele',
+        detail: 'Configurare Telegram, Slack, Discord și altele'
       },
       artifacts: {
         title: 'Artefacte',
-        detail: 'Parcurge rezultatele generate',
-      },
+        detail: 'Parcurge rezultatele generate'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel sesiuni',
-        detail: 'Căutare, fixare și gestionare sesiuni',
+        detail: 'Căutare, fixare și gestionare sesiuni'
       },
       system: {
         title: 'Panel sistem',
-        detail: 'Stare gateway, jurnale, restart/actualizare',
+        detail: 'Stare gateway, jurnale, restart/actualizare'
       },
       usage: {
         title: 'Panel utilizare',
-        detail: 'Activitate token, cost și skill',
-      },
+        detail: 'Activitate token, cost și skill'
+      }
     },
     providerNavigate: 'Navigare',
     providerSessions: 'Sesiuni',
@@ -1308,8 +1360,8 @@ export const ro = defineLocale({
       actionStarted: name => `${name} a pornit — se urmărește jurnalul...`,
       actionFailed: name => `${name} nu a pornit`,
       running: 'Rulează...',
-      viewLog: 'Jurnal acțiuni',
-    },
+      viewLog: 'Jurnal acțiuni'
+    }
   },
   messaging: {
     search: 'Caută mesagerie...',
@@ -1324,7 +1376,7 @@ export const ro = defineLocale({
       not_configured: 'Necesită configurare',
       pending_restart: 'Repornire necesară',
       retrying: 'Se reîncearcă',
-      startup_failed: 'Pornirea a eșuat',
+      startup_failed: 'Pornirea a eșuat'
     },
     unknown: 'Necunoscut',
     hintPendingRestart: 'Repornește gateway-ul din bara de stare pentru a aplica această modificare.',
@@ -1337,7 +1389,8 @@ export const ro = defineLocale({
     required: 'Obligatoriu',
     recommended: 'Recomandat',
     advanced: count => `Avansat (${count})`,
-    noTokenNeeded: 'Această platformă nu necesită un token aici. Folosește ghidul de configurare de mai sus, apoi activeaz-o mai jos.',
+    noTokenNeeded:
+      'Această platformă nu necesită un token aici. Folosește ghidul de configurare de mai sus, apoi activeaz-o mai jos.',
     enabled: 'Activat',
     disabled: 'Dezactivat',
     unsavedChanges: 'Modificări nesalvate',
@@ -1363,127 +1416,126 @@ export const ro = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Jeton robot',
         help: 'Creează un bot cu @BotFather, apoi lipsește tokenul primit.',
-        placeholder: 'Lipește tokenul botului Telegram',
+        placeholder: 'Lipește tokenul botului Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID-uri de utilizator Telegram permise',
-        help: 'Recomandat. ID-uri numerice separate prin virgulă de la @userinfobot. Fără acestea, oricine poate trimite DM botului.',
+        help: 'Recomandat. ID-uri numerice separate prin virgulă de la @userinfobot. Fără acestea, oricine poate trimite DM botului.'
       },
       TELEGRAM_PROXY: {
         label: 'URL intermediar',
-        help: 'Necesar doar în rețelele unde Telegram este blocat.',
+        help: 'Necesar doar în rețelele unde Telegram este blocat.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Jeton robot',
-        help: 'Creează o aplicație în Portalul pentru Dezvoltatori Discord, adaugă un bot, apoi lipește tokenul acestuia.',
+        help: 'Creează o aplicație în Portalul pentru Dezvoltatori Discord, adaugă un bot, apoi lipește tokenul acestuia.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID-uri de utilizator Discord permise',
-        help: 'Recomandat. ID-uri de utilizator Discord separate prin virgulă.',
+        help: 'Recomandat. ID-uri de utilizator Discord separate prin virgulă.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Stil răspuns',
-        help: 'first, all sau off.',
+        help: 'first, all sau off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Permite toți utilizatorii Discord',
-        help: 'Doar pentru dezvoltare. Dacă este activat, oricine poate trimite DM botului fără o listă de acces.',
+        help: 'Doar pentru dezvoltare. Dacă este activat, oricine poate trimite DM botului fără o listă de acces.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID canal principal',
-        help: 'Canalul unde botul trimite mesaje proactive (output cron, mementingeri).',
+        help: 'Canalul unde botul trimite mesaje proactive (output cron, mementingeri).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Nume canal principal',
-        help: 'Numele de afișare pentru canalul principal în jurnale și status.',
+        help: 'Numele de afișare pentru canalul principal în jurnale și status.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Permite toți utilizatorii iMessage',
-        help: 'Dacă este activat, se ignoră lista de acces BlueBubbles.',
+        help: 'Dacă este activat, se ignoră lista de acces BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Permite toți utilizatorii Mattermost',
+        label: 'Permite toți utilizatorii Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Canal principal',
+        label: 'Canal principal'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Permite toți utilizatorii QQ',
+        label: 'Permite toți utilizatorii QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Canal principal QQ',
-        help: 'Canalul sau grupul implicit pentru livrarea cron.',
+        help: 'Canalul sau grupul implicit pentru livrarea cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Numele canalului principal QQ',
+        label: 'Numele canalului principal QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Jeton robot Slack',
         help: 'Folosește tokenul botului din OAuth & Permissions după instalarea aplicației Slack.',
-        placeholder: 'Lipește tokenul botului Slack',
+        placeholder: 'Lipește tokenul botului Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token aplicație Slack',
         help: 'Folosește tokenul la nivel de aplicație necesar pentru Socket Mode.',
-        placeholder: 'Lipește tokenul aplicației Slack',
+        placeholder: 'Lipește tokenul aplicației Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID-uri de utilizator Slack permise',
-        help: 'Recomandat. ID-uri de utilizator Slack separate prin virgulă.',
+        help: 'Recomandat. ID-uri de utilizator Slack separate prin virgulă.'
       },
       MATTERMOST_URL: {
         label: 'URL server',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Jeton robot',
+        label: 'Jeton robot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID-uri de utilizator permise',
-        help: 'Recomandat. ID-uri de utilizator Mattermost separate prin virgulă.',
+        help: 'Recomandat. ID-uri de utilizator Mattermost separate prin virgulă.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token de acces',
+        label: 'Token de acces'
       },
       MATRIX_USER_ID: {
         label: 'ID utilizator bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID-uri de utilizator Matrix permise',
-        help: 'Recomandat. ID-uri de utilizator separate prin virgulă în formatul @user:server.',
+        help: 'Recomandat. ID-uri de utilizator separate prin virgulă în formatul @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL punte Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL-ul unei punți REST signal-cli în execuție.',
+        help: 'URL-ul unei punți REST signal-cli în execuție.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Număr de telefon',
-        help: 'Numărul înregistrat în bridge-ul signal-cli.',
+        help: 'Numărul înregistrat în bridge-ul signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Utilizatori Signal permisi',
-        help: 'Recomandat. Identificatori Signal separați prin virgule.',
+        help: 'Recomandat. Identificatori Signal separați prin virgule.'
       },
       WHATSAPP_ENABLED: {
         label: 'Activează bridge-ul WhatsApp',
-        help: 'Setat automat de comutatorul de mai jos. Nu modificați decât dacă știți că aveți nevoie.',
+        help: 'Setat automat de comutatorul de mai jos. Nu modificați decât dacă știți că aveți nevoie.'
       },
       WHATSAPP_MODE: {
-        label: 'Mod bridge',
+        label: 'Mod bridge'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Utilizatori WhatsApp permisi',
-        help: 'Recomandat. Numere de telefon sau ID-uri WhatsApp separate prin virgule.',
-      },
+        help: 'Recomandat. Numere de telefon sau ID-uri WhatsApp separate prin virgule.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Caută webhook-uri...',
@@ -1493,7 +1545,8 @@ export const ro = defineLocale({
     hint: 'Modificările abonamentelor se reîncarcă automat odată ce receptorul rulează. Abonamentele dezactivate resping evenimentele primite.',
     empty: 'Nu există încă abonamente webhook.',
     disabledTitle: 'Receptor webhook dezactivat',
-    disabledBody: 'Webhook-urile sunt o platformă gateway separată. Activați-le aici pentru a accepta evenimente HTTP primite; canalele de chat sunt necesare doar când un abonament livrează către Telegram, Discord, Slack sau alt canal.',
+    disabledBody:
+      'Webhook-urile sunt o platformă gateway separată. Activați-le aici pentru a accepta evenimente HTTP primite; canalele de chat sunt necesare doar când un abonament livrează către Telegram, Discord, Slack sau alt canal.',
     enable: 'Activează webhook-urile',
     enabling: 'Se activează...',
     enabled: (name: string) => `Activat: "${name}"`,
@@ -1546,8 +1599,8 @@ export const ro = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-mail',
-      github_comment: 'Comentariu GitHub',
-    },
+      github_comment: 'Comentariu GitHub'
+    }
   },
   profiles: {
     close: 'Închide profilurile',
@@ -1625,7 +1678,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     failedLoadSoul: 'Încărcarea SOUL.md a eșuat',
     failedSaveSoul: 'Nu s-a putut salva SOUL.md',
     failedCreate: 'Nu s-a putut crea profilul',
-    failedRename: 'Nu s-a putut redenumi profilul',
+    failedRename: 'Nu s-a putut redenumi profilul'
   },
   cron: {
     close: 'Închide cron',
@@ -1640,14 +1693,14 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       paused: 'în pauză',
       disabled: 'dezactivat',
       error: 'eroare',
-      completed: 'finalizat',
+      completed: 'finalizat'
     },
     deliveryLabels: {
       local: 'Acest desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-mail',
+      email: 'E-mail'
     },
     scheduleLabels: {
       daily: 'Zilnic',
@@ -1656,7 +1709,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       monthly: 'Lunar',
       hourly: 'La fiecare oră',
       'every-15-minutes': 'La fiecare 15 minute',
-      custom: 'Personalizat',
+      custom: 'Personalizat'
     },
     scheduleHints: {
       daily: 'În fiecare zi la 9:00',
@@ -1665,7 +1718,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       monthly: 'În prima zi a fiecărei luni la 9:00',
       hourly: 'La fiecare oră fix',
       'every-15-minutes': 'La fiecare 15 minute',
-      custom: 'Sintaxă cron sau limbaj natural',
+      custom: 'Sintaxă cron sau limbaj natural'
     },
     days: {
       '0': 'Duminică',
@@ -1675,7 +1728,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       '4': 'Joi',
       '5': 'Vineri',
       '6': 'Sâmbătă',
-      '7': 'Duminică',
+      '7': 'Duminică'
     },
     dayFallback: value => `ziua ${value}`,
     everyDayAt: time => `În fiecare zi la ${time}`,
@@ -1685,7 +1738,8 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     topOfHour: 'La începutul fiecărei ore',
     everyHourAt: minute => `În fiecare oră la :${minute}`,
     newCron: 'Cron nou',
-    emptyDescNew: 'Programează un prompt să ruleze conform unei expresii cron. OpenAmer îl va rula și va livra rezultatele la destinația selectată.',
+    emptyDescNew:
+      'Programează un prompt să ruleze conform unei expresii cron. OpenAmer îl va rula și va livra rezultatele la destinația selectată.',
     emptyDescSearch: 'Încearcă o căutare mai generală.',
     emptyTitleNew: 'Nu există joburi programate încă',
     emptyTitleSearch: 'Nicio potrivire',
@@ -1722,7 +1776,8 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     editTitle: 'Editează sarcina cron',
     createTitle: 'Sarcină cron nouă',
     editDesc: 'Actualizează programul, promptul sau destinația livrării. Modificările se aplică la următoarea rulare.',
-    createDesc: 'Programează un prompt să ruleze automat. Folosește sintaxa cron sau o expresie naturală precum "la fiecare 15 minute".',
+    createDesc:
+      'Programează un prompt să ruleze automat. Folosește sintaxa cron sau o expresie naturală precum "la fiecare 15 minute".',
     nameLabel: 'Nume',
     namePlaceholder: 'Briefing de dimineață',
     promptLabel: 'Solicitare',
@@ -1744,7 +1799,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     createAction: 'Creează cron',
     tabs: {
       jobs: 'Sarcini',
-      blueprints: 'Șabloane',
+      blueprints: 'Șabloane'
     },
     blueprints: {
       tab: 'Șabloane',
@@ -1758,8 +1813,8 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       loading: 'Se încarcă șabloanele...',
       failedLoad: 'Încărcarea șabloanelor a eșuat',
       emptyTitle: 'Nu există șabloane disponibile',
-      emptyDesc: 'Nu există șabloane de automatizare pe acest backend.',
-    },
+      emptyDesc: 'Nu există șabloane de automatizare pe acest backend.'
+    }
   },
   artifacts: {
     search: 'Caută artefacte...',
@@ -1793,14 +1848,14 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     kindLink: 'legătură',
     chat: 'Conversație',
     copyUrl: 'Copiază URL',
-    copyPath: 'Copiază calea',
+    copyPath: 'Copiază calea'
   },
   sidebar: {
     nav: {
       'new-session': 'Sesiune nouă',
       skills: 'Capabilități',
       messaging: 'Mesagerie',
-      artifacts: 'Artefacte',
+      artifacts: 'Artefacte'
     },
     searchAria: 'Caută sesiuni',
     searchPlaceholder: 'Caută sesiuni…',
@@ -1832,7 +1887,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       namePlaceholder: 'ex. Skunkworks',
       foldersLabel: 'Foldere',
       ideaLabel: 'Idee',
-      ideaPlaceholder: "Despre ce este acest proiect? (salvat în IDEA.md)",
+      ideaPlaceholder: 'Despre ce este acest proiect? (salvat în IDEA.md)',
       ideaGenerate: 'Generează idee',
       ideaGenerating: 'Se generează…',
       ideaShuffle: 'Amestecă șabloanele',
@@ -1852,8 +1907,10 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       copyPath: 'Copiază calea',
       removeFromSidebar: 'Ascunde din bara laterală',
       createFailed: 'Proiectul nu a putut fi creat',
-      staleBackend: 'Actualizează backendul OpenAmer pentru a crea proiecte — backendul tău este mai vechi decât această aplicație desktop (Setări → Actualizări → Backend).',
-      deleteConfirm: 'Aceasta elimină proiectul salvat din OpenAmer. Fișierele, depozitele git și worktree-urile rămân neatinse.',
+      staleBackend:
+        'Actualizează backendul OpenAmer pentru a crea proiecte — backendul tău este mai vechi decât această aplicație desktop (Setări → Actualizări → Backend).',
+      deleteConfirm:
+        'Aceasta elimină proiectul salvat din OpenAmer. Fișierele, depozitele git și worktree-urile rămân neatinse.',
       startWork: 'Worktree nou',
       newWorktreeTitle: 'Worktree nou',
       newWorktreeDesc: 'Denumește ramura pentru acest worktree.',
@@ -1874,13 +1931,15 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       noBranches: 'Nicio ramură găsită',
       removeWorktree: 'Elimină arborele de lucru',
       removeWorktreeFailed: 'Nu s-a putut elimina arborele de lucru (modificări necomise?)',
-      removeWorktreeConfirm: 'Elimină-l din git (șterge directorul arborelui de lucru; ramura rămâne) sau doar ascunde banda din bara laterală și lasă arborele de lucru pe disc.',
-      removeWorktreeDirty: 'Acest arbore de lucru are modificări necomise. Elimină-l forțat (renunță la acele modificări) sau doar ascunde banda și păstrează-l pe disc.',
+      removeWorktreeConfirm:
+        'Elimină-l din git (șterge directorul arborelui de lucru; ramura rămâne) sau doar ascunde banda din bara laterală și lasă arborele de lucru pe disc.',
+      removeWorktreeDirty:
+        'Acest arbore de lucru are modificări necomise. Elimină-l forțat (renunță la acele modificări) sau doar ascunde banda și păstrează-l pe disc.',
       forceRemove: 'Elimină forțat',
       enter: label => `Deschide ${label}`,
       reorder: label => `Reordonează ${label}`,
       toggle: label => `Comută ${label} sesiuni`,
-      back: 'Toate proiectele',
+      back: 'Toate proiectele'
     },
     newSessionIn: label => `Sesiune nouă în ${label}`,
     showMoreIn: (count, label) => `Arată încă ${count} în ${label}`,
@@ -1918,15 +1977,15 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       ageNow: 'acum',
       ageDay: 'z',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Mai devreme azi',
       yesterday: 'Ieri',
       thisWeek: 'Mai devreme săptămâna aceasta',
       lastWeek: 'Săptămâna trecută',
-      thisMonth: 'Mai devreme luna aceasta',
-    },
+      thisMonth: 'Mai devreme luna aceasta'
+    }
   },
   composer: {
     message: 'Mesaj',
@@ -1937,20 +1996,20 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     newSessionPlaceholders: [
       'Ce construim?',
       'Dă-i o sarcină lui OpenAmer',
-      "La ce te gândești?",
+      'La ce te gândești?',
       'Descrie de ce ai nevoie',
       'Cu ce începem?',
       'Întreabă orice',
-      'Începe cu un obiectiv',
+      'Începe cu un obiectiv'
     ],
     followUpPlaceholders: [
       'Trimite o continuare',
       'Adaugă mai mult context',
       'Rafinează cererea',
-      "Ce urmează?",
+      'Ce urmează?',
       'Continuă',
       'Mergi mai departe',
-      'Ajustează sau continuă',
+      'Ajustează sau continuă'
     ],
     startVoice: 'Începe conversația vocală',
     queueMessage: 'Pune mesajul în coadă',
@@ -1986,7 +2045,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       '/resume': 'reia o sesiune anterioară',
       '/details': 'controlează nivelul de detaliu al transcrierii',
       '/copy': 'copiază selecția sau ultimul mesaj al asistentului',
-      '/quit': 'ieși din OpenAmer',
+      '/quit': 'ieși din OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'referă fișiere, foldere, URL-uri, git',
@@ -1996,7 +2055,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       'composer.sendQueued': 'trimite următoarea rundă din coadă',
       'keybinds.openPanel': 'toate scurtăturile de tastatură',
       'composer.cancel': 'închide popoverul · anulează rularea',
-      'composer.history': 'comută popover / istoric',
+      'composer.history': 'comută popover / istoric'
     },
     attachUrlTitle: 'Atașează un URL',
     attachUrlDesc: 'OpenAmer va prelua pagina și o va include ca context pentru această rundă.',
@@ -2017,7 +2076,8 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     queueResume: 'Reluare',
     queueResumeTip: 'întrerupt de Stop — reluați trimiterea rândurilor din coadă',
     queueStuckTitle: 'Mesaj din coadă netrimis',
-    queueStuckBody: 'Un rând din coadă a eșuat repetat la trimitere. Acesta se află încă în coadă — încercați să îl trimiteți din nou.',
+    queueStuckBody:
+      'Un rând din coadă a eșuat repetat la trimitere. Acesta se află încă în coadă — încercați să îl trimiteți din nou.',
     previewUnavailable: 'Previzualizare indisponibilă',
     previewLabel: label => `Previzualizare ${label}`,
     couldNotPreview: label => `Nu s-a putut previzualiza ${label}`,
@@ -2047,19 +2107,19 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       codeReview: {
         label: 'Revizuire de cod',
         description: 'Auditează modificarea curentă pentru regresii, cazuri de limită ignorate și teste lipsă.',
-        text: 'Te rugăm să revizuiești asta pentru erori, regresii și teste lipsă.',
+        text: 'Te rugăm să revizuiești asta pentru erori, regresii și teste lipsă.'
       },
       implementationPlan: {
         label: 'Plan de implementare',
         description: 'Conturează o abordare înainte de a modifica codul, ca diff-ul să rămână concentrat.',
-        text: 'Te rugăm să faci un plan de implementare concis înainte de a modifica codul.',
+        text: 'Te rugăm să faci un plan de implementare concis înainte de a modifica codul.'
       },
       explainThis: {
         label: 'Explică asta',
         description: 'Parcurge modul în care funcționează codul selectat și indică fișierele cheie.',
-        text: 'Te rugăm să explici cum funcționează și să-mi indici fișierele cheie.',
-      },
-    },
+        text: 'Te rugăm să explici cum funcționează și să-mi indici fișierele cheie.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agenți',
@@ -2089,8 +2149,10 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       viewAsList: 'Vizualizare ca listă',
       revert: 'Revenire',
       revertAll: 'Revenire la toate',
-      revertConfirm: 'Renunți la modificările acestui fișier și îl restaurezi la starea comisă? Această acțiune nu poate fi anulată.',
-      revertAllConfirm: 'Renunți la toate modificările și restaurezi fișierele la starea comisă? Această acțiune nu poate fi anulată.',
+      revertConfirm:
+        'Renunți la modificările acestui fișier și îl restaurezi la starea comisă? Această acțiune nu poate fi anulată.',
+      revertAllConfirm:
+        'Renunți la toate modificările și restaurezi fișierele la starea comisă? Această acțiune nu poate fi anulată.',
       staged: 'Pregătite',
       noChanges: 'Nicio modificare',
       notRepo: 'Nu este un repository git',
@@ -2107,13 +2169,14 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       openPr: 'Deschide PR',
       ghMissing: 'Instalează GitHub CLI (gh) și autentifică-te pentru a deschide PR-uri',
       agentShip: 'Cere OpenAmer să deschidă PR',
-      agentShipPrompt: 'Revizuiește modificările curente, fă commit cu un mesaj conventional-commit clar, împinge branch-ul și deschide un pull request.',
+      agentShipPrompt:
+        'Revizuiește modificările curente, fă commit cu un mesaj conventional-commit clar, împinge branch-ul și deschide un pull request.',
       newBranch: 'Branch nou',
       branchOffFrom: base => `Branch nou din ${base}`,
       switchTo: branch => `Comută la ${branch}`,
       switchFailed: branch => `Nu s-a putut comuta la ${branch}`,
-      worktrees: 'Arbori de lucru',
-    },
+      worktrees: 'Arbori de lucru'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2191,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       done: 'Actualizare finalizată',
       manual: 'Actualizează din terminal',
       guiSkew: 'Actualizează aplicația desktop',
-      error: 'Actualizare suspendată',
+      error: 'Actualizare suspendată'
     },
     checking: 'Se caută actualizări…',
     checkFailedTitle: 'Nu s-au putut verifica actualizările',
@@ -2143,20 +2206,25 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     availableBody: 'O nouă versiune de OpenAmer este gata de instalare.',
     availableTitleBackend: 'Actualizare pentru backend disponibilă',
     availableBodyBackend: 'O versiune mai nouă a backendului OpenAmer conectat este gata de instalare.',
-    availableBodyNoChangelog: 'O versiune mai nouă este gata. Notele de lansare nu sunt disponibile pentru acest tip de instalare.',
+    availableBodyNoChangelog:
+      'O versiune mai nouă este gata. Notele de lansare nu sunt disponibile pentru acest tip de instalare.',
     updateNow: 'Actualizează acum',
     maybeLater: 'Poate mai târziu',
     moreChanges: count => `+ ${count} modificare suplimentară${count === 1 ? 'modificare' : 'modificări'} inclusă.`,
     manualTitle: 'Actualizează din terminalul tău',
-    manualBody: 'Ai instalat OpenAmer din linia de comandă, așa că actualizările rulează tot acolo. Lipește asta în terminalul tău:',
+    manualBody:
+      'Ai instalat OpenAmer din linia de comandă, așa că actualizările rulează tot acolo. Lipește asta în terminalul tău:',
     manualPickedUp: 'OpenAmer va prelua noua versiune data viitoare când îl pornești.',
     guiSkewTitle: 'Actualizează aplicația desktop',
-    guiSkewBody: 'Backendul a fost actualizat, dar acest pachet al aplicației desktop nu a fost modificat. Actualizează sau reinstalează aplicația desktop OpenAmer (AppImage / .deb / .rpm) pentru a se potrivi.',
+    guiSkewBody:
+      'Backendul a fost actualizat, dar acest pachet al aplicației desktop nu a fost modificat. Actualizează sau reinstalează aplicația desktop OpenAmer (AppImage / .deb / .rpm) pentru a se potrivi.',
     copy: 'Copiază',
     copied: 'Copiat',
     done: 'Gata',
-    applyingBody: 'Actualizatorul OpenAmer preia controlul într-o fereastră proprie și redeschide automat OpenAmer când termină. Te rugăm să nu redeschizi tu OpenAmer în timp ce se actualizează.',
-    applyingBodyBackend: 'Backendul la distanță aplică actualizarea și va reporni. OpenAmer se reconectează automat când revine.',
+    applyingBody:
+      'Actualizatorul OpenAmer preia controlul într-o fereastră proprie și redeschide automat OpenAmer când termină. Te rugăm să nu redeschizi tu OpenAmer în timp ce se actualizează.',
+    applyingBodyBackend:
+      'Backendul la distanță aplică actualizarea și va reporni. OpenAmer se reconectează automat când revine.',
     applyingClose: 'Această fereastră se va închide în timpul actualizării, apoi OpenAmer se redeschide singur.',
     errorTitle: 'Actualizarea nu s-a terminat',
     errorBody: 'Fără grijă — nu s-a pierdut nimic. Poți încerca din nou acum.',
@@ -2167,12 +2235,14 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       restarting: 'Backendul repornește pentru a încărca actualizarea…',
       notAvailable: 'Actualizarea nu este disponibilă pentru acest backend.',
       failed: 'Actualizarea backendului a eșuat.',
-      noReturn: 'Backendul nu a revenit online. Este posibil ca actualizarea să nu se fi finalizat — verifică gazda backendului.',
+      noReturn:
+        'Backendul nu a revenit online. Este posibil ca actualizarea să nu se fi finalizat — verifică gazda backendului.'
     },
     appErrors: {
-      updateLocked: 'Actualizare abandonată: o altă fereastră OpenAmer sau un terminal care rulează openamer ține această instalare deschisă. Închide-l și încearcă din nou.',
-      updateFailed: 'Actualizarea nu s-a finalizat. Nicio grijă — nu s-a pierdut nimic. Poți încerca din nou acum.',
-    },
+      updateLocked:
+        'Actualizare abandonată: o altă fereastră OpenAmer sau un terminal care rulează openamer ține această instalare deschisă. Închide-l și încearcă din nou.',
+      updateFailed: 'Actualizarea nu s-a finalizat. Nicio grijă — nu s-a pierdut nimic. Poți încerca din nou acum.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2250,29 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       running: 'Se instalează',
       succeeded: 'Finalizat',
       skipped: 'Omis',
-      failed: 'Eșuat',
+      failed: 'Eșuat'
     },
     oneTimeTitle: 'OpenAmer necesită o instalare unică',
-    unsupportedDesc: platform => `Instalarea automată la prima lansare nu este încă disponibilă pe ${platform}. Deschide Terminal și rulează comanda de mai jos, apoi relansează această aplicație. Lansările ulterioare vor sări peste acest pas.`,
+    unsupportedDesc: platform =>
+      `Instalarea automată la prima lansare nu este încă disponibilă pe ${platform}. Deschide Terminal și rulează comanda de mai jos, apoi relansează această aplicație. Lansările ulterioare vor sări peste acest pas.`,
     installCommand: 'Comandă de instalare',
     copyCommand: 'Copiază comanda',
     viewDocs: 'Vezi documentația de instalare',
     installTo: 'Se va instala în',
     retryAfterRun: 'Am rulat-o -- reîncearcă',
     setupChoiceTitle: 'Configurează OpenAmer Desktop',
-    setupChoiceDesc: 'Conectează această aplicație la un gateway OpenAmer pe care îl rulezi deja sau instalează OpenAmer local pe acest computer.',
+    setupChoiceDesc:
+      'Conectează această aplicație la un gateway OpenAmer pe care îl rulezi deja sau instalează OpenAmer local pe acest computer.',
     connectExistingTitle: 'Conectează-te la OpenAmer existent',
     connectExistingShort: 'Conectează unul existent',
-    connectExistingDesc: 'Folosește un backend remote cu token de sesiune sau autentificare în browser. Nu va porni nicio instalare locală.',
+    connectExistingDesc:
+      'Folosește un backend remote cu token de sesiune sau autentificare în browser. Nu va porni nicio instalare locală.',
     installLocalTitle: 'Instalează OpenAmer local',
     installLocalDesc: 'Descarcă OpenAmer, creează mediul Python și rulează backendul pe acest computer.',
     localStartUnavailable: 'Instalarea locală nu a putut porni. Repornește OpenAmer Desktop și încearcă din nou.',
     remoteSetupTitle: 'Conectează-te la OpenAmer existent',
-    remoteSetupDesc: 'Introdu URL-ul gateway-ului. OpenAmer Desktop va detecta dacă este nevoie de un token sau de conectare prin browser.',
+    remoteSetupDesc:
+      'Introdu URL-ul gateway-ului. OpenAmer Desktop va detecta dacă este nevoie de un token sau de conectare prin browser.',
     remoteUrlTitle: 'URL gateway',
     remoteUrlDesc: 'Folosește URL-ul de bază al gateway-ului OpenAmer, inclusiv https:// pentru acces remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2299,10 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     failedTitle: 'Instalarea a eșuat',
     settingUpTitle: 'Se configurează OpenAmer Agent',
     finishingTitle: 'Se finalizează',
-    failedDesc: 'Unul dintre pașii de instalare a eșuat. Pe Windows, acest lucru se poate întâmpla dacă rulează o altă instanță OpenAmer CLI sau desktop. Oprește orice instanță OpenAmer care rulează, apoi încearcă din nou. Verifică detaliile de mai jos sau jurnalul aplicației desktop pentru transcrierea completă.',
-    activeDesc: 'Aceasta este o configurare unică. Instalatorul OpenAmer descarcă dependențele și îți configurează sistemul. Lansările ulterioare vor sări peste acest pas.',
+    failedDesc:
+      'Unul dintre pașii de instalare a eșuat. Pe Windows, acest lucru se poate întâmpla dacă rulează o altă instanță OpenAmer CLI sau desktop. Oprește orice instanță OpenAmer care rulează, apoi încearcă din nou. Verifică detaliile de mai jos sau jurnalul aplicației desktop pentru transcrierea completă.',
+    activeDesc:
+      'Aceasta este o configurare unică. Instalatorul OpenAmer descarcă dependențele și îți configurează sistemul. Lansările ulterioare vor sări peste acest pas.',
     progress: (completed, total) => `${completed} din ${total} pași finalizați`,
     currentStage: stage => ` -- acum: ${stage}`,
     fetchingManifest: 'Se preia manifestul instalatorului...',
@@ -2240,18 +2316,19 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     transcriptSaved: 'Transcrierea completă salvată în',
     copiedOutput: 'Copiat!',
     copyOutput: 'Copiază rezultatul',
-    reloadRetry: 'Reîncarcă și încearcă din nou',
+    reloadRetry: 'Reîncarcă și încearcă din nou'
   },
   onboarding: {
-    headerTitle: "Să te configurăm cu OpenAmer Agent",
-    headerDesc: 'Conectează un furnizor de modele pentru a începe conversația. Majoritatea opțiunilor necesită un singur clic.',
+    headerTitle: 'Să te configurăm cu OpenAmer Agent',
+    headerDesc:
+      'Conectează un furnizor de modele pentru a începe conversația. Majoritatea opțiunilor necesită un singur clic.',
     preparingInstall: 'OpenAmer finalizează instalarea. De obicei durează sub un minut la prima rulare.',
     starting: 'Se pornește OpenAmer…',
     lookingUpProviders: 'Se caută furnizori...',
     collapse: 'Restrânge',
     otherProviders: 'Alți furnizori',
     haveApiKey: 'Am o cheie API',
-    chooseLater: "Voi alege un furnizor mai târziu",
+    chooseLater: 'Voi alege un furnizor mai târziu',
     recommended: 'Recomandat',
     connected: 'Conectat',
     featuredPitch: 'O singură subscripție, 300+ modele de top — modul recomandat de a rula OpenAmer',
@@ -2260,28 +2337,29 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API direct pentru modele',
-        description: 'Acces direct la modelele găzduite de Fireworks AI.',
+        description: 'Acces direct la modelele găzduite de Fireworks AI.'
       },
       openrouter: {
         short: 'o cheie, multe modele',
-        description: 'Găzduiește sute de modele cu o singură cheie. Opțiune implicită bună pentru instalări noi.',
+        description: 'Găzduiește sute de modele cu o singură cheie. Opțiune implicită bună pentru instalări noi.'
       },
       openai: {
         short: 'Modele din clasa GPT',
-        description: 'Acces direct la modelele OpenAI.',
+        description: 'Acces direct la modelele OpenAI.'
       },
       gemini: {
         short: 'Modele Gemini',
-        description: 'Acces direct la modelele Google Gemini.',
+        description: 'Acces direct la modelele Google Gemini.'
       },
       xai: {
         short: 'Modele Grok',
-        description: 'Acces direct la modelele xAI Grok.',
+        description: 'Acces direct la modelele xAI Grok.'
       },
       local: {
         short: 'auto-găzduit',
-        description: 'Îndreaptă OpenAmer către un endpoint compatibil OpenAI local sau auto-găzduit (vLLM, llama.cpp, Ollama etc.).',
-      },
+        description:
+          'Îndreaptă OpenAmer către un endpoint compatibil OpenAI local sau auto-găzduit (vLLM, llama.cpp, Ollama etc.).'
+      }
     },
     backToSignIn: 'Înapoi la autentificare',
     getKey: 'Obține o cheie',
@@ -2294,7 +2372,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     flowSubtitles: {
       pkce: 'Deschide browserul pentru autentificare, apoi continuă aici',
       device_code: 'Deschide o pagină de verificare în browser — OpenAmer se conectează automat',
-      external: 'Autentifică-te o dată în terminal, apoi revino la conversație',
+      external: 'Autentifică-te o dată în terminal, apoi revino la conversație'
     },
     startingSignIn: provider => `Se începe autentificarea pentru ${provider}...`,
     verifyingCode: provider => `Se verifică codul cu ${provider}...`,
@@ -2308,11 +2386,13 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     copyAuthCode: 'Copiază codul de autorizare și lipește-l mai jos.',
     pasteAuthCode: 'Lipește codul de autorizare',
     reopenAuthPage: 'Redeschide pagina de autorizare',
-    autoBrowser: provider => `Am deschis ${provider} în browser. Autorizează OpenAmer acolo și vei fi conectat automat — nu trebuie să copiezi sau să lipești nimic.`,
+    autoBrowser: provider =>
+      `Am deschis ${provider} în browser. Autorizează OpenAmer acolo și vei fi conectat automat — nu trebuie să copiezi sau să lipești nimic.`,
     reopenSignInPage: 'Redeschide pagina de autentificare',
     waitingAuthorize: 'Se așteaptă autorizarea...',
-    externalPending: provider => `${provider} se autentifică prin propriul CLI. Rulează această comandă într-un terminal, apoi revino și alege „M-am autentificat”:`,
-    signedIn: "M-am autentificat",
+    externalPending: provider =>
+      `${provider} se autentifică prin propriul CLI. Rulează această comandă într-un terminal, apoi revino și alege „M-am autentificat”:`,
+    signedIn: 'M-am autentificat',
     deviceCodeOpened: provider => `Am deschis ${provider} în browser. Introdu acest cod acolo:`,
     reopenVerification: 'Redeschide pagina de verificare',
     copy: 'Copiază',
@@ -2323,7 +2403,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     price: (input, output) => `${input} intrare / ${output} ieșire per Mtok`,
     change: 'Schimbă',
     startChatting: 'Începe',
-    docs: provider => `${provider} documentație`,
+    docs: provider => `${provider} documentație`
   },
   modelPicker: {
     title: 'Schimbă modelul',
@@ -2339,13 +2419,13 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     free: 'Gratuit',
     freeTier: 'Nivel gratuit',
     priceTitle: 'Preț intrare / ieșire la un milion de tokeni',
-    wasPrice: 'a fost',
+    wasPrice: 'a fost'
   },
   modelVisibility: {
     title: 'Modele',
     search: 'Caută modele',
     noAuthenticatedProviders: 'Niciun furnizor autentificat.',
-    addProvider: 'Adaugă furnizor…',
+    addProvider: 'Adaugă furnizor…'
   },
   shell: {
     windowControls: 'Controale fereastră',
@@ -2356,7 +2436,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       noModels: 'Niciun model găsit',
       editModels: 'Editează modelele…',
       refreshModels: 'Reîmprospătează modelele',
-      fast: 'Rapid',
+      fast: 'Rapid'
     },
     modelOptions: {
       noOptions: 'Nicio opțiune pentru acest model',
@@ -2372,7 +2452,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       max: 'Maxim',
       ultra: 'Ultra',
       updateFailed: 'Actualizarea opțiunii modelului a eșuat',
-      fastFailed: 'Actualizarea modului rapid a eșuat',
+      fastFailed: 'Actualizarea modului rapid a eșuat'
     },
     gatewayMenu: {
       gateway: 'Poartă de acces',
@@ -2387,7 +2467,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       connection: label => `Conexiune: ${label}`,
       recentActivity: 'Activitate recentă',
       viewAllLogs: 'Vezi toate jurnalele →',
-      messagingPlatforms: 'Platforme de mesagerie',
+      messagingPlatforms: 'Platforme de mesagerie'
     },
     approvalMode: {
       title: 'Mod de aprobare',
@@ -2397,7 +2477,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       smart: 'Inteligent',
       smartDescription: 'Evaluează automat acțiunile și întreabă când este necesar',
       off: 'Oprit',
-      offDescription: 'Rulează fără solicitări de aprobare',
+      offDescription: 'Rulează fără solicitări de aprobare'
     },
     statusbar: {
       unknown: 'necunoscut',
@@ -2453,13 +2533,13 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
           skills: 'Abilități',
           subagent_definitions: 'Definiții subagenți',
           system_prompt: 'Prompt de sistem',
-          tool_definitions: 'Definiții instrumente',
+          tool_definitions: 'Definiții instrumente'
         },
         empty: 'Nu există încă date de context',
         loading: 'Se încarcă defalcarea…',
         percentFull: percent => `${percent}% Plin`,
         title: 'Utilizare context',
-        tokenSummary: (used, max) => `${used} / ${max} Tokenuri`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokenuri`
       },
       openContextUsage: 'Deschide defalcarea utilizării contextului',
       session: 'Sesiune',
@@ -2472,8 +2552,8 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       openModelPicker: 'Deschide selectorul de model',
       modelPinned: 'fixat de tine; conversațiile noi îl folosesc în locul valorii implicite din Setări',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Bara laterală dreaptă',
@@ -2509,7 +2589,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     terminalNew: 'Terminal nou',
     terminalCloseOthers: 'Închide celelalte',
     terminalCloseAll: 'Închide toate',
-    addToChat: 'Adaugă la chat',
+    addToChat: 'Adaugă la chat'
   },
   preview: {
     tab: 'Previzualizare',
@@ -2543,7 +2623,8 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     unsavedChanges: 'Modificări nesalvate',
     saveFailed: message => `Nu s-a putut salva: ${message}`,
     diskChangedTitle: 'Fișier modificat pe disc',
-    diskChangedBody: 'Acest fișier s-a modificat de când l-ai deschis. Suprascrie-l cu versiunea ta sau renunță la modificări și reîncarcă-l?',
+    diskChangedBody:
+      'Acest fișier s-a modificat de când l-ai deschis. Suprascrie-l cu versiunea ta sau renunță la modificări și reîncarcă-l?',
     overwrite: 'Suprascrie',
     discardReload: 'Renunță și reîncarcă',
     console: {
@@ -2564,7 +2645,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       empty: 'Încă nu există mesaje de consolă.',
       promptHeader: 'Consolă de previzualizare:',
       sentTitle: 'Trimis în chat',
-      sentMessage: count => `${count} intrare în jurnal${count === 1 ? 'y' : 'ies'} adăugată în editor`,
+      sentMessage: count => `${count} intrare în jurnal${count === 1 ? 'y' : 'ies'} adăugată în editor`
     },
     web: {
       appFailedToBoot: 'Aplicația de previzualizare nu a pornit',
@@ -2582,24 +2663,27 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       showConsole: 'Afișează consola de previzualizare',
       hideDevTools: 'Ascunde instrumentele de dezvoltare pentru previzualizare',
       openDevTools: 'Deschide instrumentele de dezvoltare pentru previzualizare',
-      finishedRestarting: message => `OpenAmer a terminat repornirea serverului de previzualizare${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer a terminat repornirea serverului de previzualizare${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Repornirea serverului a eșuat: ${message}`,
       unknownError: 'eroare necunoscută',
       restartedTitle: 'Serverul de previzualizare a fost repornit',
       reloadingNow: 'Se reîncarcă previzualizarea.',
       restartFailedTitle: 'Repornirea previzualizării a eșuat',
       restartFailedMessage: 'OpenAmer nu a putut reporni serverul.',
-      stillWorking: 'OpenAmer lucrează în continuare, dar nu a sosit încă niciun rezultat al repornirii. Comanda serverului rulează posibil în prim plan.',
+      stillWorking:
+        'OpenAmer lucrează în continuare, dar nu a sosit încă niciun rezultat al repornirii. Comanda serverului rulează posibil în prim plan.',
       workspaceReloading: 'Spațiul de lucru s-a schimbat, se reîncarcă previzualizarea',
       fileChanged: url => `Fișier modificat, se reîncarcă previzualizarea: ${url}`,
       filesChanged: (count, url) => `${count} modificări de fișiere, se reîncarcă previzualizarea: ${url}`,
       watchFailed: message => `Nu s-a putut urmări fișierul de previzualizare: ${message}`,
-      moduleMimeDescription: 'Scripturile modulelor sunt servite cu tipul MIME greșit. De obicei, asta înseamnă că un server de fișiere statice servește o aplicație Vite/React în locul serverului de dezvoltare al proiectului.',
+      moduleMimeDescription:
+        'Scripturile modulelor sunt servite cu tipul MIME greșit. De obicei, asta înseamnă că un server de fișiere statice servește o aplicație Vite/React în locul serverului de dezvoltare al proiectului.',
       loadFailedConsole: (code, message) => `Încărcare eșuată${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Pagina de previzualizare nu a putut fi accesată.',
       openTarget: url => `Deschide ${url}`,
-      fallbackTitle: 'Previzualizare',
-    },
+      fallbackTitle: 'Previzualizare'
+    }
   },
   zones: {
     showHeader: 'Arată antetul',
@@ -2607,7 +2691,8 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     minimize: 'Minimizează',
     restore: 'Restaură',
     closeRunningTitle: 'Închizi fila în execuție?',
-    closeRunningBody: 'Această conversație încă lucrează (sau așteaptă inputul tău). Închiderea filei o ascunde — sesiunea își păstrează progresul și poate fi redeschisă din bara laterală.',
+    closeRunningBody:
+      'Această conversație încă lucrează (sau așteaptă inputul tău). Închiderea filei o ascunde — sesiunea își păstrează progresul și poate fi redeschisă din bara laterală.',
     closeRunningConfirm: 'Închide fila',
     closeOthers: 'Închide celelalte',
     closeToRight: 'Închide la dreapta',
@@ -2633,7 +2718,8 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     deletePreset: name => `Șterge ${name}`,
     zoneEditorTitle: 'Editor zone',
     editorHintPre: 'clic pentru a diviza · ',
-    editorHintPost: ' întoarce linia · trage peste zone pentru a fuziona · trage marginile comune pentru a redimensiona',
+    editorHintPost:
+      ' întoarce linia · trage peste zone pentru a fuziona · trage marginile comune pentru a redimensiona',
     templateColumns: 'Coloane',
     templateRows: 'Rânduri',
     templateGrid: 'Grilă',
@@ -2644,27 +2730,16 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     layoutNamePlaceholder: fallback => `Nume layout (${fallback})`,
     saveApply: 'Salvează și aplică',
     notExpressible: 'această aranjare se împletește (pinwheel) — încă nu poate fi exprimată ca divizări imbricate',
-    zoneCount: count => `${count} zone`,
+    zoneCount: count => `${count} zone`
   },
   assistant: {
     thread: {
       loadingSession: 'Se încarcă sesiunea',
       showEarlier: 'Arată mesajele anterioare',
       loadingResponse: 'OpenAmer încarcă un răspuns',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Se gândește',
       today: time => `Astăzi, ${time}`,
@@ -2686,12 +2761,13 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       restoreCheckpoint: 'Restaurează punctul de control',
       restoreFromHere: 'Restaurează punctul de control — rulează din nou de la acest prompt',
       restoreTitle: 'Restaurezi la acest punct de control?',
-      restoreBody: 'Tot ce urmează după acest prompt este eliminat din conversație, iar promptul rulează din nou de aici.',
+      restoreBody:
+        'Tot ce urmează după acest prompt este eliminat din conversație, iar promptul rulează din nou de aici.',
       restoreConfirm: 'Restaurează și rulează din nou',
       restoreNext: 'Restaurează următorul punct de control',
       goForward: 'Mergi înainte',
       sendEdited: 'Trimite mesajul editat',
-      attachingFile: 'Se atașează…',
+      attachingFile: 'Se atașează…'
     },
     approval: {
       gatewayDisconnected: 'Gateway-ul OpenAmer nu este conectat',
@@ -2704,8 +2780,9 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       jumpToApproval: 'Aprobare necesară',
       reject: 'Respinge',
       alwaysTitle: 'Permiți întotdeauna această comandă?',
-      alwaysDescription: pattern => `Aceasta adaugă modelul „${pattern}” în lista ta permanentă de permisiuni (~/.openamer/config.yaml). OpenAmer nu va mai întreba pentru comenzi ca aceasta — nici în această sesiune, nici în vreuna viitoare.`,
-      alwaysAllow: 'Permite întotdeauna',
+      alwaysDescription: pattern =>
+        `Aceasta adaugă modelul „${pattern}” în lista ta permanentă de permisiuni (~/.openamer/config.yaml). OpenAmer nu va mai întreba pentru comenzi ca aceasta — nici în această sesiune, nici în vreuna viitoare.`,
+      alwaysAllow: 'Permite întotdeauna'
     },
     clarify: {
       notReady: 'Solicitarea de clarificare nu este încă pregătită',
@@ -2719,7 +2796,8 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       continueLabel: 'Continuă',
       lateAnswer: (question, choice) => `Re: "${question}" — răspunsul meu: ${choice}`,
       lateAnswerTip: 'Redactează acest răspuns ca mesaj de continuare',
-      lateAnswerHint: 'Acest prompt nu mai este în așteptare. Alege o opțiune pentru a-l redacta ca mesaj de continuare.',
+      lateAnswerHint:
+        'Acest prompt nu mai este în așteptare. Alege o opțiune pentru a-l redacta ca mesaj de continuare.'
     },
     tool: {
       code: 'Cod',
@@ -2755,11 +2833,11 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
         ran: 'Executat',
         running: 'Rulează',
         ranCode: 'Cod executat',
-        runningCode: 'Scriptare',
+        runningCode: 'Scriptare'
       },
       prefixes: {
         browser: 'Navigator',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2767,132 +2845,133 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Se rulează ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Se rulează ${action.toLowerCase()}`,
+        runningTool: action => `Se rulează ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Element pagină apăsat',
           pending: 'Se apasă element pagină',
-          pendingAction: 'Se apasă',
+          pendingAction: 'Se apasă'
         },
         browser_fill: {
           done: 'Câmp formular completat',
           pending: 'Se completează câmp formular',
-          pendingAction: 'Se completează',
+          pendingAction: 'Se completează'
         },
         browser_navigate: {
           done: 'Pagină deschisă',
           pending: 'Se deschide pagina',
-          pendingAction: 'Se deschide',
+          pendingAction: 'Se deschide'
         },
         browser_snapshot: {
           done: 'Instantaneu pagină capturat',
           pending: 'Se capturează instantaneu pagină',
-          pendingAction: 'Se capturează',
+          pendingAction: 'Se capturează'
         },
         browser_take_screenshot: {
           done: 'Captură de ecran realizată',
           pending: 'Se capturează ecranul',
-          pendingAction: 'Se capturează',
+          pendingAction: 'Se capturează'
         },
         browser_type: {
           done: 'Tastat pe pagină',
           pending: 'Tastează pe pagină',
-          pendingAction: 'Tastează',
+          pendingAction: 'Tastează'
         },
         clarify: {
           done: 'A pus o întrebare',
           pending: 'Pune o întrebare',
-          pendingAction: 'Întreabă',
+          pendingAction: 'Întreabă'
         },
         cronjob: {
           done: 'Sarcină cron',
           pending: 'Programează sarcina cron',
-          pendingAction: 'Programează',
+          pendingAction: 'Programează'
         },
         edit_file: {
           done: 'A editat fișierul',
           pending: 'Editează fișierul',
-          pendingAction: 'Editează',
+          pendingAction: 'Editează'
         },
         execute_code: {
           done: 'A rulat cod',
           pending: 'Rulează script',
-          pendingAction: 'Rulează script',
+          pendingAction: 'Rulează script'
         },
         image_generate: {
           done: 'A generat imaginea',
           pending: 'Generează imaginea',
-          pendingAction: 'Generează',
+          pendingAction: 'Generează'
         },
         list_files: {
           done: 'A listat fișierele',
           pending: 'Listează fișierele',
-          pendingAction: 'Listează',
+          pendingAction: 'Listează'
         },
         patch: {
           done: 'Fișier corectat',
           pending: 'Se corectează fișierul',
-          pendingAction: 'Se corectează',
+          pendingAction: 'Se corectează'
         },
         read_file: {
           done: 'Fișier citit',
           pending: 'Se citește fișierul',
-          pendingAction: 'Se citește',
+          pendingAction: 'Se citește'
         },
         search_files: {
           done: 'Fișiere căutate',
           pending: 'Se caută fișiere',
-          pendingAction: 'Se caută',
+          pendingAction: 'Se caută'
         },
         session_search_recall: {
           done: 'Istoric sesiuni căutat',
           pending: 'Se caută istoricul sesiunilor',
-          pendingAction: 'Se caută',
+          pendingAction: 'Se caută'
         },
         terminal: {
           done: 'Comandă executată',
           pending: 'Se execută comanda',
-          pendingAction: 'Se execută',
+          pendingAction: 'Se execută'
         },
         todo: {
           done: 'Sarcini actualizate',
           pending: 'Se actualizează sarcinile',
-          pendingAction: 'Se actualizează',
+          pendingAction: 'Se actualizează'
         },
         vision_analyze: {
           done: 'Imagine analizată',
           pending: 'Se analizează imaginea',
-          pendingAction: 'Se analizează',
+          pendingAction: 'Se analizează'
         },
         web_extract: {
           done: 'Pagină web citită',
           pending: 'Se citește pagina web',
-          pendingAction: 'Se citește',
+          pendingAction: 'Se citește'
         },
         web_search: {
           done: 'S-a căutat pe web',
           pending: 'Se caută pe web',
-          pendingAction: 'Se caută',
+          pendingAction: 'Se caută'
         },
         write_file: {
           done: 'Fișier editat',
           pending: 'Se editează fișierul',
-          pendingAction: 'Se editează',
-        },
-      },
-    },
+          pendingAction: 'Se editează'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Gateway-ul OpenAmer nu este conectat',
     sudoSendFailed: 'Nu s-a putut trimite parola sudo',
     secretSendFailed: 'Nu s-a putut trimite secretul',
     sudoTitle: 'Parola administratorului',
-    sudoDesc: 'OpenAmer are nevoie de parola ta sudo pentru a rula o comandă privilegiată. Este trimisă doar agentului tău local.',
+    sudoDesc:
+      'OpenAmer are nevoie de parola ta sudo pentru a rula o comandă privilegiată. Este trimisă doar agentului tău local.',
     sudoPlaceholder: 'Parolă sudo',
     secretTitle: 'Secret necesar',
     secretDesc: 'OpenAmer are nevoie de o credențială pentru a continua.',
-    secretPlaceholder: 'valoare secretă',
+    secretPlaceholder: 'valoare secretă'
   },
   desktop: {
     audioReadFailed: 'Nu s-a putut citi înregistrarea audio',
@@ -2909,7 +2988,8 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'activ' : 'inactiv'} pentru această sesiune`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Nu s-a putut comuta YOLO',
-    profileStatus: current => `Profil: ${current}. Folosește /profile <name> sau selectorul „Sesiune nouă” pentru a începe un chat într-un alt profil.`,
+    profileStatus: current =>
+      `Profil: ${current}. Folosește /profile <name> sau selectorul „Sesiune nouă” pentru a începe un chat într-un alt profil.`,
     unknownProfile: 'Profil necunoscut',
     noProfileNamed: (target, available) => `Nu există niciun profil numit „${target}”. Disponibile: ${available}`,
     newChatsProfile: name => `Chaturile noi vor folosi profilul ${name}.`,
@@ -2919,8 +2999,9 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
     regenerateFailed: 'Regenerare eșuată',
     editFailed: 'Editare eșuată',
     resumeFailed: 'Reluare eșuată',
-    resumeStrandedTitle: "Sesiunea nu a putut fi încărcată",
-    resumeStrandedBody: 'Conectarea la această sesiune a eșuat, iar reîncercările automate au renunțat. Verifică dacă gateway-ul rulează, apoi încearcă din nou.',
+    resumeStrandedTitle: 'Sesiunea nu a putut fi încărcată',
+    resumeStrandedBody:
+      'Conectarea la această sesiune a eșuat, iar reîncercările automate au renunțat. Verifică dacă gateway-ul rulează, apoi încearcă din nou.',
     resumeRetry: 'Reîncearcă',
     nothingToBranch: 'Nimic de ramificat',
     branchNeedsChat: 'Începe sau reia o conversație înainte de a ramifica.',
@@ -2960,31 +3041,31 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       success: platform => `Transferat către ${platform}. Reia oricând de aici.`,
       systemNote: platform => `↻ Transferat către ${platform} — reia oricând de aici.`,
       failed: error => `Transfer eșuat: ${error}`,
-      timedOut: 'Timp expirat așteptând gateway-ul. Rulează `openamer gateway`?',
-    },
+      timedOut: 'Timp expirat așteptând gateway-ul. Rulează `openamer gateway`?'
+    }
   },
   errors: {
     genericFailure: 'Ceva nu a mers bine',
     boundaryTitle: 'Ceva s-a stricat în interfață',
     boundaryDesc: 'Vizualizarea a întâlnit o eroare neașteptată. Conversațiile și setările tale sunt în siguranță.',
     reloadWindow: 'Reîncarcă fereastra',
-    openLogs: 'Deschide jurnalele',
+    openLogs: 'Deschide jurnalele'
   },
   ui: {
     search: {
-      clear: 'Golește căutarea',
+      clear: 'Golește căutarea'
     },
     pagination: {
       label: 'paginare',
       previous: 'Anterior',
       previousAria: 'Mergi la pagina anterioară',
       next: 'Următor',
-      nextAria: 'Mergi la pagina următoare',
+      nextAria: 'Mergi la pagina următoare'
     },
     sidebar: {
       title: 'Bardă laterală',
       description: 'Afișează bara laterală mobilă.',
-      toggle: 'Comută bara laterală',
-    },
-  },
+      toggle: 'Comută bara laterală'
+    }
+  }
 })
