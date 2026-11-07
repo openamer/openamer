@@ -99,6 +99,16 @@ jobs:
     if: needs.detect.outputs.frontend == 'true'
     uses: ./.github/workflows/js-tests.yml
 
+  upstream-independence:
+    # Not lane-gated: the independence claim must hold on every change, not
+    # only on the lanes that touch Python or the frontend. A new upstream
+    # import can arrive through any file.
+    name: Upstream independence
+    needs: detect
+    uses: ./.github/workflows/upstream-independence.yml
+    with:
+      event_name: ${{ needs.detect.outputs.event_name }}
+
   e2e-desktop:
     name: Desktop E2E
     needs: detect
@@ -268,6 +278,7 @@ jobs:
       - tests
       - lint
       - js-tests
+      - upstream-independence
       - e2e-desktop
       - docs-site
       - history-check

@@ -34,7 +34,42 @@ NET_RE = re.compile(
 HERMES_TOKEN = re.compile(r"\bhermes\b", re.IGNORECASE)
 
 
-def main() -> None:
+def _known_attribution_sites() -> set[str]:
+    """Return the files that may legitimately reference the upstream project.
+
+    The list lives in ``scripts/port_from_upstream.py`` so there is one place
+    that says which references are deliberate. Reading it here means a new
+    attribution site has to be declared once, not twice.
+    """
+    import importlib.util
+
+    module = OA / "scripts" / "port_from_upstream.py"
+    if not module.is_file():
+        return set()
+    spec = importlib.util.spec_from_file_location("_oa_port", module)
+    if spec is None or spec.loader is None:
+        return set()
+    mod = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(mod)
+    except Exception:  # pragma: no cover - a broken helper must not mask the scan
+        return set()
+    return set(getattr(mod, "ATTRIBUTION_FILES", set())) | set(
+        getattr(mod, "TOOLING_FILES", set())
+    )
+
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument(
+        "--fail-on-findings",
+        action="store_true",
+        help="exit non-zero when the tree has runtime upstream coupling",
+    )
+    args = ap.parse_args(argv)
+
     files: list[pathlib.Path] = []
     for root in ROOTS:
         rp = OA / root
@@ -49,6 +84,8 @@ def main() -> None:
     imports: dict[str, set[str]] = {}
     network: dict[str, list[int]] = {}
     token_hits: dict[str, list[int]] = {}
+    attributed: dict[str, list[int]] = {}
+    allowed = _known_attribution_sites()
 
     for f in files:
         try:
@@ -56,14 +93,18 @@ def main() -> None:
         except Exception:
             continue
         rel = f.relative_to(OA).as_posix()
-        if f.suffix == ".py":
+        is_attribution_site = rel in allowed
+        if f.suffix == ".py" and not is_attribution_site:
             for m in IMPORT_RE.finditer(text):
                 mod = m.group(1)
                 if mod in UPSTREAM_NAMES:
                     imports.setdefault(mod, set()).add(rel)
         for i, line in enumerate(text.splitlines(), 1):
             if NET_RE.search(line):
-                network.setdefault(rel, []).append(i)
+                if is_attribution_site:
+                    attributed.setdefault(rel, []).append(i)
+                else:
+                    network.setdefault(rel, []).append(i)
             elif HERMES_TOKEN.search(line):
                 token_hits.setdefault(rel, []).append(i)
 
@@ -88,6 +129,10 @@ def main() -> None:
     else:
         print("  NONE")
 
+    print(f"\n[2b] attributed upstream references (declared, not coupling): {len(attributed)} files")
+    for f, lines in sorted(attributed.items()):
+        print(f"  {f}  (lines {lines[:8]})")
+
     print(f"\n[3] residual 'hermes' token: {len(token_hits)} files")
     for f, lines in sorted(token_hits.items()):
         print(f"  {f}  x{len(lines)}  lines {lines[:8]}")
@@ -98,10 +143,21 @@ def main() -> None:
         "scanned_files": len(files),
         "imports": {k: sorted(v) for k, v in imports.items()},
         "network": network,
+        "attributed_references": attributed,
         "token_files": {k: len(v) for k, v in token_hits.items()},
     }, indent=2), encoding="utf-8")
     print(f"\nreport written: {out}")
 
+    if args.fail_on_findings and (imports or network):
+        print(
+            "\nFAILED: the tree has runtime coupling to the upstream project. "
+            "OpenAmer must not import an upstream module or reach out to the "
+            "upstream repository. Every intentional reference must be listed "
+            "as an attribution site in scripts/port_from_upstream.py."
+        )
+        return 1
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

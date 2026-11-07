@@ -83,6 +83,24 @@ def test_skipped_lanes_alone_do_not_block() -> None:
     assert blocking == []
 
 
+def test_the_independence_lane_is_a_required_lane() -> None:
+    """The upstream-independence lane must block the gate when it fails.
+
+    It is listed in the ``all-checks-pass`` needs, so a failure there has to
+    reach the verdict -- otherwise the independence claim silently stops being
+    enforced.
+    """
+    needs = _needs(detect="success", tests="success", upstream_independence="failure")
+    blocking = _mod.verdict(needs)
+    assert blocking == ["upstream_independence"]
+
+
+def test_the_independence_lane_passes_when_green() -> None:
+    needs = _needs(detect="success", tests="success", upstream_independence="success")
+    blocking = _mod.verdict(needs)
+    assert blocking == []
+
+
 @pytest.mark.parametrize(
     ("results", "expected"),
     [

@@ -62,6 +62,7 @@ TOOLING_FILES = frozenset(
 ATTRIBUTION_FILES = frozenset(
     {
         "agent/error_classifier.py",
+        "apps/desktop/src/lib/preview-act/act-in-page.ts",
         "openamer_cli/_early_recovery.py",
         "openamer_cli/archive_safe.py",
         "openamer_cli/identity.py",
