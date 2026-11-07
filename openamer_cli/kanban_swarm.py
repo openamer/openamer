@@ -11,6 +11,8 @@ existing Kanban kernel:
 The shared blackboard is structured JSON comments on the root task, so all
 state lives in existing task_comments/task_events rows and the dashboard,
 notifier, slash command and dispatcher keep working without a new service.
+
+Upstream-Derived: hermes_cli/kanban_swarm.py @ b7bef04861 (MIT)
 """
 
 from __future__ import annotations

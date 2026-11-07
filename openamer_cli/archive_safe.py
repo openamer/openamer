@@ -1,4 +1,7 @@
-"""Safe ``tar.gz`` primitives shared by the profile and kanban transfer paths."""
+"""Safe ``tar.gz`` primitives shared by the profile and kanban transfer paths.
+
+Upstream-Derived: hermes_cli/archive_safe.py @ bf1300b27c (MIT)
+"""
 
 from __future__ import annotations
 

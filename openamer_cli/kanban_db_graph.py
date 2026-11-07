@@ -1,4 +1,7 @@
-"""Task graph initialization and atomic decomposition persistence."""
+"""Task graph initialization and atomic decomposition persistence.
+
+Upstream-Derived: hermes_cli/kanban_db_graph.py @ 3b7ff435fd (MIT)
+"""
 from __future__ import annotations
 
 import sqlite3
