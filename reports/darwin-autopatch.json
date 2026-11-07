@@ -1,83 +1,97 @@
 {
-  "timestamp": "2026-11-04T21:39:41",
+  "timestamp": "2026-11-06T21:55:29",
   "mode": "apply",
-  "population": 1246,
-  "avg_score": 39.0,
+  "population": 1268,
+  "avg_score": 38.3,
   "kept": [
     {
-      "skill": "auto-internet-learning-metas-new",
-      "before": 21,
-      "after": 31,
-      "delta": 10,
-      "fixes": []
-    },
-    {
-      "skill": "auto-internet-learning-openai-hacked",
-      "before": 21,
-      "after": 31,
-      "delta": 10,
-      "fixes": []
-    },
-    {
-      "skill": "auto-latest-research-insight-cultural",
-      "before": 21,
-      "after": 31,
-      "delta": 10,
-      "fixes": []
-    },
-    {
-      "skill": "auto-structural-connection-between-tool",
-      "before": 21,
-      "after": 31,
-      "delta": 10,
-      "fixes": []
-    },
-    {
-      "skill": "auto-internet-learning-metas-new",
-      "before": 21,
-      "after": 31,
-      "delta": 10,
-      "fixes": []
-    },
-    {
-      "skill": "auto-internet-learning-openai-hacked",
-      "before": 21,
-      "after": 31,
-      "delta": 10,
-      "fixes": []
-    },
-    {
-      "skill": "auto-latest-research-insight-cultural",
-      "before": 21,
-      "after": 31,
-      "delta": 10,
-      "fixes": []
-    },
-    {
-      "skill": "auto-competitor-intelligence-opencode-open",
-      "before": 25,
-      "after": 31,
-      "delta": 6,
+      "skill": "agent-experience",
+      "before": 0,
+      "after": 42,
+      "delta": 42,
       "fixes": [
-        "✅ metadata.openamer Block hinzugefügt"
+        "✅ Frontmatter hinzugefügt für 'agent-experience'"
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-openhands-agent",
-      "before": 25,
-      "after": 31,
-      "delta": 6,
+      "skill": "cordis-composition-reference",
+      "before": 0,
+      "after": 42,
+      "delta": 42,
       "fixes": [
-        "✅ metadata.openamer Block hinzugefügt"
+        "✅ Frontmatter hinzugefügt für 'cordis-composition-reference'"
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-pythonopenaichat",
-      "before": 25,
-      "after": 31,
-      "delta": 6,
+      "skill": "cordis-plugin-development",
+      "before": 0,
+      "after": 44,
+      "delta": 44,
       "fixes": [
-        "✅ metadata.openamer Block hinzugefügt"
+        "✅ Frontmatter hinzugefügt für 'cordis-plugin-development'"
+      ]
+    },
+    {
+      "skill": "cordis-styling-nitpicking",
+      "before": 0,
+      "after": 45,
+      "delta": 45,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'cordis-styling-nitpicking'"
+      ]
+    },
+    {
+      "skill": "dsh-archive-agent-notes",
+      "before": 0,
+      "after": 42,
+      "delta": 42,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'dsh-archive-agent-notes'"
+      ]
+    },
+    {
+      "skill": "dsh-ci-test-reliability",
+      "before": 0,
+      "after": 45,
+      "delta": 45,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'dsh-ci-test-reliability'"
+      ]
+    },
+    {
+      "skill": "dsh-client-ui-ux",
+      "before": 0,
+      "after": 47,
+      "delta": 47,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'dsh-client-ui-ux'"
+      ]
+    },
+    {
+      "skill": "dsh-code-review",
+      "before": 0,
+      "after": 45,
+      "delta": 45,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'dsh-code-review'"
+      ]
+    },
+    {
+      "skill": "dsh-create-upgrade-guide",
+      "before": 0,
+      "after": 50,
+      "delta": 50,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'dsh-create-upgrade-guide'"
+      ]
+    },
+    {
+      "skill": "dsh-cua-macos-signing",
+      "before": 0,
+      "after": 50,
+      "delta": 50,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'dsh-cua-macos-signing'"
       ]
     }
   ],

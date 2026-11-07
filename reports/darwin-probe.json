@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-04T20:39:45.012655+00:00",
+  "updated": "2026-11-06T20:55:31.880167+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1246,
+  "total": 1268,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -1551,6 +1551,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-internet-learning-amazon-ceo": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-latest-research-insight-hybrid": {
       "refs": 0,
       "ok": 0,
@@ -1570,6 +1576,12 @@
       "missing": []
     },
     "auto-multidomain-learning-financial-market": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-navigating-the": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1650,6 +1662,12 @@
     "crew-manager": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "external-repo-adoption": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -1767,6 +1785,12 @@
       "score": 1.0,
       "missing": []
     },
+    "session-goal": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "skill-discovery": {
       "refs": 0,
       "ok": 0,
@@ -1786,6 +1810,12 @@
       "missing": []
     },
     "windows-computer-use": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "workflow-orchestration": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2691,6 +2721,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-tmp-verify-chain-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-tmp-verify-comment-5749873455-py": {
       "refs": 0,
       "ok": 0,
@@ -2818,6 +2854,12 @@
       "missing": []
     },
     "darwin-harvested-wt-darwin-fix": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-wt-maincheck": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2970,6 +3012,12 @@
       "score": 1.0,
       "missing": []
     },
+    "emilija-isolation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "external-link-audit": {
       "refs": 0,
       "ok": 0,
@@ -3033,6 +3081,12 @@
     "llm-subscription-provider-integration": {
       "refs": 0,
       "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "model-provider-chain": {
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -3216,8 +3270,8 @@
       "missing": []
     },
     "green-merge-gate": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -6343,6 +6397,30 @@
       "score": 1.0,
       "missing": []
     },
+    "cordis-composition-reference": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cordis-plugin-development": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cordis-styling-nitpicking": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-adoption-map": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "dsh-archive-agent-notes": {
       "refs": 0,
       "ok": 0,
@@ -6367,6 +6445,21 @@
       "score": 1.0,
       "missing": []
     },
+    "dsh-create-upgrade-guide": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-cua-macos-signing": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        ".agents/skills/dsh-cua-macos-signing/scripts/signing_identity.py",
+        ".agents/skills/dsh-cua-macos-signing/scripts/signing_e2e.py"
+      ]
+    },
     "dsh-doc": {
       "refs": 0,
       "ok": 0,
@@ -6385,6 +6478,12 @@
       "score": 1.0,
       "missing": []
     },
+    "dsh-error-handling": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "dsh-find-simplifications": {
       "refs": 0,
       "ok": 0,
@@ -6397,6 +6496,18 @@
       "score": 1.0,
       "missing": []
     },
+    "dsh-official-plugin-artwork": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-pr-description": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "dsh-pre-push-checks": {
       "refs": 0,
       "ok": 0,
@@ -6404,6 +6515,18 @@
       "missing": []
     },
     "dsh-prose-standard": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-responsive-ui": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-session-projection": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -6422,6 +6545,12 @@
       "missing": []
     },
     "dsh-trim-cot-leakage": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "editing-cordis-compositions": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -6913,6 +7042,12 @@
       "score": 1.0,
       "missing": []
     },
+    "dlna-screen-casting": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "lan-appliance-api-control": {
       "refs": 1,
       "ok": 1,
@@ -7060,20 +7195,20 @@
       "missing": []
     },
     "desktop-i18n-locale": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
     "desktop-i18n-locale-add": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
     "desktop-i18n-locale-addition": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },

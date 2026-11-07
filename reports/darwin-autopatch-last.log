@@ -1,14 +1,14 @@
-[autopatch] validating population (2026-11-04T21:39:41) ...
-[autopatch] population: 1246 skills, avg 39.0
-[autopatch] 10 weak skills: auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), auto-structural-connection-between-tool(21), auto-internet-learning-metas-new(21), auto-internet-learning-openai-hacked(21), auto-latest-research-insight-cultural(21), auto-competitor-intelligence-opencode-open(25), auto-competitor-intelligence-openhands-agent(25), auto-competitor-intelligence-pythonopenaichat(25)
-[autopatch] ✅ auto-internet-learning-metas-new: 21 → 31
-[autopatch] ✅ auto-internet-learning-openai-hacked: 21 → 31
-[autopatch] ✅ auto-latest-research-insight-cultural: 21 → 31
-[autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
-[autopatch] ✅ auto-internet-learning-metas-new: 21 → 31
-[autopatch] ✅ auto-internet-learning-openai-hacked: 21 → 31
-[autopatch] ✅ auto-latest-research-insight-cultural: 21 → 31
-[autopatch] ✅ auto-competitor-intelligence-opencode-open: 25 → 31
-[autopatch] ✅ auto-competitor-intelligence-openhands-agent: 25 → 31
-[autopatch] ✅ auto-competitor-intelligence-pythonopenaichat: 25 → 31
+[autopatch] validating population (2026-11-06T21:55:29) ...
+[autopatch] population: 1268 skills, avg 38.3
+[autopatch] 10 weak skills: agent-experience(0), cordis-composition-reference(0), cordis-plugin-development(0), cordis-styling-nitpicking(0), dsh-archive-agent-notes(0), dsh-ci-test-reliability(0), dsh-client-ui-ux(0), dsh-code-review(0), dsh-create-upgrade-guide(0), dsh-cua-macos-signing(0)
+[autopatch] ✅ agent-experience: 0 → 42
+[autopatch] ✅ cordis-composition-reference: 0 → 42
+[autopatch] ✅ cordis-plugin-development: 0 → 44
+[autopatch] ✅ cordis-styling-nitpicking: 0 → 45
+[autopatch] ✅ dsh-archive-agent-notes: 0 → 42
+[autopatch] ✅ dsh-ci-test-reliability: 0 → 45
+[autopatch] ✅ dsh-client-ui-ux: 0 → 47
+[autopatch] ✅ dsh-code-review: 0 → 45
+[autopatch] ✅ dsh-create-upgrade-guide: 0 → 50
+[autopatch] ✅ dsh-cua-macos-signing: 0 → 50
 [autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md
