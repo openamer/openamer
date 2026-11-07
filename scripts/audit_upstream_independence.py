@@ -24,42 +24,14 @@ import re
 import json
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+
+from upstream_rebrand import rebrand  # noqa: E402
+
 OA = pathlib.Path(__file__).resolve().parent.parent
 DEFAULT_UP = pathlib.Path(r"C:\Users\damir\AppData\Local\hermes\hermes-agent")
 UP = DEFAULT_UP
 
-RENAMES: tuple[tuple[str, str], ...] = (
-    ("hermes_cli", "openamer_cli"),
-    ("hermes_constants", "openamer_constants"),
-    ("hermes_state", "openamer_state"),
-    ("hermes_logging", "openamer_logging"),
-    ("get_hermes_home", "get_openamer_home"),
-    ("get_default_hermes_root", "get_default_openamer_root"),
-    ("hermes_home_key", "openamer_home_key"),
-    ("set_hermes_home_override", "set_openamer_home_override"),
-    ("reset_hermes_home_override", "reset_openamer_home_override"),
-    ("get_hermes_home_override", "get_openamer_home_override"),
-    ("HERMES_HOME", "OPENAMER_HOME"),
-    ("HERMES_KANBAN", "OPENAMER_KANBAN"),
-    ("HERMES_", "OPENAMER_"),
-    ("`hermes ", "`openamer "),
-    ("hermes-agent", "openamer-agent"),
-    ("HermesAgent", "OpenAmerAgent"),
-    ("HermesCLI", "OpenAmerCLI"),
-    ("hermes_pkce", "openamer_pkce"),
-    ("Hermes", "OpenAmer"),
-    ("hermes", "openamer"),
-)
-KEEP = re.compile(r"hermes-(?:parser|estimator)|@hermes/")
-
-
-def rebrand(text: str) -> str:
-    for s, d in RENAMES:
-        text = text.replace(s, d)
-    return KEEP.sub("", text)
-
-
-# Lines that are pure branding / doc / header noise.
 NOISE = re.compile(
     r"^\s*(#\s*(Copyright|Licensed|SPDX)|\"\"\"|\'\'\'|#\s*-{3,}|"
     r"from\s+openamer|import\s+openamer|"
@@ -98,8 +70,51 @@ def _has_marker(text: str) -> bool:
     return find_marker(text) is not None
 
 
+def _changed_lines(a: list[str], b: list[str], noise: re.Pattern[str]) -> tuple[int, int]:
+    """Return (upstream_lines_changed, new_lines_added).
+
+    ``upstream_lines_changed`` counts the upstream lines that no longer survive
+    unchanged in the OpenAmer version -- the honest denominator for "how much
+    of upstream is still here". ``new_lines_added`` counts the lines OpenAmer
+    wrote that upstream never had.
+
+    A modified line is one change, not two: ``difflib.unified_diff`` emits a
+    ``-`` and a ``+`` line for it. ``SequenceMatcher`` opcodes report the
+    replacement block once, so a modified block counts as
+    ``max(removed, added)``.
+    """
+    matcher = difflib.SequenceMatcher(None, a, b)
+    upstream_changed = 0
+    added = 0
+    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
+        if tag == "equal":
+            continue
+        if tag == "replace":
+            removed, new = a[i1:i2], b[j1:j2]
+        elif tag == "delete":
+            removed, new = a[i1:i2], []
+        elif tag == "insert":
+            removed, new = [], b[j1:j2]
+        else:  # pragma: no cover - difflib emits no other tags
+            continue
+
+        def _substantive(lines: list[str]) -> int:
+            return sum(
+                1
+                for line in lines
+                if line.strip()
+                and len(line.strip()) >= 4
+                and not noise.match(line)
+            )
+
+        upstream_changed += _substantive(removed)
+        added += _substantive(new)
+    # A modified block counts once, not as removed+added.
+    return max(upstream_changed, added), added
+
+
 def classify(up_text: str, oa_text: str) -> tuple[str, int, int]:
-    """Return (class, substantive_changed_lines, upstream_lines)."""
+    """Return (class, changed_lines, upstream_lines)."""
     src = rebrand(up_text)
     a = src.splitlines()
     b = oa_text.splitlines()
@@ -107,18 +122,7 @@ def classify(up_text: str, oa_text: str) -> tuple[str, int, int]:
     if src.strip() == oa_text.strip():
         return "IDENTICAL", 0, up_lines
 
-    diff = list(difflib.unified_diff(a, b, lineterm="", n=0))
-    changed = 0
-    for line in diff:
-        if line.startswith(("---", "+++", "@@")):
-            continue
-        if line.startswith(("+", "-")):
-            body = line[1:].strip()
-            if not body:
-                continue
-            if NOISE.match(line[1:]) or len(body) < 4:
-                continue
-            changed += 1
+    changed, _added = _changed_lines(a, b, NOISE)
 
     ratio = changed / max(up_lines, 1)
     if changed == 0:
@@ -128,20 +132,23 @@ def classify(up_text: str, oa_text: str) -> tuple[str, int, int]:
     return "SUBSTANTIVE", changed, up_lines
 
 
-def main() -> int:
-    global UP
+def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument(
         "--upstream",
         default=str(DEFAULT_UP),
         help="path to the upstream checkout to compare against",
     )
-    args = ap.parse_args()
-    UP = pathlib.Path(args.upstream).expanduser()
-    if not UP.is_dir():
-        print(f"upstream checkout not found: {UP}", file=sys.stderr)
+    args = ap.parse_args(argv)
+    upstream = pathlib.Path(args.upstream).expanduser()
+    if not upstream.is_dir():
+        print(f"upstream checkout not found: {upstream}", file=sys.stderr)
         return 2
+    return audit(upstream, OA)
 
+
+def audit(upstream: pathlib.Path, openamer: pathlib.Path) -> int:
+    """Audit ``openamer`` against ``upstream`` and write the JSON report."""
     results = []
     identical = cosmetic = minor = substantive = 0
     only_openamer = 0
@@ -149,8 +156,8 @@ def main() -> int:
     unmarked: list[str] = []
 
     for oa_sub, up_sub in PAIRS:
-        up_dir = UP / up_sub
-        oa_dir = OA / oa_sub
+        up_dir = upstream / up_sub
+        oa_dir = openamer / oa_sub
         if not up_dir.is_dir():
             continue
         for up_file in sorted(up_dir.rglob("*.py")):
@@ -189,15 +196,15 @@ def main() -> int:
             )
 
     results.sort(key=lambda r: (r["class"], r["ratio"]))
-    out = OA / "reports" / "upstream-independence-audit.json"
+    out = openamer / "reports" / "upstream-independence-audit.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(results, indent=2), encoding="utf-8")
 
     print("=" * 68)
     print("UPSTREAM INDEPENDENCE AUDIT")
     print("=" * 68)
-    print(f"upstream ref        : {UP}")
-    print(f"openamer tree       : {OA}")
+    print(f"upstream ref        : {upstream}")
+    print(f"openamer tree       : {openamer}")
     print()
     print(f"IDENTICAL (rebrand only) : {identical:4d}")
     print(f"COSMETIC (noise only)    : {cosmetic:4d}")

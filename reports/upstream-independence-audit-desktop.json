@@ -5,15 +5,15 @@
   "upstream_only_dropped": 2659,
   "classes": {
     "IDENTICAL": 163,
-    "COSMETIC": 6,
-    "MINOR": 111,
-    "SUBSTANTIVE": 654
+    "COSMETIC": 4,
+    "MINOR": 146,
+    "SUBSTANTIVE": 621
   },
   "lines": {
     "IDENTICAL": 12259,
-    "COSMETIC": 218,
-    "MINOR": 22364,
-    "SUBSTANTIVE": 309260
+    "COSMETIC": 83,
+    "MINOR": 28633,
+    "SUBSTANTIVE": 303126
   },
   "identical_files": [
     "app/chat/chat-drop-overlay.tsx",

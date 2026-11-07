@@ -25,9 +25,9 @@ Method: `scripts/audit_upstream_independence_desktop.py`.
 | Class | Files | Upstream lines | Share |
 | --- | --- | --- | --- |
 | `IDENTICAL` (rebrand only) | 163 | 12,259 | **3.56%** |
-| `COSMETIC` | 6 | 218 | 0.06% |
-| `MINOR` (<10% changed) | 111 | 22,364 | 6.50% |
-| `SUBSTANTIVE` (real logic) | 654 | 309,260 | **89.87%** |
+| `COSMETIC` | 4 | 83 | 0.02% |
+| `MINOR` (<10% changed) | 146 | 28,633 | 8.32% |
+| `SUBSTANTIVE` (real logic) | 621 | 303,126 | **88.09%** |
 
 ## What the 163 verbatim files are
 
@@ -88,9 +88,9 @@ Plus the whole learning/Darwin layer in `scripts/` (269 files, ~108k LOC,
 
 ## Conclusion
 
-The desktop surface is **89.87% substantively diverged**, with 3.56%
+The desktop surface is **88.09% substantively diverged**, with 3.56%
 remaining verbatim in the React component library and pure helper modules.
-Combined with the Python audit (98.44% substantive), the picture is
+Combined with the Python audit (98.16% substantive), the picture is
 consistent across both surfaces: OpenAmer is not a rebranded Hermes.
 
 The desktop verdict is lower than the Python verdict, and that is the honest
