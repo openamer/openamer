@@ -1,7 +1,8 @@
 {
-  "scanned_files": 3375,
+  "scanned_files": 3378,
   "imports": {},
-  "network": {
+  "network": {},
+  "attributed_references": {
     "openamer_cli/_early_recovery.py": [
       36
     ],
@@ -15,13 +16,17 @@
       32
     ],
     "scripts/audit_upstream_independence.py": [
-      28,
-      46
+      32
+    ],
+    "scripts/audit_upstream_independence_desktop.py": [
+      21
     ],
     "scripts/port_from_upstream.py": [
       1,
-      19,
-      37
+      27
+    ],
+    "scripts/upstream_rebrand.py": [
+      35
     ],
     "apps/desktop/src/lib/preview-act/act-in-page.ts": [
       31
@@ -30,9 +35,10 @@
   "token_files": {
     "openamer_cli/identity.py": 1,
     "scripts/audit_upstream_coupling.py": 2,
-    "scripts/audit_upstream_independence.py": 5,
-    "scripts/port_from_upstream.py": 9,
+    "scripts/audit_upstream_independence.py": 1,
+    "scripts/port_from_upstream.py": 2,
     "scripts/update-safe.ps1": 5,
+    "scripts/upstream_rebrand.py": 7,
     "scripts/training/online-learning-service.ps1": 2,
     "packs/pro-pack/skills/windows-computer-use/references/session-recovery-fix.md": 3
   }
