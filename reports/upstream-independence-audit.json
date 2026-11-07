@@ -1,0 +1,2711 @@
+[
+  {
+    "file": "openamer_cli/kanban_swarm.py",
+    "class": "MINOR",
+    "changed_lines": 1,
+    "upstream_lines": 300,
+    "ratio": 0.003
+  },
+  {
+    "file": "openamer_cli/kanban_db_graph.py",
+    "class": "MINOR",
+    "changed_lines": 1,
+    "upstream_lines": 214,
+    "ratio": 0.005
+  },
+  {
+    "file": "openamer_cli/kanban_db_notify.py",
+    "class": "MINOR",
+    "changed_lines": 3,
+    "upstream_lines": 441,
+    "ratio": 0.007
+  },
+  {
+    "file": "openamer_cli/archive_safe.py",
+    "class": "MINOR",
+    "changed_lines": 1,
+    "upstream_lines": 104,
+    "ratio": 0.01
+  },
+  {
+    "file": "agent/interrupt_compat.py",
+    "class": "MINOR",
+    "changed_lines": 1,
+    "upstream_lines": 55,
+    "ratio": 0.018
+  },
+  {
+    "file": "openamer_cli/kanban_transfer.py",
+    "class": "MINOR",
+    "changed_lines": 9,
+    "upstream_lines": 371,
+    "ratio": 0.024
+  },
+  {
+    "file": "agent/credential_persistence.py",
+    "class": "MINOR",
+    "changed_lines": 4,
+    "upstream_lines": 116,
+    "ratio": 0.034
+  },
+  {
+    "file": "openamer_cli/kanban_specify.py",
+    "class": "MINOR",
+    "changed_lines": 14,
+    "upstream_lines": 241,
+    "ratio": 0.058
+  },
+  {
+    "file": "agent/provider_base.py",
+    "class": "MINOR",
+    "changed_lines": 4,
+    "upstream_lines": 66,
+    "ratio": 0.061
+  },
+  {
+    "file": "openamer_cli/kanban_output.py",
+    "class": "MINOR",
+    "changed_lines": 6,
+    "upstream_lines": 86,
+    "ratio": 0.07
+  },
+  {
+    "file": "openamer_cli/kanban_db_connect.py",
+    "class": "MINOR",
+    "changed_lines": 97,
+    "upstream_lines": 1296,
+    "ratio": 0.075
+  },
+  {
+    "file": "openamer_cli/kanban_pr_acceptance_store.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 5,
+    "upstream_lines": 48,
+    "ratio": 0.104
+  },
+  {
+    "file": "openamer_cli/setup_platforms.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 40,
+    "upstream_lines": 327,
+    "ratio": 0.122
+  },
+  {
+    "file": "agent/provider_registry.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 29,
+    "upstream_lines": 204,
+    "ratio": 0.142
+  },
+  {
+    "file": "openamer_cli/kanban_decompose.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 49,
+    "upstream_lines": 343,
+    "ratio": 0.143
+  },
+  {
+    "file": "openamer_cli/kanban_diagnostics.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 134,
+    "upstream_lines": 910,
+    "ratio": 0.147
+  },
+  {
+    "file": "openamer_cli/auth_constants.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 25,
+    "upstream_lines": 166,
+    "ratio": 0.151
+  },
+  {
+    "file": "agent/vault_login_classifier.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 65,
+    "upstream_lines": 353,
+    "ratio": 0.184
+  },
+  {
+    "file": "openamer_cli/kanban_ops.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 88,
+    "upstream_lines": 410,
+    "ratio": 0.215
+  },
+  {
+    "file": "agent/message_content.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 10,
+    "upstream_lines": 43,
+    "ratio": 0.233
+  },
+  {
+    "file": "openamer_cli/memory_oauth.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 19,
+    "upstream_lines": 75,
+    "ratio": 0.253
+  },
+  {
+    "file": "openamer_cli/subcommands/skin.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 7,
+    "upstream_lines": 27,
+    "ratio": 0.259
+  },
+  {
+    "file": "agent/credential_sources.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 77,
+    "upstream_lines": 292,
+    "ratio": 0.264
+  },
+  {
+    "file": "agent/credential_pool.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 815,
+    "upstream_lines": 3051,
+    "ratio": 0.267
+  },
+  {
+    "file": "agent/image_gen_provider.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 38,
+    "upstream_lines": 139,
+    "ratio": 0.273
+  },
+  {
+    "file": "agent/pet/generate/prompts.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 44,
+    "upstream_lines": 160,
+    "ratio": 0.275
+  },
+  {
+    "file": "openamer_cli/auth_oauth_grants.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 262,
+    "upstream_lines": 842,
+    "ratio": 0.311
+  },
+  {
+    "file": "openamer_cli/session_export_html.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 251,
+    "upstream_lines": 807,
+    "ratio": 0.311
+  },
+  {
+    "file": "agent/image_gen_registry.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 15,
+    "upstream_lines": 47,
+    "ratio": 0.319
+  },
+  {
+    "file": "agent/error_classifier.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 517,
+    "upstream_lines": 1586,
+    "ratio": 0.326
+  },
+  {
+    "file": "openamer_cli/kanban_db_dispatch.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 971,
+    "upstream_lines": 2964,
+    "ratio": 0.328
+  },
+  {
+    "file": "agent/anthropic_credentials.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 278,
+    "upstream_lines": 835,
+    "ratio": 0.333
+  },
+  {
+    "file": "openamer_cli/colors.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 10,
+    "upstream_lines": 30,
+    "ratio": 0.333
+  },
+  {
+    "file": "openamer_cli/journey.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 127,
+    "upstream_lines": 380,
+    "ratio": 0.334
+  },
+  {
+    "file": "openamer_cli/kanban_db_workspace.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 283,
+    "upstream_lines": 843,
+    "ratio": 0.336
+  },
+  {
+    "file": "openamer_cli/platforms.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 23,
+    "upstream_lines": 68,
+    "ratio": 0.338
+  },
+  {
+    "file": "openamer_cli/skin_cmd.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 32,
+    "upstream_lines": 91,
+    "ratio": 0.352
+  },
+  {
+    "file": "agent/credential_pool_admin.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 62,
+    "upstream_lines": 164,
+    "ratio": 0.378
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/login_page.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 250,
+    "upstream_lines": 651,
+    "ratio": 0.384
+  },
+  {
+    "file": "agent/pet/manifest.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 58,
+    "upstream_lines": 130,
+    "ratio": 0.446
+  },
+  {
+    "file": "openamer_cli/kanban_pr_acceptance.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 92,
+    "upstream_lines": 198,
+    "ratio": 0.465
+  },
+  {
+    "file": "openamer_cli/secret_prompt.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 47,
+    "upstream_lines": 98,
+    "ratio": 0.48
+  },
+  {
+    "file": "openamer_cli/completion.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 124,
+    "upstream_lines": 249,
+    "ratio": 0.498
+  },
+  {
+    "file": "agent/errors.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 3,
+    "upstream_lines": 6,
+    "ratio": 0.5
+  },
+  {
+    "file": "agent/tool_result_classification.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 59,
+    "upstream_lines": 118,
+    "ratio": 0.5
+  },
+  {
+    "file": "openamer_cli/subcommands/insights.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 9,
+    "upstream_lines": 18,
+    "ratio": 0.5
+  },
+  {
+    "file": "agent/iteration_budget.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 30,
+    "upstream_lines": 59,
+    "ratio": 0.508
+  },
+  {
+    "file": "openamer_cli/bundles.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 92,
+    "upstream_lines": 179,
+    "ratio": 0.514
+  },
+  {
+    "file": "agent/jiter_preload.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 15,
+    "upstream_lines": 29,
+    "ratio": 0.517
+  },
+  {
+    "file": "agent/battery.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 53,
+    "upstream_lines": 102,
+    "ratio": 0.52
+  },
+  {
+    "file": "openamer_cli/proxy/adapters/xai.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 58,
+    "upstream_lines": 108,
+    "ratio": 0.537
+  },
+  {
+    "file": "openamer_cli/mcp_security.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 73,
+    "upstream_lines": 135,
+    "ratio": 0.541
+  },
+  {
+    "file": "agent/reactions.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 23,
+    "upstream_lines": 42,
+    "ratio": 0.548
+  },
+  {
+    "file": "openamer_cli/subcommands/pairing.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 16,
+    "upstream_lines": 29,
+    "ratio": 0.552
+  },
+  {
+    "file": "agent/verify_hooks.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 31,
+    "upstream_lines": 56,
+    "ratio": 0.554
+  },
+  {
+    "file": "openamer_cli/proxy/adapters/base.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 38,
+    "upstream_lines": 67,
+    "ratio": 0.567
+  },
+  {
+    "file": "openamer_cli/migrate.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 65,
+    "upstream_lines": 114,
+    "ratio": 0.57
+  },
+  {
+    "file": "openamer_cli/subcommands/console.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 8,
+    "upstream_lines": 14,
+    "ratio": 0.571
+  },
+  {
+    "file": "openamer_cli/context_switch_guard.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 95,
+    "upstream_lines": 164,
+    "ratio": 0.579
+  },
+  {
+    "file": "openamer_cli/urllib_security.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 93,
+    "upstream_lines": 158,
+    "ratio": 0.589
+  },
+  {
+    "file": "openamer_cli/route_identity.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 76,
+    "upstream_lines": 126,
+    "ratio": 0.603
+  },
+  {
+    "file": "openamer_cli/proxy/cli.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 70,
+    "upstream_lines": 115,
+    "ratio": 0.609
+  },
+  {
+    "file": "agent/billing_links.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 59,
+    "upstream_lines": 96,
+    "ratio": 0.615
+  },
+  {
+    "file": "openamer_cli/cli_output.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 56,
+    "upstream_lines": 86,
+    "ratio": 0.651
+  },
+  {
+    "file": "openamer_cli/sqlite_util.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 75,
+    "upstream_lines": 113,
+    "ratio": 0.664
+  },
+  {
+    "file": "openamer_cli/pairing.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 66,
+    "upstream_lines": 99,
+    "ratio": 0.667
+  },
+  {
+    "file": "openamer_cli/write_approval_commands.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 126,
+    "upstream_lines": 188,
+    "ratio": 0.67
+  },
+  {
+    "file": "agent/learn_prompt.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 134,
+    "upstream_lines": 197,
+    "ratio": 0.68
+  },
+  {
+    "file": "openamer_cli/pets.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 296,
+    "upstream_lines": 427,
+    "ratio": 0.693
+  },
+  {
+    "file": "openamer_cli/model_cost_guard.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 93,
+    "upstream_lines": 133,
+    "ratio": 0.699
+  },
+  {
+    "file": "agent/ssl_verify.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 243,
+    "upstream_lines": 343,
+    "ratio": 0.708
+  },
+  {
+    "file": "openamer_cli/sqlite_runtime.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 67,
+    "upstream_lines": 94,
+    "ratio": 0.713
+  },
+  {
+    "file": "agent/provider_media.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 107,
+    "upstream_lines": 148,
+    "ratio": 0.723
+  },
+  {
+    "file": "openamer_cli/webhook.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 273,
+    "upstream_lines": 374,
+    "ratio": 0.73
+  },
+  {
+    "file": "openamer_cli/skills_config.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 112,
+    "upstream_lines": 153,
+    "ratio": 0.732
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/audit.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 84,
+    "upstream_lines": 114,
+    "ratio": 0.737
+  },
+  {
+    "file": "openamer_cli/fallback_config.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 123,
+    "upstream_lines": 167,
+    "ratio": 0.737
+  },
+  {
+    "file": "openamer_cli/logs.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 259,
+    "upstream_lines": 350,
+    "ratio": 0.74
+  },
+  {
+    "file": "agent/oneshot.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 91,
+    "upstream_lines": 122,
+    "ratio": 0.746
+  },
+  {
+    "file": "openamer_cli/session_listing.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 115,
+    "upstream_lines": 154,
+    "ratio": 0.747
+  },
+  {
+    "file": "openamer_cli/subcommands/logs.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 39,
+    "upstream_lines": 52,
+    "ratio": 0.75
+  },
+  {
+    "file": "openamer_cli/subcommands/whatsapp.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 18,
+    "upstream_lines": 24,
+    "ratio": 0.75
+  },
+  {
+    "file": "agent/transports/base.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 40,
+    "upstream_lines": 53,
+    "ratio": 0.755
+  },
+  {
+    "file": "agent/delegation_context.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 142,
+    "upstream_lines": 187,
+    "ratio": 0.759
+  },
+  {
+    "file": "openamer_cli/blueprint_cmd.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 186,
+    "upstream_lines": 244,
+    "ratio": 0.762
+  },
+  {
+    "file": "openamer_cli/checkpoints.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 170,
+    "upstream_lines": 221,
+    "ratio": 0.769
+  },
+  {
+    "file": "openamer_cli/managed_scope.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 145,
+    "upstream_lines": 188,
+    "ratio": 0.771
+  },
+  {
+    "file": "openamer_cli/proxy/adapters/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 17,
+    "upstream_lines": 22,
+    "ratio": 0.773
+  },
+  {
+    "file": "openamer_cli/relaunch.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 113,
+    "upstream_lines": 145,
+    "ratio": 0.779
+  },
+  {
+    "file": "agent/trajectory.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 44,
+    "upstream_lines": 56,
+    "ratio": 0.786
+  },
+  {
+    "file": "openamer_cli/web_git.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 642,
+    "upstream_lines": 811,
+    "ratio": 0.792
+  },
+  {
+    "file": "openamer_cli/windows_ssh_runtime.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 403,
+    "upstream_lines": 508,
+    "ratio": 0.793
+  },
+  {
+    "file": "openamer_cli/win_pty_bridge.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 210,
+    "upstream_lines": 264,
+    "ratio": 0.795
+  },
+  {
+    "file": "openamer_cli/input_sanitize.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 43,
+    "upstream_lines": 54,
+    "ratio": 0.796
+  },
+  {
+    "file": "openamer_cli/profile_describer.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 160,
+    "upstream_lines": 201,
+    "ratio": 0.796
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/registry.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 109,
+    "upstream_lines": 136,
+    "ratio": 0.801
+  },
+  {
+    "file": "agent/process_bootstrap.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 288,
+    "upstream_lines": 358,
+    "ratio": 0.804
+  },
+  {
+    "file": "openamer_cli/mcp_startup.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 257,
+    "upstream_lines": 319,
+    "ratio": 0.806
+  },
+  {
+    "file": "openamer_cli/subcommands/_shared.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 21,
+    "upstream_lines": 26,
+    "ratio": 0.808
+  },
+  {
+    "file": "agent/skill_preprocessing.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 127,
+    "upstream_lines": 156,
+    "ratio": 0.814
+  },
+  {
+    "file": "openamer_cli/pty_session.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 502,
+    "upstream_lines": 611,
+    "ratio": 0.822
+  },
+  {
+    "file": "agent/pet/generate/imagegen.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 152,
+    "upstream_lines": 184,
+    "ratio": 0.826
+  },
+  {
+    "file": "agent/lsp/protocol.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 121,
+    "upstream_lines": 146,
+    "ratio": 0.829
+  },
+  {
+    "file": "openamer_cli/subcommands/import_cmd.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 15,
+    "upstream_lines": 18,
+    "ratio": 0.833
+  },
+  {
+    "file": "openamer_cli/subcommands/status.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 15,
+    "upstream_lines": 18,
+    "ratio": 0.833
+  },
+  {
+    "file": "openamer_cli/browser_connect.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1006,
+    "upstream_lines": 1168,
+    "ratio": 0.861
+  },
+  {
+    "file": "openamer_cli/moa_cmd.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 165,
+    "upstream_lines": 191,
+    "ratio": 0.864
+  },
+  {
+    "file": "openamer_cli/env_loader.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 971,
+    "upstream_lines": 1121,
+    "ratio": 0.866
+  },
+  {
+    "file": "openamer_cli/gateway_enroll.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 214,
+    "upstream_lines": 246,
+    "ratio": 0.87
+  },
+  {
+    "file": "agent/aux_accounting.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 83,
+    "upstream_lines": 95,
+    "ratio": 0.874
+  },
+  {
+    "file": "openamer_cli/onepassword_secrets_cli.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 346,
+    "upstream_lines": 396,
+    "ratio": 0.874
+  },
+  {
+    "file": "openamer_cli/hooks.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 310,
+    "upstream_lines": 353,
+    "ratio": 0.878
+  },
+  {
+    "file": "openamer_cli/subcommands/dump.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 15,
+    "upstream_lines": 17,
+    "ratio": 0.882
+  },
+  {
+    "file": "openamer_cli/dingtalk_auth.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 159,
+    "upstream_lines": 180,
+    "ratio": 0.883
+  },
+  {
+    "file": "agent/rate_limit_tracker.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 167,
+    "upstream_lines": 189,
+    "ratio": 0.884
+  },
+  {
+    "file": "openamer_cli/subcommands/backup.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 31,
+    "upstream_lines": 35,
+    "ratio": 0.886
+  },
+  {
+    "file": "openamer_cli/subcommands/config.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 39,
+    "upstream_lines": 44,
+    "ratio": 0.886
+  },
+  {
+    "file": "agent/learning_mutations.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 184,
+    "upstream_lines": 207,
+    "ratio": 0.889
+  },
+  {
+    "file": "agent/context_breakdown.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 324,
+    "upstream_lines": 364,
+    "ratio": 0.89
+  },
+  {
+    "file": "openamer_cli/model_catalog.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 361,
+    "upstream_lines": 405,
+    "ratio": 0.891
+  },
+  {
+    "file": "openamer_cli/memory_setup.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 416,
+    "upstream_lines": 462,
+    "ratio": 0.9
+  },
+  {
+    "file": "agent/secret_scope.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 424,
+    "upstream_lines": 469,
+    "ratio": 0.904
+  },
+  {
+    "file": "openamer_cli/toolset_validation.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 157,
+    "upstream_lines": 173,
+    "ratio": 0.908
+  },
+  {
+    "file": "openamer_cli/prompt_size.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 219,
+    "upstream_lines": 240,
+    "ratio": 0.912
+  },
+  {
+    "file": "openamer_cli/active_sessions.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 773,
+    "upstream_lines": 846,
+    "ratio": 0.914
+  },
+  {
+    "file": "openamer_cli/uninstall.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1107,
+    "upstream_lines": 1211,
+    "ratio": 0.914
+  },
+  {
+    "file": "openamer_cli/security_advisories.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 256,
+    "upstream_lines": 279,
+    "ratio": 0.918
+  },
+  {
+    "file": "agent/runtime_cwd.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 111,
+    "upstream_lines": 120,
+    "ratio": 0.925
+  },
+  {
+    "file": "openamer_cli/gateway_windows.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1767,
+    "upstream_lines": 1909,
+    "ratio": 0.926
+  },
+  {
+    "file": "agent/prompt_caching.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 351,
+    "upstream_lines": 377,
+    "ratio": 0.931
+  },
+  {
+    "file": "openamer_cli/pty_bridge.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 402,
+    "upstream_lines": 432,
+    "ratio": 0.931
+  },
+  {
+    "file": "openamer_cli/mcp_config.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1098,
+    "upstream_lines": 1170,
+    "ratio": 0.938
+  },
+  {
+    "file": "agent/kanban_stop.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 95,
+    "upstream_lines": 101,
+    "ratio": 0.941
+  },
+  {
+    "file": "agent/pet/state.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 54,
+    "upstream_lines": 57,
+    "ratio": 0.947
+  },
+  {
+    "file": "agent/verification_stop.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 231,
+    "upstream_lines": 244,
+    "ratio": 0.947
+  },
+  {
+    "file": "agent/lsp/eventlog.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 182,
+    "upstream_lines": 191,
+    "ratio": 0.953
+  },
+  {
+    "file": "openamer_cli/pt_input_extras.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 311,
+    "upstream_lines": 325,
+    "ratio": 0.957
+  },
+  {
+    "file": "agent/manual_compression_feedback.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 92,
+    "upstream_lines": 96,
+    "ratio": 0.958
+  },
+  {
+    "file": "agent/transports/codex_app_server.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 367,
+    "upstream_lines": 381,
+    "ratio": 0.963
+  },
+  {
+    "file": "agent/tool_guardrails.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 649,
+    "upstream_lines": 672,
+    "ratio": 0.966
+  },
+  {
+    "file": "openamer_cli/subcommands/webhook.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 65,
+    "upstream_lines": 67,
+    "ratio": 0.97
+  },
+  {
+    "file": "openamer_cli/timeouts.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 47,
+    "upstream_lines": 48,
+    "ratio": 0.979
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/ws_tickets.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 100,
+    "upstream_lines": 102,
+    "ratio": 0.98
+  },
+  {
+    "file": "agent/transports/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 55,
+    "upstream_lines": 56,
+    "ratio": 0.982
+  },
+  {
+    "file": "openamer_cli/session_export_md.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 219,
+    "upstream_lines": 219,
+    "ratio": 1.0
+  },
+  {
+    "file": "openamer_cli/subcommands/gui.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 67,
+    "upstream_lines": 67,
+    "ratio": 1.0
+  },
+  {
+    "file": "openamer_cli/subcommands/logout.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 16,
+    "upstream_lines": 16,
+    "ratio": 1.0
+  },
+  {
+    "file": "agent/vertex_adapter.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 254,
+    "upstream_lines": 253,
+    "ratio": 1.004
+  },
+  {
+    "file": "openamer_cli/oneshot.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 670,
+    "upstream_lines": 665,
+    "ratio": 1.008
+  },
+  {
+    "file": "openamer_cli/subcommands/update.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 116,
+    "upstream_lines": 115,
+    "ratio": 1.009
+  },
+  {
+    "file": "openamer_cli/cron.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1059,
+    "upstream_lines": 1045,
+    "ratio": 1.013
+  },
+  {
+    "file": "openamer_cli/backup.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2163,
+    "upstream_lines": 2134,
+    "ratio": 1.014
+  },
+  {
+    "file": "openamer_cli/_subprocess_compat.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 944,
+    "upstream_lines": 929,
+    "ratio": 1.016
+  },
+  {
+    "file": "agent/i18n.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 286,
+    "upstream_lines": 281,
+    "ratio": 1.018
+  },
+  {
+    "file": "agent/message_sanitization.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1032,
+    "upstream_lines": 1014,
+    "ratio": 1.018
+  },
+  {
+    "file": "openamer_cli/portal_cli.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 205,
+    "upstream_lines": 201,
+    "ratio": 1.02
+  },
+  {
+    "file": "agent/tool_dispatch_helpers.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 642,
+    "upstream_lines": 627,
+    "ratio": 1.024
+  },
+  {
+    "file": "openamer_cli/subcommands/uninstall.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 40,
+    "upstream_lines": 39,
+    "ratio": 1.026
+  },
+  {
+    "file": "openamer_cli/subcommands/cron.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 250,
+    "upstream_lines": 243,
+    "ratio": 1.029
+  },
+  {
+    "file": "openamer_cli/subcommands/acp.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 34,
+    "upstream_lines": 33,
+    "ratio": 1.03
+  },
+  {
+    "file": "agent/title_generator.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 825,
+    "upstream_lines": 800,
+    "ratio": 1.031
+  },
+  {
+    "file": "openamer_cli/credential_lifecycle.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 231,
+    "upstream_lines": 224,
+    "ratio": 1.031
+  },
+  {
+    "file": "openamer_cli/mcp_catalog.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 889,
+    "upstream_lines": 858,
+    "ratio": 1.036
+  },
+  {
+    "file": "openamer_cli/mcp_picker.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 228,
+    "upstream_lines": 220,
+    "ratio": 1.036
+  },
+  {
+    "file": "agent/verification_evidence.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 835,
+    "upstream_lines": 805,
+    "ratio": 1.037
+  },
+  {
+    "file": "openamer_cli/inventory.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1159,
+    "upstream_lines": 1115,
+    "ratio": 1.039
+  },
+  {
+    "file": "openamer_cli/xai_retirement.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 190,
+    "upstream_lines": 182,
+    "ratio": 1.044
+  },
+  {
+    "file": "openamer_cli/sqlite_safe_read.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 269,
+    "upstream_lines": 257,
+    "ratio": 1.047
+  },
+  {
+    "file": "agent/pet/generate/orchestrate.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 300,
+    "upstream_lines": 286,
+    "ratio": 1.049
+  },
+  {
+    "file": "agent/thread_scoped_output.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 135,
+    "upstream_lines": 128,
+    "ratio": 1.055
+  },
+  {
+    "file": "agent/secret_sources/_cache.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 204,
+    "upstream_lines": 193,
+    "ratio": 1.057
+  },
+  {
+    "file": "agent/billing_usage.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 223,
+    "upstream_lines": 210,
+    "ratio": 1.062
+  },
+  {
+    "file": "agent/onboarding.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 269,
+    "upstream_lines": 251,
+    "ratio": 1.072
+  },
+  {
+    "file": "openamer_cli/goals.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1912,
+    "upstream_lines": 1780,
+    "ratio": 1.074
+  },
+  {
+    "file": "agent/lmstudio_reasoning.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 43,
+    "upstream_lines": 40,
+    "ratio": 1.075
+  },
+  {
+    "file": "openamer_cli/profile_distribution.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 721,
+    "upstream_lines": 671,
+    "ratio": 1.075
+  },
+  {
+    "file": "openamer_cli/subcommands/debug.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 70,
+    "upstream_lines": 65,
+    "ratio": 1.077
+  },
+  {
+    "file": "agent/billing_view.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 403,
+    "upstream_lines": 374,
+    "ratio": 1.078
+  },
+  {
+    "file": "agent/subscription_view.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 319,
+    "upstream_lines": 296,
+    "ratio": 1.078
+  },
+  {
+    "file": "agent/transports/codex.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1057,
+    "upstream_lines": 977,
+    "ratio": 1.082
+  },
+  {
+    "file": "openamer_cli/middleware.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 233,
+    "upstream_lines": 215,
+    "ratio": 1.084
+  },
+  {
+    "file": "openamer_cli/profiles.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2613,
+    "upstream_lines": 2404,
+    "ratio": 1.087
+  },
+  {
+    "file": "agent/pet/store.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 367,
+    "upstream_lines": 337,
+    "ratio": 1.089
+  },
+  {
+    "file": "openamer_cli/subcommands/prompt_size.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 23,
+    "upstream_lines": 21,
+    "ratio": 1.095
+  },
+  {
+    "file": "agent/async_utils.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 55,
+    "upstream_lines": 50,
+    "ratio": 1.1
+  },
+  {
+    "file": "openamer_cli/azure_detect.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 297,
+    "upstream_lines": 270,
+    "ratio": 1.1
+  },
+  {
+    "file": "agent/secret_sources/base.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 282,
+    "upstream_lines": 256,
+    "ratio": 1.102
+  },
+  {
+    "file": "agent/lsp/workspace.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 232,
+    "upstream_lines": 210,
+    "ratio": 1.105
+  },
+  {
+    "file": "agent/lsp/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 115,
+    "upstream_lines": 104,
+    "ratio": 1.106
+  },
+  {
+    "file": "agent/gemini_schema.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 220,
+    "upstream_lines": 198,
+    "ratio": 1.111
+  },
+  {
+    "file": "agent/redact.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1618,
+    "upstream_lines": 1455,
+    "ratio": 1.112
+  },
+  {
+    "file": "agent/coding_context.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 665,
+    "upstream_lines": 592,
+    "ratio": 1.123
+  },
+  {
+    "file": "agent/skill_utils.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1016,
+    "upstream_lines": 902,
+    "ratio": 1.126
+  },
+  {
+    "file": "agent/context_references.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 792,
+    "upstream_lines": 702,
+    "ratio": 1.128
+  },
+  {
+    "file": "agent/learning_graph.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 288,
+    "upstream_lines": 255,
+    "ratio": 1.129
+  },
+  {
+    "file": "agent/models_dev.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1165,
+    "upstream_lines": 1032,
+    "ratio": 1.129
+  },
+  {
+    "file": "openamer_cli/subcommands/slack.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 61,
+    "upstream_lines": 54,
+    "ratio": 1.13
+  },
+  {
+    "file": "agent/skill_commands.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1165,
+    "upstream_lines": 1028,
+    "ratio": 1.133
+  },
+  {
+    "file": "agent/moa_trace.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 131,
+    "upstream_lines": 115,
+    "ratio": 1.139
+  },
+  {
+    "file": "openamer_cli/projects_db.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 557,
+    "upstream_lines": 485,
+    "ratio": 1.148
+  },
+  {
+    "file": "agent/lsp/manager.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 887,
+    "upstream_lines": 772,
+    "ratio": 1.149
+  },
+  {
+    "file": "openamer_cli/proxy/server.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 348,
+    "upstream_lines": 303,
+    "ratio": 1.149
+  },
+  {
+    "file": "openamer_cli/codex_runtime_switch.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 234,
+    "upstream_lines": 203,
+    "ratio": 1.153
+  },
+  {
+    "file": "openamer_cli/session_export.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 343,
+    "upstream_lines": 297,
+    "ratio": 1.155
+  },
+  {
+    "file": "agent/account_usage.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1139,
+    "upstream_lines": 975,
+    "ratio": 1.168
+  },
+  {
+    "file": "openamer_cli/auth_commands.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1092,
+    "upstream_lines": 927,
+    "ratio": 1.178
+  },
+  {
+    "file": "openamer_cli/subcommands/hooks.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 53,
+    "upstream_lines": 45,
+    "ratio": 1.178
+  },
+  {
+    "file": "openamer_cli/curator.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 905,
+    "upstream_lines": 766,
+    "ratio": 1.181
+  },
+  {
+    "file": "agent/conversation_compression.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 5254,
+    "upstream_lines": 4444,
+    "ratio": 1.182
+  },
+  {
+    "file": "openamer_cli/subcommands/setup.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 45,
+    "upstream_lines": 38,
+    "ratio": 1.184
+  },
+  {
+    "file": "openamer_cli/_early_recovery.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1738,
+    "upstream_lines": 1467,
+    "ratio": 1.185
+  },
+  {
+    "file": "openamer_cli/subcommands/plugins.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 236,
+    "upstream_lines": 199,
+    "ratio": 1.186
+  },
+  {
+    "file": "agent/lsp/reporter.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 95,
+    "upstream_lines": 80,
+    "ratio": 1.188
+  },
+  {
+    "file": "openamer_cli/moa_config.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 450,
+    "upstream_lines": 378,
+    "ratio": 1.19
+  },
+  {
+    "file": "agent/secret_sources/registry.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 519,
+    "upstream_lines": 434,
+    "ratio": 1.196
+  },
+  {
+    "file": "agent/pet/constants.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 121,
+    "upstream_lines": 101,
+    "ratio": 1.198
+  },
+  {
+    "file": "agent/credits_tracker.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1133,
+    "upstream_lines": 940,
+    "ratio": 1.205
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/prefix.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 166,
+    "upstream_lines": 137,
+    "ratio": 1.212
+  },
+  {
+    "file": "agent/subdirectory_hints.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 396,
+    "upstream_lines": 326,
+    "ratio": 1.215
+  },
+  {
+    "file": "agent/vault_store.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 832,
+    "upstream_lines": 685,
+    "ratio": 1.215
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/token_auth.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 117,
+    "upstream_lines": 96,
+    "ratio": 1.219
+  },
+  {
+    "file": "openamer_cli/subcommands/auth.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 88,
+    "upstream_lines": 72,
+    "ratio": 1.222
+  },
+  {
+    "file": "openamer_cli/provider_catalog.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 137,
+    "upstream_lines": 112,
+    "ratio": 1.223
+  },
+  {
+    "file": "agent/display.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1650,
+    "upstream_lines": 1346,
+    "ratio": 1.226
+  },
+  {
+    "file": "openamer_cli/clipboard.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 494,
+    "upstream_lines": 403,
+    "ratio": 1.226
+  },
+  {
+    "file": "agent/portal_tags.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 117,
+    "upstream_lines": 95,
+    "ratio": 1.232
+  },
+  {
+    "file": "openamer_cli/codex_models.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 287,
+    "upstream_lines": 232,
+    "ratio": 1.237
+  },
+  {
+    "file": "openamer_cli/subcommands/doctor.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 31,
+    "upstream_lines": 25,
+    "ratio": 1.24
+  },
+  {
+    "file": "openamer_cli/projects_cmd.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 299,
+    "upstream_lines": 241,
+    "ratio": 1.241
+  },
+  {
+    "file": "openamer_cli/debug.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 865,
+    "upstream_lines": 696,
+    "ratio": 1.243
+  },
+  {
+    "file": "openamer_cli/subcommands/profile.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 204,
+    "upstream_lines": 164,
+    "ratio": 1.244
+  },
+  {
+    "file": "openamer_cli/default_soul.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 90,
+    "upstream_lines": 72,
+    "ratio": 1.25
+  },
+  {
+    "file": "openamer_cli/fallback_cmd.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 315,
+    "upstream_lines": 252,
+    "ratio": 1.25
+  },
+  {
+    "file": "openamer_cli/partial_compress.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 235,
+    "upstream_lines": 188,
+    "ratio": 1.25
+  },
+  {
+    "file": "openamer_cli/voice.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 856,
+    "upstream_lines": 681,
+    "ratio": 1.257
+  },
+  {
+    "file": "agent/turn_finalizer.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1135,
+    "upstream_lines": 901,
+    "ratio": 1.26
+  },
+  {
+    "file": "openamer_cli/curses_ui.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1144,
+    "upstream_lines": 908,
+    "ratio": 1.26
+  },
+  {
+    "file": "agent/stream_diag.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 307,
+    "upstream_lines": 243,
+    "ratio": 1.263
+  },
+  {
+    "file": "agent/lsp/cli.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 268,
+    "upstream_lines": 212,
+    "ratio": 1.264
+  },
+  {
+    "file": "openamer_cli/telegram_managed_bot.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 238,
+    "upstream_lines": 188,
+    "ratio": 1.266
+  },
+  {
+    "file": "agent/turn_retry_state.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 76,
+    "upstream_lines": 60,
+    "ratio": 1.267
+  },
+  {
+    "file": "openamer_cli/cli_agent_setup_mixin.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1176,
+    "upstream_lines": 928,
+    "ratio": 1.267
+  },
+  {
+    "file": "openamer_cli/send_cmd.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 382,
+    "upstream_lines": 301,
+    "ratio": 1.269
+  },
+  {
+    "file": "openamer_cli/session_recovery.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1654,
+    "upstream_lines": 1297,
+    "ratio": 1.275
+  },
+  {
+    "file": "openamer_cli/subcommands/model.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 46,
+    "upstream_lines": 36,
+    "ratio": 1.278
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/native_flow.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 211,
+    "upstream_lines": 165,
+    "ratio": 1.279
+  },
+  {
+    "file": "agent/transports/bedrock.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 115,
+    "upstream_lines": 89,
+    "ratio": 1.292
+  },
+  {
+    "file": "openamer_cli/security_audit_startup.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 224,
+    "upstream_lines": 173,
+    "ratio": 1.295
+  },
+  {
+    "file": "agent/memory_provider.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 292,
+    "upstream_lines": 225,
+    "ratio": 1.298
+  },
+  {
+    "file": "openamer_cli/model_normalize.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 340,
+    "upstream_lines": 262,
+    "ratio": 1.298
+  },
+  {
+    "file": "openamer_cli/dump.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 447,
+    "upstream_lines": 344,
+    "ratio": 1.299
+  },
+  {
+    "file": "agent/lsp/client.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1100,
+    "upstream_lines": 842,
+    "ratio": 1.306
+  },
+  {
+    "file": "agent/transports/types.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 128,
+    "upstream_lines": 98,
+    "ratio": 1.306
+  },
+  {
+    "file": "openamer_cli/subcommands/gateway.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 348,
+    "upstream_lines": 266,
+    "ratio": 1.308
+  },
+  {
+    "file": "agent/system_prompt.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1156,
+    "upstream_lines": 883,
+    "ratio": 1.309
+  },
+  {
+    "file": "agent/moonshot_schema.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 240,
+    "upstream_lines": 183,
+    "ratio": 1.311
+  },
+  {
+    "file": "agent/bounded_response.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 104,
+    "upstream_lines": 79,
+    "ratio": 1.316
+  },
+  {
+    "file": "openamer_cli/session_recap.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 237,
+    "upstream_lines": 180,
+    "ratio": 1.317
+  },
+  {
+    "file": "openamer_cli/subcommands/login.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 57,
+    "upstream_lines": 43,
+    "ratio": 1.326
+  },
+  {
+    "file": "agent/turn_context.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1900,
+    "upstream_lines": 1429,
+    "ratio": 1.33
+  },
+  {
+    "file": "agent/markdown_tables.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 249,
+    "upstream_lines": 187,
+    "ratio": 1.332
+  },
+  {
+    "file": "agent/bedrock_adapter.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2151,
+    "upstream_lines": 1614,
+    "ratio": 1.333
+  },
+  {
+    "file": "openamer_cli/secrets_cli.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 689,
+    "upstream_lines": 517,
+    "ratio": 1.333
+  },
+  {
+    "file": "agent/web_search_registry.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 273,
+    "upstream_lines": 204,
+    "ratio": 1.338
+  },
+  {
+    "file": "openamer_cli/service_manager.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 923,
+    "upstream_lines": 689,
+    "ratio": 1.34
+  },
+  {
+    "file": "agent/background_review.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1847,
+    "upstream_lines": 1377,
+    "ratio": 1.341
+  },
+  {
+    "file": "openamer_cli/codex_runtime_plugin_migration.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 694,
+    "upstream_lines": 517,
+    "ratio": 1.342
+  },
+  {
+    "file": "agent/auxiliary_client.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 11141,
+    "upstream_lines": 8281,
+    "ratio": 1.345
+  },
+  {
+    "file": "agent/replay_cleanup.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 330,
+    "upstream_lines": 245,
+    "ratio": 1.347
+  },
+  {
+    "file": "openamer_cli/skills_hub.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2350,
+    "upstream_lines": 1731,
+    "ratio": 1.358
+  },
+  {
+    "file": "openamer_cli/gateway.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 7734,
+    "upstream_lines": 5690,
+    "ratio": 1.359
+  },
+  {
+    "file": "agent/learning_graph_render.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 579,
+    "upstream_lines": 423,
+    "ratio": 1.369
+  },
+  {
+    "file": "agent/gemini_native_adapter.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1396,
+    "upstream_lines": 1014,
+    "ratio": 1.377
+  },
+  {
+    "file": "agent/transports/chat_completions.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1108,
+    "upstream_lines": 804,
+    "ratio": 1.378
+  },
+  {
+    "file": "openamer_cli/subcommands/tools.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 69,
+    "upstream_lines": 50,
+    "ratio": 1.38
+  },
+  {
+    "file": "openamer_cli/security_audit.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 442,
+    "upstream_lines": 320,
+    "ratio": 1.381
+  },
+  {
+    "file": "openamer_cli/suggestions_cmd.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 159,
+    "upstream_lines": 115,
+    "ratio": 1.383
+  },
+  {
+    "file": "agent/trace_upload.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 363,
+    "upstream_lines": 262,
+    "ratio": 1.385
+  },
+  {
+    "file": "agent/shell_hooks.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1194,
+    "upstream_lines": 858,
+    "ratio": 1.392
+  },
+  {
+    "file": "agent/stream_single_writer.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 53,
+    "upstream_lines": 38,
+    "ratio": 1.395
+  },
+  {
+    "file": "openamer_cli/stdio.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 168,
+    "upstream_lines": 120,
+    "ratio": 1.4
+  },
+  {
+    "file": "openamer_cli/gui_uninstall.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 244,
+    "upstream_lines": 174,
+    "ratio": 1.402
+  },
+  {
+    "file": "agent/codex_runtime.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2091,
+    "upstream_lines": 1481,
+    "ratio": 1.412
+  },
+  {
+    "file": "openamer_cli/subcommands/mcp.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 99,
+    "upstream_lines": 70,
+    "ratio": 1.414
+  },
+  {
+    "file": "agent/agent_runtime_helpers.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 5334,
+    "upstream_lines": 3765,
+    "ratio": 1.417
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/base.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 238,
+    "upstream_lines": 168,
+    "ratio": 1.417
+  },
+  {
+    "file": "openamer_cli/container_boot.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 534,
+    "upstream_lines": 376,
+    "ratio": 1.42
+  },
+  {
+    "file": "openamer_cli/banner.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1092,
+    "upstream_lines": 764,
+    "ratio": 1.429
+  },
+  {
+    "file": "openamer_cli/providers.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 971,
+    "upstream_lines": 678,
+    "ratio": 1.432
+  },
+  {
+    "file": "agent/model_metadata.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 3773,
+    "upstream_lines": 2627,
+    "ratio": 1.436
+  },
+  {
+    "file": "agent/lsp/install.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 467,
+    "upstream_lines": 324,
+    "ratio": 1.441
+  },
+  {
+    "file": "openamer_cli/proxy_cli.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 926,
+    "upstream_lines": 641,
+    "ratio": 1.445
+  },
+  {
+    "file": "agent/azure_identity_adapter.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 521,
+    "upstream_lines": 358,
+    "ratio": 1.455
+  },
+  {
+    "file": "openamer_cli/plugins.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 3148,
+    "upstream_lines": 2163,
+    "ratio": 1.455
+  },
+  {
+    "file": "agent/moa_loop.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2279,
+    "upstream_lines": 1564,
+    "ratio": 1.457
+  },
+  {
+    "file": "openamer_cli/cli_billing_mixin.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1695,
+    "upstream_lines": 1159,
+    "ratio": 1.462
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/cookies.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 365,
+    "upstream_lines": 249,
+    "ratio": 1.466
+  },
+  {
+    "file": "agent/context_compressor.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 8425,
+    "upstream_lines": 5737,
+    "ratio": 1.469
+  },
+  {
+    "file": "openamer_cli/agent_plugins.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 810,
+    "upstream_lines": 548,
+    "ratio": 1.478
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 51,
+    "upstream_lines": 34,
+    "ratio": 1.5
+  },
+  {
+    "file": "openamer_cli/slack_cli.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 222,
+    "upstream_lines": 148,
+    "ratio": 1.5
+  },
+  {
+    "file": "agent/memory_manager.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1409,
+    "upstream_lines": 935,
+    "ratio": 1.507
+  },
+  {
+    "file": "agent/tool_executor.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2951,
+    "upstream_lines": 1958,
+    "ratio": 1.507
+  },
+  {
+    "file": "agent/curator_backup.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 744,
+    "upstream_lines": 492,
+    "ratio": 1.512
+  },
+  {
+    "file": "openamer_cli/session_filters.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 194,
+    "upstream_lines": 128,
+    "ratio": 1.516
+  },
+  {
+    "file": "agent/image_routing.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 866,
+    "upstream_lines": 566,
+    "ratio": 1.53
+  },
+  {
+    "file": "agent/skill_bundles.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 327,
+    "upstream_lines": 213,
+    "ratio": 1.535
+  },
+  {
+    "file": "agent/web_search_provider.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 156,
+    "upstream_lines": 101,
+    "ratio": 1.545
+  },
+  {
+    "file": "agent/secret_sources/onepassword.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 521,
+    "upstream_lines": 337,
+    "ratio": 1.546
+  },
+  {
+    "file": "agent/codex_responses_adapter.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2133,
+    "upstream_lines": 1359,
+    "ratio": 1.57
+  },
+  {
+    "file": "agent/chat_completion_helpers.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 6302,
+    "upstream_lines": 4001,
+    "ratio": 1.575
+  },
+  {
+    "file": "agent/context_engine.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 394,
+    "upstream_lines": 250,
+    "ratio": 1.576
+  },
+  {
+    "file": "agent/lsp/range_shift.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 120,
+    "upstream_lines": 76,
+    "ratio": 1.579
+  },
+  {
+    "file": "agent/plugin_llm.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 953,
+    "upstream_lines": 600,
+    "ratio": 1.588
+  },
+  {
+    "file": "agent/file_safety.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 837,
+    "upstream_lines": 526,
+    "ratio": 1.591
+  },
+  {
+    "file": "agent/agent_init.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 3606,
+    "upstream_lines": 2262,
+    "ratio": 1.594
+  },
+  {
+    "file": "openamer_cli/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 122,
+    "upstream_lines": 76,
+    "ratio": 1.605
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/routes.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1042,
+    "upstream_lines": 646,
+    "ratio": 1.613
+  },
+  {
+    "file": "agent/pet/generate/atlas.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1013,
+    "upstream_lines": 621,
+    "ratio": 1.631
+  },
+  {
+    "file": "agent/transports/codex_app_server_session.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1385,
+    "upstream_lines": 849,
+    "ratio": 1.631
+  },
+  {
+    "file": "agent/pet/render.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 552,
+    "upstream_lines": 338,
+    "ratio": 1.633
+  },
+  {
+    "file": "openamer_cli/_parser.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 647,
+    "upstream_lines": 394,
+    "ratio": 1.642
+  },
+  {
+    "file": "agent/pet/generate/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 23,
+    "upstream_lines": 14,
+    "ratio": 1.643
+  },
+  {
+    "file": "agent/video_gen_provider.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 475,
+    "upstream_lines": 289,
+    "ratio": 1.644
+  },
+  {
+    "file": "openamer_cli/subcommands/memory.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 56,
+    "upstream_lines": 34,
+    "ratio": 1.647
+  },
+  {
+    "file": "agent/transports/codex_event_projector.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 283,
+    "upstream_lines": 171,
+    "ratio": 1.655
+  },
+  {
+    "file": "agent/transports/anthropic.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 228,
+    "upstream_lines": 137,
+    "ratio": 1.664
+  },
+  {
+    "file": "agent/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 5,
+    "upstream_lines": 3,
+    "ratio": 1.667
+  },
+  {
+    "file": "openamer_cli/cli_commands_mixin.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 3618,
+    "upstream_lines": 2165,
+    "ratio": 1.671
+  },
+  {
+    "file": "openamer_cli/subcommands/dashboard.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 210,
+    "upstream_lines": 125,
+    "ratio": 1.68
+  },
+  {
+    "file": "agent/secret_sources/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 32,
+    "upstream_lines": 19,
+    "ratio": 1.684
+  },
+  {
+    "file": "agent/curator.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2051,
+    "upstream_lines": 1214,
+    "ratio": 1.689
+  },
+  {
+    "file": "openamer_cli/console_engine.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1478,
+    "upstream_lines": 860,
+    "ratio": 1.719
+  },
+  {
+    "file": "openamer_cli/subcommands/skills.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 308,
+    "upstream_lines": 177,
+    "ratio": 1.74
+  },
+  {
+    "file": "openamer_cli/subcommands/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 14,
+    "upstream_lines": 8,
+    "ratio": 1.75
+  },
+  {
+    "file": "agent/prompt_builder.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 3111,
+    "upstream_lines": 1750,
+    "ratio": 1.778
+  },
+  {
+    "file": "agent/retry_utils.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 347,
+    "upstream_lines": 195,
+    "ratio": 1.779
+  },
+  {
+    "file": "openamer_cli/dashboard_register.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 404,
+    "upstream_lines": 227,
+    "ratio": 1.78
+  },
+  {
+    "file": "openamer_cli/model_switch.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 3562,
+    "upstream_lines": 1979,
+    "ratio": 1.8
+  },
+  {
+    "file": "openamer_cli/diagnostics_upload.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 112,
+    "upstream_lines": 62,
+    "ratio": 1.806
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/public_paths.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 49,
+    "upstream_lines": 27,
+    "ratio": 1.815
+  },
+  {
+    "file": "openamer_cli/status.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 774,
+    "upstream_lines": 424,
+    "ratio": 1.825
+  },
+  {
+    "file": "agent/tts_provider.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 210,
+    "upstream_lines": 114,
+    "ratio": 1.842
+  },
+  {
+    "file": "openamer_cli/skin_engine.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1029,
+    "upstream_lines": 558,
+    "ratio": 1.844
+  },
+  {
+    "file": "agent/insights.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1166,
+    "upstream_lines": 610,
+    "ratio": 1.911
+  },
+  {
+    "file": "agent/secret_sources/command.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 372,
+    "upstream_lines": 193,
+    "ratio": 1.927
+  },
+  {
+    "file": "agent/usage_pricing.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1543,
+    "upstream_lines": 785,
+    "ratio": 1.966
+  },
+  {
+    "file": "openamer_cli/models.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 5254,
+    "upstream_lines": 2661,
+    "ratio": 1.974
+  },
+  {
+    "file": "openamer_cli/plugins_cmd.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2270,
+    "upstream_lines": 1145,
+    "ratio": 1.983
+  },
+  {
+    "file": "openamer_cli/dashboard_auth/middleware.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 615,
+    "upstream_lines": 310,
+    "ratio": 1.984
+  },
+  {
+    "file": "openamer_cli/proxy/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 10,
+    "upstream_lines": 5,
+    "ratio": 2.0
+  },
+  {
+    "file": "openamer_cli/kanban.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2896,
+    "upstream_lines": 1436,
+    "ratio": 2.017
+  },
+  {
+    "file": "agent/browser_provider.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 115,
+    "upstream_lines": 57,
+    "ratio": 2.018
+  },
+  {
+    "file": "agent/secret_sources/bitwarden.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 858,
+    "upstream_lines": 400,
+    "ratio": 2.145
+  },
+  {
+    "file": "agent/think_scrubber.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 404,
+    "upstream_lines": 187,
+    "ratio": 2.16
+  },
+  {
+    "file": "openamer_cli/kanban_db.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 9172,
+    "upstream_lines": 4231,
+    "ratio": 2.168
+  },
+  {
+    "file": "openamer_cli/callbacks.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 219,
+    "upstream_lines": 100,
+    "ratio": 2.19
+  },
+  {
+    "file": "openamer_cli/runtime_provider.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2679,
+    "upstream_lines": 1206,
+    "ratio": 2.221
+  },
+  {
+    "file": "agent/lsp/servers.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1205,
+    "upstream_lines": 537,
+    "ratio": 2.244
+  },
+  {
+    "file": "agent/proxy_sources/iron_proxy.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2222,
+    "upstream_lines": 966,
+    "ratio": 2.3
+  },
+  {
+    "file": "openamer_cli/subcommands/security.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 81,
+    "upstream_lines": 35,
+    "ratio": 2.314
+  },
+  {
+    "file": "agent/thinking_timeout_guidance.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 119,
+    "upstream_lines": 51,
+    "ratio": 2.333
+  },
+  {
+    "file": "agent/transcription_provider.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 155,
+    "upstream_lines": 66,
+    "ratio": 2.348
+  },
+  {
+    "file": "agent/video_gen_registry.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 107,
+    "upstream_lines": 45,
+    "ratio": 2.378
+  },
+  {
+    "file": "agent/transcription_registry.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 108,
+    "upstream_lines": 45,
+    "ratio": 2.4
+  },
+  {
+    "file": "agent/browser_registry.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 147,
+    "upstream_lines": 61,
+    "ratio": 2.41
+  },
+  {
+    "file": "openamer_cli/config.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 9812,
+    "upstream_lines": 3945,
+    "ratio": 2.487
+  },
+  {
+    "file": "agent/tts_registry.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 117,
+    "upstream_lines": 45,
+    "ratio": 2.6
+  },
+  {
+    "file": "openamer_cli/model_setup_flows.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2899,
+    "upstream_lines": 1047,
+    "ratio": 2.769
+  },
+  {
+    "file": "agent/pet/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 48,
+    "upstream_lines": 17,
+    "ratio": 2.824
+  },
+  {
+    "file": "agent/reasoning_timeouts.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 245,
+    "upstream_lines": 85,
+    "ratio": 2.882
+  },
+  {
+    "file": "agent/anthropic_adapter.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2835,
+    "upstream_lines": 885,
+    "ratio": 3.203
+  },
+  {
+    "file": "openamer_cli/commands.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 1883,
+    "upstream_lines": 570,
+    "ratio": 3.304
+  },
+  {
+    "file": "openamer_cli/psutil_android.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 80,
+    "upstream_lines": 24,
+    "ratio": 3.333
+  },
+  {
+    "file": "openamer_cli/auth.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 8557,
+    "upstream_lines": 2424,
+    "ratio": 3.53
+  },
+  {
+    "file": "agent/conversation_loop.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 7090,
+    "upstream_lines": 1955,
+    "ratio": 3.627
+  },
+  {
+    "file": "openamer_cli/tools_config.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 4416,
+    "upstream_lines": 1196,
+    "ratio": 3.692
+  },
+  {
+    "file": "openamer_cli/setup.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2977,
+    "upstream_lines": 767,
+    "ratio": 3.881
+  },
+  {
+    "file": "agent/proxy_sources/__init__.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 4,
+    "upstream_lines": 1,
+    "ratio": 4.0
+  },
+  {
+    "file": "agent/copilot_acp_client.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 699,
+    "upstream_lines": 157,
+    "ratio": 4.452
+  },
+  {
+    "file": "openamer_cli/main.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 16443,
+    "upstream_lines": 3555,
+    "ratio": 4.625
+  },
+  {
+    "file": "openamer_cli/tips.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 435,
+    "upstream_lines": 78,
+    "ratio": 5.577
+  },
+  {
+    "file": "openamer_cli/build_info.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 40,
+    "upstream_lines": 6,
+    "ratio": 6.667
+  },
+  {
+    "file": "openamer_cli/web_server.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 16644,
+    "upstream_lines": 1528,
+    "ratio": 10.893
+  },
+  {
+    "file": "openamer_cli/doctor.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 2296,
+    "upstream_lines": 200,
+    "ratio": 11.48
+  },
+  {
+    "file": "openamer_cli/plugin_compat.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 258,
+    "upstream_lines": 22,
+    "ratio": 11.727
+  },
+  {
+    "file": "openamer_cli/managed_uv.py",
+    "class": "SUBSTANTIVE",
+    "changed_lines": 878,
+    "upstream_lines": 51,
+    "ratio": 17.216
+  }
+]
