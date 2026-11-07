@@ -1,0 +1,39 @@
+{
+  "scanned_files": 3375,
+  "imports": {},
+  "network": {
+    "openamer_cli/_early_recovery.py": [
+      36
+    ],
+    "tools/desktop_ui.py": [
+      18
+    ],
+    "tools/drive_preview_tool.py": [
+      11
+    ],
+    "scripts/audit_upstream_coupling.py": [
+      32
+    ],
+    "scripts/audit_upstream_independence.py": [
+      28,
+      46
+    ],
+    "scripts/port_from_upstream.py": [
+      1,
+      19,
+      37
+    ],
+    "apps/desktop/src/lib/preview-act/act-in-page.ts": [
+      31
+    ]
+  },
+  "token_files": {
+    "openamer_cli/identity.py": 1,
+    "scripts/audit_upstream_coupling.py": 2,
+    "scripts/audit_upstream_independence.py": 5,
+    "scripts/port_from_upstream.py": 9,
+    "scripts/update-safe.ps1": 5,
+    "scripts/training/online-learning-service.ps1": 2,
+    "packs/pro-pack/skills/windows-computer-use/references/session-recovery-fix.md": 3
+  }
+}

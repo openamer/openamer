@@ -1,4 +1,7 @@
-"""Compatibility helper for explicit agent stop producers."""
+"""Compatibility helper for explicit agent stop producers.
+
+Upstream-Derived: agent/interrupt_compat.py @ 7fa7b58b3c (MIT)
+"""
 
 from __future__ import annotations
 
