@@ -11,56 +11,81 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from upstream_rebrand import (  # noqa: E402
+    KEEP_PATTERN,
+    RENAMES,
+    leftover_hermes,
+    rebrand,
+)
 
 OPENAMER = Path(__file__).resolve().parent.parent
 UPSTREAM = Path(r"C:\Users\damir\AppData\Local\hermes\hermes-agent")
 
-# Ordered: longest / most specific first so partial renames can't fire early.
-RENAMES: tuple[tuple[str, str], ...] = (
-    ("hermes_cli", "openamer_cli"),
-    ("hermes_constants", "openamer_constants"),
-    ("hermes_state", "openamer_state"),
-    ("hermes_logging", "openamer_logging"),
-    ("get_hermes_home", "get_openamer_home"),
-    ("get_default_hermes_root", "get_default_openamer_root"),
-    ("hermes_home_key", "openamer_home_key"),
-    ("set_hermes_home_override", "set_openamer_home_override"),
-    ("reset_hermes_home_override", "reset_openamer_home_override"),
-    ("get_hermes_home_override", "get_openamer_home_override"),
-    ("HERMES_HOME", "OPENAMER_HOME"),
-    ("HERMES_KANBAN", "OPENAMER_KANBAN"),
-    ("HERMES_", "OPENAMER_"),
-    ("`hermes ", "`openamer "),
-    ("hermes-agent", "openamer-agent"),
-    ("HermesAgent", "OpenAmerAgent"),
-    ("HermesCLI", "OpenAmerCLI"),
-    ("hermes_pkce", "openamer_pkce"),
-    ("Hermes", "OpenAmer"),
-    ("hermes", "openamer"),
+# Directories that are not part of the shipped tree. Worktrees, scratch
+# copies and archived snapshots live inside the checkout and would otherwise
+# be scanned as if they were product code.
+SKIP_DIRS = frozenset(
+    {
+        "tests",
+        "node_modules",
+        "venv",
+        ".venv",
+        "website",
+        "tmp",
+        "out",
+        "reports",
+        "wt-gate179",
+        "oa-v28",
+    }
 )
 
-# ``hermes-parser`` / ``@hermes/`` are the Meta JS toolchain, deliberately kept.
-KEEP_PATTERN = re.compile(r"hermes-(?:parser|estimator)|@hermes/")
+# The audit tooling itself necessarily names upstream modules and paths. It is
+# not product code and its mentions are the audit working as intended.
+TOOLING_FILES = frozenset(
+    {
+        "scripts/port_from_upstream.py",
+        "scripts/upstream_rebrand.py",
+        "scripts/audit_upstream_coupling.py",
+        "scripts/audit_upstream_independence.py",
+        "scripts/audit_upstream_independence_desktop.py",
+    }
+)
 
+# Attribution sites: a file that names its upstream origin on purpose.
+# ``openamer_cli/identity.py`` guards against claiming a foreign lineage and
+# therefore names the marker it forbids.
+ATTRIBUTION_FILES = frozenset(
+    {
+        "agent/error_classifier.py",
+        "openamer_cli/_early_recovery.py",
+        "openamer_cli/archive_safe.py",
+        "openamer_cli/identity.py",
+        "openamer_cli/kanban_db.py",
+        "openamer_cli/kanban_db_connect.py",
+        "openamer_cli/kanban_db_graph.py",
+        "openamer_cli/kanban_swarm.py",
+        "openamer_state.py",
+        "tools/desktop_ui.py",
+        "tools/drive_preview_tool.py",
+    }
+)
 
-def rebrand(text: str) -> str:
-    for src, dst in RENAMES:
-        text = text.replace(src, dst)
-    return text
-
-
-def leftover_hermes(text: str, source_name: str) -> list[str]:
-    hits = []
-    for lineno, line in enumerate(text.splitlines(), 1):
-        if "hermes" not in line.lower():
-            continue
-        stripped = KEEP_PATTERN.sub("", line)
-        if "hermes" in stripped.lower():
-            hits.append(f"{source_name}:{lineno}: {line.strip()[:120]}")
-    return hits
+__all__ = [
+    "ATTRIBUTION_FILES",
+    "KEEP_PATTERN",
+    "RENAMES",
+    "OPENAMER",
+    "UPSTREAM",
+    "SKIP_DIRS",
+    "TOOLING_FILES",
+    "leftover_hermes",
+    "rebrand",
+]
 
 
 def main() -> int:
@@ -73,15 +98,23 @@ def main() -> int:
 
     if args.check_only:
         bad = 0
+        attributed = 0
         for path in sorted(OPENAMER.rglob("*.py")):
             rel = path.relative_to(OPENAMER)
-            if any(p in rel.parts for p in ("tests", "node_modules", "venv", ".venv", "website")):
+            rel_posix = rel.as_posix()
+            if any(p in rel.parts for p in SKIP_DIRS):
+                continue
+            if rel_posix in TOOLING_FILES:
                 continue
             hits = leftover_hermes(path.read_text(encoding="utf-8", errors="replace"), str(rel))
+            if rel_posix in ATTRIBUTION_FILES:
+                attributed += len(hits)
+                continue
             bad += len(hits)
             for h in hits:
                 print(h)
         print(f"leftover hermes tokens: {bad}")
+        print(f"attributed upstream mentions: {attributed}")
         return 1 if bad else 0
 
     if not args.file:
