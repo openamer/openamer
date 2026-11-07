@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/overlays/overlay-chrome.tsx @ 715aa3de8 (MIT)
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
 import { Button } from '@/components/ui/button'

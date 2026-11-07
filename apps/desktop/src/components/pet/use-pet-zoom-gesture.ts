@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/pet/use-pet-zoom-gesture.ts @ 7d1b72a15 (MIT)
 import { type RefObject, useEffect } from 'react'
 
 import { $petInfo } from '@/store/pet'

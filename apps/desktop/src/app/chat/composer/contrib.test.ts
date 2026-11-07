@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/chat/composer/contrib.test.ts @ 860a3f67b (MIT)
 import { afterEach, describe, expect, it } from 'vitest'
 
 import { registry } from '@/contrib/registry'

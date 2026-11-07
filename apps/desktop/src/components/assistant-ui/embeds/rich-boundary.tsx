@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/rich-boundary.tsx @ 81ac562bf (MIT)
 import { Component, type ReactNode } from 'react'
 
 interface Props {

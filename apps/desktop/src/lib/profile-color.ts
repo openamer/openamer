@@ -2,6 +2,7 @@
 // (the sidebar profile rail). The default/root profile has no color — named
 // profiles get a stable hue derived from the name, so the same profile always
 // reads the same color without persisting anything.
+// Upstream-Derived: apps/desktop/src/lib/profile-color.ts @ 62fe9fd10 (MIT)
 
 const PROFILE_TAG_SATURATION = 68
 const PROFILE_TAG_LIGHTNESS = 58

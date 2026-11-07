@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/providers/youtube.ts @ 03477e9ae (MIT)
 import { bareHost, type EmbedMatcher } from './types'
 
 const YOUTUBE_ID_RE = /^[A-Za-z0-9_-]{11}$/

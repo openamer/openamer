@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/right-sidebar/review/churn-bar.tsx @ 68680db10 (MIT)
 import { useStore } from '@nanostores/react'
 import { useMemo } from 'react'
 

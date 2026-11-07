@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/generate-button.tsx @ 743985bf1 (MIT)
 import type * as React from 'react'
 
 import { Button } from '@/components/ui/button'

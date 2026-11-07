@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/chat/json-document-editor.tsx @ 914d19b3a (MIT)
 import type * as React from 'react'
 import { type RefObject, useRef } from 'react'
 

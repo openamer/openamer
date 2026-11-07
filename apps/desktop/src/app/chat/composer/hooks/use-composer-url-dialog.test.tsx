@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/chat/composer/hooks/use-composer-url-dialog.test.tsx @ b48fcfa8b (MIT)
 import { act, renderHook } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 

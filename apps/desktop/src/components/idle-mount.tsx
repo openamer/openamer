@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/idle-mount.tsx @ e702a45b5 (MIT)
 import { type ReactNode, useEffect, useState } from 'react'
 
 /**

@@ -12,6 +12,7 @@
 // returned unchanged when no mapping is known — it may already be a stored id
 // (e.g. a notification for a session this window never opened), in which case
 // the normal resume/REST lookup handles it.
+// Upstream-Derived: apps/desktop/src/lib/session-ids.ts @ f9ffe0bc3 (MIT)
 export function storedSessionIdForNotification(
   id: string,
   runtimeIdByStoredSessionId: ReadonlyMap<string, string>

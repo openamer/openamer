@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/haptics.ts @ 9dbd3c57d (MIT)
 import type { HapticInput, TriggerOptions } from 'web-haptics'
 
 import { $hapticsMuted } from '@/store/haptics'

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/providers/vimeo.ts @ 81ac562bf (MIT)
 import { bareHost, type EmbedMatcher } from './types'
 
 export const vimeo: EmbedMatcher = url => {

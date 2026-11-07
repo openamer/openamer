@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/session-search.ts @ 4e7b0389e (MIT)
 import { normalize } from '@/lib/text'
 import type { SessionInfo } from '@/types/openamer'
 

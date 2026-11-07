@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/chat/composer/hooks/use-composer-url-dialog.ts @ 2a84bcb14 (MIT)
 import { useEffect, useRef, useState } from 'react'
 
 import { triggerHaptic } from '@/lib/haptics'

@@ -12,6 +12,7 @@
  * render subscribes to, so caller state flows into the slot on every render
  * without re-registering (which would churn every other slot).
  */
+// Upstream-Derived: apps/desktop/src/contrib/react/contribute.tsx @ aefb36299 (MIT)
 
 import { useStore } from '@nanostores/react'
 import { atom, type WritableAtom } from 'nanostores'

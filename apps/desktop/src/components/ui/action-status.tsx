@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/action-status.tsx @ f033b7dbf (MIT)
 import type { ReactNode } from 'react'
 
 import { Check, Loader2 } from '@/lib/icons'

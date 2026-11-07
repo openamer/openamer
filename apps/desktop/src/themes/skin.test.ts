@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/themes/skin.test.ts @ a8444fbca (MIT)
 import { describe, expect, it } from 'vitest'
 
 import { luminance, normalizeHex } from './color'

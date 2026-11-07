@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/right-sidebar/terminal/workspace.tsx @ 1a3b22065 (MIT)
 import { useStore } from '@nanostores/react'
 import { useEffect } from 'react'
 

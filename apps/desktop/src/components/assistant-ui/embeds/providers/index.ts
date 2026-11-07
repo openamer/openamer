@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/providers/index.ts @ 81ac562bf (MIT)
 import { instagram } from './instagram'
 import { maps } from './maps'
 import { pinterest } from './pinterest'

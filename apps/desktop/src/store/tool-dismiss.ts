@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/store/tool-dismiss.ts @ b16e22b8f (MIT)
 import { atom, computed, type ReadableAtom } from 'nanostores'
 
 type DismissedToolRows = Record<string, true>

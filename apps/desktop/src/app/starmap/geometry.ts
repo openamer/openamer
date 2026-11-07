@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/starmap/geometry.ts @ 3e7ed0c53 (MIT)
 import type { StarmapNode } from '@/types/openamer'
 
 import { AGE_GRADIENT, FIT_PADDING, RING_INNER, RING_OUTER, TILT, ZOOM_MAX, ZOOM_MIN } from './constants'

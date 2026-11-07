@@ -5,6 +5,7 @@
  * per-flush path) can use them without pulling in the resolver; the stateful
  * title lookup lives in `session-link-title.ts`.
  */
+// Upstream-Derived: apps/desktop/src/lib/session-refs.ts @ 99ab03629 (MIT)
 
 /** Mirrors the composer/transcript form in `directive-text.tsx`: a bare value,
  *  or one fenced in backticks/quotes so a value with spaces survives. The

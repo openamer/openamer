@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/chat/skeletons.tsx @ 344415892 (MIT)
 import type { CSSProperties } from 'react'
 
 import { Skeleton } from '@/components/ui/skeleton'

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/shell/hooks/use-window-controls-overlay-width.ts @ 3b1344c18 (MIT)
 import { useEffect, useState } from 'react'
 
 // Measure the EXACT width of the native window-controls overlay (min/max/close)

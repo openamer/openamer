@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/settings/billing/use-subscription-change.ts @ 60ec6a3b8 (MIT)
 import { useQueryClient } from '@tanstack/react-query'
 import { useRef, useState } from 'react'
 

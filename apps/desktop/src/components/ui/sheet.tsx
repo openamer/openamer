@@ -1,4 +1,5 @@
 'use client'
+// Upstream-Derived: apps/desktop/src/components/ui/sheet.tsx @ b1b89f843 (MIT)
 
 import { Dialog as SheetPrimitive } from 'radix-ui'
 import * as React from 'react'

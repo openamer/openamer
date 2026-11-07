@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/pet-generate/lib/read-reference-image.ts @ 1fe013ee1 (MIT)
 const DEFAULT_MAX_INPUT_BYTES = 16 * 1024 * 1024
 
 function loadImage(url: string): Promise<HTMLImageElement> {

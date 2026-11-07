@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/store/preview-edit.ts @ ff8136598 (MIT)
 import { atom } from 'nanostores'
 
 // URLs of preview targets that have unsaved spot-editor changes, keyed by

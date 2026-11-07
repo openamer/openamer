@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/store/workspace-events.ts @ 0aa64ffcf (MIT)
 import { atom } from 'nanostores'
 
 // Event-driven "the working tree changed" signal — the smart replacement for

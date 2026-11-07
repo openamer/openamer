@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/input.tsx @ 7d96e602a (MIT)
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'

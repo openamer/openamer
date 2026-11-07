@@ -21,9 +21,34 @@ OA = pathlib.Path(__file__).resolve().parent.parent
 DEFAULT_UP = pathlib.Path(r"C:\Users\damir\AppData\Local\hermes\hermes-agent")
 UP = DEFAULT_UP
 
+# The provenance marker, in the two languages the tree uses. The Python
+# marker lives in a docstring, the TypeScript marker in a leading comment.
+MARKER_RE = re.compile(
+    r"^\s*(?://\s*)?Upstream-Derived:\s*(?P<path>\S+)\s*@\s*"
+    r"(?P<commit>[0-9a-f]{7,40})\s*\((?P<license>[^)]+)\)",
+    re.MULTILINE,
+)
+
 NOISE = re.compile(
     r"^\s*(//|/\*|\*|#\s*-{3,}|from\s+openamer|import\s+openamer|"
     r"import\s+.*openamer|export\s+\{)", re.IGNORECASE)
+
+# A provenance marker is a deliberate, accounted-for line -- not a content
+# change. It must not shift a file's classification.
+MARKER_LINE = re.compile(r"^\s*(?://\s*)?Upstream-Derived:\s*\S+\s*@\s*[0-9a-f]{7,40}\s*\([^)]+\)\s*$")
+
+
+def _is_noise(line: str, noise: re.Pattern[str]) -> bool:
+    """Return whether a changed line is branding/comment noise rather than
+    a real content change."""
+    if MARKER_LINE.match(line):
+        return True
+    return bool(noise.match(line))
+
+
+def _has_marker(text: str) -> bool:
+    """Return whether ``text`` carries an upstream provenance marker."""
+    return MARKER_RE.search(text) is not None
 
 
 
@@ -61,7 +86,7 @@ def _changed_lines(a: list[str], b: list[str], noise: re.Pattern[str]) -> tuple[
                 for line in lines
                 if line.strip()
                 and len(line.strip()) >= 4
-                and not noise.match(line)
+                and not _is_noise(line, noise)
             )
 
         upstream_changed += _substantive(removed)
@@ -113,6 +138,8 @@ def audit(upstream: pathlib.Path, openamer: pathlib.Path) -> int:
     lines = {"IDENTICAL": 0, "COSMETIC": 0, "MINOR": 0, "SUBSTANTIVE": 0}
     only_up = 0
     identical_files = []
+    marked: list[str] = []
+    unmarked: list[str] = []
 
     for up in up_files:
         rel = up.relative_to(upstream / "apps" / "desktop" / "src").as_posix()
@@ -130,6 +157,10 @@ def audit(upstream: pathlib.Path, openamer: pathlib.Path) -> int:
         lines[cls] += up_lines
         if cls == "IDENTICAL":
             identical_files.append(rel)
+        if _has_marker(dst):
+            marked.append(rel)
+        else:
+            unmarked.append(rel)
 
     total = sum(lines.values())
     print("=" * 68)
@@ -145,9 +176,17 @@ def audit(upstream: pathlib.Path, openamer: pathlib.Path) -> int:
     if identical_files:
         print(f"--- verbatim-identical desktop files ({len(identical_files)}) ---")
         for f in identical_files[:25]:
-            print(f"  {f}")
+            tag = "attributed" if f in marked else "UNATTRIBUTED"
+            print(f"  [{tag}] {f}")
         if len(identical_files) > 25:
             print(f"  ... +{len(identical_files)-25} more")
+    print(f"\nprovenance markers on compared files: {len(marked)}/{sum(counts.values())}")
+    if unmarked:
+        print(f"  files without a marker ({len(unmarked)}):")
+        for f in unmarked[:25]:
+            print(f"    {f}")
+        if len(unmarked) > 25:
+            print(f"    ... +{len(unmarked)-25} more")
 
     out = openamer / "reports" / "upstream-independence-audit-desktop.json"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -156,6 +195,8 @@ def audit(upstream: pathlib.Path, openamer: pathlib.Path) -> int:
         "compared": sum(counts.values()), "upstream_only_dropped": only_up,
         "classes": counts, "lines": lines,
         "identical_files": identical_files,
+        "files_with_marker": marked,
+        "files_without_marker": unmarked,
     }, indent=2), encoding="utf-8")
     print(f"\nreport written: {out}")
     return 0

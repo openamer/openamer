@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/session-ids.test.ts @ 069011dd0 (MIT)
 import { describe, expect, it } from 'vitest'
 
 import { storedSessionIdForNotification } from './session-ids'

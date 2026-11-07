@@ -4,6 +4,7 @@
  *
  * Mirrors openamer_cli/input_sanitize.py (CLI/TUI gateway defensive path).
  */
+// Upstream-Derived: apps/desktop/src/lib/composer-input-sanitize.ts @ 93808ca6a (MIT)
 
 const BRACKETED_PASTE_BOUNDARY_START = /(^|[\s\n>:\])])\[200~/g
 const BRACKETED_PASTE_BOUNDARY_END = /\[201~(?=$|[\s\n<[():;.,!?])/g

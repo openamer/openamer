@@ -1,4 +1,5 @@
 'use client'
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/frame-embed.tsx @ 0c190083c (MIT)
 
 import { type CSSProperties } from 'react'
 

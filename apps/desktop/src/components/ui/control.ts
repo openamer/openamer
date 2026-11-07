@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/control.ts @ 9cbc37e25 (MIT)
 import { cva, type VariantProps } from 'class-variance-authority'
 
 // Single source of truth for non-composer form-control chrome — Input,

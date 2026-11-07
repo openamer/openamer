@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/contrib/registry.ts @ aefb36299 (MIT)
 import { atom } from 'nanostores'
 
 import type { Contribution } from './types'

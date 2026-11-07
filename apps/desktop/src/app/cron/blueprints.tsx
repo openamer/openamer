@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/cron/blueprints.tsx @ ef6049c21 (MIT)
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import type { AutomationBlueprint, AutomationBlueprintField } from '@/openamer'

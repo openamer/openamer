@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/store/session-switcher.test.ts @ ab5f1a1f1 (MIT)
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import type { SessionInfo } from '@/types/openamer'

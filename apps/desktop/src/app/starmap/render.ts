@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/starmap/render.ts @ 3e7ed0c53 (MIT)
 import { darken, luminance, mixRgb, rgba } from './color'
 import {
   LIT_BAND_ALPHA,

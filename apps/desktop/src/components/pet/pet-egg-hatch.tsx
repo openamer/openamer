@@ -6,6 +6,7 @@
  * reveal celebration is the canvas `PetStarShower`. Motion is disabled under
  * `prefers-reduced-motion`.
  */
+// Upstream-Derived: apps/desktop/src/components/pet/pet-egg-hatch.tsx @ e4b2b7785 (MIT)
 
 import { PixelEggSprite } from '@/components/pet/pixel-egg-sprite'
 import { Button } from '@/components/ui/button'

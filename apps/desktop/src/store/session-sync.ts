@@ -3,6 +3,7 @@
 // (e.g. a new chat started in the compact pop-out) never reaches another
 // window. This bus pings every window to re-pull the shared session list; the
 // data already lives in the backend, the other window just doesn't know to look.
+// Upstream-Derived: apps/desktop/src/store/session-sync.ts @ 67233d1c2 (MIT)
 const CHANNEL = 'openamer:sessions'
 
 const channel = typeof BroadcastChannel === 'undefined' ? null : new BroadcastChannel(CHANNEL)

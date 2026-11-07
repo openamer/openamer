@@ -2,6 +2,7 @@
 // drops the agent session. Stash on dispose, re-adopt on remount. globalThis +
 // self-accept so this module's own reload doesn't reset the cache. Prod strips
 // import.meta.hot → byte-for-byte unchanged live unmount.
+// Upstream-Derived: apps/desktop/src/app/gateway/hooks/gateway-hmr-survivor.ts @ cbea2acbb (MIT)
 
 import type { OpenAmerConnection } from '@/global'
 import type { OpenAmerGateway } from '@/openamer'

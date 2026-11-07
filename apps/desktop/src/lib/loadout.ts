@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/loadout.ts @ 715aa3de8 (MIT)
 import { deflateSync, inflateSync } from 'fflate'
 
 import { capitalize } from '@/lib/text'

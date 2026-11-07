@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/themes/user-themes.test.ts @ 04639adac (MIT)
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import { BUILTIN_THEMES, DEFAULT_SKIN_NAME } from './presets'

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/starmap/share-controls.tsx @ 84db32484 (MIT)
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/chat/sidebar/split-submenu.tsx @ ac4f596ca (MIT)
 import { Codicon } from '@/components/ui/codicon'
 import {
   ContextMenuItem,

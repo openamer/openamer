@@ -1,4 +1,5 @@
 'use client'
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/svg-embed.tsx @ 0c190083c (MIT)
 
 import DOMPurify from 'dompurify'
 import { useMemo } from 'react'

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/thread/timeline.test.ts @ 0e1332abb (MIT)
 import { afterEach, describe, expect, it } from 'vitest'
 
 import { ownViewport } from './timeline'

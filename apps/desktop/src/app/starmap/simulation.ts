@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/starmap/simulation.ts @ 715aa3de8 (MIT)
 import { forceCollide, forceLink, forceManyBody, forceRadial, forceSimulation, type Simulation } from 'd3-force'
 
 import type { StarmapGraph, StarmapNode } from '@/types/openamer'

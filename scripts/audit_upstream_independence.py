@@ -175,16 +175,16 @@ def audit(upstream: pathlib.Path, openamer: pathlib.Path) -> int:
             cls, changed, up_lines = classify(up_text, oa_text)
             if cls == "IDENTICAL":
                 identical += 1
-                if _has_marker(oa_text):
-                    marked.append(f"{oa_sub}/{rel.as_posix()}")
-                else:
-                    unmarked.append(f"{oa_sub}/{rel.as_posix()}")
             elif cls == "COSMETIC":
                 cosmetic += 1
             elif cls == "MINOR":
                 minor += 1
             else:
                 substantive += 1
+            if _has_marker(oa_text):
+                marked.append(f"{oa_sub}/{rel.as_posix()}")
+            else:
+                unmarked.append(f"{oa_sub}/{rel.as_posix()}")
             results.append(
                 {
                     "file": f"{oa_sub}/{rel.as_posix()}",
@@ -219,12 +219,16 @@ def audit(upstream: pathlib.Path, openamer: pathlib.Path) -> int:
         for r in leaky:
             tag = "attributed" if r["file"] in marked else "UNATTRIBUTED"
             print(f"  [{tag}] {r['file']}  ({r['upstream_lines']} lines)")
+    elif not unmarked:
+        print("\nno verbatim upstream files remain: every shared file carries a marker")
 
-    print(f"\nprovenance markers on verbatim files: {len(marked)}/{len(leaky)}")
+    print(f"\nprovenance markers: {len(marked)}/{len(results)} compared files")
     if unmarked:
-        print("  files missing a marker:")
-        for f in unmarked:
+        print(f"  files without a marker ({len(unmarked)}):")
+        for f in unmarked[:25]:
             print(f"    {f}")
+        if len(unmarked) > 25:
+            print(f"    ... +{len(unmarked)-25} more")
 
     worst = [r for r in results if r["class"] == "SUBSTANTIVE"]
     worst.sort(key=lambda r: -r["ratio"])

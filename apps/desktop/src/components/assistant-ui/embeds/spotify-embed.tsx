@@ -1,4 +1,5 @@
 'use client'
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/spotify-embed.tsx @ 0c190083c (MIT)
 
 import { type CSSProperties, useMemo } from 'react'
 

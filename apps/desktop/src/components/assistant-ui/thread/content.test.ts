@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/thread/content.test.ts @ fa7bce078 (MIT)
 import { describe, expect, it } from 'vitest'
 
 import {

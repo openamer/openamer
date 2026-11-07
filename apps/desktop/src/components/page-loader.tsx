@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/page-loader.tsx @ 51c68d4ab (MIT)
 import type { ComponentProps } from 'react'
 
 import { Loader } from '@/components/ui/loader'

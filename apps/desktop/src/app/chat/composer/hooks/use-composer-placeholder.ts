@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/chat/composer/hooks/use-composer-placeholder.ts @ e026fd61d (MIT)
 import { useEffect, useRef, useState } from 'react'
 
 import { useI18n } from '@/i18n'

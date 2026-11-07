@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/row-button.tsx @ 57dd86f24 (MIT)
 import * as React from 'react'
 
 /**

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/fade-text.tsx @ 7c226cc57 (MIT)
 import type { ComponentProps, CSSProperties } from 'react'
 import { memo, useCallback, useRef, useState } from 'react'
 

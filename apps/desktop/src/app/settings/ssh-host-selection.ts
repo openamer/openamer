@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/settings/ssh-host-selection.ts @ faa3bce6d (MIT)
 type SshHostState = {
   sshHost: string
   sshUser: string

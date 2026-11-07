@@ -2,6 +2,7 @@
 // <SanitizedInput>. They're intentionally lenient on a trailing separator so a
 // value stays typeable (e.g. "feat/" then keep going); the final trim happens on
 // submit / in the backend.
+// Upstream-Derived: apps/desktop/src/lib/sanitize.ts @ 344415892 (MIT)
 
 /** A git-ref-safe branch name: spaces → "-", drop chars git forbids, keep "/". */
 export const gitRef = (raw: string): string =>

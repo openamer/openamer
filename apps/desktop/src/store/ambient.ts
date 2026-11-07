@@ -3,6 +3,7 @@
 // process is the race-free owner (see electron/event-dedupe.ts). Off Electron —
 // or when the bridge/claim fails — every window emits, preserving the
 // single-window behavior rather than going silent.
+// Upstream-Derived: apps/desktop/src/store/ambient.ts @ fb0c6d9ee (MIT)
 export async function ownsAmbientCue(key: string): Promise<boolean> {
   const claim = window.openamerDesktop?.claimAmbientCue
 

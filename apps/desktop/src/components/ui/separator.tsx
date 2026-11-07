@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/separator.tsx @ 51c68d4ab (MIT)
 import { Separator as SeparatorPrimitive } from 'radix-ui'
 import * as React from 'react'
 

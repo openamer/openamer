@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/pet/pet-thumb.tsx @ 86b990fe0 (MIT)
 import { useEffect, useRef, useState } from 'react'
 
 import { PawPrint } from '@/lib/icons'

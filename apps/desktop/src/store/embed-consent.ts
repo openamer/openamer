@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/store/embed-consent.ts @ db6ced471 (MIT)
 import { type Codec, Codecs, persistentAtom } from '@/lib/persisted'
 
 // Privacy gate for inline embeds. Loading an embed reaches out to a third party

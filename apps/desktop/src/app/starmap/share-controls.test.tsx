@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/starmap/share-controls.test.tsx @ 84db32484 (MIT)
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 

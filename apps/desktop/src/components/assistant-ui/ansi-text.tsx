@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/ansi-text.tsx @ fb2a35c0b (MIT)
 import { memo, useMemo } from 'react'
 
 import { ansiColorClass, hasAnsiCodes, parseAnsi } from '@/lib/ansi'

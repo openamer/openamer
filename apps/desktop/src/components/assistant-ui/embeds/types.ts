@@ -1,5 +1,6 @@
 // Shared prop contract for fenced-block renderers (mermaid, svg). Kept in its
 // own module so renderers and the registry can both import it without a cycle.
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/types.ts @ 81ac562bf (MIT)
 export interface RichFenceProps {
   code: string
   /** True while the surrounding message is still streaming. Renderers that can

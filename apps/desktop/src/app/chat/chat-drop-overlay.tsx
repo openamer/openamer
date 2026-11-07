@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/chat/chat-drop-overlay.tsx @ 092a97ef7 (MIT)
 import { useRef } from 'react'
 
 import type { DragKind } from '@/app/chat/hooks/use-file-drop-zone'

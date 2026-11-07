@@ -6,6 +6,7 @@
  * Non-guillotine arrangements (interlocking pinwheels) return null and the
  * editor disables Save with an explanation.
  */
+// Upstream-Derived: apps/desktop/src/components/pane-shell/tree/grid-to-tree.ts @ 63a9bde77 (MIT)
 
 import type { GridLayout, GridZone } from './grid-model'
 import { modelToZones } from './grid-model'

@@ -3,5 +3,6 @@
 // memoized pane surfaces; `panes` holds the real-data pane bodies + statusbar
 // group setters. Only the controller is a public entry (the app root renders
 // it); the rest are internal to this directory.
+// Upstream-Derived: apps/desktop/src/app/contrib/index.ts @ 0f922002e (MIT)
 export { ContribController } from './controller'
 export { ContribWiring, WiredPane } from './wiring'

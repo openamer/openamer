@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/alert.tsx @ 51c68d4ab (MIT)
 import { cva, type VariantProps } from 'class-variance-authority'
 import * as React from 'react'
 

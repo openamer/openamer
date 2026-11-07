@@ -3,6 +3,7 @@
  *  `push` records the latest value and schedules a frame; `finish` commits the
  *  last value and cancels any pending frame (call it on pointerup/cancel).
  *  `null` is the empty sentinel, so `T` must never legitimately be `null`. */
+// Upstream-Derived: apps/desktop/src/lib/raf-coalesce.ts @ efa09f49c (MIT)
 export function rafCoalesce<T>(apply: (value: T) => void): { finish: () => void; push: (value: T) => void } {
   let frame: null | number = null
   let pending: null | T = null

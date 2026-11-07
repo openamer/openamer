@@ -12,6 +12,7 @@
  * Consumers differ in machinery (dnd-kit for the profile rail, the layout
  * tree's pointer-capture drag for tabs) but share these exact parameters.
  */
+// Upstream-Derived: apps/desktop/src/lib/reorder.ts @ 7f74b324c (MIT)
 
 import { triggerHaptic } from '@/lib/haptics'
 

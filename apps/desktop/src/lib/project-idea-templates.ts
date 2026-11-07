@@ -2,6 +2,7 @@
 // shown is a random handful from this pool (reshuffled on open / via the dice),
 // so creating a project always feels a little playful. Pure content — edit
 // freely, order doesn't matter.
+// Upstream-Derived: apps/desktop/src/lib/project-idea-templates.ts @ 62fe9fd10 (MIT)
 
 export interface ProjectIdeaTemplate {
   emoji: string

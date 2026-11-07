@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/settings/field-copy.ts @ 62fe9fd10 (MIT)
 export interface FieldCopyTree {
   [key: string]: string | FieldCopyTree
 }

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/progress.tsx @ e4b2b7785 (MIT)
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'

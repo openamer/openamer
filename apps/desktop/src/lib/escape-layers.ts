@@ -16,6 +16,7 @@
  *
  * A layer registers its priority (via `pushEscapeLayer`) only while it's open.
  */
+// Upstream-Derived: apps/desktop/src/lib/escape-layers.ts @ 7f74b324c (MIT)
 
 // Higher number = closer to the user. Gaps leave room to slot new layers.
 export const ESCAPE_PRIORITY = {

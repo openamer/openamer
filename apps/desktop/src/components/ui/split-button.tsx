@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/split-button.tsx @ 62fe9fd10 (MIT)
 import type { VariantProps } from 'class-variance-authority'
 import type { ReactNode } from 'react'
 

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/right-sidebar/terminal/chrome.tsx @ 6875d6cd3 (MIT)
 import { useStore } from '@nanostores/react'
 
 import { TerminalSlot } from './persistent'

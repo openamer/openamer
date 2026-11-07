@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/alert.test.tsx @ 0c190083c (MIT)
 import { createElement } from 'react'
 import { describe, expect, it } from 'vitest'
 

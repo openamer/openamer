@@ -5,6 +5,7 @@
  * (`use-pet-roam.ts`) so the loop reads as physics, not geometry, and the pure
  * helpers (`overlapsX`, `resolveLedge`, `groundTop`) stay unit testable.
  */
+// Upstream-Derived: apps/desktop/src/components/pet/roam-geometry.ts @ b7322f946 (MIT)
 
 import { TITLEBAR_HEIGHT } from '@/app/shell/titlebar'
 

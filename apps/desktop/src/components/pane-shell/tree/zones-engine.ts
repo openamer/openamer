@@ -14,6 +14,7 @@
  *  - `Colors.cpp` -> ZoneColors resolution (system-theme mode maps accent to
  *    border+highlight and background to primary; number color auto-contrasts).
  */
+// Upstream-Derived: apps/desktop/src/components/pane-shell/tree/zones-engine.ts @ 63a9bde77 (MIT)
 
 // ---------------------------------------------------------------------------
 // Constants (ZonesOverlay.cpp / Layout.cpp / FancyZones defaults)

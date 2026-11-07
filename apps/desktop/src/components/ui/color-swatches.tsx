@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/color-swatches.tsx @ 84ac69e88 (MIT)
 import { Codicon } from './codicon'
 
 interface ColorSwatchesProps {

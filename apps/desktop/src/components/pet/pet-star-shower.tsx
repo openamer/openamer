@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/pet/pet-star-shower.tsx @ 62fe9fd10 (MIT)
 import { useEffect, useRef } from 'react'
 
 /**

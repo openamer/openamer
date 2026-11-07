@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/kbd.tsx @ d62979a6f (MIT)
 import { cva, type VariantProps } from 'class-variance-authority'
 import * as React from 'react'
 

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/use-is-dark.ts @ b6e57e215 (MIT)
 import { useEffect, useState } from 'react'
 
 import { useThemeEpoch } from '@/hooks/use-theme-epoch'

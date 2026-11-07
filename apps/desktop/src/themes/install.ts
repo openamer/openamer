@@ -6,6 +6,7 @@
  * Main hands back the raw theme JSON; we parse + convert + persist here so the
  * conversion stays in one unit-testable place.
  */
+// Upstream-Derived: apps/desktop/src/themes/install.ts @ 39d09453f (MIT)
 
 import type { DesktopMarketplaceThemeResult } from '@/global'
 

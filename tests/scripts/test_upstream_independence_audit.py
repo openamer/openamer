@@ -210,3 +210,69 @@ def test_all_three_scripts_share_one_rebrand_map():
         assert module.rebrand("hermes_cli/x") == canonical.rebrand("hermes_cli/x")
         assert module.rebrand("@hermes/plugin-sdk") == "@hermes/plugin-sdk"
     assert port.RENAMES == canonical.RENAMES
+
+
+# --- provenance marker insertion -----------------------------------------
+
+
+def test_ts_marker_goes_after_a_use_client_prologue(tmp_path):
+    """A 'use client' directive must stay at the very top of the file."""
+    marker = _load("insert_provenance_marker")
+    path = tmp_path / "comp.tsx"
+    path.write_text("'use client'\n\nexport const x = 1\n", encoding="utf-8")
+    marker.insert_ts_marker(path, "apps/desktop/src/comp.tsx @ abc1234 (MIT)")
+    lines = path.read_text(encoding="utf-8").splitlines()
+    assert lines[0] == "'use client'"
+    assert "Upstream-Derived:" in lines[1]
+
+
+def test_ts_marker_goes_after_a_license_block(tmp_path):
+    marker = _load("insert_provenance_marker")
+    path = tmp_path / "lib.ts"
+    path.write_text("// Copyright someone\n// SPDX-License-Identifier: MIT\n\nexport const x = 1\n", encoding="utf-8")
+    marker.insert_ts_marker(path, "apps/desktop/src/lib.ts @ abc1234 (MIT)")
+    lines = path.read_text(encoding="utf-8").splitlines()
+    assert lines[0].startswith("// Copyright")
+    assert lines[1].startswith("// SPDX")
+    assert "Upstream-Derived:" in lines[2]
+
+
+def test_ts_marker_is_idempotent(tmp_path):
+    marker = _load("insert_provenance_marker")
+    path = tmp_path / "lib.ts"
+    path.write_text("export const x = 1\n", encoding="utf-8")
+    body = "apps/desktop/src/lib.ts @ abc1234 (MIT)"
+    assert marker.insert_ts_marker(path, body).startswith("OK")
+    first = path.read_bytes()
+    assert marker.insert_ts_marker(path, body).startswith("SKIP")
+    assert path.read_bytes() == first
+
+
+def test_ts_marker_preserves_crlf(tmp_path):
+    marker = _load("insert_provenance_marker")
+    path = tmp_path / "lib.ts"
+    path.write_bytes(b"export const x = 1\r\nexport const y = 2\r\n")
+    marker.insert_ts_marker(path, "apps/desktop/src/lib.ts @ abc1234 (MIT)")
+    raw = path.read_bytes()
+    # every line break is still CRLF, and the marker line is one of them
+    assert raw.count(b"\r\n") == 3
+    assert b"\n" not in raw.replace(b"\r\n", b"")
+
+
+def test_python_marker_goes_inside_the_docstring(tmp_path):
+    marker = _load("insert_provenance_marker")
+    path = tmp_path / "mod.py"
+    path.write_text('"""Short description.\n"""\n\nimport os\n', encoding="utf-8")
+    marker.insert_python_marker(path, "hermes_cli/mod.py @ abc1234 (MIT)")
+    text = path.read_text(encoding="utf-8")
+    assert "Upstream-Derived: hermes_cli/mod.py @ abc1234 (MIT)" in text
+    assert text.index("Upstream-Derived") < text.index("import os")
+
+
+def test_python_marker_without_docstring_fails_loudly(tmp_path):
+    marker = _load("insert_provenance_marker")
+    path = tmp_path / "mod.py"
+    path.write_text("import os\n", encoding="utf-8")
+    result = marker.insert_python_marker(path, "hermes_cli/mod.py @ abc1234 (MIT)")
+    assert result.startswith("FAIL")
+    assert "Upstream-Derived" not in path.read_text(encoding="utf-8")

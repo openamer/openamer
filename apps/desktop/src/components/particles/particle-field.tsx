@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/particles/particle-field.tsx @ 3aaf7e387 (MIT)
 import './particle-field.css'
 
 import { type CSSProperties, type ReactNode, useEffect, useMemo, useRef, useState } from 'react'

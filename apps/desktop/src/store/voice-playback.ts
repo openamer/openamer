@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/store/voice-playback.ts @ 51c68d4ab (MIT)
 import { atom } from 'nanostores'
 
 export type VoicePlaybackSource = 'read-aloud' | 'voice-conversation'

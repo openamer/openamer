@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/scroll-area.tsx @ 51c68d4ab (MIT)
 import { ScrollArea as ScrollAreaPrimitive } from 'radix-ui'
 import * as React from 'react'
 

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/sanitized-input.tsx @ 344415892 (MIT)
 import type * as React from 'react'
 
 import { Input } from './input'

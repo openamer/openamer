@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/chat/hooks/use-file-drop-zone.ts @ e026fd61d (MIT)
 import { type DragEvent as ReactDragEvent, useCallback, useEffect, useRef, useState } from 'react'
 
 import { dragHasAttachments } from '@/app/chat/composer/inline-refs'

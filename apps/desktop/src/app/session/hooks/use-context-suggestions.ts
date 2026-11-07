@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/session/hooks/use-context-suggestions.ts @ 51c68d4ab (MIT)
 import { type MutableRefObject, useCallback, useEffect } from 'react'
 
 import { $currentCwd, setContextSuggestions } from '@/store/session'

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/cron/blueprints.test.ts @ d460118a1 (MIT)
 import { describe, expect, it } from 'vitest'
 
 import type { AutomationBlueprint } from '@/openamer'

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/remote-display-banner.tsx @ 715aa3de8 (MIT)
 import { useEffect } from 'react'
 
 import { translateNow } from '@/i18n'

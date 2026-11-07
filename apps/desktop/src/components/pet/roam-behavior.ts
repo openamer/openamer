@@ -16,6 +16,7 @@
  *     short rests with the occasional long loaf, so the cadence never reads as a
  *     fixed pattern (`dwellMs` / `PAUSE_DWELL`).
  */
+// Upstream-Derived: apps/desktop/src/components/pet/roam-behavior.ts @ 715aa3de8 (MIT)
 
 import type { Ledge } from './roam-geometry'
 

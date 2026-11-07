@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/pet-generate/components/draft-grid.tsx @ 6b3ea2cea (MIT)
 import { PixelEggSprite } from '@/components/pet/pixel-egg-sprite'
 import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'

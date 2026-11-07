@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/starmap/types.ts @ dec44994a (MIT)
 import type { SimulationLinkDatum, SimulationNodeDatum } from 'd3-force'
 
 import type { StarmapGraph, StarmapNode } from '@/types/openamer'

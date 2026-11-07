@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/chat/composer/help-hint.tsx @ 62fe9fd10 (MIT)
 import type { ReactNode } from 'react'
 
 import { KbdCombo } from '@/components/ui/kbd'

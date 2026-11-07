@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/error-state.tsx @ e0325cf76 (MIT)
 import type { ReactNode } from 'react'
 
 import { Codicon } from '@/components/ui/codicon'

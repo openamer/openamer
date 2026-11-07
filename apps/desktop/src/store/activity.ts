@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/store/activity.ts @ 51c68d4ab (MIT)
 import { atom } from 'nanostores'
 
 import { sessionTitle } from '@/lib/chat-runtime'

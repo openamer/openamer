@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/desktop-remote-auth.ts @ 7dd2b2dc7 (MIT)
 import type { DesktopAuthProvider } from '@/global'
 
 export interface RemoteAuthProviderShape {

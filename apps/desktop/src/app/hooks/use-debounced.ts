@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/hooks/use-debounced.ts @ e0325cf76 (MIT)
 import { useEffect, useState } from 'react'
 
 /** Debounce a fast-changing value (search input, slider, …) so effects/queries

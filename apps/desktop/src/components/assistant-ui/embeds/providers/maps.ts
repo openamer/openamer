@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/providers/maps.ts @ 81ac562bf (MIT)
 import { bareHost, type EmbedMatcher, type FrameEmbed } from './types'
 
 // `@lat,lng` (optionally `,<zoom>z`) as it appears in Google Maps URLs.

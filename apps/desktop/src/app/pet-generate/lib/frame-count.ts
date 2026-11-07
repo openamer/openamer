@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/pet-generate/lib/frame-count.ts @ 62fe9fd10 (MIT)
 import { type PetInfo } from '@/store/pet'
 
 // Sprite row → the PetInfo frame-count key it resolves to (directional walks and

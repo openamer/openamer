@@ -2,6 +2,7 @@
 // strip pipe tails (`| head`, `| tail`, ...), then clean redirects/env prefixes
 // before deciding which segment is meaningful. This is display-only; the full
 // command remains available through Copy / detail.
+// Upstream-Derived: apps/desktop/src/lib/summarize-command.ts @ 41f302fa7 (MIT)
 const SILENT_HEADS = new Set(['cd', 'pushd', 'popd', 'export', 'set', 'unset', 'source', '.', 'true', 'false', ':'])
 const PIPE_TAIL_HEADS = new Set(['head', 'tail', 'wc', 'sort', 'uniq'])
 

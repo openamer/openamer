@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/dialog-portal-context.ts @ 0600ac2f7 (MIT)
 import * as React from 'react'
 
 // Layering system for portalled popovers (Select / Popover / DropdownMenu) that

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/contrib/react/use-contributions.ts @ aefb36299 (MIT)
 import { useCallback, useSyncExternalStore } from 'react'
 
 import { registry } from '../registry'

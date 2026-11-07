@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/chat/composer/completion-drawer.tsx @ eed78d6eb (MIT)
 import type { Unstable_TriggerAdapter } from '@assistant-ui/core'
 import { ComposerPrimitive } from '@assistant-ui/react'
 import type { ReactNode } from 'react'

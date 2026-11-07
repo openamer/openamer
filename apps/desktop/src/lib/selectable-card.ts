@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/selectable-card.ts @ 86b990fe0 (MIT)
 import { cn } from '@/lib/utils'
 
 export interface SelectableCardState {

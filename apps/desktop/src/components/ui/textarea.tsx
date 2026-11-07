@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/textarea.tsx @ 344415892 (MIT)
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'

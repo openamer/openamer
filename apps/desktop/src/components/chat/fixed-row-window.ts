@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/chat/fixed-row-window.ts @ 344415892 (MIT)
 import type { RefObject, UIEvent } from 'react'
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 

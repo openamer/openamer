@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/skeleton.tsx @ e0325cf76 (MIT)
 import { cn } from '@/lib/utils'
 
 function Skeleton({ className, ...props }: React.ComponentProps<'div'>) {

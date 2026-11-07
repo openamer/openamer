@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/empty-state.tsx @ e0325cf76 (MIT)
 import { cn } from '@/lib/utils'
 
 // Canonical centered empty state (title + description). The default for "no

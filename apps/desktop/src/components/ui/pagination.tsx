@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/pagination.tsx @ b1b89f843 (MIT)
 import * as React from 'react'
 
 import { Codicon } from '@/components/ui/codicon'

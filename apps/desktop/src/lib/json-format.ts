@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/json-format.ts @ e0325cf76 (MIT)
 export type FormatJsonResult = { ok: true; text: string } | { ok: false; error: string }
 
 export function tryFormatJson(raw: string): FormatJsonResult {

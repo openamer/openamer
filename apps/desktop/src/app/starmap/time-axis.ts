@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/starmap/time-axis.ts @ dec44994a (MIT)
 import type { StarmapGraph, StarmapNode } from '@/types/openamer'
 
 import { clamp } from './geometry'

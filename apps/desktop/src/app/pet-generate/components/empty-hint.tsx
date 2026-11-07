@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/pet-generate/components/empty-hint.tsx @ 1fe013ee1 (MIT)
 import { Button } from '@/components/ui/button'
 
 interface EmptyHintProps {

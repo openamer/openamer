@@ -8,6 +8,7 @@
 // Plain two-finger scroll has ctrlKey === false. Centralising this here keeps
 // every zoom/pan surface from re-deriving the same OS trivia (and getting it
 // wrong, which makes smart-zoom read as a zoom-in).
+// Upstream-Derived: apps/desktop/src/lib/trackpad-gestures.ts @ dec44994a (MIT)
 
 export interface WheelLike {
   ctrlKey: boolean

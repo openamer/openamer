@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/hooks/use-delayed-true.ts @ 344415892 (MIT)
 import { useEffect, useState } from 'react'
 
 /**

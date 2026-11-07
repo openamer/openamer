@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/right-sidebar/files/dnd-manager.ts @ 743c55efa (MIT)
 import { createDragDropManager, type DragDropManager } from 'dnd-core'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 

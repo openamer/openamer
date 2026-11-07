@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/starmap/color.ts @ 715aa3de8 (MIT)
 import { BLACK, MODE_DEFAULTS } from './constants'
 import { clamp } from './geometry'
 import type { Palette, Rgb } from './types'

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/store/composer-input-history.ts @ 62fe9fd10 (MIT)
 import { atom } from 'nanostores'
 
 /**

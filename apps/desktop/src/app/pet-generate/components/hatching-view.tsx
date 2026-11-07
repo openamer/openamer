@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/pet-generate/components/hatching-view.tsx @ 1fe013ee1 (MIT)
 import { PetEggHatch } from '@/components/pet/pet-egg-hatch'
 import { useI18n } from '@/i18n'
 import { cancelHatch, type PetHatchStage } from '@/store/pet-generate'

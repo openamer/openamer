@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/starmap/constants.ts @ c6ba4b229 (MIT)
 import type { StarmapNode } from '@/types/openamer'
 
 import type { GraphParams, Rgb, RingParams, Shape } from './types'

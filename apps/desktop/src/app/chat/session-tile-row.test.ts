@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/chat/session-tile-row.test.ts @ fab0e6057 (MIT)
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
 import { $sessions } from '@/store/session'

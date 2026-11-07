@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/file-type-icon.tsx @ a61baa961 (MIT)
 import { ToolIcon, type ToolIconProps } from '@/components/ui/tool-icon'
 import { codiconForFilename, codiconForLanguage } from '@/lib/markdown-code'
 

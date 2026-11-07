@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/session-refs.test.ts @ 99ab03629 (MIT)
 import { describe, expect, it } from 'vitest'
 
 import { preprocessMarkdown } from './markdown-preprocess'

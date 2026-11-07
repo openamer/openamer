@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/escape-layers.test.ts @ 7f74b324c (MIT)
 import { describe, expect, it } from 'vitest'
 
 import { ESCAPE_PRIORITY, isTopEscapeLayer, pushEscapeLayer } from './escape-layers'

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/sanitize.test.ts @ 344415892 (MIT)
 import { describe, expect, it } from 'vitest'
 
 import { gitRef, slug } from './sanitize'

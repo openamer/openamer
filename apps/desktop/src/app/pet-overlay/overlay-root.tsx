@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/pet-overlay/overlay-root.tsx @ 86b990fe0 (MIT)
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 

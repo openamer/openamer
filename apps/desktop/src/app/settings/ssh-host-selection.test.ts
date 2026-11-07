@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/settings/ssh-host-selection.test.ts @ faa3bce6d (MIT)
 import { describe, expect, it } from 'vitest'
 
 import { enrichSelectedSshHost, selectSshHost } from './ssh-host-selection'

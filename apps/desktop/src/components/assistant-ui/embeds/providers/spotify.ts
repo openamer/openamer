@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/providers/spotify.ts @ 81ac562bf (MIT)
 import { bareHost, type EmbedMatcher } from './types'
 
 // Spotify's embed has only two layouts: compact (≤152) and full (352). Any

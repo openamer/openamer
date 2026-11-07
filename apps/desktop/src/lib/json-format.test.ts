@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/json-format.test.ts @ e0325cf76 (MIT)
 import { describe, expect, it } from 'vitest'
 
 import { tryFormatJson } from './json-format'

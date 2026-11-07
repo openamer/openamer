@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/store/provider-collapse.ts @ e89bc58a5 (MIT)
 import { Codecs, persistentAtom } from '@/lib/persisted'
 
 const STORAGE_KEY = 'openamer.desktop.collapsed-providers'

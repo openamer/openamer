@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/dialog-dismiss-repro.test.tsx @ 0600ac2f7 (MIT)
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 

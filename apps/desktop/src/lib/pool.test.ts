@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/pool.test.ts @ 62fe9fd10 (MIT)
 import { describe, expect, it } from 'vitest'
 
 import { mapPool } from './pool'

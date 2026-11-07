@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/title-menu-trigger.tsx @ aae35c5ee (MIT)
 import type * as React from 'react'
 
 import { Button } from '@/components/ui/button'

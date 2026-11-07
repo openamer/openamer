@@ -9,6 +9,7 @@
  * not stay visibly "held" can reuse this (the drag primitive in
  * `pane-shell/tree/renderer/drag-session.ts`, and anything built on it).
  */
+// Upstream-Derived: apps/desktop/src/lib/drag-ghost.ts @ 092a97ef7 (MIT)
 
 /** How far (px) the chip trails the pointer so it never sits under the cursor. */
 const OFFSET_X = 14

@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/session-search.test.ts @ 4e7b0389e (MIT)
 import { describe, expect, it } from 'vitest'
 
 import type { SessionInfo } from '@/types/openamer'

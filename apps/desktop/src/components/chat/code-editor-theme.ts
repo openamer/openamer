@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/chat/code-editor-theme.ts @ 62fe9fd10 (MIT)
 import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
 import type { Extension } from '@codemirror/state'
 import { EditorView } from '@codemirror/view'

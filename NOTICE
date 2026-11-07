@@ -36,6 +36,28 @@ The attribution in each of those files names the upstream commit the work was
 derived from. Everything else in this product is OpenAmer's own work. The
 derived portions above are distributed under the MIT License reproduced below.
 
+--------------------------------------------------------------------------------
+Desktop component library (163 files)
+
+The desktop app's React component library, the store slices and the pure
+helper modules are derived from upstream. Each of these 163 files carries a
+machine-readable provenance marker naming the exact upstream path and commit
+it derives from:
+
+    // Upstream-Derived: apps/desktop/src/lib/json-format.ts @ 0c190083c (MIT)
+
+The markers live in the file headers. The full list, with the upstream commit
+for every file, is in:
+
+    reports/upstream-independence-audit-desktop.json
+
+These files are the layers with no product-specific behavior to differentiate
+from upstream: a React component library, a Zustand-style store and pure
+helpers. The rest of the desktop app (621 files, 88.09% of the upstream
+desktop tree) carries OpenAmer's own implementation.
+
+The upstream commits are MIT-licensed, as reproduced above.
+
 MIT License
 
 Copyright (c) 2025 Nous Research

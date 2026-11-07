@@ -3,6 +3,7 @@
  * drop affordance (the composer file/session overlay, the layout zone targets)
  * so "you can drop here" reads identically everywhere.
  */
+// Upstream-Derived: apps/desktop/src/components/ui/drop-affordance.tsx @ 092a97ef7 (MIT)
 
 /** The sheet: a dashed region marking where a drop would land. */
 export const DROP_SHEET_CLASS = 'rounded-2xl border-2 border-dashed'

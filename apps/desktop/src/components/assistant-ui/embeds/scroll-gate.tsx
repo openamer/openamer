@@ -1,4 +1,5 @@
 'use client'
+// Upstream-Derived: apps/desktop/src/components/assistant-ui/embeds/scroll-gate.tsx @ 0c190083c (MIT)
 
 import { useEffect, useState } from 'react'
 

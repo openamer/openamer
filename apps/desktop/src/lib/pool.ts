@@ -3,6 +3,7 @@
  * at once, results stay in input order. Keeps a many-repo probe from spawning a
  * `git` process per repo all at once.
  */
+// Upstream-Derived: apps/desktop/src/lib/pool.ts @ 344415892 (MIT)
 export async function mapPool<T, R>(items: readonly T[], limit: number, fn: (item: T) => Promise<R>): Promise<R[]> {
   const out = new Array<R>(items.length)
   let next = 0

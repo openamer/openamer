@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/hooks/use-refresh-hotkey.ts @ ac9de2e80 (MIT)
 import { useEffect, useRef } from 'react'
 
 /**

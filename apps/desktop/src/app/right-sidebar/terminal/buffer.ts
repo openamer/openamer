@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/right-sidebar/terminal/buffer.ts @ 6875d6cd3 (MIT)
 import type { Terminal } from '@xterm/xterm'
 
 // Serialized view of the in-app terminal, handed to the agent's `read_terminal`

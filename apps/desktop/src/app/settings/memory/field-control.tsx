@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/app/settings/memory/field-control.tsx @ 83595f361 (MIT)
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'

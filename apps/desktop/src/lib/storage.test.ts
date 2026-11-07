@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/lib/storage.test.ts @ 1e755ff55 (MIT)
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import { persistStringArray, storedStringArray } from './storage'

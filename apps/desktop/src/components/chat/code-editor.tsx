@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/chat/code-editor.tsx @ e026fd61d (MIT)
 import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands'
 import { bracketMatching, indentOnInput, LanguageDescription } from '@codemirror/language'
 import { languages } from '@codemirror/language-data'

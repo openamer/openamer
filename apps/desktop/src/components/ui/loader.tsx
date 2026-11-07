@@ -1,3 +1,4 @@
+// Upstream-Derived: apps/desktop/src/components/ui/loader.tsx @ ba4c0fbbd (MIT)
 import { type ComponentProps, useEffect, useRef } from 'react'
 
 import { cn } from '@/lib/utils'
