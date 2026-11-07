@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-07
 **Upstream:** `C:\Users\damir\AppData\Local\hermes\hermes-agent` @ `b200f5bc60`
-**OpenAmer:** `origin/main`
+**OpenAmer:** `origin/main` @ `51fb53e10d4`
 
 ## Why a second audit
 
@@ -24,35 +24,14 @@ Method: `scripts/audit_upstream_independence_desktop.py`.
 
 | Class | Files | Upstream lines | Share |
 | --- | --- | --- | --- |
-| `IDENTICAL` (rebrand only) | **0** | 0 | **0.00%** |
-| `COSMETIC` (marker line only) | 167 | 12,342 | 3.59% |
+| `IDENTICAL` (rebrand only) | 163 | 12,259 | **3.56%** |
+| `COSMETIC` | 4 | 83 | 0.02% |
 | `MINOR` (<10% changed) | 146 | 28,633 | 8.32% |
 | `SUBSTANTIVE` (real logic) | 621 | 303,126 | **88.09%** |
 
-**Zero files are verbatim-identical to upstream.** Every file that was is now
-`COSMETIC` — it differs by exactly one line: the provenance marker.
+## What the 163 verbatim files are
 
-## Provenance markers
-
-All **163** previously-verbatim desktop files now carry a machine-readable
-marker naming the exact upstream path and commit they derive from:
-
-```ts
-// Upstream-Derived: apps/desktop/src/lib/json-format.ts @ 0c190083c (MIT)
-```
-
-The commit recorded is the upstream commit that last touched that file,
-verified against the upstream git history (163/163 confirmed: the recorded
-commit is the file's last change, not an approximation).
-
-The marker placement respects the language:
-
-- after a directive prologue (`'use client'`) — 5 files — because a directive
-  must stay at the very top of the file to take effect
-- after an existing leading license/comment block
-- otherwise as the first line of the file
-
-### Which files
+They cluster in layers that carry no product logic:
 
 | Cluster | Files |
 | --- | --- |
@@ -66,15 +45,15 @@ The marker placement respects the language:
 | `app/right-sidebar/*` | 5 |
 | `components/chat/*` | 5 |
 | `components/pane-shell/*` | 4 |
-| `lib/*` | 26 |
-| `store/*` | 11 |
-| `hooks/*`, `app/hooks/*` | 4 |
-| `themes/*` | 3 |
-| `contrib/*`, `app/contrib/*` | 4 |
-| remaining (`app/index.tsx`, `app/shell`, `app/session`, `app/cron`, `app/gateway`, `app/overlays`, `app/pet-overlay`, `components/idle-mount*`, `components/page-loader`, `components/particles`, `components/remote-display-banner`) | 16 |
+
+The rest are leaf utilities with no OpenAmer-specific behavior to diverge
+from: `lib/json-format.ts`, `lib/pool.ts`, `lib/sanitize.ts`,
+`lib/session-ids.ts`, `lib/session-refs.ts`, `lib/utils.ts`,
+`hooks/use-debounced.ts`, `hooks/use-delayed-true.ts`, `store/tool-dismiss.ts`,
+`themes/install.ts`, and similar.
 
 These are the React component library, the store slices, and the pure
-helpers — the layers where a rewrite would cost lines without buying
+helpers. They are the parts where a rewrite would cost lines without buying
 behavior.
 
 ## What OpenAmer dropped from upstream
@@ -109,21 +88,20 @@ Plus the whole learning/Darwin layer in `scripts/` (269 files, ~108k LOC,
 
 ## Conclusion
 
-The desktop surface is **88.09% substantively diverged**, with **zero**
-verbatim-identical files remaining. Combined with the Python audit (98.16%
-substantive), the picture is consistent across both surfaces: OpenAmer is not
-a rebranded Hermes.
+The desktop surface is **88.09% substantively diverged**, with 3.56%
+remaining verbatim in the React component library and pure helper modules.
+Combined with the Python audit (98.16% substantive), the picture is
+consistent across both surfaces: OpenAmer is not a rebranded Hermes.
 
 The desktop verdict is lower than the Python verdict, and that is the honest
 number — the UI layer is where a fork keeps the most shared code, because a
 React component library has nothing product-specific to differentiate.
 
-Every remaining shared file is now individually attributed with its upstream
-path and commit, in the file itself, in `NOTICE`, and in the audit report.
+The 163 verbatim desktop files are the remaining open item: unlike the Python
+side, they carry no provenance marker yet.
 
 ## Reproduce
 
 ```bash
 python scripts/audit_upstream_independence_desktop.py --upstream <path>
-python -m pytest tests/openamer_cli/test_upstream_provenance.py -q
 ```
