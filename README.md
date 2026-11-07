@@ -10,11 +10,12 @@ OpenAmer runs through a terminal, a desktop app, a web interface, or a messaging
 gateway. Choose your model provider, connect the tools you need, and keep your
 own sessions and procedural knowledge in a local profile.
 
-OpenAmer is an independently developed fork of the
-[Hermes Agent architecture](https://github.com/NousResearch/hermes-agent) by
-Nous Research. Upstream attribution and license notices are preserved in
-[NOTICE](NOTICE). OpenAmer's additions include Windows-native integration,
-background computer use, learning infrastructure, and verification tooling.
+OpenAmer is an independently developed agent project — built and maintained
+by OpenAmer. It does not hide its lineage: portions of the runtime derive
+from upstream open-source work, and the corresponding license notices are
+preserved in [NOTICE](NOTICE). OpenAmer's own contributions include
+Windows-native integration, background computer use, learning infrastructure,
+and verification tooling.
 
 [Documentation](website/docs/) · [Releases](https://github.com/openamer/openamer/releases)
 · [Report a bug](https://github.com/openamer/openamer/issues)
