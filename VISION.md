@@ -6,11 +6,10 @@ OpenAmer is a **self-improving, self-learning personal AI agent** that runs on
 your own machine, meets you in the channels you already use, and gets better
 the longer you use it.
 
-It is a **hardened, independently-developed fork** of the
-OpenAmer is a fork of the [agent architecture](https://github.com/NousResearch/hermes-agent) from Nous Research (MIT), an open-source AI agent runtime.
-(MIT-licensed, by Nous Research). We are grateful for that foundation and say
-so openly — OpenAmer does not hide its lineage. What we build on top of it is
-our own.
+It is an **independently developed agent project** — built and maintained
+by OpenAmer. It does not hide its lineage: portions of the runtime derive
+from upstream open-source work (MIT-licensed), and the corresponding license
+notices are preserved in NOTICE. What we build on top of it is our own.
 
 ## The one thing we refuse to compromise on
 
