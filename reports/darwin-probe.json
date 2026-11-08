@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-06T20:55:31.880167+00:00",
+  "updated": "2026-11-07T21:10:47.187109+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1268,
+  "total": 1272,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -1569,6 +1569,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-latest-research-insight-our": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-latest-research-insight-training": {
       "refs": 0,
       "ok": 0,
@@ -2625,6 +2631,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-tmp-bounty-scan": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-tmp-count-tools-py": {
       "refs": 0,
       "ok": 0,
@@ -3069,6 +3081,12 @@
     "internet-learner-stall-fix": {
       "refs": 2,
       "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "laptop-hardware-optimization": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -6707,10 +6725,12 @@
       "missing": []
     },
     "bounty-contribution": {
-      "refs": 0,
+      "refs": 1,
       "ok": 0,
-      "score": 1.0,
-      "missing": []
+      "score": 0.0,
+      "missing": [
+        "verify_conformance.py"
+      ]
     },
     "bounty-report-craft": {
       "refs": 4,
@@ -6721,10 +6741,12 @@
       ]
     },
     "monetarisierung": {
-      "refs": 0,
+      "refs": 1,
       "ok": 0,
-      "score": 1.0,
-      "missing": []
+      "score": 0.0,
+      "missing": [
+        "verify_conformance.py"
+      ]
     },
     "encrypted-state-replication": {
       "refs": 0,
@@ -7345,6 +7367,12 @@
       "score": 1.0,
       "missing": []
     },
+    "loop-closure-verification": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "massive-upgrade-deployment": {
       "refs": 0,
       "ok": 0,
@@ -7538,8 +7566,8 @@
       "missing": []
     },
     "training-scripts-hygiene": {
-      "refs": 3,
-      "ok": 3,
+      "refs": 4,
+      "ok": 4,
       "score": 1.0,
       "missing": []
     },

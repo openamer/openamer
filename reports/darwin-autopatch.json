@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-11-06T21:55:29",
+  "timestamp": "2026-11-07T22:10:44",
   "mode": "apply",
-  "population": 1268,
-  "avg_score": 38.3,
+  "population": 1272,
+  "avg_score": 38.4,
   "kept": [
     {
       "skill": "agent-experience",

@@ -1,6 +1,6 @@
-# 🧬 Darwin Auto-Patch Report — 2026-11-06T21:55:29
+# 🧬 Darwin Auto-Patch Report — 2026-11-07T22:10:44
 
-- Population: 1268 skills, avg 38.3
+- Population: 1272 skills, avg 38.4
 - Mode: **apply**
 
 ## Improved (kept)
