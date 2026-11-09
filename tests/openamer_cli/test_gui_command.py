@@ -99,7 +99,7 @@ def test_gui_install_env_prepends_managed_node_on_bare_path(tmp_path, monkeypatc
 
     root = _make_desktop_tree(tmp_path)
     monkeypatch.setattr(cli_main, "PROJECT_ROOT", root)
-    _make_packaged_executable(root, monkeypatch, platform="win32")
+    packaged_exe = _make_packaged_executable(root, monkeypatch, platform="win32")
 
     # A managed Node tree on disk so with_openamer_node_path() actually prepends it.
     home = tmp_path / "openamer-home"
@@ -109,14 +109,15 @@ def test_gui_install_env_prepends_managed_node_on_bare_path(tmp_path, monkeypatc
     monkeypatch.setenv("PATH", os.pathsep.join(["/usr/bin", "/bin"]))
 
     install_ok = subprocess.CompletedProcess(["npm", "ci"], 0)
-    launch_ok = subprocess.CompletedProcess(["openamer"], 0)
+    pack_ok = subprocess.CompletedProcess(["npm", "run", "pack"], 0)
 
     with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
          patch("openamer_cli.main._run_npm_install_deterministic", return_value=install_ok) as mock_install, \
          patch("openamer_cli.main._desktop_build_needed", return_value=True), \
          patch("openamer_cli.main._write_desktop_build_stamp"), \
-         patch("openamer_cli.main.subprocess.run", side_effect=[subprocess.CompletedProcess([], 0), launch_ok]), \
-         pytest.raises(SystemExit):
+         patch("openamer_cli.main._ensure_desktop_exe_launchable", return_value=(packaged_exe, False)), \
+         patch("openamer_cli.main.subprocess.run", return_value=pack_ok), \
+         patch("openamer_cli.main._launch_desktop_windows_detached", return_value=4242):
         cli_main.cmd_gui(_ns(skip_build=False))
 
     managed_dirs = [str(p) for p in iter_openamer_node_dirs() if p.is_dir()]
@@ -205,6 +206,74 @@ def test_gui_skip_build_launches_existing_packaged_app_without_npm(tmp_path, mon
     mock_install.assert_not_called()
     mock_run.assert_called_once()
     assert mock_run.call_args.args[0] == [str(packaged_exe)]
+
+
+def test_gui_windows_launches_detached_without_inheriting_stdio(tmp_path, monkeypatch):
+    """Regression: the packaged app must not be launched with ``subprocess.run``.
+
+    On Windows that call blocked the shell until the GUI was closed, and the
+    app inherited the launcher's stdio handles. Inside a ConPTY host (Windows
+    Terminal, IDE terminals, pytest pipes) those handles are anonymous pipes,
+    so Chromium logged on every start::
+
+        [ERROR:base\\i18n\\icu_util.cc:232]
+        Invalid file descriptor to ICU data received.
+
+    A detached child with DEVNULL stdio has no invalid descriptor to inherit.
+    """
+    root = _make_desktop_tree(tmp_path)
+    desktop_dir = root / "apps" / "desktop"
+    monkeypatch.setattr(cli_main, "PROJECT_ROOT", root)
+    packaged_exe = _make_packaged_executable(root, monkeypatch, platform="win32")
+
+    class _Child:
+        pid = 4242
+
+    with patch("openamer_cli.main.shutil.which", return_value=None), \
+         patch("openamer_cli.main.subprocess.Popen", return_value=_Child()) as mock_popen, \
+         patch("openamer_cli.main.subprocess.run") as mock_run:
+        cli_main.cmd_gui(_ns(skip_build=True))
+
+    mock_run.assert_not_called()
+    mock_popen.assert_called_once()
+    assert mock_popen.call_args.args[0] == [str(packaged_exe)]
+    kwargs = mock_popen.call_args.kwargs
+    assert kwargs["stdin"] is subprocess.DEVNULL
+    assert kwargs["stdout"] is subprocess.DEVNULL
+    assert kwargs["stderr"] is subprocess.DEVNULL
+    assert kwargs["cwd"] == str(desktop_dir)
+    # A fresh process group + hidden private console, so Ctrl+C in the launching
+    # console cannot reach the GUI and console-subsystem children have a console.
+    assert kwargs["creationflags"] != 0
+
+
+def test_gui_windows_detached_launch_falls_back_when_breakaway_denied(tmp_path, monkeypatch):
+    """A job that forbids breakaway raises PermissionError; retry without the bit."""
+    from openamer_cli._subprocess_compat import (
+        windows_detach_flags,
+        windows_detach_flags_without_breakaway,
+    )
+
+    exe = tmp_path / "OpenAmer.exe"
+    exe.write_text("", encoding="utf-8")
+
+    class _Child:
+        pid = 7
+
+    attempts = []
+
+    def _popen(command, **kwargs):
+        attempts.append(kwargs["creationflags"])
+        if len(attempts) == 1:
+            raise PermissionError("breakaway denied")
+        return _Child()
+
+    with patch("openamer_cli.main.subprocess.Popen", side_effect=_popen):
+        pid = cli_main._launch_desktop_windows_detached([str(exe)], tmp_path, {})
+
+    assert pid == 7
+    assert attempts[0] == windows_detach_flags()
+    assert attempts[1] == windows_detach_flags_without_breakaway()
 
 
 def test_gui_linux_configures_sandbox_before_launch(tmp_path, monkeypatch):
@@ -432,6 +501,31 @@ def test_compute_desktop_content_hash_changes_on_edit(tmp_path, monkeypatch):
     (root / "apps" / "desktop" / "main.js").write_text("v2", encoding="utf-8")
     h2 = cli_main._compute_desktop_content_hash(root)
     assert h1 != h2
+
+
+def test_compute_desktop_content_hash_ignores_workspace_member_lockfile(tmp_path, monkeypatch):
+    """An ``npm install --prefix apps/desktop`` artifact must not flip the stamp.
+
+    ``apps/*`` are npm workspaces of the root project, so a lockfile inside a
+    member directory is generated, never a build input. Hashing it forced a
+    full desktop rebuild after any such install — and that rebuild stops the
+    running desktop app to free the build output, killing the user's session.
+    """
+    root = _make_desktop_tree(tmp_path)
+    (root / "apps" / "desktop" / "main.js").write_text("v1", encoding="utf-8")
+    (root / "package.json").write_text("{}", encoding="utf-8")
+    (root / "package-lock.json").write_text('{"root":1}', encoding="utf-8")
+    monkeypatch.setattr(cli_main, "PROJECT_ROOT", root)
+
+    baseline = cli_main._compute_desktop_content_hash(root)
+
+    member_lock = root / "apps" / "desktop" / "package-lock.json"
+    member_lock.write_text('{"npm":"artifact"}', encoding="utf-8")
+    assert cli_main._compute_desktop_content_hash(root) == baseline
+
+    # The ROOT lockfile is the real dependency-resolution input and must count.
+    (root / "package-lock.json").write_text('{"root":2}', encoding="utf-8")
+    assert cli_main._compute_desktop_content_hash(root) != baseline
 
 
 def test_desktop_build_needed_detects_missing_artifact(tmp_path, monkeypatch):
