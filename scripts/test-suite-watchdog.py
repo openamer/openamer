@@ -134,9 +134,15 @@ LOG = HOME / "logs" / "test-suite-watchdog.log"
 # exercise this watchdog end-to-end without burning 30 minutes per test).
 DEFAULT_TARGET = "tests/"
 
-# A full-suite run at 32 workers measured ~30+ min on this box; give it room
-# without letting a hung runner block the tick forever.
-TIMEOUT_S = 3000
+# A hung runner must be killed; a *slow* runner must not be. The suite is
+# RAM-aware (scripts/run_tests_parallel.py sizes its worker pool from free
+# memory), so on a night where another job holds RAM it legitimately drops to
+# 2-3 workers and needs well over an hour. Measured 2026-11-09: 60% at 3000s
+# with 3 workers, i.e. ~5000s for a healthy run — the old flat 3000s timeout
+# reported that healthy run as a failure. Progress, not wall-clock, decides.
+STALL_TIMEOUT_S = 900     # no new output for 15 min => genuinely stuck
+TIMEOUT_S = 14400         # absolute ceiling (4h) -- safety net, not the mechanism
+LAST_TIMEOUT_REASON = ""  # why the last run was killed, for the alert text
 SUMMARY_RE = re.compile(
     r"Summary:\s*(\d+)\s*files,\s*(\d+)\s*tests passed,\s*(\d+)\s*failed"
 )
@@ -189,34 +195,69 @@ def _no_verdict_files(out: str) -> list[str]:
 
 
 def _run_suite(command: list[str], env: dict, output_path: Path):
-    """Stream diagnostics to disk; on timeout kill only this run's process tree.
+    """Stream diagnostics to disk; kill only this run's process tree when stuck.
 
     Killing only bash (subprocess.run's default timeout handling) leaves pytest
     workers alive. They can keep consuming resources into the next nightly run.
     The runner starts new sessions per file, so killing one POSIX group is not
     enough either: snapshot descendants while the parent still exists.
+
+    The kill condition is *no progress*, not elapsed time: the runner writes a
+    progress line per finished file, so a growing output file proves the suite
+    is alive even when it is slow (few workers because another job holds RAM).
     """
     import psutil
+
+    global LAST_TIMEOUT_REASON
+
+    def _kill_tree(proc: subprocess.Popen) -> None:
+        try:
+            children = psutil.Process(proc.pid).children(recursive=True)
+        except psutil.NoSuchProcess:
+            children = []
+        for child in reversed(children):
+            try:
+                child.kill()
+            except psutil.NoSuchProcess:
+                pass
+        proc.kill()
+        proc.wait(timeout=10)
+        psutil.wait_procs(children, timeout=10)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", encoding="utf-8") as output:
         proc = subprocess.Popen(command, cwd=str(REPO), env=env, stdout=output,
                                 stderr=subprocess.STDOUT, start_new_session=True)
+        hard_deadline = time.time() + TIMEOUT_S
+        last_size = -1
+        last_progress = time.time()
         try:
-            proc.wait(timeout=TIMEOUT_S)
-        except BaseException:
-            try:
-                children = psutil.Process(proc.pid).children(recursive=True)
-            except psutil.NoSuchProcess:
-                children = []
-            for child in reversed(children):
+            while True:
+                if proc.poll() is not None:
+                    break
                 try:
-                    child.kill()
-                except psutil.NoSuchProcess:
-                    pass
-            proc.kill()
-            proc.wait(timeout=10)
-            psutil.wait_procs(children, timeout=10)
+                    size = output_path.stat().st_size
+                except OSError:
+                    size = last_size
+                if size != last_size:
+                    last_size = size
+                    last_progress = time.time()
+                now = time.time()
+                if now - last_progress > STALL_TIMEOUT_S:
+                    _kill_tree(proc)
+                    LAST_TIMEOUT_REASON = f"no output for {STALL_TIMEOUT_S}s (runner stalled)"
+                    raise subprocess.TimeoutExpired(
+                        command, int(now - last_progress),
+                        output=LAST_TIMEOUT_REASON)
+                if now > hard_deadline:
+                    _kill_tree(proc)
+                    LAST_TIMEOUT_REASON = f"hard ceiling of {TIMEOUT_S}s reached"
+                    raise subprocess.TimeoutExpired(command, TIMEOUT_S,
+                                                    output=LAST_TIMEOUT_REASON)
+                time.sleep(5)
+        except BaseException:
+            if proc.poll() is None:
+                _kill_tree(proc)
             raise
     return subprocess.CompletedProcess(command, proc.returncode,
                                        output_path.read_text(encoding="utf-8"), "")
@@ -268,8 +309,10 @@ def main() -> int:
         }, indent=1), encoding="utf-8",
     )
     if timed_out:
-        _log(log_path, f"TIMEOUT after {TIMEOUT_S}s (target={target})")
-        print(f"TEST-WATCHDOG: suite did not finish within {TIMEOUT_S}s")
+        reason = globals().get("LAST_TIMEOUT_REASON") or f"no progress for {STALL_TIMEOUT_S}s"
+        _log(log_path, f"TIMEOUT: {reason} (target={target}, elapsed={elapsed}s)")
+        print(f"TEST-WATCHDOG: suite aborted — {reason} "
+              f"(after {elapsed}s; partial output in {output_path})")
     elif m is None:
         _log(log_path, f"NO SUMMARY rc={proc.returncode} in {elapsed}s")
         print("TEST-WATCHDOG: could not read a summary from the runner output")

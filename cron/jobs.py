@@ -2285,11 +2285,16 @@ def _get_due_jobs_locked() -> List[Dict[str, Any]]:
                                     break
                             continue
 
-                # Durably claim a one-shot for the DURATION of its run before
+                # Durably claim a job for the DURATION of its run before
                 # returning it as due, so a second scheduler process (gateway +
                 # desktop both run in-process 60s tickers on one OPENAMER_HOME)
                 # cannot re-dispatch it while the first run is still in flight
-                # (#59229). A plain one-shot's due-state is not resolved until
+                # (#59229). Applies to EVERY schedule kind (once, cron, interval):
+                # a recurring job whose single execution outlives its period has
+                # the same re-dispatch problem as a one-shot, and gating the claim
+                # on kind=='once' left recurring jobs unprotected (measured: a
+                # 30-minute job missed 5 ticks and wrote no output for 150 min).
+                # A plain one-shot's due-state is not resolved until
                 # mark_job_run() completes it minutes later, so advancing
                 # next_run_at by a fixed window is not enough — a job that outlives
                 # one tick (e.g. a 2.5-min research prompt) would simply re-fire on
@@ -2301,14 +2306,13 @@ def _get_due_jobs_locked() -> List[Dict[str, Any]]:
                 # stale claim that expires after the resolved run-claim TTL
                 # (_oneshot_run_claim_ttl_seconds, derived from OPENAMER_CRON_TIMEOUT),
                 # so the job is re-dispatched rather than wedged forever.
-                if kind == "once":
-                    claim = {"at": now.isoformat(), "by": _machine_id()}
-                    job["run_claim"] = claim
-                    for rj in raw_jobs:
-                        if rj["id"] == job["id"]:
-                            rj["run_claim"] = claim
-                            needs_save = True
-                            break
+                claim = {"at": now.isoformat(), "by": _machine_id()}
+                job["run_claim"] = claim
+                for rj in raw_jobs:
+                    if rj["id"] == job["id"]:
+                        rj["run_claim"] = claim
+                        needs_save = True
+                        break
 
                 due.append(job)
         except Exception:
