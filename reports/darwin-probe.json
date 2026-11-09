@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-07T21:10:47.187109+00:00",
+  "updated": "2026-11-08T21:31:03.876762+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1272,
+  "total": 1286,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -1533,6 +1533,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-competitor-intelligence-intent-weaving": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-competitor-intelligence-layerfs-a": {
       "refs": 0,
       "ok": 0,
@@ -2193,6 +2199,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-kanban-db": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-kanban-db-py-l725-n-except-block-wit": {
       "refs": 0,
       "ok": 0,
@@ -2223,6 +2235,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-llama-cpp-npu": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-logs-skill-validator-latest-json": {
       "refs": 0,
       "ok": 0,
@@ -2248,6 +2266,18 @@
       "missing": []
     },
     "darwin-harvested-memory-world-model-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-mlir-candidate-submission-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-mlir-verify-conformance-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2895,6 +2925,14 @@
       "score": 1.0,
       "missing": []
     },
+    "openamer-free-model-catalog": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "openamer_free_models.py"
+      ]
+    },
     "desktop-evidence-ledger": {
       "refs": 1,
       "ok": 1,
@@ -3042,6 +3080,12 @@
       "score": 1.0,
       "missing": []
     },
+    "free-provider-integration": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "full-system-verification": {
       "refs": 2,
       "ok": 2,
@@ -3085,8 +3129,8 @@
       "missing": []
     },
     "laptop-hardware-optimization": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -6706,6 +6750,26 @@
       "score": 1.0,
       "missing": []
     },
+    "openamer-local-embeddings": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-local-inference-stack": {
+      "refs": 3,
+      "ok": 2,
+      "score": 0.667,
+      "missing": [
+        "directml_server.py"
+      ]
+    },
+    "openamer-local-semantic-embeddings": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
     "openrouter-model-pricing": {
       "refs": 0,
       "ok": 0,
@@ -6773,6 +6837,12 @@
       "missing": []
     },
     "obsidian": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-free-models-db": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7023,6 +7093,12 @@
       "missing": []
     },
     "auto-growth": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ethical-constraint-hard": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7547,6 +7623,12 @@
       "score": 1.0,
       "missing": []
     },
+    "standalone-cli-scripts": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "testing-strategy": {
       "refs": 1,
       "ok": 1,
@@ -7764,6 +7846,12 @@
     "notification-engine": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "npu-directml-stack": {
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },

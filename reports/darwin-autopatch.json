@@ -1,23 +1,14 @@
 {
-  "timestamp": "2026-11-07T22:10:44",
+  "timestamp": "2026-11-08T22:31:02",
   "mode": "apply",
-  "population": 1272,
+  "population": 1286,
   "avg_score": 38.4,
   "kept": [
     {
-      "skill": "agent-experience",
-      "before": 0,
-      "after": 42,
-      "delta": 42,
-      "fixes": [
-        "✅ Frontmatter hinzugefügt für 'agent-experience'"
-      ]
-    },
-    {
       "skill": "cordis-composition-reference",
       "before": 0,
-      "after": 42,
-      "delta": 42,
+      "after": 45,
+      "delta": 45,
       "fixes": [
         "✅ Frontmatter hinzugefügt für 'cordis-composition-reference'"
       ]
@@ -92,6 +83,15 @@
       "delta": 50,
       "fixes": [
         "✅ Frontmatter hinzugefügt für 'dsh-cua-macos-signing'"
+      ]
+    },
+    {
+      "skill": "dsh-doc",
+      "before": 0,
+      "after": 45,
+      "delta": 45,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'dsh-doc'"
       ]
     }
   ],
