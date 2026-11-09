@@ -1,0 +1,152 @@
+"""Launch locale translation workers that survive the agent process dying.
+
+Measured the hard way: a translator started with terminal(background=True) is
+session-scoped, so when the agent process crashed all five workers died with it
+and the work stopped silently. Translation is I/O-bound and long (hours), which
+is exactly the wrong lifetime to tie to a chat session.
+
+This launcher spawns N detached OS processes, each owning a slice of the queue,
+writes their stdout/stderr to logs/*.log, and records their PIDs so a later run
+can report status without guessing.
+
+Usage:
+    python scripts/start_i18n_detached.py            # all locales below 90%
+    python scripts/start_i18n_detached.py --queues 4
+    python scripts/start_i18n_detached.py --status
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[1]
+HOME = Path(os.environ.get("OPENAMER_HOME") or (Path.home() / "AppData" / "Local" / "openamer-laptop"))
+LOGDIR = HOME / "logs"
+PIDFILE = LOGDIR / "i18n-translate.pid.json"
+QUEUES = 4
+MIN_SHARE = 0.9
+
+
+def _pid_alive(pid: int) -> bool:
+    """True when the pid exists. Windows has no signal-0; use OpenProcess."""
+    if os.name == "nt":
+        import ctypes
+        PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
+        STILL_ACTIVE = 259
+        h = ctypes.windll.kernel32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
+        if not h:
+            return False
+        try:
+            code = ctypes.c_ulong()
+            ctypes.windll.kernel32.GetExitCodeProcess(h, ctypes.byref(code))
+            return code.value == STILL_ACTIVE
+        finally:
+            ctypes.windll.kernel32.CloseHandle(h)
+    try:
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False
+
+
+def status() -> int:
+    if not PIDFILE.exists():
+        print("no detached translation recorded")
+        return 1
+    rec = json.loads(PIDFILE.read_text(encoding="utf-8"))
+    alive = 0
+    for w in rec.get("workers", []):
+        ok = _pid_alive(int(w["pid"]))
+        alive += 1 if ok else 0
+        print(f"  pid {w['pid']:<8} {'alive' if ok else 'dead '}  "
+              f"{w['locales'][:3]}{'...' if len(w['locales']) > 3 else ''} "
+              f"({len(w['locales'])} locales)  log={Path(w['log']).name}")
+    print(f"{alive}/{len(rec.get('workers', []))} workers alive; started {rec.get('started')}")
+    return 0 if alive else 1
+
+
+def pending_locales(min_share: float) -> list[str]:
+    proc = subprocess.run([sys.executable, str(REPO / "scripts" / "i18n_audit.py"), "--json"],
+                          capture_output=True, text=True, cwd=str(REPO), timeout=300)
+    if proc.returncode != 0 and not proc.stdout.strip():
+        raise SystemExit(f"audit failed: {proc.stderr[-400:]}")
+    rows = json.loads(proc.stdout)
+    return [r["code"] for r in rows if r["share"] < min_share]
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--queues", type=int, default=QUEUES)
+    ap.add_argument("--min-share", type=float, default=MIN_SHARE)
+    ap.add_argument("--workers", type=int, default=2, help="threads per process")
+    ap.add_argument("--status", action="store_true")
+    ap.add_argument("--force", action="store_true", help="start even if workers are alive")
+    args = ap.parse_args()
+
+    if args.status:
+        return status()
+
+    if PIDFILE.exists() and not args.force:
+        try:
+            rec = json.loads(PIDFILE.read_text(encoding="utf-8"))
+            alive = [w for w in rec.get("workers", []) if _pid_alive(int(w["pid"]))]
+        except (json.JSONDecodeError, KeyError, ValueError):
+            alive = []
+        if alive:
+            print(f"{len(alive)} worker(s) already alive; use --force to add more")
+            return status()
+
+    todo = pending_locales(args.min_share)
+    if not todo:
+        print("nothing pending at or above the threshold")
+        return 0
+
+    # Longest queue first so the slowest slice still gets help: round-robin.
+    queues: list[list[str]] = [[] for _ in range(args.queues)]
+    for i, code in enumerate(todo):
+        queues[i % args.queues].append(code)
+
+    LOGDIR.mkdir(parents=True, exist_ok=True)
+    env = os.environ.copy()
+    env["OPENAMER_I18N_WORKERS"] = str(args.workers)
+    env["OPENAMER_I18N_BATCH"] = env.get("OPENAMER_I18N_BATCH", "12")
+    env["OPENAMER_I18N_BATCH_PAUSE"] = env.get("OPENAMER_I18N_BATCH_PAUSE", "0.5")
+
+    workers = []
+    for idx, q in enumerate(queues, 1):
+        if not q:
+            continue
+        log = LOGDIR / f"i18n-worker-{idx}.log"
+        cmd = [sys.executable, str(REPO / "scripts" / "i18n_fill_cli_locales.py"), *q]
+        kwargs: dict = {
+            "cwd": str(REPO), "env": env, "stdin": subprocess.DEVNULL,
+            "stdout": open(log, "w", encoding="utf-8"),
+            "stderr": subprocess.STDOUT,
+        }
+        if os.name == "nt":
+            # DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP: no console, not in
+            # this process's job object -> survives the agent exiting.
+            kwargs["creationflags"] = 0x00000008 | 0x00000200
+        else:
+            kwargs["start_new_session"] = True
+        proc = subprocess.Popen(cmd, **kwargs)
+        workers.append({"pid": proc.pid, "locales": q, "log": str(log)})
+        print(f"  started pid {proc.pid}: {len(q)} locales -> {log.name}")
+
+    PIDFILE.write_text(json.dumps({
+        "started": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "pending": len(todo),
+        "workers": workers,
+    }, indent=1), encoding="utf-8", newline="\n")
+    print(f"{len(workers)} detached workers for {len(todo)} locales; "
+          f"status: python scripts/start_i18n_detached.py --status")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
