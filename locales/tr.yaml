@@ -4,11 +4,11 @@
 
 approval:
   dangerous_header: '⚠️  TEHLİKELİ KOMUT: {description}'
-  choose_long: '      [b]ir kez  |  [o]turum  |  [h]er zaman  |  [r]eddet'
-  choose_short: '      [b]ir kez  |  [o]turum  |  [r]eddet'
+  choose_long: '      [o] Bir kez  |  [s] Oturum  |  [a] Her zaman  |  [d] Reddet'
+  choose_short: '      [o] Bir kez  |  [s] Oturum  |  [d] Reddet'
   prompt_long: '      Seçim [b/o/h/R]: '
   prompt_short: '      Seçim [b/o/R]: '
-  choose_smart_deny: '      [b]ir kez  |  [r]eddet'
+  choose_smart_deny: '      [o] Bir kez  |  [d] Reddet'
   prompt_smart_deny: '      Seçim [b/R]: '
   smart_deny_once_inputs: o,once
   smart_deny_deny_inputs: d,deny
