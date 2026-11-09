@@ -221,6 +221,8 @@ def test_gui_windows_launches_detached_without_inheriting_stdio(tmp_path, monkey
 
     A detached child with DEVNULL stdio has no invalid descriptor to inherit.
     """
+    from openamer_cli._subprocess_compat import windows_detach_flags
+
     root = _make_desktop_tree(tmp_path)
     desktop_dir = root / "apps" / "desktop"
     monkeypatch.setattr(cli_main, "PROJECT_ROOT", root)
@@ -242,9 +244,14 @@ def test_gui_windows_launches_detached_without_inheriting_stdio(tmp_path, monkey
     assert kwargs["stdout"] is subprocess.DEVNULL
     assert kwargs["stderr"] is subprocess.DEVNULL
     assert kwargs["cwd"] == str(desktop_dir)
-    # A fresh process group + hidden private console, so Ctrl+C in the launching
-    # console cannot reach the GUI and console-subsystem children have a console.
-    assert kwargs["creationflags"] != 0
+    # The launch must use the shared detach helper's flags (own process group,
+    # hidden private console, job breakaway) rather than inheriting the
+    # launcher's console. The concrete value is platform-dependent:
+    # ``_subprocess_compat.IS_WINDOWS`` is bound at import time, so on a Linux
+    # CI runner these helpers return 0 even though this test mocks
+    # ``sys.platform``. Asserting the wiring keeps the test honest on both
+    # platforms; the Windows behaviour is exercised live on Windows.
+    assert kwargs["creationflags"] == windows_detach_flags()
 
 
 def test_gui_windows_detached_launch_falls_back_when_breakaway_denied(tmp_path, monkeypatch):
