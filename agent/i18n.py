@@ -25,10 +25,10 @@ Language resolution order:
     3. ``display.language`` from config.yaml
     4. ``"en"`` (baseline)
 
-Supported languages: all 47 locales from apps/desktop/src/i18n/languages.ts
-(en, zh, zh-hant, ja, ar, de, es, pt, sq, bs, fr, it, tr, ru, hi, fa, uk, ko,
-id, th, vi, eo, pl, nl, ro, el, cs, sv, hu, bg, da, fi, sk, no, ga, sl, hr,
-et, lv, lt).  Unknown values fall back to en.
+Supported languages: every code in ``locales/_languages.json`` -- all ISO 639-1
+languages plus zh-hant (185 total).  scripts/expand_locale_set.py keeps that
+file, this tuple and the on-disk catalogs in lockstep.  Unknown values fall
+back to en.
 """
 
 from __future__ import annotations
