@@ -40,7 +40,7 @@ BACKENDS = [
     ("ollama-minimax", "https://ollama.com/v1/chat/completions", "OLLAMA_API_KEY", "minimax-m3.1-flash"),
 ]
 
-KEY_RE = re.compile(r"^(\s*)([A-Za-z_][A-Za-z0-9_]*)\s*:\s*(.*)$")
+KEY_RE = re.compile(r"^(\s*)(?:'((?:[^'\\]|\\.)*)'|([A-Za-z_$][A-Za-z0-9_$]*))\s*:\s*(.*)$")
 
 
 def load_env() -> dict[str, str]:
@@ -73,10 +73,13 @@ def parse_en() -> dict[str, str]:
     return json.loads(proc.stdout)
 
 
+SEP = "\u001f"  # path separator; en.ts has keys that themselves contain dots
+
+
 def unflatten(flat: dict[str, str]) -> dict:
     tree: dict = {}
     for path, value in flat.items():
-        parts = path.split(".")
+        parts = path.split(SEP)
         node = tree
         for p in parts[:-1]:
             node = node.setdefault(p, {})
@@ -189,6 +192,7 @@ def existing_overrides(code: str) -> dict[str, str]:
 
 
 def parse_literals(text: str) -> dict[str, str]:
+    """Flat literal overrides already present in a module (SEP-joined paths)."""
     out, stack = {}, []
     for raw in text.splitlines():
         line = raw.rstrip()
@@ -198,7 +202,10 @@ def parse_literals(text: str) -> dict[str, str]:
                 if stack:
                     stack.pop()
             continue
-        indent, key, rest = len(m.group(1)), m.group(2), m.group(3).strip()
+        indent = len(m.group(1))
+        key = m.group(2) if m.group(2) is not None else m.group(3)
+        key = key.replace("\\'", "'") if m.group(2) is not None else key
+        rest = m.group(4).strip()
         if rest.startswith("{"):
             while stack and stack[-1][0] >= indent:
                 stack.pop()
@@ -206,7 +213,7 @@ def parse_literals(text: str) -> dict[str, str]:
             continue
         sm = re.fullmatch(r"""(["'])((?:[^\\]|\\.)*)\1,?""", rest)
         if sm and stack:
-            out[".".join([k for _, k in stack] + [key])] = sm.group(2)
+            out[SEP.join([k for _, k in stack] + [key])] = sm.group(2)
     return out
 
 

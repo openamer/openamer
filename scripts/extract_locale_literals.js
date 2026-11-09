@@ -31,11 +31,16 @@ const source = ts.createSourceFile(
 
 const out = {}
 
+// Some keys contain dots themselves: en.ts has { 'keybinds.openPanel': '...' }.
+// Joining paths with a dot would split such a key into nested objects, so the
+// path separator is a character that cannot appear in a key.
+const SEP = '\u001f'
+
 function visit(node, path) {
   if (ts.isPropertyAssignment(node)) {
     const raw = node.name.getText()
     const name = raw.replace(/^['"]|['"]$/g, '')
-    const next = path ? `${path}.${name}` : name
+    const next = path ? `${path}${SEP}${name}` : name
     const init = node.initializer
     if (ts.isObjectLiteralExpression(init)) {
       init.properties.forEach(child => visit(child, next))
