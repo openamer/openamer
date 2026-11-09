@@ -5743,6 +5743,18 @@ def _compute_desktop_content_hash(project_root: Path) -> str:
 
         for fn in sorted(filenames):
             fp = Path(dirpath) / fn
+            # Never hash a workspace member's own lockfile. `apps/*` are npm
+            # workspaces of the root project (root package.json "workspaces"),
+            # so dependency resolution is pinned by the ROOT package-lock.json,
+            # which is hashed above. A lockfile inside a member directory is
+            # only ever a by-product of an `npm install --prefix <member>`
+            # invocation — and it is untracked, so .gitignore does not always
+            # exclude it. Hashing it made the stamp flip on every such
+            # install, which forced a full desktop rebuild, which in turn
+            # stopped the running desktop app (and the session inside it) to
+            # release the build output.
+            if fn == "package-lock.json":
+                continue
             rel = str(fp.relative_to(project_root))
             if not spec.match_file(rel):
                 _hash_file(fp)
@@ -6882,8 +6894,76 @@ def cmd_gui(args: argparse.Namespace):
 
     launch_command.extend(config_electron_flags)
     print(f"→ Launching packaged OpenAmer Desktop: {' '.join(launch_command)}")
+
+    if sys.platform == "win32":
+        # Windows: hand the GUI its own process group + console and never let it
+        # inherit this launcher's stdio handles.
+        #
+        # Two real defects came from the plain ``subprocess.run`` launch:
+        #   1. The launcher blocked until the user closed the app, so the shell
+        #      that ran `openamer desktop` stayed occupied (and Ctrl+C there
+        #      killed the GUI).
+        #   2. The app inherited the launcher's stdio. Inside a ConPTY host
+        #      (Windows Terminal, VS Code, IDE terminals, pytest pipes) those
+        #      are anonymous pipes rather than console handles, so Chromium
+        #      logs on every start:
+        #        [ERROR:base\i18n\icu_util.cc:232]
+        #        Invalid file descriptor to ICU data received.
+        #      A detached child with DEVNULL stdio has no invalid descriptor to
+        #      inherit, which removes the message at the source instead of
+        #      suppressing it.
+        pid = _launch_desktop_windows_detached(launch_command, desktop_dir, env)
+        print(f"✓ OpenAmer Desktop started detached (pid {pid})")
+        return
+
     launch_result = subprocess.run(launch_command, cwd=desktop_dir, env=env, check=False)
     sys.exit(launch_result.returncode)
+
+
+def _launch_desktop_windows_detached(
+    command: list[str], cwd: Path, env: dict[str, str]
+) -> int:
+    """Start the packaged Desktop app detached from this Windows console.
+
+    Returns the child PID. The child gets ``CREATE_NEW_PROCESS_GROUP`` so a
+    Ctrl+C in the launching console does not reach it, ``CREATE_NO_WINDOW``
+    for a hidden private console (console-subsystem descendants like the
+    Python backend then have a console to inherit instead of flashing one),
+    and ``CREATE_BREAKAWAY_FROM_JOB`` so it survives its parent's job object
+    (Windows Terminal and Electron wrap children in jobs).
+
+    ``DEVNULL`` on all three stdio handles is the point of this helper: it
+    guarantees the app never inherits an anonymous pipe as stderr, which is
+    what makes Chromium report an invalid ICU data file descriptor.
+
+    If the parent job forbids breakaway, ``CreateProcess`` fails with
+    ``ERROR_ACCESS_DENIED``; we retry once without that bit, matching
+    ``gateway_windows._spawn_detached``.
+    """
+    from openamer_cli._subprocess_compat import (
+        windows_detach_flags,
+        windows_detach_flags_without_breakaway,
+    )
+
+    popen_kwargs: dict[str, object] = {
+        "cwd": str(cwd),
+        "env": env,
+        "stdin": subprocess.DEVNULL,
+        "stdout": subprocess.DEVNULL,
+        "stderr": subprocess.DEVNULL,
+        "close_fds": True,
+    }
+    try:
+        child = subprocess.Popen(
+            command, creationflags=windows_detach_flags(), **popen_kwargs
+        )
+    except OSError:
+        child = subprocess.Popen(
+            command,
+            creationflags=windows_detach_flags_without_breakaway(),
+            **popen_kwargs,
+        )
+    return child.pid
 
 
 def _find_stale_dashboard_pids(
