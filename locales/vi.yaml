@@ -18,7 +18,7 @@ approval:
   allowed_always: '      ✓ Đã thêm vào danh sách cho phép vĩnh viễn'
   denied: '      ✗ Bị từ chối'
   cancelled: '      ✗ Đã hủy'
-  blocklist_message: This command is on the unconditional blocklist and cannot be approved.
+  blocklist_message: Lệnh này nằm trong danh sách chặn vô điều kiện và không thể được phê duyệt.
 gateway:
   approval_expired: ⚠️ Phê duyệt đã hết hạn (agent không còn chờ nữa). Hãy yêu cầu agent thử lại.
   draining: ⏳ Đang xử lý hết {count} agent đang hoạt động trước khi khởi động lại...
@@ -276,24 +276,24 @@ gateway:
       **Hiển thị:** show, hide
 
       **Duy trì:** thêm `--global` để lưu ngoài phiên này'
-    picker_title: '🧠 **Reasoning Settings**
+    picker_title: '🧠 **Cài đặt suy luận**
 
 
-      **Effort:** `{level}`
+      **Mức độ:** `{level}`
 
-      **Scope:** {scope}
+      **Phạm vi:** {scope}
 
-      **Display:** {display}
+      **Hiển thị:** {display}
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+      Chọn một tùy chọn:'
+    choice_none: none — tắt suy luận
+    choice_reset: reset — xóa ghi đè phiên
+    choice_show: hiển thị suy luận trong câu trả lời
+    choice_hide: ẩn suy luận khỏi câu trả lời
+    set_global: '🧠 ✓ Đã đặt mức độ suy luận thành `{effort}` (đã lưu vào cấu hình)
 
-      _(takes effect on next message)_'
+      _(có hiệu lực ở tin nhắn tiếp theo)_'
     set_global_save_failed: '🧠 ✓ Đã đặt mức nỗ lực suy luận thành `{effort}` (chỉ phiên này — lưu cấu hình thất bại)
 
       _(có hiệu lực ở tin nhắn tiếp theo)_'

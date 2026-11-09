@@ -25,8 +25,10 @@ Language resolution order:
     3. ``display.language`` from config.yaml
     4. ``"en"`` (baseline)
 
-Supported languages: en, zh, zh-hant, ja, de, es, fr, tr, uk, af, ko, it, ga,
-pt, ru, hu, ar.  Unknown values fall back to en.
+Supported languages: all 47 locales from apps/desktop/src/i18n/languages.ts
+(en, zh, zh-hant, ja, ar, de, es, pt, sq, bs, fr, it, tr, ru, hi, fa, uk, ko,
+id, th, vi, eo, pl, nl, ro, el, cs, sv, hu, bg, da, fi, sk, no, ga, sl, hr,
+et, lv, lt).  Unknown values fall back to en.
 """
 
 from __future__ import annotations
@@ -41,8 +43,43 @@ from typing import Any
 logger = logging.getLogger(__name__)
 
 SUPPORTED_LANGUAGES: tuple[str, ...] = (
-    "en", "zh", "zh-hant", "ja", "de", "es", "fr", "tr", "uk",
-    "af", "ko", "it", "ga", "pt", "ru", "hu", "ar",
+    "aa", "ab", "ae", "af", "ak",
+    "am", "an", "ar", "as", "av",
+    "ay", "az", "ba", "be", "bg",
+    "bh", "bi", "bm", "bn", "bo",
+    "br", "bs", "ca", "ce", "ch",
+    "co", "cr", "cs", "cu", "cv",
+    "cy", "da", "de", "dv", "dz",
+    "ee", "el", "en", "eo", "es",
+    "et", "eu", "fa", "ff", "fi",
+    "fj", "fo", "fr", "fy", "ga",
+    "gd", "gl", "gn", "gu", "gv",
+    "ha", "he", "hi", "ho", "hr",
+    "ht", "hu", "hy", "hz", "ia",
+    "id", "ie", "ig", "ii", "ik",
+    "io", "is", "it", "iu", "ja",
+    "jv", "ka", "kg", "ki", "kj",
+    "kk", "kl", "km", "kn", "ko",
+    "kr", "ks", "ku", "kv", "kw",
+    "ky", "la", "lb", "lg", "li",
+    "ln", "lo", "lt", "lu", "lv",
+    "mg", "mh", "mi", "mk", "ml",
+    "mn", "mr", "ms", "mt", "my",
+    "na", "nb", "nd", "ne", "ng",
+    "nl", "nn", "no", "nr", "nv",
+    "ny", "oc", "oj", "om", "or",
+    "os", "pa", "pi", "pl", "ps",
+    "pt", "qu", "rm", "rn", "ro",
+    "ru", "rw", "sa", "sc", "sd",
+    "se", "sg", "si", "sk", "sl",
+    "sm", "sn", "so", "sq", "sr",
+    "ss", "st", "su", "sv", "sw",
+    "ta", "te", "tg", "th", "ti",
+    "tk", "tl", "tn", "to", "tr",
+    "ts", "tt", "tw", "ty", "ug",
+    "uk", "ur", "uz", "ve", "vi",
+    "vo", "wa", "wo", "xh", "yi",
+    "yo", "za", "zh", "zh-hant", "zu",
 )
 DEFAULT_LANGUAGE = "en"
 
@@ -218,14 +255,47 @@ def reset_language_cache() -> None:
         _catalog_cache.clear()
 
 
+def _get_system_locale_language() -> str | None:
+    """Best-effort system locale detection as final fallback.
+
+    Reads OS locale via Python's ``locale`` module and environment variables
+    (LC_ALL, LC_LANG, LANG), normalizes through ``_normalize_lang``, and
+    returns a supported language code or None.
+    """
+    import locale as _locale
+
+    candidates: list[str | None] = []
+    try:
+        candidates.append(_locale.getdefaultlocale()[0])
+    except Exception:
+        pass
+    try:
+        candidates.append(_locale.getlocale()[0])
+    except Exception:
+        pass
+    for env_var in ("LC_ALL", "LC_LANG", "LANG"):
+        candidates.append(os.environ.get(env_var))
+
+    for raw in candidates:
+        if not raw or not isinstance(raw, str):
+            continue
+        normalized = _normalize_lang(raw)
+        if normalized and normalized != DEFAULT_LANGUAGE:
+            return normalized
+    return None
+
+
 def get_language() -> str:
-    """Resolve the active language using env > config > default order."""
+    """Resolve the active language using env > config > system locale > default order."""
     env_lang = os.environ.get("OPENAMER_LANGUAGE")
     if env_lang:
         return _normalize_lang(env_lang)
     cfg_lang = _config_language_cached()
     if cfg_lang:
         return cfg_lang
+    sys_lang = _get_system_locale_language()
+    if sys_lang:
+        return sys_lang
     return DEFAULT_LANGUAGE
 
 

@@ -167,7 +167,7 @@ gateway:
       _(sačuvano globalno — primjenjuje se na sljedećoj poruci)_'
     example_line: '
 
-      Example: `{preview}`'
+      Primjer: `{preview}`'
     state_on: UKLJUČENO
     state_off: ISKLJUČENO
   goal:

@@ -226,7 +226,7 @@ gateway:
 
       '
     none_option: • `none` — (ilma isiksuse ülekatteta)
-    item: • `{name}` — {preview}
+    item: • {name} — {preview}
     usage: '
 
       Kasutus: `/personality <name>`'

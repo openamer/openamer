@@ -276,24 +276,24 @@ gateway:
       **Montrado:** show, hide
 
       **Persistado:** aldonu `--global` por konservi preter ĉi tiu sesio'
-    picker_title: '🧠 **Reasoning Settings**
+    picker_title: '🧠 **Agordoj pri Rezonado**
 
 
-      **Effort:** `{level}`
+      **Fortostreĉo:** `{level}`
 
-      **Scope:** {scope}
+      **Amplekso:** {scope}
 
-      **Display:** {display}
+      **Montrado:** {display}
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+      Elektu opcion:'
+    choice_none: nenio — malŝalti rezonadon
+    choice_reset: restarigi — forigi sesian superregadon
+    choice_show: montri rezonadon en respondoj
+    choice_hide: kaŝi rezonadon el respondoj
+    set_global: '🧠 ✓ Rezonada fortostreĉo agordita al `{effort}` (konservita en agordo)
 
-      _(takes effect on next message)_'
+      _(efikos ĉe la sekva mesaĝo)_'
     set_global_save_failed: '🧠 ✓ Rezonada peno agordita al `{effort}` (nur sesio — konservado de agordo malsukcesis)
 
       _(validiĝos ĉe la sekva mesaĝo)_'

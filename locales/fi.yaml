@@ -276,24 +276,24 @@ gateway:
       **Näyttö:** show, hide
 
       **Säilytä:** lisää `--global` tallentaaksesi tämän istunnon ulkopuolelle'
-    picker_title: '🧠 **Reasoning Settings**
+    picker_title: '🧠 **Päättelyasetukset**
 
 
-      **Effort:** `{level}`
+      **Vaivannäkö:** `{level}`
 
-      **Scope:** {scope}
+      **Laajuus:** {scope}
 
-      **Display:** {display}
+      **Näyttäminen:** {display}
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+      Valitse vaihtoehto:'
+    choice_none: ei mitään — poista päättely käytöstä
+    choice_reset: nollaa — tyhjennä istunnon ohitus
+    choice_show: näytä päättely vastauksissa
+    choice_hide: piilota päättely vastauksista
+    set_global: '🧠 ✓ Päättelyn vaivannäkö asetettu arvoon `{effort}` (tallennettu asetuksiin)
 
-      _(takes effect on next message)_'
+      _(vaikuttaa seuraavasta viestistä)_'
     set_global_save_failed: '🧠 ✓ Päättelypanostus asetettu arvoon `{effort}` (vain istunto — asetuksen tallennus epäonnistui)
 
       _(tulee voimaan seuraavassa viestissä)_'

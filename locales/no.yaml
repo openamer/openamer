@@ -276,24 +276,24 @@ gateway:
       **Visning:** show, hide
 
       **Lagre:** legg til `--global` for å lagre utover denne økten'
-    picker_title: '🧠 **Reasoning Settings**
+    picker_title: '🧠 **Resonneringsinnstillinger**
 
 
-      **Effort:** `{level}`
+      **Innsats:** `{level}`
 
-      **Scope:** {scope}
+      **Omfang:** {scope}
 
-      **Display:** {display}
+      **Visning:** {display}
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+      Velg et alternativ:'
+    choice_none: ingen — deaktiver resonnering
+    choice_reset: nullstill — fjern overstyring for økten
+    choice_show: vis resonnering i svar
+    choice_hide: skjul resonnering fra svar
+    set_global: '🧠 ✓ Resonneringsinnsats satt til `{effort}` (lagret i konfigurasjonen)
 
-      _(takes effect on next message)_'
+      _(trer i kraft ved neste melding)_'
     set_global_save_failed: '🧠 ✓ Resonneringsinnsats satt til `{effort}` (kun denne økten — lagring av konfigurasjon mislyktes)
 
       _(trer i kraft ved neste melding)_'

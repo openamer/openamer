@@ -274,24 +274,24 @@ gateway:
       **Prikaz:** show, hide
 
       **Trajno shranjevanje:** dodajte `--global` za shranjevanje onkraj te seje'
-    picker_title: '🧠 **Reasoning Settings**
+    picker_title: '🧠 **Nastavitve sklepanja**
 
 
-      **Effort:** `{level}`
+      **Napor:** `{level}`
 
-      **Scope:** {scope}
+      **Obseg:** {scope}
 
-      **Display:** {display}
+      **Prikaz:** {display}
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+      Izberite možnost:'
+    choice_none: brez — onemogoči sklepanje
+    choice_reset: ponastavi — počisti preglasitev seje
+    choice_show: prikaži sklepanje v odgovorih
+    choice_hide: skrij sklepanje iz odgovorov
+    set_global: '🧠 ✓ Napor sklepanja nastavljen na `{effort}` (shranjeno v konfiguracijo)
 
-      _(takes effect on next message)_'
+      _(začne veljati pri naslednjem sporočilu)_'
     set_global_save_failed: '🧠 ✓ Raven razmišljanja nastavljena na `{effort}` (samo za sejo — shranjevanje konfiguracije ni uspelo)
 
       _(uveljavi se pri naslednjem sporočilu)_'

@@ -52,7 +52,7 @@ HOME = Path(os.environ.get("OPENAMER_HOME")
             or str(Path.home() / "AppData" / "Local" / "openamer-laptop"
                    if os.name == "nt" else Path.home() / ".openamer-laptop"))
 
-BATCH = 6
+BATCH = max(1, int(os.environ.get("OPENAMER_I18N_BATCH", "6")))
 # The provider rate-limits hard when several batches run concurrently: five
 # worker processes x four threads produced a wall of HTTP 429s and left locales
 # 90% English. Default to a single request in flight and let the operator raise
@@ -74,7 +74,11 @@ BACKENDS = [
      "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
 ]
 
-LANGUAGE_NAMES = {
+# English names used in the prompt. locales/_languages.json is the single source
+# of truth for the advertised set (agent/i18n.py is generated from it), so the
+# translator never has to guess what "aa" or "za" stands for. The literal below
+# is only the fallback for a checkout that predates that file.
+_LANG_NAMES_FALLBACK = {
     "ar": "Arabic", "bg": "Bulgarian", "bs": "Bosnian", "cs": "Czech",
     "da": "Danish", "el": "Greek", "eo": "Esperanto", "es": "Spanish",
     "et": "Estonian", "fa": "Persian", "fi": "Finnish", "fr": "French",
@@ -86,6 +90,19 @@ LANGUAGE_NAMES = {
     "th": "Thai", "tr": "Turkish", "uk": "Ukrainian", "vi": "Vietnamese",
     "zh": "Simplified Chinese", "zh-hant": "Traditional Chinese",
 }
+
+
+def _load_language_names() -> dict[str, str]:
+    path = REPO / "locales" / "_languages.json"
+    if path.exists():
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            pass
+    return dict(_LANG_NAMES_FALLBACK)
+
+
+LANGUAGE_NAMES = _load_language_names()
 
 # Literal keystrokes / machine tokens -- never translated.
 VERBATIM_KEYS = {"approval.smart_deny_once_inputs", "approval.smart_deny_deny_inputs"}
