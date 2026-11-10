@@ -80,6 +80,12 @@ SUPPORTED_LANGUAGES: tuple[str, ...] = (
     "uk", "ur", "uz", "ve", "vi",
     "vo", "wa", "wo", "xh", "yi",
     "yo", "za", "zh", "zh-hant", "zu",
+    # Not ISO 639-1: Torbeški is the South Slavic variety of the Torbeši
+    # community (Polog/Debar, North Macedonia). It has no ISO code of its own and
+    # no standard written norm. The code must stand alone -- "mk-torbeski" would
+    # be split at the hyphen by _normalize_lang and silently resolve to
+    # Macedonian, which is a different language to its speakers.
+    "torbeski",
 )
 DEFAULT_LANGUAGE = "en"
 
@@ -104,6 +110,11 @@ _LANGUAGE_ALIASES: dict[str, str] = {
     "afrikaans": "af", "af-za": "af",
     # Korean
     "korean": "ko", "한국어": "ko", "ko-kr": "ko",
+    # Torbeški — the community's own names. The code is not ISO, so the natural
+    # spellings have to be listed explicitly; otherwise a user typing their own
+    # language name silently lands on English.
+    "torbeški": "torbeski", "torbeshki": "torbeski", "torbesh": "torbeski",
+    "торбешки": "torbeski", "нашински": "torbeski", "nasinski": "torbeski",
     # Italian
     "italian": "it", "italiano": "it", "it-it": "it", "it-ch": "it",
     # Irish (Gaeilge) — ga is the BCP-47 code

@@ -162,6 +162,7 @@ import { tk } from './tk'
 import { tl } from './tl'
 import { tn } from './tn'
 import { to } from './to'
+import { torbeski } from './torbeski'
 import { tr } from './tr'
 import { ts } from './ts'
 import { tt } from './tt'
@@ -370,5 +371,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   'za': za,
   'zh': zh,
   'zh-hant': zhHant,
-  'zu': zu
+  'zu': zu,
+  'torbeski': torbeski
 }
