@@ -36,43 +36,42 @@ def test_pid_alive_true_for_self(launcher):
 
 
 def test_pid_alive_false_for_dead_pid(launcher):
-    # Spawn and reap a child so the pid is definitely gone.
     proc = subprocess.Popen([sys.executable, "-c", "pass"])
     proc.wait()
     assert launcher._pid_alive(proc.pid) is False
 
 
 def test_status_without_pidfile_reports_none(launcher, monkeypatch, tmp_path, capsys):
-    monkeypatch.setattr(launcher, "PIDFILE", tmp_path / "missing.json")
-    assert launcher.status() == 1
-    assert "no detached translation recorded" in capsys.readouterr().out
+    monkeypatch.setattr(launcher, "LOGDIR", tmp_path)
+    assert launcher.status("cli") == 1
+    assert "no detached cli translation recorded" in capsys.readouterr().out
 
 
 def test_status_counts_dead_workers(launcher, monkeypatch, tmp_path, capsys):
     proc = subprocess.Popen([sys.executable, "-c", "pass"])
     proc.wait()
-    pidfile = tmp_path / "i18n.pid.json"
+    pidfile = tmp_path / "i18n-translate.pid.json"
     pidfile.write_text(json.dumps({
         "started": "2026-11-09T21:46:07",
         "workers": [{"pid": proc.pid, "locales": ["aa", "ab"], "log": str(tmp_path / "w.log")}],
     }), encoding="utf-8")
-    monkeypatch.setattr(launcher, "PIDFILE", pidfile)
+    monkeypatch.setattr(launcher, "LOGDIR", tmp_path)
 
-    assert launcher.status() == 1  # no worker alive -> non-zero
+    assert launcher.status("cli") == 1  # no worker alive -> non-zero
     out = capsys.readouterr().out
     assert "dead" in out
     assert "0/1 workers alive" in out
 
 
 def test_status_counts_live_workers(launcher, monkeypatch, tmp_path, capsys):
-    pidfile = tmp_path / "i18n.pid.json"
+    pidfile = tmp_path / "i18n-translate.pid.json"
     pidfile.write_text(json.dumps({
         "started": "2026-11-09T21:46:07",
         "workers": [{"pid": os.getpid(), "locales": ["aa"], "log": str(tmp_path / "w.log")}],
     }), encoding="utf-8")
-    monkeypatch.setattr(launcher, "PIDFILE", pidfile)
+    monkeypatch.setattr(launcher, "LOGDIR", tmp_path)
 
-    assert launcher.status() == 0
+    assert launcher.status("cli") == 0
     assert "1/1 workers alive" in capsys.readouterr().out
 
 
@@ -86,3 +85,33 @@ def test_round_robin_never_drops_or_duplicates(launcher):
     assert sorted(flat) == sorted(todo)
     assert len(flat) == len(todo)
     assert max(len(q) for q in queues) - min(len(q) for q in queues) <= 1
+
+
+def test_pidfile_for_returns_separate_files(launcher):
+    """CLI and desktop targets must use different pid files."""
+    assert launcher.pidfile_for("cli").name == "i18n-translate.pid.json"
+    assert launcher.pidfile_for("desktop").name == "desktop-translate.pid.json"
+
+
+def test_pending_desktop_counts_empty_modules(launcher, monkeypatch, tmp_path):
+    """pending_desktop() returns locales whose module is still defineLocale({})."""
+    # Write a fake _languages.json with 3 locales
+    langs = {"en": "English", "aa": "Afar", "ab": "Abkhazian"}
+    # The launcher's REPO is __file__.parents[1] -> scripts/, so locales/ is REPO/locales/
+    locales_dir = tmp_path / "locales"
+    locales_dir.mkdir()
+    lang_path = locales_dir / "_languages.json"
+    lang_path.write_text(json.dumps(langs), encoding="utf-8")
+
+    # Create apps/desktop/src/i18n with modules
+    i18n = tmp_path / "apps" / "desktop" / "src" / "i18n"
+    i18n.mkdir(parents=True)
+    (i18n / "en.ts").write_text("export const en = defineLocale({})", encoding="utf-8")
+    (i18n / "aa.ts").write_text("export const aa = defineLocale({})", encoding="utf-8")
+    (i18n / "ab.ts").write_text("export const ab = defineLocale({foo: 'bar'})", encoding="utf-8")
+
+    # Patch REPO to point at tmp_path (so REPO/locales works)
+    monkeypatch.setattr(launcher, "REPO", tmp_path)
+
+    todo = launcher.pending_desktop()
+    assert todo == ["aa"]  # ab already has content, en is skipped
