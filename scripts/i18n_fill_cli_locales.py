@@ -400,12 +400,8 @@ def translate_locale(lang: str, en_flat: dict[str, str], force: bool,
         return ("cached", 0, total)
 
     env = load_env()
-    backend = None
-    for cand in BACKENDS:
-        if env.get(cand[2]):
-            backend = cand
-            break
-    if backend is None:
+    backends = [cand for cand in BACKENDS if env.get(cand[2])]
+    if not backends:
         write_catalog(lang, table, en_flat)
         return ("no-backend", len(todo), total)
 
@@ -417,7 +413,11 @@ def translate_locale(lang: str, en_flat: dict[str, str], force: bool,
     def work(batch: list[str]) -> list[str]:
         nonlocal done
         texts = [en_flat[k] for k in batch]
-        res = translate_batch(batch, texts, lang, backend, env)
+        res = None
+        for backend in backends:
+            res = translate_batch(batch, texts, lang, backend, env)
+            if res:
+                break
         if res:
             with lock:
                 table.update(res)

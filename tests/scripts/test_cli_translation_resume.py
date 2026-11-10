@@ -51,6 +51,25 @@ def seed(translator, english, catalog=None, cache=None, accepted=None):
     return translator.flatten(english)
 
 
+def test_cli_tries_next_configured_backend_after_failure(translator, monkeypatch):
+    flat = seed(translator, {"ui": {"label": "Quit"}})
+    monkeypatch.setattr(translator, "BACKENDS", [
+        ("first", "unused", "FIRST", "model"),
+        ("second", "unused", "SECOND", "model"),
+    ])
+    monkeypatch.setattr(translator, "load_env", lambda: {"FIRST": "test", "SECOND": "test"})
+    tried = []
+
+    def batch(keys, texts, lang, backend, env):
+        tried.append(backend[0])
+        return {"ui.label": "Beenden"} if backend[0] == "second" else None
+
+    monkeypatch.setattr(translator, "translate_batch", batch)
+    translator.translate_locale("de", flat, False, False)
+    assert tried == ["first", "second"]
+    assert translator.flatten(translator.load_yaml("de"))["ui.label"] == "Beenden"
+
+
 def test_fully_cached_locale_materializes_catalog_without_loading_credentials(translator, monkeypatch):
     english = {"ui": {"greet": "Hello {name}", "quit": "Quit"},
                "approval": {"smart_deny_once_inputs": "o,once"}}

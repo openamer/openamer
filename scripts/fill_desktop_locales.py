@@ -155,9 +155,9 @@ _KEY = rf"(?:{_MODIFIER}|[A-Za-z0-9]+|[+\-])"
 HOTKEY_RE = re.compile(
     rf"(?<!\w){_MODIFIER}(?:[/+]\s*{_KEY})+(?!\w)"
     r"|[⌘⌥⇧⌃]+[A-Za-z0-9]?"
-    r"|\b(?:Enter|Escape|Esc|Tab|Backspace|F\d{1,2})\b"
+    r"|\bF\d{1,2}\b"
 )
-AMBIGUOUS_KEY_RE = re.compile(r"\b(?:Return|Space|Delete)\b")
+AMBIGUOUS_KEY_RE = re.compile(r"\b(?:Enter|Escape|Esc|Tab|Backspace|Return|Space|Delete)\b")
 MACHINE_TOKENS = frozenset({
     "OpenAmer", "JSON", "API", "URL", "HTTP", "HTTPS", "SSH", "UTF-8",
     "HTML", "CSS", "SQL", "OAuth", "OAuth2", "GitHub", "GitLab",
@@ -172,6 +172,7 @@ def machine_token(value: str) -> bool:
         or re.fullmatch(r"(?:https?://|/|[A-Za-z]:[\\/])\S+", value)
         or re.fullmatch(r"`[^`]+`", value)
         or HOTKEY_RE.fullmatch(value)
+        or re.fullmatch(r"(?:Enter|Escape|Esc|Tab|Backspace)", value)
     )
 
 
@@ -186,7 +187,9 @@ def validation_error(source: str, value: object) -> str | None:
     if Counter(HOTKEY_RE.findall(source)) != Counter(HOTKEY_RE.findall(value)):
         return "hotkey drift"
     # "Delete" and "Return to chat" are prose, not keyboard instructions.
-    if re.search(r"\b(?:press|hit|hold|key)\b", source, re.I):
+    if (re.search(r"\b(?:press|hit|hold|key|shortcut)\b", source, re.I)
+            or re.search(r"\b(?:Enter|Escape|Esc|Tab|Backspace) to\b", source)
+            or re.fullmatch(r"(?:Enter|Escape|Esc|Tab|Backspace)", source.strip())):
         if Counter(AMBIGUOUS_KEY_RE.findall(source)) != Counter(AMBIGUOUS_KEY_RE.findall(value)):
             return "hotkey drift"
     return None

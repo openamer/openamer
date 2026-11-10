@@ -160,6 +160,8 @@ def test_resume_preserves_mature_modules_byte_for_byte(fill, monkeypatch, capsys
 @pytest.mark.parametrize(("source", "translation"), [
     ("Delete", "Löschen"),
     ("Return to chat", "Zum Chat zurückkehren"),
+    ("Enter your name", "Geben Sie Ihren Namen ein"),
+    ("Tab title", "Titel des Tabs"),
     ("Command history", "Befehlsverlauf"),
     ("Alternative layout", "Alternatives Layout"),
 ])
