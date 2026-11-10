@@ -146,240 +146,240 @@ gateway:
     label_normal: KABONGO
     status_fast: fast
     status_normal: normal
-    picker_title: '⚡ **Priority Processing**
+    picker_title: '⚡ **Kubadika kwa Ntangilo**
 
 
-      Current mode: `{mode}`
+      Mukalelo wa nomba: `{mode}`
 
 
-      Pick an option:'
-    choice_fast: fast — Priority Processing on
-    choice_normal: normal — standard processing
+      Sola kintu:'
+    choice_fast: lubilo — Kubadika kwa Ntangilo kutangijibwe
+    choice_normal: kya masiku — kubadika kwa kipimo
   footer:
-    status: '📎 Runtime footer: **{state}**
+    status: '📎 Mukunkulo wa kubidika: **{state}**
 
-      Fields: `{fields}`
+      Bifuko: `{fields}`
 
-      Platform: `{platform}`'
-    usage: 'Usage: `/footer [on|off|status]`'
-    saved: '📎 Runtime footer: **{state}**{example}
+      Lupango: `{platform}`'
+    usage: 'Kubingijija: `/footer [on|off|status]`'
+    saved: '📎 Mukunkulo wa kubidika: **{state}**{example}
 
-      _(saved globally — takes effect on next message)_'
+      _(watabilwe pa ntanda yonse — ukakwata pa mukanda wa kunyima)_'
     example_line: '
 
-      Example: `{preview}`'
+      Kileso: `{preview}`'
     state_on: 'ON'
     state_off: 'OFF'
   goal:
-    unavailable: Goals unavailable on this session.
+    unavailable: Mifindo taiboneka mu kipindi kya nomba.
     no_goal_set: No goal set.
-    paused: '⏸ Goal paused: {goal}'
+    paused: '⏸ Mufindo wakimbiwe: {goal}'
     no_resume: No goal to resume.
-    resumed: '▶ Goal resumed: {goal}
+    resumed: '▶ Mufindo watangijibwe: {goal}
 
-      Send any message to continue, or wait — I''ll take the next step on the next turn.'
-    invalid: 'Invalid goal: {error}'
-    set: '⊙ Goal set ({budget}-turn budget): {goal}
+      Tuma mukanda yense kusokola, nansha kuyemba — nkakwata kitendo kya kunyima mu kipindi kya kunyima.'
+    invalid: 'Mufindo wa kubula kufwana: {error}'
+    set: '⊙ Mufindo watawilwe ({budget}-budget ya bikindi): {goal}
 
-      I''ll keep working until the goal is done, you pause/clear it, or the budget is exhausted.
+      Nkabidika mpaka mufindo ukapwa, webe ukimba nansha kufuta, nansha budget ikapwa.
 
-      Controls: /goal status · /goal pause · /goal resume · /goal clear'
+      Bikomo: /goal status · /goal pause · /goal resume · /goal clear'
   help:
-    header: '📖 **OpenAmer Commands**
+    header: '📖 **Mikalo ya OpenAmer**
 
       '
     skill_header: '
 
-      ⚡ **Skill Commands** ({count} active):'
+      ⚡ **Mikalo ya Bumanyi** ({count} ikukola):'
     more_use_commands: '
 
-      ... and {count} more. Use `/commands` for the full paginated list.'
+      ... ne {count} bindi. Ponayi `/commands` pa mukanda wonse wa mikalo.'
   insights:
-    invalid_days: 'Invalid --days value: {value}'
-    error: 'Error generating insights: {error}'
+    invalid_days: 'Kipimo kya --days kyalubile: {value}'
+    error: 'Kifu pa kupanga bumanyi: {error}'
   kanban:
-    error_prefix: '⚠ kanban error: {error}'
-    subscribed_suffix: (subscribed — you'll be notified when {task_id} completes or blocks)
-    truncated_suffix: … (truncated; use `openamer kanban …` in your terminal for full output)
+    error_prefix: '⚠ kifu kya kanban: {error}'
+    subscribed_suffix: (Wasubisidwa — bakukubula ntanda {task_id} ikamalila nansha kukomanga)
+    truncated_suffix: … (kyapelulwa; ponayi `openamer kanban …` mu terminal yobe pa output yonse)
     no_output: (no output)
     wake:
       completed: completed
-      gave_up: gave up (retries exhausted)
-      crashed: crashed (worker exited); dispatcher will retry
-      timed_out: timed out; dispatcher will retry
-      blocked: blocked; needs attention
+      gave_up: Yalekele (kusubula kumalile)
+      crashed: Yalubuka (mukoli apitile); dispatcher akasubula
+      timed_out: Ntanda yapwile; dispatcher akasubula
+      blocked: Yakomangwa; ikukenya kulolelwa
       status_default: status changed
       status_joiner: ', '
-      message: '[kanban] Task {task_id} {status}.
+      message: '[kanban] Mudimu {task_id} {status}.
 
-        Title: {title}
+        Mutwe: {title}
 
-        Assignee: @{assignee}
+        Muntu wa mudimu: @{assignee}
 
-        Board: {board}
+        Bodi: {board}
 
 
-        Check the result or decide the next step.'
+        Tala kufuma nansha sola kipimo kilondela.'
   personality:
-    none_configured: No personalities configured in `{path}/config.yaml`
-    header: '🎭 **Available Personalities**
+    none_configured: Mifwito kena milongolwa mu `{path}/config.yaml`
+    header: '🎭 **Mifwito Yaboneka**
 
       '
-    none_option: • `none` — (no personality overlay)
+    none_option: • `none` — (kafwito ka kupinda)
     item: • `{name}` — {preview}
     usage: '
 
-      Usage: `/personality <name>`'
-    save_failed: '⚠️ Failed to save personality change: {error}'
-    cleared: '🎭 Personality cleared — using base agent behavior.
+      Kubombesha: `/personality <name>`'
+    save_failed: '⚠️ Kubulwa kusunga mfwito wa kubadilika: {error}'
+    cleared: '🎭 Mfwito wasulwa — kubombesha na mikolo ya agent wa ntanda.
 
-      _(takes effect on next message)_'
-    set_to: '🎭 Personality set to **{name}**
+      _(kubomba pa meseji ilondela)_'
+    set_to: '🎭 Mfwito watulwa ku **{name}**
 
-      _(takes effect on next message)_'
-    unknown: 'Unknown personality: `{name}`
+      _(kubomba pa meseji ilondela)_'
+    unknown: 'Mfwito ta mumanyikana: `{name}`
 
 
-      Available: {available}'
+      Yaboneka: {available}'
   profile:
-    header: 👤 **Profile:** `{profile}`
+    header: 👤 **Profil:** `{profile}`
     home: 📂 **Home:** `{home}`
   reasoning:
     level_default: medium (default)
     level_disabled: none (disabled)
     scope_session: session override
     scope_global: global config
-    status: '🧠 **Reasoning Settings**
+    status: '🧠 **Mipango ya Kufikiri**
 
 
-      **Effort:** `{level}`
+      **Makasi:** `{level}`
 
-      **Scope:** {scope}
+      **Kipimo:** {scope}
 
-      **Display:** {display}
+      **Kulanga:** {display}
 
 
-      _Usage:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
+      _Kubombesha:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
     display_on: on ✓
     display_off: 'off'
-    display_set_on: '🧠 ✓ Reasoning display: **ON**
+    display_set_on: '🧠 ✓ Kumwesha kutelema: **ON**
 
-      Model thinking will be shown before each response on **{platform}**.'
-    display_set_off: '🧠 ✓ Reasoning display: **OFF** for **{platform}**'
-    reset_global_unsupported: ⚠️ `/reasoning reset --global` is not supported. Use `/reasoning <level> --global` to change the global default.
-    reset_done: 🧠 ✓ Session reasoning override cleared; falling back to global config.
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
-
-
-      **Valid levels:** none, minimal, low, medium, high, xhigh, max, ultra
-
-      **Display:** show, hide
-
-      **Persist:** add `--global` to save beyond this session'
-    picker_title: '🧠 **Reasoning Settings**
+      Kutelema kwa modeli kukamweshibwa patanshi pa mvubu yonse pa **{platform}**.'
+    display_set_off: '🧠 ✓ Kumwesha kutelema: **OFF** pa **{platform}**'
+    reset_global_unsupported: ⚠️ `/reasoning reset --global` kayikwatibwa. Bomba `/reasoning <level> --global` kuti ushintule default ya yonse.
+    reset_done: 🧠 ✓ Kupitisha kutelema kwa session kufutulwe; tukobwela ku config ya yonse.
+    unknown_arg: '⚠️ Argumento kitayukika: `{arg}`
 
 
-      **Effort:** `{level}`
+      **Milingo ya kukulupuka:** none, minimal, low, medium, high, xhigh, max, ultra
 
-      **Scope:** {scope}
+      **Kumwesha:** show, hide
 
-      **Display:** {display}
+      **Kubika:** ongela `--global` kuti ubike kupita session iyi'
+    picker_title: '🧠 **Mipango ya kutelema**
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+      **Mingilo:** `{level}`
 
-      _(takes effect on next message)_'
-    set_global_save_failed: '🧠 ✓ Reasoning effort set to `{effort}` (session only — config save failed)
+      **Mupaka:** {scope}
 
-      _(takes effect on next message)_'
-    set_session: '🧠 ✓ Reasoning effort set to `{effort}` (session only — add `--global` to persist)
+      **Kumwesha:** {display}
 
-      _(takes effect on next message)_'
+
+      Sola kintu:'
+    choice_none: none — futula kutelema
+    choice_reset: reset — futula override ya session
+    choice_show: mwesha kutelema mu mvubu
+    choice_hide: fisa kutelema mu mvubu
+    set_global: '🧠 ✓ Mingilo ya kutelema ilongolwe ku `{effort}` (kubikwa mu config)
+
+      _(kukwatila pa mvubu ulondele)_'
+    set_global_save_failed: '🧠 ✓ Mingilo ya kutelema ilongolwe ku `{effort}` (session mpaka — kubika config kufutile)
+
+      _(kukwatila pa mvubu ulondele)_'
+    set_session: '🧠 ✓ Bulume bwa kulanganya butulwe ku `{effort}` (mu session yo — yikapo `--global` mpo bibweke)
+
+      _(bikwata mu mwanda wa kunyima)_'
   reload_mcp:
-    cancelled: 🟡 /reload-mcp cancelled. MCP tools unchanged.
-    always_followup: 'ℹ️ Future `/reload-mcp` calls will run without confirmation. Re-enable via `approvals.mcp_reload_confirm: true` in config.yaml.'
-    confirm_prompt: '⚠️ **Confirm /reload-mcp**
+    cancelled: 🟡 /reload-mcp yalekelwe. Bivuka bya MCP tabisandulwa.
+    always_followup: 'ℹ️ Bilo bya `/reload-mcp` bikwabo bikasala kwabula kuketwa. Bwezapo kukosa kwa `approvals.mcp_reload_confirm: true` mu config.yaml.'
+    confirm_prompt: '⚠️ **Ketapo /reload-mcp**
 
 
-      Reloading MCP servers rebuilds the tool set for this session and **invalidates the provider prompt cache** — the next message will re-send full input tokens.  On long-context or high-reasoning models this can be expensive.
+      Kubweza seve za MCP kubaka bwino bivuka bya session eye na **kubipisha cache ya prompt ya mupeleka** — mwanda wa kunyima ukabweza input tokens yonse.  Ku ba model ba context ndapile kepi kulanganya, bino bikwabo kwenda na ntalo.
 
 
-      Choose:
+      Sola:
 
-      • **Approve Once** — reload now
+      • **Bika Lumo** — bwezapo pompo
 
-      • **Always Approve** — reload now and silence this prompt permanently
+      • **Bika Ntendele** — bwezapo pompo na ukinye prompt eye mpaka
 
-      • **Cancel** — leave MCP tools unchanged
+      • **Lekapo** — leka bivuka bya MCP tabisandulwa
 
 
-      _Text fallback: reply `/approve`, `/always`, or `/cancel`._'
-    header: '🔄 **MCP Servers Reloaded**
+      _Text fallback: ukembe `/approve`, `/always`, nansha `/cancel`._'
+    header: '🔄 **Seve za MCP Zibwezepo**
 
       '
-    reconnected: '♻️ Reconnected: {names}'
+    reconnected: '♻️ Twasangulukilepo: {names}'
     added: '➕ Added: {names}'
     removed: '➖ Removed: {names}'
-    none_connected: No MCP servers connected.
+    none_connected: Tapana seve za MCP zisangulukile.
     tools_available: '
 
-      🔧 {tools} tool(s) available from {servers} server(s)'
-    failed: '❌ MCP reload failed: {error}'
+      🔧 {tools} kivuka(bivuka) bipipo ku {servers} seve(seve)'
+    failed: '❌ Kubweza MCP kwalemene: {error}'
   reload_skills:
-    header: '🔄 **Skills Reloaded**
+    header: '🔄 **Bumanyi Bwalwezepo**
 
       '
-    no_new: No new skills detected.
+    no_new: Tapana bumanyi bupya bwaketelwe.
     total: '
 
-      📚 {count} skill(s) available'
+      📚 {count} bumanyi(bumanyi) bupipo'
     added_header: ➕ **Added Skills:**
-    removed_header: ➖ **Removed Skills:**
+    removed_header: ➖ **Bumanyi bufutulwe:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
-    failed: '❌ Skills reload failed: {error}'
+    failed: '❌ Kubweza bumanyi kwaluka: {error}'
   reset:
-    header_default: ✨ Session reset! Starting fresh.
-    header_new: ✨ New session started!
-    header_titled: '✨ New session started: {title}'
+    header_default: ✨ Session yabwelwa! Kutanga bupya.
+    header_new: ✨ Session mupya watangile!
+    header_titled: '✨ Session mupya watangile: {title}'
     title_rejected: '
 
-      ⚠️ Title rejected: {error}'
+      ⚠️ Titolo yakanwa: {error}'
     title_error_untitled: '
 
-      ⚠️ {error} — session started untitled.'
+      ⚠️ {error} — session watangile wabula titolo.'
     title_empty_untitled: '
 
-      ⚠️ Title is empty after cleanup — session started untitled.'
+      ⚠️ Titolo yabula panyima ya kupanga — session watangile wabula titolo.'
     tip: '
 
       ✦ Tip: {tip}'
   restart:
-    in_progress: ⏳ Gateway restart already in progress...
-    restarting: ♻ Restarting gateway. If you aren't notified within 60 seconds, restart from the console with `openamer gateway restart`.
+    in_progress: ⏳ Kubweza Gateway kulongwa kale...
+    restarting: ♻ Tukubweza gateway. Nga tamumanyikwa mu sekondi 60, bwezai kufuma mu console na `openamer gateway restart`.
   resume:
-    db_unavailable: Session database not available.
-    parse_error: '⚠️ Could not parse `/resume` arguments: {error}.
+    db_unavailable: Database ya session kayipatikana.
+    parse_error: '⚠️ Kwaluka kupanga ma argument ya `/resume`: {error}.
 
-      Use quotes around titles with spaces, for example: `/resume "Project A Plan"`.'
-    matrix_no_named_sessions: 'No named sessions found for this Matrix room.
+      Panganai ma quote ku titolo ishina spaces, kwa kumwekesha: `/resume "Project A Plan"`.'
+    matrix_no_named_sessions: 'Kakupwa misangilo ya mazina ya kupwana mu kisaka ki Matrix.
 
-      Use `/title My Session` to name the current room session, `/resume --all` to list all Matrix sessions, or `/resume --cross-room <session name>` to explicitly cross room boundaries.'
-    matrix_blocked_no_origin: '⚠️ Matrix /resume blocked: this named session has no recorded room origin, so OpenAmer will not resume it inside the current room by default. Use `/resume --cross-room {name}` if you intentionally want to cross room boundaries.'
-    matrix_blocked_other_room: '⚠️ Matrix /resume blocked: that session belongs to a different Matrix room ({room}). Use `/resume --cross-room {name}` if you intentionally want to resume it here.'
-    matrix_cross_room_success: '⚠️ Cross-room resume: resumed **{title}** inside Matrix room **{room}**.
+      Sungula `/title My Session` mu kupa izina ku session ya kisaka ya pano, `/resume --all` mu kutala misangilo yonse ya Matrix, nansha `/resume --cross-room <session name>` mu kupita na kusangulwa mu mipaka ya bisaka.'
+    matrix_blocked_no_origin: '⚠️ Matrix /resume yazibikwa: session unu wa izina kakupwa na kisaka ki kufuma, nikyo OpenAmer kakamubwelela mu kisaka ki pano pa default. Sungula `/resume --cross-room {name}` niba ufwaya na kupita mu mipaka ya bisaka.'
+    matrix_blocked_other_room: '⚠️ Matrix /resume yazibikwa: session yowo i ya kisaka kina Matrix ({room}). Sungula `/resume --cross-room {name}` niba ufwaya na kubwelela pano.'
+    matrix_cross_room_success: '⚠️ Kubwelela kwa kupita mu bisaka: kwabwelamo **{title}** mu kisaka ki Matrix **{room}**.
 
-      Future messages in this room will use that transcript until `/reset` or another `/resume`.{msg_part}'
-    blocked_not_owner: '⚠️ /resume blocked: ''**{name}**'' belongs to a different user or chat. You can only resume sessions from this chat.'
-    no_named_sessions: 'No named sessions found.
+      Mau a kunyuma mu kisaka kino akasungula transcript yoyo mpaka `/reset` nansha `/resume` ungi.{msg_part}'
+    blocked_not_owner: '⚠️ /resume yazibikwa: ''**{name}**'' i ya muntu ungi nansha chat ungi. Ukwata kubwelela misangilo ya chat muno pe.'
+    no_named_sessions: 'Kakupwa misangilo ya mazina ya kupwana.
 
-      Use `/title My Session` to name your current session, then `/resume My Session` to return to it later.'
-    list_header: '📋 **Named Sessions**
+      Sungula `/title My Session` mu kupa izina ku session yobe ya pano, kisha `/resume My Session` mu kubwelela kuyo kunyuma.'
+    list_header: '📋 **Misangilo ya Mazina**
 
       '
     list_item: • **{title}**{preview_part}
@@ -387,147 +387,147 @@ gateway:
     list_preview_suffix: ' — _{preview}_'
     list_footer: '
 
-      Usage: `/resume <session name>`'
+      Kusungula: `/resume <session name>`'
     list_footer_numbered: '
 
-      Usage: `/resume <session name>` or `/resume <number>` (e.g. `/resume 1` for the most recent)'
-    list_failed: 'Could not list sessions: {error}'
-    out_of_range: 'Resume index {index} is out of range.
+      Kusungula: `/resume <session name>` nansha `/resume <number>` (nkiko `/resume 1` pa ya kunyuma ngofu)'
+    list_failed: 'Kakupwa kutala misangilo: {error}'
+    out_of_range: 'Indekisi ya kusokola {index} i fite kwa ntanda.
 
-      Use `/resume` with no arguments to see available sessions.'
-    not_found: 'No session found matching ''**{name}**''.
+      Bombolola `/resume` kwapanda makonko pa kumona mikutano ipele.'
+    not_found: 'Kwapanda mukutano ufunyine ''**{name}**''.
 
-      Use `/resume` with no arguments to see available sessions.'
-    already_on: 📌 Already on session **{name}**.
-    switch_failed: Failed to switch session.
-    resumed_one: ↻ Resumed session **{title}** ({count} message). Conversation restored.
-    resumed_many: ↻ Resumed session **{title}** ({count} messages). Conversation restored.
-    resumed_no_count: ↻ Resumed session **{title}**. Conversation restored.
+      Bombolola `/resume` kwapanda makonko pa kumona mikutano ipele.'
+    already_on: 📌 Kale kwi mukutano **{name}**.
+    switch_failed: Kupona kwapanda kusandula mukutano.
+    resumed_one: ↻ Kusokola mukutano **{title}** ({count} mukanda). Mazunguzo asakishibwa.
+    resumed_many: ↻ Kusokola mukutano **{title}** ({count} mikanda). Mazunguzo asakishibwa.
+    resumed_no_count: ↻ Kusokola mukutano **{title}**. Mazunguzo asakishibwa.
   retry:
-    no_previous: No previous message to retry.
+    no_previous: Kwapanda mukanda wa kumpala wa kusubula.
   rollback:
-    not_enabled: "Checkpoints are not enabled.\nEnable in config.yaml:\n```\ncheckpoints:\n  enabled: true\n```"
-    none_found: No checkpoints found for {cwd}
-    invalid_number: Invalid checkpoint number. Use 1-{max}.
-    restored: '✅ Restored to checkpoint {hash}: {reason}
+    not_enabled: "Chekipoyinti kayi kukwashibwa.\nKwashisha mu config.yaml:\n```\ncheckpoints:\n  enabled: true\n```"
+    none_found: Kwapanda chekipoyinti ya {cwd}
+    invalid_number: Namba ya chekipoyinti kayi mingilo. Bombolola 1-{max}.
+    restored: '✅ Asakishibwa ku chekipoyinti {hash}: {reason}
 
-      A pre-rollback snapshot was saved automatically.'
+      Kifwatulo kya kumpala kwa kubweza kyasakishibwa mwakusokoka.'
     restore_failed: ❌ {error}
   set_home:
-    save_failed: 'Failed to save home channel: {error}'
-    success: '✅ Home channel set to **{name}** (ID: {chat_id}).
+    save_failed: 'Kubula kubika kanal ya nganda: {error}'
+    success: '✅ Kanal ya nganda ibikwa ku **{name}** (ID: {chat_id}).
 
-      Cron jobs and cross-platform messages will be delivered here.'
+      Mingilo ya Cron ne mizozo ya plataforme yonso bikatumwa pano.'
   status:
-    header: 📊 **OpenAmer Gateway Status**
+    header: 📊 **Mukalo wa OpenAmer Gateway**
     matrix_scope_header: '**Matrix scope:**'
     matrix_scope_room: '  room: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
     matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    session_id: '**ID ya session:** `{session_id}`'
     title: '**Title:** {title}'
-    created: '**Created:** {timestamp}'
-    last_activity: '**Last Activity:** {timestamp}'
+    created: '**Yapangwa:** {timestamp}'
+    last_activity: '**Mwingilo wa nsengo:** {timestamp}'
     model: '**Model:** `{model}`'
-    model_provider: '**Model:** `{model}` ({provider})'
+    model_provider: '**Modeli:** `{model}` ({provider})'
     context: '**Context:** {used} / {total} ({pct}%)'
     context_used: '**Context:** ~{used} tokens'
-    tokens: '**Cumulative API tokens (re-sent each call):** {tokens}'
-    agent_running: '**Agent Running:** {state}'
+    tokens: '**Bidimbu bya API bikwata pamo (bipatumibwa kabidi pa mwito umo na umo):** {tokens}'
+    agent_running: '**Mupangi auta:** {state}'
     state_yes: Yes ⚡
     state_no: 'No'
-    queued: '**Queued follow-ups:** {count}'
-    platforms: '**Connected Platforms:** {platforms}'
+    queued: '**Mikuti ya kulonda ikelwe mu mulongo:** {count}'
+    platforms: '**Bisangilo bikatukidwe:** {platforms}'
   stop:
-    stopped_pending: ⚡ Stopped. The agent hadn't started yet — you can continue this session.
-    stopped: ⚡ Stopped. You can continue this session.
-    no_active: No active task to stop.
+    stopped_pending: ⚡ Kwimika. Mupangi kashitangile bubidi — ukokeja kuluta kumeso ne session ii.
+    stopped: ⚡ Kwimika. Ukokeja kuluta kumeso ne session ii.
+    no_active: Kakuna mudimo auta wa kwimika.
   title:
-    db_unavailable: Session database not available.
+    db_unavailable: Database wa session kaubulapo.
     warn_prefix: ⚠️ {error}
-    empty_after_clean: ⚠️ Title is empty after cleanup. Please use printable characters.
-    set_to: '✏️ Session title set: **{title}**'
-    not_found: Session not found in database.
+    empty_after_clean: ⚠️ Mutwe wabula kintu panyima ya kufundula. Tafyako kutumisha bilembo bilembelwa.
+    set_to: '✏️ Mutwe wa session wikelwe: **{title}**'
+    not_found: Session kaisangidwe mu database.
     current_with_title: '📌 Session: `{session_id}`
 
-      Title: **{title}**'
-    current_no_title: '📌 Session: `{session_id}`
+      Mutwe: **{title}**'
+    current_no_title: '📌 Lubanza: `{session_id}`
 
-      No title set. Usage: `/title My Session Name`'
+      Mutwe kawubikwa. Kulongesa: `/title My Session Name`'
   topic:
-    not_telegram_dm: The /topic command is only available in Telegram private chats.
-    no_session_db: Session database not available.
-    unauthorized: You are not authorized to use /topic on this bot.
-    restore_needs_topic: To restore a session, first create or open a Telegram topic, then send /topic <session-id> inside that topic. To create a new topic, open All Messages and send any message there.
-    topics_disabled: 'Telegram topics are not enabled for this bot yet.
+    not_telegram_dm: /topic ilipo peka mu maisano a pa mwine a Telegram.
+    no_session_db: Database wa lubanza kaupowa.
+    unauthorized: Keweshiwa nzila ya kukwata /topic pa bot uyu.
+    restore_needs_topic: Kubweza lubanza, upanga nansha kufungula mutwe wa Telegram, ko kutuma /topic <session-id> munda mwa mutwe uyo. Kupanga mutwe mupya, fungula All Messages no kutuma nsangu yense kuko.
+    topics_disabled: 'Mitwe ya Telegram teyashijibwa pa bot uyu ni.
 
 
-      How to enable them:
+      Mumo wa kuyashijibwa:
 
-      1. Open @BotFather.
+      1. Fungula @BotFather.
 
-      2. Choose your bot.
+      2. Sunga bot wobe.
 
-      3. Open Bot Settings → Threads Settings.
+      3. Fungula Bot Settings → Threads Settings.
 
-      4. Turn on Threaded Mode and make sure users are allowed to create new threads.
-
-
-      Then send /topic again.'
-    topics_user_disallowed: 'Telegram topics are enabled, but users are not allowed to create topics.
+      4. Yashija Threaded Mode no kulolesha kuba batumi bapeshiwa nzila ya kupanga mitwe mipya.
 
 
-      Open @BotFather → choose your bot → Bot Settings → Threads Settings, then turn off ''Disallow users to create new threads''.
+      Ko kutuma /topic kabidi.'
+    topics_user_disallowed: 'Mitwe ya Telegram yashijibwa, pano batumi tabapeshiwa nzila ya kupanga mitwe.
 
 
-      Then send /topic again.'
-    enable_failed: 'Failed to enable Telegram topic mode: {error}'
-    bound_status: 'This topic is linked to:
+      Fungula @BotFather → sunga bot wobe → Bot Settings → Threads Settings, ko kuzimya ''Disallow users to create new threads''.
 
-      Session: {label}
+
+      Ko kutuma /topic kabidi.'
+    enable_failed: 'Kwalema kuyashija mode ya mitwe ya Telegram: {error}'
+    bound_status: 'Uyu mutwe ulunganywa na:
+
+      Lubanza: {label}
 
       ID: {session_id}
 
 
-      Use /new to replace this topic with a fresh session.
+      Kukwata /new kupimpula uyu mutwe na lubanza lupya.
 
-      For parallel work, open All Messages and send a message there to create another topic.'
-    thread_ready: 'Telegram multi-session topics are enabled.
+      Pa musala wa pamo, fungula All Messages no kutuma nsangu kuko kupanga mutwe umbi.'
+    thread_ready: 'Mitwe ya Telegram ya malubanza avingi yashijibwa.
 
 
-      This topic will be used as an independent OpenAmer session. Use /new to replace this topic''s current session. For parallel work, open All Messages and send a message there to create another topic.'
+      Uyu mutwe ukakwatwa nga lubanza lwa OpenAmer lwapela. Kukwata /new kupimpula lubanza lwa ha buino lwa uyu mutwe. Pa musala wa pamo, fungula All Messages no kutuma nsangu kuko kupanga mutwe umbi.'
     untitled_session: Untitled session
   undo:
     nothing: Nothing to undo.
-    removed: '↩️ Undid {turns} turn(s) ({count} message(s)).
+    removed: '↩️ Kwabujibwa {turns} mafuku ({count} nsangu).
 
-      Backed up to: "{preview}"
+      Kubikwa mu: "{preview}"
 
-      Copy/edit the text above and send it to re-prompt from here.'
-    invalid_count: Invalid count "{arg}" — use /undo or /undo N.
+      Kopa/pimpula maloba a pa ntanshi no kutuma kuti wipushe kabidi kufuma apa.'
+    invalid_count: Kubala kubi "{arg}" — kukwata /undo nansha /undo N.
   update:
-    platform_not_messaging: ✗ /update is only available from messaging platforms. Run `openamer update` from the terminal.
-    not_git_repo: ✗ Not a git repository — cannot update.
-    openamer_cmd_not_found: ✗ Could not locate the `openamer` command. OpenAmer is running, but the update command could not find the executable on PATH or via the current Python interpreter. Try running `openamer update` manually in your terminal.
-    start_failed: '✗ Failed to start update: {error}'
-    starting: 🧬 Starting OpenAmer update… I'll stream progress here.
+    platform_not_messaging: ✗ /update ilumbuluka buno kufuma mu mifuko ya kutumina nkondo. Tandika `openamer update` kufuma mu terminal.
+    not_git_repo: ✗ Kanshi ko git repository — kakoki kuvulula.
+    openamer_cmd_not_found: ✗ Kakoki kumona `openamer` command. OpenAmer ikutamba, anto command ya kuvulula kakoki kumona executable mu PATH nansha mu Python interpreter ya sono. Leka kutandika `openamer update` na kuboko mu terminal yobe.
+    start_failed: '✗ Kakoki kutandika kuvulula: {error}'
+    starting: 🧬 Kutandika kuvulula OpenAmer… Nkasokela maendeleo pano.
   usage:
-    rate_limits: ⏱️ **Rate Limits:** {state}
-    header_session: 📊 **Session Token Usage**
+    rate_limits: ⏱️ **Mipaka ya Mwendo:** {state}
+    header_session: 📊 **Kutumika kwa Tokeni za Session**
     label_model: 'Model: `{model}`'
-    label_input_tokens: 'Input tokens: {count}'
-    label_cache_read: 'Cache read tokens: {count}'
-    label_cache_write: 'Cache write tokens: {count}'
-    label_output_tokens: 'Output tokens: {count}'
+    label_input_tokens: 'Tokeni za kuingiza: {count}'
+    label_cache_read: 'Tokeni za kusoma cache: {count}'
+    label_cache_write: 'Tokeni za kulemba cache: {count}'
+    label_output_tokens: 'Tokeni za kufuma: {count}'
     label_total: 'Total: {count}'
     label_api_calls: 'API calls: {count}'
-    label_cost: 'Cost: {prefix}${amount}'
+    label_cost: 'Ntengo: {prefix}${amount}'
     label_cost_included: 'Cost: included'
-    label_context: 'Context: {used} / {total} ({pct}%)'
-    label_compressions: 'Compressions: {count}'
-    breakdown_header: 🧩 **Context breakdown** _(estimated)_
+    label_context: 'Mukalo: {used} / {total} ({pct}%)'
+    label_compressions: 'Mikunkumuko: {count}'
+    breakdown_header: 🧩 **Kupasula mukalo** _(kufikililwa)_
     breakdown_line: '• {label}: ~{count} ({pct}%)'
     breakdown_cat_system_prompt: System prompt
     breakdown_cat_tool_definitions: Tool definitions
@@ -539,69 +539,69 @@ gateway:
     breakdown_cat_conversation: Conversation
     header_session_info: 📊 **Session Info**
     label_messages: 'Messages: {count}'
-    label_estimated_context: 'Estimated context: ~{count} tokens'
-    detailed_after_first: _(Detailed usage available after the first agent response)_
-    no_data: No usage data available for this session.
-    unknown_subcommand: 'Unknown /usage subcommand: `{args}`. Try `/usage` or `/usage reset [--force]`.'
-    reset_wrong_provider: Banked usage resets are only available on the openai-codex provider. Switch with `/model` first.
+    label_estimated_context: 'Mukalo ufikililwe: ~{count} tokens'
+    detailed_after_first: _(Ukebi wa bungi ukekala panyuma ya mukumbu wa ntete wa agent)_
+    no_data: Kakwena data wa ukebi wa session iyi.
+    unknown_subcommand: 'Subcommand ya /usage kaivulwa: `{args}`. Yesa `/usage` nangwa `/usage reset [--force]`.'
+    reset_wrong_provider: Kubwezela ukebi wa banked kukekala pa provider ya openai-codex pe. Ubuke na `/model` ntete.
   credits:
-    not_logged_in: Not logged into OpenAmer Portal. Log in to see your credit balance and top up.
+    not_logged_in: Kawena kuloginwa mu OpenAmer Portal. Log in mpo umone credit balance yobe no kutop up.
   verbose:
-    not_enabled: "The `/verbose` command is not enabled for messaging platforms.\n\nEnable it in `config.yaml`:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"
-    mode_off: '⚙️ Tool progress: **OFF** — no tool activity shown.'
-    mode_new: '⚙️ Tool progress: **NEW** — shown when tool changes (preview length: `display.tool_preview_length`, default 40).'
-    mode_all: '⚙️ Tool progress: **ALL** — every tool call shown (preview length: `display.tool_preview_length`, default 40).'
-    mode_verbose: '⚙️ Tool progress: **VERBOSE** — every tool call with full arguments.'
-    mode_log: '⚙️ Tool progress: **LOG** — silent in chat; tool calls written to ~/.openamer/logs/tool_calls.log.'
-    saved_suffix: _(saved for **{platform}** — takes effect on next message)_
-    save_failed: '_(could not save to config: {error})_'
+    not_enabled: "Lombolo ya `/verbose` kayakulwa pa messaging platforms.\n\nYikulule mu `config.yaml`:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"
+    mode_off: '⚙️ Mudimu wa tool: **OFF** — kakwena mudimu wa tool ulangwa.'
+    mode_new: '⚙️ Mupito wa kifwanyi: **MUPYA** — kulangidwa pale kifwanyi kibadilika (bulele wa kumona liboso: `display.tool_preview_length`, default 40).'
+    mode_all: '⚙️ Mupito wa kifwanyi: **BONSE** — kuita yonso kwa kifwanyi kulangidwa (bulele wa kumona liboso: `display.tool_preview_length`, default 40).'
+    mode_verbose: '⚙️ Mupito wa kifwanyi: **MAJAMBO MOSI** — kuita yonso kwa kifwanyi na majambo onso.'
+    mode_log: '⚙️ Mupito wa kifwanyi: **LOG** — kunyema mu chat; kuita kwa kifwanyi kulembwa mu ~/.openamer/logs/tool_calls.log.'
+    saved_suffix: _(kubikwa mpo ya **{platform}** — kubanda kukola pa mukanda ukwabo)_
+    save_failed: '_(kwalema kubika mu config: {error})_'
   voice:
-    enabled_voice_only: 'Voice mode enabled.
+    enabled_voice_only: 'Mode wa mwiji wafungulwa.
 
-      I''ll reply with voice when you send voice messages.
+      Nkakukumbula na mwiji pale utuma mikanda ya mwiji.
 
-      Use /voice tts to get voice replies for all messages.'
-    disabled_text: Voice mode disabled. Text-only replies.
-    tts_enabled: 'Auto-TTS enabled.
+      Usomba /voice tts mpo ya kukumbula na mwiji pa mikanda yonso.'
+    disabled_text: Mode wa mwiji wafungwa. Kukumbula na mukanda pe.
+    tts_enabled: 'Auto-TTS wafungulwa.
 
-      All replies will include a voice message.'
+      Kukumbula yonso ikakwata mukanda wa mwiji.'
     status_mode: 'Voice mode: {label}'
-    status_channel: 'Voice channel: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_channel: 'Kanal wa mwiji: #{channel}'
+    status_participants: 'Bapandi: {count}'
     status_member: '  - {name}{status}'
     speaking: ' (speaking)'
     enabled_short: Voice mode enabled.
     disabled_short: Voice mode disabled.
     label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    label_voice_only: Pa (kukumbula na mwiji ku mikanda ya mwiji)
+    label_all: TTS (kwalula na jwi ku nsangu yonso)
     help: '{toggle}
 
 
-      **How /voice works**
+      **Mukalo wa /voice**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — kwalula na jwi pa kutuma nsangu wa jwi
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — kwalula na jwi ku *nsangu yonso*
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — kubwelela ku makwalulo a malobo pe
 
-      • `/voice status` — show the current mode
+      • `/voice status` — kumweka mukalo wa pano
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (kwabula argument) — kubaluka bukiji kati mwa on ne off{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **Mikalo ya jwi ya pa mo (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • Ubunge mu mukalo wa jwi kubanza, kabiyo `/voice channel` — nkabunga, nkumfwa, ne nkwalula na jwi
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — kufuma mu mukalo wa jwi'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ Mukalo wa YOLO **OFF** pa lukungu luno — mikalo ya bubi ikakabila luzibulo.
+    enabled: ⚡ Mukalo wa YOLO **ON** pa lukungu luno — mikalo yonso yazibulwa bukiji. Uipashe na lusungu.
   shared:
-    session_db_unavailable: Session database not available.
-    session_db_unavailable_prefix: Session database not available
-    session_not_found: Session not found in database.
+    session_db_unavailable: Dibuku dya data dya lukungu kadilipo.
+    session_db_unavailable_prefix: Dibuku dya data dya lukungu kadilipo
+    session_not_found: Lukungu kalumonikapo mu dibuku dya data.
     warn_passthrough: ⚠️ {error}

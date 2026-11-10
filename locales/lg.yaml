@@ -3,383 +3,383 @@
 # See locales/en.yaml for the source of truth; keep keys in sync.
 
 approval:
-  dangerous_header: '⚠️  DANGEROUS COMMAND: {description}'
-  choose_long: '      [o]nce  |  [s]ession  |  [a]lways  |  [d]eny'
-  choose_short: '      [o]nce  |  [s]ession  |  [d]eny'
-  prompt_long: '      Choice [o/s/a/D]: '
-  prompt_short: '      Choice [o/s/D]: '
-  choose_smart_deny: '      [o]nce  |  [d]eny'
+  dangerous_header: '⚠️  EKIRAGIRO EKY''AKABI: {description}'
+  choose_long: '      [o] Omulundi gumu  |  [s] Okutuula kuno  |  [a] Bulijjo  |  [d] Gaana'
+  choose_short: '      [o] Omulundi gumu  |  [s] Okutuula kuno  |  [d] Gaana'
+  prompt_long: '      Okulonda [o/s/a/D]: '
+  prompt_short: '      Okulonda [o/s/D]: '
+  choose_smart_deny: '      [o] Omulundi gumu  |  [d] Gaana'
   prompt_smart_deny: '      Choice [o/D]: '
   smart_deny_once_inputs: o,once
   smart_deny_deny_inputs: d,deny
-  timeout: '      ⏱ Timeout - denying command'
+  timeout: '      ⏱ Ekiseera kiwedde - kigaana ekiragiro'
   allowed_once: '      ✓ Allowed once'
-  allowed_session: '      ✓ Allowed for this session'
-  allowed_always: '      ✓ Added to permanent allowlist'
+  allowed_session: '      ✓ Kikkiriziddwa ku kiseera kino'
+  allowed_always: '      ✓ Kyongeddwa ku lukalala lw''ebikkiriziddwa olubeerera'
   denied: '      ✗ Denied'
   cancelled: '      ✗ Cancelled'
-  blocklist_message: This command is on the unconditional blocklist and cannot be approved.
+  blocklist_message: Ekiragiro kino kiri ku lukalala lw'ebigaana awatali mwanya era tekisobola kukkirizibwa.
 gateway:
-  approval_expired: ⚠️ Approval expired (agent is no longer waiting). Ask the agent to try again.
-  draining: ⏳ Draining {count} active agent(s) before restart...
+  approval_expired: ⚠️ Okukkiriza kuwedde (omubaka takyinda). Saba omubaka agezeeko nate.
+  draining: ⏳ Kulinda {count} omubaka/ababaka abakola okukoma nga tebannatandika nate...
   goal_cleared: ✓ Goal cleared.
   no_active_goal: No active goal.
-  config_read_failed: '⚠️ Could not read config.yaml: {error}'
-  config_save_failed: '⚠️ Could not save config: {error}'
+  config_read_failed: '⚠️ Tekisobose okusoma config.yaml: {error}'
+  config_save_failed: '⚠️ Tekisobose okutereka config: {error}'
   model:
     error_prefix: 'Error: {error}'
-    switched: Model switched to `{model}`
+    switched: Modeli ekyusiddwa ku `{model}`
     provider_label: 'Provider: {provider}'
-    context_label: 'Context: {tokens} tokens'
-    max_output_label: 'Max output: {tokens} tokens'
+    context_label: 'Embeera: {tokens} tokens'
+    max_output_label: 'Ekisinga okufuluma: {tokens} tokens'
     cost_label: 'Cost: {cost}'
-    capabilities_label: 'Capabilities: {capabilities}'
-    prompt_caching_enabled: 'Prompt caching: enabled'
+    capabilities_label: 'Obusobozi: {capabilities}'
+    prompt_caching_enabled: 'Okutereka prompt mu cache: kikozeseddwa'
     warning_prefix: 'Warning: {warning}'
-    saved_global: Saved to config.yaml (`--global`)
-    session_only_hint: _(session only — add `--global` to persist)_
-    current_label: 'Current: `{model}` on {provider}'
+    saved_global: Kiterekiddwa mu config.yaml (`--global`)
+    session_only_hint: _(session yokka — yongerako `--global` okusigala)_
+    current_label: 'Kati: `{model}` ku {provider}'
     current_tag: ' (current)'
     more_models_suffix: ' (+{count} more)'
-    usage_switch_model: '`/model <name>` — switch model'
-    usage_switch_provider: '`/model <name> --provider <slug>` — switch provider'
-    usage_persist: '`/model <name> --global` — persist'
+    usage_switch_model: '`/model <name>` — kyusa modeli'
+    usage_switch_provider: '`/model <name> --provider <slug>` — kyusa provider'
+    usage_persist: '`/model <name> --global` — okutereka'
   agents:
-    header: 🤖 **Active Agents & Tasks**
-    active_agents: '**Active agents:** {count}'
+    header: 🤖 **Abakozi abakola n'Emirimu**
+    active_agents: '**Abakozi abakola:** {count}'
     this_chat: ' · this chat'
     more: '... and {count} more'
-    running_processes: '**Running background processes:** {count}'
-    async_jobs: '**Gateway async jobs:** {count}'
-    none: No active agents or running tasks.
+    running_processes: '**Enkola ezikola mu nnyuma:** {count}'
+    async_jobs: '**Emirimu gya Gateway async:** {count}'
+    none: Tewali bakozi bakola oba emirimu egikola.
     state_starting: starting
     state_running: running
   approve:
-    no_pending: No pending command to approve.
-    once_singular: ✅ Command approved. The agent is resuming...
-    once_plural: ✅ Commands approved ({count} commands). The agent is resuming...
-    session_singular: ✅ Command approved (pattern approved for this session). The agent is resuming...
-    session_plural: ✅ Commands approved (pattern approved for this session) ({count} commands). The agent is resuming...
-    always_singular: ✅ Command approved (pattern approved permanently). The agent is resuming...
-    always_plural: ✅ Commands approved (pattern approved permanently) ({count} commands). The agent is resuming...
+    no_pending: Tewali kiragiro kikirindirira kukkirizibwa.
+    once_singular: ✅ Ekiragiro kikkiriziddwa. Omukozi addamu...
+    once_plural: ✅ Ebiragiro bikkiriziddwa (ebiragiro {count}). Omukozi addamu...
+    session_singular: ✅ Ekiragiro kikkiriziddwa (entegeka ekkiriziddwa ku kiseera kino). Omukozi addamu...
+    session_plural: ✅ Ebiragiro bikkiriziddwa (entegeka ekkiriziddwa ku kiseera kino) (ebiragiro {count}). Omukozi addamu...
+    always_singular: ✅ Ekiragiro kikkiriziddwa (entegeka ekkiriziddwa emirembe gyonna). Omukozi addamu...
+    always_plural: ✅ Ebiragiro bikakasiddwa (enteekateeka ekakasiddwa emirembe gyonna) ({count} ebiragiro). Omukozi addamu...
   background:
-    usage: 'Usage: /background <prompt>
+    usage: 'Enkozesa: /background <prompt>
 
-      Example: /background Summarize the top HN stories today
+      Ekyokulabirako: /background Kunnyonnyola amawulire ga HN agasinga obulungi leero
 
 
-      Runs the prompt in a separate session. You can keep chatting — the result will appear here when done.'
-    started: '🔄 Background task started: "{preview}"
+      Kikozesa ekibuuzo mu ssesoni ey''enjawulo. Osobola okweyongera okwogerako — ebivuddemu birirabika wano bwe bikoma.'
+    started: '🔄 Omulimu ogw''emabega gutandise: "{preview}"
 
-      Task ID: {task_id}
+      ID y''omulimu: {task_id}
 
-      You can keep chatting — results will appear when done.'
+      Osobola okweyongera okwogerako — ebivuddemu birirabika bwe bikoma.'
   branch:
-    db_unavailable: Session database not available.
-    no_conversation: No conversation to branch — send a message first.
-    create_failed: 'Failed to create branch: {error}'
-    switch_failed: Branch created but failed to switch to it.
-    branched_one: '⑂ Branched to **{title}** ({count} message copied)
+    db_unavailable: Database y'essoni teyiriwo.
+    no_conversation: Tewali mboozi ya kukola omutabi — sonda obubaka ku kkala.
+    create_failed: 'Okukola omutabi kulemeddwa: {error}'
+    switch_failed: Omutabi gukolebwa naye kulemeddwa okuguddaako.
+    branched_one: '⑂ Omutabi gukolebwa ku **{title}** (obubaka {count} bukopeeddwa)
 
-      Original: `{parent}`
+      Okusooka: `{parent}`
 
-      Branch: `{new}`
+      Omutabi: `{new}`
 
-      Use `/resume` to switch back to the original.'
-    branched_many: '⑂ Branched to **{title}** ({count} messages copied)
+      Kozesa `/resume` okudda ku kusooka.'
+    branched_many: '⑂ Omutabi gukolebwa ku **{title}** (obubaka {count} bukopeeddwa)
 
-      Original: `{parent}`
+      Okusooka: `{parent}`
 
-      Branch: `{new}`
+      Omutabi: `{new}`
 
-      Use `/resume` to switch back to the original.'
+      Kozesa `/resume` okudda ku kusooka.'
   commands:
-    usage: 'Usage: `/commands [page]`'
-    skill_header: '⚡ **Skill Commands**:'
+    usage: 'Enkozesa: `/commands [page]`'
+    skill_header: '⚡ **Ebiragiro by''Obukugu**:'
     default_desc: Skill command
-    none: No commands available.
-    header: 📚 **Commands** ({total} total, page {page}/{total_pages})
-    nav_prev: '`/commands {page}` ← prev'
-    nav_next: next → `/commands {page}`
-    out_of_range: _(Requested page {requested} was out of range, showing page {page}.)_
+    none: Tewali biragiro biriiwo.
+    header: 📚 **Ebiragiro** ({total} gonna, omuko {page}/{total_pages})
+    nav_prev: '`/commands {page}` ← ekiyise'
+    nav_next: ekidako → `/commands {page}`
+    out_of_range: _(Omuko {requested} ogwasabye gwali ebweru wa kkomo, kiraga omuko {page}.)_
   compress:
-    not_enough: Not enough conversation to compress (need at least 4 messages).
-    no_provider: No provider configured -- cannot compress.
-    nothing_to_do: Nothing to compress yet (the transcript is still all protected context).
-    aggressive_unsupported: --aggressive is not supported; use '/compress here [N]' to keep only recent exchanges, or /undo to drop turns.
+    not_enough: Emboozi teyimala kukendeezebwa (kyetaagisa obubaka 4 obutali butono).
+    no_provider: Tewali provider alondeddwa -- teyinziza kukendeeza.
+    nothing_to_do: Tewali kya kukendeeza (ebiwandiiko by'emboozi bikyalimu context eyakuumibwa yonna).
+    aggressive_unsupported: --aggressive teyiwagirwa; kozesa '/compress here [N]' okukuuma ebiseera by'emboozi ebipya byokka, oba /undo okuggyamu emitendera.
     focus_line: 'Focus: "{topic}"'
-    summary_failed: ⚠️ Summary generation failed ({error}). {count} historical message(s) were removed and replaced with a placeholder; earlier context is no longer recoverable. Consider checking your auxiliary.compression model configuration.
-    aborted: ⚠️ Compression aborted ({error}). No messages were dropped — conversation is unchanged. Run /compress to retry, /reset for a clean session, or check your auxiliary.compression model configuration.
-    aux_failed: ℹ️ Configured compression model `{model}` failed ({error}). Recovered using your main model — context is intact — but you may want to check `auxiliary.compression.model` in config.yaml.
-    failed: 'Compression failed: {error}'
+    summary_failed: ⚠️ Okukola summary kulemye ({error}). Obubaka {count} obw'emabega byaggyibwawo ne bisikizibwa n'ekifo ekitereke; context ey'emabega tekyasobola kudda. Lowooza okebere entegeka ya model auxiliary.compression.
+    aborted: ⚠️ Okukendeeza kusaziddwa ({error}). Tewali bubaka bwaggibwa — emboozi tekyukyuse. Kozesa /compress okuddamu, /reset olw'okiseera ekipya, oba keba entegeka ya model auxiliary.compression.
+    aux_failed: ℹ️ Model ya compression etegekeddwa `{model}` yalemye ({error}). Yaddiddwa n'okozesa model yo enkulu — context ekyali bulungi — naye oyinza okwetaaga okebere `auxiliary.compression.model` mu config.yaml.
+    failed: 'Okukendeeza kulemye: {error}'
   debug:
-    upload_failed: '✗ Failed to upload debug report: {error}'
-    header: '**Debug report uploaded:**'
-    auto_delete: ⏱ Pastes will auto-delete in 6 hours.
-    full_logs_hint: For full log uploads, use `openamer debug share` from the CLI.
-    share_hint: Share these links with the OpenAmer team for support.
+    upload_failed: '✗ Kulemererwa okuteeka lipooti ya debug: {error}'
+    header: '**Lipooti ya debug eteekeddwa:**'
+    auto_delete: ⏱ Ebiteekeddwa bijja kweggyawo byokka mu saawa 6.
+    full_logs_hint: Okuteeka log zonna, kozesa `openamer debug share` okuva mu CLI.
+    share_hint: Gabana link zino n'ettiimu ya OpenAmer okufuna obuyambi.
   deny:
-    stale: ❌ Command denied (approval was stale).
-    no_pending: No pending command to deny.
+    stale: ❌ Ekiragiro kigaaniddwa (okukkiriza kwali kukadde).
+    no_pending: Tewali kiragiro kirindiridde kya kugaanira.
     denied_singular: ❌ Command denied.
-    denied_plural: ❌ Commands denied ({count} commands).
-    denied_reason_singular: '❌ Command denied. Reason relayed to the agent: "{reason}"'
-    denied_reason_plural: '❌ Commands denied ({count} commands). Reason relayed to the agent: "{reason}"'
+    denied_plural: ❌ Ebiragiro bigaaniddwa (ebiragiro {count}).
+    denied_reason_singular: '❌ Ekiragiro kigaaniddwa. Ensonga eweereddwa eri agent: "{reason}"'
+    denied_reason_plural: '❌ Ebiragiro bigaaniddwa (ebiragiro {count}). Ensonga eweereddwa eri agent: "{reason}"'
   fast:
-    not_supported: ⚡ /fast is only available for OpenAI models that support Priority Processing.
+    not_supported: ⚡ /fast kiriwo ku model za OpenAI zokka ezikkiriza Priority Processing.
     status: '⚡ Priority Processing
 
 
-      Current mode: `{mode}`
+      Enkola ya kaakano: `{mode}`
 
 
-      _Usage:_ `/fast <normal|fast|status>`'
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
+      _Okukozesa:_ `/fast <normal|fast|status>`'
+    unknown_arg: '⚠️ Argument etamanyiddwa: `{arg}`
 
 
-      **Valid options:** normal, fast, status'
-    saved: '⚡ ✓ Priority Processing: **{label}** (saved to config)
+      **Ebyokulonda ebikkirizibwa:** normal, fast, status'
+    saved: '⚡ ✓ Okukola okw''Okusooka: **{label}** (kuterekeddwa mu config)
 
-      _(takes effect on next message)_'
-    session_only: '⚡ ✓ Priority Processing: **{label}** (this session only)'
+      _(kijja kukola ku bubaka obuddako)_'
+    session_only: '⚡ ✓ Okukola okw''Okusooka: **{label}** (mu sessoni eno yokka)'
     label_fast: FAST
     label_normal: NORMAL
     status_fast: fast
     status_normal: normal
-    picker_title: '⚡ **Priority Processing**
+    picker_title: '⚡ **Okukola okw''Okusooka**
 
 
-      Current mode: `{mode}`
+      Enkola eya kaakano: `{mode}`
 
 
-      Pick an option:'
-    choice_fast: fast — Priority Processing on
-    choice_normal: normal — standard processing
+      Londa ekyokukola:'
+    choice_fast: fast — Okukola okw'Okusooka kukolebwa
+    choice_normal: normal — okukola okwa bulijjo
   footer:
-    status: '📎 Runtime footer: **{state}**
+    status: '📎 Ekiwandiiko wansi ky''omu kudduka: **{state}**
 
-      Fields: `{fields}`
+      Ebikola: `{fields}`
 
-      Platform: `{platform}`'
-    usage: 'Usage: `/footer [on|off|status]`'
-    saved: '📎 Runtime footer: **{state}**{example}
+      Pulatifomu: `{platform}`'
+    usage: 'Enkozesa: `/footer [on|off|status]`'
+    saved: '📎 Ekiwandiiko wansi ky''omu kudduka: **{state}**{example}
 
-      _(saved globally — takes effect on next message)_'
+      _(kuterekeddwa mu buli wonna — kijja kukola ku bubaka obuddako)_'
     example_line: '
 
-      Example: `{preview}`'
+      Ekyokulabirako: `{preview}`'
     state_on: 'ON'
     state_off: 'OFF'
   goal:
-    unavailable: Goals unavailable on this session.
+    unavailable: Ebikakano tebiriwo ku sessoni eno.
     no_goal_set: No goal set.
-    paused: '⏸ Goal paused: {goal}'
+    paused: '⏸ Ekigendererwa kiyimiridde: {goal}'
     no_resume: No goal to resume.
-    resumed: '▶ Goal resumed: {goal}
+    resumed: '▶ Ekigendererwa kuddiddwa: {goal}
 
-      Send any message to continue, or wait — I''ll take the next step on the next turn.'
-    invalid: 'Invalid goal: {error}'
-    set: '⊙ Goal set ({budget}-turn budget): {goal}
+      Weereza obubaka bwonna okweyongerayo, oba linda — ndikwata ekintu ekiddako ku mulundi oguddako.'
+    invalid: 'Ekigendererwa ekitali kituufu: {error}'
+    set: '⊙ Ekigendererwa kiteekeddwa (baajeti y’emirundi {budget}): {goal}
 
-      I''ll keep working until the goal is done, you pause/clear it, or the budget is exhausted.
+      Ndikomekkereza okukola okutuusa ekigendererwa lwe kimaliriziddwa, ggwe okikomye oba okikijjeko, oba baajeti lwe ggwera.
 
-      Controls: /goal status · /goal pause · /goal resume · /goal clear'
+      Ebikulembera: /goal status · /goal pause · /goal resume · /goal clear'
   help:
-    header: '📖 **OpenAmer Commands**
+    header: '📖 **Ebiragiro bya OpenAmer**
 
       '
     skill_header: '
 
-      ⚡ **Skill Commands** ({count} active):'
+      ⚡ **Ebiragiro by’obukugu** ({count} ebikola):'
     more_use_commands: '
 
-      ... and {count} more. Use `/commands` for the full paginated list.'
+      ... ne {count} ebirala. Kozesa `/commands` okufuna olukalala olujjuvu olugabanyiziddwa mu mapapula.'
   insights:
-    invalid_days: 'Invalid --days value: {value}'
-    error: 'Error generating insights: {error}'
+    invalid_days: 'Omuwendo gwa --days tegukkirizibwa: {value}'
+    error: 'Ensobi mu kukola okutegeera: {error}'
   kanban:
-    error_prefix: '⚠ kanban error: {error}'
-    subscribed_suffix: (subscribed — you'll be notified when {task_id} completes or blocks)
-    truncated_suffix: … (truncated; use `openamer kanban …` in your terminal for full output)
+    error_prefix: '⚠ ensobi ya kanban: {error}'
+    subscribed_suffix: (weewandiise — ojja kutegeezebwa ng’{task_id} emaze oba ezikomye)
+    truncated_suffix: … (kikatiddwako; kozesa `openamer kanban …` mu terminal yo okufuna ebivaamu bijjuvu)
     no_output: (no output)
     wake:
       completed: completed
-      gave_up: gave up (retries exhausted)
-      crashed: crashed (worker exited); dispatcher will retry
-      timed_out: timed out; dispatcher will retry
-      blocked: blocked; needs attention
+      gave_up: yeewaggula (emirundi gy’okugeza giwedde)
+      crashed: kyagwa (omukozi yava mu nkola); dispatcher ejja kuddamu
+      timed_out: ekiseera kiwedde; dispatcher ejja kuddamu
+      blocked: kizibikiddwa; kyetaaga okutunuulirwa
       status_default: status changed
       status_joiner: ', '
-      message: '[kanban] Task {task_id} {status}.
+      message: '[kanban] Omulimu {task_id} {status}.
 
-        Title: {title}
+        Omutwe: {title}
 
-        Assignee: @{assignee}
+        Omuweereddwa: @{assignee}
 
-        Board: {board}
+        Boodi: {board}
 
 
-        Check the result or decide the next step.'
+        Kebera ebivuddeyo oba salamu ekigenda mu maaso.'
   personality:
-    none_configured: No personalities configured in `{path}/config.yaml`
-    header: '🎭 **Available Personalities**
+    none_configured: Tewali personalities zitegekeddwa mu `{path}/config.yaml`
+    header: '🎭 **Personalities Eziriwo**
 
       '
-    none_option: • `none` — (no personality overlay)
+    none_option: • `none` — (tewali personality overlay)
     item: • `{name}` — {preview}
     usage: '
 
-      Usage: `/personality <name>`'
-    save_failed: '⚠️ Failed to save personality change: {error}'
-    cleared: '🎭 Personality cleared — using base agent behavior.
+      Okukozesa: `/personality <name>`'
+    save_failed: '⚠️ Kulemedde okutereka enkyukakyuka ya personality: {error}'
+    cleared: '🎭 Personality eggyiddwawo — tukozesa enkola ya agent ey''omusingi.
 
-      _(takes effect on next message)_'
-    set_to: '🎭 Personality set to **{name}**
+      _(kijja kukola ku bubaka obuddirira)_'
+    set_to: '🎭 Personality etteekeddwa ku **{name}**
 
-      _(takes effect on next message)_'
-    unknown: 'Unknown personality: `{name}`
+      _(kijja kukola ku bubaka obuddirira)_'
+    unknown: 'Omuntu atamanyiddwa: `{name}`
 
 
-      Available: {available}'
+      Ebiriwo: {available}'
   profile:
-    header: 👤 **Profile:** `{profile}`
+    header: 👤 **Purofayiro:** `{profile}`
     home: 📂 **Home:** `{home}`
   reasoning:
     level_default: medium (default)
     level_disabled: none (disabled)
     scope_session: session override
     scope_global: global config
-    status: '🧠 **Reasoning Settings**
+    status: '🧠 **Enteekateeka z''Okulowooza**
 
 
-      **Effort:** `{level}`
+      **Okufuba:** `{level}`
 
-      **Scope:** {scope}
+      **Ekifo:** {scope}
 
-      **Display:** {display}
+      **Okulaga:** {display}
 
 
-      _Usage:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
+      _Okukozesa:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
     display_on: on ✓
     display_off: 'off'
-    display_set_on: '🧠 ✓ Reasoning display: **ON**
+    display_set_on: '🧠 ✓ Okulaga okulowooza: **KIKOLA**
 
-      Model thinking will be shown before each response on **{platform}**.'
-    display_set_off: '🧠 ✓ Reasoning display: **OFF** for **{platform}**'
-    reset_global_unsupported: ⚠️ `/reasoning reset --global` is not supported. Use `/reasoning <level> --global` to change the global default.
-    reset_done: 🧠 ✓ Session reasoning override cleared; falling back to global config.
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
-
-
-      **Valid levels:** none, minimal, low, medium, high, xhigh, max, ultra
-
-      **Display:** show, hide
-
-      **Persist:** add `--global` to save beyond this session'
-    picker_title: '🧠 **Reasoning Settings**
+      Okulowooza kwa model kijja kulagibwa nga tebinnaba buli kuddamu ku **{platform}**.'
+    display_set_off: '🧠 ✓ Okulaga okulowooza: **TEKIKOLA** ku **{platform}**'
+    reset_global_unsupported: ⚠️ `/reasoning reset --global` tekiyimirizibwa. Kozesa `/reasoning <level> --global` okukyusa embeera ya global.
+    reset_done: 🧠 ✓ Okusimbibwa kw'okulowooza mu session kiggyiddwa; tudda ku nteekateeka ya global.
+    unknown_arg: '⚠️ Argument etamanyiddwa: `{arg}`
 
 
-      **Effort:** `{level}`
+      **Amadaala agakkirizibwa:** none, minimal, low, medium, high, xhigh, max, ultra
 
-      **Scope:** {scope}
+      **Okulaga:** show, hide
 
-      **Display:** {display}
+      **Okusigaza:** yongera `--global` okutereka okusukka session eno'
+    picker_title: '🧠 **Enteekateeka z''Okulowooza**
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+      **Okufuba:** `{level}`
 
-      _(takes effect on next message)_'
-    set_global_save_failed: '🧠 ✓ Reasoning effort set to `{effort}` (session only — config save failed)
+      **Ekifo:** {scope}
 
-      _(takes effect on next message)_'
-    set_session: '🧠 ✓ Reasoning effort set to `{effort}` (session only — add `--global` to persist)
+      **Okulaga:** {display}
 
-      _(takes effect on next message)_'
+
+      Londa ekintu:'
+    choice_none: none — zikiza okulowooza
+    choice_reset: reset — ggyamu okusimbibwa kwa session
+    choice_show: laga okulowooza mu kuddamu
+    choice_hide: Kweka okufumiitiriza mu biddamu
+    set_global: '🧠 ✓ Amaanyi g''okufumiitiriza gateekeddwa ku `{effort}` (kuterekereddwa mu config)
+
+      _(kinaatandika ku bubaka obuddako)_'
+    set_global_save_failed: '🧠 ✓ Amaanyi g''okufumiitiriza gateekeddwa ku `{effort}` (mu session yokka — okutereka config kulemedde)
+
+      _(kinaatandika ku bubaka obuddako)_'
+    set_session: '🧠 ✓ Amaanyi g''okufumiitiriza gateekeddwa ku `{effort}` (mu session yokka — yongera `--global` okusobola okutereka)
+
+      _(kinaatandika ku bubaka obuddako)_'
   reload_mcp:
-    cancelled: 🟡 /reload-mcp cancelled. MCP tools unchanged.
-    always_followup: 'ℹ️ Future `/reload-mcp` calls will run without confirmation. Re-enable via `approvals.mcp_reload_confirm: true` in config.yaml.'
-    confirm_prompt: '⚠️ **Confirm /reload-mcp**
+    cancelled: 🟡 /reload-mcp kisaziddwamu. Ebikozesebwa bya MCP tebikyusiddwa.
+    always_followup: 'ℹ️ Okutuusa mu nkola `/reload-mcp` mu biseera ebijja kujja kukolebwa awatali kukakasa. Ddamu okukkiriza nga okozesa `approvals.mcp_reload_confirm: true` mu config.yaml.'
+    confirm_prompt: '⚠️ **Kakasa /reload-mcp**
 
 
-      Reloading MCP servers rebuilds the tool set for this session and **invalidates the provider prompt cache** — the next message will re-send full input tokens.  On long-context or high-reasoning models this can be expensive.
+      Okuddamu okutandika MCP servers kuzzaawo seti y''ebikozesebwa mu session eno era **kiremesa cache ya prompt eya provider** — obubaka obuddako bujja kuddamu kutumya input tokens zonna. Ku model ez''okumanya okunene oba ez''okufumiitiriza nnyo kino kiyinza okuba kya muwendo munene.
 
 
-      Choose:
+      Londa:
 
-      • **Approve Once** — reload now
+      • **Kkiriza Emirundi Emu** — ddamu otandike kati
 
-      • **Always Approve** — reload now and silence this prompt permanently
+      • **Kkiriza Bulijjo** — ddamu otandike kati era tokiddamu kubuuza
 
-      • **Cancel** — leave MCP tools unchanged
+      • **Sazaamu** — leka ebikozesebwa bya MCP nga bwe biri
 
 
-      _Text fallback: reply `/approve`, `/always`, or `/cancel`._'
-    header: '🔄 **MCP Servers Reloaded**
+      _Ekyokuddamu mu buwandiike: ddamu `/approve`, `/always`, oba `/cancel`._'
+    header: '🔄 **MCP Servers Ziddiddwamu**
 
       '
-    reconnected: '♻️ Reconnected: {names}'
+    reconnected: '♻️ Kiddiddwamu okukwatagana: {names}'
     added: '➕ Added: {names}'
     removed: '➖ Removed: {names}'
-    none_connected: No MCP servers connected.
+    none_connected: Tewali MCP servers zikwataganye.
     tools_available: '
 
-      🔧 {tools} tool(s) available from {servers} server(s)'
-    failed: '❌ MCP reload failed: {error}'
+      🔧 {tools} ebikozesebwa biripo okuva mu {servers} server(s)'
+    failed: '❌ Okuddamu okutandika MCP kulemedde: {error}'
   reload_skills:
-    header: '🔄 **Skills Reloaded**
+    header: '🔄 **Obukugu Buddamu Okutikkwa**
 
       '
-    no_new: No new skills detected.
+    no_new: Tewali bukugu bupya bumanyiddwa.
     total: '
 
-      📚 {count} skill(s) available'
+      📚 {count} obukugu buboneka'
     added_header: ➕ **Added Skills:**
-    removed_header: ➖ **Removed Skills:**
+    removed_header: ➖ **Obukugu Obugyiddwa:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
-    failed: '❌ Skills reload failed: {error}'
+    failed: '❌ Okuddamu okutikka obukugu kulemedde: {error}'
   reset:
-    header_default: ✨ Session reset! Starting fresh.
-    header_new: ✨ New session started!
-    header_titled: '✨ New session started: {title}'
+    header_default: ✨ Sessoni eddiddwa! Tutandika obupya.
+    header_new: ✨ Sessoni empya etandise!
+    header_titled: '✨ Sessoni empya etandise: {title}'
     title_rejected: '
 
-      ⚠️ Title rejected: {error}'
+      ⚠️ Omutwe gugaaniddwa: {error}'
     title_error_untitled: '
 
-      ⚠️ {error} — session started untitled.'
+      ⚠️ {error} — sessoni etandise nga tewali mutwe.'
     title_empty_untitled: '
 
-      ⚠️ Title is empty after cleanup — session started untitled.'
+      ⚠️ Omutwe tewaliimu kintu oluvannyuma lw''okutereeza — sessoni etandise nga tewali mutwe.'
     tip: '
 
       ✦ Tip: {tip}'
   restart:
-    in_progress: ⏳ Gateway restart already in progress...
-    restarting: ♻ Restarting gateway. If you aren't notified within 60 seconds, restart from the console with `openamer gateway restart`.
+    in_progress: ⏳ Okuddamu okutandika Gateway kukyali mu nkola...
+    restarting: ♻ Okuddamu okutandika gateway. Bw'otategeezebwa mu ssekonda 60, ddamu otandike okuva ku konsolo n'okukozesa `openamer gateway restart`.
   resume:
-    db_unavailable: Session database not available.
-    parse_error: '⚠️ Could not parse `/resume` arguments: {error}.
+    db_unavailable: Database y'esseesoni teyaliwo.
+    parse_error: '⚠️ Teyasobose okutegeera ebigambo bya `/resume`: {error}.
 
-      Use quotes around titles with spaces, for example: `/resume "Project A Plan"`.'
-    matrix_no_named_sessions: 'No named sessions found for this Matrix room.
+      Kozesa obubonero bw''ebigambo ku mitwe egirimu ebisaani, okugeza: `/resume "Project A Plan"`.'
+    matrix_no_named_sessions: 'Tewali sseesoni zirina amannya ezisangiddwa mu kisenge kino kya Matrix.
 
-      Use `/title My Session` to name the current room session, `/resume --all` to list all Matrix sessions, or `/resume --cross-room <session name>` to explicitly cross room boundaries.'
-    matrix_blocked_no_origin: '⚠️ Matrix /resume blocked: this named session has no recorded room origin, so OpenAmer will not resume it inside the current room by default. Use `/resume --cross-room {name}` if you intentionally want to cross room boundaries.'
-    matrix_blocked_other_room: '⚠️ Matrix /resume blocked: that session belongs to a different Matrix room ({room}). Use `/resume --cross-room {name}` if you intentionally want to resume it here.'
-    matrix_cross_room_success: '⚠️ Cross-room resume: resumed **{title}** inside Matrix room **{room}**.
+      Kozesa `/title My Session` okuwa erinnya esseesoni y''ekisenge kino, `/resume --all` okuwandiisa sseesoni zonna za Matrix, oba `/resume --cross-room <session name>` okusomoka amalire g''ebisenge mu ngeri ya butereevu.'
+    matrix_blocked_no_origin: '⚠️ Matrix /resume ziiyiziddwa: esseesoni eno erina erinnya terina kisenge kyeyava mu biwandiiko, kale OpenAmer ejja kugiziyiza obutagiddamu mu kisenge kino mu ngeri ey''obutonde. Kozesa `/resume --cross-room {name}` bw''oba oyagala mu buteefu okusomoka amalire g''ebisenge.'
+    matrix_blocked_other_room: '⚠️ Matrix /resume ziiyiziddwa: esseesoni eyo ya kisenge kirala kya Matrix ({room}). Kozesa `/resume --cross-room {name}` bw''oba oyagala mu buteefu okugiddamu wano.'
+    matrix_cross_room_success: '⚠️ Okuddamu okusomoka ebisenge: kuddiddwa **{title}** mu kisenge kya Matrix **{room}**.
 
-      Future messages in this room will use that transcript until `/reset` or another `/resume`.{msg_part}'
-    blocked_not_owner: '⚠️ /resume blocked: ''**{name}**'' belongs to a different user or chat. You can only resume sessions from this chat.'
-    no_named_sessions: 'No named sessions found.
+      Obubaka obujja mu kisenge kino bujja kukozesa ebiwandiiko ebyo okutuusa `/reset` oba `/resume` endala.{msg_part}'
+    blocked_not_owner: '⚠️ /resume ziiyiziddwa: ''**{name}**'' ya mukozesa oba chat endala. Osobola kuddamu sseesoni okuva mu chat eno yokka.'
+    no_named_sessions: 'Tewali sseesoni zirina amannya ezisangiddwa.
 
-      Use `/title My Session` to name your current session, then `/resume My Session` to return to it later.'
-    list_header: '📋 **Named Sessions**
+      Kozesa `/title My Session` okuwa erinnya esseesoni yo ey''omulembe, oluvannyuma `/resume My Session` okuddamu okugikozesa oluvannyuma.'
+    list_header: '📋 **Sseesoni Ezirina Amannya**
 
       '
     list_item: • **{title}**{preview_part}
@@ -387,147 +387,147 @@ gateway:
     list_preview_suffix: ' — _{preview}_'
     list_footer: '
 
-      Usage: `/resume <session name>`'
+      Okukozesa: `/resume <session name>`'
     list_footer_numbered: '
 
-      Usage: `/resume <session name>` or `/resume <number>` (e.g. `/resume 1` for the most recent)'
-    list_failed: 'Could not list sessions: {error}'
-    out_of_range: 'Resume index {index} is out of range.
+      Okukozesa: `/resume <session name>` oba `/resume <number>` (ng''ekyokulabirako `/resume 1` ku eyasembyeyo)'
+    list_failed: 'Tetusobodde kulaga sessio: {error}'
+    out_of_range: 'Omuwendo gwa resume {index} guli ebweru w''ekipimo.
 
-      Use `/resume` with no arguments to see available sessions.'
-    not_found: 'No session found matching ''**{name}**''.
+      Kozesa `/resume` awatali kigambo kyonna okulaba sessio eziriwo.'
+    not_found: 'Tewali sessio esangiddwa ekwatagana ne ''**{name}**''.
 
-      Use `/resume` with no arguments to see available sessions.'
-    already_on: 📌 Already on session **{name}**.
-    switch_failed: Failed to switch session.
-    resumed_one: ↻ Resumed session **{title}** ({count} message). Conversation restored.
-    resumed_many: ↻ Resumed session **{title}** ({count} messages). Conversation restored.
-    resumed_no_count: ↻ Resumed session **{title}**. Conversation restored.
+      Kozesa `/resume` awatali kigambo kyonna okulaba sessio eziriwo.'
+    already_on: 📌 Oli dda ku sessio **{name}**.
+    switch_failed: Kulemedde okukyusa sessio.
+    resumed_one: ↻ Oddemu okutandika sessio **{title}** (obubaka {count}). Emboozi ezziddwa.
+    resumed_many: ↻ Oddemu okutandika sessio **{title}** (obubaka {count}). Emboozi ezziddwa.
+    resumed_no_count: ↻ Oddemu okutandika sessio **{title}**. Emboozi ezziddwa.
   retry:
-    no_previous: No previous message to retry.
+    no_previous: Tewali bubaka bwa kuddamu.
   rollback:
-    not_enabled: "Checkpoints are not enabled.\nEnable in config.yaml:\n```\ncheckpoints:\n  enabled: true\n```"
-    none_found: No checkpoints found for {cwd}
-    invalid_number: Invalid checkpoint number. Use 1-{max}.
-    restored: '✅ Restored to checkpoint {hash}: {reason}
+    not_enabled: "Checkpoints tezikkiriziddwa.\nKkiriza mu config.yaml:\n```\ncheckpoints:\n  enabled: true\n```"
+    none_found: Tewali checkpoint ezisangiddwa ku {cwd}
+    invalid_number: Ennamba ya checkpoint tekkirizibwa. Kozesa 1-{max}.
+    restored: '✅ Kizze kuzzibwa ku checkpoint {hash}: {reason}
 
-      A pre-rollback snapshot was saved automatically.'
+      Snapshot ey''oluberyeberye ey''okudda emabega yateereddwawo awatali kukakasa.'
     restore_failed: ❌ {error}
   set_home:
-    save_failed: 'Failed to save home channel: {error}'
-    success: '✅ Home channel set to **{name}** (ID: {chat_id}).
+    save_failed: 'Kulemeddwa okutereka channel y''awaka: {error}'
+    success: '✅ Channel y''awaka eteekeddwa ku **{name}** (ID: {chat_id}).
 
-      Cron jobs and cross-platform messages will be delivered here.'
+      Emirimu gya Cron n''obubaka okuva mu nsengeka ez''enjawulo birireetebwa wano.'
   status:
-    header: 📊 **OpenAmer Gateway Status**
+    header: 📊 **Embeera y'Omulyango wa OpenAmer**
     matrix_scope_header: '**Matrix scope:**'
     matrix_scope_room: '  room: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
     matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    session_id: '**ID ya Sessoni:** `{session_id}`'
     title: '**Title:** {title}'
-    created: '**Created:** {timestamp}'
-    last_activity: '**Last Activity:** {timestamp}'
+    created: '**Yakolebwa:** {timestamp}'
+    last_activity: '**Okukola Okusembayo:** {timestamp}'
     model: '**Model:** `{model}`'
-    model_provider: '**Model:** `{model}` ({provider})'
-    context: '**Context:** {used} / {total} ({pct}%)'
-    context_used: '**Context:** ~{used} tokens'
-    tokens: '**Cumulative API tokens (re-sent each call):** {tokens}'
-    agent_running: '**Agent Running:** {state}'
+    model_provider: '**Modelo:** `{model}` ({provider})'
+    context: '**Embeera:** {used} / {total} ({pct}%)'
+    context_used: '**Embeera:** ~{used} tokens'
+    tokens: '**API tokens ez''okugatta (eziddizibwa buli kuyita):** {tokens}'
+    agent_running: '**Agent akola:** {state}'
     state_yes: Yes ⚡
     state_no: 'No'
-    queued: '**Queued follow-ups:** {count}'
-    platforms: '**Connected Platforms:** {platforms}'
+    queued: '**Ebiddirira ebiri mu lunyiriri:** {count}'
+    platforms: '**Platforms ezikwatiddwa:** {platforms}'
   stop:
-    stopped_pending: ⚡ Stopped. The agent hadn't started yet — you can continue this session.
-    stopped: ⚡ Stopped. You can continue this session.
-    no_active: No active task to stop.
+    stopped_pending: ⚡ Kiyimiridde. Agent yali tannatandika — osobola okwongera okukola session eno.
+    stopped: ⚡ Kiyimiridde. Osobola okwongera okukola session eno.
+    no_active: Tewali mulimu gukola gw'oyinza okuyimiriza.
   title:
-    db_unavailable: Session database not available.
+    db_unavailable: Database ya session teyiriwo.
     warn_prefix: ⚠️ {error}
-    empty_after_clean: ⚠️ Title is empty after cleanup. Please use printable characters.
-    set_to: '✏️ Session title set: **{title}**'
-    not_found: Session not found in database.
-    current_with_title: '📌 Session: `{session_id}`
+    empty_after_clean: ⚠️ Omutwe tewaliimu oluvannyuma lw'okutereeza. Nsaba okozesa ennukuta ezisobola okulabika.
+    set_to: '✏️ Omutwe gwa sesoni guteekeddwawo: **{title}**'
+    not_found: Sesoni teyazuuliddwa mu database.
+    current_with_title: '📌 Sesoni: `{session_id}`
 
-      Title: **{title}**'
-    current_no_title: '📌 Session: `{session_id}`
+      Omutwe: **{title}**'
+    current_no_title: '📌 Sesoni: `{session_id}`
 
-      No title set. Usage: `/title My Session Name`'
+      Omutwe teguteekeddwawo. Enkoleza: `/title My Session Name`'
   topic:
-    not_telegram_dm: The /topic command is only available in Telegram private chats.
-    no_session_db: Session database not available.
-    unauthorized: You are not authorized to use /topic on this bot.
-    restore_needs_topic: To restore a session, first create or open a Telegram topic, then send /topic <session-id> inside that topic. To create a new topic, open All Messages and send any message there.
-    topics_disabled: 'Telegram topics are not enabled for this bot yet.
+    not_telegram_dm: Ekiragiro /topic kiriwo mu mboozi za Telegram ez'ekyama zokka.
+    no_session_db: Database ya sesoni teyiriwo.
+    unauthorized: Tewalina lukusa kukozesa /topic ku bot eno.
+    restore_needs_topic: Okuzzawo sesoni, soka okukola oba okuggula topic ya Telegram, oluvannyuma senda /topic <session-id> mu topic eyo. Okukola topic empya, ggula All Messages osende obubaka bwonna awo.
+    topics_disabled: 'Telegram topics tezinnakkirizibwa ku bot eno.
 
 
-      How to enable them:
+      Engeri okuzikkiriza:
 
-      1. Open @BotFather.
+      1. Ggula @BotFather.
 
-      2. Choose your bot.
+      2. Londa bot yo.
 
-      3. Open Bot Settings → Threads Settings.
+      3. Ggula Bot Settings → Threads Settings.
 
-      4. Turn on Threaded Mode and make sure users are allowed to create new threads.
-
-
-      Then send /topic again.'
-    topics_user_disallowed: 'Telegram topics are enabled, but users are not allowed to create topics.
+      4. Kkasa Threaded Mode era kakasa nti abakozesa bakkirizibwa okukola threads empya.
 
 
-      Open @BotFather → choose your bot → Bot Settings → Threads Settings, then turn off ''Disallow users to create new threads''.
+      Oluvannyuma senda /topic nate.'
+    topics_user_disallowed: 'Telegram topics zikkiriziddwa, naye abakozesa tebakkirizibwa kukola topics.
 
 
-      Then send /topic again.'
-    enable_failed: 'Failed to enable Telegram topic mode: {error}'
-    bound_status: 'This topic is linked to:
+      Ggula @BotFather → londa bot yo → Bot Settings → Threads Settings, oluvannyuma zikya ''Disallow users to create new threads''.
 
-      Session: {label}
+
+      Oluvannyuma senda /topic nate.'
+    enable_failed: 'Kulemereddwa okukkiriza Telegram topic mode: {error}'
+    bound_status: 'Topic eno egattiddwa ku:
+
+      Sesoni: {label}
 
       ID: {session_id}
 
 
-      Use /new to replace this topic with a fresh session.
+      Kozesa /new okukyusa topic eno n''okuteeka sesoni empya.
 
-      For parallel work, open All Messages and send a message there to create another topic.'
-    thread_ready: 'Telegram multi-session topics are enabled.
+      Ku mirimu egikolebwa mu kiseera kye kimu, ggula All Messages osende obubaka awo okukola topic endala.'
+    thread_ready: 'Emisoro gya Telegram egy''emirimu mingi gikozesebwa.
 
 
-      This topic will be used as an independent OpenAmer session. Use /new to replace this topic''s current session. For parallel work, open All Messages and send a message there to create another topic.'
+      Omusoro guno gujja kukozesebwa ng''essomo ly''omulimu ery''enjawulo mu OpenAmer. Kozesa /new okusimbuza essomo ly''omulimu lya kati ery''omusoro guno. Ku mirimu egikolebwa awamu, ggula All Messages oweerezeeyo obubaka okutonda omusoro omulala.'
     untitled_session: Untitled session
   undo:
     nothing: Nothing to undo.
-    removed: '↩️ Undid {turns} turn(s) ({count} message(s)).
+    removed: '↩️ Zzuddwa {turns} emirundi ({count} obubaka).
 
-      Backed up to: "{preview}"
+      Kikwatiddwa ku: "{preview}"
 
-      Copy/edit the text above and send it to re-prompt from here.'
-    invalid_count: Invalid count "{arg}" — use /undo or /undo N.
+      Koppa/kyusa ebiwandiiko ebiri waggulu era kibiweereze okuddamu okubuuza okuva wano.'
+    invalid_count: Omuwendo tegukkirizibwa "{arg}" — kozesa /undo oba /undo N.
   update:
-    platform_not_messaging: ✗ /update is only available from messaging platforms. Run `openamer update` from the terminal.
-    not_git_repo: ✗ Not a git repository — cannot update.
-    openamer_cmd_not_found: ✗ Could not locate the `openamer` command. OpenAmer is running, but the update command could not find the executable on PATH or via the current Python interpreter. Try running `openamer update` manually in your terminal.
-    start_failed: '✗ Failed to start update: {error}'
-    starting: 🧬 Starting OpenAmer update… I'll stream progress here.
+    platform_not_messaging: ✗ /update kikozesebwa ku pulatifomu z'okuwereza obubaka zokka. Ddira `openamer update` okuva mu terminal.
+    not_git_repo: ✗ Si git repository — tekiyinza kuddizibwa.
+    openamer_cmd_not_found: ✗ Tekisobodde kuzuula kiragiro `openamer`. OpenAmer kidduka, naye kiragiro ky'okuddiza tekisobodde kuzuula ekikolebwa ku PATH oba mu Python interpreter ya kati. Gezaako okudda `openamer update` n'omukono mu terminal yo.
+    start_failed: '✗ Kiremeddwa okutandika okuddiza: {error}'
+    starting: 🧬 Okutandika okuddiza OpenAmer… Nditegeeza embeera wano.
   usage:
-    rate_limits: ⏱️ **Rate Limits:** {state}
-    header_session: 📊 **Session Token Usage**
+    rate_limits: ⏱️ **Ebikomo by'omuvudde:** {state}
+    header_session: 📊 **Okukozesa Token mu Ssesoni**
     label_model: 'Model: `{model}`'
-    label_input_tokens: 'Input tokens: {count}'
-    label_cache_read: 'Cache read tokens: {count}'
-    label_cache_write: 'Cache write tokens: {count}'
-    label_output_tokens: 'Output tokens: {count}'
+    label_input_tokens: 'Token z''okuyingiza: {count}'
+    label_cache_read: 'Token z''okusoma mu cache: {count}'
+    label_cache_write: 'Obubonero bw''okuwandiika mu cache: {count}'
+    label_output_tokens: 'Obubonero bw''okufuluma: {count}'
     label_total: 'Total: {count}'
     label_api_calls: 'API calls: {count}'
-    label_cost: 'Cost: {prefix}${amount}'
+    label_cost: 'Ebeeyi: {prefix}${amount}'
     label_cost_included: 'Cost: included'
-    label_context: 'Context: {used} / {total} ({pct}%)'
-    label_compressions: 'Compressions: {count}'
-    breakdown_header: 🧩 **Context breakdown** _(estimated)_
+    label_context: 'Embeera: {used} / {total} ({pct}%)'
+    label_compressions: 'Okukendeeza: {count}'
+    breakdown_header: 🧩 **Okwawula embeera** _(kigerekeddwa)_
     breakdown_line: '• {label}: ~{count} ({pct}%)'
     breakdown_cat_system_prompt: System prompt
     breakdown_cat_tool_definitions: Tool definitions
@@ -539,69 +539,69 @@ gateway:
     breakdown_cat_conversation: Conversation
     header_session_info: 📊 **Session Info**
     label_messages: 'Messages: {count}'
-    label_estimated_context: 'Estimated context: ~{count} tokens'
-    detailed_after_first: _(Detailed usage available after the first agent response)_
-    no_data: No usage data available for this session.
-    unknown_subcommand: 'Unknown /usage subcommand: `{args}`. Try `/usage` or `/usage reset [--force]`.'
-    reset_wrong_provider: Banked usage resets are only available on the openai-codex provider. Switch with `/model` first.
+    label_estimated_context: 'Embeera ekigerekeddwa: ~{count} obubonero'
+    detailed_after_first: _(Ebikozesebwa ebijuvu bijja kubaawo oluvannyuma lw'okuddamu okwasooka kw'omukola)_
+    no_data: Tewali data ya kukozesa eriwo ku session eno.
+    unknown_subcommand: 'Subcommand /usage etamanyiddwa: `{args}`. Gezaako `/usage` oba `/usage reset [--force]`.'
+    reset_wrong_provider: Okusazaamu okukozesa okuterekebwa kuliwo ku provider ya openai-codex yokka. Sooka kyusa n'okukozesa `/model`.
   credits:
-    not_logged_in: Not logged into OpenAmer Portal. Log in to see your credit balance and top up.
+    not_logged_in: Tewayingidde mu OpenAmer Portal. Yingira okulaba balansi y'essente zo n'okwongera ku zo.
   verbose:
-    not_enabled: "The `/verbose` command is not enabled for messaging platforms.\n\nEnable it in `config.yaml`:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"
-    mode_off: '⚙️ Tool progress: **OFF** — no tool activity shown.'
-    mode_new: '⚙️ Tool progress: **NEW** — shown when tool changes (preview length: `display.tool_preview_length`, default 40).'
-    mode_all: '⚙️ Tool progress: **ALL** — every tool call shown (preview length: `display.tool_preview_length`, default 40).'
-    mode_verbose: '⚙️ Tool progress: **VERBOSE** — every tool call with full arguments.'
-    mode_log: '⚙️ Tool progress: **LOG** — silent in chat; tool calls written to ~/.openamer/logs/tool_calls.log.'
-    saved_suffix: _(saved for **{platform}** — takes effect on next message)_
-    save_failed: '_(could not save to config: {error})_'
+    not_enabled: "Ekiragiro `/verbose` tekikkiriziddwa ku pulatifomu z'okusindika obubaka.\n\nKikkirize mu `config.yaml`:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"
+    mode_off: '⚙️ Okugenda mu maaso kw''ebikozesebwa: **OFF** — tewali mulimu gwa kikozesebwa gulagiddwa.'
+    mode_new: '⚙️ Okugenda mu maaso kw''ebikozesebwa: **NEW** — kiraga nga ekikozesebwa kikyuka (obuwanvu bw''okulaba: `display.tool_preview_length`, ekikozesebwa bulijjo 40).'
+    mode_all: '⚙️ Okugenda mu maaso kw''ebikozesebwa: **ALL** — buli kuyita kw''ekikozesebwa kulagiddwa (obuwanvu bw''okulaba: `display.tool_preview_length`, ekikozesebwa bulijjo 40).'
+    mode_verbose: '⚙️ Okugenda mu maaso kw''ebikozesebwa: **VERBOSE** — buli kuyita kw''ekikozesebwa n''ebiragiro ebijjuuvu.'
+    mode_log: '⚙️ Okugenda mu maaso kw''ebikozesebwa: **LOG** — tewali ddoboozi mu kuteesa; okuyita kw''ekikozesebwa kuwandiikibwa mu ~/.openamer/logs/tool_calls.log.'
+    saved_suffix: _(kiterekeddwa ku **{platform}** — kikola ku bubaka obuddirira)_
+    save_failed: '_(tekyasobose okutereka mu config: {error})_'
   voice:
-    enabled_voice_only: 'Voice mode enabled.
+    enabled_voice_only: 'Enkola y''eddoboozi ekkiriziddwa.
 
-      I''ll reply with voice when you send voice messages.
+      Nja kuddamu n''eddoboozi bw''onsindikira obubaka bw''eddoboozi.
 
-      Use /voice tts to get voice replies for all messages.'
-    disabled_text: Voice mode disabled. Text-only replies.
-    tts_enabled: 'Auto-TTS enabled.
+      Kozesa /voice tts okufuna eddoboozi ku bubaka bwonna.'
+    disabled_text: Enkola y'eddoboozi egaaniddwa. Eddamu mu biwandiiko byokka.
+    tts_enabled: 'Auto-TTS ekkiriziddwa.
 
-      All replies will include a voice message.'
+      Eddamu lyonna lijja kubaamu obubaka bw''eddoboozi.'
     status_mode: 'Voice mode: {label}'
-    status_channel: 'Voice channel: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_channel: 'Omukutu gw''eddoboozi: #{channel}'
+    status_participants: 'Abeetaba: {count}'
     status_member: '  - {name}{status}'
     speaking: ' (speaking)'
     enabled_short: Voice mode enabled.
     disabled_short: Voice mode disabled.
     label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    label_voice_only: Ku (okuddamu n'eddoboozi ku bubaka bw'eddoboozi)
+    label_all: TTS (okuddamu n'eddoboozi ku bubaka bwonna)
     help: '{toggle}
 
 
-      **How /voice works**
+      **Enkola ya /voice**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — okuddamu n''eddoboozi bw''otuma obubaka bw''eddoboozi
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — okuddamu n''eddoboozi ku *bubaka bwonna*
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — okudda ku kuddamu mu biwandiiko byokka
 
-      • `/voice status` — show the current mode
+      • `/voice status` — laga enkola eriwo kaakano
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (awatali kigambo) — okukyusa mangu wakati wa on ne off{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **Emikutu gy''eddoboozi egiriwo kaakano (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • Sooka weegatte ku mukutu gw''eddoboozi, oluvannyuma `/voice channel` — nzija kwegatta, mpulirize, era njogere okuddamu kwange
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — okwawukana ku mukutu gw''eddoboozi'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ YOLO mode **OFF** mu session eno — ebiragiro eby'akabi bijja kwetaaga okukkirizibwa.
+    enabled: ⚡ YOLO mode **ON** mu session eno — ebiragiro byonna bikkirizibwa awatali kusaba. Kozesa n'okwegendereza.
   shared:
-    session_db_unavailable: Session database not available.
-    session_db_unavailable_prefix: Session database not available
-    session_not_found: Session not found in database.
+    session_db_unavailable: Database ya session teiriwo.
+    session_db_unavailable_prefix: Database ya session teiriwo
+    session_not_found: Session tezusangiddwa mu database.
     warn_passthrough: ⚠️ {error}

@@ -3,383 +3,383 @@
 # See locales/en.yaml for the source of truth; keep keys in sync.
 
 approval:
-  dangerous_header: '⚠️  DANGEROUS COMMAND: {description}'
-  choose_long: '      [o]nce  |  [s]ession  |  [a]lways  |  [d]eny'
-  choose_short: '      [o]nce  |  [s]ession  |  [d]eny'
-  prompt_long: '      Choice [o/s/a/D]: '
-  prompt_short: '      Choice [o/s/D]: '
-  choose_smart_deny: '      [o]nce  |  [d]eny'
+  dangerous_header: '⚠️  അപകടകരമായ കമാൻഡ്: {description}'
+  choose_long: '      [o] ഒരിക്കൽ  |  [s] സെഷൻ  |  [a] എപ്പോഴും  |  [d] നിരസിക്കുക'
+  choose_short: '      [o] ഒരിക്കൽ  |  [s] സെഷൻ  |  [d] നിരസിക്കുക'
+  prompt_long: '      തിരഞ്ഞെടുക്കുക [o/s/a/D]: '
+  prompt_short: '      തിരഞ്ഞെടുക്കുക [o/s/D]: '
+  choose_smart_deny: '      [o] ഒരിക്കൽ  |  [d] നിരസിക്കുക'
   prompt_smart_deny: '      Choice [o/D]: '
   smart_deny_once_inputs: o,once
   smart_deny_deny_inputs: d,deny
-  timeout: '      ⏱ Timeout - denying command'
+  timeout: '      ⏱ സമയപരിധി കഴിഞ്ഞു - കമാൻഡ് നിരസിക്കുന്നു'
   allowed_once: '      ✓ Allowed once'
-  allowed_session: '      ✓ Allowed for this session'
-  allowed_always: '      ✓ Added to permanent allowlist'
+  allowed_session: '      ✓ ഈ സെഷനിൽ അനുവദിച്ചു'
+  allowed_always: '      ✓ സ്ഥിരമായ അനുവദനീയ പട്ടികയിലേക്ക് ചേർത്തു'
   denied: '      ✗ Denied'
   cancelled: '      ✗ Cancelled'
-  blocklist_message: This command is on the unconditional blocklist and cannot be approved.
+  blocklist_message: ഈ കമാൻഡ് നിരുപാധിക ബ്ലോക്ക്ലിസ്റ്റിലുണ്ട്, അംഗീകരിക്കാൻ കഴിയില്ല.
 gateway:
-  approval_expired: ⚠️ Approval expired (agent is no longer waiting). Ask the agent to try again.
-  draining: ⏳ Draining {count} active agent(s) before restart...
+  approval_expired: ⚠️ അംഗീകാര കാലാവധി കഴിഞ്ഞു (ഏജന്റ് ഇനി കാത്തിരിക്കുന്നില്ല). ഏജന്റിനോട് വീണ്ടും ശ്രമിക്കാൻ ആവശ്യപ്പെടുക.
+  draining: ⏳ പുനരാരംഭിക്കുന്നതിന് മുമ്പ് {count} സജീവ ഏജന്റ്(കൾ) ഡ്രെയിൻ ചെയ്യുന്നു...
   goal_cleared: ✓ Goal cleared.
   no_active_goal: No active goal.
-  config_read_failed: '⚠️ Could not read config.yaml: {error}'
-  config_save_failed: '⚠️ Could not save config: {error}'
+  config_read_failed: '⚠️ config.yaml വായിക്കാനായില്ല: {error}'
+  config_save_failed: '⚠️ config സേവ് ചെയ്യാനായില്ല: {error}'
   model:
     error_prefix: 'Error: {error}'
-    switched: Model switched to `{model}`
+    switched: മോഡൽ `{model}`-ലേക്ക് മാറ്റി
     provider_label: 'Provider: {provider}'
-    context_label: 'Context: {tokens} tokens'
-    max_output_label: 'Max output: {tokens} tokens'
+    context_label: 'സന്ദർഭം: {tokens} ടോക്കണുകൾ'
+    max_output_label: 'പരമാവധി ഔട്ട്പുട്ട്: {tokens} ടോക്കണുകൾ'
     cost_label: 'Cost: {cost}'
-    capabilities_label: 'Capabilities: {capabilities}'
-    prompt_caching_enabled: 'Prompt caching: enabled'
+    capabilities_label: 'കഴിവുകൾ: {capabilities}'
+    prompt_caching_enabled: 'പ്രോംപ്റ്റ് കാഷിംഗ്: പ്രവർത്തനക്ഷമം'
     warning_prefix: 'Warning: {warning}'
-    saved_global: Saved to config.yaml (`--global`)
-    session_only_hint: _(session only — add `--global` to persist)_
-    current_label: 'Current: `{model}` on {provider}'
+    saved_global: config.yaml-ലേക്ക് സേവ് ചെയ്തു (`--global`)
+    session_only_hint: _(സെഷൻ മാത്രം — നിലനിർത്താൻ `--global` ചേർക്കുക)_
+    current_label: 'നിലവിൽ: `{model}` {provider}-ൽ'
     current_tag: ' (current)'
     more_models_suffix: ' (+{count} more)'
-    usage_switch_model: '`/model <name>` — switch model'
-    usage_switch_provider: '`/model <name> --provider <slug>` — switch provider'
-    usage_persist: '`/model <name> --global` — persist'
+    usage_switch_model: /model <name> — മോഡൽ മാറ്റുക
+    usage_switch_provider: /model <name> --provider <slug> — പ്രൊവൈഡർ മാറ്റുക
+    usage_persist: '`/model <name> --global` — സ്ഥിരമാക്കുക'
   agents:
-    header: 🤖 **Active Agents & Tasks**
-    active_agents: '**Active agents:** {count}'
+    header: 🤖 **സജീവ ഏജന്റുകളും ടാസ്കുകളും**
+    active_agents: '**സജീവ ഏജന്റുകൾ:** {count}'
     this_chat: ' · this chat'
     more: '... and {count} more'
-    running_processes: '**Running background processes:** {count}'
-    async_jobs: '**Gateway async jobs:** {count}'
-    none: No active agents or running tasks.
+    running_processes: '**പ്രവർത്തിക്കുന്ന പശ്ചാത്തല പ്രക്രിയകൾ:** {count}'
+    async_jobs: '**ഗേറ്റ്‌വേ അസിങ്ക് ജോബുകൾ:** {count}'
+    none: സജീവ ഏജന്റുകളോ പ്രവർത്തിക്കുന്ന ടാസ്കുകളോ ഇല്ല.
     state_starting: starting
     state_running: running
   approve:
-    no_pending: No pending command to approve.
-    once_singular: ✅ Command approved. The agent is resuming...
-    once_plural: ✅ Commands approved ({count} commands). The agent is resuming...
-    session_singular: ✅ Command approved (pattern approved for this session). The agent is resuming...
-    session_plural: ✅ Commands approved (pattern approved for this session) ({count} commands). The agent is resuming...
-    always_singular: ✅ Command approved (pattern approved permanently). The agent is resuming...
-    always_plural: ✅ Commands approved (pattern approved permanently) ({count} commands). The agent is resuming...
+    no_pending: അംഗീകരിക്കാൻ ബാക്കിയുള്ള കമാൻഡ് ഇല്ല.
+    once_singular: ✅ കമാൻഡ് അംഗീകരിച്ചു. ഏജന്റ് പുനരാരംഭിക്കുന്നു...
+    once_plural: ✅ കമാൻഡുകൾ അംഗീകരിച്ചു ({count} കമാൻഡുകൾ). ഏജന്റ് പുനരാരംഭിക്കുന്നു...
+    session_singular: ✅ കമാൻഡ് അംഗീകരിച്ചു (ഈ സെഷനിൽ പാറ്റേൺ അംഗീകരിച്ചു). ഏജന്റ് പുനരാരംഭിക്കുന്നു...
+    session_plural: ✅ കമാൻഡുകൾ അംഗീകരിച്ചു (ഈ സെഷനിൽ പാറ്റേൺ അംഗീകരിച്ചു) ({count} കമാൻഡുകൾ). ഏജന്റ് പുനരാരംഭിക്കുന്നു...
+    always_singular: ✅ കമാൻഡ് അംഗീകരിച്ചു (പാറ്റേൺ സ്ഥിരമായി അംഗീകരിച്ചു). ഏജന്റ് പുനരാരംഭിക്കുന്നു...
+    always_plural: ✅ കമാൻഡുകൾ അംഗീകരിച്ചു (പാറ്റേൺ സ്ഥിരമായി അംഗീകരിച്ചു) ({count} കമാൻഡുകൾ). ഏജന്റ് പുനരാരംഭിക്കുന്നു...
   background:
-    usage: 'Usage: /background <prompt>
+    usage: 'ഉപയോഗം: /background <prompt>
 
-      Example: /background Summarize the top HN stories today
+      ഉദാഹരണം: /background ഇന്നത്തെ പ്രധാന HN കഥകൾ സംഗ്രഹിക്കുക
 
 
-      Runs the prompt in a separate session. You can keep chatting — the result will appear here when done.'
-    started: '🔄 Background task started: "{preview}"
+      പ്രോംപ്റ്റ് പ്രത്യേക സെഷനിൽ പ്രവർത്തിപ്പിക്കുന്നു. നിങ്ങൾക്ക് ചാറ്റിംഗ് തുടരാം — പൂർത്തിയാകുമ്പോൾ ഫലം ഇവിടെ കാണാം.'
+    started: '🔄 പശ്ചാത്തല ടാസ്ക് ആരംഭിച്ചു: "{preview}"
 
-      Task ID: {task_id}
+      ടാസ്ക് ID: {task_id}
 
-      You can keep chatting — results will appear when done.'
+      നിങ്ങൾക്ക് ചാറ്റിംഗ് തുടരാം — പൂർത്തിയാകുമ്പോൾ ഫലങ്ങൾ കാണാം.'
   branch:
-    db_unavailable: Session database not available.
-    no_conversation: No conversation to branch — send a message first.
-    create_failed: 'Failed to create branch: {error}'
-    switch_failed: Branch created but failed to switch to it.
-    branched_one: '⑂ Branched to **{title}** ({count} message copied)
+    db_unavailable: സെഷൻ ഡാറ്റാബേസ് ലഭ്യമല്ല.
+    no_conversation: ബ്രാഞ്ച് ചെയ്യാൻ സംഭാഷണമില്ല — ആദ്യം ഒരു സന്ദേശം അയയ്ക്കുക.
+    create_failed: 'ബ്രാഞ്ച് സൃഷ്ടിക്കാനായില്ല: {error}'
+    switch_failed: ബ്രാഞ്ച് സൃഷ്ടിച്ചു, പക്ഷേ അതിലേക്ക് മാറാനായില്ല.
+    branched_one: '⑂ **{title}** ലേക്ക് ബ്രാഞ്ച് ചെയ്തു ({count} സന്ദേശം പകർത്തി)
 
-      Original: `{parent}`
+      ഒറിജിനൽ: `{parent}`
 
-      Branch: `{new}`
+      ബ്രാഞ്ച്: `{new}`
 
-      Use `/resume` to switch back to the original.'
-    branched_many: '⑂ Branched to **{title}** ({count} messages copied)
+      ഒറിജിനലിലേക്ക് തിരികെ മാറാൻ `/resume` ഉപയോഗിക്കുക.'
+    branched_many: '⑂ **{title}** ലേക്ക് ബ്രാഞ്ച് ചെയ്തു ({count} സന്ദേശങ്ങൾ പകർത്തി)
 
-      Original: `{parent}`
+      ഒറിജിനൽ: `{parent}`
 
-      Branch: `{new}`
+      ബ്രാഞ്ച്: `{new}`
 
-      Use `/resume` to switch back to the original.'
+      ഒറിജിനലിലേക്ക് തിരികെ മാറാൻ `/resume` ഉപയോഗിക്കുക.'
   commands:
-    usage: 'Usage: `/commands [page]`'
-    skill_header: '⚡ **Skill Commands**:'
+    usage: 'ഉപയോഗം: `/commands [page]`'
+    skill_header: '⚡ **സ്കിൽ കമാൻഡുകൾ**:'
     default_desc: Skill command
-    none: No commands available.
-    header: 📚 **Commands** ({total} total, page {page}/{total_pages})
-    nav_prev: '`/commands {page}` ← prev'
-    nav_next: next → `/commands {page}`
-    out_of_range: _(Requested page {requested} was out of range, showing page {page}.)_
+    none: കമാൻഡുകൾ ലഭ്യമല്ല.
+    header: 📚 **കമാൻഡുകൾ** (ആകെ {total}, പേജ് {page}/{total_pages})
+    nav_prev: '`/commands {page}` ← മുമ്പത്തേത്'
+    nav_next: അടുത്തത് → `/commands {page}`
+    out_of_range: _(ആവശ്യപ്പെട്ട പേജ് {requested} പരിധിക്ക് പുറത്തായിരുന്നു, പേജ് {page} കാണിക്കുന്നു.)_
   compress:
-    not_enough: Not enough conversation to compress (need at least 4 messages).
-    no_provider: No provider configured -- cannot compress.
-    nothing_to_do: Nothing to compress yet (the transcript is still all protected context).
-    aggressive_unsupported: --aggressive is not supported; use '/compress here [N]' to keep only recent exchanges, or /undo to drop turns.
+    not_enough: സംഭാഷണം കംപ്രസ് ചെയ്യാൻ മതിയായതല്ല (കുറഞ്ഞത് 4 സന്ദേശങ്ങൾ വേണം).
+    no_provider: പ്രൊവൈഡർ കോൺഫിഗർ ചെയ്തിട്ടില്ല -- കംപ്രസ് ചെയ്യാനാകില്ല.
+    nothing_to_do: ഇതുവരെ കംപ്രസ് ചെയ്യാൻ ഒന്നുമില്ല (ട്രാൻസ്ക്രിപ്റ്റ് ഇപ്പോഴും മുഴുവൻ സംരക്ഷിത കോൺടെക്സ്റ്റാണ്).
+    aggressive_unsupported: --aggressive പിന്തുണയ്ക്കുന്നില്ല; സമീപകാല കൈമാറ്റങ്ങൾ മാത്രം നിലനിർത്താൻ '/compress here [N]' ഉപയോഗിക്കുക, അല്ലെങ്കിൽ ടേണുകൾ ഒഴിവാക്കാൻ /undo ഉപയോഗിക്കുക.
     focus_line: 'Focus: "{topic}"'
-    summary_failed: ⚠️ Summary generation failed ({error}). {count} historical message(s) were removed and replaced with a placeholder; earlier context is no longer recoverable. Consider checking your auxiliary.compression model configuration.
-    aborted: ⚠️ Compression aborted ({error}). No messages were dropped — conversation is unchanged. Run /compress to retry, /reset for a clean session, or check your auxiliary.compression model configuration.
-    aux_failed: ℹ️ Configured compression model `{model}` failed ({error}). Recovered using your main model — context is intact — but you may want to check `auxiliary.compression.model` in config.yaml.
-    failed: 'Compression failed: {error}'
+    summary_failed: ⚠️ സംഗ്രഹം സൃഷ്ടിക്കൽ പരാജയപ്പെട്ടു ({error}). {count} ചരിത്ര സന്ദേശം/സന്ദേശങ്ങൾ നീക്കം ചെയ്യുകയും പ്ലേസ്ഹോൾഡർ ഉപയോഗിച്ച് മാറ്റിസ്ഥാപിക്കുകയും ചെയ്തു; മുൻ കോൺടെക്സ്റ്റ് ഇനി വീണ്ടെടുക്കാനാകില്ല. നിങ്ങളുടെ auxiliary.compression മോഡൽ കോൺഫിഗറേഷൻ പരിശോധിക്കുന്നത് പരിഗണിക്കുക.
+    aborted: ⚠️ കംപ്രഷൻ നിർത്തലാക്കി ({error}). സന്ദേശങ്ങളൊന്നും ഒഴിവാക്കിയിട്ടില്ല — സംഭാഷണം മാറ്റമില്ലാതെ തുടരുന്നു. വീണ്ടും ശ്രമിക്കാൻ /compress പ്രവർത്തിപ്പിക്കുക, ശുദ്ധമായ സെഷനായി /reset, അല്ലെങ്കിൽ നിങ്ങളുടെ auxiliary.compression മോഡൽ കോൺഫിഗറേഷൻ പരിശോധിക്കുക.
+    aux_failed: ℹ️ കോൺഫിഗർ ചെയ്ത കംപ്രഷൻ മോഡൽ `{model}` പരാജയപ്പെട്ടു ({error}). നിങ്ങളുടെ പ്രധാന മോഡൽ ഉപയോഗിച്ച് വീണ്ടെടുത്തു — കോൺടെക്സ്റ്റ് കേടുകൂടാതെയുണ്ട് — എന്നാൽ config.yaml-ലെ `auxiliary.compression.model` പരിശോധിക്കാൻ നിങ്ങൾ ആഗ്രഹിച്ചേക്കാം.
+    failed: 'കംപ്രഷൻ പരാജയപ്പെട്ടു: {error}'
   debug:
-    upload_failed: '✗ Failed to upload debug report: {error}'
-    header: '**Debug report uploaded:**'
-    auto_delete: ⏱ Pastes will auto-delete in 6 hours.
-    full_logs_hint: For full log uploads, use `openamer debug share` from the CLI.
-    share_hint: Share these links with the OpenAmer team for support.
+    upload_failed: '✗ ഡീബഗ് റിപ്പോർട്ട് അപ്‌ലോഡ് ചെയ്യാനായില്ല: {error}'
+    header: '**ഡീബഗ് റിപ്പോർട്ട് അപ്‌ലോഡ് ചെയ്തു:**'
+    auto_delete: ⏱ പേസ്റ്റുകൾ 6 മണിക്കൂറിനുള്ളിൽ സ്വയമേവ ഇല്ലാതാകും.
+    full_logs_hint: പൂർണ്ണ ലോഗ് അപ്‌ലോഡുകൾക്ക്, CLI-യിൽ നിന്ന് `openamer debug share` ഉപയോഗിക്കുക.
+    share_hint: പിന്തുണയ്ക്കായി ഈ ലിങ്കുകൾ OpenAmer ടീമുമായി പങ്കിടുക.
   deny:
-    stale: ❌ Command denied (approval was stale).
-    no_pending: No pending command to deny.
+    stale: ❌ കമാൻഡ് നിരസിച്ചു (അംഗീകാരം കാലഹരണപ്പെട്ടിരുന്നു).
+    no_pending: നിരസിക്കാൻ ബാക്കിയുള്ള കമാൻഡുകളൊന്നുമില്ല.
     denied_singular: ❌ Command denied.
-    denied_plural: ❌ Commands denied ({count} commands).
-    denied_reason_singular: '❌ Command denied. Reason relayed to the agent: "{reason}"'
-    denied_reason_plural: '❌ Commands denied ({count} commands). Reason relayed to the agent: "{reason}"'
+    denied_plural: ❌ കമാൻഡുകൾ നിരസിച്ചു ({count} കമാൻഡുകൾ).
+    denied_reason_singular: '❌ കമാൻഡ് നിരസിച്ചു. ഏജന്റിന് കൈമാറിയ കാരണം: "{reason}"'
+    denied_reason_plural: '❌ കമാൻഡുകൾ നിരസിച്ചു ({count} കമാൻഡുകൾ). ഏജന്റിന് കൈമാറിയ കാരണം: "{reason}"'
   fast:
-    not_supported: ⚡ /fast is only available for OpenAI models that support Priority Processing.
+    not_supported: ⚡ Priority Processing പിന്തുണയ്ക്കുന്ന OpenAI മോഡലുകൾക്ക് മാത്രമേ /fast ലഭ്യമാകൂ.
     status: '⚡ Priority Processing
 
 
-      Current mode: `{mode}`
+      നിലവിലെ മോഡ്: `{mode}`
 
 
-      _Usage:_ `/fast <normal|fast|status>`'
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
+      _ഉപയോഗം:_ `/fast <normal|fast|status>`'
+    unknown_arg: '⚠️ അജ്ഞാത ആർഗ്യുമെന്റ്: `{arg}`
 
 
-      **Valid options:** normal, fast, status'
-    saved: '⚡ ✓ Priority Processing: **{label}** (saved to config)
+      **സാധുവായ ഓപ്ഷനുകൾ:** normal, fast, status'
+    saved: '⚡ ✓ മുൻഗണന പ്രോസസ്സിംഗ്: **{label}** (config-ൽ സേവ് ചെയ്തു)
 
-      _(takes effect on next message)_'
-    session_only: '⚡ ✓ Priority Processing: **{label}** (this session only)'
+      _(അടുത്ത സന്ദേശത്തിൽ പ്രാബല്യത്തിൽ വരും)_'
+    session_only: '⚡ ✓ മുൻഗണന പ്രോസസ്സിംഗ്: **{label}** (ഈ സെഷനിൽ മാത്രം)'
     label_fast: FAST
     label_normal: NORMAL
     status_fast: fast
     status_normal: normal
-    picker_title: '⚡ **Priority Processing**
+    picker_title: '⚡ **മുൻഗണന പ്രോസസ്സിംഗ്**
 
 
-      Current mode: `{mode}`
+      നിലവിലെ മോഡ്: `{mode}`
 
 
-      Pick an option:'
-    choice_fast: fast — Priority Processing on
-    choice_normal: normal — standard processing
+      ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക:'
+    choice_fast: fast — മുൻഗണന പ്രോസസ്സിംഗ് ഓൺ
+    choice_normal: normal — സ്റ്റാൻഡേർഡ് പ്രോസസ്സിംഗ്
   footer:
-    status: '📎 Runtime footer: **{state}**
+    status: '📎 റൺടൈം ഫൂട്ടർ: **{state}**
 
-      Fields: `{fields}`
+      ഫീൽഡുകൾ: `{fields}`
 
-      Platform: `{platform}`'
-    usage: 'Usage: `/footer [on|off|status]`'
-    saved: '📎 Runtime footer: **{state}**{example}
+      പ്ലാറ്റ്ഫോം: `{platform}`'
+    usage: 'ഉപയോഗം: `/footer [on|off|status]`'
+    saved: '📎 റൺടൈം ഫൂട്ടർ: **{state}**{example}
 
-      _(saved globally — takes effect on next message)_'
+      _(ആഗോളമായി സേവ് ചെയ്തു — അടുത്ത സന്ദേശത്തിൽ പ്രാബല്യത്തിൽ വരും)_'
     example_line: '
 
-      Example: `{preview}`'
+      ഉദാഹരണം: `{preview}`'
     state_on: 'ON'
     state_off: 'OFF'
   goal:
-    unavailable: Goals unavailable on this session.
+    unavailable: ഈ സെഷനിൽ ലക്ഷ്യങ്ങൾ ലഭ്യമല്ല.
     no_goal_set: No goal set.
-    paused: '⏸ Goal paused: {goal}'
+    paused: '⏸ ലക്ഷ്യം താൽക്കാലികമായി നിർത്തി: {goal}'
     no_resume: No goal to resume.
-    resumed: '▶ Goal resumed: {goal}
+    resumed: '▶ ലക്ഷ്യം പുനരാരംഭിച്ചു: {goal}
 
-      Send any message to continue, or wait — I''ll take the next step on the next turn.'
-    invalid: 'Invalid goal: {error}'
-    set: '⊙ Goal set ({budget}-turn budget): {goal}
+      തുടരാൻ ഏതെങ്കിലും സന്ദേശം അയയ്ക്കുക, അല്ലെങ്കിൽ കാത്തിരിക്കുക — അടുത്ത ടേണിൽ ഞാൻ അടുത്ത ഘട്ടം എടുക്കും.'
+    invalid: 'അസാധുവായ ലക്ഷ്യം: {error}'
+    set: '⊙ ലക്ഷ്യം സെറ്റ് ചെയ്തു ({budget}-ടേൺ ബജറ്റ്): {goal}
 
-      I''ll keep working until the goal is done, you pause/clear it, or the budget is exhausted.
+      ലക്ഷ്യം പൂർത്തിയാകുന്നതുവരെ, നിങ്ങൾ അത് താൽക്കാലികമായി നിർത്തുകയോ മായ്ക്കുകയോ ചെയ്യുന്നതുവരെ, അല്ലെങ്കിൽ ബജറ്റ് തീരുന്നതുവരെ ഞാൻ പ്രവർത്തിച്ചുകൊണ്ടിരിക്കും.
 
-      Controls: /goal status · /goal pause · /goal resume · /goal clear'
+      നിയന്ത്രണങ്ങൾ: /goal status · /goal pause · /goal resume · /goal clear'
   help:
-    header: '📖 **OpenAmer Commands**
+    header: '📖 **OpenAmer കമാൻഡുകൾ**
 
       '
     skill_header: '
 
-      ⚡ **Skill Commands** ({count} active):'
+      ⚡ **സ്കിൽ കമാൻഡുകൾ** ({count} സജീവം):'
     more_use_commands: '
 
-      ... and {count} more. Use `/commands` for the full paginated list.'
+      ... കൂടാതെ {count} കൂടുതൽ. പൂർണ്ണ പേജിനേറ്റഡ് ലിസ്റ്റിനായി `/commands` ഉപയോഗിക്കുക.'
   insights:
-    invalid_days: 'Invalid --days value: {value}'
-    error: 'Error generating insights: {error}'
+    invalid_days: '--days മൂല്യം അസാധുവാണ്: {value}'
+    error: 'ഇൻസൈറ്റുകൾ സൃഷ്ടിക്കുന്നതിൽ പിശക്: {error}'
   kanban:
-    error_prefix: '⚠ kanban error: {error}'
-    subscribed_suffix: (subscribed — you'll be notified when {task_id} completes or blocks)
-    truncated_suffix: … (truncated; use `openamer kanban …` in your terminal for full output)
+    error_prefix: '⚠ കാൻബാൻ പിശക്: {error}'
+    subscribed_suffix: (സബ്സ്ക്രൈബ് ചെയ്തു — {task_id} പൂർത്തിയാകുമ്പോഴോ ബ്ലോക്ക് ചെയ്യുമ്പോഴോ നിങ്ങൾക്ക് അറിയിപ്പ് ലഭിക്കും)
+    truncated_suffix: … (വെട്ടിച്ചുരുക്കി; പൂർണ്ണ ഔട്ട്പുട്ടിനായി നിങ്ങളുടെ ടെർമിനലിൽ `openamer kanban …` ഉപയോഗിക്കുക)
     no_output: (no output)
     wake:
       completed: completed
-      gave_up: gave up (retries exhausted)
-      crashed: crashed (worker exited); dispatcher will retry
-      timed_out: timed out; dispatcher will retry
-      blocked: blocked; needs attention
+      gave_up: ഉപേക്ഷിച്ചു (വീണ്ടും ശ്രമങ്ങൾ തീർന്നു)
+      crashed: ക്രാഷ് ചെയ്തു (വർക്കർ പുറത്തുകടന്നു); ഡിസ്പാച്ചർ വീണ്ടും ശ്രമിക്കും
+      timed_out: സമയപരിധി കഴിഞ്ഞു; ഡിസ്പാച്ചർ വീണ്ടും ശ്രമിക്കും
+      blocked: തടഞ്ഞു; ശ്രദ്ധ ആവശ്യമാണ്
       status_default: status changed
       status_joiner: ', '
-      message: '[kanban] Task {task_id} {status}.
+      message: '[kanban] ടാസ്ക് {task_id} {status}.
 
-        Title: {title}
+        ശീർഷകം: {title}
 
-        Assignee: @{assignee}
+        ചുമതലപ്പെടുത്തിയയാൾ: @{assignee}
 
-        Board: {board}
+        ബോർഡ്: {board}
 
 
-        Check the result or decide the next step.'
+        ഫലം പരിശോധിക്കുക അല്ലെങ്കിൽ അടുത്ത ഘട്ടം തീരുമാനിക്കുക.'
   personality:
-    none_configured: No personalities configured in `{path}/config.yaml`
-    header: '🎭 **Available Personalities**
+    none_configured: '`{path}/config.yaml`-ൽ വ്യക്തിത്വങ്ങൾ ഒന്നും കോൺഫിഗർ ചെയ്തിട്ടില്ല'
+    header: '🎭 **ലഭ്യമായ വ്യക്തിത്വങ്ങൾ**
 
       '
-    none_option: • `none` — (no personality overlay)
+    none_option: • `none` — (വ്യക്തിത്വ ഓവർലേ ഇല്ല)
     item: • `{name}` — {preview}
     usage: '
 
-      Usage: `/personality <name>`'
-    save_failed: '⚠️ Failed to save personality change: {error}'
-    cleared: '🎭 Personality cleared — using base agent behavior.
+      ഉപയോഗം: `/personality <name>`'
+    save_failed: '⚠️ വ്യക്തിത്വ മാറ്റം സേവ് ചെയ്യാനായില്ല: {error}'
+    cleared: '🎭 വ്യക്തിത്വം ക്ലിയർ ചെയ്തു — അടിസ്ഥാന ഏജന്റ് സ്വഭാവം ഉപയോഗിക്കുന്നു.
 
-      _(takes effect on next message)_'
-    set_to: '🎭 Personality set to **{name}**
+      _(അടുത്ത സന്ദേശത്തിൽ പ്രാബല്യത്തിൽ വരും)_'
+    set_to: '🎭 വ്യക്തിത്വം **{name}** ആയി സജ്ജീകരിച്ചു
 
-      _(takes effect on next message)_'
-    unknown: 'Unknown personality: `{name}`
+      _(അടുത്ത സന്ദേശത്തിൽ പ്രാബല്യത്തിൽ വരും)_'
+    unknown: 'അജ്ഞാത വ്യക്തിത്വം: `{name}`
 
 
-      Available: {available}'
+      ലഭ്യമായവ: {available}'
   profile:
-    header: 👤 **Profile:** `{profile}`
+    header: 👤 **പ്രൊഫൈൽ:** `{profile}`
     home: 📂 **Home:** `{home}`
   reasoning:
     level_default: medium (default)
     level_disabled: none (disabled)
     scope_session: session override
     scope_global: global config
-    status: '🧠 **Reasoning Settings**
+    status: '🧠 **യുക്തിചിന്താ ക്രമീകരണങ്ങൾ**
 
 
-      **Effort:** `{level}`
+      **ശ്രമം:** `{level}`
 
-      **Scope:** {scope}
+      **പരിധി:** {scope}
 
-      **Display:** {display}
+      **പ്രദർശനം:** {display}
 
 
-      _Usage:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
+      _ഉപയോഗം:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
     display_on: on ✓
     display_off: 'off'
-    display_set_on: '🧠 ✓ Reasoning display: **ON**
+    display_set_on: '🧠 ✓ യുക്തിചിന്ത പ്രദർശനം: **ON**
 
-      Model thinking will be shown before each response on **{platform}**.'
-    display_set_off: '🧠 ✓ Reasoning display: **OFF** for **{platform}**'
-    reset_global_unsupported: ⚠️ `/reasoning reset --global` is not supported. Use `/reasoning <level> --global` to change the global default.
-    reset_done: 🧠 ✓ Session reasoning override cleared; falling back to global config.
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
-
-
-      **Valid levels:** none, minimal, low, medium, high, xhigh, max, ultra
-
-      **Display:** show, hide
-
-      **Persist:** add `--global` to save beyond this session'
-    picker_title: '🧠 **Reasoning Settings**
+      ഓരോ പ്രതികരണത്തിനും മുമ്പ് **{platform}**-ൽ മോഡൽ ചിന്ത കാണിക്കും.'
+    display_set_off: '🧠 ✓ യുക്തിചിന്ത പ്രദർശനം: **OFF** — **{platform}**-നായി'
+    reset_global_unsupported: ⚠️ `/reasoning reset --global` പിന്തുണയ്ക്കുന്നില്ല. ആഗോള സ്വതവേ മാറ്റാൻ `/reasoning <level> --global` ഉപയോഗിക്കുക.
+    reset_done: 🧠 ✓ സെഷൻ യുക്തിചിന്താ ഓവർറൈഡ് മായ്ച്ചു; ആഗോള കോൺഫിഗിലേക്ക് തിരികെ പോകുന്നു.
+    unknown_arg: '⚠️ അജ്ഞാത ആർഗ്യുമെന്റ്: `{arg}`
 
 
-      **Effort:** `{level}`
+      **സാധുവായ ലെവലുകൾ:** none, minimal, low, medium, high, xhigh, max, ultra
 
-      **Scope:** {scope}
+      **പ്രദർശനം:** show, hide
 
-      **Display:** {display}
+      **നിലനിർത്തൽ:** ഈ സെഷനപ്പുറം സേവ് ചെയ്യാൻ `--global` ചേർക്കുക'
+    picker_title: '🧠 **യുക്തിചിന്താ ക്രമീകരണങ്ങൾ**
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+      **ശ്രമം:** `{level}`
 
-      _(takes effect on next message)_'
-    set_global_save_failed: '🧠 ✓ Reasoning effort set to `{effort}` (session only — config save failed)
+      **പരിധി:** {scope}
 
-      _(takes effect on next message)_'
-    set_session: '🧠 ✓ Reasoning effort set to `{effort}` (session only — add `--global` to persist)
+      **പ്രദർശനം:** {display}
 
-      _(takes effect on next message)_'
+
+      ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക:'
+    choice_none: none — യുക്തിചിന്ത പ്രവർത്തനരഹിതമാക്കുക
+    choice_reset: reset — സെഷൻ ഓവർറൈഡ് മായ്ക്കുക
+    choice_show: മറുപടികളിൽ യുക്തിചിന്ത കാണിക്കുക
+    choice_hide: മറുപടികളിൽ നിന്ന് റീസണിംഗ് മറയ്ക്കുക
+    set_global: '🧠 ✓ റീസണിംഗ് എഫർട്ട് `{effort}` ആയി സജ്ജമാക്കി (config-ൽ സംരക്ഷിച്ചു)
+
+      _(അടുത്ത സന്ദേശത്തിൽ പ്രാബല്യത്തിൽ വരും)_'
+    set_global_save_failed: '🧠 ✓ റീസണിംഗ് എഫർട്ട് `{effort}` ആയി സജ്ജമാക്കി (സെഷൻ മാത്രം — config സംരക്ഷിക്കൽ പരാജയപ്പെട്ടു)
+
+      _(അടുത്ത സന്ദേശത്തിൽ പ്രാബല്യത്തിൽ വരും)_'
+    set_session: '🧠 ✓ റീസണിംഗ് എഫർട്ട് `{effort}` ആയി സജ്ജമാക്കി (സെഷൻ മാത്രം — നിലനിർത്താൻ `--global` ചേർക്കുക)
+
+      _(അടുത്ത സന്ദേശത്തിൽ പ്രാബല്യത്തിൽ വരും)_'
   reload_mcp:
-    cancelled: 🟡 /reload-mcp cancelled. MCP tools unchanged.
-    always_followup: 'ℹ️ Future `/reload-mcp` calls will run without confirmation. Re-enable via `approvals.mcp_reload_confirm: true` in config.yaml.'
-    confirm_prompt: '⚠️ **Confirm /reload-mcp**
+    cancelled: 🟡 /reload-mcp റദ്ദാക്കി. MCP ടൂളുകൾ മാറ്റമില്ലാതെ തുടരുന്നു.
+    always_followup: 'ℹ️ ഇനിയുള്ള `/reload-mcp` കോളുകൾ സ്ഥിരീകരണമില്ലാതെ പ്രവർത്തിക്കും. config.yaml എന്ന ഫയലിലെ `approvals.mcp_reload_confirm: true` വഴി വീണ്ടും പ്രവർത്തനക്ഷമമാക്കാം.'
+    confirm_prompt: '⚠️ **/reload-mcp സ്ഥിരീകരിക്കുക**
 
 
-      Reloading MCP servers rebuilds the tool set for this session and **invalidates the provider prompt cache** — the next message will re-send full input tokens.  On long-context or high-reasoning models this can be expensive.
+      MCP സെർവറുകൾ വീണ്ടും ലോഡ് ചെയ്യുന്നത് ഈ സെഷനിലെ ടൂൾ സെറ്റ് പുനർനിർമ്മിക്കുകയും **പ്രൊവൈഡർ പ്രോംപ്റ്റ് കാഷെ അസാധുവാക്കുകയും** ചെയ്യും — അടുത്ത സന്ദേശം പൂർണ്ണ ഇൻപുട്ട് ടോക്കണുകൾ വീണ്ടും അയയ്ക്കും.  ദീർഘ-സന്ദർഭ അല്ലെങ്കിൽ ഉയർന്ന റീസണിംഗ് മോഡലുകളിൽ ഇത് ചെലവേറിയതായിരിക്കാം.
 
 
-      Choose:
+      തിരഞ്ഞെടുക്കുക:
 
-      • **Approve Once** — reload now
+      • **ഒരിക്കൽ അനുവദിക്കുക** — ഇപ്പോൾ വീണ്ടും ലോഡ് ചെയ്യുക
 
-      • **Always Approve** — reload now and silence this prompt permanently
+      • **എപ്പോഴും അനുവദിക്കുക** — ഇപ്പോൾ വീണ്ടും ലോഡ് ചെയ്ത് ഈ പ്രോംപ്റ്റ് ശാശ്വതമായി നിശ്ശബ്ദമാക്കുക
 
-      • **Cancel** — leave MCP tools unchanged
+      • **റദ്ദാക്കുക** — MCP ടൂളുകൾ മാറ്റമില്ലാതെ വിടുക
 
 
-      _Text fallback: reply `/approve`, `/always`, or `/cancel`._'
-    header: '🔄 **MCP Servers Reloaded**
+      _ടെക്സ്റ്റ് ഫാൾബാക്ക്: `/approve`, `/always`, അല്ലെങ്കിൽ `/cancel` എന്ന് മറുപടി നൽകുക._'
+    header: '🔄 **MCP സെർവറുകൾ വീണ്ടും ലോഡ് ചെയ്തു**
 
       '
-    reconnected: '♻️ Reconnected: {names}'
+    reconnected: '♻️ വീണ്ടും കണക്ട് ചെയ്തു: {names}'
     added: '➕ Added: {names}'
     removed: '➖ Removed: {names}'
-    none_connected: No MCP servers connected.
+    none_connected: MCP സെർവറുകളൊന്നും കണക്ട് ചെയ്തിട്ടില്ല.
     tools_available: '
 
-      🔧 {tools} tool(s) available from {servers} server(s)'
-    failed: '❌ MCP reload failed: {error}'
+      🔧 {tools} ടൂൾ(കൾ) {servers} സെർവർ(കൾ) എന്നിവയിൽ നിന്ന് ലഭ്യമാണ്'
+    failed: '❌ MCP വീണ്ടും ലോഡ് ചെയ്യൽ പരാജയപ്പെട്ടു: {error}'
   reload_skills:
-    header: '🔄 **Skills Reloaded**
+    header: '🔄 **നൈപുണ്യങ്ങൾ വീണ്ടും ലോഡ് ചെയ്തു**
 
       '
-    no_new: No new skills detected.
+    no_new: പുതിയ നൈപുണ്യങ്ങളൊന്നും കണ്ടെത്തിയില്ല.
     total: '
 
-      📚 {count} skill(s) available'
+      📚 {count} നൈപുണ്യം(ങ്ങൾ) ലഭ്യമാണ്'
     added_header: ➕ **Added Skills:**
-    removed_header: ➖ **Removed Skills:**
+    removed_header: ➖ **നീക്കം ചെയ്ത നൈപുണ്യങ്ങൾ:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
-    failed: '❌ Skills reload failed: {error}'
+    failed: '❌ നൈപുണ്യങ്ങൾ വീണ്ടും ലോഡ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു: {error}'
   reset:
-    header_default: ✨ Session reset! Starting fresh.
-    header_new: ✨ New session started!
-    header_titled: '✨ New session started: {title}'
+    header_default: ✨ സെഷൻ പുനഃസജ്ജീകരിച്ചു! പുതിയതായി തുടങ്ങുന്നു.
+    header_new: ✨ പുതിയ സെഷൻ ആരംഭിച്ചു!
+    header_titled: '✨ പുതിയ സെഷൻ ആരംഭിച്ചു: {title}'
     title_rejected: '
 
-      ⚠️ Title rejected: {error}'
+      ⚠️ ശീർഷകം നിരസിച്ചു: {error}'
     title_error_untitled: '
 
-      ⚠️ {error} — session started untitled.'
+      ⚠️ {error} — സെഷൻ ശീർഷകമില്ലാതെ ആരംഭിച്ചു.'
     title_empty_untitled: '
 
-      ⚠️ Title is empty after cleanup — session started untitled.'
+      ⚠️ ക്ലീനപ്പ് ചെയ്തതിന് ശേഷം ശീർഷകം ശൂന്യമാണ് — സെഷൻ ശീർഷകമില്ലാതെ ആരംഭിച്ചു.'
     tip: '
 
       ✦ Tip: {tip}'
   restart:
-    in_progress: ⏳ Gateway restart already in progress...
-    restarting: ♻ Restarting gateway. If you aren't notified within 60 seconds, restart from the console with `openamer gateway restart`.
+    in_progress: ⏳ ഗേറ്റ്‌വേ പുനരാരംഭിക്കൽ ഇതിനകം പുരോഗതിയിലാണ്...
+    restarting: ♻ ഗേറ്റ്‌വേ പുനരാരംഭിക്കുന്നു. 60 സെക്കൻഡിനുള്ളിൽ നിങ്ങൾക്ക് അറിയിപ്പ് ലഭിച്ചില്ലെങ്കിൽ, കൺസോളിൽ നിന്ന് `openamer gateway restart` ഉപയോഗിച്ച് പുനരാരംഭിക്കുക.
   resume:
-    db_unavailable: Session database not available.
-    parse_error: '⚠️ Could not parse `/resume` arguments: {error}.
+    db_unavailable: സെഷൻ ഡാറ്റാബേസ് ലഭ്യമല്ല.
+    parse_error: '⚠️ `/resume` ആർഗ്യുമെന്റുകൾ പാഴ്സ് ചെയ്യാനായില്ല: {error}.
 
-      Use quotes around titles with spaces, for example: `/resume "Project A Plan"`.'
-    matrix_no_named_sessions: 'No named sessions found for this Matrix room.
+      സ്പേസുകളുള്ള ടൈറ്റിലുകൾക്ക് ചുറ്റും ക്വോട്ടുകൾ ഉപയോഗിക്കുക, ഉദാഹരണത്തിന്: `/resume "Project A Plan"`.'
+    matrix_no_named_sessions: 'ഈ Matrix റൂമിനായി പേരുള്ള സെഷനുകളൊന്നും കണ്ടെത്തിയില്ല.
 
-      Use `/title My Session` to name the current room session, `/resume --all` to list all Matrix sessions, or `/resume --cross-room <session name>` to explicitly cross room boundaries.'
-    matrix_blocked_no_origin: '⚠️ Matrix /resume blocked: this named session has no recorded room origin, so OpenAmer will not resume it inside the current room by default. Use `/resume --cross-room {name}` if you intentionally want to cross room boundaries.'
-    matrix_blocked_other_room: '⚠️ Matrix /resume blocked: that session belongs to a different Matrix room ({room}). Use `/resume --cross-room {name}` if you intentionally want to resume it here.'
-    matrix_cross_room_success: '⚠️ Cross-room resume: resumed **{title}** inside Matrix room **{room}**.
+      നിലവിലെ റൂം സെഷന് പേര് നൽകാൻ `/title My Session` ഉപയോഗിക്കുക, എല്ലാ Matrix സെഷനുകളും ലിസ്റ്റ് ചെയ്യാൻ `/resume --all` ഉപയോഗിക്കുക, അല്ലെങ്കിൽ റൂം അതിർത്തികൾ വ്യക്തമായി കടക്കാൻ `/resume --cross-room <session name>` ഉപയോഗിക്കുക.'
+    matrix_blocked_no_origin: '⚠️ Matrix /resume തടഞ്ഞു: ഈ പേരുള്ള സെഷന് രേഖപ്പെടുത്തിയ റൂം ഉത്ഭവം ഇല്ല, അതിനാൽ OpenAmer സ്വതവേ നിലവിലെ റൂമിനുള്ളിൽ അത് പുനരാരംഭിക്കില്ല. റൂം അതിർത്തികൾ ബോധപൂർവ്വം കടക്കണമെങ്കിൽ `/resume --cross-room {name}` ഉപയോഗിക്കുക.'
+    matrix_blocked_other_room: '⚠️ Matrix /resume തടഞ്ഞു: ആ സെഷൻ വേറെ Matrix റൂമിനുള്ളതാണ് ({room}). ഇവിടെ അത് ബോധപൂർവ്വം പുനരാരംഭിക്കണമെങ്കിൽ `/resume --cross-room {name}` ഉപയോഗിക്കുക.'
+    matrix_cross_room_success: '⚠️ ക്രോസ്-റൂം പുനരാരംഭനം: **{title}** Matrix റൂം **{room}**-നുള്ളിൽ പുനരാരംഭിച്ചു.
 
-      Future messages in this room will use that transcript until `/reset` or another `/resume`.{msg_part}'
-    blocked_not_owner: '⚠️ /resume blocked: ''**{name}**'' belongs to a different user or chat. You can only resume sessions from this chat.'
-    no_named_sessions: 'No named sessions found.
+      `/reset` അല്ലെങ്കിൽ മറ്റൊരു `/resume` വരെ ഈ റൂമിലെ ഭാവി സന്ദേശങ്ങൾ ആ ട്രാൻസ്ക്രിപ്റ്റ് ഉപയോഗിക്കും.{msg_part}'
+    blocked_not_owner: '⚠️ /resume തടഞ്ഞു: ''**{name}**'' വേറെ ഉപയോക്താവിനോ ചാറ്റിനോ ഉള്ളതാണ്. ഈ ചാറ്റിൽ നിന്നുള്ള സെഷനുകൾ മാത്രമേ നിങ്ങൾക്ക് പുനരാരംഭിക്കാനാകൂ.'
+    no_named_sessions: 'പേരുള്ള സെഷനുകളൊന്നും കണ്ടെത്തിയില്ല.
 
-      Use `/title My Session` to name your current session, then `/resume My Session` to return to it later.'
-    list_header: '📋 **Named Sessions**
+      നിലവിലെ സെഷന് പേര് നൽകാൻ `/title My Session` ഉപയോഗിക്കുക, തുടർന്ന് പിന്നീട് അതിലേക്ക് മടങ്ങാൻ `/resume My Session` ഉപയോഗിക്കുക.'
+    list_header: '📋 **പേരുള്ള സെഷനുകൾ**
 
       '
     list_item: • **{title}**{preview_part}
@@ -387,147 +387,147 @@ gateway:
     list_preview_suffix: ' — _{preview}_'
     list_footer: '
 
-      Usage: `/resume <session name>`'
+      ഉപയോഗം: `/resume <session name>`'
     list_footer_numbered: '
 
-      Usage: `/resume <session name>` or `/resume <number>` (e.g. `/resume 1` for the most recent)'
-    list_failed: 'Could not list sessions: {error}'
-    out_of_range: 'Resume index {index} is out of range.
+      ഉപയോഗം: `/resume <session name>` അല്ലെങ്കിൽ `/resume <number>` (ഉദാ. ഏറ്റവും പുതിയതിന് `/resume 1`)'
+    list_failed: 'സെഷനുകൾ പട്ടികപ്പെടുത്താനായില്ല: {error}'
+    out_of_range: 'റെസ്യൂം ഇൻഡക്സ് {index} പരിധിക്ക് പുറത്താണ്.
 
-      Use `/resume` with no arguments to see available sessions.'
-    not_found: 'No session found matching ''**{name}**''.
+      ലഭ്യമായ സെഷനുകൾ കാണാൻ `/resume` ആർഗ്യുമെന്റുകളൊന്നുമില്ലാതെ ഉപയോഗിക്കുക.'
+    not_found: '''**{name}**'' എന്നതുമായി പൊരുത്തപ്പെടുന്ന സെഷൻ കണ്ടെത്തിയില്ല.
 
-      Use `/resume` with no arguments to see available sessions.'
-    already_on: 📌 Already on session **{name}**.
-    switch_failed: Failed to switch session.
-    resumed_one: ↻ Resumed session **{title}** ({count} message). Conversation restored.
-    resumed_many: ↻ Resumed session **{title}** ({count} messages). Conversation restored.
-    resumed_no_count: ↻ Resumed session **{title}**. Conversation restored.
+      ലഭ്യമായ സെഷനുകൾ കാണാൻ `/resume` ആർഗ്യുമെന്റുകളൊന്നുമില്ലാതെ ഉപയോഗിക്കുക.'
+    already_on: 📌 ഇതിനകം **{name}** സെഷനിലാണ്.
+    switch_failed: സെഷൻ മാറ്റാനായില്ല.
+    resumed_one: ↻ സെഷൻ **{title}** പുനരാരംഭിച്ചു ({count} സന്ദേശം). സംഭാഷണം പുനഃസ്ഥാപിച്ചു.
+    resumed_many: ↻ സെഷൻ **{title}** പുനരാരംഭിച്ചു ({count} സന്ദേശങ്ങൾ). സംഭാഷണം പുനഃസ്ഥാപിച്ചു.
+    resumed_no_count: ↻ സെഷൻ **{title}** പുനരാരംഭിച്ചു. സംഭാഷണം പുനഃസ്ഥാപിച്ചു.
   retry:
-    no_previous: No previous message to retry.
+    no_previous: വീണ്ടും ശ്രമിക്കാൻ മുൻ സന്ദേശമില്ല.
   rollback:
-    not_enabled: "Checkpoints are not enabled.\nEnable in config.yaml:\n```\ncheckpoints:\n  enabled: true\n```"
-    none_found: No checkpoints found for {cwd}
-    invalid_number: Invalid checkpoint number. Use 1-{max}.
-    restored: '✅ Restored to checkpoint {hash}: {reason}
+    not_enabled: "ചെക്ക്പോയിന്റുകൾ പ്രവർത്തനക്ഷമമല്ല.\nconfig.yaml-ൽ പ്രവർത്തനക്ഷമമാക്കുക:\n```\ncheckpoints:\n  enabled: true\n```"
+    none_found: '{cwd}-നായി ചെക്ക്പോയിന്റുകളൊന്നും കണ്ടെത്തിയില്ല'
+    invalid_number: അസാധുവായ ചെക്ക്പോയിന്റ് നമ്പർ. 1-{max} ഉപയോഗിക്കുക.
+    restored: '✅ ചെക്ക്പോയിന്റ് {hash}-ലേക്ക് പുനഃസ്ഥാപിച്ചു: {reason}
 
-      A pre-rollback snapshot was saved automatically.'
+      റോൾബാക്കിന് മുമ്പുള്ള സ്നാപ്ഷോട്ട് സ്വയമേവ സംരക്ഷിച്ചു.'
     restore_failed: ❌ {error}
   set_home:
-    save_failed: 'Failed to save home channel: {error}'
-    success: '✅ Home channel set to **{name}** (ID: {chat_id}).
+    save_failed: 'ഹോം ചാനൽ സംരക്ഷിക്കാൻ പരാജയപ്പെട്ടു: {error}'
+    success: '✅ ഹോം ചാനൽ **{name}** ആയി ക്രമീകരിച്ചു (ഐഡി: {chat_id}).
 
-      Cron jobs and cross-platform messages will be delivered here.'
+      ക്രോൺ ജോബുകളും ക്രോസ്-പ്ലാറ്റ്ഫോം സന്ദേശങ്ങളും ഇവിടെ എത്തിക്കും.'
   status:
-    header: 📊 **OpenAmer Gateway Status**
+    header: 📊 **OpenAmer ഗേറ്റ്‌വേ സ്റ്റാറ്റസ്**
     matrix_scope_header: '**Matrix scope:**'
     matrix_scope_room: '  room: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
-    matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    matrix_scope_thread: '  ത്രെഡ്_ഐഡി: {thread_id}'
+    matrix_scope_mode: '  സെഷൻ_സ്കോപ്പ്: {scope}'
+    matrix_scope_key: '  സെഷൻ_കീ: {session_key}'
+    session_id: '**സെഷൻ ഐഡി:** `{session_id}`'
     title: '**Title:** {title}'
-    created: '**Created:** {timestamp}'
-    last_activity: '**Last Activity:** {timestamp}'
+    created: '**സൃഷ്ടിച്ചത്:** {timestamp}'
+    last_activity: '**അവസാന പ്രവർത്തനം:** {timestamp}'
     model: '**Model:** `{model}`'
-    model_provider: '**Model:** `{model}` ({provider})'
-    context: '**Context:** {used} / {total} ({pct}%)'
-    context_used: '**Context:** ~{used} tokens'
-    tokens: '**Cumulative API tokens (re-sent each call):** {tokens}'
-    agent_running: '**Agent Running:** {state}'
+    model_provider: '**മോഡൽ:** `{model}` ({provider})'
+    context: '**കോൺടെക്സ്റ്റ്:** {used} / {total} ({pct}%)'
+    context_used: '**കോൺടെക്സ്റ്റ്:** ~{used} ടോക്കണുകൾ'
+    tokens: '**ക്യുമുലേറ്റീവ് API ടോക്കണുകൾ (ഓരോ കോളിലും വീണ്ടും അയയ്ക്കുന്നു):** {tokens}'
+    agent_running: '**ഏജന്റ് പ്രവർത്തിക്കുന്നു:** {state}'
     state_yes: Yes ⚡
     state_no: 'No'
-    queued: '**Queued follow-ups:** {count}'
-    platforms: '**Connected Platforms:** {platforms}'
+    queued: '**ക്യൂവിലുള്ള ഫോളോ-അപ്പുകൾ:** {count}'
+    platforms: '**കണക്റ്റ് ചെയ്ത പ്ലാറ്റ്ഫോമുകൾ:** {platforms}'
   stop:
-    stopped_pending: ⚡ Stopped. The agent hadn't started yet — you can continue this session.
-    stopped: ⚡ Stopped. You can continue this session.
-    no_active: No active task to stop.
+    stopped_pending: ⚡ നിർത്തി. ഏജന്റ് ഇതുവരെ ആരംഭിച്ചിട്ടില്ല — ഈ സെഷൻ തുടരാം.
+    stopped: ⚡ നിർത്തി. ഈ സെഷൻ തുടരാം.
+    no_active: നിർത്താൻ സജീവമായ ടാസ്ക് ഇല്ല.
   title:
-    db_unavailable: Session database not available.
+    db_unavailable: സെഷൻ ഡാറ്റാബേസ് ലഭ്യമല്ല.
     warn_prefix: ⚠️ {error}
-    empty_after_clean: ⚠️ Title is empty after cleanup. Please use printable characters.
-    set_to: '✏️ Session title set: **{title}**'
-    not_found: Session not found in database.
-    current_with_title: '📌 Session: `{session_id}`
+    empty_after_clean: ⚠️ ക്ലീനപ്പിന് ശേഷം ശീർഷകം ശൂന്യമാണ്. ദയവായി അച്ചടിക്കാവുന്ന പ്രതീകങ്ങൾ ഉപയോഗിക്കുക.
+    set_to: '✏️ സെഷൻ ശീർഷകം സെറ്റ് ചെയ്തു: **{title}**'
+    not_found: ഡാറ്റാബേസിൽ സെഷൻ കണ്ടെത്തിയില്ല.
+    current_with_title: '📌 സെഷൻ: `{session_id}`
 
-      Title: **{title}**'
-    current_no_title: '📌 Session: `{session_id}`
+      ശീർഷകം: **{title}**'
+    current_no_title: '📌 സെഷൻ: `{session_id}`
 
-      No title set. Usage: `/title My Session Name`'
+      ശീർഷകം സെറ്റ് ചെയ്തിട്ടില്ല. ഉപയോഗം: `/title എന്റെ സെഷൻ പേര്`'
   topic:
-    not_telegram_dm: The /topic command is only available in Telegram private chats.
-    no_session_db: Session database not available.
-    unauthorized: You are not authorized to use /topic on this bot.
-    restore_needs_topic: To restore a session, first create or open a Telegram topic, then send /topic <session-id> inside that topic. To create a new topic, open All Messages and send any message there.
-    topics_disabled: 'Telegram topics are not enabled for this bot yet.
+    not_telegram_dm: /topic കമാൻഡ് ടെലിഗ്രാം പ്രൈവറ്റ് ചാറ്റുകളിൽ മാത്രമേ ലഭ്യമാകൂ.
+    no_session_db: സെഷൻ ഡാറ്റാബേസ് ലഭ്യമല്ല.
+    unauthorized: ഈ ബോട്ടിൽ /topic ഉപയോഗിക്കാൻ നിങ്ങൾക്ക് അധികാരമില്ല.
+    restore_needs_topic: ഒരു സെഷൻ പുനഃസ്ഥാപിക്കാൻ, ആദ്യം ഒരു ടെലിഗ്രാം ടോപ്പിക് സൃഷ്ടിക്കുകയോ തുറക്കുകയോ ചെയ്ത്, ആ ടോപ്പിക്കിനുള്ളിൽ /topic <session-id> അയയ്ക്കുക. പുതിയ ടോപ്പിക് സൃഷ്ടിക്കാൻ, All Messages തുറന്ന് അവിടെ ഏതെങ്കിലും സന്ദേശം അയയ്ക്കുക.
+    topics_disabled: 'ഈ ബോട്ടിന് ടെലിഗ്രാം ടോപ്പിക്കുകൾ ഇതുവരെ പ്രവർത്തനക്ഷമമാക്കിയിട്ടില്ല.
 
 
-      How to enable them:
+      അവ എങ്ങനെ പ്രവർത്തനക്ഷമമാക്കാം:
 
-      1. Open @BotFather.
+      1. @BotFather തുറക്കുക.
 
-      2. Choose your bot.
+      2. നിങ്ങളുടെ ബോട്ട് തിരഞ്ഞെടുക്കുക.
 
-      3. Open Bot Settings → Threads Settings.
+      3. Bot Settings → Threads Settings തുറക്കുക.
 
-      4. Turn on Threaded Mode and make sure users are allowed to create new threads.
-
-
-      Then send /topic again.'
-    topics_user_disallowed: 'Telegram topics are enabled, but users are not allowed to create topics.
+      4. Threaded Mode ഓൺ ചെയ്ത്, ഉപയോക്താക്കൾക്ക് പുതിയ ത്രെഡുകൾ സൃഷ്ടിക്കാൻ അനുമതിയുണ്ടെന്ന് ഉറപ്പാക്കുക.
 
 
-      Open @BotFather → choose your bot → Bot Settings → Threads Settings, then turn off ''Disallow users to create new threads''.
+      തുടർന്ന് /topic വീണ്ടും അയയ്ക്കുക.'
+    topics_user_disallowed: 'ടെലിഗ്രാം ടോപ്പിക്കുകൾ പ്രവർത്തനക്ഷമമാണ്, പക്ഷേ ഉപയോക്താക്കൾക്ക് ടോപ്പിക്കുകൾ സൃഷ്ടിക്കാൻ അനുമതിയില്ല.
 
 
-      Then send /topic again.'
-    enable_failed: 'Failed to enable Telegram topic mode: {error}'
-    bound_status: 'This topic is linked to:
-
-      Session: {label}
-
-      ID: {session_id}
+      @BotFather തുറക്കുക → നിങ്ങളുടെ ബോട്ട് തിരഞ്ഞെടുക്കുക → Bot Settings → Threads Settings, തുടർന്ന് ''Disallow users to create new threads'' ഓഫ് ചെയ്യുക.
 
 
-      Use /new to replace this topic with a fresh session.
+      തുടർന്ന് /topic വീണ്ടും അയയ്ക്കുക.'
+    enable_failed: 'ടെലിഗ്രാം ടോപ്പിക് മോഡ് പ്രവർത്തനക്ഷമമാക്കാൻ പരാജയപ്പെട്ടു: {error}'
+    bound_status: 'ഈ ടോപ്പിക് ഇതിലേക്ക് ലിങ്ക് ചെയ്തിരിക്കുന്നു:
 
-      For parallel work, open All Messages and send a message there to create another topic.'
-    thread_ready: 'Telegram multi-session topics are enabled.
+      സെഷൻ: {label}
+
+      ഐഡി: {session_id}
 
 
-      This topic will be used as an independent OpenAmer session. Use /new to replace this topic''s current session. For parallel work, open All Messages and send a message there to create another topic.'
+      ഈ ടോപ്പിക് പുതിയ സെഷൻ ഉപയോഗിച്ച് മാറ്റിസ്ഥാപിക്കാൻ /new ഉപയോഗിക്കുക.
+
+      സമാന്തര ജോലിക്കായി, All Messages തുറന്ന് മറ്റൊരു ടോപ്പിക് സൃഷ്ടിക്കാൻ അവിടെ ഒരു സന്ദേശം അയയ്ക്കുക.'
+    thread_ready: 'Telegram മൾട്ടി-സെഷൻ ടോപ്പിക്കുകൾ പ്രവർത്തനക്ഷമമാണ്.
+
+
+      ഈ ടോപ്പിക് ഒരു സ്വതന്ത്ര OpenAmer സെഷനായി ഉപയോഗിക്കും. ഈ ടോപ്പിക്കിന്റെ നിലവിലെ സെഷൻ മാറ്റിസ്ഥാപിക്കാൻ /new ഉപയോഗിക്കുക. സമാന്തര ജോലിക്കായി, All Messages തുറന്ന് അവിടെ ഒരു സന്ദേശം അയച്ച് മറ്റൊരു ടോപ്പിക് സൃഷ്ടിക്കുക.'
     untitled_session: Untitled session
   undo:
     nothing: Nothing to undo.
-    removed: '↩️ Undid {turns} turn(s) ({count} message(s)).
+    removed: '↩️ {turns} ടേൺ(ങ്ങൾ) പിൻവലിച്ചു ({count} സന്ദേശം(ങ്ങൾ)).
 
-      Backed up to: "{preview}"
+      ബാക്കപ്പ് ചെയ്തത്: "{preview}"
 
-      Copy/edit the text above and send it to re-prompt from here.'
-    invalid_count: Invalid count "{arg}" — use /undo or /undo N.
+      മുകളിലുള്ള ടെക്സ്റ്റ് പകർത്തി/തിരുത്തി ഇവിടെ നിന്ന് വീണ്ടും പ്രോംപ്റ്റ് ചെയ്യാൻ അയയ്ക്കുക.'
+    invalid_count: അസാധുവായ എണ്ണം "{arg}" — /undo അല്ലെങ്കിൽ /undo N ഉപയോഗിക്കുക.
   update:
-    platform_not_messaging: ✗ /update is only available from messaging platforms. Run `openamer update` from the terminal.
-    not_git_repo: ✗ Not a git repository — cannot update.
-    openamer_cmd_not_found: ✗ Could not locate the `openamer` command. OpenAmer is running, but the update command could not find the executable on PATH or via the current Python interpreter. Try running `openamer update` manually in your terminal.
-    start_failed: '✗ Failed to start update: {error}'
-    starting: 🧬 Starting OpenAmer update… I'll stream progress here.
+    platform_not_messaging: ✗ /update സന്ദേശ പ്ലാറ്റ്ഫോമുകളിൽ നിന്ന് മാത്രമേ ലഭ്യമാകൂ. ടെർമിനലിൽ നിന്ന് `openamer update` പ്രവർത്തിപ്പിക്കുക.
+    not_git_repo: ✗ ഇത് ഒരു git റിപ്പോസിറ്ററി അല്ല — അപ്ഡേറ്റ് ചെയ്യാനാകില്ല.
+    openamer_cmd_not_found: ✗ `openamer` കമാൻഡ് കണ്ടെത്താനായില്ല. OpenAmer പ്രവർത്തിക്കുന്നുണ്ട്, എന്നാൽ അപ്ഡേറ്റ് കമാൻഡിന് PATH-യിലോ നിലവിലെ Python ഇന്റർപ്രിറ്റർ വഴിയോ എക്സിക്യൂട്ടബിൾ കണ്ടെത്താനായില്ല. നിങ്ങളുടെ ടെർമിനലിൽ `openamer update` സ്വമേധയാ പ്രവർത്തിപ്പിക്കാൻ ശ്രമിക്കുക.
+    start_failed: '✗ അപ്ഡേറ്റ് ആരംഭിക്കാൻ പരാജയപ്പെട്ടു: {error}'
+    starting: 🧬 OpenAmer അപ്ഡേറ്റ് ആരംഭിക്കുന്നു… പുരോഗതി ഇവിടെ സ്ട്രീം ചെയ്യും.
   usage:
-    rate_limits: ⏱️ **Rate Limits:** {state}
-    header_session: 📊 **Session Token Usage**
+    rate_limits: ⏱️ **നിരക്ക് പരിധികൾ:** {state}
+    header_session: 📊 **സെഷൻ ടോക്കൺ ഉപയോഗം**
     label_model: 'Model: `{model}`'
-    label_input_tokens: 'Input tokens: {count}'
-    label_cache_read: 'Cache read tokens: {count}'
-    label_cache_write: 'Cache write tokens: {count}'
-    label_output_tokens: 'Output tokens: {count}'
+    label_input_tokens: 'ഇൻപുട്ട് ടോക്കണുകൾ: {count}'
+    label_cache_read: 'കാഷെ വായന ടോക്കണുകൾ: {count}'
+    label_cache_write: 'കാഷെ എഴുത്ത് ടോക്കണുകൾ: {count}'
+    label_output_tokens: 'ഔട്ട്പുട്ട് ടോക്കണുകൾ: {count}'
     label_total: 'Total: {count}'
     label_api_calls: 'API calls: {count}'
-    label_cost: 'Cost: {prefix}${amount}'
+    label_cost: 'ചെലവ്: {prefix}${amount}'
     label_cost_included: 'Cost: included'
-    label_context: 'Context: {used} / {total} ({pct}%)'
-    label_compressions: 'Compressions: {count}'
-    breakdown_header: 🧩 **Context breakdown** _(estimated)_
+    label_context: 'സന്ദർഭം: {used} / {total} ({pct}%)'
+    label_compressions: 'കംപ്രഷനുകൾ: {count}'
+    breakdown_header: 🧩 **സന്ദർഭ വിഭജനം** _(കണക്കാക്കിയത്)_
     breakdown_line: '• {label}: ~{count} ({pct}%)'
     breakdown_cat_system_prompt: System prompt
     breakdown_cat_tool_definitions: Tool definitions
@@ -539,69 +539,69 @@ gateway:
     breakdown_cat_conversation: Conversation
     header_session_info: 📊 **Session Info**
     label_messages: 'Messages: {count}'
-    label_estimated_context: 'Estimated context: ~{count} tokens'
-    detailed_after_first: _(Detailed usage available after the first agent response)_
-    no_data: No usage data available for this session.
-    unknown_subcommand: 'Unknown /usage subcommand: `{args}`. Try `/usage` or `/usage reset [--force]`.'
-    reset_wrong_provider: Banked usage resets are only available on the openai-codex provider. Switch with `/model` first.
+    label_estimated_context: 'ഏകദേശ സന്ദർഭം: ~{count} ടോക്കണുകൾ'
+    detailed_after_first: _(ആദ്യ ഏജന്റ് പ്രതികരണത്തിന് ശേഷം വിശദമായ ഉപയോഗം ലഭ്യമാണ്)_
+    no_data: ഈ സെഷനിൽ ഉപയോഗ ഡാറ്റ ലഭ്യമല്ല.
+    unknown_subcommand: 'അജ്ഞാത /usage ഉപകമാൻഡ്: `{args}`. `/usage` അല്ലെങ്കിൽ `/usage reset [--force]` പരീക്ഷിക്കുക.'
+    reset_wrong_provider: ബാങ്ക് ചെയ്ത ഉപയോഗ റീസെറ്റുകൾ openai-codex പ്രൊവൈഡറിൽ മാത്രമേ ലഭ്യമാകൂ. ആദ്യം `/model` ഉപയോഗിച്ച് മാറുക.
   credits:
-    not_logged_in: Not logged into OpenAmer Portal. Log in to see your credit balance and top up.
+    not_logged_in: OpenAmer പോർട്ടലിൽ ലോഗിൻ ചെയ്തിട്ടില്ല. നിങ്ങളുടെ ക്രെഡിറ്റ് ബാലൻസ് കാണാനും ടോപ്പ് അപ്പ് ചെയ്യാനും ലോഗിൻ ചെയ്യുക.
   verbose:
-    not_enabled: "The `/verbose` command is not enabled for messaging platforms.\n\nEnable it in `config.yaml`:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"
-    mode_off: '⚙️ Tool progress: **OFF** — no tool activity shown.'
-    mode_new: '⚙️ Tool progress: **NEW** — shown when tool changes (preview length: `display.tool_preview_length`, default 40).'
-    mode_all: '⚙️ Tool progress: **ALL** — every tool call shown (preview length: `display.tool_preview_length`, default 40).'
-    mode_verbose: '⚙️ Tool progress: **VERBOSE** — every tool call with full arguments.'
-    mode_log: '⚙️ Tool progress: **LOG** — silent in chat; tool calls written to ~/.openamer/logs/tool_calls.log.'
-    saved_suffix: _(saved for **{platform}** — takes effect on next message)_
-    save_failed: '_(could not save to config: {error})_'
+    not_enabled: "മെസേജിംഗ് പ്ലാറ്റ്ഫോമുകൾക്കായി `/verbose` കമാൻഡ് പ്രവർത്തനക്ഷമമാക്കിയിട്ടില്ല.\n\n`config.yaml`-ൽ ഇത് പ്രവർത്തനക്ഷമമാക്കുക:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"
+    mode_off: '⚙️ ടൂൾ പ്രോഗ്രസ്: **OFF** — ടൂൾ പ്രവർത്തനം കാണിക്കുന്നില്ല.'
+    mode_new: '⚙️ ടൂൾ പ്രോഗ്രസ്: **NEW** — ടൂൾ മാറുമ്പോൾ കാണിക്കും (പ്രിവ്യൂ നീളം: `display.tool_preview_length`, ഡിഫോൾട്ട് 40).'
+    mode_all: '⚙️ ടൂൾ പ്രോഗ്രസ്: **ALL** — എല്ലാ ടൂൾ കോളും കാണിക്കും (പ്രിവ്യൂ നീളം: `display.tool_preview_length`, ഡിഫോൾട്ട് 40).'
+    mode_verbose: '⚙️ ടൂൾ പ്രോഗ്രസ്: **VERBOSE** — എല്ലാ ടൂൾ കോളും പൂർണ്ണ ആർഗ്യുമെന്റുകളോടെ.'
+    mode_log: '⚙️ ടൂൾ പ്രോഗ്രസ്: **LOG** — ചാറ്റിൽ നിശ്ശബ്ദം; ടൂൾ കോളുകൾ ~/.openamer/logs/tool_calls.log-ലേക്ക് എഴുതപ്പെടും.'
+    saved_suffix: _(**{platform}**-നായി സേവ് ചെയ്തു — അടുത്ത സന്ദേശത്തിൽ പ്രാബല്യത്തിൽ വരും)_
+    save_failed: '_(കോൺഫിഗിൽ സേവ് ചെയ്യാനായില്ല: {error})_'
   voice:
-    enabled_voice_only: 'Voice mode enabled.
+    enabled_voice_only: 'വോയ്സ് മോഡ് പ്രവർത്തനക്ഷമമാക്കി.
 
-      I''ll reply with voice when you send voice messages.
+      നിങ്ങൾ വോയ്സ് സന്ദേശങ്ങൾ അയയ്ക്കുമ്പോൾ ഞാൻ വോയ്സിൽ മറുപടി നൽകും.
 
-      Use /voice tts to get voice replies for all messages.'
-    disabled_text: Voice mode disabled. Text-only replies.
-    tts_enabled: 'Auto-TTS enabled.
+      എല്ലാ സന്ദേശങ്ങൾക്കും വോയ്സ് മറുപടികൾ ലഭിക്കാൻ /voice tts ഉപയോഗിക്കുക.'
+    disabled_text: വോയ്സ് മോഡ് പ്രവർത്തനരഹിതമാക്കി. ടെക്സ്റ്റ്-മാത്രം മറുപടികൾ.
+    tts_enabled: 'ഓട്ടോ-TTS പ്രവർത്തനക്ഷമമാക്കി.
 
-      All replies will include a voice message.'
+      എല്ലാ മറുപടികളിലും ഒരു വോയ്സ് സന്ദേശം ഉൾപ്പെടും.'
     status_mode: 'Voice mode: {label}'
-    status_channel: 'Voice channel: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_channel: 'വോയ്സ് ചാനൽ: #{channel}'
+    status_participants: 'പങ്കാളികൾ: {count}'
     status_member: '  - {name}{status}'
     speaking: ' (speaking)'
     enabled_short: Voice mode enabled.
     disabled_short: Voice mode disabled.
     label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    label_voice_only: ഓൺ (വോയ്സ് സന്ദേശങ്ങൾക്ക് വോയ്സ് മറുപടി)
+    label_all: TTS (എല്ലാ സന്ദേശങ്ങൾക്കും വോയ്സ് മറുപടി)
     help: '{toggle}
 
 
-      **How /voice works**
+      **/voice എങ്ങനെ പ്രവർത്തിക്കുന്നു**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — നിങ്ങൾ ഒരു വോയ്സ് സന്ദേശം അയയ്ക്കുമ്പോൾ വോയ്സ് മറുപടി
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — *എല്ലാ* സന്ദേശത്തിനും വോയ്സ് മറുപടി
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — ടെക്സ്റ്റ്-മാത്രം മറുപടികളിലേക്ക് തിരികെ
 
-      • `/voice status` — show the current mode
+      • `/voice status` — നിലവിലെ മോഡ് കാണിക്കുക
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (ആർഗ്യുമെന്റ് ഇല്ല) — ഓണും ഓഫും തമ്മിൽ പെട്ടെന്ന് മാറ്റുക{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **ലൈവ് വോയ്സ് ചാനലുകൾ (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • ആദ്യം ഒരു വോയ്സ് ചാനലിൽ ചേരുക, തുടർന്ന് `/voice channel` — ഞാൻ ചേരും, കേൾക്കും, എന്റെ മറുപടികൾ പറയും
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — വോയ്സ് ചാനലിൽ നിന്ന് വിച്ഛേദിക്കുക'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ ഈ സെഷനിൽ YOLO മോഡ് **OFF** — അപകടകരമായ കമാൻഡുകൾക്ക് അനുമതി ആവശ്യമാണ്.
+    enabled: ⚡ ഈ സെഷനിൽ YOLO മോഡ് **ON** — എല്ലാ കമാൻഡുകളും സ്വയമേവ അംഗീകരിക്കപ്പെട്ടു. ജാഗ്രതയോടെ ഉപയോഗിക്കുക.
   shared:
-    session_db_unavailable: Session database not available.
-    session_db_unavailable_prefix: Session database not available
-    session_not_found: Session not found in database.
+    session_db_unavailable: സെഷൻ ഡാറ്റാബേസ് ലഭ്യമല്ല.
+    session_db_unavailable_prefix: സെഷൻ ഡാറ്റാബേസ് ലഭ്യമല്ല
+    session_not_found: ഡാറ്റാബേസിൽ സെഷൻ കണ്ടെത്തിയില്ല.
     warn_passthrough: ⚠️ {error}

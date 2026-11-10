@@ -24,6 +24,7 @@ import math
 import re
 import os
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 import sys
 import urllib.request
 
@@ -450,6 +451,166 @@ def stats():
     for e in eps:
         kinds[e["kind"]] = kinds.get(e["kind"], 0) + 1
     return {"total": len(eps), "kinds": kinds, "file": STORE}
+
+
+# ── Mem0-compatible structured API layer ──────────────────────────────
+# Mem0 exposes add(messages, user_id, agent_id, run_id, metadata) /
+# search(query, user_id, agent_id, run_id, limit) / get_all().
+# OpenAmer's store is flat JSONL with no scoping. This layer adds:
+#   * user_id / agent_id / run_id scoping stored in meta (multi-profile isolation)
+#   * Memory history tracking — every add/search/write leaves a changelog entry
+# The existing add_episode/query/stats functions remain the canonical path;
+# this class is a thin, backwards-compatible wrapper.
+
+_HISTORY_PATH = os.path.join(os.path.dirname(STORE), "memory_history.jsonl")
+
+
+def _append_history(action: str, skill_key: str, detail: Dict[str, Any]) -> None:
+    """Append one changelog line to memory_history.jsonl."""
+    try:
+        os.makedirs(os.path.dirname(_HISTORY_PATH), exist_ok=True)
+        with open(_HISTORY_PATH, "a", encoding="utf-8") as fh:
+            fh.write(
+                json.dumps(
+                    {
+                        "ts": datetime.datetime.now(timezone.utc).isoformat(),
+                        "action": action,
+                        "skill_key": skill_key,
+                        "detail": detail,
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n"
+            )
+    except Exception:
+        # History must never break memory writes.
+        pass
+
+
+class Memory:
+    """Mem0-compatible memory API over OpenAmer's episodic store.
+
+    Scopes every write by user_id / agent_id / run_id so different OpenAmer
+    profiles (default, work, ling, emilija) get isolated memory. Every write
+    is also recorded in memory_history.jsonl for change tracking.
+    """
+
+    def __init__(self, user_id: str = "default", agent_id: str = "default"):
+        self.user_id = user_id
+        self.agent_id = agent_id
+
+    def _scope_meta(self, run_id: Optional[str], metadata: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+        meta = dict(metadata or {})
+        meta["user_id"] = self.user_id
+        meta["agent_id"] = self.agent_id
+        if run_id:
+            meta["run_id"] = run_id
+        return meta
+
+    def add(
+        self,
+        messages: Sequence[str],
+        *,
+        user_id: Optional[str] = None,
+        agent_id: Optional[str] = None,
+        run_id: Optional[str] = None,
+        metadata: Optional[Dict[str, Any]] = None,
+    ) -> int:
+        """Store one or more messages as episodes. Returns total episode count."""
+        uid = user_id or self.user_id
+        aid = agent_id or self.agent_id
+        prev_user = self.user_id
+        prev_agent = self.agent_id
+        self.user_id = uid
+        self.agent_id = aid
+        try:
+            count = 0
+            for msg in messages:
+                meta = self._scope_meta(run_id, metadata)
+                count = add_episode(msg, kind="mem0_add", meta=meta)
+                _append_history("add", msg[:80], {"kind": "mem0_add", "meta": meta})
+            return count
+        finally:
+            self.user_id = prev_user
+            self.agent_id = prev_agent
+
+    def search(
+        self,
+        query: str,
+        *,
+        user_id: Optional[str] = None,
+        agent_id: Optional[str] = None,
+        run_id: Optional[str] = None,
+        limit: int = 5,
+    ) -> List[Tuple[float, Dict[str, Any]]]:
+        """Hybrid retrieval (semantic + lexical + RRF), optionally filtered by scope."""
+        results = query(q=query, k=limit * 4)  # over-fetch, then filter by scope
+        uid = user_id or self.user_id
+        aid = agent_id or self.agent_id
+        filtered: List[Tuple[float, Dict[str, Any]]] = []
+        for score, ep in results:
+            meta = ep.get("meta") or {}
+            if meta.get("user_id") != uid:
+                continue
+            if aid and meta.get("agent_id") != aid:
+                continue
+            if run_id and meta.get("run_id") != run_id:
+                continue
+            filtered.append((score, ep))
+            if len(filtered) >= limit:
+                break
+        _append_history("search", query[:80], {"limit": limit, "returned": len(filtered)})
+        return filtered
+
+    def get_all(
+        self,
+        *,
+        user_id: Optional[str] = None,
+        agent_id: Optional[str] = None,
+        run_id: Optional[str] = None,
+        limit: Optional[int] = None,
+    ) -> List[Dict[str, Any]]:
+        """List all episodes, optionally filtered by scope."""
+        eps = _load()
+        uid = user_id or self.user_id
+        aid = agent_id or self.agent_id
+        out: List[Dict[str, Any]] = []
+        for ep in eps:
+            meta = ep.get("meta") or {}
+            if meta.get("user_id") != uid:
+                continue
+            if aid and meta.get("agent_id") != aid:
+                continue
+            if run_id and meta.get("run_id") != run_id:
+                continue
+            out.append(ep)
+            if limit and len(out) >= limit:
+                break
+        return out
+
+    def history(self, limit: int = 50) -> List[Dict[str, Any]]:
+        """Return the last `limit` memory changelog entries."""
+        if not os.path.exists(_HISTORY_PATH):
+            return []
+        out: List[Dict[str, Any]] = []
+        with open(_HISTORY_PATH, encoding="utf-8") as fh:
+            for line in fh:
+                try:
+                    out.append(json.loads(line))
+                except json.JSONDecodeError:
+                    continue
+        return out[-limit:]
+
+
+__all__ = [
+    "add_episode",
+    "index_brain",
+    "query",
+    "stats",
+    "backfill_embeddings",
+    "Memory",
+    "_append_history",
+]
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "stats"

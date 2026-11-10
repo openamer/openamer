@@ -3,60 +3,60 @@
 # See locales/en.yaml for the source of truth; keep keys in sync.
 
 approval:
-  dangerous_header: '⚠️  DANGEROUS COMMAND: {description}'
-  choose_long: '      [o]nce  |  [s]ession  |  [a]lways  |  [d]eny'
-  choose_short: '      [o]nce  |  [s]ession  |  [d]eny'
-  prompt_long: '      Choice [o/s/a/D]: '
-  prompt_short: '      Choice [o/s/D]: '
-  choose_smart_deny: '      [o]nce  |  [d]eny'
+  dangerous_header: '⚠️  KOMAN EDER: {description}'
+  choose_long: '      [o] ijuw  |  [s] sesion  |  [a] ngan  |  [d] denai'
+  choose_short: '      [o] ijuw  |  [s] sesion  |  [d] denai'
+  prompt_long: '      Kioe [o/s/a/D]: '
+  prompt_short: '      Kioe [o/s/D]: '
+  choose_smart_deny: '      [o] ijuw  |  [d] denai'
   prompt_smart_deny: '      Choice [o/D]: '
   smart_deny_once_inputs: o,once
   smart_deny_deny_inputs: d,deny
-  timeout: '      ⏱ Timeout - denying command'
+  timeout: '      ⏱ Taim aut - denai koman'
   allowed_once: '      ✓ Allowed once'
-  allowed_session: '      ✓ Allowed for this session'
-  allowed_always: '      ✓ Added to permanent allowlist'
+  allowed_session: '      ✓ Alau n sesion eñe'
+  allowed_always: '      ✓ Amet n allowlist ebwida'
   denied: '      ✗ Denied'
   cancelled: '      ✗ Cancelled'
-  blocklist_message: This command is on the unconditional blocklist and cannot be approved.
+  blocklist_message: Koman eñe ijo n blocklist eiy nge ewea eiy anga approval.
 gateway:
-  approval_expired: ⚠️ Approval expired (agent is no longer waiting). Ask the agent to try again.
-  draining: ⏳ Draining {count} active agent(s) before restart...
+  approval_expired: ⚠️ Approval eiy aran (agent eiy nge waiting). Koe agent eke ai.
+  draining: ⏳ Draining {count} agent eker ma restart...
   goal_cleared: ✓ Goal cleared.
   no_active_goal: No active goal.
-  config_read_failed: '⚠️ Could not read config.yaml: {error}'
-  config_save_failed: '⚠️ Could not save config: {error}'
+  config_read_failed: '⚠️ Eab e kona der config.yaml: {error}'
+  config_save_failed: '⚠️ Eab e kona save config: {error}'
   model:
     error_prefix: 'Error: {error}'
-    switched: Model switched to `{model}`
+    switched: Model e ouwa ki `{model}`
     provider_label: 'Provider: {provider}'
     context_label: 'Context: {tokens} tokens'
     max_output_label: 'Max output: {tokens} tokens'
     cost_label: 'Cost: {cost}'
     capabilities_label: 'Capabilities: {capabilities}'
-    prompt_caching_enabled: 'Prompt caching: enabled'
+    prompt_caching_enabled: 'Prompt caching: e kona'
     warning_prefix: 'Warning: {warning}'
-    saved_global: Saved to config.yaml (`--global`)
-    session_only_hint: _(session only — add `--global` to persist)_
-    current_label: 'Current: `{model}` on {provider}'
+    saved_global: E save ki config.yaml (`--global`)
+    session_only_hint: _(session et — add `--global` ki persist)_
+    current_label: 'Current: `{model}` i {provider}'
     current_tag: ' (current)'
     more_models_suffix: ' (+{count} more)'
-    usage_switch_model: '`/model <name>` — switch model'
-    usage_switch_provider: '`/model <name> --provider <slug>` — switch provider'
-    usage_persist: '`/model <name> --global` — persist'
+    usage_switch_model: '`/model <name>` — ouwa model'
+    usage_switch_provider: '`/model <name> --provider <slug>` — ouwa provider'
+    usage_persist: '`/model <name> --global` — tsimori'
   agents:
-    header: 🤖 **Active Agents & Tasks**
-    active_agents: '**Active agents:** {count}'
+    header: 🤖 **Agent ekerid ma Task ekerid**
+    active_agents: '**Agent ekerid:** {count}'
     this_chat: ' · this chat'
     more: '... and {count} more'
-    running_processes: '**Running background processes:** {count}'
-    async_jobs: '**Gateway async jobs:** {count}'
-    none: No active agents or running tasks.
+    running_processes: '**Proses background ekerid:** {count}'
+    async_jobs: '**Job async Gateway:** {count}'
+    none: Eña agent ekerid ka task ekerid.
     state_starting: starting
     state_running: running
   approve:
-    no_pending: No pending command to approve.
-    once_singular: ✅ Command approved. The agent is resuming...
+    no_pending: Eña command pending in aprob.
+    once_singular: ✅ Command e aprob. Agent e retom...
     once_plural: ✅ Komand e aobwo ({count} komand). Agant e resyum...
     session_singular: ✅ Komand e aobwo (paten e aobwo ngea sesion). Agant e resyum...
     session_plural: ✅ Komand e aobwo (paten e aobwo ngea sesion) ({count} komand). Agant e resyum...
@@ -154,11 +154,11 @@ gateway:
 
       Kame option:'
     choice_fast: mwan — Priority Processing on
-    choice_normal: normal — standard processing
+    choice_normal: normal — proses standard
   footer:
     status: '📎 Runtime footer: **{state}**
 
-      Fields: `{fields}`
+      Field: `{fields}`
 
       Platform: `{platform}`'
     usage: 'Usage: `/footer [on|off|status]`'
@@ -429,9 +429,9 @@ gateway:
     created: '**Egaru:** {timestamp}'
     last_activity: '**Activity iwi:** {timestamp}'
     model: '**Model:** `{model}`'
-    model_provider: '**Model:** `{model}` ({provider})'
-    context: '**Context:** {used} / {total} ({pct}%)'
-    context_used: '**Context:** ~{used} tokens'
+    model_provider: '**Moodel:** `{model}` ({provider})'
+    context: '**Kontes:** {used} / {total} ({pct}%)'
+    context_used: '**Kontes:** ~{used} token'
     tokens: '**API tokens cumulative (re-sent each call):** {tokens}'
     agent_running: '**Agent e running:** {state}'
     state_yes: Ea ⚡
@@ -448,9 +448,9 @@ gateway:
     empty_after_clean: ⚠️ Title eñ imin inedae cleanup. Kona use character printable.
     set_to: '✏️ Title session ean: **{title}**'
     not_found: Session eñ deu in database.
-    current_with_title: '📌 Session: `{session_id}`
+    current_with_title: '📌 Ijin: `{session_id}`
 
-      Title: **{title}**'
+      Eta: **{title}**'
     current_no_title: '📌 Session: `{session_id}`
 
       Eñ title ean. Usage: `/title Ij imin`'
@@ -512,13 +512,13 @@ gateway:
     start_failed: '✗ Etaba update eñ eko: {error}'
     starting: 🧬 Etaba OpenAmer update… Progress e stream ame.
   usage:
-    rate_limits: ⏱️ **Rate Limits:** {state}
-    header_session: 📊 **Session Token Usage**
+    rate_limits: ⏱️ **Reit Ikewin:** {state}
+    header_session: 📊 **Aijin Token Ijin**
     label_model: 'Model: `{model}`'
-    label_input_tokens: 'Input tokens: {count}'
-    label_cache_read: 'Cache read tokens: {count}'
-    label_cache_write: 'Cache write tokens: {count}'
-    label_output_tokens: 'Output tokens: {count}'
+    label_input_tokens: 'Token inpuk: {count}'
+    label_cache_read: 'Token rid kas: {count}'
+    label_cache_write: 'Token rait kas: {count}'
+    label_output_tokens: 'Token eder: {count}'
     label_total: 'Total: {count}'
     label_api_calls: 'API calls: {count}'
     label_cost: 'Kost: {prefix}${amount}'

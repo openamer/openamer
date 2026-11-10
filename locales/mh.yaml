@@ -3,145 +3,145 @@
 # See locales/en.yaml for the source of truth; keep keys in sync.
 
 approval:
-  dangerous_header: '⚠️  DANGEROUS COMMAND: {description}'
-  choose_long: '      [o]nce  |  [s]ession  |  [a]lways  |  [d]eny'
-  choose_short: '      [o]nce  |  [s]ession  |  [d]eny'
-  prompt_long: '      Choice [o/s/a/D]: '
-  prompt_short: '      Choice [o/s/D]: '
-  choose_smart_deny: '      [o]nce  |  [d]eny'
+  dangerous_header: '⚠️  KŌM̧M̧AN E NANA: {description}'
+  choose_long: '      [o] juon alen  |  [s] iien  |  [a] aolep iien  |  [d] jab kōtōm̧'
+  choose_short: '      [o] juon alen  |  [s] iien  |  [d] jab kōtōm̧'
+  prompt_long: '      Kōm̧m̧an [o/s/a/D]: '
+  prompt_short: '      Kōm̧m̧an [o/s/D]: '
+  choose_smart_deny: '      [o] juon alen  |  [d] jab kōtōm̧'
   prompt_smart_deny: '      Choice [o/D]: '
   smart_deny_once_inputs: o,once
   smart_deny_deny_inputs: d,deny
-  timeout: '      ⏱ Timeout - denying command'
+  timeout: '      ⏱ Iien eo e lo̧mo̧o̧r - ej jab kōtōm̧ kōm̧m̧an'
   allowed_once: '      ✓ Allowed once'
-  allowed_session: '      ✓ Allowed for this session'
-  allowed_always: '      ✓ Added to permanent allowlist'
+  allowed_session: '      ✓ Kōtōm̧ n̄an iien in'
+  allowed_always: '      ✓ Kōdelej n̄an list eo e mau an kōtōm̧'
   denied: '      ✗ Denied'
   cancelled: '      ✗ Cancelled'
-  blocklist_message: This command is on the unconditional blocklist and cannot be approved.
+  blocklist_message: Kōm̧m̧an in ej pād ilo list eo ej jab kōtōm̧ n̄an aolep iien, ėj jab maron̄ kōtōm̧.
 gateway:
-  approval_expired: ⚠️ Approval expired (agent is no longer waiting). Ask the agent to try again.
-  draining: ⏳ Draining {count} active agent(s) before restart...
+  approval_expired: ⚠️ Kōtōm̧ eo e jōlōt (agent eo ej jab bar kōttar). Kajjitōk n̄an agent eo bwe en bar kajjioñ.
+  draining: ⏳ Ej kōdāp {count} agent ko ej jerbal m̧okta jān bar jino...
   goal_cleared: ✓ Goal cleared.
   no_active_goal: No active goal.
-  config_read_failed: '⚠️ Could not read config.yaml: {error}'
-  config_save_failed: '⚠️ Could not save config: {error}'
+  config_read_failed: '⚠️ Eban jeo̗ config.yaml: {error}'
+  config_save_failed: '⚠️ Eban kip config: {error}'
   model:
     error_prefix: 'Error: {error}'
-    switched: Model switched to `{model}`
+    switched: Ekar ukōt model ñan `{model}`
     provider_label: 'Provider: {provider}'
-    context_label: 'Context: {tokens} tokens'
-    max_output_label: 'Max output: {tokens} tokens'
+    context_label: 'Kōntek: {tokens} token'
+    max_output_label: 'Elōñlōñ kwaļo̗k: {tokens} token'
     cost_label: 'Cost: {cost}'
-    capabilities_label: 'Capabilities: {capabilities}'
-    prompt_caching_enabled: 'Prompt caching: enabled'
+    capabilities_label: 'Maron̄ ko: {capabilities}'
+    prompt_caching_enabled: 'Prompt caching: ej jerbal'
     warning_prefix: 'Warning: {warning}'
-    saved_global: Saved to config.yaml (`--global`)
-    session_only_hint: _(session only — add `--global` to persist)_
-    current_label: 'Current: `{model}` on {provider}'
+    saved_global: Kar kip ñan config.yaml (`--global`)
+    session_only_hint: _(session wōt — kōdeļo̗k `--global` bwe en pād)_
+    current_label: 'Kiō: `{model}` ioon {provider}'
     current_tag: ' (current)'
     more_models_suffix: ' (+{count} more)'
-    usage_switch_model: '`/model <name>` — switch model'
-    usage_switch_provider: '`/model <name> --provider <slug>` — switch provider'
-    usage_persist: '`/model <name> --global` — persist'
+    usage_switch_model: '`/model <name>` — ukōt model'
+    usage_switch_provider: '`/model <name> --provider <slug>` — ukōt provider'
+    usage_persist: /model <name> --global — kōjparok
   agents:
-    header: 🤖 **Active Agents & Tasks**
-    active_agents: '**Active agents:** {count}'
+    header: 🤖 **Agent im Jerbal Ko Ej Jerbal**
+    active_agents: '**Agent ko ej jerbal:** {count}'
     this_chat: ' · this chat'
     more: '... and {count} more'
-    running_processes: '**Running background processes:** {count}'
-    async_jobs: '**Gateway async jobs:** {count}'
-    none: No active agents or running tasks.
+    running_processes: '**Process ko ej jerbal ilo background:** {count}'
+    async_jobs: '**Jerbal ko async ilo Gateway:** {count}'
+    none: Ejjeļo̧k agent ej jerbal ak jerbal ej run.
     state_starting: starting
     state_running: running
   approve:
-    no_pending: No pending command to approve.
-    once_singular: ✅ Command approved. The agent is resuming...
-    once_plural: ✅ Commands approved ({count} commands). The agent is resuming...
-    session_singular: ✅ Command approved (pattern approved for this session). The agent is resuming...
-    session_plural: ✅ Commands approved (pattern approved for this session) ({count} commands). The agent is resuming...
-    always_singular: ✅ Command approved (pattern approved permanently). The agent is resuming...
-    always_plural: ✅ Commands approved (pattern approved permanently) ({count} commands). The agent is resuming...
+    no_pending: Ejjeļo̧k command ej kōttōpar n̄an kōtm̧an.
+    once_singular: ✅ Command eo ekar kōtm̧an. Agent eo ej bar jepļaak...
+    once_plural: ✅ Command ko ekar kōtm̧an ({count} command). Agent eo ej bar jepļaak...
+    session_singular: ✅ Command eo ekar kōtm̧an (pattern eo ekar kōtm̧an n̄an session in). Agent eo ej bar jepļaak...
+    session_plural: ✅ Command ko ekar kōtm̧an (pattern eo ekar kōtm̧an n̄an session in) ({count} command). Agent eo ej bar jepļaak...
+    always_singular: ✅ Command eo ekar kōtm̧an (pattern eo ekar kōtm̧an n̄an indeeo). Agent eo ej bar jepļaak...
+    always_plural: ✅ Kōmman ko eṃōj aer bōk (pattern eṃōj bōk indeo) ({count} kōmman). Agent eo ej bar jino...
   background:
-    usage: 'Usage: /background <prompt>
+    usage: 'Kōjerbal: /background <prompt>
 
-      Example: /background Summarize the top HN stories today
+      Waween: /background Kwaļo̧k top HN stories raan in
 
 
-      Runs the prompt in a separate session. You can keep chatting — the result will appear here when done.'
-    started: '🔄 Background task started: "{preview}"
+      Ej run prompt eo ilo session eo ekaļļo̧k. Kwōmaroñ bar kōnono — result eo enaaj waļo̧k ijieṇ ke eṃōj.'
+    started: '🔄 Task in background eṃōj jino: "{preview}"
 
       Task ID: {task_id}
 
-      You can keep chatting — results will appear when done.'
+      Kwōmaroñ bar kōnono — results enaaj waļo̧k ke eṃōj.'
   branch:
-    db_unavailable: Session database not available.
-    no_conversation: No conversation to branch — send a message first.
-    create_failed: 'Failed to create branch: {error}'
-    switch_failed: Branch created but failed to switch to it.
-    branched_one: '⑂ Branched to **{title}** ({count} message copied)
+    db_unavailable: Database in session eo ej jab bed.
+    no_conversation: Ej jab bed conversation n̄an branch — kwōn jilkinļok juon message m̧okta.
+    create_failed: 'Eṃōj jab tōprak kōṃṃan branch: {error}'
+    switch_failed: Eṃōj kōṃṃan branch ak eṃōj jab tōprak n̄an switch ñane.
+    branched_one: '⑂ Eṃōj branch ñan **{title}** ({count} message eṃōj kōpi)
 
       Original: `{parent}`
 
       Branch: `{new}`
 
-      Use `/resume` to switch back to the original.'
-    branched_many: '⑂ Branched to **{title}** ({count} messages copied)
+      Kōjerbal `/resume` ñan bar switch ñan original eo.'
+    branched_many: '⑂ Eṃōj branch ñan **{title}** ({count} message ko eṃōj kōpi)
 
       Original: `{parent}`
 
       Branch: `{new}`
 
-      Use `/resume` to switch back to the original.'
+      Kōjerbal `/resume` ñan bar switch ñan original eo.'
   commands:
-    usage: 'Usage: `/commands [page]`'
-    skill_header: '⚡ **Skill Commands**:'
+    usage: 'Kōjerbal: `/commands [page]`'
+    skill_header: '⚡ **Kōmman in Skill**:'
     default_desc: Skill command
-    none: No commands available.
-    header: 📚 **Commands** ({total} total, page {page}/{total_pages})
-    nav_prev: '`/commands {page}` ← prev'
-    nav_next: next → `/commands {page}`
-    out_of_range: _(Requested page {requested} was out of range, showing page {page}.)_
+    none: Ej jab bed kōmman ko.
+    header: 📚 **Kammand ko** ({total} aolep, peij {page}/{total_pages})
+    nav_prev: /commands {page} ← m̧okta
+    nav_next: ālik → /commands {page}
+    out_of_range: _(Peij {requested} ekar jab bed ilo raan, ej kwaļo̧k peij {page}.)_
   compress:
-    not_enough: Not enough conversation to compress (need at least 4 messages).
-    no_provider: No provider configured -- cannot compress.
-    nothing_to_do: Nothing to compress yet (the transcript is still all protected context).
-    aggressive_unsupported: --aggressive is not supported; use '/compress here [N]' to keep only recent exchanges, or /undo to drop turns.
+    not_enough: Ej jab law kōnono n̄an compress (kōņaan 4 messaj).
+    no_provider: Ejjelok provider ekar configure -- ej jab maron̄ compress.
+    nothing_to_do: Ejjelok n̄an compress (transcript eo ej protected context wōt).
+    aggressive_unsupported: --aggressive ej jab support; kōjerbal '/compress here [N]' n̄an kōjerbal wōt exchange ko āliktata, ak /undo n̄an kōdrop turn ko.
     focus_line: 'Focus: "{topic}"'
-    summary_failed: ⚠️ Summary generation failed ({error}). {count} historical message(s) were removed and replaced with a placeholder; earlier context is no longer recoverable. Consider checking your auxiliary.compression model configuration.
-    aborted: ⚠️ Compression aborted ({error}). No messages were dropped — conversation is unchanged. Run /compress to retry, /reset for a clean session, or check your auxiliary.compression model configuration.
-    aux_failed: ℹ️ Configured compression model `{model}` failed ({error}). Recovered using your main model — context is intact — but you may want to check `auxiliary.compression.model` in config.yaml.
-    failed: 'Compression failed: {error}'
+    summary_failed: ⚠️ Summary generation ej jab kar ({error}). {count} messaj history kar kōdrop im replace kōn placeholder; context eo m̧okta ej jab maron̄ bōk āinwōt m̧okta. Kōn kejarjar lale configuration model auxiliary.compression eo.
+    aborted: ⚠️ Compression kar abort ({error}). Ejjelok messaj kar kōdrop — kōnono ej jab ukōt. Kōjerbal /compress n̄an retry, /reset n̄an juon session e clean, ak lale configuration model auxiliary.compression eo.
+    aux_failed: ℹ️ Model compression eo kar configure `{model}` ej jab kar ({error}). Kar recover kōn model eo main — context ej intact — ak kwō maron̄ kōņaan lale `auxiliary.compression.model` ilo config.yaml.
+    failed: 'Compression ej jab kar: {error}'
   debug:
-    upload_failed: '✗ Failed to upload debug report: {error}'
-    header: '**Debug report uploaded:**'
-    auto_delete: ⏱ Pastes will auto-delete in 6 hours.
-    full_logs_hint: For full log uploads, use `openamer debug share` from the CLI.
-    share_hint: Share these links with the OpenAmer team for support.
+    upload_failed: '✗ Ear jab tōprak an kōm̗akūt ripo̗t debug: {error}'
+    header: '**Ri̗po̗t debug ear kōm̗akūt:**'
+    auto_delete: ⏱ Paste ko naaj automatic jol̗o̗k ilo 6 awa.
+    full_logs_hint: Kōn kōm̗akūt ko an log meļeļe, kōjerbal `openamer debug share` jen CLI.
+    share_hint: Kōjjeḷā link ko kōn kumi OpenAmer n̄an jipañ.
   deny:
-    stale: ❌ Command denied (approval was stale).
-    no_pending: No pending command to deny.
+    stale: ❌ Ear jab kōtḷọk kōm̗m̗an (kōtḷọk eo ear m̗ōj).
+    no_pending: Ejjelok kōm̗m̗an eo ej eppān n̄an jab kōtḷọk.
     denied_singular: ❌ Command denied.
-    denied_plural: ❌ Commands denied ({count} commands).
-    denied_reason_singular: '❌ Command denied. Reason relayed to the agent: "{reason}"'
-    denied_reason_plural: '❌ Commands denied ({count} commands). Reason relayed to the agent: "{reason}"'
+    denied_plural: ❌ Ear jab kōtḷọk kōm̗m̗an ko ({count} kōm̗m̗an).
+    denied_reason_singular: '❌ Ear jab kōtḷọk kōm̗m̗an. Ear kōnnaan kōn wāween n̄an agent eo: "{reason}"'
+    denied_reason_plural: '❌ Ear jab kōtḷọk kōm̗m̗an ko ({count} kōm̗m̗an). Ear kōnnaan kōn wāween n̄an agent eo: "{reason}"'
   fast:
-    not_supported: ⚡ /fast is only available for OpenAI models that support Priority Processing.
+    not_supported: ⚡ /fast ej bed wōt kōn model ko an OpenAI me rej support Priority Processing.
     status: '⚡ Priority Processing
 
 
-      Current mode: `{mode}`
+      Mode eo kiiō: `{mode}`
 
 
-      _Usage:_ `/fast <normal|fast|status>`'
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
+      _Kōjerbal:_ `/fast <normal|fast|status>`'
+    unknown_arg: '⚠️ Argument eo ej jab meḷeḷe: `{arg}`
 
 
-      **Valid options:** normal, fast, status'
-    saved: '⚡ ✓ Priority Processing: **{label}** (saved to config)
+      **Kōkaal ko ejimwe:** normal, fast, status'
+    saved: '⚡ ✓ Priority Processing: **{label}** (keptok ñan config)
 
-      _(takes effect on next message)_'
-    session_only: '⚡ ✓ Priority Processing: **{label}** (this session only)'
+      _(enaaj jerbal ilo message eo eljuñ)_'
+    session_only: '⚡ ✓ Priority Processing: **{label}** (session in wōt)'
     label_fast: FAST
     label_normal: NORMAL
     status_fast: fast
@@ -149,237 +149,237 @@ gateway:
     picker_title: '⚡ **Priority Processing**
 
 
-      Current mode: `{mode}`
+      Mode eo kiiō: `{mode}`
 
 
-      Pick an option:'
-    choice_fast: fast — Priority Processing on
-    choice_normal: normal — standard processing
+      Kōkaal juon option:'
+    choice_fast: fast — Priority Processing ej jerbal
+    choice_normal: normal — processing eo standard
   footer:
-    status: '📎 Runtime footer: **{state}**
+    status: '📎 Footer eo an runtime: **{state}**
 
-      Fields: `{fields}`
+      Peḷḷọk: `{fields}`
 
       Platform: `{platform}`'
-    usage: 'Usage: `/footer [on|off|status]`'
-    saved: '📎 Runtime footer: **{state}**{example}
+    usage: 'Kōjerbal: `/footer [on|off|status]`'
+    saved: '📎 Footer eo an runtime: **{state}**{example}
 
-      _(saved globally — takes effect on next message)_'
+      _(keptok ilo aolep — enaaj jerbal ilo message eo eljuñ)_'
     example_line: '
 
-      Example: `{preview}`'
+      Waawin: `{preview}`'
     state_on: 'ON'
     state_off: 'OFF'
   goal:
-    unavailable: Goals unavailable on this session.
+    unavailable: Goals ejjab bed ilo session in.
     no_goal_set: No goal set.
-    paused: '⏸ Goal paused: {goal}'
+    paused: '⏸ Goal ej kar pej: {goal}'
     no_resume: No goal to resume.
-    resumed: '▶ Goal resumed: {goal}
+    resumed: '▶ Kōttōpar kar bar jino: {goal}
 
-      Send any message to continue, or wait — I''ll take the next step on the next turn.'
-    invalid: 'Invalid goal: {error}'
-    set: '⊙ Goal set ({budget}-turn budget): {goal}
+      Jilkinḷọk aolep ennaal n̄an kōm̧m̧an, ak kōttar — Inaaj kōm̧m̧an an next step ilo iien tok.'
+    invalid: 'Kōttōpar ejjab m̧ool: {error}'
+    set: '⊙ Kōttōpar kar kōm̧m̧an ({budget}-turn budget): {goal}
 
-      I''ll keep working until the goal is done, you pause/clear it, or the budget is exhausted.
+      Inaaj jerbal n̄an iien an kōttōpar ēm̧ōj, kwōnaaj kōttar/kōjbar, ak budget eo ej jeļo̧k.
 
-      Controls: /goal status · /goal pause · /goal resume · /goal clear'
+      Kōm̧m̧an: /goal status · /goal pause · /goal resume · /goal clear'
   help:
-    header: '📖 **OpenAmer Commands**
+    header: '📖 **OpenAmer Kōm̧m̧an**
 
       '
     skill_header: '
 
-      ⚡ **Skill Commands** ({count} active):'
+      ⚡ **Skill Kōm̧m̧an** ({count} ej jerbal):'
     more_use_commands: '
 
-      ... and {count} more. Use `/commands` for the full paginated list.'
+      ... im {count} bar. Kōjerbal `/commands` n̄an aolep list eo ej paginated.'
   insights:
-    invalid_days: 'Invalid --days value: {value}'
-    error: 'Error generating insights: {error}'
+    invalid_days: '--days ejjab m̧ool: {value}'
+    error: 'Jabōn kōm̧m̧an jeḷā: {error}'
   kanban:
-    error_prefix: '⚠ kanban error: {error}'
-    subscribed_suffix: (subscribed — you'll be notified when {task_id} completes or blocks)
-    truncated_suffix: … (truncated; use `openamer kanban …` in your terminal for full output)
+    error_prefix: '⚠ jabōn kanban: {error}'
+    subscribed_suffix: (kar subscribe — kwōnaaj kōnnaan n̄an eok ke {task_id} ej ēm̧ōj ak ej block)
+    truncated_suffix: … (kar kate; kōjerbal `openamer kanban …` ilo terminal eo am n̄an aolep output)
     no_output: (no output)
     wake:
       completed: completed
-      gave_up: gave up (retries exhausted)
-      crashed: crashed (worker exited); dispatcher will retry
-      timed_out: timed out; dispatcher will retry
-      blocked: blocked; needs attention
+      gave_up: kar jook (retries kar jeļo̧k)
+      crashed: eṃōj an jeblaak (ri jerbal eṃōj an etal); dispatcher enaaj bar kajjioñ
+      timed_out: eṃōj an iien; dispatcher enaaj bar kajjioñ
+      blocked: eṃōj an kōtḷọk; eaorōk an lale
       status_default: status changed
       status_joiner: ', '
-      message: '[kanban] Task {task_id} {status}.
+      message: '[kanban] Jerbal {task_id} {status}.
 
-        Title: {title}
+        Eta: {title}
 
-        Assignee: @{assignee}
+        Ri jerbal: @{assignee}
 
-        Board: {board}
+        Bōra: {board}
 
 
-        Check the result or decide the next step.'
+        Lale rōōl eo ak kōmṃan ļōmņak kōn jerbal in laḷ.'
   personality:
-    none_configured: No personalities configured in `{path}/config.yaml`
-    header: '🎭 **Available Personalities**
+    none_configured: Ejelok personality eṇ kōṃṃan ilo `{path}/config.yaml`
+    header: '🎭 **Personalities eṇ epād**
 
       '
-    none_option: • `none` — (no personality overlay)
+    none_option: • `none` — (ejelok personality overlay)
     item: • `{name}` — {preview}
     usage: '
 
-      Usage: `/personality <name>`'
-    save_failed: '⚠️ Failed to save personality change: {error}'
-    cleared: '🎭 Personality cleared — using base agent behavior.
+      Kōmṃan: `/personality <name>`'
+    save_failed: '⚠️ Eṃōj an jeblaak an save personality change: {error}'
+    cleared: '🎭 Eṃōj an kōṃṃan jān personality — ej kōmṃan kōn behavior in base agent.
 
-      _(takes effect on next message)_'
-    set_to: '🎭 Personality set to **{name}**
+      _(enaaj jutak ilo message in laḷ)_'
+    set_to: '🎭 Eṃōj an kōṃṃan personality ñan **{name}**
 
-      _(takes effect on next message)_'
-    unknown: 'Unknown personality: `{name}`
+      _(enaaj jutak ilo message in laḷ)_'
+    unknown: 'Personality ejjeḷọk: `{name}`
 
 
-      Available: {available}'
+      Ewōr: {available}'
   profile:
-    header: 👤 **Profile:** `{profile}`
+    header: 👤 **Profail:** `{profile}`
     home: 📂 **Home:** `{home}`
   reasoning:
     level_default: medium (default)
     level_disabled: none (disabled)
     scope_session: session override
     scope_global: global config
-    status: '🧠 **Reasoning Settings**
+    status: '🧠 **Kōm̗m̗an Reasoning**
 
 
-      **Effort:** `{level}`
+      **Kōjōk:** `{level}`
 
-      **Scope:** {scope}
+      **Raon:** {scope}
 
-      **Display:** {display}
+      **Kwaḷọk:** {display}
 
 
-      _Usage:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
+      _Ekkōnono:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
     display_on: on ✓
     display_off: 'off'
-    display_set_on: '🧠 ✓ Reasoning display: **ON**
+    display_set_on: '🧠 ✓ Kwaḷọk reasoning: **ON**
 
-      Model thinking will be shown before each response on **{platform}**.'
-    display_set_off: '🧠 ✓ Reasoning display: **OFF** for **{platform}**'
-    reset_global_unsupported: ⚠️ `/reasoning reset --global` is not supported. Use `/reasoning <level> --global` to change the global default.
-    reset_done: 🧠 ✓ Session reasoning override cleared; falling back to global config.
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
-
-
-      **Valid levels:** none, minimal, low, medium, high, xhigh, max, ultra
-
-      **Display:** show, hide
-
-      **Persist:** add `--global` to save beyond this session'
-    picker_title: '🧠 **Reasoning Settings**
+      Ekkatak in model enaaj kwaḷọk ṃokta jān aō uñtaak ko ilo **{platform}**.'
+    display_set_off: '🧠 ✓ Kwaḷọk reasoning: **OFF** ñan **{platform}**'
+    reset_global_unsupported: ⚠️ `/reasoning reset --global` ejjeḷọk support. Kōjerbal `/reasoning <level> --global` ñan ukōt default eo an global.
+    reset_done: 🧠 ✓ Override in reasoning an session eṃōj kōjjeḷọk; ej bar jepḷaak ñan config eo an global.
+    unknown_arg: '⚠️ Argument ejjeḷọk: `{arg}`
 
 
-      **Effort:** `{level}`
+      **Level ko ewōr:** none, minimal, low, medium, high, xhigh, max, ultra
 
-      **Scope:** {scope}
+      **Kwaḷọk:** show, hide
 
-      **Display:** {display}
+      **Kōm̗m̗an:** kōdeḷọk `--global` ñan kōm̗m̗an ñan wōt jān session in'
+    picker_title: '🧠 **Kōm̗m̗an Reasoning**
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+      **Kōjōk:** `{level}`
 
-      _(takes effect on next message)_'
-    set_global_save_failed: '🧠 ✓ Reasoning effort set to `{effort}` (session only — config save failed)
+      **Raon:** {scope}
 
-      _(takes effect on next message)_'
-    set_session: '🧠 ✓ Reasoning effort set to `{effort}` (session only — add `--global` to persist)
+      **Kwaḷọk:** {display}
 
-      _(takes effect on next message)_'
+
+      Kwaḷọk juon option:'
+    choice_none: none — kōjjeḷọk reasoning
+    choice_reset: reset — kōjjeḷọk override in session
+    choice_show: kwaḷọk reasoning ilo uñtaak ko
+    choice_hide: kōjab ļōmņak jān uwaak ko
+    set_global: '🧠 ✓ Kōttōpar in ļōmņak ekar kōm̧m̧an ñan `{effort}` (kar save ñan config)
+
+      _(enaaj jerbal ilo message in āl)_'
+    set_global_save_failed: '🧠 ✓ Kōttōpar in ļōmņak ekar kōm̧m̧an ñan `{effort}` (session wōt — kar jab save ñan config)
+
+      _(enaaj jerbal ilo message in āl)_'
+    set_session: '🧠 ✓ Kōttōpar in ļōmņak ekar kōm̧m̧an ñan `{effort}` (session wōt — kōdeḷọk `--global` ñan persist)
+
+      _(enaaj jerbal ilo message in āl)_'
   reload_mcp:
-    cancelled: 🟡 /reload-mcp cancelled. MCP tools unchanged.
-    always_followup: 'ℹ️ Future `/reload-mcp` calls will run without confirmation. Re-enable via `approvals.mcp_reload_confirm: true` in config.yaml.'
-    confirm_prompt: '⚠️ **Confirm /reload-mcp**
+    cancelled: 🟡 /reload-mcp kar cancel. MCP tools ejjelok ukōt.
+    always_followup: 'ℹ️ Future call ko an `/reload-mcp` renaaj jerbal ejjelok confirmation. Bar kōjjeḷā kōjerbal via `approvals.mcp_reload_confirm: true` ilo config.yaml.'
+    confirm_prompt: '⚠️ **Kōmeļeļe /reload-mcp**
 
 
-      Reloading MCP servers rebuilds the tool set for this session and **invalidates the provider prompt cache** — the next message will re-send full input tokens.  On long-context or high-reasoning models this can be expensive.
+      Reloading MCP servers ej kōm̧m̧an tool set ñan session in kab **ej invalidate provider prompt cache** — message in āl enaaj bar jilkinḷọk full input tokens.  Ilo model ko an long-context kab high-reasoning, men in emaroñ kōṇaan jāān.
 
 
-      Choose:
+      Kālet:
 
-      • **Approve Once** — reload now
+      • **Kōmeļeļe juon wōt** — reload kiiō
 
-      • **Always Approve** — reload now and silence this prompt permanently
+      • **Kōmeļeļe aolep iien** — reload kiiō kab kōjab prompt in aolep iien
 
-      • **Cancel** — leave MCP tools unchanged
+      • **Cancel** — kōjab ukōt MCP tools
 
 
-      _Text fallback: reply `/approve`, `/always`, or `/cancel`._'
-    header: '🔄 **MCP Servers Reloaded**
+      _Text fallback: uwaak `/approve`, `/always`, ak `/cancel`._'
+    header: '🔄 **MCP Servers ekar Reload**
 
       '
-    reconnected: '♻️ Reconnected: {names}'
+    reconnected: '♻️ Kar bar connect: {names}'
     added: '➕ Added: {names}'
     removed: '➖ Removed: {names}'
-    none_connected: No MCP servers connected.
+    none_connected: Ejjelok MCP server ekar connect.
     tools_available: '
 
-      🔧 {tools} tool(s) available from {servers} server(s)'
-    failed: '❌ MCP reload failed: {error}'
+      🔧 {tools} tool(s) wōr jān {servers} server(s)'
+    failed: '❌ MCP reload ekar jab jerbal: {error}'
   reload_skills:
-    header: '🔄 **Skills Reloaded**
+    header: '🔄 **Jeḷā ko kar bar kāālet**
 
       '
-    no_new: No new skills detected.
+    no_new: Ejjelọk jeḷā ekāāl kar loe.
     total: '
 
-      📚 {count} skill(s) available'
+      📚 {count} jeḷā ejepḷa'
     added_header: ➕ **Added Skills:**
-    removed_header: ➖ **Removed Skills:**
+    removed_header: ➖ **Jeḷā ko kar jolok:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
-    failed: '❌ Skills reload failed: {error}'
+    failed: '❌ Kar bōd an bar kāālet jeḷā ko: {error}'
   reset:
-    header_default: ✨ Session reset! Starting fresh.
-    header_new: ✨ New session started!
-    header_titled: '✨ New session started: {title}'
+    header_default: ✨ Kar bar kōm̧m̧an session! Jino ekāāl.
+    header_new: ✨ Kar jino session ekāāl!
+    header_titled: '✨ Kar jino session ekāāl: {title}'
     title_rejected: '
 
-      ⚠️ Title rejected: {error}'
+      ⚠️ Kar jolok title: {error}'
     title_error_untitled: '
 
-      ⚠️ {error} — session started untitled.'
+      ⚠️ {error} — kar jino session ejjelọk title.'
     title_empty_untitled: '
 
-      ⚠️ Title is empty after cleanup — session started untitled.'
+      ⚠️ Title ejjelọk āt ālikin kar karreoiki — kar jino session ejjelọk title.'
     tip: '
 
       ✦ Tip: {tip}'
   restart:
-    in_progress: ⏳ Gateway restart already in progress...
-    restarting: ♻ Restarting gateway. If you aren't notified within 60 seconds, restart from the console with `openamer gateway restart`.
+    in_progress: ⏳ Kar jino an bar kōm̧m̧an Gateway...
+    restarting: ♻ Ej bar jino gateway. Eļan̄n̄e kwōj jab jeļā ilow 60 sekond, bar jino jān console kōn `openamer gateway restart`.
   resume:
-    db_unavailable: Session database not available.
-    parse_error: '⚠️ Could not parse `/resume` arguments: {error}.
+    db_unavailable: Session database ej jab bed.
+    parse_error: '⚠️ Ej jab maron̄ parse `/resume` argument ko: {error}.
 
-      Use quotes around titles with spaces, for example: `/resume "Project A Plan"`.'
-    matrix_no_named_sessions: 'No named sessions found for this Matrix room.
+      Kōjerbal quote kōn title ko me ewōr spaces, āinwōt: `/resume "Project A Plan"`.'
+    matrix_no_named_sessions: 'Ej jab löñ named session n̄an Matrix room in.
 
-      Use `/title My Session` to name the current room session, `/resume --all` to list all Matrix sessions, or `/resume --cross-room <session name>` to explicitly cross room boundaries.'
-    matrix_blocked_no_origin: '⚠️ Matrix /resume blocked: this named session has no recorded room origin, so OpenAmer will not resume it inside the current room by default. Use `/resume --cross-room {name}` if you intentionally want to cross room boundaries.'
-    matrix_blocked_other_room: '⚠️ Matrix /resume blocked: that session belongs to a different Matrix room ({room}). Use `/resume --cross-room {name}` if you intentionally want to resume it here.'
-    matrix_cross_room_success: '⚠️ Cross-room resume: resumed **{title}** inside Matrix room **{room}**.
+      Kōjerbal `/title My Session` n̄an naetan session eo am̧ kiiō ilo room in, `/resume --all` n̄an list aolep Matrix session, ak `/resume --cross-room <session name>` n̄an kōmeļeļe ke kwōj cross room boundary.'
+    matrix_blocked_no_origin: '⚠️ Matrix /resume ej blocked: named session in ej jab wōr room origin record, ekōjkan OpenAmer ej jab resume ilo room in kōn default. Kōjerbal `/resume --cross-room {name}` eļan̄n̄e kwōj kōnōōl n̄an cross room boundary.'
+    matrix_blocked_other_room: '⚠️ Matrix /resume ej blocked: session eo ej an Matrix room rōūt ({room}). Kōjerbal `/resume --cross-room {name}` eļan̄n̄e kwōj kōnōōl n̄an resume ilo ije.'
+    matrix_cross_room_success: '⚠️ Cross-room resume: kar resume **{title}** ilo Matrix room **{room}**.
 
-      Future messages in this room will use that transcript until `/reset` or another `/resume`.{msg_part}'
-    blocked_not_owner: '⚠️ /resume blocked: ''**{name}**'' belongs to a different user or chat. You can only resume sessions from this chat.'
-    no_named_sessions: 'No named sessions found.
+      Message ko tok ļo̧k ilo room in renaj kōjerbal transcript eo ļo̧k `/reset` ak bar `/resume`.{msg_part}'
+    blocked_not_owner: '⚠️ /resume ej blocked: ''**{name}**'' ej an user ak chat rōūt. Kwōmaron̄ resume session ko jān chat in wōt.'
+    no_named_sessions: 'Ej jab löñ named session.
 
-      Use `/title My Session` to name your current session, then `/resume My Session` to return to it later.'
-    list_header: '📋 **Named Sessions**
+      Kōjerbal `/title My Session` n̄an naetan session eo am̧ kiiō, innām `/resume My Session` n̄an bar jerbal ȩo tok ļo̧k.'
+    list_header: '📋 **Session ko me etan**
 
       '
     list_item: • **{title}**{preview_part}
@@ -387,37 +387,37 @@ gateway:
     list_preview_suffix: ' — _{preview}_'
     list_footer: '
 
-      Usage: `/resume <session name>`'
+      Kōjerbal: `/resume <session name>`'
     list_footer_numbered: '
 
-      Usage: `/resume <session name>` or `/resume <number>` (e.g. `/resume 1` for the most recent)'
-    list_failed: 'Could not list sessions: {error}'
-    out_of_range: 'Resume index {index} is out of range.
+      Kōjerbal: `/resume <session name>` ak `/resume <number>` (bōtaab `/resume 1` ñan eo ļoñ tata)'
+    list_failed: 'Eban laaj jejin ko: {error}'
+    out_of_range: 'Indek in resume {index} ej jab ium̧win range.
 
-      Use `/resume` with no arguments to see available sessions.'
-    not_found: 'No session found matching ''**{name}**''.
+      Kōjerbal `/resume` ejjelok argument ñan loe jejin ko eṃōj.'
+    not_found: 'Ejjelok jejin eo ekkar ñan ''**{name}**''.
 
-      Use `/resume` with no arguments to see available sessions.'
-    already_on: 📌 Already on session **{name}**.
-    switch_failed: Failed to switch session.
-    resumed_one: ↻ Resumed session **{title}** ({count} message). Conversation restored.
-    resumed_many: ↻ Resumed session **{title}** ({count} messages). Conversation restored.
-    resumed_no_count: ↻ Resumed session **{title}**. Conversation restored.
+      Kōjerbal `/resume` ejjelok argument ñan loe jejin ko eṃōj.'
+    already_on: 📌 Eṃōj kōj bed ilo jejin **{name}**.
+    switch_failed: Eban ukōt jejin.
+    resumed_one: ↻ Eṃōj bar jino jejin **{title}** ({count} ennaan). Eṃōj bar kōṃṃan kōnnaan.
+    resumed_many: ↻ Eṃōj bar jino jejin **{title}** ({count} ennaan ko). Eṃōj bar kōṃṃan kōnnaan.
+    resumed_no_count: ↻ Eṃōj bar jino jejin **{title}**. Eṃōj bar kōṃṃan kōnnaan.
   retry:
-    no_previous: No previous message to retry.
+    no_previous: Ejjelok ennaan eo iṃaan ñan bar kōm̧m̧an.
   rollback:
-    not_enabled: "Checkpoints are not enabled.\nEnable in config.yaml:\n```\ncheckpoints:\n  enabled: true\n```"
-    none_found: No checkpoints found for {cwd}
-    invalid_number: Invalid checkpoint number. Use 1-{max}.
-    restored: '✅ Restored to checkpoint {hash}: {reason}
+    not_enabled: "Ejjelok checkpoints eṃōj kōm̧m̧an.\nKōm̧m̧an ilo config.yaml:\n```\ncheckpoints:\n  enabled: true\n```"
+    none_found: Ejjeḷọk checkpoint ko kar lo ñan {cwd}
+    invalid_number: Nampa checkpoint ej jab jimwe. Kōjerbal 1-{max}.
+    restored: '✅ Kar kōṃṃan āinwōt ṃokta ñan checkpoint {hash}: {reason}
 
-      A pre-rollback snapshot was saved automatically.'
+      Juon snapshot ṃoktaein rollback kar kōjparok autometik.'
     restore_failed: ❌ {error}
   set_home:
-    save_failed: 'Failed to save home channel: {error}'
-    success: '✅ Home channel set to **{name}** (ID: {chat_id}).
+    save_failed: 'Ear jab maroñ kōjparok home channel: {error}'
+    success: '✅ Home channel kar kōṃṃan ñan **{name}** (ID: {chat_id}).
 
-      Cron jobs and cross-platform messages will be delivered here.'
+      Cron job ko im cross-platform message ko rōnaaj jibade ñan iien.'
   status:
     header: 📊 **OpenAmer Gateway Status**
     matrix_scope_header: '**Matrix scope:**'
@@ -428,18 +428,18 @@ gateway:
     matrix_scope_key: '  session_key: {session_key}'
     session_id: '**Session ID:** `{session_id}`'
     title: '**Title:** {title}'
-    created: '**Created:** {timestamp}'
-    last_activity: '**Last Activity:** {timestamp}'
+    created: '**Kar kōṃṃan:** {timestamp}'
+    last_activity: '**Jerbal Āliktata:** {timestamp}'
     model: '**Model:** `{model}`'
-    model_provider: '**Model:** `{model}` ({provider})'
-    context: '**Context:** {used} / {total} ({pct}%)'
-    context_used: '**Context:** ~{used} tokens'
-    tokens: '**Cumulative API tokens (re-sent each call):** {tokens}'
-    agent_running: '**Agent Running:** {state}'
+    model_provider: '**Mōdel:** `{model}` ({provider})'
+    context: '**Kōntekst:** {used} / {total} ({pct}%)'
+    context_used: '**Kōntekst:** ~{used} token'
+    tokens: '**API token ko aolep (bar jilkinḷọk kōn aolep call):** {tokens}'
+    agent_running: '**Agent ej jerakrōk:** {state}'
     state_yes: Yes ⚡
     state_no: 'No'
-    queued: '**Queued follow-ups:** {count}'
-    platforms: '**Connected Platforms:** {platforms}'
+    queued: '**Follow-up ko ej kōttōpar:** {count}'
+    platforms: '**Platform ko eṃōj kōṃṃan jepḷaaktok:** {platforms}'
   stop:
     stopped_pending: ⚡ Eṃōj kajeed. Agent ejjañin jino — kwōmaron bar jokkun session in.
     stopped: ⚡ Eṃōj kajeed. Kwōmaron bar jokkun session in.
@@ -514,7 +514,7 @@ gateway:
     start_failed: '✗ Ear jab maron̄ jino update: {error}'
     starting: 🧬 Ej jino OpenAmer update… Inaaj kōm̧m̧an stream progress iien.
   usage:
-    rate_limits: ⏱️ **Rate Limits:** {state}
+    rate_limits: ⏱️ **Rate limit ko:** {state}
     header_session: 📊 **Jerbal in Token in Session**
     label_model: 'Model: `{model}`'
     label_input_tokens: 'Token in input: {count}'
