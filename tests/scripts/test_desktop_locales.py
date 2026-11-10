@@ -15,6 +15,8 @@ import importlib.util
 import json
 import re
 import shutil
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -102,3 +104,35 @@ def test_picker_lists_every_declared_language():
     assert len(ids) == len(names), f"picker has {len(ids)}, expected {len(names)}"
     assert set(ids) == set(names)
     assert len(ids) == len(set(ids)), "duplicate locale in the picker"
+
+
+def test_locale_lock_is_exclusive(fill, tmp_path, monkeypatch):
+    """A second holder of the same locale must be refused, not queued."""
+    monkeypatch.setattr(fill, "HOME", tmp_path)
+    with fill.locale_lock("zz") as first:
+        assert first is True
+        with fill.locale_lock("zz") as second:
+            assert second is False
+    # Released: the next run may take it.
+    with fill.locale_lock("zz") as again:
+        assert again is True
+
+
+def test_locale_lock_steals_stale_lock(fill, tmp_path, monkeypatch):
+    """A lock whose owner is dead must not block the queue forever."""
+    monkeypatch.setattr(fill, "HOME", tmp_path)
+    lockdir = tmp_path / "tmp" / "locks"
+    lockdir.mkdir(parents=True)
+    dead = subprocess.Popen([sys.executable, "-c", "pass"])
+    dead.wait()
+    (lockdir / "desktop-zz.lock").write_text(str(dead.pid), encoding="utf-8")
+
+    with fill.locale_lock("zz") as owned:
+        assert owned is True, "stale lock from a dead pid was not taken over"
+
+
+def test_atomic_write_leaves_no_temp_file(fill, tmp_path):
+    target = tmp_path / "mod.ts"
+    fill.atomic_write(target, "export const x = 1\n")
+    assert target.read_text(encoding="utf-8") == "export const x = 1\n"
+    assert not (tmp_path / "mod.ts.tmp").exists()
