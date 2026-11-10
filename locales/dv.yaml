@@ -370,16 +370,16 @@ gateway:
     matrix_no_named_sessions: 'މި މެޓްރިކްސް ރޫމަށް ނަންދެވިފައިވާ ސެޝަންތައް ނުފެނުނު.
 
       މި ރޫމް ސެޝަނަށް ނަންދިނުމަށް `/title My Session` ބޭނުންކުރައްވާ، ހުރިހާ މެޓްރިކްސް ސެޝަންތައް ލިސްޓްކުރުމަށް `/resume --all`، ނުވަތަ ރޫމް ބައުންޑަރީތައް ސާފުކޮށް ކަނޑައަޅައި ދިއުމަށް `/resume --cross-room <session name>` ބޭނުންކުރައްވާ.'
-    matrix_blocked_no_origin: '⚠️ Matrix /resume blocked: this named session has no recorded room origin, so OpenAmer will not resume it inside the current room by default. Use `/resume --cross-room {name}` if you intentionally want to cross room boundaries.'
-    matrix_blocked_other_room: '⚠️ Matrix /resume blocked: that session belongs to a different Matrix room ({room}). Use `/resume --cross-room {name}` if you intentionally want to resume it here.'
-    matrix_cross_room_success: '⚠️ Cross-room resume: resumed **{title}** inside Matrix room **{room}**.
+    matrix_blocked_no_origin: '⚠️ Matrix /resume ބްލޮކްކްވެއްވަނީ: މި ނަންދީފައިވާ ސެޝަނަށް ރޫމް އޮރިޖިން ރެކޯޑްކޮށްފައި ނެތުމުން، ޑިފޯލްޓްކޮށް OpenAmer އެ ސެޝަން މިހާރުގެ ރޫމްގެ ތެރޭގައި ރެސޫމް ނުކުރާނެ. ރޫމް ބައުންޑްރީޒް ކްރޮސްކުރަން ބޭނުންވާނަމަ `/resume --cross-room {name}` ބޭނުންކުރޭ.'
+    matrix_blocked_other_room: '⚠️ Matrix /resume ބްލޮކްކްވެއްވަނީ: އެ ސެޝަނަކީ އެހެން Matrix ރޫމަކަށް ({room}) ނިސްބަތްވާ ސެޝަނެކް. މިތަނަށް ރެސޫމްކުރަން ބޭނުންވާނަމަ `/resume --cross-room {name}` ބޭނުންކުރޭ.'
+    matrix_cross_room_success: '⚠️ ރޫމް ކްރޮސްކޮށް ރެސޫމްކުރުން: **{title}** Matrix ރޫމް **{room}** ގެ ތެރޭގައި ރެސޫމްކުރެވިއްޖެ.
 
-      Future messages in this room will use that transcript until `/reset` or another `/resume`.{msg_part}'
-    blocked_not_owner: '⚠️ /resume blocked: ''**{name}**'' belongs to a different user or chat. You can only resume sessions from this chat.'
-    no_named_sessions: 'No named sessions found.
+      މި ރޫމްގައި ފަހުން އަންނަ މެސެޖުތަކުގައި `/reset` ނުވަތަ އެހެން `/resume` އަށް ދާންދެން އެ ޓްރާންސްކްރިޕްޓް ބޭނުންކުރެވޭނެ.{msg_part}'
+    blocked_not_owner: '⚠️ /resume ބްލޮކްކްވެއްވަނީ: ''**{name}**'' އަކީ އެހެން ޔޫޒަރއަކަށް ނުވަތަ ޗެޓަކަށް ނިސްބަތްވާ އެއްޗެކް. މި ޗެޓުން އެކަނި ސެޝަންތައް ރެސޫމްކުރެވޭނެ.'
+    no_named_sessions: 'ނަންދީފައިވާ ސެޝަންއެއް ނުފެނުނު.
 
-      Use `/title My Session` to name your current session, then `/resume My Session` to return to it later.'
-    list_header: '📋 **Named Sessions**
+      މިހާރުގެ ސެޝަނަށް ނަން ދޭން `/title My Session` ބޭނުންކުރޭ، ފަހުން އެއަށް އެނބުރި ދިއުމަށް `/resume My Session` ބޭނުންކުރޭ.'
+    list_header: '📋 **ނަންދީފައިވާ ސެޝަންތައް**
 
       '
     list_item: • **{title}**{preview_part}
@@ -387,11 +387,11 @@ gateway:
     list_preview_suffix: ' — _{preview}_'
     list_footer: '
 
-      Usage: `/resume <session name>`'
+      ބޭނުންކުރުން: `/resume <session name>`'
     list_footer_numbered: '
 
-      Usage: `/resume <session name>` or `/resume <number>` (e.g. `/resume 1` for the most recent)'
-    list_failed: 'Could not list sessions: {error}'
+      ބޭނުންކުރުން: `/resume <session name>` ނުވަތަ `/resume <number>` (މިސާލަކަށް `/resume 1` އެންމެ ފަހުން ބޭނުންކުރި އެއްޗަށް)'
+    list_failed: 'ސެޝަންތަކުގެ ލިސްޓް ނުދެއްކުރެވުނު: {error}'
     out_of_range: 'ރިޒިއުމް އިންޑެކްސް {index} ރޭންޖުން ބޭރުގައިވޭ.
 
       ލިބެންހުރި ސެޝަންތައް ބަލަން `/resume` އާގުމެންޓެއް ނުލައި ބޭނުންކުރޭ.'
@@ -567,39 +567,39 @@ gateway:
       ހުރިހާ ޖަވާބަކާއެކު ވޯއިސް މެސެޖެއް ހިމެނޭނެ.'
     status_mode: 'ވޯއިސް މޯޑް: {label}'
     status_channel: 'ވޯއިސް ޗެނެލް: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'ބައިވެރިން: {count}'
     status_member: '  - {name}{status}'
     speaking: ' (speaking)'
     enabled_short: Voice mode enabled.
     disabled_short: Voice mode disabled.
     label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    label_voice_only: އޮން (އަޑު މެސެޖްތަކަށް އަޑު ޖަވާބު)
+    label_all: TTS (ހުރިހާ މެސެޖްތަކަށް އަޑު ޖަވާބު)
     help: '{toggle}
 
 
-      **How /voice works**
+      **/voice މަސައްކަތްކުރަނީ ކިހިނެއް**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — ތިޔަބޭފުޅާ އަޑު މެސެޖެއް ފޮނުވާނަމަ އަޑު ޖަވާބު
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — *ކޮންމެ* މެސެޖަކަށް ވެސް އަޑު ޖަވާބު
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — އަލުން ލިޔުން އެކަނި ޖަވާބުތަކަށް
 
-      • `/voice status` — show the current mode
+      • `/voice status` — މިހާރުގެ މޯޑް ދައްކާ
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (އާގިއުމަންޓެއް ނެތި) — އޮން އަދި އޮފް ދެމެދު އަވަސް ބަދަލު{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **ލައިވް އަޑު ޗެނަލްތައް (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • ފުރަތަމަ އަޑު ޗެނަލަކަށް ޖޮއިންވާށެވެ، ދެން `/voice channel` — އަހުރެން ޖޮއިންވެ، އަޑުއަހާފައި އަހުރެންގެ ޖަވާބުތައް ބުނާނަމެވެ
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — އަޑު ޗެނަލްއިން ޑިސްކަނެކްޓްވާ'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ މި ސެޝަނަށް YOLO މޯޑް **އޮފް** — ނުރައްކާތެރި ކޮމާންޑްތަކަށް ޤަބޫލުކުރުން ބޭނުންވާނެ.
+    enabled: ⚡ މި ސެޝަނަށް YOLO މޯޑް **އޮން** — ހުރިހާ ކޮމާންޑްތައް އޮޓޯ ޤަބޫލުކުރެވިފައި. ރައްކާތެރިކަމާއެކު ބޭނުންކުރޭ.
   shared:
     session_db_unavailable: ސެޝަން ޑޭޓާބޭސް ނުލިބޭ.
     session_db_unavailable_prefix: ސެޝަން ޑޭޓާބޭސް ނުލިބޭ

@@ -28,6 +28,11 @@ REPO = Path(__file__).resolve().parents[1]
 HOME = Path(os.environ.get("OPENAMER_HOME") or (Path.home() / "AppData" / "Local" / "openamer-laptop"))
 LOGDIR = HOME / "logs"
 PIDFILE = LOGDIR / "i18n-translate.pid.json"
+
+
+def pidfile_for(target: str) -> Path:
+    """Separate bookkeeping per target: CLI and desktop run in parallel."""
+    return LOGDIR / ("desktop-translate.pid.json" if target == "desktop" else "i18n-translate.pid.json")
 QUEUES = 4
 MIN_SHARE = 0.9
 
@@ -54,11 +59,12 @@ def _pid_alive(pid: int) -> bool:
         return False
 
 
-def status() -> int:
-    if not PIDFILE.exists():
-        print("no detached translation recorded")
+def status(target: str = "cli") -> int:
+    pidfile = pidfile_for(target)
+    if not pidfile.exists():
+        print(f"no detached {target} translation recorded")
         return 1
-    rec = json.loads(PIDFILE.read_text(encoding="utf-8"))
+    rec = json.loads(pidfile.read_text(encoding="utf-8"))
     alive = 0
     for w in rec.get("workers", []):
         ok = _pid_alive(int(w["pid"]))
@@ -79,31 +85,56 @@ def pending_locales(min_share: float) -> list[str]:
     return [r["code"] for r in rows if r["share"] < min_share]
 
 
+def pending_desktop() -> list[str]:
+    """Desktop locales whose module still carries only the English fallback.
+
+    A translated module is one that no longer says `defineLocale({})`; partial
+    modules count as done because fill_desktop_locales.py resumes them from its
+    own cache and completes whatever is missing.
+    """
+    names = json.loads((REPO / "locales" / "_languages.json").read_text(encoding="utf-8"))
+    i18n_dir = REPO / "apps" / "desktop" / "src" / "i18n"
+    todo = []
+    for code in names:
+        if code == "en":
+            continue
+        path = i18n_dir / f"{code}.ts"
+        if not path.exists():
+            todo.append(code)
+            continue
+        if "defineLocale({})" in path.read_text(encoding="utf-8"):
+            todo.append(code)
+    return todo
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--queues", type=int, default=QUEUES)
     ap.add_argument("--min-share", type=float, default=MIN_SHARE)
     ap.add_argument("--workers", type=int, default=2, help="threads per process")
+    ap.add_argument("--target", choices=("cli", "desktop"), default="cli",
+                    help="cli = locales/*.yaml, desktop = apps/desktop/src/i18n/*.ts")
     ap.add_argument("--status", action="store_true")
     ap.add_argument("--force", action="store_true", help="start even if workers are alive")
     args = ap.parse_args()
 
     if args.status:
-        return status()
+        return status(args.target)
 
-    if PIDFILE.exists() and not args.force:
+    pidfile = pidfile_for(args.target)
+    if pidfile.exists() and not args.force:
         try:
-            rec = json.loads(PIDFILE.read_text(encoding="utf-8"))
+            rec = json.loads(pidfile.read_text(encoding="utf-8"))
             alive = [w for w in rec.get("workers", []) if _pid_alive(int(w["pid"]))]
         except (json.JSONDecodeError, KeyError, ValueError):
             alive = []
         if alive:
             print(f"{len(alive)} worker(s) already alive; use --force to add more")
-            return status()
+            return status(args.target)
 
-    todo = pending_locales(args.min_share)
+    todo = pending_desktop() if args.target == "desktop" else pending_locales(args.min_share)
     if not todo:
-        print("nothing pending at or above the threshold")
+        print(f"nothing pending for {args.target}")
         return 0
 
     # Longest queue first so the slowest slice still gets help: round-robin.
@@ -113,16 +144,23 @@ def main() -> int:
 
     LOGDIR.mkdir(parents=True, exist_ok=True)
     env = os.environ.copy()
-    env["OPENAMER_I18N_WORKERS"] = str(args.workers)
-    env["OPENAMER_I18N_BATCH"] = env.get("OPENAMER_I18N_BATCH", "12")
-    env["OPENAMER_I18N_BATCH_PAUSE"] = env.get("OPENAMER_I18N_BATCH_PAUSE", "0.5")
+    if args.target == "desktop":
+        env["OPENAMER_DESKTOP_WORKERS"] = str(args.workers)
+    else:
+        env["OPENAMER_I18N_WORKERS"] = str(args.workers)
+        env["OPENAMER_I18N_BATCH"] = env.get("OPENAMER_I18N_BATCH", "12")
+        env["OPENAMER_I18N_BATCH_PAUSE"] = env.get("OPENAMER_I18N_BATCH_PAUSE", "0.5")
+
+    script = ("fill_desktop_locales.py" if args.target == "desktop"
+              else "i18n_fill_cli_locales.py")
+    prefix = "desktop" if args.target == "desktop" else "i18n"
 
     workers = []
     for idx, q in enumerate(queues, 1):
         if not q:
             continue
-        log = LOGDIR / f"i18n-worker-{idx}.log"
-        cmd = [sys.executable, str(REPO / "scripts" / "i18n_fill_cli_locales.py"), *q]
+        log = LOGDIR / f"{prefix}-worker-{idx}.log"
+        cmd = [sys.executable, str(REPO / "scripts" / script), *q]
         kwargs: dict = {
             "cwd": str(REPO), "env": env, "stdin": subprocess.DEVNULL,
             "stdout": open(log, "w", encoding="utf-8"),
@@ -138,7 +176,7 @@ def main() -> int:
         workers.append({"pid": proc.pid, "locales": q, "log": str(log)})
         print(f"  started pid {proc.pid}: {len(q)} locales -> {log.name}")
 
-    PIDFILE.write_text(json.dumps({
+    pidfile.write_text(json.dumps({
         "started": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "pending": len(todo),
         "workers": workers,

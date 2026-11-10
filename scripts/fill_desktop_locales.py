@@ -18,6 +18,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
 import os
 import re
@@ -217,6 +218,79 @@ def parse_literals(text: str) -> dict[str, str]:
     return out
 
 
+def _pid_alive(pid: int) -> bool:
+    """True when the pid exists. Windows has no signal-0; use OpenProcess."""
+    if os.name == "nt":
+        import ctypes
+        PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
+        STILL_ACTIVE = 259
+        h = ctypes.windll.kernel32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
+        if not h:
+            return False
+        try:
+            code = ctypes.c_ulong()
+            ctypes.windll.kernel32.GetExitCodeProcess(h, ctypes.byref(code))
+            return code.value == STILL_ACTIVE
+        finally:
+            ctypes.windll.kernel32.CloseHandle(h)
+    try:
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False
+
+
+@contextlib.contextmanager
+def locale_lock(code: str):
+    """Exclusive per-locale lock so two runs can never write the same module.
+
+    Measured the hard way: three stale `bn` runs (started before a parser fix)
+    each held the same output file. Last writer wins, not the best writer -- an
+    outdated process can overwrite a newer, correct catalog and silently undo a
+    fix. The cache prevented data loss but not ordering. Yields False when
+    another live process owns the locale.
+    """
+    lockdir = HOME / "tmp" / "locks"
+    lockdir.mkdir(parents=True, exist_ok=True)
+    lock = lockdir / f"desktop-{code}.lock"
+    try:
+        fd = os.open(str(lock), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        try:
+            owner = int(lock.read_text(encoding="utf-8").strip() or "0")
+        except (OSError, ValueError):
+            owner = 0
+        if owner and _pid_alive(owner):
+            yield False
+            return
+        # Stale lock from a dead process: take it over.
+        try:
+            lock.unlink()
+        except OSError:
+            pass
+        try:
+            fd = os.open(str(lock), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        except FileExistsError:
+            yield False
+            return
+    try:
+        os.write(fd, str(os.getpid()).encode())
+        os.close(fd)
+        yield True
+    finally:
+        try:
+            lock.unlink()
+        except OSError:
+            pass
+
+
+def atomic_write(path: Path, text: str) -> None:
+    """Write via temp + replace so tsc never reads a half-written module."""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(text, encoding="utf-8", newline="\n")
+    os.replace(tmp, path)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("locales", nargs="*")
@@ -242,57 +316,65 @@ def main() -> int:
         return 2
 
     for code in targets:
-        cache_path = HOME / "tmp" / f"desktop_{code}.json"
-        cache_path.parent.mkdir(parents=True, exist_ok=True)
-        have: dict[str, str] = {}
-        if cache_path.exists():
-            try:
-                have = json.loads(cache_path.read_text(encoding="utf-8"))
-            except json.JSONDecodeError:
-                have = {}
-        have.update(existing_overrides(code))
-        todo = [(p, v) for p, v in en.items() if p not in have]
-        if not todo:
-            print(f"  {code}: complete")
-            continue
-        if args.dry_run:
-            print(f"  {code}: would translate {len(todo)}")
-            continue
-
-        chunks = [todo[i:i + BATCH] for i in range(0, len(todo), BATCH)]
-        merged = dict(have)
-        print(f"  {code}: {len(todo)} literals in {len(chunks)} chunks", flush=True)
-        with ThreadPoolExecutor(max_workers=WORKERS) as ex:
-            futs = {ex.submit(translate_chunk, c, names.get(code, code), env): c
-                    for c in chunks}
-            done = 0
-            for f in as_completed(futs):
-                merged.update(f.result())
-                done += 1
-                # Persist as we go: a 1938-key locale is ~35 minutes of model
-                # time, and a crash must not throw that away.
-                cache_path.write_text(json.dumps(merged, ensure_ascii=False, indent=1),
-                                      encoding="utf-8", newline="\n")
-                if done % 10 == 0:
-                    print(f"    {code}: {done}/{len(chunks)} chunks", flush=True)
-
-        path = I18N / f"{code}.ts"
-        ident = code.replace("-", "_")
-        if path.exists():
-            m = re.search(r"^export const (\w+)", path.read_text(encoding="utf-8"), re.M)
-            if m:
-                ident = m.group(1)
-        body = (
-            "import { defineLocale } from './define-locale'\n\n"
-            f"// {names.get(code, code)} ({code}): static literals translated;\n"
-            "// interpolated template strings still fall back to English.\n"
-            f"export const {ident} = defineLocale({{\n"
-            f"{render(unflatten(merged))}\n"
-            "})\n"
-        )
-        path.write_text(body, encoding="utf-8", newline="\n")
-        print(f"  {code}: {len(merged)}/{len(en)} literals", flush=True)
+        with locale_lock(code) as owned:
+            if not owned:
+                print(f"  {code}: in flight in another process, skipping")
+                continue
+            run_locale(code, names, en, env, args)
     return 0
+
+
+def run_locale(code: str, names: dict, en: dict, env: dict, args) -> None:
+    """Translate one locale while its lock is held."""
+    cache_path = HOME / "tmp" / f"desktop_{code}.json"
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    have: dict[str, str] = {}
+    if cache_path.exists():
+        try:
+            have = json.loads(cache_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            have = {}
+    have.update(existing_overrides(code))
+    todo = [(p, v) for p, v in en.items() if p not in have]
+    if not todo:
+        print(f"  {code}: complete")
+        return
+    if args.dry_run:
+        print(f"  {code}: would translate {len(todo)}")
+        return
+
+    chunks = [todo[i:i + BATCH] for i in range(0, len(todo), BATCH)]
+    merged = dict(have)
+    print(f"  {code}: {len(todo)} literals in {len(chunks)} chunks", flush=True)
+    with ThreadPoolExecutor(max_workers=WORKERS) as ex:
+        futs = {ex.submit(translate_chunk, c, names.get(code, code), env): c
+                for c in chunks}
+        done = 0
+        for f in as_completed(futs):
+            merged.update(f.result())
+            done += 1
+            # Persist as we go: a 1938-key locale is ~35 minutes of model
+            # time, and a crash must not throw that away.
+            atomic_write(cache_path, json.dumps(merged, ensure_ascii=False, indent=1))
+            if done % 10 == 0:
+                print(f"    {code}: {done}/{len(chunks)} chunks", flush=True)
+
+    path = I18N / f"{code}.ts"
+    ident = code.replace("-", "_")
+    if path.exists():
+        m = re.search(r"^export const (\w+)", path.read_text(encoding="utf-8"), re.M)
+        if m:
+            ident = m.group(1)
+    body = (
+        "import { defineLocale } from './define-locale'\n\n"
+        f"// {names.get(code, code)} ({code}): static literals translated;\n"
+        "// interpolated template strings still fall back to English.\n"
+        f"export const {ident} = defineLocale({{\n"
+        f"{render(unflatten(merged))}\n"
+        "})\n"
+    )
+    atomic_write(path, body)
+    print(f"  {code}: {len(merged)}/{len(en)} literals", flush=True)
 
 
 if __name__ == "__main__":

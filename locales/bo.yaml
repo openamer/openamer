@@ -459,56 +459,56 @@ gateway:
   topic:
     not_telegram_dm: /topic བཀའ་བརྡ་དེ་ Telegram གྱི་སྒེར་གྱི་གླེང་མོལ་ནང་ཁོ་ན་ཡོད།
     no_session_db: སྐབས་ཀྱི་གཞི་གྲངས་མཛོད་མི་འདུག
-    unauthorized: You are not authorized to use /topic on this bot.
-    restore_needs_topic: To restore a session, first create or open a Telegram topic, then send /topic <session-id> inside that topic. To create a new topic, open All Messages and send any message there.
-    topics_disabled: 'Telegram topics are not enabled for this bot yet.
+    unauthorized: ཁྱེད་ཀྱིས་བོཊ་འདིའི་སྟེང་ /topic བེད་སྤྱོད་བྱེད་པའི་དབང་ཆ་མེད།
+    restore_needs_topic: ལས་ཚན་སླར་གསོ་བྱེད་པར། དང་པོར་ Telegram གི་བརྗོད་གཞི་ཞིག་བཟོ་བའམ་ཁ་ཕྱེ་རྒྱུ། དེ་ནས་བརྗོད་གཞི་དེའི་ནང་ /topic <session-id> གཏོང་རྒྱུ། བརྗོད་གཞི་གསར་པ་ཞིག་བཟོ་བར་ All Messages ཁ་ཕྱེ་ཞིང་དེར་འཕྲིན་གང་རུང་ཞིག་གཏོང་རྒྱུ།
+    topics_disabled: 'བོཊ་འདིར་ Telegram གི་བརྗོད་གཞི་ད་དུང་ཁ་ཕྱེ་མེད།
 
 
-      How to enable them:
+      ཇི་ལྟར་ཁ་ཕྱེ་བྱེད་ཐབས།
 
-      1. Open @BotFather.
+      1. @BotFather ཁ་ཕྱེ་རྒྱུ།
 
-      2. Choose your bot.
+      2. ཁྱེད་ཀྱི་བོཊ་འདེམས་རྒྱུ།
 
-      3. Open Bot Settings → Threads Settings.
+      3. Bot Settings → Threads Settings ཁ་ཕྱེ་རྒྱུ།
 
-      4. Turn on Threaded Mode and make sure users are allowed to create new threads.
-
-
-      Then send /topic again.'
-    topics_user_disallowed: 'Telegram topics are enabled, but users are not allowed to create topics.
+      4. Threaded Mode ཁ་ཕྱེ་ཞིང་སྤྱོད་མཁན་ཚོར་ thread གསར་པ་བཟོ་བར་ཆོག་མཆན་ཡོད་པ་ཞིབ་བཤེར་བྱེད་རྒྱུ།
 
 
-      Open @BotFather → choose your bot → Bot Settings → Threads Settings, then turn off ''Disallow users to create new threads''.
+      དེ་ནས་ /topic ཡང་བསྐྱར་གཏོང་རྒྱུ།'
+    topics_user_disallowed: 'Telegram གི་བརྗོད་གཞི་ཁ་ཕྱེ་ཡོད། འོན་ཀྱང་སྤྱོད་མཁན་ཚོར་བརྗོད་གཞི་གསར་པ་བཟོ་བར་ཆོག་མཆན་མེད།
 
 
-      Then send /topic again.'
-    enable_failed: 'Failed to enable Telegram topic mode: {error}'
-    bound_status: 'This topic is linked to:
+      @BotFather ཁ་ཕྱེ་རྒྱུ → ཁྱེད་ཀྱི་བོཊ་འདེམས་རྒྱུ → Bot Settings → Threads Settings, དེ་ནས་ ''Disallow users to create new threads'' ལ་ off བྱེད་རྒྱུ།
 
-      Session: {label}
+
+      དེ་ནས་ /topic ཡང་བསྐྱར་གཏོང་རྒྱུ།'
+    enable_failed: 'Telegram གི་བརྗོད་གཞིའི་ཐབས་ལམ་ཁ་ཕྱེ་མ་ཐུབ་པ།: {error}'
+    bound_status: 'བརྗོད་གཞི་འདི་གཤམ་གྱི་དང་སྦྲེལ་ཡོད།:
+
+      ལས་ཚན།: {label}
 
       ID: {session_id}
 
 
-      Use /new to replace this topic with a fresh session.
+      བརྗོད་གཞི་འདི་ལས་ཚན་གསར་པས་བརྗེ་བར་ /new བེད་སྤྱོད་བྱེད་རྒྱུ།
 
-      For parallel work, open All Messages and send a message there to create another topic.'
-    thread_ready: 'Telegram multi-session topics are enabled.
+      མཉམ་དུ་ལས་ཀ་བྱེད་པར། All Messages ཁ་ཕྱེ་ཞིང་དེར་འཕྲིན་ཞིག་གཏོང་ན་བརྗོད་གཞི་གཞན་ཞིག་བཟོ་ཐུབ།'
+    thread_ready: 'Telegram གི་ལས་ཚན་མང་པོའི་བརྗོད་གཞི་ཁ་ཕྱེ་ཡོད།
 
 
-      This topic will be used as an independent OpenAmer session. Use /new to replace this topic''s current session. For parallel work, open All Messages and send a message there to create another topic.'
+      བརྗོད་གཞི་འདི་ OpenAmer གི་ལས་ཚན་རང་དབང་ཅན་ཞིག་ཏུ་བེད་སྤྱོད་བྱ་རྒྱུ། བརྗོད་གཞི་འདིའི་ད་ལྟའི་ལས་ཚན་བརྗེ་བར་ /new བེད་སྤྱོད་བྱེད་རྒྱུ། མཉམ་དུ་ལས་ཀ་བྱེད་པར། All Messages ཁ་ཕྱེ་ཞིང་དེར་འཕྲིན་ཞིག་གཏོང་ན་བརྗོད་གཞི་གཞན་ཞིག་བཟོ་ཐུབ།'
     untitled_session: Untitled session
   undo:
     nothing: Nothing to undo.
-    removed: '↩️ Undid {turns} turn(s) ({count} message(s)).
+    removed: '↩️ {turns} བསྐོར་ལ་ཕྱིར་ལོག་བྱས། ({count} འཕྲིན་).
 
-      Backed up to: "{preview}"
+      རྒྱབ་ཐོག་ཉར་ཡུལ།: "{preview}"
 
-      Copy/edit the text above and send it to re-prompt from here.'
-    invalid_count: Invalid count "{arg}" — use /undo or /undo N.
+      གོང་གི་ཚིག་ཆ་འདི་བཤུས་/རྩོམ་སྒྲིག་བྱས་ནས་འདི་ནས་ཡང་བསྐྱར་ prompt བྱེད་པར་གཏོང་རྒྱུ།'
+    invalid_count: གྲངས་ཀ་ "{arg}" མི་འཐད། — /undo བེད་སྤྱོད་བྱེད་རྒྱུ་ཡང་ན /undo N བེད་སྤྱོད་བྱེད་རྒྱུ།
   update:
-    platform_not_messaging: ✗ /update is only available from messaging platforms. Run `openamer update` from the terminal.
+    platform_not_messaging: ✗ /update ནི་འཕྲིན་སྟེགས་ཁོངས་ནས་མ་གཏོགས་མི་འདུག། ཊར་མི་ནལ་ནང་ `openamer update` གཡོག་བཤར།
     not_git_repo: ✗ git མཛོད་ཁང་མིན་པས་ — གསར་སྒྱུར་བྱེད་མི་ཐུབ།
     openamer_cmd_not_found: ✗ `openamer` བཀའ་བརྡ་རྙེད་མ་ཐུབ། OpenAmer འཁོར་བཞིན་ཡོད་ཀྱང་། གསར་སྒྱུར་བཀའ་བརྡ་ཀྱིས་ PATH ལམ་དང་ཡང་ན་ད་ལྟའི་ Python བརྗོད་བྱེད་ཀྱི་ཐོག་ནས་ལག་བསྟར་བྱེད་ཐུབ་པའི་ཡིག་ཆ་རྙེད་མ་ཐུབ། ཁྱེད་ཀྱི་ཊར་མི་ནཱལ་ནང་ `openamer update` ལག་བསྟར་བྱས་ཏེ་ཚོད་ལྟ་བྱོས།
     start_failed: '✗ གསར་སྒྱུར་འགོ་འཛུགས་མ་ཐུབ།: {error}'
@@ -567,39 +567,39 @@ gateway:
       ལན་ཚང་མར་སྐད་འཕྲིན་ཞིག་ཚུད་ཡོང་།'
     status_mode: སྐད་ཀྱི་ཐབས་ལམ། {label}
     status_channel: 'སྐད་ཀྱི་རྒྱུན་ལམ། #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: མཉམ་ཞུགས་པ་ཚོ། {count}
     status_member: '  - {name}{status}'
     speaking: ' (speaking)'
     enabled_short: Voice mode enabled.
     disabled_short: Voice mode disabled.
     label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    label_voice_only: ཁ་ཕྱེ། (སྒྲ་འཕྲིན་ལ་སྒྲས་ལན་འདེབས)
+    label_all: TTS (འཕྲིན་ཚང་མར་སྒྲས་ལན་འདེབས)
     help: '{toggle}
 
 
-      **How /voice works**
+      **/voice ཇི་ལྟར་ལས་འགན་བྱེད་པ།**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — སྒྲ་འཕྲིན་བཏང་སྐབས་སྒྲས་ལན་འདེབས།
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — འཕྲིན་*ཚང་མར*་སྒྲས་ལན་འདེབས།
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — ཡིག་རིས་ཀྱི་ལན་འདེབས་སུ་ལོག་པ།
 
-      • `/voice status` — show the current mode
+      • `/voice status` — ད་ལྟའི་གནས་སྟངས་སྟོན་པ།
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (ཚིག་མེད) — ཁ་ཕྱེ་དང་མེད་བར་མགྱོགས་སུ་བསྒྱུར་བ།{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **དངོས་ཡོད་སྒྲ་བརྒྱུད་ལམ་ཚོ། (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • དང་པོ་སྒྲ་བརྒྱུད་ལམ་ཞིག་ལ་ཞུགས། དེ་ནས་ `/voice channel` — ང་ཞུགས་ཏེ་ཉན་པ་དང་ངའི་ལན་ཚོ་སྨྲ་བར་བྱེད།
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — སྒྲ་བརྒྱུད་ལམ་ནས་འབྲལ་བ།'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ YOLO ཐབས་ལམ་ **མི་སྤྱོད** ཡིན་པས་ཐེངས་འདིའི་སྐབས་སུ་ཉེན་ཁ་ཆེ་བའི་བཀའ་ཚིག་ལ་ཆོག་མཆན་དགོས།
+    enabled: ⚡ YOLO ཐབས་ལམ་ **ཁ་ཕྱེ** ཡིན་པས་ཐེངས་འདིའི་སྐབས་སུ་བཀའ་ཚིག་ཚང་མར་རང་བཞིན་གྱིས་ཆོག་མཆན་ཐོབ། དྲན་ཟོན་དང་བཅས་བེད་སྤྱོད་གཏོང་།
   shared:
     session_db_unavailable: ལས་ཚོགས་གྲངས་མཛོད་མི་འདུག།
     session_db_unavailable_prefix: ལས་ཚོགས་གྲངས་མཛོད་མི་འདུག

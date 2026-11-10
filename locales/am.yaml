@@ -288,41 +288,41 @@ gateway:
 
       አንድ አማራጭ ይምረጡ፦'
     choice_none: none — ማመዛዘንን አሰናክል
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+    choice_reset: reset — የክፍለ-ጊዜ ማስተካከያን አጽዳ
+    choice_show: በምላሾች ውስጥ አመክንዮ አሳይ
+    choice_hide: አመክንዮን ከምላሾች ደብቅ
+    set_global: '🧠 ✓ የማመዛዘን ጥረት ወደ `{effort}` ተቀናብሯል (ወደ config ተቀምጧል)
 
-      _(takes effect on next message)_'
-    set_global_save_failed: '🧠 ✓ Reasoning effort set to `{effort}` (session only — config save failed)
+      _(በሚቀጥለው መልእክት ላይ ይተገበራል)_'
+    set_global_save_failed: '🧠 ✓ የማመዛዘን ጥረት ወደ `{effort}` ተቀናብሯል (የክፍለ-ጊዜ ብቻ — config ማስቀመጥ አልተሳካም)
 
-      _(takes effect on next message)_'
-    set_session: '🧠 ✓ Reasoning effort set to `{effort}` (session only — add `--global` to persist)
+      _(በሚቀጥለው መልእክት ላይ ይተገበራል)_'
+    set_session: '🧠 ✓ የማመዛዘን ጥረት ወደ `{effort}` ተቀናብሯል (የክፍለ-ጊዜ ብቻ — ለማቆየት `--global` ጨምር)
 
-      _(takes effect on next message)_'
+      _(በሚቀጥለው መልእክት ላይ ይተገበራል)_'
   reload_mcp:
-    cancelled: 🟡 /reload-mcp cancelled. MCP tools unchanged.
-    always_followup: 'ℹ️ Future `/reload-mcp` calls will run without confirmation. Re-enable via `approvals.mcp_reload_confirm: true` in config.yaml.'
-    confirm_prompt: '⚠️ **Confirm /reload-mcp**
+    cancelled: 🟡 /reload-mcp ተሰርዟል። የMCP መሣሪያዎች አልተለወጡም።
+    always_followup: 'ℹ️ ወደፊት የ`/reload-mcp` ጥሪዎች ያለማረጋገጫ ይሠራሉ። በconfig.yaml ውስጥ በ`approvals.mcp_reload_confirm: true` እንደገና አንቃ።'
+    confirm_prompt: '⚠️ **አረጋግጥ /reload-mcp**
 
 
-      Reloading MCP servers rebuilds the tool set for this session and **invalidates the provider prompt cache** — the next message will re-send full input tokens.  On long-context or high-reasoning models this can be expensive.
+      የMCP አገልጋዮችን እንደገና መጫን ለዚህ ክፍለ-ጊዜ የመሣሪያዎቹን ስብስብ ይገነባል እና **የአቅራቢውን ፕሮምፕ መሸጎጫ ውድቅ ያደርጋል** — የሚቀጥለው መልእክት ሙሉ የግቤት ቶከኖችን እንደገና ይልካል።  በረጅም-አውድ ወይም ከፍተኛ-ማመዛዘን ሞዴሎች ላይ ይህ ውድ ሊሆን ይችላል።
 
 
-      Choose:
+      ይምረጡ:
 
-      • **Approve Once** — reload now
+      • **አንድ ጊዜ አጽድቅ** — አሁን እንደገና ጫን
 
-      • **Always Approve** — reload now and silence this prompt permanently
+      • **ሁልጊዜ አጽድቅ** — አሁን እንደገና ጫን እና ይህን ጥያቄ ለዘላለም አርጋ
 
-      • **Cancel** — leave MCP tools unchanged
+      • **ሰርዝ** — የMCP መሣሪያዎችን እንዳሉ ተው
 
 
-      _Text fallback: reply `/approve`, `/always`, or `/cancel`._'
-    header: '🔄 **MCP Servers Reloaded**
+      _የጽሑፍ አማራጭ፦ `/approve`፣ `/always`፣ ወይም `/cancel` ብለው ይመልሱ።_'
+    header: '🔄 **የMCP አገልጋዮች እንደገና ተጭነዋል**
 
       '
-    reconnected: '♻️ Reconnected: {names}'
+    reconnected: ♻️ እንደገና ተገናኝቷል፦ {names}
     added: '➕ Added: {names}'
     removed: ➖ ተወግዷል፡ {names}
     none_connected: ምንም MCP አገልጋዮች አልተገናኙም።
@@ -567,39 +567,39 @@ gateway:
       ሁሉም ምላሾች የድምፅ መልእክት ያካትታሉ።'
     status_mode: የድምፅ ሁነታ፡ {label}
     status_channel: 'የድምፅ ቻናል፡ #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'ተሳታፊዎች: {count}'
     status_member: '  - {name}{status}'
     speaking: ' (speaking)'
     enabled_short: Voice mode enabled.
     disabled_short: Voice mode disabled.
     label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    label_voice_only: በርቷል (ለድምፅ መልእክቶች በድምፅ ምላሽ መስጠት)
+    label_all: TTS (ለሁሉም መልእክቶች በድምፅ ምላሽ መስጠት)
     help: '{toggle}
 
 
-      **How /voice works**
+      **/voice እንዴት ይሠራል**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — የድምፅ መልእክት ሲልኩ በድምፅ ምላሽ መስጠት
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — ለ*እያንዳንዱ* መልእክት በድምፅ ምላሽ መስጠት
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — ወደ ጽሑፍ-ብቻ ምላሾች መመለስ
 
-      • `/voice status` — show the current mode
+      • `/voice status` — የአሁኑን ሁነታ አሳይ
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (አርጉመንት የለም) — በበርቷል እና በጠፍቷል መካከል ፈጣን መቀያየር{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **የቀጥታ ድምፅ ቻናሎች (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • መጀመሪያ የድምፅ ቻናል ይቀላቀሉ፣ ከዚያ `/voice channel` — እኔ እቀላቀላለሁ፣ አዳምጣለሁ፣ እና ምላሾቼን እናገራለሁ
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — ከድምፅ ቻናል መቋረጥ'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ የYOLO ሁነታ ለዚህ ክፍለ ጊዜ **ጠፍቷል** — አደገኛ ትዕዛዞች ማረጋገጫ ይፈልጋሉ።
+    enabled: ⚡ የYOLO ሁነታ ለዚህ ክፍለ ጊዜ **በርቷል** — ሁሉም ትዕዛዞች በራስ-ሰር ጸድቀዋል። በጥንቃቄ ይጠቀሙ።
   shared:
     session_db_unavailable: የክፍለ ጊዜ ውሂብ ጎታ አይገኝም።
     session_db_unavailable_prefix: የክፍለ ጊዜ ውሂብ ጎታ አይገኝም
