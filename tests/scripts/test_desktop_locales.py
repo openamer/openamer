@@ -25,7 +25,27 @@ REPO = Path(__file__).resolve().parents[2]
 I18N = REPO / "apps" / "desktop" / "src" / "i18n"
 LANGS = REPO / "locales" / "_languages.json"
 
-needs_node = pytest.mark.skipif(shutil.which("node") is None, reason="node not installed")
+def _extractor_available() -> bool:
+    """True only when node can actually require the TypeScript compiler.
+
+    ``shutil.which("node")`` is not enough: CI images ship node without the
+    repo's node_modules, so the extractor dies inside require('typescript')
+    with a SystemExit instead of a skip (measured on PR #346, tests slice 4:
+    "literal extraction failed: ... cjs/loader").
+    """
+    if shutil.which("node") is None:
+        return False
+    try:
+        probe = subprocess.run(["node", "-e", "require('typescript')"],
+                               cwd=str(REPO), capture_output=True, timeout=60)
+    except (OSError, subprocess.SubprocessError):
+        return False
+    return probe.returncode == 0
+
+
+needs_node = pytest.mark.skipif(
+    not _extractor_available(),
+    reason="node + resolvable typescript required for AST extraction")
 
 
 @pytest.fixture(scope="module")
@@ -39,6 +59,10 @@ def fill():
 
 @pytest.fixture(scope="module")
 def en_literals(fill) -> dict[str, str]:
+    # Skip at the fixture so a test that forgets the needs_node mark cannot fail
+    # with the extractor's SystemExit instead of a clean skip.
+    if not _extractor_available():
+        pytest.skip("node + resolvable typescript required for AST extraction")
     return fill.parse_en()
 
 

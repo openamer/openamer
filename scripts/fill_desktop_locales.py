@@ -284,25 +284,15 @@ def parse_literals(text: str) -> dict[str, str]:
 
 
 def _pid_alive(pid: int) -> bool:
-    """True when the pid exists. Windows has no signal-0; use OpenProcess."""
-    if os.name == "nt":
-        import ctypes
-        PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
-        STILL_ACTIVE = 259
-        h = ctypes.windll.kernel32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
-        if not h:
-            return False
-        try:
-            code = ctypes.c_ulong()
-            ctypes.windll.kernel32.GetExitCodeProcess(h, ctypes.byref(code))
-            return code.value == STILL_ACTIVE
-        finally:
-            ctypes.windll.kernel32.CloseHandle(h)
-    try:
-        os.kill(pid, 0)
-        return True
-    except OSError:
-        return False
+    """True when the pid exists.
+
+    Never ``os.kill(pid, 0)``: on Windows that is not a probe -- it delivers
+    CTRL_C_EVENT to the target's console process group and hard-kills it, plus
+    unrelated siblings (bpo-14484). psutil is a core dependency and probes
+    correctly on every platform.
+    """
+    import psutil
+    return psutil.pid_exists(pid)
 
 
 @contextlib.contextmanager

@@ -31,13 +31,15 @@ BACKUP_ROOT = Path.home() / "openamer-work-backup"
 def normalise(raw: str) -> Path:
     """Accept an MSYS path (/c/Users/...) as well as a native one.
 
-    A marker written from a git-bash shell carries the MSYS form, which Python
-    resolves relative to the current drive as a literal backslash-c directory --
-    a path that never exists. Converting keeps the marker readable from both
-    shells.
+    A marker written from a git-bash shell carries the MSYS form, which Windows
+    Python resolves relative to the current drive as a literal backslash-c
+    directory -- a path that never exists. On POSIX /c/... is a legitimate
+    absolute path, so the rewrite stays Windows-only: translating it there
+    would turn a working path into a broken one.
     """
     text = raw.strip()
-    if len(text) >= 3 and text[0] == "/" and text[2] == "/" and text[1].isalpha():
+    if (os.name == "nt" and len(text) >= 3 and text[0] == "/"
+            and text[2] == "/" and text[1].isalpha()):
         return Path(f"{text[1].upper()}:/{text[3:]}")
     return Path(text)
 

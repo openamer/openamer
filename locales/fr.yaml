@@ -4,14 +4,14 @@
 
 approval:
   dangerous_header: '⚠️  COMMANDE DANGEREUSE : {description}'
-  choose_long: '      [o] Une fois  |  [s] Session  |  [a] Toujours  |  [d] Refuser'
-  choose_short: '      [o] Une fois  |  [s] Session  |  [d] Refuser'
-  prompt_long: '      Choix [o/s/t/R] : '
-  prompt_short: '      Choix [o/s/R] : '
-  choose_smart_deny: '      [o] Une fois  |  [d] Refuser'
+  choose_long: '      [o]ne fois  |  [s]ession  |  [a]oujours  |  [d]efuser'
+  choose_short: '      [o]ne fois  |  [s]ession  |  [d]efuser'
+  prompt_long: '      Choix [o/s/a/D] : '
+  prompt_short: '      Choix [o/s/D] : '
+  choose_smart_deny: '      [o]ne fois  |  [r]efuser'
   prompt_smart_deny: '      Choix [o/R] : '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,one fois
+  smart_deny_deny_inputs: r,refuser
   timeout: '      ⏱ Délai dépassé — commande refusée'
   allowed_once: '      ✓ Autorisé une fois'
   allowed_session: '      ✓ Autorisé pour cette session'
