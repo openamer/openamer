@@ -69,6 +69,12 @@ BACKENDS = [
     # Prefer the configured free route; Ollama session quota is shared by models.
     ("openrouter-nemotron", "https://openrouter.ai/api/v1/chat/completions",
      "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
+    # Second $0 pillar: rolling free weekly window, independent of OpenRouter's
+    # rate limit, so a 429 on one route does not stall a locale.
+    ("tokenharbor-deepseek", "https://tokenharbor.ai/v1/chat/completions",
+     "TOKENHARBOR_API_KEY", "deepseek-v4.1-flash:free"),
+    ("tokenharbor-mimo", "https://tokenharbor.ai/v1/chat/completions",
+     "TOKENHARBOR_API_KEY", "mimo-v2.5:free"),
     ("ollama-deepseek", "https://ollama.com/v1/chat/completions",
      "OLLAMA_API_KEY", "deepseek-v4.1-flash"),
     ("ollama-minimax", "https://ollama.com/v1/chat/completions",
@@ -123,6 +129,23 @@ FIXED_KEY_RUNS = {
     "approval.prompt_long": ["o/s/a/D"],
     "approval.prompt_short": ["o/s/D"],
 }
+
+# Swarm sharding: one worker process pins itself to one backend, so a 429 on a
+# single provider cannot stall the whole fleet.
+PINNED_BACKEND = os.environ.get("OPENAMER_I18N_BACKEND", "").strip()
+
+
+def backend_chain(env: dict[str, str]) -> list[tuple]:
+    """Backends usable in this process: pinned if asked, keyless always."""
+    chain = []
+    for cand in BACKENDS:
+        name, _url, keyenv, _model = cand
+        if PINNED_BACKEND and name != PINNED_BACKEND:
+            continue
+        if keyenv == "-" or env.get(keyenv):
+            chain.append(cand)
+    return chain
+
 
 MASK = "\uE000"
 PH_RE = re.compile(r"\{([a-zA-Z_][a-zA-Z0-9_]*)\}")
@@ -500,7 +523,7 @@ def translate_locale(lang: str, en_flat: dict[str, str], force: bool,
         return ("cached", 0, total)
 
     env = load_env()
-    backends = [cand for cand in BACKENDS if env.get(cand[2])]
+    backends = backend_chain(env)
     if not backends:
         write_catalog(lang, table, en_flat)
         return ("no-backend", len(todo), total)

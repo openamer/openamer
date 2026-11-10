@@ -41,9 +41,55 @@ BACKENDS = [
     # Prefer the configured free route; account quotas affect all Ollama models.
     ("openrouter-nemotron", "https://openrouter.ai/api/v1/chat/completions",
      "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
+    # Second $0 pillar: a free rolling weekly window, so it keeps working when
+    # the OpenRouter free route answers 429. Same model as the Ollama default.
+    ("tokenharbor-deepseek", "https://tokenharbor.ai/v1/chat/completions",
+     "TOKENHARBOR_API_KEY", "deepseek-v4.1-flash:free"),
+    ("tokenharbor-mimo", "https://tokenharbor.ai/v1/chat/completions",
+     "TOKENHARBOR_API_KEY", "mimo-v2.5:free"),
     ("ollama-deepseek", "https://ollama.com/v1/chat/completions", "OLLAMA_API_KEY", "deepseek-v4.1-flash"),
     ("ollama-minimax", "https://ollama.com/v1/chat/completions", "OLLAMA_API_KEY", "minimax-m3.1-flash"),
+    # Keyless (key_env "-"): no account to exhaust. Anonymous tier, rate-limited
+    # per IP, so it is a real pillar for a swarm, not a replacement.
+    ("pollinations-openai-fast", "https://text.pollinations.ai/openai", "-", "openai-fast"),
 ]
+
+# Swarm sharding: one worker process pins itself to one backend, so a 429 on a
+# single provider can never stall the whole fleet (measured: OpenRouter free sits
+# in 4x40s backoff while another provider answers immediately).
+PINNED_BACKEND = os.environ.get("OPENAMER_I18N_BACKEND", "").strip()
+
+# Dynamically discovered lanes (free models with their own rate pools) live in
+# this file; a builder writes it from the live provider catalog. Fixed path so a
+# detached worker needs no extra plumbing beyond the pin.
+EXTRA_BACKENDS_FILE = HOME / "tmp" / "swarm-backends.json"
+
+
+def _extra_backends() -> list[tuple]:
+    if not EXTRA_BACKENDS_FILE.is_file():
+        return []
+    try:
+        rows = json.loads(EXTRA_BACKENDS_FILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    out = []
+    for row in rows if isinstance(rows, list) else []:
+        if isinstance(row, dict) and row.get("name") and row.get("url") and row.get("model"):
+            out.append((str(row["name"]), str(row["url"]),
+                        str(row.get("key_env") or "-"), str(row["model"])))
+    return out
+
+
+def backend_chain(env: dict[str, str]) -> list[tuple]:
+    """Backends usable in this process: pinned if asked, keyless always."""
+    chain = []
+    for cand in BACKENDS + _extra_backends():
+        name, _url, keyenv, _model = cand
+        if PINNED_BACKEND and name != PINNED_BACKEND:
+            continue
+        if keyenv == "-" or env.get(keyenv):
+            chain.append(cand)
+    return chain
 
 KEY_RE = re.compile(r"^(\s*)(?:'((?:[^'\\]|\\.)*)'|([A-Za-z_$][A-Za-z0-9_$]*))\s*:\s*(.*)$")
 
@@ -127,7 +173,7 @@ def render(tree: dict, indent: int = 2) -> str:
 def call_model(url: str, model: str, key: str, prompt: str, timeout: int = 240) -> str:
     payload = {"model": model, "temperature": 0,
                "messages": [{"role": "user", "content": prompt}]}
-    if "ollama.com" in url:
+    if "ollama.com" in url or "tokenharbor.ai" in url:
         payload["reasoning_effort"] = "low"
     req = urllib.request.Request(
         url, data=json.dumps(payload).encode(),
@@ -209,9 +255,9 @@ def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict) -> 
         "- Every index must appear exactly once. No explanations.\n\n"
         f"{listing}"
     )
-    for cand in BACKENDS:
+    for cand in backend_chain(env):
         name, url, keyenv, model = cand
-        key = env.get(keyenv, "")
+        key = "-" if keyenv == "-" else env.get(keyenv, "")
         if not key:
             continue
         try:
