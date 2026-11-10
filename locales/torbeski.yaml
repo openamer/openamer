@@ -3,6 +3,7 @@
 # no ISO 639-3 code of its own, and no MT system produces it, so these values
 # are Macedonian until a native speaker replaces them. This is a starting
 # point, NOT a translation claim. Replace values in place; keys stay as-is.
+# Sources, classification and what is verified or NOT: docs/i18n/torbeski-sources.md
 
 approval:
   dangerous_header: '⚠️  ОПАСНА КОМАНДА: {description}'
