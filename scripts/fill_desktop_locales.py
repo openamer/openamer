@@ -25,6 +25,7 @@ import re
 import subprocess
 import sys
 import urllib.request
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -37,6 +38,9 @@ HOME = Path(os.environ.get("OPENAMER_HOME") or (Path.home() / "AppData" / "Local
 BATCH = int(os.environ.get("OPENAMER_DESKTOP_BATCH", "20"))
 WORKERS = max(1, int(os.environ.get("OPENAMER_DESKTOP_WORKERS", "2")))
 BACKENDS = [
+    # Prefer the configured free route; account quotas affect all Ollama models.
+    ("openrouter-nemotron", "https://openrouter.ai/api/v1/chat/completions",
+     "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
     ("ollama-deepseek", "https://ollama.com/v1/chat/completions", "OLLAMA_API_KEY", "deepseek-v4.1-flash"),
     ("ollama-minimax", "https://ollama.com/v1/chat/completions", "OLLAMA_API_KEY", "minimax-m3.1-flash"),
 ]
@@ -89,7 +93,10 @@ def unflatten(flat: dict[str, str]) -> dict:
 
 
 def js(value: str) -> str:
-    return "'" + value.replace("\\", "\\\\").replace("'", "\\'") + "'"
+    escaped = json.dumps(value, ensure_ascii=False)[1:-1]
+    escaped = escaped.replace("\\\"", '"').replace("'", "\\'")
+    escaped = escaped.replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
+    return "'" + escaped + "'"
 
 
 IDENT_RE = re.compile(r"^[A-Za-z_$][A-Za-z0-9_$]*$")
@@ -139,6 +146,52 @@ def call_model(url: str, model: str, key: str, prompt: str, timeout: int = 240) 
     raise RuntimeError("unreachable")
 
 
+PLACEHOLDER_RE = re.compile(
+    r"\$\{[^{}]+\}|\{\{[^{}]+\}\}|\{[^{}]*\}"
+    r"|%(?:\([^)]+\)|\d+\$)?[-+#0 ]*\d*(?:\.\d+)?[sdfir]"
+)
+_MODIFIER = r"(?:Ctrl|Control|Cmd|Command|Alt|Option|Shift|Meta|Super|[⌘⌥⇧⌃])"
+_KEY = rf"(?:{_MODIFIER}|[A-Za-z0-9]+|[+\-])"
+HOTKEY_RE = re.compile(
+    rf"(?<!\w){_MODIFIER}(?:[/+]\s*{_KEY})+(?!\w)"
+    r"|[⌘⌥⇧⌃]+[A-Za-z0-9]?"
+    r"|\b(?:Enter|Escape|Esc|Tab|Backspace|F\d{1,2})\b"
+)
+AMBIGUOUS_KEY_RE = re.compile(r"\b(?:Return|Space|Delete)\b")
+MACHINE_TOKENS = frozenset({
+    "OpenAmer", "JSON", "API", "URL", "HTTP", "HTTPS", "SSH", "UTF-8",
+    "HTML", "CSS", "SQL", "OAuth", "OAuth2", "GitHub", "GitLab",
+})
+
+
+def machine_token(value: str) -> bool:
+    """Conservative exemptions, not an uppercase/one-word prose heuristic."""
+    return bool(
+        value in MACHINE_TOKENS
+        or not any(c.isalpha() for c in value)
+        or re.fullmatch(r"(?:https?://|/|[A-Za-z]:[\\/])\S+", value)
+        or re.fullmatch(r"`[^`]+`", value)
+        or HOTKEY_RE.fullmatch(value)
+    )
+
+
+def validation_error(source: str, value: object) -> str | None:
+    """Validate both fresh responses and resumed data before counting coverage."""
+    if not isinstance(value, str) or not value.strip():
+        return "empty/non-string value"
+    if value.strip() == source.strip() and not machine_token(source.strip()):
+        return "unchanged English"
+    if Counter(PLACEHOLDER_RE.findall(source)) != Counter(PLACEHOLDER_RE.findall(value)):
+        return "placeholder drift"
+    if Counter(HOTKEY_RE.findall(source)) != Counter(HOTKEY_RE.findall(value)):
+        return "hotkey drift"
+    # "Delete" and "Return to chat" are prose, not keyboard instructions.
+    if re.search(r"\b(?:press|hit|hold|key)\b", source, re.I):
+        if Counter(AMBIGUOUS_KEY_RE.findall(source)) != Counter(AMBIGUOUS_KEY_RE.findall(value)):
+            return "hotkey drift"
+    return None
+
+
 def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict) -> dict[str, str]:
     listing = "\n".join(f"{i}. {v}" for i, (_, v) in enumerate(items))
     prompt = (
@@ -147,6 +200,8 @@ def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict) -> 
         "- Output ONLY a JSON object mapping the index number (as a string) to the translation.\n"
         "- These are short interface labels (buttons, headings, hints). Keep them short.\n"
         "- Keep the literal characters \\n if present. Keep {placeholders} exactly.\n"
+        "- Preserve hotkeys (Ctrl/⌘+N, Enter, etc.) exactly.\n"
+        "- Translate English prose; unchanged prose is rejected and retried.\n"
         "- Keep 'OpenAmer', file paths, URLs, and code in backticks unchanged.\n"
         "- Every index must appear exactly once. No explanations.\n\n"
         f"{listing}"
@@ -171,11 +226,16 @@ def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict) -> 
             obj = json.loads(t[s:e + 1])
         except json.JSONDecodeError:
             continue
+        if not isinstance(obj, dict):
+            continue
         out = {}
         for i, (path, src) in enumerate(items):
             got = obj.get(str(i))
-            if isinstance(got, str) and got.strip():
-                out[path] = got.strip()
+            reason = validation_error(src, got)
+            if reason:
+                print(f"    {lang_name}: {name} rejected index {i}: {reason}", flush=True)
+                break
+            out[path] = got.strip()
         if len(out) == len(items):
             return out
     return {}
@@ -186,10 +246,12 @@ def existing_overrides(code: str) -> dict[str, str]:
     path = I18N / f"{code}.ts"
     if not path.exists():
         return {}
-    text = path.read_text(encoding="utf-8")
-    if "defineLocale({})" in text:
-        return {}
-    return {k: v for k, v in parse_literals(text).items()}
+    proc = subprocess.run(
+        ["node", str(REPO / "scripts" / "extract_locale_literals.js"), str(path)],
+        capture_output=True, text=True, encoding="utf-8", cwd=str(REPO), timeout=180)
+    if proc.returncode != 0 or not proc.stdout.strip():
+        raise RuntimeError(f"literal extraction failed for {code}: {proc.stderr[-400:]}")
+    return json.loads(proc.stdout)
 
 
 def parse_literals(text: str) -> dict[str, str]:
@@ -261,8 +323,18 @@ def locale_lock(code: str):
         except (OSError, ValueError):
             owner = 0
         if owner and _pid_alive(owner):
-            yield False
-            return
+            import psutil
+            try:
+                process = psutil.Process(owner)
+                expected = os.path.normcase(os.path.abspath(__file__))
+                owns_worker = owner == os.getpid() or any(
+                    os.path.normcase(os.path.abspath(arg)) == expected
+                    for arg in process.cmdline()[1:] if not arg.startswith("-"))
+            except (psutil.Error, OSError, ValueError):
+                owns_worker = False
+            if owns_worker:
+                yield False
+                return
         # Stale lock from a dead process: take it over.
         try:
             lock.unlink()
@@ -334,13 +406,24 @@ def run_locale(code: str, names: dict, en: dict, env: dict, args) -> None:
             have = json.loads(cache_path.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             have = {}
-    have.update(existing_overrides(code))
+    existing = existing_overrides(code)
+    validated: dict[str, str] = {}
+    for origin, entries in (("cache", have), ("module", existing)):
+        if not isinstance(entries, dict):
+            print(f"    {code}: rejected {origin}: expected an object", flush=True)
+            continue
+        for key, value in entries.items():
+            if key not in en:
+                continue
+            reason = validation_error(en[key], value)
+            if reason:
+                print(f"    {code}: rejected {origin} {key!r}: {reason}; retrying", flush=True)
+            else:
+                validated[key] = value
+    have = validated
     todo = [(p, v) for p, v in en.items() if p not in have]
-    if not todo:
-        print(f"  {code}: complete")
-        return
     if args.dry_run:
-        print(f"  {code}: would translate {len(todo)}")
+        print(f"  {code}: would translate {len(todo)}; materialize validated literals")
         return
 
     chunks = [todo[i:i + BATCH] for i in range(0, len(todo), BATCH)]
@@ -359,12 +442,30 @@ def run_locale(code: str, names: dict, en: dict, env: dict, args) -> None:
             if done % 10 == 0:
                 print(f"    {code}: {done}/{len(chunks)} chunks", flush=True)
 
+    # A full cache must still be materialized. Mature modules, however, may
+    # contain functions, spreads and imported field-copy data that are absent
+    # from the static AST extraction. Never regenerate those as static-only.
+    atomic_write(cache_path, json.dumps(merged, ensure_ascii=False, indent=1))
     path = I18N / f"{code}.ts"
     ident = code.replace("-", "_")
     if path.exists():
-        m = re.search(r"^export const (\w+)", path.read_text(encoding="utf-8"), re.M)
-        if m:
-            ident = m.group(1)
+        text = path.read_text(encoding="utf-8")
+        match = re.fullmatch(
+            r"import \{ defineLocale \} from './define-locale'\n"
+            r"(?:\n|//[^\n]*\n)*export const (\w+) = defineLocale\(\{(.*)\}\)\n?",
+            text, re.S)
+        generated = bool(match and (
+            not match.group(2).strip()
+            or ("// interpolated template strings still fall back to English.\n" in text
+                and match.group(2).strip() == render(unflatten(existing)).strip())
+        ))
+        if not generated:
+            unchanged_tokens = sum(value.strip() == en[key].strip() for key, value in merged.items())
+            print(f"  {code}: mature module preserved; {len(merged)}/{len(en)} validated "
+                  f"literals in cache, not applied to module; {len(en) - len(merged)} gaps; "
+                  f"{unchanged_tokens} unchanged machine tokens", flush=True)
+            return
+        ident = match.group(1)
     body = (
         "import { defineLocale } from './define-locale'\n\n"
         f"// {names.get(code, code)} ({code}): static literals translated;\n"
@@ -374,7 +475,9 @@ def run_locale(code: str, names: dict, en: dict, env: dict, args) -> None:
         "})\n"
     )
     atomic_write(path, body)
-    print(f"  {code}: {len(merged)}/{len(en)} literals", flush=True)
+    unchanged_tokens = sum(value.strip() == en[key].strip() for key, value in merged.items())
+    print(f"  {code}: {len(merged)}/{len(en)} validated literals; "
+          f"{unchanged_tokens} unchanged machine tokens; {len(en) - len(merged)} gaps", flush=True)
 
 
 if __name__ == "__main__":
