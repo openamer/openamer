@@ -567,39 +567,39 @@ gateway:
       Semua balasan akan termasuk mesej suara.'
     status_mode: 'Mod suara: {label}'
     status_channel: 'Saluran suara: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'Peserta: {count}'
     status_member: '  - {name}{status}'
     speaking: ' (speaking)'
     enabled_short: Voice mode enabled.
     disabled_short: Voice mode disabled.
     label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    label_voice_only: Hidup (balasan suara untuk mesej suara)
+    label_all: TTS (balasan suara untuk semua mesej)
     help: '{toggle}
 
 
-      **How /voice works**
+      **Cara /voice berfungsi**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — balasan suara apabila anda menghantar mesej suara
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — balasan suara untuk *setiap* mesej
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — kembali kepada balasan teks sahaja
 
-      • `/voice status` — show the current mode
+      • `/voice status` — tunjukkan mod semasa
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (tanpa argumen) — togol pantas antara hidup dan mati{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **Saluran suara langsung (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • Sertai saluran suara dahulu, kemudian `/voice channel` — saya akan menyertai, mendengar, dan menyebut balasan saya
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — putuskan sambungan daripada saluran suara'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ Mod YOLO **MATI** untuk sesi ini — arahan berbahaya memerlukan kelulusan.
+    enabled: ⚡ Mod YOLO **HIDUP** untuk sesi ini — semua arahan diluluskan secara automatik. Gunakan dengan berhati-hati.
   shared:
     session_db_unavailable: Pangkalan data sesi tidak tersedia.
     session_db_unavailable_prefix: Pangkalan data sesi tidak tersedia

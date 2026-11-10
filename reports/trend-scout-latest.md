@@ -1,6 +1,6 @@
 # AI-Agent Trend Scout
 
-_updated: 2026-11-10T00:40+00:00 (auto, hourly, zero-token)_
+_updated: 2026-11-10T04:02+00:00 (auto, hourly, zero-token)_
 
 - [arXiv] AI Agents: Evolution, Architecture, and Real-World Applications — http://arxiv.org/abs/2510.27051v1
 - [arXiv] AegisUI: Behavioral Anomaly Detection for Structured User Interface Protocols in AI Agent Systems — http://arxiv.org/abs/2608.05201v1
@@ -23,9 +23,9 @@ _updated: 2026-11-10T00:40+00:00 (auto, hourly, zero-token)_
 - [News] RIT alumni are shaping new careers: Agentic AI engineer - Rochester Institute of Technology — https://news.google.com/rss/articles/CBMihgFBVV95cUxOX1RSa3Y4SDFEOVZTMzdwSFBlTjIxSmlUeERJVk8xT19iRG14UzgxWHlGWTlnRElRZlRQbVgxNlExTW93c0JzZnhOakdkOVRYLUpnUEZtNktpN1BPc2tST0x3WlllSnpzMEtzaTB2MnZDOUZlYWdPSlhWaXpaQ3lXN1pZZlgyUQ?oc=5
 - [News] Agentic AI Architecture: Current Challenges and Future Opportunities - infoq.com — https://news.google.com/rss/articles/CBMihwFBVV95cUxQdjMyamo1OXVSZlZXRGZkZ3gzb0VJTEt0QTNwa19RcDlJLThjS3hhYzM5UTUwUWkyTXc1SXRpMkNxVU42ZVozc0FKUURzaWxKY1FBMi1sV0VpOVU0RVBQSnRuam03MmdMRi04dW50dFNDRVBNNDM0cWFTdlpDbVZISlhDRWtHSkE?oc=5
 - [News] Transforming fleet analytics for Novus Hi-Tech through agentic AI | Amazon Web Services - Amazon Web Services (AWS) — https://news.google.com/rss/articles/CBMirAFBVV95cUxPa3ZFRDEza0N0ZndoMUZrcG95NmxwQ3lCR25HNk0xa3piUWJZbzVQMHRQa3E0LUpLT0N4bFZINnA1T1pfZ3p0cFB5bGFXU243REFMUHVvNnF6WWl4eEw4Umt2MkVZa2RVWm1iTUhxQTdfUGlZYURTQThTaDFCUk50MUdTX3JxN1ZFX2hMOUtmTDFYbG1TbDFnX1lhc1lRMVN5cmpNYnV2TVpKdVJH?oc=5
+- [News] CodeRabbit scales agentic software development and ships 20x more - OpenAI — https://news.google.com/rss/articles/CBMiYEFVX3lxTE1YczhZVHM5azFwMHJqTnJfM25LNVo4Mm9lVnhTZS1nWWoyU1hEUnE5OGo0S1cxODlRd2tKTjV5LVdNc0RqVllhMFJRSWs5QzUzR1p3MFNBTWs3alhyZUw3Sg?oc=5
 - [News] Snowflake Powers the Agentic Enterprise, Giving Every AI Agent the Business Context, Controls, and Autonomy to Move from Pilot to Production - Biz Today — https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NbVNvc0dZLTlKNkVCd24zdjJ1bndtNm93czBJUjFaUUVoZ2ZXN3M3a205MjhLZUVWeFBGSFIwY1c1XzU1NXpSSmFvVzdXMEt3MDU4cER3?oc=5
 - [News] Do AI agents have minds? A philosopher explains - The Conversation — https://news.google.com/rss/articles/CBMiiAFBVV95cUxQNXdzQ19MSC14NklUZDVEX2p4Z25nM2l4MmF4WUtjQ3JnclN1SDc3eUNlR2N2ZmFXdzJVT2RNN1JyZkdFTEtaNGJGWUJvR0oyN0dFTjVwY1ZPa3RLN1NzQnpnV3BLZFRDUzJhbmtYV0dxcUZfZFhfeENPWnVVelhWZzAxUC11YVdn?oc=5
-- [News] Agentic AI Will Hit an Infrastructure Wall Before It Hits an Intelligence Wall - Unite.AI — https://news.google.com/rss/articles/CBMiekFVX3lxTE5ydThMWjVCcDJlYkN6UFNYUzRwTmVRNU1RR1BGaWRYalJBdDdFZDQ3UmtNN1NqeXBmbjZxV25pMDAyTjBKOGRyLVNkcUZYVVYyR0Zad09QTktzTzhTcGY4R3JqRWNuWkxjSHZQck13TjUxYmhFQXlQQTZ3?oc=5
 - [News] Red Hat adds agentic AI operations, stronger security in OpenShift 5 and RHEL updates - SiliconANGLE — https://news.google.com/rss/articles/CBMivgFBVV95cUxQdWtmMXVlTEw4Q3RaeFBCWHZac25tWHJhWEZyemx3TXB3Nm1PUmttc2k2OUZEa0FrbXF6TkFOWHFKNTJtZDNLMzBta0dEb0cwUVpyS0FmbUhDS0FzMUZVUDVXX015SDItUUNBekkwNV9paGtWYzh6S2tzem1zMV9IVDM5eWxBNER5aXoteDFueDhDQW9mZFVjMlRKWkxORjdsLVI5bHQzMk02aVNZdUc2VkdtZXhWN1hoYTBaMkFn?oc=5
 
 ---
