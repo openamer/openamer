@@ -14,6 +14,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 def find_repo() -> Path:
@@ -32,8 +33,65 @@ REPO = find_repo()
 HOME = Path(os.environ.get("OPENAMER_HOME")
             or (Path.home() / "AppData" / "Local" / "openamer-laptop"))
 PIDFILE = HOME / "logs" / "translation-swarm.pid.json"
+PROGRESS = HOME / "logs" / "translation-swarm.progress.json"
 CACHE = HOME / "tmp"
 PY = sys.executable
+STALL_SECONDS = 600          # no cache growth for this long means a stuck wave
+
+
+def cache_total() -> int:
+    """Filled strings across every cache file — the only honest progress signal.
+
+    Measuring PIDs instead was wrong in production: one worker stuck in a slow
+    lane kept the count above zero, so the watchdog stayed silent while nothing
+    moved (observed: 1 alive, cache frozen, 194k strings open).
+    """
+    total = 0
+    for path in CACHE.glob("desktop_*.json"):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        total += len([v for v in data.values() if isinstance(v, str) and v.strip()])
+    return total
+
+
+def read_progress() -> tuple[int, float] | None:
+    try:
+        rec = json.loads(PROGRESS.read_text(encoding="utf-8"))
+        return int(rec["total"]), float(rec["at"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+
+
+def write_progress(total: int) -> None:
+    PROGRESS.parent.mkdir(parents=True, exist_ok=True)
+    PROGRESS.write_text(json.dumps({"total": total, "at": time.time()}),
+                        encoding="utf-8", newline="\n")
+
+
+def kill_wave() -> int:
+    """Terminate the recorded wave so a stalled lane cannot block the fleet."""
+    if not PIDFILE.is_file():
+        return 0
+    try:
+        import psutil
+    except ImportError:
+        return 0
+    killed = 0
+    try:
+        rec = json.loads(PIDFILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return 0
+    for worker in rec.get("workers", []):
+        try:
+            proc = psutil.Process(worker["pid"])
+            proc.terminate()
+            proc.wait(timeout=10)
+            killed += 1
+        except psutil.Error:
+            pass
+    return killed
 
 
 def alive() -> int:
@@ -85,10 +143,18 @@ def open_locale_codes() -> list[str]:
 
 
 def main() -> int:
-    if alive() > 0:
-        return 0                      # a wave is already running; stay quiet
+    total = cache_total()
+    previous = read_progress()
+    stalled = (previous is not None and total <= previous[0]
+               and time.time() - previous[1] > STALL_SECONDS)
+    if alive() > 0 and not stalled:
+        if previous is None or total > previous[0]:
+            write_progress(total)
+        return 0                      # real progress or a fresh wave: stay quiet
+    killed = kill_wave() if stalled else 0
     codes = open_locale_codes()
     if not codes:
+        write_progress(total)
         return 0                      # nothing left; stay quiet
     env = dict(os.environ, OPENAMER_DESKTOP_BATCH="40", OPENAMER_DESKTOP_WORKERS="6")
     proc = subprocess.run(
@@ -96,8 +162,10 @@ def main() -> int:
          "--workers", "2", "--threads", "6", "--locales", *codes],
         capture_output=True, text=True, env=env, timeout=300)
     tail = (proc.stdout or "").strip().splitlines()
-    print(f"swarm wave launched for {len(codes)} open locales: "
-          f"{tail[-1] if tail else 'no output'}")
+    write_progress(total)
+    prefix = f"killed {killed} stalled, " if killed else ""
+    print(f"swarm wave: {prefix}{len(codes)} open locales, "
+          f"cache {total}: {tail[-1] if tail else 'no output'}")
     return 0 if proc.returncode == 0 else 1
 
 

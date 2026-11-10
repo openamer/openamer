@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import time
 from pathlib import Path
 
 import pytest
@@ -83,3 +84,36 @@ def test_launches_with_explicit_locale_codes(watchdog, monkeypatch, capsys):
     assert "--locales" in seen["cmd"]
     assert seen["cmd"][-2:] == ["aa", "ab"], "partial locales must be named explicitly"
     assert "2 open locales" in capsys.readouterr().out
+
+
+def test_stalled_wave_is_killed_and_replaced(watchdog, monkeypatch):
+    """One hung worker must not freeze the fleet.
+
+    Observed in production: 1 worker alive, cache frozen for ten minutes, 194k
+    strings open, and the watchdog silent because a PID was alive.
+    """
+    killed: list[bool] = []
+
+    class FakeProc:
+        returncode = 0
+        stdout = "9 swarm workers for 1 locales across 3 backends\n"
+
+    monkeypatch.setattr(watchdog, "alive", lambda: 1)
+    monkeypatch.setattr(watchdog, "cache_total", lambda: 500)
+    monkeypatch.setattr(watchdog, "open_locale_codes", lambda: ["aa"])
+    monkeypatch.setattr(watchdog, "read_progress", lambda: (500, time.time() - 700))
+    monkeypatch.setattr(watchdog, "kill_wave", lambda: killed.append(True) or 1)
+    monkeypatch.setattr(watchdog.subprocess, "run", lambda cmd, **kw: FakeProc())
+    assert watchdog.main() == 0
+    assert killed == [True], "a stalled wave must be terminated"
+
+
+def test_growing_cache_keeps_the_wave(watchdog, monkeypatch):
+    """Progress is the signal: a slow wave that is still filling must survive."""
+    killed: list[bool] = []
+    monkeypatch.setattr(watchdog, "alive", lambda: 2)
+    monkeypatch.setattr(watchdog, "cache_total", lambda: 900)
+    monkeypatch.setattr(watchdog, "read_progress", lambda: (500, time.time() - 700))
+    monkeypatch.setattr(watchdog, "kill_wave", lambda: killed.append(True) or 1)
+    assert watchdog.main() == 0
+    assert killed == [], "a wave that still adds strings must not be killed"
