@@ -95,6 +95,57 @@ def de(value: int) -> str:
     return f"{value:,}".replace(",", ".")
 
 
+def render_html(total: int, full: int, partial: int, empty: int, open_strings: int,
+                delta: int, rate: str, eta: str, activity: str, workers: int) -> str:
+    """Static snapshot the preview pane can render and auto-reload.
+
+    Chat delivery needs a gateway channel (none is configured here) and desktop
+    toasts fail on this host, so a file the user keeps open is the only channel
+    that is verifiably visible.
+    """
+    pct = min(100.0, total / TARGET * 100) if TARGET else 0.0
+    return f"""<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<meta http-equiv="refresh" content="60">
+<title>Uebersetzungs-Schwarm</title>
+<style>
+ body{{background:#0e1116;color:#e6edf3;font:15px/1.5 ui-sans-serif,system-ui,sans-serif;margin:0;padding:28px}}
+ h1{{font-size:19px;margin:0 0 4px;font-weight:600}}
+ .sub{{color:#8b949e;font-size:13px;margin-bottom:22px}}
+ .bar{{height:10px;background:#1c232c;border-radius:6px;overflow:hidden;margin:10px 0 26px}}
+ .fill{{height:100%;background:linear-gradient(90deg,#2f81f7,#3fb950);width:{pct:.1f}%}}
+ .grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}}
+ .card{{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:14px 16px}}
+ .k{{color:#8b949e;font-size:12px;text-transform:uppercase;letter-spacing:.04em}}
+ .v{{font-size:26px;font-weight:650;margin-top:6px}}
+ .d{{color:#3fb950;font-size:13px;margin-top:4px}}
+ .foot{{margin-top:24px;color:#8b949e;font-size:12.5px}}
+ code{{color:#e6edf3;background:#161b22;padding:1px 5px;border-radius:4px}}
+</style></head><body>
+<h1>Uebersetzungs-Schwarm</h1>
+<div class="sub">Stand {time.strftime('%d.%m.%Y %H:%M')} &middot; laedt alle 60 s neu, Cron schreibt alle 10 min</div>
+<div class="bar"><div class="fill"></div></div>
+<div class="grid">
+ <div class="card"><div class="k">Strings im Cache</div><div class="v">{de(total)}</div><div class="d">{delta:+d}</div></div>
+ <div class="card"><div class="k">Sprachen voll</div><div class="v">{full}</div></div>
+ <div class="card"><div class="k">teilweise</div><div class="v">{partial}</div></div>
+ <div class="card"><div class="k">leer</div><div class="v">{empty}</div></div>
+ <div class="card"><div class="k">Offen</div><div class="v">{de(open_strings)}</div><div class="d">{rate}{eta}</div></div>
+ <div class="card"><div class="k">Worker</div><div class="v">{workers}</div></div>
+</div>
+<div class="foot">Abdeckung <code>{pct:.1f}%</code> von {de(TARGET)} Prosa-Strings &middot;
+letzte Aktivitaet: {activity}</div>
+</body></html>
+"""
+
+
+def write_html(body: str) -> None:
+    path = LOGDIR / "translation-report.html"
+    tmp = path.with_suffix(".html.tmp")
+    tmp.write_text(body, encoding="utf-8", newline="\n")
+    os.replace(tmp, path)
+
+
 def main() -> int:
     total, full, partial, empty = scan()
     open_strings = max(TARGET - total, 0)
@@ -120,6 +171,8 @@ def main() -> int:
     if delta and minutes >= 1:
         eta = f" · ETA ~{(open_strings / (delta / minutes)) / 60:.1f} h"
 
+    write_html(render_html(total, full, partial, empty, open_strings,
+                           delta, rate, eta, last_activity(), alive()))
     print(
         f"📊 Übersetzung — {time.strftime('%H:%M')}\n"
         f"Cache: {de(total)} Strings ({delta:+d} seit letzter Meldung, {rate})\n"
