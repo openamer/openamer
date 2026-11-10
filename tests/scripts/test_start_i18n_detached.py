@@ -63,16 +63,30 @@ def test_status_counts_dead_workers(launcher, monkeypatch, tmp_path, capsys):
     assert "0/1 workers alive" in out
 
 
-def test_status_counts_live_workers(launcher, monkeypatch, tmp_path, capsys):
-    pidfile = tmp_path / "i18n-translate.pid.json"
-    pidfile.write_text(json.dumps({
-        "started": "2026-11-09T21:46:07",
-        "workers": [{"pid": os.getpid(), "locales": ["aa"], "log": str(tmp_path / "w.log")}],
-    }), encoding="utf-8")
-    monkeypatch.setattr(launcher, "LOGDIR", tmp_path)
+def test_reused_pid_is_not_a_translation_worker(launcher):
+    record = {"pid": os.getpid(), "locales": ["aa"], "log": "worker.log"}
+    assert launcher._worker_alive(record, "desktop") is False
 
-    assert launcher.status("cli") == 0
-    assert "1/1 workers alive" in capsys.readouterr().out
+
+def test_status_counts_live_workers(launcher, monkeypatch, tmp_path, capsys):
+    scripts = tmp_path / "scripts"
+    scripts.mkdir()
+    script = scripts / "i18n_fill_cli_locales.py"
+    script.write_text("import time\ntime.sleep(30)\n", encoding="utf-8")
+    proc = subprocess.Popen([sys.executable, str(script)])
+    try:
+        pidfile = tmp_path / "i18n-translate.pid.json"
+        pidfile.write_text(json.dumps({
+            "workers": [{"pid": proc.pid, "locales": ["aa"], "log": str(tmp_path / "w.log")}],
+        }), encoding="utf-8")
+        monkeypatch.setattr(launcher, "REPO", tmp_path)
+        monkeypatch.setattr(launcher, "LOGDIR", tmp_path)
+        assert launcher.status("cli") == 0
+        assert "1/1 workers alive" in capsys.readouterr().out
+        assert launcher._worker_alive({"pid": proc.pid, "created": 1}, "cli") is False
+    finally:
+        proc.terminate()
+        proc.wait(timeout=10)
 
 
 def test_round_robin_never_drops_or_duplicates(launcher):
@@ -85,6 +99,26 @@ def test_round_robin_never_drops_or_duplicates(launcher):
     assert sorted(flat) == sorted(todo)
     assert len(flat) == len(todo)
     assert max(len(q) for q in queues) - min(len(q) for q in queues) <= 1
+
+
+def test_worker_record_persists_creation_time(launcher, monkeypatch, tmp_path):
+    """A record written at spawn time must carry the creation time it is checked against."""
+    import psutil
+
+    scripts = tmp_path / "scripts"
+    scripts.mkdir()
+    script = scripts / "i18n_fill_cli_locales.py"
+    script.write_text("import time\ntime.sleep(30)\n", encoding="utf-8")
+    proc = subprocess.Popen([sys.executable, str(script)])
+    try:
+        monkeypatch.setattr(launcher, "REPO", tmp_path)
+        record = launcher.worker_record(proc, ["aa"], tmp_path / "w.log")
+        assert record["created"] == pytest.approx(psutil.Process(proc.pid).create_time(), abs=0.01)
+        # The persisted timestamp has to satisfy the same check that guards a reboot.
+        assert launcher._worker_alive(record, "cli") is True
+    finally:
+        proc.terminate()
+        proc.wait(timeout=10)
 
 
 def test_pidfile_for_returns_separate_files(launcher):
@@ -114,4 +148,4 @@ def test_pending_desktop_counts_empty_modules(launcher, monkeypatch, tmp_path):
     monkeypatch.setattr(launcher, "REPO", tmp_path)
 
     todo = launcher.pending_desktop()
-    assert todo == ["aa"]  # ab already has content, en is skipped
+    assert todo == ["aa", "ab"]  # partial content must never be mistaken for completion
