@@ -34,7 +34,7 @@ def pidfile_for(target: str) -> Path:
     """Separate bookkeeping per target: CLI and desktop run in parallel."""
     return LOGDIR / ("desktop-translate.pid.json" if target == "desktop" else "i18n-translate.pid.json")
 QUEUES = 4
-MIN_SHARE = 0.9
+MIN_SHARE = 1.0
 
 
 def _pid_alive(pid: int) -> bool:
@@ -59,6 +59,23 @@ def _pid_alive(pid: int) -> bool:
         return False
 
 
+def _worker_alive(record: dict, target: str) -> bool:
+    """A recycled PID after reboot is not proof of a translation worker."""
+    import psutil
+
+    script = REPO / "scripts" / (
+        "fill_desktop_locales.py" if target == "desktop" else "i18n_fill_cli_locales.py")
+    expected = os.path.normcase(os.path.abspath(script))
+    try:
+        proc = psutil.Process(int(record["pid"]))
+        if record.get("created") is not None and abs(proc.create_time() - record["created"]) > 0.01:
+            return False
+        return any(os.path.normcase(os.path.abspath(arg)) == expected
+                   for arg in proc.cmdline()[1:] if not arg.startswith("-"))
+    except (psutil.Error, ValueError, KeyError, OSError):
+        return False
+
+
 def status(target: str = "cli") -> int:
     pidfile = pidfile_for(target)
     if not pidfile.exists():
@@ -67,7 +84,7 @@ def status(target: str = "cli") -> int:
     rec = json.loads(pidfile.read_text(encoding="utf-8"))
     alive = 0
     for w in rec.get("workers", []):
-        ok = _pid_alive(int(w["pid"]))
+        ok = _worker_alive(w, target)
         alive += 1 if ok else 0
         print(f"  pid {w['pid']:<8} {'alive' if ok else 'dead '}  "
               f"{w['locales'][:3]}{'...' if len(w['locales']) > 3 else ''} "
@@ -86,25 +103,13 @@ def pending_locales(min_share: float) -> list[str]:
 
 
 def pending_desktop() -> list[str]:
-    """Desktop locales whose module still carries only the English fallback.
+    """Let the worker inspect value-level gaps in every declared locale.
 
-    A translated module is one that no longer says `defineLocale({})`; partial
-    modules count as done because fill_desktop_locales.py resumes them from its
-    own cache and completes whatever is missing.
+    Partial modules are not complete: never filter them by file shape.
+    The worker owns cache resumption, validation and per-locale locking.
     """
     names = json.loads((REPO / "locales" / "_languages.json").read_text(encoding="utf-8"))
-    i18n_dir = REPO / "apps" / "desktop" / "src" / "i18n"
-    todo = []
-    for code in names:
-        if code == "en":
-            continue
-        path = i18n_dir / f"{code}.ts"
-        if not path.exists():
-            todo.append(code)
-            continue
-        if "defineLocale({})" in path.read_text(encoding="utf-8"):
-            todo.append(code)
-    return todo
+    return [code for code in names if code != "en"]
 
 
 def main() -> int:
@@ -125,7 +130,7 @@ def main() -> int:
     if pidfile.exists() and not args.force:
         try:
             rec = json.loads(pidfile.read_text(encoding="utf-8"))
-            alive = [w for w in rec.get("workers", []) if _pid_alive(int(w["pid"]))]
+            alive = [w for w in rec.get("workers", []) if _worker_alive(w, args.target)]
         except (json.JSONDecodeError, KeyError, ValueError):
             alive = []
         if alive:
@@ -167,8 +172,9 @@ def main() -> int:
             "stderr": subprocess.STDOUT,
         }
         if os.name == "nt":
-            # DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP: no console, not in
-            # this process's job object -> survives the agent exiting.
+            # Independent console/process group. These flags do not guarantee
+            # escape from an inherited Job Object or survival of a reboot;
+            # resume_i18n.py supplies scheduler-driven restart recovery.
             kwargs["creationflags"] = 0x00000008 | 0x00000200
         else:
             kwargs["start_new_session"] = True
