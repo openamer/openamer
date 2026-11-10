@@ -44,11 +44,38 @@ def pending_locales() -> list[str]:
     return [code for code in names if code != "en"]
 
 
+def untranslated_locales() -> list[str]:
+    """Locales whose cache is still empty: the ones worth spending lanes on.
+
+    A full sweep re-validates every finished locale (cheap but not free) and only
+    then reaches the empty ones. A targeted run owns exactly the gap.
+    """
+    out = []
+    for code in pending_locales():
+        path = HOME / "tmp" / f"desktop_{code}.json"
+        if not path.is_file():
+            out.append(code)
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            out.append(code)
+            continue
+        if not any(isinstance(value, str) and value.strip() for value in data.values()):
+            out.append(code)
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=2, help="processes per backend")
     ap.add_argument("--threads", type=int, default=3, help="threads per process")
     ap.add_argument("--target", choices=("desktop", "cli"), default="desktop")
+    ap.add_argument("--only-empty", action="store_true",
+                    help="desktop: spend every lane on locales whose cache is still empty")
+    ap.add_argument("--locales", nargs="*",
+                    help="explicit locale codes (overrides --only-empty); the watchdog uses "
+                         "this to finish half-translated locales, which --only-empty skips")
     ap.add_argument("--status", action="store_true")
     args = ap.parse_args()
 
@@ -68,6 +95,9 @@ def main() -> int:
 
     script_name = ("fill_desktop_locales.py" if args.target == "desktop"
                    else "i18n_fill_cli_locales.py")
+    if args.only_empty and args.target != "desktop":
+        print("--only-empty reads the desktop cache; it does not apply to --target cli")
+        return 2
     module = load("swarm_target", REPO / "scripts" / script_name)
     env = module.load_env()
     chain = module.backend_chain(env)
@@ -76,7 +106,10 @@ def main() -> int:
         print("no usable backend: every key is missing")
         return 1
 
-    todo = pending_locales()
+    if args.locales:
+        todo = list(args.locales)
+    else:
+        todo = untranslated_locales() if args.only_empty else pending_locales()
     if not todo:
         print(f"nothing pending for {args.target}")
         return 0

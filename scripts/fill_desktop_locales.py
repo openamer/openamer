@@ -242,24 +242,40 @@ def validation_error(source: str, value: object) -> str | None:
 
 
 def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict) -> dict[str, str]:
-    listing = "\n".join(f"{i}. {v}" for i, (_, v) in enumerate(items))
-    prompt = (
-        f"Translate these desktop UI strings into {lang_name}.\n"
-        "Rules:\n"
-        "- Output ONLY a JSON object mapping the index number (as a string) to the translation.\n"
-        "- These are short interface labels (buttons, headings, hints). Keep them short.\n"
-        "- Keep the literal characters \\n if present. Keep {placeholders} exactly.\n"
-        "- Preserve hotkeys (Ctrl/⌘+N, Enter, etc.) exactly.\n"
-        "- Translate English prose; unchanged prose is rejected and retried.\n"
-        "- Keep 'OpenAmer', file paths, URLs, and code in backticks unchanged.\n"
-        "- Every index must appear exactly once. No explanations.\n\n"
-        f"{listing}"
-    )
+    """Translate a batch, keeping every item that passes validation.
+
+    A chunk used to be all-or-nothing: one rejected item (an unchanged English
+    label, a placeholder slip) discarded the other nineteen and sent the whole
+    batch to the next lane. Measured consequence — Xhosa reported
+    `0/2219 validated literals` over 111 chunks: nearly every chunk contained at
+    least one item the validator rejects, so nothing survived. Large languages
+    passed often enough to hide the bug.
+
+    Now each lane only retries what is still missing, and a partial batch is
+    returned as what it is: partial.
+    """
+    accepted: dict[str, str] = {}
+    pending = list(items)
     for cand in backend_chain(env):
         name, url, keyenv, model = cand
+        if not pending:
+            break
         key = "-" if keyenv == "-" else env.get(keyenv, "")
         if not key:
             continue
+        listing = "\n".join(f"{i}. {v}" for i, (_, v) in enumerate(pending))
+        prompt = (
+            f"Translate these desktop UI strings into {lang_name}.\n"
+            "Rules:\n"
+            "- Output ONLY a JSON object mapping the index number (as a string) to the translation.\n"
+            "- These are short interface labels (buttons, headings, hints). Keep them short.\n"
+            "- Keep the literal characters \\n if present. Keep {placeholders} exactly.\n"
+            "- Preserve hotkeys (Ctrl/⌘+N, Enter, etc.) exactly.\n"
+            "- Translate English prose; unchanged prose is rejected and retried.\n"
+            "- Keep 'OpenAmer', file paths, URLs, and code in backticks unchanged.\n"
+            "- Every index must appear exactly once. No explanations.\n\n"
+            f"{listing}"
+        )
         try:
             reply = call_model(url, model, key, prompt)
         except Exception:
@@ -277,17 +293,15 @@ def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict) -> 
             continue
         if not isinstance(obj, dict):
             continue
-        out = {}
-        for i, (path, src) in enumerate(items):
+        for i, (path, src) in enumerate(pending):
             got = obj.get(str(i))
             reason = validation_error(src, got)
             if reason:
                 print(f"    {lang_name}: {name} rejected index {i}: {reason}", flush=True)
-                break
-            out[path] = got.strip()
-        if len(out) == len(items):
-            return out
-    return {}
+                continue
+            accepted[path] = got.strip()
+        pending = [(path, src) for path, src in pending if path not in accepted]
+    return accepted
 
 
 def existing_overrides(code: str) -> dict[str, str]:
@@ -330,15 +344,10 @@ def parse_literals(text: str) -> dict[str, str]:
 
 
 def _pid_alive(pid: int) -> bool:
-    """True when the pid exists.
-
-    Never ``os.kill(pid, 0)``: on Windows that is not a probe -- it delivers
-    CTRL_C_EVENT to the target's console process group and hard-kills it, plus
-    unrelated siblings (bpo-14484). psutil is a core dependency and probes
-    correctly on every platform.
-    """
+    """Query process existence portably without sending a signal."""
     import psutil
-    return psutil.pid_exists(pid)
+
+    return pid > 0 and psutil.pid_exists(pid)
 
 
 @contextlib.contextmanager

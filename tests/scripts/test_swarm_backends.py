@@ -86,3 +86,18 @@ def test_unreadable_spec_keeps_the_builtin_chain(fill):
     fill.EXTRA_BACKENDS_FILE.write_text("{ not json", encoding="utf-8")
     names = [cand[0] for cand in fill.backend_chain({"OLLAMA_API_KEY": "k"})]
     assert "ollama-deepseek" in names
+
+
+def test_untranslated_locales_are_the_empty_ones(tmp_path, monkeypatch):
+    """--only-empty must spend lanes on the gap, not on finished work."""
+    spec = importlib.util.spec_from_file_location(
+        "swarm_launcher", REPO / "scripts" / "start_translation_swarm.py")
+    launcher = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(launcher)
+    monkeypatch.setattr(launcher, "HOME", tmp_path)
+    (tmp_path / "tmp").mkdir()
+    (tmp_path / "tmp" / "desktop_aa.json").write_text('{"a.b": "Galtó"}', encoding="utf-8")
+    (tmp_path / "tmp" / "desktop_ab.json").write_text('{"a.b": ""}', encoding="utf-8")
+    empty = launcher.untranslated_locales()
+    assert "aa" not in empty, "a locale with content must not consume a lane"
+    assert "ab" in empty, "an empty cache must be scheduled"
