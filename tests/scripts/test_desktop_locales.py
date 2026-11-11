@@ -25,7 +25,27 @@ REPO = Path(__file__).resolve().parents[2]
 I18N = REPO / "apps" / "desktop" / "src" / "i18n"
 LANGS = REPO / "locales" / "_languages.json"
 
-needs_node = pytest.mark.skipif(shutil.which("node") is None, reason="node not installed")
+def _extractor_available() -> bool:
+    """True only when node can actually require the TypeScript compiler.
+
+    ``shutil.which("node")`` is not enough: CI images ship node without the
+    repo's node_modules, so the extractor dies inside require('typescript')
+    with a SystemExit instead of a skip (measured on PR #346, tests slice 4:
+    "literal extraction failed: ... cjs/loader").
+    """
+    if shutil.which("node") is None:
+        return False
+    try:
+        probe = subprocess.run(["node", "-e", "require('typescript')"],
+                               cwd=str(REPO), capture_output=True, timeout=60)
+    except (OSError, subprocess.SubprocessError):
+        return False
+    return probe.returncode == 0
+
+
+needs_node = pytest.mark.skipif(
+    not _extractor_available(),
+    reason="node + resolvable typescript required for AST extraction")
 
 
 @pytest.fixture(scope="module")
@@ -39,6 +59,10 @@ def fill():
 
 @pytest.fixture(scope="module")
 def en_literals(fill) -> dict[str, str]:
+    # Skip at the fixture so a test that forgets the needs_node mark cannot fail
+    # with the extractor's SystemExit instead of a clean skip.
+    if not _extractor_available():
+        pytest.skip("node + resolvable typescript required for AST extraction")
     return fill.parse_en()
 
 
@@ -136,3 +160,28 @@ def test_atomic_write_leaves_no_temp_file(fill, tmp_path):
     fill.atomic_write(target, "export const x = 1\n")
     assert target.read_text(encoding="utf-8") == "export const x = 1\n"
     assert not (tmp_path / "mod.ts.tmp").exists()
+
+
+def test_protocol_acronyms_are_not_prose(fill):
+    """"MCP" is a protocol name, not a sentence.
+
+    Rejecting it as "unchanged English" left four MCP labels open in every one
+    of the 185 locales on every wave, so full coverage was unreachable by
+    construction. Same class: CLI/TUI/SDK/GPU and the product names below.
+    """
+    for token in ("MCP", "CLI", "TUI", "SDK", "GPU", "Discord", "Slack",
+                  "Telegram", "WhatsApp"):
+        assert fill.validation_error(token, token) is None, token
+
+
+def test_matrix_user_id_is_a_syntax_example(fill):
+    """A Matrix id cannot be localised without becoming unparseable."""
+    handle = "@openamer:example.org"
+    assert fill.validation_error(handle, handle) is None
+
+
+def test_prose_still_must_be_translated(fill):
+    """The exemptions must stay narrow - plain English may not pass through."""
+    assert fill.validation_error("Settings", "Settings") == "unchanged English"
+    assert fill.validation_error("Message (⌘↵ to commit)",
+                                 "Message (⌘↵ to commit)") == "unchanged English"

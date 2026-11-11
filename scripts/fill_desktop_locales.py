@@ -41,9 +41,55 @@ BACKENDS = [
     # Prefer the configured free route; account quotas affect all Ollama models.
     ("openrouter-nemotron", "https://openrouter.ai/api/v1/chat/completions",
      "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
+    # Second $0 pillar: a free rolling weekly window, so it keeps working when
+    # the OpenRouter free route answers 429. Same model as the Ollama default.
+    ("tokenharbor-deepseek", "https://tokenharbor.ai/v1/chat/completions",
+     "TOKENHARBOR_API_KEY", "deepseek-v4.1-flash:free"),
+    ("tokenharbor-mimo", "https://tokenharbor.ai/v1/chat/completions",
+     "TOKENHARBOR_API_KEY", "mimo-v2.5:free"),
     ("ollama-deepseek", "https://ollama.com/v1/chat/completions", "OLLAMA_API_KEY", "deepseek-v4.1-flash"),
     ("ollama-minimax", "https://ollama.com/v1/chat/completions", "OLLAMA_API_KEY", "minimax-m3.1-flash"),
+    # Keyless (key_env "-"): no account to exhaust. Anonymous tier, rate-limited
+    # per IP, so it is a real pillar for a swarm, not a replacement.
+    ("pollinations-openai-fast", "https://text.pollinations.ai/openai", "-", "openai-fast"),
 ]
+
+# Swarm sharding: one worker process pins itself to one backend, so a 429 on a
+# single provider can never stall the whole fleet (measured: OpenRouter free sits
+# in 4x40s backoff while another provider answers immediately).
+PINNED_BACKEND = os.environ.get("OPENAMER_I18N_BACKEND", "").strip()
+
+# Dynamically discovered lanes (free models with their own rate pools) live in
+# this file; a builder writes it from the live provider catalog. Fixed path so a
+# detached worker needs no extra plumbing beyond the pin.
+EXTRA_BACKENDS_FILE = HOME / "tmp" / "swarm-backends.json"
+
+
+def _extra_backends() -> list[tuple]:
+    if not EXTRA_BACKENDS_FILE.is_file():
+        return []
+    try:
+        rows = json.loads(EXTRA_BACKENDS_FILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    out = []
+    for row in rows if isinstance(rows, list) else []:
+        if isinstance(row, dict) and row.get("name") and row.get("url") and row.get("model"):
+            out.append((str(row["name"]), str(row["url"]),
+                        str(row.get("key_env") or "-"), str(row["model"])))
+    return out
+
+
+def backend_chain(env: dict[str, str]) -> list[tuple]:
+    """Backends usable in this process: pinned if asked, keyless always."""
+    chain = []
+    for cand in BACKENDS + _extra_backends():
+        name, _url, keyenv, _model = cand
+        if PINNED_BACKEND and name != PINNED_BACKEND:
+            continue
+        if keyenv == "-" or env.get(keyenv):
+            chain.append(cand)
+    return chain
 
 KEY_RE = re.compile(r"^(\s*)(?:'((?:[^'\\]|\\.)*)'|([A-Za-z_$][A-Za-z0-9_$]*))\s*:\s*(.*)$")
 
@@ -127,7 +173,7 @@ def render(tree: dict, indent: int = 2) -> str:
 def call_model(url: str, model: str, key: str, prompt: str, timeout: int = 240) -> str:
     payload = {"model": model, "temperature": 0,
                "messages": [{"role": "user", "content": prompt}]}
-    if "ollama.com" in url:
+    if "ollama.com" in url or "tokenharbor.ai" in url:
         payload["reasoning_effort"] = "low"
     req = urllib.request.Request(
         url, data=json.dumps(payload).encode(),
@@ -161,7 +207,20 @@ AMBIGUOUS_KEY_RE = re.compile(r"\b(?:Enter|Escape|Esc|Tab|Backspace|Return|Space
 MACHINE_TOKENS = frozenset({
     "OpenAmer", "JSON", "API", "URL", "HTTP", "HTTPS", "SSH", "UTF-8",
     "HTML", "CSS", "SQL", "OAuth", "OAuth2", "GitHub", "GitLab",
+    # Protocol / platform acronyms. These are NOT prose: "MCP" is a protocol
+    # name, and translating it would produce a label nobody recognises. Without
+    # this exemption every locale rejected `MCP` as "unchanged English",
+    # re-requested it in every single wave and could never reach full coverage
+    # (measured 2026-11-11: 4 MCP labels x 185 locales permanently open).
+    "MCP", "CLI", "TUI", "SDK", "GPU", "CPU", "LLM", "OS", "RPC", "IDE",
+    # Product names stay in their own spelling in every language.
+    "Discord", "Slack", "Telegram", "WhatsApp", "Signal", "Matrix",
 })
+
+# A Matrix user id ("@openamer:example.org") is a syntax example like a URL or a
+# Windows path, not a sentence to translate. Localising it would ship a handle
+# that cannot be parsed by the server.
+MATRIX_ID_RE = re.compile(r"@[A-Za-z0-9._=-]+:[A-Za-z0-9.-]+")
 
 
 def machine_token(value: str) -> bool:
@@ -172,6 +231,7 @@ def machine_token(value: str) -> bool:
         or re.fullmatch(r"(?:https?://|/|[A-Za-z]:[\\/])\S+", value)
         or re.fullmatch(r"`[^`]+`", value)
         or HOTKEY_RE.fullmatch(value)
+        or MATRIX_ID_RE.fullmatch(value)
         or re.fullmatch(r"(?:Enter|Escape|Esc|Tab|Backspace)", value)
     )
 
@@ -196,27 +256,49 @@ def validation_error(source: str, value: object) -> str | None:
 
 
 def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict) -> dict[str, str]:
-    listing = "\n".join(f"{i}. {v}" for i, (_, v) in enumerate(items))
-    prompt = (
-        f"Translate these desktop UI strings into {lang_name}.\n"
-        "Rules:\n"
-        "- Output ONLY a JSON object mapping the index number (as a string) to the translation.\n"
-        "- These are short interface labels (buttons, headings, hints). Keep them short.\n"
-        "- Keep the literal characters \\n if present. Keep {placeholders} exactly.\n"
-        "- Preserve hotkeys (Ctrl/⌘+N, Enter, etc.) exactly.\n"
-        "- Translate English prose; unchanged prose is rejected and retried.\n"
-        "- Keep 'OpenAmer', file paths, URLs, and code in backticks unchanged.\n"
-        "- Every index must appear exactly once. No explanations.\n\n"
-        f"{listing}"
-    )
-    for cand in BACKENDS:
+    """Translate a batch, keeping every item that passes validation.
+
+    A chunk used to be all-or-nothing: one rejected item (an unchanged English
+    label, a placeholder slip) discarded the other nineteen and sent the whole
+    batch to the next lane. Measured consequence — Xhosa reported
+    `0/2219 validated literals` over 111 chunks: nearly every chunk contained at
+    least one item the validator rejects, so nothing survived. Large languages
+    passed often enough to hide the bug.
+
+    Now each lane only retries what is still missing, and a partial batch is
+    returned as what it is: partial.
+    """
+    accepted: dict[str, str] = {}
+    pending = list(items)
+    for cand in backend_chain(env):
         name, url, keyenv, model = cand
-        key = env.get(keyenv, "")
+        if not pending:
+            break
+        key = "-" if keyenv == "-" else env.get(keyenv, "")
         if not key:
             continue
+        listing = "\n".join(f"{i}. {v}" for i, (_, v) in enumerate(pending))
+        prompt = (
+            f"Translate these desktop UI strings into {lang_name}.\n"
+            "Rules:\n"
+            "- Output ONLY a JSON object mapping the index number (as a string) to the translation.\n"
+            "- These are short interface labels (buttons, headings, hints). Keep them short.\n"
+            "- Keep the literal characters \\n if present. Keep {placeholders} exactly.\n"
+            "- Preserve hotkeys (Ctrl/⌘+N, Enter, etc.) exactly.\n"
+            "- Translate English prose; unchanged prose is rejected and retried.\n"
+            "- Keep 'OpenAmer', file paths, URLs, and code in backticks unchanged.\n"
+            "- Every index must appear exactly once. No explanations.\n\n"
+            f"{listing}"
+        )
         try:
             reply = call_model(url, model, key, prompt)
         except Exception:
+            continue
+        if not isinstance(reply, str) or not reply.strip():
+            # A backend can answer with an empty body (or None on a filtered
+            # response). That is a skipped chunk, not a lane-killing crash:
+            # measured on or-nemotron-3.5-lightning, AttributeError: 'NoneType'
+            # object has no attribute 'strip' killed the worker mid-locale.
             continue
         t = reply.strip()
         if t.startswith("```"):
@@ -231,17 +313,15 @@ def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict) -> 
             continue
         if not isinstance(obj, dict):
             continue
-        out = {}
-        for i, (path, src) in enumerate(items):
+        for i, (path, src) in enumerate(pending):
             got = obj.get(str(i))
             reason = validation_error(src, got)
             if reason:
                 print(f"    {lang_name}: {name} rejected index {i}: {reason}", flush=True)
-                break
-            out[path] = got.strip()
-        if len(out) == len(items):
-            return out
-    return {}
+                continue
+            accepted[path] = got.strip()
+        pending = [(path, src) for path, src in pending if path not in accepted]
+    return accepted
 
 
 def existing_overrides(code: str) -> dict[str, str]:
@@ -284,25 +364,10 @@ def parse_literals(text: str) -> dict[str, str]:
 
 
 def _pid_alive(pid: int) -> bool:
-    """True when the pid exists. Windows has no signal-0; use OpenProcess."""
-    if os.name == "nt":
-        import ctypes
-        PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
-        STILL_ACTIVE = 259
-        h = ctypes.windll.kernel32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
-        if not h:
-            return False
-        try:
-            code = ctypes.c_ulong()
-            ctypes.windll.kernel32.GetExitCodeProcess(h, ctypes.byref(code))
-            return code.value == STILL_ACTIVE
-        finally:
-            ctypes.windll.kernel32.CloseHandle(h)
-    try:
-        os.kill(pid, 0)
-        return True
-    except OSError:
-        return False
+    """Query process existence portably without sending a signal."""
+    import psutil
+
+    return pid > 0 and psutil.pid_exists(pid)
 
 
 @contextlib.contextmanager
