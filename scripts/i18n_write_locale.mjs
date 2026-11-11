@@ -335,8 +335,14 @@ function mergeMissing(enObj, tree, translations, prefix, localeWords) {
     const existing = tree[name]
     if (existing === undefined) {
       // the whole subtree is missing — take it from the reference
+      //
+      // buildTree() prepends `prefix` itself, so the PARENT prefix must be
+      // passed here. Passing `path` (which already includes `name`) made every
+      // generated key resolve to "common.common.apply", so a locale created
+      // from scratch came out 100% English even when the table had the
+      // translations.
       const child = {}
-      buildTree({ properties: [prop] }, translations, path, child, localeWords)
+      buildTree({ properties: [prop] }, translations, prefix, child, localeWords)
       tree[name] = child[name]
       continue
     }

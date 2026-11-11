@@ -101,18 +101,43 @@ BACKENDS = [
 ]
 
 # The language name to put in the prompt, per locale code.
-LANGUAGE_NAMES = {
-    "ar": "Arabic", "bg": "Bulgarian", "bs": "Bosnian", "cs": "Czech",
-    "da": "Danish", "el": "Greek", "eo": "Esperanto", "es": "Spanish",
-    "et": "Estonian", "fa": "Persian", "fi": "Finnish", "fr": "French",
-    "ga": "Irish", "hi": "Hindi", "hr": "Croatian", "hu": "Hungarian",
-    "id": "Indonesian", "it": "Italian", "ja": "Japanese", "ko": "Korean",
-    "lt": "Lithuanian", "lv": "Latvian", "nl": "Dutch", "no": "Norwegian",
-    "pl": "Polish", "pt": "Portuguese", "ro": "Romanian", "ru": "Russian",
-    "sk": "Slovak", "sl": "Slovenian", "sq": "Albanian", "sv": "Swedish",
-    "th": "Thai", "tr": "Turkish", "uk": "Ukrainian", "vi": "Vietnamese",
-    "zh": "Simplified Chinese", "zh-hant": "Traditional Chinese",
+#
+# locales/_languages.json is the single source of truth: it already lists an
+# English name for every registered locale. The overrides below only fix the
+# codes whose display name is not what the translator must be told ("zh" has to
+# say "Simplified Chinese", not "Chinese").
+LANGUAGE_NAME_OVERRIDES = {
+    "zh": "Simplified Chinese",
+    "zh-hant": "Traditional Chinese",
+    "torbeski": (
+        "Torbeški (South Slavic spoken variety of the Polog/Debar region in "
+        "North Macedonia, closely related to Macedonian and Bulgarian but a "
+        "distinct variety — do NOT substitute standard Macedonian)"
+    ),
 }
+
+LANGUAGE_NAMES_FILE = REPO / "locales" / "_languages.json"
+
+
+def load_language_names() -> dict[str, str]:
+    """Every locale code -> the English language name the model should hear.
+
+    Reading the catalog instead of a hand-maintained dict is what keeps this
+    correct for all 186 locales; a hard-coded map silently sent the bare code
+    ("wa") to the model for every language it did not list.
+    """
+    names: dict[str, str] = {}
+    try:
+        raw = json.loads(LANGUAGE_NAMES_FILE.read_text(encoding="utf-8"))
+        if isinstance(raw, dict):
+            names = {str(k): str(v) for k, v in raw.items() if v}
+    except (OSError, json.JSONDecodeError):
+        names = {}
+    names.update(LANGUAGE_NAME_OVERRIDES)
+    return names
+
+
+LANGUAGE_NAMES = load_language_names()
 
 MASK = "\uE000"  # private use area marker
 
