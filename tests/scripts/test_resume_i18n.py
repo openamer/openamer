@@ -31,6 +31,18 @@ def test_recovery_invokes_both_targets_and_records_result(tmp_path, monkeypatch,
     assert capsys.readouterr().out == ""
 
 
+def test_home_fallback_matches_launcher(monkeypatch):
+    """Recovery ledger and worker pid files must resolve to the same install home."""
+    monkeypatch.delenv("OPENAMER_HOME", raising=False)
+    module = load()
+    spec = importlib.util.spec_from_file_location(
+        "i18n_launcher_home", SCRIPT.parent / "start_i18n_detached.py")
+    launcher = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(launcher)
+    assert module.HOME == launcher.HOME
+    assert module.HOME.parent.parent.name == "AppData"
+
+
 def test_launcher_failure_is_not_reported_as_success(tmp_path, monkeypatch, capsys):
     module = load()
     scripts = tmp_path / "scripts"

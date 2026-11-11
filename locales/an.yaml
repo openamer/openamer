@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] una vegada  |  [s] sesión  |  [d] denegar'
   prompt_long: '      Tría [o/s/a/D]: '
   prompt_short: '      Tría [o/s/D]: '
-  choose_smart_deny: '      [o] una vegada  |  [d] denegar'
-  prompt_smart_deny: '      Tría [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]na vegada  |  [d]enegar'
+  prompt_smart_deny: '      Tría [u/D]: '
+  smart_deny_once_inputs: u,una vegada
+  smart_deny_deny_inputs: d,denegar
   timeout: '      ⏱ Tiempo d''aspera excediu - denegando comando'
   allowed_once: '      ✓ Permitiu una vegada'
   allowed_session: '      ✓ Permitiu ta esta sesión'
@@ -27,7 +27,7 @@ gateway:
   config_read_failed: '⚠️ No s''ha puesto leyer config.yaml: {error}'
   config_save_failed: '⚠️ No s''ha puesto alzar a configuración: {error}'
   model:
-    error_prefix: 'Error: {error}'
+    error_prefix: 'Erro: {error}'
     switched: Modelo cambiau a `{model}`
     provider_label: 'Proveyedor: {provider}'
     context_label: 'Contexto: {tokens} tokens'
@@ -567,39 +567,39 @@ gateway:
       Todas as respuestas incluyirán un mensache de voz.'
     status_mode: 'Modo de voz: {label}'
     status_channel: 'Canal de voz: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'Participantes: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    speaking: ' (parlant)'
+    enabled_short: Modo de voz activato.
+    disabled_short: Modo de voz desactivato.
+    label_off: Desactivato (només testo)
+    label_voice_only: Activato (respuesta de voz a mensaches de voz)
+    label_all: TTS (respuesta de voz a totz os mensaches)
     help: '{toggle}
 
 
-      **How /voice works**
+      **Como funciona /voice**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — respuesta de voz cuan envías un mensache de voz
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — respuesta de voz a *totz* os mensaches
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — torna a respuestas nomás de testo
 
-      • `/voice status` — show the current mode
+      • `/voice status` — amostrar o modo actual
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (sin argumentos) — alternanza rápida entre on y off{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **Canals de voz en directo (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • Uneix-te a un canal de voz primer, pués `/voice channel` — me uneixe, escolto y parlo as mias respuestas
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — desconectar d''o canal de voz'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ Modo YOLO **OFF** pa esta sesión — os comandos periglosos requeriran aprobazión.
+    enabled: ⚡ Modo YOLO **ON** pa esta sesión — totz os comandos auto-aprobatos. Usa con cautela.
   shared:
     session_db_unavailable: Base de datos de sesions no disponible.
     session_db_unavailable_prefix: Base de datos de sesions no disponible

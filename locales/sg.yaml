@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] lâ ôko  |  [s] sesiôni  |  [d] kê'
   prompt_long: '      Sorongo [o/s/a/D]: '
   prompt_short: '      Sorongo [o/s/D]: '
-  choose_smart_deny: '      [o] lâ ôko  |  [d] kê'
-  prompt_smart_deny: '      Sorongo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [l]â ôko  |  [k]ê'
+  prompt_smart_deny: '      Sorongo [l/K]: '
+  smart_deny_once_inputs: l,lâ ôko
+  smart_deny_deny_inputs: k,kê
   timeout: '      ⏱ Ngbâ tî lâ - kê komandi'
   allowed_once: '      ✓ A yê lâ ôko'
   allowed_session: '      ✓ A yê na sesiôni sô'
@@ -142,7 +142,7 @@ gateway:
 
       _(a yeke sara kua na message so a yeke ga)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (na session so gi)'
-    label_fast: FAST
+    label_fast: VITE
     label_normal: NORMAL
     status_fast: hîo
     status_normal: normal

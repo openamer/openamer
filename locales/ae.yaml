@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] aēuuā  |  [s] haŋkəna  |  [d] nōit'
   prompt_long: '      Vərəna [o/s/a/D]: '
   prompt_short: '      Vərəna [o/s/D]: '
-  choose_smart_deny: '      [o] aēuuā  |  [d] nōit'
-  prompt_smart_deny: '      Vərəna [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [a]ēuuā  |  [n]ōit'
+  prompt_smart_deny: '      Vərəna [a/N]: '
+  smart_deny_once_inputs: a,aēuuā
+  smart_deny_deny_inputs: n,nōit
   timeout: '      ⏱ Zruuān - framāna nōit'
   allowed_once: '      ✓ Ustāta aēuuā'
   allowed_session: '      ✓ Ustāta aētahmāi haŋkəna'
@@ -426,7 +426,7 @@ gateway:
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
     matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    session_id: '**Yazamaide ID:** `{session_id}`'
     title: '**nāman:** {title}'
     created: '**Dāta:** {timestamp}'
     last_activity: '**Apəmō Cāra:** {timestamp}'

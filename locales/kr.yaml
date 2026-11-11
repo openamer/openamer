@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] saa tilo  |  [s] zaman  |  [d] kǝnnǝ'
   prompt_long: '      Kǝntǝ [o/s/a/D]: '
   prompt_short: '      Kǝntǝ [o/s/D]: '
-  choose_smart_deny: '      [o] saa tilo  |  [d] kǝnnǝ'
-  prompt_smart_deny: '      Kǝntǝ [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [s]aa tilo  |  [k]ǝnnǝ'
+  prompt_smart_deny: '      Kǝntǝ [s/K]: '
+  smart_deny_once_inputs: s,saa tilo
+  smart_deny_deny_inputs: k,kǝnnǝ
   timeout: '      ⏱ Lokaci kǝlǝn - umru kǝnnǝ'
   allowed_once: '      ✓ Yalla saa tilo'
   allowed_session: '      ✓ Yalla zaman dǝbe'
@@ -107,7 +107,7 @@ gateway:
     no_provider: Provider aŋa config ba -- kǝltǝ ba.
     nothing_to_do: Kǝltǝbe adǝn ba (transcript aŋa kǝra protected context).
     aggressive_unsupported: --aggressive ba a dǝgǝna; '/compress here [N]' amantu kǝrǝmbu sawalye kǝra sǝlǝmǝna, walla /undo amantu zǝmǝye fǝltǝna.
-    focus_line: 'Focus: "{topic}"'
+    focus_line: 'Hanga: "{topic}"'
     summary_failed: ⚠️ Summary taƙaitawa kǝskǝ ({error}). Sawal tarihi {count} fǝltǝna ka waltǝna da placeholder; sawal kǝra ba a dǝgǝna. Tǝmǝna auxiliary.compression model configuration.
     aborted: ⚠️ Compression aborted ({error}). Ba sawal fǝltǝna — sawal ba a waltǝna. /compress amantu kǝlǝmtǝna, /reset amantu session kǝra, walla tǝmǝna auxiliary.compression model configuration.
     aux_failed: ℹ️ Configured compression model `{model}` kǝskǝ ({error}). Recovered da main model — context ba a waltǝna — amma tǝmǝna `auxiliary.compression.model` in config.yaml.
@@ -145,7 +145,7 @@ gateway:
     label_fast: ƘARƘAR
     label_normal: ADATǝ
     status_fast: kátakàtá
-    status_normal: normal
+    status_normal: lafiya
     picker_title: '⚡ **Awo Priority**
 
 
@@ -245,7 +245,7 @@ gateway:
     header: 👤 **Profil:** `{profile}`
     home: 📂 **Su:** `{home}`
   reasoning:
-    level_default: medium (default)
+    level_default: Tsawon (asali)
     level_disabled: none (kǝntǝ)
     scope_session: sauyar zaman
     scope_global: saitin duniya
@@ -421,17 +421,17 @@ gateway:
   status:
     header: 📊 **OpenAmer Gateway hali**
     matrix_scope_header: '**Matrix kǝra:**'
-    matrix_scope_room: '  room: {room}'
-    matrix_scope_room_id: '  room_id: {room_id}'
-    matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    matrix_scope_room: '  Fada: {room}'
+    matrix_scope_room_id: '  furo_id: {room_id}'
+    matrix_scope_thread: '  rayi_id: {thread_id}'
+    matrix_scope_mode: '  waktu_kowuna: {scope}'
+    matrix_scope_key: '  waktu_kuluwa: {session_key}'
+    session_id: '**Waktu ID:** `{session_id}`'
     title: '**Kǝlam:** {title}'
     created: '**Cǝktǝ:** {timestamp}'
     last_activity: '**Aiki kǝrtǝ:** {timestamp}'
-    model: '**Model:** `{model}`'
-    model_provider: '**Model:** `{model}` ({provider})'
+    model: '**Namuna:** `{model}`'
+    model_provider: '**Namuna:** `{model}` ({provider})'
     context: '**Kǝsǝ:** {used} / {total} ({pct}%)'
     context_used: '**Kǝsǝ:** ~{used} token'
     tokens: '**API token kǝrmǝ (call kǝrmǝn sǝrǝ):** {tokens}'
@@ -514,9 +514,9 @@ gateway:
     start_failed: '✗ Update cidǝna ba: {error}'
     starting: 🧬 OpenAmer update cidǝna… progress awo sa.
   usage:
-    rate_limits: ⏱️ **Rate Limits:** {state}
+    rate_limits: ⏱️ **Ciwo Kiyayya:** {state}
     header_session: 📊 **Session token faidǝ**
-    label_model: 'Model: `{model}`'
+    label_model: 'Namuna: `{model}`'
     label_input_tokens: 'Input token: {count}'
     label_cache_read: 'Cache read token: {count}'
     label_cache_write: 'Cache write token: {count}'

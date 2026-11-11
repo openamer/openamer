@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] olumwe  |  [s] ethimbo  |  [d] kana'
   prompt_long: '      Ehogololo [o/s/a/D]: '
   prompt_short: '      Ehogololo [o/s/D]: '
-  choose_smart_deny: '      [o] olumwe  |  [d] kana'
-  prompt_smart_deny: '      Ehogololo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [o]lumwe  |  [k]ana'
+  prompt_smart_deny: '      Ehogololo [o/K]: '
+  smart_deny_once_inputs: o,olumwe
+  smart_deny_deny_inputs: k,kana
   timeout: '      ⏱ Ethimbo lya pu - okukana eyalelo'
   allowed_once: '      ✓ Sha pitikwa olumwe'
   allowed_session: '      ✓ Sha pitikwa methimbo ndika'
@@ -142,8 +142,8 @@ gateway:
 
       _(ota ka ninga efikilo pomutumbo tau landula)_'
     session_only: '⚡ ✓ Okulonga kwopetameko: **{label}** (pethimbo lyokulongitha ndika ashike)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: OMBILIPO
+    label_normal: OKUHULILA
     status_fast: mbimbini
     status_normal: Gwa yelela
     picker_title: '⚡ **Okulonga kwokutanga**
@@ -424,8 +424,8 @@ gateway:
     matrix_scope_room: '  ondjuwo: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_mode: '  oshinano shoseshini: {scope}'
+    matrix_scope_key: '  okii yoseshini: {session_key}'
     session_id: '**ID yoSession:** `{session_id}`'
     title: '**Omutwe:** {title}'
     created: '**Ya shitwa:** {timestamp}'

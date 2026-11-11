@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Atausiq  |  [s] Atuġniq  |  [d] Aŋit'
   prompt_long: '      Naliġaġniq [o/s/a/D]: '
   prompt_short: '      Naliġaġniq [o/s/D]: '
-  choose_smart_deny: '      [o] Atausiq  |  [d] Aŋit'
-  prompt_smart_deny: '      Naliġaġniq [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [a]tausiq  |  [a]ŋit'
+  prompt_smart_deny: '      Naliġaġniq [a/A]: '
+  smart_deny_once_inputs: a,atausiq
+  smart_deny_deny_inputs: a,aŋit
   timeout: '      ⏱ Piffissaq - aŋitchuq apqut'
   allowed_once: '      ✓ Atausiq akkutauq'
   allowed_session: '      ✓ Akkutauq una atuġnimun'
@@ -29,8 +29,8 @@ gateway:
   model:
     error_prefix: 'Tuuġġaq: {error}'
     switched: Model allanngu `{model}`-mun
-    provider_label: 'Provider: {provider}'
-    context_label: 'Context: {tokens} tokens'
+    provider_label: 'Atausri: {provider}'
+    context_label: 'Ilisimaniq: {tokens} tokens'
     max_output_label: 'Anigutit max: {tokens} tokens'
     cost_label: 'Aki: {cost}'
     capabilities_label: 'Pijjautit: {capabilities}'
@@ -156,11 +156,11 @@ gateway:
     choice_fast: sukka — Suliqaqtaaq atuġun
     choice_normal: naammaktuq — naammaktuq suliqaq
   footer:
-    status: '📎 Runtime footer: **{state}**
+    status: '📎 Uqautchiq Kingaun: **{state}**
 
-      Fields: `{fields}`
+      Nakut: `{fields}`
 
-      Platform: `{platform}`'
+      Nuna: `{platform}`'
     usage: 'Atuġniq: `/footer [on|off|status]`'
     saved: '📎 Runtime footer: **{state}**{example}
 
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Title imaitchuq salummaqtuqŋat — sessiun aullaqtuq atqaqaŋitluni.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Qanuq: {tip}'
   restart:
     in_progress: ⏳ Gateway restart suli piiŋŋuaqtuq...
     restarting: ♻ Gateway restarttuq. 60 sekundat iluanni paġlagaaŋitkuŋ, console-mi `openamer gateway restart`-mik restarttuq.
@@ -420,12 +420,12 @@ gateway:
       Cron jobs-llu cross-platform nalunaikkutiit uvani tuniyumaaġuŋ.'
   status:
     header: 📊 **OpenAmer Gateway qanuq ittuq**
-    matrix_scope_header: '**Matrix scope:**'
-    matrix_scope_room: '  room: {room}'
-    matrix_scope_room_id: '  room_id: {room_id}'
+    matrix_scope_header: '**Matrix sulik:**'
+    matrix_scope_room: '  ini: {room}'
+    matrix_scope_room_id: '  ini_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_mode: '  session sulik: {scope}'
+    matrix_scope_key: '  session kivgaq: {session_key}'
     session_id: '**Session ID:** `{session_id}`'
     title: '**Ataq:** {title}'
     created: '**Savaktaq:** {timestamp}'
@@ -516,7 +516,7 @@ gateway:
   usage:
     rate_limits: ⏱️ **Rate limit-it:** {state}
     header_session: 📊 **Session token atuġniq**
-    label_model: 'Model: `{model}`'
+    label_model: 'Nunatchiaq: `{model}`'
     label_input_tokens: 'Input token-it: {count}'
     label_cache_read: 'Cache read token-it: {count}'
     label_cache_write: 'Cache write token-it: {count}'

@@ -18,6 +18,8 @@ import pathlib
 import re
 import sys
 
+import pytest
+
 REPO = pathlib.Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
@@ -42,13 +44,23 @@ DESKTOP_AUDIT = REPO / "reports" / "upstream-independence-audit-desktop.json"
 def _desktop_marker_files() -> list[str]:
     """Return the desktop files that carry a provenance marker.
 
-    Read from the audit report rather than hard-coded, so the list cannot
-    drift away from what the audit actually found.
+    Read from the tree, not from the audit report: the report is a generated
+    artifact that other automation rewrites, so a blocking test must not depend
+    on its current shape (measured 2026-11-09: a `chore(reports)` cron commit
+    replaced it with a pre-marker version and every marker vanished from it).
     """
-    if not DESKTOP_AUDIT.is_file():
+    root = REPO / "apps" / "desktop" / "src"
+    if not root.is_dir():
         return []
-    data = json.loads(DESKTOP_AUDIT.read_text(encoding="utf-8"))
-    return list(data.get("files_with_marker", []))
+    marked = []
+    for path in sorted(root.rglob("*.ts*")):
+        try:
+            text = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+        if "Upstream-Derived:" in text:
+            marked.append(path.relative_to(root).as_posix())
+    return marked
 
 
 def test_every_derived_python_file_has_marker():
@@ -114,6 +126,19 @@ def test_desktop_marker_shape_is_valid():
         assert marker["license"].upper() == "MIT", (
             f"{rel}: unexpected license {marker['license']!r}"
         )
+
+
+def test_desktop_audit_report_agrees_with_the_tree():
+    """A committed audit report must describe the tree it was generated from."""
+    if not DESKTOP_AUDIT.is_file():
+        pytest.skip("no audit report committed")
+    data = json.loads(DESKTOP_AUDIT.read_text(encoding="utf-8"))
+    listed = set(data.get("files_with_marker", []))
+    if not listed:
+        pytest.skip("committed report predates the marker field")
+    assert listed == set(_desktop_marker_files()), (
+        "the audit report disagrees with the markers actually present in the tree"
+    )
 
 
 def test_notice_lists_every_derived_python_file():

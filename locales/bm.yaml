@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Siɲɛ kelen  |  [s] Sesiɔn  |  [d] Bali'
   prompt_long: '      Sugandi [o/s/a/D]: '
   prompt_short: '      Sugandi [o/s/D]: '
-  choose_smart_deny: '      [o] Siɲɛ kelen  |  [d] Bali'
-  prompt_smart_deny: '      Sugandi [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [s]iɲɛ kelen  |  [b]ali'
+  prompt_smart_deny: '      Sugandi [s/B]: '
+  smart_deny_once_inputs: s,siɲɛ kelen
+  smart_deny_deny_inputs: b,bali
   timeout: '      ⏱ Waati tɛmɛnen - kɔmandi bali'
   allowed_once: '      ✓ Sɔnna siɲɛ kelen'
   allowed_session: '      ✓ Sɔnna nin sesiɔn in kama'
@@ -226,7 +226,7 @@ gateway:
 
       '
     none_option: • `none` — (mɔgɔya dafari tɛ)
-    item: • `{name}` — {preview}
+    item: • {name} — {preview}
     usage: '
 
       Kɛcogo: `/personality <name>`'
@@ -426,7 +426,7 @@ gateway:
     matrix_scope_thread: '  jɔsi_id: {thread_id}'
     matrix_scope_mode: '  session_yɔrɔ: {scope}'
     matrix_scope_key: '  session_safɔlɔ: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    session_id: '**ID sesiyon:** `{session_id}`'
     title: '**Tɔgɔ:** {title}'
     created: '**Dabɔli:** {timestamp}'
     last_activity: '**Aktivite labɛn:** {timestamp}'

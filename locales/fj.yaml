@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Dua na gauna  |  [s] Seseni  |  [d] Vakasega'
   prompt_long: '      Digidigi [o/s/a/D]: '
   prompt_short: '      Digidigi [o/s/D]: '
-  choose_smart_deny: '      [o] Dua na gauna  |  [d] Vakasega'
-  prompt_smart_deny: '      Digidigi [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [d]ua na gauna  |  [v]akasega'
+  prompt_smart_deny: '      Digidigi [d/V]: '
+  smart_deny_once_inputs: d,dua na gauna
+  smart_deny_deny_inputs: v,vakasega
   timeout: '      ⏱ Sa oti na gauna - sa vakasega na komanda'
   allowed_once: '      ✓ Sa vakadonui dua na gauna'
   allowed_session: '      ✓ Sa vakadonui ena seseni oqo'
@@ -143,7 +143,7 @@ gateway:
       _(e na cakacaka ena itukutuku ka tarava)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (ena veiqaravi oqo ga)'
     label_fast: TOTOLO
-    label_normal: NORMAL
+    label_normal: VAKARAITAKI
     status_fast: totolo
     status_normal: vakamatau
     picker_title: '⚡ **Vakayacori ni Ka Bibi**
@@ -516,7 +516,7 @@ gateway:
   usage:
     rate_limits: ⏱️ **Iyalayala ni Reiti:** {state}
     header_session: 📊 **Vakayagataki ni Token ni Seseini**
-    label_model: 'Model: `{model}`'
+    label_model: 'Modeli: `{model}`'
     label_input_tokens: 'Token ni vakacurumi: {count}'
     label_cache_read: 'Token ni wilika mai na cache: {count}'
     label_cache_write: 'Token ni volai ki na cache: {count}'

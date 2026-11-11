@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Lumwe  |  [s] Oshikando  |  [d] Tinda'
   prompt_long: '      Ehoololo [o/s/a/D]: '
   prompt_short: '      Ehoololo [o/s/D]: '
-  choose_smart_deny: '      [o] Lumwe  |  [d] Tinda'
-  prompt_smart_deny: '      Ehoololo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [l]umwe  |  [t]inda'
+  prompt_smart_deny: '      Ehoololo [l/T]: '
+  smart_deny_once_inputs: l,lumwe
+  smart_deny_deny_inputs: t,tinda
   timeout: '      ⏱ Ethimbo lya pwa - okutinda elombwelo'
   allowed_once: '      ✓ Kwa pitikwa lumwe'
   allowed_session: '      ✓ Kwa pitikwa moshikando shino'
@@ -142,8 +142,8 @@ gateway:
 
       _(otai ka longa momukanda u landa)_'
     session_only: '⚡ ✓ Okulongwa kwoKutanga: **{label}** (oshifika eshi ashike)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: KAVELI
+    label_normal: KAKO
     status_fast: okuhambuka
     status_normal: okukala
     picker_title: '⚡ **Okulonga kwokutanga**
@@ -516,7 +516,7 @@ gateway:
   usage:
     rate_limits: ⏱️ **Omipaka dhoRate:** {state}
     header_session: 📊 **Okulongifa Token moSession**
-    label_model: 'Model: `{model}`'
+    label_model: 'Omodelo: `{model}`'
     label_input_tokens: 'Otoken yokuingila: {count}'
     label_cache_read: 'Otoken yokulesha cache: {count}'
     label_cache_write: 'Otoken yokunyola cache: {count}'

@@ -8,52 +8,52 @@ approval:
   choose_short: '      [o] Omulundi gumu  |  [s] Okutuula kuno  |  [d] Gaana'
   prompt_long: '      Okulonda [o/s/a/D]: '
   prompt_short: '      Okulonda [o/s/D]: '
-  choose_smart_deny: '      [o] Omulundi gumu  |  [d] Gaana'
-  prompt_smart_deny: '      Choice [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [o]mulundi gumu  |  [g]aana'
+  prompt_smart_deny: '      Okusala [o/G]: '
+  smart_deny_once_inputs: o,omulundi gumu
+  smart_deny_deny_inputs: g,gaana
   timeout: '      ⏱ Ekiseera kiwedde - kigaana ekiragiro'
-  allowed_once: '      ✓ Allowed once'
+  allowed_once: '      ✓ Kitegeka obulala'
   allowed_session: '      ✓ Kikkiriziddwa ku kiseera kino'
   allowed_always: '      ✓ Kyongeddwa ku lukalala lw''ebikkiriziddwa olubeerera'
-  denied: '      ✗ Denied'
-  cancelled: '      ✗ Cancelled'
+  denied: '      ✗ Kanna'
+  cancelled: '      ✗ Kakasa'
   blocklist_message: Ekiragiro kino kiri ku lukalala lw'ebigaana awatali mwanya era tekisobola kukkirizibwa.
 gateway:
   approval_expired: ⚠️ Okukkiriza kuwedde (omubaka takyinda). Saba omubaka agezeeko nate.
   draining: ⏳ Kulinda {count} omubaka/ababaka abakola okukoma nga tebannatandika nate...
-  goal_cleared: ✓ Goal cleared.
-  no_active_goal: No active goal.
+  goal_cleared: ✓ Ekyo kyeeyo kiyimiridde.
+  no_active_goal: Teekyo kyeeyo ekinyukidde.
   config_read_failed: '⚠️ Tekisobose okusoma config.yaml: {error}'
   config_save_failed: '⚠️ Tekisobose okutereka config: {error}'
   model:
-    error_prefix: 'Error: {error}'
+    error_prefix: 'Olubyala: {error}'
     switched: Modeli ekyusiddwa ku `{model}`
-    provider_label: 'Provider: {provider}'
+    provider_label: 'Omuleeta: {provider}'
     context_label: 'Embeera: {tokens} tokens'
     max_output_label: 'Ekisinga okufuluma: {tokens} tokens'
-    cost_label: 'Cost: {cost}'
+    cost_label: 'Omwesu: {cost}'
     capabilities_label: 'Obusobozi: {capabilities}'
     prompt_caching_enabled: 'Okutereka prompt mu cache: kikozeseddwa'
-    warning_prefix: 'Warning: {warning}'
+    warning_prefix: 'Okutuusa: {warning}'
     saved_global: Kiterekiddwa mu config.yaml (`--global`)
     session_only_hint: _(session yokka — yongerako `--global` okusigala)_
     current_label: 'Kati: `{model}` ku {provider}'
-    current_tag: ' (current)'
-    more_models_suffix: ' (+{count} more)'
+    current_tag: ' (eka)'
+    more_models_suffix: ' (+{count} engingi)'
     usage_switch_model: '`/model <name>` — kyusa modeli'
     usage_switch_provider: '`/model <name> --provider <slug>` — kyusa provider'
     usage_persist: '`/model <name> --global` — okutereka'
   agents:
     header: 🤖 **Abakozi abakola n'Emirimu**
     active_agents: '**Abakozi abakola:** {count}'
-    this_chat: ' · this chat'
-    more: '... and {count} more'
+    this_chat: ' · olugero oluno'
+    more: '... n''{count} zingi'
     running_processes: '**Enkola ezikola mu nnyuma:** {count}'
     async_jobs: '**Emirimu gya Gateway async:** {count}'
     none: Tewali bakozi bakola oba emirimu egikola.
-    state_starting: starting
-    state_running: running
+    state_starting: okutandika
+    state_running: kikola
   approve:
     no_pending: Tewali kiragiro kikirindirira kukkirizibwa.
     once_singular: ✅ Ekiragiro kikkiriziddwa. Omukozi addamu...
@@ -96,7 +96,7 @@ gateway:
   commands:
     usage: 'Enkozesa: `/commands [page]`'
     skill_header: '⚡ **Ebiragiro by''Obukugu**:'
-    default_desc: Skill command
+    default_desc: Lamula y'obuwangwa
     none: Tewali biragiro biriiwo.
     header: 📚 **Ebiragiro** ({total} gonna, omuko {page}/{total_pages})
     nav_prev: '`/commands {page}` ← ekiyise'
@@ -107,7 +107,7 @@ gateway:
     no_provider: Tewali provider alondeddwa -- teyinziza kukendeeza.
     nothing_to_do: Tewali kya kukendeeza (ebiwandiiko by'emboozi bikyalimu context eyakuumibwa yonna).
     aggressive_unsupported: --aggressive teyiwagirwa; kozesa '/compress here [N]' okukuuma ebiseera by'emboozi ebipya byokka, oba /undo okuggyamu emitendera.
-    focus_line: 'Focus: "{topic}"'
+    focus_line: 'Kutegeera: "{topic}"'
     summary_failed: ⚠️ Okukola summary kulemye ({error}). Obubaka {count} obw'emabega byaggyibwawo ne bisikizibwa n'ekifo ekitereke; context ey'emabega tekyasobola kudda. Lowooza okebere entegeka ya model auxiliary.compression.
     aborted: ⚠️ Okukendeeza kusaziddwa ({error}). Tewali bubaka bwaggibwa — emboozi tekyukyuse. Kozesa /compress okuddamu, /reset olw'okiseera ekipya, oba keba entegeka ya model auxiliary.compression.
     aux_failed: ℹ️ Model ya compression etegekeddwa `{model}` yalemye ({error}). Yaddiddwa n'okozesa model yo enkulu — context ekyali bulungi — naye oyinza okwetaaga okebere `auxiliary.compression.model` mu config.yaml.
@@ -121,7 +121,7 @@ gateway:
   deny:
     stale: ❌ Ekiragiro kigaaniddwa (okukkiriza kwali kukadde).
     no_pending: Tewali kiragiro kirindiridde kya kugaanira.
-    denied_singular: ❌ Command denied.
+    denied_singular: ❌ Lamula ganyiridde.
     denied_plural: ❌ Ebiragiro bigaaniddwa (ebiragiro {count}).
     denied_reason_singular: '❌ Ekiragiro kigaaniddwa. Ensonga eweereddwa eri agent: "{reason}"'
     denied_reason_plural: '❌ Ebiragiro bigaaniddwa (ebiragiro {count}). Ensonga eweereddwa eri agent: "{reason}"'
@@ -142,10 +142,10 @@ gateway:
 
       _(kijja kukola ku bubaka obuddako)_'
     session_only: '⚡ ✓ Okukola okw''Okusooka: **{label}** (mu sessoni eno yokka)'
-    label_fast: FAST
-    label_normal: NORMAL
-    status_fast: fast
-    status_normal: normal
+    label_fast: MWANGU
+    label_normal: KIKAALI
+    status_fast: mwangu
+    status_normal: kikaali
     picker_title: '⚡ **Okukola okw''Okusooka**
 
 
@@ -168,13 +168,13 @@ gateway:
     example_line: '
 
       Ekyokulabirako: `{preview}`'
-    state_on: 'ON'
-    state_off: 'OFF'
+    state_on: KU
+    state_off: WANSI
   goal:
     unavailable: Ebikakano tebiriwo ku sessoni eno.
-    no_goal_set: No goal set.
+    no_goal_set: Teekwo ekitondo.
     paused: '⏸ Ekigendererwa kiyimiridde: {goal}'
-    no_resume: No goal to resume.
+    no_resume: Teekwo ekitondo eky'okusubira.
     resumed: '▶ Ekigendererwa kuddiddwa: {goal}
 
       Weereza obubaka bwonna okweyongerayo, oba linda — ndikwata ekintu ekiddako ku mulundi oguddako.'
@@ -201,14 +201,14 @@ gateway:
     error_prefix: '⚠ ensobi ya kanban: {error}'
     subscribed_suffix: (weewandiise — ojja kutegeezebwa ng’{task_id} emaze oba ezikomye)
     truncated_suffix: … (kikatiddwako; kozesa `openamer kanban …` mu terminal yo okufuna ebivaamu bijjuvu)
-    no_output: (no output)
+    no_output: (tewali wulira)
     wake:
-      completed: completed
+      completed: kwamulidde
       gave_up: yeewaggula (emirundi gy’okugeza giwedde)
       crashed: kyagwa (omukozi yava mu nkola); dispatcher ejja kuddamu
       timed_out: ekiseera kiwedde; dispatcher ejja kuddamu
       blocked: kizibikiddwa; kyetaaga okutunuulirwa
-      status_default: status changed
+      status_default: ekitundu kyaguziibwa
       status_joiner: ', '
       message: '[kanban] Omulimu {task_id} {status}.
 
@@ -243,12 +243,12 @@ gateway:
       Ebiriwo: {available}'
   profile:
     header: 👤 **Purofayiro:** `{profile}`
-    home: 📂 **Home:** `{home}`
+    home: 📂 **Waka:** `{home}`
   reasoning:
-    level_default: medium (default)
-    level_disabled: none (disabled)
-    scope_session: session override
-    scope_global: global config
+    level_default: ekisinga ekiwanika (eky'ekisa)
+    level_disabled: tewali (kikozesebwa)
+    scope_session: essuuna ey'okusibira
+    scope_global: config ey'omanyi
     status: '🧠 **Enteekateeka z''Okulowooza**
 
 
@@ -260,8 +260,8 @@ gateway:
 
 
       _Okukozesa:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
-    display_on: on ✓
-    display_off: 'off'
+    display_on: Ku ✓
+    display_off: Zimba
     display_set_on: '🧠 ✓ Okulaga okulowooza: **KIKOLA**
 
       Okulowooza kwa model kijja kulagibwa nga tebinnaba buli kuddamu ku **{platform}**.'
@@ -323,8 +323,8 @@ gateway:
 
       '
     reconnected: '♻️ Kiddiddwamu okukwatagana: {names}'
-    added: '➕ Added: {names}'
-    removed: '➖ Removed: {names}'
+    added: '➕ Okusongedde: {names}'
+    removed: '➖ Okususula: {names}'
     none_connected: Tewali MCP servers zikwataganye.
     tools_available: '
 
@@ -338,7 +338,7 @@ gateway:
     total: '
 
       📚 {count} obukugu buboneka'
-    added_header: ➕ **Added Skills:**
+    added_header: ➕ **Obwangwa Bwekusongedde:**
     removed_header: ➖ **Obukugu Obugyiddwa:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Omutwe tewaliimu kintu oluvannyuma lw''okutereeza — sessoni etandise nga tewali mutwe.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Ekyogerere: {tip}'
   restart:
     in_progress: ⏳ Okuddamu okutandika Gateway kukyali mu nkola...
     restarting: ♻ Okuddamu okutandika gateway. Bw'otategeezebwa mu ssekonda 60, ddamu otandike okuva ku konsolo n'okukozesa `openamer gateway restart`.
@@ -420,24 +420,24 @@ gateway:
       Emirimu gya Cron n''obubaka okuva mu nsengeka ez''enjawulo birireetebwa wano.'
   status:
     header: 📊 **Embeera y'Omulyango wa OpenAmer**
-    matrix_scope_header: '**Matrix scope:**'
-    matrix_scope_room: '  room: {room}'
+    matrix_scope_header: '**Obugumu bwa Matrix:**'
+    matrix_scope_room: '  essuuka: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
     matrix_scope_key: '  session_key: {session_key}'
     session_id: '**ID ya Sessoni:** `{session_id}`'
-    title: '**Title:** {title}'
+    title: '**Olutambi:** {title}'
     created: '**Yakolebwa:** {timestamp}'
     last_activity: '**Okukola Okusembayo:** {timestamp}'
-    model: '**Model:** `{model}`'
+    model: '**Modeli:** `{model}`'
     model_provider: '**Modelo:** `{model}` ({provider})'
     context: '**Embeera:** {used} / {total} ({pct}%)'
     context_used: '**Embeera:** ~{used} tokens'
     tokens: '**API tokens ez''okugatta (eziddizibwa buli kuyita):** {tokens}'
     agent_running: '**Agent akola:** {state}'
-    state_yes: Yes ⚡
-    state_no: 'No'
+    state_yes: Yee ⚡
+    state_no: Nedda
     queued: '**Ebiddirira ebiri mu lunyiriri:** {count}'
     platforms: '**Platforms ezikwatiddwa:** {platforms}'
   stop:
@@ -498,9 +498,9 @@ gateway:
 
 
       Omusoro guno gujja kukozesebwa ng''essomo ly''omulimu ery''enjawulo mu OpenAmer. Kozesa /new okusimbuza essomo ly''omulimu lya kati ery''omusoro guno. Ku mirimu egikolebwa awamu, ggula All Messages oweerezeeyo obubaka okutonda omusoro omulala.'
-    untitled_session: Untitled session
+    untitled_session: Session entannibwa
   undo:
-    nothing: Nothing to undo.
+    nothing: Teekyo eky'okulagira.
     removed: '↩️ Zzuddwa {turns} emirundi ({count} obubaka).
 
       Kikwatiddwa ku: "{preview}"
@@ -516,29 +516,29 @@ gateway:
   usage:
     rate_limits: ⏱️ **Ebikomo by'omuvudde:** {state}
     header_session: 📊 **Okukozesa Token mu Ssesoni**
-    label_model: 'Model: `{model}`'
+    label_model: 'Ekkubo: `{model}`'
     label_input_tokens: 'Token z''okuyingiza: {count}'
     label_cache_read: 'Token z''okusoma mu cache: {count}'
     label_cache_write: 'Obubonero bw''okuwandiika mu cache: {count}'
     label_output_tokens: 'Obubonero bw''okufuluma: {count}'
-    label_total: 'Total: {count}'
+    label_total: 'Jumula: {count}'
     label_api_calls: 'API calls: {count}'
     label_cost: 'Ebeeyi: {prefix}${amount}'
-    label_cost_included: 'Cost: included'
+    label_cost_included: 'Kodi: ekyiyise'
     label_context: 'Embeera: {used} / {total} ({pct}%)'
     label_compressions: 'Okukendeeza: {count}'
     breakdown_header: 🧩 **Okwawula embeera** _(kigerekeddwa)_
     breakdown_line: '• {label}: ~{count} ({pct}%)'
-    breakdown_cat_system_prompt: System prompt
-    breakdown_cat_tool_definitions: Tool definitions
-    breakdown_cat_rules: Rules
-    breakdown_cat_skills: Skills
+    breakdown_cat_system_prompt: Prompt ey'ekitongole
+    breakdown_cat_tool_definitions: Ebyobuliisa eby'emikalo
+    breakdown_cat_rules: Emikisa
+    breakdown_cat_skills: Obugumu
     breakdown_cat_mcp: MCP
-    breakdown_cat_subagent_definitions: Subagent definitions
-    breakdown_cat_memory: Memory
-    breakdown_cat_conversation: Conversation
-    header_session_info: 📊 **Session Info**
-    label_messages: 'Messages: {count}'
+    breakdown_cat_subagent_definitions: Ebikwata ku Subagent
+    breakdown_cat_memory: Enkumbula
+    breakdown_cat_conversation: Okulabagana
+    header_session_info: 📊 **Enkola y'Olwaniro**
+    label_messages: 'Ebibuuliro: {count}'
     label_estimated_context: 'Embeera ekigerekeddwa: ~{count} obubonero'
     detailed_after_first: _(Ebikozesebwa ebijuvu bijja kubaawo oluvannyuma lw'okuddamu okwasooka kw'omukola)_
     no_data: Tewali data ya kukozesa eriwo ku session eno.
@@ -565,14 +565,14 @@ gateway:
     tts_enabled: 'Auto-TTS ekkiriziddwa.
 
       Eddamu lyonna lijja kubaamu obubaka bw''eddoboozi.'
-    status_mode: 'Voice mode: {label}'
+    status_mode: 'Endagaano y''Omwoyo: {label}'
     status_channel: 'Omukutu gw''eddoboozi: #{channel}'
     status_participants: 'Abeetaba: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (amulaba)'
+    enabled_short: Endagaano y'Omwoyo yeyongedde.
+    disabled_short: Endagaano y'Omwoyo yekke.
+    label_off: Kye (ebyokusoma nnyo)
     label_voice_only: Ku (okuddamu n'eddoboozi ku bubaka bw'eddoboozi)
     label_all: TTS (okuddamu n'eddoboozi ku bubaka bwonna)
     help: '{toggle}

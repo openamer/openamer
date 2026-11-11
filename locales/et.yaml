@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] üks kord  |  [s] sessioon  |  [d] keela'
   prompt_long: '      Valik [o/s/a/D]: '
   prompt_short: '      Valik [o/s/D]: '
-  choose_smart_deny: '      [o] üks kord  |  [d] keela'
-  prompt_smart_deny: '      Valik [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [o] üks kord  |  [k]eela'
+  prompt_smart_deny: '      Valik [o/K]: '
+  smart_deny_once_inputs: o,üks kord
+  smart_deny_deny_inputs: k,keela
   timeout: '      ⏱ Ajalõpp – käsk keelatakse'
   allowed_once: '      ✓ Lubatud üks kord'
   allowed_session: '      ✓ Lubatud selle sessiooni jaoks'
@@ -144,8 +144,8 @@ gateway:
     session_only: '⚡ ✓ Prioriteetne töötlemine: **{label}** (ainult selles seansis)'
     label_fast: KIIRE
     label_normal: TAVALINE
-    status_fast: fast
-    status_normal: normal
+    status_fast: kiire
+    status_normal: normaalne
     picker_title: '⚡ **Prioriteetne töötlemine**
 
 
@@ -425,7 +425,7 @@ gateway:
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_key: '  sessiooni_võti: {session_key}'
     session_id: '**Sessiooni ID:** `{session_id}`'
     title: '**Pealkiri:** {title}'
     created: '**Loodud:** {timestamp}'

@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] mbala mosi  |  [s]esio  |  [d] kubuya'
   prompt_long: '      Lusolo [o/s/a/D]: '
   prompt_short: '      Lusolo [o/s/D]: '
-  choose_smart_deny: '      [o] mbala mosi  |  [d] kubuya'
-  prompt_smart_deny: '      Lusolo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [m]bala mosi  |  [k]ubuya'
+  prompt_smart_deny: '      Lusolo [m/K]: '
+  smart_deny_once_inputs: m,mbala mosi
+  smart_deny_deny_inputs: k,kubuya
   timeout: '      ⏱ Ntangu ya kumana - kubuya ntuma'
   allowed_once: '      ✓ Kupeswa nzila mbala mosi'
   allowed_session: '      ✓ Kupeswa nzila mu sesio yayi'
@@ -142,8 +142,8 @@ gateway:
 
       _(yo ta sala na nsangu ya landa)_'
     session_only: '⚡ ✓ Kusala ya Ntwala: **{label}** (kaka na sesio yai)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: KIELA
+    label_normal: NDEKE
     status_fast: mbangu
     status_normal: ya kawa
     picker_title: '⚡ **Kusala ya Ntwala**
@@ -516,7 +516,7 @@ gateway:
   usage:
     rate_limits: ⏱️ **Mipaka ya ntalu:** {state}
     header_session: 📊 **Kusadila ba token ya session**
-    label_model: 'Model: `{model}`'
+    label_model: 'Modelo: `{model}`'
     label_input_tokens: 'Ba token ya kukota: {count}'
     label_cache_read: 'Ba token ya kutanga na cache: {count}'
     label_cache_write: 'Ba token ya kusonika na cache: {count}'

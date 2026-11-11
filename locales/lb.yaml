@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] eemol  |  [s] Sëtzung  |  [d] ofleenen'
   prompt_long: '      Auswiel [o/s/a/D]: '
   prompt_short: '      Auswiel [o/s/D]: '
-  choose_smart_deny: '      [o] eemol  |  [d] ofleenen'
-  prompt_smart_deny: '      Auswiel [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [e]emol  |  [o]fleenen'
+  prompt_smart_deny: '      Auswiel [e/O]: '
+  smart_deny_once_inputs: e,eemol
+  smart_deny_deny_inputs: o,ofleenen
   timeout: '      ⏱ Zäitlimit - Kommando gëtt ofgeleent'
   allowed_once: '      ✓ Eemol erlaabt'
   allowed_session: '      ✓ Fir dës Sëtzung erlaabt'
@@ -29,7 +29,7 @@ gateway:
   model:
     error_prefix: 'Fehler: {error}'
     switched: Modell ëmgeschalt op `{model}`
-    provider_label: 'Provider: {provider}'
+    provider_label: 'Anbieter: {provider}'
     context_label: 'Kontext: {tokens} Tokenen'
     max_output_label: 'Maximal Ausgab: {tokens} Tokens'
     cost_label: 'Käschten: {cost}'
@@ -419,7 +419,7 @@ gateway:
 
       Cron-Jobs a plattformiwwergräifend Noriichten ginn hei geliwwert.'
   status:
-    header: 📊 **OpenAmer Gateway Status**
+    header: 📊 **OpenAmer Gateway-Status**
     matrix_scope_header: '**Matrix-Bereich:**'
     matrix_scope_room: '  Raum: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'

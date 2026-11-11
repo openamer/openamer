@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] aon uair  |  [s] seisean  |  [d] diùlt'
   prompt_long: '      Roghainn [o/s/a/D]: '
   prompt_short: '      Roghainn [o/s/D]: '
-  choose_smart_deny: '      [o] aon uair  |  [d] diùlt'
-  prompt_smart_deny: '      Roghainn [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [a]on uair  |  [d]iùlt'
+  prompt_smart_deny: '      Roghainn [a/D]: '
+  smart_deny_once_inputs: a,aon uair
+  smart_deny_deny_inputs: d,diùlt
   timeout: '      ⏱ Ùine air a dhol seachad - a'' diùltadh an òrduigh'
   allowed_once: '      ✓ Ceadaichte aon uair'
   allowed_session: '      ✓ Ceadaichte airson an t-seisein seo'
@@ -167,7 +167,7 @@ gateway:
       _(air a shàbhaladh gu cruinneil — bidh e an sàs air an ath theachdaireachd)_'
     example_line: '
 
-      Example: `{preview}`'
+      Eisimpleir: `{preview}`'
     state_on: AIR
     state_off: DHETH
   goal:
@@ -567,39 +567,39 @@ gateway:
       Bidh teachdaireachd gutha anns gach freagairt.'
     status_mode: 'Modh gutha: {label}'
     status_channel: 'Seanail gutha: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'Com-pàirtichean: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    speaking: ' (a'' bruidhinn)'
+    enabled_short: Modh gutha comasaichte.
+    disabled_short: Modh gutha air a chur à comas.
+    label_off: Dheth (teacsa a-mhàin)
+    label_voice_only: Air (freagairt gutha do theachdaireachdan gutha)
+    label_all: TTS (freagairt gutha do gach teachdaireachd)
     help: '{toggle}
 
 
-      **How /voice works**
+      **Mar a tha /voice ag obair**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — freagairt gutha nuair a chuireas tu teachdaireachd gutha
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — freagairt gutha do *gach* teachdaireachd
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — air ais gu freagairtean teacsa a-mhàin
 
-      • `/voice status` — show the current mode
+      • `/voice status` — seall am modh làithreach
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (gun argamaid) — tionndadh luath eadar air is dheth{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **Seanailean gutha beò (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • Thig a-steach do sheanail gutha an toiseach, an uair sin `/voice channel` — thig mi a-steach, èistidh mi, agus labhraidh mi mo fhreagairtean
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — dì-cheangail bhon t-seanail gutha'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ Modh YOLO **DHETH** airson an t-seisein seo — bidh feum air cead airson òrdughan cunnartach.
+    enabled: ⚡ Modh YOLO **AIR** airson an t-seisein seo — tha gach òrdugh fèin-cheadaichte. Cleachd gu faiceallach.
   shared:
     session_db_unavailable: Chan eil stòr-dàta nan seisean ri fhaighinn.
     session_db_unavailable_prefix: Chan eil stòr-dàta nan seisean ri fhaighinn

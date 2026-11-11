@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -28,10 +29,22 @@ def restore():
     return _load()
 
 
-def test_normalise_converts_msys_path(restore):
+def test_normalise_converts_msys_path_on_windows(restore):
+    """On Windows the MSYS form is unusable until it becomes a drive path."""
+    if os.name != "nt":
+        pytest.skip("MSYS rewrite is Windows-only")
     p = restore.normalise("/c/Users/damir/openamer-work-backup/x\n")
     assert p.is_absolute(), f"not absolute: {p}"
     assert p == Path("C:/Users/damir/openamer-work-backup/x")
+
+
+def test_normalise_keeps_msys_path_on_posix(restore):
+    """On POSIX /c/... is already absolute; rewriting it would break the path."""
+    if os.name == "nt":
+        pytest.skip("POSIX path semantics do not apply")
+    p = restore.normalise("/c/Users/damir/openamer-work-backup/x\n")
+    assert p.is_absolute(), f"not absolute: {p}"
+    assert p == Path("/c/Users/damir/openamer-work-backup/x")
 
 
 def test_normalise_keeps_native_path(restore):

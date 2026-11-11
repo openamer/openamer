@@ -10,8 +10,8 @@ approval:
   prompt_short: '      Válljen [o/s/D]: '
   choose_smart_deny: '      [o]ktii  |  [d]ohkket'
   prompt_smart_deny: '      Válljen [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,oktii
+  smart_deny_deny_inputs: d,dohkket
   timeout: '      ⏱ Áigi nohkii - gohččun dohkkejuvvo'
   allowed_once: '      ✓ Lohkohuvvon oktii'
   allowed_session: '      ✓ Lohkohuvvon dán sešuvnna várás'

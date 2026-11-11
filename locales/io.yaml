@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] unfoye  |  [s]esiono  |  [d] refuzar'
   prompt_long: '      Selekto [o/s/a/D]: '
   prompt_short: '      Selekto [o/s/D]: '
-  choose_smart_deny: '      [o] unfoye  |  [d] refuzar'
-  prompt_smart_deny: '      Selekto [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]nfoye  |  [r]efuzar'
+  prompt_smart_deny: '      Selekto [u/R]: '
+  smart_deny_once_inputs: u,unfoye
+  smart_deny_deny_inputs: r,refuzar
   timeout: '      ⏱ Tempo-limito - refuzante komando'
   allowed_once: '      ✓ Permisita unfoye'
   allowed_session: '      ✓ Permisita por ca sesiono'

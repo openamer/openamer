@@ -10,8 +10,8 @@ approval:
   prompt_short: '      ရွေးချယ်မှု [o/s/D]: '
   choose_smart_deny: '      [o]တစ်ကြိမ်  |  [d]ငြင်းပယ်'
   prompt_smart_deny: '      ရွေးချယ်မှု [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,oတစ်ကြိမ်
+  smart_deny_deny_inputs: d,dငြင်းပယ်
   timeout: '      ⏱ အချိန်ကုန်သွားပါပြီ - ကွန်မန့်ကို ငြင်းပယ်နေသည်'
   allowed_once: '      ✓ တစ်ကြိမ် ခွင့်ပြုထားသည်'
   allowed_session: '      ✓ ဤဆက်ရှင်အတွက် ခွင့်ပြုထားသည်'

@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] jednom  |  [s]esija  |  [d] odbij'
   prompt_long: '      Odabir [o/s/a/D]: '
   prompt_short: '      Odabir [o/s/D]: '
-  choose_smart_deny: '      [o] jednom  |  [d] odbij'
-  prompt_smart_deny: '      Odabir [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [j]ednom  |  [o]dbij'
+  prompt_smart_deny: '      Odabir [j/O]: '
+  smart_deny_once_inputs: j,jednom
+  smart_deny_deny_inputs: o,odbij
   timeout: '      ⏱ Istek vremena - odbijam naredbu'
   allowed_once: '      ✓ Dopušteno jednom'
   allowed_session: '      ✓ Dopušteno za ovu sesiju'
@@ -142,10 +142,10 @@ gateway:
 
       _(primjenjuje se na sljedeću poruku)_'
     session_only: '⚡ ✓ Prioritetna obrada: **{label}** (samo za ovu sesiju)'
-    label_fast: FAST
-    label_normal: NORMAL
-    status_fast: fast
-    status_normal: normal
+    label_fast: BRZO
+    label_normal: NORMALNO
+    status_fast: brzo
+    status_normal: normalno
     picker_title: '⚡ **Prioritetna obrada**
 
 

@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] semel  |  [s] sessio  |  [d] denego'
   prompt_long: '      Optio [o/s/a/D]: '
   prompt_short: '      Optio [o/s/D]: '
-  choose_smart_deny: '      [o] semel  |  [d] denego'
-  prompt_smart_deny: '      Optio [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [s]emel  |  [d]enego'
+  prompt_smart_deny: '      Optio [s/D]: '
+  smart_deny_once_inputs: s,semel
+  smart_deny_deny_inputs: d,denego
   timeout: '      ⏱ Tempus praeteritum - mandatum negans'
   allowed_once: '      ✓ Semel permissum'
   allowed_session: '      ✓ Permissum pro hac sessione'

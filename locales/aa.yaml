@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] inkinnah  |  [s] sesiyon  |  [d] xiqe'
   prompt_long: '      Filannoo [o/s/a/D]: '
   prompt_short: '      Filannoo [o/s/D]: '
-  choose_smart_deny: '      [o] inkinnah  |  [d] xiqe'
-  prompt_smart_deny: '      Filannoo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [i]nkinnah  |  [x]iqe'
+  prompt_smart_deny: '      Filannoo [i/X]: '
+  smart_deny_once_inputs: i,inkinnah
+  smart_deny_deny_inputs: x,xiqe
   timeout: '      ⏱ Waqti daba - amri xiqiyya'
   allowed_once: '      ✓ Inkinnah idini'
   allowed_session: '      ✓ Tah sesiyonah idini'

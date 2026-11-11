@@ -101,6 +101,26 @@ def test_round_robin_never_drops_or_duplicates(launcher):
     assert max(len(q) for q in queues) - min(len(q) for q in queues) <= 1
 
 
+def test_worker_record_persists_creation_time(launcher, monkeypatch, tmp_path):
+    """A record written at spawn time must carry the creation time it is checked against."""
+    import psutil
+
+    scripts = tmp_path / "scripts"
+    scripts.mkdir()
+    script = scripts / "i18n_fill_cli_locales.py"
+    script.write_text("import time\ntime.sleep(30)\n", encoding="utf-8")
+    proc = subprocess.Popen([sys.executable, str(script)])
+    try:
+        monkeypatch.setattr(launcher, "REPO", tmp_path)
+        record = launcher.worker_record(proc, ["aa"], tmp_path / "w.log")
+        assert record["created"] == pytest.approx(psutil.Process(proc.pid).create_time(), abs=0.01)
+        # The persisted timestamp has to satisfy the same check that guards a reboot.
+        assert launcher._worker_alive(record, "cli") is True
+    finally:
+        proc.terminate()
+        proc.wait(timeout=10)
+
+
 def test_pidfile_for_returns_separate_files(launcher):
     """CLI and desktop targets must use different pid files."""
     assert launcher.pidfile_for("cli").name == "i18n-translate.pid.json"

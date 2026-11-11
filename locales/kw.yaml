@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] unnweyth  |  [s] seshyon  |  [d] nagha'
   prompt_long: '      Dewis [o/s/a/D]: '
   prompt_short: '      Dewis [o/s/D]: '
-  choose_smart_deny: '      [o] unnweyth  |  [d] nagha'
-  prompt_smart_deny: '      Dewis [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]nnweyth  |  [n]agha'
+  prompt_smart_deny: '      Dewis [u/N]: '
+  smart_deny_once_inputs: u,unnweyth
+  smart_deny_deny_inputs: n,nagha
   timeout: '      ⏱ Hir a dermyn - ow nagha arghadow'
   allowed_once: '      ✓ Alowys unnweyth'
   allowed_session: '      ✓ Alowys rag an seshyon ma'
@@ -142,7 +142,7 @@ gateway:
 
       _(a dheu yn nerth war an neges a-wosa)_'
     session_only: '⚡ ✓ Processyans Prioreth: **{label}** (an seshyon ma hepken)'
-    label_fast: FAST
+    label_fast: HYR
     label_normal: NORMAL
     status_fast: uskis
     status_normal: normal
@@ -565,14 +565,14 @@ gateway:
     tts_enabled: 'Auto-TTS bywhes.
 
       Pub gorthebyans a wra synsi messaj lev.'
-    status_mode: 'Voice mode: {label}'
+    status_mode: 'Modh leis: {label}'
     status_channel: 'Kanol lev: #{channel}'
     status_participants: 'Kevrannogyon: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (ow kewsel)'
+    enabled_short: Modh leis a vedhys.
+    disabled_short: Modh leis a disedhys.
+    label_off: Dian (testyn yn unig)
     label_voice_only: Byw (gorthebi dre lev dhe messajys lev)
     label_all: TTS (gorthebi dre lev dhe bub messaj)
     help: '{toggle}

@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Huk kuti  |  [s] Sesion  |  [d] Mana saqiy'
   prompt_long: '      Akllay [o/s/a/D]: '
   prompt_short: '      Akllay [o/s/D]: '
-  choose_smart_deny: '      [o] Huk kuti  |  [d] Mana saqiy'
-  prompt_smart_deny: '      Akllay [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [h]uk kuti  |  [m]ana saqiy'
+  prompt_smart_deny: '      Akllay [h/M]: '
+  smart_deny_once_inputs: h,huk kuti
+  smart_deny_deny_inputs: m,mana saqiy
   timeout: '      ⏱ Pacha tukuy - kamachikuyta mana saqiy'
   allowed_once: '      ✓ Huk kuti saqisqa'
   allowed_session: '      ✓ Kay sesionpaq saqisqa'
@@ -143,9 +143,9 @@ gateway:
       _(hamuq willakuypi llamk''anqa)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (kay sesiónllapi)'
     label_fast: USQHAY
-    label_normal: NORMAL
+    label_normal: MANAN
     status_fast: utqay
-    status_normal: normal
+    status_normal: manan
     picker_title: '⚡ **Ñawpaq Ruray**
 
 

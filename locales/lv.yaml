@@ -10,8 +10,8 @@ approval:
   prompt_short: '      Izvēle [o/s/D]: '
   choose_smart_deny: '      [o]vienreiz  |  [d]liegt'
   prompt_smart_deny: '      Izvēle [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,ovienreiz
+  smart_deny_deny_inputs: d,dliegt
   timeout: '      ⏱ Noildze - komanda tiek liegta'
   allowed_once: '      ✓ Atļauts vienreiz'
   allowed_session: '      ✓ Atļauts šai sesijai'
@@ -144,8 +144,8 @@ gateway:
     session_only: '⚡ ✓ Prioritārā apstrāde: **{label}** (tikai šajā sesijā)'
     label_fast: ĀTRĀ
     label_normal: PARASTĀ
-    status_fast: fast
-    status_normal: normal
+    status_fast: ātrs
+    status_normal: normāls
     picker_title: '⚡ **Prioritārā apstrāde**
 
 

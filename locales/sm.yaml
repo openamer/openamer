@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] tasi  |  [s] sauniga  |  [d] te''ena'
   prompt_long: '      Filifiliga [o/s/a/D]: '
   prompt_short: '      Filifiliga [o/s/D]: '
-  choose_smart_deny: '      [o] tasi  |  [d] te''ena'
-  prompt_smart_deny: '      Filifiliga [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [t]asi  |  [t]e''ena'
+  prompt_smart_deny: '      Filifiliga [t/T]: '
+  smart_deny_once_inputs: t,tasi
+  smart_deny_deny_inputs: t,te'ena
   timeout: '      ⏱ Ua uma le taimi - te''ena le poloaiga'
   allowed_once: '      ✓ Fa''atagaina tasi'
   allowed_session: '      ✓ Fa''atagaina mo lenei sauniga'

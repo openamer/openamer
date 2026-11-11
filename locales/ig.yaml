@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Otu ugboro  |  [s] Nnọkọ  |  [d] Jụ'
   prompt_long: '      Nhọrọ [o/s/a/D]: '
   prompt_short: '      Nhọrọ [o/s/D]: '
-  choose_smart_deny: '      [o] Otu ugboro  |  [d] Jụ'
-  prompt_smart_deny: '      Nhọrọ [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [o]tu ugboro  |  [j]ụ'
+  prompt_smart_deny: '      Nhọrọ [o/J]: '
+  smart_deny_once_inputs: o,otu ugboro
+  smart_deny_deny_inputs: j,jụ
   timeout: '      ⏱ Oge agwụla - na-ajụ iwu'
   allowed_once: '      ✓ Ekwere otu ugboro'
   allowed_session: '      ✓ Ekwere maka nnọkọ a'

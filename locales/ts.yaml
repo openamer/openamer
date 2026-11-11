@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Kan''we  |  [s] Sesheni  |  [d] Ala'
   prompt_long: '      Hlawula [o/s/a/D]: '
   prompt_short: '      Hlawula [o/s/D]: '
-  choose_smart_deny: '      [o] Kan''we  |  [d] Ala'
-  prompt_smart_deny: '      Hlawula [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [k]an''we  |  [a]la'
+  prompt_smart_deny: '      Hlawula [k/A]: '
+  smart_deny_once_inputs: k,kan'we
+  smart_deny_deny_inputs: a,ala
   timeout: '      ⏱ Nkarhi wu herile - ku ala xilayeto'
   allowed_once: '      ✓ Pfumeleliwe kan''we'
   allowed_session: '      ✓ Pfumeleliwe eka sesheni leyi'
@@ -430,9 +430,9 @@ gateway:
     title: '**Nhlokomhaka:** {title}'
     created: '**Sunguriwe:** {timestamp}'
     last_activity: '**Ntirho wo hetelela:** {timestamp}'
-    model: '**Model:** `{model}`'
-    model_provider: '**Model:** `{model}` ({provider})'
-    context: '**Context:** {used} / {total} ({pct}%)'
+    model: '**Modeli:** `{model}`'
+    model_provider: '**Modeli:** `{model}` ({provider})'
+    context: '**Nghingiriko:** {used} / {total} ({pct}%)'
     context_used: '**Mbhangu:** ~{used} titokini'
     tokens: '**Titokini ta API leti hlengeletiweke (leti rumisiwaka nakambe eka ku vitana kun''wana ni kun''wana):** {tokens}'
     agent_running: '**Muyimeri wa le ku tirheni:** {state}'

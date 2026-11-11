@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] ur wech  |  [s] sesiom  |  [d] nac''hañ'
   prompt_long: '      Dibab [o/s/a/D]: '
   prompt_short: '      Dibab [o/s/D]: '
-  choose_smart_deny: '      [o] ur wech  |  [d] nac''hañ'
-  prompt_smart_deny: '      Dibab [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]r wech  |  [n]ac''hañ'
+  prompt_smart_deny: '      Dibab [u/N]: '
+  smart_deny_once_inputs: u,ur wech
+  smart_deny_deny_inputs: n,nac'hañ
   timeout: '      ⏱ Amzer tremenet - o nac''hañ an urzh'
   allowed_once: '      ✓ Aotreet ur wech'
   allowed_session: '      ✓ Aotreet evit ar sesiom-mañ'
@@ -424,8 +424,8 @@ gateway:
     matrix_scope_room: '  sal: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_mode: '  sesion_sked: {scope}'
+    matrix_scope_key: '  sesion_alc''hwez: {session_key}'
     session_id: '**ID sesion:** `{session_id}`'
     title: '**Titl:** {title}'
     created: '**Krouet:** {timestamp}'

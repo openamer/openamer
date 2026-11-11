@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] kartą  |  [s] sesijai  |  [d] atmesti'
   prompt_long: '      Pasirinkimas [o/s/a/D]: '
   prompt_short: '      Pasirinkimas [o/s/D]: '
-  choose_smart_deny: '      [o] kartą  |  [d] atmesti'
-  prompt_smart_deny: '      Pasirinkimas [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [k]artą  |  [a]tmesti'
+  prompt_smart_deny: '      Pasirinkimas [k/A]: '
+  smart_deny_once_inputs: k,kartą
+  smart_deny_deny_inputs: a,atmesti
   timeout: '      ⏱ Baigėsi laikas - komanda atmetama'
   allowed_once: '      ✓ Leista vieną kartą'
   allowed_session: '      ✓ Leista šiai sesijai'

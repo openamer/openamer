@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] gangwe  |  [s] seshene  |  [d] gana'
   prompt_long: '      Kgetho [o/s/a/D]: '
   prompt_short: '      Kgetho [o/s/D]: '
-  choose_smart_deny: '      [o] gangwe  |  [d] gana'
-  prompt_smart_deny: '      Kgetho [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [g]angwe  |  [g]ana'
+  prompt_smart_deny: '      Kgetho [g/G]: '
+  smart_deny_once_inputs: g,gangwe
+  smart_deny_deny_inputs: g,gana
   timeout: '      ⏱ Nako e fedile - go gana taelo'
   allowed_once: '      ✓ Go letlelesitswe gangwe'
   allowed_session: '      ✓ Go letlelesitswe mo sesheneng eno'

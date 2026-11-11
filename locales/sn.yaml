@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] kamwe  |  [s] chikamu  |  [d] ramba'
   prompt_long: '      Sarudzo [o/s/a/D]: '
   prompt_short: '      Sarudzo [o/s/D]: '
-  choose_smart_deny: '      [o] kamwe  |  [d] ramba'
-  prompt_smart_deny: '      Sarudzo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [k]amwe  |  [r]amba'
+  prompt_smart_deny: '      Sarudzo [k/R]: '
+  smart_deny_once_inputs: k,kamwe
+  smart_deny_deny_inputs: r,ramba
   timeout: '      ⏱ Nguva yapera - kuramba murairo'
   allowed_once: '      ✓ Kwabvumirwa kamwe'
   allowed_session: '      ✓ Kwabvumirwa chikamu chino'

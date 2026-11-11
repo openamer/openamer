@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] hang  |  [s] seshene  |  [d] hana'
   prompt_long: '      Khetho [o/s/a/D]: '
   prompt_short: '      Khetho [o/s/D]: '
-  choose_smart_deny: '      [o] hang  |  [d] hana'
-  prompt_smart_deny: '      Khetho [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [h]ang  |  [h]ana'
+  prompt_smart_deny: '      Khetho [h/H]: '
+  smart_deny_once_inputs: h,hang
+  smart_deny_deny_inputs: h,hana
   timeout: '      ⏱ Nako e felile - ho hana taelo'
   allowed_once: '      ✓ Lumelletsoe hang'
   allowed_session: '      ✓ Lumelletsoe bakeng sa seshene ena'

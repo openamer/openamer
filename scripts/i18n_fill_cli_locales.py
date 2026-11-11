@@ -69,6 +69,12 @@ BACKENDS = [
     # Prefer the configured free route; Ollama session quota is shared by models.
     ("openrouter-nemotron", "https://openrouter.ai/api/v1/chat/completions",
      "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
+    # Second $0 pillar: rolling free weekly window, independent of OpenRouter's
+    # rate limit, so a 429 on one route does not stall a locale.
+    ("tokenharbor-deepseek", "https://tokenharbor.ai/v1/chat/completions",
+     "TOKENHARBOR_API_KEY", "deepseek-v4.1-flash:free"),
+    ("tokenharbor-mimo", "https://tokenharbor.ai/v1/chat/completions",
+     "TOKENHARBOR_API_KEY", "mimo-v2.5:free"),
     ("ollama-deepseek", "https://ollama.com/v1/chat/completions",
      "OLLAMA_API_KEY", "deepseek-v4.1-flash"),
     ("ollama-minimax", "https://ollama.com/v1/chat/completions",
@@ -105,11 +111,45 @@ def _load_language_names() -> dict[str, str]:
 
 LANGUAGE_NAMES = _load_language_names()
 
-# Literal keystrokes / machine tokens -- never translated.
+# Literal keystrokes / machine tokens -- never translated. The smart-deny input
+# lists are derived from the labels below, so verbatim is the fallback that keeps
+# a bogus cached value out of the catalog when the labels cannot be parsed.
 VERBATIM_KEYS = {"approval.smart_deny_once_inputs", "approval.smart_deny_deny_inputs"}
+
+# Keys whose bracketed runs are keyboard surface and may not be translated.
+# The smart-deny pair is the exception: there the language may pick its own key,
+# so those two are exempt and aligned from their labels afterwards.
+BRACKET_FREE_KEYS = {"approval.choose_smart_deny", "approval.prompt_smart_deny"}
+
+# The normal approval prompt accepts a fixed set of typed keys (hardcoded in
+# tools/approval.py), so its displayed keys are surface, not prose.
+FIXED_KEY_RUNS = {
+    "approval.choose_long": ["o", "s", "a", "d"],
+    "approval.choose_short": ["o", "s", "d"],
+    "approval.prompt_long": ["o/s/a/D"],
+    "approval.prompt_short": ["o/s/D"],
+}
+
+# Swarm sharding: one worker process pins itself to one backend, so a 429 on a
+# single provider cannot stall the whole fleet.
+PINNED_BACKEND = os.environ.get("OPENAMER_I18N_BACKEND", "").strip()
+
+
+def backend_chain(env: dict[str, str]) -> list[tuple]:
+    """Backends usable in this process: pinned if asked, keyless always."""
+    chain = []
+    for cand in BACKENDS:
+        name, _url, keyenv, _model = cand
+        if PINNED_BACKEND and name != PINNED_BACKEND:
+            continue
+        if keyenv == "-" or env.get(keyenv):
+            chain.append(cand)
+    return chain
+
 
 MASK = "\uE000"
 PH_RE = re.compile(r"\{([a-zA-Z_][a-zA-Z0-9_]*)\}")
+BRACKET_RE = re.compile(r"\[[^\]\n]*\]")
 
 
 # ---------------------------------------------------------------------------
@@ -304,8 +344,10 @@ def translate_batch(keys: list[str], texts: list[str], lang: str,
                 ok = False
                 break
             # Bracketed runs are machine surface ([o/s/a/D] keys, [kanban]):
-            # they must survive byte-identical, whatever the language.
-            if re.findall(r"\[[^\]\n]*\]", src) != re.findall(r"\[[^\]\n]*\]", restored):
+            # they must survive byte-identical, whatever the language -- except
+            # where the language legitimately picks its own key (smart deny).
+            if key not in BRACKET_FREE_KEYS and (
+                    re.findall(r"\[[^\]\n]*\]", src) != re.findall(r"\[[^\]\n]*\]", restored)):
                 ok = False
                 break
             out[key] = restored
@@ -328,12 +370,93 @@ def is_machine_text(text: str) -> bool:
     ))
 
 
+def _smart_label_pairs(labels: str) -> tuple[str, list[tuple[str, str]]]:
+    """Split a smart-deny label row into [(key, typed word)] plus its indent.
+
+    Two conventions exist in the catalogs and both must keep working:
+      * '[o]ne fois'  -- the key is the word's first letter (attached)
+      * '[o] Bir kez' -- the key stood alone; the word follows after a space
+    In the second case the language should own its key, so the word's first
+    letter becomes the key: '[o] Bir kez' -> '[b]ir kez'.
+    """
+    lead = re.match(r"\s*", labels).group(0)
+    pairs: list[tuple[str, str]] = []
+    for part in labels.strip().split("|"):
+        match = re.match(r"\[([^\]]*)\](\s*)(.+)", part.strip())
+        if not match:
+            return lead, []
+        key, gap, rest = match.group(1), match.group(2), match.group(3).strip()
+        if len(key) != 1 or not rest:
+            return lead, []
+        if gap and rest[0].isascii() and rest[0].isalpha():
+            pairs.append((rest[0].lower(), rest[0].lower() + rest[1:]))
+        elif not gap:
+            pairs.append((key, key + rest))
+        else:
+            pairs.append((key, rest))
+    return lead, pairs
+
+
+def align_smart_deny(values: dict[str, str]) -> None:
+    """Make the smart-deny prompt advertise exactly the keys it accepts.
+
+    The displayed keys, the accepted inputs and the prompt are three separate
+    catalog keys. Translated independently they drift apart: measured on tr,
+    where the labels offered '[b]ir kez | [r]eddet', the prompt said '[b/R]' and
+    the accepted inputs were still 'o,once' -- a prompt that offers a key it
+    rejects. Two of the three are derived from the labels instead.
+    """
+    lead, pairs = _smart_label_pairs(values.get("approval.choose_smart_deny", ""))
+    if len(pairs) != 2:
+        return
+    (once_key, once_word), (deny_key, deny_word) = pairs
+    rendered = []
+    for key, word in pairs:
+        rendered.append(f"[{key}]{word[1:]}" if word[:1].lower() == key.lower()
+                        else f"[{key}] {word}")
+    values["approval.choose_smart_deny"] = lead + "  |  ".join(rendered)
+    values["approval.smart_deny_once_inputs"] = f"{once_key},{once_word}"
+    values["approval.smart_deny_deny_inputs"] = f"{deny_key},{deny_word}"
+    prompt = values.get("approval.prompt_smart_deny", "")
+    advertised = f"[{once_key}/{deny_key.upper()}]"
+    if BRACKET_RE.search(prompt):
+        values["approval.prompt_smart_deny"] = BRACKET_RE.sub(
+            lambda _m: advertised, prompt, count=1)
+
+
+def align_fixed_key_runs(values: dict[str, str]) -> None:
+    """Restore the fixed typed keys of the normal approval prompt.
+
+    tools/approval.py accepts only o/s/a/d (and their words) on that path, so a
+    translated label that advertises a different letter is a prompt that offers
+    a key it rejects. Only the bracket run is rewritten, never the prose around
+    it; a row whose run count does not match is left untouched for the
+    consistency test to report.
+    """
+    for key, runs in FIXED_KEY_RUNS.items():
+        text = values.get(key)
+        if not text:
+            continue
+        found = list(BRACKET_RE.finditer(text))
+        if len(found) != len(runs):
+            continue
+        out = text
+        # Replace right-to-left so earlier offsets stay valid.
+        for match, run in reversed(list(zip(found, runs))):
+            out = out[:match.start()] + f"[{run}]" + out[match.end():]
+        values[key] = out
+
+
 def write_catalog(lang: str, table: dict[str, str], en_flat: dict[str, str]) -> None:
     """Materialize cached translations with the English shape and safe fallbacks."""
     values = {k: table.get(k) or v for k, v in en_flat.items()}
     for k in VERBATIM_KEYS:
         if k in en_flat:
             values[k] = en_flat[k]
+    # Keyboards are not prose: derive the typed keys from the labels so the
+    # displayed key, the accepted input and the prompt can never disagree.
+    align_smart_deny(values)
+    align_fixed_key_runs(values)
     doc = unflatten(values, load_yaml("en"))
     header = (
         f"# OpenAmer static-message catalog -- {LANGUAGE_NAMES.get(lang, lang)} ({lang})\n"
@@ -400,7 +523,7 @@ def translate_locale(lang: str, en_flat: dict[str, str], force: bool,
         return ("cached", 0, total)
 
     env = load_env()
-    backends = [cand for cand in BACKENDS if env.get(cand[2])]
+    backends = backend_chain(env)
     if not backends:
         write_catalog(lang, table, en_flat)
         return ("no-backend", len(todo), total)

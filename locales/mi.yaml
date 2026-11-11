@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Kotahi wā  |  [s] Wā  |  [d] Whakakore'
   prompt_long: '      Kōwhiringa [o/s/a/D]: '
   prompt_short: '      Kōwhiringa [o/s/D]: '
-  choose_smart_deny: '      [o] Kotahi wā  |  [d] Whakakore'
-  prompt_smart_deny: '      Kōwhiringa [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [k]otahi wā  |  [w]hakakore'
+  prompt_smart_deny: '      Kōwhiringa [k/W]: '
+  smart_deny_once_inputs: k,kotahi wā
+  smart_deny_deny_inputs: w,whakakore
   timeout: '      ⏱ Kua pau te wā - e whakakore ana i te whakahau'
   allowed_once: '      ✓ Kua whakaaetia kotahi wā'
   allowed_session: '      ✓ Kua whakaaetia mō tēnei wā'
@@ -324,7 +324,7 @@ gateway:
       '
     reconnected: '♻️ Kua hono anō: {names}'
     added: '➕ Kua tāpirihia: {names}'
-    removed: '➖ Removed: {names}'
+    removed: '➖ Tangohia: {names}'
     none_connected: Kāore he tūmau MCP kua hono.
     tools_available: '
 
@@ -338,7 +338,7 @@ gateway:
     total: '
 
       📚 {count} pūkenga e wātea ana'
-    added_header: ➕ **Added Skills:**
+    added_header: ➕ **Ngā Pūkenga I Tāpiritia:**
     removed_header: ➖ **Ngā Pūkenga Kua Tangohia:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Kua noho kau te taitara i muri i te whakapai — kua tīmata te wātū kāore he taitara.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Tohutohu: {tip}'
   restart:
     in_progress: ⏳ Kei te haere tonu te whakaara anō i te kuwaha...
     restarting: ♻ Kei te whakaara anō i te kuwaha. Ki te kore koe e whakamōhiotia i roto i te 60 hēkona, whakaara anō mai i te papatuhi mā `openamer gateway restart`.
@@ -420,24 +420,24 @@ gateway:
       Ka tukuna ngā mahi Cron me ngā karere whakawhiti-pae ki konei.'
   status:
     header: 📊 **Tūnga OpenAmer Gateway**
-    matrix_scope_header: '**Matrix scope:**'
-    matrix_scope_room: '  room: {room}'
+    matrix_scope_header: '**Wāhanga Mātiriki:**'
+    matrix_scope_room: '  rūma: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  awhe wātū: {scope}'
     matrix_scope_key: '  kī wātū: {session_key}'
     session_id: '**ID Wātū:** `{session_id}`'
-    title: '**Title:** {title}'
+    title: '**Taitara:** {title}'
     created: '**I hangaia:** {timestamp}'
     last_activity: '**Ngohe whakamutunga:** {timestamp}'
-    model: '**Model:** `{model}`'
+    model: '**Tauira:** `{model}`'
     model_provider: '**Tauira:** `{model}` ({provider})'
     context: '**Horopaki:** {used} / {total} ({pct}%)'
     context_used: '**Horopaki:** ~{used} tohu'
     tokens: '**Ngā tohu API whakahiato (ka tukuna anō i ia wā):** {tokens}'
     agent_running: '**Kei te rere te māngai:** {state}'
-    state_yes: Yes ⚡
-    state_no: 'No'
+    state_yes: Āe ⚡
+    state_no: Kāo
     queued: '**Ngā whai muri kua rārangi:** {count}'
     platforms: '**Ngā pūhara kua honoa:** {platforms}'
   stop:
@@ -498,9 +498,9 @@ gateway:
 
 
       Ka whakamahia tēnei kaupapa hei wātū OpenAmer motuhake. Whakamahia /new hei whakakapi i te wātū o nāianei o tēnei kaupapa. Mō te mahi whakarara, whakatuwheratia Ngā Karere Katoa ka tuku i tētahi karere ki reira kia waihangatia tētahi atu kaupapa.'
-    untitled_session: Untitled session
+    untitled_session: Nohoanga kāore he taitara
   undo:
-    nothing: Nothing to undo.
+    nothing: Kāore he mea e hoki i muri.
     removed: '↩️ I whakakorea {turns} huringa ({count} karere).
 
       Kua tāruatia ki: "{preview}"
@@ -516,29 +516,29 @@ gateway:
   usage:
     rate_limits: ⏱️ **Ngā Tepe Reiti:** {state}
     header_session: 📊 **Whakamahinga Tohu Wāhanga**
-    label_model: 'Model: `{model}`'
+    label_model: 'Tauira: `{model}`'
     label_input_tokens: 'Ngā tohu whakauru: {count}'
     label_cache_read: 'Ngā tohu pānui kōpae: {count}'
     label_cache_write: 'Ngā tohu tuhi kōpae: {count}'
     label_output_tokens: 'Ngā tohu putanga: {count}'
-    label_total: 'Total: {count}'
-    label_api_calls: 'API calls: {count}'
+    label_total: 'Katoa: {count}'
+    label_api_calls: 'Karanga API: {count}'
     label_cost: 'Utu: {prefix}${amount}'
-    label_cost_included: 'Cost: included'
+    label_cost_included: 'Utu: kei roto'
     label_context: 'Horopaki: {used} / {total} ({pct}%)'
     label_compressions: 'Ngā whakapoto: {count}'
     breakdown_header: 🧩 **Wehenga Horopaki** _(tata)_
     breakdown_line: '• {label}: ~{count} ({pct}%)'
-    breakdown_cat_system_prompt: System prompt
-    breakdown_cat_tool_definitions: Tool definitions
-    breakdown_cat_rules: Rules
-    breakdown_cat_skills: Skills
+    breakdown_cat_system_prompt: Kōrero pūnaha
+    breakdown_cat_tool_definitions: Whakamārama taputapu
+    breakdown_cat_rules: Tikanga
+    breakdown_cat_skills: Pūkenga
     breakdown_cat_mcp: MCP
-    breakdown_cat_subagent_definitions: Subagent definitions
-    breakdown_cat_memory: Memory
-    breakdown_cat_conversation: Conversation
-    header_session_info: 📊 **Session Info**
-    label_messages: 'Messages: {count}'
+    breakdown_cat_subagent_definitions: Whakamārama kaiāwhina tuarua
+    breakdown_cat_memory: Mahara
+    breakdown_cat_conversation: Kōrerorero
+    header_session_info: 📊 **Pārongo Nohoanga**
+    label_messages: 'Mēnē: {count}'
     label_estimated_context: 'Te rahi o te horopaki e whakatauhia ana: ~{count} tohu'
     detailed_after_first: _(Kei te wātea ngā whakamārama whakamahi i muri i te whakautu tuatahi a te māngai)_
     no_data: Kāore he raraunga whakamahi e wātea ana mō tēnei wātū.
@@ -565,14 +565,14 @@ gateway:
     tts_enabled: 'Kua whakahohe te Auto-TTS.
 
       Ka whakauruhia he karere reo ki ngā whakautu katoa.'
-    status_mode: 'Voice mode: {label}'
+    status_mode: 'Āhua reo: {label}'
     status_channel: 'Hongere reo: #{channel}'
     status_participants: 'Ngā kaiuru: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (kei te kōrero)'
+    enabled_short: Kua whakakāhia te āhua reo.
+    disabled_short: Kua mutungia te āhua reo.
+    label_off: Mutu (tuhinga anake)
     label_voice_only: Whakahohe (whakautu reo ki ngā karere reo)
     label_all: TTS (whakautu reo ki ngā karere katoa)
     help: '{toggle}

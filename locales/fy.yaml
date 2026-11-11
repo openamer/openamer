@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] ien kear  |  [s]esje  |  [d] wegerje'
   prompt_long: '      Kar [o/s/a/D]: '
   prompt_short: '      Kar [o/s/D]: '
-  choose_smart_deny: '      [o] ien kear  |  [d] wegerje'
-  prompt_smart_deny: '      Kar [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [i]en kear  |  [w]egerje'
+  prompt_smart_deny: '      Kar [i/W]: '
+  smart_deny_once_inputs: i,ien kear
+  smart_deny_deny_inputs: w,wegerje
   timeout: '      ⏱ Tiidferrin - opdracht wegerje'
   allowed_once: '      ✓ Ien kear tastien'
   allowed_session: '      ✓ Tastien foar dizze sesje'
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Titel is leech nei it opskjinjen — sessie start sûnder titel.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Wis: {tip}'
   restart:
     in_progress: ⏳ Gateway werstart is al oan 'e gong...
     restarting: ♻ Gateway werstarte. As jo binnen 60 sekonden gjin berjocht krije, werstart dan fan de konsole mei `openamer gateway restart`.
@@ -425,13 +425,13 @@ gateway:
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_key: '  sessiesleutel: {session_key}'
     session_id: '**Sesje-ID:** `{session_id}`'
     title: '**Titel:** {title}'
     created: '**Oanmakke:** {timestamp}'
     last_activity: '**Lêste aktiviteit:** {timestamp}'
-    model: '**Model:** `{model}`'
-    model_provider: '**Model:** `{model}` ({provider})'
+    model: '**Modelle:** `{model}`'
+    model_provider: '**Modelle:** `{model}` ({provider})'
     context: '**Kontekst:** {used} / {total} ({pct}%)'
     context_used: '**Kontekst:** ~{used} tokens'
     tokens: '**Kumulative API-tokens (by elke oprop opnij ferstjoerd):** {tokens}'
@@ -516,7 +516,7 @@ gateway:
   usage:
     rate_limits: ⏱️ **Taryflimiten:** {state}
     header_session: 📊 **Tokengebrûk per sesje**
-    label_model: 'Model: `{model}`'
+    label_model: 'Modelle: `{model}`'
     label_input_tokens: 'Ynfiertokens: {count}'
     label_cache_read: 'Cache-lêstokens: {count}'
     label_cache_write: 'Cache-skriuwtokens: {count}'

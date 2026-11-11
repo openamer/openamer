@@ -10,8 +10,8 @@ approval:
   prompt_short: '      Doorasho [o/s/D]: '
   choose_smart_deny: '      [o]mar  |  [d]diid'
   prompt_smart_deny: '      Doorasho [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,omar
+  smart_deny_deny_inputs: d,ddiid
   timeout: '      ⏱ Waqti dhammaad - amarka waa la diidayaa'
   allowed_once: '      ✓ La oggolaaday hal mar'
   allowed_session: '      ✓ La oggolaaday fadhigan'
@@ -567,39 +567,39 @@ gateway:
       Dhammaan jawaabaha waxay ka mid noqon doonaan fariin cod.'
     status_mode: 'Habka codka: {label}'
     status_channel: 'Kanaalka codka: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'Ka qeybgalayaasha: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    speaking: ' (hadlayaa)'
+    enabled_short: Habka codka waa la shiday.
+    disabled_short: Habka codka waa la damiyay.
+    label_off: Dami (qoraal kaliya)
+    label_voice_only: Daaran (jawaab cod ah fariimaha codka)
+    label_all: TTS (jawaab cod ah dhammaan fariimaha)
     help: '{toggle}
 
 
-      **How /voice works**
+      **Sida /voice u shaqeeyo**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — jawaab cod ah markaad dirto fariin cod ah
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — jawaab cod ah *fariin kasta*
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — dib ugu noqo jawaabaha qoraalka kaliya
 
-      • `/voice status` — show the current mode
+      • `/voice status` — muuji habka hadda
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (dood la''aan) — beddel degdeg ah oo u dhexeeya daaran iyo dami{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **Kanaalada codka ee tooska ah (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • Marka hore ku biir kanaal cod, kadib `/voice channel` — waan ku biiri doonaa, dhageysan doonaa, oo jawaabahayga cod ahaan u hadli doonaa
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — ka bax kanaalka codka'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ Habka YOLO **DAMI** ee fadhigan — amarrada khatarta ah waxay u baahan doonaan oggolaansho.
+    enabled: ⚡ Habka YOLO **DAARAN** ee fadhigan — dhammaan amarrada si otomaatig ah ayaa loo oggolaaday. Isticmaal si taxadar leh.
   shared:
     session_db_unavailable: Kaydka xogta fadhiga lama heli karo.
     session_db_unavailable_prefix: Kaydka xogta fadhiga lama heli karo

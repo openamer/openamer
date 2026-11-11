@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Un biahi  |  [s] Sesion  |  [d] Deniega'
   prompt_long: '      Ayek [o/s/a/D]: '
   prompt_short: '      Ayek [o/s/D]: '
-  choose_smart_deny: '      [o] Un biahi  |  [d] Deniega'
-  prompt_smart_deny: '      Ayek [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]n biahi  |  [d]eniega'
+  prompt_smart_deny: '      Ayek [u/D]: '
+  smart_deny_once_inputs: u,un biahi
+  smart_deny_deny_inputs: d,deniega
   timeout: '      ⏱ Må''pos i tiempo - deniega i komando'
   allowed_once: '      ✓ Permitido un biahi'
   allowed_session: '      ✓ Permitido para este na sesion'
@@ -142,10 +142,10 @@ gateway:
 
       _(ma aplikå gi sigiente na mensåhi)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (este na sesion ha'')'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: POTTE
+    label_normal: KOSTUMBRE
     status_fast: faset
-    status_normal: normal
+    status_normal: kostumbre
     picker_title: '⚡ **Prusesamentu ni Prioridåt**
 
 
@@ -168,8 +168,8 @@ gateway:
     example_line: '
 
       Ehemplo: `{preview}`'
-    state_on: 'ON'
-    state_off: 'OFF'
+    state_on: CHUDA
+    state_off: APAGA
   goal:
     unavailable: Metas ti siña gi este na sesion.
     no_goal_set: Ti ma na'guaha måtta'.

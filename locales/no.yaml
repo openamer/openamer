@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] én gang  |  [s] økt  |  [d] avslå'
   prompt_long: '      Valg [o/s/a/D]: '
   prompt_short: '      Valg [o/s/D]: '
-  choose_smart_deny: '      [o] én gang  |  [d] avslå'
-  prompt_smart_deny: '      Valg [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [o] én gang  |  [a]vslå'
+  prompt_smart_deny: '      Valg [o/A]: '
+  smart_deny_once_inputs: o,én gang
+  smart_deny_deny_inputs: a,avslå
   timeout: '      ⏱ Tidsavbrudd - avslår kommando'
   allowed_once: '      ✓ Tillatt én gang'
   allowed_session: '      ✓ Tillatt for denne økten'

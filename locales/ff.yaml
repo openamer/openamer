@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] sahaa gootol  |  [s] seesong  |  [d] salde'
   prompt_long: '      Suɓo [o/s/a/D]: '
   prompt_short: '      Suɓo [o/s/D]: '
-  choose_smart_deny: '      [o] sahaa gootol  |  [d] salde'
-  prompt_smart_deny: '      Suɓo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [s]ahaa gootol  |  [s]alde'
+  prompt_smart_deny: '      Suɓo [s/S]: '
+  smart_deny_once_inputs: s,sahaa gootol
+  smart_deny_deny_inputs: s,salde
   timeout: '      ⏱ Sahaa gasii - salde yamiroore'
   allowed_once: '      ✓ Jaɓaama sahaa gootol'
   allowed_session: '      ✓ Jaɓaama wonande ndee seesong'
@@ -142,8 +142,8 @@ gateway:
 
       _(ina waɗa golle e mesaas garoowo)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (e ndee jokkondiral tan)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: Sare
+    label_normal: Laawol
     status_fast: yaawnde
     status_normal: deƴƴere
     picker_title: '⚡ **Gollal Ko Adii**
@@ -424,8 +424,8 @@ gateway:
     matrix_scope_room: '  suudu: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_mode: '  fannu_seesi: {scope}'
+    matrix_scope_key: '  kel_seesi: {session_key}'
     session_id: '**ID Seesion:** `{session_id}`'
     title: '**Tiitoonde:** {title}'
     created: '**Sosaa:** {timestamp}'

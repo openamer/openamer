@@ -10,8 +10,8 @@ approval:
   prompt_short: '      Pilihan [o/s/D]: '
   choose_smart_deny: '      [o]sekali  |  [d]tolak'
   prompt_smart_deny: '      Pilihan [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,osekali
+  smart_deny_deny_inputs: d,dtolak
   timeout: '      ⏱ Waktu habis - menolak perintah'
   allowed_once: '      ✓ Diizinkan sekali'
   allowed_session: '      ✓ Diizinkan untuk sesi ini'
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Judul kosong setelah pembersihan — sesi dimulai tanpa judul.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Tips: {tip}'
   restart:
     in_progress: ⏳ Gateway sedang dimulai ulang...
     restarting: ♻ Memulai ulang gateway. Jika Anda tidak diberi tahu dalam 60 detik, mulai ulang dari konsol dengan `openamer gateway restart`.
@@ -421,11 +421,11 @@ gateway:
   status:
     header: 📊 **Status Gateway OpenAmer**
     matrix_scope_header: '**Cakupan Matrix:**'
-    matrix_scope_room: '  room: {room}'
-    matrix_scope_room_id: '  room_id: {room_id}'
-    matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_room: '  ruang: {room}'
+    matrix_scope_room_id: '  ID Ruangan: {room_id}'
+    matrix_scope_thread: '  ID Thread: {thread_id}'
+    matrix_scope_mode: '  Cakupan Sesi: {scope}'
+    matrix_scope_key: '  Kunci Sesi: {session_key}'
     session_id: '**ID Sesi:** `{session_id}`'
     title: '**Judul:** {title}'
     created: '**Dibuat:** {timestamp}'

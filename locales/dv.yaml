@@ -10,8 +10,8 @@ approval:
   prompt_short: '      އިންތިޚާބު [o/s/D]: '
   choose_smart_deny: '      [o] އެއްފަހަރު  |  [d] މަނާކުރޭ'
   prompt_smart_deny: '      އިންތިޚާބު [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,އެއްފަހަރު
+  smart_deny_deny_inputs: d,މަނާކުރޭ
   timeout: '      ⏱ ވަގުތު ހަމަވެއްޖެ - ކޮމާންޑު މަނާކުރަނީ'
   allowed_once: '      ✓ އެއްފަހަރަށް ހުއްދަވެއްޖެ'
   allowed_session: '      ✓ މި ސެޝަނަށް ހުއްދަވެއްޖެ'
@@ -569,10 +569,10 @@ gateway:
     status_channel: 'ވޯއިސް ޗެނެލް: #{channel}'
     status_participants: 'ބައިވެރިން: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (ބޮލިން)'
+    enabled_short: އާވާޒް މޫޑް ސަރިވަރުވެ.
+    disabled_short: އާވާޒް މޫޑް ނަތިވެ.
+    label_off: ބަންދަކު (ތެކްސްޓް އެކުވެގެ)
     label_voice_only: އޮން (އަޑު މެސެޖްތަކަށް އަޑު ޖަވާބު)
     label_all: TTS (ހުރިހާ މެސެޖްތަކަށް އަޑު ޖަވާބު)
     help: '{toggle}

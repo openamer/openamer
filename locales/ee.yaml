@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] zi ɖeka  |  [s] ɣeyiɣi  |  [d] gbe'
   prompt_long: '      Tiatia [o/s/a/D]: '
   prompt_short: '      Tiatia [o/s/D]: '
-  choose_smart_deny: '      [o] zi ɖeka  |  [d] gbe'
-  prompt_smart_deny: '      Tiatia [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [z]i ɖeka  |  [g]be'
+  prompt_smart_deny: '      Tiatia [z/G]: '
+  smart_deny_once_inputs: z,zi ɖeka
+  smart_deny_deny_inputs: g,gbe
   timeout: '      ⏱ Ɣeyiɣi vɔ - gbeɖeɖe gbe'
   allowed_once: '      ✓ Wode mɔ zi ɖeka'
   allowed_session: '      ✓ Wode mɔ na ɣeyiɣi sia'
@@ -142,8 +142,8 @@ gateway:
 
       _(awɔ dɔ le gbedasi si gbɔna)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (le session sia ko)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: KPEKPE
+    label_normal: LE GBALE
     status_fast: kpokpɔ
     status_normal: deŋgɔ
     picker_title: '⚡ **Dɔ veviwo wɔwɔ**
@@ -516,7 +516,7 @@ gateway:
   usage:
     rate_limits: ⏱️ **Asiɖoɖo sewo:** {state}
     header_session: 📊 **Session token zazã**
-    label_model: 'Model: `{model}`'
+    label_model: 'Mɔdɛl: `{model}`'
     label_input_tokens: 'Input tokenwo: {count}'
     label_cache_read: 'Cache nuxlẽ tokenwo: {count}'
     label_cache_write: 'Cache ŋɔŋlɔ tokenwo: {count}'

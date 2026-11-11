@@ -10,8 +10,8 @@ approval:
   prompt_short: '      ਚੋਣ [o/s/D]: '
   choose_smart_deny: '      [o] ਇੱਕ ਵਾਰ  |  [d] ਇਨਕਾਰ'
   prompt_smart_deny: '      ਚੋਣ [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,ਇੱਕ ਵਾਰ
+  smart_deny_deny_inputs: d,ਇਨਕਾਰ
   timeout: '      ⏱ ਟਾਈਮਆਊਟ - ਕਮਾਂਡ ਨੂੰ ਮਨ੍ਹਾ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ'
   allowed_once: '      ✓ ਇੱਕ ਵਾਰ ਲਈ ਮਨਜ਼ੂਰ'
   allowed_session: '      ✓ ਇਸ ਸੈਸ਼ਨ ਲਈ ਮਨਜ਼ੂਰ'
@@ -567,39 +567,39 @@ gateway:
       ਸਾਰੇ ਜਵਾਬਾਂ ਵਿੱਚ ਵਾਇਸ ਸੁਨੇਹਾ ਸ਼ਾਮਲ ਹੋਵੇਗਾ।'
     status_mode: 'ਵਾਇਸ ਮੋਡ: {label}'
     status_channel: 'ਵਾਇਸ ਚੈਨਲ: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'ਭਾਗੀਦਾਰ: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    speaking: ' (ਬੋਲ ਰਿਹਾ)'
+    enabled_short: ਵਾਇਸ ਮੋਡ ਚਾਲੂ ਕੀਤਾ ਗਿਆ।
+    disabled_short: ਵਾਇਸ ਮੋਡ ਬੰਦ ਕੀਤਾ ਗਿਆ।
+    label_off: ਬੰਦ (ਸਿਰਫ਼ ਟੈਕਸਟ)
+    label_voice_only: ਚਾਲੂ (ਵਾਇਸ ਸੁਨੇਹਿਆਂ ਲਈ ਵਾਇਸ ਜਵਾਬ)
+    label_all: TTS (ਸਾਰੇ ਸੁਨੇਹਿਆਂ ਲਈ ਵਾਇਸ ਜਵਾਬ)
     help: '{toggle}
 
 
-      **How /voice works**
+      **/voice ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — ਜਦੋਂ ਤੁਸੀਂ ਵਾਇਸ ਸੁਨੇਹਾ ਭੇਜਦੇ ਹੋ ਤਾਂ ਵਾਇਸ ਜਵਾਬ
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — *ਹਰ* ਸੁਨੇਹੇ ਦਾ ਵਾਇਸ ਜਵਾਬ
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — ਸਿਰਫ਼ ਟੈਕਸਟ ਜਵਾਬਾਂ ਵੱਲ ਵਾਪਸ
 
-      • `/voice status` — show the current mode
+      • `/voice status` — ਮੌਜੂਦਾ ਮੋਡ ਦਿਖਾਓ
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (ਕੋਈ ਆਰਗਿਉਮੈਂਟ ਨਹੀਂ) — ਚਾਲੂ ਅਤੇ ਬੰਦ ਵਿਚਕਾਰ ਤੇਜ਼ ਟੌਗਲ{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **ਲਾਈਵ ਵੌਇਸ ਚੈਨਲ (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • ਪਹਿਲਾਂ ਵੌਇਸ ਚੈਨਲ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ, ਫਿਰ `/voice channel` — ਮੈਂ ਸ਼ਾਮਲ ਹੋਵਾਂਗਾ, ਸੁਣਾਂਗਾ, ਅਤੇ ਆਪਣੇ ਜਵਾਬ ਬੋਲਾਂਗਾ
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — ਵੌਇਸ ਚੈਨਲ ਤੋਂ ਡਿਸਕਨੈਕਟ ਹੋਵੋ'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ ਇਸ ਸੈਸ਼ਨ ਲਈ YOLO ਮੋਡ **ਬੰਦ** ਹੈ — ਖ਼ਤਰਨਾਕ ਕਮਾਂਡਾਂ ਲਈ ਮਨਜ਼ੂਰੀ ਲੋੜੀਂਦੀ ਹੋਵੇਗੀ।
+    enabled: ⚡ ਇਸ ਸੈਸ਼ਨ ਲਈ YOLO ਮੋਡ **ਚਾਲੂ** ਹੈ — ਸਾਰੀਆਂ ਕਮਾਂਡਾਂ ਆਪਣੇ-ਆਪ ਮਨਜ਼ੂਰ ਹਨ। ਸਾਵਧਾਨੀ ਨਾਲ ਵਰਤੋ।
   shared:
     session_db_unavailable: ਸੈਸ਼ਨ ਡੇਟਾਬੇਸ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।
     session_db_unavailable_prefix: ਸੈਸ਼ਨ ਡੇਟਾਬੇਸ ਉਪਲਬਧ ਨਹੀਂ ਹੈ

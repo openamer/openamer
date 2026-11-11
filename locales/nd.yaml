@@ -8,52 +8,52 @@ approval:
   choose_short: '      [o] kanye  |  [s] iseshini  |  [d] ala'
   prompt_long: '      Ukukhetha [o/s/a/D]: '
   prompt_short: '      Ukukhetha [o/s/D]: '
-  choose_smart_deny: '      [o] kanye  |  [d] ala'
-  prompt_smart_deny: '      Choice [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [k]anye  |  [a]la'
+  prompt_smart_deny: '      Ukukhetha [k/A]: '
+  smart_deny_once_inputs: k,kanye
+  smart_deny_deny_inputs: a,ala
   timeout: '      ⏱ Isikhathi siphelile - kuyalwa umyalo'
-  allowed_once: '      ✓ Allowed once'
+  allowed_once: '      ✓ Kuvunyelwe kanye'
   allowed_session: '      ✓ Kuvunyelwe kule iseshini'
   allowed_always: '      ✓ Kufakwe ohlwini lwemvume oluhlala njalo'
-  denied: '      ✗ Denied'
-  cancelled: '      ✗ Cancelled'
+  denied: '      ✗ Kwenqatshiwe'
+  cancelled: '      ✗ Kukhanseliwe'
   blocklist_message: Lo myalo usohlwini lokuvimbela olungenamibandela futhi awukwazi ukugunyazwa.
 gateway:
   approval_expired: ⚠️ Imvume iphelelwe yisikhathi (i-agent ayisalindi). Cela i-agent ukuthi izame futhi.
   draining: ⏳ Kulindwa {count} ama-agent asebenzayo ngaphambi kokuqala kabusha...
-  goal_cleared: ✓ Goal cleared.
-  no_active_goal: No active goal.
+  goal_cleared: ✓ Inhloso isuliwe.
+  no_active_goal: Akukho nhloso esebenzayo.
   config_read_failed: '⚠️ Akukwazekanga ukufunda config.yaml: {error}'
   config_save_failed: '⚠️ Akukwazekanga ukugcina ikhonfigi: {error}'
   model:
-    error_prefix: 'Error: {error}'
+    error_prefix: 'Iphutha: {error}'
     switched: Imodeli ishintshiwe yaba `{model}`
-    provider_label: 'Provider: {provider}'
+    provider_label: 'Umhlinzeki: {provider}'
     context_label: 'Umxholo: {tokens} amathokheni'
     max_output_label: 'Umkhawulo wokuphuma: {tokens} amathokheni'
-    cost_label: 'Cost: {cost}'
+    cost_label: 'Izindleko: {cost}'
     capabilities_label: 'Amakhono: {capabilities}'
     prompt_caching_enabled: 'Ukugcina i-prompt: kuvuliwe'
-    warning_prefix: 'Warning: {warning}'
+    warning_prefix: 'Isixwayiso: {warning}'
     saved_global: Kugcinwe ku config.yaml (`--global`)
     session_only_hint: _(kwiseshini kuphela — faka `--global` ukuze kugcinwe)_
     current_label: 'Okwamanje: `{model}` ku {provider}'
-    current_tag: ' (current)'
-    more_models_suffix: ' (+{count} more)'
+    current_tag: ' (kamanje)'
+    more_models_suffix: ' (+{count} ngaphezulu)'
     usage_switch_model: '`/model <name>` — shintsha imodeli'
     usage_switch_provider: '`/model <name> --provider <slug>` — shintsha umhlinzeki'
     usage_persist: '`/model <name> --global` — gcina'
   agents:
     header: 🤖 **Ama-Agenti Asebenzayo & Imisebenzi**
     active_agents: '**Ama-agent asebenzayo:** {count}'
-    this_chat: ' · this chat'
-    more: '... and {count} more'
+    this_chat: ' · le ngxoxo'
+    more: '... kanye nokunye oku-{count}'
     running_processes: '**Iinkqubo zangemuva eziqhubekayo:** {count}'
     async_jobs: '**Imisebenzi ye-Gateway ye-async:** {count}'
     none: Akukho ma-agent asebenzayo noma imisebenzi eqhubekayo.
-    state_starting: starting
-    state_running: running
+    state_starting: kuyaqala
+    state_running: kuyasebenza
   approve:
     no_pending: Akukho myalelo olindileyo wokugunyaza.
     once_singular: ✅ Umyalo ugunyaziwe. I-agent iyaqhubeka...
@@ -96,7 +96,7 @@ gateway:
   commands:
     usage: 'Ukusetshenziswa: `/commands [page]`'
     skill_header: '⚡ **Imiyalo Yamakhono**:'
-    default_desc: Skill command
+    default_desc: Umyalo wekhono
     none: Akukho miyalo etholakalayo.
     header: 📚 **Imiyalo** ({total} iyonke, ikhasi {page}/{total_pages})
     nav_prev: '`/commands {page}` ← eyandulelayo'
@@ -107,7 +107,7 @@ gateway:
     no_provider: Akukho mhlinzeki olungisiwe -- akukwazi ukufinyeza.
     nothing_to_do: Akukho lutho lokufinyeza okwamanje (umbhalo wengxoxo usewonke umongo ovikelwe).
     aggressive_unsupported: --aggressive akusekelwe; sebenzisa '/compress here [N]' ukuze ugcine kuphela izingxoxo zakamuva, noma /undo ukulahla imijikelo.
-    focus_line: 'Focus: "{topic}"'
+    focus_line: 'Ukugxila: "{topic}"'
     summary_failed: ⚠️ Ukwakhiwa kwesifinyezo kwehlulekile ({error}). {count} imiyalezo yomlando yasuswa yafakwa isibambeli; umongo wangaphambilini awusakwazi ukubuyiselwa. Cabanga ukuhlola ukulungiswa kwemodeli ye-auxiliary.compression.
     aborted: ⚠️ Ukufinyeza kuhoxisiwe ({error}). Akukho miyalezo eyalahlwa — ingxoxo ayikashintshi. Sebenzisa /compress ukuze uzame futhi, /reset ukuze uthole isikhathi esihlanzekile, noma hlola ukulungiswa kwemodeli ye-auxiliary.compression.
     aux_failed: ℹ️ Imodeli yokufinyeza elungisiweyo `{model}` yehlulekile ({error}). Kubuyiselwe kusetshenziswa imodeli yakho eyinhloko — umongo uphelele — kodwa kungaba kuhle ukuthi uhlole `auxiliary.compression.model` ku-config.yaml.
@@ -121,7 +121,7 @@ gateway:
   deny:
     stale: ❌ Umyalo unqatshiwe (imvume ibiphelelwe yisikhathi).
     no_pending: Akukho myalo olindileyo wokunqatsha.
-    denied_singular: ❌ Command denied.
+    denied_singular: ❌ Umyalo unqatshiwe.
     denied_plural: ❌ Imiyalo inqatshiwe ({count} imiyalo).
     denied_reason_singular: '❌ Umyalo unqatshiwe. Isizathu sidluliselwe kwi-agent: "{reason}"'
     denied_reason_plural: '❌ Imiyalo inqatshiwe ({count} imiyalo). Isizathu sidluliselwe kwi-agent: "{reason}"'
@@ -142,10 +142,10 @@ gateway:
 
       _(kuzosebenza kumyalezo olandelayo)_'
     session_only: '⚡ ✓ Ukucubungula okuphambili: **{label}** (kulesi seshini kuphela)'
-    label_fast: FAST
-    label_normal: NORMAL
-    status_fast: fast
-    status_normal: normal
+    label_fast: OKUSHESHA
+    label_normal: OKUJWAYELEKILE
+    status_fast: okushesha
+    status_normal: okujwayelekile
     picker_title: '⚡ **Ukucubungula okuphambili**
 
 
@@ -168,13 +168,13 @@ gateway:
     example_line: '
 
       Isibonelo: `{preview}`'
-    state_on: 'ON'
-    state_off: 'OFF'
+    state_on: KUVULIWE
+    state_off: CIMILE
   goal:
     unavailable: Imigomo ayitholakali kulesi seshini.
-    no_goal_set: No goal set.
+    no_goal_set: Akukho nhloso ebekiwe.
     paused: '⏸ Umgomo umisiwe: {goal}'
-    no_resume: No goal to resume.
+    no_resume: Akukho nhloso yokuqhubeka.
     resumed: '▶ Injongo iqaliswe kabusha: {goal}
 
       Thumela noma yimuphi umlayezo ukuze uqhubeke, kumbe linda — ngizathatha isinyathelo esilandelayo ekuphenduleni okulandelayo.'
@@ -201,14 +201,14 @@ gateway:
     error_prefix: '⚠ iphutha le-kanban: {error}'
     subscribed_suffix: (ubhalisile — uzaziswa lapho {task_id} iqeda kumbe ivimbela)
     truncated_suffix: … (kufinyeziwe; sebenzisa `openamer kanban …` kutheminali yakho ukuze uthole umphumela opheleleyo)
-    no_output: (no output)
+    no_output: (akukho okukhiphayo)
     wake:
-      completed: completed
+      completed: kuqediwe
       gave_up: kuhoxiwe (imizamo yokuphinda iphelile)
       crashed: siphahlukile (isisebenzi siphumile); umthumeli uzazama futhi
       timed_out: isikhathi siphelile; umthumeli uzazama futhi
       blocked: kuvinjiwe; kudinga ukunakwa
-      status_default: status changed
+      status_default: isimo sishintshile
       status_joiner: ', '
       message: '[kanban] Umsebenzi {task_id} {status}.
 
@@ -237,59 +237,59 @@ gateway:
     set_to: '🎭 Ubuntu bumiselwe ku-**{name}**
 
       _(kuzosebenza kumyalezo olandelayo)_'
-    unknown: 'Unknown personality: `{name}`
+    unknown: 'Ubuntu obungaziwa: `{name}`
 
 
-      Available: {available}'
+      Okukhona: {available}'
   profile:
-    header: 👤 **Profile:** `{profile}`
-    home: 📂 **Home:** `{home}`
+    header: 👤 **Iphrofayela:** `{profile}`
+    home: 📂 **Ikhaya:** `{home}`
   reasoning:
-    level_default: medium (default)
-    level_disabled: none (disabled)
-    scope_session: session override
-    scope_global: global config
-    status: '🧠 **Reasoning Settings**
+    level_default: phakathi (okujwayelekile)
+    level_disabled: akukho (kucinyiwe)
+    scope_session: ukweqa kweseshini
+    scope_global: ikhonfigi yomhlaba wonke
+    status: '🧠 **Izilungiselelo Zokucabanga**
 
 
-      **Effort:** `{level}`
+      **Umzamo:** `{level}`
 
-      **Scope:** {scope}
+      **Ububanzi:** {scope}
 
-      **Display:** {display}
-
-
-      _Usage:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
-    display_on: on ✓
-    display_off: 'off'
-    display_set_on: '🧠 ✓ Reasoning display: **ON**
-
-      Model thinking will be shown before each response on **{platform}**.'
-    display_set_off: '🧠 ✓ Reasoning display: **OFF** for **{platform}**'
-    reset_global_unsupported: ⚠️ `/reasoning reset --global` is not supported. Use `/reasoning <level> --global` to change the global default.
-    reset_done: 🧠 ✓ Session reasoning override cleared; falling back to global config.
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
+      **Ukubonisa:** {display}
 
 
-      **Valid levels:** none, minimal, low, medium, high, xhigh, max, ultra
+      _Ukusetshenziswa:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
+    display_on: vuliwe ✓
+    display_off: valiwe
+    display_set_on: '🧠 ✓ Ukubonisa ukucabanga: **KUVULIWE**
 
-      **Display:** show, hide
-
-      **Persist:** add `--global` to save beyond this session'
-    picker_title: '🧠 **Reasoning Settings**
-
-
-      **Effort:** `{level}`
-
-      **Scope:** {scope}
-
-      **Display:** {display}
+      Ukucabanga kwemodeli kuzoboniswa ngaphambi kwempendulo ngayinye ku-**{platform}**.'
+    display_set_off: '🧠 ✓ Ukubonisa ukucabanga: **KUCIMILE** ku-**{platform}**'
+    reset_global_unsupported: ⚠️ `/reasoning reset --global` akusekelwa. Sebenzisa `/reasoning <level> --global` ukushintsha okujwayelekile komhlaba wonke.
+    reset_done: 🧠 ✓ Ukweqa kokucabanga kweseshini kusuliwe; kubuyelwa kukhonfigi yomhlaba wonke.
+    unknown_arg: '⚠️ I-agumenti engaziwa: `{arg}`
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
+      **Amazinga avumelekile:** none, minimal, low, medium, high, xhigh, max, ultra
+
+      **Ukubonisa:** show, hide
+
+      **Ukugcina:** engeza `--global` ukuze ugcine ngale kweseshini'
+    picker_title: '🧠 **Izilungiselelo Zokucabanga**
+
+
+      **Umzamo:** `{level}`
+
+      **Ububanzi:** {scope}
+
+      **Ukubonisa:** {display}
+
+
+      Khetha inketho:'
+    choice_none: none — khubaza ukucabanga
+    choice_reset: reset — sula ukweqa kweseshini
+    choice_show: khombisa ukucabanga ezimpendulweni
     choice_hide: Fihla ukucabanga kwiimpendulo
     set_global: '🧠 ✓ Umzamo wokucabanga ubekwe ku-`{effort}` (kugcinwe ku-config)
 
@@ -323,8 +323,8 @@ gateway:
 
       '
     reconnected: '♻️ Kuxhunywe Kabusha: {names}'
-    added: '➕ Added: {names}'
-    removed: '➖ Removed: {names}'
+    added: '➕ Kungezwe: {names}'
+    removed: '➖ Kususiwe: {names}'
     none_connected: Akukho maseva e-MCP axhunyiwe.
     tools_available: '
 
@@ -338,7 +338,7 @@ gateway:
     total: '
 
       📚 {count} amakhono akhona'
-    added_header: ➕ **Added Skills:**
+    added_header: ➕ **Amakhono Angezwe:**
     removed_header: ➖ **Amakhono Asusiwe:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Isihloko asinalutho ngemuva kokuhlanza — iseshini iqalile ingenasiyo isihloko.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Icebiso: {tip}'
   restart:
     in_progress: ⏳ Ukuqala kabusha kwe-Gateway sekusaqhubeka...
     restarting: ♻ Kuqalwa kabusha i-gateway. Uma ungakaziswa phakathi kwemizuzwana engu-60, qala kabusha usebenzisa i-console nge-`openamer gateway restart`.
@@ -420,24 +420,24 @@ gateway:
       Imisebenzi ye-Cron nemilayezo yezinkundla ezihlukeneyo izothunyelwa lapha.'
   status:
     header: 📊 **Isimo seSango se-OpenAmer**
-    matrix_scope_header: '**Matrix scope:**'
-    matrix_scope_room: '  room: {room}'
+    matrix_scope_header: '**Ububanzi beMatrix:**'
+    matrix_scope_room: '  igumbi: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
     matrix_scope_key: '  session_key: {session_key}'
     session_id: '**I-ID yeseshini:** `{session_id}`'
-    title: '**Title:** {title}'
+    title: '**Isihloko:** {title}'
     created: '**Yakhiwe:** {timestamp}'
     last_activity: '**Umsebenzi wokugcina:** {timestamp}'
-    model: '**Model:** `{model}`'
+    model: '**Imodeli:** `{model}`'
     model_provider: '**Imodeli:** `{model}` ({provider})'
     context: '**Umxholo:** {used} / {total} ({pct}%)'
     context_used: '**Umxholo:** ~{used} amathokheni'
     tokens: '**Amathokheni e-API aqoqiweyo (athunyelwa futhi njalo lapho kubizwa):** {tokens}'
     agent_running: '**I-ejenti iyasebenza:** {state}'
-    state_yes: Yes ⚡
-    state_no: 'No'
+    state_yes: Yebo ⚡
+    state_no: Cha
     queued: '**Okulandelelayo okulindile:** {count}'
     platforms: '**Amapulatifomu axhunyiwe:** {platforms}'
   stop:
@@ -498,9 +498,9 @@ gateway:
 
 
       Lesi sihloko sizosetshenziswa njenge-session ye-OpenAmer ezimele. Sebenzisa /new ukufaka esikhundleni i-session yamanje yalesi sihloko. Ngomsebenzi ohambisana nawo, vula All Messages bese uthumela umlayezo lapho ukuze udale esinye isihloko.'
-    untitled_session: Untitled session
+    untitled_session: Iseshini engenasihloko
   undo:
-    nothing: Nothing to undo.
+    nothing: Akukho okungabuyiselwa.
     removed: '↩️ Kuhoxisiwe {turns} imijikelezo ({count} imilayezo).
 
       Kugcinwe ku: "{preview}"
@@ -516,29 +516,29 @@ gateway:
   usage:
     rate_limits: ⏱️ **Imikhawulo Yezinga:** {state}
     header_session: 📊 **Ukusetshenziswa Kwamathokheni Esession**
-    label_model: 'Model: `{model}`'
+    label_model: 'Imodeli: `{model}`'
     label_input_tokens: 'Amathokheni okufaka: {count}'
     label_cache_read: 'Amathokheni okufunda e-cache: {count}'
     label_cache_write: 'Amathokheni okubhala ku-cache: {count}'
     label_output_tokens: 'Amathokheni okukhipha: {count}'
-    label_total: 'Total: {count}'
-    label_api_calls: 'API calls: {count}'
+    label_total: 'Isamba: {count}'
+    label_api_calls: 'Izingcingo ze-API: {count}'
     label_cost: 'Izindleko: {prefix}${amount}'
-    label_cost_included: 'Cost: included'
+    label_cost_included: 'Izindleko: kufakiwe'
     label_context: 'Umongo: {used} / {total} ({pct}%)'
     label_compressions: 'Izifinyezo: {count}'
     breakdown_header: 🧩 **Ukuhlukaniswa komongo** _(okulinganiselweyo)_
     breakdown_line: '• {label}: ~{count} ({pct}%)'
-    breakdown_cat_system_prompt: System prompt
-    breakdown_cat_tool_definitions: Tool definitions
-    breakdown_cat_rules: Rules
-    breakdown_cat_skills: Skills
+    breakdown_cat_system_prompt: Isiqondiso sesistimu
+    breakdown_cat_tool_definitions: Izincazelo zamathuluzi
+    breakdown_cat_rules: Imithetho
+    breakdown_cat_skills: Amakhono
     breakdown_cat_mcp: MCP
-    breakdown_cat_subagent_definitions: Subagent definitions
-    breakdown_cat_memory: Memory
-    breakdown_cat_conversation: Conversation
-    header_session_info: 📊 **Session Info**
-    label_messages: 'Messages: {count}'
+    breakdown_cat_subagent_definitions: Iincazelo zomsebenzi ongaphansi
+    breakdown_cat_memory: Inkumbulo
+    breakdown_cat_conversation: Ingxoxo
+    header_session_info: 📊 **Ulwazi lwesesheni**
+    label_messages: 'Imilayezo: {count}'
     label_estimated_context: 'Umongo olinganiselweyo: ~{count} amathokheni'
     detailed_after_first: _(Ukusetshenziswa okuningiliziwe kuyatholakala ngemva kwempendulo ye-ejenti yokuqala)_
     no_data: Akukho datha yokusetshenziswa etholakalayo kule seshini.
@@ -565,14 +565,14 @@ gateway:
     tts_enabled: 'I-Auto-TTS ivuliwe.
 
       Zonke izimpendulo zizofaka umlayezo wezwi.'
-    status_mode: 'Voice mode: {label}'
+    status_mode: 'Imodi yezwi: {label}'
     status_channel: 'Itshaneli yezwi: #{channel}'
     status_participants: 'Abahlanganyeli: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (iyakhuluma)'
+    enabled_short: Imodi yezwi ivuliwe.
+    disabled_short: Imodi yezwi ivaliwe.
+    label_off: Icimile (umbhalo kuphela)
     label_voice_only: Kuvuliwe (ukuphendula ngazwi emiyalezweni yezwi)
     label_all: TTS (ukuphendula ngazwi kuyo yonke imiyalezo)
     help: '{toggle}

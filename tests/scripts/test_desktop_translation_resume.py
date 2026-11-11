@@ -12,6 +12,27 @@ import pytest
 REPO = Path(__file__).resolve().parents[2]
 
 
+def _extractor_available() -> bool:
+    """The desktop pipeline reads en.ts through the TypeScript compiler.
+
+    CI runs these tests on an image that has node but no installed packages,
+    because the JS/TS job is skipped for a Python-only change. Without the
+    compiler the extractor dies inside require('typescript'), so the pipeline
+    tests have to skip instead of failing on a missing toolchain.
+    """
+    try:
+        probe = subprocess.run(["node", "-e", "require('typescript')"],
+                               cwd=str(REPO), capture_output=True, timeout=60)
+    except (OSError, subprocess.SubprocessError):
+        return False
+    return probe.returncode == 0
+
+
+pytestmark = pytest.mark.skipif(
+    not _extractor_available(),
+    reason="node + resolvable typescript required for AST extraction")
+
+
 @pytest.fixture
 def fill(tmp_path, monkeypatch):
     spec = importlib.util.spec_from_file_location(

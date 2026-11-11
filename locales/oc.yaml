@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] un còp  |  [s]ession  |  [d] refusar'
   prompt_long: '      Causida [o/s/a/D]: '
   prompt_short: '      Causida [o/s/D]: '
-  choose_smart_deny: '      [o] un còp  |  [d] refusar'
-  prompt_smart_deny: '      Causida [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]n còp  |  [r]efusar'
+  prompt_smart_deny: '      Causida [u/R]: '
+  smart_deny_once_inputs: u,un còp
+  smart_deny_deny_inputs: r,refusar
   timeout: '      ⏱ Temps esgotat - refusant la comanda'
   allowed_once: '      ✓ Permés un còp'
   allowed_session: '      ✓ Permés per aquesta session'
@@ -27,7 +27,7 @@ gateway:
   config_read_failed: '⚠️ Impossible de legir config.yaml: {error}'
   config_save_failed: '⚠️ Impossible de salvar la config: {error}'
   model:
-    error_prefix: 'Error: {error}'
+    error_prefix: 'Erròr: {error}'
     switched: Modèl cambiat a `{model}`
     provider_label: 'Provesidor: {provider}'
     context_label: 'Contèxt: {tokens} getons'

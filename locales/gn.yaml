@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] peteĩ jey  |  [s] sesión  |  [d] mbyai'
   prompt_long: '      Jeporavo [o/s/a/D]: '
   prompt_short: '      Jeporavo [o/s/D]: '
-  choose_smart_deny: '      [o] peteĩ jey  |  [d] mbyai'
-  prompt_smart_deny: '      Jeporavo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [p]eteĩ jey  |  [m]byai'
+  prompt_smart_deny: '      Jeporavo [p/M]: '
+  smart_deny_once_inputs: p,peteĩ jey
+  smart_deny_deny_inputs: m,mbyai
   timeout: '      ⏱ Ára opáma - ojejokóva comando'
   allowed_once: '      ✓ Ojeheja peteĩ jey'
   allowed_session: '      ✓ Ojeheja ko sesiónpe'
@@ -424,8 +424,8 @@ gateway:
     matrix_scope_room: '  koty: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_mode: '  sesión_alcance: {scope}'
+    matrix_scope_key: '  sesión_clave: {session_key}'
     session_id: '**Sesión ID:** `{session_id}`'
     title: '**Título:** {title}'
     created: '**Ojejapopyre:** {timestamp}'
@@ -521,7 +521,7 @@ gateway:
     label_cache_read: 'Token cache ojeleéva: {count}'
     label_cache_write: 'Token cache ojehaíva: {count}'
     label_output_tokens: 'Token osẽva: {count}'
-    label_total: 'Total: {count}'
+    label_total: 'Hetaiterei: {count}'
     label_api_calls: 'API jehenói: {count}'
     label_cost: 'Mba''epy: {prefix}${amount}'
     label_cost_included: 'Mba''epy: oñemoinge'
@@ -567,39 +567,39 @@ gateway:
       Opaite ñembohovái oguerekóta peteĩ ayvu marandu.'
     status_mode: 'Ayvu modo: {label}'
     status_channel: 'Ayvu kanal: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'Participantes: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    speaking: ' (oñe''ẽ)'
+    enabled_short: Modo tape habilitado.
+    disabled_short: Modo tape deshabilitado.
+    label_off: Apagado (solo texto)
+    label_voice_only: Oñemomba'apo (ñe'ẽme ñembohovái ñe'ẽ marandu)
+    label_all: TTS (ñe'ẽme ñembohovái opa marandu)
     help: '{toggle}
 
 
-      **How /voice works**
+      **Mba''éichapa /voice oñemba''apo**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — ñe''ẽme ñembohovái remondo jave peteĩ ñe''ẽ marandu
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — ñe''ẽme ñembohovái *opa* marandu rehe
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — jehaipýpe añónte ñembohovái
 
-      • `/voice status` — show the current mode
+      • `/voice status` — hechauka pe modo oĩva ko''ág̃a
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (ndaipóri argumento) — oñemboheta pya''e on ha off apytépe{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **Kanál ñe''ẽ oĩva (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • Eike raẽ peteĩ kanál ñe''ẽme, upéi `/voice channel` — aike, ahendu ha añe''ẽ che ñembohovái
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — esẽ pe kanál ñe''ẽgui'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ Modo YOLO **OFF** ko sesiónpe — komando kyhyjerã oikotevẽta ñemoneĩ.
+    enabled: ⚡ Modo YOLO **ON** ko sesiónpe — opa komando oñemoneĩ ijehegui. Eiporu eñangarekóvo.
   shared:
     session_db_unavailable: Sesión mba'ekuaarã ryru ndoikói.
     session_db_unavailable_prefix: Sesión mba'ekuaarã ryru ndoikói

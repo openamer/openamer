@@ -9,51 +9,51 @@ approval:
   prompt_long: '      തിരഞ്ഞെടുക്കുക [o/s/a/D]: '
   prompt_short: '      തിരഞ്ഞെടുക്കുക [o/s/D]: '
   choose_smart_deny: '      [o] ഒരിക്കൽ  |  [d] നിരസിക്കുക'
-  prompt_smart_deny: '      Choice [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  prompt_smart_deny: '      തിരഞ്ഞെടുപ്പ് [o/D]: '
+  smart_deny_once_inputs: o,ഒരിക്കൽ
+  smart_deny_deny_inputs: d,നിരസിക്കുക
   timeout: '      ⏱ സമയപരിധി കഴിഞ്ഞു - കമാൻഡ് നിരസിക്കുന്നു'
-  allowed_once: '      ✓ Allowed once'
+  allowed_once: '      ✓ ഒരിക്കൽ അനുവദിച്ചു'
   allowed_session: '      ✓ ഈ സെഷനിൽ അനുവദിച്ചു'
   allowed_always: '      ✓ സ്ഥിരമായ അനുവദനീയ പട്ടികയിലേക്ക് ചേർത്തു'
-  denied: '      ✗ Denied'
-  cancelled: '      ✗ Cancelled'
+  denied: '      ✗ നിരസിച്ചു'
+  cancelled: '      ✗ റദ്ദാക്കി'
   blocklist_message: ഈ കമാൻഡ് നിരുപാധിക ബ്ലോക്ക്ലിസ്റ്റിലുണ്ട്, അംഗീകരിക്കാൻ കഴിയില്ല.
 gateway:
   approval_expired: ⚠️ അംഗീകാര കാലാവധി കഴിഞ്ഞു (ഏജന്റ് ഇനി കാത്തിരിക്കുന്നില്ല). ഏജന്റിനോട് വീണ്ടും ശ്രമിക്കാൻ ആവശ്യപ്പെടുക.
   draining: ⏳ പുനരാരംഭിക്കുന്നതിന് മുമ്പ് {count} സജീവ ഏജന്റ്(കൾ) ഡ്രെയിൻ ചെയ്യുന്നു...
-  goal_cleared: ✓ Goal cleared.
-  no_active_goal: No active goal.
+  goal_cleared: ✓ ലക്ഷ്യം നീക്കം ചെയ്തു.
+  no_active_goal: സജീവ ലക്ഷ്യമില്ല.
   config_read_failed: '⚠️ config.yaml വായിക്കാനായില്ല: {error}'
   config_save_failed: '⚠️ config സേവ് ചെയ്യാനായില്ല: {error}'
   model:
-    error_prefix: 'Error: {error}'
+    error_prefix: 'പിശക്: {error}'
     switched: മോഡൽ `{model}`-ലേക്ക് മാറ്റി
-    provider_label: 'Provider: {provider}'
+    provider_label: 'സേവനദാതാവ്: {provider}'
     context_label: 'സന്ദർഭം: {tokens} ടോക്കണുകൾ'
     max_output_label: 'പരമാവധി ഔട്ട്പുട്ട്: {tokens} ടോക്കണുകൾ'
-    cost_label: 'Cost: {cost}'
+    cost_label: 'ചിലവ്: {cost}'
     capabilities_label: 'കഴിവുകൾ: {capabilities}'
     prompt_caching_enabled: 'പ്രോംപ്റ്റ് കാഷിംഗ്: പ്രവർത്തനക്ഷമം'
-    warning_prefix: 'Warning: {warning}'
+    warning_prefix: 'ചെതവണി: {warning}'
     saved_global: config.yaml-ലേക്ക് സേവ് ചെയ്തു (`--global`)
     session_only_hint: _(സെഷൻ മാത്രം — നിലനിർത്താൻ `--global` ചേർക്കുക)_
     current_label: 'നിലവിൽ: `{model}` {provider}-ൽ'
-    current_tag: ' (current)'
-    more_models_suffix: ' (+{count} more)'
+    current_tag: ' (നിലവിൽ)'
+    more_models_suffix: ' (+{count} കൂടുതൽ)'
     usage_switch_model: /model <name> — മോഡൽ മാറ്റുക
     usage_switch_provider: /model <name> --provider <slug> — പ്രൊവൈഡർ മാറ്റുക
     usage_persist: '`/model <name> --global` — സ്ഥിരമാക്കുക'
   agents:
     header: 🤖 **സജീവ ഏജന്റുകളും ടാസ്കുകളും**
     active_agents: '**സജീവ ഏജന്റുകൾ:** {count}'
-    this_chat: ' · this chat'
-    more: '... and {count} more'
+    this_chat: ' · ഈ ചാറ്റ്'
+    more: '... {count} കൂടി'
     running_processes: '**പ്രവർത്തിക്കുന്ന പശ്ചാത്തല പ്രക്രിയകൾ:** {count}'
     async_jobs: '**ഗേറ്റ്‌വേ അസിങ്ക് ജോബുകൾ:** {count}'
     none: സജീവ ഏജന്റുകളോ പ്രവർത്തിക്കുന്ന ടാസ്കുകളോ ഇല്ല.
-    state_starting: starting
-    state_running: running
+    state_starting: തുടങ്ങുന്നു
+    state_running: പ്രവർത്തിക്കുന്നു
   approve:
     no_pending: അംഗീകരിക്കാൻ ബാക്കിയുള്ള കമാൻഡ് ഇല്ല.
     once_singular: ✅ കമാൻഡ് അംഗീകരിച്ചു. ഏജന്റ് പുനരാരംഭിക്കുന്നു...
@@ -96,7 +96,7 @@ gateway:
   commands:
     usage: 'ഉപയോഗം: `/commands [page]`'
     skill_header: '⚡ **സ്കിൽ കമാൻഡുകൾ**:'
-    default_desc: Skill command
+    default_desc: സ്കിൽ കമാൻഡ്
     none: കമാൻഡുകൾ ലഭ്യമല്ല.
     header: 📚 **കമാൻഡുകൾ** (ആകെ {total}, പേജ് {page}/{total_pages})
     nav_prev: '`/commands {page}` ← മുമ്പത്തേത്'
@@ -107,7 +107,7 @@ gateway:
     no_provider: പ്രൊവൈഡർ കോൺഫിഗർ ചെയ്തിട്ടില്ല -- കംപ്രസ് ചെയ്യാനാകില്ല.
     nothing_to_do: ഇതുവരെ കംപ്രസ് ചെയ്യാൻ ഒന്നുമില്ല (ട്രാൻസ്ക്രിപ്റ്റ് ഇപ്പോഴും മുഴുവൻ സംരക്ഷിത കോൺടെക്സ്റ്റാണ്).
     aggressive_unsupported: --aggressive പിന്തുണയ്ക്കുന്നില്ല; സമീപകാല കൈമാറ്റങ്ങൾ മാത്രം നിലനിർത്താൻ '/compress here [N]' ഉപയോഗിക്കുക, അല്ലെങ്കിൽ ടേണുകൾ ഒഴിവാക്കാൻ /undo ഉപയോഗിക്കുക.
-    focus_line: 'Focus: "{topic}"'
+    focus_line: 'ഫോക്കസ്: "{topic}"'
     summary_failed: ⚠️ സംഗ്രഹം സൃഷ്ടിക്കൽ പരാജയപ്പെട്ടു ({error}). {count} ചരിത്ര സന്ദേശം/സന്ദേശങ്ങൾ നീക്കം ചെയ്യുകയും പ്ലേസ്ഹോൾഡർ ഉപയോഗിച്ച് മാറ്റിസ്ഥാപിക്കുകയും ചെയ്തു; മുൻ കോൺടെക്സ്റ്റ് ഇനി വീണ്ടെടുക്കാനാകില്ല. നിങ്ങളുടെ auxiliary.compression മോഡൽ കോൺഫിഗറേഷൻ പരിശോധിക്കുന്നത് പരിഗണിക്കുക.
     aborted: ⚠️ കംപ്രഷൻ നിർത്തലാക്കി ({error}). സന്ദേശങ്ങളൊന്നും ഒഴിവാക്കിയിട്ടില്ല — സംഭാഷണം മാറ്റമില്ലാതെ തുടരുന്നു. വീണ്ടും ശ്രമിക്കാൻ /compress പ്രവർത്തിപ്പിക്കുക, ശുദ്ധമായ സെഷനായി /reset, അല്ലെങ്കിൽ നിങ്ങളുടെ auxiliary.compression മോഡൽ കോൺഫിഗറേഷൻ പരിശോധിക്കുക.
     aux_failed: ℹ️ കോൺഫിഗർ ചെയ്ത കംപ്രഷൻ മോഡൽ `{model}` പരാജയപ്പെട്ടു ({error}). നിങ്ങളുടെ പ്രധാന മോഡൽ ഉപയോഗിച്ച് വീണ്ടെടുത്തു — കോൺടെക്സ്റ്റ് കേടുകൂടാതെയുണ്ട് — എന്നാൽ config.yaml-ലെ `auxiliary.compression.model` പരിശോധിക്കാൻ നിങ്ങൾ ആഗ്രഹിച്ചേക്കാം.
@@ -121,7 +121,7 @@ gateway:
   deny:
     stale: ❌ കമാൻഡ് നിരസിച്ചു (അംഗീകാരം കാലഹരണപ്പെട്ടിരുന്നു).
     no_pending: നിരസിക്കാൻ ബാക്കിയുള്ള കമാൻഡുകളൊന്നുമില്ല.
-    denied_singular: ❌ Command denied.
+    denied_singular: ❌ കമാൻഡ് നിഷേധിച്ചു.
     denied_plural: ❌ കമാൻഡുകൾ നിരസിച്ചു ({count} കമാൻഡുകൾ).
     denied_reason_singular: '❌ കമാൻഡ് നിരസിച്ചു. ഏജന്റിന് കൈമാറിയ കാരണം: "{reason}"'
     denied_reason_plural: '❌ കമാൻഡുകൾ നിരസിച്ചു ({count} കമാൻഡുകൾ). ഏജന്റിന് കൈമാറിയ കാരണം: "{reason}"'
@@ -142,10 +142,10 @@ gateway:
 
       _(അടുത്ത സന്ദേശത്തിൽ പ്രാബല്യത്തിൽ വരും)_'
     session_only: '⚡ ✓ മുൻഗണന പ്രോസസ്സിംഗ്: **{label}** (ഈ സെഷനിൽ മാത്രം)'
-    label_fast: FAST
-    label_normal: NORMAL
-    status_fast: fast
-    status_normal: normal
+    label_fast: വേഗം
+    label_normal: സാധാരണ
+    status_fast: വേഗം
+    status_normal: സാധാരണ
     picker_title: '⚡ **മുൻഗണന പ്രോസസ്സിംഗ്**
 
 
@@ -168,13 +168,13 @@ gateway:
     example_line: '
 
       ഉദാഹരണം: `{preview}`'
-    state_on: 'ON'
-    state_off: 'OFF'
+    state_on: ഒൺ
+    state_off: ബന്ദ്
   goal:
     unavailable: ഈ സെഷനിൽ ലക്ഷ്യങ്ങൾ ലഭ്യമല്ല.
-    no_goal_set: No goal set.
+    no_goal_set: ലക്ഷ്യം നിശ്ചയിച്ചിട്ടില്ല.
     paused: '⏸ ലക്ഷ്യം താൽക്കാലികമായി നിർത്തി: {goal}'
-    no_resume: No goal to resume.
+    no_resume: പുനരാരംഭിക്കാനുള്ള ലക്ഷ്യമില്ല.
     resumed: '▶ ലക്ഷ്യം പുനരാരംഭിച്ചു: {goal}
 
       തുടരാൻ ഏതെങ്കിലും സന്ദേശം അയയ്ക്കുക, അല്ലെങ്കിൽ കാത്തിരിക്കുക — അടുത്ത ടേണിൽ ഞാൻ അടുത്ത ഘട്ടം എടുക്കും.'
@@ -201,14 +201,14 @@ gateway:
     error_prefix: '⚠ കാൻബാൻ പിശക്: {error}'
     subscribed_suffix: (സബ്സ്ക്രൈബ് ചെയ്തു — {task_id} പൂർത്തിയാകുമ്പോഴോ ബ്ലോക്ക് ചെയ്യുമ്പോഴോ നിങ്ങൾക്ക് അറിയിപ്പ് ലഭിക്കും)
     truncated_suffix: … (വെട്ടിച്ചുരുക്കി; പൂർണ്ണ ഔട്ട്പുട്ടിനായി നിങ്ങളുടെ ടെർമിനലിൽ `openamer kanban …` ഉപയോഗിക്കുക)
-    no_output: (no output)
+    no_output: (ഔട്ട്പുട്ട് ഇല്ല)
     wake:
-      completed: completed
+      completed: പൂർത്തിയായി
       gave_up: ഉപേക്ഷിച്ചു (വീണ്ടും ശ്രമങ്ങൾ തീർന്നു)
       crashed: ക്രാഷ് ചെയ്തു (വർക്കർ പുറത്തുകടന്നു); ഡിസ്പാച്ചർ വീണ്ടും ശ്രമിക്കും
       timed_out: സമയപരിധി കഴിഞ്ഞു; ഡിസ്പാച്ചർ വീണ്ടും ശ്രമിക്കും
       blocked: തടഞ്ഞു; ശ്രദ്ധ ആവശ്യമാണ്
-      status_default: status changed
+      status_default: സ്റ്റാറ്റസ് മാറി
       status_joiner: ', '
       message: '[kanban] ടാസ്ക് {task_id} {status}.
 
@@ -243,12 +243,12 @@ gateway:
       ലഭ്യമായവ: {available}'
   profile:
     header: 👤 **പ്രൊഫൈൽ:** `{profile}`
-    home: 📂 **Home:** `{home}`
+    home: 📂 **ഹോം:** `{home}`
   reasoning:
-    level_default: medium (default)
-    level_disabled: none (disabled)
-    scope_session: session override
-    scope_global: global config
+    level_default: മധ്യം (ഡിഫോൾട്ട്)
+    level_disabled: ഇല്ല (നിഷ്ക്രിയം)
+    scope_session: സെഷൻ ഓവറൈഡ്
+    scope_global: ആഗോള കോൺഫിഗ്
     status: '🧠 **യുക്തിചിന്താ ക്രമീകരണങ്ങൾ**
 
 
@@ -260,8 +260,8 @@ gateway:
 
 
       _ഉപയോഗം:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
-    display_on: on ✓
-    display_off: 'off'
+    display_on: ഓൺ ✓
+    display_off: ഓഫ്
     display_set_on: '🧠 ✓ യുക്തിചിന്ത പ്രദർശനം: **ON**
 
       ഓരോ പ്രതികരണത്തിനും മുമ്പ് **{platform}**-ൽ മോഡൽ ചിന്ത കാണിക്കും.'
@@ -323,8 +323,8 @@ gateway:
 
       '
     reconnected: '♻️ വീണ്ടും കണക്ട് ചെയ്തു: {names}'
-    added: '➕ Added: {names}'
-    removed: '➖ Removed: {names}'
+    added: '➕ ചേർത്തു: {names}'
+    removed: '➖ നീക്കംചെയ്തു: {names}'
     none_connected: MCP സെർവറുകളൊന്നും കണക്ട് ചെയ്തിട്ടില്ല.
     tools_available: '
 
@@ -338,7 +338,7 @@ gateway:
     total: '
 
       📚 {count} നൈപുണ്യം(ങ്ങൾ) ലഭ്യമാണ്'
-    added_header: ➕ **Added Skills:**
+    added_header: ➕ **ചേർത്ത നൈപുണ്യങ്ങൾ:**
     removed_header: ➖ **നീക്കം ചെയ്ത നൈപുണ്യങ്ങൾ:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
@@ -358,7 +358,7 @@ gateway:
       ⚠️ ക്ലീനപ്പ് ചെയ്തതിന് ശേഷം ശീർഷകം ശൂന്യമാണ് — സെഷൻ ശീർഷകമില്ലാതെ ആരംഭിച്ചു.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ നുറുങ്ങ്: {tip}'
   restart:
     in_progress: ⏳ ഗേറ്റ്‌വേ പുനരാരംഭിക്കൽ ഇതിനകം പുരോഗതിയിലാണ്...
     restarting: ♻ ഗേറ്റ്‌വേ പുനരാരംഭിക്കുന്നു. 60 സെക്കൻഡിനുള്ളിൽ നിങ്ങൾക്ക് അറിയിപ്പ് ലഭിച്ചില്ലെങ്കിൽ, കൺസോളിൽ നിന്ന് `openamer gateway restart` ഉപയോഗിച്ച് പുനരാരംഭിക്കുക.
@@ -420,24 +420,24 @@ gateway:
       ക്രോൺ ജോബുകളും ക്രോസ്-പ്ലാറ്റ്ഫോം സന്ദേശങ്ങളും ഇവിടെ എത്തിക്കും.'
   status:
     header: 📊 **OpenAmer ഗേറ്റ്‌വേ സ്റ്റാറ്റസ്**
-    matrix_scope_header: '**Matrix scope:**'
-    matrix_scope_room: '  room: {room}'
+    matrix_scope_header: '**മാട്രിക്സ് പരിധി:**'
+    matrix_scope_room: '  മുറി: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  ത്രെഡ്_ഐഡി: {thread_id}'
     matrix_scope_mode: '  സെഷൻ_സ്കോപ്പ്: {scope}'
     matrix_scope_key: '  സെഷൻ_കീ: {session_key}'
     session_id: '**സെഷൻ ഐഡി:** `{session_id}`'
-    title: '**Title:** {title}'
+    title: '**ഷീർഷകം:** {title}'
     created: '**സൃഷ്ടിച്ചത്:** {timestamp}'
     last_activity: '**അവസാന പ്രവർത്തനം:** {timestamp}'
-    model: '**Model:** `{model}`'
+    model: '**മോഡൽ:** `{model}`'
     model_provider: '**മോഡൽ:** `{model}` ({provider})'
     context: '**കോൺടെക്സ്റ്റ്:** {used} / {total} ({pct}%)'
     context_used: '**കോൺടെക്സ്റ്റ്:** ~{used} ടോക്കണുകൾ'
     tokens: '**ക്യുമുലേറ്റീവ് API ടോക്കണുകൾ (ഓരോ കോളിലും വീണ്ടും അയയ്ക്കുന്നു):** {tokens}'
     agent_running: '**ഏജന്റ് പ്രവർത്തിക്കുന്നു:** {state}'
-    state_yes: Yes ⚡
-    state_no: 'No'
+    state_yes: അതെ ⚡
+    state_no: ഇല്ല
     queued: '**ക്യൂവിലുള്ള ഫോളോ-അപ്പുകൾ:** {count}'
     platforms: '**കണക്റ്റ് ചെയ്ത പ്ലാറ്റ്ഫോമുകൾ:** {platforms}'
   stop:
@@ -498,9 +498,9 @@ gateway:
 
 
       ഈ ടോപ്പിക് ഒരു സ്വതന്ത്ര OpenAmer സെഷനായി ഉപയോഗിക്കും. ഈ ടോപ്പിക്കിന്റെ നിലവിലെ സെഷൻ മാറ്റിസ്ഥാപിക്കാൻ /new ഉപയോഗിക്കുക. സമാന്തര ജോലിക്കായി, All Messages തുറന്ന് അവിടെ ഒരു സന്ദേശം അയച്ച് മറ്റൊരു ടോപ്പിക് സൃഷ്ടിക്കുക.'
-    untitled_session: Untitled session
+    untitled_session: പേരില്ലാത്ത സെഷൻ
   undo:
-    nothing: Nothing to undo.
+    nothing: പൂര്‍വവസ്ഥയിലാക്കാന്‍ കാര്യമില്ല।
     removed: '↩️ {turns} ടേൺ(ങ്ങൾ) പിൻവലിച്ചു ({count} സന്ദേശം(ങ്ങൾ)).
 
       ബാക്കപ്പ് ചെയ്തത്: "{preview}"
@@ -516,29 +516,29 @@ gateway:
   usage:
     rate_limits: ⏱️ **നിരക്ക് പരിധികൾ:** {state}
     header_session: 📊 **സെഷൻ ടോക്കൺ ഉപയോഗം**
-    label_model: 'Model: `{model}`'
+    label_model: 'മോഡൽ: `{model}`'
     label_input_tokens: 'ഇൻപുട്ട് ടോക്കണുകൾ: {count}'
     label_cache_read: 'കാഷെ വായന ടോക്കണുകൾ: {count}'
     label_cache_write: 'കാഷെ എഴുത്ത് ടോക്കണുകൾ: {count}'
     label_output_tokens: 'ഔട്ട്പുട്ട് ടോക്കണുകൾ: {count}'
-    label_total: 'Total: {count}'
-    label_api_calls: 'API calls: {count}'
+    label_total: 'മൊത്തം: {count}'
+    label_api_calls: 'API കോളുകൾ: {count}'
     label_cost: 'ചെലവ്: {prefix}${amount}'
-    label_cost_included: 'Cost: included'
+    label_cost_included: 'ചിലവ്: ഉൾപ്പെടുത്തിയിട്ടുണ്ട്'
     label_context: 'സന്ദർഭം: {used} / {total} ({pct}%)'
     label_compressions: 'കംപ്രഷനുകൾ: {count}'
     breakdown_header: 🧩 **സന്ദർഭ വിഭജനം** _(കണക്കാക്കിയത്)_
     breakdown_line: '• {label}: ~{count} ({pct}%)'
-    breakdown_cat_system_prompt: System prompt
-    breakdown_cat_tool_definitions: Tool definitions
-    breakdown_cat_rules: Rules
-    breakdown_cat_skills: Skills
+    breakdown_cat_system_prompt: സിസ്റ്റം പ്രോംപ്റ്റ്
+    breakdown_cat_tool_definitions: ടൂൾ നിർവചനങ്ങൾ
+    breakdown_cat_rules: നിയമങ്ങൾ
+    breakdown_cat_skills: കौശലങ്ങൾ
     breakdown_cat_mcp: MCP
-    breakdown_cat_subagent_definitions: Subagent definitions
-    breakdown_cat_memory: Memory
-    breakdown_cat_conversation: Conversation
-    header_session_info: 📊 **Session Info**
-    label_messages: 'Messages: {count}'
+    breakdown_cat_subagent_definitions: സബ്എജന്റ് നിർവചനങ്ങൾ
+    breakdown_cat_memory: മെമ്മറി
+    breakdown_cat_conversation: സംവാദം
+    header_session_info: 📊 **സെഷൻ വിവരങ്ങൾ**
+    label_messages: 'സന്ദേശങ്ങൾ: {count}'
     label_estimated_context: 'ഏകദേശ സന്ദർഭം: ~{count} ടോക്കണുകൾ'
     detailed_after_first: _(ആദ്യ ഏജന്റ് പ്രതികരണത്തിന് ശേഷം വിശദമായ ഉപയോഗം ലഭ്യമാണ്)_
     no_data: ഈ സെഷനിൽ ഉപയോഗ ഡാറ്റ ലഭ്യമല്ല.
@@ -565,14 +565,14 @@ gateway:
     tts_enabled: 'ഓട്ടോ-TTS പ്രവർത്തനക്ഷമമാക്കി.
 
       എല്ലാ മറുപടികളിലും ഒരു വോയ്സ് സന്ദേശം ഉൾപ്പെടും.'
-    status_mode: 'Voice mode: {label}'
+    status_mode: 'വോയ്‌സ് മോഡ്: {label}'
     status_channel: 'വോയ്സ് ചാനൽ: #{channel}'
     status_participants: 'പങ്കാളികൾ: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (സംസാരിക്കുന്നു)'
+    enabled_short: വോയ്‌സ് മോഡ് സജ്ജമാക്കി.
+    disabled_short: വോയ്‌സ് മോഡ് നിഷ്ക്രിയമാക്കി.
+    label_off: ഓഫ് (ടെക്സ്റ്റ് മാത്രം)
     label_voice_only: ഓൺ (വോയ്സ് സന്ദേശങ്ങൾക്ക് വോയ്സ് മറുപടി)
     label_all: TTS (എല്ലാ സന്ദേശങ്ങൾക്കും വോയ്സ് മറുപടി)
     help: '{toggle}

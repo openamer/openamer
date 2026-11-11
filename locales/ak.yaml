@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] pɛnkoro  |  [s] nhyiam  |  [d] si kwan'
   prompt_long: '      Yi [o/s/a/D]: '
   prompt_short: '      Yi [o/s/D]: '
-  choose_smart_deny: '      [o] pɛnkoro  |  [d] si kwan'
-  prompt_smart_deny: '      Yi [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [p]ɛnkoro  |  [s]i kwan'
+  prompt_smart_deny: '      Yi [p/S]: '
+  smart_deny_once_inputs: p,pɛnkoro
+  smart_deny_deny_inputs: s,si kwan
   timeout: '      ⏱ Berɛ atwam - resi kwan ahyɛde no'
   allowed_once: '      ✓ Wɔama kwan pɛnkoro'
   allowed_session: '      ✓ Wɔama kwan wɔ saa nhyiam yi mu'
@@ -142,8 +142,8 @@ gateway:
 
       _(ɛbɛyɛ adwuma wɔ nsɛm a ɛdi hɔ)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (session yi nko)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: Kɛsekɛse
+    label_normal: Mfe
     status_fast: ntɛm
     status_normal: deɛ ɛtaa yɛ
     picker_title: '⚡ **Siesie a Ɛwɔ Anim**
@@ -424,9 +424,9 @@ gateway:
     matrix_scope_room: '  dan: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    matrix_scope_mode: '  sesan ahodee: {scope}'
+    matrix_scope_key: '  sesan kodie: {session_key}'
+    session_id: '**Sesan Nkyerɛw:** `{session_id}`'
     title: '**Asɛmti:** {title}'
     created: '**Wɔbɔe:** {timestamp}'
     last_activity: '**Adwuma a etwaam:** {timestamp}'
@@ -514,9 +514,9 @@ gateway:
     start_failed: '✗ Wɔantumi anhyɛ update ase: {error}'
     starting: 🧬 OpenAmer update rehyɛ ase… Mɛfa nkɔsoɔ no aba ha.
   usage:
-    rate_limits: ⏱️ **Rate Limits:** {state}
+    rate_limits: ⏱️ **Ahyehyɛe Pɛrpɛr:** {state}
     header_session: 📊 **Token a Wɔde Di Dwuma wɔ Session no mu**
-    label_model: 'Model: `{model}`'
+    label_model: 'Nhwɛsoɔ: `{model}`'
     label_input_tokens: 'Token a Wɔde Ba: {count}'
     label_cache_read: 'Token a Wɔkenkan Fri Cache: {count}'
     label_cache_write: 'Token a Wɔkyerɛw wɔ Cache: {count}'

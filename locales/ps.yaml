@@ -10,8 +10,8 @@ approval:
   prompt_short: '      ټاکنه [o/s/D]: '
   choose_smart_deny: '      [o]یو ځل  |  [d]ردول'
   prompt_smart_deny: '      ټاکنه [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,oیو ځل
+  smart_deny_deny_inputs: d,dردول
   timeout: '      ⏱ وخت ختم - امر ردېږي'
   allowed_once: '      ✓ یو ځل اجازه'
   allowed_session: '      ✓ د دې سیشن لپاره اجازه'
@@ -209,7 +209,7 @@ gateway:
       timed_out: وخت ختم شو؛ dispatcher به بیا هڅه وکړي
       blocked: بند شو؛ پاملرنې ته اړتیا لري
       status_default: حالت بدل شو
-      status_joiner: ', '
+      status_joiner: '، '
       message: '[kanban] دنده {task_id} {status}.
 
         سرلیک: {title}

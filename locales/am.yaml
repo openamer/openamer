@@ -10,8 +10,8 @@ approval:
   prompt_short: '      ምርጫ [o/s/D]: '
   choose_smart_deny: '      [o] አንድ ጊዜ  |  [d] አትፍቀድ'
   prompt_smart_deny: '      ምርጫ [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,አንድ ጊዜ
+  smart_deny_deny_inputs: d,አትፍቀድ
   timeout: '      ⏱ ጊዜው አልቋል - ትዕዛዙን እየከለከለ ነው'
   allowed_once: '      ✓ ለአንድ ጊዜ ተፈቅዷል'
   allowed_session: '      ✓ ለዚህ ክፍለ ጊዜ ተፈቅዷል'
@@ -226,7 +226,7 @@ gateway:
 
       '
     none_option: • `none` — (የስብዕና ተደራቢ የለም)
-    item: • `{name}` — {preview}
+    item: • {name} — {preview}
     usage: '
 
       አጠቃቀም: `/personality <name>`'
@@ -323,7 +323,7 @@ gateway:
 
       '
     reconnected: ♻️ እንደገና ተገናኝቷል፦ {names}
-    added: '➕ Added: {names}'
+    added: '➕ ተጨምሯል: {names}'
     removed: ➖ ተወግዷል፡ {names}
     none_connected: ምንም MCP አገልጋዮች አልተገናኙም።
     tools_available: '
@@ -569,10 +569,10 @@ gateway:
     status_channel: 'የድምፅ ቻናል፡ #{channel}'
     status_participants: 'ተሳታፊዎች: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (ይናገራል)'
+    enabled_short: የድምፅ ሁነታ ተሰርዟል።
+    disabled_short: የድምፅ ሁነታ ተወግዷል።
+    label_off: አሳድጋል (ጽሑፍ ብቻ)
     label_voice_only: በርቷል (ለድምፅ መልእክቶች በድምፅ ምላሽ መስጠት)
     label_all: TTS (ለሁሉም መልእክቶች በድምፅ ምላሽ መስጠት)
     help: '{toggle}

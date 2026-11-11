@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Rimwe  |  [s] Sesi  |  [d] Kwima'
   prompt_long: '      Hitamo [o/s/a/D]: '
   prompt_short: '      Hitamo [o/s/D]: '
-  choose_smart_deny: '      [o] Rimwe  |  [d] Kwima'
-  prompt_smart_deny: '      Hitamo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [r]imwe  |  [k]wima'
+  prompt_smart_deny: '      Hitamo [r/K]: '
+  smart_deny_once_inputs: r,rimwe
+  smart_deny_deny_inputs: k,kwima
   timeout: '      ⏱ Igihe cyarangiye - kwima iteka'
   allowed_once: '      ✓ Byemewe rimwe'
   allowed_session: '      ✓ Byemewe kuri iyi sesi'
@@ -516,7 +516,7 @@ gateway:
   usage:
     rate_limits: ⏱️ **Imipaka y'umuvuduko:** {state}
     header_session: 📊 **Ikoreshwa ry'ama token mu gihe cy'ukoresha**
-    label_model: 'Model: `{model}`'
+    label_model: 'Modeli: `{model}`'
     label_input_tokens: 'Ama token yinjira: {count}'
     label_cache_read: 'Ama token yo gusoma muri cache: {count}'
     label_cache_write: 'Ama token yo kwandika muri cache: {count}'

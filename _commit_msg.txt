@@ -1,0 +1,63 @@
+fix(aux): let an auto-routed vision call reach the fallback chain
+
+An auxiliary VISION call that was routed by auto-detection died with
+"payment error on <provider> and all fallbacks exhausted" even though the
+user had a healthy, reachable fallback configured. Three defects combined:
+
+1. The auto-routed marker was lost
+
+   ``resolve_vision_provider_client(provider="auto")`` returns the concrete
+   backend it selected, and the result was assigned straight back into
+   ``resolved_provider``. The fallback gate computes::
+
+       is_auto = resolved_provider in {"auto", "", None}
+
+   so after that assignment ``is_auto`` was False. The gate therefore took
+   the explicit-provider branch, which consults ONLY the "main agent model"
+   safety net — and that net is empty precisely when the main provider IS
+   the failed one. The user's configured ``fallback_providers`` were never
+   tried.
+
+   The auto-ness is now kept in a separate ``vision_auto_requested`` flag,
+   so an auto-routed vision call walks the same fallback layers as every
+   other auxiliary task. The concrete route label is preserved for request
+   shaping, provider-pool recovery, and unhealthy-marking.
+
+2. A failing candidate aborted the whole chain
+
+   ``_call_fallback_candidate_sync`` / ``_call_fallback_candidate_async``
+   re-raised every non-auth error. A candidate that failed for a capacity
+   reason (payment/quota, rate limit, unreachable endpoint, 5xx) or a
+   capability mismatch therefore killed the auxiliary task, even though the
+   NEXT candidate could serve it. Those failures are properties of that
+   candidate, not of the request: the candidate is now skipped and the
+   chain continues. A malformed request (a 400 no candidate can satisfy)
+   stays fatal — it would fail identically everywhere.
+
+3. A text-only candidate was selected for a vision request
+
+   Both fallback chains are now screened for vision capability. A text-only
+   model answers an image request with a provider-side 500 ("unknown variant
+   `image_url`") rather than a clean error, which is not actionable.
+
+Live proof (2026-11-06, Windows host, OpenAI primary out of credits) — the
+real async vision path against the real config:
+
+    before: E2E RESULT: FAILED -> InternalServerError: Error code: 500
+    after:  E2E RESULT: OK -> content='PONG'
+
+Regression guard
+----------------
+``tests/agent/test_auxiliary_vision_auto_fallback.py`` (7 tests) pins the
+behaviour contractually: an auto-routed vision call that hits a capacity
+error must consult the auto-only fallback layers; an explicitly pinned
+provider must not; a text-only candidate must be skipped; a failing
+candidate must not abort the chain.
+
+Verified by mutation — each of the five parts is required:
+
+    M1 (is_auto gate without the flag)          -> 2 failed
+    M2 (flag never set)                         -> 2 failed
+    M3 (transient/capacity guard removed)       -> 1 failed
+    M4 (vision screen, configured chain)        -> 1 failed
+    M5 (vision screen, main chain)              -> 1 failed

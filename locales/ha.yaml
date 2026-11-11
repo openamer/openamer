@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] sau ɗaya  |  [s] zama  |  [d] hana'
   prompt_long: '      Zaɓi [o/s/a/D]: '
   prompt_short: '      Zaɓi [o/s/D]: '
-  choose_smart_deny: '      [o] sau ɗaya  |  [d] hana'
-  prompt_smart_deny: '      Zaɓi [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [s]au ɗaya  |  [h]ana'
+  prompt_smart_deny: '      Zaɓi [s/H]: '
+  smart_deny_once_inputs: s,sau ɗaya
+  smart_deny_deny_inputs: h,hana
   timeout: '      ⏱ Lokaci ya ƙare - ana hana umarni'
   allowed_once: '      ✓ An ba da izini sau ɗaya'
   allowed_session: '      ✓ An ba da izini ga wannan zama'

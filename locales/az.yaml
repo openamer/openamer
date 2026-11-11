@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Bir dəfə  |  [s] Sessiya  |  [d] Rədd et'
   prompt_long: '      Seçim [o/s/a/D]: '
   prompt_short: '      Seçim [o/s/D]: '
-  choose_smart_deny: '      [o] Bir dəfə  |  [d] Rədd et'
-  prompt_smart_deny: '      Seçim [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [b]ir dəfə  |  [r]ədd et'
+  prompt_smart_deny: '      Seçim [b/R]: '
+  smart_deny_once_inputs: b,bir dəfə
+  smart_deny_deny_inputs: r,rədd et
   timeout: '      ⏱ Vaxt bitdi - əmr rədd edilir'
   allowed_once: '      ✓ Bir dəfə icazə verildi'
   allowed_session: '      ✓ Bu sessiya üçün icazə verildi'
@@ -143,9 +143,9 @@ gateway:
       _(növbəti mesajda qüvvəyə minir)_'
     session_only: '⚡ ✓ Prioritet Emal: **{label}** (yalnız bu sessiya üçün)'
     label_fast: SÜRƏTLİ
-    label_normal: NORMAL
+    label_normal: ADI
     status_fast: sürətli
-    status_normal: normal
+    status_normal: adi
     picker_title: '⚡ **Prioritet emalı**
 
 
@@ -424,8 +424,8 @@ gateway:
     matrix_scope_room: '  otaq: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_mode: '  sessiya_əhatəsi: {scope}'
+    matrix_scope_key: '  sessiya_açarı: {session_key}'
     session_id: '**Sessiya ID-si:** `{session_id}`'
     title: '**Başlıq:** {title}'
     created: '**Yaradıldı:** {timestamp}'

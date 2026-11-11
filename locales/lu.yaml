@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] lubanza lumwe  |  [s] sesio  |  [d] kukana'
   prompt_long: '      Kusala [o/s/a/D]: '
   prompt_short: '      Kusala [o/s/D]: '
-  choose_smart_deny: '      [o] lubanza lumwe  |  [d] kukana'
-  prompt_smart_deny: '      Kusala [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [l]ubanza lumwe  |  [k]ukana'
+  prompt_smart_deny: '      Kusala [l/K]: '
+  smart_deny_once_inputs: l,lubanza lumwe
+  smart_deny_deny_inputs: k,kukana
   timeout: '      Nsaa yapwa - kukana kibila'
   allowed_once: '      ✓ Kulekwa lubanza lumwe'
   allowed_session: '      ✓ Kulekwa mu sesio iyi'
@@ -144,8 +144,8 @@ gateway:
     session_only: '⚡ ✓ Kubumba kwa Ntanshi: **{label}** (pa kipindi kino pe)'
     label_fast: LWISU
     label_normal: KABONGO
-    status_fast: fast
-    status_normal: normal
+    status_fast: kwimona
+    status_normal: malamu
     picker_title: '⚡ **Kubadika kwa Ntangilo**
 
 
@@ -168,13 +168,13 @@ gateway:
     example_line: '
 
       Kileso: `{preview}`'
-    state_on: 'ON'
-    state_off: 'OFF'
+    state_on: kwiza
+    state_off: salaka
   goal:
     unavailable: Mifindo taiboneka mu kipindi kya nomba.
-    no_goal_set: No goal set.
+    no_goal_set: Kudi lubula lulenge.
     paused: '⏸ Mufindo wakimbiwe: {goal}'
-    no_resume: No goal to resume.
+    no_resume: Kudi lubula lulenge lwa kukwata.
     resumed: '▶ Mufindo watangijibwe: {goal}
 
       Tuma mukanda yense kusokola, nansha kuyemba — nkakwata kitendo kya kunyima mu kipindi kya kunyima.'
@@ -201,14 +201,14 @@ gateway:
     error_prefix: '⚠ kifu kya kanban: {error}'
     subscribed_suffix: (Wasubisidwa — bakukubula ntanda {task_id} ikamalila nansha kukomanga)
     truncated_suffix: … (kyapelulwa; ponayi `openamer kanban …` mu terminal yobe pa output yonse)
-    no_output: (no output)
+    no_output: (kudi bwino)
     wake:
-      completed: completed
+      completed: kwisha
       gave_up: Yalekele (kusubula kumalile)
       crashed: Yalubuka (mukoli apitile); dispatcher akasubula
       timed_out: Ntanda yapwile; dispatcher akasubula
       blocked: Yakomangwa; ikukenya kulolelwa
-      status_default: status changed
+      status_default: mutima waguke
       status_joiner: ', '
       message: '[kanban] Mudimu {task_id} {status}.
 
@@ -243,12 +243,12 @@ gateway:
       Yaboneka: {available}'
   profile:
     header: 👤 **Profil:** `{profile}`
-    home: 📂 **Home:** `{home}`
+    home: 📂 **Mwena:** `{home}`
   reasoning:
-    level_default: medium (default)
-    level_disabled: none (disabled)
-    scope_session: session override
-    scope_global: global config
+    level_default: mwanzu (wa kudefini)
+    level_disabled: bikole (bikashitwa)
+    scope_session: kushinda sesioni
+    scope_global: konfigirasioni ya nzela yonse
     status: '🧠 **Mipango ya Kufikiri**
 
 
@@ -260,8 +260,8 @@ gateway:
 
 
       _Kubombesha:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
-    display_on: on ✓
-    display_off: 'off'
+    display_on: kwikala ✓
+    display_off: kwikala ko
     display_set_on: '🧠 ✓ Kumwesha kutelema: **ON**
 
       Kutelema kwa modeli kukamweshibwa patanshi pa mvubu yonse pa **{platform}**.'
@@ -323,8 +323,8 @@ gateway:
 
       '
     reconnected: '♻️ Twasangulukilepo: {names}'
-    added: '➕ Added: {names}'
-    removed: '➖ Removed: {names}'
+    added: '➕ Kwashitwa: {names}'
+    removed: '➖ Kwebwa: {names}'
     none_connected: Tapana seve za MCP zisangulukile.
     tools_available: '
 
@@ -338,7 +338,7 @@ gateway:
     total: '
 
       📚 {count} bumanyi(bumanyi) bupipo'
-    added_header: ➕ **Added Skills:**
+    added_header: ➕ **Bikwata Bya Kwashitwa:**
     removed_header: ➖ **Bumanyi bufutulwe:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Titolo yabula panyima ya kupanga — session watangile wabula titolo.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Lelo: {tip}'
   restart:
     in_progress: ⏳ Kubweza Gateway kulongwa kale...
     restarting: ♻ Tukubweza gateway. Nga tamumanyikwa mu sekondi 60, bwezai kufuma mu console na `openamer gateway restart`.
@@ -420,24 +420,24 @@ gateway:
       Mingilo ya Cron ne mizozo ya plataforme yonso bikatumwa pano.'
   status:
     header: 📊 **Mukalo wa OpenAmer Gateway**
-    matrix_scope_header: '**Matrix scope:**'
-    matrix_scope_room: '  room: {room}'
+    matrix_scope_header: '**Bukalu bwa Matrix:**'
+    matrix_scope_room: '  nzu: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
     matrix_scope_key: '  session_key: {session_key}'
     session_id: '**ID ya session:** `{session_id}`'
-    title: '**Title:** {title}'
+    title: '**Mutwe:** {title}'
     created: '**Yapangwa:** {timestamp}'
     last_activity: '**Mwingilo wa nsengo:** {timestamp}'
-    model: '**Model:** `{model}`'
+    model: '**Mulongo:** `{model}`'
     model_provider: '**Modeli:** `{model}` ({provider})'
-    context: '**Context:** {used} / {total} ({pct}%)'
-    context_used: '**Context:** ~{used} tokens'
+    context: '**Mukalo:** {used} / {total} ({pct}%)'
+    context_used: '**Mukalo:** ~{used} tokens'
     tokens: '**Bidimbu bya API bikwata pamo (bipatumibwa kabidi pa mwito umo na umo):** {tokens}'
     agent_running: '**Mupangi auta:** {state}'
-    state_yes: Yes ⚡
-    state_no: 'No'
+    state_yes: Eya ⚡
+    state_no: Kadi
     queued: '**Mikuti ya kulonda ikelwe mu mulongo:** {count}'
     platforms: '**Bisangilo bikatukidwe:** {platforms}'
   stop:
@@ -498,9 +498,9 @@ gateway:
 
 
       Uyu mutwe ukakwatwa nga lubanza lwa OpenAmer lwapela. Kukwata /new kupimpula lubanza lwa ha buino lwa uyu mutwe. Pa musala wa pamo, fungula All Messages no kutuma nsangu kuko kupanga mutwe umbi.'
-    untitled_session: Untitled session
+    untitled_session: Cishushu tshisongamene
   undo:
-    nothing: Nothing to undo.
+    nothing: Kudi kudi ku bakisa.
     removed: '↩️ Kwabujibwa {turns} mafuku ({count} nsangu).
 
       Kubikwa mu: "{preview}"
@@ -516,29 +516,29 @@ gateway:
   usage:
     rate_limits: ⏱️ **Mipaka ya Mwendo:** {state}
     header_session: 📊 **Kutumika kwa Tokeni za Session**
-    label_model: 'Model: `{model}`'
+    label_model: 'Modeli: `{model}`'
     label_input_tokens: 'Tokeni za kuingiza: {count}'
     label_cache_read: 'Tokeni za kusoma cache: {count}'
     label_cache_write: 'Tokeni za kulemba cache: {count}'
     label_output_tokens: 'Tokeni za kufuma: {count}'
-    label_total: 'Total: {count}'
-    label_api_calls: 'API calls: {count}'
+    label_total: 'Bose: {count}'
+    label_api_calls: 'Bidinga bya API: {count}'
     label_cost: 'Ntengo: {prefix}${amount}'
-    label_cost_included: 'Cost: included'
+    label_cost_included: 'Nkondo: ebi mu'
     label_context: 'Mukalo: {used} / {total} ({pct}%)'
     label_compressions: 'Mikunkumuko: {count}'
     breakdown_header: 🧩 **Kupasula mukalo** _(kufikililwa)_
     breakdown_line: '• {label}: ~{count} ({pct}%)'
-    breakdown_cat_system_prompt: System prompt
-    breakdown_cat_tool_definitions: Tool definitions
-    breakdown_cat_rules: Rules
-    breakdown_cat_skills: Skills
+    breakdown_cat_system_prompt: Kubanza kwa sisitemu
+    breakdown_cat_tool_definitions: Mipangilu ya binketo
+    breakdown_cat_rules: Mikanda
+    breakdown_cat_skills: Bukisa
     breakdown_cat_mcp: MCP
-    breakdown_cat_subagent_definitions: Subagent definitions
-    breakdown_cat_memory: Memory
-    breakdown_cat_conversation: Conversation
-    header_session_info: 📊 **Session Info**
-    label_messages: 'Messages: {count}'
+    breakdown_cat_subagent_definitions: Mipangilwa ya basubagent
+    breakdown_cat_memory: Kukumbula
+    breakdown_cat_conversation: Kuvuidiana
+    header_session_info: 📊 **Makosa ya Session**
+    label_messages: 'Makosa: {count}'
     label_estimated_context: 'Mukalo ufikililwe: ~{count} tokens'
     detailed_after_first: _(Ukebi wa bungi ukekala panyuma ya mukumbu wa ntete wa agent)_
     no_data: Kakwena data wa ukebi wa session iyi.
@@ -565,14 +565,14 @@ gateway:
     tts_enabled: 'Auto-TTS wafungulwa.
 
       Kukumbula yonso ikakwata mukanda wa mwiji.'
-    status_mode: 'Voice mode: {label}'
+    status_mode: 'Moji ya luambo: {label}'
     status_channel: 'Kanal wa mwiji: #{channel}'
     status_participants: 'Bapandi: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (taluila)'
+    enabled_short: Moji ya luambo yafungulwa.
+    disabled_short: Moyo wa lukasa udi keke.
+    label_off: Keke (bukalu budi)
     label_voice_only: Pa (kukumbula na mwiji ku mikanda ya mwiji)
     label_all: TTS (kwalula na jwi ku nsangu yonso)
     help: '{toggle}

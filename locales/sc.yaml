@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] una bia  |  [s] sessione  |  [d] nega'
   prompt_long: '      Ischerta [o/s/a/D]: '
   prompt_short: '      Ischerta [o/s/D]: '
-  choose_smart_deny: '      [o] una bia  |  [d] nega'
-  prompt_smart_deny: '      Ischerta [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]na bia  |  [n]ega'
+  prompt_smart_deny: '      Ischerta [u/N]: '
+  smart_deny_once_inputs: u,una bia
+  smart_deny_deny_inputs: n,nega
   timeout: '      ⏱ Tempus iscadu - neghende su cumandu'
   allowed_once: '      ✓ Permitidu una bia'
   allowed_session: '      ✓ Permitidu pro custa sessione'

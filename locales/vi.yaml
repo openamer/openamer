@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] một lần  |  [s] phiên  |  [d] từ chối'
   prompt_long: '      Lựa chọn [o/s/a/D]: '
   prompt_short: '      Lựa chọn [o/s/D]: '
-  choose_smart_deny: '      [o] một lần  |  [d] từ chối'
-  prompt_smart_deny: '      Lựa chọn [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [m]ột lần  |  [t]ừ chối'
+  prompt_smart_deny: '      Lựa chọn [m/T]: '
+  smart_deny_once_inputs: m,một lần
+  smart_deny_deny_inputs: t,từ chối
   timeout: '      ⏱ Hết thời gian chờ - từ chối lệnh'
   allowed_once: '      ✓ Đã cho phép một lần'
   allowed_session: '      ✓ Đã cho phép trong phiên này'

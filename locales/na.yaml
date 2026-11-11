@@ -8,52 +8,52 @@ approval:
   choose_short: '      [o] ijuw  |  [s] sesion  |  [d] denai'
   prompt_long: '      Kioe [o/s/a/D]: '
   prompt_short: '      Kioe [o/s/D]: '
-  choose_smart_deny: '      [o] ijuw  |  [d] denai'
-  prompt_smart_deny: '      Choice [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [i]juw  |  [d]enai'
+  prompt_smart_deny: '      Kwo [i/D]: '
+  smart_deny_once_inputs: i,ijuw
+  smart_deny_deny_inputs: d,denai
   timeout: '      ⏱ Taim aut - denai koman'
-  allowed_once: '      ✓ Allowed once'
+  allowed_once: '      ✓ E oune eowe'
   allowed_session: '      ✓ Alau n sesion eñe'
   allowed_always: '      ✓ Amet n allowlist ebwida'
-  denied: '      ✗ Denied'
-  cancelled: '      ✗ Cancelled'
+  denied: '      ✗ Kae'
+  cancelled: '      ✗ E kae'
   blocklist_message: Koman eñe ijo n blocklist eiy nge ewea eiy anga approval.
 gateway:
   approval_expired: ⚠️ Approval eiy aran (agent eiy nge waiting). Koe agent eke ai.
   draining: ⏳ Draining {count} agent eker ma restart...
-  goal_cleared: ✓ Goal cleared.
-  no_active_goal: No active goal.
+  goal_cleared: ✓ Mwen e mae.
+  no_active_goal: E ka mwen iien.
   config_read_failed: '⚠️ Eab e kona der config.yaml: {error}'
   config_save_failed: '⚠️ Eab e kona save config: {error}'
   model:
-    error_prefix: 'Error: {error}'
+    error_prefix: 'Erere: {error}'
     switched: Model e ouwa ki `{model}`
-    provider_label: 'Provider: {provider}'
-    context_label: 'Context: {tokens} tokens'
-    max_output_label: 'Max output: {tokens} tokens'
-    cost_label: 'Cost: {cost}'
-    capabilities_label: 'Capabilities: {capabilities}'
+    provider_label: 'Bwen: {provider}'
+    context_label: 'Kontes: {tokens} token'
+    max_output_label: 'Output etimed: {tokens} token'
+    cost_label: 'Itsin: {cost}'
+    capabilities_label: 'Kapasiti: {capabilities}'
     prompt_caching_enabled: 'Prompt caching: e kona'
-    warning_prefix: 'Warning: {warning}'
+    warning_prefix: 'Itabwine: {warning}'
     saved_global: E save ki config.yaml (`--global`)
     session_only_hint: _(session et — add `--global` ki persist)_
     current_label: 'Current: `{model}` i {provider}'
-    current_tag: ' (current)'
-    more_models_suffix: ' (+{count} more)'
+    current_tag: ' (iien)'
+    more_models_suffix: ' (+{count} bwene)'
     usage_switch_model: '`/model <name>` — ouwa model'
     usage_switch_provider: '`/model <name> --provider <slug>` — ouwa provider'
     usage_persist: '`/model <name> --global` — tsimori'
   agents:
     header: 🤖 **Agent ekerid ma Task ekerid**
     active_agents: '**Agent ekerid:** {count}'
-    this_chat: ' · this chat'
-    more: '... and {count} more'
+    this_chat: ' · chat in'
+    more: '... me {count} mo'
     running_processes: '**Proses background ekerid:** {count}'
     async_jobs: '**Job async Gateway:** {count}'
     none: Eña agent ekerid ka task ekerid.
-    state_starting: starting
-    state_running: running
+    state_starting: kamwen
+    state_running: dage
   approve:
     no_pending: Eña command pending in aprob.
     once_singular: ✅ Command e aprob. Agent e retom...
@@ -142,10 +142,10 @@ gateway:
 
       _(e gori nan message a riren)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (session ion)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: TWIST
+    label_normal: ADE
     status_fast: mwan
-    status_normal: normal
+    status_normal: ade
     picker_title: '⚡ **Priority Processing**
 
 
@@ -161,13 +161,13 @@ gateway:
       Field: `{fields}`
 
       Platform: `{platform}`'
-    usage: 'Usage: `/footer [on|off|status]`'
+    usage: 'Aror: `/footer [on|off|status]`'
     saved: '📎 Runtime footer: **{state}**{example}
 
       _(saved global — effect on next message)_'
     example_line: '
 
-      Example: `{preview}`'
+      Eksampel: `{preview}`'
     state_on: 'ON'
     state_off: 'OFF'
   goal:
@@ -245,7 +245,7 @@ gateway:
     header: 👤 **Profil:** `{profile}`
     home: 📂 **Iwi:** `{home}`
   reasoning:
-    level_default: medium (default)
+    level_default: etowe (default)
     level_disabled: none (e jau kadam)
     scope_session: override session
     scope_global: config global
@@ -260,8 +260,8 @@ gateway:
 
 
       _Usage:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
-    display_on: on ✓
-    display_off: 'off'
+    display_on: ea ✓
+    display_off: eab
     display_set_on: '🧠 ✓ Display derang: **ON**
 
       Model derang ena shown anim each response i **{platform}**.'
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Id e empty ãe cleanup — session e bõn iñe id.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Kona: {tip}'
   restart:
     in_progress: ⏳ Gateway restart e in progress...
     restarting: ♻ Awea gateway. Ñe eab omõn notification in 60 seconds, awea từ console e `openamer gateway restart`.
@@ -519,8 +519,8 @@ gateway:
     label_cache_read: 'Token rid kas: {count}'
     label_cache_write: 'Token rait kas: {count}'
     label_output_tokens: 'Token eder: {count}'
-    label_total: 'Total: {count}'
-    label_api_calls: 'API calls: {count}'
+    label_total: 'Amo: {count}'
+    label_api_calls: 'API kwer: {count}'
     label_cost: 'Kost: {prefix}${amount}'
     label_cost_included: 'Kost: included'
     label_context: 'Konten: {used} / {total} ({pct}%)'

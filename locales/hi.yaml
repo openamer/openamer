@@ -10,8 +10,8 @@ approval:
   prompt_short: '      चयन [o/s/D]: '
   choose_smart_deny: '      [o]एक बार  |  [d]मना करें'
   prompt_smart_deny: '      चयन [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,oएक बार
+  smart_deny_deny_inputs: d,dमना करें
   timeout: '      ⏱ समय समाप्त - कमांड अस्वीकार कर रहा है'
   allowed_once: '      ✓ एक बार अनुमत'
   allowed_session: '      ✓ इस सत्र के लिए अनुमत'

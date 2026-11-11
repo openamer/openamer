@@ -10,8 +10,8 @@ approval:
   prompt_short: '      ជម្រើស [o/s/D]: '
   choose_smart_deny: '      [o]ម្តង  |  [d]បដិសេធ'
   prompt_smart_deny: '      ជម្រើស [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,oម្តង
+  smart_deny_deny_inputs: d,dបដិសេធ
   timeout: '      ⏱ ផុតកំណត់ - បដិសេធពាក្យបញ្ជា'
   allowed_once: '      ✓ អនុញ្ញាតម្តង'
   allowed_session: '      ✓ អនុញ្ញាតសម្រាប់សម័យនេះ'
@@ -567,39 +567,39 @@ gateway:
       ការឆ្លើយតបទាំងអស់នឹងរួមបញ្ចូលសារសំឡេង។'
     status_mode: របៀបសំឡេង៖ {label}
     status_channel: 'ឆានែលសំឡេង៖ #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'អ្នកចូលរួម: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    speaking: ' (កំពុងនិយាយ)'
+    enabled_short: របៀបសំឡេងត្រូវបានបើក។
+    disabled_short: របៀបសំឡេងត្រូវបានបិទ។
+    label_off: បិទ (តែអត្ថបទ)
+    label_voice_only: បើក (ឆ្លើយតបដោយសំឡេងចំពោះសារសំឡេង)
+    label_all: TTS (ឆ្លើយតបដោយសំឡេងចំពោះសារទាំងអស់)
     help: '{toggle}
 
 
-      **How /voice works**
+      **របៀបដែល /voice ដំណើរការ**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — ឆ្លើយតបដោយសំឡេងនៅពេលអ្នកផ្ញើសារសំឡេង
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — ឆ្លើយតបដោយសំឡេងចំពោះ *រាល់* សារ
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — ត្រឡប់ទៅការឆ្លើយតបជាអត្ថបទតែប៉ុណ្ណោះ
 
-      • `/voice status` — show the current mode
+      • `/voice status` — បង្ហាញរបៀបបច្ចុប្បន្ន
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (គ្មានអាគុយម៉ង់) — បិទបើករហ័សរវាងបើក និងបិទ{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **ចន្ទសម្ព័ន្ធសំឡេងជាប្រចាំពេលវេលា (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • ចូលទៅក្នុងចន្ទសម្ព័ន្ធសំឡេងមុន បន្ទាប់មក `/voice channel` — ខ្ញុំនឹងចូល ស្តាប់ និងនិយាយឆ្លើយតប
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — ចាកចេញពីចន្ទសម្ព័ន្ធសំឡេង'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ ម៉ូដ YOLO **OFF** សម្រាប់សម័យនេះ — ពាក្យបញ្ជាតិគ្រោះថ្នាក់នឹងត្រូវការការអនុម័ត។
+    enabled: ⚡ ម៉ូដ YOLO **ON** សម្រាប់សម័យនេះ — ពាក្យបញ្ជាតិទាំងអស់ត្រូវបានអនុម័តដោយស្វ័យប្រវត្តិ។ ប្រើជាមានការពិចារណា។
   shared:
     session_db_unavailable: មូលដ្ឋានទិន្នន័យសម័យមិនអាចប្រើបាន។
     session_db_unavailable_prefix: មូលដ្ឋានទិន្នន័យសម័យមិនអាចប្រើបាន

@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] pēyakwāw  |  [s] māmawinitowin  |  [d] kakwēcihē'
   prompt_long: '      Nānōhcih [o/s/a/D]: '
   prompt_short: '      Nānōhcih [o/s/D]: '
-  choose_smart_deny: '      [o] pēyakwāw  |  [d] kakwēcihē'
-  prompt_smart_deny: '      Nānōhcih [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [p]ēyakwāw  |  [k]akwēcihē'
+  prompt_smart_deny: '      Nānōhcih [p/K]: '
+  smart_deny_once_inputs: p,pēyakwāw
+  smart_deny_deny_inputs: k,kakwēcihē
   timeout: '      ⏱ Pōni-kīsikāw - itōhtamowin namōya pēhtamākwan'
   allowed_once: '      ✓ Pēyakwāw pēhtamākwan'
   allowed_session: '      ✓ Ōma māmawinitowin pēhtamākwan'
@@ -29,7 +29,7 @@ gateway:
   model:
     error_prefix: 'Māyitwēwin: {error}'
     switched: Model kī-āyāstēw `{model}`
-    provider_label: 'Provider: {provider}'
+    provider_label: 'Kīwētin: {provider}'
     context_label: 'Context: {tokens} token(s)'
     max_output_label: 'Kihci-masinahikēwin: {tokens} tokena'
     cost_label: 'Itakihtēwin: {cost}'
@@ -142,8 +142,8 @@ gateway:
 
       _(kôhtâwîmâw message ohci kâ-itôtahk)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (ôma session pêyak)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: Kīwē
+    label_normal: Māmawi
     status_fast: kîsiw
     status_normal: kwayask
     picker_title: '⚡ **Kihci-itôtamâkêwin**
@@ -226,7 +226,7 @@ gateway:
 
       '
     none_option: • `none` — (nama ayisiyiniwiwin kâ-akwanahkêk)
-    item: • `{name}` — {preview}
+    item: • {name} — {preview}
     usage: '
 
       Kâ-îtôsinikâtêk: `/personality <name>`'
@@ -421,12 +421,12 @@ gateway:
   status:
     header: 📊 **OpenAmer Gateway kā-isi-ayāk**
     matrix_scope_header: '**Matrix kā-isi-āyāk:**'
-    matrix_scope_room: '  room: {room}'
-    matrix_scope_room_id: '  room_id: {room_id}'
-    matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    matrix_scope_room: '  Wāskahikan: {room}'
+    matrix_scope_room_id: '  wâskahikan_id: {room_id}'
+    matrix_scope_thread: '  wâpiskâkan_id: {thread_id}'
+    matrix_scope_mode: '  kiskinohamâkewin_kîspin: {scope}'
+    matrix_scope_key: '  kiskinohamâkewin_kikway: {session_key}'
+    session_id: '**Kiskinohamâkewin ID:** `{session_id}`'
     title: '**kā-isi-itwēwin:** {title}'
     created: '**Kî-osihtâw:** {timestamp}'
     last_activity: '**Kî-pêtâ itôtamihk:** {timestamp}'
@@ -514,14 +514,14 @@ gateway:
     start_failed: '✗ Namōya kī-mācihtāw update: {error}'
     starting: 🧬 OpenAmer update kī-mācihtāw… progress ōta ka-wāpatahk.
   usage:
-    rate_limits: ⏱️ **Rate Limits:** {state}
-    header_session: 📊 **Session Token Usage**
-    label_model: 'Model: `{model}`'
-    label_input_tokens: 'Input tokens: {count}'
-    label_cache_read: 'Cache read tokens: {count}'
-    label_cache_write: 'Cache write tokens: {count}'
-    label_output_tokens: 'Output tokens: {count}'
-    label_total: 'Total: {count}'
+    rate_limits: ⏱️ **Kîspin Kîsikâw:** {state}
+    header_session: 📊 **Kiskinohamâkewin Token Kîspin**
+    label_model: 'Mâmowin: `{model}`'
+    label_input_tokens: 'Kîskâc tokens: {count}'
+    label_cache_read: 'Cache kîskâc tokens: {count}'
+    label_cache_write: 'Cache masinahê tokens: {count}'
+    label_output_tokens: 'ᐅᑌᐦᑕᒧᐃᐧᐣ ᑎᑭᓱᐣ: {count}'
+    label_total: 'ᑲᔦᑕᒫᐤ: {count}'
     label_api_calls: 'API ᑭᑳᐧᐃᐧᓇ: {count}'
     label_cost: 'ᐊᑭᐦᑖᐧᐃᐧᐣ: {prefix}${amount}'
     label_cost_included: 'ᐊᑭᐦᑖᐧᐃᐧᐣ: ᑭᐢᑭᐦᑖᐧᐃᐧᐣ'

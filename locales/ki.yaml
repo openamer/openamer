@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] rĩmwe  |  [s] mũthirimo  |  [d] rega'
   prompt_long: '      Thuura [o/s/a/D]: '
   prompt_short: '      Thuura [o/s/D]: '
-  choose_smart_deny: '      [o] rĩmwe  |  [d] rega'
-  prompt_smart_deny: '      Thuura [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [r]ĩmwe  |  [r]ega'
+  prompt_smart_deny: '      Thuura [r/R]: '
+  smart_deny_once_inputs: r,rĩmwe
+  smart_deny_deny_inputs: r,rega
   timeout: '      ⏱ Hingo nĩthirĩte - kũrega kĩragĩro'
   allowed_once: '      ✓ Ĩtĩkĩrĩtĩo rĩmwe'
   allowed_session: '      ✓ Ĩtĩkĩrĩtĩo mũthirimo ũyũ'
@@ -142,8 +142,8 @@ gateway:
 
       _(nĩgũkora wĩra thutha wa ũrũmĩ ũyũ)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (gĩkũĩ gĩkĩ gĩthirĩrĩ)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: HARAKA
+    label_normal: KIRI KARI
     status_fast: ihana
     status_normal: kĩhĩtũkĩte
     picker_title: '⚡ **Ũthũgũndi wa Mbere**

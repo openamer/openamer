@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] unwaith  |  [s]esiwn  |  [d] gwrthod'
   prompt_long: '      Dewis [o/s/a/D]: '
   prompt_short: '      Dewis [o/s/D]: '
-  choose_smart_deny: '      [o] unwaith  |  [d] gwrthod'
-  prompt_smart_deny: '      Dewis [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]nwaith  |  [g]wrthod'
+  prompt_smart_deny: '      Dewis [u/G]: '
+  smart_deny_once_inputs: u,unwaith
+  smart_deny_deny_inputs: g,gwrthod
   timeout: '      ⏱ Terfyn amser - gwrthod gorchymyn'
   allowed_once: '      ✓ Caniatawyd unwaith'
   allowed_session: '      ✓ Caniatawyd ar gyfer y sesiwn hon'
@@ -32,7 +32,7 @@ gateway:
     provider_label: 'Darparwr: {provider}'
     context_label: 'Cyd-destun: {tokens} tocynnau'
     max_output_label: 'Allbwn mwyaf: {tokens} tocynnau'
-    cost_label: 'Cost: {cost}'
+    cost_label: 'Treuliau: {cost}'
     capabilities_label: 'Galluoedd: {capabilities}'
     prompt_caching_enabled: 'Cacheio prompt: wedi''i alluogi'
     warning_prefix: 'Rhybudd: {warning}'
@@ -425,7 +425,7 @@ gateway:
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_key: '  allwedd_sesiwn: {session_key}'
     session_id: '**ID Sesiwn:** `{session_id}`'
     title: '**Teitl:** {title}'
     created: '**Crëwyd:** {timestamp}'
@@ -523,7 +523,7 @@ gateway:
     label_output_tokens: 'Tocynnau allbwn: {count}'
     label_total: 'Cyfanswm: {count}'
     label_api_calls: 'Galwadau API: {count}'
-    label_cost: 'Cost: {prefix}${amount}'
+    label_cost: 'Treuliau: {prefix}${amount}'
     label_cost_included: 'Cost: wedi''i gynnwys'
     label_context: 'Cyd-destun: {used} / {total} ({pct}%)'
     label_compressions: 'Cywasgiadau: {count}'

@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] ataasiarluni  |  [s] katimaniq  |  [d] pijunnautitaili'
   prompt_long: '      Niruaq [o/s/a/D]: '
   prompt_short: '      Niruaq [o/s/D]: '
-  choose_smart_deny: '      [o] ataasiarluni  |  [d] pijunnautitaili'
-  prompt_smart_deny: '      Niruaq [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [a]taasiarluni  |  [p]ijunnautitaili'
+  prompt_smart_deny: '      Niruaq [a/P]: '
+  smart_deny_once_inputs: a,ataasiarluni
+  smart_deny_deny_inputs: p,pijunnautitaili
   timeout: '      ⏱ Piffissaq nuqqaqtuq - uqauti pijunnautitailiniq'
   allowed_once: '      ✓ Pijunnautitaq ataasiarluni'
   allowed_session: '      ✓ Pijunnautitaq uuma katimaniq'
@@ -79,13 +79,13 @@ gateway:
     no_conversation: ᐅᖃᐅᓯᖃᙱᑦᑐᖅ ᐊᕕᒃᓯᓂᕐᒧᑦ — ᐅᖃᐅᓯᕐᒥᒃ ᐅᐊᑦᑎᕆᐊᖅᑎᑦᑎᓗᒍ.
     create_failed: 'ᐊᕕᒃᓯᓂᕐᒥᒃ ᓴᖅᑭᑎᑦᑎᔪᓐᓇᙱᑦᑐᖅ: {error}'
     switch_failed: ᐊᕕᒃᓯᓂᖅ ᓴᖅᑭᑕᐅᔪᖅ ᑭᓯᐊᓂ ᐅᑎᖅᑎᑦᑎᔪᓐᓇᙱᑦᑐᖅ.
-    branched_one: '⑂ Branched to **{title}** ({count} message copied)
+    branched_one: '⑂ **{title}**-mut nalliqtuq ({count} uqausiq nalliqsimajuq)
 
       Original: `{parent}`
 
       Branch: `{new}`
 
-      Use `/resume` to switch back to the original.'
+      `/resume` unnukkut original-mut kuttattausiq.'
     branched_many: '⑂ **{title}**-mut ilaliqtitaujuq ({count} niruqsiutit piluqtaujut)
 
       Nalligijaujuq: `{parent}`
@@ -288,42 +288,42 @@ gateway:
 
       Naliqtauyumik aturit:'
     choice_none: none — isumaliurniq piitaq
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+    choice_reset: reset — session override malik
+    choice_show: reasoning uqausiq uqalimaaq
+    choice_hide: reasoning uqausiq uqalimmaaq piujuq
+    set_global: '🧠 ✓ Reasoning effort `{effort}`-mut nalliqtuq (config-mut nalliqsimajuq)
 
-      _(takes effect on next message)_'
-    set_global_save_failed: '🧠 ✓ Reasoning effort set to `{effort}` (session only — config save failed)
+      _(uqaqatsi ukiuni atuinnaqtuq)_'
+    set_global_save_failed: '🧠 ✓ Reasoning effort `{effort}`-mut nalliqtuq (session-luunanga — config nalliqsimajungnatuq)
 
-      _(takes effect on next message)_'
-    set_session: '🧠 ✓ Reasoning effort set to `{effort}` (session only — add `--global` to persist)
+      _(uqaqatsi ukiuni atuinnaqtuq)_'
+    set_session: '🧠 ✓ Reasoning effort `{effort}`-mut nalliqtuq (session-luunanga — `--global` illiit nalliqsimajut)
 
-      _(takes effect on next message)_'
+      _(uqaqatsi ukiuni atuinnaqtuq)_'
   reload_mcp:
-    cancelled: 🟡 /reload-mcp cancelled. MCP tools unchanged.
-    always_followup: 'ℹ️ Future `/reload-mcp` calls will run without confirmation. Re-enable via `approvals.mcp_reload_confirm: true` in config.yaml.'
-    confirm_prompt: '⚠️ **Confirm /reload-mcp**
+    cancelled: 🟡 /reload-mcp kappianngittuq. MCP tools atuinnaqtuq.
+    always_followup: 'ℹ️ Maannak `/reload-mcp` calls naalauttuq nalliqsimajut nalliqsimajungnanginnik. `approvals.mcp_reload_confirm: true` config.yaml-mut nalliqsimajut.'
+    confirm_prompt: '⚠️ **/reload-mcp nalliqsimajut**
 
 
-      Reloading MCP servers rebuilds the tool set for this session and **invalidates the provider prompt cache** — the next message will re-send full input tokens.  On long-context or high-reasoning models this can be expensive.
+      MCP servers reload-jut tool set session-mut atuinnaqtuq naalauttuq **provider prompt cache invalid-jut** — uqaqatsi ukiuni full input tokens re-send-jut. Long-context naammaktut high-reasoning models-mut akilinniq atuinnaqtuq.
 
 
-      Choose:
+      Niriungniq:
 
-      • **Approve Once** — reload now
+      • **Approve Once** — reload ukiuni
 
-      • **Always Approve** — reload now and silence this prompt permanently
+      • **Always Approve** — reload ukiuni naalauttuq prompt piujuq nalliqsimajut
 
-      • **Cancel** — leave MCP tools unchanged
+      • **Cancel** — MCP tools atuinnaqtuq
 
 
-      _Text fallback: reply `/approve`, `/always`, or `/cancel`._'
-    header: '🔄 **MCP Servers Reloaded**
+      _Text fallback: reply `/approve`, `/always`, naammaktut `/cancel`._'
+    header: '🔄 **MCP ᓴᕐᕕᑦ ᐅᖃᐅᓯᕐᓂᖅᑐᑦ**
 
       '
     reconnected: '♻️ ᐃᓚᐅᒃᑲᓐᓂᖅᑐᖅ: {names}'
-    added: '➕ Added: {names}'
+    added: '➕ ᐃᓚᒋᔭᖅᑐᖅ: {names}'
     removed: '➖ Piiqtaujuq: {names}'
     none_connected: MCP serverit attaveqarsimangittut.
     tools_available: '
@@ -516,7 +516,7 @@ gateway:
   usage:
     rate_limits: ⏱️ **Rate killigutit:** {state}
     header_session: 📊 **Session token atuuganiq**
-    label_model: 'Model: `{model}`'
+    label_model: 'ᐊᑐᕐᓂᖅ: `{model}`'
     label_input_tokens: 'Input tokenit: {count}'
     label_cache_read: 'Cache read tokenit: {count}'
     label_cache_write: 'Cache write tokenit: {count}'

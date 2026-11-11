@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Bir gezek  |  [s] Sessiýa  |  [d] Ret et'
   prompt_long: '      Saýlaw [o/s/a/D]: '
   prompt_short: '      Saýlaw [o/s/D]: '
-  choose_smart_deny: '      [o] Bir gezek  |  [d] Ret et'
-  prompt_smart_deny: '      Saýlaw [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [b]ir gezek  |  [r]et et'
+  prompt_smart_deny: '      Saýlaw [b/R]: '
+  smart_deny_once_inputs: b,bir gezek
+  smart_deny_deny_inputs: r,ret et
   timeout: '      ⏱ Wagt gutardy - buýruk ret edilýär'
   allowed_once: '      ✓ Bir gezek rugsat berildi'
   allowed_session: '      ✓ Bu sessiýa üçin rugsat berildi'

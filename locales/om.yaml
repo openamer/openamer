@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] yeroo tokko  |  [s] seeshinii  |  [d] didi'
   prompt_long: '      Filannoo [o/s/a/D]: '
   prompt_short: '      Filannoo [o/s/D]: '
-  choose_smart_deny: '      [o] yeroo tokko  |  [d] didi'
-  prompt_smart_deny: '      Filannoo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [y]eroo tokko  |  [d]idi'
+  prompt_smart_deny: '      Filannoo [y/D]: '
+  smart_deny_once_inputs: y,yeroo tokko
+  smart_deny_deny_inputs: d,didi
   timeout: '      ⏱ Yeroon darbe - ajaja didaa jira'
   allowed_once: '      ✓ Yeroo tokko hayyamame'
   allowed_session: '      ✓ Seeshinii kanaaf hayyamame'
@@ -142,8 +142,8 @@ gateway:
 
       _(ergaa itti aanu irratti hojiirra oola)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (sesshinii kana qofa)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: XAQQA
+    label_normal: CAADI
     status_fast: saffisaa
     status_normal: idilee
     picker_title: '⚡ **Adeemsa Dursaa**

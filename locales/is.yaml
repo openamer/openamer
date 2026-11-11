@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] einu sinni  |  [s] lota  |  [d] hafna'
   prompt_long: '      Val [o/s/a/D]: '
   prompt_short: '      Val [o/s/D]: '
-  choose_smart_deny: '      [o] einu sinni  |  [d] hafna'
-  prompt_smart_deny: '      Val [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [e]inu sinni  |  [h]afna'
+  prompt_smart_deny: '      Val [e/H]: '
+  smart_deny_once_inputs: e,einu sinni
+  smart_deny_deny_inputs: h,hafna
   timeout: '      ⏱ Tímamörk - hafna skipun'
   allowed_once: '      ✓ Leyft einu sinni'
   allowed_session: '      ✓ Leyft í þessari lotu'

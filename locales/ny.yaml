@@ -10,8 +10,8 @@ approval:
   prompt_short: '      Sankhani [o/s/D]: '
   choose_smart_deny: '      [o]kamodzi  |  [d]kana'
   prompt_smart_deny: '      Sankhani [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,okamodzi
+  smart_deny_deny_inputs: d,dkana
   timeout: '      ⏱ Nthawi yatha - kukana lamulo'
   allowed_once: '      ✓ Lololedwa kamodzi'
   allowed_session: '      ✓ Lololedwa pa gawo ili'

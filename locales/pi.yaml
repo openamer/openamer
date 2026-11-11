@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] ekavāraṃ  |  [s]sannipāto  |  [d] paṭikkhipa'
   prompt_long: '      Vikappo [o/s/a/D]: '
   prompt_short: '      Vikappo [o/s/D]: '
-  choose_smart_deny: '      [o] ekavāraṃ  |  [d] paṭikkhipa'
-  prompt_smart_deny: '      Vikappo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [e]kavāraṃ  |  [p]aṭikkhipa'
+  prompt_smart_deny: '      Vikappo [e/P]: '
+  smart_deny_once_inputs: e,ekavāraṃ
+  smart_deny_deny_inputs: p,paṭikkhipa
   timeout: '      ⏱ Kālātikkamo - āṇaṃ paṭikkhipanto'
   allowed_once: '      ✓ Ekavāraṃ anuññātaṃ'
   allowed_session: '      ✓ Imasmiṃ sannipāte anuññātaṃ'
@@ -421,11 +421,11 @@ gateway:
   status:
     header: 📊 **OpenAmer Gateway ṭhiti**
     matrix_scope_header: '**Matrix visayo:**'
-    matrix_scope_room: '  room: {room}'
-    matrix_scope_room_id: '  room_id: {room_id}'
-    matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_room: '  koṭṭhaka: {room}'
+    matrix_scope_room_id: '  koṭṭhaka_id: {room_id}'
+    matrix_scope_thread: '  sutta_id: {thread_id}'
+    matrix_scope_mode: '  saṃsatti_visaya: {scope}'
+    matrix_scope_key: '  saṃsatti_kī: {session_key}'
     session_id: '**Sannivesa ID:** `{session_id}`'
     title: '**Nāma:** {title}'
     created: '**Nimmitaṃ:** {timestamp}'

@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] mä kuti  |  [s] sesión  |  [d] jan saña'
   prompt_long: '      Ajlliña [o/s/a/D]: '
   prompt_short: '      Ajlliña [o/s/D]: '
-  choose_smart_deny: '      [o] mä kuti  |  [d] jan saña'
-  prompt_smart_deny: '      Ajlliña [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [m]ä kuti  |  [j]an saña'
+  prompt_smart_deny: '      Ajlliña [m/J]: '
+  smart_deny_once_inputs: m,mä kuti
+  smart_deny_deny_inputs: j,jan saña
   timeout: '      ⏱ Pacha tukuski - kamachi jan saña'
   allowed_once: '      ✓ Mä kuti jaytata'
   allowed_session: '      ✓ Aka sesión jaytata'
@@ -142,10 +142,10 @@ gateway:
 
       _(qhipa yatiyawin apnaqasini)_'
     session_only: '⚡ ✓ Ñawpaq Lurawi: **{label}** (aka sesión ukakpachaki)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: JAYA
+    label_normal: NORMALA
     status_fast: jank'aki
-    status_normal: normal
+    status_normal: jaki
     picker_title: '⚡ **Ñawpaq Apnaqaña**
 
 
@@ -425,7 +425,7 @@ gateway:
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_key: '  sesion_chawi: {session_key}'
     session_id: '**Sesión ID:** `{session_id}`'
     title: '**Suti:** {title}'
     created: '**Uñstayata:** {timestamp}'

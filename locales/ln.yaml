@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] mbala moko  |  [s] sesio  |  [d] koboya'
   prompt_long: '      Pona [o/s/a/D]: '
   prompt_short: '      Pona [o/s/D]: '
-  choose_smart_deny: '      [o] mbala moko  |  [d] koboya'
-  prompt_smart_deny: '      Pona [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [m]bala moko  |  [k]oboya'
+  prompt_smart_deny: '      Pona [m/K]: '
+  smart_deny_once_inputs: m,mbala moko
+  smart_deny_deny_inputs: k,koboya
   timeout: '      ⏱ Ntango esili - koboya komande'
   allowed_once: '      ✓ Ndingisami mbala moko'
   allowed_session: '      ✓ Ndingisami mpo na sesio oyo'
@@ -142,7 +142,7 @@ gateway:
 
       _(ekosalama na message oyo elandi)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (kaka na session oyo)'
-    label_fast: FAST
+    label_fast: MALAMU
     label_normal: NORMAL
     status_fast: noki
     status_normal: ya momeseno
@@ -424,8 +424,8 @@ gateway:
     matrix_scope_room: '  shambre: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_mode: '  bokwa ya session: {scope}'
+    matrix_scope_key: '  kati ya session: {session_key}'
     session_id: '**ID ya session:** `{session_id}`'
     title: '**Titre:** {title}'
     created: '**Ekelami:** {timestamp}'
@@ -522,23 +522,23 @@ gateway:
     label_cache_write: 'Ba token ya kokoma na cache: {count}'
     label_output_tokens: 'Ba token ya kobimisa: {count}'
     label_total: 'Motuya mobimba: {count}'
-    label_api_calls: 'API calls: {count}'
+    label_api_calls: 'Appel ya API: {count}'
     label_cost: 'Ntalo: {prefix}${amount}'
-    label_cost_included: 'Cost: included'
+    label_cost_included: 'Nkita: ebandaka'
     label_context: 'Contexte: {used} / {total} ({pct}%)'
     label_compressions: 'Ba compressions: {count}'
     breakdown_header: 🧩 **Bokabwani ya contexte** _(o kanisami)_
     breakdown_line: '• {label}: ~{count} ({pct}%)'
-    breakdown_cat_system_prompt: System prompt
-    breakdown_cat_tool_definitions: Tool definitions
-    breakdown_cat_rules: Rules
-    breakdown_cat_skills: Skills
+    breakdown_cat_system_prompt: Prompte ya système
+    breakdown_cat_tool_definitions: Maloba ya batools
+    breakdown_cat_rules: Misala
+    breakdown_cat_skills: Bokwa
     breakdown_cat_mcp: MCP
-    breakdown_cat_subagent_definitions: Subagent definitions
-    breakdown_cat_memory: Memory
-    breakdown_cat_conversation: Conversation
-    header_session_info: 📊 **Session Info**
-    label_messages: 'Messages: {count}'
+    breakdown_cat_subagent_definitions: Maloba ya basubagent
+    breakdown_cat_memory: Memoire
+    breakdown_cat_conversation: Kobosana
+    header_session_info: 📊 **Info ya Session**
+    label_messages: 'Maboko: {count}'
     label_estimated_context: 'Contexte o kanisami: ~{count} ba token'
     detailed_after_first: _(Ndenge ya kosalela na ndetail ezali kaka nsima ya eyano ya liboso ya mosalisi)_
     no_data: Ba nsango ya kosalela ezali te mpo na session oyo.
@@ -565,14 +565,14 @@ gateway:
     tts_enabled: 'Auto-TTS efungwami.
 
       Biyano nyonso bikozala na nsango ya mongongo.'
-    status_mode: 'Voice mode: {label}'
+    status_mode: 'Mode ya mokili: {label}'
     status_channel: 'Canal ya mongongo: #{channel}'
     status_participants: 'Bapesalisi: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (akomona)'
+    enabled_short: Mode ya mokili esalaki.
+    disabled_short: Mode ya mokili esi te.
+    label_off: Te (makambo mpe)
     label_voice_only: Efungwami (eyano na mongongo mpo na bansango ya mongongo)
     label_all: TTS (eyano na mongongo mpo na bansango nyonso)
     help: '{toggle}

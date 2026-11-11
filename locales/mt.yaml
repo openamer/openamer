@@ -3,383 +3,383 @@
 # See locales/en.yaml for the source of truth; keep keys in sync.
 
 approval:
-  dangerous_header: '⚠️  DANGEROUS COMMAND: {description}'
-  choose_long: '      [o]nce  |  [s]ession  |  [a]lways  |  [d]eny'
-  choose_short: '      [o]nce  |  [s]ession  |  [d]eny'
-  prompt_long: '      Choice [o/s/a/D]: '
-  prompt_short: '      Choice [o/s/D]: '
-  choose_smart_deny: '      [o]nce  |  [d]eny'
-  prompt_smart_deny: '      Choice [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
-  timeout: '      ⏱ Timeout - denying command'
-  allowed_once: '      ✓ Allowed once'
-  allowed_session: '      ✓ Allowed for this session'
-  allowed_always: '      ✓ Added to permanent allowlist'
-  denied: '      ✗ Denied'
-  cancelled: '      ✗ Cancelled'
-  blocklist_message: This command is on the unconditional blocklist and cannot be approved.
+  dangerous_header: '⚠️  KMAND PERIKOLUŻ: {description}'
+  choose_long: '      [o] darba  |  [s] sessjoni  |  [a] dejjem  |  [d] iċħad'
+  choose_short: '      [o] darba  |  [s] sessjoni  |  [d] iċħad'
+  prompt_long: '      Għażla [o/s/a/D]: '
+  prompt_short: '      Għażla [o/s/D]: '
+  choose_smart_deny: '      [d]arba  |  [i]ċħad'
+  prompt_smart_deny: '      Għażla [d/I]: '
+  smart_deny_once_inputs: d,darba
+  smart_deny_deny_inputs: i,iċħad
+  timeout: '      ⏱ Skadenza - qed jiġi miċħud il-kmand'
+  allowed_once: '      ✓ Permess mara wāħda'
+  allowed_session: '      ✓ Permess għal din is-sessjoni'
+  allowed_always: '      ✓ Miżjud fil-lista permanenti ta'' permessi'
+  denied: '      ✗ Rifiutat'
+  cancelled: '      ✗ Annullat'
+  blocklist_message: Dan il-kmand jinsab fil-lista ta' blokki inkundizzjonata u ma jistax jiġi approvat.
 gateway:
-  approval_expired: ⚠️ Approval expired (agent is no longer waiting). Ask the agent to try again.
-  draining: ⏳ Draining {count} active agent(s) before restart...
-  goal_cleared: ✓ Goal cleared.
-  no_active_goal: No active goal.
-  config_read_failed: '⚠️ Could not read config.yaml: {error}'
-  config_save_failed: '⚠️ Could not save config: {error}'
+  approval_expired: ⚠️ L-approvazzjoni skadiet (l-aġent m'għadux qed jistenna). Itlob lill-aġent biex jerġa' jipprova.
+  draining: ⏳ Qed jitbattlu {count} aġent(i) attiv(i) qabel l-istartjar...
+  goal_cleared: ✓ L-għan tneħħa.
+  no_active_goal: M'hemmx għan attiv.
+  config_read_failed: '⚠️ Ma setax jinqara config.yaml: {error}'
+  config_save_failed: '⚠️ Ma setgħetx tiġi salvata l-konfigurazzjoni: {error}'
   model:
-    error_prefix: 'Error: {error}'
-    switched: Model switched to `{model}`
-    provider_label: 'Provider: {provider}'
-    context_label: 'Context: {tokens} tokens'
-    max_output_label: 'Max output: {tokens} tokens'
-    cost_label: 'Cost: {cost}'
-    capabilities_label: 'Capabilities: {capabilities}'
-    prompt_caching_enabled: 'Prompt caching: enabled'
-    warning_prefix: 'Warning: {warning}'
-    saved_global: Saved to config.yaml (`--global`)
-    session_only_hint: _(session only — add `--global` to persist)_
-    current_label: 'Current: `{model}` on {provider}'
-    current_tag: ' (current)'
-    more_models_suffix: ' (+{count} more)'
-    usage_switch_model: '`/model <name>` — switch model'
-    usage_switch_provider: '`/model <name> --provider <slug>` — switch provider'
-    usage_persist: '`/model <name> --global` — persist'
+    error_prefix: 'Qlat: {error}'
+    switched: Il-mudell inbidel għal `{model}`
+    provider_label: 'Provjeder: {provider}'
+    context_label: 'Kuntest: {tokens} tokens'
+    max_output_label: 'Ħruġ massimu: {tokens} tokens'
+    cost_label: 'Kost: {cost}'
+    capabilities_label: 'Kapaċitajiet: {capabilities}'
+    prompt_caching_enabled: 'Caching tal-prompt: attivat'
+    warning_prefix: 'Twissija: {warning}'
+    saved_global: Salvat f'config.yaml (`--global`)
+    session_only_hint: _(sessjoni biss — żid `--global` biex tibqa' salvata)_
+    current_label: 'Attwali: `{model}` fuq {provider}'
+    current_tag: ' (attwali)'
+    more_models_suffix: ' (+{count} aktar)'
+    usage_switch_model: '`/model <name>` — ibdel il-mudell'
+    usage_switch_provider: '`/model <name> --provider <slug>` — ibdel il-fornitur'
+    usage_persist: '`/model <name> --global` — ippersisti'
   agents:
-    header: 🤖 **Active Agents & Tasks**
-    active_agents: '**Active agents:** {count}'
-    this_chat: ' · this chat'
-    more: '... and {count} more'
-    running_processes: '**Running background processes:** {count}'
-    async_jobs: '**Gateway async jobs:** {count}'
-    none: No active agents or running tasks.
-    state_starting: starting
-    state_running: running
+    header: 🤖 **Aġenti u Kompiti Attivi**
+    active_agents: '**Aġenti attivi:** {count}'
+    this_chat: ' · din il-ċatt'
+    more: '... u {count} aktar'
+    running_processes: '**Proċessi tal-isfond li qed jaħdmu:** {count}'
+    async_jobs: '**Xogħlijiet asinkroniċi tal-Gateway:** {count}'
+    none: M'hemm l-ebda aġenti attivi jew kompiti li qed jaħdmu.
+    state_starting: qed tibda
+    state_running: qed tħaddam
   approve:
-    no_pending: No pending command to approve.
-    once_singular: ✅ Command approved. The agent is resuming...
-    once_plural: ✅ Commands approved ({count} commands). The agent is resuming...
-    session_singular: ✅ Command approved (pattern approved for this session). The agent is resuming...
-    session_plural: ✅ Commands approved (pattern approved for this session) ({count} commands). The agent is resuming...
-    always_singular: ✅ Command approved (pattern approved permanently). The agent is resuming...
-    always_plural: ✅ Commands approved (pattern approved permanently) ({count} commands). The agent is resuming...
+    no_pending: M'hemm l-ebda kmand pendenti biex jiġi approvat.
+    once_singular: ✅ Kmand approvat. L-aġent qed jerġa' jibda...
+    once_plural: ✅ Kmandi approvati ({count} kmandi). L-aġent qed jerġa' jibda...
+    session_singular: ✅ Kmand approvat (mudell approvat għal din is-sessjoni). L-aġent qed jerġa' jibda...
+    session_plural: ✅ Kmandi approvati (mudell approvat għal din is-sessjoni) ({count} kmandi). L-aġent qed jerġa' jibda...
+    always_singular: ✅ Kmand approvat (mudell approvat b'mod permanenti). L-aġent qed jerġa' jibda...
+    always_plural: ✅ Kmandi approvati (mudell approvat b'mod permanenti) ({count} kmandi). L-aġent qed jerġa' jibda...
   background:
-    usage: 'Usage: /background <prompt>
+    usage: 'Użu: /background <prompt>
 
-      Example: /background Summarize the top HN stories today
+      Eżempju: /background Summarize the top HN stories today
 
 
-      Runs the prompt in a separate session. You can keep chatting — the result will appear here when done.'
-    started: '🔄 Background task started: "{preview}"
+      Iħaddem il-prompt f''sessjoni separata. Tista'' tkompli titkellem — ir-riżultat jidher hawn meta jitlesta.'
+    started: '🔄 Kompitu fl-isfond beda: "{preview}"
 
-      Task ID: {task_id}
+      ID tal-kompitu: {task_id}
 
-      You can keep chatting — results will appear when done.'
+      Tista'' tkompli titkellem — ir-riżultati jidhru hawn meta jitlestew.'
   branch:
-    db_unavailable: Session database not available.
-    no_conversation: No conversation to branch — send a message first.
-    create_failed: 'Failed to create branch: {error}'
-    switch_failed: Branch created but failed to switch to it.
-    branched_one: '⑂ Branched to **{title}** ({count} message copied)
+    db_unavailable: Id-database tas-sessjoni mhix disponibbli.
+    no_conversation: M'hemmx konverżazzjoni biex issir fergħa — ibgħat messaġġ l-ewwel.
+    create_failed: 'Ma rnexxiex il-ħolqien tal-fergħa: {error}'
+    switch_failed: Il-fergħa nħolqot iżda ma rnexxiex jaqleb għaliha.
+    branched_one: '⑂ Inħolqot fergħa għal **{title}** ({count} messaġġ ikkupjat)
 
-      Original: `{parent}`
+      Oriġinali: `{parent}`
 
-      Branch: `{new}`
+      Fergħa: `{new}`
 
-      Use `/resume` to switch back to the original.'
-    branched_many: '⑂ Branched to **{title}** ({count} messages copied)
+      Uża `/resume` biex terġa'' taqleb għall-oriġinali.'
+    branched_many: '⑂ Inħolqot fergħa għal **{title}** ({count} messaġġi kkupjati)
 
-      Original: `{parent}`
+      Oriġinali: `{parent}`
 
-      Branch: `{new}`
+      Fergħa: `{new}`
 
-      Use `/resume` to switch back to the original.'
+      Uża `/resume` biex terġa'' taqleb għall-oriġinali.'
   commands:
-    usage: 'Usage: `/commands [page]`'
-    skill_header: '⚡ **Skill Commands**:'
-    default_desc: Skill command
-    none: No commands available.
-    header: 📚 **Commands** ({total} total, page {page}/{total_pages})
-    nav_prev: '`/commands {page}` ← prev'
-    nav_next: next → `/commands {page}`
-    out_of_range: _(Requested page {requested} was out of range, showing page {page}.)_
+    usage: 'Użu: `/commands [page]`'
+    skill_header: '⚡ **Kmandi tal-Ħiliet**:'
+    default_desc: Kommand tal-ħiliet
+    none: M'hemmx kmandi disponibbli.
+    header: 📚 **Kmandi** ({total} totali, paġna {page}/{total_pages})
+    nav_prev: '`/commands {page}` ← preċedenti'
+    nav_next: li jmiss → `/commands {page}`
+    out_of_range: _(Il-paġna mitluba {requested} kienet barra mill-firxa, qed tintwera paġna {page}.)_
   compress:
-    not_enough: Not enough conversation to compress (need at least 4 messages).
-    no_provider: No provider configured -- cannot compress.
-    nothing_to_do: Nothing to compress yet (the transcript is still all protected context).
-    aggressive_unsupported: --aggressive is not supported; use '/compress here [N]' to keep only recent exchanges, or /undo to drop turns.
-    focus_line: 'Focus: "{topic}"'
-    summary_failed: ⚠️ Summary generation failed ({error}). {count} historical message(s) were removed and replaced with a placeholder; earlier context is no longer recoverable. Consider checking your auxiliary.compression model configuration.
-    aborted: ⚠️ Compression aborted ({error}). No messages were dropped — conversation is unchanged. Run /compress to retry, /reset for a clean session, or check your auxiliary.compression model configuration.
-    aux_failed: ℹ️ Configured compression model `{model}` failed ({error}). Recovered using your main model — context is intact — but you may want to check `auxiliary.compression.model` in config.yaml.
-    failed: 'Compression failed: {error}'
+    not_enough: Mhux biżżejjed konversazzjoni biex tiġi kkompressata (jeħtieġ mill-inqas 4 messaġġi).
+    no_provider: L-ebda provider mhu konfigurat -- ma jistax isir kompressjoni.
+    nothing_to_do: S'issa m'hemm xejn x'jiġi kkompressat (it-traskrizzjoni għadha kollha kuntest protett).
+    aggressive_unsupported: --aggressive mhux appoġġjat; uża '/compress here [N]' biex iżżomm biss skambji riċenti, jew /undo biex tneħħi dawriet.
+    focus_line: 'Fokus: "{topic}"'
+    summary_failed: ⚠️ Il-ġenerazzjoni tas-sommarju falliet ({error}). {count} messaġġ(i) storiċi tneħħew u ġew sostitwiti b'placeholder; il-kuntest preċedenti m'għadux jista' jiġi rkuprat. Ikkunsidra li tivverifika l-konfigurazzjoni tal-mudell auxiliary.compression tiegħek.
+    aborted: ⚠️ Il-kompressjoni waqfet ({error}). L-ebda messaġġ ma tneħħa — il-konversazzjoni mhijiex mibdula. Mexxi /compress biex terġa' tipprova, /reset għal sessjoni nadifa, jew iċċekkja l-konfigurazzjoni tal-mudell auxiliary.compression tiegħek.
+    aux_failed: ℹ️ Il-mudell tal-kompressjoni kkonfigurat `{model}` falla ({error}). Ġie rkuprat bl-użu tal-mudell prinċipali tiegħek — il-kuntest huwa intatt — iżda jista' jkun li trid tiċċekkja `auxiliary.compression.model` f'config.yaml.
+    failed: 'Il-kompressjoni falliet: {error}'
   debug:
-    upload_failed: '✗ Failed to upload debug report: {error}'
-    header: '**Debug report uploaded:**'
-    auto_delete: ⏱ Pastes will auto-delete in 6 hours.
-    full_logs_hint: For full log uploads, use `openamer debug share` from the CLI.
-    share_hint: Share these links with the OpenAmer team for support.
+    upload_failed: '✗ It-tlugħ tar-rapport tad-debug falla: {error}'
+    header: '**Rapport tad-debug mtella'':**'
+    auto_delete: ⏱ Il-pastes se jitħassru awtomatikament f'6 sigħat.
+    full_logs_hint: Għat-tlugħ tal-logs sħaħ, uża `openamer debug share` mill-CLI.
+    share_hint: Aqsam dawn il-links mat-tim OpenAmer għall-appoġġ.
   deny:
-    stale: ❌ Command denied (approval was stale).
-    no_pending: No pending command to deny.
-    denied_singular: ❌ Command denied.
-    denied_plural: ❌ Commands denied ({count} commands).
-    denied_reason_singular: '❌ Command denied. Reason relayed to the agent: "{reason}"'
-    denied_reason_plural: '❌ Commands denied ({count} commands). Reason relayed to the agent: "{reason}"'
+    stale: ❌ Kmand miċħud (l-approvazzjoni kienet skaduta).
+    no_pending: M'hemm l-ebda kmand pendenti x'jiċħad.
+    denied_singular: ❌ Kommand mhux permess.
+    denied_plural: ❌ Kmandi miċħuda ({count} kmandi).
+    denied_reason_singular: '❌ Kmand miċħud. Ir-raġuni mgħoddija lill-aġent: "{reason}"'
+    denied_reason_plural: '❌ Kmandi miċħuda ({count} kmandi). Ir-raġuni mgħoddija lill-aġent: "{reason}"'
   fast:
-    not_supported: ⚡ /fast is only available for OpenAI models that support Priority Processing.
-    status: '⚡ Priority Processing
+    not_supported: ⚡ /fast huwa disponibbli biss għall-mudelli OpenAI li jappoġġjaw l-Ipproċessar Prijoritarju.
+    status: '⚡ Ipproċessar Prijoritarju
 
 
-      Current mode: `{mode}`
+      Modalità attwali: `{mode}`
 
 
-      _Usage:_ `/fast <normal|fast|status>`'
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
+      _Użu:_ `/fast <normal|fast|status>`'
+    unknown_arg: '⚠️ Argument mhux magħruf: `{arg}`
 
 
-      **Valid options:** normal, fast, status'
-    saved: '⚡ ✓ Priority Processing: **{label}** (saved to config)
+      **Għażliet validi:** normal, fast, status'
+    saved: '⚡ ✓ Ipproċessar ta'' Prijorità: **{label}** (issejvjat fil-konfigurazzjoni)
 
-      _(takes effect on next message)_'
-    session_only: '⚡ ✓ Priority Processing: **{label}** (this session only)'
-    label_fast: FAST
-    label_normal: NORMAL
-    status_fast: fast
-    status_normal: normal
-    picker_title: '⚡ **Priority Processing**
-
-
-      Current mode: `{mode}`
+      _(jibda jseħħ fil-messaġġ li jmiss)_'
+    session_only: '⚡ ✓ Ipproċessar ta'' Prijorità: **{label}** (din is-sessjoni biss)'
+    label_fast: RAPIDU
+    label_normal: NORMALI
+    status_fast: rapidu
+    status_normal: normali
+    picker_title: '⚡ **Ipproċessar ta'' Prijorità**
 
 
-      Pick an option:'
-    choice_fast: fast — Priority Processing on
-    choice_normal: normal — standard processing
+      Modalità attwali: `{mode}`
+
+
+      Agħżel għażla:'
+    choice_fast: fast — Ipproċessar ta' Prijorità mixgħul
+    choice_normal: normal — ipproċessar standard
   footer:
-    status: '📎 Runtime footer: **{state}**
+    status: '📎 Footer tar-runtime: **{state}**
 
-      Fields: `{fields}`
+      Oqsma: `{fields}`
 
-      Platform: `{platform}`'
-    usage: 'Usage: `/footer [on|off|status]`'
-    saved: '📎 Runtime footer: **{state}**{example}
+      Pjattaforma: `{platform}`'
+    usage: 'Użu: `/footer [on|off|status]`'
+    saved: '📎 Footer tar-runtime: **{state}**{example}
 
-      _(saved globally — takes effect on next message)_'
+      _(issejvjat globalment — jibda jseħħ fil-messaġġ li jmiss)_'
     example_line: '
 
-      Example: `{preview}`'
-    state_on: 'ON'
-    state_off: 'OFF'
+      Eżempju: `{preview}`'
+    state_on: WIEQED
+    state_off: MIFTUĦ
   goal:
-    unavailable: Goals unavailable on this session.
-    no_goal_set: No goal set.
-    paused: '⏸ Goal paused: {goal}'
-    no_resume: No goal to resume.
-    resumed: '▶ Goal resumed: {goal}
+    unavailable: Għanijiet mhux disponibbli f'din is-sessjoni.
+    no_goal_set: L-ebda ġiel mhux msettat.
+    paused: '⏸ Għan imwaqqaf: {goal}'
+    no_resume: L-ebda ġiel għall-ripresa.
+    resumed: '▶ L-għan tkompla: {goal}
 
-      Send any message to continue, or wait — I''ll take the next step on the next turn.'
-    invalid: 'Invalid goal: {error}'
-    set: '⊙ Goal set ({budget}-turn budget): {goal}
+      Ibgħat kwalunkwe messaġġ biex tkompli, jew stenna — jien nieħu l-pass li jmiss fid-dawra li jmiss.'
+    invalid: 'Għan invalidu: {error}'
+    set: '⊙ Għan stabbilit (baġit ta'' {budget} dawra): {goal}
 
-      I''ll keep working until the goal is done, you pause/clear it, or the budget is exhausted.
+      Se nkompli naħdem sakemm l-għan jitlesta, int twaqqaf/tikklerja, jew il-baġit jispiċċa.
 
-      Controls: /goal status · /goal pause · /goal resume · /goal clear'
+      Kontrolli: /goal status · /goal pause · /goal resume · /goal clear'
   help:
-    header: '📖 **OpenAmer Commands**
+    header: '📖 **Kmandi OpenAmer**
 
       '
     skill_header: '
 
-      ⚡ **Skill Commands** ({count} active):'
+      ⚡ **Kmandi tal-Ħiliet** ({count} attivi):'
     more_use_commands: '
 
-      ... and {count} more. Use `/commands` for the full paginated list.'
+      ... u {count} aktar. Uża `/commands` għal-lista sħiħa paġinata.'
   insights:
-    invalid_days: 'Invalid --days value: {value}'
-    error: 'Error generating insights: {error}'
+    invalid_days: 'Valur --days invalidu: {value}'
+    error: 'Żball fil-ġenerazzjoni ta'' għarfien: {error}'
   kanban:
-    error_prefix: '⚠ kanban error: {error}'
-    subscribed_suffix: (subscribed — you'll be notified when {task_id} completes or blocks)
-    truncated_suffix: … (truncated; use `openamer kanban …` in your terminal for full output)
-    no_output: (no output)
+    error_prefix: '⚠ Żball fil-kanban: {error}'
+    subscribed_suffix: (abbonat — se tiġi notifikat meta {task_id} jitlesta jew jimblokka)
+    truncated_suffix: … (maqtugħa; uża `openamer kanban …` fit-terminal tiegħek għall-output sħiħ)
+    no_output: (bla output)
     wake:
-      completed: completed
-      gave_up: gave up (retries exhausted)
-      crashed: crashed (worker exited); dispatcher will retry
-      timed_out: timed out; dispatcher will retry
-      blocked: blocked; needs attention
-      status_default: status changed
+      completed: komplet
+      gave_up: ċeda (tentattivi eżawriti)
+      crashed: waqa' (il-worker ħareġ); id-dispatcher se jerġa' jipprova
+      timed_out: skada l-ħin; id-dispatcher se jerġa' jipprova
+      blocked: imblukkat; jeħtieġ attenzjoni
+      status_default: istatus mbiddel
       status_joiner: ', '
-      message: '[kanban] Task {task_id} {status}.
+      message: '[kanban] Kompitu {task_id} {status}.
 
-        Title: {title}
+        Titlu: {title}
 
-        Assignee: @{assignee}
+        Assenjat: @{assignee}
 
-        Board: {board}
+        Bord: {board}
 
 
-        Check the result or decide the next step.'
+        Iċċekkja r-riżultat jew iddeċiedi l-pass li jmiss.'
   personality:
-    none_configured: No personalities configured in `{path}/config.yaml`
-    header: '🎭 **Available Personalities**
+    none_configured: M'hemmx personalitajiet ikkonfigurati fi `{path}/config.yaml`
+    header: '🎭 **Personalitajiet Disponibbli**
 
       '
-    none_option: • `none` — (no personality overlay)
+    none_option: • `none` — (l-ebda overlay ta' personalità)
     item: • `{name}` — {preview}
     usage: '
 
-      Usage: `/personality <name>`'
-    save_failed: '⚠️ Failed to save personality change: {error}'
-    cleared: '🎭 Personality cleared — using base agent behavior.
+      Użu: `/personality <name>`'
+    save_failed: '⚠️ Ma rnexxiex isalva l-bidla fil-personalità: {error}'
+    cleared: '🎭 Personalità tneħħiet — qed jintuża l-imġieba bażika tal-aġent.
 
-      _(takes effect on next message)_'
-    set_to: '🎭 Personality set to **{name}**
+      _(issir effettiva fil-messaġġ li jmiss)_'
+    set_to: '🎭 Personalità stabbilita għal **{name}**
 
-      _(takes effect on next message)_'
-    unknown: 'Unknown personality: `{name}`
+      _(issir effettiva fil-messaġġ li jmiss)_'
+    unknown: 'Personalità mhux magħrufa: `{name}`
 
 
-      Available: {available}'
+      Disponibbli: {available}'
   profile:
-    header: 👤 **Profile:** `{profile}`
-    home: 📂 **Home:** `{home}`
+    header: 👤 **Profil:** `{profile}`
+    home: 📂 **Dar:** `{home}`
   reasoning:
-    level_default: medium (default)
-    level_disabled: none (disabled)
-    scope_session: session override
-    scope_global: global config
-    status: '🧠 **Reasoning Settings**
+    level_default: medi (default)
+    level_disabled: xejn (disabilitat)
+    scope_session: soverrida tas-session
+    scope_global: konfigurazzjoni globali
+    status: '🧠 **Impostazzjonijiet tar-Raġunar**
 
 
-      **Effort:** `{level}`
+      **Sforz:** `{level}`
 
-      **Scope:** {scope}
+      **Ambitu:** {scope}
 
-      **Display:** {display}
-
-
-      _Usage:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
-    display_on: on ✓
-    display_off: 'off'
-    display_set_on: '🧠 ✓ Reasoning display: **ON**
-
-      Model thinking will be shown before each response on **{platform}**.'
-    display_set_off: '🧠 ✓ Reasoning display: **OFF** for **{platform}**'
-    reset_global_unsupported: ⚠️ `/reasoning reset --global` is not supported. Use `/reasoning <level> --global` to change the global default.
-    reset_done: 🧠 ✓ Session reasoning override cleared; falling back to global config.
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
+      **Wirja:** {display}
 
 
-      **Valid levels:** none, minimal, low, medium, high, xhigh, max, ultra
+      _Użu:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
+    display_on: mixgħul ✓
+    display_off: mitfi
+    display_set_on: '🧠 ✓ Wirja tar-raġunar: **ON**
 
-      **Display:** show, hide
-
-      **Persist:** add `--global` to save beyond this session'
-    picker_title: '🧠 **Reasoning Settings**
-
-
-      **Effort:** `{level}`
-
-      **Scope:** {scope}
-
-      **Display:** {display}
+      Il-ħsieb tal-mudell se jintwera qabel kull risposta fuq **{platform}**.'
+    display_set_off: '🧠 ✓ Wirja tar-raġunar: **OFF** għal **{platform}**'
+    reset_global_unsupported: ⚠️ `/reasoning reset --global` mhux appoġġjat. Uża `/reasoning <level> --global` biex tibdel il-valur prestabbilit globali.
+    reset_done: 🧠 ✓ L-override tar-raġunar tas-sessjoni tneħħa; qed jerġa' lura għall-konfigurazzjoni globali.
+    unknown_arg: '⚠️ Argument mhux magħruf: `{arg}`
 
 
-      Pick an option:'
-    choice_none: none — disable reasoning
-    choice_reset: reset — clear session override
-    choice_show: show reasoning in replies
-    choice_hide: hide reasoning from replies
-    set_global: '🧠 ✓ Reasoning effort set to `{effort}` (saved to config)
+      **Livelli validi:** none, minimal, low, medium, high, xhigh, max, ultra
 
-      _(takes effect on next message)_'
-    set_global_save_failed: '🧠 ✓ Reasoning effort set to `{effort}` (session only — config save failed)
+      **Wirja:** show, hide
 
-      _(takes effect on next message)_'
-    set_session: '🧠 ✓ Reasoning effort set to `{effort}` (session only — add `--global` to persist)
+      **Persistenza:** żid `--global` biex issalva lil hinn minn din is-sessjoni'
+    picker_title: '🧠 **Impostazzjonijiet tar-Raġunar**
 
-      _(takes effect on next message)_'
+
+      **Sforz:** `{level}`
+
+      **Ambitu:** {scope}
+
+      **Wirja:** {display}
+
+
+      Agħżel għażla:'
+    choice_none: none — itfi r-raġunar
+    choice_reset: reset — neħħi l-override tas-sessjoni
+    choice_show: uri r-raġunar fit-tweġibiet
+    choice_hide: Aħbi r-raġunament mit-tweġibiet
+    set_global: '🧠 ✓ L-isforz tar-raġunament ġie ssettjat għal `{effort}` (issejvjat fil-konfigurazzjoni)
+
+      _(jibda jseħħ fil-messaġġ li jmiss)_'
+    set_global_save_failed: '🧠 ✓ L-isforz tar-raġunament ġie ssettjat għal `{effort}` (sessjoni biss — is-salvataġġ tal-konfigurazzjoni falla)
+
+      _(jibda jseħħ fil-messaġġ li jmiss)_'
+    set_session: '🧠 ✓ L-isforz tar-raġunament ġie ssettjat għal `{effort}` (sessjoni biss — żid `--global` biex tibqa'' permanenti)
+
+      _(jibda jseħħ fil-messaġġ li jmiss)_'
   reload_mcp:
-    cancelled: 🟡 /reload-mcp cancelled. MCP tools unchanged.
-    always_followup: 'ℹ️ Future `/reload-mcp` calls will run without confirmation. Re-enable via `approvals.mcp_reload_confirm: true` in config.yaml.'
-    confirm_prompt: '⚠️ **Confirm /reload-mcp**
+    cancelled: 🟡 /reload-mcp ikkanċellat. L-għodod MCP ma nbidlux.
+    always_followup: 'ℹ️ Is-sejħiet futuri għal `/reload-mcp` se jsiru mingħajr konferma. Erġa'' attiva permezz ta'' `approvals.mcp_reload_confirm: true` f''config.yaml.'
+    confirm_prompt: '⚠️ **Ikkonferma /reload-mcp**
 
 
-      Reloading MCP servers rebuilds the tool set for this session and **invalidates the provider prompt cache** — the next message will re-send full input tokens.  On long-context or high-reasoning models this can be expensive.
+      Meta jerġgħu jiġu mgħobbija s-servers MCP, jinbena mill-ġdid is-sett tal-għodda għal din is-sessjoni u **jħassar il-cache tal-prompt tal-fornitur** — il-messaġġ li jmiss jerġa'' jibgħat it-tokens tal-input kollha. Fuq mudelli b''kuntest twil jew b''raġunament għoli dan jista'' jkun għali.
 
 
-      Choose:
+      Agħżel:
 
-      • **Approve Once** — reload now
+      • **Ippermetti Darba** — erġa'' għabbi issa
 
-      • **Always Approve** — reload now and silence this prompt permanently
+      • **Dejjem Ippermetti** — erġa'' għabbi issa u skiet dan il-prompt għal dejjem
 
-      • **Cancel** — leave MCP tools unchanged
+      • **Ikkanċella** — ħalli l-għodod MCP bla tibdil
 
 
-      _Text fallback: reply `/approve`, `/always`, or `/cancel`._'
-    header: '🔄 **MCP Servers Reloaded**
+      _Alternattiva bil-kitba: wieġeb `/approve`, `/always`, jew `/cancel`._'
+    header: '🔄 **Is-Servers MCP Ġew Mgħobbija Mill-Ġdid**
 
       '
-    reconnected: '♻️ Reconnected: {names}'
-    added: '➕ Added: {names}'
-    removed: '➖ Removed: {names}'
-    none_connected: No MCP servers connected.
+    reconnected: '♻️ Konnessjoni mill-ġdid: {names}'
+    added: '➕ Miżjud: {names}'
+    removed: '➖ Imneħħi: {names}'
+    none_connected: M'hemm l-ebda servers MCP konnessi.
     tools_available: '
 
-      🔧 {tools} tool(s) available from {servers} server(s)'
-    failed: '❌ MCP reload failed: {error}'
+      🔧 {tools} għodda disponibbli minn {servers} server'
+    failed: '❌ Ir-reload tal-MCP falla: {error}'
   reload_skills:
-    header: '🔄 **Skills Reloaded**
+    header: '🔄 **Ħiliet Imġedda**
 
       '
-    no_new: No new skills detected.
+    no_new: Ma nstabux ħiliet ġodda.
     total: '
 
-      📚 {count} skill(s) available'
-    added_header: ➕ **Added Skills:**
-    removed_header: ➖ **Removed Skills:**
+      📚 {count} ħila/ħiliet disponibbli'
+    added_header: ➕ **Ħiliet Miżjuda:**
+    removed_header: ➖ **Ħiliet Imneħħija:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
-    failed: '❌ Skills reload failed: {error}'
+    failed: '❌ It-tagħbija mill-ġdid tal-ħiliet falliet: {error}'
   reset:
-    header_default: ✨ Session reset! Starting fresh.
-    header_new: ✨ New session started!
-    header_titled: '✨ New session started: {title}'
+    header_default: ✨ Is-sessjoni ġiet irrisettjata! Nibdew mill-ġdid.
+    header_new: ✨ Sessjoni ġdida bdiet!
+    header_titled: '✨ Sessjoni ġdida bdiet: {title}'
     title_rejected: '
 
-      ⚠️ Title rejected: {error}'
+      ⚠️ Titlu miċħud: {error}'
     title_error_untitled: '
 
-      ⚠️ {error} — session started untitled.'
+      ⚠️ {error} — is-sessjoni bdiet mingħajr titlu.'
     title_empty_untitled: '
 
-      ⚠️ Title is empty after cleanup — session started untitled.'
+      ⚠️ It-titlu huwa vojt wara t-tindif — is-sessjoni bdiet mingħajr titlu.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Suġġeriment: {tip}'
   restart:
-    in_progress: ⏳ Gateway restart already in progress...
-    restarting: ♻ Restarting gateway. If you aren't notified within 60 seconds, restart from the console with `openamer gateway restart`.
+    in_progress: ⏳ It-tnedija mill-ġdid tal-Gateway diġà għaddejja...
+    restarting: ♻ Qed jerġa' jibda l-gateway. Jekk ma tiġix notifikat fi żmien 60 sekonda, erġa' ibda mill-console b'`openamer gateway restart`.
   resume:
-    db_unavailable: Session database not available.
-    parse_error: '⚠️ Could not parse `/resume` arguments: {error}.
+    db_unavailable: Database tas-sessjonijiet mhux disponibbli.
+    parse_error: '⚠️ Ma setgħux jiġu pparsjati l-argumenti ta'' `/resume`: {error}.
 
-      Use quotes around titles with spaces, for example: `/resume "Project A Plan"`.'
-    matrix_no_named_sessions: 'No named sessions found for this Matrix room.
+      Uża virgoletti madwar titli li fihom spazji, pereżempju: `/resume "Project A Plan"`.'
+    matrix_no_named_sessions: 'Ma nstabux sessjonijiet bl-isem għal din il-kamra Matrix.
 
-      Use `/title My Session` to name the current room session, `/resume --all` to list all Matrix sessions, or `/resume --cross-room <session name>` to explicitly cross room boundaries.'
-    matrix_blocked_no_origin: '⚠️ Matrix /resume blocked: this named session has no recorded room origin, so OpenAmer will not resume it inside the current room by default. Use `/resume --cross-room {name}` if you intentionally want to cross room boundaries.'
-    matrix_blocked_other_room: '⚠️ Matrix /resume blocked: that session belongs to a different Matrix room ({room}). Use `/resume --cross-room {name}` if you intentionally want to resume it here.'
-    matrix_cross_room_success: '⚠️ Cross-room resume: resumed **{title}** inside Matrix room **{room}**.
+      Uża `/title My Session` biex issemmi s-sessjoni tal-kamra attwali, `/resume --all` biex telenka s-sessjonijiet Matrix kollha, jew `/resume --cross-room <session name>` biex taqsam b''mod espliċitu l-konfini tal-kamra.'
+    matrix_blocked_no_origin: '⚠️ Matrix /resume imblukkat: din is-sessjoni bl-isem m''għandhiex oriġini tal-kamra rreġistrata, għalhekk OpenAmer mhux se jerġa'' jibdaha fil-kamra attwali b''mod awtomatiku. Uża `/resume --cross-room {name}` jekk intenzjonalment trid taqsam il-konfini tal-kamra.'
+    matrix_blocked_other_room: '⚠️ Matrix /resume imblukkat: dik is-sessjoni tappartjeni għal kamra Matrix oħra ({room}). Uża `/resume --cross-room {name}` jekk intenzjonalment trid terġa'' tibdaha hawn.'
+    matrix_cross_room_success: '⚠️ Resume bejn il-kmamar: reġgħet inbdiet **{title}** fil-kamra Matrix **{room}**.
 
-      Future messages in this room will use that transcript until `/reset` or another `/resume`.{msg_part}'
-    blocked_not_owner: '⚠️ /resume blocked: ''**{name}**'' belongs to a different user or chat. You can only resume sessions from this chat.'
-    no_named_sessions: 'No named sessions found.
+      Il-messaġġi futuri f''din il-kamra se jużaw dak it-traskript sakemm `/reset` jew `/resume` ieħor.{msg_part}'
+    blocked_not_owner: '⚠️ /resume imblukkat: ''**{name}**'' jappartjeni għal utent jew chat ieħor. Tista'' terġa'' tibda sessjonijiet biss minn dan iċ-chat.'
+    no_named_sessions: 'Ma nstabux sessjonijiet bl-isem.
 
-      Use `/title My Session` to name your current session, then `/resume My Session` to return to it later.'
-    list_header: '📋 **Named Sessions**
+      Uża `/title My Session` biex issemmi s-sessjoni attwali tiegħek, imbagħad `/resume My Session` biex terġa'' lura għaliha aktar tard.'
+    list_header: '📋 **Sessjonijiet bl-Isem**
 
       '
     list_item: • **{title}**{preview_part}
@@ -387,31 +387,31 @@ gateway:
     list_preview_suffix: ' — _{preview}_'
     list_footer: '
 
-      Usage: `/resume <session name>`'
+      Użu: `/resume <session name>`'
     list_footer_numbered: '
 
-      Usage: `/resume <session name>` or `/resume <number>` (e.g. `/resume 1` for the most recent)'
-    list_failed: 'Could not list sessions: {error}'
-    out_of_range: 'Resume index {index} is out of range.
+      Użu: `/resume <session name>` jew `/resume <number>` (eż. `/resume 1` għall-aktar riċenti)'
+    list_failed: 'Ma rnexxielix nelenka s-sessjonijiet: {error}'
+    out_of_range: 'L-indiċi tar-resume {index} mhuwiex fil-firxa.
 
-      Use `/resume` with no arguments to see available sessions.'
-    not_found: 'No session found matching ''**{name}**''.
+      Uża `/resume` mingħajr argumenti biex tara s-sessjonijiet disponibbli.'
+    not_found: 'Ma nstab l-ebda sessjoni li taqbel ma'' ''**{name}**''.
 
-      Use `/resume` with no arguments to see available sessions.'
-    already_on: 📌 Already on session **{name}**.
-    switch_failed: Failed to switch session.
-    resumed_one: ↻ Resumed session **{title}** ({count} message). Conversation restored.
-    resumed_many: ↻ Resumed session **{title}** ({count} messages). Conversation restored.
-    resumed_no_count: ↻ Resumed session **{title}**. Conversation restored.
+      Uża `/resume` mingħajr argumenti biex tara s-sessjonijiet disponibbli.'
+    already_on: 📌 Diġà fuq is-sessjoni **{name}**.
+    switch_failed: Ma rnexxielix nibdel is-sessjoni.
+    resumed_one: ↻ Is-sessjoni **{title}** reġgħet infetħet ({count} messaġġ). Il-konversazzjoni ġiet restawrata.
+    resumed_many: ↻ Is-sessjoni **{title}** reġgħet infetħet ({count} messaġġi). Il-konversazzjoni ġiet restawrata.
+    resumed_no_count: ↻ Is-sessjoni **{title}** reġgħet infetħet. Il-konversazzjoni ġiet restawrata.
   retry:
-    no_previous: No previous message to retry.
+    no_previous: M'hemm l-ebda messaġġ preċedenti biex terġa' tipprova.
   rollback:
-    not_enabled: "Checkpoints are not enabled.\nEnable in config.yaml:\n```\ncheckpoints:\n  enabled: true\n```"
-    none_found: No checkpoints found for {cwd}
-    invalid_number: Invalid checkpoint number. Use 1-{max}.
-    restored: '✅ Restored to checkpoint {hash}: {reason}
+    not_enabled: "Il-checkpoints mhumiex attivati.\nAttivahom f'config.yaml:\n```\ncheckpoints:\n  enabled: true\n```"
+    none_found: Ma nstab l-ebda checkpoint għal {cwd}
+    invalid_number: Numru ta' checkpoint mhux validu. Uża 1-{max}.
+    restored: '✅ Irrestawrat għall-checkpoint {hash}: {reason}
 
-      A pre-rollback snapshot was saved automatically.'
+      Snapshot ta'' qabel ir-rollback ġie salvat awtomatikament.'
     restore_failed: ❌ {error}
   set_home:
     save_failed: 'Ma rnexxiex isalva l-kanal tad-dar: {error}'
@@ -521,7 +521,7 @@ gateway:
     label_cache_read: 'Tokens tal-qari tal-cache: {count}'
     label_cache_write: 'Tokens tal-kitba tal-cache: {count}'
     label_output_tokens: 'Tokens tal-output: {count}'
-    label_total: 'Total: {count}'
+    label_total: 'Totali: {count}'
     label_api_calls: 'Sejħiet API: {count}'
     label_cost: 'Spiża: {prefix}${amount}'
     label_cost_included: 'Spiża: inkluża'

@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] behin  |  [s] saioa  |  [d] ukatu'
   prompt_long: '      Aukera [o/s/a/D]: '
   prompt_short: '      Aukera [o/s/D]: '
-  choose_smart_deny: '      [o] behin  |  [d] ukatu'
-  prompt_smart_deny: '      Aukera [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [b]ehin  |  [u]katu'
+  prompt_smart_deny: '      Aukera [b/U]: '
+  smart_deny_once_inputs: b,behin
+  smart_deny_deny_inputs: u,ukatu
   timeout: '      ⏱ Denbora-muga - komandoa ukatzen'
   allowed_once: '      ✓ Behin baimenduta'
   allowed_session: '      ✓ Saio honetarako baimenduta'
@@ -142,8 +142,8 @@ gateway:
 
       _(hurrengo mezuan aplikatuko da)_'
     session_only: '⚡ ✓ Lehentasunezko prozesamendua: **{label}** (saio honetan soilik)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: AZKAR
+    label_normal: NORMALA
     status_fast: azkarra
     status_normal: normala
     picker_title: '⚡ **Lehentasunezko prozesatzea**
@@ -168,8 +168,8 @@ gateway:
     example_line: '
 
       Adibidea: `{preview}`'
-    state_on: 'ON'
-    state_off: 'OFF'
+    state_on: PIRA
+    state_off: ITXALOA
   goal:
     unavailable: Helburuak ez daude erabilgarri saio honetan.
     no_goal_set: Ez da helbururik ezarri.

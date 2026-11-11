@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Ein gong  |  [s] Økt  |  [d] Avslå'
   prompt_long: '      Val [o/s/a/D]: '
   prompt_short: '      Val [o/s/D]: '
-  choose_smart_deny: '      [o] Ein gong  |  [d] Avslå'
-  prompt_smart_deny: '      Val [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [e]in gong  |  [a]vslå'
+  prompt_smart_deny: '      Val [e/A]: '
+  smart_deny_once_inputs: e,ein gong
+  smart_deny_deny_inputs: a,avslå
   timeout: '      ⏱ Tidsavbrot - avslår kommando'
   allowed_once: '      ✓ Tillaten ein gong'
   allowed_session: '      ✓ Tillaten for denne økta'
@@ -142,7 +142,7 @@ gateway:
 
       _(trer i kraft ved neste melding)_'
     session_only: '⚡ ✓ Prioritert handsaming: **{label}** (berre denne økta)'
-    label_fast: FAST
+    label_fast: RASK
     label_normal: NORMAL
     status_fast: rask
     status_normal: normal

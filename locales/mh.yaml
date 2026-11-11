@@ -8,52 +8,52 @@ approval:
   choose_short: '      [o] juon alen  |  [s] iien  |  [d] jab kōtōm̧'
   prompt_long: '      Kōm̧m̧an [o/s/a/D]: '
   prompt_short: '      Kōm̧m̧an [o/s/D]: '
-  choose_smart_deny: '      [o] juon alen  |  [d] jab kōtōm̧'
-  prompt_smart_deny: '      Choice [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [j]uon alen  |  [j]ab kōtōm̧'
+  prompt_smart_deny: '      Kōn [j/J]: '
+  smart_deny_once_inputs: j,juon alen
+  smart_deny_deny_inputs: j,jab kōtōm̧
   timeout: '      ⏱ Iien eo e lo̧mo̧o̧r - ej jab kōtōm̧ kōm̧m̧an'
-  allowed_once: '      ✓ Allowed once'
+  allowed_once: '      ✓ Maron juon'
   allowed_session: '      ✓ Kōtōm̧ n̄an iien in'
   allowed_always: '      ✓ Kōdelej n̄an list eo e mau an kōtōm̧'
-  denied: '      ✗ Denied'
-  cancelled: '      ✗ Cancelled'
+  denied: '      ✗ Jab maron'
+  cancelled: '      ✗ Kōnke'
   blocklist_message: Kōm̧m̧an in ej pād ilo list eo ej jab kōtōm̧ n̄an aolep iien, ėj jab maron̄ kōtōm̧.
 gateway:
   approval_expired: ⚠️ Kōtōm̧ eo e jōlōt (agent eo ej jab bar kōttar). Kajjitōk n̄an agent eo bwe en bar kajjioñ.
   draining: ⏳ Ej kōdāp {count} agent ko ej jerbal m̧okta jān bar jino...
-  goal_cleared: ✓ Goal cleared.
-  no_active_goal: No active goal.
+  goal_cleared: ✓ Kōn lōk.
+  no_active_goal: Jab kōn kōrā.
   config_read_failed: '⚠️ Eban jeo̗ config.yaml: {error}'
   config_save_failed: '⚠️ Eban kip config: {error}'
   model:
-    error_prefix: 'Error: {error}'
+    error_prefix: 'Jab lōk: {error}'
     switched: Ekar ukōt model ñan `{model}`
-    provider_label: 'Provider: {provider}'
+    provider_label: 'Ri jipañ: {provider}'
     context_label: 'Kōntek: {tokens} token'
     max_output_label: 'Elōñlōñ kwaļo̗k: {tokens} token'
-    cost_label: 'Cost: {cost}'
+    cost_label: 'Kōt: {cost}'
     capabilities_label: 'Maron̄ ko: {capabilities}'
     prompt_caching_enabled: 'Prompt caching: ej jerbal'
-    warning_prefix: 'Warning: {warning}'
+    warning_prefix: 'Kāāl: {warning}'
     saved_global: Kar kip ñan config.yaml (`--global`)
     session_only_hint: _(session wōt — kōdeļo̗k `--global` bwe en pād)_
     current_label: 'Kiō: `{model}` ioon {provider}'
-    current_tag: ' (current)'
-    more_models_suffix: ' (+{count} more)'
+    current_tag: ' (kōn)'
+    more_models_suffix: ' (+{count} nōn)'
     usage_switch_model: '`/model <name>` — ukōt model'
     usage_switch_provider: '`/model <name> --provider <slug>` — ukōt provider'
     usage_persist: /model <name> --global — kōjparok
   agents:
     header: 🤖 **Agent im Jerbal Ko Ej Jerbal**
     active_agents: '**Agent ko ej jerbal:** {count}'
-    this_chat: ' · this chat'
-    more: '... and {count} more'
+    this_chat: ' · chat in'
+    more: '... im {count} jet'
     running_processes: '**Process ko ej jerbal ilo background:** {count}'
     async_jobs: '**Jerbal ko async ilo Gateway:** {count}'
     none: Ejjeļo̧k agent ej jerbal ak jerbal ej run.
-    state_starting: starting
-    state_running: running
+    state_starting: kōnnaan
+    state_running: jino
   approve:
     no_pending: Ejjeļo̧k command ej kōttōpar n̄an kōtm̧an.
     once_singular: ✅ Command eo ekar kōtm̧an. Agent eo ej bar jepļaak...
@@ -96,7 +96,7 @@ gateway:
   commands:
     usage: 'Kōjerbal: `/commands [page]`'
     skill_header: '⚡ **Kōmman in Skill**:'
-    default_desc: Skill command
+    default_desc: Skill kōmmaan
     none: Ej jab bed kōmman ko.
     header: 📚 **Kammand ko** ({total} aolep, peij {page}/{total_pages})
     nav_prev: /commands {page} ← m̧okta
@@ -107,7 +107,7 @@ gateway:
     no_provider: Ejjelok provider ekar configure -- ej jab maron̄ compress.
     nothing_to_do: Ejjelok n̄an compress (transcript eo ej protected context wōt).
     aggressive_unsupported: --aggressive ej jab support; kōjerbal '/compress here [N]' n̄an kōjerbal wōt exchange ko āliktata, ak /undo n̄an kōdrop turn ko.
-    focus_line: 'Focus: "{topic}"'
+    focus_line: 'Fokas: "{topic}"'
     summary_failed: ⚠️ Summary generation ej jab kar ({error}). {count} messaj history kar kōdrop im replace kōn placeholder; context eo m̧okta ej jab maron̄ bōk āinwōt m̧okta. Kōn kejarjar lale configuration model auxiliary.compression eo.
     aborted: ⚠️ Compression kar abort ({error}). Ejjelok messaj kar kōdrop — kōnono ej jab ukōt. Kōjerbal /compress n̄an retry, /reset n̄an juon session e clean, ak lale configuration model auxiliary.compression eo.
     aux_failed: ℹ️ Model compression eo kar configure `{model}` ej jab kar ({error}). Kar recover kōn model eo main — context ej intact — ak kwō maron̄ kōņaan lale `auxiliary.compression.model` ilo config.yaml.
@@ -121,7 +121,7 @@ gateway:
   deny:
     stale: ❌ Ear jab kōtḷọk kōm̗m̗an (kōtḷọk eo ear m̗ōj).
     no_pending: Ejjelok kōm̗m̗an eo ej eppān n̄an jab kōtḷọk.
-    denied_singular: ❌ Command denied.
+    denied_singular: ❌ Kōmmaan jab lōk.
     denied_plural: ❌ Ear jab kōtḷọk kōm̗m̗an ko ({count} kōm̗m̗an).
     denied_reason_singular: '❌ Ear jab kōtḷọk kōm̗m̗an. Ear kōnnaan kōn wāween n̄an agent eo: "{reason}"'
     denied_reason_plural: '❌ Ear jab kōtḷọk kōm̗m̗an ko ({count} kōm̗m̗an). Ear kōnnaan kōn wāween n̄an agent eo: "{reason}"'
@@ -142,10 +142,10 @@ gateway:
 
       _(enaaj jerbal ilo message eo eljuñ)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (session in wōt)'
-    label_fast: FAST
-    label_normal: NORMAL
-    status_fast: fast
-    status_normal: normal
+    label_fast: KILA
+    label_normal: JEJE
+    status_fast: kila
+    status_normal: jeje
     picker_title: '⚡ **Priority Processing**
 
 
@@ -172,9 +172,9 @@ gateway:
     state_off: 'OFF'
   goal:
     unavailable: Goals ejjab bed ilo session in.
-    no_goal_set: No goal set.
+    no_goal_set: Ej jab goal imweo.
     paused: '⏸ Goal ej kar pej: {goal}'
-    no_resume: No goal to resume.
+    no_resume: Ej jab goal non resume.
     resumed: '▶ Kōttōpar kar bar jino: {goal}
 
       Jilkinḷọk aolep ennaal n̄an kōm̧m̧an, ak kōttar — Inaaj kōm̧m̧an an next step ilo iien tok.'
@@ -201,14 +201,14 @@ gateway:
     error_prefix: '⚠ jabōn kanban: {error}'
     subscribed_suffix: (kar subscribe — kwōnaaj kōnnaan n̄an eok ke {task_id} ej ēm̧ōj ak ej block)
     truncated_suffix: … (kar kate; kōjerbal `openamer kanban …` ilo terminal eo am n̄an aolep output)
-    no_output: (no output)
+    no_output: (ej jab output)
     wake:
-      completed: completed
+      completed: kompleet
       gave_up: kar jook (retries kar jeļo̧k)
       crashed: eṃōj an jeblaak (ri jerbal eṃōj an etal); dispatcher enaaj bar kajjioñ
       timed_out: eṃōj an iien; dispatcher enaaj bar kajjioñ
       blocked: eṃōj an kōtḷọk; eaorōk an lale
-      status_default: status changed
+      status_default: status ej jela
       status_joiner: ', '
       message: '[kanban] Jerbal {task_id} {status}.
 
@@ -243,12 +243,12 @@ gateway:
       Ewōr: {available}'
   profile:
     header: 👤 **Profail:** `{profile}`
-    home: 📂 **Home:** `{home}`
+    home: 📂 **Jikin:** `{home}`
   reasoning:
     level_default: medium (default)
     level_disabled: none (disabled)
     scope_session: session override
-    scope_global: global config
+    scope_global: konfig jen
     status: '🧠 **Kōm̗m̗an Reasoning**
 
 
@@ -323,8 +323,8 @@ gateway:
 
       '
     reconnected: '♻️ Kar bar connect: {names}'
-    added: '➕ Added: {names}'
-    removed: '➖ Removed: {names}'
+    added: '➕ Jino: {names}'
+    removed: '➖ Kile: {names}'
     none_connected: Ejjelok MCP server ekar connect.
     tools_available: '
 
@@ -338,7 +338,7 @@ gateway:
     total: '
 
       📚 {count} jeḷā ejepḷa'
-    added_header: ➕ **Added Skills:**
+    added_header: ➕ **Jeļā Jino:**
     removed_header: ➖ **Jeḷā ko kar jolok:**
     item_with_desc: '    - {name}: {desc}'
     item_no_desc: '    - {name}'
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Title ejjelọk āt ālikin kar karreoiki — kar jino session ejjelọk title.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Kāālal: {tip}'
   restart:
     in_progress: ⏳ Kar jino an bar kōm̧m̧an Gateway...
     restarting: ♻ Ej bar jino gateway. Eļan̄n̄e kwōj jab jeļā ilow 60 sekond, bar jino jān console kōn `openamer gateway restart`.
@@ -419,25 +419,25 @@ gateway:
 
       Cron job ko im cross-platform message ko rōnaaj jibade ñan iien.'
   status:
-    header: 📊 **OpenAmer Gateway Status**
-    matrix_scope_header: '**Matrix scope:**'
-    matrix_scope_room: '  room: {room}'
+    header: 📊 **Melele eo an OpenAmer Gateway**
+    matrix_scope_header: '**Matrix kōnān:**'
+    matrix_scope_room: '  kōn: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
     matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
-    title: '**Title:** {title}'
+    session_id: '**ID eo an Session:** `{session_id}`'
+    title: '**Jeṃṃan:** {title}'
     created: '**Kar kōṃṃan:** {timestamp}'
     last_activity: '**Jerbal Āliktata:** {timestamp}'
-    model: '**Model:** `{model}`'
+    model: '**Mōdel:** `{model}`'
     model_provider: '**Mōdel:** `{model}` ({provider})'
     context: '**Kōntekst:** {used} / {total} ({pct}%)'
     context_used: '**Kōntekst:** ~{used} token'
     tokens: '**API token ko aolep (bar jilkinḷọk kōn aolep call):** {tokens}'
     agent_running: '**Agent ej jerakrōk:** {state}'
-    state_yes: Yes ⚡
-    state_no: 'No'
+    state_yes: Aet ⚡
+    state_no: Jab
     queued: '**Follow-up ko ej kōttōpar:** {count}'
     platforms: '**Platform ko eṃōj kōṃṃan jepḷaaktok:** {platforms}'
   stop:

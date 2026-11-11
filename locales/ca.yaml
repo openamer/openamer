@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] una vegada  |  [s]essió  |  [d]enegar'
   prompt_long: '      Opció [o/s/a/D]: '
   prompt_short: '      Opció [o/s/D]: '
-  choose_smart_deny: '      [o] una vegada  |  [d]enegar'
-  prompt_smart_deny: '      Opció [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]na vegada  |  [d]enegar'
+  prompt_smart_deny: '      Opció [u/D]: '
+  smart_deny_once_inputs: u,una vegada
+  smart_deny_deny_inputs: d,denegar
   timeout: '      ⏱ Temps d''espera exhaurit - es denega la comanda'
   allowed_once: '      ✓ Permès una vegada'
   allowed_session: '      ✓ Permès per a aquesta sessió'
@@ -421,7 +421,7 @@ gateway:
   status:
     header: 📊 **Estat de la passarel·la OpenAmer**
     matrix_scope_header: '**Àmbit de Matrix:**'
-    matrix_scope_room: '  room: {room}'
+    matrix_scope_room: '  sala: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
@@ -433,7 +433,7 @@ gateway:
     model: '**Model:** `{model}`'
     model_provider: '**Model:** `{model}` ({provider})'
     context: '**Context:** {used} / {total} ({pct}%)'
-    context_used: '**Context:** ~{used} tokens'
+    context_used: '**Context:** ~{used} fitxes'
     tokens: '**Tokens API acumulats (reenviats a cada crida):** {tokens}'
     agent_running: '**Agent en execució:** {state}'
     state_yes: Sí ⚡

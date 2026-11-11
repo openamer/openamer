@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] nega ta  |  [s] sesen  |  [d] dadai'
   prompt_long: '      Filifili [o/s/a/D]: '
   prompt_short: '      Filifili [o/s/D]: '
-  choose_smart_deny: '      [o] nega ta  |  [d] dadai'
-  prompt_smart_deny: '      Filifili [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [n]ega ta  |  [d]adai'
+  prompt_smart_deny: '      Filifili [n/D]: '
+  smart_deny_once_inputs: n,nega ta
+  smart_deny_deny_inputs: d,dadai
   timeout: '      ⏱ Nega dokona - oda dadai'
   allowed_once: '      ✓ Atona nega ta'
   allowed_session: '      ✓ Atona ina sesen'
@@ -142,8 +142,8 @@ gateway:
 
       _(baine vara nega iharuana mesis dekenai)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (session ina dekenai mo)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: VINAKA
+    label_normal: MAU
     status_fast: haraka
     status_normal: kakamua
     picker_title: '⚡ **Guna Kara**
@@ -245,7 +245,7 @@ gateway:
     header: 👤 **Profil:** `{profile}`
     home: 📂 **Ruma:** `{home}`
   reasoning:
-    level_default: medium (default)
+    level_default: waena (mautu)
     level_disabled: none (ia koua)
     scope_session: sesen ovaraid
     scope_global: globol konfig
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Cleanup murinai title be kava — session i hamata, title lasi.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Gwada: {tip}'
   restart:
     in_progress: ⏳ Gateway restart be vadaeni i vara noho...
     restarting: ♻ Gateway i restartamu. 60 second lalodiai oi dekenai se hadibalaia neganai, console amo `openamer gateway restart` amo restart.
@@ -421,12 +421,12 @@ gateway:
   status:
     header: 📊 **OpenAmer Gateway ena Toana**
     matrix_scope_header: '**Matrix ena hedoana:**'
-    matrix_scope_room: '  room: {room}'
-    matrix_scope_room_id: '  room_id: {room_id}'
-    matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    matrix_scope_room: '  ruma: {room}'
+    matrix_scope_room_id: '  ruma_id: {room_id}'
+    matrix_scope_thread: '  tred_id: {thread_id}'
+    matrix_scope_mode: '  seson_skop: {scope}'
+    matrix_scope_key: '  seson_ki: {session_key}'
+    session_id: '**Seson ID:** `{session_id}`'
     title: '**Ladana:** {title}'
     created: '**E karaia:** {timestamp}'
     last_activity: '**Gaukara dokona:** {timestamp}'
@@ -514,7 +514,7 @@ gateway:
     start_failed: '✗ Update hatohoa e hekwarahi: {error}'
     starting: 🧬 OpenAmer update e hatohoa… Lau ese progress inai e stream.
   usage:
-    rate_limits: ⏱️ **Rate Limits:** {state}
+    rate_limits: ⏱️ **Ret Limiti:** {state}
     header_session: 📊 **Session Token Gaukara**
     label_model: 'Model: `{model}`'
     label_input_tokens: 'Input token: {count}'
@@ -565,8 +565,8 @@ gateway:
     tts_enabled: 'Auto-TTS e kara.
 
       Haere ibounai do ida voice message.'
-    status_mode: 'Voice mode: {label}'
-    status_channel: 'Voice channel: #{channel}'
+    status_mode: 'Voisi mōdu: {label}'
+    status_channel: 'Voisi sānel: #{channel}'
     status_participants: 'E vareai taudia: {count}'
     status_member: '  - {name}{status}'
     speaking: ' (e hereva)'

@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] wan taem  |  [s] sesen  |  [d] denai'
   prompt_long: '      Jus [o/s/a/D]: '
   prompt_short: '      Jus [o/s/D]: '
-  choose_smart_deny: '      [o] wan taem  |  [d] denai'
-  prompt_smart_deny: '      Jus [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [w]an taem  |  [d]enai'
+  prompt_smart_deny: '      Jus [w/D]: '
+  smart_deny_once_inputs: w,wan taem
+  smart_deny_deny_inputs: d,denai
   timeout: '      ⏱ Taem i finis - mi denai koman'
   allowed_once: '      ✓ Alaud wan taem'
   allowed_session: '      ✓ Alaud long sesen ya'
@@ -358,7 +358,7 @@ gateway:
       ⚠️ Taet i emti afta kliinap — sesen i stat no gat taet.'
     tip: '
 
-      ✦ Tip: {tip}'
+      ✦ Tips: {tip}'
   restart:
     in_progress: ⏳ Restart blong Gateway i stap gohed finis...
     restarting: ♻ I stap restartim gateway. Sipos yu no kasem notis insaed long 60 sekon, restartim long konsol wetem `openamer gateway restart`.
@@ -421,23 +421,23 @@ gateway:
   status:
     header: 📊 **OpenAmer Gateway Stet**
     matrix_scope_header: '**Matrix skop:**'
-    matrix_scope_room: '  room: {room}'
+    matrix_scope_room: '  rum: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
     matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    session_id: '**Sesen Aeaed:** `{session_id}`'
     title: '**Taetol:** {title}'
     created: '**Kriitim:** {timestamp}'
     last_activity: '**Las Aktiviti:** {timestamp}'
-    model: '**Model:** `{model}`'
-    model_provider: '**Model:** `{model}` ({provider})'
+    model: '**Modol:** `{model}`'
+    model_provider: '**Modol:** `{model}` ({provider})'
     context: '**Konteks:** {used} / {total} ({pct}%)'
     context_used: '**Konteks:** ~{used} token'
     tokens: '**Kumulativ API token (i senem bak long evri kol):** {tokens}'
     agent_running: '**Ajen i ron:** {state}'
-    state_yes: Yes ⚡
-    state_no: 'No'
+    state_yes: Okei ⚡
+    state_no: Nomoa
     queued: '**Ol follow-up i stap long kyu:** {count}'
     platforms: '**Ol Platfom i Konekt:** {platforms}'
   stop:
@@ -516,12 +516,12 @@ gateway:
   usage:
     rate_limits: ⏱️ **Limits blong Rate:** {state}
     header_session: 📊 **Yus blong Token long Session**
-    label_model: 'Model: `{model}`'
+    label_model: 'Modol: `{model}`'
     label_input_tokens: 'Token blong input: {count}'
     label_cache_read: 'Token blong rid long cache: {count}'
     label_cache_write: 'Token blong raet long cache: {count}'
     label_output_tokens: 'Token blong output: {count}'
-    label_total: 'Total: {count}'
+    label_total: 'Totol: {count}'
     label_api_calls: 'Ol API kol: {count}'
     label_cost: 'Kost: {prefix}${amount}'
     label_cost_included: 'Kost: i stap insaed'

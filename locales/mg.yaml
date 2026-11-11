@@ -10,8 +10,8 @@ approval:
   prompt_short: '      Safidy [o/s/D]: '
   choose_smart_deny: '      [o]indray  |  [d]lavina'
   prompt_smart_deny: '      Safidy [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,oindray
+  smart_deny_deny_inputs: d,dlavina
   timeout: '      ⏱ Fotoana lany - mandà baiko'
   allowed_once: '      ✓ Navela indray mandeha'
   allowed_session: '      ✓ Navela ho an''ity sesiona ity'
@@ -425,7 +425,7 @@ gateway:
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_key: '  kilalao_session: {session_key}'
     session_id: '**ID ny Session:** `{session_id}`'
     title: '**Lohateny:** {title}'
     created: '**Noforonina:** {timestamp}'

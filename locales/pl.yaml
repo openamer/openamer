@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] raz  |  [s]esja  |  [d] odmów'
   prompt_long: '      Wybór [o/s/a/D]: '
   prompt_short: '      Wybór [o/s/D]: '
-  choose_smart_deny: '      [o] raz  |  [d] odmów'
-  prompt_smart_deny: '      Wybór [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [r]az  |  [o]dmów'
+  prompt_smart_deny: '      Wybór [r/O]: '
+  smart_deny_once_inputs: r,raz
+  smart_deny_deny_inputs: o,odmów
   timeout: '      ⏱ Przekroczono limit czasu - odmawianie polecenia'
   allowed_once: '      ✓ Dozwolone jednorazowo'
   allowed_session: '      ✓ Dozwolone w tej sesji'

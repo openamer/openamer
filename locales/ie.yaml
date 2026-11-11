@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] un vez  |  [s]ession  |  [d] negar'
   prompt_long: '      Selection [o/s/a/D]: '
   prompt_short: '      Selection [o/s/D]: '
-  choose_smart_deny: '      [o] un vez  |  [d] negar'
-  prompt_smart_deny: '      Selection [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]n vez  |  [n]egar'
+  prompt_smart_deny: '      Selection [u/N]: '
+  smart_deny_once_inputs: u,un vez
+  smart_deny_deny_inputs: n,negar
   timeout: '      ⏱ Temps limite - negante comande'
   allowed_once: '      ✓ Permisset un vez'
   allowed_session: '      ✓ Permisset por li present session'
@@ -525,10 +525,10 @@ gateway:
     label_api_calls: 'Chamadas API: {count}'
     label_cost: 'Costo: {prefix}${amount}'
     label_cost_included: 'Costo: includet'
-    label_context: 'Context: {used} / {total} ({pct}%)'
+    label_context: 'Contextu: {used} / {total} ({pct}%)'
     label_compressions: 'Compressiones: {count}'
     breakdown_header: 🧩 **Analise del context** _(estimat)_
-    breakdown_line: '• {label}: ~{count} ({pct}%)'
+    breakdown_line: • {label}{count} ({pct}%)
     breakdown_cat_system_prompt: Prompte de sistema
     breakdown_cat_tool_definitions: Definitiones de utensiles
     breakdown_cat_rules: Regules

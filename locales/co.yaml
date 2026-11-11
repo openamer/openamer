@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] una volta  |  [s] sessione  |  [d] ricusà'
   prompt_long: '      Scelta [o/s/a/D]: '
   prompt_short: '      Scelta [o/s/D]: '
-  choose_smart_deny: '      [o] una volta  |  [d] ricusà'
-  prompt_smart_deny: '      Scelta [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]na volta  |  [r]icusà'
+  prompt_smart_deny: '      Scelta [u/R]: '
+  smart_deny_once_inputs: u,una volta
+  smart_deny_deny_inputs: r,ricusà
   timeout: '      ⏱ Tempu scadutu - cumandu ricusatu'
   allowed_once: '      ✓ Permessu una volta'
   allowed_session: '      ✓ Permessu per sta sessione'

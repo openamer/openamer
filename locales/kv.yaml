@@ -10,8 +10,8 @@ approval:
   prompt_short: '      Бӧрйы [o/s/D]: '
   choose_smart_deny: '      [o] ӧтчыд  |  [d] лэдзтӧм'
   prompt_smart_deny: '      Бӧрйы [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,ӧтчыд
+  smart_deny_deny_inputs: d,лэдзтӧм
   timeout: '      ⏱ Кадыс помасис - команда лэдзтӧм'
   allowed_once: '      ✓ Лэдзӧма ӧтчыд'
   allowed_session: '      ✓ Лэдзӧма тайӧ сессиялы'
@@ -142,8 +142,8 @@ gateway:
 
       _(локтан юӧр вылын уджӧ пырӧ)_'
     session_only: '⚡ ✓ Приоритет обработка: **{label}** (сӧмын тайӧ сессияын)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: СЫКТЫВ
+    label_normal: ТАДЗИ
     status_fast: ӧдйӧ
     status_normal: нормальнӧй
     picker_title: '⚡ **Приоритетнӧй ӧбработка**
@@ -567,39 +567,39 @@ gateway:
       Став вочавидзӧм пыртас голос юӧр.'
     status_mode: 'Голос режим: {label}'
     status_channel: 'Голос канал: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'Кыдзисьтӧмъяс: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    speaking: ' (вежсьыны)'
+    enabled_short: Кол режым вӧвтӧм.
+    disabled_short: Кол режым локтӧм.
+    label_off: Локтӧм (онлы текст)
+    label_voice_only: Вӧвтӧм (кол ответ кол посланиеяслы)
+    label_all: TTS (кол ответ вес посланиеяслы)
     help: '{toggle}
 
 
       **How /voice works**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — кол ответ, кӧдзид кол послание сӧдтид
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — кол ответ *вес* посланиеяслы
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — текст режымӧд вӧвтyny
 
-      • `/voice status` — show the current mode
+      • `/voice status` — текущяя режым луктыны
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (аргумент онлы) — быстрый переключение on лыддысь off-ӧд{channels}'
     help_channels: '
 
 
       **Live voice channels (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • Кол каналӧд вӧй, потым `/voice channel` — мон вӧйны, лыддyny да вежсьыны ответъяс
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — кол каналӧд вӧвны'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ YOLO режым **OFF** вети сессися — небезопасные командыяс кыскnö возьмӧдзат.
+    enabled: ⚡ YOLO режим **ON** дырся сессисяын — уджалӧмсыс командаяс автоматикис одобренныд. Визьтавны былӧмсянь.
   shared:
     session_db_unavailable: Сессия базаыс абу.
     session_db_unavailable_prefix: Сессия базаыс абу

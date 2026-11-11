@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] Yon sèl fwa  |  [s] Sesyon  |  [d] Refize'
   prompt_long: '      Chwa [o/s/a/D]: '
   prompt_short: '      Chwa [o/s/D]: '
-  choose_smart_deny: '      [o] Yon sèl fwa  |  [d] Refize'
-  prompt_smart_deny: '      Chwa [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [y]on sèl fwa  |  [r]efize'
+  prompt_smart_deny: '      Chwa [y/R]: '
+  smart_deny_once_inputs: y,yon sèl fwa
+  smart_deny_deny_inputs: r,refize
   timeout: '      ⏱ Delè ekspire - refize kòmand'
   allowed_once: '      ✓ Pèmèt yon sèl fwa'
   allowed_session: '      ✓ Pèmèt pou sesyon sa a'
@@ -142,7 +142,7 @@ gateway:
 
       _(pran efè sou pwochen mesaj la)_'
     session_only: '⚡ ✓ Pwosesis Priyorite: **{label}** (sèlman pou sesyon sa a)'
-    label_fast: FAST
+    label_fast: VIT
     label_normal: NORMAL
     status_fast: vit
     status_normal: nòmal

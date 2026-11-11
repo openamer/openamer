@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] bezhig  |  [s] maamawi-ayaawin  |  [d] giiwewin'
   prompt_long: '      Webinamowin [o/s/a/D]: '
   prompt_short: '      Webinamowin [o/s/D]: '
-  choose_smart_deny: '      [o] bezhig  |  [d] giiwewin'
-  prompt_smart_deny: '      Webinamowin [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [b]ezhig  |  [g]iiwewin'
+  prompt_smart_deny: '      Webinamowin [b/G]: '
+  smart_deny_once_inputs: b,bezhig
+  smart_deny_deny_inputs: g,giiwewin
   timeout: '      ⏱ Apagishiwin - giiwewinjigaade izhichigewin'
   allowed_once: '      ✓ Miizhi''igewin bezhig'
   allowed_session: '      ✓ Miizhi''igewin o''ow maamawi-ayaawin'
@@ -421,11 +421,11 @@ gateway:
   status:
     header: 📊 **OpenAmer Gateway Aaniin Ezhiseg**
     matrix_scope_header: '**Matrix Aaniin Ezhiseg:**'
-    matrix_scope_room: '  room: {room}'
+    matrix_scope_room: '  waakaa''igan: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_key: '  maamawi-bii''igan: {session_key}'
     session_id: '**Ganawendamowin ID:** `{session_id}`'
     title: '**Izhinikaazowin:** {title}'
     created: '**Gii-ozhichigaade:** {timestamp}'
@@ -567,39 +567,39 @@ gateway:
       Endaso-gii-ikidowinan gii-ayaawag inwewin wiindamaagewin.'
     status_mode: 'Inwewin izhichigewin: {label}'
     status_channel: 'Inwewin giigidoowin: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'Maamawi-ayaajig: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    speaking: ' (gagiikweng)'
+    enabled_short: Inwewin izhinamowin gii-zhitoon.
+    disabled_short: Inwewin izhinamowin gii-zhigwaa.
+    label_off: Gii-zhigwaa (mazina'igan eta)
+    label_voice_only: Gii-zhitoon (inwewin-nakwebam inwewin-mazina'iganan)
+    label_all: TTS (inwewin-nakwebam gakina mazina'iganan)
     help: '{toggle}
 
 
-      **How /voice works**
+      **Aaniin ezhi-izhichiged /voice**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — gagiikwewin-aazhawibii''igowin apii gaa-izhii-bii''igeyan gagiikwewin-bii''igowin
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — gagiikwewin-aazhawibii''igowin endaso-bii''igowin
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — giiwe mazina''igan-aazhawibii''igowinan eta
 
-      • `/voice status` — show the current mode
+      • `/voice status` — waabanda''ang noongom izhichigewin
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (gaawiin gegoo) — weweni gaa-izhi-ando-ayaad on miinawaa off{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **Gagiikwewin-ayaamidanan gaa-ayaad (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • Nitam wiijiiw gagiikwewin-ayaamidanan, miinawaa `/voice channel` — ninga-wiijiiw, ninga-noondawaa, miinawaa ninga-gagiikwewin nind-aazhawibii''igowinan
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — giiwe gagiikwewin-ayaamidanan'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ YOLO mode **OFF** o'ow session — naagadawendagwad izhichigewinan ninga-ando-gikendaan minwendamowin.
+    enabled: ⚡ YOLO mode **ON** o'ow session — endaso-izhichigewinan auto-approved. Ganawaabandan.
   shared:
     session_db_unavailable: Maawandooshkaawin mazina'igan gaawiin ayaasiin.
     session_db_unavailable_prefix: Maawandooshkaawin mazina'igan gaawiin ayaasiin

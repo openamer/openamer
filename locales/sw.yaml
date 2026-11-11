@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] mara moja  |  [s] kipindi  |  [d] kataa'
   prompt_long: '      Chaguo [o/s/a/D]: '
   prompt_short: '      Chaguo [o/s/D]: '
-  choose_smart_deny: '      [o] mara moja  |  [d] kataa'
-  prompt_smart_deny: '      Chaguo [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [m]ara moja  |  [k]ataa'
+  prompt_smart_deny: '      Chaguo [m/K]: '
+  smart_deny_once_inputs: m,mara moja
+  smart_deny_deny_inputs: k,kataa
   timeout: '      ⏱ Muda umeisha - inakataa amri'
   allowed_once: '      ✓ Imeruhusiwa mara moja'
   allowed_session: '      ✓ Imeruhusiwa kwa kipindi hiki'

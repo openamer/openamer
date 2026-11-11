@@ -3,147 +3,147 @@
 # See locales/en.yaml for the source of truth; keep keys in sync.
 
 approval:
-  dangerous_header: '⚠️  DANGEROUS COMMAND: {description}'
-  choose_long: '      [o]nce  |  [s]ession  |  [a]lways  |  [d]eny'
-  choose_short: '      [o]nce  |  [s]ession  |  [d]eny'
-  prompt_long: '      Choice [o/s/a/D]: '
-  prompt_short: '      Choice [o/s/D]: '
-  choose_smart_deny: '      [o]nce  |  [d]eny'
-  prompt_smart_deny: '      Choice [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
-  timeout: '      ⏱ Timeout - denying command'
-  allowed_once: '      ✓ Allowed once'
-  allowed_session: '      ✓ Allowed for this session'
-  allowed_always: '      ✓ Added to permanent allowlist'
-  denied: '      ✗ Denied'
-  cancelled: '      ✗ Cancelled'
-  blocklist_message: This command is on the unconditional blocklist and cannot be approved.
+  dangerous_header: '⚠️  BEE HAZʼĄ́ NANITʼÁÁ: {description}'
+  choose_long: '      [o] tʼááłáʼí  |  [s] naʼalkaah  |  [a] hoolʼáágóó  |  [d] doo bichʼįʼ haʼní'
+  choose_short: '      [o] tʼááłáʼí  |  [s] naʼalkaah  |  [d] doo bichʼįʼ haʼní'
+  prompt_long: '      Ndiitʼaah [o/s/a/D]: '
+  prompt_short: '      Ndiitʼaah [o/s/D]: '
+  choose_smart_deny: '      [t]ʼááłáʼí  |  [d]oo bichʼįʼ haʼní'
+  prompt_smart_deny: '      Dooleeł [t/D]: '
+  smart_deny_once_inputs: t,tʼááłáʼí
+  smart_deny_deny_inputs: d,doo bichʼįʼ haʼní
+  timeout: '      ⏱ Yíłtso - bee hazʼą́ doo bichʼįʼ haʼní'
+  allowed_once: '      ✓ T''áá íiyisíí hólǫ́'
+  allowed_session: '      ✓ Díí naʼalkaah bichʼįʼ haʼní'
+  allowed_always: '      ✓ Hoolʼáágóó bichʼįʼ haʼnínígíí biih yíłʼį́į́h'
+  denied: '      ✗ Doo hólǫ́ǫ da'
+  cancelled: '      ✗ Háálá'
+  blocklist_message: Díí bee hazʼą́ tʼáá ákótʼéego bikʼi daazlį́į́ʼ; doo bichʼįʼ haʼníi da.
 gateway:
-  approval_expired: ⚠️ Approval expired (agent is no longer waiting). Ask the agent to try again.
-  draining: ⏳ Draining {count} active agent(s) before restart...
-  goal_cleared: ✓ Goal cleared.
-  no_active_goal: No active goal.
-  config_read_failed: '⚠️ Could not read config.yaml: {error}'
-  config_save_failed: '⚠️ Could not save config: {error}'
+  approval_expired: ⚠️ Bichʼįʼ haʼní yę́ę́ʼ niʼ (naalnish doo kóną́ą́ da). Naalnish yíníłʼį́į́h łahgo ádíílííł.
+  draining: ⏳ Naalnish {count} yigáálgo yíłtso, tʼáá íídą́ą́ʼ nááʼníłtʼįįh...
+  goal_cleared: ✓ Hadaalkaah yileeh.
+  no_active_goal: Doo hadaalkaah da.
+  config_read_failed: '⚠️ config.yaml doo yíníłtaʼ da: {error}'
+  config_save_failed: '⚠️ config doo yisdéélkááł da: {error}'
   model:
-    error_prefix: 'Error: {error}'
-    switched: Model switched to `{model}`
-    provider_label: 'Provider: {provider}'
-    context_label: 'Context: {tokens} tokens'
-    max_output_label: 'Max output: {tokens} tokens'
-    cost_label: 'Cost: {cost}'
-    capabilities_label: 'Capabilities: {capabilities}'
-    prompt_caching_enabled: 'Prompt caching: enabled'
-    warning_prefix: 'Warning: {warning}'
-    saved_global: Saved to config.yaml (`--global`)
-    session_only_hint: _(session only — add `--global` to persist)_
-    current_label: 'Current: `{model}` on {provider}'
-    current_tag: ' (current)'
-    more_models_suffix: ' (+{count} more)'
-    usage_switch_model: '`/model <name>` — switch model'
-    usage_switch_provider: '`/model <name> --provider <slug>` — switch provider'
-    usage_persist: '`/model <name> --global` — persist'
+    error_prefix: 'Háálá: {error}'
+    switched: Model `{model}` yaa ałtsʼą́ą́ʼ
+    provider_label: 'Naalnishii: {provider}'
+    context_label: 'Bíniʼ: {tokens} tokens'
+    max_output_label: 'Output tʼáá ałtso: {tokens} tokens'
+    cost_label: 'Béeso: {cost}'
+    capabilities_label: 'Bee ádáátʼįįd: {capabilities}'
+    prompt_caching_enabled: 'Prompt caching: bee hooʼááł'
+    warning_prefix: 'Hólǫ́: {warning}'
+    saved_global: config.yaml baa yisdéélkááł (`--global`)
+    session_only_hint: _(session tʼéiyá — hoolʼáágóó dooleeł biniinaa `--global` łąąh nítįįh)_
+    current_label: 'Kʼad: `{model}` {provider} bikáaʼ'
+    current_tag: ' (nihizaad)'
+    more_models_suffix: ' (+{count} łeh)'
+    usage_switch_model: '`/model <name>` — model łahgo álnééh'
+    usage_switch_provider: '`/model <name> --provider <slug>` — provider łahgo álnééh'
+    usage_persist: '`/model <name> --global` — tʼáá íídą́ą́ʼ hwiidoołtłʼééł'
   agents:
-    header: 🤖 **Active Agents & Tasks**
-    active_agents: '**Active agents:** {count}'
-    this_chat: ' · this chat'
-    more: '... and {count} more'
-    running_processes: '**Running background processes:** {count}'
-    async_jobs: '**Gateway async jobs:** {count}'
-    none: No active agents or running tasks.
-    state_starting: starting
-    state_running: running
+    header: 🤖 **Naalnishii Hazhóóʼó dóó Naʼanish**
+    active_agents: '**Naalnishii hazhóóʼó:** {count}'
+    this_chat: ' · díí naalkaah'
+    more: '... dóó {count} nihaa'
+    running_processes: '**Naʼalnish yikááʼgóó naalnish:** {count}'
+    async_jobs: '**Gateway naʼanish tʼáadoo bighádiʼnítį́į́góó:** {count}'
+    none: Doo naalnishii hazhóóʼó da dóó doo naʼanish naalnish da.
+    state_starting: yikáásdéé'
+    state_running: naalnish
   approve:
-    no_pending: No pending command to approve.
-    once_singular: ✅ Command approved. The agent is resuming...
-    once_plural: ✅ Commands approved ({count} commands). The agent is resuming...
-    session_singular: ✅ Command approved (pattern approved for this session). The agent is resuming...
-    session_plural: ✅ Commands approved (pattern approved for this session) ({count} commands). The agent is resuming...
-    always_singular: ✅ Command approved (pattern approved permanently). The agent is resuming...
-    always_plural: ✅ Commands approved (pattern approved permanently) ({count} commands). The agent is resuming...
+    no_pending: Doo haneʼ bichʼįʼ hwiilʼą́ą́góó da.
+    once_singular: ✅ Haneʼ hwiilʼą́. Ágent yínítłʼah...
+    once_plural: ✅ Haneʼ hwiilʼą́ ({count} haneʼ). Ágent yínítłʼah...
+    session_singular: ✅ Haneʼ hwiilʼą́ (beeʼeldǫǫh hwiilʼą́ díí naalnish bąąh). Ágent yínítłʼah...
+    session_plural: ✅ Haneʼ hwiilʼą́ (beeʼeldǫǫh hwiilʼą́ díí naalnish bąąh) ({count} haneʼ). Ágent yínítłʼah...
+    always_singular: ✅ Haneʼ hwiilʼą́ (beeʼeldǫǫh hwiilʼą́ tʼáá íídą́ą́ʼ). Ágent yínítłʼah...
+    always_plural: ✅ Bee ádíłidí yee ádíʼníłdįįd (bee ádíłidí hoolʼáágóó yee ádíʼníłdįįd) ({count} bee ádíłidí). Naalʼaʼí nínáájíłtį́į́ł...
   background:
-    usage: 'Usage: /background <prompt>
+    usage: 'Choyoołʼįįh: /background <prompt>
 
-      Example: /background Summarize the top HN stories today
+      Tʼááłáʼí bee ákʼehgo: /background Díí jį́ HN haneʼ ałní́tʼéego yee ákʼehgo
 
 
-      Runs the prompt in a separate session. You can keep chatting — the result will appear here when done.'
-    started: '🔄 Background task started: "{preview}"
+      Prompt łahgi naaltsoos bee ádíłidí yee naalnish. Nidííshchįįł — tʼáá ákótʼéego bitsʼą́ą́dóó haneʼ kʼehgo adoolééł.'
+    started: '🔄 Naalnish háádééłtį́į́ł: "{preview}"
 
-      Task ID: {task_id}
+      Naalnish ID: {task_id}
 
-      You can keep chatting — results will appear when done.'
+      Nidííshchįįł — tʼáá ákótʼéego bitsʼą́ą́dóó haneʼ adoolééł.'
   branch:
-    db_unavailable: Session database not available.
-    no_conversation: No conversation to branch — send a message first.
-    create_failed: 'Failed to create branch: {error}'
-    switch_failed: Branch created but failed to switch to it.
-    branched_one: '⑂ Branched to **{title}** ({count} message copied)
+    db_unavailable: Naaltsoos bee ádíłidí bi-database doo hólǫ́ǫ da.
+    no_conversation: Doo haneʼ ałtį́į́ł bił hólǫ́ǫ da — áłtséédą́ą́ʼ haneʼ yíníłʼįįh.
+    create_failed: 'Ałtį́į́ł ádíłtʼiʼ doo ákótʼé da: {error}'
+    switch_failed: Ałtį́į́ł ádíłtʼiʼ, ndi bichʼįʼ nídéél doo ákótʼé da.
+    branched_one: '⑂ Ałtį́į́ł ádíłtʼiʼ **{title}** ({count} haneʼ ádíłtʼiʼ)
 
-      Original: `{parent}`
+      Áłtséédą́ą́ʼ: `{parent}`
 
-      Branch: `{new}`
+      Ałtį́į́ł: `{new}`
 
-      Use `/resume` to switch back to the original.'
-    branched_many: '⑂ Branched to **{title}** ({count} messages copied)
+      `/resume` choyoołʼįįhgo áłtséédą́ą́ʼ bichʼįʼ nídéél.'
+    branched_many: '⑂ Ałtį́į́ł ádíłtʼiʼ **{title}** ({count} haneʼ ádaałtʼiʼ)
 
-      Original: `{parent}`
+      Áłtséédą́ą́ʼ: `{parent}`
 
-      Branch: `{new}`
+      Ałtį́į́ł: `{new}`
 
-      Use `/resume` to switch back to the original.'
+      `/resume` choyoołʼįįhgo áłtséédą́ą́ʼ bichʼįʼ nídéél.'
   commands:
-    usage: 'Usage: `/commands [page]`'
-    skill_header: '⚡ **Skill Commands**:'
-    default_desc: Skill command
-    none: No commands available.
-    header: 📚 **Commands** ({total} total, page {page}/{total_pages})
-    nav_prev: '`/commands {page}` ← prev'
-    nav_next: next → `/commands {page}`
-    out_of_range: _(Requested page {requested} was out of range, showing page {page}.)_
+    usage: 'Choyoołʼįįh: `/commands [page]`'
+    skill_header: '⚡ **Naalnish bee ádíłidí**:'
+    default_desc: Skill ch'ínílį́
+    none: Bee ádíłidí doo hólǫ́ǫ da.
+    header: 📚 **Beehazʼą́** ({total} tʼáá áłahjįʼ, naaltsoos {page}/{total_pages})
+    nav_prev: '`/commands {page}` ← tʼáá íídą́ą́ʼ'
+    nav_next: tʼáá íiyisíí → `/commands {page}`
+    out_of_range: _(Naaltsoos {requested} nínízinę́ę doo tʼáá ákótʼée da; naaltsoos {page} yidahoniłʼįįh.)_
   compress:
-    not_enough: Not enough conversation to compress (need at least 4 messages).
-    no_provider: No provider configured -- cannot compress.
-    nothing_to_do: Nothing to compress yet (the transcript is still all protected context).
-    aggressive_unsupported: --aggressive is not supported; use '/compress here [N]' to keep only recent exchanges, or /undo to drop turns.
-    focus_line: 'Focus: "{topic}"'
-    summary_failed: ⚠️ Summary generation failed ({error}). {count} historical message(s) were removed and replaced with a placeholder; earlier context is no longer recoverable. Consider checking your auxiliary.compression model configuration.
-    aborted: ⚠️ Compression aborted ({error}). No messages were dropped — conversation is unchanged. Run /compress to retry, /reset for a clean session, or check your auxiliary.compression model configuration.
-    aux_failed: ℹ️ Configured compression model `{model}` failed ({error}). Recovered using your main model — context is intact — but you may want to check `auxiliary.compression.model` in config.yaml.
-    failed: 'Compression failed: {error}'
+    not_enough: Saad doo hwiih da bee áchʼį́į́h (4 haneʼ bee hwiih).
+    no_provider: Doo bee naʼanishí bee hazʼą́ą da -- doo bee áchʼį́į́h da.
+    nothing_to_do: Tʼah doo bee áchʼį́į́h da (saad bee akʼeʼashchį́ tʼah tʼáá átʼé hazʼą́ą́ bichʼį́į́h).
+    aggressive_unsupported: --aggressive doo bee hazʼą́ą da; '/compress here [N]' bee tʼáá íiyisíí saad hazʼą́ą́ doo, doodaiiʼ /undo bee saad yisdéítʼą́ą doo.
+    focus_line: 'Náhookǫs: "{topic}"'
+    summary_failed: ⚠️ Saad bee áchʼį́į́h doo ádzaa da ({error}). {count} haneʼ yę́ę yisdéítʼą́ą dóó bee naʼnízhoozhígíí bee ałtʼą́ą́ʼ; hazʼą́ą́ yę́ę doo haididoodleeł da. auxiliary.compression model bee hazʼą́ą́ yídííłtah.
+    aborted: ⚠️ Áchʼį́į́h yisdéítʼą́ą ({error}). Haneʼ doo yisdéítʼą́ą da — saad tʼáá ákótʼé. /compress bee náánáłdóʼ, /reset bee hazʼą́ą́ tʼáá ákótʼé, doodaiiʼ auxiliary.compression model bee hazʼą́ą́ yídííłtah.
+    aux_failed: ℹ️ Bee hazʼą́ą́ áchʼį́į́h model `{model}` doo ádzaa da ({error}). Ní model bee haididoodleeł — hazʼą́ą́ tʼáá ákótʼé — ndi `auxiliary.compression.model` config.yaml biyiʼ yídííłtah.
+    failed: 'Áchʼį́į́h doo ádzaa da: {error}'
   debug:
-    upload_failed: '✗ Failed to upload debug report: {error}'
-    header: '**Debug report uploaded:**'
-    auto_delete: ⏱ Pastes will auto-delete in 6 hours.
-    full_logs_hint: For full log uploads, use `openamer debug share` from the CLI.
-    share_hint: Share these links with the OpenAmer team for support.
+    upload_failed: '✗ Debug haneʼ yáʼąąh dah yiizįįh doo bíighah da: {error}'
+    header: '**Debug haneʼ yáʼąąh dah yiizįįh:**'
+    auto_delete: ⏱ Pastes 6 ahééʼídlį́į́h yilą́ą́góó tʼáá bínídááʼ daaztsą́ą doo.
+    full_logs_hint: Log tʼáá ałtso yáʼąąh dah yiizįįhgo, CLI bitsʼą́ą́dóó `openamer debug share` choyoołʼįįh.
+    share_hint: Díí links OpenAmer team yił náníłtʼé, bee ákʼijįʼ.
   deny:
-    stale: ❌ Command denied (approval was stale).
-    no_pending: No pending command to deny.
-    denied_singular: ❌ Command denied.
-    denied_plural: ❌ Commands denied ({count} commands).
-    denied_reason_singular: '❌ Command denied. Reason relayed to the agent: "{reason}"'
-    denied_reason_plural: '❌ Commands denied ({count} commands). Reason relayed to the agent: "{reason}"'
+    stale: ❌ Command doo yiʼaah da (approval tʼóó naa).
+    no_pending: Command yínítáahii doo hánílį́į da.
+    denied_singular: ❌ Ch'ínílį́ doo yiłch'į́įh da.
+    denied_plural: ❌ Commands doo yiʼaah da ({count} commands).
+    denied_reason_singular: '❌ Command doo yiʼaah da. Agent bichʼįʼ reason ííshjání ályaa: "{reason}"'
+    denied_reason_plural: '❌ Commands doo yiʼaah da ({count} commands). Reason agent bichʼįʼ ííshjání ályaa: "{reason}"'
   fast:
-    not_supported: ⚡ /fast is only available for OpenAI models that support Priority Processing.
+    not_supported: ⚡ /fast tʼéiyá OpenAI model Priority Processing yikʼiijííłii bichʼįʼ hólǫ́.
     status: '⚡ Priority Processing
 
 
-      Current mode: `{mode}`
+      Kʼad bee hazʼą́: `{mode}`
 
 
-      _Usage:_ `/fast <normal|fast|status>`'
-    unknown_arg: '⚠️ Unknown argument: `{arg}`
+      _Choyoołʼįįh:_ `/fast <normal|fast|status>`'
+    unknown_arg: '⚠️ Argument doo bih bééhózinga: `{arg}`
 
 
-      **Valid options:** normal, fast, status'
-    saved: '⚡ ✓ Priority Processing: **{label}** (saved to config)
+      **Bee ákótʼéego choidííłʼįįh:** normal, fast, status'
+    saved: '⚡ ✓ Ałkʼidą́ą́ʼ bee naʼanish: **{label}** (config biiʼ góneʼ yisdzoh)
 
-      _(takes effect on next message)_'
-    session_only: '⚡ ✓ Priority Processing: **{label}** (this session only)'
-    label_fast: FAST
-    label_normal: NORMAL
+      _(nááʼáłtséedi haneʼ yee ádíílįįł)_'
+    session_only: '⚡ ✓ Ałkʼidą́ą́ʼ bee naʼanish: **{label}** (tʼáá díí daʼííkaahgo)'
+    label_fast: ATS'ÍÍS
+    label_normal: K'AD
     status_fast: hahgo
     status_normal: tʼáá ákótʼéego
     picker_title: '⚡ **Áłtsé Bee Naʼanish**
@@ -421,12 +421,12 @@ gateway:
   status:
     header: 📊 **OpenAmer Gateway Hazʼą́**
     matrix_scope_header: '**Matrix Beehazʼą́:**'
-    matrix_scope_room: '  room: {room}'
+    matrix_scope_room: '  chaha''oh: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
     matrix_scope_mode: '  session_scope: {scope}'
     matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    session_id: '**Daʼííkaah ID:** `{session_id}`'
     title: '**Bízhiʼ:** {title}'
     created: '**Ályaa:** {timestamp}'
     last_activity: '**Ałkʼidą́ą́ʼ naʼanish:** {timestamp}'
@@ -514,7 +514,7 @@ gateway:
     start_failed: '✗ Update doo yíníłtʼééh da: {error}'
     starting: 🧬 OpenAmer update yíníłtʼééh… progress éí kǫ́ǫ́gi nídíínłtįįł.
   usage:
-    rate_limits: ⏱️ **Rate Limits:** {state}
+    rate_limits: ⏱️ **Bee ákótʼéego hatsʼą́ą́ʼ:** {state}
     header_session: 📊 **Session Token bee chʼííʼá**
     label_model: 'Beehazʼą́: `{model}`'
     label_input_tokens: 'Beehʼííłkid token: {count}'

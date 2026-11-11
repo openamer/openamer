@@ -1,0 +1,609 @@
+# OpenAmer static-message catalog -- Torbeški (torbeski)
+# BASE: inherited from Macedonian (mk). Torbeški has no standard written norm,
+# no ISO 639-3 code of its own, and no MT system produces it, so these values
+# are Macedonian until a native speaker replaces them. This is a starting
+# point, NOT a translation claim. Replace values in place; keys stay as-is.
+
+approval:
+  dangerous_header: '⚠️  ОПАСНА КОМАНДА: {description}'
+  choose_long: '      [o] еднаш  |  [s] сесија  |  [a] секогаш  |  [d] одбиј'
+  choose_short: '      [o] еднаш  |  [s] сесија  |  [d] одбиј'
+  prompt_long: '      Избор [o/s/a/D]: '
+  prompt_short: '      Избор [o/s/D]: '
+  choose_smart_deny: '      [o] еднаш  |  [d] одбиј'
+  prompt_smart_deny: '      Избор [o/D]: '
+  smart_deny_once_inputs: o,еднаш
+  smart_deny_deny_inputs: d,одбиј
+  timeout: '      ⏱ Времето истече - се одбива командата'
+  allowed_once: '      ✓ Дозволено веднож'
+  allowed_session: '      ✓ Дозволено за оваа сесија'
+  allowed_always: '      ✓ Додадено во постојаниот дозволен список'
+  denied: '      ✗ Одбиено'
+  cancelled: '      ✗ Откажано'
+  blocklist_message: Оваа команда е на безусловниот список за блокирање и не може да се одобри.
+gateway:
+  approval_expired: ⚠️ Одобрувањето истече (агентот повеќе не чека). Замолете го агентот да се обиде повторно.
+  draining: ⏳ Се исцрпуваат {count} активни агенти пред рестартирање...
+  goal_cleared: ✓ Целот е избришан.
+  no_active_goal: Нема активен цел.
+  config_read_failed: '⚠️ Не може да се прочита config.yaml: {error}'
+  config_save_failed: '⚠️ Не може да се зачува конфигурацијата: {error}'
+  model:
+    error_prefix: 'Грешка: {error}'
+    switched: Моделот е префрлен на `{model}`
+    provider_label: 'Пружател: {provider}'
+    context_label: 'Контекст: {tokens} токени'
+    max_output_label: 'Максимален излез: {tokens} токени'
+    cost_label: 'Трошок: {cost}'
+    capabilities_label: 'Можности: {capabilities}'
+    prompt_caching_enabled: 'Кеширање на промпт: овозможено'
+    warning_prefix: 'Предупредување: {warning}'
+    saved_global: Зачувано во config.yaml (`--global`)
+    session_only_hint: _(само за сесија — додајте `--global` за трајно зачувување)_
+    current_label: 'Моментално: `{model}` на {provider}'
+    current_tag: ' (тековен)'
+    more_models_suffix: ' (+{count} повеќе)'
+    usage_switch_model: '`/model <name>` — смени модел'
+    usage_switch_provider: '`/model <name> --provider <slug>` — смени провајдер'
+    usage_persist: '`/model <name> --global` — зачувај трајно'
+  agents:
+    header: 🤖 **Активни агенти и задачи**
+    active_agents: '**Активни агенти:** {count}'
+    this_chat: ' · овој чат'
+    more: '... и {count} повеќе'
+    running_processes: '**Позадински процеси во тек:** {count}'
+    async_jobs: '**Асинхрони задачи на Gateway:** {count}'
+    none: Нема активни агенти или задачи во тек.
+    state_starting: започнување
+    state_running: во тек
+  approve:
+    no_pending: Нема команда што чека одобрување.
+    once_singular: ✅ Командата е одобрена. Агентот продолжува...
+    once_plural: ✅ Командите се одобрени ({count} команди). Агентот продолжува...
+    session_singular: ✅ Командата е одобрена (шаблонот е одобрен за оваа сесија). Агентот продолжува...
+    session_plural: ✅ Командите се одобрени (шаблонот е одобрен за оваа сесија) ({count} команди). Агентот продолжува...
+    always_singular: ✅ Командата е одобрена (шаблонот е одобрен трајно). Агентот продолжува...
+    always_plural: ✅ Одобрени команди (шемата е одобрена трајно) ({count} команди). Агентот продолжува...
+  background:
+    usage: 'Употреба: /background <prompt>
+
+      Пример: /background Резимирај ги најдобрите HN приказни денес
+
+
+      Го извршува промптот во посебна сесија. Можете да продолжете да разговарате — резултатот ќе се појави тука кога ќе заврши.'
+    started: '🔄 Започната е позадинска задача: "{preview}"
+
+      ID на задача: {task_id}
+
+      Можете да продолжете да разговарате — резултатите ќе се појават кога ќе заврши.'
+  branch:
+    db_unavailable: Базата на податоци за сесијата не е достапна.
+    no_conversation: Нема разговор за разгранување — прво испратете порака.
+    create_failed: 'Не успеа создавањето на гранката: {error}'
+    switch_failed: Гранката е создадена, но не успеа префрлањето на неа.
+    branched_one: '⑂ Префрлено на гранка **{title}** ({count} порака копирана)
+
+      Оригинал: `{parent}`
+
+      Гранка: `{new}`
+
+      Користете `/resume` за да се вратите на оригиналот.'
+    branched_many: '⑂ Префрлено на гранка **{title}** ({count} пораки копирани)
+
+      Оригинал: `{parent}`
+
+      Гранка: `{new}`
+
+      Користете `/resume` за да се вратите на оригиналот.'
+  commands:
+    usage: 'Употреба: `/commands [page]`'
+    skill_header: '⚡ **Команди за вештини**:'
+    default_desc: Команда за вештина
+    none: Нема достапни команди.
+    header: 📚 **Команди** ({total} вкупно, страница {page}/{total_pages})
+    nav_prev: '`/commands {page}` ← претходно'
+    nav_next: следно → `/commands {page}`
+    out_of_range: _(Бараната страница {requested} беше надвор од опсег, се прикажува страница {page}.)_
+  compress:
+    not_enough: Нема доволно разговор за компресирање (потребни се најмалку 4 пораки).
+    no_provider: Нема конфигуриран провајдер -- не може да се компресира.
+    nothing_to_do: Сè уште нема што да се компресира (транскриптот сè уште е целосно заштитен контекст).
+    aggressive_unsupported: --aggressive не е поддржано; користете '/compress here [N]' за да ги задржите само последните размени, или /undo за да отфрлите вртења.
+    focus_line: 'Фокус: "{topic}"'
+    summary_failed: ⚠️ Генерирањето на резимето не успеа ({error}). {count} историски пораки беа отстранети и заменети со обележувач; претходниот контекст повеќе не може да се врати. Размислете да ја проверите конфигурацијата на моделот auxiliary.compression.
+    aborted: ⚠️ Компресирањето е прекинато ({error}). Нема отфрлени пораки — разговорот е непроменет. Извршете /compress за да се обидете повторно, /reset за чиста сесија или проверете ја конфигурацијата на моделот auxiliary.compression.
+    aux_failed: ℹ️ Конфигурираниот модел за компресија `{model}` не успеа ({error}). Обновено е користејќи го вашиот главен модел — контекстот е недопрен — но можеби ќе сакате да проверите `auxiliary.compression.model` во config.yaml.
+    failed: 'Компресирањето не успеа: {error}'
+  debug:
+    upload_failed: '✗ Не успеа прикачувањето на извештајот за дебагирање: {error}'
+    header: '**Извештајот за дебагирање е прикачен:**'
+    auto_delete: ⏱ Вметнувањата ќе се избришат автоматски по 6 часа.
+    full_logs_hint: За прикачување на целосни дневници, користете `openamer debug share` од CLI.
+    share_hint: Споделете ги овие врски со тимот на OpenAmer за поддршка.
+  deny:
+    stale: ❌ Командата е одбиена (одобрувањето е застарено).
+    no_pending: Нема команда што чека да биде одбиена.
+    denied_singular: ❌ Наредбата е одбиена.
+    denied_plural: ❌ Командите се одбиени ({count} команди).
+    denied_reason_singular: '❌ Командата е одбиена. Причината е пренесена на агентот: "{reason}"'
+    denied_reason_plural: '❌ Командите се одбиени ({count} команди). Причината е пренесена на агентот: "{reason}"'
+  fast:
+    not_supported: ⚡ /fast е достапно само за OpenAI модели што поддржуваат приоритетна обработка.
+    status: '⚡ Приоритетна обработка
+
+
+      Тековен режим: `{mode}`
+
+
+      _Употреба:_ `/fast <normal|fast|status>`'
+    unknown_arg: '⚠️ Непознат аргумент: `{arg}`
+
+
+      **Валидни опции:** normal, fast, status'
+    saved: '⚡ ✓ Приоритетна обработка: **{label}** (зачувано во конфигурацијата)
+
+      _(стапува во сила при следната порака)_'
+    session_only: '⚡ ✓ Приоритетна обработка: **{label}** (само за оваа сесија)'
+    label_fast: БРЗО
+    label_normal: НОРМАЛНО
+    status_fast: брзо
+    status_normal: нормално
+    picker_title: '⚡ **Приоритетна обработка**
+
+
+      Тековен режим: `{mode}`
+
+
+      Изберете опција:'
+    choice_fast: fast — Приоритетна обработка вклучена
+    choice_normal: normal — стандардна обработка
+  footer:
+    status: '📎 Подножје при извршување: **{state}**
+
+      Полиња: `{fields}`
+
+      Платформа: `{platform}`'
+    usage: 'Употреба: `/footer [on|off|status]`'
+    saved: '📎 Подножје при извршување: **{state}**{example}
+
+      _(зачувано глобално — стапува во сила при следната порака)_'
+    example_line: '
+
+      Пример: `{preview}`'
+    state_on: ВКЛ
+    state_off: ИСКЛУЧЕН
+  goal:
+    unavailable: Целите не се достапни во оваа сесија.
+    no_goal_set: Не е поставена цел.
+    paused: '⏸ Целта е паузирана: {goal}'
+    no_resume: Нема цел за продолжување.
+    resumed: '▶ Целта е продолжена: {goal}
+
+      Испратете која било порака за да продолжите, или почекајте — ќе го направам следниот чекор во следниот круг.'
+    invalid: 'Невалидна цел: {error}'
+    set: '⊙ Целта е поставена (буџет од {budget} круга): {goal}
+
+      Ќе продолжам да работам додека целта не биде завршена, додека не ја паузирате/исчистите, или додека буџетот не се исцрпи.
+
+      Контроли: /goal status · /goal pause · /goal resume · /goal clear'
+  help:
+    header: '📖 **Команди на OpenAmer**
+
+      '
+    skill_header: '
+
+      ⚡ **Команди за вештини** ({count} активни):'
+    more_use_commands: '
+
+      ... и уште {count}. Користете `/commands` за целосниот пагиниран список.'
+  insights:
+    invalid_days: 'Невалидна вредност за --days: {value}'
+    error: 'Грешка при генерирање на согледувања: {error}'
+  kanban:
+    error_prefix: '⚠ kanban грешка: {error}'
+    subscribed_suffix: (претплатени сте — ќе бидете известени кога {task_id} ќе заврши или ќе се блокира)
+    truncated_suffix: … (скратено; користете `openamer kanban …` во вашиот терминал за целосен излез)
+    no_output: (нема излез)
+    wake:
+      completed: завршено
+      gave_up: се откажа (обидите за повторување се исцрпени)
+      crashed: се урна (работникот излезе); диспечерот ќе се обиде повторно
+      timed_out: истече времето; диспечерот ќе се обиде повторно
+      blocked: блокирано; потребно е внимание
+      status_default: статусот е променет
+      status_joiner: ', '
+      message: '[kanban] Задача {task_id} {status}.
+
+        Наслов: {title}
+
+        Доделено на: @{assignee}
+
+        Табла: {board}
+
+
+        Провери го резултатот или одлучи го следниот чекор.'
+  personality:
+    none_configured: Нема конфигурирани личности во `{path}/config.yaml`
+    header: '🎭 **Достапни личности**
+
+      '
+    none_option: • `none` — (без дополнителен слој за личност)
+    item: • `{name}` — {preview}
+    usage: '
+
+      Употреба: `/personality <name>`'
+    save_failed: '⚠️ Не успеа да се зачува промената на личноста: {error}'
+    cleared: '🎭 Личноста е исчистена — се користи основното однесување на агентот.
+
+      _(стапува на сила со следната порака)_'
+    set_to: '🎭 Личноста е поставена на **{name}**
+
+      _(стапува на сила со следната порака)_'
+    unknown: 'Непозната личност: `{name}`
+
+
+      Достапни: {available}'
+  profile:
+    header: 👤 **Профил:** `{profile}`
+    home: 📂 **Почетна:** `{home}`
+  reasoning:
+    level_default: средно (подразбирано)
+    level_disabled: нема (оневозможено)
+    scope_session: презапишување на сесијата
+    scope_global: глобална конфигурација
+    status: '🧠 **Поставки за расудување**
+
+
+      **Напор:** `{level}`
+
+      **Опсег:** {scope}
+
+      **Приказ:** {display}
+
+
+      _Употреба:_ `/reasoning <none|minimal|low|medium|high|xhigh|max|ultra|reset|show|hide> [--global]`'
+    display_on: уклучено ✓
+    display_off: исклучено
+    display_set_on: '🧠 ✓ Приказ на расудување: **ВКЛУЧЕНО**
+
+      Размислувањето на моделот ќе се прикажува пред секој одговор на **{platform}**.'
+    display_set_off: '🧠 ✓ Приказ на расудување: **ИСКЛУЧЕНО** за **{platform}**'
+    reset_global_unsupported: ⚠️ `/reasoning reset --global` не е поддржано. Користете `/reasoning <level> --global` за да го промените глобалното стандардно ниво.
+    reset_done: 🧠 ✓ Специфичното поставување за расудување во сесијата е исчистено; се користи глобалната конфигурација.
+    unknown_arg: '⚠️ Непознат аргумент: `{arg}`
+
+
+      **Валидни нивоа:** none, minimal, low, medium, high, xhigh, max, ultra
+
+      **Приказ:** show, hide
+
+      **Трајно:** додајте `--global` за да се зачува надвор од оваа сесија'
+    picker_title: '🧠 **Поставки за расудување**
+
+
+      **Напор:** `{level}`
+
+      **Опсег:** {scope}
+
+      **Приказ:** {display}
+
+
+      Изберете опција:'
+    choice_none: none — оневозможи расудување
+    choice_reset: reset — исчисти го специфичното поставување за сесијата
+    choice_show: прикажи расудување во одговорите
+    choice_hide: скриј го размислувањето од одговорите
+    set_global: '🧠 ✓ Напорот за размислување е поставен на `{effort}` (зачувано во конфигурацијата)
+
+      _(важи за следната порака)_'
+    set_global_save_failed: '🧠 ✓ Напорот за размислување е поставен на `{effort}` (само за сесијата — зачувувањето на конфигурацијата не успеа)
+
+      _(важи за следната порака)_'
+    set_session: '🧠 ✓ Напорот за размислување е поставен на `{effort}` (само за сесијата — додај `--global` за трајно зачувување)
+
+      _(важи за следната порака)_'
+  reload_mcp:
+    cancelled: 🟡 /reload-mcp е откажано. MCP алатките не се променети.
+    always_followup: 'ℹ️ Идните повикувања на `/reload-mcp` ќе се извршуваат без потврда. Повторно овозможи преку `approvals.mcp_reload_confirm: true` во config.yaml.'
+    confirm_prompt: '⚠️ **Потврди /reload-mcp**
+
+
+      Повторното вчитување на MCP серверите го обновува множеството алатки за оваа сесија и **го поништува кешот на промити на провајдерот** — следната порака ќе ги испрати повторно сите влезни токени.  Кај модели со долг контекст или високо размислување, ова може да биде скапо.
+
+
+      Избери:
+
+      • **Одобри еднаш** — вчитај сега
+
+      • **Секогаш одобрувај** — вчитај сега и трајно замолчи го ова прашање
+
+      • **Откажи** — остави ги MCP алатките непроменети
+
+
+      _Текстуална алтернатива: одговори `/approve`, `/always` или `/cancel`._'
+    header: '🔄 **MCP серверите се вчитани повторно**
+
+      '
+    reconnected: '♻️ Повторно поврзано: {names}'
+    added: '➕ Додадено: {names}'
+    removed: '➖ Отстрането: {names}'
+    none_connected: Нема поврзани MCP сервери.
+    tools_available: '
+
+      🔧 Достапни се {tools} алатка(и) од {servers} сервер(и)'
+    failed: '❌ Повторното вчитување на MCP не успеа: {error}'
+  reload_skills:
+    header: '🔄 **Вештините се повторно вчитани**
+
+      '
+    no_new: Не се откриени нови вештини.
+    total: '
+
+      📚 {count} достапни вештини'
+    added_header: ➕ **Додадени вештини:**
+    removed_header: ➖ **Отстранети вештини:**
+    item_with_desc: '    - {name}: {desc}'
+    item_no_desc: '    - {name}'
+    failed: '❌ Неуспешно повторно вчитување на вештините: {error}'
+  reset:
+    header_default: ✨ Сесијата е ресетирана! Започнуваме од почеток.
+    header_new: ✨ Започна нова сесија!
+    header_titled: '✨ Започна нова сесија: {title}'
+    title_rejected: '
+
+      ⚠️ Насловот е одбиен: {error}'
+    title_error_untitled: '
+
+      ⚠️ {error} — сесијата започна без наслов.'
+    title_empty_untitled: '
+
+      ⚠️ Насловот е празен по чистењето — сесијата започна без наслов.'
+    tip: '
+
+      ✦ Совет: {tip}'
+  restart:
+    in_progress: ⏳ Рестартирањето на Gateway е веќе во тек...
+    restarting: ♻ Рестартирам gateway. Ако не бидете известени во рок од 60 секунди, рестартирајте од конзолата со `openamer gateway restart`.
+  resume:
+    db_unavailable: Базата на податоци за сесиите не е достапна.
+    parse_error: '⚠️ Не можеа да се парсираат аргументите на `/resume`: {error}.
+
+      Користете наводници околу насловите со празни места, на пример: `/resume "Project A Plan"`.'
+    matrix_no_named_sessions: 'Не се пронајдени именувани сесии за оваа Matrix соба.
+
+      Користете `/title My Session` за да ја именувате тековната сесија на собата, `/resume --all` за да ги наведете сите Matrix сесии или `/resume --cross-room <session name>` за експлицитно преминување на границите на собата.'
+    matrix_blocked_no_origin: '⚠️ Matrix /resume е блокиран: оваа именувана сесија нема запишано потекло на соба, па OpenAmer нема да ја продолжи во тековната соба стандардно. Користете `/resume --cross-room {name}` ако намерно сакате да ги преминете границите на собата.'
+    matrix_blocked_other_room: '⚠️ Matrix /resume е блокиран: таа сесија припаѓа на друга Matrix соба ({room}). Користете `/resume --cross-room {name}` ако намерно сакате да ја продолжите овде.'
+    matrix_cross_room_success: '⚠️ Продолжување преку соби: продолжена е **{title}** во Matrix соба **{room}**.
+
+      Идните пораки во оваа соба ќе го користат тој транскрипт додека не се изврши `/reset` или друго `/resume`.{msg_part}'
+    blocked_not_owner: '⚠️ /resume е блокиран: ''**{name}**'' припаѓа на друг корисник или разговор. Можете да продолжите само сесии од овој разговор.'
+    no_named_sessions: 'Не се пронајдени именувани сесии.
+
+      Користете `/title My Session` за да ја именувате тековната сесија, потоа `/resume My Session` за да се вратите на неа подоцна.'
+    list_header: '📋 **Именувани сесии**
+
+      '
+    list_item: • **{title}**{preview_part}
+    list_item_numbered: '{index}. **{title}**{preview_part}'
+    list_preview_suffix: ' — _{preview}_'
+    list_footer: '
+
+      Употреба: `/resume <session name>`'
+    list_footer_numbered: '
+
+      Употреба: `/resume <session name>` или `/resume <number>` (на пр. `/resume 1` за најновата)'
+    list_failed: 'Не можеа да се прикажат сесиите: {error}'
+    out_of_range: 'Индексот за продолжување {index} е надвор од опсегот.
+
+      Користете `/resume` без аргументи за да ги видите достапните сесии.'
+    not_found: 'Не е најдена сесија што одговара на ''**{name}**''.
+
+      Користете `/resume` без аргументи за да ги видите достапните сесии.'
+    already_on: 📌 Веќе сте на сесија **{name}**.
+    switch_failed: Не успеа да се префрли сесијата.
+    resumed_one: ↻ Продолжена сесија **{title}** ({count} порака). Разговорот е вратен.
+    resumed_many: ↻ Продолжена сесија **{title}** ({count} пораки). Разговорот е вратен.
+    resumed_no_count: ↻ Продолжена сесија **{title}**. Разговорот е вратен.
+  retry:
+    no_previous: Нема претходна порака за повторување.
+  rollback:
+    not_enabled: "Контролните точки не се овозможени.\nОвозможете ги во config.yaml:\n```\ncheckpoints:\n  enabled: true\n```"
+    none_found: Не се пронајдени контролни точки за {cwd}
+    invalid_number: Невалиден број на контролна точка. Користете 1-{max}.
+    restored: '✅ Вратено на контролна точка {hash}: {reason}
+
+      Снимка пред враќањето беше зачувана автоматски.'
+    restore_failed: ❌ {error}
+  set_home:
+    save_failed: 'Не успеа да се зачува домашниот канал: {error}'
+    success: '✅ Домашниот канал е поставен на **{name}** (ID: {chat_id}).
+
+      Cron задачите и вкрстено-платформските пораки ќе се доставуваат тука.'
+  status:
+    header: 📊 **Статус на OpenAmer Gateway**
+    matrix_scope_header: '**Matrix обсег:**'
+    matrix_scope_room: '  соба: {room}'
+    matrix_scope_room_id: '  room_id: {room_id}'
+    matrix_scope_thread: '  thread_id: {thread_id}'
+    matrix_scope_mode: '  session_scope: {scope}'
+    matrix_scope_key: '  session_key: {session_key}'
+    session_id: '**ID на сесија:** `{session_id}`'
+    title: '**Наслов:** {title}'
+    created: '**Создадено:** {timestamp}'
+    last_activity: '**Последна активност:** {timestamp}'
+    model: '**Модел:** `{model}`'
+    model_provider: '**Модел:** `{model}` ({provider})'
+    context: '**Контекст:** {used} / {total} ({pct}%)'
+    context_used: '**Контекст:** ~{used} токени'
+    tokens: '**Кумулативни API токени (повторно испратени при секој повик):** {tokens}'
+    agent_running: '**Агентот работи:** {state}'
+    state_yes: Да ⚡
+    state_no: Не
+    queued: '**Дополнителни пораки во ред:** {count}'
+    platforms: '**Поврзани платформи:** {platforms}'
+  stop:
+    stopped_pending: ⚡ Запрено. Агентот сè уште не беше започнат — можете да ја продолжите оваа сесија.
+    stopped: ⚡ Запрено. Можете да ја продолжите оваа сесија.
+    no_active: Нема активна задача за запирање.
+  title:
+    db_unavailable: Базата на податоци за сесијата не е достапна.
+    warn_prefix: ⚠️ {error}
+    empty_after_clean: ⚠️ Насловот е празен по чистењето. Користете печатливи знаци.
+    set_to: '✏️ Поставен наслов на сесијата: **{title}**'
+    not_found: Сесијата не е пронајдена во базата на податоци.
+    current_with_title: '📌 Сесија: `{session_id}`
+
+      Наслов: **{title}**'
+    current_no_title: '📌 Сесија: `{session_id}`
+
+      Нема поставен наслов. Употреба: `/title My Session Name`'
+  topic:
+    not_telegram_dm: Командата /topic е достапна само во приватни Telegram разговори.
+    no_session_db: Базата на податоци за сесии не е достапна.
+    unauthorized: Не сте овластени да ја користите командата /topic на овој бот.
+    restore_needs_topic: За да вратите сесија, прво креирајте или отворете Telegram тема, потоа испратете /topic <session-id> во таа тема. За да креирате нова тема, отворете All Messages и испратете било каква порака таму.
+    topics_disabled: 'Telegram темите сè уште не се овозможени за овој бот.
+
+
+      Како да ги овозможите:
+
+      1. Отворете @BotFather.
+
+      2. Изберете го вашиот бот.
+
+      3. Отворете Bot Settings → Threads Settings.
+
+      4. Вклучете Threaded Mode и проверете дали на корисниците им е дозволено да креираат нови нишки.
+
+
+      Потоа повторно испратете /topic.'
+    topics_user_disallowed: 'Telegram темите се овозможени, но на корисниците не им е дозволено да креираат теми.
+
+
+      Отворете @BotFather → изберете го вашиот бот → Bot Settings → Threads Settings, потоа исклучете ''Disallow users to create new threads''.
+
+
+      Потоа повторно испратете /topic.'
+    enable_failed: 'Не успеа овозможувањето на режимот за Telegram теми: {error}'
+    bound_status: 'Оваа тема е поврзана со:
+
+      Сесија: {label}
+
+      ID: {session_id}
+
+
+      Користете /new за да ја замените оваа тема со нова сесија.
+
+      За паралелна работа, отворете All Messages и испратете порака таму за да креирате друга тема.'
+    thread_ready: 'Овозможени се Telegram теми за повеќе сесии.
+
+
+      Оваа тема ќе се користи како независна OpenAmer сесија. Користете /new за да ја замените тековната сесија на оваа тема. За паралелна работа, отворете All Messages и испратете порака таму за да создадете друга тема.'
+    untitled_session: Неименувана сесија
+  undo:
+    nothing: Нема што да се поништи.
+    removed: '↩️ Вратив {turns} ред(ови) ({count} порака(и)).
+
+      Резервна копија во: "{preview}"
+
+      Копирајте/уредете го текстот погоре и испратете го за повторно поставување на барањето од тука.'
+    invalid_count: Невалиден број "{arg}" — користете /undo или /undo N.
+  update:
+    platform_not_messaging: ✗ /update е достапно само од платформи за пораки. Извршете `openamer update` од терминалот.
+    not_git_repo: ✗ Не е git репозиториум — не може да се ажурира.
+    openamer_cmd_not_found: ✗ Не можеше да се најде командата `openamer`. OpenAmer работи, но командата за ажурирање не можеше да ја најде извршната датотека на PATH или преку тековниот Python интерпретер. Обидете се рачно да извршите `openamer update` во вашиот терминал.
+    start_failed: '✗ Не успеа да се започне ажурирањето: {error}'
+    starting: 🧬 Започнувам ажурирање на OpenAmer… Напредокот ќе го пренесувам овде.
+  usage:
+    rate_limits: ⏱️ **Ограничувања на стапката:** {state}
+    header_session: 📊 **Употреба на токени во сесијата**
+    label_model: 'Модел: `{model}`'
+    label_input_tokens: 'Влезни токени: {count}'
+    label_cache_read: 'Токени прочитани од кеш: {count}'
+    label_cache_write: 'Токени за запишување во кеш: {count}'
+    label_output_tokens: 'Излезни токени: {count}'
+    label_total: 'Вкупно: {count}'
+    label_api_calls: 'API повици: {count}'
+    label_cost: 'Трошок: {prefix}${amount}'
+    label_cost_included: 'Трошок: вклучен'
+    label_context: 'Контекст: {used} / {total} ({pct}%)'
+    label_compressions: 'Компресии: {count}'
+    breakdown_header: 🧩 **Разложување на контекстот** _(проценето)_
+    breakdown_line: '• {label}: ~{count} ({pct}%)'
+    breakdown_cat_system_prompt: Системски промпт
+    breakdown_cat_tool_definitions: Дефиниции на алатки
+    breakdown_cat_rules: Правила
+    breakdown_cat_skills: Вештини
+    breakdown_cat_mcp: MCP
+    breakdown_cat_subagent_definitions: Дефиниции на субагенти
+    breakdown_cat_memory: Меморија
+    breakdown_cat_conversation: Разговор
+    header_session_info: 📊 **Информации за сесијата**
+    label_messages: 'Пораки: {count}'
+    label_estimated_context: 'Проценет контекст: ~{count} токени'
+    detailed_after_first: _(Детална употреба достапна по првиот одговор на агентот)_
+    no_data: Нема достапни податоци за употребата во оваа сесија.
+    unknown_subcommand: 'Непозната поткоманда за /usage: `{args}`. Обидете се со `/usage` или `/usage reset [--force]`.'
+    reset_wrong_provider: Ресетирањата на банкираното користење се достапни само на провајдерот openai-codex. Прво префрлете се со `/model`.
+  credits:
+    not_logged_in: Не сте најавени во OpenAmer Portal. Најавете се за да го видите салдото на кредитот и да го надополните.
+  verbose:
+    not_enabled: "Командата `/verbose` не е овозможена за платформи за пораки.\n\nОвозможете ја во `config.yaml`:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"
+    mode_off: '⚙️ Напредок на алатките: **ИСКЛУЧЕНО** — не се прикажува активност на алатките.'
+    mode_new: '⚙️ Напредок на алатките: **НОВО** — се прикажува кога алатката се менува (должина на преглед: `display.tool_preview_length`, стандардно 40).'
+    mode_all: '⚙️ Напредок на алатките: **СИТЕ** — се прикажува секој повик на алатка (должина на преглед: `display.tool_preview_length`, стандардно 40).'
+    mode_verbose: '⚙️ Напредок на алатките: **ОПШИРНО** — секој повик на алатка со целосни аргументи.'
+    mode_log: '⚙️ Напредок на алатките: **ЛОГ** — тивко во разговорот; повиците на алатките се запишуваат во ~/.openamer/logs/tool_calls.log.'
+    saved_suffix: _(зачувано за **{platform}** — стапува во сила при следната порака)_
+    save_failed: '_(не можеше да се зачува во конфигурацијата: {error})_'
+  voice:
+    enabled_voice_only: 'Гласовниот режим е овозможен.
+
+      Ќе одговарам со глас кога ќе испратите гласовни пораки.
+
+      Користете /voice tts за да добивате гласовни одговори за сите пораки.'
+    disabled_text: Гласовниот режим е исклучен. Одговори само со текст.
+    tts_enabled: 'Auto-TTS е овозможен.
+
+      Сите одговори ќе вклучуваат гласовна порака.'
+    status_mode: 'Гласен режим: {label}'
+    status_channel: 'Гласовен канал: #{channel}'
+    status_participants: 'Учесници: {count}'
+    status_member: '  - {name}{status}'
+    speaking: ' (говори)'
+    enabled_short: Гласниот режим е овозможен.
+    disabled_short: Гласниот режим е оневозможен.
+    label_off: Исклучено (само текст)
+    label_voice_only: Вклучено (гласовен одговор на гласовни пораки)
+    label_all: TTS (гласовен одговор на сите пораки)
+    help: '{toggle}
+
+
+      **Како функционира /voice**
+
+      • `/voice on` — гласовен одговор кога ќе испратите гласовна порака
+
+      • `/voice tts` — гласовен одговор на *секоја* порака
+
+      • `/voice off` — назад кон одговори само со текст
+
+      • `/voice status` — прикажи го тековниот режим
+
+      • `/voice` (без аргумент) — брзо префрлање помеѓу вклучено и исклучено{channels}'
+    help_channels: '
+
+
+      **Гласовни канали во живо (Discord)**
+
+      • Придружете се на гласовен канал прво, потоа `/voice channel` — ќе се приклучам, ќе слушам и ќе ги изговарам моите одговори
+
+      • `/voice leave` — исклучување од гласовниот канал'
+  yolo:
+    disabled: ⚠️ YOLO режимот е **ИСКЛУЧЕН** за оваа сесија — опасните команди ќе бараат одобрување.
+    enabled: ⚡ YOLO режимот е **ВКЛУЧЕН** за оваа сесија — сите команди се автоматски одобрени. Користете со внимание.
+  shared:
+    session_db_unavailable: Базата на податоци за сесијата не е достапна.
+    session_db_unavailable_prefix: Базата на податоци за сесијата не е достапна
+    session_not_found: Сесијата не е пронајдена во базата на податоци.
+    warn_passthrough: ⚠️ {error}

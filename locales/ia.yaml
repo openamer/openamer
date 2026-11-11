@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] un vice  |  [s] session  |  [d] negar'
   prompt_long: '      Selection [o/s/a/D]: '
   prompt_short: '      Selection [o/s/D]: '
-  choose_smart_deny: '      [o] un vice  |  [d] negar'
-  prompt_smart_deny: '      Selection [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]n vice  |  [n]egar'
+  prompt_smart_deny: '      Selection [u/N]: '
+  smart_deny_once_inputs: u,un vice
+  smart_deny_deny_inputs: n,negar
   timeout: '      ⏱ Tempore excedite - commando refusate'
   allowed_once: '      ✓ Permittite un vice'
   allowed_session: '      ✓ Permittite pro iste session'

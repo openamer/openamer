@@ -10,8 +10,8 @@ approval:
   prompt_short: '      چونڊ [o/s/D]: '
   choose_smart_deny: '      [o] هڪ ڀيرو  |  [d] انڪار'
   prompt_smart_deny: '      چونڊ [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  smart_deny_once_inputs: o,هڪ ڀيرو
+  smart_deny_deny_inputs: d,انڪار
   timeout: '      ⏱ ٽائيم آئوٽ - ڪمانڊ انڪار ڪيو پيو وڃي'
   allowed_once: '      ✓ هڪ ڀيرو اجازت ڏني وئي'
   allowed_session: '      ✓ هن سيشن لاءِ اجازت ڏني وئي'
@@ -567,39 +567,39 @@ gateway:
       سڀني جوابن ۾ وائس پيغام شامل هوندو.'
     status_mode: 'وائس موڊ: {label}'
     status_channel: 'وائس چينل: #{channel}'
-    status_participants: 'Participants: {count}'
+    status_participants: 'شرڪت ڪندڙ: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
-    label_voice_only: On (voice reply to voice messages)
-    label_all: TTS (voice reply to all messages)
+    speaking: ' (ڳالهائي رهيو آهي)'
+    enabled_short: وائس موڊ فعال ڪيو ويو.
+    disabled_short: وائس موڊ غير فعال ڪيو ويو.
+    label_off: بند (صرف متن)
+    label_voice_only: آن (وائس پيغامن جو وائس جواب)
+    label_all: TTS (سڀني پيغامن جو وائس جواب)
     help: '{toggle}
 
 
-      **How /voice works**
+      **/voice ڪيئن ڪم ڪري ٿو**
 
-      • `/voice on` — voice reply when you send a voice message
+      • `/voice on` — وائس پيغام موڪلڻ تي وائس جواب
 
-      • `/voice tts` — voice reply to *every* message
+      • `/voice tts` — *هر* پيغام جو وائس جواب
 
-      • `/voice off` — back to text-only replies
+      • `/voice off` — صرف متن وارن جوابن ڏانهن واپس
 
-      • `/voice status` — show the current mode
+      • `/voice status` — موجوده موڊ ڏيکاريو
 
-      • `/voice` (no argument) — quick toggle between on and off{channels}'
+      • `/voice` (ڪو به آرگيومينٽ ناهي) — آن ۽ آف جي وچ ۾ جلدي ٽوگل{channels}'
     help_channels: '
 
 
-      **Live voice channels (Discord)**
+      **لايو آواز چينل (Discord)**
 
-      • Join a voice channel first, then `/voice channel` — I''ll join, listen, and speak my replies
+      • پهрин آواز چينل جوين ڪريو، پوء `/voice channel` — مان جوين ويندڙ، سن ويندڙ، ۽ منهنجو جواب بولين ويندڙ
 
-      • `/voice leave` — disconnect from the voice channel'
+      • `/voice leave` — آواز چينل کان قطع ڪريو'
   yolo:
-    disabled: ⚠️ YOLO mode **OFF** for this session — dangerous commands will require approval.
-    enabled: ⚡ YOLO mode **ON** for this session — all commands auto-approved. Use with caution.
+    disabled: ⚠️ YOLO موڊ **OFF** اس سيشن لاءِ — خطرناڪ هڪم منظوري پيٽي ويندڙ.
+    enabled: ⚡ YOLO موڊ **ON** اس سيشن لاءِ — سڀ هڪم آٽو منظور. احتياط سان استعمال ڪريو.
   shared:
     session_db_unavailable: سيشن ڊيٽابيس دستياب ناهي.
     session_db_unavailable_prefix: سيشن ڊيٽابيس دستياب ناهي

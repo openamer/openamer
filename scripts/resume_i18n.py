@@ -14,7 +14,7 @@ import sys
 import time
 
 REPO = Path(__file__).resolve().parents[1]
-HOME = Path(os.environ.get("OPENAMER_HOME") or Path.home() / ".openamer")
+HOME = Path(os.environ.get("OPENAMER_HOME") or (Path.home() / "AppData" / "Local" / "openamer-laptop"))
 
 
 def main() -> int:

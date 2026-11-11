@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] unha vez  |  [s] sesión  |  [d] denegar'
   prompt_long: '      Elección [o/s/a/D]: '
   prompt_short: '      Elección [o/s/D]: '
-  choose_smart_deny: '      [o] unha vez  |  [d] denegar'
-  prompt_smart_deny: '      Elección [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [u]nha vez  |  [d]enegar'
+  prompt_smart_deny: '      Elección [u/D]: '
+  smart_deny_once_inputs: u,unha vez
+  smart_deny_deny_inputs: d,denegar
   timeout: '      ⏱ Tempo de espera esgotado - denegando o comando'
   allowed_once: '      ✓ Permitido unha vez'
   allowed_session: '      ✓ Permitido para esta sesión'

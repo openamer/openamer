@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] sekali  |  [s] sesi  |  [d] tolak'
   prompt_long: '      Pilihan [o/s/a/D]: '
   prompt_short: '      Pilihan [o/s/D]: '
-  choose_smart_deny: '      [o] sekali  |  [d] tolak'
-  prompt_smart_deny: '      Pilihan [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [s]ekali  |  [t]olak'
+  prompt_smart_deny: '      Pilihan [s/T]: '
+  smart_deny_once_inputs: s,sekali
+  smart_deny_deny_inputs: t,tolak
   timeout: '      ⏱ Tamat masa - menolak perintah'
   allowed_once: '      ✓ Dibenarkan sekali'
   allowed_session: '      ✓ Dibenarkan untuk sesi ini'
@@ -143,7 +143,7 @@ gateway:
       _(berkuat kuasa pada mesej seterusnya)_'
     session_only: '⚡ ✓ Pemprosesan Keutamaan: **{label}** (sesi ini sahaja)'
     label_fast: PANTAS
-    label_normal: NORMAL
+    label_normal: BIASA
     status_fast: pantas
     status_normal: biasa
     picker_title: '⚡ **Pemprosesan Keutamaan**
@@ -569,10 +569,10 @@ gateway:
     status_channel: 'Saluran suara: #{channel}'
     status_participants: 'Peserta: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (sedang bercakap)'
+    enabled_short: Mod suara diaktifkan.
+    disabled_short: Mod suara dinyahaktifkan.
+    label_off: Tutup (teks sahaja)
     label_voice_only: Hidup (balasan suara untuk mesej suara)
     label_all: TTS (balasan suara untuk semua mesej)
     help: '{toggle}

@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] omurundi umwe  |  [s] omukandi  |  [d] okutinda'
   prompt_long: '      Omuhito [o/s/a/D]: '
   prompt_short: '      Omuhito [o/s/D]: '
-  choose_smart_deny: '      [o] omurundi umwe  |  [d] okutinda'
-  prompt_smart_deny: '      Omuhito [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [o]murundi umwe  |  [o]kutinda'
+  prompt_smart_deny: '      Omuhito [o/O]: '
+  smart_deny_once_inputs: o,omurundi umwe
+  smart_deny_deny_inputs: o,okutinda
   timeout: '      ⏱ Orure rwa pu - okutinda ombekero'
   allowed_once: '      ✓ Kwa pitikwa omurundi umwe'
   allowed_session: '      ✓ Kwa pitikwa komukandi uu'
@@ -142,8 +142,8 @@ gateway:
 
       _(ma toko okukorera kombunikiro ndja landa)_'
     session_only: '⚡ ✓ Priority Processing: **{label}** (omukando mbwi uriri)'
-    label_fast: FAST
-    label_normal: NORMAL
+    label_fast: KAVIHE
+    label_normal: KAZIKO
     status_fast: haraka
     status_normal: otjisemba
     picker_title: '⚡ **Okuungura kwomuhinda**
@@ -424,9 +424,9 @@ gateway:
     matrix_scope_room: '  ondjuwo: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
-    session_id: '**Session ID:** `{session_id}`'
+    matrix_scope_mode: '  murangi wosesi: {scope}'
+    matrix_scope_key: '  kavivi ya sesi: {session_key}'
+    session_id: '**ID ya Sesione:** `{session_id}`'
     title: '**Omutwe:** {title}'
     created: '**Ya zikwa:** {timestamp}'
     last_activity: '**Oviungura vyakukuta:** {timestamp}'

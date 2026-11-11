@@ -38,25 +38,10 @@ MIN_SHARE = 1.0
 
 
 def _pid_alive(pid: int) -> bool:
-    """True when the pid exists. Windows has no signal-0; use OpenProcess."""
-    if os.name == "nt":
-        import ctypes
-        PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
-        STILL_ACTIVE = 259
-        h = ctypes.windll.kernel32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
-        if not h:
-            return False
-        try:
-            code = ctypes.c_ulong()
-            ctypes.windll.kernel32.GetExitCodeProcess(h, ctypes.byref(code))
-            return code.value == STILL_ACTIVE
-        finally:
-            ctypes.windll.kernel32.CloseHandle(h)
-    try:
-        os.kill(pid, 0)
-        return True
-    except OSError:
-        return False
+    """Query process existence portably without sending a signal."""
+    import psutil
+
+    return pid > 0 and psutil.pid_exists(pid)
 
 
 def _worker_alive(record: dict, target: str) -> bool:
@@ -74,6 +59,22 @@ def _worker_alive(record: dict, target: str) -> bool:
                    for arg in proc.cmdline()[1:] if not arg.startswith("-"))
     except (psutil.Error, ValueError, KeyError, OSError):
         return False
+
+
+def worker_record(proc, locales: list[str], log: Path) -> dict:
+    """Bookkeeping entry for one spawned worker.
+
+    The creation time is what makes the identity check real: a recycled PID from
+    before the reboot passes a bare existence test, so the timestamp has to be
+    persisted at spawn time, not inferred later.
+    """
+    created = None
+    try:
+        import psutil
+        created = psutil.Process(proc.pid).create_time()
+    except Exception:  # psutil missing or the child already exited
+        created = None
+    return {"pid": proc.pid, "locales": locales, "log": str(log), "created": created}
 
 
 def status(target: str = "cli") -> int:
@@ -179,7 +180,7 @@ def main() -> int:
         else:
             kwargs["start_new_session"] = True
         proc = subprocess.Popen(cmd, **kwargs)
-        workers.append({"pid": proc.pid, "locales": q, "log": str(log)})
+        workers.append(worker_record(proc, q, log))
         print(f"  started pid {proc.pid}: {len(q)} locales -> {log.name}")
 
     pidfile.write_text(json.dumps({

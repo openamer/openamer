@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] jednom  |  [s] sesija  |  [d] odbij'
   prompt_long: '      Izbor [o/s/a/D]: '
   prompt_short: '      Izbor [o/s/D]: '
-  choose_smart_deny: '      [o] jednom  |  [d] odbij'
-  prompt_smart_deny: '      Izbor [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [j]ednom  |  [o]dbij'
+  prompt_smart_deny: '      Izbor [j/O]: '
+  smart_deny_once_inputs: j,jednom
+  smart_deny_deny_inputs: o,odbij
   timeout: '      ⏱ Isteklo vreme - odbijam komandu'
   allowed_once: '      ✓ Dozvoljeno jednom'
   allowed_session: '      ✓ Dozvoljeno za ovu sesiju'

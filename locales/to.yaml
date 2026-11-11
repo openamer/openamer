@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] kamwi  |  [s] seshoni  |  [d] kukaka'
   prompt_long: '      Kusala [o/s/a/D]: '
   prompt_short: '      Kusala [o/s/D]: '
-  choose_smart_deny: '      [o] kamwi  |  [d] kukaka'
-  prompt_smart_deny: '      Kusala [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [k]amwi  |  [k]ukaka'
+  prompt_smart_deny: '      Kusala [k/K]: '
+  smart_deny_once_inputs: k,kamwi
+  smart_deny_deny_inputs: k,kukaka
   timeout: '      ⏱ Ntha yakupwa - kukaka kulaela'
   allowed_once: '      ✓ Kuzumisyigwa kamwi'
   allowed_session: '      ✓ Kuzumisyigwa ku seshoni eeyi'

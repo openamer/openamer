@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] eins  |  [s]essie  |  [d] weiger'
   prompt_long: '      Keus [o/s/a/D]: '
   prompt_short: '      Keus [o/s/D]: '
-  choose_smart_deny: '      [o] eins  |  [d] weiger'
-  prompt_smart_deny: '      Keus [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [e]ins  |  [w]eiger'
+  prompt_smart_deny: '      Keus [e/W]: '
+  smart_deny_once_inputs: e,eins
+  smart_deny_deny_inputs: w,weiger
   timeout: '      ⏱ Tiedslimiet - opdrach weigere'
   allowed_once: '      ✓ Toegestaan eins'
   allowed_session: '      ✓ Toegestaan veur deze sessie'
@@ -29,7 +29,7 @@ gateway:
   model:
     error_prefix: 'Fout: {error}'
     switched: Model ómgesjakeld nao `{model}`
-    provider_label: 'Provider: {provider}'
+    provider_label: 'Aanbieder: {provider}'
     context_label: 'Konteks: {tokens} tokens'
     max_output_label: 'Max oetvoer: {tokens} tokens'
     cost_label: 'Koste: {cost}'
@@ -424,14 +424,14 @@ gateway:
     matrix_scope_room: '  kamer: {room}'
     matrix_scope_room_id: '  room_id: {room_id}'
     matrix_scope_thread: '  thread_id: {thread_id}'
-    matrix_scope_mode: '  session_scope: {scope}'
-    matrix_scope_key: '  session_key: {session_key}'
+    matrix_scope_mode: '  sessie_omfang: {scope}'
+    matrix_scope_key: '  sessie_sleutel: {session_key}'
     session_id: '**Sessie-ID:** `{session_id}`'
     title: '**Titel:** {title}'
     created: '**Aangemaak:** {timestamp}'
     last_activity: '**Lèste activiteit:** {timestamp}'
-    model: '**Model:** `{model}`'
-    model_provider: '**Model:** `{model}` ({provider})'
+    model: '**Modell:** `{model}`'
+    model_provider: '**Modell:** `{model}` ({provider})'
     context: '**Konteks:** {used} / {total} ({pct}%)'
     context_used: '**Konteks:** ~{used} tokens'
     tokens: '**Cumulatieve API-tokens (bie elke oproep opnuuj versjik):** {tokens}'
@@ -516,7 +516,7 @@ gateway:
   usage:
     rate_limits: ⏱️ **Rate-limiete:** {state}
     header_session: 📊 **Tokenverbruuk van de sessie**
-    label_model: 'Model: `{model}`'
+    label_model: 'Modell: `{model}`'
     label_input_tokens: 'Invoertokens: {count}'
     label_cache_read: 'Cache-leestokens: {count}'
     label_cache_write: 'Cache-sjrieftokens: {count}'
@@ -569,10 +569,10 @@ gateway:
     status_channel: 'Spraakkanaal: #{channel}'
     status_participants: 'Deilnummers: {count}'
     status_member: '  - {name}{status}'
-    speaking: ' (speaking)'
-    enabled_short: Voice mode enabled.
-    disabled_short: Voice mode disabled.
-    label_off: Off (text only)
+    speaking: ' (sprekend)'
+    enabled_short: Stemmodus ingeschakeld.
+    disabled_short: Stemmodus uitgezet.
+    label_off: Uut (alleen tekst)
     label_voice_only: Aan (stöm-antwoord op stömbèrchte)
     label_all: TTS (stöm-antwoord op alle bèrchte)
     help: '{toggle}

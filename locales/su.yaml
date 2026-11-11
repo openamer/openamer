@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] sakali  |  [s] sési  |  [d] nolak'
   prompt_long: '      Pilihan [o/s/a/D]: '
   prompt_short: '      Pilihan [o/s/D]: '
-  choose_smart_deny: '      [o] sakali  |  [d] nolak'
-  prompt_smart_deny: '      Pilihan [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [s]akali  |  [n]olak'
+  prompt_smart_deny: '      Pilihan [s/N]: '
+  smart_deny_once_inputs: s,sakali
+  smart_deny_deny_inputs: n,nolak
   timeout: '      ⏱ Waktu béak - nolak paréntah'
   allowed_once: '      ✓ Diidinan sakali'
   allowed_session: '      ✓ Diidinan pikeun sési ieu'

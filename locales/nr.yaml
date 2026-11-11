@@ -8,10 +8,10 @@ approval:
   choose_short: '      [o] kanye  |  [s] isikhathi  |  [d] ala'
   prompt_long: '      Ukukhetha [o/s/a/D]: '
   prompt_short: '      Ukukhetha [o/s/D]: '
-  choose_smart_deny: '      [o] kanye  |  [d] ala'
-  prompt_smart_deny: '      Ukukhetha [o/D]: '
-  smart_deny_once_inputs: o,once
-  smart_deny_deny_inputs: d,deny
+  choose_smart_deny: '      [k]anye  |  [a]la'
+  prompt_smart_deny: '      Ukukhetha [k/A]: '
+  smart_deny_once_inputs: k,kanye
+  smart_deny_deny_inputs: a,ala
   timeout: '      ⏱ Isikhathi siphelile - kuyaliwa umyalelo'
   allowed_once: '      ✓ Kuvunyelwe kanye'
   allowed_session: '      ✓ Kuvunyelwe kulesi sikhathi'
