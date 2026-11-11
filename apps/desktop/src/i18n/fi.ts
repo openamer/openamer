@@ -1918,7 +1918,7 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       ageNow: 'nyt',
       ageDay: 'pv',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'min',
     },
     dateDivider: {
       today: 'Aiemmin tänään',
