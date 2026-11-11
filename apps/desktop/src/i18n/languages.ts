@@ -1116,18 +1116,12 @@ export const LOCALE_OPTIONS = [
     configValue: 'zu'
   },
   {
-      id: 'torbeski',
-      name: 'Torbeški',
-      englishName: 'Torbeski',
-      configValue: 'torbeski'
-    },
-    {
-      id: 'nas',
-      name: 'Nasinski',
-      englishName: 'Nasinski',
-      configValue: 'nas'
-    }
-    ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[];
+    id: 'torbeski',
+    name: 'Torbeški',
+    englishName: 'Torbeski',
+    configValue: 'torbeski'
+  }
+] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[];
 
 // `name` is the endonym (native name) shown in the picker so users recognize
 // their language regardless of the current UI language. No country flags:
