@@ -1542,9 +1542,9 @@ export const ko = defineLocale({
     copy: '복사',
     deliverOptions: {
       log: '로그',
-      telegram: 'Telegram',
-      discord: 'Discord',
-      slack: 'Slack',
+      telegram: '텔레그램',
+      discord: '디스코드',
+      slack: '슬랙',
       email: '이메일',
       github_comment: 'GitHub 댓글',
     },

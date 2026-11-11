@@ -1,0 +1,5 @@
+{
+ "settings.appearance.product": "Product",
+ "settings.appearance.technical": "Technical",
+ "shell.statusbar.desktopVersion": "OpenAmer Desktop v${version}"
+}

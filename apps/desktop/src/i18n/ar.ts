@@ -1918,7 +1918,7 @@ export const ar = defineLocale({
       ageNow: 'الآن',
       ageDay: 'يوم',
       ageHour: 'ساعة',
-      ageMin: 'm',
+      ageMin: 'د',
     },
     dateDivider: {
       today: 'في وقت سابق اليوم',
