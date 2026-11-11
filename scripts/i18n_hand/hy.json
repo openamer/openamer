@@ -1,4 +1,0 @@
-{
- "shell.statusbar.commit": "commit ${sha}",
- "shell.statusbar.desktopVersion": "OpenAmer Desktop v${version}"
-}

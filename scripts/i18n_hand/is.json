@@ -1,7 +1,0 @@
-{
- "settings.about.branchCommit": "Branch ${branch} · Commit ${commit}",
- "statusStack.coding.scopeBranch": "Branch",
- "shell.statusbar.desktopVersion": "OpenAmer Desktop v${version}",
- "shell.statusbar.commit": "commit ${sha}",
- "shell.statusbar.branch": "branch ${branch}"
-}

@@ -1,7 +1,0 @@
-{
- "settings.plugins.kinds.runtime": "runtime",
- "webhooks.deliverOptions.log": "Log",
- "sidebar.row.ageMin": "m",
- "assistant.tool.prefixes.browser": "Browser",
- "rightSidebar.terminals": "Terminals"
-}
