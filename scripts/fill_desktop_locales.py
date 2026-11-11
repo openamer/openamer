@@ -215,6 +215,10 @@ MACHINE_TOKENS = frozenset({
     "MCP", "CLI", "TUI", "SDK", "GPU", "CPU", "LLM", "OS", "RPC", "IDE",
     # Product names stay in their own spelling in every language.
     "Discord", "Slack", "Telegram", "WhatsApp", "Signal", "Matrix",
+    # Mode / field identifiers that are shown to the user but are not prose:
+    # "env" names an environment-variable field, "YOLO" is the mode name, and
+    # "A–Z" is the sort-direction label of an alphabet that has no translation.
+    "env", "YOLO", "A–Z",
 })
 
 # A Matrix user id ("@openamer:example.org") is a syntax example like a URL or a
@@ -225,14 +229,23 @@ MATRIX_ID_RE = re.compile(r"@[A-Za-z0-9._=-]+:[A-Za-z0-9.-]+")
 
 def machine_token(value: str) -> bool:
     """Conservative exemptions, not an uppercase/one-word prose heuristic."""
+    stripped = value.strip()
     return bool(
-        value in MACHINE_TOKENS
-        or not any(c.isalpha() for c in value)
-        or re.fullmatch(r"(?:https?://|/|[A-Za-z]:[\\/])\S+", value)
-        or re.fullmatch(r"`[^`]+`", value)
-        or HOTKEY_RE.fullmatch(value)
-        or MATRIX_ID_RE.fullmatch(value)
-        or re.fullmatch(r"(?:Enter|Escape|Esc|Tab|Backspace)", value)
+        stripped in MACHINE_TOKENS
+        # A machine token plus punctuation only ("URL…", "MCP:", "(API)").
+        or re.fullmatch(
+            r"(?:%s)[\s.…:!?()\[\]{}-]*" % "|".join(
+                re.escape(t) for t in sorted(MACHINE_TOKENS, key=len, reverse=True)),
+            stripped)
+        # A dotted identifier / file name ("publisher.extension",
+        # "openamer.config.yaml") is a syntax example, not prose.
+        or re.fullmatch(r"[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)+", stripped)
+        or not any(c.isalpha() for c in stripped)
+        or re.fullmatch(r"(?:https?://|/|[A-Za-z]:[\\/])\S+", stripped)
+        or re.fullmatch(r"`[^`]+`", stripped)
+        or HOTKEY_RE.fullmatch(stripped)
+        or MATRIX_ID_RE.fullmatch(stripped)
+        or re.fullmatch(r"(?:Enter|Escape|Esc|Tab|Backspace)", stripped)
     )
 
 

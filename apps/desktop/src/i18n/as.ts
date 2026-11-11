@@ -303,7 +303,7 @@ export const as = defineLocale({
       keybinds: 'কীবোৰ্ড চাৰ্টকাট',
       keysTools: 'সঁজুলি',
       keysSettings: 'ছেটিংছ',
-      mcp: 'MCP',
+      mcp: 'এমসিপি',
       archivedChats: 'আৰ্কাইভ কৰা চেট',
       about: 'সম্পৰ্কে',
       billing: 'বিলিং',
@@ -457,7 +457,7 @@ export const as = defineLocale({
       },
     },
     about: {
-      heading: 'OpenAmer Desktop',
+      heading: 'OpenAmer ডেস্কটপ',
       versionUnavailable: 'সংস্কৰণ উপলব্ধ নহয়',
       updates: 'আপডেটসমূহ',
       checkNow: 'এতিয়া পৰীক্ষা কৰক',
@@ -531,9 +531,9 @@ export const as = defineLocale({
       remoteTitle: 'দূৰৱৰ্তী গেটৱে',
       remoteDesc: 'এই ডেস্কটপ শ্বেলটো এটা দূৰৱৰ্তী OpenAmer বেকএণ্ডলৈ সংযোগ কৰক।',
       remoteAuthHint: 'হোষ্টেড গেটৱেসমূহে OAuth বা ব্যৱহাৰকাৰীনাম আৰু পাছৱৰ্ড ব্যৱহাৰ কৰে; স্ব-হোষ্টেডবোৰে ছেছন টোকেন ব্যৱহাৰ কৰিব পাৰে।',
-      cloudTitle: 'OpenAmer Cloud',
+      cloudTitle: 'OpenAmer ক্লাউড',
       cloudDesc: 'OpenAmer Cloud লৈ এবাৰ ছাইন ইন কৰি আপোনাৰ একাউণ্টৰ এজেণ্টসমূহৰ পৰা বাছনি কৰক — URL পে\'ষ্ট কৰাৰ প্ৰয়োজন নাই।',
-      cloudSignInTitle: 'OpenAmer Cloud',
+      cloudSignInTitle: 'OpenAmer ক্লাউড',
       cloudSignIn: 'OpenAmer Cloud লৈ ছাইন ইন কৰক',
       cloudSignedIn: 'OpenAmer Cloud লৈ ছাইন ইন কৰা হৈছে',
       cloudNeedsSignIn: 'আপোনাৰ একাউণ্টৰ এজেণ্টসমূহ আৱিষ্কাৰ কৰিবলৈ OpenAmer Cloud লৈ ছাইন ইন কৰক।',
@@ -729,7 +729,7 @@ export const as = defineLocale({
           hint: 'স্মাৰ্ট স্বয়ং-অনুমোদন',
         },
         mcp: {
-          label: 'MCP',
+          label: 'এমসিপি',
           hint: 'MCP সঁজুলি ৰাউটিং',
         },
         title_generation: {
@@ -844,7 +844,7 @@ export const as = defineLocale({
   skills: {
     tabSkills: 'দক্ষতা',
     tabToolsets: 'সঁজুলি',
-    tabMcp: 'MCP',
+    tabMcp: 'এমসিপি',
     tabHub: 'হাব চাওক',
     all: 'সকলো',
     searchSkills: 'দক্ষতা সন্ধান কৰক...',
@@ -1298,7 +1298,7 @@ export const as = defineLocale({
         help: 'পৰামৰ্শিত। @user:server ফৰ্মেটত কমাৰে পৃথক কৰা ব্যৱহাৰকাৰী ID।',
       },
       SIGNAL_HTTP_URL: {
-        label: 'Signal bridge URL',
+        label: 'Signal সেতু URL',
         placeholder: 'http://127.0.0.1:8080',
         help: 'চলি থকা signal-cli REST bridge ৰ URL।',
       },
@@ -2066,7 +2066,7 @@ export const as = defineLocale({
     copy: 'কপি',
     defaultModel: 'ডিফল্ট মডেল',
     freeTier: 'বিনামূলীয়া স্তৰ',
-    pro: 'Pro',
+    pro: 'প্রো',
     free: 'বিনামূলীয়া',
     change: 'সলনি কৰক',
     startChatting: 'আৰম্ভ কৰক',
@@ -2175,7 +2175,7 @@ export const as = defineLocale({
       contextUsagePanel: {
         categories: {
           conversation: 'কথোপকথন',
-          mcp: 'MCP',
+          mcp: 'এমসিপি',
           memory: 'স্মৃতি',
           rules: 'নিয়ম',
           skills: 'দক্ষতা',
@@ -2569,7 +2569,7 @@ export const as = defineLocale({
     desktopCommands: 'ডেস্কটপ কামাণ্ডসমূহ',
     yoloArmed: 'এই চেটৰ বাবে YOLO সক্ৰিয় কৰা হৈছে',
     yoloOff: 'YOLO বন্ধ',
-    yoloTitle: 'YOLO',
+    yoloTitle: 'Y-O-L-O',
     yoloToggleFailed: 'YOLO টগল কৰিব নোৱাৰি',
     unknownProfile: 'অজ্ঞাত প্ৰফাইল',
     setProfileFailed: 'প্ৰফাইল ছেট কৰিব নোৱাৰি',

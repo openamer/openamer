@@ -1917,7 +1917,7 @@ export const bg = defineLocale({
       ageNow: 'сега',
       ageDay: 'д',
       ageHour: 'ч',
-      ageMin: 'm',
+      ageMin: 'м',
     },
     dateDivider: {
       today: 'По-рано днес',
