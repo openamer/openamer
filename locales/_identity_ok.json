@@ -1,0 +1,52 @@
+{
+  "_comment": "English strings a locale legitimately spells identically. Machine tokens live in MACHINE_TOKENS instead. Each entry is a reviewed decision, not a heuristic.",
+  "az": [
+    "Model",
+    "Pro",
+    "Ultra",
+    "Minimal",
+    "Terminal"
+  ],
+  "tr": [
+    "Model"
+  ],
+  "ms": [
+    "Model",
+    "Terminal",
+    "Pro"
+  ],
+  "id": [
+    "Model",
+    "Terminal",
+    "Pro"
+  ],
+  "nl": [
+    "Model"
+  ],
+  "de": [
+    "Model"
+  ],
+  "sv": [
+    "Model"
+  ],
+  "no": [
+    "Model"
+  ],
+  "da": [
+    "Model"
+  ],
+  "af": [
+    "Model"
+  ],
+  "aa": [
+    "OpenAmer Cloud",
+    "OpenAmer Desktop",
+    "Pro",
+    "Webhooks"
+  ],
+  "av": [
+    "OpenAmer Cloud",
+    "Pro"
+  ],
+  "ak": []
+}

@@ -219,6 +219,9 @@ MACHINE_TOKENS = frozenset({
     # "env" names an environment-variable field, "YOLO" is the mode name, and
     # "A–Z" is the sort-direction label of an alphabet that has no translation.
     "env", "YOLO", "A–Z",
+    # A daemon name and a plugin-kind identifier: "Cron" is the scheduler's own
+    # name and "runtime" names a plugin kind, so both stay as they are.
+    "Cron", "runtime",
 })
 
 # A Matrix user id ("@openamer:example.org") is a syntax example like a URL or a
@@ -249,11 +252,38 @@ def machine_token(value: str) -> bool:
     )
 
 
-def validation_error(source: str, value: object) -> str | None:
+IDENTITY_FILE = REPO / "locales" / "_identity_ok.json"
+
+
+def identity_ok() -> dict[str, set[str]]:
+    """English strings a language legitimately spells the same way.
+
+    "Model" is "Model" in Azerbaijani, "Terminal" is "Terminal" in Malay. The
+    validator cannot tell that from an untranslated leftover, so it rejected
+    both - and the locale could never be reported complete. The list is explicit
+    and reviewable (locales/_identity_ok.json: locale -> [english source]) so an
+    exemption is always a decision, never a heuristic.
+    """
+    try:
+        raw = json.loads(IDENTITY_FILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return {code: set(values) for code, values in raw.items()
+            if isinstance(values, list)}
+
+
+IDENTITY_OK = identity_ok()
+
+
+def validation_error(source: str, value: object, code: str | None = None) -> str | None:
     """Validate both fresh responses and resumed data before counting coverage."""
     if not isinstance(value, str) or not value.strip():
         return "empty/non-string value"
-    if value.strip() == source.strip() and not machine_token(source.strip()):
+    if value.strip() == source.strip():
+        if machine_token(source.strip()):
+            return None
+        if code and source.strip() in IDENTITY_OK.get(code, ()):
+            return None
         return "unchanged English"
     if Counter(PLACEHOLDER_RE.findall(source)) != Counter(PLACEHOLDER_RE.findall(value)):
         return "placeholder drift"
@@ -268,7 +298,8 @@ def validation_error(source: str, value: object) -> str | None:
     return None
 
 
-def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict) -> dict[str, str]:
+def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict,
+                    code: str | None = None) -> dict[str, str]:
     """Translate a batch, keeping every item that passes validation.
 
     A chunk used to be all-or-nothing: one rejected item (an unchanged English
@@ -328,7 +359,7 @@ def translate_chunk(items: list[tuple[str, str]], lang_name: str, env: dict) -> 
             continue
         for i, (path, src) in enumerate(pending):
             got = obj.get(str(i))
-            reason = validation_error(src, got)
+            reason = validation_error(src, got, code)
             if reason:
                 print(f"    {lang_name}: {name} rejected index {i}: {reason}", flush=True)
                 continue
@@ -496,7 +527,7 @@ def run_locale(code: str, names: dict, en: dict, env: dict, args) -> None:
         for key, value in entries.items():
             if key not in en:
                 continue
-            reason = validation_error(en[key], value)
+            reason = validation_error(en[key], value, code)
             if reason:
                 print(f"    {code}: rejected {origin} {key!r}: {reason}; retrying", flush=True)
             else:
@@ -511,7 +542,7 @@ def run_locale(code: str, names: dict, en: dict, env: dict, args) -> None:
     merged = dict(have)
     print(f"  {code}: {len(todo)} literals in {len(chunks)} chunks", flush=True)
     with ThreadPoolExecutor(max_workers=WORKERS) as ex:
-        futs = {ex.submit(translate_chunk, c, names.get(code, code), env): c
+        futs = {ex.submit(translate_chunk, c, names.get(code, code), env, code): c
                 for c in chunks}
         done = 0
         for f in as_completed(futs):

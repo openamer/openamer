@@ -185,3 +185,14 @@ def test_prose_still_must_be_translated(fill):
     assert fill.validation_error("Settings", "Settings") == "unchanged English"
     assert fill.validation_error("Message (⌘↵ to commit)",
                                  "Message (⌘↵ to commit)") == "unchanged English"
+
+
+def test_identity_strings_need_an_explicit_per_locale_decision(fill):
+    """"Model" is "Model" in Azerbaijani - but only where that is recorded.
+
+    Without the recorded decision the locale could never be complete, and
+    without the locale argument nothing at all would be exempt.
+    """
+    assert fill.validation_error("Model", "Model", "az") is None
+    assert fill.validation_error("Model", "Model", "el") == "unchanged English"
+    assert fill.validation_error("Model", "Model") == "unchanged English"
