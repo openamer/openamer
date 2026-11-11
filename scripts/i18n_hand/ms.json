@@ -1,0 +1,14 @@
+{
+ "common.formatJson": "Format JSON",
+ "skills.edit": "Edit",
+ "cron.edit": "Edit cron",
+ "composer.queueEdit": "Edit",
+ "preview.edit": "Edit",
+ "webhooks.deliverOptions.log": "Log",
+ "sidebar.row.pin": "Pin",
+ "sidebar.projects.ideaLabel": "Idea",
+ "composer.folder": "Folder…",
+ "zones.templateGrid": "Grid",
+ "sidebar.row.ageMin": "m",
+ "shell.statusbar.desktopVersion": "OpenAmer Desktop v${version}"
+}
