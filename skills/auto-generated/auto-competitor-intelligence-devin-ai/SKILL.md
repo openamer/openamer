@@ -1,0 +1,25 @@
+---
+name: auto-competitor-intelligence-devin-ai
+description: "Recent Updates - Devin Docs — Vor 2 Tagen · The latest Devin updates: recently released features, improvements, and bug fixes across the product, upda"
+auto_generated: true
+created: 2026-09-11
+source_insight: "Competitor intelligence: Devin AI agent new features 2026"
+status: draft
+fitness_score: 0
+trials: 0
+wins: 0
+---
+
+# Auto Competitor Intelligence Devin Ai
+
+## Trigger
+Use when the agent encounters: Recent Updates - Devin Docs — Vor 2 Tagen · The latest Devin updates: recently released features, im
+
+## Verification
+- [ ] The skill produces the expected output for its domain
+- [ ] No errors in execution
+- [ ] Insight quality: actionable and specific
+
+## Notes
+Auto-generated from internet insight (Knowledge-to-Action pipeline).
+Darwin will trial this skill; it gets promoted only if it wins arena fights.

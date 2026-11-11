@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provenance Dashboard</title>
+<style>
+  :root {
+    --bg: #1a1a2e;
+    --surface: #16213e;
+    --surface2: #1f2b4a;
+    --text: #e0e0e0;
+    --text-dim: #8a8aa0;
+    --accent: #00d4aa;
+    --accent-dim: #009b7a;
+    --red: #e74c3c;
+    --green: #2ecc71;
+    --yellow: #f1c40f;
+    --badge-bg: #2a3a5c;
+    --border: #2a3a5c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 20px;
+    min-height: 100vh;
+  }
+  h1 { font-size: 1.8rem; margin-bottom: 6px; }
+  h1 small { font-size: 0.9rem; color: var(--text-dim); font-weight: normal; }
+  .subtitle { color: var(--text-dim); margin-bottom: 24px; font-size: 0.95rem; }
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;
+    align-items: center;
+  }
+  .controls label { font-size: 0.85rem; color: var(--text-dim); }
+  .controls select, .controls input {
+    background: var(--surface2); color: var(--text); border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 10px; font-size: 0.9rem;
+  }
+  .controls input { min-width: 180px; }
+  .stats {
+    display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 18px; flex: 0 0 auto; min-width: 140px;
+  }
+  .stat-card .num { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+  .stat-card .label { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .session-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .session-header {
+    background: var(--surface2); padding: 12px 16px;
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    cursor: pointer; user-select: none;
+  }
+  .session-header:hover { filter: brightness(1.1); }
+  .session-header .sid { font-size: 0.85rem; font-family: monospace; color: var(--accent); }
+  .session-header .smeta { font-size: 0.8rem; color: var(--text-dim); }
+  .session-header .arrow { color: var(--text-dim); font-size: 0.8rem; transition: transform 0.2s; }
+  .session-header .arrow.open { transform: rotate(180deg); }
+  .session-body { padding: 12px 16px; display: none; }
+  .session-body.open { display: block; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; padding: 8px 10px; background: var(--surface2); color: var(--text-dim); font-weight: 600; border-bottom: 2px solid var(--border); white-space: nowrap; }
+  td { padding: 6px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(0,212,170,0.04); }
+
+  .badge {
+    display: inline-block; background: var(--badge-bg); color: var(--accent);
+    border-radius: 4px; padding: 2px 7px; font-size: 0.75rem; font-family: monospace;
+  }
+  .badge.err { color: var(--red); }
+  .badge.ok { color: var(--green); background: rgba(46,204,113,0.15); }
+  .dur-bar {
+    display: inline-block; height: 10px; border-radius: 5px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+    min-width: 6px; vertical-align: middle;
+  }
+  .dur-bar.slow { background: linear-gradient(90deg, var(--yellow), var(--red)); }
+
+  .filter-count { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 8px; }
+
+  .no-data { text-align: center; padding: 60px 20px; color: var(--text-dim); }
+  .no-data h2 { font-size: 1.3rem; margin-bottom: 8px; }
+  .error-banner {
+    background: rgba(231,76,60,0.15); border: 1px solid var(--red);
+    border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; color: var(--red);
+  }
+  .prompt-preview { color: var(--text-dim); font-size: 0.8rem; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ts-cell { font-size: 0.78rem; color: var(--text-dim); white-space: nowrap; font-family: monospace; }
+
+  @media (max-width: 768px) {
+    body { padding: 12px; }
+    .controls { flex-direction: column; align-items: stretch; }
+    .controls input { min-width: auto; }
+    .stat-card { min-width: 100px; }
+    table { font-size: 0.78rem; }
+    td, th { padding: 4px 6px; }
+    .prompt-preview { max-width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>📋 Provenance Dashboard <small>Tool-Call-Audit</small></h1>
+<p class="subtitle" id="status">Lade Provenance-Daten …</p>
+
+<div id="error-container"></div>
+
+<div class="stats" id="stats"></div>
+
+<div class="controls">
+  <label>Tool: <select id="filter-tool"><option value="">Alle</option></select></label>
+  <label>Session: <select id="filter-session"><option value="">Alle</option></select></label>
+  <label>Status: <select id="filter-status"><option value="">Alle</option><option value="success">Erfolg</option><option value="error">Fehler</option></select></label>
+  <label>Suche: <input id="filter-search" type="text" placeholder="Prompt/Result durchsuchen …"></label>
+</div>
+
+<div id="content"></div>
+
+<script>
+(async function() {
+  const BASE = '.';
+  const statusEl = document.getElementById('status');
+  const errorContainer = document.getElementById('error-container');
+  const contentEl = document.getElementById('content');
+  const statsEl = document.getElementById('stats');
+
+  // ─── Provenance JSON-Dateien laden ───────────────────────────────
+  async function loadData() {
+    // Versuche prov-*.json Dateien via index/listing zu finden
+    // Fallback: Benutzer kann Dateien per glob-artigem Mechanismus laden
+    // Wir probieren verschiedene Ansätze
+    
+    // Ansatz 1: Wir suchen nach prov-Dateien mit einem bekannten Prefix-Muster
+    // Da wir keine Server-Seite haben, listen wir via fetch auf bekannter Basis
+    
+    // Wir müssen die Dateien dynamisch finden - dafür nutzen wir fetch auf 
+    // einem einfachen JSON-Index-File, das wir neben dashboard.html ablegen
+    let indexResponse = await fetch(BASE + '/prov-index.json').catch(() => null);
+    let files = [];
+    
+    if (indexResponse && indexResponse.ok) {
+      const idx = await indexResponse.json();
+      files = idx.files || [];
+    }
+    
+    // Wenn kein Index existiert, versuche Einzel-Fetch auf bekannte Muster
+    // oder nutze die sessionStorage als Cache
+    if (files.length === 0) {
+      // Versuche prov-*.json via direkter URL-Liste zu laden
+      // Dafür müsste ein Directory Listing oder API existieren
+      // Fallback: Leere Liste - wir zeigen, dass ein Index nötig ist
+      console.warn('Kein prov-index.json gefunden. Bitte lege eine Datei mit {"files":["prov-...json",...]} an.');
+      return { allRecords: [], sessions: {} };
+    }
+    
+    const allRecords = [];
+    for (const fname of files) {
+      try {
+        const resp = await fetch(BASE + '/' + fname);
+        if (!resp.ok) continue;
+        const doc = await resp.json();
+        const records = doc.records || [];
+        for (const r of records) {
+          r._file = fname;
+          r._session_id = doc.session?.id || '';
+          r._session_start = doc.session?.start || '';
+        }
+        allRecords.push(...records);
+      } catch(e) {
+        console.warn('Fehler beim Laden von', fname, e);
+      }
+    }
+    
+    // Gruppiere nach Session
+    const sessions = {};
+    for (const r of allRecords) {
+      const sid = r._session_id || r.session_id || 'unknown';
+      if (!sessions[sid]) sessions[sid] = { id: sid, records: [], start: r._session_start || '' };
+      sessions[sid].records.push(r);
+    }
+    
+    return { allRecords, sessions };
+  }
+
+  // ─── Alternative: Versuche prov-*.json Dateien direkt zu laden ───
+  // Dies funktioniert wenn die Dateinamen bekannt sind oder wir
+  // eine Liste von Dateien erstellen können
+  async function discoverFiles() {
+    // Versuche eine Liste bekannter Dateien via fetch zu laden
+    // Da wir keine serverseitige Indizierung haben, ist der primäre Weg
+    // über prov-index.json. Für statischen Betrieb ohne Server erstellen
+    // wir eine Hilfsfunktion, die dashboard.html + prov-*.json im selben Ordner erwartet
+    // und prov-index.json als Manifest nutzt.
+    
+    const indexUrl = BASE + '/prov-index.json';
+    try {
+      const resp = await fetch(indexUrl);
+      if (resp.ok) {
+        const idx = await resp.json();
+        return idx.files || [];
+      }
+    } catch(e) {}
+    return [];
+  }
+
+  // ─── Hauptlogik ──────────────────────────────────────────────────
+  const files = await discoverFiles();
+  
+  if (files.length === 0) {
+    statusEl.textContent = 'Keine prov-*.json Dateien gefunden. Lege prov-index.json mit Dateiliste an.';
+    contentEl.innerHTML = `
+      <div class="no-data">
+        <h2>📭 Keine Provenance-Daten</h2>
+        <p>Erzeuge prov-index.json im selben Ordner mit dem Inhalt:
+        <code style="display:block;margin-top:8px;background:#16213e;padding:12px;border-radius:6px;">{"files":["prov-abc123-final.json","prov-def456-batch-20250101.json"]}</code></p>
+        <p style="margin-top:8px;">Die Dateien müssen im selben Ordner wie dashboard.html liegen.</p>
+      </div>`;
+    return;
+  }
+
+  const allRecords = [];
+  const sessions = {};
+
+  for (const fname of files) {
+    try {
+      const resp = await fetch(BASE + '/' + fname);
+      if (!resp.ok) continue;
+      const doc = await resp.json();
+      if (!doc || !doc.records) continue;
+      const sid = doc.session?.id || fname;
+      if (!sessions[sid]) {
+        sessions[sid] = { id: sid, records: [], start: doc.session?.start || '', end: doc.session?.end || '' };
+      }
+      for (const r of doc.records) {
+        r._file = fname;
+        r._session_id = sid;
+        r._session_start = doc.session?.start || '';
+        sessions[sid].records.push(r);
+      }
+      allRecords.push(...(doc.records || []));
+    } catch(e) {
+      console.warn('Fehler bei', fname, e);
+    }
+  }
+
+  // Sortiere Records nach start
+  allRecords.sort((a, b) => (a.start || '').localeCompare(b.start || ''));
+
+  const totalRecords = allRecords.length;
+  const totalSessions = Object.keys(sessions).length;
+  const totalErrors = allRecords.filter(r => r.exit_success === false).length;
+  const totalDuration = allRecords.reduce((s, r) => s + (r.duration_ms || 0), 0);
+
+  statusEl.textContent = `${totalRecords} Records in ${totalSessions} Sessions geladen`;
+
+  // Stats
+  statsEl.innerHTML = `
+    <div class="stat-card"><div class="num">${totalRecords}</div><div class="label">Records</div></div>
+    <div class="stat-card"><div class="num">${totalSessions}</div><div class="label">Sessions</div></div>
+    <div class="stat-card"><div class="num">${totalErrors}</div><div class="label">Fehler</div></div>
+    <div class="stat-card"><div class="num">${totalDuration > 1000 ? (totalDuration/1000).toFixed(1) + 's' : totalDuration.toFixed(0) + 'ms'}</div><div class="label">Gesamtdauer</div></div>
+  `;
+
+  // Filter-Controls befüllen
+  const toolSet = new Set();
+  const sessionSet = new Set();
+  allRecords.forEach(r => {
+    if (r.tool_name) toolSet.add(r.tool_name);
+    if (r._session_id) sessionSet.add(r._session_id);
+  });
+
+  const toolSelect = document.getElementById('filter-tool');
+  for (const t of [...toolSet].sort()) {
+    const opt = document.createElement('option');
+    opt.value = t; opt.textContent = t; toolSelect.appendChild(opt);
+  }
+
+  const sessionSelect = document.getElementById('filter-session');
+  for (const s of [...sessionSet].sort()) {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s.slice(0, 16) + '…';
+    sessionSelect.appendChild(opt);
+  }
+
+  // Filter-Funktion
+  function getFiltered() {
+    const ft = toolSelect.value;
+    const fs = sessionSelect.value;
+    const fst = document.getElementById('filter-status').value;
+    const fsearch = document.getElementById('filter-search').value.toLowerCase();
+
+    return allRecords.filter(r => {
+      if (ft && r.tool_name !== ft) return false;
+      if (fs && r._session_id !== fs) return false;
+      if (fst === 'success' && r.exit_success !== true) return false;
+      if (fst === 'error' && r.exit_success !== false) return false;
+      if (fsearch) {
+        const prompt = (r.prompt_snapshot || '').toLowerCase();
+        const result = (r.result_snapshot || '').toLowerCase();
+        const tool = (r.tool_name || '').toLowerCase();
+        if (!prompt.includes(fsearch) && !result.includes(fsearch) && !tool.includes(fsearch)) return false;
+      }
+      return true;
+    });
+  }
+
+  function render() {
+    const filtered = getFiltered();
+
+    // Gruppiere nach Session innerhalb der gefilterten Menge
+    const filteredSessions = {};
+    for (const r of filtered) {
+      const sid = r._session_id || 'unknown';
+      if (!filteredSessions[sid]) filteredSessions[sid] = { id: sid, records: [], start: r._session_start || '' };
+      filteredSessions[sid].records.push(r);
+    }
+
+    let html = `<div class="filter-count">${filtered.length} von ${totalRecords} Records angezeigt</div>`;
+
+    if (filtered.length === 0) {
+      html += '<div class="no-data"><h2>🔍 Keine Treffer</h2><p>Filter anpassen</p></div>';
+      contentEl.innerHTML = html;
+      return;
+    }
+
+    for (const [sid, sess] of Object.entries(filteredSessions)) {
+      const sorted = [...sess.records].sort((a, b) => (a.start || '').localeCompare(b.start || ''));
+      const recCount = sorted.length;
+      const errCount = sorted.filter(r => r.exit_success === false).length;
+      const startTime = sorted[0]?.start || '';
+      const endTime = sorted[sorted.length-1]?.start || '';
+
+      html += `<div class="session-card">
+        <div class="session-header" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.arrow').classList.toggle('open')">
+          <div>
+            <span class="sid">${sid.slice(0, 16)}</span>
+            <span class="smeta">${recCount} Calls${errCount > 0 ? `, ${errCount} ⚠️` : ''}</span>
+          </div>
+          <div>
+            <span class="smeta">${startTime.slice(0, 19).replace('T', ' ')}</span>
+            <span class="arrow">▼</span>
+          </div>
+        </div>
+        <div class="session-body open">
+          <table>
+            <thead><tr>
+              <th>#</th>
+              <th>Tool</th>
+              <th>Label</th>
+              <th>Dauer</th>
+              <th>Status</th>
+              <th>Prompt</th>
+            </tr></thead>
+            <tbody>`;
+
+      // Maximale Dauer für Balken-Relativität
+      const maxDur = Math.max(...sorted.map(r => r.duration_ms || 0), 1);
+
+      sorted.forEach((r, i) => {
+        const dur = r.duration_ms || 0;
+        const pct = Math.min((dur / maxDur) * 100, 100);
+        const isSlow = dur > 5000;
+        const status = r.exit_success === false ? '❌' : '✅';
+        const toolBadge = r.exit_success === false ? `badge err` : `badge ok`;
+        const promptBrief = (r.prompt_snapshot || '').slice(0, 80);
+
+        html += `<tr>
+          <td>${i + 1}</td>
+          <td><span class="${toolBadge}">${r.tool_name || '-'}</span></td>
+          <td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${(r.tool_label || '').replace(/"/g, '&quot;')}">${(r.tool_label || '').slice(0, 60)}</td>
+          <td>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span class="dur-bar ${isSlow ? 'slow' : ''}" style="width:${pct}%;max-width:120px;"></span>
+              <span style="font-family:monospace;font-size:0.75rem;">${dur < 1000 ? dur.toFixed(0) + 'ms' : (dur/1000).toFixed(2) + 's'}</span>
+            </div>
+          </td>
+          <td>${status}</td>
+          <td><div class="prompt-preview" title="${promptBrief.replace(/"/g, '&quot;')}">${promptBrief.slice(0, 50)}</div></td>
+        </tr>`;
+      });
+
+      html += `</tbody></table></div></div>`;
+    }
+
+    contentEl.innerHTML = html;
+  }
+
+  // Event-Listener
+  document.getElementById('filter-tool').addEventListener('change', render);
+  document.getElementById('filter-session').addEventListener('change', render);
+  document.getElementById('filter-status').addEventListener('change', render);
+  document.getElementById('filter-search').addEventListener('input', render);
+
+  render();
+})();
+</script>
+</body>
+</html>
