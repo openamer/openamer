@@ -1,5 +1,5 @@
 # Darwin Engine Report
-_2026-11-11T01:17:23.486914+00:00 — evolutionary skill ecosystem_
+_2026-11-11T03:58:22.644595+00:00 — evolutionary skill ecosystem_
 
 **Population:** 1288 Skills | **Offspring:** 4 | **Competitions:** 33
 
@@ -7,16 +7,16 @@ _2026-11-11T01:17:23.486914+00:00 — evolutionary skill ecosystem_
 
 | Skill | Fitness | Usage | Age (days) | Mutationen W/L |
 |---|---|---|---|---|
-| darwin-cron-guard | 3571.0 | 278 | 0 | 1665/51 |
-| darwin-harvested-training-internet-learn-log-jsonl | 3550.0 | 271 | 0 | 1643/21 |
-| autonomous-learning-architecture | 3315.0 | 355 | 0 | 1625/306 |
+| darwin-cron-guard | 3587.0 | 278 | 0 | 1675/55 |
+| darwin-harvested-training-internet-learn-log-jsonl | 3566.0 | 271 | 0 | 1651/21 |
+| autonomous-learning-architecture | 3331.0 | 355 | 0 | 1633/306 |
 | learning-loop | 421.3 | 411 | 81 | 0/0 |
 | asi-capability-summary | 286.43 | 275 | 47 | 0/0 |
-| a2a-brain-meshlearn-verify | 286.03 | 274 | 29 | 0/0 |
+| a2a-brain-meshlearn-verify | 286.0 | 274 | 30 | 0/0 |
 | auto-env-checker | 208.43 | 255 | 47 | 15/88 |
 | mini-openamer | 207.1 | 195 | 27 | 0/0 |
 | cdp-social-posting | 90.07 | 75 | 28 | 0/0 |
-| dream-cycle | 74.67 | 64 | 70 | 0/0 |
+| dream-cycle | 74.63 | 64 | 71 | 0/0 |
 
 ## Bottom 5 (selection candidates)
 
@@ -36,8 +36,8 @@ _2026-11-11T01:17:23.486914+00:00 — evolutionary skill ecosystem_
 ## Competitions
 
 - ⏳ `a2a-brain-meshlearn-verify+asi-capability-summary` (0) vs `None` (0)
-- ⏳ `a2a-brain-meshlearn-verify__mutbroaden_trigger` (286.03) vs `a2a-brain-meshlearn-verify` (286.03)
-- ⏳ `a2a-brain-meshlearn-verify__muttighten_trigger` (286.03) vs `a2a-brain-meshlearn-verify` (286.03)
+- ⏳ `a2a-brain-meshlearn-verify__mutbroaden_trigger` (286.0) vs `a2a-brain-meshlearn-verify` (286.0)
+- ⏳ `a2a-brain-meshlearn-verify__muttighten_trigger` (286.0) vs `a2a-brain-meshlearn-verify` (286.0)
 - ⏳ `asi-capability-summary+asi-identity` (0) vs `None` (0)
 - ⏳ `asi-capability-summary__mutbroaden_trigger` (286.43) vs `asi-capability-summary` (286.43)
 - ⏳ `asi-capability-summary__muttighten_trigger` (286.43) vs `asi-capability-summary` (286.43)
@@ -46,17 +46,17 @@ _2026-11-11T01:17:23.486914+00:00 — evolutionary skill ecosystem_
 - ⏳ `auto-env-checker+cdp-social-posting` (0) vs `None` (0)
 - ⏳ `auto-env-checker__mutbroaden_trigger` (208.43) vs `auto-env-checker` (208.43)
 - ⏳ `auto-env-checker__muttighten_trigger` (208.43) vs `auto-env-checker` (208.43)
-- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (3315.0) vs `autonomous-learning-architecture` (3315.0)
-- ⏳ `autonomous-learning-architecture__muttighten_trigger` (3315.0) vs `autonomous-learning-architecture` (3315.0)
+- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (3331.0) vs `autonomous-learning-architecture` (3331.0)
+- ⏳ `autonomous-learning-architecture__muttighten_trigger` (3331.0) vs `autonomous-learning-architecture` (3331.0)
 - ⏳ `cdp-social-posting__mutbroaden_trigger` (90.07) vs `cdp-social-posting` (90.07)
 - ⏳ `cdp-social-posting__muttighten_trigger` (90.07) vs `cdp-social-posting` (90.07)
-- ⏳ `darwin-cron-guard__mutbroaden_trigger` (3571.0) vs `darwin-cron-guard` (3571.0)
-- ⏳ `darwin-cron-guard__muttighten_trigger` (3571.0) vs `darwin-cron-guard` (3571.0)
-- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger` (3550.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (3550.0)
-- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__muttighten_trigger` (3550.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (3550.0)
-- ⏳ `discord-server-management__mutadd_verification_step` (15.2) vs `discord-server-management` (15.2)
-- ⏳ `discord-server-management__mutbroaden_trigger` (15.2) vs `discord-server-management` (15.2)
-- ⏳ `discord-server-management__muttighten_trigger` (15.2) vs `discord-server-management` (15.2)
+- ⏳ `darwin-cron-guard__mutbroaden_trigger` (3587.0) vs `darwin-cron-guard` (3587.0)
+- ⏳ `darwin-cron-guard__muttighten_trigger` (3587.0) vs `darwin-cron-guard` (3587.0)
+- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger` (3566.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (3566.0)
+- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__muttighten_trigger` (3566.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (3566.0)
+- ⏳ `discord-server-management__mutadd_verification_step` (15.17) vs `discord-server-management` (15.17)
+- ⏳ `discord-server-management__mutbroaden_trigger` (15.17) vs `discord-server-management` (15.17)
+- ⏳ `discord-server-management__muttighten_trigger` (15.17) vs `discord-server-management` (15.17)
 - ⏳ `github-readme-summary__mutbroaden_trigger` (18.97) vs `github-readme-summary` (18.97)
 - ⏳ `github-readme-summary__muttighten_trigger` (18.97) vs `github-readme-summary` (18.97)
 - ⏳ `openamer-plugin-development__muttighten_trigger` (20.7) vs `openamer-plugin-development` (20.7)
@@ -73,18 +73,18 @@ _2026-11-11T01:17:23.486914+00:00 — evolutionary skill ecosystem_
 
 ```mermaid
 graph TD
+    autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__muttighten_trigger["autonomous-learning-architecture__muttighten_trigger"]
+    asi-capability-summary["asi-capability-summary"] --> asi-capability-summary__mutbroaden_trigger["asi-capability-summary__mutbroaden_trigger"]
+    darwin-cron-guard["darwin-cron-guard"] --> guard["guard"]
+    darwin-harvested-training-internet-learn-log-jsonl["darwin-harvested-training-internet-learn-log-jsonl"] --> learn["learn"]
+    autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-loops["autonomous-learning-loops"]
     darwin-cron-guard["darwin-cron-guard"] --> darwin-cron-guard__mutbroaden_trigger["darwin-cron-guard__mutbroaden_trigger"]
     darwin-harvested-training-internet-learn-log-jsonl["darwin-harvested-training-internet-learn-log-jsonl"] --> darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger["darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger"]
     autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__muttighten_trigger["autonomous-learning-architecture__muttighten_trigger"]
     asi-capability-summary["asi-capability-summary"] --> asi-capability-summary__mutbroaden_trigger["asi-capability-summary__mutbroaden_trigger"]
-    darwin-cron-guard["darwin-cron-guard"] --> darwin-cron-guard__mutbroaden_trigger["darwin-cron-guard__mutbroaden_trigger"]
-    darwin-harvested-training-internet-learn-log-jsonl["darwin-harvested-training-internet-learn-log-jsonl"] --> darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger["darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger"]
-    autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__muttighten_trigger["autonomous-learning-architecture__muttighten_trigger"]
-    asi-capability-summary["asi-capability-summary"] --> asi-capability-summary__mutbroaden_trigger["asi-capability-summary__mutbroaden_trigger"]
-    darwin-cron-guard["darwin-cron-guard"] --> darwin-cron-guard__mutbroaden_trigger["darwin-cron-guard__mutbroaden_trigger"]
-    darwin-harvested-training-internet-learn-log-jsonl["darwin-harvested-training-internet-learn-log-jsonl"] --> darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger["darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger"]
-    autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__muttighten_trigger["autonomous-learning-architecture__muttighten_trigger"]
-    asi-capability-summary["asi-capability-summary"] --> asi-capability-summary__mutbroaden_trigger["asi-capability-summary__mutbroaden_trigger"]
+    darwin-cron-guard["darwin-cron-guard"] --> guard["guard"]
+    darwin-harvested-training-internet-learn-log-jsonl["darwin-harvested-training-internet-learn-log-jsonl"] --> learn["learn"]
+    autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-loops["autonomous-learning-loops"]
     darwin-cron-guard["darwin-cron-guard"] --> darwin-cron-guard__mutbroaden_trigger["darwin-cron-guard__mutbroaden_trigger"]
     darwin-harvested-training-internet-learn-log-jsonl["darwin-harvested-training-internet-learn-log-jsonl"] --> darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger["darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger"]
     autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__muttighten_trigger["autonomous-learning-architecture__muttighten_trigger"]
