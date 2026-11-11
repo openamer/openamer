@@ -24,9 +24,21 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 LANGS = REPO / "locales" / "_languages.json"
+NON_ISO = REPO / "locales" / "_non_iso.json"
 I18N = REPO / "agent" / "i18n.py"
 LOCALES = REPO / "locales"
 EN = LOCALES / "en.yaml"
+
+
+def declared_codes(block: str) -> list[str]:
+    """Codes already present in the SUPPORTED_LANGUAGES tuple.
+
+    Reading them with an ISO-shaped regex silently ignored every documented
+    non-ISO locale ("torbeski"), so the script reported it as "to add" on every
+    run and the idempotency test went red for a locale that was already
+    declared. Any quoted string in the tuple is a declared code.
+    """
+    return re.findall(r'"([^"]+)"', block)
 
 
 def main() -> int:
@@ -39,9 +51,20 @@ def main() -> int:
         print("could not find SUPPORTED_LANGUAGES tuple", file=sys.stderr)
         return 2
 
-    current = re.findall(r'"([a-z]{2}(?:-[a-z]+)?)"', m.group(1))
+    current = declared_codes(m.group(1))
     added = [c for c in codes if c not in current]
     removed = [c for c in current if c not in codes]
+
+    # A declared code must look like a locale tag OR be documented as a
+    # deliberate non-ISO locale. Anything else is a typo that would ship a
+    # language nobody can select.
+    non_iso = set(json.loads(NON_ISO.read_text(encoding="utf-8"))) if NON_ISO.is_file() else set()
+    malformed = [c for c in codes
+                 if not re.fullmatch(r"[a-z]{2}(?:-[a-z]+)?", c) and c not in non_iso]
+    if malformed:
+        print(f"ERROR malformed locale codes: {' '.join(malformed)}", file=sys.stderr)
+        return 2
+
     print(f"declared before : {len(current)}")
     print(f"target set      : {len(codes)}")
     print(f"to add          : {len(added)}  {' '.join(added[:20])}{' ...' if len(added) > 20 else ''}")

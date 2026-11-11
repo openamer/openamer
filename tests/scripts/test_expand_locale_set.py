@@ -30,9 +30,27 @@ def test_language_file_is_valid_and_nonempty(names):
 
 
 def test_every_code_looks_like_a_locale_tag(names):
-    # ISO 639-1 is two lowercase letters; zh-hant is the one script subtag.
-    bad = [c for c in names if not re.fullmatch(r"[a-z]{2}(?:-[a-z]{4})?", c)]
+    """ISO 639-1, the zh-hant script subtag, or a documented non-ISO locale.
+
+    "torbeski" (the user's native language) has no ISO code and no standard
+    orthography. It is supported on purpose, so it is declared in
+    locales/_non_iso.json - a code that is neither ISO-shaped nor declared there
+    still fails this test.
+    """
+    non_iso = json.loads((REPO / "locales" / "_non_iso.json").read_text(encoding="utf-8"))
+    bad = [c for c in names
+           if not re.fullmatch(r"[a-z]{2}(?:-[a-z]{4})?", c) and c not in non_iso]
     assert not bad, f"malformed locale codes: {bad}"
+
+
+def test_non_iso_locales_are_documented_with_a_base(names):
+    """A non-ISO locale without a base language is a language nobody can build."""
+    non_iso = json.loads((REPO / "locales" / "_non_iso.json").read_text(encoding="utf-8"))
+    for code, meta in non_iso.items():
+        if code.startswith("_"):
+            continue
+        assert code in names, f"{code} documented as non-ISO but not advertised"
+        assert meta.get("base") in names, f"{code} has no valid base locale"
 
 
 def test_every_declared_language_has_a_catalog(names):

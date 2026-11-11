@@ -1,0 +1,8 @@
+{
+  "_comment": "Locales that are supported on purpose without an ISO 639-1 code. Every entry is a decision, not a typo: the tag test and the locale-set expander both read this file, so a non-ISO code is either declared here or the suite goes red.",
+  "torbeski": {
+    "name": "Torbeški",
+    "base": "mk",
+    "why": "User's native language (Torbeši, Polog/Debar, North Macedonia): a South Slavic variety with no ISO code, no standard orthography and no MT coverage. Native strings come from the user; nothing is machine-invented."
+  }
+}
