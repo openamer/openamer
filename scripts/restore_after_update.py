@@ -11,6 +11,14 @@ This script restores everything Mini-OpenAmer needs:
 """
 import os
 import json, os, subprocess, sys, time, urllib.request
+from pathlib import Path
+
+# CREATE_NO_WINDOW: this file used to start the tool server and the learning
+# loop as plain ``python.exe`` children, and every one of them painted a visible
+# black console window onto the user's desktop. The scheduled task for the same
+# loop uses pythonw.exe for exactly that reason (measured 2026-11-11: one
+# orphaned online_learning.py window was the last leftover console on screen).
+_NO_WINDOW = 0x08000000 if os.name == "nt" else 0
 
 T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
@@ -25,7 +33,7 @@ def check_and_start(name, url, start_cmd=None, timeout=30):
     except Exception:
         if start_cmd:
             print(f"  .. {name}: down, restarting...")
-            subprocess.Popen(start_cmd, shell=True)
+            subprocess.Popen(start_cmd, shell=True, creationflags=_NO_WINDOW)
             for _ in range(timeout // 5):
                 time.sleep(5)
                 try:
@@ -77,7 +85,8 @@ def restore():
         print(f"  OK Online-learning loop: running (PID {pids[0]})")
     else:
         print("  .. Online-learning loop: restarting...")
-        subprocess.Popen([sys.executable, f"{T}/online_learning.py", "--loop"])
+        subprocess.Popen([sys.executable, f"{T}/online_learning.py", "--loop"],
+                         creationflags=_NO_WINDOW)
         print("  OK restarted")
 
     # 4. World model + self model
