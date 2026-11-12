@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T21:51:03.426547+00:00",
+  "updated": "2026-11-11T22:10:25.561983+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
   "total": 1288,
   "skills": {
@@ -3081,10 +3081,12 @@
       "missing": []
     },
     "free-provider-integration": {
-      "refs": 1,
-      "ok": 1,
-      "score": 1.0,
-      "missing": []
+      "refs": 3,
+      "ok": 2,
+      "score": 0.667,
+      "missing": [
+        "session_quota_report.py"
+      ]
     },
     "full-system-verification": {
       "refs": 2,
@@ -7293,14 +7295,14 @@
       "missing": []
     },
     "desktop-i18n-locale": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 4,
+      "ok": 4,
       "score": 1.0,
       "missing": []
     },
     "desktop-i18n-locale-add": {
-      "refs": 4,
-      "ok": 4,
+      "refs": 8,
+      "ok": 8,
       "score": 1.0,
       "missing": []
     },
@@ -7370,8 +7372,8 @@
       "missing": []
     },
     "git-clean-verification": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
@@ -7420,8 +7422,8 @@
       "missing": []
     },
     "i18n-catalog-translation": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
@@ -7660,8 +7662,8 @@
       "missing": []
     },
     "ui-string-catalog-translation": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 5,
+      "ok": 5,
       "score": 1.0,
       "missing": []
     },
@@ -7988,8 +7990,8 @@
       "missing": []
     },
     "windows-path-resolution": {
-      "refs": 3,
-      "ok": 3,
+      "refs": 4,
+      "ok": 4,
       "score": 1.0,
       "missing": []
     },
