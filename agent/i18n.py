@@ -80,6 +80,7 @@ SUPPORTED_LANGUAGES: tuple[str, ...] = (
     "uk", "ur", "uz", "ve", "vi",
     "vo", "wa", "wo", "xh", "yi",
     "yo", "za", "zh", "zh-hant", "zu",
+    "torbeski",
 )
 DEFAULT_LANGUAGE = "en"
 

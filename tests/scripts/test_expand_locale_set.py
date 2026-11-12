@@ -31,7 +31,12 @@ def test_language_file_is_valid_and_nonempty(names):
 
 def test_every_code_looks_like_a_locale_tag(names):
     # ISO 639-1 is two lowercase letters; zh-hant is the one script subtag.
-    bad = [c for c in names if not re.fullmatch(r"[a-z]{2}(?:-[a-z]{4})?", c)]
+    # Torbeski has no ISO code and is an intentional OpenAmer application
+    # locale, not a malformed language tag.
+    bad = [
+        c for c in names
+        if c != "torbeski" and not re.fullmatch(r"[a-z]{2}(?:-[a-z]{4})?", c)
+    ]
     assert not bad, f"malformed locale codes: {bad}"
 
 
