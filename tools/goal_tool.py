@@ -57,7 +57,7 @@ GOAL_SCHEMA = {
         "properties": {
             "action": {
                 "type": "string",
-                "enum": ["read", "set", "amend", "report", "pause", "resume"],
+                "enum": ["read", "set", "amend", "report", "pause", "resume", "checkpoint"],
                 "description": "What to do with the goal.",
             },
             "goal": {
@@ -68,6 +68,19 @@ GOAL_SCHEMA = {
                     "existing goal."
                 ),
             },
+            "checks": {
+                "type": "array",
+                "description": "For set: ACE checks with id, tool=terminal and args (exact foreground command/workdir). Done requires observed successful execution.",
+                "items": {"type": "object", "properties": {
+                    "id": {"type": "string"}, "tool": {"type": "string", "enum": ["terminal"]},
+                    "args": {"type": "object"}}, "required": ["id", "tool", "args"]},
+            },
+            "budget": {
+                "type": "object",
+                "description": "For set with checks: durable max_calls, max_seconds and max_repeats.",
+                "properties": {"max_calls": {"type": "integer"}, "max_seconds": {"type": "number"}, "max_repeats": {"type": "integer"}},
+            },
+            "next_step": {"type": "string", "description": "For checkpoint: check id to advance; reason records progress."},
             "max_turns": {
                 "type": "integer",
                 "description": (
@@ -77,10 +90,10 @@ GOAL_SCHEMA = {
             },
             "status": {
                 "type": "string",
-                "enum": ["done", "blocked"],
+                "enum": ["done", "partial", "blocked", "failed"],
                 "description": (
-                    "For 'report': whether the goal is complete or blocked. "
-                    "'blocked' needs a reason in 'reason'."
+                    "For 'report': done, partial, blocked or failed. Non-success "
+                    "outcomes require a reason and pause the continuation loop. "
                 ),
             },
             "reason": {
@@ -135,7 +148,7 @@ def _manager_for(parent_agent, session_id: str = ""):
 
 def _state_payload(manager) -> Dict[str, Any]:
     """Render the goal state for the model."""
-    if not manager.has_goal():
+    if manager.state is None or manager.state.status == "cleared":
         return {"goal": None, "status": "none"}
 
     payload: Dict[str, Any] = {}
@@ -173,6 +186,13 @@ def _state_payload(manager) -> Dict[str, Any]:
     except Exception:
         pass
 
+    from openamer_cli.goal_completion import read
+    completion = read(manager.session_id)
+    if completion:
+        payload["completion"] = completion
+        from openamer_cli.goal_execution import execution_context
+        payload["execution_context"] = execution_context(manager.session_id)
+
     return payload
 
 
@@ -182,6 +202,9 @@ def goal_tool(
     max_turns: Optional[int] = None,
     status: Optional[str] = None,
     reason: Optional[str] = None,
+    checks: Optional[list] = None,
+    budget: Optional[dict] = None,
+    next_step: Optional[str] = None,
     parent_agent=None,
     session_id: str = "",
     **_kwargs,
@@ -203,7 +226,15 @@ def goal_tool(
         if action == "set":
             if not goal or not goal.strip():
                 return tool_error("'set' requires a non-empty 'goal'.")
-            manager.set(goal.strip(), max_turns=max_turns)
+            if checks is not None:
+                from openamer_cli.goal_completion import validate_configuration
+                validate_configuration(checks=checks, **(budget or {}))
+            from openamer_cli.goals import parse_contract
+            headline, contract = parse_contract(goal.strip())
+            manager.set(headline, max_turns=max_turns, contract=contract)
+            if checks is not None:
+                from openamer_cli.goal_completion import configure
+                configure(manager.session_id, checks=checks, **(budget or {}))
             return json.dumps(
                 {"ok": True, **_state_payload(manager)},
                 ensure_ascii=False, indent=2, default=str,
@@ -225,18 +256,23 @@ def goal_tool(
                     {"ok": True, **_state_payload(manager)},
                     ensure_ascii=False, indent=2, default=str,
                 )
-            if status == "blocked":
+            if status in {"partial", "blocked", "failed"}:
                 if not reason:
                     return tool_error(
                         "Reporting 'blocked' requires a 'reason' so the loop "
                         "knows what to unblock."
                     )
-                manager.pause(reason=f"blocked: {reason}")
+                manager.report_outcome(status, reason)
                 return json.dumps(
                     {"ok": True, **_state_payload(manager)},
                     ensure_ascii=False, indent=2, default=str,
                 )
-            return tool_error("'report' requires status 'done' or 'blocked'.")
+            return tool_error("'report' requires status done, partial, blocked, or failed.")
+
+        if action == "checkpoint":
+            from openamer_cli.goal_completion import checkpoint
+            checkpoint(manager.session_id, progress=reason or "", next_step=next_step or "")
+            return json.dumps({"ok": True, **_state_payload(manager)}, ensure_ascii=False)
 
         if action == "pause":
             state = manager.pause(reason or "paused by the agent")
@@ -283,6 +319,9 @@ registry.register(
         max_turns=args.get("max_turns"),
         status=args.get("status"),
         reason=args.get("reason"),
+        checks=args.get("checks"),
+        budget=args.get("budget"),
+        next_step=args.get("next_step"),
         parent_agent=kw.get("parent_agent"),
         session_id=str(kw.get("session_id") or ""),
     ),

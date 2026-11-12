@@ -691,12 +691,19 @@ class ToolRegistry:
         if not entry:
             return json.dumps({"error": f"Unknown tool: {name}"})
         try:
-            if entry.is_async:
-                from model_tools import _run_async
-                result = _run_async(entry.handler(args, **kwargs))
-            else:
-                result = entry.handler(args, **kwargs)
-            return self._normalize_handler_result(name, result)
+            def invoke():
+                if entry.is_async:
+                    from model_tools import _run_async
+                    result = _run_async(entry.handler(args, **kwargs))
+                else:
+                    result = entry.handler(args, **kwargs)
+                return self._normalize_handler_result(name, result)
+
+            session_id = str(kwargs.get("session_id") or "")
+            if session_id and name != "goal":
+                from openamer_cli.goal_completion import dispatch
+                return dispatch(session_id, name, args, invoke)
+            return invoke()
         except Exception as e:
             logger.exception("Tool %s dispatch error: %s", name, e)
             # Route through the sanitizer so framing tokens / CDATA / fences

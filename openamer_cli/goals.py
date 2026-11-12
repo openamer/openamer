@@ -118,12 +118,13 @@ JUDGE_SYSTEM_PROMPT = (
     "You are a strict judge evaluating whether an autonomous agent has "
     "achieved a user's stated goal. You receive the goal text, the agent's "
     "most recent response, and — when present — a list of background "
-    "processes the agent has running. Decide one of three verdicts.\n\n"
+    "processes the agent has running. Choose a verdict below.\n\n"
     "DONE — the goal is fully satisfied:\n"
     "- The response explicitly confirms the goal was completed, OR\n"
-    "- The response clearly shows the final deliverable was produced, OR\n"
-    "- The response explains the goal is unachievable / blocked / needs "
-    "user input (treat this as DONE with reason describing the block).\n\n"
+    "- The response clearly shows the final deliverable was produced.\n\n"
+    "BLOCKED — needs credentials, permission, or human input; NOT success.\n"
+    "PARTIAL — some deliverables verified but others remain unavailable.\n"
+    "FAILED — work failed or the repair budget is exhausted; NOT success.\n\n"
     "WAIT — the goal is NOT done, but the next step is to wait for async "
     "work to finish rather than act again. Choose this ONLY when the agent's "
     "progress is genuinely gated on something running on its own:\n"
@@ -146,6 +147,9 @@ JUDGE_SYSTEM_PROMPT = (
     "Reply ONLY with a single JSON object on one line. Shapes:\n"
     '{"verdict": "done", "reason": "<one sentence>"}\n'
     '{"verdict": "continue", "reason": "<one sentence>"}\n'
+    '{"verdict": "blocked", "reason": "<specific obstacle>"}\n'
+    '{"verdict": "partial", "reason": "<verified and missing deliverables>"}\n'
+    '{"verdict": "failed", "reason": "<failure and evidence>"}\n'
     '{"verdict": "wait", "wait_on_session": "<id>", "reason": "<one sentence>"}\n'
     '{"verdict": "wait", "wait_on_pid": <int>, "reason": "<one sentence>"}\n'
     '{"verdict": "wait", "wait_for_seconds": <int>, "reason": "<one sentence>"}\n'
@@ -213,8 +217,8 @@ JUDGE_USER_PROMPT_WITH_CONTRACT_TEMPLATE = (
     "verification and it's still running), return WAIT on that process "
     "instead of re-poking — re-poking now would be pure busy-work.\n"
     "- If the response explains the work is blocked / unachievable / needs "
-    "user input (e.g. the stated Stop condition was hit), treat it as DONE "
-    "with the reason describing the block.\n"
+    "user input (e.g. the stated Stop condition was hit), return BLOCKED, "
+    "not DONE, with the reason describing the block.\n"
     "- Otherwise the goal is NOT done — CONTINUE.\n\n"
     "Is the goal satisfied per its completion contract — done, continue, or wait?"
 )
@@ -525,7 +529,11 @@ def _get_session_db() -> Optional[Any]:
     if cached is not None:
         return cached
     try:
-        db = SessionDB()
+        from pathlib import Path
+        # SessionDB's module default is fixed at import time. Bind explicitly
+        # to this profile so a switch or resumed worker cannot reuse another
+        # profile's state.db under a new cache key.
+        db = SessionDB(db_path=Path(home) / "state.db")
     except Exception as exc:  # pragma: no cover
         logger.debug("GoalManager: SessionDB() raised (%s)", exc)
         return None
@@ -602,6 +610,8 @@ def migrate_goal_to_session(old_session_id: str, new_session_id: str, *, reason:
         if load_goal(new_session_id) is not None:
             return False
         save_goal(new_session_id, state)
+        from openamer_cli.goal_completion import migrate
+        migrate(old_session_id, new_session_id)
         # Archive the parent's row so it isn't double-counted as active.
         clear_goal(old_session_id)
         logger.debug(
@@ -761,7 +771,7 @@ def _parse_judge_response(raw: str) -> Tuple[str, str, bool, Optional[Dict[str, 
             done = bool(done_val)
         verdict = "done" if done else "continue"
 
-    if verdict not in {"done", "continue", "wait"}:
+    if verdict not in {"done", "continue", "wait", "partial", "blocked", "failed"}:
         verdict = "continue"
 
     if verdict != "wait":
@@ -1102,12 +1112,21 @@ class GoalManager:
 
     @property
     def state(self) -> Optional[GoalState]:
+        self.refresh()
         return self._state
 
+    def refresh(self) -> None:
+        """Observe tool/other-surface updates to this session's durable goal."""
+        persisted = load_goal(self.session_id)
+        if persisted is not None:
+            self._state = None if persisted.status == "cleared" else persisted
+
     def is_active(self) -> bool:
+        self.refresh()
         return self._state is not None and self._state.status == "active"
 
     def has_goal(self) -> bool:
+        self.refresh()
         return self._state is not None and self._state.status in {"active", "paused"}
 
     def has_contract(self) -> bool:
@@ -1157,6 +1176,9 @@ class GoalManager:
         )
         self._state = state
         save_goal(self.session_id, state)
+        from openamer_cli.goal_completion import reset
+        if _get_session_db() is not None:
+            reset(self.session_id)
         return state
 
     def set_contract(self, contract: GoalContract) -> Optional[GoalState]:
@@ -1187,6 +1209,8 @@ class GoalManager:
     def resume(self, *, reset_budget: bool = True) -> Optional[GoalState]:
         if not self._state:
             return None
+        from openamer_cli.goal_completion import reactivate
+        reactivate(self.session_id)
         self._state.status = "active"
         self._state.paused_reason = None
         # Resuming starts fresh — clear any stale barrier.
@@ -1205,13 +1229,31 @@ class GoalManager:
             return
         self._state.status = "cleared"
         save_goal(self.session_id, self._state)
+        from openamer_cli.goal_completion import reset
+        if _get_session_db() is not None:
+            reset(self.session_id)
         self._state = None
 
     def mark_done(self, reason: str) -> None:
         if not self._state:
             return
+        from openamer_cli.goal_completion import report
+        report(self.session_id, "done", reason)
         self._state.status = "done"
         self._state.last_verdict = "done"
+        self._state.last_reason = reason
+        save_goal(self.session_id, self._state)
+
+    def report_outcome(self, outcome: str, reason: str) -> None:
+        """Keep scheduling state compatible while preserving the actual outcome."""
+        if not self._state:
+            raise ValueError("No active goal")
+        if outcome not in {"partial", "blocked", "failed"} or not reason.strip():
+            raise ValueError("A non-complete outcome requires a reason")
+        from openamer_cli.goal_completion import report
+        report(self.session_id, outcome, reason)
+        self.pause(f"{outcome}: {reason}")
+        self._state.last_verdict = outcome
         self._state.last_reason = reason
         save_goal(self.session_id, self._state)
 
@@ -1418,8 +1460,20 @@ class GoalManager:
                 "message": "",
             }
 
+        # A tool-call budget is a distinct failed outcome, not successful
+        # completion and not another excuse to spend a judge/model call.
+        from openamer_cli.goal_completion import read as read_completion
+        completion = read_completion(self.session_id)
+        if completion and completion['outcome'] in {'failed', 'blocked', 'partial'}:
+            outcome = completion['outcome']
+            reason = completion.get('reason', outcome)
+            self.report_outcome(outcome, reason)
+            return {'status': 'paused', 'should_continue': False,
+                    'continuation_prompt': None, 'verdict': outcome,
+                    'reason': reason, 'message': f'Goal {outcome}: {reason}'}
+
         # Wait barrier: if the loop is parked (on a live process OR a time
-        # deadline that hasn't passed), quiesce — do NOT burn a turn or call
+        # deadline that hasn't passed), quiesce
         # the judge. Resumes automatically once the barrier clears.
         if self.is_waiting():
             if state.waiting_on_session is not None:
@@ -1496,9 +1550,21 @@ class GoalManager:
                 "message": f"⏳ Goal parked (judge) — waiting on {tgt}: {reason}",
             }
 
+        if verdict in {"partial", "blocked", "failed"}:
+            self.report_outcome(verdict, reason)
+            return {"status": "paused", "should_continue": False,
+                    "continuation_prompt": None, "verdict": verdict,
+                    "reason": reason, "message": f"Goal {verdict}: {reason}"}
+
         if verdict == "done":
-            state.status = "done"
-            save_goal(self.session_id, state)
+            from openamer_cli.goal_completion import completion_error
+            error = completion_error(self.session_id)
+            if error:
+                verdict, reason = "continue", error
+                state.last_verdict, state.last_reason = verdict, reason
+
+        if verdict == "done":
+            self.mark_done(reason)
             return {
                 "status": "done",
                 "should_continue": False,
@@ -1597,6 +1663,13 @@ class GoalManager:
         }
 
     def next_continuation_prompt(self) -> Optional[str]:
+        prompt = self._base_continuation_prompt()
+        if prompt:
+            from openamer_cli.goal_completion import prompt_context
+            prompt += prompt_context(self.session_id)
+        return prompt
+
+    def _base_continuation_prompt(self) -> Optional[str]:
         if not self._state or self._state.status != "active":
             return None
         # Contract takes priority: it carries the verification surface and
@@ -1741,6 +1814,15 @@ def run_kanban_goal_loop(
         if verdict == "wait":
             verdict = "continue"
         _log(f"kanban goal loop: turn {turns_used}/{max_turns} verdict={verdict} reason={_truncate(reason, 120)}")
+
+        if verdict in {"blocked", "partial", "failed"}:
+            try:
+                block_fn(f"Goal {verdict}: {_truncate(reason, 400)}")
+            except Exception as exc:
+                return {"outcome": "stopped", "turns_used": turns_used,
+                        "reason": f"could not persist {verdict}: {exc}"}
+            return {"outcome": "blocked_by_judge", "turns_used": turns_used,
+                    "reason": f"{verdict}: {reason}"}
 
         if verdict == "done":
             if nudged_to_finalize:
