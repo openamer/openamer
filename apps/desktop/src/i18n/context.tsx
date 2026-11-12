@@ -55,7 +55,7 @@ function toError(error: unknown): Error {
   return error instanceof Error ? error : new Error(String(error))
 }
 
-const RTL_LOCALES = new Set<Locale>(['ar'])
+const RTL_LOCALES = new Set<Locale>(['ar', 'he', 'fa', 'ur', 'dv', 'ps', 'yi', 'ug', 'ks', 'sd'])
 
 function applyDocumentLocale(locale: Locale) {
   if (typeof document === 'undefined') {
