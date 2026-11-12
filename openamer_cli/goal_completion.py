@@ -39,30 +39,86 @@ def read(session_id: str) -> dict | None:
     return json.loads(raw) if raw else None
 
 
-def _update(session_id: str, change):
+def _update(session_id: str, change, *, check_acceptance: bool = True,
+            allow_stale_acceptance: bool = False):
     """Read/modify/write within one SQLite BEGIN IMMEDIATE transaction.
 
     Unlike a process-local mutex this also protects two independent resumed
     workers. No subprocess or network call runs while the transaction is held.
+
+    Goal identity is always checked. ``check_acceptance`` is False only for
+    ``bump_journal_revision``, which synchronizes the journal to a goal
+    amendment. ``allow_stale_acceptance`` lets ``after_call`` close an event
+    that was already in flight while exposing the mismatch to its callback;
+    it never permits that event to issue a receipt.
     """
     result = None
+
     def write(conn):
         nonlocal result
         row = conn.execute('SELECT value FROM state_meta WHERE key = ?',
                            (_key(session_id),)).fetchone()
         data = json.loads(row[0]) if row else None
+        acceptance_mismatch = False
         if data is not None:
             goal_row = conn.execute('SELECT value FROM state_meta WHERE key = ?',
                                     (f'goal:{session_id}',)).fetchone()
-            if not goal_row or json.loads(goal_row[0]).get('created_at') != data['goal_created_at']:
-                raise RuntimeError('ACE contract belongs to another goal; configure verification again')
-        result = change(data)
+            if not goal_row:
+                raise RuntimeError(
+                    'ACE contract belongs to another goal; configure verification again')
+            goal_data = json.loads(goal_row[0])
+            if goal_data.get('created_at') != data['goal_created_at']:
+                raise RuntimeError(
+                    'ACE contract belongs to another goal; configure verification again')
+            goal_rev = int(goal_data.get('acceptance_revision', 0) or 0)
+            journal_rev = int(data.get('acceptance_revision', 0) or 0)
+            acceptance_mismatch = goal_rev != journal_rev
+            if not check_acceptance:
+                # Only bump_journal_revision uses this path. Read the live goal
+                # revision under the same SQLite lock so concurrent amendments
+                # cannot regress the journal snapshot with a stale pre-read.
+                data['acceptance_revision'] = goal_rev
+                acceptance_mismatch = False
+            elif acceptance_mismatch and not allow_stale_acceptance:
+                raise RuntimeError(
+                    'ACE acceptance definition changed after verification was configured; '
+                    're-run configure() before completing')
+        if allow_stale_acceptance:
+            result = change(data, acceptance_mismatch)
+        else:
+            result = change(data)
         if data is not None:
             conn.execute('INSERT INTO state_meta(key, value) VALUES (?, ?) '
                          'ON CONFLICT(key) DO UPDATE SET value=excluded.value',
                          (_key(session_id), json.dumps(data, ensure_ascii=False)))
+
     _db()._execute_write(write)
     return result
+
+
+def bump_journal_revision(session_id: str) -> None:
+    """Drop every ACE receipt and bump the journal revision.
+
+    Called by GoalManager whenever the acceptance definition changes
+    (add/remove subgoal, set_contract). The journal's ``revision`` is the
+    version the receipts are bound to; bumping it invalidates every receipt
+    gathered under the old definition, including any that is still in flight
+    (a pending check whose result has not landed yet). Receipts are cleared
+    here rather than lazily, so a stale proof can never satisfy the amended
+    goal — the missing-criterion check in ``_verification_error`` fires.
+
+    This is the one journal write that must succeed *after* a goal amendment,
+    so it skips the acceptance-revision guard that every other write enforces.
+    It also re-syncs the journal's snapshot of the goal's acceptance revision,
+    so later writes do not see a phantom mismatch.
+    """
+    def change(data):
+        if not data:
+            return None
+        data['revision'] += 1
+        data['receipts'] = {}
+        return data
+    _update(session_id, change, check_acceptance=False)
 
 
 def validate_configuration(*, checks: list[dict], max_calls: int = 100,
@@ -105,7 +161,8 @@ def configure(session_id: str, *, checks: list[dict], max_calls: int = 100,
     known = [r['metadata'] for r in GoalEngine().recent_outcomes(n=100)
              if r.get('success') and r.get('metadata', {}).get('strategy_key') == strategy_key][-3:]
     data = {'strategy_key': strategy_key, 'known_strategies': known,
-            'goal_created_at': state.created_at, 'checks': cleaned,
+            'goal_created_at': state.created_at,
+            'acceptance_revision': state.acceptance_revision, 'checks': cleaned,
             'calls_used': 0, 'max_calls': max_calls, 'max_repeats': max_repeats,
             'deadline': time.time() + max_seconds, 'events': [], 'failures': {},
             'receipts': {}, 'revision': 0, 'outcome': 'active', 'checkpoint': {},
@@ -177,7 +234,9 @@ def before_call(session_id: str, tool: str, args: dict) -> dict | None:
         pending = [e for e in data['events'] if e['status'] == 'pending']
         finished = [e for e in data['events'] if e['status'] != 'pending'][-64:]
         data['events'] = sorted(pending + finished, key=lambda e: e['id'])
-        return {'event_id': event['id']}
+        return {'event_id': event['id'], 'fingerprint': event['fingerprint'],
+                'revision': event['revision'],
+                'goal_created_at': data['goal_created_at']}
     return _update(session_id, reserve)
 
 
@@ -190,10 +249,25 @@ def after_call(session_id: str, ticket: dict | None, result: Any) -> None:
             parsed = json.loads(parsed)
         except (ValueError, TypeError):
             parsed = None
-    def finish(data):
+    def finish(data, acceptance_mismatch):
+        # The goal or its journal may have been replaced while the tool was
+        # running. An old result has no authority over the replacement.
         if not data:
-            raise RuntimeError('ACE journal disappeared during tool execution')
-        event = next(e for e in data['events'] if e['id'] == ticket['event_id'])
+            return None
+        event = next((e for e in data['events']
+                      if e['id'] == ticket['event_id']), None)
+        if event is None:
+            return None
+        provenance = {
+            'fingerprint': event['fingerprint'],
+            'revision': event['revision'],
+            'goal_created_at': data['goal_created_at'],
+        }
+        if any(key in ticket and ticket[key] != value
+               for key, value in provenance.items()):
+            return None
+
+        stale = acceptance_mismatch or event['revision'] < data.get('revision', 0)
         # A non-JSON tool response is not executable verification evidence.
         text = result if isinstance(result, str) else json.dumps(result, default=str)
         failed, _ = classify_tool_failure(event['tool'], text)
@@ -201,6 +275,11 @@ def after_call(session_id: str, ticket: dict | None, result: Any) -> None:
             failed = failed or (isinstance(parsed, dict) and
                                (bool(parsed.get('error')) or parsed.get('success') is False
                                 or parsed.get('exit_code') not in (None, 0)))
+        if stale:
+            # Result gathered under a superseded definition: never a receipt.
+            event['status'] = 'failed'
+            event['seconds'] = max(0, time.time() - event['started_at'])
+            return None
         event['status'] = 'failed' if failed else 'returned'
         event['seconds'] = max(0, time.time() - event['started_at'])
         usage = data['tool_usage'].setdefault(event['tool'], {'calls': 0, 'failures': 0, 'seconds': 0.0})
@@ -230,7 +309,7 @@ def after_call(session_id: str, ticket: dict | None, result: Any) -> None:
                 data['receipts'][cid] = {'id': cid, 'event_id': event['id'],
                                          'fingerprint': event['fingerprint'],
                                          'revision': data['revision'], 'exit_code': 0}
-    _update(session_id, finish)
+    _update(session_id, finish, allow_stale_acceptance=True)
 
 
 def dispatch(session_id: str, tool: str, args: dict, invoke):
@@ -276,7 +355,11 @@ def completion_error(session_id: str) -> str | None:
 def _verification_error(data: dict | None) -> str | None:
     if not data:
         return None
-    missing = [c['id'] for c in data['checks'] if c['id'] not in data['receipts']]
+    journal_rev = int(data.get('revision', 0) or 0)
+    stale = [c['id'] for c in data['checks']
+             if c['id'] in data['receipts']
+             and int(data['receipts'][c['id']].get('revision', 0) or 0) < journal_rev]
+    missing = [c['id'] for c in data['checks'] if c['id'] not in data['receipts']] or stale
     if missing:
         return 'ACE verification missing or stale: ' + ', '.join(missing)
     if any(e['status'] == 'pending' for e in data['events']):
@@ -284,19 +367,82 @@ def _verification_error(data: dict | None) -> str | None:
     return None
 
 
-def report(session_id: str, outcome: str, reason: str) -> None:
+def _mark_done_atomic(session_id: str, reason: str,
+                      goal_state_json: str | None = None) -> dict | None:
+    """Validate ACE and mark both journal and goal done in one transaction."""
+    completed = None
+    candidate = json.loads(goal_state_json) if goal_state_json else None
+
+    def write(conn):
+        nonlocal completed
+        goal_row = conn.execute(
+            'SELECT value FROM state_meta WHERE key = ?',
+            (f'goal:{session_id}',),
+        ).fetchone()
+        if not goal_row:
+            return
+        live_goal = json.loads(goal_row[0])
+        if candidate:
+            if (candidate.get('created_at') != live_goal.get('created_at')
+                    or int(candidate.get('acceptance_revision', 0) or 0)
+                    != int(live_goal.get('acceptance_revision', 0) or 0)):
+                raise RuntimeError(
+                    'Goal changed while completion was being committed; retry verification')
+            goal_data = dict(candidate)
+        else:
+            goal_data = live_goal
+        journal_row = conn.execute(
+            'SELECT value FROM state_meta WHERE key = ?',
+            (_key(session_id),),
+        ).fetchone()
+        data = json.loads(journal_row[0]) if journal_row else None
+        if data:
+            if goal_data.get('created_at') != data.get('goal_created_at'):
+                raise RuntimeError(
+                    'ACE contract belongs to another goal; configure verification again')
+            goal_rev = int(goal_data.get('acceptance_revision', 0) or 0)
+            journal_rev = int(data.get('acceptance_revision', 0) or 0)
+            if goal_rev != journal_rev:
+                raise RuntimeError(
+                    'ACE acceptance definition changed after verification was configured; '
+                    're-run configure() before completing')
+            error = _verification_error(data)
+            if error:
+                raise ValueError(error)
+            data['outcome'] = 'done'
+            data['reason'] = reason
+            conn.execute(
+                'INSERT INTO state_meta(key, value) VALUES (?, ?) '
+                'ON CONFLICT(key) DO UPDATE SET value=excluded.value',
+                (_key(session_id), json.dumps(data, ensure_ascii=False)),
+            )
+            completed = data
+        goal_data['status'] = 'done'
+        goal_data['last_verdict'] = 'done'
+        goal_data['last_reason'] = reason
+        conn.execute(
+            'INSERT INTO state_meta(key, value) VALUES (?, ?) '
+            'ON CONFLICT(key) DO UPDATE SET value=excluded.value',
+            (f'goal:{session_id}', json.dumps(goal_data, ensure_ascii=False)),
+        )
+
+    _db()._execute_write(write)
+    return completed
+
+
+def report(session_id: str, outcome: str, reason: str, *,
+           goal_state_json: str | None = None) -> None:
     if outcome not in {'done', 'partial', 'blocked', 'failed'}:
         raise ValueError('Invalid completion outcome')
-    def change(data):
-        if data:
-            if outcome == "done":
-                error = _verification_error(data)
-                if error:
-                    raise ValueError(error)
-            data['outcome'] = outcome
-            data['reason'] = reason
-    _update(session_id, change)
-    data = read(session_id)
+    if outcome == 'done':
+        data = _mark_done_atomic(session_id, reason, goal_state_json)
+    else:
+        def change(data):
+            if data:
+                data['outcome'] = outcome
+                data['reason'] = reason
+        _update(session_id, change)
+        data = read(session_id)
     if outcome == 'done' and data and not data['learned']:
         # Reuse the existing measured-goal outcome store, consumed by the
         # existing reflection system. No unverified tips enter learning data.

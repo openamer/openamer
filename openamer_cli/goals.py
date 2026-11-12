@@ -446,6 +446,18 @@ class GoalState:
     # constraints / boundaries / stop_when). Empty by default; a goal with
     # no contract behaves exactly like the original free-form goal.
     contract: GoalContract = field(default_factory=GoalContract)
+    # Acceptance-definition revision. Bumped whenever the definition of
+    # "done" for this goal changes — a subgoal is added/removed, or the
+    # completion contract is replaced. The ACE completion journal snapshots
+    # this value at configure time and rejects any receipt/report whose
+    # revision trails the live goal, so a proof gathered under an old
+    # definition can never satisfy a goal that has since been amended.
+    acceptance_revision: int = 0
+
+    def bump_acceptance(self) -> int:
+        """Increment the acceptance-definition revision and return it."""
+        self.acceptance_revision += 1
+        return self.acceptance_revision
 
     def to_json(self) -> str:
         data = asdict(self)
@@ -478,6 +490,7 @@ class GoalState:
             waiting_reason=data.get("waiting_reason"),
             waiting_since=float(data.get("waiting_since", 0.0) or 0.0),
             contract=GoalContract.from_dict(data.get("contract")),
+            acceptance_revision=int(data.get("acceptance_revision", 0) or 0),
         )
 
     # --- contract helpers -------------------------------------------------
@@ -1173,6 +1186,7 @@ class GoalManager:
             created_at=time.time(),
             last_turn_at=0.0,
             contract=contract if contract is not None else GoalContract(),
+            acceptance_revision=0,
         )
         self._state = state
         save_goal(self.session_id, state)
@@ -1189,7 +1203,11 @@ class GoalManager:
         if self._state is None:
             return None
         self._state.contract = contract or GoalContract()
+        self._state.bump_acceptance()
         save_goal(self.session_id, self._state)
+        from openamer_cli.goal_completion import bump_journal_revision
+        if _get_session_db() is not None:
+            bump_journal_revision(self.session_id)
         return self._state
 
     def pause(self, reason: str = "user-paused") -> Optional[GoalState]:
@@ -1238,11 +1256,12 @@ class GoalManager:
         if not self._state:
             return
         from openamer_cli.goal_completion import report
-        report(self.session_id, "done", reason)
-        self._state.status = "done"
-        self._state.last_verdict = "done"
-        self._state.last_reason = reason
-        save_goal(self.session_id, self._state)
+        report(self.session_id, "done", reason,
+               goal_state_json=self._state.to_json())
+        # report() validates ACE and commits the journal + goal status under
+        # one SQLite write lock. Refresh instead of issuing a second write
+        # that could overwrite a concurrent acceptance amendment.
+        self.refresh()
 
     def report_outcome(self, outcome: str, reason: str) -> None:
         """Keep scheduling state compatible while preserving the actual outcome."""
@@ -1271,7 +1290,11 @@ class GoalManager:
         if not text:
             raise ValueError("subgoal text is empty")
         self._state.subgoals.append(text)
+        self._state.bump_acceptance()
         save_goal(self.session_id, self._state)
+        from openamer_cli.goal_completion import bump_journal_revision
+        if _get_session_db() is not None:
+            bump_journal_revision(self.session_id)
         return text
 
     def remove_subgoal(self, index_1based: int) -> str:
@@ -1284,7 +1307,11 @@ class GoalManager:
                 f"index out of range (1..{len(self._state.subgoals)})"
             )
         removed = self._state.subgoals.pop(idx)
+        self._state.bump_acceptance()
         save_goal(self.session_id, self._state)
+        from openamer_cli.goal_completion import bump_journal_revision
+        if _get_session_db() is not None:
+            bump_journal_revision(self.session_id)
         return removed
 
     def clear_subgoals(self) -> int:
@@ -1293,7 +1320,11 @@ class GoalManager:
             raise RuntimeError("no active goal")
         prev = len(self._state.subgoals)
         self._state.subgoals = []
+        self._state.bump_acceptance()
         save_goal(self.session_id, self._state)
+        from openamer_cli.goal_completion import bump_journal_revision
+        if _get_session_db() is not None:
+            bump_journal_revision(self.session_id)
         return prev
 
     def render_subgoals(self) -> str:
