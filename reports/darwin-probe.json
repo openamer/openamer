@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-11T22:10:25.561983+00:00",
+  "updated": "2026-11-12T22:12:30.259261+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1288,
+  "total": 1291,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -2025,6 +2025,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-baselines-factory-mcp-cbccf31c-md": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-bash-line-3-17c7437a-command-not-fou": {
       "refs": 0,
       "ok": 0,
@@ -2212,6 +2218,12 @@
       "missing": []
     },
     "darwin-harvested-laptop-config-yaml": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-laptop-mini-2b": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7021,6 +7033,12 @@
       "missing": []
     },
     "rsi-stable": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "rtl-ltr-layout-control": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
