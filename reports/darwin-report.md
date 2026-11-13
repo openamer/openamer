@@ -1,5 +1,5 @@
 # Darwin Engine Report
-_2026-11-13T01:16:04.076617+00:00 — evolutionary skill ecosystem_
+_2026-11-13T02:56:19.941159+00:00 — evolutionary skill ecosystem_
 
 **Population:** 1292 Skills | **Offspring:** 4 | **Competitions:** 33
 
@@ -7,9 +7,9 @@ _2026-11-13T01:16:04.076617+00:00 — evolutionary skill ecosystem_
 
 | Skill | Fitness | Usage | Age (days) | Mutationen W/L |
 |---|---|---|---|---|
-| darwin-cron-guard | 3743.0 | 278 | 0 | 1759/67 |
-| darwin-harvested-training-internet-learn-log-jsonl | 3720.0 | 271 | 0 | 1728/21 |
-| autonomous-learning-architecture | 3485.0 | 355 | 0 | 1710/306 |
+| darwin-cron-guard | 3755.0 | 278 | 0 | 1765/67 |
+| darwin-harvested-training-internet-learn-log-jsonl | 3732.0 | 271 | 0 | 1734/21 |
+| autonomous-learning-architecture | 3497.0 | 355 | 0 | 1716/306 |
 | learning-loop | 422.23 | 412 | 83 | 0/0 |
 | asi-capability-summary | 286.37 | 275 | 49 | 0/0 |
 | a2a-brain-meshlearn-verify | 284.97 | 273 | 31 | 0/0 |
@@ -46,17 +46,17 @@ _2026-11-13T01:16:04.076617+00:00 — evolutionary skill ecosystem_
 - ⏳ `auto-env-checker+cdp-social-posting` (0) vs `None` (0)
 - ⏳ `auto-env-checker__mutbroaden_trigger` (208.37) vs `auto-env-checker` (208.37)
 - ⏳ `auto-env-checker__muttighten_trigger` (208.37) vs `auto-env-checker` (208.37)
-- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (3485.0) vs `autonomous-learning-architecture` (3485.0)
-- ⏳ `autonomous-learning-architecture__muttighten_trigger` (3485.0) vs `autonomous-learning-architecture` (3485.0)
+- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (3497.0) vs `autonomous-learning-architecture` (3497.0)
+- ⏳ `autonomous-learning-architecture__muttighten_trigger` (3497.0) vs `autonomous-learning-architecture` (3497.0)
 - ⏳ `cdp-social-posting__mutbroaden_trigger` (90.0) vs `cdp-social-posting` (90.0)
 - ⏳ `cdp-social-posting__muttighten_trigger` (90.0) vs `cdp-social-posting` (90.0)
-- ⏳ `darwin-cron-guard__mutbroaden_trigger` (3743.0) vs `darwin-cron-guard` (3743.0)
-- ⏳ `darwin-cron-guard__muttighten_trigger` (3743.0) vs `darwin-cron-guard` (3743.0)
-- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger` (3720.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (3720.0)
-- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__muttighten_trigger` (3720.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (3720.0)
-- ⏳ `discord-server-management__mutadd_verification_step` (15.13) vs `discord-server-management` (15.13)
-- ⏳ `discord-server-management__mutbroaden_trigger` (15.13) vs `discord-server-management` (15.13)
-- ⏳ `discord-server-management__muttighten_trigger` (15.13) vs `discord-server-management` (15.13)
+- ⏳ `darwin-cron-guard__mutbroaden_trigger` (3755.0) vs `darwin-cron-guard` (3755.0)
+- ⏳ `darwin-cron-guard__muttighten_trigger` (3755.0) vs `darwin-cron-guard` (3755.0)
+- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__mutbroaden_trigger` (3732.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (3732.0)
+- ⏳ `darwin-harvested-training-internet-learn-log-jsonl__muttighten_trigger` (3732.0) vs `darwin-harvested-training-internet-learn-log-jsonl` (3732.0)
+- ⏳ `discord-server-management__mutadd_verification_step` (15.1) vs `discord-server-management` (15.1)
+- ⏳ `discord-server-management__mutbroaden_trigger` (15.1) vs `discord-server-management` (15.1)
+- ⏳ `discord-server-management__muttighten_trigger` (15.1) vs `discord-server-management` (15.1)
 - ⏳ `github-readme-summary__mutbroaden_trigger` (18.9) vs `github-readme-summary` (18.9)
 - ⏳ `github-readme-summary__muttighten_trigger` (18.9) vs `github-readme-summary` (18.9)
 - ⏳ `openamer-plugin-development__muttighten_trigger` (20.63) vs `openamer-plugin-development` (20.63)
