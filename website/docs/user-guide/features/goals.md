@@ -139,7 +139,7 @@ After every turn, OpenAmer calls an auxiliary model with:
 - The agent's most recent final response (last ~4 KB of text)
 - A system prompt telling the judge to reply with strict JSON: `{"done": <bool>, "reason": "<one-sentence rationale>"}`
 
-The judge is deliberately conservative: it marks a goal `done` only when the response **explicitly** confirms the goal is complete, when the final deliverable is clearly produced, or when the goal is unachievable/blocked (treated as DONE with a block reason so we don't burn budget on impossible tasks).
+The judge is deliberately conservative: it should mark a goal `done` only when the response shows the requested deliverable. It can also return `blocked`, `partial`, or `failed`; these pause the existing loop while preserving the actual outcome and reason, rather than mislabeling an obstacle as success. For ACE goals with executable checks, a judge's `done` verdict cannot bypass the receipt gate.
 
 ### Fail-open semantics
 
@@ -241,6 +241,35 @@ No judge is perfect. Two failure modes to watch for:
 **False positive — judge says done when work remains.** You'll see `✓ Goal achieved` but you know better. Send a follow-up message to continue, or re-set the goal more precisely: `/goal <more specific text>`. The judge's system prompt is deliberately conservative to make false positives rarer than false negatives.
 
 If you find a judge verdict unconvincing, the reason text in the `↻ Continuing toward goal` or `✓ Goal achieved` line tells you exactly what the judge saw. That's usually enough to diagnose whether the goal text was ambiguous or the model's response was.
+
+### ACE: executable checks and durable repair budgets
+
+The existing `goal` tool can opt a goal into **ACE** by supplying `checks` and
+`budget` on `action=set`. Checks name exact foreground `terminal` arguments;
+only observed successful execution satisfies them. A prose claim, judge approval,
+or background-process start cannot replace a check. Later potentially mutating
+work invalidates earlier proof.
+
+ACE uses the existing session DB and continuation loop. It preserves a checkpoint,
+failed-attempt signatures, pending/uncertain calls, verification receipts and
+remaining call/time budgets across process restart and session compaction.
+`action=checkpoint` records progress in `reason` and links `next_step` to a check ID.
+Repeated identical failures are bounded; successful interventions permit a fresh
+bounded retry. Resuming does not replenish ACE budgets.
+
+`goal read` exposes missing checks, observed tool usage, matching verified prior
+strategies and the selected execution context. Windows does not imply PowerShell:
+the local terminal uses Bash, and remote target OS/shell is not inferred from the
+host. Controls and existing approval rules remain unchanged.
+
+Use `python scripts/ace_smoke.py` from a development checkout for a real, isolated
+repair → fresh-process restore → artifact execution test. A machine reboot and
+unattended boot scheduling are not implied by process-restart verification.
+Free-form goals without checks remain supported and retain judge-based completion.
+
+The actual outcome is `done`, `partial`, `blocked`, or `failed`; non-success
+outcomes use the existing paused control state and preserve the verdict/reason.
+Only executable-verified completions feed the existing goal-outcome learning store.
 
 ## Attribution
 

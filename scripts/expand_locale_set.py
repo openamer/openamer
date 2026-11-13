@@ -39,7 +39,10 @@ def main() -> int:
         print("could not find SUPPORTED_LANGUAGES tuple", file=sys.stderr)
         return 2
 
-    current = re.findall(r'"([a-z]{2}(?:-[a-z]+)?)"', m.group(1))
+    # Keep the intentionally non-ISO Torbeski application locale in the
+    # declared set.  It has no ISO 639 code, so treating only two-letter codes
+    # as valid makes every idempotence check try to add it again.
+    current = re.findall(r'"([a-z]{2}(?:-[a-z]{4})?|torbeski)"', m.group(1))
     added = [c for c in codes if c not in current]
     removed = [c for c in current if c not in codes]
     print(f"declared before : {len(current)}")

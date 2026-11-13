@@ -1068,6 +1068,27 @@ def _find_shell() -> str:
     return _find_bash()
 
 
+def describe_shell(executable: str | None = None) -> dict:
+    """Describe the selected executable, not the OS user's parent shell.
+
+    Windows terminals in OpenAmer execute through Git Bash. A PowerShell or
+    CMD parent therefore must not cause PowerShell syntax to be suggested for
+    terminal commands. Explicit child interpreters can be described separately.
+    """
+    executable = executable or _find_bash()
+    name = executable.replace("\\", "/").rsplit("/", 1)[-1].lower()
+    name = name.removesuffix(".exe")
+    if name in {"powershell", "pwsh"}:
+        family, syntax = "powershell", "Use PowerShell cmdlets and $env:NAME; invoke with -NoProfile -Command."
+    elif name == "cmd":
+        family, syntax = "cmd", "Use CMD builtins and %NAME%; invoke with /d /s /c."
+    elif name in _SPAWN_COMPATIBLE_SHELLS:
+        family, syntax = "posix", "Use POSIX shell syntax ($NAME, export, &&); invoke PowerShell/CMD explicitly if needed."
+    else:
+        family, syntax = "unknown", "Unknown shell grammar; do not translate or guess command syntax."
+    return {"executable": executable, "name": name, "family": family, "syntax": syntax}
+
+
 # Standard PATH entries for environments with minimal PATH.
 _SANE_PATH = (
     "/opt/homebrew/bin:/opt/homebrew/sbin:"
