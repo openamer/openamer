@@ -137,6 +137,21 @@ export function writeUpdateMarker(openamerHome, pid, { now = Date.now } = {}) {
   }
 }
 
+/** Reserve the existing marker before waiting for autonomous workers. */
+export function claimUpdateWorkerDrain(home: string, pid: number): void {
+  if (readLiveUpdateMarker(home)) { throw new Error('Another update is already in progress.') }
+  fs.writeFileSync(markerPath(home), `${pid}\n${Math.floor(Date.now() / 1000)}\n`, { encoding: 'utf8', flag: 'wx' })
+}
+
+/** Never remove the updater's successor marker or another owner's reservation. */
+export function releaseUpdateWorkerDrain(home: string, pid: number): void {
+  try {
+    const file = markerPath(home)
+
+    if (Number(fs.readFileSync(file, 'utf8').split('\n')[0]) === pid) { fs.unlinkSync(file) }
+  } catch { /* Missing is already released; an unreadable marker remains fail-safe. */ }
+}
+
 /** Wait for both in-process teardown and the detached updater to release startup.
  * A missing on-disk marker is not permission to respawn during local teardown.
  * Never fall through on timeout: that would re-lock the environment mid-update.

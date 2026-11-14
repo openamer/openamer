@@ -1736,6 +1736,26 @@ def _run_reclaim_phase(
     result.promoted = _kb.recompute_ready(conn, failure_limit=failure_limit)
 
 
+def _update_handoff_active() -> bool:
+    """Reuse the Desktop/updater marker; defer spawns, not running work.
+
+    Match the existing twenty-minute marker lease. Never delete someone
+    else's marker here; the owner and Desktop recovery own its lifecycle.
+    """
+    from openamer_constants import get_openamer_home
+
+    marker = Path(get_openamer_home()) / ".openamer-update-in-progress"
+    try:
+        lines = marker.read_text(encoding="utf-8").splitlines()
+        pid, started = int(lines[0]), int(lines[1])
+        return 0 <= time.time() - started <= 20 * 60 and _pid_alive(pid)
+    except FileNotFoundError:
+        return False
+    except (OSError, ValueError, IndexError):
+        # An uncertain in-progress write is not permission to race an update.
+        return True
+
+
 def _tick_spawn_budget(
     conn: sqlite3.Connection,
     result: DispatchResult,
@@ -1752,6 +1772,9 @@ def _tick_spawn_budget(
     every other board count against the same budget, else N boards multiply the
     cap by N — exactly the fan-out the memory-derived default exists to prevent.
     """
+    if _update_handoff_active():
+        return False, None
+
     # Count already-running tasks so max_spawn enforces concurrency, not a
     # per-tick budget: "running" tasks stay running until the worker calls
     # kanban_complete/kanban_block or the TTL reclaims them.
